@@ -1,0 +1,95 @@
+{:navgroup: .navgroup}
+{:topicgroup: .topicgroup}
+
+{: .toc subcollection="cloud-object-storage" audience="service" href="/docs/services/cloud-object-storage/getting-started.html"}
+Cloud Object Storage 
+
+    {: .navgroup id="learn"}
+    getting-started.md
+    about-cos.md
+    other-offerings.md
+    {: .navgroup-end}
+
+    {: .navgroup id="reference"}
+    api-reference/api-overview.md
+
+    {: .topicgroup}
+    API Reference
+        api-reference/about-compatibility-api.md
+        api-reference/common-headers-errors.md
+        api-reference/api-reference-buckets.md
+        api-reference/api-reference-objects.md
+        [OpenAPI Specification]()
+
+    {: .topicgroup}
+    Libraries
+        libraries/java.md
+        libraries/python.md
+        libraries/node.md
+        libraries/go.md
+        libraries/swift.md
+        libraries/ruby.md
+        libraries/other.md
+
+    {: .topicgroup}
+    CLIs
+        cli/bmx.md
+        cli/aws-cli.md
+        cli/gof3r.md
+        cli/s3cmd.md
+        cli/mc.md
+        cli/rsync.md
+        cli/s3fs.md
+
+    {: .topicgroup}
+    Technical Guides
+        info/distributed-computing.md
+        info/atomicity-consistency.md
+        info/data-security-encryption.md
+        info/developer-guidance.md
+    {: .navgroup-end}
+
+    {: .navgroup id="howto"}
+    basics/order-storage.md
+    basics/using-ui.md
+    basics/identity-access-management.md
+    basics/selecting-regions-endpoints.md
+    basics/using-storage-classes.md
+    basics/storing-very-large-objects.md
+    basics/use-customer-keys.md
+
+    {: .topicgroup}
+    Tutorials: Cloud Developer
+        tutorials/drone-imagery.md
+        tutorials/surveillance-video.md
+        tutorials/archival-data.md
+        tutorials/web-application.md
+
+    {: .topicgroup}
+    Tutorials: Data Scientist
+        tutorials/spark.md
+        tutorials/pandas.md
+        tutorials/r.md    
+
+    {: .topicgroup}
+    Using Desktop Clients
+        gui/cyberduck.md
+        gui/cloudberry.md
+        gui/s3browser.md
+        gui/transmit.md
+        gui/dragondisk.md
+
+    {: .topicgroup}
+    Data migration
+        migrate/migrate-from-swift.md
+        migrate/migrate-from-aws.md
+        migrate/migrate-from-azure.md
+        migrate/moving-massive-date.md
+    {: .navgroup-end}
+
+    {: .navgroup id="help"}
+    help/faq.md
+    help/support.md
+    help/billng.md
+    help/pricing.md
+    {: .navgroup-end}

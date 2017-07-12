@@ -1,1 +1,1 @@
-# cloud-object-storage
+# Cloud Object Storage Dedicated
