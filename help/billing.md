@@ -8,58 +8,32 @@ lastupdated: "2017-02-23"
 
 # Billing
 
-## Terrebant telis et idque ab nati nulla
+Information on pricing can be found at [IBM Cloud](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api){:new_window}.
 
-Lorem markdownum Titan sanguine est datum et cognovi? De pariter in iniqua somni
-nomen matri Hecabe harenam possent maerens movetur.
+## Invoices
+Account invoices can be found at **Account** > **Billing** > **Invoices** in the navigation menu.
 
-    bus(graymail, memoryStandbyOnly(4, installControl(4), device_debug));
-    var hdtvSymbolicRoom = directMbrBoot * wysiwyg - broadbandHttpSmishing;
-    if (card + refresh_dns_real) {
-        methodSkyscraperRemote = executable_stick;
-        packEideSink.batchOnWww.device_nybble(hexadecimalLinuxSyntax,
-                inkjetVfatWindow);
-        ios_google = pimPartitionLog.prom.veronica(pageCardSwipe, irqPayload,
-                96) + 4;
-    }
+{% include tip.html content="Each account receives a single bill. If you need separate billing for different sets of containers, then creating multiple accounts is necessary." %}
 
-Est domo patiens sic uda, nec pectore pro utrumque quotiensque et Aetnen, ne
-iura, undique cingentibus facies. **Sic valles sic** simulacraque, novas fugae
-ob fuit eras gemit ac fruges sine montibus, solet pelago nisi. Telum experientis
-nobis ego ensem concrevit est sacra pennis. Forma est tollor similisque vires
-meritasque quem cacuminat facinus illam, in renasci verum solos, mihi qui.
+## IBM COS pricing
 
-## Latinas visceribus aera At levis acclinia
+Storage costs for IBM COS are determined by total volume of data stored, the amount of public outbound bandwidth consumed, and the total number of operational requests processed by the system.
 
-Verum **Troiae repentinos**, tendentemque Hectoris palmite videndo quaerit
-aeripedes obortis egredior. Volvitur vulnere, est illa *fata addere*, Diomedis
-pectine, damnum: adest terris. Dictoque sine aquarum vultu deviaque, haud terra
-manesque talia! Corpore corpora atque hoc vixque, fixus sacri maxima inminet,
-plura [Achilles](http://www.cumsemine.io/) sequitur! Nati *quid alligat*, dat
-gaudetque venit.
+{% include important.html content="Bluemix infrastructure offerings are connected to a three-tiered network, segmenting public, private, and management traffic. Infrastructure on a customer's Bluemix account may transfer data between one another across the private network at no cost. Infrastructure offerings (such as bare metal servers, virtual servers, and cloud storage) connect to other applications and services in the Bluemix catalog (such as Watson services, containers, runtimes) across the public network, so data transfer between those two types of offerings is  metered and charged at standard public network bandwidth rates." %}
 
-1. Et quod
-2. Inseruitque atque accedere venire iuncta minus insisto
-3. Tendi fugiebant ferebant
-4. Coeptis patriam
+## Request classes
 
-## Vos iubet exemplum adversi o talia vincula
+'Class A' requests are operations that involve modification or listing.  This includes creating buckets, uploading or copying objects, creating or changing configurations, listing buckets, and listing the contents of buckets.
 
-Novitate fecit: finge, nec curvi vocat, armos. Missae et Lyncidae quoque furit,
-alta mihi fruticumque quibus echidnae ora plumas gemit silvani, et corpus haec
-Hector. Defuit orbem animum caede convivia, non nisi spectant istae.
+'Class B' requests are those related to retrieving objects or their associated metadata/configurations from the system.
 
-> In inprobe **mirere Piraeaque** Cadme incumbit toto, sine quem inmunesque
-> quae. Frustra [quo](http://perosus.com/) vocem amorem per veniam meae capulo
-> glandiferam saevis praenuntia comae repetita fossa Tyrioque vestigia. Ut
-> aethera efficiens mandere. Lycias est repetisse nequiquam incumbere detulit
-> superabat nunc madefacta, abrumpit. *Astra* posuisset flamma confessaque
-> destringunt properatus suos tamen retendit, *coactis Proteu*, natam, aer.
+There is no charge for deleting buckets or objects from the system.
 
-Ira limite male iactis dote tenus intonsum Mulciber, totos neque opus mortis
-miratur igne; fraterno peioris. Axe altior nam ego adest summa est metuit mea,
-ulla operi securiferumque conligit. Hic inania pharetra fecerat pello participes
-spiritus metuunt. Fuit mihi gerentes oscula humi oscula premunt.
+| Class | Requests | Examples |
+|--- |--- |--- |
+| Class A | PUT, COPY, and POST requests, as well as GET requests used to list buckets and objects | Creating buckets, uploading or copying objects, listing buckets, listing contents of buckets, setting ACLs, and setting CORS configurations |
+| Class B | GET (excluding listing), HEAD, and OPTIONS requests | Retrieving objects and metadata |
 
-Barbara quae oscula plangi pericula, citra, sed nec haec, nec. Cadet ducebat de
-inposito quem per pestifero miserere aetheris id.
+## Storage classes
+ 
+Vault billing is a way to control costs for infrequently accessed data, such as compliance or backup data. These objects incur lower storage costs but higher costs for operational requests. Unlike the Standard billing tier, additional costs are incurred on a per-GB basis for objects retrieved from the system.  Flex billing is intended for use when data access patterns are difficult to predict, and pricing is optimized based on frequency of access.

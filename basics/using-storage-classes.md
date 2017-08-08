@@ -8,58 +8,15 @@ lastupdated: "2017-02-23"
 
 # Use storage classes
 
-## Terrebant telis et idque ab nati nulla
+Not all data that is stored needs to be accessed frequently, and some archival data might be rarely accessed if at all.  For less active workloads, buckets can be created in a different storage class and objects stored in these buckets will incur charges on a different schedule than standard storage.
 
-Lorem markdownum Titan sanguine est datum et cognovi? De pariter in iniqua somni
-nomen matri Hecabe harenam possent maerens movetur.
+There are four storage classes:
 
-    bus(graymail, memoryStandbyOnly(4, installControl(4), device_debug));
-    var hdtvSymbolicRoom = directMbrBoot * wysiwyg - broadbandHttpSmishing;
-    if (card + refresh_dns_real) {
-        methodSkyscraperRemote = executable_stick;
-        packEideSink.batchOnWww.device_nybble(hexadecimalLinuxSyntax,
-                inkjetVfatWindow);
-        ios_google = pimPartitionLog.prom.veronica(pageCardSwipe, irqPayload,
-                96) + 4;
-    }
+*  **Standard**: Used for active workloads - there is no charge for data retrieved (besides the cost of the operational request itself).
+*  **Vault**: Used for cool workloads where data is accessed less than once a month - an additional retrieval charge is applied each time data is read. The service includes a minimum threshold for object size and storage period consistent with the intended use of this service for cooler, less-active data.
+*  **Cold Vault**: Used for cold workloads where data is accessed every 90 days or less - an larger additional retrieval charge is applied each time data is read. The service includes a longer minimum threshold for object size and storage period consistent with the intended use of this service for cold, inactive data.
+*  **Flex**: Used for dynamic workloads where access patterns are more difficult to predict. Depending on usage, if the cost of storage combined with retrieval charges exceeds a cap value, then retrieval charges are dropped and a new capacity charge is applied instead. If the data isn't accessed frequently, it is more cost effective than Standard storage, and if access usage patterns unexpectedly become more active it is more cost effective than Vault or Cold Vault storage. There is no minimum object size or storage period.
 
-Est domo patiens sic uda, nec pectore pro utrumque quotiensque et Aetnen, ne
-iura, undique cingentibus facies. **Sic valles sic** simulacraque, novas fugae
-ob fuit eras gemit ac fruges sine montibus, solet pelago nisi. Telum experientis
-nobis ego ensem concrevit est sacra pennis. Forma est tollor similisque vires
-meritasque quem cacuminat facinus illam, in renasci verum solos, mihi qui.
+For pricing details please see [the pricing table at ibm.com](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api).
 
-## Latinas visceribus aera At levis acclinia
-
-Verum **Troiae repentinos**, tendentemque Hectoris palmite videndo quaerit
-aeripedes obortis egredior. Volvitur vulnere, est illa *fata addere*, Diomedis
-pectine, damnum: adest terris. Dictoque sine aquarum vultu deviaque, haud terra
-manesque talia! Corpore corpora atque hoc vixque, fixus sacri maxima inminet,
-plura [Achilles](http://www.cumsemine.io/) sequitur! Nati *quid alligat*, dat
-gaudetque venit.
-
-1. Et quod
-2. Inseruitque atque accedere venire iuncta minus insisto
-3. Tendi fugiebant ferebant
-4. Coeptis patriam
-
-## Vos iubet exemplum adversi o talia vincula
-
-Novitate fecit: finge, nec curvi vocat, armos. Missae et Lyncidae quoque furit,
-alta mihi fruticumque quibus echidnae ora plumas gemit silvani, et corpus haec
-Hector. Defuit orbem animum caede convivia, non nisi spectant istae.
-
-> In inprobe **mirere Piraeaque** Cadme incumbit toto, sine quem inmunesque
-> quae. Frustra [quo](http://perosus.com/) vocem amorem per veniam meae capulo
-> glandiferam saevis praenuntia comae repetita fossa Tyrioque vestigia. Ut
-> aethera efficiens mandere. Lycias est repetisse nequiquam incumbere detulit
-> superabat nunc madefacta, abrumpit. *Astra* posuisset flamma confessaque
-> destringunt properatus suos tamen retendit, *coactis Proteu*, natam, aer.
-
-Ira limite male iactis dote tenus intonsum Mulciber, totos neque opus mortis
-miratur igne; fraterno peioris. Axe altior nam ego adest summa est metuit mea,
-ulla operi securiferumque conligit. Hic inania pharetra fecerat pello participes
-spiritus metuunt. Fuit mihi gerentes oscula humi oscula premunt.
-
-Barbara quae oscula plangi pericula, citra, sed nec haec, nec. Cadet ducebat de
-inposito quem per pestifero miserere aetheris id.
+For information on how to create buckets with different storage classes, please see the [API reference](docs/services/api-reference/api-reference-buckets.html#create-a-vault-bucket).

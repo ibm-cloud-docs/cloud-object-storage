@@ -6,7 +6,7 @@ lastupdated: "2017-02-23"
 
 ---
 
-# AWS CLI
+# Use a CLI
 
 The official command line interface for AWS is compatible with the IBM COS S3 API. Written in Python, it can be installed from the Python Package Index via `pip install awscli`. By default, access keys are sourced from `~/.aws/credentials`, but can also be set as environment variables.
 
