@@ -8,58 +8,17 @@ lastupdated: "2017-02-23"
 
 # Data security and encyrption
 
-## Terrebant telis et idque ab nati nulla
+IBM Cloud Object Storage uses an innovative approach for cost-effectively storing large volumes of unstructured data while ensuring security, availability and reliability. This is accomplished by using Information Dispersal Algorithms (IDAs) to separate data into unrecognizable “slices” that are distributed across a network of data centers, making transmission and storage of data inherently private and secure. No complete copy of the data resides in any single storage node, and only a subset of nodes needs to be available in order to fully retrieve the data on the network.
 
-Lorem markdownum Titan sanguine est datum et cognovi? De pariter in iniqua somni
-nomen matri Hecabe harenam possent maerens movetur.
+Objects in IBM COS are encrypted at rest. This technology individually encrypts each object using per-object generated keys. These keys are secured and reliably stored using the same Information Dispersal Algorithms that protect object data using an All-or-Nothing Transform (AONT), which prevents key data from being disclosed if individual nodes or hard drives are compromised.
 
-    bus(graymail, memoryStandbyOnly(4, installControl(4), device_debug));
-    var hdtvSymbolicRoom = directMbrBoot * wysiwyg - broadbandHttpSmishing;
-    if (card + refresh_dns_real) {
-        methodSkyscraperRemote = executable_stick;
-        packEideSink.batchOnWww.device_nybble(hexadecimalLinuxSyntax,
-                inkjetVfatWindow);
-        ios_google = pimPartitionLog.prom.veronica(pageCardSwipe, irqPayload,
-                96) + 4;
-    }
+Storage can be accessed over HTTPS, and internally storage devices are certified and communicate with each other using TLS.
 
-Est domo patiens sic uda, nec pectore pro utrumque quotiensque et Aetnen, ne
-iura, undique cingentibus facies. **Sic valles sic** simulacraque, novas fugae
-ob fuit eras gemit ac fruges sine montibus, solet pelago nisi. Telum experientis
-nobis ego ensem concrevit est sacra pennis. Forma est tollor similisque vires
-meritasque quem cacuminat facinus illam, in renasci verum solos, mihi qui.
 
-## Latinas visceribus aera At levis acclinia
+## Data deletion
 
-Verum **Troiae repentinos**, tendentemque Hectoris palmite videndo quaerit
-aeripedes obortis egredior. Volvitur vulnere, est illa *fata addere*, Diomedis
-pectine, damnum: adest terris. Dictoque sine aquarum vultu deviaque, haud terra
-manesque talia! Corpore corpora atque hoc vixque, fixus sacri maxima inminet,
-plura [Achilles](http://www.cumsemine.io/) sequitur! Nati *quid alligat*, dat
-gaudetque venit.
+After data is deleted various mechanisms exist which prevent recovery or reconstruction of the deleted objects. The deletion of an object undergoes various stages, from marking the meta-data indicating the object as deleted, to removing the content regions, to the finalization of the erasure on the drives themselves until the eventual overwriting the blocks representing that slice data. Depending on whether one compromised the data center or has possession of the physical disks, the time an object becomes unrecoverable depends on the phase of the delete operation. When the metadata object is updated, clients external from the data center network can no longer read the object. When a majority of slices representing the content regions have been finalized by the storage devices, it is not possible to access the object.
 
-1. Et quod
-2. Inseruitque atque accedere venire iuncta minus insisto
-3. Tendi fugiebant ferebant
-4. Coeptis patriam
+## Tenant isolation
 
-## Vos iubet exemplum adversi o talia vincula
-
-Novitate fecit: finge, nec curvi vocat, armos. Missae et Lyncidae quoque furit,
-alta mihi fruticumque quibus echidnae ora plumas gemit silvani, et corpus haec
-Hector. Defuit orbem animum caede convivia, non nisi spectant istae.
-
-> In inprobe **mirere Piraeaque** Cadme incumbit toto, sine quem inmunesque
-> quae. Frustra [quo](http://perosus.com/) vocem amorem per veniam meae capulo
-> glandiferam saevis praenuntia comae repetita fossa Tyrioque vestigia. Ut
-> aethera efficiens mandere. Lycias est repetisse nequiquam incumbere detulit
-> superabat nunc madefacta, abrumpit. *Astra* posuisset flamma confessaque
-> destringunt properatus suos tamen retendit, *coactis Proteu*, natam, aer.
-
-Ira limite male iactis dote tenus intonsum Mulciber, totos neque opus mortis
-miratur igne; fraterno peioris. Axe altior nam ego adest summa est metuit mea,
-ulla operi securiferumque conligit. Hic inania pharetra fecerat pello participes
-spiritus metuunt. Fuit mihi gerentes oscula humi oscula premunt.
-
-Barbara quae oscula plangi pericula, citra, sed nec haec, nec. Cadet ducebat de
-inposito quem per pestifero miserere aetheris id.
+IBM COS Cross-Region is a shared infrastructure, multi-tenant object storage solution. If your workload requires dedicated or isolated storage, visit [IBM Cloud](https://www.ibm.com/cloud-computing/products/storage/object-storage/flexible-deployment/) for more information.
