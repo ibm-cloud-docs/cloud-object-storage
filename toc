@@ -47,5 +47,3 @@ Cloud Object Storage
     help/billing.md
     {: .navgroup-end}
 
-    {:navgroup: .navgroup}
-{:topicgroup: .topicgroup}
