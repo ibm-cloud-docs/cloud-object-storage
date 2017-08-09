@@ -10,6 +10,8 @@ folder: help
 toc: false
 ---
 
+# About Object Storage
+
 Object storage is a modern storage technology concept and a logical progression from block and file storage. Object storage has been around since the late 1990s, but has gained market acceptance and success over the last 10 years. 
 
 Object storage was invented to overcome a number of issues:

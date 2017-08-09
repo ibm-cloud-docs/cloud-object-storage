@@ -11,38 +11,91 @@ Cloud Object Storage
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
-    api-reference/about-compatibility-api.md
+   <!-- api-reference/api-overview.md -->
 
     {: .topicgroup}
     API Reference
+        api-reference/about-compatibility-api.md
         api-reference/common-headers-errors.md
         api-reference/api-reference-buckets.md
         api-reference/api-reference-objects.md
+       <!-- [OpenAPI Specification]() -->
 
     {: .topicgroup}
     Libraries
         libraries/java.md
         libraries/python.md
+       <!-- libraries/node.md -->
+       <!-- libraries/go.md -->
+       <!-- libraries/swift.md -->
+       <!-- libraries/ruby.md -->
+       <!-- libraries/other.md -->
 
     {: .topicgroup}
     Technical guides
-        info/distributed-computing.md
+       <!-- info/distributed-computing.md -->
+       <!-- info/atomicity-consistency.md -->
         info/data-security-encryption.md
         info/developer-guidance.md
+        help/object-storage.md
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
     basics/order-storage.md
     basics/using-ui.md
+    basics/identity-access-management.md
     basics/selecting-regions-endpoints.md
     basics/using-storage-classes.md
-    cli/aws-cli.md
-    gui/cyberduck.md
-    tutorials/web-application.md
-    {: .navgroup-end}
+   <!-- basics/storing-very-large-objects.md -->
+   <!-- basics/use-customer-keys.md -->
+   <!-- basics/use-cos-for-backup.md -->
+   <!-- basics/use-gateways.md -->
+   <!-- basics/use-transfer-utilities.md   -->
+
+    {: .topicgroup}
+    Use the command line
+       <!-- cli/bmx.md -->
+        cli/aws-cli.md
+       <!-- cli/gof3r.md -->
+       <!-- cli/s3cmd.md -->
+       <!-- cli/mc.md -->
+       <!-- cli/rsync.md -->
+       <!-- cli/s3fs.md -->
+       <!-- cli/minfs.md -->
+       <!-- cli/restic.md -->
+
+    {: .topicgroup}
+    Use a desktop client
+        gui/cyberduck.md
+       <!-- gui/cloudberry.md -->
+       <!-- gui/s3browser.md -->
+       <!-- gui/transmit.md -->
+       <!-- gui/dragondisk.md -->
+
+   <!-- {: .topicgroup} -->
+   <!-- Data migration -->
+   <!--     migrate/migrate-from-swift.md -->
+   <!--     migrate/migrate-from-aws.md -->
+   <!--     migrate/migrate-from-azure.md -->
+   <!--     migrate/moving-massive-date.md -->
+
+   <!-- {: .topicgroup} -->
+   <!-- Tutorials: Cloud developer -->
+   <!--     tutorials/drone-imagery.md -->
+   <!--     tutorials/surveillance-video.md -->
+   <!--     tutorials/archival-data.md -->
+        tutorials/web-application.md
+
+   <!-- {: .topicgroup} -->
+   <!-- Tutorials: Data scientist -->
+   <!--     tutorials/spark.md -->
+   <!--     tutorials/pandas.md -->
+   <!--     tutorials/r.md   -->
+   <!-- {: .navgroup-end} -->
 
     {: .navgroup id="help"}
     help/faq.md
     help/support.md
     help/billing.md
+   <!-- help/pricing.md -->
     {: .navgroup-end}
