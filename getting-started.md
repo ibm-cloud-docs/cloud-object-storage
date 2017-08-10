@@ -42,9 +42,7 @@ follow these steps:
 
 4. To test access to your objects, click **Download** and review the file.
 
-5. When you're ready, [bind the service](/docs/services/reqnsi.html#add_service) to an application.
-
-See how easy building a cloud application can be with a [tutorial showing how to make a simple web-based image gallery](/docs/services/cloud-object-storage/tutorials/web-application.html)) using {{site.data.keyword.Bluemix_notm}} and IBM COS.
+Congratulations - that file is now encrpyted and dispersed with no complete copy existing in any given data center. Next, see how easy building a cloud application can be with a [tutorial showing how to make a simple web-based image gallery](/docs/services/cloud-object-storage/tutorials/web-application.html)) using {{site.data.keyword.Bluemix_notm}} and IBM COS.
 
 # Related Links
 {: #rellinks notoc}
@@ -58,3 +56,4 @@ See how easy building a cloud application can be with a [tutorial showing how to
 {: #general}
 * [IBM {{site.data.keyword.Bluemix_notm}} Pricing Sheet](https://www.ng.bluemix.net/#/pricing){: new_window}
 * [IBM {{site.data.keyword.Bluemix_notm}} Prerequisites](https://developer.ibm.com/bluemix/support/#prereqs){: new_window}
+
