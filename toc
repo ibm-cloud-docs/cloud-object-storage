@@ -10,6 +10,16 @@ Cloud Object Storage
     other-offerings.md
     {: .navgroup-end}
 
+    {: .navgroup id="howto"}
+    basics/order-storage.md
+    basics/using-ui.md
+    basics/selecting-regions-endpoints.md
+    basics/using-storage-classes.md
+    cli/aws-cli.md
+    gui/cyberduck.md
+    tutorials/web-application.md
+    {: .navgroup-end}
+
     {: .navgroup id="reference"}
     api-reference/about-compatibility-api.md
 
@@ -29,16 +39,6 @@ Cloud Object Storage
         info/distributed-computing.md
         info/data-security-encryption.md
         info/developer-guidance.md
-    {: .navgroup-end}
-
-    {: .navgroup id="howto"}
-    basics/order-storage.md
-    basics/using-ui.md
-    basics/selecting-regions-endpoints.md
-    basics/using-storage-classes.md
-    cli/aws-cli.md
-    gui/cyberduck.md
-    tutorials/web-application.md
     {: .navgroup-end}
 
     {: .navgroup id="help"}
