@@ -1,6 +1,3 @@
-{:navgroup: .navgroup}
-{:topicgroup: .topicgroup}
-
 {: .toc subcollection="cloud-object-storage" audience="services" href="/docs/services/cloud-object-storage/getting-started.html"}
 Cloud Object Storage 
 
@@ -13,37 +10,54 @@ Cloud Object Storage
     {: .navgroup id="howto"}
     basics/order-storage.md
     basics/using-ui.md
+
+    {: .topicgroup}
+    Manage access
+        iam/identity-access-management-overview.md
+        iam/granting-access-to-service.md
+        iam/granting-access-to-buckets.md
+        iam/making-objects-public.md
+    
     basics/selecting-regions-endpoints.md
     basics/using-storage-classes.md
-    cli/aws-cli.md
-    gui/cyberduck.md
+    basics/storing-very-large-objects.md
+    basics/use-customer-keys.md
+    cli/bmx.md
     tutorials/web-application.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
-    api-reference/about-compatibility-api.md
+    api-reference/api-overview.md
 
     {: .topicgroup}
     API Reference
+        api-reference/about-compatibility-api.md
         api-reference/common-headers-errors.md
         api-reference/api-reference-buckets.md
         api-reference/api-reference-objects.md
+        [COS API Specification]()
+        [IAM API Docs]()
+        [Resource Controller API Docs]()
 
     {: .topicgroup}
     Libraries
         libraries/java.md
         libraries/python.md
+        libraries/node.md
 
     {: .topicgroup}
     Technical guides
         info/distributed-computing.md
+        info/atomicity-consistency.md
         info/data-security-encryption.md
         info/developer-guidance.md
+        help/object-storage.md
     {: .navgroup-end}
 
     {: .navgroup id="help"}
     help/faq.md
     help/support.md
     help/billing.md
+    help/pricing.md
     {: .navgroup-end}
 
