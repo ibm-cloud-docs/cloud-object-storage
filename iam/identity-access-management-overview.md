@@ -26,6 +26,10 @@ The IAM Token Service enables the ability to create Service IDs and API keys for
 
 Users can create Service IDs and bind them to scopes like a Bluemix account, a CloudFoundry organization or a CloudFoundry space, although for adopting IAM, it is best to bind Service IDs to a Bluemix account. This binding is done to give the Service ID a container to live in. This container also defines who can update and delete the Service ID and who can create, update, read and delete API Keys that are associated to that Service ID. It is important to note that a Service ID is NOT related to a user.
 
+### Key rotation
+
+API keys should be regularly rotated to prevent any security breaches caused by leaked keys.
+
 ## Access management
 
 IAM Access Control provides a common way to assign user roles for Cloud resources and controls the actions the users can perform on those resources. You can view and manage users across the account or organization, depending on the access options that you have been given. For example, account owners are automatically assigned the account Administrator role for Identity and Access Managemement which enables them to assign and manage service policies for all members of their account.

@@ -1,5 +1,5 @@
 {: .toc subcollection="cloud-object-storage" audience="services" href="/docs/services/cloud-object-storage/getting-started.html"}
-Cloud Object Storage 
+Cloud Object Storage
 
     {: .navgroup id="learn"}
     getting-started.md
@@ -15,9 +15,9 @@ Cloud Object Storage
     Manage access
         iam/identity-access-management-overview.md
         iam/granting-access-to-service.md
-        iam/granting-access-to-buckets.md
+        iam/granting-access-to-bucket.md
         iam/making-objects-public.md
-    
+
     basics/selecting-regions-endpoints.md
     basics/using-storage-classes.md
     basics/storing-very-large-objects.md
@@ -60,4 +60,3 @@ Cloud Object Storage
     help/billing.md
     help/pricing.md
     {: .navgroup-end}
-
