@@ -5,6 +5,14 @@ Cloud Object Storage
     getting-started.md
     about-cos.md
     other-offerings.md
+
+    {: .topicgroup}
+    CLI tutorial
+        tutorial/gather-required-information.md
+        tutorial/provisioning-cos-service-instance.md
+        tutorial/creating-buckets-and-objects.md
+        tutorial/bucket-level-access-control-as-admin.md
+        tutorial/access-control-validation-as-viewer.md
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
