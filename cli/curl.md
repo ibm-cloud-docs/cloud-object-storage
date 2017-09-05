@@ -6,7 +6,7 @@ lastupdated: "2017-02-23"
 
 ---
 
-# s3cmd
+# cURL / curlish
 
 The official command line interface for AWS is compatible with the IBM COS S3 API. Written in Python, it can be installed from the Python Package Index via `pip install awscli`. By default, access keys are sourced from `~/.aws/credentials`, but can also be set as environment variables.
 
@@ -22,11 +22,11 @@ aws_secret_access_key = {Secret Access Key}
 
 The IBM COS endpoint must be sourced using the `--endpoint-url` option, and can not be set in the credentials file.
 
-Simple use cases can be accomplished using `aws --endpoint-url={endpoint} s3 <command>`. Objects are managed using familiar shell commands, such as `ls`, `mv`, `cp`, and `rm`.  Buckets can be deleted using `rb`.  
+Simple use cases can be accomplished using `aws --endpoint-url={endpoint} s3 <command>`. Objects are managed using familiar shell commands, such as `ls`, `mv`, `cp`, and `rm`.  Buckets can be deleted using `rb`.
 
 **Note**: Buckets can not be created using this method. Instead, use the `s3api` method described below.
 
-## Basic operations 
+## Basic operations
 Listing buckets:
 
 ```shell
@@ -65,7 +65,7 @@ $ aws --endpoint-url=https://{endpoint} s3 cp s3://bucket-1/new-file s3://bucket
 copy: s3://bucket-1/new-file to s3://bucket-2/new-file
 ```
 
-More complex operations require leveraging the api directly with `aws --endpoint-url={endpoint} s3api <command>`, which provides a standard JSON reponse.  
+More complex operations require leveraging the api directly with `aws --endpoint-url={endpoint} s3api <command>`, which provides a standard JSON reponse.
 
 Listing buckets:
 
@@ -161,4 +161,3 @@ It is also possible to set an expiration time for the URL in seconds (default is
 ```bash
 $ aws --endpoint-url=https://{endpoint} s3 presign s3://bucket-1/new-file --expires-in 600
 ```
-

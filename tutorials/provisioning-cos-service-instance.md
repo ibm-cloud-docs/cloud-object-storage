@@ -1,6 +1,6 @@
 # Provisioning COS Service Instance
 
-## Obtain IAM Token for Administrator \(Owner\)
+## Obtain IAM Token for Administrator (Owner)
 
 You will need to provide values for three request parameters:
 
