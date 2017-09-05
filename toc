@@ -21,10 +21,10 @@ Cloud Object Storage
 
     {: .topicgroup}
     Manage access
-        iam/identity-access-management-overview.md
-        iam/granting-access-to-service.md
-        iam/granting-access-to-bucket.md
-        iam/making-objects-public.md
+        tutorials/identity-access-management-overview.md
+        tutorials/granting-access-to-service.md
+        tutorials/granting-access-to-bucket.md
+        tutorials/making-objects-public.md
 
     basics/selecting-regions-endpoints.md
     basics/using-storage-classes.md

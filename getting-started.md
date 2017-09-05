@@ -14,7 +14,7 @@ lastupdated: "2017-02-23"
 
 
 # Getting started with IBM Cloud Object Storage
-In this getting started tutorial, we'll take you through the steps needed to create buckets, upload objects, and set up access policies to allow other users to work with your data."
+In this getting started tutorial, we'll take you through the steps needed to create buckets, upload objects, and set up access policies to allow other users to work with your data.
 {: shortdesc}
 
 ## Before you begin
@@ -56,4 +56,4 @@ Check that the new user can view the buckets and objects created in steps 1 & 2.
 
 ## Next steps
 
-Now that you are familiar with managing and using your object storage via the web-based console, you might be interested in doing a similar workflow from the command line using  the `bx` command line utility for creating the service instance and interacting with IAM, and `curl` for accessing COS directly. [Check out the command line tutorial](tutorial/gather-required-information.md) to get started.
+Now that you are familiar with managing and using your object storage via the web-based console, you might be interested in doing a similar workflow from the command line using  the `bx` command line utility for creating the service instance and interacting with IAM, and `curl` for accessing COS directly. [Check out the command line tutorial](tutorials/gather-required-information.html) to get started.
