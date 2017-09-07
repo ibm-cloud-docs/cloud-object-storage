@@ -1,4 +1,4 @@
-Validate User's access for various resources
+# Validate the bucket policy
 
 ## Obtain IAM Token for User with Viewer role
 

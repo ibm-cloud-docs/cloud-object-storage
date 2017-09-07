@@ -1,4 +1,4 @@
-# Provisioning COS Service Instance
+# Provision a COS Service Instance
 
 ## Obtain IAM Token for Administrator (Owner)
 
@@ -383,3 +383,5 @@ Response:
     ]
 }
 ```
+
+Next, [create some buckets and objects](tutorials/creating-buckets-and-objects.html).

@@ -8,8 +8,8 @@ lastupdated: "2017-02-23"
 
 # Granting access to a COS service instance
 
-## Granting a user access
+## Granting access to a user
 tbd
 
-## Granting another IBM Cloud Service access
+## Granting access to another IBM Cloud Service
 tbd

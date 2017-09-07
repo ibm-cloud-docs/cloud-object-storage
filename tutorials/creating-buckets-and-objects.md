@@ -1,4 +1,4 @@
-# Creating Buckets and Objects
+# Create buckets and objects
 
 This guide demonstrates how to create bucket and upload objects for Bluemix COS Service instance. It demonstrates use of the `service instance giud` and `access_token`.
 
@@ -137,3 +137,5 @@ curl -X GET \
     </Contents>
 </ListBucketResult>
 ```
+
+Next, [create a bucket level access policy](tutorials/bucket-level-access-control-as-admin.html).

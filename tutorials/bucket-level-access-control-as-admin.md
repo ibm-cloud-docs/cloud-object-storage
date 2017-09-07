@@ -1,4 +1,4 @@
-# Set a policy on a bucket to allow a user to read only permission on a bucket
+# Set a policy on a bucket
 
 A user "bluemix\_ui\_dharmesh2@mailinator.com" has been invited to join a bluemix organization using Bluemix IAM "Invite User" feature. At the time of invitation, the user was not granted access to any "IAM" enabled services. However, the user was invited to join the org as an auditor.
 
@@ -237,3 +237,5 @@ curl -X GET \
 ```
 
 Now there is one policy for this user.
+
+Now [we can validate that the controls are in place](tutorials/access-control-validation-as-viewer.html).
