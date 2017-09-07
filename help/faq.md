@@ -20,9 +20,6 @@ Bucket names are required to be DNS addressable, and thus not case sensitive.
 
 ## Offering Questions
 
-**Do we offer a free tier option for IBM Cloud Object Storage?**
-
-Yes, use promo code `COSFREE` to obtain 25 GB of storage and a bunch of operations per month. 
 
 **Is there a 100-bucket limit to an account?  What happens if we need more?**
 
@@ -38,20 +35,20 @@ The storage class (eg `us-flex`) is assigned to the `LocationConstraint` configu
 
 **Can the storage class of a bucket be changed?  For example, if you have production data in 'standard', can we easily switch it to 'vault' for billing purposes if we are not using it frequently?**
 
-Today changing of storage class requires manually moving or copying the data from one bucket to another bucket with the desired storage class. 
+Today changing of storage class requires manually moving or copying the data from one bucket to another bucket with the desired storage class.
 
 
 ## Performance Questions
 
 **Does data consistency in COS come with a performance impact?**
 
-Consistency with any distributed system comes with a cost, but the efficiency of the IBM COS dispersed storage system is higher, and overhead is lower compared to systems with multiple synchronous copies.  
+Consistency with any distributed system comes with a cost, but the efficiency of the IBM COS dispersed storage system is higher, and overhead is lower compared to systems with multiple synchronous copies.
 
 **Aren't there performance implications if my application needs to manipulate large objects?**
 
-For performance optimization, objects can be uploaded and downloaded in multiple parts, in parallel. 
+For performance optimization, objects can be uploaded and downloaded in multiple parts, in parallel.
 
- 
+
 ## Encryption Questions
 
 **Does IBM COS provide encryption at rest and in motion?**
@@ -62,9 +59,9 @@ Yes.  Data at rest is encrypted with automatic provider side Advanced Encryption
 
 Server side encryption is always on for customer data.  Compared to the hashing required in S3 authentication and the erasure coding, encryption is not a big part of the processing cost of COS.
 
-**Does IBM COS encrypt all data?**  
+**Does IBM COS encrypt all data?**
 
-Yes, IBM COS encrypts all data.  
+Yes, IBM COS encrypts all data.
 
 **Does IBM COS have FIPS 140-2 compliance for the encryption algorithms?**
 
@@ -72,7 +69,7 @@ The algorithms are FIPS 140-2 ready but testing / certification is still pending
 
 **Will client-key encryption be supported?**
 
-Yes, client-key encryption will be supported in 2017.  
+Yes, client-key encryption will be supported in 2017.
 
 ## General questions
 
@@ -92,12 +89,11 @@ No, buckets can not be nested.  If a greater level of organization is required w
 
 You can use metadata associated with each object to find the objects you are looking for. The biggest advantage of object storage is the metadata associated with each object. Each object can have up to 4 MB of metadata in IBM COS.  When offloaded to a database, metadata provides excellent search capabilities.  A large number of (key, value) pairs can be stored in 4 MB.  You can also use Prefix searching to find what you are looking for. For example, if you use buckets to separate each customer data, you can use prefixes within buckets for organization. For example:  /bucket1/folder/object where 'folder/' is the prefix.
 
-**Can you confirm that IBM COS is ‘immediately consistent’, as opposed to ‘eventually consistent’?** 
+**Can you confirm that IBM COS is ‘immediately consistent’, as opposed to ‘eventually consistent’?**
 
 COS is ‘immediately consistent’ for data and ‘eventually consistent’ for usage accounting.
 
 
 **Can IBM COS partition the data automatically for me like HDFS, so I can read the partitions in parallel, e.g. with Spark?**
 
-IBM COS supports a ranged GET on the object, so an application can do a distributed striped read type operation.  Doing the striping would be on the application to manage.  
-
+IBM COS supports a ranged GET on the object, so an application can do a distributed striped read type operation.  Doing the striping would be on the application to manage.

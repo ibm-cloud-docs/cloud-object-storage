@@ -8,11 +8,11 @@ Cloud Object Storage
 
     {: .topicgroup}
     CLI tutorial
-        tutorial/gather-required-information.md
-        tutorial/provisioning-cos-service-instance.md
-        tutorial/creating-buckets-and-objects.md
-        tutorial/bucket-level-access-control-as-admin.md
-        tutorial/access-control-validation-as-viewer.md
+        tutorials/gather-required-information.md
+        tutorials/provisioning-cos-service-instance.md
+        tutorials/creating-buckets-and-objects.md
+        tutorials/bucket-level-access-control-as-admin.md
+        tutorials/access-control-validation-as-viewer.md
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
@@ -21,10 +21,10 @@ Cloud Object Storage
 
     {: .topicgroup}
     Manage access
-        tutorials/identity-access-management-overview.md
-        tutorials/granting-access-to-service.md
-        tutorials/granting-access-to-bucket.md
-        tutorials/making-objects-public.md
+        iam/identity-access-management-overview.md
+        iam/granting-access-to-service.md
+        iam/granting-access-to-bucket.md
+        iam/making-objects-public.md
 
     basics/selecting-regions-endpoints.md
     basics/using-storage-classes.md

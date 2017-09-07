@@ -6,7 +6,7 @@ lastupdated: "2017-02-23"
 
 ---
 
-# Access control for a single bucket
+# Granting access to a single bucket
 
 ## Granting access to a user
 
@@ -23,3 +23,5 @@ How to remove permission on a bucket.
 Delete the policy through IAM.
 How to modify permissions on a bucket.
 You need to delete the existing policy and make a new one. (Can be done via API)
+
+## Granting access to another IBM Cloud Service

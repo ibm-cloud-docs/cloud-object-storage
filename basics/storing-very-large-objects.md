@@ -8,58 +8,15 @@ lastupdated: "2017-02-23"
 
 # Store very large objects
 
-## Terrebant telis et idque ab nati nulla
+IBM COS can support single objects as large as 10TB, although it not recommended to upload objects this large in a single stream.
 
-Lorem markdownum Titan sanguine est datum et cognovi? De pariter in iniqua somni
-nomen matri Hecabe harenam possent maerens movetur.
+## Uploading objects in multiple parts
 
-    bus(graymail, memoryStandbyOnly(4, installControl(4), device_debug));
-    var hdtvSymbolicRoom = directMbrBoot * wysiwyg - broadbandHttpSmishing;
-    if (card + refresh_dns_real) {
-        methodSkyscraperRemote = executable_stick;
-        packEideSink.batchOnWww.device_nybble(hexadecimalLinuxSyntax,
-                inkjetVfatWindow);
-        ios_google = pimPartitionLog.prom.veronica(pageCardSwipe, irqPayload,
-                96) + 4;
-    }
+When working with larger objects, multipart upload operations are recommended to write objects into IBM COS. An upload of a single object can be performed as a set of parts and these parts can be uploaded independently in any order and in parallel. Upon upload completion, IBM COS then presents all parts as a single object. This provides many benefits: network interruptions do not cause large uploads to fail, uploads can be paused and restarted over time, and objects can be uploaded as they are being created.
 
-Est domo patiens sic uda, nec pectore pro utrumque quotiensque et Aetnen, ne
-iura, undique cingentibus facies. **Sic valles sic** simulacraque, novas fugae
-ob fuit eras gemit ac fruges sine montibus, solet pelago nisi. Telum experientis
-nobis ego ensem concrevit est sacra pennis. Forma est tollor similisque vires
-meritasque quem cacuminat facinus illam, in renasci verum solos, mihi qui.
+Multipart uploads are only available for objects larger than 5MB. For objects smaller than 50GB, a part size of 20MB to 100MB is recommended for optimum performance. For larger objects, part size can be increased without significant performance impact.  Multipart uploads are limited to no more than 10,000 parts of 5GB each.
 
-## Latinas visceribus aera At levis acclinia
+Using more than 500 parts leads to inefficiencies in IBM COS and should be avoided when possible.
+{:tip}
 
-Verum **Troiae repentinos**, tendentemque Hectoris palmite videndo quaerit
-aeripedes obortis egredior. Volvitur vulnere, est illa *fata addere*, Diomedis
-pectine, damnum: adest terris. Dictoque sine aquarum vultu deviaque, haud terra
-manesque talia! Corpore corpora atque hoc vixque, fixus sacri maxima inminet,
-plura [Achilles](http://www.cumsemine.io/) sequitur! Nati *quid alligat*, dat
-gaudetque venit.
-
-1. Et quod
-2. Inseruitque atque accedere venire iuncta minus insisto
-3. Tendi fugiebant ferebant
-4. Coeptis patriam
-
-## Vos iubet exemplum adversi o talia vincula
-
-Novitate fecit: finge, nec curvi vocat, armos. Missae et Lyncidae quoque furit,
-alta mihi fruticumque quibus echidnae ora plumas gemit silvani, et corpus haec
-Hector. Defuit orbem animum caede convivia, non nisi spectant istae.
-
-> In inprobe **mirere Piraeaque** Cadme incumbit toto, sine quem inmunesque
-> quae. Frustra [quo](http://perosus.com/) vocem amorem per veniam meae capulo
-> glandiferam saevis praenuntia comae repetita fossa Tyrioque vestigia. Ut
-> aethera efficiens mandere. Lycias est repetisse nequiquam incumbere detulit
-> superabat nunc madefacta, abrumpit. *Astra* posuisset flamma confessaque
-> destringunt properatus suos tamen retendit, *coactis Proteu*, natam, aer.
-
-Ira limite male iactis dote tenus intonsum Mulciber, totos neque opus mortis
-miratur igne; fraterno peioris. Axe altior nam ego adest summa est metuit mea,
-ulla operi securiferumque conligit. Hic inania pharetra fecerat pello participes
-spiritus metuunt. Fuit mihi gerentes oscula humi oscula premunt.
-
-Barbara quae oscula plangi pericula, citra, sed nec haec, nec. Cadet ducebat de
-inposito quem per pestifero miserere aetheris id.
+Due to the additional complexity involved, it is recommended that developers make use of a library that provide multipart upload support.

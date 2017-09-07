@@ -8,58 +8,65 @@ lastupdated: "2017-02-23"
 
 # Use encryption keys
 
-## Terrebant telis et idque ab nati nulla
+All objects stored in IBM COS are encrypted by default using multiple randomnly generated keys and an all-or-nothing-transform. While this default encryption model is remarkably secure, some workloads need to be in possession of the encryption keys used.
 
-Lorem markdownum Titan sanguine est datum et cognovi? De pariter in iniqua somni
-nomen matri Hecabe harenam possent maerens movetur.
+## Uploading objects using customer keys.
 
-    bus(graymail, memoryStandbyOnly(4, installControl(4), device_debug));
-    var hdtvSymbolicRoom = directMbrBoot * wysiwyg - broadbandHttpSmishing;
-    if (card + refresh_dns_real) {
-        methodSkyscraperRemote = executable_stick;
-        packEideSink.batchOnWww.device_nybble(hexadecimalLinuxSyntax,
-                inkjetVfatWindow);
-        ios_google = pimPartitionLog.prom.veronica(pageCardSwipe, irqPayload,
-                96) + 4;
-    }
+#### Upload an object
 
-Est domo patiens sic uda, nec pectore pro utrumque quotiensque et Aetnen, ne
-iura, undique cingentibus facies. **Sic valles sic** simulacraque, novas fugae
-ob fuit eras gemit ac fruges sine montibus, solet pelago nisi. Telum experientis
-nobis ego ensem concrevit est sacra pennis. Forma est tollor similisque vires
-meritasque quem cacuminat facinus illam, in renasci verum solos, mihi qui.
+A `PUT` given a path to an object uploads the request body as an object. A SHA256 hash of the object is a required header.  All objects are limited to 10TB in size. This operation does not make use of operation specific query parameters, or payload elements.
 
-## Latinas visceribus aera At levis acclinia
+###### Syntax
 
-Verum **Troiae repentinos**, tendentemque Hectoris palmite videndo quaerit
-aeripedes obortis egredior. Volvitur vulnere, est illa *fata addere*, Diomedis
-pectine, damnum: adest terris. Dictoque sine aquarum vultu deviaque, haud terra
-manesque talia! Corpore corpora atque hoc vixque, fixus sacri maxima inminet,
-plura [Achilles](http://www.cumsemine.io/) sequitur! Nati *quid alligat*, dat
-gaudetque venit.
+```bash
+PUT https://{endpoint}/{bucket-name}/{object-name} # path style
+PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
+```
 
-1. Et quod
-2. Inseruitque atque accedere venire iuncta minus insisto
-3. Tendi fugiebant ferebant
-4. Coeptis patriam
+##### Specific headers for SSE-C
 
-## Vos iubet exemplum adversi o talia vincula
+The following headers are available for buckets using Server Side Encryption with Customer-Provided Keys (SSE-C). Any request using SSE-C headers must be sent using SSL. Note that `ETag` values in response headers are *not* the MD5 hash of the object, but a randomly generated 32-byte hexadecimal string.
 
-Novitate fecit: finge, nec curvi vocat, armos. Missae et Lyncidae quoque furit,
-alta mihi fruticumque quibus echidnae ora plumas gemit silvani, et corpus haec
-Hector. Defuit orbem animum caede convivia, non nisi spectant istae.
+Header | Type | Description
+--- | ---- | ------------
+`x-amz-server-side-encryption-customer-algorithm` | string | This header is used to specify the algorithm and key size to use with the encryption key stored in `x-amz-server-side-encryption-customer-key` header. This value must be set to the string `AES256`.
+`x-amz-server-side-encryption-customer-key` | string | This header is used to transport the base 64 encoded byte string representation of the AES 256 key used in the server side encryption process.
+`x-amz-server-side-encryption-customer-key-MD5` | string | This header is used to transport the base64-encoded 128-bit MD5 digest of the encryption key according to RFC 1321. The object store will use this value to validate the key passes in the `x-amz-server-side-encryption-customer-key` has not been corrupted during transport and encoding process. The digest must be calculated on the key BEFORE the key is base 64 encoded.
 
-> In inprobe **mirere Piraeaque** Cadme incumbit toto, sine quem inmunesque
-> quae. Frustra [quo](http://perosus.com/) vocem amorem per veniam meae capulo
-> glandiferam saevis praenuntia comae repetita fossa Tyrioque vestigia. Ut
-> aethera efficiens mandere. Lycias est repetisse nequiquam incumbere detulit
-> superabat nunc madefacta, abrumpit. *Astra* posuisset flamma confessaque
-> destringunt properatus suos tamen retendit, *coactis Proteu*, natam, aer.
+###### Sample request using SSE-C
 
-Ira limite male iactis dote tenus intonsum Mulciber, totos neque opus mortis
-miratur igne; fraterno peioris. Axe altior nam ego adest summa est metuit mea,
-ulla operi securiferumque conligit. Hic inania pharetra fecerat pello participes
-spiritus metuunt. Fuit mihi gerentes oscula humi oscula premunt.
+```http
+PUT /example-bucket/queen-bee HTTP/1.1
+Authorization: {authorization-string}
+x-amz-date: 20160825T183001Z
+x-amz-content-sha256: 309721641329cf441f3fa16ef996cf24a2505f91be3e752ac9411688e3435429
+x-amz-server-side-encryption-customer-algorithm: AES256
+x-amz-server-side-encryption-customer-key: MjRCRTJCQTNDQjdFOTkyMzY0NjZEN0NBMDhGQTBGRUQwNzFBMjEwMkQyNjU4MjNEOEMyODU5MkQxQ0ZEMkQ1OQ==
+x-amz-server-side-encryption-customer-key-MD5: HBbrEt+ZH5iIfDNeBju03w==
+Content-Type: text/plain; charset=utf-8
+Host: s3-api.us-geo.objectstorage.softlayer.net
 
-Barbara quae oscula plangi pericula, citra, sed nec haec, nec. Cadet ducebat de
-inposito quem per pestifero miserere aetheris id.
+Content-Length: 533
+
+ The 'queen' bee is developed from larvae selected by worker bees and fed a
+ substance referred to as 'royal jelly'. After a short while the 'queen' is
+ the mother of nearly every bee in the hive, and the colony will fight
+ fiercely to protect her.
+
+```
+
+###### Sample response
+
+```http
+HTTP/1.1 200 OK
+Date: Thu, 25 Aug 2016 18:30:02 GMT
+X-Clv-Request-Id: 9f0ca49a-ae13-4d2d-925b-117b157cf5c3
+Accept-Ranges: bytes
+Server: Cleversafe/3.9.0.121
+X-Clv-S3-Version: 2.5
+x-amz-request-id: 9f0ca49a-ae13-4d2d-925b-117b157cf5c3
+ETag: "3ca744fa96cb95e92081708887f63de5"
+x-amz-server-side-encryption-customer-algorithm: AES256
+x-amz-server-side-encryption-customer-key-MD5: HBbrEt+ZH5iIfDNeBju03w==
+Content-Length: 0
+```

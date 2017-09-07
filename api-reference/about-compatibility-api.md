@@ -10,15 +10,15 @@ lastupdated: "2017-02-23"
 
 # API Reference
 
-The IBM Cloud Object Storage implementation of the S3 API supports the most commonly used subset of Amazon S3 API operations. A complete list of supported operations can be found in the [API overview](docs/services/cloud-object-storage/about-compatibility-api.html).
+The IBM COS API is based on the most commonly used subset of Amazon S3 API operations. The API syntax is nearly identical to the S3 API aside from authentication and access control. 
 
-This reference documentation is being continously improved. If you have technical questions about using the API in your application, please post them on StackOverflow using both `ibm-bluemix` and `object-storage` tags and we will do our best to answer promptly, and then improve this documentation thanks to your feedback.
+This reference documentation is being continously improved. If you have technical questions about using the API in your application, please post them on StackOverflow using both `ibm-bluemix` and `object-storage` tags and we will do our best to answer, and then improve this documentation thanks to your feedback.
 
-The following tables describe the complete set of supported operations when using the S3 API to access IBM Cloud Object Storage.  For details on using the operations, including examples, see [the API reference page](docs/services/cloud-object-storage/api-reference.html).
+The following tables describe the complete set of operations when using the COS API to access IBM Cloud Object Storage.  For details on using the operations, including examples, see [the API reference page for buckets](docs/services/cloud-object-storage/api-reference-buckets.html) or [objects](docs/services/cloud-object-storage/api-reference-objects.html).
 
 ## Operations on the account
 
-The only operation that is performed directly at the account level is to get a list of buckets owned by that account. Accounts are limited to 100 buckets.
+The one operation performed directly at the account level is getting a list of buckets owned by that account. Accounts are limited to 100 buckets.
 
 | Account operation | Note |
 |:----|:---|
@@ -58,7 +58,7 @@ These operations create, destroy, get information about, and control behavior of
 | `OPTIONS` Object | Checks CORS configuration to see if a specific request can be sent.
 | `POST` Object | Adds an object to a bucket using HTML forms.
 | `PUT` Object | Adds an object to a bucket.
-| `PUT` Object ACL | Creates an access control list for an object. 
+| `PUT` Object ACL | Creates an access control list for an object.
 | `PUT` Object (Copy) | Creates a copy of an object. |
 | Initiate Multipart Upload | Creates an upload ID for a given set of parts to be uploaded.
 | Upload Part | Uploads a part of an object associated with an upload ID.
@@ -69,4 +69,3 @@ These operations create, destroy, get information about, and control behavior of
 
 
 Some additional operations, such as tagging and versioning, are supported in private cloud implementations of IBM COS, but not in public or dedicated clouds at this time. More information custom object storage solutions can be found at [ibm.com](https://www.ibm.com/cloud-computing/products/storage/object-storage/cloud/).
-
