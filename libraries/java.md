@@ -8,14 +8,13 @@ lastupdated: "2017-02-23"
 
 # Java
 
-The AWS SDK for Java is comprehensive, and has features and capabilities not described in this guide.  For detailed class and method documentation, as well as the source code, see the [GitHub repository](https://github.com/aws/aws-sdk-java).
+The COS SDK for Java is comprehensive, and has features and capabilities not described in this guide.  For detailed class and method documentation, as well as the source code, see the [GitHub repository](https://github.com/).
 
 ## Getting the SDK
-The easiest way to consume the AWS Java SDK is to use Maven to manage dependencies. If you aren't familiar with Maven, you get can get up and running using the [Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html) guide.
+The easiest way to consume the IBM COS Java SDK is to use Maven to manage dependencies. If you aren't familiar with Maven, you get can get up and running using the [Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html) guide.
 
-Maven uses a file called `pom.xml` to specify the libraries (and their versions) needed for a Java project.  Here is an example `pom.xml` file for using the AWS S3 Java SDK to connect to IBM COS (it also includes the SoftLayer library for provisioning credentials and new accounts).
+Maven uses a file called `pom.xml` to specify the libraries (and their versions) needed for a Java project.  Here is an example `pom.xml` file for using the IBM COS Java SDK to connect to IBM COS.
 
-Please note that recent versions of the AWS SDK for Java may have introduced incompatibilities.  The most recent recommended version is **1.11.5**.
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -29,13 +28,8 @@ Please note that recent versions of the AWS SDK for Java may have introduced inc
     <dependencies>
         <dependency>
             <groupId>com.amazonaws</groupId>
-            <artifactId>aws-java-sdk-s3</artifactId>
+            <artifactId>ibm-cos-java-sdk</artifactId>
             <version>1.11.5</version>
-        </dependency>
-        <dependency>
-            <groupId>com.softlayer.api</groupId>
-            <artifactId>softlayer-api-client</artifactId>
-            <version>0.2.3</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -67,7 +61,7 @@ Please note that recent versions of the AWS SDK for Java may have introduced inc
 
 ## Creating a client and setting the endpoint
 
-### Create an AWS Java SDK connection using the default credentials
+### Create an COS Java SDK connection using the default credentials
 
 Use default credentials using the first credentials found in this order of precedence:
 
@@ -77,7 +71,8 @@ Use default credentials using the first credentials found in this order of prece
 
 The AWS Java SDK automatically reads the Access Key ID and Secret Access Key from one of these locations. They do not need to be provided explicitly.
 
-{% include note.html content="The AWS Java SDK sends all requests to `s3.amazonaws.com` by default. To send requests to IBM COS, the new `AmazonS3Client` instance needs the correct `setEndpoint` parameter. The SDK interprets the http(s) from the endpoint and infers encrypted or plain text from the URL." %}
+The AWS Java SDK sends all requests to `s3.amazonaws.com` by default. To send requests to IBM COS, the new `AmazonS3Client` instance needs the correct `setEndpoint` parameter. The SDK interprets the http(s) from the endpoint and infers encrypted or plain text from the URL.
+{:tip}
 
 ```java
 AmazonS3 cos = new AmazonS3Client();

@@ -238,4 +238,6 @@ curl -X GET \
 
 Now there is one policy for this user.
 
-Now [we can validate that the controls are in place](tutorials/access-control-validation-as-viewer.html).
+
+## Next steps
+Now [we can validate that the controls are in place](access-control-validation-as-viewer.html).

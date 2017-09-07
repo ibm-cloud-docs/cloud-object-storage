@@ -336,3 +336,6 @@ curl -X GET \
 ```
 
 This works as expected. User has object listing access on this bucket.
+
+## Next steps
+Look through the [API documentation](../../api-reference/about-compatibility-api.html) or [build a photo gallery application](../web-application). 

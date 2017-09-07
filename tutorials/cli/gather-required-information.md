@@ -66,5 +66,5 @@ GUID                                   Name                  Region     Account 
 
 
 ```
-
-Next, [lets provision an instance](tutorials/provisioning-cos-service-instance.html) of Cloud Object Storage.
+## Next steps
+Next, [lets provision an instance](provisioning-cos-service-instance.html) of Cloud Object Storage.

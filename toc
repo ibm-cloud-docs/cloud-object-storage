@@ -8,11 +8,11 @@ Cloud Object Storage
 
     {: .topicgroup}
     CLI tutorial
-        tutorials/gather-required-information.md
-        tutorials/provisioning-cos-service-instance.md
-        tutorials/creating-buckets-and-objects.md
-        tutorials/bucket-level-access-control-as-admin.md
-        tutorials/access-control-validation-as-viewer.md
+        tutorials/cli/gather-required-information.md
+        tutorials/cli/provisioning-cos-service-instance.md
+        tutorials/cli/creating-buckets-and-objects.md
+        tutorials/cli/bucket-level-access-control-as-admin.md
+        tutorials/cli/access-control-validation-as-viewer.md
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
