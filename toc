@@ -4,16 +4,11 @@ Cloud Object Storage
     {: .navgroup id="learn"}
     getting-started.md
     about-cos.md
-    other-offerings.md
-
-    {: .topicgroup}
-    CLI tutorial
-        tutorials/cli/gather-required-information.md
-        tutorials/cli/provisioning-cos-service-instance.md
-        tutorials/cli/creating-buckets-and-objects.md
-        tutorials/cli/bucket-level-access-control-as-admin.md
-        tutorials/cli/access-control-validation-as-viewer.md
+    basics/administrators.md
+    basics/developers.md
+    basics/data-scientists.md
     {: .navgroup-end}
+
 
     {: .navgroup id="howto"}
     basics/order-storage.md
@@ -31,7 +26,12 @@ Cloud Object Storage
     basics/storing-very-large-objects.md
     basics/use-customer-keys.md
     cli/bmx.md
-    tutorials/web-application.md
+    basics/migrate-data.md
+
+    {: .topicgroup}
+    Tutorials
+        tutorials/getting-started.md
+        tutorials/web-application.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}

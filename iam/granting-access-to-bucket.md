@@ -6,7 +6,7 @@ lastupdated: "2017-02-23"
 
 ---
 
-# Granting access to a single bucket
+# Bucket permissions
 
 ## Granting access to a user
 

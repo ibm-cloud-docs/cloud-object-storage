@@ -2,18 +2,18 @@
 
 ## Install Bluemix CLI Client
 
-Ensure you have install Bluemix CLI Client. Please follow direction to install Bluemix CLI [here](https://console.bluemix.net/docs/cli/reference/bluemix_cli/all_versions.html#bluemix-cli-installer-downloads). Bluemix CLI Help at [https://console.bluemix.net/docs/cli/reference/bluemix\_cli/bx\_cli.html\#bluemix\_cli](https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_cli) .
+Ensure you have install Bluemix CLI Client. Please follow direction to install Bluemix CLI [here](https://console.bluemix.net/docs/cli/reference/bluemix_cli/all_versions.html#bluemix-cli-installer-downloads), and you can read more about using the CLI [in the documentation](https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_cli).
 
-## Login into Bluemix using Bluemix CLI
+## Login into Bluemix
 
-$ bx login -a https://api.stage1.ng.bluemix.net
+First we need to actually login to the cloud platform.  This can be done either by providing an email and password, or by using an API key.
 
 ```
-$ bx login -a https://api.stage1.ng.bluemix.net
+$ bx login
 
-API endpoint: https://api.stage1.ng.bluemix.net
+API endpoint: https://api.bluemix.net
 
-Email> userA@gmail.com
+Email> queen-bee@delightfulhoney.com
 
 Password>
 Authenticating...

@@ -8,10 +8,6 @@ lastupdated: "2017-02-23"
 
 # Order storage
 
-## Understanding IBM Cloud
-
-Until recently, IBM offered Platform-as-a-Service and Infrastructure-as-a-Service in two distinct environments: [Bluemix][1]{: new_window} and [SoftLayer][2]{: new_window}.  Now these distinctions are fading as all cloud services are united in a single robust IBM Cloud platform with direct access to compute resources (containers, 12 factor apps, VMs, VSIs, serverless, bare metal), storage (block, file, and object), data management (databases and analytics engines), networking (load balancers, firewalls, DNS), DevOps tools (logging, monitoring), blockchain, an IoT platform, Watson services, and more.
-
 ## Creating a new Bluemix account
 
 Before ordering a new IBM COS storage instance, it is necessary to create a customer account first.

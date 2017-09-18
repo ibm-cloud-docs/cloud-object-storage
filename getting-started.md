@@ -17,10 +17,12 @@ lastupdated: "2017-02-23"
 In this getting started tutorial, we'll take you through the steps needed to create buckets, upload objects, and set up access policies to allow other users to work with your data.
 {: shortdesc}
 
-## Before you begin
-{: #prereqs}
-You'll need a [Bluemix account](https://console.ng.bluemix.net/registration/), an instance of the Cloud Object Storage service, a second email address to invite to your account, and some files on your local computer to upload.
+This documentation refers to IBM Cloud Object Storage provisioned as an IBM Cloud Platform _service_ using the Bluemix console. This service is integrated with IBM Cloud Identity and Access Management and is slightly different from the IBM COS service previously available from Bluemix Infrastructure (SoftLayer).  Documentation for other object storage offerings as well as more information on the evolution of object storage in the IBM cloud can be found [here](/about-cos.html).
+{:tip}
 
+## Before you begin
+You'll need a [Bluemix account](https://console.bluemix.net/registration/), an instance of the Cloud Object Storage service, a second email address to invite to your account, and some files on your local computer to upload.
+{: #prereqs}
 
 ## Step 1: Create some buckets to store your data
 {: #create-buckets}

@@ -6,10 +6,10 @@ lastupdated: "2017-02-23"
 
 ---
 
-# Granting access to a COS service instance
+# Users versus Service IDs
 
-## Granting access to a user
+## What is a user?
 tbd
 
-## Granting access to another IBM Cloud Service
+## What is a service ID?
 tbd

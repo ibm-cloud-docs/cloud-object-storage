@@ -6,7 +6,7 @@ lastupdated: "2017-02-23"
 
 ---
 
-# Use encryption keys
+# Manage encryption
 
 All objects stored in IBM COS are encrypted by default using multiple randomnly generated keys and an all-or-nothing-transform. While this default encryption model is remarkably secure, some workloads need to be in possession of the encryption keys used.
 
