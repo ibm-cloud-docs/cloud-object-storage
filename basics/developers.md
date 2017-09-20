@@ -6,7 +6,7 @@ lastupdated: "2017-02-23"
 
 ---
 
-# For administrators
+# For developers
 
 Est domo patiens sic uda, nec pectore pro utrumque quotiensque et Aetnen, ne
 iura, undique cingentibus facies. **Sic valles sic** simulacraque, novas fugae

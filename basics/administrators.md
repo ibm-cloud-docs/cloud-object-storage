@@ -8,40 +8,29 @@ lastupdated: "2017-02-23"
 
 # For administrators
 
-Est domo patiens sic uda, nec pectore pro utrumque quotiensque et Aetnen, ne
-iura, undique cingentibus facies. **Sic valles sic** simulacraque, novas fugae
-ob fuit eras gemit ac fruges sine montibus, solet pelago nisi. Telum experientis
-nobis ego ensem concrevit est sacra pennis. Forma est tollor similisque vires
-meritasque quem cacuminat facinus illam, in renasci verum solos, mihi qui.
+Storage and system administrators who need to configure object storage and manage access to data can take advantage of IBM Cloud Identity and Access Management (IAM) to manage users, create and rotate API keys, and grant roles to users and services. If you haven't already, go ahead and read through the [getting started tutorial]() to familiarize yourself with the core concepts of buckets, objects, and users.
 
-## Set up your buckets
+## Set up your storage
 
-Verum **Troiae repentinos**, tendentemque Hectoris palmite videndo quaerit
-aeripedes obortis egredior. Volvitur vulnere, est illa *fata addere*, Diomedis
-pectine, damnum: adest terris. Dictoque sine aquarum vultu deviaque, haud terra
-manesque talia! Corpore corpora atque hoc vixque, fixus sacri maxima inminet,
-plura [Achilles](http://www.cumsemine.io/) sequitur! Nati *quid alligat*, dat
-gaudetque venit.
+First things first, you need to have at least one object storage resource instance, and some buckets to store data in.  Think of these buckets in terms of how you want to further segment access to your data, where you want your data to physically reside, and how often the data will be accessed.
 
-1. Et quod
-2. Inseruitque atque accedere venire iuncta minus insisto
-3. Tendi fugiebant ferebant
-4. Coeptis patriam
+### Segmenting access
 
+There are two levels where you can segment access: at the resource instance level and at the bucket level.
+
+Perhaps you want to make sure that a development team can only access the instances of object storage that they are working with and not those used by other teams.  Or you want to ensure that only the software your team is making can actually edit the data being stored, so you want your developers with access to the cloud platform to only be able to read data for troubleshooting reasons.  These are examples of service level policies.
+
+Now if the development team, or any individual user, who has viewer access to a storage instance, but should be able to directly edit data in one or more buckets, then you can use bucket level policies to elevate the level of access granted to users within your account. For instance, a user might not be able to create new buckets, but can create and delete objects within existing buckets.
 
 ## Manage access
 
-Verum **Troiae repentinos**, tendentemque Hectoris palmite videndo quaerit
-aeripedes obortis egredior. Volvitur vulnere, est illa *fata addere*, Diomedis
-pectine, damnum: adest terris. Dictoque sine aquarum vultu deviaque, haud terra
-manesque talia! Corpore corpora atque hoc vixque, fixus sacri maxima inminet,
-plura [Achilles](http://www.cumsemine.io/) sequitur! Nati *quid alligat*, dat
-gaudetque venit.
+IAM is based on a fundamental concept:
 
-1. Et quod
-2. Inseruitque atque accedere venire iuncta minus insisto
-3. Tendi fugiebant ferebant
-4. Coeptis patriam
+> A _subject_ is granted a _role_ on a _resource_.
+
+There are two basic types of subjects: a _user_ and a _service ID_.
+
+There is another concept, a _service credential_.  A service credential is a collection of important information needed to connect to an instance of COS.  This includes at a minimum an identifier for the instance of COS (ie the Resource Instance ID), service/auth endpoints, and a means of associating the subject with an API key (ie Service ID).  When you create the service credential you have the option of either associating it with an existing service ID, or creating a new service ID.
 
 ## Helpful links
 
