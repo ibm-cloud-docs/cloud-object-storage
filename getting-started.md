@@ -24,10 +24,15 @@ This documentation refers to IBM Cloud Object Storage provisioned as an IBM Clou
 You'll need a [Bluemix account](https://console.bluemix.net/registration/), an instance of the Cloud Object Storage service, a second email address to invite to your account, and some files on your local computer to upload.
 {: #prereqs}
 
+This guide takes a new user through the first steps with Bluemix console, but for developers looking to get started with the API, see the [API overview](), or the guides for [Java](), [Python](), or [Node.js]().
+
 ## Step 1: Create some buckets to store your data
 {: #create-buckets}
 
-When you went to the catalog and ordered Cloud Object Storage, you created a _resource instance_. After creation you will be automatically redirected to that resource instance where you'll find a list of buckets.  Follow the **Create Bucket** link and choose a unique name; all buckets in all regions across the globe share the same namespace.  Choose a desired level of _resiliency_ first, and then a _region_ where you would like your data to be physically stored. Resiliency refers to the scope and scale of the geographic area across which we distribute your data. All data stored in COS buckets is automatically encrypted, sliced into fragments, and dispersed across at least three datacenters.  _Cross Regional_ resiliency will spread you data across hundreds or even thousands of miles, while _Regional_ resiliency will spread data across a metropolitan area.  A bucket's _storage class_ is a reflection of how often you expect to read the stored data and determines billing details. Follow the **Create** link to access your new bucket.
+  1. When you went to the catalog and ordered Cloud Object Storage, you created a _resource instance_. After creation you will be automatically redirected to that resource instance where you'll find a list of buckets.
+  2. Follow the **Create Bucket** link and choose a unique name; all buckets in all regions across the globe share the same namespace.
+  3. Choose a desired level of _resiliency_ first, and then a _region_ where you would like your data to be physically stored. Resiliency refers to the scope and scale of the geographic area across which we distribute your data. All data stored in COS buckets is automatically encrypted, sliced into fragments, and dispersed across at least three datacenters.  _Cross Regional_ resiliency will spread you data across hundreds or even thousands of miles, while _Regional_ resiliency will spread data across a metropolitan area.
+  4. A bucket's _storage class_ is a reflection of how often you expect to read the stored data and determines billing details. Follow the **Create** link to access your new bucket.
 
 Buckets are a way to organize your data, but they're not the sole way.  Object names (often referred to as _object keys_ can also contain forward slashes, allowing for a directory-like organizational system. These _object prefixes_ provide a mechanism for getting lists of related objects using the API.
 {:tip}
@@ -47,14 +52,19 @@ Now add some objects to another bucket, so that you have objects in two differen
 ## Step 3: Invite another user to your account
 {: #invite-user}
 
-Now we're going to bring in another user and allow them to read data from your buckets, but then permit them to create and delete objects as well in one of your buckets.  First, to add the new user we need to leave the current COS interface and head for the IAM console by navigating to the **Manage** menu and following the link at **Account** > **Users**.  Enter an email address you'd like to invite to your organization, then expand the **Identity and Access enabled services** section and select "Cloud Object Storage" from the **Services** drop-down menu.  Now two more fields will appear: _Service instance_ and _Roles_. The first field defines which instance of COS the user will be able to access, and the second determines what set of actions the user is able to perform. For now, select "Viewer" which will allow the user to read data from your buckets, but not create or delete objects. This combination of a _Subject_ (user), _Role_ (viewer), and _Resource_ (COS service instance) together form an IAM policy. For more detailed guidance on roles and policies, [see the IAM documentation](https://console.stage1.bluemix.net/docs/developing/Access-Management/index.html).
+Now we're going to bring in another user and allow them to read data from your buckets, but then permit them to create and delete objects as well in one of your buckets.
 
-Next it's necessary to grant a level of Cloud Foundry access in order for the user to access your organization in the first place.  Select the desired organization from the **Organization** drop-down menu, and then select "Auditor" from both the **Organizational roles** and **Space roles** drop down menus.  This will allow the user to view services available to your organization, but not change them.
+  1. First, to add the new user we need to leave the current COS interface and head for the IAM console by navigating to the **Manage** menu and following the link at **Account** > **Users**.
+  2. Enter an email address you'd like to invite to your organization, then expand the **Identity and Access enabled services** section and select "Cloud Object Storage" from the **Services** drop-down menu.
+  3. Now two more fields will appear: _Service instance_ and _Roles_. The first field defines which instance of COS the user will be able to access, and the second determines what set of actions the user is able to perform. For now, select "Viewer" which will allow the user to read data from your buckets, but not create or delete objects. This combination of a _Subject_ (user), _Role_ (viewer), and _Resource_ (COS service instance) together form an IAM policy. For more detailed guidance on roles and policies, [see the IAM documentation](https://console.stage1.bluemix.net/docs/developing/Access-Management/index.html).
+  4. Next it's necessary to grant a level of Cloud Foundry access in order for the user to access your organization in the first place.  Select the desired organization from the **Organization** drop-down menu, and then select "Auditor" from both the **Organizational roles** and **Space roles** drop down menus.  This will allow the user to view services available to your organization, but not change them.
 
 ## Step 4: Create a policy for a specific bucket
 {: #bucket-policy}
 
-Check that the new user can view the buckets and objects created in steps 1 & 2. Navigate to the bucket that you want to allow the user to add objects to, and select **Bucket permissions** from the navigation menu.  Choose the user from the **Select user** drop-down menu, and choose the "Editor" role from the next menu.  Follow the **Submit user policy** link. Now the new user can add and delete objects from this bucket, but are still limited to downloading objects stored in all other buckets.
+  1. Check that the new user can view the buckets and objects created in steps 1 & 2. Navigate to the bucket that you want to allow the user to add objects to, and select **Bucket permissions** from the navigation menu.
+  2. Choose the user from the **Select user** drop-down menu, and choose the "Editor" role from the next menu.
+  3. Follow the **Submit user policy** link. Now the new user can add and delete objects from this bucket, but are still limited to downloading objects stored in all other buckets.
 
 ## Next steps
 
