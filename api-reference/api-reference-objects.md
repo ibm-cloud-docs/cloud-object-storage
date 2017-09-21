@@ -260,7 +260,7 @@ Content-Length: 207
 
 ## Copy an object
 
-A `PUT` given a path to a new object creates a new copy of another object specified by the `x-amz-copy-source` header. Unless otherwise altered the metadata remains the same, although any ACL is reset to `private` for the  account creating the copy.
+A `PUT` given a path to a new object creates a new copy of another object specified by the `x-amz-copy-source` header. Unless otherwise altered the metadata remains the same.
 
 
 **Syntax**
@@ -315,7 +315,7 @@ Content-Length: 240
 ```
 
 ----
-
+<!---
 ## Retrieve an object's ACL
 
 A `GET` given a path to an object given the parameter `?acl=` retrieves the access control list for the object.
@@ -487,6 +487,8 @@ X-Clv-S3-Version: 2.5
 x-amz-request-id: ef02ea42-6fa6-4cc4-bec4-c59bc3fcc9f7
 Content-Length: 0
 ```
+
+-->
 
 ----
 

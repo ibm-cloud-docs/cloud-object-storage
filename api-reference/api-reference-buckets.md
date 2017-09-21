@@ -328,6 +328,8 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 </Error>
 ```
 
+<!---
+
 ----
 
 ## Create an access control list for a bucket
@@ -475,7 +477,7 @@ Content-Length: 550
   </AccessControlList>
 </AccessControlPolicy>
 ```
-
+--->
 ----
 
 ## List canceled/incomplete multipart uploads for a bucket
@@ -684,4 +686,3 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
 The server responds with `204 No Content`.
-

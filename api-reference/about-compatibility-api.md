@@ -10,7 +10,7 @@ lastupdated: "2017-02-23"
 
 # API Reference
 
-The IBM COS API is based on the most commonly used subset of Amazon S3 API operations. The API syntax is nearly identical to the S3 API aside from authentication and access control. 
+The IBM COS API is based on the most commonly used subset of Amazon S3 API operations. The API syntax is nearly identical to the S3 API aside from authentication and access control.
 
 This reference documentation is being continously improved. If you have technical questions about using the API in your application, please post them on StackOverflow using both `ibm-bluemix` and `object-storage` tags and we will do our best to answer, and then improve this documentation thanks to your feedback.
 
@@ -34,12 +34,10 @@ These operations create, destroy, get information about, and control behavior of
 | `DELETE` Bucket | Deletes an empty bucket.   |
 | `DELETE` Bucket CORS | Deletes any cross-origin resource sharing configuration set on a bucket. |
 | `GET` Bucket | Lists objects contained in a bucket.  Limited to listing 1,000 objects at once. |
-| `GET` Bucket ACL |Retrieves the access control list for a bucket.|
 | `GET` Bucket CORS |Retrieves any cross-origin resource sharing configuration set on a bucket.|
 | `HEAD` Bucket | Retrieves a bucket's headers. |
 | `GET` multipart uploads | Lists multipart uploads that have not completed or been canceled. |
 | `PUT` Bucket | Buckets have naming restrictions. Accounts are limited to 100 buckets. |
-| `PUT` Bucket ACL | Creates an access control list for a bucket. |
 | `PUT` Bucket CORS | Creates a cross-origin resource sharing configuration for a bucket.|
 
 Note that the 'version 2' method of listing objects within a bucket is not supported, and the 'version 1' syntax is needed.
@@ -53,12 +51,10 @@ These operations create, destroy, get information about, and control behavior of
 | `DELETE` Object | Deletes an object from a bucket.
 | `DELETE` Multiple Objects  | Deletes multiple objects from a bucket.
 | `GET` Object | Retrieves an object from a bucket.
-| `GET` Object ACL | Retrieves an object's access control list.
 | `HEAD` Object | Retrieves an object's headers.
 | `OPTIONS` Object | Checks CORS configuration to see if a specific request can be sent.
 | `POST` Object | Adds an object to a bucket using HTML forms.
 | `PUT` Object | Adds an object to a bucket.
-| `PUT` Object ACL | Creates an access control list for an object.
 | `PUT` Object (Copy) | Creates a copy of an object. |
 | Initiate Multipart Upload | Creates an upload ID for a given set of parts to be uploaded.
 | Upload Part | Uploads a part of an object associated with an upload ID.
