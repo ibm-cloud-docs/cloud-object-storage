@@ -12,7 +12,9 @@ Information stored with IBM Cloud Object Storage is encrypted and dispersed acro
 
 IBM COS is available in two configurations: Cross Region and Regional.  Cross Region service provides higher durability and availability than using a single region at the cost of slightly higher latency, and is available today in the US and EU. Regional service reverses those tradeoffs, and distributes objects across multiple availability zones within a single region, and is available in the US South. If a given region or availability zone is unavailable, the object store continues to function without impediment, and any missed changes are applied when the data center comes back online.
 
-Developers use IBM COS API (based on the S3 API) to interact with their storage accounts. This documentation provides support to get started with provisioning accounts, to create buckets, to upload objects, and to use a reference of common API interactions.
+Developers use IBM COS API to interact with their storage accounts. This documentation provides support to get started with provisioning accounts, to create buckets, to upload objects, and to use a reference of common API interactions.
+
+Users of the original COS IaaS service provisioned through SoftLayer, [please visit this link for updates on the transition to Bluemix]().
 
 ## Understanding IBM Cloud
 
@@ -24,18 +26,22 @@ In addition to COS, IBM Cloud currently provides two additional object storage o
 
 | Offering | Interface | Defining advantage |
 |-- |-- |-- |
-| IBM Cloud Object Storage | S3 API | -- Highest availability, durability and resiliency<br> -- Encryption at rest and in flight|
+| IBM Cloud Object Storage | COS API | -- Highest availability, durability and resiliency<br> -- Encryption at rest and in flight|
 | OpenStack Swift Object Storage | Swift API | -- Native integration with OpenStack clouds <br> -- Choice of 20 geographic regions|
-| Object Storage for IBM Bluemix Developer Services | Swift API | -- Native integration with Bluemix services |
+| Object Storage for IBM Bluemix Developer Services | Swift API | -- Native integration with Cloud Foundry services |
 
 
-## OpenStack Swift Object Storage
+## OpenStack Swift Object Storage (IaaS)
 
 Information stored with OpenStack Swift Object Storage is located in one of 20 global data centers. Developers use the community Swift API to interact with their storage accounts. This offering is managed through the IBM Bluemix Infrastructure Control portal and does not provide encryption at-rest.
 
-## Object Storage for IBM Bluemix Developer Services
+For more information on this object storage service, [view the documentation]().
+
+## Swift Object Storage for Cloud Foundry (PaaS)
 
 Information stored with Object Storage for IBM Bluemix is located in either Dallas or London data centers, and storage accounts are available for binding to Bluemix services. Based on the OpenStack Swift platform, developers use the community Swift API to interact with their storage accounts. This offering is managed through the IBM Bluemix console and does not provide encryption at-rest.
+
+For more information on this object storage service, [view the documentation]().
 
 ## About this documentation
 
