@@ -16,7 +16,7 @@ You will need to provide values for three request parameters:
 
 ```
 curl -X POST \
-  'https://iam.stage1.ng.bluemix.net/oidc/token?grant_type=password&username=15900echohills%40gmail.com&response_type=cloud_iam&password=<your_bm_password>&bss_account=b09edf5642ebfad587c594f4d4a354b0' \
+  'https://iam.bluemix.net/oidc/token?grant_type=password&username=15900echohills%40gmail.com&response_type=cloud_iam&password=<your_bm_password>&bss_account=b09edf5642ebfad587c594f4d4a354b0' \
   -H 'authorization: Basic Yng6Yng=' \
   -H 'cache-control: no-cache'
 ```
@@ -47,7 +47,7 @@ The iam\_id will be required when listing policies for the user.
 
 ```
 curl -X POST \
-  https://iam.stage1.ng.bluemix.net/oidc/introspect \
+  https://iam.bluemix.net/oidc/introspect \
   -H 'authorization: Basic Yng6Yng=' \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/x-www-form-urlencoded' \
@@ -59,7 +59,7 @@ curl -X POST \
 ```
 {
     "active": true,
-    "iss": "https://iam.stage1.ng.bluemix.net/oidc/token",
+    "iss": "https://iam.bluemix.net/oidc/token",
     "realmId": "IBMid",
     "identifier": "310002KH3C",
     "sub": "15900echohills@gmail.com",

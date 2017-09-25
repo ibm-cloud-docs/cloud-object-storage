@@ -14,7 +14,7 @@
 
 ```
 curl -X POST \
-  'https://iam.stage1.ng.bluemix.net/oidc/token?grant_type=password&username=bluemix_ui_dharmesh2%40mailinator.com&response_type=cloud_iam&password=xxxxxxxx&bss_account=b09edf5642ebfad587c594f4d4a354b0' \
+  'https://iam.bluemix.net/oidc/token?grant_type=password&username=bluemix_ui_dharmesh2%40mailinator.com&response_type=cloud_iam&password=xxxxxxxx&bss_account=b09edf5642ebfad587c594f4d4a354b0' \
   -H 'authorization: Basic Yng6Yng=' \
   -H 'cache-control: no-cache' \
   -H 'postman-token: ab2addae-7830-181a-2834-250de0d9de8d'
@@ -46,7 +46,7 @@ The iam\_id will be required when listing policies for the user.
 
 ```
 curl -X POST \
-  https://iam.stage1.ng.bluemix.net/oidc/introspect \
+  https://iam.bluemix.net/oidc/introspect \
   -H 'authorization: Basic Yng6Yng=' \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/x-www-form-urlencoded' \
@@ -58,7 +58,7 @@ curl -X POST \
 ```
 {
     "active": true,
-    "iss": "https://iam.stage1.ng.bluemix.net/oidc/token",
+    "iss": "https://iam.bluemix.net/oidc/token",
     "realmId": "IBMid",
     "identifier": "3100029T14",
     "sub": "bluemix_ui_dharmesh2@mailinator.com",

@@ -10,7 +10,7 @@ Ensure you have install Bluemix CLI Client. Please follow direction to install B
 
 ### Login into Bluemix
 
-First we need to actually login to the cloud platform.  This can be done either by providing an email and password, or by using an API key.
+First we need to actually login to the cloud platform, either by providing an email and password or by using an API key.
 
 ```
 $ bx login
@@ -44,7 +44,7 @@ Capture the **Bluemix Account ID** from the output **9b09edf5642ebfad587c594f4d4
 
 ### Retrieve Access / IAM token
 
-Each API request requires an HTTP header that includes the 'Authorization’ parameter. The value for the header is the access token - The JSON web token \(JWT\) that you receive when logging into the Bluemix platform. It allows you to use the IBM Bluemix REST API, access services, and resources. Run
+Each API request requires an HTTP header that includes the 'Authorization’ parameter. The value for the header is the access token - The JSON web token \(JWT\) that you receive when logging into the Bluemix platform. It allows you to use the IBM Bluemix REST API to manage your cloud services and resources.
 
 ```
 $bx iam oauth-tokens
@@ -71,7 +71,9 @@ GUID                                   Name                  Region     Account 
 
 ```
 
-## Create a service instance
+## Create a resource instance
+
+Cloud Object Storage is a cloud _service_.  When you provision an instance of a service, you create a _resource instance_.  You can have multiple resource instances of COS in the same account.
 
 ### Obtain IAM Token for Administrator (Owner)
 
@@ -89,8 +91,7 @@ You will need to provide values for three request parameters:
 
 ```
 curl -X POST \
-  'https://iam.stage1.ng.bluemix.net/oidc/token?grant_type=password&username=15900echohills%40gmail.com&response_type=cloud_iam&password=<your_bm_password>&bss_account=b09edf5642ebfad587c594f4d4a354b0' \
-  -H 'authorization: Basic Yng6Yng=' \
+  'https://iam.bluemix.net/oidc/token?grant_type=password&username=15900echohills%40gmail.com&response_type=cloud_iam&password=<your_bm_password>&bss_account=b09edf5642ebfad587c594f4d4a354b0' \
   -H 'cache-control: no-cache'
 ```
 
@@ -120,8 +121,7 @@ The iam\_id will be required when listing policies for the user.
 
 ```
 curl -X POST \
-  https://iam.stage1.ng.bluemix.net/oidc/introspect \
-  -H 'authorization: Basic Yng6Yng=' \
+  https://iam.bluemix.net/oidc/introspect \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/x-www-form-urlencoded' \
   -d token=<access_token>
@@ -132,7 +132,7 @@ curl -X POST \
 ```
 {
     "active": true,
-    "iss": "https://iam.stage1.ng.bluemix.net/oidc/token",
+    "iss": "https://iam.bluemix.net/oidc/token",
     "realmId": "IBMid",
     "identifier": "310002KH3C",
     "sub": "15900echohills@gmail.com",
@@ -154,27 +154,29 @@ curl -X POST \
 
 For the user above,  the `iam_id` is `IBMid-310002KH3C`
 
-### Creating Resource Group for your organization
+### Creating resource group for your organization
 
-Going forward resources will be created at resource group level. Each cloud foundry organization will be mapped to a resource group. Use the following API to create a resource group for your organization if there is not one. Once you create once, you don't need to create it.
+_Resource instances_ need to be a part of a _resource group_.  Use the following API to create a resource group for your organization.
 
 **Request parameters:**
 
 `access_token` : The access\_token.
 
-`account_id` This is your bluemix account uuid.
+`account_id` This is your bluemix account UUID.
 
 `resource_id` This is your organization GUID for which you need to create a resource group.
 
 `name` This is the name you want to give to this resource group.
 
-`quota_id` This is the quota id. There is an API to retrieve this for your organization. But for now, use the same.
+<!--
+`quota_id` This is the quota ID. There is an API to retrieve this for your organization. But for now, use the same.
+-->
 
 Request:
 
 ```
 curl -X POST \
-  https://resource-manager-athena.stage1.ng.bluemix.net/v1/resource_groups \
+  https://resource-manager.bluemix.net/v1/resource_groups \
   -H 'authorization: bearer <access_token>' \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
@@ -219,11 +221,9 @@ Response:
 }
 ```
 
-From the response, you want to store the `id` . This is your resource group id which will be required when provisioning service instances.  Resource group id is `74eb3cc2f3194e579f6666416663d2f0`.
+From the response, you want to store the `id` . This is your resource group ID which will be required when provisioning service instances.  Resource group id is `74eb3cc2f3194e579f6666416663d2f0`.
 
 ## Retrieving resource group for your organization
-
-You can retrieve your resource group id if it has already been created for your.
 
 **Request parameters:**
 
@@ -235,11 +235,10 @@ You can retrieve your resource group id if it has already been created for your.
 
 ```
 curl -X GET \
-  'https://resource-manager-athena.stage1.ng.bluemix.net/v1/resource_groups?resource_id=69e6e996-bebe-4e24-9aed-8efb448ecff7&resource_origin=CF_ORG' \
+  'https://resource-manager.bluemix.net/v1/resource_groups?resource_id=69e6e996-bebe-4e24-9aed-8efb448ecff7&resource_origin=CF_ORG' \
   -H 'authorization: bearer <access_token>' \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
-  -H 'postman-token: 78a0f014-2010-84d5-d9c1-cdf1ee966e82'
 ```
 
 Response:
@@ -341,7 +340,7 @@ curl -X POST \
 
 You want to capture a few things from this response.
 
-Resource instance `guid` is our service instance identifier `ibm-service-instance-id`
+Resource instance `guid` will be used with the data API as the header `ibm-service-instance-id`.
 
 Resource instance `url` as `resource_instance_url` .
 
@@ -357,7 +356,7 @@ Resource instance `url` as `resource_instance_url` .
 
 ```
 curl -X GET \
-  https://resource-controller-athena.stage1.ng.bluemix.net<resource_instance_url> \
+  https://resource-controller.bluemix.net<resource_instance_url> \
   -H 'authorization: bearer <access_token>' \
   -H 'cache-control: no-cache' \
   -H 'postman-token: b3aafa2e-1a7a-eaae-1e3f-474a247e753b'
@@ -367,7 +366,7 @@ curl -X GET \
 
 ```
 {
-    "id": "crn:v1:staging:public:cloud-object-storage:us-south:a/b09edf5642ebfad587c594f4d4a354b0:d61bf83f-d583-40d0-9877-7b2df60d8b1f::",
+    "id": "crn:v1:bluemix:public:cloud-object-storage:us-south:a/b09edf5642ebfad587c594f4d4a354b0:d61bf83f-d583-40d0-9877-7b2df60d8b1f::",
     "guid": "d61bf83f-d583-40d0-9877-7b2df60d8b1f",
     "url": "/v1/resource_instances/crn%3Av1%3Astaging%3Apublic%3Acloud-object-storage%3Aus-south%3Aa%2Fb09edf5642ebfad587c594f4d4a354b0%3Ad61bf83f-d583-40d0-9877-7b2df60d8b1f%3A%3A",
     "created_at": "2017-08-23T17:29:43.643023016Z",
@@ -379,7 +378,7 @@ curl -X GET \
     "resource_plan_id": "744bfc56-d12c-4866-88d5-dac9139e0e5d",
     "resource_group_id": "74eb3cc2f3194e579f6666416663d2f0",
     "create_time": 0,
-    "crn": "crn:v1:staging:public:cloud-object-storage:us-south:a/b09edf5642ebfad587c594f4d4a354b0:d61bf83f-d583-40d0-9877-7b2df60d8b1f::",
+    "crn": "crn:v1:bluemix:public:cloud-object-storage:us-south:a/b09edf5642ebfad587c594f4d4a354b0:d61bf83f-d583-40d0-9877-7b2df60d8b1f::",
     "state": "active",
     "type": "service_instance",
     "resource_id": "dff97f5c-bc5e-4455-b470-411c3edbe49c",
@@ -395,25 +394,25 @@ curl -X GET \
 }
 ```
 
-### List Service Instances
+### List resource instances
 
-List all service instance with specified plan-id and and the specified resource group.
+List all resource instances with specified plan ID within the specified resource group.
 
 Request parameters:
 
 `viewer_access_token` : The access\_token of the viewer user.
 
-`account_id` \_: \_Bluemix account uuid. In this use case its `b09edf5642ebfad587c594f4d4a354b0`
+`account_id` \_: \_Bluemix account UUID. In this use case its `b09edf5642ebfad587c594f4d4a354b0`
 
 `resource_plan_id` : The service plan - The id below is for the premium plan. `744bfc56-d12c-4866-88d5-dac9139e0e5d`
 
-`resource_group_id` : The resource group id where you like to create thh service instance. You either created a new one or retrieve an existing one using the api above. `74eb3cc2f3194e579f6666416663d2f0`
+`resource_group_id` : The resource group id where you like to create the resource instance. You either created a new one or retrieve an existing one using the api above. `74eb3cc2f3194e579f6666416663d2f0`
 
 Request:
 
 ```
 curl -X GET \
-  'https://resource-controller-athena.stage1.ng.bluemix.net/v1/resource_instances?account_id=b09edf5642ebfad587c594f4d4a354b0&resource_group_id=74eb3cc2f3194e579f6666416663d2f0&resource_plan_id=744bfc56-d12c-4866-88d5-dac9139e0e5d' \
+  'https://resource-controller.bluemix.net/v1/resource_instances?account_id=b09edf5642ebfad587c594f4d4a354b0&resource_group_id=74eb3cc2f3194e579f6666416663d2f0&resource_plan_id=744bfc56-d12c-4866-88d5-dac9139e0e5d' \
   -H 'authorization: bearer <viewer_access_token>' \
   -H 'cache-control: no-cache' \
   -H 'postman-token: 100ba979-b5d0-4e86-05bb-a2297d442fd0'
@@ -427,7 +426,7 @@ Response:
     "next_url": "/v1/resource_instances?next_docid=g1AAAAJQeJzLYWBg4MhgTmGQT0lKzi9KdUhJMjTUy0zKNTAw10vOyS9NScwr0ctLLckBKmRKZEiS____fxaY4-ZU-uDkGQMFhiQGBq5PWSBD5OCGWOI0I0kBSCbZoxpztooBZAy3JJoxZriNcQAZE49szEMmj7kbwMawZqF5yRy3OQkgc-pRnPPr5Z8CsK--o5tjgtOcPBYgydAApIBGzUfy2knJBWA3qaObhTuYIWYtgJi1Hzm0PzWAzWJACybc3oMYdQBi1H2EUafdAiARd4T4oIKY9QBiFlJw_T65BBJ7LFlZAN8tubw&limit=100&account_id=b09edf5642ebfad587c594f4d4a354b0&resource_plan_id=744bfc56-d12c-4866-88d5-dac9139e0e5d&resource_group_id=74eb3cc2f3194e579f6666416663d2f0",
     "resources": [
         {
-            "id": "crn:v1:staging:public:cloud-object-storage:us-south:a/b09edf5642ebfad587c594f4d4a354b0:d61bf83f-d583-40d0-9877-7b2df60d8b1f::",
+            "id": "crn:v1:bluemix:public:cloud-object-storage:us-south:a/b09edf5642ebfad587c594f4d4a354b0:d61bf83f-d583-40d0-9877-7b2df60d8b1f::",
             "guid": "d61bf83f-d583-40d0-9877-7b2df60d8b1f",
             "url": "/v1/resource_instances/crn%3Av1%3Astaging%3Apublic%3Acloud-object-storage%3Aus-south%3Aa%2Fb09edf5642ebfad587c594f4d4a354b0%3Ad61bf83f-d583-40d0-9877-7b2df60d8b1f%3A%3A",
             "created_at": "2017-08-23T17:29:43.643023016Z",
@@ -443,7 +442,7 @@ Response:
             "state": "active",
             "type": "service_instance",
             "resource_id": "dff97f5c-bc5e-4455-b470-411c3edbe49c",
-            "dashboard_url": "https://dev-console.stage1.bluemix.net/objectstorage/crn:v1:staging:public:cloud-object-storage:us-south:a/b09edf5642ebfad587c594f4d4a354b0:d61bf83f-d583-40d0-9877-7b2df60d8b1f::",
+            "dashboard_url": "https://consolebluemix.net/objectstorage/crn:v1:bluemix:public:cloud-object-storage:us-south:a/b09edf5642ebfad587c594f4d4a354b0:d61bf83f-d583-40d0-9877-7b2df60d8b1f::",
             "last_operation": {
                 "type": "create",
                 "state": "succeeded",
@@ -459,7 +458,7 @@ Response:
 
 ## Create buckets and objects
 
-This guide demonstrates how to create bucket and upload objects for Bluemix COS Service instance. It demonstrates use of the `service instance giud` and `access_token`.
+This guide demonstrates how to create bucket and upload objects in a COS resource instance. Note that the term 'service instance' is used interchangably with 'resource instance', and so the
 
 From previous steps our `ibm-service-instance-id`is d61bf83f-d583-40d0-9877-7b2df60d8b1f.
 
@@ -496,7 +495,7 @@ curl -X PUT \
 
 `access_token` : The access\_token.
 
-`ibm-service-instance-id` : The service instance id.
+`ibm-service-instance-id` : The resource instance ID.
 
 **Request:**
 
@@ -853,7 +852,7 @@ Now there is one policy for this user.
 
 ```
 curl -X POST \
-  'https://iam.stage1.ng.bluemix.net/oidc/token?grant_type=password&username=bluemix_ui_dharmesh2%40mailinator.com&response_type=cloud_iam&password=xxxxxxxx&bss_account=b09edf5642ebfad587c594f4d4a354b0' \
+  'https://iam.bluemix.net/oidc/token?grant_type=password&username=bluemix_ui_dharmesh2%40mailinator.com&response_type=cloud_iam&password=xxxxxxxx&bss_account=b09edf5642ebfad587c594f4d4a354b0' \
   -H 'authorization: Basic Yng6Yng=' \
   -H 'cache-control: no-cache' \
   -H 'postman-token: ab2addae-7830-181a-2834-250de0d9de8d'
@@ -885,7 +884,7 @@ The iam\_id will be required when listing policies for the user.
 
 ```
 curl -X POST \
-  https://iam.stage1.ng.bluemix.net/oidc/introspect \
+  https://iam.bluemix.net/oidc/introspect \
   -H 'authorization: Basic Yng6Yng=' \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/x-www-form-urlencoded' \
@@ -897,7 +896,7 @@ curl -X POST \
 ```
 {
     "active": true,
-    "iss": "https://iam.stage1.ng.bluemix.net/oidc/token",
+    "iss": "https://iam.bluemix.net/oidc/token",
     "realmId": "IBMid",
     "identifier": "3100029T14",
     "sub": "bluemix_ui_dharmesh2@mailinator.com",
