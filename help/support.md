@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017
-lastupdated: "2017-02-23"
+lastupdated: "2017-09-27"
 
 ---
 
@@ -13,7 +13,7 @@ lastupdated: "2017-02-23"
 {:tsCauses: .tsCauses}
 {:tsResolve: .tsResolve}
 
-# Support 
+# Support
 {: #troubleshooting}
 
 If you have problems or questions when using IBM Cloud Object Storage, you can get help by searching for information or by asking questions through a forum. You can also open a support ticket.

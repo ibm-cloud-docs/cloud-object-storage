@@ -1,6 +1,14 @@
+---
+
+copyright:
+  years: 2017
+lastupdated: "2017-09-27"
+
+---
+
 # Using the command line
 
-This tutorial is a more in-depth walkthrough of the steps performed in the Getting Started material. It uses the command line tools `bx` and `curl` to create a COS service instance
+This tutorial is a more in-depth walkthrough of the steps performed in the Getting Started material. It uses the command line tools `bx` and `curl` to create an instance of COS and perform data operations.
 
 ## Gather required information
 

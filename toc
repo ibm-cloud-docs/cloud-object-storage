@@ -1,4 +1,4 @@
-{: .toc subcollection="cloud-object-storage" audience="services" href="/docs/services/cloud-object-storage/getting-started.html"}
+: .toc subcollection="cloud-object-storage" audience="services" href="/docs/services/cloud-object-storage/getting-started.html"}
 Cloud Object Storage
 
     {: .navgroup id="learn"}
@@ -16,15 +16,15 @@ Cloud Object Storage
 
     {: .topicgroup}
     Manage access
-        iam/identity-access-management-overview.md
-        iam/granting-access-to-service.md
-        iam/granting-access-to-bucket.md
-        iam/making-objects-public.md
+        iam/overview.md
+        iam/users-serviceids.md
+        iam/buckets.md
+        iam/public-access.md
 
-    basics/selecting-regions-endpoints.md
-    basics/using-storage-classes.md
-    basics/storing-very-large-objects.md
-    basics/use-customer-keys.md
+    basics/endpoints.md
+    basics/classes.md
+    basics/multipart.md
+    basics/sse-c.md
     cli/bmx.md
     basics/migrate-data.md
 
@@ -43,9 +43,6 @@ Cloud Object Storage
         api-reference/common-headers-errors.md
         api-reference/api-reference-buckets.md
         api-reference/api-reference-objects.md
-        [COS API Specification]()
-        [IAM API Docs]()
-        [Resource Controller API Docs]()
 
     {: .topicgroup}
     Libraries
