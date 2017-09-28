@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017
-lastupdated: "2017-02-23"
+lastupdated: "2017-09-27"
 
 ---
 
@@ -35,5 +35,5 @@ There is no charge for deleting buckets or objects from the system.
 | Class B | GET (excluding listing), HEAD, and OPTIONS requests | Retrieving objects and metadata |
 
 ## Storage classes
- 
+
 Vault billing is a way to control costs for infrequently accessed data, such as compliance or backup data. These objects incur lower storage costs but higher costs for operational requests. Unlike the Standard billing tier, additional costs are incurred on a per-GB basis for objects retrieved from the system.  Flex billing is intended for use when data access patterns are difficult to predict, and pricing is optimized based on frequency of access.

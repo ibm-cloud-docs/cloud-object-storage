@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017
-lastupdated: "2017-02-23"
+lastupdated: "2017-09-27"
 
 ---
 
@@ -18,9 +18,9 @@ Multipart uploads are only available for objects larger than 5MB. For objects sm
 
 Using more than 500 parts leads to inefficiencies in IBM COS and should be avoided when possible.
 
-Due to the additional complexity involved, it is recommended that developers make use of S3 API libraries that provide multipart upload support. 
+Due to the additional complexity involved, it is recommended that developers make use of S3 API libraries that provide multipart upload support.
 
-Incomplete multipart uploads do persist until the object is deleted or the multipart upload is aborted with `AbortIncompleteMultipartUpload`. If an incomplete multipart upload is not aborted, the partial upload continues to use resources.  Interfaces should be designed with this point in mind, and clean up incomplete multipart uploads. 
+Incomplete multipart uploads do persist until the object is deleted or the multipart upload is aborted with `AbortIncompleteMultipartUpload`. If an incomplete multipart upload is not aborted, the partial upload continues to use resources.  Interfaces should be designed with this point in mind, and clean up incomplete multipart uploads.
 
 ## Using software development kits
 

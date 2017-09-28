@@ -6,7 +6,7 @@ lastupdated: "2017-09-27"
 
 ---
 
-# Pricing
+# Atomicity and consistency
 
 ## Terrebant telis et idque ab nati nulla
 
