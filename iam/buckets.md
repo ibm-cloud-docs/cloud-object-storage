@@ -8,20 +8,64 @@ lastupdated: "2017-09-27"
 
 # Bucket permissions
 
+Assign access roles for users and service IDs against buckets, using either the UI or the CLI to create policies.
+
+| Access role         | Example actions                                                            |
+|:--------------------| ---------------------------------------------------------------------------|
+| AccessAdministrator | Grant anonymous access to objects, create and destroy buckets and objects  |
+| AccessEditor        | Create and destroy buckets and objects                                     |
+| AccessViewer        | List and download objects                                                  |
+
 ## Granting access to a user
 
-If you only want to grant a user access to a particular bucket,
+If the user needs to be able to use the console, it is necessary to also grant them a minimum role of `viewer` on the instance itself.  This will allow them to view all buckets and list the objects within them. Then select **Bucket permissions** from the left navigation menu, select the user, and select the level of access (`AccessAdministrator` or `AccessEditor`) that they require.
 
-Invite a user, but don't grant them IAM access. (Ensure that the core IAM docs cover required steps)
-Grant them access to the bucket using the COS portal or IAM API.
-Give them the endpoints and bucket name, and info on how to get an API key using the IAM API.
-Remind them that they can't generate a list of buckets they have access to because they don't have access to service instance operations.  They only need a Service Instance ID if they are creating or listing buckets.
-This is possible for Service IDs as well (see Service ID section).
-How to view permissions on a bucket
-View through IAM UI/API (make sure CRN/other terms are explained)
-How to remove permission on a bucket.
-Delete the policy through IAM.
-How to modify permissions on a bucket.
-You need to delete the existing policy and make a new one. (Can be done via API)
+If the user will interact with data using the API and doesn't require console access, _and_ they are a member of your account, you can grant access to a single bucket without any access to the parent instance.
 
-## Granting access to another IBM Cloud Service
+### Using the UI
+
+  1. Navigate to the **Identity and Access** console from the **Manage** menu.
+  2. Select **Users** from the left navigation menu.
+  3. Select the service instance, user, and desired role.
+  4. Enter `bucket` in the **Resource Type** field and the bucket name in the **Resource** field.
+  5. Click **Submit**
+
+### Using the CLI
+
+From a terminal run the following command:
+
+```bash
+bx iam user-policy-create <user-name> \
+      --roles <role> \
+      --service-name cloud-object-storage \
+      --service-instance <resource-instance-id>
+      --region global \
+      --resource-type bucket \
+      --resource <bucket-name>
+```
+
+## Granting access to a service ID
+
+If you need to grant access to a bucket for an application or other non-human entity, use a service instance.  The service ID can be created specifically for this purpose, or can be an existing service ID already in use.
+
+### Using the UI
+
+  1. Navigate to the **Identity and Access** console from the **Manage** menu.
+  2. Select **Service IDs** from the left navigation menu.
+  3. Select the service instance, service ID, and desired role.
+  4. Enter `bucket` in the **Resource Type** field and the bucket name in the **Resource** field.
+  5. Click **Submit**
+
+### Using the CLI
+
+From a terminal run the following command:
+
+```bash
+bx iam service-policy-create <service-id-name> \
+      --roles <role> \
+      --service-name cloud-object-storage \
+      --service-instance <resource-instance-id>
+      --region global \
+      --resource-type bucket \
+      --resource <bucket-name>
+```

@@ -1,4 +1,4 @@
-: .toc subcollection="cloud-object-storage" audience="services" href="/docs/services/cloud-object-storage/getting-started.html"}
+{: .toc subcollection="cloud-object-storage" audience="services" href="/docs/services/cloud-object-storage/getting-started.html"}
 Cloud Object Storage
 
     {: .navgroup id="learn"}
@@ -32,6 +32,7 @@ Cloud Object Storage
     Tutorials
         tutorials/getting-started.md
         tutorials/web-application.md
+
     {: .navgroup-end}
 
     {: .navgroup id="reference"}

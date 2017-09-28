@@ -18,7 +18,7 @@ The Cloud IAM Token Service allows you to create, update, delete and use API key
 
 ### Users and API keys
 
-API keys can be created and used by Bluemix users for automation and scripting purpses as well as federated log in when using the CLI. API keys can be created in the Identity and access management UI.
+API keys can be created and used by Bluemix users for automation and scripting purpses as well as federated log in when using the CLI. API keys can be created in the Identity and access management UI or using the `bx` CLI.
 
 ### Service IDs and API keys
 
