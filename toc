@@ -6,7 +6,6 @@ Cloud Object Storage
     about-cos.md
     basics/administrators.md
     basics/developers.md
-    basics/data-scientists.md
     {: .navgroup-end}
 
 
@@ -53,8 +52,6 @@ Cloud Object Storage
 
     {: .topicgroup}
     Technical guides
-        info/distributed-computing.md
-        info/atomicity-consistency.md
         info/data-security-encryption.md
         info/developer-guidance.md
         help/object-storage.md
@@ -64,5 +61,5 @@ Cloud Object Storage
     help/faq.md
     help/support.md
     help/billing.md
-    help/pricing.md
+    [Pricing](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api)
     {: .navgroup-end}
