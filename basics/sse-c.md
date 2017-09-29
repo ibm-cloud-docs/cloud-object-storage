@@ -37,7 +37,7 @@ Header | Type | Description
 
 ```http
 PUT /example-bucket/queen-bee HTTP/1.1
-Authorization: {authorization-string}
+Authorization: Bearer {token}
 x-amz-date: 20160825T183001Z
 x-amz-content-sha256: 309721641329cf441f3fa16ef996cf24a2505f91be3e752ac9411688e3435429
 x-amz-server-side-encryption-customer-algorithm: AES256

@@ -8,7 +8,7 @@ lastupdated: "2017-09-27"
 
 # For administrators
 
-Storage and system administrators who need to configure object storage and manage access to data can take advantage of IBM Cloud Identity and Access Management (IAM) to manage users, create and rotate API keys, and grant roles to users and services. If you haven't already, go ahead and read through the [getting started tutorial]() to familiarize yourself with the core concepts of buckets, objects, and users.
+Storage and system administrators who need to configure object storage and manage access to data can take advantage of IBM Cloud Identity and Access Management (IAM) to manage users, create and rotate API keys, and grant roles to users and services. If you haven't already, go ahead and read through the [getting started tutorial](docs/services/cloud-object-storage/getting-started.html) to familiarize yourself with the core concepts of buckets, objects, and users.
 
 ## Set up your storage
 

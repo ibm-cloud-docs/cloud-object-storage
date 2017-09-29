@@ -12,7 +12,7 @@ lastupdated: "2017-09-27"
 
 # Bucket operations
 
-## List buckets belonging to an account
+## List buckets belonging to an account (`GET` service)
 
 A `GET` issued to the endpoint root returns a list of buckets associated with the requesting account. This operation does not make use of operation specific headers, query parameters, or payload elements.
 
@@ -26,10 +26,9 @@ GET https://{endpoint}/
 
 ```http
 GET / HTTP/1.1
+Authorization: Bearer {token}
 Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
-X-Amz-Date: 20160822T030815Z
-Authorization: {authorization-string}
 ```
 
 **Sample response**
@@ -79,10 +78,9 @@ This is an example of creating a new bucket called 'images'.
 
 ```http
 PUT /images HTTP/1.1
+Authorization: Bearer {token}
 Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
-X-Amz-Date: 20160821T052842Z
-Authorization:{authorization-string}
 ```
 
 **Sample response**
@@ -123,9 +121,7 @@ This is an example of creating a new bucket called 'vault-images'.
 
 ```http
 PUT /vault-images HTTP/1.1
-Authorization: {authorization-string}
-x-amz-date: 20170317T175217Z
-x-amz-content-sha256: {hashed-request-body}
+Authorization: Bearer {token}
 Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
 Content-Length: 110
@@ -170,8 +166,7 @@ This is an example of fetching the headers for the 'images' bucket.
 HEAD /images HTTP/1.1
 Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
-X-Amz-Date: 20160821T052842Z
-Authorization:{authorization-string}
+Authorization:Bearer {token}
 ```
 
 **Sample response**
@@ -194,8 +189,6 @@ Content-Length: 0
 A `GET` request addressed to a bucket returns a list of objects, limited to 1,000 at a time and returned in non-lexographical order. The `StorageClass` value that is returned in the response is a default value as storage class operations are not implemented in COS. This operation does not make use of operation specific headers or payload elements.
 
 **Syntax**
-
-Note that the 'version 2' method of listing objects within a bucket is not supported, and the 'version 1' syntax is needed.
 
 ```bash
 GET https://{endpoint}/{bucket-name} # path style
@@ -220,8 +213,7 @@ This request lists the objects inside the "apiary" bucket.
 GET /apiary HTTP/1.1
 Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
-X-Amz-Date: 20160822T225156Z
-Authorization: {authorization-string}
+Authorization: Bearer {token}
 ```
 
 **Sample response**
@@ -299,8 +291,7 @@ DELETE https://{bucket-name}.{endpoint} # virtual host style
 ```http
 DELETE /images HTTP/1.1
 Host: s3-api.us-geo.objectstorage.softlayer.net
-x-amz-date: 20160822T064812Z
-Authorization: {authorization-string}
+Authorization: Bearer {token}
 ```
 
 The server responds with `204 No Content`.
@@ -311,8 +302,7 @@ If a non-empty bucket is requested for deletion, the server responds with `409 C
 
 ```http
 DELETE /apiary HTTP/1.1
-Authorization: {authorization-string}
-x-amz-date: 20160825T174049Z
+Authorization: Bearer {token}
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
@@ -355,7 +345,7 @@ This is an example of specifying a pre-made ACL to allow for `public-read` acces
 
 ```http
 PUT /apiary?acl= HTTP/1.1
-Authorization: {authorization-string}
+Authorization: Bearer {token}
 x-amz-date: 20161011T190354Z
 x-amz-acl: public-read
 Host: s3-api.us-geo.objectstorage.softlayer.net
@@ -380,7 +370,7 @@ This is an example of specifying a custom ACL to allow for another account to vi
 
 ```http
 PUT /apiary?acl= HTTP/1.1
-Authorization: {authorization-string}
+Authorization: Bearer {token}
 x-amz-date: 20161011T190354Z
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
@@ -441,7 +431,7 @@ This is an example of retrieving a bucket ACL.
 
 ```http
 GET /apiary?acl= HTTP/1.1
-Authorization: {authorization-string}
+Authorization: Bearer {token}
 x-amz-date: 20161011T190354Z
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
@@ -508,8 +498,7 @@ This is an example of retrieving all current canceled and incomplete multipart u
 
 ```http
 GET /apiary?uploads= HTTP/1.1
-Authorization: {authorization-string}
-x-amz-date: 20161011T190354Z
+Authorization: Bearer {token}
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
@@ -586,8 +575,7 @@ This is an example of listing a CORS configuration on the "apiary" bucket.
 
 ```http
 GET /apiary?cors= HTTP/1.1
-Authorization: {authorization-string}
-x-amz-date: 20161011T190354Z
+Authorization: Bearer {token}
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
@@ -628,10 +616,7 @@ This is an example of adding a CORS configuration that allows requests from `www
 
 ```http
 GET /apiary?cors= HTTP/1.1
-Authorization: {authorization-string}
-x-amz-date: 20161011T190354Z
-x-amz-content-sha256: 2938f51643d63c864fdbea618fe71b13579570a86f39da2837c922bae68d72df
-Content-MD5: GQmpTNpruOyK6YrxHnpj7g==
+Authorization: Bearer {token}
 Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
 Content-Length: 237
@@ -680,8 +665,7 @@ This is an example of deleting a CORS configuration for a bucket.
 
 ```http
 GET /apiary?cors= HTTP/1.1
-Authorization: {authorization-string}
-x-amz-date: 20161011T190354Z
+Authorization: Bearer {token}
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 

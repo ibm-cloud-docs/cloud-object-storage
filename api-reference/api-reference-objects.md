@@ -28,9 +28,7 @@ PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 
 ```http
 PUT /apiary/queen-bee HTTP/1.1
-Authorization: {authorization-string}
-x-amz-date: 20160825T183001Z
-x-amz-content-sha256: 309721641329cf441f3fa16ef996cf24a2505f91be3e752ac9411688e3435429
+Authorization: Bearer {token}
 Content-Type: text/plain; charset=utf-8
 Host: s3-api.us-geo.objectstorage.softlayer.net
 
@@ -84,8 +82,7 @@ Header | Type | Description
 
 ```http
 HEAD /apiary/soldier-bee HTTP/1.1
-Authorization: {authorization-string}
-x-amz-date: 20160825T183244Z
+Authorization: Bearer {token}
 Host: s3-api.sjc-us-geo.objectstorage.softlayer.net
 
 ```
@@ -133,8 +130,7 @@ Header | Type | Description
 
 ```http
 GET /apiary/worker-bee HTTP/1.1
-Authorization: {authorization-string}
-x-amz-date: 20160825T183244Z
+Authorization: Bearer {token}
 Host: s3-api.us-geo.objectstorage.softlayer.net
 
 ```
@@ -177,7 +173,7 @@ DELETE https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 
 ```http
 DELETE /apiary/soldier-bee HTTP/1.1
-Authorization: {authorization-string}
+Authorization: Bearer {token}
 Host: s3-api.sjc-us-geo.objectstorage.softlayer.net
 
 ```
@@ -211,11 +207,8 @@ POST https://{bucket-name}.{endpoint}/{object-name}?delete= # virtual host style
 
 ```http
 POST /apiary?delete= HTTP/1.1
-Authorization: {authorization-string}
+Authorization: Bearer {token}
 Host: s3-api.us-geo.objectstorage.softlayer.net
-x-amz-date: 20161205T231624Z
-x-amz-content-sha256: 3ade096cd9471017539ede10c4d8aa05a1ecd015a16f4f090e9fcee92a816cf4
-Content-MD5: zhi+TmIAhD2U3GfoYayyTQ==
 Content-Type: text/plain; charset=utf-8
 ```
 
@@ -286,8 +279,7 @@ This basic example takes the `bee` object from the `garden` bucket, and creates 
 
 ```http
 PUT /apiary/wild-bee HTTP/1.1
-Authorization: {authorization-string}
-x-amz-date: 20161130T195251Z
+Authorization: Bearer {token}
 x-amz-copy-source: /garden/bee
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
@@ -332,7 +324,7 @@ GET https://{bucket-name}.{endpoint}/{object-name}?acl= # virtual host style
 
 ```http
 GET /apiary/queen-bee?acl= HTTP/1.1
-Authorization: {authorization-string}
+Authorization: Bearer {token}
 x-amz-date: 20161207T155945Z
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
@@ -392,7 +384,7 @@ PUT https://{bucket-name}.{endpoint}/{object-name}?acl= # virtual host style
 
 ```http
 PUT /apiary/queen-bee?acl= HTTP/1.1
-Authorization: {authorization-string}
+Authorization: Bearer {token}
 x-amz-date: 20161207T162842Z
 x-amz-acl: public-read
 Host: s3-api.us-geo.objectstorage.softlayer.net
@@ -417,7 +409,7 @@ It is also possible to assign a canned ACL directly when uploading an object by 
 
 ```http
 PUT /apiary/queen-bee HTTP/1.1
-Authorization: {authorization-string}
+Authorization: Bearer {token}
 x-amz-date: 20161207T162842Z
 x-amz-acl: public-read
 Host: s3-api.us-geo.objectstorage.softlayer.net
@@ -442,7 +434,7 @@ This is an example of specifying a custom ACL to allow for another account to vi
 
 ```http
 PUT /apiary/queen-bee?acl= HTTP/1.1
-Authorization: {authorization-string}
+Authorization: Bearer {token}
 x-amz-date: 20161207T163315Z
 Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
@@ -569,8 +561,7 @@ POST https://{bucket-name}.{endpoint}/{object-name}?uploads= # virtual host styl
 
 ```http
 POST /some-bucket/multipart-object-123?uploads= HTTP/1.1
-Authorization: {authorization-string}
-x-amz-date: 20170303T203411Z
+Authorization: Bearer {token}
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
@@ -612,8 +603,7 @@ PUT https://{bucket-name}.{endpoint}/{object-name}?partNumber={sequential-intege
 
 ```http
 PUT /some-bucket/multipart-object-123?partNumber=1&uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
-Authorization: {authorization-string}
-x-amz-date: 20170318T035641Z
+Authorization: Bearer {token}
 Content-Type: application/pdf
 Host: s3-api.us-geo.objectstorage.softlayer.net
 Content-Length: 13374550
@@ -658,8 +648,7 @@ POST https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # virtu
 
 ```http
 POST /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
-Authorization: {authorization-string}
-x-amz-date: 20170318T035641Z
+Authorization: Bearer {token}
 Content-Type: text/plain; charset=utf-8
 Host: s3-api.us-geo.objectstorage.softlayer.net
 Content-Length: 257
@@ -718,8 +707,7 @@ DELETE https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # vir
 
 ```http
 DELETE /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
-Authorization: {authorization-string}
-x-amz-date: 20170318T035641Z
+Authorization: Bearer {token}
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 

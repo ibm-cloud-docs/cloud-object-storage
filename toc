@@ -24,7 +24,6 @@ Cloud Object Storage
     basics/classes.md
     basics/multipart.md
     basics/sse-c.md
-    cli/bmx.md
     basics/migrate-data.md
 
     {: .topicgroup}

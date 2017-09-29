@@ -17,12 +17,8 @@ The following table describes supported common request headers. COS ignores any 
 | Header               | Note                                                                            |
 |----------------------|---------------------------------------------------------------------------------|
 | Authorization        | **Required** for all requests (AWS Signature Version 4).                        |
-| Host                 | **Required** for all requests.                                                  |
-| x-amz-date           | **Required** for all requests. Can also be specified as `Date`.                 |
-| x-amz-content-sha256 | **Required** for uploading objects or any request with information in the body. |
-| Content-Length       | **Required** for uploading objects, chunked encoding also supported.            |
-| Content-MD5          | A 128-bit MD5 hash value of the request body being sent.                        |
-| Expect               | `100-continue` waits for the headers to be accepted before sending the body.    |
+| ibm-service-instance-id   | **Required** for requests to create or list buckets.                                                  |
+
 
 ## Common Response Headers
 The following table describes common response headers.

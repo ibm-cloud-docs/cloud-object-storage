@@ -20,13 +20,13 @@ Before ordering a new IBM COS storage instance, it is necessary to create a cust
 6. Follow the **I'm Ready** link to get started with Bluemix.
 7. Next up is ordering a new object storage service instance!
 
-## Creating a new storage instance
+## Creating a new resource instance
 
 1. Login to [https://console.bluemix.net/](https://console.bluemix.net/){: new_window}.
 2. Navigate to the catalog, by clicking **Catalog** in the navigation bar.
 3. Look for the **Cloud Object Storage** tile in the storage section and select it.
-4. Give the service instance a name and choose either the lite or premium plan.
-5. Click **Create** and you will be automatically redirected to your new service instance.
+4. Give the service instance a name and choose either the lite or standard plan.
+5. Click **Create** and you will be automatically redirected to your new instance.
 
 [1]:    https://bluemix.net
 [2]:    http://www.softlayer.com
