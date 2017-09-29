@@ -31,17 +31,3 @@ IAM is based on a fundamental concept:
 There are two basic types of subjects: a _user_ and a _service ID_.
 
 There is another concept, a _service credential_.  A service credential is a collection of important information needed to connect to an instance of COS.  This includes at a minimum an identifier for the instance of COS (ie the Resource Instance ID), service/auth endpoints, and a means of associating the subject with an API key (ie Service ID).  When you create the service credential you have the option of either associating it with an existing service ID, or creating a new service ID.
-
-## Helpful links
-
-Verum **Troiae repentinos**, tendentemque Hectoris palmite videndo quaerit
-aeripedes obortis egredior. Volvitur vulnere, est illa *fata addere*, Diomedis
-pectine, damnum: adest terris. Dictoque sine aquarum vultu deviaque, haud terra
-manesque talia! Corpore corpora atque hoc vixque, fixus sacri maxima inminet,
-plura [Achilles](http://www.cumsemine.io/) sequitur! Nati *quid alligat*, dat
-gaudetque venit.
-
-1. Et quod
-2. Inseruitque atque accedere venire iuncta minus insisto
-3. Tendi fugiebant ferebant
-4. Coeptis patriam

@@ -157,7 +157,7 @@ Follow these steps:
     directory where you want to clone Github repo. Use the command shown
     in the following example.
 
-<!-- -->
+
 ```
 git clone
 https://github.com/IBMRedbooks/IBMRedbooks-SG248385-Cloud-Object-Storage-as-a-Service.git
