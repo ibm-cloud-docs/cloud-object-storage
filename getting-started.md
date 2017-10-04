@@ -17,9 +17,6 @@ lastupdated: "2017-09-27"
 In this quickstart guide, you'll create a bucket and upload objects, and set up access policies to allow other users to work with your data.
 {: shortdesc}
 
-This documentation refers to IBM Cloud Object Storage provisioned as an IBM Cloud Platform service using the Bluemix console. This service uses IBM Cloud Identity and Access Management and is best suited for cloud-native application development.  Documentation for other object storage offerings, including the IaaS version of IBM COS (S3 API) and OpenStack Swift services, as well as more information on the evolution of object storage in the IBM cloud [is found here](/docs/services/cloud-object-storage/about-cos.html).
-{:tip}
-
 ## Before you begin
 You'll need:
   * a [Bluemix account](https://console.bluemix.net/registration/)
