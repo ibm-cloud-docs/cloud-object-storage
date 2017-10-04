@@ -13,57 +13,80 @@ lastupdated: "2017-09-27"
 {:tip: .tip}
 
 
-# Getting started with IBM Cloud Object Storage
-In this getting started tutorial, you'll walk through the steps needed to create buckets, upload objects, and set up access policies to allow other users to work with your data.
+# IBM Cloud Object Storage Quickstart
+In this quickstart guide, you'll create a bucket and upload objects, and set up access policies to allow other users to work with your data.
 {: shortdesc}
 
-This documentation refers to IBM Cloud Object Storage provisioned as an IBM Cloud Platform service using the Bluemix console. This service uses IBM Cloud Identity and Access Management and is ideally suited for cloud-native application development.  Documentation for other object storage offerings, including the IaaS version of IBM COS (S3 API) and OpenStack Swift services, as well as more information on the evolution of object storage in the IBM cloud [is found here](/docs/services/cloud-object-storage/about-cos.html).
+This documentation refers to IBM Cloud Object Storage provisioned as an IBM Cloud Platform service using the Bluemix console. This service uses IBM Cloud Identity and Access Management and is best suited for cloud-native application development.  Documentation for other object storage offerings, including the IaaS version of IBM COS (S3 API) and OpenStack Swift services, as well as more information on the evolution of object storage in the IBM cloud [is found here](/docs/services/cloud-object-storage/about-cos.html).
 {:tip}
 
 ## Before you begin
 You'll need:
   * a [Bluemix account](https://console.bluemix.net/registration/)
   * an [instance of Cloud Object Storage](/docs/services/cloud-object-storage/basics/order-storage.html)
+  * the [Bluemix CLI](https://clis.ng.bluemix.net/ui/home.html)
   * and some files on your local computer to upload.
 {: #prereqs}
 
-This guide takes a new user through the first steps with Bluemix console, but for developers looking to get started with the API, see the  [Developer's Guide](/docs/services/cloud-object-storage/basics/developers.html) or [API overview](/docs/services/cloud-object-storage/api-reference/about-compatibility-api.html).
 
-## Step 1: Create some buckets to store your data
-{: #create-buckets}
+## Gather key information
+  1. First, make sure you have an API key.  Get this from [IBM Cloud Identity and Access Management](https://www.bluemix.net/iam/#/apikeys).
+  2. Login to Bluemix using the CLI.
 
-  1. When you [order Cloud Object Storage](/docs/services/cloud-object-storage/basics/order-storage.html), you create a what is called _resource instance_. After creation you will be automatically redirected to that resource instance where you may start creating buckets. Your IBM COS instances will be listed under **Global Services** in [the console dashboard](/dashboard/apps).
-  2. Follow the **Create Bucket** link and choose a unique name; all buckets in all regions across the globe share the same namespace.
-  3. Choose a desired [level of _resiliency_](/docs/services/cloud-object-storage/basics/endpoints.html) first, and then a _region_ where you would like your data to be physically stored. Resiliency refers to the scope and scale of the geographic area across which your data is distributed. All data stored in COS buckets is automatically encrypted, sliced into fragments, and dispersed across at least three data centers.  _Cross Region_ resiliency will spread you data across several metropolitan areas, while _Regional_ resiliency will spread data across a single metropolitan area.
-  4. Choose the [bucket's _storage class_](/docs/services/cloud-object-storage/basics/classes.html). This is a reflection of how often you expect to read the stored data and determines billing details. Follow the **Create** link to access your new bucket.
-
-  Buckets are a way to organize your data, but they're not the sole way. Object names (often referred to as _object keys_) can also contain one or more forward slashes (or other delimiter), allowing for a directory-like organizational system. You can use the portion the object name before a delimiter to form an _object prefix_, which can be used to list related objects in a single bucket through the API.
+It's also possible to store the API key in a file or set it as an environment variable.
 {:tip}
 
+```
+bx login --apikey <value>
+```
 
-## Step 2: Add some objects to your buckets
-{: #add-objects}
+  4. Now you need the ID for your new instance. Use the name you gave the instance when creating it.
 
-Now go ahead and navigate to one of your buckets by selecting it from the list.  Follow the **Add Objects** link. Note that new objects overwrite existing objects with identical names within the same bucket. When using the console to upload objects, the object name always matches the file name, but there doesn't need to be any relationship between the file name and the object key if you are using the API to write data.  Go ahead and add a handful of files to this bucket.
+```
+bx resource instance <instance-name> -r global
+```
 
-Objects can't exceed 200MB in size when using the console, but objects [uploaded using the API](/docs/services/cloud-object-storage/basics/multipart.html) can be as large as 10TB. All object keys need to be no more than 1024 characters in length, and it's best to avoid any characters that might be problematic in a web address (e.g. `?`, `=`, `<`, etc.) There is no practical limit on the amount of storage you can use in a single storage instance, or a single bucket for that matter.  Each bucket can hold billions of objects.
-{:tip}
+  5. Next, get a token from IAM.
 
-## Step 3a: Invite a user to your account to administer your buckets and data
-{: #invite-user}
+```
+bx iam oauth-tokens
+```
 
-Now you're going to bring in another user and allow them to act as an administrator for the instance and any data stored in it.
+## Create a bucket and upload an object
 
-  1. First, to add the new user you need to leave the current COS interface and head for the IAM console by navigating to the **Manage** menu and following the link at **Account** > **Users**.
-  2. Enter an email address you'd like to invite to your organization, then expand the **Identity and Access enabled services** section and select "Cloud Object Storage" from the **Services** drop-down menu.
-  3. Now two more fields will appear: _Service instance_ and _Roles_. The first field (displayed as a GUID) defines which instance of COS the user will be able to access.  and the second determines what set of actions the user is able to perform. Select "Administrator" to allow the user grant other [users and service IDs](docs/services/cloud-object-storage/iam/users-serviceids.html) access to the instance. Now create another policy to grant the user "AccessAdministrator".  Now the user can manage the instance as well as create and delete buckets and objects. These combinations of a _Subject_ (user), _Role_ (viewer), and _Resource_ (COS service instance) together form [IAM policies](docs/services/cloud-object-storage/iam/overview.html). For more detailed guidance on roles and policies, [see the IAM documentation](/docs/iam/users_roles.html).
-  4. Next it's necessary to grant a minimal level of Cloud Foundry access in order for the user to access your organization in the first place.  Select the desired organization from the **Organization** drop-down menu, and then select "Auditor" from both the **Organizational roles** and **Space roles** drop down menus.  This will allow the user to view services available to your organization, but not change them.
+  1. Take your new token, and the ID of the instance, and create a new bucket in the `us-south` region.
 
-## Step 3b: Give developers access to a bucket.
-{: #bucket-policy}
+```
+curl -X "PUT" "https://s3.us-south.objectstorage.softlayer.net/<bucket-name>" \
+     -H "Authorization: Bearer <token>" \
+     -H "ibm-service-instance-id: <resource-instance-id>"
+```
 
-  1. Navigate to the **Manage** menu and follow the link at **Account** > **Service IDs**.  Here you can create a _service ID_ which serves as a non-human identity that can be assigned API keys for use in application development.
+  2. Upload an object.
 
-## Next steps
+```
+  curl -X "PUT" "https://s3.us-south.objectstorage.softlayer.net/<bucket-name>/<object-key>" \
+       -H "Authorization: Bearer <token>" \
+       -H "Content-Type: text/plain; charset=utf-8" \
+       -d "This is a tiny object made of plain text."
+```
 
-Now that you are familiar with managing and using your object storage via the web-based console, you might be interested in doing a similar workflow from the command line using  the `bx` command line utility for creating the service instance and interacting with IAM, and `curl` for accessing COS directly. [Check out the command line tutorial](/docs/services/cloud-object-storage/tutorials/getting-started.html) to get started.
+## Manage access
+
+  1. Invite someone to your account with minimal permissions.
+
+```
+bx account user-invite <email-address> <org-name> auditor <space-name> auditor
+```
+
+  2. Then grant them read-only access to your COS instances.
+
+```
+bx iam user-policy-create <email-address> --roles AccessViewer --service-name cloud-object-storage
+```
+
+  3. Grant them write access to the bucket you created.
+
+```
+bx iam user-policy-create nglange@gmail.com --roles AccessEditor --service-name cloud-object-storage --resource-type bucket --resource <bucket-name>
+```

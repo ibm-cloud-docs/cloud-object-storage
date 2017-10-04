@@ -98,9 +98,15 @@ Content-Length: 0
 
 ----
 
-## Create a bucket using a different provisioning code
+## Create a bucket with a different storage class
 
-To create a bucket using a custom provisioing code, send an XML block specifying a bucket configuration with a `LocationConstraint` of `{provisioning code}` in the body of a `PUT` request to a bucket endpoint.  Note that standard bucket [naming rules](docs/services/cloud-object-storage/api-reference#create-a-new-bucket) apply.
+To create a bucket with a different storage class, send an XML block specifying a bucket configuration with a `LocationConstraint` of `{provisioning code}` in the body of a `PUT` request to a bucket endpoint.  Note that standard bucket [naming rules](docs/services/cloud-object-storage/api-reference#create-a-new-bucket) apply.
+
+Valid provisioning codes for `LocationCostraint` are: <br>
+&emsp;&emsp;  `us-standard` / `us-vault` / `us-cold` / `us-flex` <br>
+&emsp;&emsp;  `us-east-standard` / `us-east-vault`  / `us-east-cold` / `us-east-flex` <br>
+&emsp;&emsp;  `us-south-standard` / `us-south-vault`  / `us-south-cold` / `us-south-flex` <br>
+&emsp;&emsp;  `eu-standard` / `eu-vault` / `eu-cold` / `eu-flex` <br>
 
 **Syntax**
 

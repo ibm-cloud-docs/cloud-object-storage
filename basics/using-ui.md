@@ -6,33 +6,58 @@ lastupdated: "2017-09-27"
 
 ---
 
-# Upload an object
+# Getting started with IBM Cloud Object Storage
 
-The user interface portal provides a high level view of a storage account.  It is possible to create buckets and upload objects using the portal, but typically most interaction with the object store is done through the API by a client application.
+In this getting started tutorial, you'll walk through the steps needed to create buckets, upload objects, and set up access policies to allow other users to work with your data.
+{: shortdesc}
 
-## Using buckets
+This documentation refers to IBM Cloud Object Storage provisioned as an IBM Cloud Platform service using the Bluemix console. This service uses IBM Cloud Identity and Access Management and is ideally suited for cloud-native application development.  Documentation for other object storage offerings, including the IaaS version of IBM COS (S3 API) and OpenStack Swift services, as well as more information on the evolution of object storage in the IBM cloud [is found here](/docs/services/cloud-object-storage/about-cos.html).
+{:tip}
 
-1. Choose **Dashboard** from the left navigation menu.
-2. Cloud Object Storage instances appear under "Global Services" in the dashboard.
-3. Select an instance and then navigate to **Buckets and objects**.
-4. A new bucket can be added by clicking on the **Create bucket** button.
-5. The new bucket name can be entered and the new bucket added, by clicking the **Add** button. Bucket names must be DNS-compliant. Names must be between 3 and 63 characters long, must be made of lowercase letters, numbers, and dashes, must be globally unique, and cannot appear to be an IP address. A common approach to ensuring uniqueness is to append a UUID or other distinctive suffix to bucket names.
-6. A bucket can be deleted, by clicking the red **Delete** button to the extreme right of the bucket name. This opens a confirmation window.
-7. **Note: only empty buckets can be deleted**.  Attempting to delete a non-empty bucket will result in an error.
-7. Click the **Delete** button to remove the bucket from the account.
+## Before you begin
+You'll need:
+  * a [Bluemix account](https://console.bluemix.net/registration/)
+  * an [instance of Cloud Object Storage](/docs/services/cloud-object-storage/basics/order-storage.html)
+  * and some files on your local computer to upload.
+{: #prereqs}
+
+This guide takes a new user through the first steps with Bluemix console, but for developers looking to get started with the API, see the  [Developer's Guide](/docs/services/cloud-object-storage/basics/developers.html) or [API overview](/docs/services/cloud-object-storage/api-reference/about-compatibility-api.html).
+
+## Step 1: Create some buckets to store your data
+{: #create-buckets}
+
+  1. When you [order Cloud Object Storage](/docs/services/cloud-object-storage/basics/order-storage.html), you create a what is called _resource instance_. After creation you will be automatically redirected to that resource instance where you may start creating buckets. Your IBM COS instances will be listed under **Global Services** in [the console dashboard](/dashboard/apps).
+  2. Follow the **Create Bucket** link and choose a unique name; all buckets in all regions across the globe share the same namespace.
+  3. Choose a desired [level of _resiliency_](/docs/services/cloud-object-storage/basics/endpoints.html) first, and then a _region_ where you would like your data to be physically stored. Resiliency refers to the scope and scale of the geographic area across which your data is distributed. All data stored in COS buckets is automatically encrypted, sliced into fragments, and dispersed across at least three data centers.  _Cross Region_ resiliency will spread you data across several metropolitan areas, while _Regional_ resiliency will spread data across a single metropolitan area.
+  4. Choose the [bucket's _storage class_](/docs/services/cloud-object-storage/basics/classes.html). This is a reflection of how often you expect to read the stored data and determines billing details. Follow the **Create** link to access your new bucket.
+
+  Buckets are a way to organize your data, but they're not the sole way. Object names (often referred to as _object keys_) can also contain one or more forward slashes (or other delimiter), allowing for a directory-like organizational system. You can use the portion of the object name before a delimiter to form an _object prefix_, which can be used to list related objects in a single bucket through the API.
+{:tip}
 
 
-## Using objects
+## Step 2: Add some objects to your buckets
+{: #add-objects}
 
-1. The objects present within a bucket can be viewed, by clicking the bucket name on the buckets list.
-2. The header is updated to include the following info:
-  * Name of the account currently being viewed
-  * The current region being viewed
-  * The name of the bucket whose objects are currently displayed
-  * The type of the bucket whose objects are currently displayed
-3. Above the grid on the left is a link with the name of the bucket currently viewed. Click the link to show the list of buckets again.
-4. The grid shows the list of objects in the bucket.
-5. A new object can be added, by clicking the **+** button at the right of the first row.
-6. The file can be selected from the file system, by clicking the **select** button and the new file uploaded, by clicking the **Add** button.  When using the portal to add an object, file size is limited to 200 megabytes. (All objects are limited to 10TB when using the API, including multipart uploads which are capped at 10k parts of no larger than 5GB each.)
-7. An object can be deleted, by clicking on the red **-** button to the extreme right of the object name. This opens a confirmation window.
-8. Click the **Delete** button to remove the object from the bucket.
+Now go ahead and navigate to one of your buckets by selecting it from the list.  Follow the **Add Objects** link. Note that new objects overwrite existing objects with identical names within the same bucket. When using the console to upload objects, the object name always matches the file name, but there doesn't need to be any relationship between the file name and the object key if you are using the API to write data.  Go ahead and add a handful of files to this bucket.
+
+Objects can't exceed 200MB in size when using the console, but objects [uploaded using the API](/docs/services/cloud-object-storage/basics/multipart.html) can be as large as 10TB. All object keys need to be no more than 1024 characters in length, and it's best to avoid any characters that might be problematic in a web address (e.g. `?`, `=`, `<`, etc.) There is no practical limit on the amount of storage you can use in a single storage instance, or a single bucket for that matter.  Each bucket can hold billions of objects.
+{:tip}
+
+## Step 3a: Invite a user to your account to administer your buckets and data
+{: #invite-user}
+
+Now you're going to bring in another user and allow them to act as an administrator for the instance and any data stored in it.
+
+  1. First, to add the new user you need to leave the current COS interface and head for the IAM console by navigating to the **Manage** menu and following the link at **Account** > **Users**.
+  2. Enter an email address you'd like to invite to your organization, then expand the **Identity and Access enabled services** section and select "Cloud Object Storage" from the **Services** drop-down menu.
+  3. Now two more fields will appear: _Service instance_ and _Roles_. The first field (displayed as a GUID) defines which instance of COS the user will be able to access.  and the second determines what set of actions the user is able to perform. Select "Administrator" to allow the user grant other [users and service IDs](docs/services/cloud-object-storage/iam/users-serviceids.html) access to the instance. Now create another policy to grant the user "AccessAdministrator".  Now the user can manage the instance as well as create and delete buckets and objects. These combinations of a _Subject_ (user), _Role_ (viewer), and _Resource_ (COS service instance) together form [IAM policies](docs/services/cloud-object-storage/iam/overview.html). For more detailed guidance on roles and policies, [see the IAM documentation](/docs/iam/users_roles.html).
+  4. Next it's necessary to grant a minimal level of Cloud Foundry access in order for the user to access your organization in the first place.  Select the desired organization from the **Organization** drop-down menu, and then select "Auditor" from both the **Organizational roles** and **Space roles** drop down menus.  This will allow the user to view services available to your organization, but not change them.
+
+## Step 3b: Give developers access to a bucket.
+{: #bucket-policy}
+
+  1. Navigate to the **Manage** menu and follow the link at **Account** > **Service IDs**.  Here you can create a _service ID_ which serves as a non-human identity that can be assigned API keys for use in application development.
+
+## Next steps
+
+Now that you are familiar with managing and using your object storage via the web-based console, you might be interested in doing a similar workflow from the command line using  the `bx` command line utility for creating the service instance and interacting with IAM, and `curl` for accessing COS directly. [Check out the API overview](/docs/services/cloud-object-storage/api-reference/about-compatibility-api.html) to get started.

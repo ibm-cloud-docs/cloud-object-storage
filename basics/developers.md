@@ -17,13 +17,13 @@ First, ensure you have the [Bluemix CLI](https://clis.ng.bluemix.net/ui/home.htm
 ```
 bx login --apikey <value>
 ```
-  3. Next, provision an instance of COS specifying the name for the instance, the ID and the desired plan (lite or standard).  This will get us the CRN.
+  3. Next, provision an instance of COS specifying the name for the instance, the ID and the desired plan (lite or standard).  This will get us the CRN.  If you have an upgraded account, specify the `Premium` plan.  Otherwise specify `Lite`.
 
 ```
 bx resource instance-create <instance-name> cloud-object-storage <plan> -r global
 ```
 
-  4. Now we need the CRN for the new instance.
+  4. Now we need the ID for the new instance.
 
 ```
 bx resource instance <instance-name> -r global
@@ -37,7 +37,7 @@ bx iam oauth-tokens
 
 ## Create a bucket and upload an object
 
-  1. Take your new token, and the CRN of the instance, and create a new bucket in the `us-south` region.
+  1. Take your new token, and the ID of the instance, and create a new bucket in the `us-south` region.
 
 ```
 curl -X "PUT" "https://s3.us-south.objectstorage.softlayer.net/<bucket-name>" \
@@ -73,3 +73,9 @@ bx iam user-policy-create <email-address> --roles AccessViewer --service-name cl
 ```
 bx iam user-policy-create nglange@gmail.com --roles AccessEditor --service-name cloud-object-storage --resource-type bucket --resource <bucket-name>
 ```
+
+Learn more about [the Bluemix CLI in the documentation](docs/cli/reference/bluemix_cli/bx_cli.html).
+
+## Using the API
+
+There isn't a focused command line utility for managing data stored in COS.  As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage.  More information can be found in [the `curl` reference](docs/services/cloud-object-storage/cli/curl.html), as well as [the API reference documentation](docs/services/cloud-object-storage/api-reference/about-compatibility-api.html).

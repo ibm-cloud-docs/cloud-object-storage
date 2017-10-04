@@ -8,21 +8,13 @@ lastupdated: "2017-09-27"
 
 # Python
 
-Python support is provided through the Boto 3 library.  It can be installed from the Python Package Index via `pip install boto3`. The examples shown here were generated using version 1.4.0 of the boto3 package.
+Python support is provided through a fork of the Boto 3 library.  It can be installed from the Python Package Index via `pip install ibm-cos-sdk`.
 
-Existing applications that use the original Boto 2.x library should be compatible as well, although it is no longer being actively maintained and users are encouraged to migrate to Boto 3.
 
-By default, access keys are sourced from `~/.aws/credentials`, but can also be set as environment variables. Minimum required `~/.aws/credentials` file:
 
-```
-[default]
-aws_access_key_id = {Access Key ID}
-aws_secret_access_key = {Secret Access Key}
-```
+The `boto3` library provides complete access to the S3 API.  Endpoints, an API key, and the instance ID must be specified when creating a service resource or low-level client as shown in the following basic examples.
 
-The `boto3` library provides complete access to the S3 API and can source credentials from the `~/.aws/credentials` file referenced above.  The IBM COS endpoint must be specified when creating a service resource or low-level client as shown in the following basic examples.
-
-Detailed documentation can be found at [boto3.readthedocs.io](https://boto3.readthedocs.io/en/latest/reference/services/s3.html).
+Detailed documentation can be found at [TBD]().
 
 
 ## Example service resource script
@@ -31,10 +23,20 @@ Creating a service resource provides greater abstraction for higher level tasks.
 
 ```python
 import boto3
+from botocore.client import Config
 
-endpoint = 'https://s3-api.us-geo.objectstorage.softlayer.net'
+api_key = "API-KEY"
+service_instance_id = "RESOURCE-INSTANCE-ID"
+auth_endpoint = "https://iam.bluemix.net/oidc/token"
+service_endpoint = "https://s3-api.us-geo.objectstorage.softlayer.net"
 
-cos = boto3.resource('s3', endpoint_url=endpoint)
+cos = boto3.resource('s3',
+                      ibm_api_key_id=api_key,
+                      ibm_service_instance_id=service_instance_id,
+                      ibm_auth_endpoint=auth_endpoint,
+                      config=Config(signature_version='oauth'),
+                      endpoint_url=service_endpoint)
+
 
 for bucket in cos.buckets.all():
     print(bucket.name)
@@ -59,12 +61,21 @@ bucket-2
 Creating a low-level client allows for considerably more detail and access to metadata. This is a basic script that fetches the list of buckets owned by an account, and lists objects in each bucket. As considerably more data is returned than in the previous example, the `pprintpp` package is used to increase the readability of the raw output.
 
 ```python
-import boto3
 import pprint as pp
+import boto3
+from botocore.client import Config
 
-endpoint = 'https://s3-api.us-geo.objectstorage.softlayer.net'
+api_key = "API-KEY"
+service_instance_id = "RESOURCE-INSTANCE-ID"
+auth_endpoint = "https://iam.bluemix.net/oidc/token"
+service_endpoint = "https://s3-api.us-geo.objectstorage.softlayer.net"
 
-cos = boto3.client('s3', endpoint_url=endpoint)
+cos = boto3.client('s3',
+                      ibm_api_key_id=api_key,
+                      ibm_service_instance_id=service_instance_id,
+                      ibm_auth_endpoint=auth_endpoint,
+                      config=Config(signature_version='oauth'),
+                      endpoint_url=service_endpoint)
 
 print('These are the buckets in this service account:')
 buckets = cos.list_buckets()
