@@ -36,12 +36,14 @@ It's also possible to store the API key in a file or set it as an environment va
 ```
 bx login --apikey <value>
 ```
+{:codeblock}
 
   4. Now you need the ID for your new instance. Use the name you gave the instance when creating it.
 
 ```
 bx resource instance <instance-name> -r global
 ```
+{:codeblock}
 
   5. Next, get a token from IAM.
 
@@ -58,6 +60,7 @@ curl -X "PUT" "https://s3.us-south.objectstorage.softlayer.net/<bucket-name>" \
      -H "Authorization: Bearer <token>" \
      -H "ibm-service-instance-id: <resource-instance-id>"
 ```
+{:codeblock}
 
   2. Upload an object.
 
@@ -67,6 +70,7 @@ curl -X "PUT" "https://s3.us-south.objectstorage.softlayer.net/<bucket-name>" \
        -H "Content-Type: text/plain; charset=utf-8" \
        -d "This is a tiny object made of plain text."
 ```
+{:codeblock}
 
 ## Manage access
 
@@ -75,15 +79,18 @@ curl -X "PUT" "https://s3.us-south.objectstorage.softlayer.net/<bucket-name>" \
 ```
 bx account user-invite <email-address> <org-name> auditor <space-name> auditor
 ```
+{:codeblock}
 
   2. Then grant them read-only access to your COS instances.
 
 ```
 bx iam user-policy-create <email-address> --roles AccessViewer --service-name cloud-object-storage
 ```
+{:codeblock}
 
   3. Grant them write access to the bucket you created.
 
 ```
 bx iam user-policy-create nglange@gmail.com --roles AccessEditor --service-name cloud-object-storage --resource-type bucket --resource <bucket-name>
 ```
+{:codeblock}
