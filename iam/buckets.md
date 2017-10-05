@@ -10,15 +10,15 @@ lastupdated: "2017-09-27"
 
 Assign access roles for users and service IDs against buckets, using either the UI or the CLI to create policies.
 
-| Access role         | Example actions                                                            |
-|:--------------------| ---------------------------------------------------------------------------|
-| AccessAdministrator | Grant anonymous access to objects, create and destroy buckets and objects  |
-| AccessEditor        | Create and destroy buckets and objects                                     |
-| AccessViewer        | List and download objects                                                  |
+| Access role | Example actions                                                           |
+|:------------|---------------------------------------------------------------------------|
+| Manager     | Grant anonymous access to objects, create and destroy buckets and objects |
+| Reader      | Create and destroy buckets and objects                                    |
+| Writer      | List and download objects                                                 |
 
 ## Granting access to a user
 
-If the user needs to be able to use the console, it is necessary to also grant them a minimum role of `viewer` on the instance itself.  This will allow them to view all buckets and list the objects within them. Then select **Bucket permissions** from the left navigation menu, select the user, and select the level of access (`AccessAdministrator` or `AccessEditor`) that they require.
+If the user needs to be able to use the console, it is necessary to also grant them a minimum role of `Viewer` on the instance itself.  This will allow them to view all buckets and list the objects within them. Then select **Bucket permissions** from the left navigation menu, select the user, and select the level of access (`Manager` or `Writer`) that they require.
 
 If the user will interact with data using the API and doesn't require console access, _and_ they are a member of your account, you can grant access to a single bucket without any access to the parent instance.
 
