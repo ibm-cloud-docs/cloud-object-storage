@@ -13,7 +13,7 @@ lastupdated: "2017-09-27"
 {:tip: .tip}
 
 
-# IBM Cloud Object Storage Quickstart
+# Getting started (CLI)
 In this quickstart guide, you'll create a bucket and upload objects, and set up access policies to allow other users to work with your data.
 {: shortdesc}
 

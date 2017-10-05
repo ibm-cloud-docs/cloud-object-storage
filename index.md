@@ -13,7 +13,7 @@ lastupdated: "2017-09-27"
 {:tip: .tip}
 
 
-# Getting started with IBM Cloud Object Storage
+# Getting started (Console)
 
 In this getting started tutorial, you'll walk through the steps needed to create buckets, upload objects, and set up access policies to allow other users to work with your data.
 {: shortdesc}
@@ -64,7 +64,7 @@ Now you're going to bring in another user and allow them to act as an administra
 ## Step 3b: Give developers access to a bucket.
 {: #bucket-policy}
 
-  1. Navigate to the **Manage** menu and follow the link at **Account** > **Service IDs**.  Here you can create a _service ID_ which serves as a abstracted identity bound to the account.   Service IDs can be assigned API keys and are used in situations where you don't want to tie a particular developer's identity to a process or component of an application. 
+  1. Navigate to the **Manage** menu and follow the link at **Account** > **Service IDs**.  Here you can create a _service ID_ which serves as a abstracted identity bound to the account.   Service IDs can be assigned API keys and are used in situations where you don't want to tie a particular developer's identity to a process or component of an application.
 
 ## Next steps
 

@@ -3,6 +3,7 @@ Cloud Object Storage
 
     {: .navgroup id="learn"}
     getting-started.md
+    index.md
     about-cos.md
     basics/administrators.md
     basics/developers.md

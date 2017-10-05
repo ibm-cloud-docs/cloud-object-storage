@@ -65,7 +65,7 @@ The IAM endpoint (`iam.bluemix.net`) is used to fetch an access token in exchang
 Service endpoints (for example, `s3.us-south.objectstorage.softlayer.net`) are the base URLs where API requests that interact with data are sent.  
 
 ## COS bucket location
-All buckets in COS are scoped to a location. This is either a region (such as `us-south` or `us-east`) or a geography (such as `eu` or `us`).  Within this location, objects are sliced and dispersed across three different physical locations.
+All buckets in COS are scoped to a location. This is either a region (such as `us-south` or `us-east`) or a geography (such as `eu-geo` or `us-geo`).  Within this location, objects are sliced and dispersed across three different physical locations.
 
 ## Regions
 Region and location are often used interchangeably, but unlike most services available in Bluemix, COS is a 'global' service.  Bluemix exists in different regions (such as `US South` or `United Kingdom`) and some services are scoped to the location where they were created. While each instance of COS is considered to be 'global', each individual bucket has a specific combination of location, resiliency, and storage class.  
