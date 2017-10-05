@@ -6,6 +6,13 @@ lastupdated: "2017-09-27"
 
 ---
 
+{:shortdesc: .shortdesc}
+{:codeblock: .codeblock}
+{:pre: .pre}
+{:screen: .screen}
+{:tip: .tip}
+
+
 # About IBM COS
 
 Information stored with IBM Cloud Object Storage is encrypted and dispersed across multiple geographic locations, and accessed over HTTP using a REST API. This service makes use of the distributed storage technologies provided by IBM's Cloud Object Storage System (formerly Cleversafe).

@@ -36,6 +36,7 @@ Cloud Object Storage
 
     {: .navgroup id="reference"}
     api-reference/api-overview.md
+    cli/curl.md
 
     {: .topicgroup}
     API Reference
