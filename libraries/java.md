@@ -14,7 +14,7 @@ lastupdated: "2017-09-27"
 
 # Java
 
-The COS SDK for Java is comprehensive, and has features and capabilities not described in this guide.  For detailed class and method documentation, as well as the source code, see the [GitHub repository](https://github.com/).
+The COS SDK for Java is comprehensive, and has features and capabilities not described in this guide.  For detailed class and method documentation [see the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/). Source code can be found in the [GitHub repository](https://github.com/ibm/ibm-cos-sdk-java).
 
 ## Getting the SDK
 The easiest way to consume the IBM COS Java SDK is to use Maven to manage dependencies. If you aren't familiar with Maven, you get can get up and running using the [Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html) guide.
@@ -64,6 +64,110 @@ Maven uses a file called `pom.xml` to specify the libraries (and their versions)
 </project>
 ```
 
+## Example class
+
+```java
+import java.sql.Timestamp;
+import java.util.List;
+
+import com.amazonaws.ClientConfiguration;
+import com.amazonaws.SDKGlobalConfiguration;
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.client.builder.AwsClientBuilder.EndpointConfiguration;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.Bucket;
+import com.amazonaws.services.s3.model.ListObjectsRequest;
+import com.amazonaws.services.s3.model.ObjectListing;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
+import com.ibm.oauth.BasicIBMOAuthCredentials;
+
+public class CosExample
+{
+
+    private static AmazonS3 _s3Client;
+
+    /**
+     * @param args
+     */
+    public static void main(String[] args)
+    {
+
+        SDKGlobalConfiguration.IAM_ENDPOINT = "https://iam.bluemix.net/oidc/token";
+
+        String bucketName = "<bucketName";
+        String api_key = "<apiKey>";
+        String service_instance_id = "<resourceInstanceId";
+        String endpoint_url = "https://s3-api.us-geo.objectstorage.softlayer.net";
+        String location = "us";
+
+        System.out.println("Current time: " + new Timestamp(System.currentTimeMillis()).toString());
+        _s3Client = createClient(api_key, service_instance_id, endpoint_url, location);
+        listObjects(bucketName, _s3Client);
+        listBuckets(_s3Client);
+    }
+
+    /**
+     * @param bucketName
+     * @param clientNum
+     * @param api_key
+     *            (or access key)
+     * @param service_instance_id
+     *            (or secret key)
+     * @param endpoint_url
+     * @param location
+     * @return AmazonS3
+     */
+    public static AmazonS3 createClient(String api_key, String service_instance_id, String endpoint_url, String location)
+    {
+        AWSCredentials credentials;
+        if (endpoint_url.contains("objectstorage.softlayer.net")) {
+            credentials = new BasicIBMOAuthCredentials(api_key, service_instance_id);
+        } else {
+            String access_key = api_key;
+            String secret_key = service_instance_id;
+            credentials = new BasicAWSCredentials(access_key, secret_key);
+        }
+        ClientConfiguration clientConfig = new ClientConfiguration().withRequestTimeout(5000);
+        clientConfig.setUseTcpKeepAlive(true);
+
+        AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .withEndpointConfiguration(new EndpointConfiguration(endpoint_url, location)).withPathStyleAccessEnabled(true)
+                .withClientConfiguration(clientConfig).build();
+        return s3Client;
+    }
+
+    /**
+     * @param bucketName
+     * @param s3Client
+     */
+    public static void listObjects(String bucketName, AmazonS3 s3Client)
+    {
+        System.out.println("Listing objects in bucket " + bucketName);
+        ObjectListing objectListing = s3Client.listObjects(new ListObjectsRequest().withBucketName(bucketName));
+        for (S3ObjectSummary objectSummary : objectListing.getObjectSummaries()) {
+            System.out.println(" - " + objectSummary.getKey() + "  " + "(size = " + objectSummary.getSize() + ")");
+        }
+        System.out.println();
+    }
+
+    /**
+     * @param s3Client
+     */
+    public static void listBuckets(AmazonS3 s3Client)
+    {
+        System.out.println("Listing buckets");
+        final List<Bucket> bucketList = _s3Client.listBuckets();
+        for (final Bucket bucket : bucketList) {
+            System.out.println(bucket.getName());
+        }
+        System.out.println();
+    }
+
+}
+```
 
 ## Creating a client and setting the endpoint
 
