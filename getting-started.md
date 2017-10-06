@@ -99,6 +99,7 @@ bx iam oauth-tokens
 ```
 IAM token:  Bearer <token>
 UAA token:  Bearer <refresh-token>
+```
 
 ## Create a bucket and upload an object
 
@@ -144,4 +145,4 @@ bx iam user-policy-create <email-address> --roles Writer --service-name cloud-ob
 ```
 {:codeblock}
 
-Want to learn more?  [Read more of the documentation](docs/services/cloud-object-storage/index.html).
+Want to learn more?  [Read more of the documentation](http://console.bluemix.net/docs/services/cloud-object-storage/about-cos.html).
