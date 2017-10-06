@@ -24,7 +24,7 @@ Assign access roles for users and service IDs against buckets, using either the 
 
 ## Granting access to a user
 
-If the user needs to be able to use the console, it is necessary to also grant them a minimum role of `viewer` on the instance itself.  This will allow them to view all buckets and list the objects within them. Then select **Bucket permissions** from the left navigation menu, select the user, and select the level of access (`AccessAdministrator` or `AccessEditor`) that they require.
+If the user needs to be able to use the console, it is necessary to also grant them a minimum role of `viewer` on the instance itself.  This will allow them to view all buckets and list the objects within them. Then select **Bucket permissions** from the left navigation menu, select the user, and select the level of access (`Manager` or `Writer`) that they require.
 
 If the user will interact with data using the API and doesn't require console access, _and_ they are a member of your account, you can grant access to a single bucket without any access to the parent instance.
 

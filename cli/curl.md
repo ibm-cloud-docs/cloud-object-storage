@@ -45,26 +45,26 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)"
 Get a bucket's location and storage class
 -----------------------------------------
 
-curl "https://(endpoint)(bucket-name)/?location"
+curl "https://(endpoint)/(bucket-name)/?location"
  -H "Authorization: Bearer (token)"
 
 Allow public object listing
 ---------------------------
 
-curl -X "PUT" "https://(endpoint)(bucket-name)/?acl"
+curl -X "PUT" "https://(endpoint)/(bucket-name)/?acl"
  -H "Authorization: bearer (token)"
  -H "x-amz-acl: public-read"
 
 Check a bucket ACL
 ------------------
 
-curl "https://(endpoint)(bucket-name)/?acl"
+curl "https://(endpoint)/(bucket-name)/?acl"
  -H "Authorization: bearer (token)"
 
 Create a bucket CORS
 --------------------
 
-curl -X "PUT" "https://(endpoint)(bucket-name)/?cors"
+curl -X "PUT" "https://(endpoint)/(bucket-name)/?cors"
  -H "Content-MD5: (md5-hash)"
  -H "Authorization: bearer (token)"
  -H "Content-Type: text/plain; charset=utf-8"
@@ -79,13 +79,13 @@ curl -X "PUT" "https://(endpoint)(bucket-name)/?cors"
 Get a bucket CORS
 -----------------
 
-curl "https://(endpoint)(bucket-name)/?cors"
+curl "https://(endpoint)/(bucket-name)/?cors"
  -H "Authorization: bearer (token)"
 
 Delete a bucket CORS
 --------------------
 
-curl -X "DELETE" "https://(endpoint)(bucket-name)/?cors"
+curl -X "DELETE" "https://(endpoint)/(bucket-name)/?cors"
  -H "Authorization: bearer (token)"
 
 List objects
@@ -100,13 +100,13 @@ Get bucket headers
 Foo
 ===
 
-curl --head "https://(endpoint)(bucket-name)/"
+curl --head "https://(endpoint)/(bucket-name)/"
  -H "Authorization: bearer (token)"
 
 Delete a bucket
 ---------------
 
-curl -X "DELETE" "https://(endpoint)(bucket-name)/"
+curl -X "DELETE" "https://(endpoint)/(bucket-name)/"
  -H "Authorization: bearer (token)"
 
 Upload an object
