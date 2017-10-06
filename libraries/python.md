@@ -44,14 +44,6 @@ import random
 from botocore.client import Config
 from pprint import pprint
 
-<<<<<<< HEAD
-# the following values are found by generating a service credential in the console
-cos_instance_connection_info = {
-  "apikey": "<api-key>",
-  "endpoints": "https://cos-service.bluemix.net/endpoints",
-  "resource_instance_id": "<resource-instance-id>"
-}
-=======
 with open('./credentials.json') as data_file:
     credentials = json.load(data_file)
 
@@ -59,7 +51,6 @@ print("Service credential:")
 print(json.dumps(credentials, indent=2))
 print("")
 print("Connecting to COS...")
->>>>>>> staging
 
 # Rquest detailed enpoint list
 endpoints = requests.get(credentials.get('endpoints')).json()
