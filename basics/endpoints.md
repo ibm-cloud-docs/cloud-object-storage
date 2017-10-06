@@ -14,7 +14,7 @@ lastupdated: "2017-09-27"
 
 # Select regions and endpoints
 
-Both regional and cross region endpoints are available for connecting applications to COS. Compute workloads co-located with a Regional COS endpoint will see lower latency and better performance. For workloads not concentrated in a single geographic area, the `geo` endpoint routes connections to the nearest regional data centers.  When using a cross region endpoint, it is possible to direct inbound traffic to a specific access point while still distributed data across all three sites.  All requests must use SSL when using IAM, and the service will reject any plaintext requests.
+Both regional and cross region endpoints are available for connecting applications to COS. Compute workloads co-located with a Regional COS endpoint will see lower latency and better performance. For workloads not concentrated in a single geographic area, the `geo` endpoint routes connections to the nearest regional data centers.  When using a cross region endpoint, it is possible to direct inbound traffic to a specific access point while still distributing data across all three sites.  All requests must use SSL when using IAM, and the service will reject any plaintext requests.
 
 Types of endpoint:
 

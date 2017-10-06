@@ -97,9 +97,6 @@ curl "https://(endpoint)/(bucket-name)"
 Get bucket headers
 ------------------
 
-Foo
-===
-
 curl --head "https://(endpoint)/(bucket-name)/"
  -H "Authorization: bearer (token)"
 

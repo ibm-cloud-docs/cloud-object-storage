@@ -16,11 +16,11 @@ lastupdated: "2017-09-27"
 
 Assign access roles for users and service IDs against buckets, using either the UI or the CLI to create policies.
 
-| Access role | Example actions                                                           |
-|:------------|---------------------------------------------------------------------------|
-| Manager     | Grant anonymous access to objects, create and destroy buckets and objects |
-| Reader      | Create and destroy buckets and objects                                    |
-| Writer      | List and download objects                                                 |
+| Access role | Example actions                            |
+|:------------|---------------------------------------------------|
+| Manager | Make objects public, create and destroy buckets and objects |
+| Reader | Create and destroy buckets and objects |
+| Writer | List and download objects |
 
 ## Granting access to a user
 
