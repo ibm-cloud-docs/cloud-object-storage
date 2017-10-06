@@ -24,40 +24,50 @@ Detailed documentation can be found at [here](https://ibm.github.io/ibm-cos-sdk-
 
 ## Example script
 
-Creating a service resource provides greater abstraction for higher level tasks.  This is a basic script that fetches the list of buckets owned by an account, and lists the objects in each bucket.
+This script assumes that a service credential has been created and stored in JSON format in the same directory.  The credential must have the following fields at minimum:
 
+### Credential
+```json
+{
+  "apikey": "<api-key>",
+  "endpoints": "https://cos-service.bluemix.net/endpoints",
+  "resource_instance_id": "<resource-instance-id"
+}
+```
+
+### Script
 ```python
 import boto3
 import json
 import requests
 import random
 from botocore.client import Config
+from pprint import pprint
 
-# the following values are found by generating a service credential in the console
-cos_instance_connection_info = {
-  "apikey": "<api-key>",
-  "endpoints": "https://cos-service.bluemix.net/endpoints",
-  "resource_instance_id": "<resource-instance-id>"
-}
+with open('./credentials.json') as data_file:
+    credentials = json.load(data_file)
 
-
+print("Service credential:")
+print(json.dumps(credentials, indent=2))
+print("")
+print("Connecting to COS...")
 
 # Rquest detailed enpoint list
-endpoints = requests.get(cos_instance_connection_info.get('endpoints')).json()
+endpoints = requests.get(credentials.get('endpoints')).json()
 #import pdb; pdb.set_trace()
 
 # Obtain iam and cos host from the the detailed endpoints
 iam_host = (endpoints['identity-endpoints']['iam-token'])
 cos_host = (endpoints['service-endpoints']['cross-region']['us']['public']['us-geo'])
 
-api_key = cos_instance_connection_info.get('apikey')
-service_instance_id = cos_instance_connection_info.get('resource_instance_id')
+api_key = credentials.get('apikey')
+service_instance_id = credentials.get('resource_instance_id')
 
 # Constrict auth and cos endpoint
 auth_endpoint = "https://" + iam_host + "/oidc/token"
 service_endpoint = "https://" + cos_host
 
-
+print("Creating client...")
 # Get bucket list
 cos = boto3.client('s3',
                     ibm_api_key_id=api_key,
@@ -74,16 +84,18 @@ response = cos.list_buckets()
 buckets = [bucket['Name'] for bucket in response['Buckets']]
 
 # Print out the bucket list
-print("Current Bucket List: %s" % buckets)
-
+print("Current Bucket List:")
+print(json.dumps(buckets, indent=2))
+print("---")
 result = [bucket for bucket in buckets if 'cos-bucket-sample-' in bucket]
 
+print("Creating a new bucket and uploading an object...")
 if len(result) == 0 :
    bucket_name = 'cos-bucket-sample-' + str(random.randint(100,99999999));
    # Create a bucket
    cos.create_bucket(Bucket=bucket_name)
    # Upload a file
-   cos.upload_file('./cos-sample.py', bucket_name, 'cos-sampple.py')
+   cos.upload_file('./example.py', bucket_name, 'example-object')
 
    # Call S3 to list current buckets
    response = cos.list_buckets()
@@ -92,7 +104,9 @@ if len(result) == 0 :
    buckets = [bucket['Name'] for bucket in response['Buckets']]
 
    # Print out the bucket list
-   print("New Bucket List: %s" % buckets)
+   print("New Bucket List:")
+   print(json.dumps(buckets, indent=2))
+   print("---")
 else :
    bucket_name = result[0];
 
@@ -104,5 +118,6 @@ response = cos.list_objects(Bucket=bucket_name)
 objects = [object['Key'] for object in response['Contents']]
 
 # Print out the object list
-print("Bucket Name: %s" % bucket_name, "Object List: %s" % objects)
+print("Objects in %s:" % bucket_name)
+print(json.dumps(objects, indent=2))
 ```
