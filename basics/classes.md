@@ -5,6 +5,12 @@ copyright:
 lastupdated: "2017-09-27"
 
 ---
+{:new_window: target="_blank"}
+{:shortdesc: .shortdesc}
+{:codeblock: .codeblock}
+{:pre: .pre}
+{:screen: .screen}
+{:tip: .tip}
 
 # Use storage classes
 
@@ -43,4 +49,4 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)"
  -d "<CreateBucketConfiguration><LocationConstraint>us-cold</LocationConstraint></CreateBucketConfiguration>"
 ```
 
-It is not possible to change the storage class of a bucket once the bucket is created.  If objects need to be reclassified, it is necessary to move them to another bucket.
+It is not possible to change the storage class of a bucket once the bucket is created.  If objects need to be reclassified, it is necessary to move them to another bucket with the desired storage class.

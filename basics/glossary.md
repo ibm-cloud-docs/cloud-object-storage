@@ -5,6 +5,7 @@ copyright:
 lastupdated: "2017-09-27"
 
 ---
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -62,16 +63,16 @@ IAM roles represent the level of access that a given subject should have on a gi
 The IAM endpoint (`iam.bluemix.net`) is used to fetch an access token in exchange for an API key.  This token is used in the `Authorization` header in all REST API requests sent to a COS service endpoint.
 
 ## Service endpoints
-Service endpoints (for example, `s3.us-south.objectstorage.softlayer.net`) are the base URLs where API requests that interact with data are sent.  
+Service endpoints (for example, `s3.us-south.objectstorage.softlayer.net`) are the base URLs where API requests that interact with data are sent.
 
 ## COS bucket location
 All buckets in COS are scoped to a location. This is either a region (such as `us-south` or `us-east`) or a geography (such as `eu-geo` or `us-geo`).  Within this location, objects are sliced and dispersed across three different physical locations.
 
 ## Regions
-Region and location are often used interchangeably, but unlike most services available in Bluemix, COS is a 'global' service.  Bluemix exists in different regions (such as `US South` or `United Kingdom`) and some services are scoped to the location where they were created. While each instance of COS is considered to be 'global', each individual bucket has a specific combination of location, resiliency, and storage class.  
+Region and location are often used interchangeably, but unlike most services available in Bluemix, COS is a 'global' service.  Bluemix exists in different regions (such as `US South` or `United Kingdom`) and some services are scoped to the location where they were created. While each instance of COS is considered to be 'global', each individual bucket has a specific combination of location, resiliency, and storage class.
 
 ## COS Resiliency
-Resiliency refers to the scope and scale of the geographic area across which your data is distributed. _Cross Region_ resiliency will spread your data across several metropolitan areas, while _Regional_ resiliency will spread data across a single metropolitan area.  
+Resiliency refers to the scope and scale of the geographic area across which your data is distributed. _Cross Region_ resiliency will spread your data across several metropolitan areas, while _Regional_ resiliency will spread data across a single metropolitan area.
 
 ## COS S3 Keys vs. IAM API Key
-Instances of COS provisioned as IaaS use access and secret key pairs (referred to as HMAC keys) instead of an IBM Cloud IAM API key.  These key pairs allow for creating AWS V4 signatures for authentication and authorization instead of the OAuth2 bearer tokens used by IBM Cloud IAM. HMAC keys are not yet available for COS instances provisioned through Bluemix.  While IAM API keys allow for much stronger and fine-grained access control, HMAC keys are required for using S3-compatible tools and gateways (such as the AWS CLI or Cyberduck).  
+Instances of COS provisioned as IaaS use access and secret key pairs (referred to as HMAC keys) instead of an IBM Cloud IAM API key.  These key pairs allow for creating AWS V4 signatures for authentication and authorization instead of the OAuth2 bearer tokens used by IBM Cloud IAM. HMAC keys are not yet available for COS instances provisioned through Bluemix.  While IAM API keys allow for much stronger and fine-grained access control, HMAC keys are required for using S3-compatible tools and gateways (such as the AWS CLI or Cyberduck).

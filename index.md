@@ -30,7 +30,7 @@ This guide takes a new user through the first steps with Bluemix console, but fo
 ## Step 1: Create some buckets to store your data
 {: #create-buckets}
 
-  1. When you [order Cloud Object Storage](/docs/services/cloud-object-storage/basics/order-storage.html), you create what is called a _resource instance_. COS is a multi-tenant system, and all instances of COS share the same physical infrastructure.  After creation, you will be automatically redirected to that resource instance where you may start creating buckets. Your IBM COS instances will be listed under **Global Services** in [the console dashboard](/dashboard/apps
+  1. When you [order Cloud Object Storage](/docs/services/cloud-object-storage/basics/order-storage.html), you create what is called a _resource instance_. COS is a multi-tenant system, and all instances of COS share the same physical infrastructure.  After creation, you will be automatically redirected to that resource instance where you may start creating buckets. Your IBM COS instances will be listed under **Global Services** in [the console dashboard](/dashboard/apps).
 
 The terms 'resource instance' and 'service instance' refer to the same concept, and may be used interchangeably.
 {:tip}

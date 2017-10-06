@@ -5,6 +5,12 @@ copyright:
 lastupdated: "2017-09-27"
 
 ---
+{:new_window: target="_blank"}
+{:shortdesc: .shortdesc}
+{:codeblock: .codeblock}
+{:pre: .pre}
+{:screen: .screen}
+{:tip: .tip}
 
 # Select regions and endpoints
 
@@ -87,6 +93,15 @@ IBM Cloud services are connected to a three-tiered network, segmenting public, p
     <td>private</td>
     <td><code class="highlighter-rouge">s3.us-south.objectstorage.service.networklayer.com</code></td>
   </tr>
+  <tr>
+  <td rowspan="2">US East</td>
+  <td>public</td>
+  <td><code class="highlighter-rouge">s3.us-east.objectstorage.softlayer.net</code></td>
+</tr>
+<tr>
+  <td>private</td>
+  <td><code class="highlighter-rouge">s3.us-east.objectstorage.service.networklayer.com</code></td>
+</tr>
 </table>
 {:.endpointtable}
 

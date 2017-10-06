@@ -5,6 +5,12 @@ copyright:
 lastupdated: "2017-09-27"
 
 ---
+{:new_window: target="_blank"}
+{:shortdesc: .shortdesc}
+{:codeblock: .codeblock}
+{:pre: .pre}
+{:screen: .screen}
+{:tip: .tip}
 
 # Users and service IDs
 
@@ -12,7 +18,6 @@ lastupdated: "2017-09-27"
 {: #iamuserinv}
 
 You can invite users across {{site.data.keyword.Bluemix_notm}} services, applications, and {{site.data.keyword.Bluemix_notm}} infrastructure from a single location. To invite users and manage outstanding invitations, you must be either an account owner, an organization manager, or you must have infrastructure permissions to add users. You can invite users, cancel invitations, and resend a pending invitation to an invited user. You can invite a single user or, if you are providing the same access for all members in a group of users, you can invite multiple users at once.
-{:shortdesc}
 
 ### Inviting users
 

@@ -5,6 +5,12 @@ copyright:
 lastupdated: "2017-09-27"
 
 ---
+{:new_window: target="_blank"}
+{:shortdesc: .shortdesc}
+{:codeblock: .codeblock}
+{:pre: .pre}
+{:screen: .screen}
+{:tip: .tip}
 
 # For administrators
 
@@ -24,14 +30,12 @@ Now if the development team, or any individual user, who has viewer access to a 
 
 ## Manage access
 
-IAM is based on a fundamental concept:
-
-> A _subject_ is granted a _role_ on a _resource_.
+IAM is based on a fundamental concept: A _subject_ is granted a _role_ on a _resource_.
 
 There are two basic types of subjects: a _user_ and a _service ID_.
 
 There is another concept, a _service credential_.  A service credential is a collection of important information needed to connect to an instance of COS.  This includes at a minimum an identifier for the instance of COS (ie the Resource Instance ID), service/auth endpoints, and a means of associating the subject with an API key (ie Service ID).  When you create the service credential you have the option of either associating it with an existing service ID, or creating a new service ID.
 
-So if you want to allow your development team to be able to use the console to view object storage instances and Kubernetes clusters, they would need `Viewer` roles on the object storage resources and `Administrator` roles on the Container Service.  Note that the `Viewer` role only allows for the user to see that the instance exists, and to view existing credentials, **not** to view buckets and objects.  When the service credentials were created, they were associated with a service ID.  This service ID would need to have the  `AccessAdministrator` or `AccessEditor` role on the instance to be able to create and destroy buckets and objects.
+So if you want to allow your development team to be able to use the console to view object storage instances and Kubernetes clusters, they would need `Viewer` roles on the object storage resources and `Administrator` roles on the Container Service.  Note that the `Viewer` role only allows for the user to see that the instance exists, and to view existing credentials, **not** to view buckets and objects.  When the service credentials were created, they were associated with a service ID.  This service ID would need to have the  `Manager` or `Writer` role on the instance to be able to create and destroy buckets and objects.
 
 For more information on IAM roles and permissions, see [the IAM overview](docs/services/cloud-object-storage/iam/overview.html).

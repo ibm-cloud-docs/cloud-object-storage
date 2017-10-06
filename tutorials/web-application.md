@@ -5,6 +5,12 @@ copyright:
 lastupdated: "2017-09-27"
 
 ---
+{:new_window: target="_blank"}
+{:shortdesc: .shortdesc}
+{:codeblock: .codeblock}
+{:pre: .pre}
+{:screen: .screen}
+{:tip: .tip}
 
 # Tutorial: Image Gallery
 
@@ -15,46 +21,9 @@ This tutorial introduces how a simple web application can be built on the IBM Cl
 Before getting started with writing any code, you must ensure that you
 have the following items set up:
 
--   IBM Bluemix
-
--   Cloud Foundry
-
--   Node.js
-
--   Git
-
-The steps show how to set up each of these items.
-
-### IBM Bluemix account
-
-If you are new to IBM Bluemix and have not yet created your Bluemix
-account, do that now. You can try it out at no charge for 30 days. Go to
-the
-[Bluemix](https://www.ibm.com/cloud-computing/bluemix/cloud-object-storage)
-website and click Sign-up. After you complete the form and click Create
-Account, and you are sent an email asking you to confirm your account.
-Click Confirm Account and sign-in to your Bluemix account.
-
-Four steps remain until your account setup is complete:
-
-1.  Accept the terms and conditions.
-
-2.  Create your organization by specifying an organization name.
-
-3.  Create a space in your organization to do your development.
-
-4.  Review the summary, note your org name and space name, and then
-    click I’m Ready.
-
-You are taken to your My IBM page. Find IBM Bluemix under Products and
-services, and click Launch (see figure below). Your IBM Bluemix account
-is set up. Go ahead and navigate to the Catalog, and provision an instance of IBM Cloud Object Storage. There are a few object storage options, but you are looking for the option that uses the S3 API, not the Swift API.
-
-Now, set up a few more things locally and you are ready to
-create the app.
-
-![myibm_bluemix](https://cloud.githubusercontent.com/assets/19173079/24821281/558c459e-1bb3-11e7-863b-7d963accd028.jpg)
-
+  - IBM Bluemix
+  - Node.js
+  - Git
 
 ### Installing Node.js
 
@@ -130,9 +99,7 @@ below).
 
 Notice back on the Getting Started page the prerequisites that you need
 in for developing a Node.js app on Bluemix are listed. You already
-created your Bluemix account, and installed Node.js. Download the [Cloud
-Foundry (CF) command-line interface (CLI)
-tool](https://github.com/cloudfoundry/cli). Then run the installer. You
+created your Bluemix account, and installed Node.js. Download the [Cloud Foundry CLI](https://github.com/cloudfoundry/cli). Then run the installer. You
 can use the tool to log in to Bluemix and interact directly with your
 account from your local environment. This tool puts many powerful
 commands at your disposal that you do not use in this scenario. More
@@ -157,23 +124,21 @@ Follow these steps:
     directory where you want to clone Github repo. Use the command shown
     in the following example.
 
-
 ```
-git clone
-https://github.com/IBMRedbooks/IBMRedbooks-SG248385-Cloud-Object-Storage-as-a-Service.git
+git clone https://github.com/IBMRedbooks/IBMRedbooks-SG248385-Cloud-Object-Storage-as-a-Service.git
 ```
-
 
 2.  Run the app locally. Open a CLI and change your working directory to
     the COS-WebGalleryStart directory. Notice the Node.js dependencies
     listed in the package.json file. Download them using the command
     shown in the following example.
 
-<!-- -->
 ```
 npm install
 ```
+
 Run the app using the command shown in the following example.
+
 ```
 npm start
 ```
@@ -184,18 +149,15 @@ to the console, <http://localhost:3000>.
 **Tip**: To restart the app locally, kill the node process (Ctrl+C) to
 stop it, and use npm start again. Using nodemon to restart your app when
 it detects a change saves you time. Install nodemon globally like this:
-npm install -g nodemon. Then run it from the command line in your app
-directory using: nodemon, to have nodemon start your app.
+`npm install -g nodemon`. Then run it from the command line in your app
+directory using: `nodemon`, to have nodemon start your app.
 
 3.  Prepare the app for deployment. Update the application name property
-    value in the manifest.yml file from COS-WebGallery, to the name you
+    value in the `manifest.yml` file from COS-WebGallery, to the name you
     entered for your app on Bluemix. The COS-WebGallery manifest.yml
     looks like the following example. Also update the package.json file
     located in the app root directory for your app to reflect the name
     of your app, and your name as the author.
-
-<!-- -->
-
 
 
 ```
@@ -212,32 +174,34 @@ memory: 256M
 4.  Deploy the app to Bluemix. To get the starter app with your changes
     to Bluemix, deploy it using the Cloud Foundry CLI:
 
-<!-- -->
-
 a.  Set the API Endpoint for your region by using the api command (as
     shown in the following example). if you do not know your regional
     API endpoint URL see the Getting Started page.
 
-<!-- -->
+
 ```
  cf api &lt;API Endpoint&gt;
 ```
+
 b.  Log in to Bluemix by using the login command. You can specify
     optional parameters if you want: your organization with option -o,
     and the space with option -s (as shown in the following example).
 
-<!-- -->
+
 ```
 cf login
 ```
+
 c.  Deploy the app to Bluemix with the push command (as shown in the
     following example).
 
-<!-- -->
+
 ```
 cf push
 ```
+
 The  example below shows the commands we used to deploy the COS-WebGallery app.
+
 ```
 cf api https://api.ng.bluemix.net
 cf login -u myaccount@us.ibm.com -o “IBM Redbooks” -s scenarios
@@ -278,8 +242,6 @@ following steps:
 
 ![continious_delivery_enable](https://cloud.githubusercontent.com/assets/19173079/24822095/3ffb0b70-1bb8-11e7-8d6d-190f58db2364.jpg)
 
-<!-- -->
-
 2.  Set up the Toolchain Integrations. Scroll down to see the
     information that is shown in the following figure. The Continuous
     Delivery Toolchain template creates a GitHub repository, Delivery
@@ -302,8 +264,6 @@ input.
 
 ![created_toolchain](https://cloud.githubusercontent.com/assets/19173079/24822154/adf8fdb2-1bb8-11e7-8cae-7631f549c080.jpg)
 
-<!-- -->
-
 3.  Click GitHub Tool to open the new repo created by your toolchain
     on GitHub.
 
@@ -324,8 +284,6 @@ example, it is named COS-WebGallery.
 
 ![localrepo_files](https://cloud.githubusercontent.com/assets/19173079/24822238/3aab33ba-1bb9-11e7-9476-78975d71e208.jpg)
 
-<!-- -->
-
 6.  Return to GitHub Desktop and notice it detected what you added to
     the repo directory (see figure below). Type initial commit into the
     summary field, and click Commit to master.
@@ -341,8 +299,6 @@ to use for your Bluemix Delivery Pipeline Build Stage:
     branch (see figure below). This example uses Local-dev as the name.
 
 ![new_git_branch](https://cloud.githubusercontent.com/assets/19173079/24822302/aba13902-1bb9-11e7-92af-be919c9a171e.jpg)
-
-<!-- -->
 
 2.  After you create the branch, GitHub compares the local files on the
     Local-dev branch with the files in the repository on the master
@@ -369,14 +325,12 @@ the following steps:
     go into ~/.aws/credentials). Example 5-9 shows the contents of a
     credentials file.
 
-<!-- -->
-
 ```
 \[default\]
 
-aws\_access\_key\_id = XXXXXXXXXXXXXXXXXXXXXX
+aws\_access\_key\_id = {IAM-API-KEY}
 
-aws\_secret\_access\_key = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+aws\_secret\_access\_key = {RESOURCE-INSTANCE-ID}
 ```
 2.  In Bluemix, set up the credentials as environment variables by
     logging in to Bluemix, and under Cloud Foundry Apps, select the
@@ -386,8 +340,7 @@ aws\_secret\_access\_key = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     page and scroll to the User-defined section, which allows you to add
     the variables.
 
-4.  Add two variables: AWS\_ACCESS\_KEY\_ID
-    and AWS\_SECRET\_ACCESS\_KEY. These variables and their respective
+4.  Add two variables: API key and resoruce instance ID. These variables and their respective
     values are what the app uses to authenticate to the IBM COS instance
     when running on Bluemix (see figure below). When you finish with the
     entries, click Save, and Bluemix restarts the app.
@@ -395,8 +348,6 @@ aws\_secret\_access\_key = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ![bluemix_env_var](https://cloud.githubusercontent.com/assets/19173079/24822607/07019ace-1bbc-11e7-9d71-db6d53d3dc7a.jpg)
 
 Head over to the Cloud Object Storage portal for your service instance and add a bucket to contain your images. This scenario uses the bucket named web-images.
-
-
 
 
 ## Developing a simple IBM Cloud Object Storage Web Gallery
@@ -423,9 +374,8 @@ later.
 These are the two main tasks that a user should be able to do with the
 simple web app:
 
--   Upload images from a web browser to the IBM COS bucket.
-
--   View the images in the IBM COS bucket in a web browser.
+  - Upload images from a web browser to the IBM COS bucket.
+  - View the images in the IBM COS bucket in a web browser.
 
 The next steps focus on how to accomplish these two basic functions in a
 simple fashion rather than building a fully developed production grade
