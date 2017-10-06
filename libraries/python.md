@@ -40,8 +40,6 @@ cos_instance_connection_info = {
   "resource_instance_id": "<resource-instance-id>"
 }
 
-
-
 # Rquest detailed enpoint list
 endpoints = requests.get(cos_instance_connection_info.get('endpoints')).json()
 #import pdb; pdb.set_trace()
