@@ -5,6 +5,12 @@ copyright:
 lastupdated: "2017-09-27"
 
 ---
+{:new_window: target="_blank"}
+{:shortdesc: .shortdesc}
+{:codeblock: .codeblock}
+{:pre: .pre}
+{:screen: .screen}
+{:tip: .tip}
 
 # Bucket permissions
 
@@ -12,9 +18,9 @@ Assign access roles for users and service IDs against buckets, using either the 
 
 | Access role         | Example actions                                                            |
 |:--------------------| ---------------------------------------------------------------------------|
-| AccessAdministrator | Grant anonymous access to objects, create and destroy buckets and objects  |
-| AccessEditor        | Create and destroy buckets and objects                                     |
-| AccessViewer        | List and download objects                                                  |
+| Manager | Grant anonymous access to objects, create and destroy buckets and objects  |
+| Writer        | Create and destroy buckets and objects                                     |
+| Reader        | List and download objects                                                  |
 
 ## Granting access to a user
 

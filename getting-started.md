@@ -25,7 +25,7 @@ You'll need:
   * and some files on your local computer to upload.
 {: #prereqs}
 
-Looking for a walkthrough that uses the console instead of the CLI? [Click here](/docs/services/cloud-object-storage/basics/index.html).
+Looking for a walkthrough that uses the console instead of the CLI? [Click here](/docs/services/cloud-object-storage/index.html).
 {:tip}
 
 ## Gather key information
@@ -140,7 +140,7 @@ bx iam user-policy-create <email-address> --roles Reader --service-name cloud-ob
   3. Grant them write access to the bucket you created.
 
 ```
-bx iam user-policy-create nglange@gmail.com --roles AccessEditor --service-name cloud-object-storage --resource-type bucket --resource <bucket-name>
+bx iam user-policy-create <email-address> --roles Writer --service-name cloud-object-storage --resource-type bucket --resource <bucket-name>
 ```
 {:codeblock}
 

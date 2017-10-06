@@ -5,17 +5,20 @@ copyright:
 lastupdated: "2017-09-27"
 
 ---
+{:new_window: target="_blank"}
+{:shortdesc: .shortdesc}
+{:codeblock: .codeblock}
+{:pre: .pre}
+{:screen: .screen}
+{:tip: .tip}
 
 # Python
 
 Python support is provided through a fork of the Boto 3 library.  It can be installed from the Python Package Index via `pip install ibm-cos-sdk`.
 
-
-
 The `boto3` library provides complete access to the S3 API.  Endpoints, an API key, and the instance ID must be specified when creating a service resource or low-level client as shown in the following basic examples.
 
 Detailed documentation can be found at [TBD]().
-
 
 ## Example service resource script
 

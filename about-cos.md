@@ -5,7 +5,7 @@ copyright:
 lastupdated: "2017-09-27"
 
 ---
-
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -32,6 +32,7 @@ In addition to COS, IBM Cloud currently provides two additional object storage o
 | Offering                        | Interface | Defining advantage                             |
 |---------------------------------|-----------|------------------------------------------------|
 | IBM Cloud Object Storage        | COS API   | For cloud-native development.                  |
+| IBM Cloud Object Storage        | COS API   | For use with S3-compatible tools.              |   
 | OpenStack Swift (IaaS)          | Swift API | For workloads requiring specific regions.      |
 | OpenStack Swift (Cloud Foundry) | Swift API | Native integration with Cloud Foundry services |
 

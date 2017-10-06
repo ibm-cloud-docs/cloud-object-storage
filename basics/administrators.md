@@ -5,6 +5,12 @@ copyright:
 lastupdated: "2017-09-27"
 
 ---
+{:new_window: target="_blank"}
+{:shortdesc: .shortdesc}
+{:codeblock: .codeblock}
+{:pre: .pre}
+{:screen: .screen}
+{:tip: .tip}
 
 # For administrators
 
@@ -26,7 +32,7 @@ Now if the development team, or any individual user, who has viewer access to a 
 
 IAM is based on a fundamental concept:
 
-> A _subject_ is granted a _role_ on a _resource_.
+>A _subject_ is granted a _role_ on a _resource_.
 
 There are two basic types of subjects: a _user_ and a _service ID_.
 

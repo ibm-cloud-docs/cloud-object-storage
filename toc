@@ -26,18 +26,14 @@ Cloud Object Storage
     basics/classes.md
     basics/multipart.md
     basics/sse-c.md
-    basics/migrate-data.md
 
     {: .topicgroup}
     Tutorials
-        tutorials/getting-started.md
         tutorials/web-application.md
-
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
     api-reference/api-overview.md
-    cli/curl.md
 
     {: .topicgroup}
     API Reference
@@ -45,6 +41,7 @@ Cloud Object Storage
         api-reference/common-headers-errors.md
         api-reference/api-reference-buckets.md
         api-reference/api-reference-objects.md
+        cli/curl.md
 
     {: .topicgroup}
     Libraries
