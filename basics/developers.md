@@ -29,11 +29,11 @@ bx login --apikey <value>
 bx resource instance-create <instance-name> cloud-object-storage <plan> -r global
 ```
 
-The [Getting Started guide](docs/services/cloud-object-storage/getting-started.html) walks through the basic steps of creating buckets and objects, as well as inviting users and creating policies.  A list of basic 'curl' commands can be found [here](docs/services/cloud-object-storage/cli/curl.html).
+The [Getting Started guide](/docs/services/cloud-object-storage/getting-started.html) walks through the basic steps of creating buckets and objects, as well as inviting users and creating policies.  A list of basic 'curl' commands can be found [here](/docs/services/cloud-object-storage/cli/curl.html).
 
-Learn more about using the the Bluemix CLI to create applications, manage Kubernetes clusters, and more [in the documentation](docs/cli/reference/bluemix_cli/bx_cli.html).
+Learn more about using the the Bluemix CLI to create applications, manage Kubernetes clusters, and more [in the documentation](/docs/cli/reference/bluemix_cli/bx_cli.html).
 
 
 ## Using the API
 
-There isn't a focused command line utility for managing data stored in COS.  As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage.  More information can be found in [the `curl` reference](docs/services/cloud-object-storage/cli/curl.html), as well as [the API reference documentation](docs/services/cloud-object-storage/api-reference/about-compatibility-api.html).
+There isn't a focused command line utility for managing data stored in COS.  As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage.  More information can be found in [the `curl` reference](/docs/services/cloud-object-storage/cli/curl.html), as well as [the API reference documentation](/docs/services/cloud-object-storage/api-reference/about-compatibility-api.html).
