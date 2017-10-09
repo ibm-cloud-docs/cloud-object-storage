@@ -12,19 +12,27 @@ lastupdated: "2017-09-27"
 {:screen: .screen}
 {:tip: .tip}
 
-# Allowing anonymous access
+# Allowing public access
 
 To make an object publicly accessible, provide an `x-amz-acl: public-read` header when uploading the object.
 
 ## Upload a public object
+
+```sh
 curl -X "PUT" "https://{endpoint}/{bucket-name}/{object-name}" \
      -H "x-amz-acl: public-read" \
      -H "Authorization: Bearer {token}" \
      -H "Content-Type: text/plain; charset=utf-8" \
      -d "{object-contents}"
+```
+{:codeblock}
 
 ## Make a public object private again
+
+```sh
 curl -X "PUT" "https://{endpoint}/{bucket-name}/{object-name}" \
      -H "Authorization: Bearer {token}" \
      -H "Content-Type: text/plain; charset=utf-8" \
      -d "{object-contents}"
+```
+{:codeblock}
