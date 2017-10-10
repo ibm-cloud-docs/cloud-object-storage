@@ -26,22 +26,17 @@ npm install ibm-cos-sdk
 
 Source code is hosted on [GitHub](https://github.com/IBM/ibm-cos-sdk-js).
 
+More detail on individual methods and classes can be found in [the API documentation for the SDK](https://ibm.github.io/ibm-cos-sdk-js/).
 ## Getting Started
 
 ### Minimum requirements ####
 
 To run the SDK you will need **Node 4.x+**.
 
-### Install the SDK ####
+### Code example
 
 ```javascript
 var AWS = require('ibm-cos-sdk');
-```
-
-## Code example
-
-```javascript
-var AWS = require('./lib/aws.js');
 var util = require('util');
 
 var config = {
@@ -56,7 +51,10 @@ var cos = new AWS.S3(config);
 function doCreateBucket() {
     console.log('Creating bucket');
     return cos.createBucket({
-        Bucket: 'my-bucket'
+        Bucket: 'my-bucket',
+        CreateBucketConfiguration: {
+          LocationConstraint: 'us-standard'
+        },
     }).promise();
 }
 
@@ -65,7 +63,7 @@ function doCreateObject() {
     return cos.putObject({
         Bucket: 'my-bucket',
         Key: 'foo',
-        Data: 'bar'
+        Body: 'bar'
     }).promise();
 }
 
