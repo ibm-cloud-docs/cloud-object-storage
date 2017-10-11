@@ -23,11 +23,14 @@ First, ensure you have the [Bluemix CLI](https://clis.ng.bluemix.net/ui/home.htm
 ```
 bx login --apikey <value>
 ```
+{:codeblock}
+
   3. Next, provision an instance of COS specifying the name for the instance, the ID and the desired plan (lite or standard).  This will get us the CRN.  If you have an upgraded account, specify the `Standard` plan.  Otherwise specify `Lite`.
 
 ```
 bx resource instance-create <instance-name> cloud-object-storage <plan> -r global
 ```
+{:codeblock}
 
 The [Getting Started guide](/docs/services/cloud-object-storage/getting-started.html) walks through the basic steps of creating buckets and objects, as well as inviting users and creating policies.  A list of basic 'curl' commands can be found [here](/docs/services/cloud-object-storage/cli/curl.html).
 

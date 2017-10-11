@@ -54,4 +54,4 @@ There are four storage classes:
 
 For pricing details please see [the pricing table at ibm.com](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api).
 
-For information on how to create buckets with different storage classes, please see the [API reference](docs/services/api-reference/api-reference-buckets.html#create-a-vault-bucket).
+For information on how to create buckets with different storage classes, please see the [API reference](/docs/services/api-reference/api-reference-buckets.html#create-a-vault-bucket).

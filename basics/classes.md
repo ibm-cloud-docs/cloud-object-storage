@@ -48,5 +48,6 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)"
  -H "ibm-service-instance-id: (resource-instance-id)"
  -d "<CreateBucketConfiguration><LocationConstraint>us-cold</LocationConstraint></CreateBucketConfiguration>"
 ```
+{:codeblock}
 
 It is not possible to change the storage class of a bucket once the bucket is created.  If objects need to be reclassified, it is necessary to move them to another bucket with the desired storage class.

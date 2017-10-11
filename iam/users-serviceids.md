@@ -101,23 +101,33 @@ To create an API key by using the CLI:
 ```
 bluemix iam api-key-create MyKey -d "this is my API key" -f key_file
 ```
+{:codeblock}
 
 After an API key is created by using the CLI, there are a few ways that you can use the key with the bx CLI:
 
 * Enter it with the `bx login` command
+
 ```
  bx login --apikey <your api key>
 ```
+{:codeblock}
+
 * Create an API key file to use with the `bx login` command:
+
  ```
  bx login --apkey @apikeyfile
  ```
+ {:codeblock}
+
  The `apikeyfile` is created by using the `—file` option on the `bx iam api-key-create` command.
 * In your command prompt, you can set the environment variable by entering `BLUEMIX_API_KEY=<your api key>` and then entering `bx login`.
 * Or, if you want to avoid the bx CLI and just log in to the cf CLI by using your API key, enter:
+
  ```
  cf login -u apikey -p <yourapikey>
  ```
+ {:codeblock}
+
   In this option, you use the user name of `apikey` and the password is your `apikey`. Now, you can use `apikey` in other tools like Eclipse or other places looking for `cf login` that accepts only user name and password.
 
 ### Updating an API key
@@ -136,8 +146,9 @@ To edit an API key by using the CLI:
 1. Enter `bluemix iam api-key-update NAME [-n NAME] [-d DESCRIPTION]` in your command prompt, specifying the old name, new name, and new description for the key. For example:
 
 ```
-bluemix iam api-key-update MyCurrentName -n MyNewName -d "the new description of my key"
+bx iam api-key-update MyCurrentName -n MyNewName -d "the new description of my key"
 ```
+{:codeblock}
 
 ### Deleting an API key
 

@@ -49,6 +49,7 @@ bx iam user-policy-create <user-name> \
       --resource-type bucket \
       --resource <bucket-name>
 ```
+{:codeblock}
 
 ## Granting access to a service ID
 
@@ -75,3 +76,4 @@ bx iam service-policy-create <service-id-name> \
       --resource-type bucket \
       --resource <bucket-name>
 ```
+{:codeblock}
