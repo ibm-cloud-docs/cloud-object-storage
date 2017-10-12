@@ -33,9 +33,9 @@ Maven uses a file called `pom.xml` to specify the libraries (and their versions)
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
-            <groupId>com.amazonaws</groupId>
+            <groupId>com.ibm.cos</groupId>
             <artifactId>ibm-cos-java-sdk</artifactId>
-            <version>1.11.5</version>
+            <version>1.0.1</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -67,6 +67,8 @@ Maven uses a file called `pom.xml` to specify the libraries (and their versions)
 ## Example class
 
 ```java
+package com.cos;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -97,9 +99,9 @@ public class CosExample
 
         SDKGlobalConfiguration.IAM_ENDPOINT = "https://iam.bluemix.net/oidc/token";
 
-        String bucketName = "<bucketName";
+        String bucketName = "<bucketName>";
         String api_key = "<apiKey>";
-        String service_instance_id = "<resourceInstanceId";
+        String service_instance_id = "<resourceInstanceId>";
         String endpoint_url = "https://s3-api.us-geo.objectstorage.softlayer.net";
         String location = "us";
 
