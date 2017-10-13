@@ -20,7 +20,7 @@ In this getting started tutorial, you'll walk through the steps needed to create
 
 ## Before you begin
 You'll need:
-  * a [Bluemix account](https://console.bluemix.net/registration/)
+  * a [Bluemix account](https://console.bluemix.net/registration/?target=%2Fcatalog%2Finfrastructure%2Fcloud-object-storage)
   * an [instance of Cloud Object Storage](/docs/services/cloud-object-storage/basics/order-storage.html)
   * and some files on your local computer to upload.
 {: #prereqs}

@@ -171,295 +171,31 @@ public class CosExample
 }
 ```
 
-## Creating a client and setting the endpoint
-
-### Create an COS Java SDK connection using the default credentials
-
-Use default credentials using the first credentials found in this order of precedence:
-
-1. Environment variables
-2. System properties
-3. Default profile in `~/.aws/credentials`
-
-The AWS Java SDK automatically reads the Access Key ID and Secret Access Key from one of these locations. They do not need to be provided explicitly.
-
-The AWS Java SDK sends all requests to `s3.amazonaws.com` by default. To send requests to IBM COS, the new `AmazonS3Client` instance needs the correct `setEndpoint` parameter. The SDK interprets the http(s) from the endpoint and infers encrypted or plain text from the URL.
-{:tip}
-
-```java
-AmazonS3 cos = new AmazonS3Client();
-cos.setEndpoint("https://s3-api.us-geo.objectstorage.softlayer.net");
-```
-
-#### Example: Setting the endpoint to point to COS US Cross Region
-
-```java
-AmazonS3 cos = new AmazonS3Client();
-cos.setEndPoint("https://s3-api.us-geo.objectstorage.softlayer.net");
-```
-
-The COS implementation of the S3 API supports both resource path and virtual host addressing.
-
-### Use virtual host addressing
-This S3 implementation supports virtual host addressing of storage buckets. The AWS Java SDK uses virtual host addressing by default.
-
-```java
-AmazonS3 cos = new AmazonS3Client();
-cos.setEndPoint("http://s3-api.us-geo.objectstorage.softlayer.net");
-```
-
-### Use resource path addressing
-To configure the AWS Java SDK to use resource path addressing instead of virtual host addressing, either:
-
-Set the `disableDNSBuckets` system property to True:
-
-```java
-System.setProperty("com.amazonaws.sdk.disableDNSBuckets", "True");
-```
-
-Set the `withPathStyleAccess` property of the `AmazonS3Client.S3ClientOptions` to `True`:
-
-```java
-AmazonS3 cos = new AmazonS3Client(credentials);
-
-S3ClientOptions opts = new S3ClientOptions().withPathStyleAccess(true);
-cos.setS3ClientOptions(opts);
-```
-
-## Configure optional parameters
-
-### Set the connection timeout duration
-To increase the connection timeout for longer running operations, change the `withSocketTimeout` property of the `ClientConfiguration` object when the connection is created.
-
-```java
-ClientConfiguration config = new ClientConfiguration().withSocketTimeout(15 * 60 * 1000);
-
-AmazonS3 cos = new AmazonS3Client(credentials, config);
-```
-
-### Set the maximum retry limit
-
-If AWS Java SDK receives an error from the system, it retries the request. The default number of times it retries the request is five. The default retry limit can be changed in the client application.
-
-{% include important.html content="The client reports the final error and not the initial failure, which can mask the details of the underlying issue." %}
-
-{% include note.html content="Set the `maxErrorRetry` property of the `ClientConfiguration` object to `0` to disable the default retry policy." %}
-
-#### Example: Changing the Maximum Retry Value
-
-```java
-ClientConfiguration config = new ClientConfiguration().withMaxErrorRetry(0);
-
-AmazonS3 cos = new AmazonS3Client(credentials, config);
-```
-
-## Managing credentials
-
-The order of precedence using for access credentials is:
-
-1. Credentials passed as `BasicAWSCredentials` instance parameters
-2. Credentials set as environment variables
-3. Credentials set as JVM system properties
-4. Credentials set in `AwsCredentials.properties` file
-5. Credentials set in the shared credentials file
-
-### Credentials passed as `BasicAWSCredentials` instance parameters
-
-Credentials can be supplied as parameters of the `BasicAWSCredentials` object. This object is then passed to the `AmazonS3Client` as a constructor parameter.
-
-#### Example: Create an AWS Java SDK connection specifying credentials provided as strings in code
-
-```java
-final String accessKey = "lDrDjH0D45hQivu6FNlwQ";
-final String secretKey = "bHp5DOjg0HHJrGK7h3ejEqRDnVmWZK03T4lstel6";
-
-BasicAWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey); // declare a new set of basic credentials that includes the Access Key ID and the Secret Access Key
-AmazonS3 cos = new AmazonS3Client(credentials); // create a constructor for the client using the declared credentials.
-cos.setEndpoint("https://s3-api.us-geo.objectstorage.softlayer.net"); // set the desired endpoint
-```
-
-### Credentials set as environment variables
-
-Set the environment variables `AWS_ACCESS_KEY_ID` to define the access key and `AWS_SECRET_ACCESS_KEY` to define the secret key.
-
-If these variables are defined when the `AmazonS3Client` is created, the default constructor can be used.
-
-{% include note.html content="Setting environment variables varies by operating system. Refer to this [Knowledge Base Article](http://www.schrodinger.com/kb/1842 ) for more information." %}
-
-| Variable     |            Purpose
-|-------------------------------------
-| `AWS_ACCESS_KEY`      |      AWS access key.
-| `AWS_SECRET_ACCESS_KEY`  |   AWS secret key. Access and secret key variables override credentials that are stored in both credential and config files.
-| `AWS_PROFILE`          |    Name of the profile to use, such as the name of a profile that is stored in a credential or a config file. The default is to use the default profile.
-{:.opstable}
-
-
-#### Example: Setting and loading credentials using system Environment Variables
-
-The AWS Java SDK automatically reads the Access Key ID and Secret Access Key from the Environment Variables. They do not need to be provided explicitly.
-
-```java
-AmazonS3 cos = new AmazonS3Client();
-```
-
-### Credentials set as JVM system properties
-
-Set the JVM system properties `aws.accessKeyId` to define the access key and `aws.secretKey` to define the secret key.
-
-These properties may be set on start up or programmatically and will be used by the `AmazonS3Client` when the default constructor is used.
-
-#### Example: Set system properties then open an S3 connection using those properties
-
-```java
-System.setProperty("aws.accessKeyId", "lDrDjH0D45hQivu6FNlwQ");
-System.setProperty("aws.secretKey", "bHp5DOjg0HHJrGK7h3ejEqRDnVmWZK03T4lstel6");
-
-AmazonS3 cos = new AmazonS3Client();
-```
-
-### Credentials set in `AwsCredentials.properties` file
-
-An `AmazonS3Client` constructor can use a credentials file called `AwsCredentials.properties`, which is found on the Java classpath.
-
-To create an S3 client that uses `AwsCredentials.properties`, the `AmazonS3Client` object is created by passing a `ClasspathPropertiesFileCredentialsProvider` as a constructor parameter.
-
-#### Example: `AwsCredentials.properties` File Format
-
-```
-accessKey=lDrDjH0D45hQivu6FNlwQ
-secretKey=bHp5DOjg0HHJrGK7h3ejEqRDnVmWZK03T4lstel6
-```
-
-#### Example: Use an `AWSCredentials.properties` file on the classpath
-
-```java
-ClasspathPropertiesFileCredentialsProvider provider = new ClasspathPropertiesFileCredentialsProvider(); // declare a new set of basic credentials that use the AWSCredentials.properties file
-
-AmazonS3 cos = new AmazonS3Client(provider); // create a constructor for an S3 compatible client using the credentials from the AWSCredentials.properties file
-cos.setEndpoint("https://s3-api.us-geo.objectstorage.softlayer.net"); // set the endpoint for the new S3 compatible client
-```
-
-
-
-Credentials can be put in a different file and location. The credentials can be accessed passing the `PropertiesFileCredentialsProvider` constructor parameter when creating an `AmazonS3Client` instance.
-
-#### Example: Creating a client using a `AwsCredentials.properties` in another location
-
-```java
-AWSCredentialsProvider provider = new PropertiesFileCredentialsProvider("/path/to/alternative/credentials/file.properties");
-
-AmazonS3 cos = new AmazonS3Client(provider);
-```
-
-
-### Credentials set in the shared credentials file
-
-#### Create AWS shared credentials
-
-Use `aws configure` to create an access credentials file with the default profile. For more information about using the AWS CLI, see the documentation on [using command line interfaces].
-
-#### Example: Command output of `aws configure`
-
-```
-$ aws configure
-AWS Access Key ID [None]: #AKIAIOSFODNN7EXAMPLE# // stored in ~/.aws/credentials
-AWS Secret Access Key [None]: #wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY# // stored in ~/.aws/credentials
-Default region name [None]: // the region does not need to be set
-Default output format [None]: #json# // the output format will be stored in ~/.aws/config
-```
-
-To support multiple identities, AWS credential files have named profiles.
-
-Use `aws configure — profile {profileName}` to create an access credentials file with a named profile. Additional named profiles are appended to the `~/.aws/credentials` file.
-
-#### Example: Command output of `aws configure --profile pool2`
-
-```
-$ aws configure --profile pool2
-AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
-AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-Default region name [None]:
-Default output format [None]: text
-```
-
-#### Example: Contents of the AWS credentials file (`~/.aws/credentials`)
-
-```
-[default]
-aws_access_key_id = AKIAIOSFODNN7EXAMPLE
-aws_secret_access_key = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-
-[profile pool2]
-aws_access_key_id = N67W90RKLCWOLPSKN8W8
-aws_secret_access_key = RlfTDyqPg0WnY/PWdxMEe/gjuG7QRckynofRMwwR
-
-```
-
-#### Example: Contents of the AWS configuration file (`~/.aws/config`)
-
-```
-[default]
-output=json
-
-[profile pool2]
-output=text
-```
-
-### Use a named profile in a AWS shared credentials file
-
-To use the name profile credentials in this file:
-
-1. Provide the profile name as a parameter of the `ProfileCredentialsProvider` Object.
-2. Provide the resulting object to the `AmazonS3Client` as a constructor parameter.
-
-#### Example: Using an AWS Credential Named Profile in an AWS Java SDK connection method
-
-```java
-AWSCredentialsProvider provider = new ProfileCredentialsProvider("ibm"); // specify the Named Profile to use
-AmazonS3 cos = new AmazonS3Client(provider); // specify which set of credentials to use
-```
-
-## Code examples
-
-These are examples and assume a strong grasp of Java programming fundamentals. They should be used to assist developers in programming their own solutions and not be copied and pasted directly into their applications. Import declarations and try/catch blocks have been omitted for readability. IBM cannot be held accountable for developers using this code verbatim.
-
-{% include note.html content="The following examples assume the use of default credentials" %}
+The following examples assume a client `cos` has been configured.
 
 ## Create a standard bucket
 
 ```java
-AmazonS3 cos = new AmazonS3Client();
-cos.setEndpoint("https://s3-api.us-geo.objectstorage.softlayer.net");
-
 cos.createBucket("sample", "us-standard"); // the name of the bucket, and the storage class (LocationConstraint)
 ```
 
 ## Create a Vault bucket
 
 ```java
-AmazonS3 cos = new AmazonS3Client();
-cos.setEndpoint("https://s3-api.us-geo.objectstorage.softlayer.net");
-
 cos.createBucket("sample", "us-vault"); // the name of the bucket, and the storage class (LocationConstraint)
 ```
 
 ## Create a Cold Vault bucket
 
 ```java
-AmazonS3 cos = new AmazonS3Client();
-cos.setEndpoint("https://s3-api.us-geo.objectstorage.softlayer.net");
-
 cos.createBucket("sample", "us-cold"); // the name of the bucket, and the storage class (LocationConstraint)
 ```
 
 ## Upload object from a file
 
-{% include note.html content="This example assumes that the bucket 'sample' already exists." %}
+This example assumes that the bucket `sample` already exists.
 
 ```java
-AmazonS3 cos = new AmazonS3Client();
-cos.setEndpoint("https://s3-api.us-geo.objectstorage.softlayer.net");
-
 cos.putObject(
 "sample", // the name of the destination bucket
 "myfile", // the object key
@@ -469,11 +205,9 @@ new File("/home/user/test.txt") // the file name and path of the object to be up
 
 ## Upload object using a stream
 
-{% include note.html content="This example assumes that the bucket 'sample' already exists." %}
+This example assumes that the bucket `sample` already exists.
 
 ```java
-AmazonS3 cos = new AmazonS3Client();
-cos.setEndpoint("https://s3-api.us-geo.objectstorage.softlayer.net");
 String obj = "An example"; // the object to be stored
 ByteArrayOutputStream theBytes = new ByteArrayOutputStream(); // create a new output stream to store the object data
 ObjectOutputStream serializer = new ObjectOutputStream(theBytes); // set the object data to be serialized
@@ -494,12 +228,9 @@ metadata // the metadata for the object being written
 
 ## Download object to a file
 
-{% include note.html content="This example assumes that the bucket 'sample' already exists." %}
+This example assumes that the bucket `sample` already exists.
 
 ```java
-AmazonS3 cos = new AmazonS3Client();
-cos.setEndpoint("https://s3-api.us-geo.objectstorage.softlayer.net");
-
 GetObjectRequest request = new // create a new request to get an object
 GetObjectRequest( // request the new object by identifying
 "sample", // the name of the bucket
@@ -515,12 +246,10 @@ new File("retrieved.txt") // to write to a new file
 
 ## Download object using a stream
 
-{% include note.html content="This example assumes that the bucket 'sample' already exists." %}
+This example assumes that the bucket `sample` already exists.
 
 ```java
-AmazonS3 cos = new AmazonS3Client();
-cos.setEndpoint("https://s3-api.us-geo.objectstorage.softlayer.net");
-S3Object returned = CLIENT.getObject( // request the object by identifying
+S3Object returned = cos.getObject( // request the object by identifying
 "sample", // the name of the bucket
 "serialized-object" // the name of the serialized object
 );
@@ -530,9 +259,6 @@ S3ObjectInputStream s3Input = s3Response.getObjectContent(); // set the object s
 ## Copy objects
 
 ```java
-AmazonS3 cos = new AmazonS3Client();
-cos.setEndpoint("https://s3-api.us-geo.objectstorage.softlayer.net");
-
 // copy an object within the same Bucket
 cos.copyObject( // copy the Object, passing…
 "sample",  // the name of the Bucket in which the Object to be copied is stored,
@@ -543,9 +269,6 @@ cos.copyObject( // copy the Object, passing…
 ```
 
 ```java
-AmazonS3 cos = new AmazonS3Client();
-cos.setEndpoint("https://s3-api.us-geo.objectstorage.softlayer.net");
-
 // copy an object between two Buckets
 cos.copyObject( // copy the Object, passing…
 "sample", // the name of the Bucket from which the Object will be copied,
@@ -558,9 +281,6 @@ cos.copyObject( // copy the Object, passing…
 ## List buckets
 
 ```java
-AmazonS3 cos = new AmazonS3Client();
-cos.setEndpoint(`https://s3-api.us-geo.objectstorage.softlayer.net`);
-
 List<Bucket> Buckets = cos.listBuckets(); // get a list of buckets
 
 for (Bucket b : Buckets) { // for each bucket...
@@ -571,9 +291,6 @@ for (Bucket b : Buckets) { // for each bucket...
 ## List objects
 
 ```java
-AmazonS3 cos = new AmazonS3Client();
-cos.setEndpoint(`https://s3-api.us-geo.objectstorage.softlayer.net`);
-
 ObjectListing listing = cos.listObjects(`sample`); // get the list of objects in the 'sample' bucket
 List<S3ObjectSummary> summaries = listing.getObjectSummaries(); // create a list of object summaries
 
@@ -585,9 +302,6 @@ for (S3ObjectSummary obj : summaries){ // for each object...
 ## Delete object
 
 ```java
-AmazonS3 cos = new AmazonS3Client();
-cos.setEndpoint("https://s3-api.us-geo.objectstorage.softlayer.net");
-
 cos.deleteObject( // delete the Object, passing…
 "sample", // the name of the Bucket that stores the Object,
 "myFile.txt" // and he name of the Object to be deleted
@@ -596,7 +310,7 @@ cos.deleteObject( // delete the Object, passing…
 
 ## API reference
 
-This list summarizes the AWS Java SDK methods that are supported by IBM COS. More detailed documentation on individual classes and methods can be found in the [GitHub repository](https://github.com/aws/aws-sdk-java).
+This list summarizes the AWS Java SDK methods that are supported by IBM COS. More detailed documentation on individual classes and methods can be found in the [the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/)
 
 ```java
 abortMultipartUpload(AbortMultipartUploadRequest request)
