@@ -65,7 +65,7 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 
 ## Create a new bucket
 
-A `PUT` issued to the endpoint root will create a bucket when a string is provided.  Bucket names must be unique, and accounts are limited to 100 buckets each.  Bucket names must be DNS-compliant; names between 3 and 63 characters long must be made of lowercase letters, numbers, and dashes. Bucket names must begin and end with a lowercase letter or number.  Bucket names resembling IP addresses are not allowed. This operation does not make use of operation specific headers or query parameters.
+A `PUT` issued to the endpoint root will create a bucket when a string is provided. Bucket names must be unique, and accounts are limited to 100 buckets each. Bucket names must be DNS-compliant; names between 3 and 63 characters long must be made of lowercase letters, numbers, and dashes. Bucket names must begin and end with a lowercase letter or number. Bucket names resembling IP addresses are not allowed. This operation does not make use of operation specific headers or query parameters.
 
 **Syntax**
 
@@ -154,6 +154,45 @@ Content-Length: 0
 
 ----
 
+## Create a new bucket with Key Protect encryption
+
+To create a bucket
+
+**Syntax**
+
+```shell
+PUT https://{endpoint}/{bucket-name} # path style
+PUT https://{bucket-name}.{endpoint} # virtual host style
+```
+
+**Sample request**
+
+This is an example of creating a new bucket called 'secure-files'.
+
+```http
+PUT /secure-files HTTP/1.1
+Authorization: Bearer {token}
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
+ibm-service-instance-id: {ibm-service-instance-id}
+ibm-sse-kp-encryption-algorithm: "AES256"
+ibm-sse-kp-customer-root-key-crn: {customer-root-key-id}
+```
+
+**Sample response**
+
+```http
+HTTP/1.1 200 OK
+Date: Wed, 24 Aug 2016 17:45:25 GMT
+X-Clv-Request-Id: dca204eb-72b5-4e2a-a142-808d2a5c2a87
+Accept-Ranges: bytes
+Server: Cleversafe/3.9.0.115
+X-Clv-S3-Version: 2.5
+x-amz-request-id: dca204eb-72b5-4e2a-a142-808d2a5c2a87
+Content-Length: 0
+```
+
+---
 
 ## Retrieve a bucket's headers
 
@@ -188,6 +227,32 @@ Server: Cleversafe/3.9.0.115
 X-Clv-S3-Version: 2.5
 x-amz-request-id: 0c2832e3-3c51-4ea6-96a3-cd8482aca08a
 Content-Length: 0
+```
+
+**Sample request**
+
+`HEAD` requests on buckets with Key Protect encrytions will return extra headers.
+
+```http
+HEAD /secure-files HTTP/1.1
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
+Authorization:Bearer {token}
+```
+
+**Sample response**
+
+```http
+HTTP/1.1 200 OK
+Date: Wed, 24 Aug 2016 17:46:35 GMT
+X-Clv-Request-Id: 0c2832e3-3c51-4ea6-96a3-cd8482aca08a
+Accept-Ranges: bytes
+Server: Cleversafe/3.9.0.115
+X-Clv-S3-Version: 2.5
+x-amz-request-id: 0c2832e3-3c51-4ea6-96a3-cd8482aca08a
+Content-Length: 0
+ibm-sse-kp-enabled: True
+ibm-see-kp-crk-id: {customer-root-key-id}
 ```
 
 ----
@@ -237,6 +302,7 @@ x-amz-request-id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
 Content-Type: application/xml
 Content-Length: 909
 ```
+
 ```xml
 <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
   <Name>apiary</Name>
