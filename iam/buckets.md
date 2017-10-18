@@ -19,8 +19,8 @@ Assign access roles for users and service IDs against buckets, using either the 
 | Access role | Example actions                            |
 |:------------|---------------------------------------------------|
 | Manager | Make objects public, create and destroy buckets and objects |
-| Reader | Create and destroy buckets and objects |
-| Writer | List and download objects |
+| Writer | Create and destroy buckets and objects |
+| Reader | List and download objects |
 
 ## Granting access to a user
 
