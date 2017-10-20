@@ -156,7 +156,15 @@ Content-Length: 0
 
 ## Create a new bucket with Key Protect encryption
 
-To create a bucket
+To create a bucket that uses Key Protect for managing encryption keys, several additional headers are required.  For more information about Key Protect, [see the documentation]().
+
+Name | Type | Description
+--- | ---- | ------------
+`ibm-service-instance-id` | string | CRN or GUID of the COS instance.
+`ibm-sse-kp-encryption-algorithm` | string | `"AES256"` is the required value.
+`ibm-sse-kp-customer-root-key-crn` | string | CRN of the root key used by Key Protect.
+
+Note that standard bucket [naming rules](/docs/services/cloud-object-storage/api-reference#create-a-new-bucket) apply.
 
 **Syntax**
 
