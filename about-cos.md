@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017
-lastupdated: "2017-09-27"
+lastupdated: "2017-10-31"
 
 ---
 {:new_window: target="_blank"}
@@ -19,7 +19,7 @@ Information stored with IBM Cloud Object Storage is encrypted and dispersed acro
 
 IBM COS is available with two types of resiliency: Cross Region and Regional.  Cross Region provides higher durability and availability than using a single region at the cost of slightly higher latency, and is available today in the US and EU. Regional service reverses those tradeoffs, and distributes objects across multiple availability zones within a single region, and is available in the US South and US East regions. If a given region or availability zone is unavailable, the object store continues to function without impediment.
 
-Developers use an IBM COS API to interact with their object storage. This documentation provides support to [get started](docs/services/cloud-object-storage/getting-started.html) with provisioning accounts, to create buckets, to upload objects, and to use a reference of common API interactions.
+Developers use an IBM COS API to interact with their object storage. This documentation provides support to [get started](docs/services/cloud-object-storage/index.html#getting-started-console-) with provisioning accounts, to create buckets, to upload objects, and to use a reference of common API interactions.
 
 Users of the original COS IaaS service provisioned through SoftLayer, [please visit this link for updates on the transition to Bluemix](docs/services/cloud-object-storage/classic/iaas.html).
 
