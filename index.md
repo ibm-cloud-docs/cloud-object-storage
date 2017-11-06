@@ -35,7 +35,7 @@ This guide takes a new user through the first steps with the {{site.data.keyword
 The terms 'resource instance' and 'service instance' refer to the same concept, and may be used interchangeably.
 {:tip}
 
-  2. Follow the **Create bucket** button and choose a unique name; all buckets in all regions across the globe share a single namespace.
+  2. Follow the **Create bucket** button and choose a unique name; all buckets in all regions across the globe share a single namespace. Ensure that you have the [correct permissions](/docs/services/cloud-object-storage/iam/buckets.html) to create a bucket.
   3. Choose a desired [level of _resiliency_](/docs/services/cloud-object-storage/basics/endpoints.html) first, and then a _location_ where you would like your data to be physically stored. Resiliency refers to the scope and scale of the geographic area across which your data is distributed. _Cross Region_ resiliency will spread your data across several metropolitan areas, while _Regional_ resiliency will spread data across a single metropolitan area.
   4. Choose the [bucket's _storage class_](/docs/services/cloud-object-storage/basics/classes.html). This is a reflection of how often you expect to read the stored data and determines billing details. Follow the **Create** link to create and access your new bucket.
 
