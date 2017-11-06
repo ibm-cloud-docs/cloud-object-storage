@@ -21,7 +21,7 @@ IBM COS is available with two types of resiliency: Cross Region and Regional.  C
 
 Developers use an IBM COS API to interact with their object storage. This documentation provides support to [get started](docs/services/cloud-object-storage/index.html#getting-started-console-) with provisioning accounts, to create buckets, to upload objects, and to use a reference of common API interactions.
 
-Users of the original COS IaaS service provisioned through SoftLayer, [please visit this link for updates on the transition to Bluemix](docs/services/cloud-object-storage/classic/iaas.html).
+Users of the original COS IaaS service provisioned through SoftLayer, [please visit this link for updates on the transition to {{site.data.keyword.cloud_notm}} Platform](docs/services/cloud-object-storage/classic/iaas.html).
 
 
 
@@ -39,12 +39,12 @@ In addition to COS, IBM Cloud currently provides two additional object storage o
 
 ## OpenStack Swift Object Storage (IaaS)
 
-Data stored with OpenStack Swift (IaaS) is located in one of 20 global data centers. Developers use the community Swift API to interact with their storage accounts. This offering is managed through the IBM Bluemix Infrastructure Control portal and does not provide encryption at-rest.
+Data stored with OpenStack Swift (IaaS) is located in one of 20 global data centers. Developers use the community Swift API to interact with their storage accounts. This offering is managed through the {{site.data.keyword.cloud_notm}} infrastructure Control portal and does not provide encryption at-rest.
 
 For more information on this object storage service, [view the documentation](/docs/infrastructure/objectstorage-swift/index.html).
 
 ## Swift Object Storage for Cloud Foundry (PaaS)
 
-Data stored with OpenStack Swift (Cloud Foundry) is located in either Dallas or London data centers, and storage accounts are available for binding to Bluemix services. Based on the OpenStack Swift platform, developers use the community Swift API to interact with their storage accounts. This offering is managed through the IBM Bluemix console and does not provide encryption at-rest.
+Data stored with OpenStack Swift (Cloud Foundry) is located in either Dallas or London data centers, and storage accounts are available for binding to {{site.data.keyword.cloud_notm}} services. Based on the OpenStack Swift platform, developers use the community Swift API to interact with their storage accounts. This offering is managed through the {{site.data.keyword.cloud_notm}} Platform console and does not provide encryption at-rest.
 
 For more information on this object storage service, [view the documentation](/docs/services/ObjectStorage/index.html).
