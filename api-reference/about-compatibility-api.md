@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017
-lastupdated: "2017-09-27"
+lastupdated: "2017-11-05"
 
 ---
 {:new_window: target="_blank"}
@@ -18,11 +18,11 @@ lastupdated: "2017-09-27"
 
 The Cloud Object Storage API is a REST-based API for reading and writing objects. It uses IBM Cloud Identity & Access Management for authentication/authorization, and supports a subset of the S3 API for easy migration of applications to IBM Cloud.
 
-This reference documentation is being continously improved. If you have technical questions about using the API in your application, please post them on StackOverflow using both `ibm-bluemix` and `object-storage` tags and we will do our best to answer, and then improve this documentation thanks to your feedback.
+This reference documentation is being continously improved. If you have technical questions about using the API in your application, please post them on StackOverflow using both `ibm-cloud-platform` and `object-storage` tags and we will do our best to answer, and then improve this documentation thanks to your feedback.
 
 There isn't a focused command line utility for managing data stored in COS.  As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage.  More information can be found in [the `curl` reference](/docs/services/cloud-object-storage/cli/curl.html).
 
-The following tables describe the complete set of operations when using the COS API to access IBM Cloud Object Storage.  For details on using the operations, including examples, see [the API reference page for buckets](/docs/services/cloud-object-storage/api-reference-buckets.html) or [objects](/docs/services/cloud-object-storage/api-reference-objects.html).
+The following tables describe the complete set of operations when using the COS API to access IBM Cloud Object Storage.  For details on using the operations, including examples, see [the API reference page for buckets](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html) or [objects](/docs/services/cloud-object-storage/api-reference/api-reference-objects.html).
 
 
 ## Bucket operations
