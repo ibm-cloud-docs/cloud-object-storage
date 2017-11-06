@@ -20,7 +20,7 @@ In this quickstart guide, you'll create a bucket and upload objects, and set up 
 ## Before you begin
 You'll need:
   * an [{{site.data.keyword.cloud}} Platform account](https://console.bluemix.net/registration/)
-  * an [instance of Cloud Object Storage](/docs/services/cloud-object-storage/basics/order-storage.html)
+  * an [instance of {{site.data.keyword.cos_full}}](/docs/services/cloud-object-storage/basics/order-storage.html)
   * the [{{site.data.keyword.cloud_notm}} CLI](https://clis.ng.bluemix.net/ui/home.html)
   * and some files on your local computer to upload.
 {: #prereqs}
