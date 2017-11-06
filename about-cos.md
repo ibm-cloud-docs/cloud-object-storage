@@ -19,9 +19,11 @@ Information stored with IBM Cloud Object Storage is encrypted and dispersed acro
 
 IBM COS is available with two types of resiliency: Cross Region and Regional.  Cross Region provides higher durability and availability than using a single region at the cost of slightly higher latency, and is available today in the US and EU. Regional service reverses those tradeoffs, and distributes objects across multiple availability zones within a single region, and is available in the US South and US East regions. If a given region or availability zone is unavailable, the object store continues to function without impediment.
 
-Developers use an IBM COS API to interact with their object storage. This documentation provides support to [get started](docs/services/cloud-object-storage/index.html#getting-started-console-) with provisioning accounts, to create buckets, to upload objects, and to use a reference of common API interactions.
+Developers use an IBM COS API to interact with their object storage. This documentation provides support to [get started](docs/cloud-object-storage/index.html#getting-started-console-) with provisioning accounts, to create buckets, to upload objects, and to use a reference of common API interactions.
 
-Users of the original COS IaaS service provisioned through SoftLayer, [please visit this link for updates on the transition to {{site.data.keyword.cloud_notm}} Platform](docs/services/cloud-object-storage/classic/iaas.html).
+Users of the original COS IaaS service provisioned through SoftLayer, [please visit this link for updates on the transition to {{site.data.keyword.cloud_notm}} Platform ![External link icon](../icons/launch-glyph.svg "External link icon")](https://ibm-public-cos.github.io/crs-docs/ordering-storage){: new_window}.
+
+<!--MM 11/6: this was the original link, but it doesn't work and I don't see it showing up in the nav to point to, so I picked the external link from the old doc. Nick should investigate this later (docs/services/cloud-object-storage/classic/iaas.html) -->
 
 
 
