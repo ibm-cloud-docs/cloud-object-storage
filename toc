@@ -25,7 +25,11 @@ Cloud Object Storage
     basics/endpoints.md
     basics/classes.md
     basics/multipart.md
-    basics/sse-c.md
+    
+    (: .topicgroup)
+    Manage encryption
+        basics/sse-c.md
+        basics/sse-kp.md
 
     {: .topicgroup}
     Tutorials
