@@ -131,7 +131,7 @@ bx account user-invite <email-address> <org-name> auditor <space-name> auditor
 ```
 {:codeblock}
 
-  2. Then grant them read-only access to your COS instances.
+  2. Then grant them read-only access to your {{site.data.keyword.cos_short}} instances.
 
 ```
 bx iam user-policy-create <email-address> --roles Reader --service-name cloud-object-storage
