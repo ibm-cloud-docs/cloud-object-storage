@@ -14,18 +14,18 @@ lastupdated: "2017-09-27"
 
 # Billing
 
-Information on pricing can be found at [IBM Cloud](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api){:new_window}.
+Information on pricing can be found at [{{site.data.keyword.cloud}}](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api){:new_window}.
 
 ## Invoices
 Find your account invoices at **Manage** > **Billing and Usage** in the navigation menu.
 
 Each account receives a single bill. If you need separate billing for different sets of containers, then creating multiple accounts is necessary.
 
-## IBM COS pricing
+## {{site.data.keyword.cos_full_notm}} pricing
 
-Storage costs for IBM COS are determined by total volume of data stored, the amount of public outbound bandwidth consumed, and the total number of operational requests processed by the system.
+Storage costs for {{site.data.keyword.cos_full}} are determined by total volume of data stored, the amount of public outbound bandwidth consumed, and the total number of operational requests processed by the system.
 
-Infrastructure offerings are connected to a three-tiered network, segmenting public, private, and management traffic. Infrastructure services may transfer data between one another across the private network at no cost. Infrastructure offerings (such as bare metal servers, virtual servers, and cloud storage) connect to other applications and services in the Bluemix catalog (such as Watson services and Cloud Foundry runtimes) across the public network, so data transfer between those two types of offerings is metered and charged at standard public network bandwidth rates.
+Infrastructure offerings are connected to a three-tiered network, segmenting public, private, and management traffic. Infrastructure services may transfer data between one another across the private network at no cost. Infrastructure offerings (such as bare metal servers, virtual servers, and cloud storage) connect to other applications and services in the {{site.data.keyword.cloud_notm}} Platform catalog (such as Watson services and Cloud Foundry runtimes) across the public network, so data transfer between those two types of offerings is metered and charged at standard public network bandwidth rates.
 {: tip}
 
 ## Request classes

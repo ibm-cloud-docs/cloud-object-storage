@@ -14,14 +14,14 @@ lastupdated: "2017-09-27"
 
 # Tutorial: Image Gallery
 
-This tutorial introduces how a simple web application can be built on the IBM Cloud.  This application uses Cloud Object Storage as the back-end storage for a Node.js application that allows a user to upload and view photos or other images.
+This tutorial introduces how a simple web application can be built on the {{site.data.keyword.cloud}}.  This application uses {{site.data.keyword.cos_full}} as the back-end storage for a Node.js application that allows a user to upload and view photos or other images.
 
 ## Getting started
 
 Before getting started with writing any code, you must ensure that you
 have the following items set up:
 
-  - IBM Bluemix
+  - {{site.data.keyword.cloud_notm}} Platform
   - Node.js
   - Git
 
@@ -34,9 +34,9 @@ so that you can test your code locally. Go to the
 [Node.js](https://nodejs.org/en/download/releases/) releases web page
 and download the Long Term Support (LTS) Version of Node.js, which
 matches the latest version supported by the SDK for Node.js buildpack on
-IBM Bluemix. At the time of this writing the latest buildpack is Version
+{{site.data.keyword.cloud_notm}} Platform. At the time of this writing the latest buildpack is Version
 3.10, and it supports Node.js Version 6.9.4. You can find information
-about the latest Bluemix SDK for Node.js buildpack on the [SDK for
+about the latest {{site.data.keyword.cloud_notm}} SDK for Node.js buildpack on the [SDK for
 Nodejs latest
 updates](https://console.ng.bluemix.net/docs/runtimes/nodejs/updates.html#latest_updates)
 page. Run the Node.js installer to set up Node.js and NPM on your
@@ -45,7 +45,7 @@ system.
 ### Installing Git
 
 Git is the most widely used source code versioning system in the
-industry. We use Git later when we create a toolchain in Bluemix for
+industry. We use Git later when we create a toolchain in {{site.data.keyword.cloud_notm}} Platform for
 continuous delivery. If you do development regularly, you probably are
 already familiar with Git. If you do not have a GitHub account, create a
 free public personal account at the [Github](https://github.com/join)
@@ -66,10 +66,9 @@ You do not have to create any repositories yet. You might notice a
 repository named Tutorial that is included with GitHub Desktop to help
 familiarize you with the flow. Feel free to experiment with it.
 
-## Creating the Web Gallery app on IBM Bluemix
+## Creating the Web Gallery app on {{site.data.keyword.cloud_notm}} Platform
 
-To create a Cloud Foundry app, log in to [IBM
-Bluemix](https://console.ng.bluemix.net/docs/runtimes/nodejs/updates.html)
+To create a Cloud Foundry app, log in to [{{site.data.keyword.cloud_notm}} Platform](https://console.ng.bluemix.net/docs/runtimes/nodejs/updates.html)
 and click Create App (see figure below).
 
 ![bluemix_create_app](https://cloud.githubusercontent.com/assets/19173079/24821420/0d9b0af8-1bb4-11e7-80e3-cd1d91d19460.jpg)
@@ -84,8 +83,8 @@ The following figure shows the app creation page where you give a name
 to the app. Call it something descriptive, such as COS-WebGallery. The
 Host name is populated automatically to reflect the App name field. The
 Host name with the Domain name becomes the address that you use to view
-the app on Bluemix. The Host name can be updated later if necessary, so
-accept the default and click Create. Bluemix creates a starter app,
+the app on {{site.data.keyword.cloud_notm}} Platform. The Host name can be updated later if necessary, so
+accept the default and click Create. {{site.data.keyword.cloud_notm}} Platform creates a starter app,
 deploys and starts it for us.
 
 ![clickcreatenodeapp](https://cloud.githubusercontent.com/assets/19173079/24821507/97cf54ea-1bb4-11e7-928c-611546f6d980.jpg)
@@ -98,9 +97,9 @@ below).
 ![initiahhelloworldapp](https://cloud.githubusercontent.com/assets/19173079/24821547/da5bc302-1bb4-11e7-84c7-d0143c40d5c3.jpg)
 
 Notice back on the Getting Started page the prerequisites that you need
-in for developing a Node.js app on Bluemix are listed. You already
-created your Bluemix account, and installed Node.js. Download the [Cloud Foundry CLI](https://github.com/cloudfoundry/cli). Then run the installer. You
-can use the tool to log in to Bluemix and interact directly with your
+in for developing a Node.js app on {{site.data.keyword.cloud_notm}} Platform are listed. You already
+created your {{site.data.keyword.cloud_notm}} Platform account, and installed Node.js. Download the [Cloud Foundry CLI](https://github.com/cloudfoundry/cli). Then run the installer. You
+can use the tool to log in to {{site.data.keyword.cloud_notm}} Platform and interact directly with your
 account from your local environment. This tool puts many powerful
 commands at your disposal that you do not use in this scenario. More
 information is at the [Cloud Foundry CLI commands index
@@ -117,8 +116,8 @@ Follow these steps:
 
 1.  Clone the repo. Download the template for your app on your local
     development environment using Git. Rather than cloning the sample
-    app from Bluemix, use the command in Example 5-1 to clone the
-    starter template for the IBM COS Web Gallery app. After cloning the
+    app from {{site.data.keyword.cloud_notm}} Platform, use the command in Example 5-1 to clone the
+    starter template for the {{site.data.keyword.cos_full_notm}} Web Gallery app. After cloning the
     repo you will find the starter app in the
     COS-WebGalleryStart directory. Open a Git CMD window and change to a
     directory where you want to clone Github repo. Use the command shown
@@ -154,7 +153,7 @@ directory using: `nodemon`, to have nodemon start your app.
 
 3.  Prepare the app for deployment. Update the application name property
     value in the `manifest.yml` file from COS-WebGallery, to the name you
-    entered for your app on Bluemix. The COS-WebGallery manifest.yml
+    entered for your app on {{site.data.keyword.cloud_notm}} Platform. The COS-WebGallery manifest.yml
     looks like the following example. Also update the package.json file
     located in the app root directory for your app to reflect the name
     of your app, and your name as the author.
@@ -171,8 +170,8 @@ memory: 256M
 ```
 
 
-4.  Deploy the app to Bluemix. To get the starter app with your changes
-    to Bluemix, deploy it using the Cloud Foundry CLI:
+4.  Deploy the app to {{site.data.keyword.cloud_notm}} Platform. To get the starter app with your changes
+    to {{site.data.keyword.cloud_notm}} Platform, deploy it using the Cloud Foundry CLI:
 
 a.  Set the API Endpoint for your region by using the api command (as
     shown in the following example). if you do not know your regional
@@ -183,7 +182,7 @@ a.  Set the API Endpoint for your region by using the api command (as
  cf api &lt;API Endpoint&gt;
 ```
 
-b.  Log in to Bluemix by using the login command. You can specify
+b.  Log in to {{site.data.keyword.cloud_notm}} Platform by using the login command. You can specify
     optional parameters if you want: your organization with option -o,
     and the space with option -s (as shown in the following example).
 
@@ -192,7 +191,7 @@ b.  Log in to Bluemix by using the login command. You can specify
 cf login
 ```
 
-c.  Deploy the app to Bluemix with the push command (as shown in the
+c.  Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the push command (as shown in the
     following example).
 
 
@@ -200,7 +199,7 @@ c.  Deploy the app to Bluemix with the push command (as shown in the
 cf push
 ```
 
-The  example below shows the commands we used to deploy the COS-WebGallery app.
+The example below shows the commands we used to deploy the COS-WebGallery app.
 
 ```
 cf api https://api.ng.bluemix.net
@@ -209,34 +208,34 @@ cf push
 ```
 
 If successful, Cloud Foundry reports that the app was uploaded,
-successfully deployed, and started. If you are logged in to the Bluemix
+successfully deployed, and started. If you are logged in to the {{site.data.keyword.cloud_notm}} Platform
 web console, you are notified there also of the status of your app (see
 figure below).
 
 ![app_stage_notification](https://cloud.githubusercontent.com/assets/19173079/24821846/9f35e1a2-1bb6-11e7-9c58-45c545ef6494.jpg)
 
 You can verify that the app was deployed by visiting the app URL
-reported by Cloud Foundry with a browser, or from the Bluemix web
+reported by Cloud Foundry with a browser, or from the {{site.data.keyword.cloud_notm}} Platform web
 console by clicking View App button.
 
 5.  Test the app. The visible change from the default app template that
     was deployed at creation to the starter app shown in the following
-    proves that deploying the app to Bluemix was successful.
+    proves that deploying the app to {{site.data.keyword.cloud_notm}} Platform was successful.
 
 ![verify_push](https://cloud.githubusercontent.com/assets/19173079/24821897/e7f82bca-1bb6-11e7-848c-29878a6fcc78.jpg)
 
 
-### Creating a Bluemix toolchain
+### Creating a {{site.data.keyword.cloud_notm}} Platform toolchain
 
 You are almost ready to start working on the Web Gallery app, but before
 you start coding you must have a source repository for the code. It must
-be accessible from both Bluemix and the local development environment.
-We will want to both push changes to Bluemix, and pull down the changes
-made in the Bluemix cloud to our local development environment. To do
-so, create a Delivery Pipeline for the app in Bluemix by completing the
+be accessible from both {{site.data.keyword.cloud_notm}} Platform and the local development environment.
+We will want to both push changes to {{site.data.keyword.cloud_notm}} Platform, and pull down the changes
+made in the {{site.data.keyword.cloud_notm}} Platform to our local development environment. To do
+so, create a Delivery Pipeline for the app in {{site.data.keyword.cloud_notm}} Platform by completing the
 following steps:
 
-1.  After signing in to IBM Bluemix, select the COS-WebGallery app, and
+1.  After signing in to {{site.data.keyword.cloud_notm}} Platform, select the COS-WebGallery app, and
     from the app Overview window, scroll to Continuous delivery and
     click Enable (see figure below).
 
@@ -252,13 +251,13 @@ following steps:
 ![toolchain_integrations_setup](https://cloud.githubusercontent.com/assets/19173079/24822139/7f5c43ba-1bb8-11e7-8610-6441b7d1a963.jpg)
 
 
-The Bluemix Toolchain is now set up (as shown in the figure below).
+The {{site.data.keyword.cloud_notm}} Platform Toolchain is now set up (as shown in the figure below).
 
 **Tip**: If you do not have an active GitHub session, you are prompted
-to log in. Click Authorize Application to allow Bluemix to access your
+to log in. Click Authorize Application to allow {{site.data.keyword.cloud_notm}} Platform to access your
 GitHub account. If you have an active GitHub session but you have not
 entered your password recently, you might be prompted to enter your
-GitHub password to confirm. If Bluemix cannot access the GitHub repo,
+GitHub password to confirm. If {{site.data.keyword.cloud_notm}} Platform cannot access the GitHub repo,
 the Build Stage of your Delivery Pipeline will be unable to use it as
 input.
 
@@ -293,7 +292,7 @@ example, it is named COS-WebGallery.
 ### Create a Git branch
 
 Now, you need to create a branch for the local development environment
-to use for your Bluemix Delivery Pipeline Build Stage:
+to use for your {{site.data.keyword.cloud_notm}} Platform Delivery Pipeline Build Stage:
 
 1.  Click the branch icon; you are prompted to enter a name for the
     branch (see figure below). This example uses Local-dev as the name.
@@ -309,14 +308,14 @@ to use for your Bluemix Delivery Pipeline Build Stage:
 ![publish_branch](https://cloud.githubusercontent.com/assets/19173079/24822322/de53cfa4-1bb9-11e7-8a2d-768acdaa4f95.jpg)
 
 Now that the Local-dev branch is published to the GitHub repo in your
-toolchain, the build stage of your Bluemix Delivery Pipeline will be
+toolchain, the build stage of your {{site.data.keyword.cloud_notm}} Platform Delivery Pipeline will be
 triggered followed by the deploy stage anytime you push a commit to it.
 Deploying the app from the Cloud Foundry CLI will no longer be
 necessary.
 
-### Setting up IBM Cloud Object Storage credentials
+### Setting up {{site.data.keyword.cos_full_notm}} credentials
 
-You need to setup IBM COS credentials for the application, and a bucket
+You need to setup {{site.data.keyword.cos_short}} credentials for the application, and a bucket
 where it will store and retrieve images. After you have them, complete
 the following steps:
 
@@ -332,8 +331,8 @@ aws\_access\_key\_id = {IAM-API-KEY}
 
 aws\_secret\_access\_key = {RESOURCE-INSTANCE-ID}
 ```
-2.  In Bluemix, set up the credentials as environment variables by
-    logging in to Bluemix, and under Cloud Foundry Apps, select the
+2.  In {{site.data.keyword.cloud_notm}} Platform, set up the credentials as environment variables by
+    logging in to {{site.data.keyword.cloud_notm}} Platform, and under Cloud Foundry Apps, select the
     app COS-WebGallery. From the app menu, click Runtime.
 
 3.  In the Runtime window, click Environment variables at the top of the
@@ -341,16 +340,16 @@ aws\_secret\_access\_key = {RESOURCE-INSTANCE-ID}
     the variables.
 
 4.  Add two variables: API key and resoruce instance ID. These variables and their respective
-    values are what the app uses to authenticate to the IBM COS instance
-    when running on Bluemix (see figure below). When you finish with the
-    entries, click Save, and Bluemix restarts the app.
+    values are what the app uses to authenticate to the {{site.data.keyword.cos_short}} instance
+    when running on {{site.data.keyword.cloud_notm}} Platform (see figure below). When you finish with the
+    entries, click Save, and {{site.data.keyword.cloud_notm}} Platform restarts the app.
 
 ![bluemix_env_var](https://cloud.githubusercontent.com/assets/19173079/24822607/07019ace-1bbc-11e7-9d71-db6d53d3dc7a.jpg)
 
-Head over to the Cloud Object Storage portal for your service instance and add a bucket to contain your images. This scenario uses the bucket named web-images.
+Head over to the {{site.data.keyword.cos_short}} portal for your service instance and add a bucket to contain your images. This scenario uses the bucket named web-images.
 
 
-## Developing a simple IBM Cloud Object Storage Web Gallery
+## Developing a simple {{site.data.keyword.cos_full_notm}} Web Gallery
 
 
 Because this example uses an MVC architecture, adjusting the directory
@@ -366,7 +365,7 @@ directory that is named src (see figure below).
 **Tip**: The repo you cloned in earlier contains a directory named
 COS-WebGalleryEnd. Viewing the source code in your preferred editor
 might be helpful as you follow the next steps. This will be the version
-of the COS-WebGallery app that is committed and deployed to Bluemix
+of the COS-WebGallery app that is committed and deployed to {{site.data.keyword.cloud_notm}} Platform
 later.
 
 ### Designing the app
@@ -374,8 +373,8 @@ later.
 These are the two main tasks that a user should be able to do with the
 simple web app:
 
-  - Upload images from a web browser to the IBM COS bucket.
-  - View the images in the IBM COS bucket in a web browser.
+  - Upload images from a web browser to the {{site.data.keyword.cos_short}} bucket.
+  - View the images in the {{site.data.keyword.cos_short}} bucket in a web browser.
 
 The next steps focus on how to accomplish these two basic functions in a
 simple fashion rather than building a fully developed production grade
@@ -387,7 +386,7 @@ Look at the main application file, which is app.js. This is the code
 that we have told Node.js to process first when you start your app with
 the npm start command (or nodemon). In the package.json file, inside the
 scripts object, you see how "start" is defined (Example 5-10). This file
-is what Bluemix uses to tell node to run app.js each time the app
+is what {{site.data.keyword.cloud_notm}} Platform uses to tell node to run app.js each time the app
 starts. Also use it when testing the app locally.
 
 
@@ -496,7 +495,7 @@ index view template with the new status.
 
 Look at how we set up the multer upload in the following figure. We
 require modules aws-sdk, multer, and multer-s3. Lines 6 - 7 show how to
-configure an S3 object that points to an IBM COS server endpoint. We are
+configure an S3 object that points to an {{site.data.keyword.cos_short}} server endpoint. We are
 statically setting values such as the endpoint address, region, and
 bucket for simplicity, but they could easily be referenced from an
 environment variable or JSON configuration file.
@@ -512,10 +511,10 @@ s3-multer object. This s3-multer object contains an s3 property that we
 have assigned to our s3 object from line 7, and a bucket property that
 we have assigned the myBucket variable from line 8, which is assigned a
 value of “web-images”. The s3-multer object now has all the data
-necessary to connect and upload files to our IBM COS bucket when it
+necessary to connect and upload files to our {{site.data.keyword.cos_short}} bucket when it
 receives data from the upload form. The name or key of the uploaded
 object will be the original file name taken from the file object when it
-is stored in our IBM COS “web-images” bucket. For local testing, a
+is stored in our {{site.data.keyword.cos_short}} “web-images” bucket. For local testing, a
 helpful task is to print the file object to the console, on line 17.
 
 We perform a local test of the Upload form and the output from the
@@ -570,7 +569,7 @@ in an array, and pass it res.render as imageUrls.
 
 ![gallerycontroller_getimages](https://cloud.githubusercontent.com/assets/19173079/24823067/28139b46-1bc0-11e7-8cc2-e202b51c4603.jpg)
 
-1.  Retrieve the .jpg image URLs from IBM Cloud Object Storage
+1.  Retrieve the .jpg image URLs from {{site.data.keyword.cos_full_notm}}
 
 The following figure shows the galleryView EJS template body. We get the
 imageUrls array from the res.render() method and iterate over a pair of

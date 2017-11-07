@@ -13,7 +13,7 @@ lastupdated: "2017-10-31"
 {:tip: .tip}
 
 
-# About IBM COS
+# About {{site.data.keyword.cos_full_notm}}
 
 Information stored with {{site.data.keyword.cos_full}} is encrypted and dispersed across multiple geographic locations, and accessed over HTTP using a REST API. This service makes use of the distributed storage technologies provided by the {{site.data.keyword.cos_full_notm}} System (formerly Cleversafe).
 

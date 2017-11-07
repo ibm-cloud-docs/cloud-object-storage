@@ -14,7 +14,7 @@ lastupdated: "2017-09-27"
 
 # Using `curl`
 
-Here's a 'cheatsheet' of basic `curl` commands for the COS REST API.  Additional detail can be found in the API reference for [buckets](docs/services/cloud-object-storage/api-reference/api-reference-buckets.html) or [objects](docs/services/cloud-object-storage/api-reference/api-reference-objects.html).
+Here's a 'cheatsheet' of basic `curl` commands for the {{site.data.keyword.cos_full}} REST API.  Additional detail can be found in the API reference for [buckets](docs/services/cloud-object-storage/api-reference/api-reference-buckets.html) or [objects](docs/services/cloud-object-storage/api-reference/api-reference-objects.html).
 
 
 List buckets

@@ -16,7 +16,7 @@ lastupdated: "2017-09-27"
 
 ## Installing
 
-The preferred way to install the IBM COS SDK for Node.js is to use the
+The preferred way to install the {{site.data.keyword.cos_full}} SDK for Node.js is to use the
 [npm](http://npmjs.org) package manager for Node.js. Simply type the following
 into a terminal window:
 

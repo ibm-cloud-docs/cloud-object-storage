@@ -17,7 +17,7 @@ lastupdated: "2017-09-27"
 ## Inviting users and assigning access
 {: #iamuserinv}
 
-You can invite users across {{site.data.keyword.Bluemix_notm}} services, applications, and {{site.data.keyword.Bluemix_notm}} infrastructure from a single location. To invite users and manage outstanding invitations, you must be either an account owner, an organization manager, or you must have infrastructure permissions to add users. You can invite users, cancel invitations, and resend a pending invitation to an invited user. You can invite a single user or, if you are providing the same access for all members in a group of users, you can invite multiple users at once.
+You can invite users across {{site.data.keyword.cloud}} services, applications, and {{site.data.keyword.cloud_notm}} infrastructure from a single location. To invite users and manage outstanding invitations, you must be either an account owner, an organization manager, or you must have infrastructure permissions to add users. You can invite users, cancel invitations, and resend a pending invitation to an invited user. You can invite a single user or, if you are providing the same access for all members in a group of users, you can invite multiple users at once.
 
 ### Inviting users
 
@@ -30,7 +30,7 @@ To invite users or manage user invitations in your account, complete the followi
 
 If you determine that a user does not need access, you can cancel an invitation for any users that are shown in a **Processing** or **Pending** state in the **Status** column. If an invited user did not receive an invitation, you can resend the invitation to any user in a **Pending** state.
 
-If you want to invite users using the CLI, see the [bluemix iam account-user-invite](https://console.stage1.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_account_user_invite) command.
+If you want to invite users using the CLI, see the [`bluemix iam account-user-invite`](https://console.stage1.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_account_user_invite) command.
 
 ### Assigning user access
 {: #assignaccess}
@@ -71,22 +71,22 @@ When you invite new users, you can choose to add the user to an organization in 
 
 See [Cloud Foundry roles](/docs/iam/users_roles.html#cfroles) for more specific information about these roles.
 
-**Note**: You can add a Cloud Foundry role using the [bluemix iam account-user-invite](/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_account_user_invite) CLI command, but the UI must be used to assign other access or permissions.
+**Note**: You can add a Cloud Foundry role using the [`bluemix iam account-user-invite`](/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_account_user_invite) {{site.data.keyword.cloud_notm}} CLI command, but the UI must be used to assign other access or permissions.
 
 ## Managing user API keys
 {: #userapikey}
 
-A federated or non-federated user can create an API key to use on the CLI or as part of automation to log in as your user identity. You can use the {{site.data.keyword.Bluemix_notm}} UI or the {{site.data.keyword.Bluemix_notm}} CLI to manage your API keys by listing your keys, creating keys, updating keys, or deleting keys. To manage the {{site.data.keyword.Bluemix_notm}} API keys associated with your user identity, go to **Manage** &gt; **Security** &gt; **Bluemix API keys** to see a list of your API Keys with descriptions and dates. Then, you can create, edit or delete API keys from this page. And, for a full list of available CLI commands, see [`bluemix iam api-keys`](/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam).
+A federated or non-federated user can create an API key to use on the CLI or as part of automation to log in as your user identity. You can use the {{site.data.keyword.cloud_notm}} Platform UI or the {{site.data.keyword.cloud_notm}} CLI to manage your API keys by listing your keys, creating keys, updating keys, or deleting keys. To manage the {{site.data.keyword.cloud_notm}} API keys associated with your user identity, go to **Manage** &gt; **Security** &gt; **{{site.data.keyword.cloud_notm}} Platform API keys** to see a list of your API Keys with descriptions and dates. Then, you can create, edit or delete API keys from this page. And, for a full list of available CLI commands, see [`bluemix iam api-keys`](/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam).
 
-As a [federated user](/docs/admin/adminpublic.html#federatedid), you can use an API key to login by using the `BLUEMIX_API_KEY` environment variable. For more information about using an API key for logging in, see the documentation for the [{{site.data.keyword.Bluemix_notm}} CLI `bluemix login` command](/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_login) and the [cf CLI `cf login` command](/docs/cli/reference/cfcommands/index.html#cf_login).
+As a [federated user](/docs/admin/adminpublic.html#federatedid), you can use an API key to login by using the `BLUEMIX_API_KEY` environment variable. For more information about using an API key for logging in, see the documentation for the [{{site.data.keyword.cloud_notm}} CLI `bluemix login` command](/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_login) and the [cf CLI `cf login` command](/docs/cli/reference/cfcommands/index.html#cf_login).
 
 ### Creating an API key
 
-As a {{site.data.keyword.Bluemix_notm}} user you might want to use an API key when you enable a program or script without distributing your password to the script. A benefit of using an API key can be that a user or organization can create several API Keys for different programs and the API keys can be deleted independently if compromised without interfering with other API keys or even the user.
+As an {{site.data.keyword.cloud_notm}} Platform user you might want to use an API key when you enable a program or script without distributing your password to the script. A benefit of using an API key can be that a user or organization can create several API Keys for different programs and the API keys can be deleted independently if compromised without interfering with other API keys or even the user.
 
 To create an API key for your user identity in the UI:
 
-1. Go to **Manage** &gt; **Security** &gt; **Bluemix API keys**.
+1. Go to **Manage** &gt; **Security** &gt; **{{site.data.keyword.cloud_notm}} API keys**.
 2. Click **Create API key**.
 3. Enter a name and description for your API key.
 4. Click **Create API key**.
@@ -103,7 +103,7 @@ bluemix iam api-key-create MyKey -d "this is my API key" -f key_file
 ```
 {:codeblock}
 
-After an API key is created by using the CLI, there are a few ways that you can use the key with the bx CLI:
+After an API key is created by using the CLI, there are a few ways that you can use the key with the {{site.data.keyword.cloud_notm}} CLI:
 
 * Enter it with the `bx login` command
 
@@ -121,7 +121,7 @@ After an API key is created by using the CLI, there are a few ways that you can 
 
  The `apikeyfile` is created by using the `—file` option on the `bx iam api-key-create` command.
 * In your command prompt, you can set the environment variable by entering `BLUEMIX_API_KEY=<your api key>` and then entering `bx login`.
-* Or, if you want to avoid the bx CLI and just log in to the cf CLI by using your API key, enter:
+* Or, if you want to avoid the {{site.data.keyword.cloud_notm}} CLI and just log in to the cf CLI by using your API key, enter:
 
  ```
  cf login -u apikey -p <yourapikey>
@@ -136,7 +136,7 @@ If you want to change the name or the description of an API key, complete the fo
 
 To edit an API key:
 
-1. Go to **Manage** &gt; **Security** &gt; **Bluemix API keys**.
+1. Go to **Manage** &gt; **Security** &gt; **{{site.data.keyword.cloud_notm}} API keys**.
 2. From the **Actions** menu of an API key that is listed in the table, click **Edit the name & description**
 3. Update the information for your API key.
 4. Click **Update API key**.
@@ -156,7 +156,7 @@ If you are using a key rotation strategy, you might want to delete an older key 
 
 To delete an API key:
 
-1. Go to **Manage** &gt; **Security** &gt; **Bluemix API keys**.
+1. Go to **Manage** &gt; **Security** &gt; **{{site.data.keyword.cloud_notm}} API keys**.
 2. From the **Actions** menu of an API key that is listed in the table, click to **Delete**.
 3. Then, confirm the deletion by clicking **Delete key**.
 
@@ -167,9 +167,9 @@ To delete an API key by using the CLI:
 ## Creating and managing service IDs
 {: #serviceids}
 
-A service ID identifies a service or application similar to how a user ID identifies a user. A service ID that you create can be used to enable an application outside of {{site.data.keyword.Bluemix_notm}} access to your {{site.data.keyword.Bluemix_notm}} services. You can assign specific access policies to the service ID that restrict permissions for using specific services, or even combine permissions for accessing different services. Since service IDs are not tied to a specific user, if a user happens to leave an organization and is deleted from the account, the service ID remains ensuring that your application or service stays up and running.
+A service ID identifies a service or application similar to how a user ID identifies a user. A service ID that you create can be used to enable an application outside of the {{site.data.keyword.cloud_notm}} Platform to access your {{site.data.keyword.cloud_notm}} Platform services. You can assign specific access policies to the service ID that restrict permissions for using specific services, or even combine permissions for accessing different services. Since service IDs are not tied to a specific user, if a user happens to leave an organization and is deleted from the account, the service ID remains ensuring that your application or service stays up and running.
 
-When you create a service ID, you create a unique name and description that is easy for you to identify and work with in the UI. Once you have created your service ID, you can create API keys specific to each service ID that your application can use to authenticate with your {{site.data.keyword.Bluemix_notm}} services. To ensure that your application has the appropriate access for authenticating with your {{site.data.keyword.Bluemix_notm}} services, you use service policies assigned to each service ID that you create.
+When you create a service ID, you create a unique name and description that is easy for you to identify and work with in the UI. Once you have created your service ID, you can create API keys specific to each service ID that your application can use to authenticate with your {{site.data.keyword.cloud_notm}} Platform services. To ensure that your application has the appropriate access for authenticating with your {{site.data.keyword.cloud_notm}} Platform services, you use service policies assigned to each service ID that you create.
 
 The access policies associated with a service ID enable specific actions that can be taken when that service ID is used to access a specific service. A single service ID can have multiple policies assigned that define the level of access allowed when accessing multiple Identity and access-enabled services, and even different instances of a single service. For example, you have two services with two service instances each. For example, you might assign the `Viewer` role for all available instances of one service and assign the `Editor` role for only one instance of a second service. This way you can customize access to multiple services, but use a single API key for authentication to all.
 
@@ -222,7 +222,7 @@ To delete an existing policy:
 ## Managing service ID API keys
 {: #serviceidapikeys}
 
-Service IDs are created to enable access to your {{site.data.keyword.Bluemix_notm}} services by applications hosted both inside and outside of {{site.data.keyword.Bluemix_notm}}. API keys are used by an application to authenticate as a particular service ID and be granted the access associated with that service ID.
+Service IDs are created to enable access to your {{site.data.keyword.cloud_notm}} services by applications hosted both inside and outside of {{site.data.keyword.cloud_notm}} Platform. API keys are used by an application to authenticate as a particular service ID and be granted the access associated with that service ID.
 
 Once you create a service ID, you can start creating API keys and assigning service policies. Each policy specifies the level of access that is allowed when the API key is used to authenticate with your services. For more information about creating a service ID and assigning policies, see [Creating and managing service IDs](serviceids.html).
 
