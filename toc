@@ -1,5 +1,5 @@
 {: .toc subcollection="cloud-object-storage" audience="services" href="/docs/services/cloud-object-storage/index.html"}
-{{site.data.keyword.cos_full_notm}}
+Cloud Object Storage
 
     {: .navgroup id="learn"}
     getting-started.md
