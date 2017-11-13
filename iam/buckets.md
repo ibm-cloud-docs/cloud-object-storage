@@ -14,7 +14,7 @@ lastupdated: "2017-09-27"
 
 # Bucket permissions
 
-Assign access roles for users and service IDs against buckets, using either the UI or the CLI to create policies.
+Assign access roles for users and Service IDs against buckets, using either the UI or the CLI to create policies.
 
 | Access role | Example actions                            |
 |:------------|---------------------------------------------------|
@@ -72,7 +72,7 @@ bx iam user-policies <user-name>
 
 ## Granting access to a service ID
 
-If you need to grant access to a bucket for an application or other non-human entity, use a service instance.  The service ID can be created specifically for this purpose, or can be an existing service ID already in use.
+If you need to grant access to a bucket for an application or other non-human entity, use a Service ID.  The Service ID can be created specifically for this purpose, or can be an existing Service ID already in use.
 
 ### Using the UI
 
