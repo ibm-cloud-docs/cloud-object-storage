@@ -43,7 +43,7 @@ If it is necessary to restrict access to a single bucket (or set of buckets) ens
 
   1. Navigate to the **Identity and Access** console from the **Manage** menu.
   2. Select **Users** from the left navigation menu.
-  3. Select a user to view their existing policies, and assign a new policy.
+  3. Select a user to view their existing policies, and assign a new policy or edit an existing policy.
   3. Select the service instance, user, and desired role.
   4. Enter `bucket` in the **Resource Type** field and the bucket name in the **Resource** field.
   5. Click **Submit**
@@ -70,6 +70,19 @@ bx iam user-policies <user-name>
 ```
 {:codeblock}
 
+To edit an existing policy:
+
+```bash
+bx iam user-policy-update <user-name> <policy-id> \
+      --roles <role> \
+      --service-name cloud-object-storage \
+      --service-instance <resource-instance-id>
+      --region global \
+      --resource-type bucket \
+      --resource <bucket-name>
+```
+{:codeblock}
+
 ## Granting access to a service ID
 
 If you need to grant access to a bucket for an application or other non-human entity, use a Service ID.  The Service ID can be created specifically for this purpose, or can be an existing Service ID already in use.
@@ -78,7 +91,7 @@ If you need to grant access to a bucket for an application or other non-human en
 
   1. Navigate to the **Identity and Access** console from the **Manage** menu.
   2. Select **Service IDs** from the left navigation menu.
-  3. Select a Service ID to view any existing policies, and assign a new policy.
+  3. Select a Service ID to view any existing policies, and assign a new policy or edit an existing policy.
   3. Select the service instance, service ID, and desired role.
   4. Enter `bucket` in the **Resource Type** field and the bucket name in the **Resource** field.
   5. Click **Submit**
@@ -102,5 +115,18 @@ To list existing policies:
 
 ```bash
 bx iam service-policies <service-id-name>
+```
+{:codeblock}
+
+To edit an existing policy:
+
+```bash
+bx iam service-policy-update <service-id-name> <policy-id> \
+      --roles <role> \
+      --service-name cloud-object-storage \
+      --service-instance <resource-instance-id>
+      --region global \
+      --resource-type bucket \
+      --resource <bucket-name>
 ```
 {:codeblock}
