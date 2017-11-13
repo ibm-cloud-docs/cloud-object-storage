@@ -48,6 +48,9 @@ If it is necessary to restrict access to a single bucket (or set of buckets) ens
   4. Enter `bucket` in the **Resource Type** field and the bucket name in the **Resource** field.
   5. Click **Submit**
 
+Note that leaving the **Resource Type** or **Resource** fields blank will create an instance-level policy.
+{:tip}
+
 ### Using the CLI
 
 From a terminal run the following command:
@@ -96,6 +99,9 @@ If you need to grant access to a bucket for an application or other non-human en
   4. Enter `bucket` in the **Resource Type** field and the bucket name in the **Resource** field.
   5. Click **Submit**
 
+  Note that leaving the **Resource Type** or **Resource** fields blank will create an instance-level policy.
+  {:tip}
+  
 ### Using the CLI
 
 From a terminal run the following command:
