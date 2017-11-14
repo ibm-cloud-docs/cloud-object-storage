@@ -18,7 +18,7 @@ Python support is provided through a fork of the Boto 3 library.  It can be inst
 
 Source code can be found at [GitHub](https://github.com/ibm/ibm-cos-sdk-python/).
 
-The fork of the `boto3` library provides complete access to the COS API.  Endpoints, an API key, and the instance ID must be specified when creating a service resource or low-level client as shown in the following basic examples.
+The fork of the `boto3` library provides complete access to the {{site.data.keyword.cos_full}} API.  Endpoints, an API key, and the instance ID must be specified when creating a service resource or low-level client as shown in the following basic examples.
 
 Detailed documentation can be found at [here](https://ibm.github.io/ibm-cos-sdk-python/).
 

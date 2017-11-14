@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017
-lastupdated: "2017-09-27"
+lastupdated: "2017-11-05"
 
 ---
 {:shortdesc: .shortdesc}
@@ -19,9 +19,9 @@ In this quickstart guide, you'll create a bucket and upload objects, and set up 
 
 ## Before you begin
 You'll need:
-  * a [Bluemix account](https://console.bluemix.net/registration/)
-  * an [instance of Cloud Object Storage](/docs/services/cloud-object-storage/basics/order-storage.html)
-  * the [Bluemix CLI](https://clis.ng.bluemix.net/ui/home.html)
+  * an [{{site.data.keyword.cloud}} Platform account](https://console.bluemix.net/registration/)
+  * an [instance of {{site.data.keyword.cos_full}}](/docs/services/cloud-object-storage/basics/order-storage.html)
+  * the [{{site.data.keyword.cloud_notm}} CLI](https://clis.ng.bluemix.net/ui/home.html)
   * and some files on your local computer to upload.
 {: #prereqs}
 
@@ -30,7 +30,7 @@ Looking for a walkthrough that uses the console instead of the CLI? [Click here]
 
 ## Gather key information
   1. First, make sure you have an API key.  Get this from [IBM Cloud Identity and Access Management](https://www.bluemix.net/iam/#/apikeys).
-  2. Login to Bluemix using the CLI.
+  2. Login to the {{site.data.keyword.cloud_notm}} Platform using the CLI.
 
 For increased security, it's also possible to store the API key in a file or set it as an environment variable.
 {:tip}
@@ -131,7 +131,7 @@ bx account user-invite <email-address> <org-name> auditor <space-name> auditor
 ```
 {:codeblock}
 
-  2. Then grant them read-only access to your COS instances.
+  2. Then grant them read-only access to your {{site.data.keyword.cos_short}} instances.
 
 ```
 bx iam user-policy-create <email-address> --roles Reader --service-name cloud-object-storage

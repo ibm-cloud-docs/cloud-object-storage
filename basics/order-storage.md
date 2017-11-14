@@ -14,16 +14,16 @@ lastupdated: "2017-09-27"
 
 # Order storage
 
-## Creating a new Bluemix account
+## Creating a new {{site.data.keyword.cloud_notm}} Platform account
 
-Before ordering a new IBM COS storage instance, it is necessary to create a customer account first.
+Before ordering a new {{site.data.keyword.cos_full}} storage instance, it is necessary to create a customer account first.
 
 1. Go to [bluemix.net][6]{: new_window} and click on the **Create a Free Account** button.
 2. Fill out the form, providing your email address, name, region, and phone number.  Choose a password.
-3. Follow the link provided by the confirmation email, and follow the links to log in to Bluemix.
-4. Before using Bluemix, you need to set up a basic development environment.  Choose a region based on your geographic location, and choose a name for your organization.  Don't worry about being perfect - you can change it or create new organizations later. Follow the **Create** link.
+3. Follow the link provided by the confirmation email, and follow the links to log in to the {{site.data.keyword.cloud}} Platform.
+4. Before using the {{site.data.keyword.cloud}} Platform, you need to set up a basic development environment.  Choose a region based on your geographic location, and choose a name for your organization.  Don't worry about being perfect - you can change it or create new organizations later. Follow the **Create** link.
 5. Now you need to name your first development space.  Again, this can be changed at any time.  After you've chosen a name, follow the **Create** link.
-6. Follow the **I'm Ready** link to get started with Bluemix.
+6. Follow the **I'm Ready** link to get started with the {{site.data.keyword.cloud}} Platform.
 7. Next up is ordering a new object storage service instance!
 
 ## Creating a new resource instance

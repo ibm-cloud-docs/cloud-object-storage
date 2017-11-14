@@ -18,11 +18,11 @@ lastupdated: "2017-09-27"
 # Support
 {: #troubleshooting}
 
-If you have problems or questions when using IBM Cloud Object Storage, you can get help by searching for information or by asking questions through a forum. You can also open a support ticket.
+If you have problems or questions when using {{site.data.keyword.cos_full}}, you can get help by searching for information or by asking questions through a forum. You can also open a support ticket.
 
-When using the forums to ask a question, tag your question so that it is seen by the {{site.data.keyword.Bluemix_notm}} development teams.
+When using the forums to ask a question, tag your question so that it is seen by the {{site.data.keyword.cloud}} Platform development teams.
 
-* If you have technical questions about IBM COS, post your question on <a href="http://stackoverflow.com/search?q=object-storage+ibm-bluemix" target="_blank">Stack Overflow</a> and tag your question with "ibm" and "object-storage".
+* If you have technical questions about {{site.data.keyword.cos_short}}, post your question on <a href="http://stackoverflow.com/search?q=object-storage+ibm-bluemix" target="_blank">Stack Overflow</a> and tag your question with "ibm" and "object-storage".
 * For questions about the service and getting started instructions, use the <a href="https://developer.ibm.com/answers/topics/objectstorage/?smartspace=bluemix" target="_blank">IBM developerWorks dW Answers</a> forum. Include the  "cloud object storage" tag.
 
 See [Getting help](/docs/support/index.html#getting-help) for more details about using the forums.
