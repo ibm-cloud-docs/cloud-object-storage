@@ -12,7 +12,10 @@ lastupdated: '2017-09-27'
 
 # Manage encryption
 
-All objects stored in {{site.data.keyword.cos_full}} are encrypted by default using multiple randomly generated keys and an all-or-nothing-transform. While this default encryption model is remarkably secure, some workloads need to be in possession of the encryption keys used.
+All objects stored in {{site.data.keyword.cos_full}} are encrypted by default using multiple randomly generated keys and an all-or-nothing-transform. While this default encryption model is highly secure, some workloads need to be in possession of the encryption keys used.  Keys can either be managed manually by a client, or can be managed using IBM Key Protect.
+
+For more information on Key Protect, [see the documentation](/docs/services/keymgmt/index.html#getting-started-with-key-protect).
+
 
 ## Uploading objects using customer keys.
 
@@ -71,5 +74,49 @@ x-amz-request-id: 9f0ca49a-ae13-4d2d-925b-117b157cf5c3
 ETag: "3ca744fa96cb95e92081708887f63de5"
 x-amz-server-side-encryption-customer-algorithm: AES256
 x-amz-server-side-encryption-customer-key-MD5: HBbrEt+ZH5iIfDNeBju03w==
+Content-Length: 0
+```
+
+
+#### Specific headers for SSE-KP (Key Protect)
+
+The following headers are available for buckets using Server Side Encryption with Key Protect (SSE-KP).
+
+Header                                        | Type   | Description
+------------------------------------------------- | ------ | ----
+`ibm-sse-kp-encryption-algorithm` | string | This header is used to specify the algorithm and key size to use with the encryption key stored using Key Protect. This value must be set to the string `AES256`.
+`ibm-sse-kp-customer-root-key-crn`  | string | This header is used to reference the specific root key used by Key Protect to encrypt this bucket. This value must be the full CRN of the root key.
+
+**Syntax**
+
+```shell
+PUT https://{endpoint}/{bucket-name} # path style
+PUT https://{bucket-name}.{endpoint} # virtual host style
+```
+
+**Sample request**
+
+This is an example of creating a new bucket called 'secure-files'.
+
+```http
+PUT /secure-files HTTP/1.1
+Authorization: Bearer {token}
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
+ibm-service-instance-id: {ibm-service-instance-id}
+ibm-sse-kp-encryption-algorithm: "AES256"
+ibm-sse-kp-customer-root-key-crn: {customer-root-key-id}
+```
+
+**Sample response**
+
+```http
+HTTP/1.1 200 OK
+Date: Wed, 24 Aug 2016 17:45:25 GMT
+X-Clv-Request-Id: dca204eb-72b5-4e2a-a142-808d2a5c2a87
+Accept-Ranges: bytes
+Server: Cleversafe/3.9.0.115
+X-Clv-S3-Version: 2.5
+x-amz-request-id: dca204eb-72b5-4e2a-a142-808d2a5c2a87
 Content-Length: 0
 ```
