@@ -121,3 +121,20 @@ objects = [object['Key'] for object in response['Contents']]
 print("Objects in %s:" % bucket_name)
 print(json.dumps(objects, indent=2))
 ```
+
+## Using Key Protect
+
+```python
+response = client.create_bucket(
+    ACL= 'public-read',
+    Bucket='string',
+    CreateBucketConfiguration={
+        'LocationConstraint': 'us-standard'
+    },
+    GrantRead='string',
+    GrantReadACP='string',
+    IBMServiceInstanceId='string',
+    IBMSSEKPEncryptionAlgorithm='string',
+    IBMSSEKPCustomerRootKeyCrn='string'
+)
+```

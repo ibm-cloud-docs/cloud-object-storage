@@ -19,7 +19,6 @@ lastupdated: "2017-09-27"
 
 A `PUT` given a path to an object uploads the request body as an object. A SHA256 hash of the object is a required header.  All objects are limited to 5TB in size.
 
-
 **Syntax**
 
 ```bash
