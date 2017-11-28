@@ -31,7 +31,7 @@ This script assumes that a service credential has been created and stored in JSO
 {
   "apikey": "<api-key>",
   "endpoints": "https://cos-service.bluemix.net/endpoints",
-  "resource_instance_id": "<resource-instance-id"
+  "resource_instance_id": "<resource-instance-id>"
 }
 ```
 

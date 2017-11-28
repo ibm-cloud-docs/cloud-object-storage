@@ -59,7 +59,7 @@ Resource group:   default
   4. Now you need the name and ID for your new instance. Use the name you gave the instance when creating it.
 
   ```
-  bx resource instances -r global
+  bx resource service-instances -r global
   ```
   {:codeblock}
 
@@ -71,7 +71,7 @@ Name                                               Region     State    Type
 ```
 
 ```
-bx resource instance <instance-name> -r global
+bx resource service-instance <instance-name> -r global
 ```
 {:codeblock}
 
