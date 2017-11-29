@@ -27,11 +27,9 @@ Cloud Object Storage
     basics/endpoints.md
     basics/classes.md
     basics/multipart.md
-    basics/sse-c.md
+    basics/encryption.md
 
-    {: .topicgroup}
-    Tutorials
-        tutorials/web-application.md
+    tutorials/web-application.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
