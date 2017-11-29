@@ -2,18 +2,25 @@
 Cloud Object Storage
 
     {: .navgroup id="learn"}
-    getting-started.md
-    index.md
     about-cos.md
-    basics/administrators.md
-    basics/developers.md
+
+    {: .topicgroup}
+    Getting started
+        basics/administrators.md
+        basics/developers.md
+        getting-started.md
+        index.md
+        tutorials/web-application.md
+
     basics/glossary.md
+    release-notes.md
     {: .navgroup-end}
 
 
     {: .navgroup id="howto"}
     basics/order-storage.md
     basics/using-ui.md
+    basics/migrating.md
 
     {: .topicgroup}
     Manage access
@@ -24,13 +31,39 @@ Cloud Object Storage
         iam/service-credentials.md
         iam/public-access.md
 
+    {: .topicgroup}
+    Use HMAC authentication
+        hmac/credentials.md
+        hmac/hmac-signature.md
+        hmac/presigned-urls.md
+
     basics/endpoints.md
     basics/classes.md
     basics/multipart.md
     basics/encryption.md
 
-    tutorials/web-application.md
+
     {: .navgroup-end}
+
+    {: .topicgroup}
+    Use the command line
+        cli/bx.md
+        cli/curl.md
+        cli/aws-cli.md
+        cli/mc.md
+        cli/gof3r.md
+        cli/restic.md
+        cli/rclone.md
+        cli/s3fs.md
+        cli/minfs.md
+
+    {: .topicgroup}
+    Use a desktop client
+        gui/cyberduck.md
+        gui/duplicati.md
+        gui/cloudberry.md
+        gui/transmit.md
+        gui/dragondisk.md
 
     {: .navgroup id="reference"}
     api-reference/api-overview.md
@@ -43,15 +76,11 @@ Cloud Object Storage
         api-reference/api-reference-objects.md
 
     {: .topicgroup}
-    CLI
-        cli/curl.md
-        cli/bx.md
-
-    {: .topicgroup}
     Libraries
         libraries/java.md
         libraries/python.md
         libraries/node.md
+        libraries/other.md
 
     {: .topicgroup}
     Technical guides
