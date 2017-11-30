@@ -43,10 +43,8 @@ Cloud Object Storage
         api-reference/api-reference-buckets.md
         api-reference/api-reference-objects.md
 
-    {: .topicgroup}
-        cli/curl.md
-        cli/bx.md
-        
+    cli/curl.md
+
     {: .topicgroup}
     Libraries
         libraries/java.md
