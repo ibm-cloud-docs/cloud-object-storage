@@ -28,7 +28,6 @@ Cloud Object Storage
         iam/users-serviceids.md
         iam/service-credentials.md
         iam/buckets.md
-        iam/service-credentials.md
         iam/public-access.md
 
     {: .topicgroup}
@@ -41,9 +40,6 @@ Cloud Object Storage
     basics/classes.md
     basics/multipart.md
     basics/encryption.md
-
-
-    {: .navgroup-end}
 
     {: .topicgroup}
     Use the command line
@@ -64,6 +60,7 @@ Cloud Object Storage
         gui/cloudberry.md
         gui/transmit.md
         gui/dragondisk.md
+    {: .navgroup-end}
 
     {: .navgroup id="reference"}
     api-reference/api-overview.md
