@@ -15,8 +15,13 @@ lastupdated: "2017-09-27"
 # Bucket operations
 
 ## List buckets belonging to an account (`GET` service)
+{: #list-buckets}
 
-A `GET` issued to the endpoint root returns a list of buckets associated with the requesting account. This operation does not make use of operation specific headers, query parameters, or payload elements.
+A `GET` issued to the endpoint root returns a list of buckets associated with the specified service instance. This operation does not make use of operation specific query parameters or payload elements.
+
+Header                                        | Type   | Description
+------------------------------------------------- | ------ | ----
+`ibm-service-instance-id`  | string  |  This header references the service instance where the bucket will be created and to which data usage will be billed.
 
 **Syntax**
 
@@ -31,6 +36,7 @@ GET / HTTP/1.1
 Authorization: Bearer {token}
 Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
+ibm-service-instance-id: {ibm-service-instance-id}
 ```
 
 **Sample response**
@@ -64,8 +70,13 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
 ## Create a new bucket
+{: #new-bucket}
 
-A `PUT` issued to the endpoint root will create a bucket when a string is provided. Bucket names must be unique, and accounts are limited to 100 buckets each. Bucket names must be DNS-compliant; names between 3 and 63 characters long must be made of lowercase letters, numbers, and dashes. Bucket names must begin and end with a lowercase letter or number. Bucket names resembling IP addresses are not allowed. This operation does not make use of operation specific headers or query parameters.
+A `PUT` issued to the endpoint root will create a bucket when a string is provided. Bucket names must be unique, and accounts are limited to 100 buckets each. Bucket names must be DNS-compliant; names between 3 and 63 characters long must be made of lowercase letters, numbers, and dashes. Bucket names must begin and end with a lowercase letter or number. Bucket names resembling IP addresses are not allowed. This operation does not make use of operation specific query parameters.
+
+Header                                        | Type   | Description
+------------------------------------------------- | ------ | ----
+`ibm-service-instance-id`  | string  |  This header references the service instance where the bucket will be created and to which data usage will be billed.
 
 **Syntax**
 
@@ -83,6 +94,7 @@ PUT /images HTTP/1.1
 Authorization: Bearer {token}
 Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
+ibm-service-instance-id: {ibm-service-instance-id}
 ```
 
 **Sample response**
@@ -101,15 +113,14 @@ Content-Length: 0
 ----
 
 ## Create a bucket with a different storage class
+{: #storage-class}
 
-To create a bucket with a different storage class, send an XML block specifying a bucket configuration with a `LocationConstraint` of `{provisioning code}` in the body of a `PUT` request to a bucket endpoint.  Note that standard bucket [naming rules](#create-a-new-bucket) apply.
+To create a bucket with a different storage class, send an XML block specifying a bucket configuration with a `LocationConstraint` of `{provisioning code}` in the body of a `PUT` request to a bucket endpoint.  Note that standard bucket [naming rules](#create-a-new-bucket) apply. This operation does not make use of operation specific query parameters.
 
-Valid provisioning codes for `LocationCostraint` are: <br>
-&emsp;&emsp;  `us-standard` / `us-vault` / `us-cold` / `us-flex` <br>
-&emsp;&emsp;  `us-east-standard` / `us-east-vault`  / `us-east-cold` / `us-east-flex` <br>
-&emsp;&emsp;  `us-south-standard` / `us-south-vault`  / `us-south-cold` / `us-south-flex` <br>
-&emsp;&emsp;  `eu-standard` / `eu-vault` / `eu-cold` / `eu-flex` <br>
-&emsp;&emsp;  `eu-gb-standard` / `eu-gb-vault` / `eu-gb-cold` / `eu-gb-flex` <br>
+Header                                        | Type   | Description
+------------------------------------------------- | ------ | ----
+`ibm-service-instance-id`  | string  |  This header references the service instance where the bucket will be created and to which data usage will be billed.
+
 **Syntax**
 
 ```shell
@@ -123,6 +134,13 @@ PUT https://{bucket-name}.{endpoint} # virtual host style
 </CreateBucketConfiguration>
 ```
 
+Valid provisioning codes for `LocationCostraint` are: <br>
+&emsp;&emsp;  `us-standard` / `us-vault` / `us-cold` / `us-flex` <br>
+&emsp;&emsp;  `us-east-standard` / `us-east-vault`  / `us-east-cold` / `us-east-flex` <br>
+&emsp;&emsp;  `us-south-standard` / `us-south-vault`  / `us-south-cold` / `us-south-flex` <br>
+&emsp;&emsp;  `eu-standard` / `eu-vault` / `eu-cold` / `eu-flex` <br>
+&emsp;&emsp;  `eu-gb-standard` / `eu-gb-vault` / `eu-gb-cold` / `eu-gb-flex` <br>
+
 **Sample request**
 
 This is an example of creating a new bucket called 'vault-images'.
@@ -132,6 +150,7 @@ PUT /vault-images HTTP/1.1
 Authorization: Bearer {token}
 Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
+ibm-service-instance-id: {ibm-service-instance-id}
 Content-Length: 110
 ```
 ```xml
@@ -154,9 +173,21 @@ Content-Length: 0
 
 ----
 
-## Create a new bucket with Key Protect encryption
+## Create a new bucket with Key Protect managed encryption keys (SSE-KP)
+{: #key-protect}
 
-To create a bucket
+To create a bucket where the encryption keys are managed by Key Protect, it is necessary to have access to an active Key Protect service instance located in the same location as the new bucket. This operation does not make use of operation specific query parameters.
+
+For more information on using Key Protect to manage your encryption keys, [see the documentation](/docs/services/keymgmt/index.html).
+
+Note that Key Protect is not available in a Cross Region configuration and any SSE-KP buckets must be Regional.
+{:tip}
+
+Header                                        | Type   | Description
+------------------------------------------------- | ------ | ----
+`ibm-service-instance-id`  | string  |  This header references the service instance where the bucket will be created and to which data usage will be billed.
+`ibm-sse-kp-encryption-algorithm` | string | This header is used to specify the algorithm and key size to use with the encryption key stored using Key Protect. This value must be set to the string `AES256`.
+`ibm-sse-kp-customer-root-key-crn`  | string | This header is used to reference the specific root key used by Key Protect to encrypt this bucket. This value must be the full CRN of the root key.
 
 **Syntax**
 
@@ -173,7 +204,7 @@ This is an example of creating a new bucket called 'secure-files'.
 PUT /secure-files HTTP/1.1
 Authorization: Bearer {token}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us-south.objectstorage.softlayer.net
 ibm-service-instance-id: {ibm-service-instance-id}
 ibm-sse-kp-encryption-algorithm: "AES256"
 ibm-sse-kp-customer-root-key-crn: {customer-root-key-id}

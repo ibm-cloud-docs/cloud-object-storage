@@ -26,14 +26,15 @@ The service instance ID is also referred to as a _resource instance ID_.  The va
 Detailed documentation can be found at [here](https://ibm.github.io/ibm-cos-sdk-python/).
 
 ## Migrating from 1.x.x
-The 2.0 release of the SDK introduces a namespacing change that allows an application to make use of the original `boto3` library to connect to AWS resources within the same application or environment.  To migrate from 1.x to 2.0 a few changes are necessary.
+The 2.0 release of the SDK introduces a namespacing change that allows an application to make use of the original `boto3` library to connect to AWS resources within the same application or environment.  To migrate from 1.x to 2.0 some changes are necessary.
 
-  1. Update the `requirements.txt`, or from PyPI via `pip install -U ibm-cos-sdk`.
+  1. Update the `requirements.txt`, or from PyPI via `pip install -U ibm-cos-sdk`.  Verify no older versions exist with `pip list | grep ibm-cos`.
   2. Update any import declarations from `boto3` to `ibm_boto3`.
+  3. If needed, reinstall the original `boto3` by updating the `requirements.txt`, or from PyPI via `pip install boto3`.
 
 ## Example script
 
-This script assumes that a service credential has been created and stored in JSON format in the same directory.  The credential must have the following fields at minimum:
+This script assumes that a service credential is stored in JSON format in the same directory.  The credential must have the following fields:
 
 ### Credential
 ```json
