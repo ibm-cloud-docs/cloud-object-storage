@@ -16,11 +16,11 @@ lastupdated: "2017-11-05"
 
 # API Reference
 
-The {{site.data.keyword.cos_full}} API is a REST-based API for reading and writing objects. It uses {{site.data.keyword.cloud}} Identity & Access Management for authentication/authorization, and supports a subset of the S3 API for easy migration of applications to {{site.data.keyword.cloud_notm}}.
+The {{site.data.keyword.cos_full}} API is a REST-based API for reading and writing objects. It uses {{site.data.keyword.iamlong}} for authentication/authorization, and supports a subset of the S3 API for easy migration of applications to {{site.data.keyword.cloud_notm}}.
 
 This reference documentation is being continously improved. If you have technical questions about using the API in your application, please post them on StackOverflow using both `ibm-cloud-platform` and `object-storage` tags and we will do our best to answer, and then improve this documentation thanks to your feedback.
 
-There isn't a focused command line utility for managing data stored in {{site.data.keyword.cos_short}}.  As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage.  More information can be found in [the `curl` reference](/docs/services/cloud-object-storage/cli/curl.html).
+There isn't a focused command line utility for managing data stored in {{site.data.keyword.cos_short}}.  As {{site.data.keyword.iamshort}}  tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage.  More information can be found in [the `curl` reference](/docs/services/cloud-object-storage/cli/curl.html).
 
 The following tables describe the complete set of operations when using the {{site.data.keyword.cos_full_notm}} API to access {{site.data.keyword.cos_short}}.  For details on using the operations, including examples, see [the API reference page for buckets](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html) or [objects](/docs/services/cloud-object-storage/api-reference/api-reference-objects.html).
 
