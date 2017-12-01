@@ -87,7 +87,7 @@ cos = ibm_boto3.client('s3',
                     endpoint_url=service_endpoint)
 
 
-# Call S3 to list current buckets
+# Call COS to list current buckets
 response = cos.list_buckets()
 
 # Get a list of all bucket names from the response
@@ -107,7 +107,7 @@ if len(result) == 0 :
    # Upload a file
    cos.upload_file('./example.py', bucket_name, 'example-object')
 
-   # Call S3 to list current buckets
+   # Call COS to list current buckets
    response = cos.list_buckets()
 
    # Get a list of all bucket names from the response
@@ -121,7 +121,7 @@ else :
    bucket_name = result[0];
 
 
-# Call S3 to list current objects
+# Call COS to list current objects
 response = cos.list_objects(Bucket=bucket_name)
 
 # Get a list of all object names from the response
