@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017
-lastupdated: "2017-11-11"
+lastupdated: "28-11-2017"
 
 ---
 {:new_window: target="_blank"}
@@ -12,7 +12,7 @@ lastupdated: "2017-11-11"
 {:screen: .screen}
 {:tip: .tip}
 
-# Service credentials 
+# Service credentials
 A service credential provides the necessary information to connect an application to {{site.data.keyword.cos_short_notm}} packaged in a JSON document.  Service credentials are always associated with a Service ID, and new Service IDs can be created along with a new credential.  The credential contains the following values:
 
 Field name | Value

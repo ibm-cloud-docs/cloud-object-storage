@@ -14,17 +14,27 @@ lastupdated: "2017-09-27"
 
 # Python
 
-Python support is provided through a fork of the Boto 3 library.  It can be installed from the Python Package Index via `pip install ibm-cos-sdk`.
+Python support is provided through a fork of the Boto library.  It can be installed from the Python Package Index via `pip install ibm-cos-sdk`.
 
 Source code can be found at [GitHub](https://github.com/ibm/ibm-cos-sdk-python/).
 
-The fork of the `boto3` library provides complete access to the {{site.data.keyword.cos_full}} API.  Endpoints, an API key, and the instance ID must be specified when creating a service resource or low-level client as shown in the following basic examples.
+The `ibm_boto3` library provides complete access to the {{site.data.keyword.cos_full}} API.  Endpoints, an API key, and the instance ID must be specified when creating a service resource or low-level client as shown in the following basic examples.
+
+The service instance ID is also referred to as a _resource instance ID_.  The value can be found by creating a [service credential](/docs/services/cloud-object-storage/iam/service-credentials.html), or through the CLI.
+{:tip}
 
 Detailed documentation can be found at [here](https://ibm.github.io/ibm-cos-sdk-python/).
 
+## Migrating from 1.x.x
+The 2.0 release of the SDK introduces a namespacing change that allows an application to make use of the original `boto3` library to connect to AWS resources within the same application or environment.  To migrate from 1.x to 2.0 some changes are necessary.
+
+  1. Update the `requirements.txt`, or from PyPI via `pip install -U ibm-cos-sdk`.  Verify no older versions exist with `pip list | grep ibm-cos`.
+  2. Update any import declarations from `boto3` to `ibm_boto3`.
+  3. If needed, reinstall the original `boto3` by updating the `requirements.txt`, or from PyPI via `pip install boto3`.
+
 ## Example script
 
-This script assumes that a service credential has been created and stored in JSON format in the same directory.  The credential must have the following fields at minimum:
+This script assumes that a service credential is stored in JSON format in the same directory.  The credential must have the following fields:
 
 ### Credential
 ```json
@@ -37,11 +47,11 @@ This script assumes that a service credential has been created and stored in JSO
 
 ### Script
 ```python
-import boto3
+import ibm_boto3
 import json
 import requests
 import random
-from botocore.client import Config
+from ibm_botocore.client import Config
 from pprint import pprint
 
 with open('./credentials.json') as data_file:
@@ -69,7 +79,7 @@ service_endpoint = "https://" + cos_host
 
 print("Creating client...")
 # Get bucket list
-cos = boto3.client('s3',
+cos = ibm_boto3.client('s3',
                     ibm_api_key_id=api_key,
                     ibm_service_instance_id=service_instance_id,
                     ibm_auth_endpoint=auth_endpoint,
