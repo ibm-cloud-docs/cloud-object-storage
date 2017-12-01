@@ -19,6 +19,9 @@ lastupdated: "2017-09-27"
 
 A `PUT` given a path to an object uploads the request body as an object. A SHA256 hash of the object is a required header.  All objects uploaded in a single thread are limited to 5TB in size (objects [uploaded in multiple parts](#multipart) can be as large as 10TB).
 
+**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
+{:tip}
+
 **Syntax**
 
 ```bash
@@ -258,6 +261,8 @@ Content-Length: 207
 
 A `PUT` given a path to a new object creates a new copy of another object specified by the `x-amz-copy-source` header. Unless otherwise altered the metadata remains the same.
 
+**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
+{:tip}
 
 **Syntax**
 

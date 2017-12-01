@@ -78,6 +78,9 @@ Header                                        | Type   | Description
 ------------------------------------------------- | ------ | ----
 `ibm-service-instance-id`  | string  |  This header references the service instance where the bucket will be created and to which data usage will be billed.
 
+**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
+{:tip}
+
 **Syntax**
 
 ```shell
