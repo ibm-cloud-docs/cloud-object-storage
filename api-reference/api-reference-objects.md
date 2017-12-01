@@ -13,11 +13,11 @@ lastupdated: "2017-09-27"
 {:tip: .tip}
 
 # Object operations
-{: #operations-on-objects}
 
 ## Upload an object
+{: #upload-object}
 
-A `PUT` given a path to an object uploads the request body as an object. A SHA256 hash of the object is a required header.  All objects are limited to 5TB in size.
+A `PUT` given a path to an object uploads the request body as an object. A SHA256 hash of the object is a required header.  All objects uploaded in a single thread are limited to 5TB in size (objects [uploaded in multiple parts](#multipart) can be as large as 10TB).
 
 **Syntax**
 
@@ -254,6 +254,7 @@ Content-Length: 207
 ----
 
 ## Copy an object
+{: #copy-object}
 
 A `PUT` given a path to a new object creates a new copy of another object specified by the `x-amz-copy-source` header. Unless otherwise altered the metadata remains the same.
 
@@ -487,6 +488,7 @@ Content-Length: 0
 ----
 
 ## Check an object's CORS configuration
+{: #options}
 
 An `OPTIONS` given a path to an object along with an origin and request type checks to see if that object is accessible from that origin using that request type.  Unlike all other requests, an OPTIONS request does not require the `authorization` or `x-amx-date` headers.
 
