@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017
-lastupdated: "2017-09-27"
+lastupdated: "2017-12-01"
 
 ---
 {:new_window: target="_blank"}
@@ -14,7 +14,7 @@ lastupdated: "2017-09-27"
 
 # Constructing an HMAC signature
 
-Each request made against IBM COS using HMAC credentials instead of an API key or bearer token must be authenticated using an implementation of the AWS Signature Version 4 `authorization` header. Using a signature provides identity verification and in-transit data integrity, and because each signature is tied to the timestamp of the request it is not possible to reuse authorization headers.  The header is composed of four components: an algorithm declaration, credential information, signed headers, and the calculated signature:
+Each request made against IBM COS using [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html) instead of an [API key or bearer token](/docs/services/cloud-object-storage/iam/overview.html) must be authenticated using an implementation of the AWS Signature Version 4 `authorization` header. Using a signature provides identity verification and in-transit data integrity, and because each signature is tied to the timestamp of the request it is not possible to reuse authorization headers.  The header is composed of four components: an algorithm declaration, credential information, signed headers, and the calculated signature:
 
 ```
 AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;{other-required-headers},Signature={signature}
