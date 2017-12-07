@@ -27,10 +27,6 @@ Cloud Object Storage
     basics/classes.md
     basics/multipart.md
     basics/sse-c.md
-
-    {: .topicgroup}
-    Tutorials
-        tutorials/web-application.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
