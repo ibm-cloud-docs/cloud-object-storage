@@ -13,7 +13,8 @@ lastupdated: "2017-12-01"
 {:tip: .tip}
 
 # Service credentials
-A service credential provides the necessary information to connect an application to {{site.data.keyword.cos_short_notm}} packaged in a JSON document.  Service credentials are always associated with a Service ID, and new Service IDs can be created along with a new credential.  The credential contains the following values:
+
+A service credential provides the necessary information to connect an application to {{site.data.keyword.cos_short}} packaged in a JSON document.  Service credentials are always associated with a Service ID, and new Service IDs can be created along with a new credential.  The credential contains the following values:
 
 Field name | Value
 --|--
@@ -39,5 +40,74 @@ This is an example of a service credential:
 }
 ```
 
+## Understanding the `endpoints` objects
+{: #endpoints}
+
+The `endpoints` URL provided as part of the service credential provides a list of all possible endpoints that can be used when connecting a client:
+
+```json
+{
+  "identity-endpoints": {
+    "iam-token": "iam.bluemix.net",
+    "iam-policy": "iampap.bluemix.net"
+  },
+  "service-endpoints": {
+    "cross-region": {
+      "us": {
+        "public": {
+          "us-geo": "s3-api.us-geo.objectstorage.softlayer.net",
+          "Dallas": "s3-api.dal-us-geo.objectstorage.softlayer.net",
+          "Washington": "s3-api.wdc-us-geo.objectstorage.softlayer.net",
+          "San Jose": "s3-api.sjc-us-geo.objectstorage.softlayer.net"
+        },
+        "private": {
+          "us-geo": "s3-api.us-geo.objectstorage.service.networklayer.com",
+          "Dallas": "s3-api.dal-us-geo.objectstorage.service.networklayer.com",
+          "Washington": "s3-api.wdc-us-geo.objectstorage.service.networklayer.com",
+          "San Jose": "s3-api.sjc-us-geo.objectstorage.service.networklayer.com"
+        }
+      },
+      "eu": {
+        "public": {
+          "eu-geo": "s3.eu-geo.objectstorage.softlayer.net",
+          "Amsterdam": "s3.ams-eu-geo.objectstorage.softlayer.net",
+          "Frankfurt": "s3.fra-eu-geo.objectstorage.softlayer.net",
+          "Milan": "s3.mil-eu-geo.objectstorage.softlayer.net"
+        },
+        "private": {
+          "eu-geo": " s3.eu-geo.objectstorage.service.networklayer.com",
+          "Amsterdam": "s3.ams-eu-geo.objectstorage.service.networklayer.com",
+          "Frankfurt": "s3.fra-eu-geo.objectstorage.service.networklayer.com",
+          "Milan": "s3.mil-eu-geo.objectstorage.service.networklayer.com"
+        }
+      }
+    },
+    "regional": {
+      "us-south": {
+        "public": {
+          "us-south": "s3.us-south.objectstorage.softlayer.net"
+        },
+        "private": {
+          "us-south": "s3.us-south.objectstorage.service.networklayer.com"
+        }
+      },
+      "us-east": {
+        "public": {
+          "us-east": "s3.us-east.objectstorage.softlayer.net"
+        },
+        "private": {
+          "us-east": "s3.us-east.objectstorage.service.networklayer.com"
+        }
+      }
+    }
+  }
+}
+```
+
+When creating a client using a library that requires an "auth" endpoint value, you need to add `/oidc/token` to end of the `iam-token` URL provided above.
+{:tip}
+
 ## Using service credentials for single-bucket access
+{: #single-bucket}
+
 When a service credential is created, the underlying Service ID is granted a role on the entire instance of {{site.data.keyword.cos_short}}. If the intention that the credential be used to grant access to a subset of buckets and not the entire instance, this policy will need to be edited.  See the [Bucket permissions](/docs/services/cloud-object-storage/iam/buckets.html) page for more details.
