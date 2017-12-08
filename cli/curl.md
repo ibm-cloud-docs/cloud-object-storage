@@ -53,15 +53,6 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)"
 ```
 {:codeblock}
 
-Get a bucket's location and storage class
------------------------------------------
-
-```
-curl "https://(endpoint)/(bucket-name)/?location"
- -H "Authorization: Bearer (token)"
-```
-{:codeblock}
-
 Allow public object listing
 ---------------------------
 
