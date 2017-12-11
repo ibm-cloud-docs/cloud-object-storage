@@ -10,7 +10,6 @@ Cloud Object Storage
         basics/developers.md
         getting-started.md
         index.md
-        tutorials/web-application.md
 
     basics/glossary.md
     release-notes.md
