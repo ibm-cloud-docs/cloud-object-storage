@@ -14,9 +14,9 @@ lastupdated: "2017-09-27"
 
 # Data security and encyrption
 
-IBM Cloud Object Storage uses an innovative approach for cost-effectively storing large volumes of unstructured data while ensuring security, availability and reliability. This is accomplished by using Information Dispersal Algorithms (IDAs) to separate data into unrecognizable “slices” that are distributed across a network of data centers, making transmission and storage of data inherently private and secure. No complete copy of the data resides in any single storage node, and only a subset of nodes needs to be available in order to fully retrieve the data on the network.
+{{site.data.keyword.cos_full}} uses an innovative approach for cost-effectively storing large volumes of unstructured data while ensuring security, availability and reliability. This is accomplished by using Information Dispersal Algorithms (IDAs) to separate data into unrecognizable “slices” that are distributed across a network of data centers, making transmission and storage of data inherently private and secure. No complete copy of the data resides in any single storage node, and only a subset of nodes needs to be available in order to fully retrieve the data on the network.
 
-Objects in IBM COS are encrypted at rest. This technology individually encrypts each object using per-object generated keys. These keys are secured and reliably stored using the same Information Dispersal Algorithms that protect object data using an All-or-Nothing Transform (AONT), which prevents key data from being disclosed if individual nodes or hard drives are compromised.
+All data in {{site.data.keyword.cos_full_notm}} is encrypted at rest. This technology individually encrypts each object using per-object generated keys. These keys are secured and reliably stored using the same Information Dispersal Algorithms that protect object data using an All-or-Nothing Transform (AONT), which prevents key data from being disclosed if individual nodes or hard drives are compromised.
 
 Storage can be accessed over HTTPS, and internally storage devices are certified and communicate with each other using TLS.
 
@@ -27,4 +27,4 @@ After data is deleted various mechanisms exist which prevent recovery or reconst
 
 ## Tenant isolation
 
-IBM COS Cross-Region is a shared infrastructure, multi-tenant object storage solution. If your workload requires dedicated or isolated storage, visit [IBM Cloud](https://www.ibm.com/cloud-computing/products/storage/object-storage/flexible-deployment/) for more information.
+{{site.data.keyword.cos_full_notm}} is a shared infrastructure, multi-tenant object storage solution. If your workload requires dedicated or isolated storage, visit [{{site.data.keyword.cloud}}](https://www.ibm.com/cloud-computing/products/storage/object-storage/flexible-deployment/) for more information.

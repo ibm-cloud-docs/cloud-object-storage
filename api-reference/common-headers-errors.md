@@ -15,7 +15,7 @@ lastupdated: "2017-09-27"
 # Common Headers & Error Codes
 
 ## Common Request Headers
-The following table describes supported common request headers. COS ignores any common headers not listed below if sent in a request, although some requests may support other headers as defined in this documentation.
+The following table describes supported common request headers. {{site.data.keyword.cos_full}} ignores any common headers not listed below if sent in a request, although some requests may support other headers as defined in this documentation.
 
 | Header                    | Note                                                                            |
 |---------------------------|---------------------------------------------------------------------------------|

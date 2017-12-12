@@ -15,13 +15,13 @@ lastupdated: "2017-09-27"
 # Key terms
 
 ## Service
-An unique component of the IBM Cloud Platform (e.g. Cloud Object Storage, Cloudant, Functions, etc.)
+An unique component of the {{site.data.keyword.cloud}} Platform (e.g. {{site.data.keyword.cos_full}}, Cloudant, Functions, etc.)
 
 ## Resource
-Anything that you have created in the IBM Cloud.  A resource could be an instance of a service, a Kubernetes cluster, an object storage bucket, a Cloud Foundry application, or nearly anything else created in Bluemix.  Access to resources is controlled using Identity and Access Management policies.
+Anything that you have created in the {{site.data.keyword.cloud_notm}}.  A resource could be an instance of a service, a Kubernetes cluster, an object storage bucket, a Cloud Foundry application, or nearly anything else created in the {{site.data.keyword.cloud_notm}} Platform.  Access to resources is controlled using Identity and Access Management policies.
 
 ## Resource instance / Service instance
-An instance of a cloud service. Depending on the service, this could be a unique instance or an account within a multi-tenant service (Cloud Object Storage)
+An instance of a cloud service. Depending on the service, this could be a unique instance or an account within a multi-tenant service ({{site.data.keyword.cos_short}})
 
 ## Resource instance ID / Service instance ID
 When you create or provision an instance of a service, it is assigned a unique identifier in the form of a Cloud Resource Name (CRN):
@@ -30,7 +30,7 @@ When you create or provision an instance of a service, it is assigned a unique i
 crn:v1:bluemix:public:<service-name>:<region>:a/<account-id>:<resource-instance-GUID>:<resource-type>:<resource>
 ```
 
-For an instance of COS, this might look like:
+For an instance of {{site.data.keyword.cos_short}}, this might look like:
 
 ```
 crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::
@@ -56,23 +56,23 @@ A service ID is an abstracted user that is intended to be used by developers to 
 
 ## IAM roles
 IAM roles represent the level of access that a given subject should have on a given resource.  There are two types of roles:
-  - Platform roles: Work with the IBM Cloud Platform (Bluemix) itself (manage accounts, create instances, write IAM policies).
+  - Platform roles: Work with the {{site.data.keyword.cloud_notm}} Platform itself (manage accounts, create instances, write IAM policies).
   - Service roles: Work with service-specific resources (access buckets and objects).
 
 ## Identity endpoint
-The IAM endpoint (`iam.bluemix.net`) is used to fetch an access token in exchange for an API key.  This token is used in the `Authorization` header in all REST API requests sent to a COS service endpoint.
+The IAM endpoint (`iam.bluemix.net`) is used to fetch an access token in exchange for an API key.  This token is used in the `Authorization` header in all REST API requests sent to an {{site.data.keyword.cos_short}} service endpoint.
 
 ## Service endpoints
 Service endpoints (for example, `s3.us-south.objectstorage.softlayer.net`) are the base URLs where API requests that interact with data are sent.
 
-## COS bucket location
-All buckets in COS are scoped to a location. This is either a region (such as `us-south` or `us-east`) or a geography (such as `eu-geo` or `us-geo`).  Within this location, objects are sliced and dispersed across three different physical locations.
+## {{site.data.keyword.cos_short}} bucket location
+All buckets in {{site.data.keyword.cos_short}} are scoped to a location. This is either a region (such as `us-south` or `us-east`) or a geography (such as `eu-geo` or `us-geo`).  Within this location, objects are sliced and dispersed across three different physical locations.
 
 ## Regions
-Region and location are often used interchangeably, but unlike most services available in Bluemix, COS is a 'global' service.  Bluemix exists in different regions (such as `US South` or `United Kingdom`) and some services are scoped to the location where they were created. While each instance of COS is considered to be 'global', each individual bucket has a specific combination of location, resiliency, and storage class.
+Region and location are often used interchangeably, but unlike most services available in the {{site.data.keyword.cloud_notm}} Platform, {{site.data.keyword.cos_short}} is a 'global' service. The  {{site.data.keyword.cloud_notm}} Platform exists in different regions (such as `US South` or `United Kingdom`) and some services are scoped to the location where they were created. While each instance of {{site.data.keyword.cos_short}} is considered to be 'global', each individual bucket has a specific combination of location, resiliency, and storage class.
 
-## COS Resiliency
+## {{site.data.keyword.cos_short}} Resiliency
 Resiliency refers to the scope and scale of the geographic area across which your data is distributed. _Cross Region_ resiliency will spread your data across several metropolitan areas, while _Regional_ resiliency will spread data across a single metropolitan area.
 
-## COS S3 Keys vs. IAM API Key
-Instances of COS provisioned as IaaS use access and secret key pairs (referred to as HMAC keys) instead of an IBM Cloud IAM API key.  These key pairs allow for creating AWS V4 signatures for authentication and authorization instead of the OAuth2 bearer tokens used by IBM Cloud IAM. HMAC keys are not yet available for COS instances provisioned through Bluemix.  While IAM API keys allow for much stronger and fine-grained access control, HMAC keys are required for using S3-compatible tools and gateways (such as the AWS CLI or Cyberduck).
+## {{site.data.keyword.cos_short}} S3 Keys vs. IAM API Key
+Instances of {{site.data.keyword.cos_short}} provisioned as IaaS use access and secret key pairs (referred to as HMAC keys) instead of an {{site.data.keyword.cloud_notm}} IAM API key.  These key pairs allow for creating AWS V4 signatures for authentication and authorization instead of the OAuth2 bearer tokens used by {{site.data.keyword.cloud_notm}} IAM. HMAC keys are not yet available for {{site.data.keyword.cos_short}} instances provisioned through the {{site.data.keyword.cloud_notm}} Platform.  While IAM API keys allow for much stronger and fine-grained access control, HMAC keys are required for using S3-compatible tools and gateways (such as the AWS CLI or Cyberduck).

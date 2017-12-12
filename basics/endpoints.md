@@ -14,14 +14,14 @@ lastupdated: "2017-09-27"
 
 # Select regions and endpoints
 
-Both regional and cross region endpoints are available for connecting applications to COS. Compute workloads co-located with a Regional COS endpoint will see lower latency and better performance. For workloads not concentrated in a single geographic area, the `geo` endpoint routes connections to the nearest regional data centers.  When using a cross region endpoint, it is possible to direct inbound traffic to a specific access point while still distributing data across all three sites.  All requests must use SSL when using IAM, and the service will reject any plaintext requests.
+Both regional and cross region endpoints are available for connecting applications to {{site.data.keyword.cos_full}}. Compute workloads co-located with a Regional {{site.data.keyword.cos_short}} endpoint will see lower latency and better performance. For workloads not concentrated in a single geographic area, the `geo` endpoint routes connections to the nearest regional data centers.  When using a cross region endpoint, it is possible to direct inbound traffic to a specific access point while still distributing data across all three sites.  All requests must use SSL when using IAM, and the service will reject any plaintext requests.
 
 Types of endpoint:
 
-IBM Cloud services are connected to a three-tiered network, segmenting public, private, and management traffic.
+{{site.data.keyword.cloud}} services are connected to a three-tiered network, segmenting public, private, and management traffic.
 
 * **Private endpoints** are available for requests originating from Kubernetes clusters, bare metal servers, virtual servers, and other cloud storage services. Private endpoints provide better performance and do not incur charges for any outgoing or incoming bandwidth even if the traffic is cross regions or across data centers.
-* **Public endpoints** can accept requests from anywhere and charges are assessed on outgoing bandwidth. Incoming bandwidth is free. Public endpoints should be used for access not originating from an IBM Cloud cloud computing resource.  **Note**: Cloud Foundry applications are unable to access the private network, so data transfer is metered and charged at standard public network bandwidth rates.
+* **Public endpoints** can accept requests from anywhere and charges are assessed on outgoing bandwidth. Incoming bandwidth is free. Public endpoints should be used for access not originating from an {{site.data.keyword.cloud_notm}} cloud computing resource.  **Note**: Cloud Foundry applications are unable to access the private network, so data transfer is metered and charged at standard public network bandwidth rates.
 
 
 ## US Cross Region Endpoints
@@ -150,7 +150,7 @@ IBM Cloud services are connected to a three-tiered network, segmenting public, p
   </tr>
   <tr>
     <td>private</td>
-    <td><code class="highlighter-rouge">s3pi.mil-eu-geo.objectstorage.service.networklayer.com</code></td>
+    <td><code class="highlighter-rouge">s3.mil-eu-geo.objectstorage.service.networklayer.com</code></td>
   </tr>
 </table>
 {:.endpointtable}

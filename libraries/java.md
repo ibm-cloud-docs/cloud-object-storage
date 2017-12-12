@@ -14,12 +14,12 @@ lastupdated: "2017-09-27"
 
 # Java
 
-The COS SDK for Java is comprehensive, and has features and capabilities not described in this guide.  For detailed class and method documentation [see the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/). Source code can be found in the [GitHub repository](https://github.com/ibm/ibm-cos-sdk-java).
+The {{site.data.keyword.cos_full}} SDK for Java is comprehensive, and has features and capabilities not described in this guide.  For detailed class and method documentation [see the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/). Source code can be found in the [GitHub repository](https://github.com/ibm/ibm-cos-sdk-java).
 
 ## Getting the SDK
-The easiest way to consume the IBM COS Java SDK is to use Maven to manage dependencies. If you aren't familiar with Maven, you get can get up and running using the [Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html) guide.
+The easiest way to consume the {{site.data.keyword.cos_full_notm}} Java SDK is to use Maven to manage dependencies. If you aren't familiar with Maven, you get can get up and running using the [Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html) guide.
 
-Maven uses a file called `pom.xml` to specify the libraries (and their versions) needed for a Java project.  Here is an example `pom.xml` file for using the IBM COS Java SDK to connect to IBM COS.
+Maven uses a file called `pom.xml` to specify the libraries (and their versions) needed for a Java project.  Here is an example `pom.xml` file for using the {{site.data.keyword.cos_full_notm}} Java SDK to connect to {{site.data.keyword.cos_short}}.
 
 
 ```xml
@@ -308,9 +308,110 @@ cos.deleteObject( // delete the Object, passing…
 );
 ```
 
+## Using Key Protect
+
+A new object `EncryptionType` will contain the default value for the encryption algorithm & a `IBMSSEKPCustomerRootKeyCrn` variable.
+
+```java
+private String kpEncryptionAlgorithm = "AES256";
+private String IBMSSEKPCustomerRootKeyCrn;
+
+`kpEncryptionAlgorithm` will default to `AES256`, but can be overwritten with a setter method
+The `CreateBucketRequest` object has been modified to accept the `EncryptionType` object when creating a bucket.
+```
+
+```
+s3client.createBucket(new CreateBucketRequest(bucketName).withEncryptionType(encryptionType));
+```
+
+The additional headers have been defined within `Headers` class:
+
+```java
+Headers.java
+
+public static final String IBM_SSE_KP_ENCRYPTION_ALGORITHM = "ibm-sse-kp-encryption-algorithm";
+public static final String IBM_SSE_KP_CUSTOMER_ROOT_KEY_CRN = "ibm-sse-kp-customer-root-key-crn";
+```
+
+The same section of the create bucket implementation which already adds IAM service instance headers will add the 2 new encryption headers:
+
+```java
+//Add IBM Service Instance Id & Encryption to headers
+if ((null != this.awsCredentialsProvider ) && (this.awsCredentialsProvider.getCredentials() instanceof IBMOAuthCredentials)) {
+    IBMOAuthCredentials oAuthCreds = (IBMOAuthCredentials)this.awsCredentialsProvider.getCredentials();
+    if (oAuthCreds.getServiceInstanceId() != null) {
+        request.addHeader(Headers.IBM_SERVICE_INSTANCE_ID, oAuthCreds.getServiceInstanceId());
+        request.addHeader(Headers.IBM_SSE_KP_ENCRYPTION_ALGORITHM, createBucketRequest.getEncryptionType().getKpEncryptionAlgorithm());
+        request.addHeader(Headers.IBM_SSE_KP_CUSTOMER_ROOT_KEY_CRN, createBucketRequest.getEncryptionType().getIBMSSEKPCustomerRootKeyCrn());
+    }
+}
+```
+
+The `ObjectListing` and `HeadBucketResult` objects have been updated to include boolean `IBMSSEKPEnabled` & String `IBMSSEKPCustomerRootKeyCrn` variables with getter & setter methods. These will store the values of the new headers.
+
+### GET bucket
+
+```java
+public ObjectListing listObjects(String bucketName)
+public ObjectListing listObjects(String bucketName, String prefix)
+public ObjectListing listObjects(ListObjectsRequest listObjectsRequest)
+```
+
+The `ObjectListing` class will require 2 additional methods:
+
+```java
+ObjectListing listing = s3client.listObjects(listObjectsRequest)
+String KPEnabled = listing.getIBMSSEKPEnabled();
+String crkId = listing.getIBMSSEKPCrkId();
+```
+
+The additonal headers have been defined within the `Headers` class:
+
+```java
+Headers.java
+public static final string IBM_SSE_KP_ENABLED = "ibm-sse-kp-enabled";
+public static final String IBM_SSE_KP_CUSTOMER_ROOT_KEY_CRN = "ibm-sse-kp-customer-root-key-crn";
+```
+
+The S3XmlResponseHandler which is responsible for unmarshalling all xml responses. A check has been added that the result is an instance of `ObjectListing` and the retrieved headers will be added to the `ObjectListing` object:
+
+```java
+if (result instanceof ObjectListing) {
+    if (!StringUtils.isNullOrEmpty(responseHeaders.get(Headers.IBM_SSE_KP_ENABLED)){
+            ((ObjectListing) result).setIBMSSEKPEnabled(Boolean.parseBoolean(responseHeaders.get(Headers.IBM_SSE_KP_ENABLED)));
+        }
+    if (!StringUtils.isNullOrEmpty(responseHeaders.get(Headers.IBM_SSE_KP_CUSTOMER_ROOT_KEY_CRN))) {
+            ((ObjectListing) result).setIBMSSEKPCrk(responseHeaders.get(Headers.IBM_SSE_KP_CUSTOMER_ROOT_KEY_CRN));
+        }
+}
+```
+
+### HEAD bucket
+
+The additional headers have been defined within Headers class:
+
+```java
+Headers.java
+public static final String IBM_SSE_KP_ENABLED = "ibm-sse-kp-enabled";
+public static final String IBM_SSE_KP_CUSTOMER_ROOT_KEY_CRN = "ibm-sse-kp-customer-root-key-crn";
+```
+
+These variables are populated in the HeadBucketResponseHandler.
+
+```java
+HeadBucketResultHandler
+result.setIBMSSEKPEnabled(response.getHeaders().get(Headers.IBM_SSE_KP_ENABLED));
+result.setIBMSSEKPCrk(response.getHeaders().get(Headers. IBM_SSE_KP_CUSTOMER_ROOT_KEY_CRN));
+
+Head Bucket Example
+HeadBucketResult result = s3client.headBucket(headBucketRequest)
+boolean KPEnabled = result.getIBMSSEKPEnabled();
+String crn = result.getIBMSSEKPCUSTOMERROOTKEYCRN();
+```
+
 ## API reference
 
-This list summarizes the AWS Java SDK methods that are supported by IBM COS. More detailed documentation on individual classes and methods can be found in the [the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/)
+This list summarizes the AWS Java SDK methods that are supported by {{site.data.keyword.cos_full_notm}}. More detailed documentation on individual classes and methods can be found in the [the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/)
 
 ```java
 abortMultipartUpload(AbortMultipartUploadRequest request)
