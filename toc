@@ -1,4 +1,4 @@
-{: .toc subcollection="cloud-object-storage" audience="services" href="/docs/services/cloud-object-storage/index.html"}
+{: .toc subcollection="cloud-object-storage" audience="services" href="/docs/services/cloud-object-storage/about-cos.html"}
 Cloud Object Storage
 
     {: .navgroup id="learn"}
@@ -19,22 +19,14 @@ Cloud Object Storage
     Manage access
         iam/overview.md
         iam/users-serviceids.md
-        iam/buckets.md
         iam/service-credentials.md
+        iam/buckets.md
         iam/public-access.md
 
     basics/endpoints.md
     basics/classes.md
     basics/multipart.md
-    
-    (: .topicgroup)
-    Manage encryption
-        basics/sse-c.md
-        basics/sse-kp.md
-
-    {: .topicgroup}
-    Tutorials
-        tutorials/web-application.md
+    basics/sse-c.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
@@ -46,7 +38,8 @@ Cloud Object Storage
         api-reference/common-headers-errors.md
         api-reference/api-reference-buckets.md
         api-reference/api-reference-objects.md
-        cli/curl.md
+
+    cli/curl.md
 
     {: .topicgroup}
     Libraries
@@ -66,4 +59,4 @@ Cloud Object Storage
     help/support.md
     help/billing.md
     [Pricing](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api)
-    {: .navgroup-end}
+{: .navgroup-end}
