@@ -42,11 +42,8 @@ Cloud Object Storage
 
     {: .topicgroup}
     Use the command line
-        cli/bx.md
         cli/curl.md
         cli/aws-cli.md
-        cli/rclone.md
-        cli/s3fs.md
 
     {: .topicgroup}
     Use a desktop client

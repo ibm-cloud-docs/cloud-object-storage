@@ -35,7 +35,7 @@ Key Protect is a centralized key management system (KMS) for generating, managin
 
 Once you have an instance of Key Protect in a region that you want to create a new bucket in, you need to create a root key and note the CRN of that key.
 
-You can choose to use Key Protect to manage encryption for a bucket only at the time of creation.  It isn't possible to change an existing bucket to use Key Protect. Key Protect
+You can choose to use Key Protect to manage encryption for a bucket only at the time of creation.  It isn't possible to change an existing bucket to use Key Protect. 
 {:tip}
 
 When creating the bucket, you need to provide additional headers.
