@@ -8,9 +8,8 @@ Cloud Object Storage
     Getting started
         basics/administrators.md
         basics/developers.md
+        getting-started-cli.md
         getting-started.md
-        index.md
-        tutorials/web-application.md
 
     basics/glossary.md
     release-notes.md
@@ -43,23 +42,12 @@ Cloud Object Storage
 
     {: .topicgroup}
     Use the command line
-        cli/bx.md
         cli/curl.md
         cli/aws-cli.md
-        cli/mc.md
-        cli/gof3r.md
-        cli/restic.md
-        cli/rclone.md
-        cli/s3fs.md
-        cli/minfs.md
 
     {: .topicgroup}
     Use a desktop client
         gui/cyberduck.md
-        gui/duplicati.md
-        gui/cloudberry.md
-        gui/transmit.md
-        gui/dragondisk.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}

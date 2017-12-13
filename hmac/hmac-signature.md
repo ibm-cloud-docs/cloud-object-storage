@@ -72,8 +72,8 @@ import hmac
 import requests
 
 # please don't store credentials directly in code
-access_key = os.environ.get('COS_S3_ACCESS_KEY_ID')
-secret_key = os.environ.get('COS_S3_SECRET_ACCESS_KEY')
+access_key = os.environ.get('COS_HMAC_ACCESS_KEY_ID')
+secret_key = os.environ.get('COS_HMAC_SECRET_ACCESS_KEY')
 
 # request elements
 http_method = 'GET'

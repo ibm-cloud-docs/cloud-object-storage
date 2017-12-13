@@ -16,15 +16,14 @@ lastupdated: "2017-09-27"
 
 Assign access roles for users and Service IDs against buckets, using either the UI or the CLI to create policies.
 
-| Access role | Example actions                            |
-|:------------|---------------------------------------------------|
-| Manager | Make objects public, create and destroy buckets and objects |
-| Writer | Create and destroy buckets and objects |
-| Reader | List and download objects |
-
-
+| Access role | Example actions                                             |
+|:------------|-------------------------------------------------------------|
+| Manager     | Make objects public, create and destroy buckets and objects |
+| Writer      | Create and destroy buckets and objects                      |
+| Reader      | List and download objects                                   |
 
 ## Granting access to a user
+{: #user-access}
 
 If the user needs to be able to use the console, it is necessary to also grant them a minimum role of `Viewer` on the instance itself.  This will allow them to view all buckets and list the objects within them. Then select **Bucket permissions** from the left navigation menu, select the user, and select the level of access (`Manager` or `Writer`) that they require.
 
@@ -40,6 +39,7 @@ This is also applicable to service instance and bucket level policies.
 If it is necessary to restrict access to a single bucket (or set of buckets) ensure the user or Service ID doesn't have any instance level policies using either the console or CLI.
 
 ### Using the UI
+{: #user-ui}
 
   1. Navigate to the **Identity and Access** console from the **Manage** menu.
   2. Select **Users** from the left navigation menu.
@@ -52,6 +52,7 @@ Note that leaving the **Resource Type** or **Resource** fields blank will create
 {:tip}
 
 ### Using the CLI
+{: #user-cli}
 
 From a terminal run the following command:
 
@@ -87,10 +88,11 @@ bx iam user-policy-update <user-name> <policy-id> \
 {:codeblock}
 
 ## Granting access to a service ID
-
+{: #serviceid-access}
 If you need to grant access to a bucket for an application or other non-human entity, use a Service ID.  The Service ID can be created specifically for this purpose, or can be an existing Service ID already in use.
 
 ### Using the UI
+{: #serviceid-ui}
 
   1. Navigate to the **Identity and Access** console from the **Manage** menu.
   2. Select **Service IDs** from the left navigation menu.
@@ -101,8 +103,9 @@ If you need to grant access to a bucket for an application or other non-human en
 
   Note that leaving the **Resource Type** or **Resource** fields blank will create an instance-level policy.
   {:tip}
-  
+
 ### Using the CLI
+{: #serviceid-cli}
 
 From a terminal run the following command:
 
