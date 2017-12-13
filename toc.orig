@@ -38,6 +38,9 @@ Cloud Object Storage
     basics/endpoints.md
     basics/classes.md
     basics/multipart.md
+<<<<<<< HEAD
+    basics/sse-c.md
+=======
     basics/encryption.md
 
     {: .topicgroup}
@@ -48,6 +51,7 @@ Cloud Object Storage
     {: .topicgroup}
     Use a desktop client
         gui/cyberduck.md
+>>>>>>> staging
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
@@ -59,6 +63,11 @@ Cloud Object Storage
         api-reference/common-headers-errors.md
         api-reference/api-reference-buckets.md
         api-reference/api-reference-objects.md
+<<<<<<< HEAD
+
+    cli/curl.md
+=======
+>>>>>>> staging
 
     {: .topicgroup}
     Libraries
@@ -79,4 +88,4 @@ Cloud Object Storage
     help/support.md
     help/billing.md
     [Pricing](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api)
-    {: .navgroup-end}
+{: .navgroup-end}

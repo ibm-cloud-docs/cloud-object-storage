@@ -28,7 +28,7 @@ bx login --apikey <value>
   3. Next, provision an instance of {{site.data.keyword.cos_full_notm}} specifying the name for the instance, the ID and the desired plan (lite or standard).  This will get us the CRN.  If you have an upgraded account, specify the `Standard` plan.  Otherwise specify `Lite`.
 
 ```
-bx resource instance-create <instance-name> cloud-object-storage <plan> -r global
+bx resource service-instance-create <instance-name> cloud-object-storage <plan> -r global
 ```
 {:codeblock}
 

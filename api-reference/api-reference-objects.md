@@ -13,11 +13,14 @@ lastupdated: "2017-09-27"
 {:tip: .tip}
 
 # Object operations
-{: #operations-on-objects}
 
 ## Upload an object
+{: #upload-object}
 
-A `PUT` given a path to an object uploads the request body as an object. A SHA256 hash of the object is a required header.  All objects are limited to 5TB in size.
+A `PUT` given a path to an object uploads the request body as an object. A SHA256 hash of the object is a required header.  All objects uploaded in a single thread are limited to 5TB in size (objects [uploaded in multiple parts](#multipart) can be as large as 10TB).
+
+**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
+{:tip}
 
 **Syntax**
 
@@ -254,9 +257,12 @@ Content-Length: 207
 ----
 
 ## Copy an object
+{: #copy-object}
 
 A `PUT` given a path to a new object creates a new copy of another object specified by the `x-amz-copy-source` header. Unless otherwise altered the metadata remains the same.
 
+**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
+{:tip}
 
 **Syntax**
 
@@ -309,184 +315,9 @@ Content-Length: 240
 ```
 
 ----
-<!---
-## Retrieve an object's ACL
-
-A `GET` given a path to an object given the parameter `?acl=` retrieves the access control list for the object.
-
-
-**Syntax**
-
-```bash
-GET https://{endpoint}/{bucket-name}/{object-name}?acl= # path style
-GET https://{bucket-name}.{endpoint}/{object-name}?acl= # virtual host style
-```
-
-**Sample request**
-
-```http
-GET /apiary/queen-bee?acl= HTTP/1.1
-Authorization: Bearer {token}
-x-amz-date: 20161207T155945Z
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample response**
-
-```http
-HTTP/1.1 200 OK
-Date: Wed, 07 Dec 2016 15:59:46 GMT
-X-Clv-Request-Id: 78541562-29bf-4800-9eb3-0c360f0a037a
-Accept-Ranges: bytes
-Server: Cleversafe/3.9.0.137
-X-Clv-S3-Version: 2.5
-x-amz-request-id: 78541562-29bf-4800-9eb3-0c360f0a037a
-Content-Type: application/xml
-Content-Length: 550
-```
-
-```xml
-<AccessControlPolicy xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-  <Owner>
-    <ID>{owner-storage-account-uuid}</ID>
-    <DisplayName>{owner-storage-account-uuid}</DisplayName>
-  </Owner>
-  <AccessControlList>
-    <Grant>
-      <Grantee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="CanonicalUser">
-        <ID>{owner-storage-account-uuid}</ID>
-        <DisplayName>{owner-storage-account-uuid}</DisplayName>
-      </Grantee>
-      <Permission>FULL_CONTROL</Permission>
-    </Grant>
-  </AccessControlList>
-</AccessControlPolicy>
-```
-
-----
-
-## Create an ACL for an object
-
-A `PUT` issued to an object with the proper parameters creates an access control list (ACL) for that object.  Access control lists allow for granting different sets of permissions to different storage accounts using the account's ID, or by using a pre-made ACL.
-
-{% include important.html content="Credentials are generated for each storage account, not for individual users.  As such, ACLs do not have the ability to restrict or grant access to a given user, only to a storage account. However, `public-read-write` allows any other CRS storage account to access the resource, as well as the general public. " %}
-
-ACLs can use pre-made permissions sets (or 'canned ACLs') or be customized in the body of the request. Pre-made ACLs are specified using the `x-amz-acl` header with `private`, `public-read`, or `public-read-write` as the value. Custom ACLs are specified using XML in the request body and can grant `READ`, `READ_ACP` (read ACL), `WRITE_ACP` (write ACL), or `FULL_CONTROL` permissions to a given storage account.
-
-{% include note.html content="It is not possible to grant granular `WRITE` access at the object level, only at the bucket level." %}
-
-**Syntax**
-
-```bash
-PUT https://{endpoint}/{bucket-name}/{object-name}?acl= # path style
-PUT https://{bucket-name}.{endpoint}/{object-name}?acl= # virtual host style
-```
-
-**Sample request** (canned ACL)
-
-```http
-PUT /apiary/queen-bee?acl= HTTP/1.1
-Authorization: Bearer {token}
-x-amz-date: 20161207T162842Z
-x-amz-acl: public-read
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample response**
-
-```http
-HTTP/1.1 200 OK
-Date: Wed, 07 Dec 2016 16:28:42 GMT
-X-Clv-Request-Id: b8dea44f-af20-466d-83ec-2a8563f1617b
-Accept-Ranges: bytes
-Server: Cleversafe/3.9.0.137
-X-Clv-S3-Version: 2.5
-x-amz-request-id: b8dea44f-af20-466d-83ec-2a8563f1617b
-Content-Length: 0
-```
-
-**Sample request** (canned ACL in header)
-
-It is also possible to assign a canned ACL directly when uploading an object by passing the `x-amz-acl` header and a canned ACL value.  This example makes the `queen-bee` object publicly and anonymously accessible.
-
-```http
-PUT /apiary/queen-bee HTTP/1.1
-Authorization: Bearer {token}
-x-amz-date: 20161207T162842Z
-x-amz-acl: public-read
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample response**
-
-```http
-HTTP/1.1 200 OK
-Date: Wed, 07 Dec 2016 16:28:42 GMT
-X-Clv-Request-Id: b8dea44f-af20-466d-83ec-2a8563f1617b
-Accept-Ranges: bytes
-Server: Cleversafe/3.9.0.137
-X-Clv-S3-Version: 2.5
-x-amz-request-id: b8dea44f-af20-466d-83ec-2a8563f1617b
-Content-Length: 0
-```
-
-**Sample request** (custom ACL)
-
-This is an example of specifying a custom ACL to allow for another account to view the ACL for the "queen-bee" object, but not to access object itself. Additionally, a third account is given full access to the same object as another element of the same ACL.
-
-```http
-PUT /apiary/queen-bee?acl= HTTP/1.1
-Authorization: Bearer {token}
-x-amz-date: 20161207T163315Z
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-Content-Length: 564
-```
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<AccessControlPolicy xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-  <Owner>
-    <ID>{owner-storage-account-uuid}</ID>
-    <DisplayName>OwnerDisplayName</DisplayName>
-  </Owner>
-  <AccessControlList>
-    <Grant>
-      <Grantee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="CanonicalUser">
-        <ID>{first-grantee-storage-account-uuid}</ID>
-        <DisplayName>Grantee1DisplayName</DisplayName>
-      </Grantee>
-      <Permission>READ_ACP</Permission>
-    </Grant>
-    <Grant>
-      <Grantee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="CanonicalUser">
-        <ID>{second-grantee-storage-account-uuid}</ID>
-        <DisplayName>Grantee2DisplayName</DisplayName>
-      </Grantee>
-      <Permission>FULL_CONTROL</Permission>
-    </Grant>
-  </AccessControlList>
-</AccessControlPolicy>
-```
-
-**Sample response**
-
-```http
-HTTP/1.1 200 OK
-Date: Wed, 07 Dec 2016 17:11:51 GMT
-X-Clv-Request-Id: ef02ea42-6fa6-4cc4-bec4-c59bc3fcc9f7
-Accept-Ranges: bytes
-Server: Cleversafe/3.9.0.137
-X-Clv-S3-Version: 2.5
-x-amz-request-id: ef02ea42-6fa6-4cc4-bec4-c59bc3fcc9f7
-Content-Length: 0
-```
-
--->
-
-----
 
 ## Check an object's CORS configuration
+{: #options}
 
 An `OPTIONS` given a path to an object along with an origin and request type checks to see if that object is accessible from that origin using that request type.  Unlike all other requests, an OPTIONS request does not require the `authorization` or `x-amx-date` headers.
 
