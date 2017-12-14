@@ -12,7 +12,7 @@ lastupdated: '2017-09-27'
 
 # Manage encryption
 
-All objects stored in {{site.data.keyword.cos_full}} are encrypted by default using [randomly generated keys and an all-or-nothing-transform](/docs/services/cloud-object-storage/info/data-security-encryption.html). While this default encryption model is highly secure, some workloads need to be in possession of the encryption keys used.  You can manage your keys manually by providing your own encryption keys when storing data (SSE-C), or you can create buckets that use IBM Key Protect (SSE-KP) to manage encryption keys.
+All objects stored in {{site.data.keyword.cos_full}} are encrypted by default using [randomly generated keys and an all-or-nothing-transform](/docs/services/cloud-object-storage/info/data-security-encryption.html). While this default encryption model provides at-rest security, some workloads need to be in possession of the encryption keys used.  You can manage your keys manually by providing your own encryption keys when storing data (SSE-C), or you can create buckets that use IBM Key Protect (SSE-KP) to manage encryption keys.
 
 ## Server Eide Encryption with Customer-Provided Keys (SSE-C)
 {: #sse-c}
@@ -28,7 +28,7 @@ Header | Type | Description
 `x-amz-server-side-encryption-customer-key-MD5` | string | This header is used to transport the base64-encoded 128-bit MD5 digest of the encryption key according to RFC 1321. The object store will use this value to validate the key passes in the `x-amz-server-side-encryption-customer-key` has not been corrupted during transport and encoding process. The digest must be calculated on the key BEFORE the key is base 64 encoded.
 
 
-<!-- ## Server Eide Encryption with {{site.data.keyword.keymanagementservicelong_notm}} (SSE-KP)
+## Server Eide Encryption with {{site.data.keyword.keymanagementservicelong_notm}} (SSE-KP)
 {: #sse-kp}
 
 {{site.data.keyword.keymanagementservicefull}} is a centralized key management system (KMS) for generating, managing, and destroying encryption keys used by {{site.data.keyword.cloud_notm}} services.  You can create an instance of {{site.data.keyword.keymanagementserviceshort}} from the {{site.data.keyword.cloud_notm}} catalog.
@@ -44,10 +44,7 @@ For more information on {{site.data.keyword.keymanagementservicelong_notm}}, [se
 
 ### Getting started with SSE-KP
 
-All objects stored in {{site.data.keyword.cos_full}} are encrypted by default using multiple randomly generated keys and an all-or-nothing-transform. While this default encryption model is remarkably secure, some workloads need to be in possession of the encryption keys used. You can use [{{site.data.keyword.keymanagementservice_long}}](/docs/services/keymgmt/keyprotect_about.html) to create, add, and manage keys, which you can then associate with your instance of {{site.data.keyword.cos_full}} to encrypt buckets.
-
-{{site.data.keyword.keymanagementserviceshort}} is currently only available in the US-South region.
-{: note}
+All objects stored in {{site.data.keyword.cos_full}} are encrypted by default using multiple randomly generated keys and an all-or-nothing-transform. While this default encryption model provides at-rest security, some workloads need to be in possession of the encryption keys used. You can use [{{site.data.keyword.keymanagementservicelong_notm}}](/docs/services/keymgmt/keyprotect_about.html) to create, add, and manage keys, which you can then associate with your instance of {{site.data.keyword.cos_full}} to encrypt buckets.
 
 ### Before you begin
 You'll need:
@@ -82,14 +79,9 @@ When your key exists in {{site.data.keyword.keymanagementserviceshort}} and you 
 
 1. Navigate to your instance of {{site.data.keyword.cos_short}}.
 2. Click **Create bucket**.
-3. Enter a bucket name.
-4. Select the **Regional** resiliency.
-5. Select the **us-south** location.
-6. Select a storage class.
-7. In Advanced Configuration, enable **Add Key Protect Keys**.
-  1. Select the associated Key Protect service instance.
-  2. Select a key.
-  3. Select a Key ID.
-4. Click **Create**.
+3. Enter a bucket name, select the **Regional** resiliency, and choose a location and storage class.
+4. In Advanced Configuration, enable **Add Key Protect Keys**.
+5. Select the associated Key Protect service instance, key, and Key ID.
+6. Click **Create**.
 
 In the **Buckets and objects** listing, the bucket now has a key icon under **Advanced**, indicating that the bucket has a Key Protect key enabled. To view the key details, click the menu at the right of the bucket and then click **View Key Protect key**.
