@@ -24,9 +24,9 @@ Bucket names are required to be DNS addressable, and thus not case sensitive.
 
 1024
 
-**Would I be able to migrate data from AWS S3 into IBM Cloud Object Storage?**
+**Can I migrate data from AWS S3 into {{site.data.keyword.cos_full_notm}}?**
 
-Yes, you can use HMAC credentials to migrate date from AWS S3 data into IBM Cloud Object storage using your existing tools. Not all S3-compatible tools are currently unsupported. Please check out [this section] (/docs/services/cloud-object-storage/hmac/credentials.html) for more details
+Yes, you can use HMAC credentials to migrate data from AWS S3 into {{site.data.keyword.cos_full_notm}} using your existing tools. Not all S3-compatible tools are currently unsupported. For more details, see [Using HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html).
 
 
 ## Offering Questions

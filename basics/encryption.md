@@ -44,7 +44,7 @@ For more information on {{site.data.keyword.keymanagementservicelong_notm}}, [se
 
 ### Getting started with SSE-KP
 
-All objects stored in {{site.data.keyword.cos_full}} are encrypted by default using multiple randomly generated keys and an all-or-nothing-transform. While this default encryption model is remarkably secure, some workloads need to be in possession of the encryption keys used. You can use [{{site.data.keyword.ketmanagementservice_long}}](/docs/services/keymgmt/keyprotect_about.html) to create, add, and manage keys, which you can then associate with your instance of {{site.data.keyword.cos_full}} to encrypt buckets.
+All objects stored in {{site.data.keyword.cos_full}} are encrypted by default using multiple randomly generated keys and an all-or-nothing-transform. While this default encryption model is remarkably secure, some workloads need to be in possession of the encryption keys used. You can use [{{site.data.keyword.keymanagementservice_long}}](/docs/services/keymgmt/keyprotect_about.html) to create, add, and manage keys, which you can then associate with your instance of {{site.data.keyword.cos_full}} to encrypt buckets.
 
 {{site.data.keyword.keymanagementserviceshort}} is currently only available in the US-South region.
 {: note}

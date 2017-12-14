@@ -25,5 +25,5 @@ Note that when using HMAC credentials to create signatures to use with direct [R
 2. Any request that has a payload (object uploads, deleting multiple objects, etc.) must provide a `x-amz-content-sha256` header with a SHA256 hash of the payload contents.
 3. ACLs (other than `public-read`) are unsupported.
 
-Not all S3-compatible tools are currently unsupported. Some tools attempt to set ACLs other than `public-read` on bucket creation. Bucket creation through these tools will fail. If put bucket fails with an unsupported ACL error, first use the [Console](/docs/services/cloud-object-storage/getting-started.html#getting-started-console-) to create the bucket, then configure the tool to read and write objects to that bucket. Tools that set ACLs on object writes are not currently supported.
+Not all S3-compatible tools are currently unsupported. Some tools attempt to set ACLs other than `public-read` on bucket creation. Bucket creation through these tools will fail. If a `PUT bucket` request fails with an unsupported ACL error, first use the [Console](/docs/services/cloud-object-storage/getting-started.html#getting-started-console-) to create the bucket, then configure the tool to read and write objects to that bucket. Tools that set ACLs on object writes are not currently supported.
 {:tip}
