@@ -88,5 +88,6 @@ Once your key exists in {{site.data.keyword.keymanagementserviceshort}} and you 
 6. Select a storage class.
 7. In Advanced Configuration, enable **Add Key Protect Keys**.
   1. Select the associated Key Protect service instance.
-  2. 
+  2. Select a key.
+  3. Select a Key ID.
 4. Click **Create**.
