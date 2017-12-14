@@ -28,7 +28,7 @@ Header | Type | Description
 `x-amz-server-side-encryption-customer-key-MD5` | string | This header is used to transport the base64-encoded 128-bit MD5 digest of the encryption key according to RFC 1321. The object store will use this value to validate the key passes in the `x-amz-server-side-encryption-customer-key` has not been corrupted during transport and encoding process. The digest must be calculated on the key BEFORE the key is base 64 encoded.
 
 
-## Server Eide Encryption with {{site.data.keyword.keymanagementservicelong_notm}} (SSE-KP)
+<!-- ## Server Eide Encryption with {{site.data.keyword.keymanagementservicelong_notm}} (SSE-KP)
 {: #sse-kp}
 
 {{site.data.keyword.keymanagementservicefull}} is a centralized key management system (KMS) for generating, managing, and destroying encryption keys used by {{site.data.keyword.cloud_notm}} services.  You can create an instance of {{site.data.keyword.keymanagementserviceshort}} from the {{site.data.keyword.cloud_notm}} catalog.

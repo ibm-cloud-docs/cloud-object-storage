@@ -20,8 +20,8 @@ Use the following steps to create a service credential:
 1. Log in to the {{site.data.keyword.cloud_notm}} console and navigate to your instance of {{site.data.keyword.cos_short}}.
 2. In the side navigation, click **Service Credentials**. 
 3. Click **New credential** and provide the necessary information.
-  - If you want to generate HMAC credentials, specify the following in the **Add Inline Configuration Parameters (Optional)** field:
-    `{"HMAC":true}` 
+  If you want to generate HMAC credentials, specify the following in the **Add Inline Configuration Parameters (Optional)** field:
+  `{"HMAC":true}` 
 5. Click **Add** to generate service credential.
 
 The credential contains the following values:
