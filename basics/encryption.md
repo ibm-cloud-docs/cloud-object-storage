@@ -63,7 +63,7 @@ Navigate to your instance of {{site.data.keyword.keymanagementserviceshort}} and
 
 ### Grant service authorization
 
-Authorize Key Protect to work with IBM COS:
+Authorize {{site.data.keyword.keymanagementserviceshort}} to work with IBM COS:
 
 1. Open your {{site.data.keyword.cloud_notm}} dashboard.
 2. From the menu bar, click **Manage** &gt; **Account** &gt; **Users**.
@@ -71,7 +71,7 @@ Authorize Key Protect to work with IBM COS:
 4. Click **Create authorization**.
 5. In the **Source service** menu, select **Cloud Object Storage**.
 6. In the **Source service instance** menu, select the service instance to authorize.
-7. In the **Target service** menu, select **IBM Key Protect**.
+7. In the **Target service** menu, select **{{site.data.keyword.keymanagementservicelong_notm }}**.
 8. In the **Target service instance** menu, select the service instance to authorize.
 9. Enable the **Reader** role.
 10. Click **Authorize**.
