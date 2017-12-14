@@ -43,10 +43,6 @@ Cloud Object Storage
     Use the command line
         cli/curl.md
         cli/aws-cli.md
-
-    {: .topicgroup}
-    Use a desktop client
-        gui/cyberduck.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
