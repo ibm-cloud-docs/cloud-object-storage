@@ -91,3 +91,5 @@ Once your key exists in {{site.data.keyword.keymanagementserviceshort}} and you 
   2. Select a key.
   3. Select a Key ID.
 4. Click **Create**.
+
+In the **Buckets and objects** listing, the bucket now has a key icon under **Advanced**, indicating that the bucket has a Key Protect key enabled. To view the key details, click the menu at the right of the bucket and then click **View Key Protect key**.
