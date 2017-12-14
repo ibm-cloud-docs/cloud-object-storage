@@ -63,7 +63,7 @@ Navigate to your instance of {{site.data.keyword.keymanagementserviceshort}} and
 
 ### Grant service authorization
 
-Authorize {{site.data.keyword.keymanagementserviceshort}} to work with IBM COS:
+Authorize {{site.data.keyword.keymanagementserviceshort}} for use with IBM COS:
 
 1. Open your {{site.data.keyword.cloud_notm}} dashboard.
 2. From the menu bar, click **Manage** &gt; **Account** &gt; **Users**.
@@ -71,18 +71,18 @@ Authorize {{site.data.keyword.keymanagementserviceshort}} to work with IBM COS:
 4. Click **Create authorization**.
 5. In the **Source service** menu, select **Cloud Object Storage**.
 6. In the **Source service instance** menu, select the service instance to authorize.
-7. In the **Target service** menu, select **{{site.data.keyword.keymanagementservicelong_notm }}**.
+7. In the **Target service** menu, select **{{site.data.keyword.keymanagementservicelong_notm}}**.
 8. In the **Target service instance** menu, select the service instance to authorize.
 9. Enable the **Reader** role.
 10. Click **Authorize**.
 
 ### Create a bucket
 
-Once your key exists in {{site.data.keyword.keymanagementserviceshort}} and you authorized the Key Protect service to work with IBM COS, associate the key with a new bucket:
+When your key exists in {{site.data.keyword.keymanagementserviceshort}} and you authorized the Key Protect service for use with IBM COS, associate the key with a new bucket:
 
 1. Navigate to your instance of {{site.data.keyword.cos_short}}.
 2. Click **Create bucket**.
-3. Add a bucket name.hy
+3. Enter a bucket name.
 4. Select the **Regional** resiliency.
 5. Select the **us-south** location.
 6. Select a storage class.
