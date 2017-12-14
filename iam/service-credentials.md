@@ -14,7 +14,17 @@ lastupdated: "2017-12-01"
 
 # Service credentials
 
-A service credential provides the necessary information to connect an application to {{site.data.keyword.cos_short}} packaged in a JSON document.  Service credentials are always associated with a Service ID, and new Service IDs can be created along with a new credential.  The credential contains the following values:
+A service credential provides the necessary information to connect an application to {{site.data.keyword.cos_short}} packaged in a JSON document.  Service credentials are always associated with a Service ID, and new Service IDs can be created along with a new credential.  
+
+To create a service credential - follow the steps below
+- Log into Bluemix console and navigate to your object storage instance
+- In the storage instance, click on Service Credentials in the left nav and 
+- click on New Credential and provide the necessary information to create a credential
+- If you are interested in generating HMAC credentials (optional) as well, specify the following
+-- {"HMAC":true} in 'Add inline Configuration Parameters (Optional)' field 
+- Click Add to generate service credential
+
+The credential contains the following values:
 
 Field name | Value
 --|--
