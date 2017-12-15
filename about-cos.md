@@ -30,17 +30,22 @@ Users of the original {{site.data.keyword.cos_full_notm}} IaaS service provision
 
 In addition to {{site.data.keyword.cos_full_notm}}, {{site.data.keyword.cloud_notm}} currently provides two additional object storage offerings for different user needs, all of which are accessible through web-based portals and REST APIs.
 
-| Offering                            | Interface | Defining advantage                             |
-|-------------------------------------|-----------|------------------------------------------------|
-| {{site.data.keyword.cos_full_notm}} | COS API   | For cloud-native development.                  |
-| IBM Cloud Object Storage (IaaS)     | S3 API    | For use with S3-compatible tools.              |
-| OpenStack Swift (IaaS)              | Swift API | For workloads requiring specific regions.      |
-| OpenStack Swift (Cloud Foundry)     | Swift API | Native integration with Cloud Foundry services |
+| Offering                                   | Interface | Defining advantage                             |
+|--------------------------------------------|-----------|------------------------------------------------|
+| {{site.data.keyword.cos_full_notm}}        | COS API   | For cloud-native development.                  |
+| IBM Cloud Object Storage (Infrastructure)  | COS API   | For regulatory compliance.                     |
+| OpenStack Swift (Infrastructure)           | Swift API | For workloads requiring specific regions.      |
+| OpenStack Swift (Cloud Foundry)            | Swift API | Native integration with Cloud Foundry services |
 
+## IBM Cloud Object Storage (Infrastructure)
 
-## OpenStack Swift Object Storage (IaaS)
+Data stored with Cloud Object Storage (Infrastructure) is located in one of 20 global data centers. Developers manage access at the account level. This offering is managed through the {{site.data.keyword.cloud_notm}} infrastructure Control portal.
 
-Data stored with OpenStack Swift (IaaS) is located in one of 20 global data centers. Developers use the community Swift API to interact with their storage accounts. This offering is managed through the {{site.data.keyword.cloud_notm}} infrastructure Control portal and does not provide encryption at-rest.
+For more information on this object storage service, [view the documentation ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://ibm-public-cos.github.io/crs-docs/index.html){: new_window}.
+
+## OpenStack Swift Object Storage (Infrastructure)
+
+Data stored with OpenStack Swift (Infrastructure) is located in one of 20 global data centers. Developers use the community Swift API to interact with their storage accounts. This offering is managed through the {{site.data.keyword.cloud_notm}} infrastructure Control portal and does not provide encryption at-rest.
 
 For more information on this object storage service, [view the documentation](/docs/infrastructure/objectstorage-swift/index.html).
 

@@ -19,6 +19,7 @@ Cloud Object Storage
     {: .navgroup id="howto"}
     basics/order-storage.md
     basics/using-ui.md
+    basics/migrating.md
 
     {: .topicgroup}
     Manage access
@@ -37,12 +38,20 @@ Cloud Object Storage
     basics/endpoints.md
     basics/classes.md
     basics/multipart.md
+<<<<<<< HEAD
+    basics/sse-c.md
+=======
     basics/encryption.md
 
     {: .topicgroup}
     Use the command line
         cli/curl.md
         cli/aws-cli.md
+
+    {: .topicgroup}
+    Use a desktop client
+        gui/cyberduck.md
+>>>>>>> staging
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
@@ -54,6 +63,11 @@ Cloud Object Storage
         api-reference/common-headers-errors.md
         api-reference/api-reference-buckets.md
         api-reference/api-reference-objects.md
+<<<<<<< HEAD
+
+    cli/curl.md
+=======
+>>>>>>> staging
 
     {: .topicgroup}
     Libraries
@@ -74,4 +88,4 @@ Cloud Object Storage
     help/support.md
     help/billing.md
     [Pricing](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api)
-    {: .navgroup-end}
+{: .navgroup-end}

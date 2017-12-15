@@ -308,6 +308,107 @@ cos.deleteObject( // delete the Object, passing…
 );
 ```
 
+## Using Key Protect
+
+A new object `EncryptionType` will contain the default value for the encryption algorithm & a `IBMSSEKPCustomerRootKeyCrn` variable.
+
+```java
+private String kpEncryptionAlgorithm = "AES256";
+private String IBMSSEKPCustomerRootKeyCrn;
+
+`kpEncryptionAlgorithm` will default to `AES256`, but can be overwritten with a setter method
+The `CreateBucketRequest` object has been modified to accept the `EncryptionType` object when creating a bucket.
+```
+
+```
+s3client.createBucket(new CreateBucketRequest(bucketName).withEncryptionType(encryptionType));
+```
+
+The additional headers have been defined within `Headers` class:
+
+```java
+Headers.java
+
+public static final String IBM_SSE_KP_ENCRYPTION_ALGORITHM = "ibm-sse-kp-encryption-algorithm";
+public static final String IBM_SSE_KP_CUSTOMER_ROOT_KEY_CRN = "ibm-sse-kp-customer-root-key-crn";
+```
+
+The same section of the create bucket implementation which already adds IAM service instance headers will add the 2 new encryption headers:
+
+```java
+//Add IBM Service Instance Id & Encryption to headers
+if ((null != this.awsCredentialsProvider ) && (this.awsCredentialsProvider.getCredentials() instanceof IBMOAuthCredentials)) {
+    IBMOAuthCredentials oAuthCreds = (IBMOAuthCredentials)this.awsCredentialsProvider.getCredentials();
+    if (oAuthCreds.getServiceInstanceId() != null) {
+        request.addHeader(Headers.IBM_SERVICE_INSTANCE_ID, oAuthCreds.getServiceInstanceId());
+        request.addHeader(Headers.IBM_SSE_KP_ENCRYPTION_ALGORITHM, createBucketRequest.getEncryptionType().getKpEncryptionAlgorithm());
+        request.addHeader(Headers.IBM_SSE_KP_CUSTOMER_ROOT_KEY_CRN, createBucketRequest.getEncryptionType().getIBMSSEKPCustomerRootKeyCrn());
+    }
+}
+```
+
+The `ObjectListing` and `HeadBucketResult` objects have been updated to include boolean `IBMSSEKPEnabled` & String `IBMSSEKPCustomerRootKeyCrn` variables with getter & setter methods. These will store the values of the new headers.
+
+### GET bucket
+
+```java
+public ObjectListing listObjects(String bucketName)
+public ObjectListing listObjects(String bucketName, String prefix)
+public ObjectListing listObjects(ListObjectsRequest listObjectsRequest)
+```
+
+The `ObjectListing` class will require 2 additional methods:
+
+```java
+ObjectListing listing = s3client.listObjects(listObjectsRequest)
+String KPEnabled = listing.getIBMSSEKPEnabled();
+String crkId = listing.getIBMSSEKPCrkId();
+```
+
+The additonal headers have been defined within the `Headers` class:
+
+```java
+Headers.java
+public static final string IBM_SSE_KP_ENABLED = "ibm-sse-kp-enabled";
+public static final String IBM_SSE_KP_CUSTOMER_ROOT_KEY_CRN = "ibm-sse-kp-customer-root-key-crn";
+```
+
+The S3XmlResponseHandler which is responsible for unmarshalling all xml responses. A check has been added that the result is an instance of `ObjectListing` and the retrieved headers will be added to the `ObjectListing` object:
+
+```java
+if (result instanceof ObjectListing) {
+    if (!StringUtils.isNullOrEmpty(responseHeaders.get(Headers.IBM_SSE_KP_ENABLED)){
+            ((ObjectListing) result).setIBMSSEKPEnabled(Boolean.parseBoolean(responseHeaders.get(Headers.IBM_SSE_KP_ENABLED)));
+        }
+    if (!StringUtils.isNullOrEmpty(responseHeaders.get(Headers.IBM_SSE_KP_CUSTOMER_ROOT_KEY_CRN))) {
+            ((ObjectListing) result).setIBMSSEKPCrk(responseHeaders.get(Headers.IBM_SSE_KP_CUSTOMER_ROOT_KEY_CRN));
+        }
+}
+```
+
+### HEAD bucket
+
+The additional headers have been defined within Headers class:
+
+```java
+Headers.java
+public static final String IBM_SSE_KP_ENABLED = "ibm-sse-kp-enabled";
+public static final String IBM_SSE_KP_CUSTOMER_ROOT_KEY_CRN = "ibm-sse-kp-customer-root-key-crn";
+```
+
+These variables are populated in the HeadBucketResponseHandler.
+
+```java
+HeadBucketResultHandler
+result.setIBMSSEKPEnabled(response.getHeaders().get(Headers.IBM_SSE_KP_ENABLED));
+result.setIBMSSEKPCrk(response.getHeaders().get(Headers. IBM_SSE_KP_CUSTOMER_ROOT_KEY_CRN));
+
+Head Bucket Example
+HeadBucketResult result = s3client.headBucket(headBucketRequest)
+boolean KPEnabled = result.getIBMSSEKPEnabled();
+String crn = result.getIBMSSEKPCUSTOMERROOTKEYCRN();
+```
+
 ## API reference
 
 This list summarizes the AWS Java SDK methods that are supported by {{site.data.keyword.cos_full_notm}}. More detailed documentation on individual classes and methods can be found in the [the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/)

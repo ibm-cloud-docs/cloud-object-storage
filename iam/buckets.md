@@ -16,23 +16,20 @@ lastupdated: "2017-09-27"
 
 Assign access roles for users and Service IDs against buckets, using either the UI or the CLI to create policies.
 
-| Access role | Example actions                            |
-|:------------|---------------------------------------------------|
-| Manager | Make objects public, create and destroy buckets and objects |
-| Writer | Create and destroy buckets and objects |
-| Reader | List and download objects |
-
-
+| Access role | Example actions                                             |
+|:------------|-------------------------------------------------------------|
+| Manager     | Make objects public, create and destroy buckets and objects |
+| Writer      | Create and destroy buckets and objects                      |
+| Reader      | List and download objects                                   |
 
 ## Granting access to a user
 {: #user-access}
+
 If the user needs to be able to use the console, it is necessary to also grant them a minimum role of `Viewer` on the instance itself.  This will allow them to view all buckets and list the objects within them. Then select **Bucket permissions** from the left navigation menu, select the user, and select the level of access (`Manager` or `Writer`) that they require.
 
 If the user will interact with data using the API and doesn't require console access, _and_ they are a member of your account, you can grant access to a single bucket without any access to the parent instance.
 
 ## Policy enforcement
-{: #enforcement}
-
 IAM policies are enforced hierarchically from greatest level of access to most restricted. Conflicts are resolved to the more permissive policy.  For example, if a user has both the `Writer` and `Reader` role on a bucket, the policy granting the `Reader` role will be ignored.
 
 This is also applicable to service instance and bucket level policies.

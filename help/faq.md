@@ -24,6 +24,11 @@ Bucket names are required to be DNS addressable, and thus not case sensitive.
 
 1024
 
+**Can I migrate data from AWS S3 into {{site.data.keyword.cos_full_notm}}?**
+
+Yes, you can use your existing tools to read and write data into {{site.data.keyword.cos_full_notm}}. You will need to configure HMAC credentials allow your tools to authenticate. Not all S3-compatible tools are currently unsupported. For more details, see [Using HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html).
+
+
 ## Offering Questions
 
 
