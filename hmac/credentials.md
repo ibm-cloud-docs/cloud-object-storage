@@ -16,7 +16,7 @@ lastupdated: "2017-09-27"
 
 The {{site.data.keyword.cos_full}} API is a REST-based API for reading and writing objects. It uses {{site.data.keyword.iamlong}} for authentication/authorization, and supports a subset of the S3 API for easy migration of applications to {{site.data.keyword.cloud_notm}}.
 
-In addition to IAM token-based authentication, it is also possible to [authenticate using an a signature](/docs/services/cloud-object-storage/hmac/hmac-signature.html) created from a pair of access and secret keys. This is functionally identical to the AWS Signature Version 4, and HMAC keys provided by IBM COS should work with the majority of S3-compatible libraries and tools.
+In addition to IAM token-based authentication, it is also possible to [authenticate using a signature](/docs/services/cloud-object-storage/hmac/hmac-signature.html) created from a pair of access and secret keys. This is functionally identical to the AWS Signature Version 4, and HMAC keys provided by IBM COS should work with the majority of S3-compatible libraries and tools.
 
 Users can create a set of HMAC credentials when creating a [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html) by providing a configuration parameter during credential creation. After the Service Credential is created, the HMAC Key is included in the `cos_hmac_keys` field. These HMAC keys are then associated with a [Service ID](/docs/services/cloud-object-storage/iam/users-serviceids.html) and can be used to access any resources or operations allowed by the Service ID's role. 
 
