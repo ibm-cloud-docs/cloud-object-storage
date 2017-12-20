@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017
-lastupdated: "2017-09-27"
+lastupdated: "2017-12-20"
 
 ---
 {:new_window: target="_blank"}
@@ -75,4 +75,4 @@ Region and location are often used interchangeably, but unlike most services ava
 Resiliency refers to the scope and scale of the geographic area across which your data is distributed. _Cross Region_ resiliency will spread your data across several metropolitan areas, while _Regional_ resiliency will spread data across a single metropolitan area.
 
 ## {{site.data.keyword.cos_short}} S3 Keys vs. IAM API Key
-Instances of {{site.data.keyword.cos_short}} provisioned as IaaS use access and secret key pairs (referred to as HMAC keys) instead of an {{site.data.keyword.cloud_notm}} IAM API key.  These key pairs allow for creating AWS V4 signatures for authentication and authorization instead of the OAuth2 bearer tokens used by {{site.data.keyword.cloud_notm}} IAM. HMAC keys are not yet available for {{site.data.keyword.cos_short}} instances provisioned through the {{site.data.keyword.cloud_notm}} Platform.  While IAM API keys allow for much stronger and fine-grained access control, HMAC keys are required for using S3-compatible tools and gateways (such as the AWS CLI or Cyberduck).
+Instances of {{site.data.keyword.cos_short}} provisioned as IaaS use access and secret key pairs (referred to as HMAC keys) instead of an {{site.data.keyword.cloud_notm}} IAM API key.  These key pairs allow for creating AWS V4 signatures for authentication and authorization instead of the OAuth2 bearer tokens used by {{site.data.keyword.cloud_notm}} IAM. While IAM API keys allow for much stronger and fine-grained access control, HMAC keys are required for using S3-compatible tools and gateways (such as the AWS CLI or Cyberduck).
