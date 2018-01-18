@@ -14,6 +14,10 @@ lastupdated: "28-11-2017"
 
 # Release notes
 
+## Q1 2018
+
+The IBM COS SDK for Java has been updated to 2.0. This release primarily fixes an issue for users trying to connect to IBM COS and AWS services within the same application by changing the namespacing for the library from `amazonaws` to `ibm.cloud.objectstorage`. For more information check out the [Github repository](https://github.com/IBM/ibm-cos-sdk-java), the [API documenation](https://ibm.github.io/ibm-cos-sdk-java)
+
 ## Q4 2017
 
 ### December 2017
