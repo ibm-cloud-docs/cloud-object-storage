@@ -28,7 +28,7 @@ Maven uses a file called `pom.xml` to specify the libraries (and their versions)
     <groupId>com.cos</groupId>
     <artifactId>docs</artifactId>
     <packaging>jar</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>2.0-SNAPSHOT</version>
     <name>docs</name>
     <url>http://maven.apache.org</url>
     <dependencies>
