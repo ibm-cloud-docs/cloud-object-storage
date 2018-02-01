@@ -93,7 +93,7 @@ import com.ibm.cloud.objectstorage.services.s3.model.Bucket;
 import com.ibm.cloud.objectstorage.services.s3.model.ListObjectsRequest;
 import com.ibm.cloud.objectstorage.services.s3.model.ObjectListing;
 import com.ibm.cloud.objectstorage.services.s3.model.S3ObjectSummary;
-import com.ibm.oauth.BasicIBMOAuthCredentials;
+import com.ibm.cloud.objectstorage.oauth.BasicIBMOAuthCredentials;
 
 public class CosExample
 {
