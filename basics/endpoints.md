@@ -14,10 +14,14 @@ lastupdated: "2017-09-27"
 
 # Select regions and endpoints
 
-Both regional and cross region endpoints are available for connecting applications to {{site.data.keyword.cos_full}}. Compute workloads co-located with a Regional {{site.data.keyword.cos_short}} endpoint will see lower latency and better performance. For workloads not concentrated in a single geographic area, the `geo` endpoint routes connections to the nearest regional data centers.
+A bucket's resiliency is defined by the endpoint used to create it.  _Cross Region_ resiliency will spread your data across several metropolitan areas, while _Regional_ resiliency will spread data across a single metropolitan area.  _Single Site_ resiliency spreads data within a single data center.  Regional and Cross Region buckets can maintain availability during a site outage.
+
+Compute workloads co-located with a Regional {{site.data.keyword.cos_short}} endpoint will see lower latency and better performance. For workloads not concentrated in a single geographic area, the `geo` endpoint routes connections to the nearest regional data centers.
 
 When using a cross region endpoint, it is possible to direct inbound traffic to a specific access point while still distributing data across all three regions. While this can improve performance for workloads running in the same region as the targeted access point, there is no automated failover if that region becomes unavailable.  Applications that direct traffic to an access point instead of the `geo` endpoint **must** implement appropriate failover logic internally to achieve the availabity advantages of the cross-region storage.
 {:tip}
+
+Some workloads may benefit from using a single site endpoint.  Data stored in a single site is still distributed across many physical storage appliances, but is contained to a single data center.  This can improve performance for compute resources within the same site, but will not maintain availability in the case of a site outage.  Single Site buckets do not provide automated replication or backup in the case of site destruction, so any applications using a single site should consider disaster recovery in their design.
 
 All requests must use SSL when using IAM, and the service will reject any plaintext requests.
 
@@ -182,3 +186,33 @@ Types of endpoint:
 </table>
 {:.endpointtable}
 
+## Single Site Endpoints
+
+<table>
+  <thead>
+    <tr>
+      <th>Region</th>
+      <th>Type</th>
+      <th>Endpoint</th>
+    </tr>
+  </thead>
+    <tr>
+    <td rowspan="2">Toronto, Canada</td>
+    <td>public</td>
+    <td><code class="highlighter-rouge">s3.tor01.objectstorage.softlayer.net</code></td>
+  </tr>
+  <tr>
+    <td>private</td>
+    <td><code class="highlighter-rouge">s3.tor01.objectstorage.service.networklayer.com</code></td>
+  </tr>
+  <tr>
+  <td rowspan="2">Melbourne, Australia</td>
+  <td>public</td>
+  <td><code class="highlighter-rouge">s3.mel01.objectstorage.softlayer.net</code></td>
+</tr>
+<tr>
+  <td>private</td>
+  <td><code class="highlighter-rouge">s3.mel01.objectstorage.service.networklayer.com</code></td>
+</tr>
+</table>
+{:.endpointtable}
