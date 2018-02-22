@@ -180,32 +180,21 @@ public class CosExample
 }
 ```
 
-## Create a client
+## Creating a client
 
-In the above example, a client `cos` was created and configured. For more details on client construction, [see the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/client/builder/AwsClientBuilder.html).
+In the above example, a client `cos` was created and configured by providing credential information (API key and service instance ID).  Note that these values can be automatically read from `~/.aws/credentials` in the format:
 
-The following examples assume a client `cos` exists and has been configured.
-
-```java
-public static AmazonS3 createClient(String api_key, String service_instance_id, String endpoint_url, String location)
-{
-    AWSCredentials credentials;
-    if (endpoint_url.contains("objectstorage.softlayer.net")) {
-        credentials = new BasicIBMOAuthCredentials(api_key, service_instance_id);
-    } else {
-        String access_key = api_key;
-        String secret_key = service_instance_id;
-        credentials = new BasicAWSCredentials(access_key, secret_key);
-    }
-    ClientConfiguration clientConfig = new ClientConfiguration().withRequestTimeout(5000);
-    clientConfig.setUseTcpKeepAlive(true);
-
-    AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
-            .withEndpointConfiguration(new EndpointConfiguration(endpoint_url, location)).withPathStyleAccessEnabled(true)
-            .withClientConfiguration(clientConfig).build();
-    return s3Client;
-}
 ```
+[default]
+aws_access_key_id = {API_KEY}
+aws_secret_access_key = {SERVICE_INSTANCE_ID}
+```
+
+ For more details on client construction, [see the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/client/builder/AwsClientBuilder.html).
+
+The following code snippets assume a such a client `cos` exists and has been appropriately configured.
+
+## Code snippets
 
 ### Create a standard bucket
 
