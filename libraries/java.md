@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2017-09-27"
+  years: 2018
+lastupdated: "2018-02-01"
 
 ---
 {:new_window: target="_blank"}
@@ -98,7 +98,7 @@ import com.ibm.cloud.objectstorage.oauth.BasicIBMOAuthCredentials;
 public class CosExample
 {
 
-    private static AmazonS3 _s3Client;
+    private static AmazonS3 _cos;
 
     /**
      * @param args
@@ -115,9 +115,9 @@ public class CosExample
         String location = "us";
 
         System.out.println("Current time: " + new Timestamp(System.currentTimeMillis()).toString());
-        _s3Client = createClient(api_key, service_instance_id, endpoint_url, location);
-        listObjects(bucketName, _s3Client);
-        listBuckets(_s3Client);
+        _cos = createClient(api_key, service_instance_id, endpoint_url, location);
+        listObjects(bucketName, _cos);
+        listBuckets(_cos);
     }
 
     /**
@@ -144,20 +144,20 @@ public class CosExample
         ClientConfiguration clientConfig = new ClientConfiguration().withRequestTimeout(5000);
         clientConfig.setUseTcpKeepAlive(true);
 
-        AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
+        AmazonS3 cos = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
                 .withEndpointConfiguration(new EndpointConfiguration(endpoint_url, location)).withPathStyleAccessEnabled(true)
                 .withClientConfiguration(clientConfig).build();
-        return s3Client;
+        return cos;
     }
 
     /**
      * @param bucketName
-     * @param s3Client
+     * @param cos
      */
-    public static void listObjects(String bucketName, AmazonS3 s3Client)
+    public static void listObjects(String bucketName, AmazonS3 cos)
     {
         System.out.println("Listing objects in bucket " + bucketName);
-        ObjectListing objectListing = s3Client.listObjects(new ListObjectsRequest().withBucketName(bucketName));
+        ObjectListing objectListing = cos.listObjects(new ListObjectsRequest().withBucketName(bucketName));
         for (S3ObjectSummary objectSummary : objectListing.getObjectSummaries()) {
             System.out.println(" - " + objectSummary.getKey() + "  " + "(size = " + objectSummary.getSize() + ")");
         }
@@ -165,12 +165,12 @@ public class CosExample
     }
 
     /**
-     * @param s3Client
+     * @param cos
      */
-    public static void listBuckets(AmazonS3 s3Client)
+    public static void listBuckets(AmazonS3 cos)
     {
         System.out.println("Listing buckets");
-        final List<Bucket> bucketList = _s3Client.listBuckets();
+        final List<Bucket> bucketList = _cos.listBuckets();
         for (final Bucket bucket : bucketList) {
             System.out.println(bucket.getName());
         }
@@ -180,27 +180,41 @@ public class CosExample
 }
 ```
 
-The following examples assume a client `cos` has been configured.
+## Creating a client
 
-## Create a standard bucket
+In the above example, a client `cos` was created and configured by providing credential information (API key and service instance ID).  Note that these values can be automatically read from `~/.aws/credentials` in the format:
+
+```
+[default]
+aws_access_key_id = {API_KEY}
+aws_secret_access_key = {SERVICE_INSTANCE_ID}
+```
+
+ For more details on client construction, [see the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/client/builder/AwsClientBuilder.html).
+
+The following code snippets assume a such a client `cos` exists and has been appropriately configured.
+
+## Code snippets
+
+### Create a standard bucket
 
 ```java
 cos.createBucket("sample", "us-standard"); // the name of the bucket, and the storage class (LocationConstraint)
 ```
 
-## Create a Vault bucket
+### Create a Vault bucket
 
 ```java
 cos.createBucket("sample", "us-vault"); // the name of the bucket, and the storage class (LocationConstraint)
 ```
 
-## Create a Cold Vault bucket
+### Create a Cold Vault bucket
 
 ```java
 cos.createBucket("sample", "us-cold"); // the name of the bucket, and the storage class (LocationConstraint)
 ```
 
-## Upload object from a file
+### Upload object from a file
 
 This example assumes that the bucket `sample` already exists.
 
@@ -212,7 +226,7 @@ new File("/home/user/test.txt") // the file name and path of the object to be up
 );
 ```
 
-## Upload object using a stream
+### Upload object using a stream
 
 This example assumes that the bucket `sample` already exists.
 
@@ -235,7 +249,7 @@ metadata // the metadata for the object being written
 );
 ```
 
-## Download object to a file
+### Download object to a file
 
 This example assumes that the bucket `sample` already exists.
 
@@ -253,7 +267,7 @@ new File("retrieved.txt") // to write to a new file
 ```
 
 
-## Download object using a stream
+### Download object using a stream
 
 This example assumes that the bucket `sample` already exists.
 
@@ -265,7 +279,7 @@ S3Object returned = cos.getObject( // request the object by identifying
 S3ObjectInputStream s3Input = s3Response.getObjectContent(); // set the object stream
 ```
 
-## Copy objects
+### Copy objects
 
 ```java
 // copy an object within the same Bucket
@@ -287,7 +301,7 @@ cos.copyObject( // copy the Object, passing…
 );
 ```
 
-## List buckets
+### List buckets
 
 ```java
 List<Bucket> Buckets = cos.listBuckets(); // get a list of buckets
@@ -297,7 +311,7 @@ for (Bucket b : Buckets) { // for each bucket...
 }
 ```
 
-## List objects
+### List objects
 
 ```java
 ObjectListing listing = cos.listObjects(`sample`); // get the list of objects in the 'sample' bucket
@@ -308,7 +322,7 @@ for (S3ObjectSummary obj : summaries){ // for each object...
 }
 ```
 
-## Delete object
+### Delete object
 
 ```java
 cos.deleteObject( // delete the Object, passing…
@@ -317,7 +331,7 @@ cos.deleteObject( // delete the Object, passing…
 );
 ```
 
-## Using Key Protect
+### Using Key Protect
 
 A new object `EncryptionType` will contain the default value for the encryption algorithm & a `IBMSSEKPCustomerRootKeyCrn` variable.
 
@@ -336,7 +350,6 @@ s3client.createBucket(new CreateBucketRequest(bucketName).withEncryptionType(enc
 The additional headers have been defined within `Headers` class:
 
 ```java
-Headers.java
 
 public static final String IBM_SSE_KP_ENCRYPTION_ALGORITHM = "ibm-sse-kp-encryption-algorithm";
 public static final String IBM_SSE_KP_CUSTOMER_ROOT_KEY_CRN = "ibm-sse-kp-customer-root-key-crn";
