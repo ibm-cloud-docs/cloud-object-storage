@@ -5,9 +5,6 @@ Cloud Object Storage
     about-cos.md
 
     {: .topicgroup}
-    About Object Storage
-
-    {: .topicgroup}
     Getting started
         basics/administrators.md
         basics/developers.md

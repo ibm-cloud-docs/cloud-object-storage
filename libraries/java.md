@@ -98,7 +98,7 @@ import com.ibm.cloud.objectstorage.oauth.BasicIBMOAuthCredentials;
 public class CosExample
 {
 
-    private static AmazonS3 _cosClient;
+    private static AmazonS3 _cos;
 
     /**
      * @param args
@@ -115,9 +115,9 @@ public class CosExample
         String location = "us";
 
         System.out.println("Current time: " + new Timestamp(System.currentTimeMillis()).toString());
-        _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
-        listObjects(bucketName, _cosClient);
-        listBuckets(_cosClient);
+        _cos = createClient(api_key, service_instance_id, endpoint_url, location);
+        listObjects(bucketName, _cos);
+        listBuckets(_cos);
     }
 
     /**
@@ -144,20 +144,20 @@ public class CosExample
         ClientConfiguration clientConfig = new ClientConfiguration().withRequestTimeout(5000);
         clientConfig.setUseTcpKeepAlive(true);
 
-        AmazonS3 cosClient = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
+        AmazonS3 cos = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
                 .withEndpointConfiguration(new EndpointConfiguration(endpoint_url, location)).withPathStyleAccessEnabled(true)
                 .withClientConfiguration(clientConfig).build();
-        return cosClient;
+        return cos;
     }
 
     /**
      * @param bucketName
-     * @param cosClient
+     * @param cos
      */
-    public static void listObjects(String bucketName, AmazonS3 cosClient)
+    public static void listObjects(String bucketName, AmazonS3 cos)
     {
         System.out.println("Listing objects in bucket " + bucketName);
-        ObjectListing objectListing = cosClient.listObjects(new ListObjectsRequest().withBucketName(bucketName));
+        ObjectListing objectListing = cos.listObjects(new ListObjectsRequest().withBucketName(bucketName));
         for (S3ObjectSummary objectSummary : objectListing.getObjectSummaries()) {
             System.out.println(" - " + objectSummary.getKey() + "  " + "(size = " + objectSummary.getSize() + ")");
         }
@@ -165,12 +165,12 @@ public class CosExample
     }
 
     /**
-     * @param s3Client
+     * @param cos
      */
-    public static void listBuckets(AmazonS3 s3Client)
+    public static void listBuckets(AmazonS3 cos)
     {
         System.out.println("Listing buckets");
-        final List<Bucket> bucketList = _s3Client.listBuckets();
+        final List<Bucket> bucketList = _cos.listBuckets();
         for (final Bucket bucket : bucketList) {
             System.out.println(bucket.getName());
         }
@@ -180,9 +180,11 @@ public class CosExample
 }
 ```
 
-## Code snippets
+## Create a client
 
-The following examples assume a client `cos` has been configured.
+In the above example, a client `cos` was created and configured. For more details on client construction, [see the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/client/builder/AwsClientBuilder.html).
+
+The following examples assume a client `cos` exists and has been configured.
 
 ```java
 public static AmazonS3 createClient(String api_key, String service_instance_id, String endpoint_url, String location)

@@ -16,7 +16,7 @@ lastupdated: "2017-09-27"
 
 ## Common Request Headers
 The following table describes supported common request headers. {{site.data.keyword.cos_full}} ignores any common headers not listed below if sent in a request, although some requests may support other headers as defined in this documentation.
-
+ 
 | Header                    | Note                                                                            |
 |---------------------------|---------------------------------------------------------------------------------|
 | Authorization             | **Required** for all requests (OAuth2 `bearer` token).                          |

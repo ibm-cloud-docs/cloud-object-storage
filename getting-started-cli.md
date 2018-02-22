@@ -25,7 +25,7 @@ You'll need:
   * and some files on your local computer to upload.
 {: #prereqs}
 
-Looking for a walkthrough that uses the console instead of the CLI? [Click here](/docs/services/cloud-object-storage/index.html).
+Looking for a walkthrough that uses the console instead of the CLI? [Click here](/docs/services/cloud-object-storage/getting-started.html#getting-started-console-).
 {:tip}
 
 ## Gather key information
