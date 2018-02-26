@@ -430,6 +430,65 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 
 ----
 
+## Deleting multiple objects
+
+A `POST` given a path to an bucket and proper parameters will delete a specified set of objects.
+
+**Syntax**
+
+```bash
+POST https://{endpoint}/{bucket-name}?delete= # path style
+POST https://{bucket-name}.{endpoint}?delete= # virtual host style
+```
+
+**Sample request**
+
+```http
+POST /apiary?delete= HTTP/1.1
+Authorization: Bearer {token}
+Host: s3-api.us-geo.objectstorage.softlayer.net
+Content-Type: text/plain; charset=utf-8
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<Delete>
+    <Object>
+         <Key>surplus-bee</Key>
+    </Object>
+    <Object>
+         <Key>unnecessary-bee</Key>
+    </Object>
+</Delete>
+```
+
+**Sample response**
+
+```http
+HTTP/1.1 200 OK
+Date: Wed, 30 Nov 2016 18:54:53 GMT
+X-Clv-Request-Id: a6232735-c3b7-4c13-a7b2-cd40c4728d51
+Accept-Ranges: bytes
+Server: Cleversafe/3.9.0.137
+X-Clv-S3-Version: 2.5
+x-amz-request-id: a6232735-c3b7-4c13-a7b2-cd40c4728d51
+Content-Type: application/xml
+Content-Length: 207
+```
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DeleteResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+    <Deleted>
+         <Key>surplus-bee</Key>
+    </Deleted>
+    <Deleted>
+         <Key>unnecessary-bee</Key>
+    </Deleted>
+</DeleteResult>
+```
+
+----
+
 ## List canceled/incomplete multipart uploads for a bucket
 
 A `GET` issued to a bucket with the proper parameters retrieves information about any canceled or incomplete multipart uploads for a bucket.
