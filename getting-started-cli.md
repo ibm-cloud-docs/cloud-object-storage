@@ -76,7 +76,7 @@ Looking for a walkthrough that uses the console instead of the CLI? [Click here]
     {:codeblock}
 
     ```
-    Retrieving service instance <sinstance-name> in resource group Default under account IBM as <email-address>...
+    Retrieving service instance <sinstance-name> in resource group Default under account <account-name> as <email-address>...
     OK
     
     Name:                  <resource-instance-name>
