@@ -193,7 +193,7 @@ access_key = '{COS_HMAC_ACCESS_KEY_ID}'
 secret_key = '{COS_HMAC_SECRET_ACCESS_KEY}'
 
 # request elements
-http_method = 'GET'
+http_method = 'PUT'
 region = ''
 bucket = 'example-bucket'
 cos_endpoint = '{endpoint}'
