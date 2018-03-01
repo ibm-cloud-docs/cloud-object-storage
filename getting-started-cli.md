@@ -88,6 +88,9 @@ Looking for a walkthrough that uses the console instead of the CLI? [Click here]
     Type:                  service_instance
     Tags:
     ```
+    
+    **Note**: You may need to change the **Resource Group Name** in the case you created your instance in a group other than **Default**. You can list your available resource groups with `bx resource groups` then change to a specific resource group with `bx target -g "<another-resource-group>"`    {:tip}
+    
 
   1. Next, get a token from IAM.
 
