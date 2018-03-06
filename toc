@@ -18,7 +18,7 @@ Cloud Object Storage
 
     {: .navgroup id="howto"}
     basics/order-storage.md
-    basics/using-ui.md
+    basics/upload.md
 
     {: .topicgroup}
     Manage access
