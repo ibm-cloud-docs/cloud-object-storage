@@ -42,7 +42,6 @@ The terms 'resource instance' and 'service instance' refer to the same concept, 
 
   3. Choose a desired [level of _resiliency_](/docs/services/cloud-object-storage/basics/endpoints.html) first, and then a _location_ where you would like your data to be physically stored. Resiliency refers to the scope and scale of the geographic area across which your data is distributed. _Cross Region_ resiliency will spread your data across several metropolitan areas, while _Regional_ resiliency will spread data across a single metropolitan area.  A _Single Data Center_ will only distribute data across devices within a single site.
   4. Choose the [bucket's _storage class_](/docs/services/cloud-object-storage/basics/classes.html). This is a reflection of how often you expect to read the stored data and determines billing details. Follow the **Create** link to create and access your new bucket.
-  5. If you wish to configure the bucket to use
 
   Buckets are a way to organize your data, but they're not the sole way. Object names (often referred to as _object keys_) can also contain one or more forward slashes allowing for a directory-like organizational system. You can use the portion of the object name before a delimiter to form an _object prefix_, which can be used to list related objects in a single bucket through the API.
 {:tip}
