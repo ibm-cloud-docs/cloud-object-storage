@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017
-lastupdated: "2017-09-27"
+lastupdated: "2018-03-04"
 
 ---
 {:new_window: target="_blank"}
@@ -14,7 +14,7 @@ lastupdated: "2017-09-27"
 
 # Store very large objects
 
-{{site.data.keyword.cos_full}} can support single objects as large as 10TB, although it not recommended to upload objects this large in a single stream.
+{{site.data.keyword.cos_full}} can support single objects as large as 10TB when using multipart uploads.  Large objects can also be uploaded [using the console with High-Speed Transfer enabled](/docs/services/cloud-object-storage/basics/upload.html#high-speed-transfer).
 
 ## Uploading objects in multiple parts
 
