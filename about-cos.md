@@ -19,7 +19,7 @@ Information stored with {{site.data.keyword.cos_full}} is encrypted and disperse
 
 {{site.data.keyword.cos_full_notm}} is available with three types of resiliency: Cross Region, Regional, and Single Data Center.  Cross Region provides higher durability and availability than using a single region at the cost of slightly higher latency, and is available today in the US and EU. Regional service reverses those tradeoffs, and distributes objects across multiple availability zones within a single region, and is available in the US South and US East regions. If a given region or availability zone is unavailable, the object store continues to function without impediment.  Single Data Center distributes objects across multiple machines within the same physical location.
 
-Developers use an {{site.data.keyword.cos_full_notm}} API to interact with their object storage. This documentation provides support to [get started](/docs/cloud-object-storage/index.html#getting-started-console-) with provisioning accounts, to create buckets, to upload objects, and to use a reference of common API interactions.
+Developers use an {{site.data.keyword.cos_full_notm}} API to interact with their object storage. This documentation provides support to [get started](/docs/cloud-object-storage/getting-started.html) with provisioning accounts, to create buckets, to upload objects, and to use a reference of common API interactions.
 
 
 
