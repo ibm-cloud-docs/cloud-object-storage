@@ -14,7 +14,7 @@ lastupdated: "2017-09-27"
 
 # For developers
 
-First, ensure you have the [{{site.data.keyword.cloud}} Platform CLI](https://clis.ng.bluemix.net/ui/home.html) and [IBM Developer Tools](https://console.bluemix.net/docs/cloudnative/dev_cli.html) installed.
+First, ensure you have the [{{site.data.keyword.cloud}} Platform CLI](https://clis.ng.bluemix.net/ui/home.html) and [IBM Developer Tools](https://console.bluemix.net/docs/cloudnative/idt/index.html) installed.
 
 ## Provision an instance of {{site.data.keyword.cos_full_notm}}
   1. First, make sure you have an API key.  Get this from [IBM Cloud Identity and Access Management](https://www.bluemix.net/iam/#/apikeys).

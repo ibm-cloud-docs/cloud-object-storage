@@ -23,10 +23,7 @@ Any request using SSE-C headers must be sent using SSL. Note that `ETag` values 
 
 Header | Type | Description
 --- | ---- | ------------
-`x-amz-server-
-
-
--encryption-customer-algorithm` | string | This header is used to specify the algorithm and key size to use with the encryption key stored in `x-amz-server-side-encryption-customer-key` header. This value must be set to the string `AES256`.
+`x-amz-server-side-encryption-customer-algorithm` | string | This header is used to specify the algorithm and key size to use with the encryption key stored in `x-amz-server-side-encryption-customer-key` header. This value must be set to the string `AES256`.
 `x-amz-server-side-encryption-customer-key` | string | This header is used to transport the base 64 encoded byte string representation of the AES 256 key used in the server side encryption process.
 `x-amz-server-side-encryption-customer-key-MD5` | string | This header is used to transport the base64-encoded 128-bit MD5 digest of the encryption key according to RFC 1321. The object store will use this value to validate the key passes in the `x-amz-server-side-encryption-customer-key` has not been corrupted during transport and encoding process. The digest must be calculated on the key BEFORE the key is base 64 encoded.
 
@@ -38,7 +35,7 @@ Header | Type | Description
 
 Once you have an instance of {{site.data.keyword.keymanagementserviceshort}} in a region that you want to create a new bucket in, you need to create a root key and note the CRN of that key.
 
-You can choose to use {{site.data.keyword.keymanagementserviceshort}} to manage encryption for a bucket only at the time of creation.  It isn't possible to change an existing bucket to use {{site.data.keyword.keymanagementserviceshort}}. 
+You can choose to use {{site.data.keyword.keymanagementserviceshort}} to manage encryption for a bucket only at the time of creation.  It isn't possible to change an existing bucket to use {{site.data.keyword.keymanagementserviceshort}}.
 {:tip}
 
 When creating the bucket, you need to provide additional headers.
