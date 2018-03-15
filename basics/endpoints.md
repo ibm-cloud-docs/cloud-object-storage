@@ -186,7 +186,7 @@ Types of endpoint:
 </table>
 {:.endpointtable}
 
-## US Cross Region Endpoints
+## AP Cross Region Endpoints
 
 <table>
   <thead>
