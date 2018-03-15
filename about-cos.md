@@ -39,7 +39,7 @@ In addition to {{site.data.keyword.cos_full_notm}}, {{site.data.keyword.cloud_no
 
 Data stored with Cloud Object Storage (Infrastructure) is located in one of 20 global data centers. Developers manage access at the account level. This offering is managed through the {{site.data.keyword.cloud_notm}} infrastructure Control portal.
 
-For more information on this object storage service, [view the documentation ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://ibm-public-cos.github.io/crs-docs/index.html){: new_window}.
+For more information on this object storage service, [view the documentation](/docs/infrastructure/cloud-object-storage-infrastructure/quickstart.html){: new_window}.
 
 ## OpenStack Swift Object Storage (Infrastructure)
 
