@@ -52,7 +52,7 @@ The terms 'resource instance' and 'service instance' refer to the same concept, 
 
 Now go ahead and navigate to one of your buckets by selecting it from the list.  Click the **Add Objects** button. Note that new objects overwrite existing objects with identical names within the same bucket. When using the console to upload objects, the object name always matches the file name, but there doesn't need to be any relationship between the file name and the object key if you are using the API to write data.  Go ahead and add a handful of files to this bucket.
 
-Objects are limited to 200MB in size when uploaded using a web browser unless the [Aspera High-Speed Transfer](/docs/services/cloud-object-storage/basics/upload.html#high-speed-transfer) plugin is installed. Large objects (up to 10TB) can also be [split into multiple parts and uploaded in parallel using the API](/docs/services/cloud-object-storage/basics/multipart.html).  Object keys can be up to 1024 characters in length, and it's best to avoid any characters that might be problematic in a web address (e.g. `?`, `=`, `<`, etc.).
+Objects are limited to 200MB in size when uploaded using a web browser unless the [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics/upload.html#high-speed-transfer) plug-in is installed. Large objects (up to 10TB) can also be [split into multiple parts and uploaded in parallel using the API](/docs/services/cloud-object-storage/basics/multipart.html).  Object keys can be up to 1024 characters in length, and it's best to avoid any characters that might be problematic in a web address (e.g. `?`, `=`, `<`, etc.).
 {:tip}
 
 ## Step 3a: Invite a user to your account to administer your buckets and data

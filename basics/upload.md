@@ -24,16 +24,19 @@ Typically, using the web-based console is not the most common way to use {{site.
 {: #high-speed-transfer}
 Using Aspera high-speed transfer for browser-based uploads and downloads offers the following benefits:
 
-* Objects can be as large as 10TB.
-* Performance might be improved, especially under networks experiencing packet loss or across longer distances.
-* Transfers take place in the background instead of in the active browser window.
-* Transfers can be viewed, paused, or cancelled independently.
+Overcome the limitations of traditional FTP and HTTP transfers to improve data transfer performance under most conditions, especially on networks experiencing high latency and packet loss.
+
+Transfer any type of data – multi-media files, disk images, unstructured data
+
+Transfers take place in the background instead of in the active browser window.
+
+Transfers can be viewed, paused, or cancelled independently.
 
 When uploading an object using the console, the dialog box will present the option of using Aspera high-speed transfer.  Instead of the typical HTTP `PUT`, this option uploads the object using the [FASP protocol](http://asperasoft.com/technology/transport/fasp/) from [IBM Aspera](https://www.ibm.com/cloud/high-speed-data-transfer). Click the **Download plug-in** link and you'll be prompted to install the Aspera Connect plug-in for your web browser.
 
-The plugin can be [installed from the Aspera website](http://downloads.asperasoft.com/connect2/) directly, and for help troubleshooting issues with the Aspera Connect plug-in, [see the documentation](http://downloads.asperasoft.com/en/documentation/8).  
+The plug-in can be [installed from the Aspera website](http://downloads.asperasoft.com/connect2/) directly. For help troubleshooting issues with the Aspera Connect plug-in, [see the documentation](http://downloads.asperasoft.com/en/documentation/8).  
 
-After the plugin is installed, it's possible to set Aspera high-speed transfer as the default for any uploads to the target bucket using the same browser by checking the box labeled **Remember my browser preferences**. There are also toggle switches available in the bucket configuration page under "Transfer options" that allow you to set different defaults for uploads and downloads.
+Once the plugin is installed you will have the option to set Aspera high-speed transfer as the default for any uploads to the target bucket that use the same browser. Simply check the box labeled Remember my browser preferences. Toggle switches are also available in the bucket configuration page under **"Transfer options".** These switches allow you to set the default transport for uploads and downloads.
 
 ## Using a compatible tool
 
