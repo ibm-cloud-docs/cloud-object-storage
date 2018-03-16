@@ -22,6 +22,10 @@ Typically, using the web-based console is not the most common way to use {{site.
 
 ### Using Aspera high-speed transfer
 {: #high-speed-transfer}
+
+Aspera high-speed transfer is only available for buckets created in [the `us-south` region](/docs/services/cloud-object-storage/basics/endpoints.html) at this time.
+{:tip}
+
 Using Aspera high-speed transfer for browser-based uploads and downloads offers the following benefits:
 
 Overcome the limitations of traditional FTP and HTTP transfers to improve data transfer performance under most conditions, especially on networks experiencing high latency and packet loss.
@@ -34,7 +38,7 @@ Transfers can be viewed, paused, or cancelled independently.
 
 When uploading an object using the console, the dialog box will present the option of using Aspera high-speed transfer.  Instead of the typical HTTP `PUT`, this option uploads the object using the [FASP protocol](http://asperasoft.com/technology/transport/fasp/) from [IBM Aspera](https://www.ibm.com/cloud/high-speed-data-transfer). Click the **Download plug-in** link and you'll be prompted to install the Aspera Connect plug-in for your web browser.
 
-The plug-in can be [installed from the Aspera website](http://downloads.asperasoft.com/connect2/) directly. For help troubleshooting issues with the Aspera Connect plug-in, [see the documentation](http://downloads.asperasoft.com/en/documentation/8).  
+The plug-in can be [installed from the Aspera website](http://downloads.asperasoft.com/connect2/) directly. For help troubleshooting issues with the Aspera Connect plug-in, [see the documentation](http://downloads.asperasoft.com/en/documentation/8).
 
 Once the plugin is installed you will have the option to set Aspera high-speed transfer as the default for any uploads to the target bucket that use the same browser. Simply check the box labeled Remember my browser preferences. Toggle switches are also available in the bucket configuration page under **"Transfer options".** These switches allow you to set the default transport for uploads and downloads.
 
