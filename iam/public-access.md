@@ -50,3 +50,7 @@ curl -X "PUT" "https://{endpoint}/{bucket-name}/{object-name}?acl" \
      -H "Content-Type: text/plain; charset=utf-8" \
 ```
 {:codeblock}
+
+## Static website hosting
+
+{{site.data.keyword.cos_full_notm}} does not support automatic static website hosting, but it is possible to manually configure a web server and use it to serve publically accessible content hosted in {{site.data.keyword.cos_short}}.  For more information, see [this tutorial](https://www.ibm.com/blogs/bluemix/2017/03/static-websites-cloud-object-storage-cos/).

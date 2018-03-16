@@ -62,6 +62,12 @@ Cloud Object Storage
         libraries/node.md
 
     {: .topicgroup}
+    Tutorials
+        [Upload files using IBM Cloud Functions](https://medium.com/ibm-watson-data-lab/keeping-your-secrets-between-cloud-object-storage-and-your-browser-part-1-68f4b83bbd38)
+        [Serve static content using NGINX](https://www.ibm.com/blogs/bluemix/2017/03/static-websites-cloud-object-storage-cos/)
+        [Detaching Cloudant Attachments to COS](https://medium.com/ibm-watson-data-lab/detaching-cloudant-attachments-to-object-storage-with-serverless-functions-99b8c3c77925)
+
+    {: .topicgroup}
     Technical guides
         info/data-security-encryption.md
         info/developer-guidance.md
