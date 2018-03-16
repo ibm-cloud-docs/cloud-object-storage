@@ -14,7 +14,9 @@ lastupdated: "2017-09-27"
 
 # Create a presigned URL
 
-Presigned URLs create a temporary link that can be used to share an object publicly, or to provide a temporary target for sending a PUT request without needing to provide authentication information.
+Presigned URLs create a temporary link that can be used to share an object publicly, or to [provide a temporary target for sending a PUT request](https://medium.com/ibm-watson-data-lab/keeping-your-secrets-between-cloud-object-storage-and-your-browser-part-1-68f4b83bbd3) without needing to provide authentication information. 
+
+
 
 The easiest way to create presigned URLs is using the [AWS CLI](/docs/services/cloud-object-storage/cli/aws-cli.html):
 
