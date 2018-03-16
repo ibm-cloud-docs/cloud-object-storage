@@ -17,7 +17,7 @@ lastupdated: "2018-02-16"
 ## Upload an object
 {: #upload-object}
 
-A `PUT` given a path to an object uploads the request body as an object. A SHA256 hash of the object is a required header.  All objects uploaded in a single thread are limited to 5TB in size (objects [uploaded in multiple parts](#multipart) can be as large as 10TB).
+A `PUT` given a path to an object uploads the request body as an object. A SHA256 hash of the object is a required header.  All objects uploaded in a single thread are limited to 5TB in size (objects [uploaded in multiple parts](/docs/services/cloud-object-storage/basics/multipart.html#uploading-objects-in-multiple-parts) can be as large as 10TB).
 
 **Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
 {:tip}
