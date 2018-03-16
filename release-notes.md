@@ -22,6 +22,8 @@ Users who upload or download files using the web-based console have the option t
 Buckets can now be created in an AP Cross Region configuration.
  Data stored in these buckets is distributed across the Seoul, Tokyo, and Hong Kong data centers.  More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html) documentation.
 
+Users can run `SELECT` SQL queries directly against structured data objects using IBM Cloud SQL Query.  More information can be found in the [SQL Query documentation](/docs/services/sql-query/sql-query.html).
+
 ### February 2018
 Buckets can now be created in a Single Data Center configuration in Toronto and Melbourne.  This allows for lower latency when accessing storage from compute resources co-located within the same data center, or for data requiring a specific geographic location. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html) documentation.
 
