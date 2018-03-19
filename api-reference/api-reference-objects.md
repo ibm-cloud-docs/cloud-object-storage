@@ -459,8 +459,8 @@ A `GET` given a path to a multipart object with an active `UploadID` specified a
 **Syntax**
 
 ```bash
-PUT https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId} # path style
-PUT https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId} # virtual host style
+GET https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId} # path style
+GET https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId} # virtual host style
 ```
 
 ### Required query parameters
