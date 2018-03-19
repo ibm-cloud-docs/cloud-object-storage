@@ -17,7 +17,7 @@ lastupdated: "2018-02-16"
 ## Upload an object
 {: #upload-object}
 
-A `PUT` given a path to an object uploads the request body as an object. A SHA256 hash of the object is a required header.  All objects uploaded in a single thread are limited to 5TB in size (objects [uploaded in multiple parts](/docs/services/cloud-object-storage/basics/multipart.html#uploading-objects-in-multiple-parts) can be as large as 10TB).
+A `PUT` given a path to an object uploads the request body as an object. All objects uploaded in a single thread should be smaller than 500MB (objects [uploaded in multiple parts](/docs/services/cloud-object-storage/basics/multipart.html#uploading-objects-in-multiple-parts) can be as large as 10TB).
 
 **Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
 {:tip}
@@ -370,6 +370,9 @@ There are three phases to uploading an object in multiple parts:
 
 A `POST` issued to an object with the query parameter `upload` creates a new `UploadId` value, which is then be referenced by each part of the object being uploaded.
 
+**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
+{:tip}
+
 **Syntax**
 
 ```bash
@@ -412,6 +415,9 @@ Content-Length: 276
 
 A `PUT` request issued to an object with query parameters `partNumber` and `uploadId` will upload one part of an object.  The parts may be uploaded serially or in parallel, but must be numbered in order.
 
+**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
+{:tip}
+
 **Syntax**
 
 ```bash
@@ -440,6 +446,81 @@ Server: Cleversafe/3.9.1.114
 X-Clv-S3-Version: 2.5
 ETag: "7417ca8d45a71b692168f0419c17fe2f"
 Content-Length: 0
+```
+
+----
+
+## List parts
+{: #list-parts}
+
+A `GET` given a path to a multipart object with an active `UploadID` specified as a query parameter will return a list of all of the object's parts.
+
+
+**Syntax**
+
+```bash
+PUT https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId} # path style
+PUT https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId} # virtual host style
+```
+
+### Required query parameters
+
+Header | Type | Description
+--- | ---- | ------------
+`uploadId` | string | Upload ID returned when initializing a multipart upload.
+
+### Optional query parameters
+
+Header | Type | Description
+--- | ---- | ------------
+`max-parts` | string | Defaults to 1,000.
+`part-number​-marker` | string | Defines where the list of parts will begin.
+
+**Sample request**
+
+
+```http
+GET /farm/spaceship?uploadId=01000162-3f46-6ab8-4b5f-f7060b310f37 HTTP/1.1
+Authorization: bearer {token}
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample response**
+
+```http
+HTTP/1.1 200 OK
+Date: Mon, 19 Mar 2018 17:21:08 GMT
+X-Clv-Request-Id: 6544044d-4f88-4bb6-9ee5-bfadf5023249
+Server: Cleversafe/3.12.4.20
+X-Clv-S3-Version: 2.5
+Accept-Ranges: bytes
+Content-Type: application/xml
+Content-Length: 743
+```
+
+```xml
+<ListPartsResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+  <Bucket>farm</Bucket>
+  <Key>spaceship</Key>
+  <UploadId>01000162-3f46-6ab8-4b5f-f7060b310f37</UploadId>
+  <Initiator>
+    <ID>d6f04d83-6c4f-4a62-a165-696756d63903</ID>
+    <DisplayName>d6f04d83-6c4f-4a62-a165-696756d63903</DisplayName>
+  </Initiator>
+  <Owner>
+    <ID>d6f04d83-6c4f-4a62-a165-696756d63903</ID>
+    <DisplayName>d6f04d83-6c4f-4a62-a165-696756d63903</DisplayName>
+  </Owner>
+  <StorageClass>STANDARD</StorageClass>
+  <MaxParts>1000</MaxParts>
+  <IsTruncated>false</IsTruncated>
+  <Part>
+    <PartNumber>1</PartNumber>
+    <LastModified>2018-03-19T17:20:35.482Z</LastModified>
+    <ETag>"bb03cf4fa8603fe407a65ee1dba55265"</ETag>
+    <Size>7128094</Size>
+  </Part>
+</ListPartsResult>
 ```
 
 ----
