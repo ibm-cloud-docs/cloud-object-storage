@@ -66,6 +66,9 @@ Content-Length: 0
 
 A `HEAD` given a path to an object retrieves that object's headers.
 
+Note that the `Etag` value returned for objects encrypted using SSE-KP will **not** be the MD5 hash of the original unencrypted object.
+{:tip}
+
 **Syntax**
 
 ```bash
@@ -103,6 +106,9 @@ Content-Length: 11
 ## Download an object
 
 A `GET` given a path to an object downloads the object.
+
+Note that the `Etag` value returned for objects encrypted using SSE-C/SSE-KP will **not** be the MD5 hash of the original unencrypted object.
+{:tip}
 
 **Syntax**
 

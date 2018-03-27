@@ -34,6 +34,23 @@ More detail on individual methods and classes can be found in [the API documenta
 
 To run the SDK you will need **Node 4.x+**.
 
+### Creating a client and sourcing credentials
+{: #client-credentials}
+
+To connect to COS, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
+
+After generating a [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`.  The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client will authenticate with a signature, otherwise the client will use the provided API key to authenticate using a bearer token.
+
+If migrating from AWS S3, you can also source credentials data from  `~/.aws/credentials` in the format:
+
+```
+[default]
+aws_access_key_id = {API_KEY}
+aws_secret_access_key = {SERVICE_INSTANCE_ID}
+```
+
+If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` will take preference.
+
 ### Code example
 
 ```javascript
@@ -122,7 +139,7 @@ s3.createBucket(params, function(err, data) {
 
 Parameters (new fields only):
 `IBMSSEKPEncryptionAlgorithm` (string) – The encryption algorithm that will be used for objects stored in the newly created bucket.  Default: AES256
-`IBMSSEKPCustomerRootKeyCrn` (string) – Container for describing the KMS-KP Key CRN.  The crn includes version, cname, ctype, servicename, location, scope, serviceinstance, resourcetype, resource. We will pass the CRN as-is. 
+`IBMSSEKPCustomerRootKeyCrn` (string) – Container for describing the KMS-KP Key CRN.  The crn includes version, cname, ctype, servicename, location, scope, serviceinstance, resourcetype, resource. We will pass the CRN as-is.
 
 Callback (callback):
 function(err, data) { ... }

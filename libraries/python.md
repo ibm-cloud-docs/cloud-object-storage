@@ -32,6 +32,23 @@ The 2.0 release of the SDK introduces a namespacing change that allows an applic
   2. Update any import declarations from `boto3` to `ibm_boto3`.
   3. If needed, reinstall the original `boto3` by updating the `requirements.txt`, or from PyPI via `pip install boto3`.
 
+  ## Creating a client and sourcing credentials
+  {: #client-credentials}
+
+  To connect to COS, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.  
+
+  After generating a [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`.  The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client will authenticate with a signature, otherwise the client will use the provided API key to authenticate using a bearer token.
+
+  If migrating from AWS S3, you can also source credentials data from  `~/.aws/credentials` in the format:
+
+  ```
+  [default]
+  aws_access_key_id = {API_KEY}
+  aws_secret_access_key = {SERVICE_INSTANCE_ID}
+  ```
+
+  If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` will take preference.
+
 ## Example script
 
 This script assumes that a service credential is stored in JSON format in the same directory.  The credential must have the following fields:
