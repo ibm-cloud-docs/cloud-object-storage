@@ -28,7 +28,7 @@ bx login --apikey <value>
   3. Next, provision an instance of {{site.data.keyword.cos_full_notm}} specifying the name for the instance, the ID and the desired plan (lite or standard).  This will get us the CRN.  If you have an upgraded account, specify the `Standard` plan.  Otherwise specify `Lite`.
 
 ```
-bx resource service-instance-create <instance-name> cloud-object-storage <plan> -r global
+bx resource service-instance-create <instance-name> cloud-object-storage <plan> global
 ```
 {:codeblock}
 
@@ -39,4 +39,4 @@ Learn more about using the the {{site.data.keyword.cloud_notm}} CLI to create ap
 
 ## Using the API
 
-There isn't a focused command line utility for managing data stored in {{site.data.keyword.cos_short}}.  As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage.  More information can be found in [the `curl` reference](/docs/services/cloud-object-storage/cli/curl.html), as well as [the API reference documentation](/docs/services/cloud-object-storage/api-reference/about-compatibility-api.html).
+There isn't an 'official' command line utility for managing data stored in {{site.data.keyword.cos_short}}, although S3 API compatible tools like the [AWS CLI](/docs/services/cloud-object-storage/cli/aws-cli.html) will work using [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html) for compatibility.  As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage.  More information can be found in [the `curl` reference](/docs/services/cloud-object-storage/cli/curl.html), as well as [the API reference documentation](/docs/services/cloud-object-storage/api-reference/about-compatibility-api.html).
