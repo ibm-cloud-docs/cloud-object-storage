@@ -268,6 +268,14 @@ request_url = (endpoint + '/' +
 
 print 'request_url: %s' % request_url
 
+print '\nSending `%s` request to IBM COS -----------------------' % http_method
+print 'Request URL = ' + request_url
+request = requests.PUT(request_url)
+
+print '\nResponse from IBM COS ---------------------------------'
+print 'Response code: %d\n' % request.status_code
+print request.text
+
 
 # this information can be helpful in troubleshooting, or to better
 # understand what goes into signature creation
