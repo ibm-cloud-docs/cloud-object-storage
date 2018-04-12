@@ -5,14 +5,15 @@ copyright:
 lastupdated: "2018-02-01"
 
 ---
+
+# Using Java
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
-
-# Java
 
 The {{site.data.keyword.cos_full}} SDK for Java is comprehensive, and has features and capabilities not described in this guide.  For detailed class and method documentation [see the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/). Source code can be found in the [GitHub repository](https://github.com/ibm/ibm-cos-sdk-java).
 

@@ -15,7 +15,6 @@ Cloud Object Storage
     release-notes.md
     {: .navgroup-end}
 
-
     {: .navgroup id="howto"}
     basics/order-storage.md
     basics/upload.md
@@ -29,7 +28,7 @@ Cloud Object Storage
         iam/public-access.md
 
     {: .topicgroup}
-    Use HMAC authentication
+    Use Access/Secret Key authentication
         hmac/credentials.md
         hmac/hmac-signature.md
         hmac/presigned-urls.md

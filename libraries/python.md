@@ -5,14 +5,15 @@ copyright:
 lastupdated: "2017-09-27"
 
 ---
+
+# Using Python
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
-
-# Python
 
 Python support is provided through a fork of the Boto library.  It can be installed from the Python Package Index via `pip install ibm-cos-sdk`.
 

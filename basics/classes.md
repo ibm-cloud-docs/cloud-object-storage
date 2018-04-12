@@ -2,9 +2,12 @@
 
 copyright:
   years: 2017
-lastupdated: "2017-11-05"
+lastupdated: "2018-04-06"
 
 ---
+
+# Use storage classes
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
@@ -12,9 +15,7 @@ lastupdated: "2017-11-05"
 {:screen: .screen}
 {:tip: .tip}
 
-# Use storage classes
-
-Not all data needs feeds active workloads.  Archival data may sit untouched for long periods of time.  For less active workloads, you can create buckets with different storage classes.  Objects stored in these buckets will incur charges on a different schedule than standard storage.
+Not all data feeds active workloads.  Archival data may sit untouched for long periods of time.  For less active workloads, you can create buckets with different storage classes.  Objects stored in these buckets will incur charges on a different schedule than standard storage.
 
 ## What are the classes?
 
@@ -31,7 +32,7 @@ For information on how to create buckets with different storage classes, please 
 
 ## How do I create a bucket with a different storage class?
 
-When creating a bucket in the console, there is a drop-down menu that allows for storage class selection.
+When creating a bucket in the console, there is a drop-down menu that allows for storage class selection. 
 
 When creating buckets programatically, it is necessary to specify a `LocationConstraint` that corresponds with the endpoint used. Valid provisioning codes for `LocationConstraint` are: <br>
 &emsp;&emsp;  `us-standard` / `us-vault` / `us-cold` / `us-flex` <br>
