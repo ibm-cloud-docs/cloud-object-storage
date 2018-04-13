@@ -26,7 +26,7 @@ Before ordering a new {{site.data.keyword.cos_full}} storage instance, it is nec
 6. Follow the **I'm Ready** link to get started with the {{site.data.keyword.cloud}} Platform.
 7. Next up is ordering a new object storage service instance!
 
-## Creating a new resource instance
+## Creating a new service instance
 
 1. Login to [https://console.bluemix.net/](https://console.bluemix.net/){: new_window}.
 2. Navigate to the catalog, by clicking **Catalog** in the navigation bar.

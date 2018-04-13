@@ -43,6 +43,8 @@ Cloud Object Storage
     Use the command line
         cli/curl.md
         cli/aws-cli.md
+
+    tutorials/migrate.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
