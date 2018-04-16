@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-04-12"
+lastupdated: "2018-04-16"
 
 ---
 
@@ -22,7 +22,7 @@ The concept of a Swift 'container' is identical to a COS 'bucket'.  COS limits s
 
 ## Set up {{site.data.keyword.cos_full_notm}}
 
-  1. If you haven't created one yet, provision an instance of {{site.data.keyword.cos_full_notm}} from the [catalog](/catalog/infrastructure/cloud-object-storage).  
+  1. If you haven't created one yet, provision an instance of {{site.data.keyword.cos_full_notm}} from the [catalog](/catalog/services/cloud-object-storage).  
   2. Read through the [getting started guide](/docs/services/cloud-object-storage/getting-started.html) to familiarize yourself with key concepts such as [endpoints](/docs/services/cloud-object-storage/basics/endpoints.html) and [storage classes](/docs/services/cloud-object-storage/basics/classes.html).  Create any buckets that you will need to store your transferred data. The example assumes the target bucket is in the `us-south` region and uses a standard storage class.
   3. Re-write your application to use the COS SDKs ([Java](/docs/services/cloud-object-storage/libraries/java.html), [Python](/docs/services/cloud-object-storage/libraries/python.html), [Node.js](/docs/services/cloud-object-storage/libraries/node.html)) or the [REST API](/docs/services/cloud-object-storage/api-reference/about-compatibility-api.html).
   4. You should now see two different object storage instances on the [dashboard](/dashboard/storage) for storage services.  Ensure that you have resource groups and all regions displayed.
@@ -34,7 +34,7 @@ The concept of a Swift 'container' is identical to a COS 'bucket'.  COS limits s
   3. Click on **New credential** to generate credential information.  Click **Add**.
   4. View the credential you created, and copy the JSON contents and save to a file for reference.
 
-## Get Swift credentials
+## Get COS credentials
 
   1. Click on your COS instance in the console.
   2. Click on **Service Credentials** in the navigation panel.
@@ -71,9 +71,9 @@ key =
 auth = https://identity.open.softlayer.com/v3
 user_id =
 domain =
-tenant = 
-tenant_id = 
-tenant_domain = 
+tenant =
+tenant_id =
+tenant_domain =
 region =
 storage_url =
 auth_token =
@@ -90,7 +90,7 @@ user_id = <userId>
 domain = <domainName>
 tenant = <project>
 tenant_id = <projectId>
-tenant_domain - <domainId>
+tenant_domain = <domainId>
 ```
 {:codeblock}
 
@@ -103,7 +103,7 @@ env_auth = false
 access_key_id =
 secret_access_key =
 region = other-v4-signature
-endpoint = s3.us-south.objectstorage.softlayer.net 
+endpoint = s3.us-south.objectstorage.softlayer.net
 location_constraint =
 acl =
 server_side_encryption =
