@@ -44,7 +44,6 @@ Cloud Object Storage
         cli/curl.md
         cli/aws-cli.md
 
-    tutorials/migrate.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
@@ -68,6 +67,7 @@ Cloud Object Storage
         [Upload files using IBM Cloud Functions](https://medium.com/ibm-watson-data-lab/keeping-your-secrets-between-cloud-object-storage-and-your-browser-part-1-68f4b83bbd38)
         [Serve static content using NGINX](https://www.ibm.com/blogs/bluemix/2017/03/static-websites-cloud-object-storage-cos/)
         [Detaching Cloudant Attachments to COS](https://medium.com/ibm-watson-data-lab/detaching-cloudant-attachments-to-object-storage-with-serverless-functions-99b8c3c77925)
+        tutorials/migrate.md
 
     {: .topicgroup}
     Technical guides
