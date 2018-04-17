@@ -46,15 +46,15 @@ The concept of a Swift 'container' is identical to a COS 'bucket'.  COS limits s
   1. Choose a Linux/macOS/BSD machine with the best proximity to your data.
   2. Install `rclone` from [either a package manager or precompiled binary](https://rclone.org/install/).
 
-```
-curl https://rclone.org/install.sh | sudo bash
+```bash
+curl https://rclone.org/install.sh | sudo \bash
 ```
 {: pre}
 
 ## Configure `rclone`
   1. Create an `rclone` config file in `~/.rclone.conf`.
 
-```
+```bash
 touch ~/.rclone.conf
 ```
 {: pre}
@@ -122,7 +122,7 @@ secret_access_key = <secret_access_key>
 
   6. List the Swift container to verify `rclone` is properly configured.
 
-```
+```bash
 rclone lsd SWIFT:
 ```
 
@@ -130,7 +130,7 @@ rclone lsd SWIFT:
 
   7. List the COS bucket to verify `rclone` is properly configured.
 
-```
+```bash
 rclone lsd COS:
 ```
 
@@ -140,7 +140,7 @@ rclone lsd COS:
 
   1. Do a dry run (no data copied) of `rclone` to sync the objects in your specified Swift container (e.g. `swift-test`) to COS bucket (e.g. `cos-test`).
 
-```
+```bash
 rclone --dry-run copy SWIFT:swift-test COS:cos-test
 ```
 
@@ -148,14 +148,14 @@ rclone --dry-run copy SWIFT:swift-test COS:cos-test
 
   2. Check that the files you desire to migrate appear in the command output. If everything looks good, remove the `--dry-run` flag and add `-v` flag to copy the data
 
-```
+```bash
 rclone -v copy SWIFT:swift-test COS:cos-test
 ```
 
-{: pre}
-
 Migrating data using `rclone` copies but does not delete the source data.
 {:tip}
+
+{: pre}
 
   3. Repeat for any other containers that require migration.
   4. Once all your data is copied, and you have verified that your application can access the data in COS, then delete your Swift service instance.
