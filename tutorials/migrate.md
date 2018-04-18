@@ -46,97 +46,97 @@ The concept of a Swift 'container' is identical to a COS 'bucket'.  COS limits s
   1. Choose a Linux/macOS/BSD machine with the best proximity to your data.
   2. Install `rclone` from [either a package manager or precompiled binary](https://rclone.org/install/).
 
-```
-curl https://rclone.org/install.sh | sudo bash
-```
+    ```
+    curl https://rclone.org/install.sh | sudo bash
+    ```
 
 ## Configure `rclone`
 1. Create an `rclone` config file in `~/.rclone.conf`.
 
-```
-touch ~/.rclone.conf
-```
+    ```
+    touch ~/.rclone.conf
+    ```
 
 2. Create the Swift source by copying the following and pasting into `rclone.conf`.
 
-```
-[SWIFT]
-type = swift
-env_auth = false
-user =
-key =
-auth = https://identity.open.softlayer.com/v3
-user_id =
-domain =
-tenant =
-tenant_id =
-tenant_domain =
-region =
-storage_url =
-auth_token =
-endpoint_type = public
-```
+    ```
+    [SWIFT]
+    type = swift
+    env_auth = false
+    user =
+    key =
+    auth = https://identity.open.softlayer.com/v3
+    user_id =
+    domain =
+    tenant =
+    tenant_id =
+    tenant_domain =
+    region =
+    storage_url =
+    auth_token =
+    endpoint_type = public
+    ```
 
 3. Using the Swift Service Credential, fill in the following fields:
 
-```
-user = <username>
-key = <password>
-user_id = <userId>
-domain = <domainName>
-tenant = <project>
-tenant_id = <projectId>
-tenant_domain = <domainId>
-```
+    ```
+    user = <username>
+    key = <password>
+    user_id = <userId>
+    domain = <domainName>
+    tenant = <project>
+    tenant_id = <projectId>
+    tenant_domain = <domainId>
+    ```
 
 4. Create the COS target by copying the following and pasting into `rclone.conf`. Adjust the `endpoint` and `location_constraint` fields if not using a standard [storage class](/docs/services/cloud-object-storage/basics/classes.html) located in the `us-south` [region](/docs/services/cloud-object-storage/basics/endpoints.html).  
 
-```
-[COS]
-type = s3
-env_auth = false
-access_key_id =
-secret_access_key =
-region = other-v4-signature
-endpoint = s3.us-south.objectstorage.softlayer.net
-location_constraint =
-acl =
-server_side_encryption =
-storage_class =
-```
+    ```
+    [COS]
+    type = s3
+    env_auth = false
+    access_key_id =
+    secret_access_key =
+    region = other-v4-signature
+    endpoint = s3.us-south.objectstorage.softlayer.net
+    location_constraint =
+    acl =
+    server_side_encryption =
+    storage_class =
+    ```
 
 5. Using the COS Service Credential, fill in the following fields:
 
-```
-access_key_id = <access_key_id>
-secret_access_key = <secret_access_key>
-```
+    ```
+    access_key_id = <access_key_id>
+    secret_access_key = <secret_access_key>
+    ```
 
 6. List the Swift container to verify `rclone` is properly configured.
 
-```
-rclone lsd SWIFT:
-```
+    ```
+    rclone lsd SWIFT:
+    ```
 
 7. List the COS bucket to verify `rclone` is properly configured.
 
-```
-rclone lsd COS:
-```
+    ```
+    rclone lsd COS:
+    ```
 
 ## Run `rclone`
 
 1. Do a dry run (no data copied) of `rclone` to sync the objects in your specified Swift container (e.g. `swift-test`) to COS bucket (e.g. `cos-test`).
 
-```
-rclone --dry-run copy SWIFT:swift-test COS:cos-test
-```
+    ```
+    rclone --dry-run copy SWIFT:swift-test COS:cos-test
+    ```
 
 2. Check that the files you desire to migrate appear in the command output. If everything looks good, remove the `--dry-run` flag and add `-v` flag to copy the data
 
-```
-rclone -v copy SWIFT:swift-test COS:cos-test
-```
+    ```
+    rclone -v copy SWIFT:swift-test COS:cos-test
+    ```
 
 Migrating data using `rclone` copies but does not delete the source data.
 {:tip}
