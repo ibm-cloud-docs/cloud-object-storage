@@ -118,7 +118,7 @@ Content-Length: 0
 ## Create a bucket with a different storage class
 {: #storage-class}
 
-To create a bucket with a different storage class, send an XML block specifying a bucket configuration with a `LocationConstraint` of `{provisioning code}` in the body of a `PUT` request to a bucket endpoint.  Note that standard bucket [naming rules](#create-a-new-bucket) apply. This operation does not make use of operation specific query parameters.
+To create a bucket with a different storage class, send an XML block specifying a bucket configuration with a `LocationConstraint` of `{provisioning code}` in the body of a `PUT` request to a bucket endpoint.  Note that standard bucket [naming rules](#new-bucket) apply. This operation does not make use of operation specific query parameters.
 
 Header                                        | Type   | Description
 ------------------------------------------------- | ------ | ----
