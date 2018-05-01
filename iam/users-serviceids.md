@@ -39,7 +39,7 @@ You assign access for users as you invite them, assigning Cloud Foundry roles, p
 
 #### Identity and access enabled services
 
-You can assign a single service policy when you invite a new user. Once the user has accepted the invitation, you can add additional service policies. See [Identity and access-enabled service access policies](/docs/iam/iamusermanage.html#iammanidaccser) for details on editing policies to add additional roles, adding additional service policies, or removing a policy for a user.
+You can assign a single service policy when you invite a new user. Once the user has accepted the invitation, you can add additional service policies. See [Identity and access-enabled service access policies](/docs/iam/iamusermanage.html) for details on editing policies to add additional roles, adding additional service policies, or removing a policy for a user.
 
 **Note**: Depending on which service you select when assigning the policy, you might not see all of fields described in the following procedure.
 

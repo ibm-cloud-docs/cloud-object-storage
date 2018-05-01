@@ -21,6 +21,19 @@ Using `curl` assumes a certain amount of familiarity with the command line and o
 **Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
 {:tip}
 
+Request an IAM token using an API key
+-------------------------------------
+
+```
+curl -X "POST" "https://iam.bluemix.net/oidc/token" \
+     -H 'Accept: application/json' \
+     -H 'Content-Type: application/x-www-form-urlencoded' \
+     --data-urlencode "apikey={api-key}" \
+     --data-urlencode "response_type=cloud_iam" \
+     --data-urlencode "grant_type=urn:ibm:params:oauth:grant-type:apikey"
+```
+{:codeblock}
+
 List buckets
 ------------
 

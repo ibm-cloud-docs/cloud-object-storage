@@ -28,7 +28,7 @@ There are four storage classes:
 
 For pricing details please see [the pricing table at ibm.com](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api).
 
-For information on how to create buckets with different storage classes, please see the [API reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#storage-classes).
+For information on how to create buckets with different storage classes, please see the [API reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#storage-clas).
 
 ## How do I create a bucket with a different storage class?
 
@@ -41,6 +41,7 @@ When creating buckets programatically, it is necessary to specify a `LocationCon
 &emsp;&emsp;  `eu-standard` / `eu-vault` / `eu-cold` / `eu-flex` <br>
 &emsp;&emsp;  `eu-gb-standard` / `eu-gb-vault` / `eu-gb-cold` / `eu-gb-flex` <br>
 &emsp;&emsp;  `ap-standard` / `ap-vault` / `ap-cold` / `ap-flex` <br>
+&emsp;&emsp;  `che01-standard` / `che01-vault` / `che01-cold` / `che01-flex` <br>
 &emsp;&emsp;  `mel01-standard` / `mel01-vault` / `mel01-cold` / `mel01-flex` <br>
 &emsp;&emsp;  `tor01-standard` / `tor01-vault` / `tor01-cold` / `tor01-flex` <br>
 

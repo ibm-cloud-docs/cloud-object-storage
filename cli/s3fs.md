@@ -13,3 +13,5 @@ lastupdated: "29-11-2017"
 {:tip: .tip}
 
 # Mount a bucket using `s3fs`
+
+Applications that expect to read and write to a NFS-style filesystem can use `s3fs`, which can mount a bucket as directory while preserving the native object format for files.  
