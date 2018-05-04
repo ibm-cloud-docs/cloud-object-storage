@@ -30,7 +30,7 @@ It is also possible to set an expiration time for the URL in seconds (default is
 $ aws --endpoint-url=https://{endpoint} s3 presign s3://bucket-1/new-file --expires-in 600
 ```
 
-It is also possible to construct them programatically.  Here are examples for basic `PUT` and `GET` operations written in Python.
+It is also possible to construct them programmatically.  Here are examples for basic `PUT` and `GET` operations written in Python.
 
 ## Create a presigned URL to download an object
 
