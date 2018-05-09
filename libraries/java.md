@@ -36,7 +36,7 @@ Maven uses a file called `pom.xml` to specify the libraries (and their versions)
         <dependency>
             <groupId>com.ibm.cos</groupId>
             <artifactId>ibm-cos-java-sdk</artifactId>
-            <version>2.0.0</version>
+            <version>2.1.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
