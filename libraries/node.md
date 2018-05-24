@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017
-lastupdated: "2017-09-27"
+lastupdated: "2018-05-24"
 
 ---
 
@@ -15,7 +15,7 @@ lastupdated: "2017-09-27"
 {:screen: .screen}
 {:tip: .tip}
 
-## Installing
+## Installing the SDK
 
 The preferred way to install the {{site.data.keyword.cos_full}} SDK for Node.js is to use the
 [npm](http://npmjs.org) package manager for Node.js. Simply type the following
@@ -52,11 +52,11 @@ aws_secret_access_key = {SERVICE_INSTANCE_ID}
 
 If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` will take preference.
 
-### Code example
+## Code Examples
 
+### Initializing configuration
 ```javascript
-var AWS = require('ibm-cos-sdk');
-var util = require('util');
+const AWS = require('ibm-cos-sdk');
 
 var config = {
     endpoint: '<endpoint>',
@@ -66,53 +66,213 @@ var config = {
 };
 
 var cos = new AWS.S3(config);
+```
+*Key Values*
+* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps))
+* `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
+* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps))
 
-function doCreateBucket() {
-    console.log('Creating bucket');
+### Creating a new bucket
+```javascript
+function createBucket(bucketName) {
+    console.log(`Creating new bucket: ${bucketName}`);
     return cos.createBucket({
-        Bucket: 'my-bucket',
+        Bucket: bucketName,
         CreateBucketConfiguration: {
           LocationConstraint: 'us-standard'
-        },
-    }).promise();
-}
-
-function doCreateObject() {
-    console.log('Creating object');
-    return cos.putObject({
-        Bucket: 'my-bucket',
-        Key: 'foo',
-        Body: 'bar'
-    }).promise();
-}
-
-function doDeleteObject() {
-    console.log('Deleting object');
-    return cos.deleteObject({
-        Bucket: 'my-bucket',
-        Key: 'foo'
-    }).promise();
-}
-
-function doDeleteBucket() {
-    console.log('Deleting bucket');
-    return cos.deleteBucket({
-        Bucket: 'my-bucket'
-    }).promise();
-}
-
-doCreateBucket()
-    .then(doCreateObject)
-    .then(doDeleteObject)
-    .then(doDeleteBucket)
-    .then(function() {
-        console.log('Finished!');
-    })
-    .catch(function(err) {
-        console.error('An error occurred:');
-        console.error(util.inspect(err));
+        },        
+    }).promise()
+    .then((() => {
+        console.log(`Bucket: ${bucketName} created!`);
+    }))
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
     });
-    ```
+}
+```
+*SDK References*
+* [createBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createBucket-property)
+
+### Creating a new text file
+```javascript
+function createTextFile(bucket, name, fileText) {
+    console.log(`Creating new item: ${name}`);
+    return cos.putObject({
+        Bucket: bucket, 
+        Key: name, 
+        Body: fileText
+    }).promise()
+    .then(() => {
+        console.log(`Item: ${name} created!`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+
+*SDK References*
+* [putObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#putObject-property)
+
+### List available buckets
+```javascript
+function getBuckets() {
+    console.log('Retrieving list of buckets');
+    return cos.listBuckets()
+    .promise()
+    .then((data) => {
+        if (data.Buckets != null) {
+            for (var i = 0; i < data.Buckets.length; i++) {
+                console.log(`Bucket Name: ${data.Buckets[i].Name}`);
+            }
+        }
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+
+*SDK References*
+* [listBuckets](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#listBuckets-property)
+
+### List items in a bucket
+```javascript
+function getBucketContents(bucket) {
+    console.log(`Retrieving bucket contents from: ${bucket}`);
+    return cos.listObjects(
+        {Bucket: bucket},
+    ).promise()
+    .then((data) => {
+        if (data != null && data.Contents != null) {
+            for (var i = 0; i < data.Contents.length; i++) {
+                var itemKey = data.Contents[i].Key;
+                var itemSize = data.Contents[i].Size;
+                console.log(`Item: ${itemKey} (${itemSize} bytes).`)
+            }
+        }    
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+
+*SDK References*
+* [listObjects](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#listObjects-property)
+
+### Get file contents of particular item
+```javascript
+function getItem(bucket, name) {
+    console.log(`Retrieving item from bucket: ${bucket}, key: ${name}`);
+    return cos.getObject({
+        Bucket: bucket, 
+        Key: name
+    }).promise()
+    .then((data) => {
+        if (data != null) {
+            console.log('File Contents: ' + Buffer.from(data.Body).toString());
+        }    
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+
+*SDK References*
+* [getObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#getObject-property)
+
+### Delete an item from a bucket
+```javascript
+function deleteItem(bucket, name) {
+    console.log(`Deleting item: ${name}`);
+    return cos.deleteObject({
+        Bucket: bucket,
+        Key: name
+    }).promise()
+    .then(() =>{
+        console.log(`Item: ${name} deleted!`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+*SDK References*
+* [deleteObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteObject-property)
+
+### Delete a bucket
+```javascript
+function deleteBucket(bucket) {
+    console.log(`Deleting bucket: ${bucket}`);
+    return cos.deleteBucket({
+        Bucket: bucket
+    }).promise()
+    .then(() => {
+        console.log(`Bucket: ${bucket} deleted!`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+
+*SDK References*
+* [deleteBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteBucket-property)
+
+### View a bucket's security
+```javascript
+function getBucketACL(bucket) {
+    console.log(`Retrieving ACL for bucket: ${bucket}`);
+    return cos.getBucketAcl({
+        Bucket: bucket
+    }).promise()
+    .then((data) => {
+        if (data != null) {
+            console.log(`Owner: ${data.Owner.DisplayName}`);
+            if (data.Grants != null) {
+                data.Grants.forEach((grantee) => {
+                    console.log(`User: ${grantee.DisplayName} (${grantee.Permission})`)
+                })
+            }
+        }
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+
+*SDK References*
+* [getBucketAcl](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#getBucketAcl-property)
+
+### View a file's security
+```javascript
+function getItemACL(bucket, name) {
+    console.log(`Retrieving ACL for ${name} from bucket: ${bucket}`);
+    return cos.getObjectAcl({
+        Bucket: bucket,
+        Key: name
+    }).promise()
+    .then((data) => {
+        if (data != null) {
+            console.log(`Owner: ${data.Owner.DisplayName}`);
+            if (data.Grants != null) {
+                data.Grants.forEach((grantee) => {
+                    console.log(`User: ${grantee.DisplayName} (${grantee.Permission})`)
+                })
+            }
+        }
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+
+*SDK References*
+* [getObjectAcl](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#getObjectAcl-property)
 
 ## Using Key protect
 
