@@ -274,6 +274,87 @@ function getItemACL(bucket, name) {
 *SDK References*
 * [getObjectAcl](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#getObjectAcl-property)
 
+### Execute a multi-part upload
+```javascript
+function multiPartUpload(bucket, name, filePath) {
+    var uploadID = null;
+
+    console.log(`Starting multi-part upload for ${name} to bucket: ${bucket}`);
+    return cos.createMultipartUpload({
+        Bucket: bucket,
+        Key: name
+    }).promise()
+    .then((data) => {
+        uploadID = data.UploadId;
+
+        //begin the file upload        
+        fs.readFile(filePath, (e, fileData) => {
+            //min 5MB part
+            var partSize = 1024 * 1024 * 5;
+            var partCount = Math.ceil(fileData.length / partSize);
+    
+            async.timesSeries(partCount, (partNum, next) => {
+                var start = partNum * partSize;
+                var end = Math.min(start + partSize, fileData.length);
+    
+                partNum++;
+
+                console.log(`Uploading to ${name} (part ${partNum} of ${partCount})`);  
+
+                cos.uploadPart({
+                    Body: fileData.slice(start, end),
+                    Bucket: bucket,
+                    Key: name,
+                    PartNumber: partNum,
+                    UploadId: uploadID
+                }).promise()
+                .then((data) => {
+                    next(e, {ETag: data.ETag, PartNumber: partNum});
+                })
+                .catch((e) => {
+                    cancelMultiPartUpload(bucket, name, uploadID);
+                    console.log(`ERROR: ${e.code} - ${e.message}\n`);
+                });
+            }, (e, dataPacks) => {
+                cos.completeMultipartUpload({
+                    Bucket: bucket,
+                    Key: name,
+                    MultipartUpload: {
+                        Parts: dataPacks
+                    },
+                    UploadId: uploadID
+                }).promise()
+                .then(logDone)
+                .catch((e) => {
+                    cancelMultiPartUpload(bucket, name, uploadID);
+                    console.log(`ERROR: ${e.code} - ${e.message}\n`);
+                });
+            });
+        });
+    });
+}
+
+function cancelMultiPartUpload(bucket, name, uploadID) {
+    return cos.abortMultipartUpload({
+        Bucket: bucket,
+        Key: name,
+        UploadId: uploadID
+    }).promise()
+    .then(() => {
+        console.log(`Multi-part upload aborted for ${name}`);
+    })
+    .catch((e){
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+
+*SDK References*
+* [createMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createMultipartUpload-property)
+* [uploadPart](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#uploadPart-property)
+* [completeMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#completeMultipartUpload-property)
+* [abortMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#abortMultipartUpload-property)
+
 ## Using Key protect
 
 ```javascript
