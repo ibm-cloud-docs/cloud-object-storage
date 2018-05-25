@@ -279,6 +279,11 @@ function getItemACL(bucket, name) {
 function multiPartUpload(bucket, name, filePath) {
     var uploadID = null;
 
+    if (!fs.existsSync(filePath)) {
+        logError(new Error(`The file \'${filePath}\' does not exist or is not accessible.`));
+        return;
+    }
+
     console.log(`Starting multi-part upload for ${name} to bucket: ${bucket}`);
     return cos.createMultipartUpload({
         Bucket: bucket,
@@ -331,7 +336,10 @@ function multiPartUpload(bucket, name, filePath) {
                 });
             });
         });
-    });
+    })
+    .catch(e) {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    };
 }
 
 function cancelMultiPartUpload(bucket, name, uploadID) {
@@ -350,10 +358,10 @@ function cancelMultiPartUpload(bucket, name, uploadID) {
 ```
 
 *SDK References*
+* [abortMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#abortMultipartUpload-property)
+* [completeMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#completeMultipartUpload-property)
 * [createMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createMultipartUpload-property)
 * [uploadPart](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#uploadPart-property)
-* [completeMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#completeMultipartUpload-property)
-* [abortMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#abortMultipartUpload-property)
 
 ## Using Key protect
 
