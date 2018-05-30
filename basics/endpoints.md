@@ -182,7 +182,17 @@ Types of endpoint:
   <tr>
     <td>private</td>
     <td><code class="highlighter-rouge">s3.eu-gb.objectstorage.service.networklayer.com</code></td>
+  </tr>    <td rowspan="2">EU Central</td>
+    <td>public</td>
+    <td>
+      <code class="highlighter-rouge">s3.eu-de.objectstorage.softlayer.net</code>
+    </td>
   </tr>
+  <tr>
+    <td>private</td>
+    <td>
+      <code class="highlighter-rouge">s3.eu-de.objectstorage.service.networklayer.com</code>
+    </td>
 </table>
 {:.endpointtable}
 
@@ -285,17 +295,7 @@ Types of endpoint:
     </td>
   </tr>
    <tr>
-    <td rowspan="2">Frankfurt, Germany</td>
-    <td>public</td>
-    <td>
-      <code class="highlighter-rouge">s3.fra-eu-geo.objectstorage.softlayer.net</code>
-    </td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td>
-      <code class="highlighter-rouge">s3.fra-eu-geo.objectstorage.service.networklayer.com</code>
-    </td>
+
   </tr>
 </table>
 {:.endpointtable}
