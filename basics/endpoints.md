@@ -174,7 +174,7 @@ Types of endpoint:
       <th>Endpoint</th>
     </tr>
   </thead>
-    <tr>
+  <tr>
     <td rowspan="2">EU Great Britain</td>
     <td>public</td>
     <td><code class="highlighter-rouge">s3.eu-gb.objectstorage.softlayer.net</code></td>
