@@ -22,20 +22,11 @@ Using `Postman` assumes a certain amount of familiarity with object storage and 
 {:tip}
 ## REST API client overview
 
-REST (Representational State Transfer) is an architectural style that provides a standard for computer systems to
-interact with each other over the web, typically using HTTP. REST-compliant services adhere to the primary constraints
-of the REST architecture:
+REST (REpresentational State Transfer) is an architectural style that provides a standard for computer systems to
+interact with each other over the web, typically using standard HTTP URLs and verbs (GET, PUT, POST, etc.) which are supported by all major development languages and platforms. However, interacting with a REST API is not as simple as using a standard internet browser. Simple browsers do not allow any manipulation of the URL request.  This is where a REST API client comes in.
 
-* Client/server separation
-* Stateless
-* Uniform interface
-* Cacheable
-* Layered system
-* Code on demand
+A REST API client provides a simple GUI-based application to interface with an existing REST API library. A good client makes it easy to test, develop, and document APIs by allowing users to quickly put together both simple and complex HTTP requests. Postman is an excellent REST API client that provides a complete API development environment that include built-in tools for design and mock, debug, test, documentation, monitor, and publish APIs. It also provides helpful features such as Collections and Workspaces that make collaboration a cinch. 
 
-One key advantage of REST APIs is the flexibility they provide. Data is not tied to resources or methods, so REST can handle multiple types of calls and return different data formats. REST also uses standard HTTP URLs and verbs (GET, PUT, POST, etc.) which are supported by all major development languages and platforms. However, interacting with a REST API is not as simple as using a standard internet browser. Simple browsers do not allow any manipulation of the URL request.  This is where a REST API client comes in.
-
-A REST API client provides a simple GUI-based application to interface with an existing REST API library. A good client makes it easy to test, develop, and document APIs by allowing users to quickly put together both simple and complex HTTP requests. Postman is an excellent REST API client that provides a complete API development environment that include built-in tools for design and mock, debug, test, documentation, monitor, and publish APIs. It also provides extremely helpful features such as Collections and Workspaces that make collaboration a cinch.
 ## Prerequisites
 * Bluemix account
 * Cloud Storage resource created (lite/free plan works fine)
