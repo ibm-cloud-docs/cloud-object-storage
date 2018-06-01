@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2017-09-27"
+  years: 2017, 2018
+lastupdated: "2018-5-30"
 
 ---
 {:new_window: target="_blank"}
@@ -44,4 +44,6 @@ IAM Access Control provides a common way to assign user roles for {{site.data.ke
 
 IAM Access Control enables the assignment of policies per service or service instance to allow levels of access for managing resources and users within the assigned context. A policy grants a user a role or roles to a set of resources by using a combination of attributes to define the applicable set of resources. When you assign a policy to a user, you first specify the service then a role or roles to assign. Additional configuration options might be available depending on the service you select.
 
-While roles are a collection of actions, the actions that are mapped to these roles are service specific. Each [service determines this role to action mapping](/docs/services/cloud-object-storage/iam/buckets.html) during the onboarding process and this mapping is applicable to all users of the service. Roles and Access Policies are configured through the Policy Administration Point (PAP) and enforced through the Policy Enforcement Point (PEP) and Policy Decision Point (PDP).
+While roles are a collection of actions, the actions that are mapped to these roles are service specific. Each service determines this role to action mapping during the onboarding process and this mapping is applicable to all users of the service. Roles and Access Policies are configured through the Policy Administration Point (PAP) and enforced through the Policy Enforcement Point (PEP) and Policy Decision Point (PDP.
+
+See [Best practices for organizing users, teams, applications](https://console.bluemix.net/docs/tutorials/users-teams-applications.html#best-practices-for-organizing-users-teams-applications) to learn more.
