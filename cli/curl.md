@@ -16,8 +16,23 @@ lastupdated: "2017-09-27"
 
 Here's a 'cheatsheet' of basic `curl` commands for the {{site.data.keyword.cos_full}} REST API.  Additional detail can be found in the API reference for [buckets](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html) or [objects](/docs/services/cloud-object-storage/api-reference/api-reference-objects.html).
 
+Using `curl` assumes a certain amount of familiarity with the command line and object storage, and have gotten the necessary information from a [service credential](/docs/services/cloud-object-storage/iam/service-credentials.html), the [endpoints reference](/docs/services/cloud-object-storage/basics/endpoints.html), or the [console](/docs/services/cloud-object-storage/getting-started.html).  If any terms or variables are unfamiliar they can be found in the [glossary](/docs/services/cloud-object-storage/basics/glossary.html).
+
 **Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
 {:tip}
+
+Request an IAM token using an API key
+-------------------------------------
+
+```
+curl -X "POST" "https://iam.bluemix.net/oidc/token" \
+     -H 'Accept: application/json' \
+     -H 'Content-Type: application/x-www-form-urlencoded' \
+     --data-urlencode "apikey={api-key}" \
+     --data-urlencode "response_type=cloud_iam" \
+     --data-urlencode "grant_type=urn:ibm:params:oauth:grant-type:apikey"
+```
+{:codeblock}
 
 List buckets
 ------------

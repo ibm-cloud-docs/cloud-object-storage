@@ -15,7 +15,6 @@ Cloud Object Storage
     release-notes.md
     {: .navgroup-end}
 
-
     {: .navgroup id="howto"}
     basics/order-storage.md
     basics/upload.md
@@ -29,7 +28,7 @@ Cloud Object Storage
         iam/public-access.md
 
     {: .topicgroup}
-    Use HMAC authentication
+    Use Access/Secret Key authentication
         hmac/credentials.md
         hmac/hmac-signature.md
         hmac/presigned-urls.md
@@ -38,11 +37,13 @@ Cloud Object Storage
     basics/classes.md
     basics/multipart.md
     basics/encryption.md
+    basics/sql.md
 
     {: .topicgroup}
     Use the command line
         cli/curl.md
         cli/aws-cli.md
+
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
@@ -50,7 +51,7 @@ Cloud Object Storage
 
     {: .topicgroup}
     API reference
-        api-reference/about-compatibility-api.md
+        api-reference/about-api.md
         api-reference/common-headers-errors.md
         api-reference/api-reference-buckets.md
         api-reference/api-reference-objects.md
@@ -60,6 +61,17 @@ Cloud Object Storage
         libraries/java.md
         libraries/python.md
         libraries/node.md
+
+    {: .topicgroup}
+    Tutorials
+        [Get started with IBM Cloud Object Storage](https://developer.ibm.com/clouddataservices/docs/cos/get-started/)
+        [Upload files using IBM Cloud Functions](https://medium.com/ibm-watson-data-lab/keeping-your-secrets-between-cloud-object-storage-and-your-browser-part-1-68f4b83bbd38)
+        [Serve static content using NGINX](https://www.ibm.com/blogs/bluemix/2017/03/static-websites-cloud-object-storage-cos/)
+        [Detaching Cloudant Attachments to COS](https://medium.com/ibm-watson-data-lab/detaching-cloudant-attachments-to-object-storage-with-serverless-functions-99b8c3c77925)
+        [Learn how to build, deploy and scale real-world solutions on IBM Cloud.](https://console.bluemix.net/docs/tutorials/index.html#tutorials)
+        [Read and write Data to and from IBM Cloud Object Storage in Rstudio](https://medium.com/ibm-data-science-experience/read-and-write-data-to-and-from-ibm-cloud-object-storage-in-rstudio-e9cf86e903ed0)
+        tutorials/migrate.md
+        [Connect using IBM Cloud Direct Link](../../infrastructure/direct-link/direct-link-to-cos.html)
 
     {: .topicgroup}
     Technical guides

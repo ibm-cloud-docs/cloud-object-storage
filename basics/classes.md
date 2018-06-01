@@ -2,9 +2,12 @@
 
 copyright:
   years: 2017
-lastupdated: "2017-11-05"
+lastupdated: "2018-04-06"
 
 ---
+
+# Use storage classes
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
@@ -12,9 +15,7 @@ lastupdated: "2017-11-05"
 {:screen: .screen}
 {:tip: .tip}
 
-# Use storage classes
-
-Not all data needs feeds active workloads.  Archival data may sit untouched for long periods of time.  For less active workloads, you can create buckets with different storage classes.  Objects stored in these buckets will incur charges on a different schedule than standard storage.
+Not all data feeds active workloads.  Archival data may sit untouched for long periods of time.  For less active workloads, you can create buckets with different storage classes.  Objects stored in these buckets will incur charges on a different schedule than standard storage.
 
 ## What are the classes?
 
@@ -27,19 +28,20 @@ There are four storage classes:
 
 For pricing details please see [the pricing table at ibm.com](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api).
 
-For information on how to create buckets with different storage classes, please see the [API reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#create-a-bucket-with-a-different-storage-class).
+For information on how to create buckets with different storage classes, please see the [API reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#storage-clas).
 
 ## How do I create a bucket with a different storage class?
 
-When creating a bucket in the console, there is a drop-down menu that allows for storage class selection.
+When creating a bucket in the console, there is a drop-down menu that allows for storage class selection. 
 
-When creating buckets programatically, it is necessary to specify a `LocationConstraint` that corresponds with the endpoint used. Valid provisioning codes for `LocationConstraint` are: <br>
+When creating buckets programmatically, it is necessary to specify a `LocationConstraint` that corresponds with the endpoint used. Valid provisioning codes for `LocationConstraint` are: <br>
 &emsp;&emsp;  `us-standard` / `us-vault` / `us-cold` / `us-flex` <br>
 &emsp;&emsp;  `us-east-standard` / `us-east-vault`  / `us-east-cold` / `us-east-flex` <br>
 &emsp;&emsp;  `us-south-standard` / `us-south-vault`  / `us-south-cold` / `us-south-flex` <br>
 &emsp;&emsp;  `eu-standard` / `eu-vault` / `eu-cold` / `eu-flex` <br>
 &emsp;&emsp;  `eu-gb-standard` / `eu-gb-vault` / `eu-gb-cold` / `eu-gb-flex` <br>
-&emsp;&emsp;  `eu-gb-standard` / `eu-gb-vault` / `eu-gb-cold` / `eu-gb-flex` <br>
+&emsp;&emsp;  `ap-standard` / `ap-vault` / `ap-cold` / `ap-flex` <br>
+&emsp;&emsp;  `che01-standard` / `che01-vault` / `che01-cold` / `che01-flex` <br>
 &emsp;&emsp;  `mel01-standard` / `mel01-vault` / `mel01-cold` / `mel01-flex` <br>
 &emsp;&emsp;  `tor01-standard` / `tor01-vault` / `tor01-cold` / `tor01-flex` <br>
 

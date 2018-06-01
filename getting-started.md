@@ -30,7 +30,7 @@ This guide takes a new user through the first steps with the {{site.data.keyword
 ## Step 1: Create some buckets to store your data
 {: #create-buckets}
 
-  1. When you [order {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics/order-storage.html), you create what is called a _resource instance_. {{site.data.keyword.cos_full_notm}} is a multi-tenant system, and all instances of {{site.data.keyword.cos_short}} share the same physical infrastructure.  After creation, you will be automatically redirected to that resource instance where you may start creating buckets. Your {{site.data.keyword.cos_short}} instances will be listed under **Global Services** in [the console dashboard](/dashboard/apps).
+  1. When you [order {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics/order-storage.html), you create what is called a _resource instance_. {{site.data.keyword.cos_full_notm}} is a multi-tenant system, and all instances of {{site.data.keyword.cos_short}} share the same physical infrastructure.  After creation, you will be automatically redirected to that resource instance where you may start creating buckets. Your {{site.data.keyword.cos_short}} instances will be listed under **Global Services** in [the console dashboard](https://console.bluemix.net/dashboard/apps).
 
 The terms 'resource instance' and 'service instance' refer to the same concept, and may be used interchangeably.
 {:tip}
@@ -42,7 +42,6 @@ The terms 'resource instance' and 'service instance' refer to the same concept, 
 
   3. Choose a desired [level of _resiliency_](/docs/services/cloud-object-storage/basics/endpoints.html) first, and then a _location_ where you would like your data to be physically stored. Resiliency refers to the scope and scale of the geographic area across which your data is distributed. _Cross Region_ resiliency will spread your data across several metropolitan areas, while _Regional_ resiliency will spread data across a single metropolitan area.  A _Single Data Center_ will only distribute data across devices within a single site.
   4. Choose the [bucket's _storage class_](/docs/services/cloud-object-storage/basics/classes.html). This is a reflection of how often you expect to read the stored data and determines billing details. Follow the **Create** link to create and access your new bucket.
-  5. If you wish to configure the bucket to use
 
   Buckets are a way to organize your data, but they're not the sole way. Object names (often referred to as _object keys_) can also contain one or more forward slashes allowing for a directory-like organizational system. You can use the portion of the object name before a delimiter to form an _object prefix_, which can be used to list related objects in a single bucket through the API.
 {:tip}
@@ -53,7 +52,7 @@ The terms 'resource instance' and 'service instance' refer to the same concept, 
 
 Now go ahead and navigate to one of your buckets by selecting it from the list.  Click the **Add Objects** button. Note that new objects overwrite existing objects with identical names within the same bucket. When using the console to upload objects, the object name always matches the file name, but there doesn't need to be any relationship between the file name and the object key if you are using the API to write data.  Go ahead and add a handful of files to this bucket.
 
-Objects are limited to 200MB in size when uploaded using a web browser unless the [Aspera High-Speed Transfer](/docs/services/cloud-object-storage/basics/upload.html#high-speed-transfer) plugin is installed. Large objects (up to 10TB) can also be [split into multiple parts and uploaded in parallel using the API](/docs/services/cloud-object-storage/basics/multipart.html).  Object keys can be up to 1024 characters in length, and it's best to avoid any characters that might be problematic in a web address (e.g. `?`, `=`, `<`, etc.).
+Objects are limited to 200MB in size when uploaded using a web browser unless the [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics/upload.html#high-speed-transfer) plug-in is installed. Large objects (up to 10TB) can also be [split into multiple parts and uploaded in parallel using the API](/docs/services/cloud-object-storage/basics/multipart.html).  Object keys can be up to 1024 characters in length, and it's best to avoid any characters that might be problematic in a web address (e.g. `?`, `=`, `<`, etc.).
 {:tip}
 
 ## Step 3a: Invite a user to your account to administer your buckets and data

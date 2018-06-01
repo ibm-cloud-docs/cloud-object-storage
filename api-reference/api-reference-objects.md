@@ -17,7 +17,7 @@ lastupdated: "2018-02-16"
 ## Upload an object
 {: #upload-object}
 
-A `PUT` given a path to an object uploads the request body as an object. A SHA256 hash of the object is a required header.  All objects uploaded in a single thread are limited to 5TB in size (objects [uploaded in multiple parts](#multipart) can be as large as 10TB).
+A `PUT` given a path to an object uploads the request body as an object. All objects uploaded in a single thread should be smaller than 500MB (objects [uploaded in multiple parts](/docs/services/cloud-object-storage/basics/multipart.html#uploading-objects-in-multiple-parts) can be as large as 10TB).
 
 **Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
 {:tip}
@@ -66,6 +66,9 @@ Content-Length: 0
 
 A `HEAD` given a path to an object retrieves that object's headers.
 
+Note that the `Etag` value returned for objects encrypted using SSE-KP will **not** be the MD5 hash of the original unencrypted object.
+{:tip}
+
 **Syntax**
 
 ```bash
@@ -103,6 +106,9 @@ Content-Length: 11
 ## Download an object
 
 A `GET` given a path to an object downloads the object.
+
+Note that the `Etag` value returned for objects encrypted using SSE-C/SSE-KP will **not** be the MD5 hash of the original unencrypted object.
+{:tip}
 
 **Syntax**
 
@@ -179,6 +185,66 @@ Accept-Ranges: bytes
 Server: Cleversafe/3.9.0.121
 X-Clv-S3-Version: 2.5
 x-amz-request-id: 8ff4dc32-a6f0-447f-86cf-427b564d5855
+```
+
+----
+
+## Deleting multiple objects
+
+A `POST` given a path to an bucket and proper parameters will delete a specified set of objects. A `Content-MD5` header specifying the base64 encoded MD5 hash of the request body is required.
+
+**Syntax**
+
+```bash
+POST https://{endpoint}/{bucket-name}?delete= # path style
+POST https://{bucket-name}.{endpoint}?delete= # virtual host style
+```
+
+**Sample request**
+
+```http
+POST /apiary?delete= HTTP/1.1
+Authorization: Bearer {token}
+Host: s3-api.us-geo.objectstorage.softlayer.net
+Content-Type: text/plain; charset=utf-8
+Content-MD5: xj/vf7lD7vbIe/bqHTaLvg==
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<Delete>
+    <Object>
+         <Key>surplus-bee</Key>
+    </Object>
+    <Object>
+         <Key>unnecessary-bee</Key>
+    </Object>
+</Delete>
+```
+
+**Sample response**
+
+```http
+HTTP/1.1 200 OK
+Date: Wed, 30 Nov 2016 18:54:53 GMT
+X-Clv-Request-Id: a6232735-c3b7-4c13-a7b2-cd40c4728d51
+Accept-Ranges: bytes
+Server: Cleversafe/3.9.0.137
+X-Clv-S3-Version: 2.5
+x-amz-request-id: a6232735-c3b7-4c13-a7b2-cd40c4728d51
+Content-Type: application/xml
+Content-Length: 207
+```
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DeleteResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+    <Deleted>
+         <Key>surplus-bee</Key>
+    </Deleted>
+    <Deleted>
+         <Key>unnecessary-bee</Key>
+    </Deleted>
+</DeleteResult>
 ```
 
 ----
@@ -310,6 +376,9 @@ There are three phases to uploading an object in multiple parts:
 
 A `POST` issued to an object with the query parameter `upload` creates a new `UploadId` value, which is then be referenced by each part of the object being uploaded.
 
+**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
+{:tip}
+
 **Syntax**
 
 ```bash
@@ -352,6 +421,9 @@ Content-Length: 276
 
 A `PUT` request issued to an object with query parameters `partNumber` and `uploadId` will upload one part of an object.  The parts may be uploaded serially or in parallel, but must be numbered in order.
 
+**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
+{:tip}
+
 **Syntax**
 
 ```bash
@@ -380,6 +452,81 @@ Server: Cleversafe/3.9.1.114
 X-Clv-S3-Version: 2.5
 ETag: "7417ca8d45a71b692168f0419c17fe2f"
 Content-Length: 0
+```
+
+----
+
+## List parts
+{: #list-parts}
+
+A `GET` given a path to a multipart object with an active `UploadID` specified as a query parameter will return a list of all of the object's parts.
+
+
+**Syntax**
+
+```bash
+GET https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId} # path style
+GET https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId} # virtual host style
+```
+
+### Required query parameters
+
+Header | Type | Description
+--- | ---- | ------------
+`uploadId` | string | Upload ID returned when initializing a multipart upload.
+
+### Optional query parameters
+
+Header | Type | Description
+--- | ---- | ------------
+`max-parts` | string | Defaults to 1,000.
+`part-number​-marker` | string | Defines where the list of parts will begin.
+
+**Sample request**
+
+
+```http
+GET /farm/spaceship?uploadId=01000162-3f46-6ab8-4b5f-f7060b310f37 HTTP/1.1
+Authorization: bearer {token}
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample response**
+
+```http
+HTTP/1.1 200 OK
+Date: Mon, 19 Mar 2018 17:21:08 GMT
+X-Clv-Request-Id: 6544044d-4f88-4bb6-9ee5-bfadf5023249
+Server: Cleversafe/3.12.4.20
+X-Clv-S3-Version: 2.5
+Accept-Ranges: bytes
+Content-Type: application/xml
+Content-Length: 743
+```
+
+```xml
+<ListPartsResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+  <Bucket>farm</Bucket>
+  <Key>spaceship</Key>
+  <UploadId>01000162-3f46-6ab8-4b5f-f7060b310f37</UploadId>
+  <Initiator>
+    <ID>d6f04d83-6c4f-4a62-a165-696756d63903</ID>
+    <DisplayName>d6f04d83-6c4f-4a62-a165-696756d63903</DisplayName>
+  </Initiator>
+  <Owner>
+    <ID>d6f04d83-6c4f-4a62-a165-696756d63903</ID>
+    <DisplayName>d6f04d83-6c4f-4a62-a165-696756d63903</DisplayName>
+  </Owner>
+  <StorageClass>STANDARD</StorageClass>
+  <MaxParts>1000</MaxParts>
+  <IsTruncated>false</IsTruncated>
+  <Part>
+    <PartNumber>1</PartNumber>
+    <LastModified>2018-03-19T17:20:35.482Z</LastModified>
+    <ETag>"bb03cf4fa8603fe407a65ee1dba55265"</ETag>
+    <Size>7128094</Size>
+  </Part>
+</ListPartsResult>
 ```
 
 ----

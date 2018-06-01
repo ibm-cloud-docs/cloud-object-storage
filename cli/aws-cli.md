@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "29-11-2017"
+  years: 2017, 2018
+lastupdated: "15-03-2018"
 
 ---
 {:new_window: target="_blank"}
@@ -21,12 +21,14 @@ These examples have been generated using version 1.14.2 of the CLI.  To check th
 ## 2. Configure the CLI to connect to {{site.data.keyword.cos_short}}
 To configure AWS CLI, type `aws configure` and provide your [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html) and a default region name.  The "region name" used by AWS S3 corresponds to the provisioning code (`LocationConstraint`) that {{site.data.keyword.cos_short}} uses to define the storage class of new buckets.
 
-Valid provisioning codes for `LocationCostraint` are: <br>
+Valid provisioning codes for `LocationConstraint` are: <br>
 &emsp;&emsp;  `us-standard` / `us-vault` / `us-cold` / `us-flex` <br>
 &emsp;&emsp;  `us-east-standard` / `us-east-vault`  / `us-east-cold` / `us-east-flex` <br>
 &emsp;&emsp;  `us-south-standard` / `us-south-vault`  / `us-south-cold` / `us-south-flex` <br>
 &emsp;&emsp;  `eu-standard` / `eu-vault` / `eu-cold` / `eu-flex` <br>
 &emsp;&emsp;  `eu-gb-standard` / `eu-gb-vault` / `eu-gb-cold` / `eu-gb-flex` <br>
+&emsp;&emsp;  `ap-standard` / `ap-vault` / `ap-cold` / `ap-flex` <br>
+&emsp;&emsp;  `che01-standard` / `che01-vault` / `che01-cold` / `che01-flex` <br>
 &emsp;&emsp;  `mel01-standard` / `mel01-vault` / `mel01-cold` / `mel01-flex` <br>
 &emsp;&emsp;  `tor01-standard` / `tor01-vault` / `tor01-cold` / `tor01-flex` <br>
 
@@ -72,7 +74,7 @@ The IBM COS endpoint must be sourced using the `--endpoint-url` option, and can 
 
 
 ## High-level syntax commands
-Simple use cases can be accomplished using `aws --endpoint-url {endpoint} s3 <command>`. Objects are managed using familiar shell commands, such as `ls`, `mv`, `cp`, and `rm`.  Buckets can created using `mb` and deleted using `rb`.
+Simple use cases can be accomplished using `aws --endpoint-url {endpoint} s3 <command>`. Objects are managed using familiar shell commands, such as `ls`, `mv`, `cp`, and `rm`.  Buckets can be created using `mb` and deleted using `rb`.
 
 ### List all buckets within a service instance
 

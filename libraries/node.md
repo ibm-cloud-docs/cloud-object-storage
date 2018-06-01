@@ -2,9 +2,12 @@
 
 copyright:
   years: 2017
-lastupdated: "2017-09-27"
+lastupdated: "2018-05-24"
 
 ---
+
+# Using Node.js
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
@@ -12,21 +15,19 @@ lastupdated: "2017-09-27"
 {:screen: .screen}
 {:tip: .tip}
 
-# Node.js
-
-## Installing
+## Installing the SDK
 
 The preferred way to install the {{site.data.keyword.cos_full}} SDK for Node.js is to use the
-[npm](http://npmjs.org) package manager for Node.js. Simply type the following
+[npm](http://npmjs.org){:new_window} package manager for Node.js. Simply type the following
 into a terminal window:
 
 ```sh
 npm install ibm-cos-sdk
 ```
 
-Source code is hosted on [GitHub](https://github.com/IBM/ibm-cos-sdk-js).
+Source code is hosted on [GitHub](https://github.com/IBM/ibm-cos-sdk-js){:new_window}.
 
-More detail on individual methods and classes can be found in [the API documentation for the SDK](https://ibm.github.io/ibm-cos-sdk-js/).
+More detail on individual methods and classes can be found in [the API documentation for the SDK](https://ibm.github.io/ibm-cos-sdk-js/){:new_window}.
 
 ## Getting Started
 
@@ -34,11 +35,28 @@ More detail on individual methods and classes can be found in [the API documenta
 
 To run the SDK you will need **Node 4.x+**.
 
-### Code example
+### Creating a client and sourcing credentials
+{: #client-credentials}
 
+To connect to COS, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
+
+After generating a [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`.  The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client will authenticate with a signature, otherwise the client will use the provided API key to authenticate using a bearer token.
+
+If migrating from AWS S3, you can also source credentials data from  `~/.aws/credentials` in the format:
+
+```
+[default]
+aws_access_key_id = {API_KEY}
+aws_secret_access_key = {SERVICE_INSTANCE_ID}
+```
+
+If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` will take preference.
+
+## Code Examples
+
+### Initializing configuration
 ```javascript
-var AWS = require('ibm-cos-sdk');
-var util = require('util');
+const AWS = require('ibm-cos-sdk');
 
 var config = {
     endpoint: '<endpoint>',
@@ -48,86 +66,347 @@ var config = {
 };
 
 var cos = new AWS.S3(config);
+```
+*Key Values*
+* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps){:new_window})
+* `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
+* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps){:new_window})
 
-function doCreateBucket() {
-    console.log('Creating bucket');
+### Creating a new bucket
+```javascript
+function createBucket(bucketName) {
+    console.log(`Creating new bucket: ${bucketName}`);
     return cos.createBucket({
-        Bucket: 'my-bucket',
+        Bucket: bucketName,
         CreateBucketConfiguration: {
           LocationConstraint: 'us-standard'
-        },
-    }).promise();
-}
-
-function doCreateObject() {
-    console.log('Creating object');
-    return cos.putObject({
-        Bucket: 'my-bucket',
-        Key: 'foo',
-        Body: 'bar'
-    }).promise();
-}
-
-function doDeleteObject() {
-    console.log('Deleting object');
-    return cos.deleteObject({
-        Bucket: 'my-bucket',
-        Key: 'foo'
-    }).promise();
-}
-
-function doDeleteBucket() {
-    console.log('Deleting bucket');
-    return cos.deleteBucket({
-        Bucket: 'my-bucket'
-    }).promise();
-}
-
-doCreateBucket()
-    .then(doCreateObject)
-    .then(doDeleteObject)
-    .then(doDeleteBucket)
-    .then(function() {
-        console.log('Finished!');
-    })
-    .catch(function(err) {
-        console.error('An error occurred:');
-        console.error(util.inspect(err));
+        },        
+    }).promise()
+    .then((() => {
+        console.log(`Bucket: ${bucketName} created!`);
+    }))
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
     });
-    ```
+}
+```
+*SDK References*
+* [createBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createBucket-property){:new_window}
 
-## Using Key protect
-
+### Creating a new text file
 ```javascript
-var params = {
-  Bucket: 'STRING_VALUE', /* required */
-  ACL: private | public-read | public-read-write | authenticated-read,
-  CreateBucketConfiguration: {
-    LocationConstraint: EU | eu-west-1 | us-west-1 | us-west-2 | ap-south-1 | ap-southeast-1 | ap-southeast-2 | ap-northeast-1 | sa-east-1 | cn-north-1 | eu-central-1
-  },
-  GrantFullControl: 'STRING_VALUE',
-  GrantRead: 'STRING_VALUE',
-  GrantReadACP: 'STRING_VALUE',
-  GrantWrite: 'STRING_VALUE',
-  GrantWriteACP: 'STRING_VALUE',
-  IBMServiceInstanceId: 'STRING_VALUE',
-  IBMSSEKPEncryptionAlgorithm: 'STRING_VALUE',
-  IBMSSEKPCustomerRootKeyCrn: 'STRING_VALUE'
-};
-s3.createBucket(params, function(err, data) {
-   if (err) console.log(err, err.stack); // an error occurred
-   else     console.log(data);           // successful response
-});
+function createTextFile(bucket, name, fileText) {
+    console.log(`Creating new item: ${name}`);
+    return cos.putObject({
+        Bucket: bucket, 
+        Key: name, 
+        Body: fileText
+    }).promise()
+    .then(() => {
+        console.log(`Item: ${name} created!`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
 ```
 
-Parameters (new fields only):
-`IBMSSEKPEncryptionAlgorithm` (string) – The encryption algorithm that will be used for objects stored in the newly created bucket.  Default: AES256
-`IBMSSEKPCustomerRootKeyCrn` (string) – Container for describing the KMS-KP Key CRN.  The crn includes version, cname, ctype, servicename, location, scope, serviceinstance, resourcetype, resource. We will pass the CRN as-is. 
+*SDK References*
+* [putObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#putObject-property){:new_window}
 
-Callback (callback):
-function(err, data) { ... }
-Called when a response from the service is returned. If a callback is not supplied, you must call AWS.Request.send() on the returned request object to initiate the request.
-Parameters:err (Error) —
-the error object returned from the request. Set to null if the request is successful.
-data (Object) — the de-serialized data returned from the request. Set to null if a request error occurs. The data object has the following properties:
-Location — (String)
+### List available buckets
+```javascript
+function getBuckets() {
+    console.log('Retrieving list of buckets');
+    return cos.listBuckets()
+    .promise()
+    .then((data) => {
+        if (data.Buckets != null) {
+            for (var i = 0; i < data.Buckets.length; i++) {
+                console.log(`Bucket Name: ${data.Buckets[i].Name}`);
+            }
+        }
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+
+*SDK References*
+* [listBuckets](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#listBuckets-property){:new_window}
+
+### List items in a bucket
+```javascript
+function getBucketContents(bucket) {
+    console.log(`Retrieving bucket contents from: ${bucket}`);
+    return cos.listObjects(
+        {Bucket: bucket},
+    ).promise()
+    .then((data) => {
+        if (data != null && data.Contents != null) {
+            for (var i = 0; i < data.Contents.length; i++) {
+                var itemKey = data.Contents[i].Key;
+                var itemSize = data.Contents[i].Size;
+                console.log(`Item: ${itemKey} (${itemSize} bytes).`)
+            }
+        }    
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+
+*SDK References*
+* [listObjects](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#listObjects-property){:new_window}
+
+### Get file contents of particular item
+```javascript
+function getItem(bucket, name) {
+    console.log(`Retrieving item from bucket: ${bucket}, key: ${name}`);
+    return cos.getObject({
+        Bucket: bucket, 
+        Key: name
+    }).promise()
+    .then((data) => {
+        if (data != null) {
+            console.log('File Contents: ' + Buffer.from(data.Body).toString());
+        }    
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+
+*SDK References*
+* [getObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#getObject-property){:new_window}
+
+### Delete an item from a bucket
+```javascript
+function deleteItem(bucket, name) {
+    console.log(`Deleting item: ${name}`);
+    return cos.deleteObject({
+        Bucket: bucket,
+        Key: name
+    }).promise()
+    .then(() =>{
+        console.log(`Item: ${name} deleted!`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+*SDK References*
+* [deleteObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteObject-property){:new_window}
+
+### Delete a bucket
+```javascript
+function deleteBucket(bucket) {
+    console.log(`Deleting bucket: ${bucket}`);
+    return cos.deleteBucket({
+        Bucket: bucket
+    }).promise()
+    .then(() => {
+        console.log(`Bucket: ${bucket} deleted!`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+
+*SDK References*
+* [deleteBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteBucket-property){:new_window}
+
+### View a bucket's security
+```javascript
+function getBucketACL(bucket) {
+    console.log(`Retrieving ACL for bucket: ${bucket}`);
+    return cos.getBucketAcl({
+        Bucket: bucket
+    }).promise()
+    .then((data) => {
+        if (data != null) {
+            console.log(`Owner: ${data.Owner.DisplayName}`);
+            if (data.Grants != null) {
+                data.Grants.forEach((grantee) => {
+                    console.log(`User: ${grantee.DisplayName} (${grantee.Permission})`)
+                })
+            }
+        }
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+
+*SDK References*
+* [getBucketAcl](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#getBucketAcl-property){:new_window}
+
+### View a file's security
+```javascript
+function getItemACL(bucket, name) {
+    console.log(`Retrieving ACL for ${name} from bucket: ${bucket}`);
+    return cos.getObjectAcl({
+        Bucket: bucket,
+        Key: name
+    }).promise()
+    .then((data) => {
+        if (data != null) {
+            console.log(`Owner: ${data.Owner.DisplayName}`);
+            if (data.Grants != null) {
+                data.Grants.forEach((grantee) => {
+                    console.log(`User: ${grantee.DisplayName} (${grantee.Permission})`)
+                })
+            }
+        }
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+
+*SDK References*
+* [getObjectAcl](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#getObjectAcl-property){:new_window}
+
+### Execute a multi-part upload
+```javascript
+function multiPartUpload(bucket, name, filePath) {
+    var uploadID = null;
+
+    if (!fs.existsSync(filePath)) {
+        logError(new Error(`The file \'${filePath}\' does not exist or is not accessible.`));
+        return;
+    }
+
+    console.log(`Starting multi-part upload for ${name} to bucket: ${bucket}`);
+    return cos.createMultipartUpload({
+        Bucket: bucket,
+        Key: name
+    }).promise()
+    .then((data) => {
+        uploadID = data.UploadId;
+
+        //begin the file upload        
+        fs.readFile(filePath, (e, fileData) => {
+            //min 5MB part
+            var partSize = 1024 * 1024 * 5;
+            var partCount = Math.ceil(fileData.length / partSize);
+    
+            async.timesSeries(partCount, (partNum, next) => {
+                var start = partNum * partSize;
+                var end = Math.min(start + partSize, fileData.length);
+    
+                partNum++;
+
+                console.log(`Uploading to ${name} (part ${partNum} of ${partCount})`);  
+
+                cos.uploadPart({
+                    Body: fileData.slice(start, end),
+                    Bucket: bucket,
+                    Key: name,
+                    PartNumber: partNum,
+                    UploadId: uploadID
+                }).promise()
+                .then((data) => {
+                    next(e, {ETag: data.ETag, PartNumber: partNum});
+                })
+                .catch((e) => {
+                    cancelMultiPartUpload(bucket, name, uploadID);
+                    console.log(`ERROR: ${e.code} - ${e.message}\n`);
+                });
+            }, (e, dataPacks) => {
+                cos.completeMultipartUpload({
+                    Bucket: bucket,
+                    Key: name,
+                    MultipartUpload: {
+                        Parts: dataPacks
+                    },
+                    UploadId: uploadID
+                }).promise()
+                .then(logDone)
+                .catch((e) => {
+                    cancelMultiPartUpload(bucket, name, uploadID);
+                    console.log(`ERROR: ${e.code} - ${e.message}\n`);
+                });
+            });
+        });
+    })
+    .catch(e) {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    };
+}
+
+function cancelMultiPartUpload(bucket, name, uploadID) {
+    return cos.abortMultipartUpload({
+        Bucket: bucket,
+        Key: name,
+        UploadId: uploadID
+    }).promise()
+    .then(() => {
+        console.log(`Multi-part upload aborted for ${name}`);
+    })
+    .catch((e){
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+
+*SDK References*
+* [abortMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#abortMultipartUpload-property){:new_window}
+* [completeMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#completeMultipartUpload-property){:new_window}
+* [createMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createMultipartUpload-property){:new_window}
+* [uploadPart](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#uploadPart-property){:new_window}
+
+## Using Key Protect
+
+Key Protect can be added to a storage bucket to encrypt sensitive data at rest in the cloud.
+
+### Before You Begin
+
+The following items are necessary in order to create a bucket with Key-Protect enabled:
+
+* A Key Protect service [provisioned](/docs/services/keymgmt/keyprotect_provision.html#provision)
+* A Root key available (either [generated](/docs/services/keymgmt/keyprotect_create_root.html#create_root_keys) or [imported](/docs/services/keymgmt/keyprotect_import_root.html#import_root_keys))
+
+### Retrieving the Root Key CRN
+
+1. Retrieve the [instance ID](/docs/services/keymgmt/keyprotect_authentication.html#retrieve_instance_ID) for your Key Protect service
+2. Use the [Key Protect API](/docs/services/keymgmt/keyprotect_authentication.html#access-api) to retrieve all your [available keys](/docs/services/keymgmt/keyprotect_authentication.html#form_api_request)
+    * You can either use `curl` commands or an API REST Client such as [Postman](../api-reference/postman.html) to access the [Key Protect API](/docs/services/keymgmt/keyprotect_authentication.html#access-api).
+3. Retrieve the CRN of the root key you will use to enabled Key Protect on the your bucket.  The CRN will look similar to below:
+
+`crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
+
+### Creating a bucket with key-protect enabled
+
+```javascript
+function createBucketKP(bucketName) {
+    console.log(`Creating new encrypted bucket: ${bucketName}`);
+    return cos.createBucket({
+        Bucket: bucketName,
+        CreateBucketConfiguration: {
+          LocationConstraint: '<bucket-location>'
+        },
+        IBMSSEKPEncryptionAlgorithm: '<algorithm>',
+        IBMSSEKPCustomerRootKeyCrn: '<root-key-crn>'
+    }).promise()
+    .then((() => {
+        console.log(`Bucket: ${bucketName} created!`);
+        logDone();
+    }))
+    .catch(logError);
+}
+```
+*Key Values*
+* `<bucket-location>` - Region or location for your bucket (Key Protect is only available in certain regions.  Ensure your location matches the Key Protect service).
+* `<algorithm>` - The encryption algorithm used for new objects added to the bucket (Default is AES256).
+* `<root-key-crn>` - CRN of the Root Key obtained from the Key Protect service.
+
+*SDK References*
+* [createBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createBucket-property){:new_window}

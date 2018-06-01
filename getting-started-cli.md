@@ -18,10 +18,10 @@ In this quickstart guide, you'll create a bucket and upload objects, and set up 
 {: shortdesc}
 
 ## Before you begin
-You'll need:
-  * an [{{site.data.keyword.cloud}} Platform account](https://console.bluemix.net/registration/)
-  * an [instance of {{site.data.keyword.cos_full}}](/docs/services/cloud-object-storage/basics/order-storage.html)
-  * the [{{site.data.keyword.cloud_notm}} CLI](https://clis.ng.bluemix.net/ui/home.html)
+You'll need:  
+  * an [{{site.data.keyword.cloud}} Platform account](https://console.bluemix.net/registration/)  
+  * an [instance of {{site.data.keyword.cos_full}}](/docs/services/cloud-object-storage/basics/order-storage.html)  
+  * the [{{site.data.keyword.cloud_notm}} CLI](https://clis.ng.bluemix.net/ui/home.html)  
   * and some files on your local computer to upload.
 {: #prereqs}
 
@@ -30,9 +30,9 @@ Looking for a walkthrough that uses the console instead of the CLI? [Click here]
 
 ## Gather key information
   1. First, make sure you have an API key.  Get this from [IBM Cloud Identity and Access Management](https://www.bluemix.net/iam/#/apikeys).
-  2. Login to the {{site.data.keyword.cloud_notm}} Platform using the CLI.
+  1. Login to the {{site.data.keyword.cloud_notm}} Platform using the CLI.
 
-For increased security, it's also possible to store the API key in a file or set it as an environment variable.
+    For increased security, it's also possible to store the API key in a file or set it as an environment variable.
 {:tip}
 
 ```
@@ -48,7 +48,6 @@ Targeted account <account-name> (<account-id>)
 
 Targeted resource group default
 
-
 API endpoint:     https://api.ng.bluemix.net (API version: 2.75.0)
 Region:           us-south
 User:             <email-address>
@@ -56,40 +55,43 @@ Account:          <account-name> (<account-id>)
 Resource group:   default
 ```
 
-  4. Now you need the name and ID for your new instance. Use the name you gave the instance when creating it.
-
-  ```
-  bx resource service-instances -r global
-  ```
-  {:codeblock}
+1. Now you need the name and ID for your new instance. Use the name you gave the instance when creating it.
 
 ```
-Retrieving resource instances in all regions under account <account-name> as <email-address>...
-OK
-Name                                               Region     State    Type
-<resource-instance-name>                           global     active   service_instance
-```
-
-```
-bx resource service-instance <instance-name> -r global
+bx resource service-instances
 ```
 {:codeblock}
 
 ```
-Retrieving resource instance docs-testing under account IBM as nicholas.lange@ibm.com...
+Retrieving service instances in resource group Default and all locations under account <account-name> as <email-address>...
+OK
+Name                                               Location     State    Type               Tags
+<resource-instance-name>                           global       active   service_instance
+```
+
+```
+bx resource service-instance <instance-name>
+```
+{:codeblock}
+
+```
+Retrieving service instance <sinstance-name> in resource group Default under account <account-name> as<email-address>...
 OK
 
 Name:                  <resource-instance-name>
 ID:                    <resource-instance-id>
-Region:                global
-Resource Name:         cloud-object-storage
-Resource Plan Name:    Standard
-Resource Group Name:   default
+Location:	             global
+Service Name:          cloud-object-storage
+Resource Group Name:   Default
 State:                 active
 Type:                  service_instance
+Tags:
 ```
 
-  5. Next, get a token from IAM.
+    **Note**: You may need to change the **Resource Group Name** in the case you created your instance in a group other than **Default**. You can list your available resource groups with `bx resource groups` then change to a specific resource group with `bx target -g "<another-resource-group>"`    {:tip}
+    
+
+  1. Next, get a token from IAM.
 
 ```
 bx iam oauth-tokens
@@ -105,8 +107,8 @@ UAA token:  Bearer <refresh-token>
 
   1. Take your new token, and the ID of the instance, and create a new bucket in the `us-south` region.
 
-  **Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
-  {:tip}
+    **Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
+    {:tip}
 
 ```sh
   curl -X "PUT" "https://s3.us-south.objectstorage.softlayer.net/<bucket-name>" \
@@ -115,7 +117,7 @@ UAA token:  Bearer <refresh-token>
 ```
 {:codeblock}
 
-  2. Upload an object.
+  1. Upload an object.
 
 ```sh
   curl -X "PUT" "https://s3.us-south.objectstorage.softlayer.net/<bucket-name>/<object-key>" \
@@ -123,7 +125,7 @@ UAA token:  Bearer <refresh-token>
        -H "Content-Type: text/plain; charset=utf-8" \
        -d "This is a tiny object made of plain text."
 ```
-{:codeblock}
+    {:codeblock}
 
 ## Manage access
 
@@ -134,17 +136,17 @@ bx account user-invite <email-address> <org-name> auditor <space-name> auditor
 ```
 {:codeblock}
 
-  2. Then grant them read-only access to your {{site.data.keyword.cos_short}} instances.
+  1. Then grant them read-only access to your {{site.data.keyword.cos_short}} instances.
 
 ```
 bx iam user-policy-create <email-address> --roles Reader --service-name cloud-object-storage
 ```
 {:codeblock}
 
-  3. Grant them write access to the bucket you created.
+  1. Grant them write access to the bucket you created.
 
 ```
-bx iam user-policy-create <email-address> --roles Writer --service-name cloud-object-storage --resource-type bucket --resource <bucket-name>
+bx iam user-policy-create <email-address> --roles Writer --service-name cloud-object-storage --resource-type bucket--resource <bucket-name>
 ```
 {:codeblock}
 

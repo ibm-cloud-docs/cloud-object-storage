@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2017-09-27"
+  years: 2017, 2018
+lastupdated: "15-03-2018"
 
 ---
 {:new_window: target="_blank"}
@@ -19,9 +19,9 @@ lastupdated: "2017-09-27"
 
 A `GET` issued to the endpoint root returns a list of buckets associated with the specified service instance. This operation does not make use of operation specific query parameters or payload elements.
 
-Header                                        | Type   | Description
-------------------------------------------------- | ------ | ----
-`ibm-service-instance-id`  | string  |  This header references the service instance where the bucket will be created and to which data usage will be billed.
+Header                    | Type   | Description
+--------------------------|--------|---------------------------------------------------------------------------------------------------------------------
+`ibm-service-instance-id` | string | This header references the service instance where the bucket will be created and to which data usage will be billed.
 
 **Syntax**
 
@@ -118,7 +118,7 @@ Content-Length: 0
 ## Create a bucket with a different storage class
 {: #storage-class}
 
-To create a bucket with a different storage class, send an XML block specifying a bucket configuration with a `LocationConstraint` of `{provisioning code}` in the body of a `PUT` request to a bucket endpoint.  Note that standard bucket [naming rules](#create-a-new-bucket) apply. This operation does not make use of operation specific query parameters.
+To create a bucket with a different storage class, send an XML block specifying a bucket configuration with a `LocationConstraint` of `{provisioning code}` in the body of a `PUT` request to a bucket endpoint.  Note that standard bucket [naming rules](#new-bucket) apply. This operation does not make use of operation specific query parameters.
 
 Header                                        | Type   | Description
 ------------------------------------------------- | ------ | ----
@@ -137,12 +137,14 @@ PUT https://{bucket-name}.{endpoint} # virtual host style
 </CreateBucketConfiguration>
 ```
 
-Valid provisioning codes for `LocationCostraint` are: <br>
+Valid provisioning codes for `LocationConstraint` are: <br>
 &emsp;&emsp;  `us-standard` / `us-vault` / `us-cold` / `us-flex` <br>
 &emsp;&emsp;  `us-east-standard` / `us-east-vault`  / `us-east-cold` / `us-east-flex` <br>
 &emsp;&emsp;  `us-south-standard` / `us-south-vault`  / `us-south-cold` / `us-south-flex` <br>
 &emsp;&emsp;  `eu-standard` / `eu-vault` / `eu-cold` / `eu-flex` <br>
 &emsp;&emsp;  `eu-gb-standard` / `eu-gb-vault` / `eu-gb-cold` / `eu-gb-flex` <br>
+&emsp;&emsp;  `ap-standard` / `ap-vault` / `ap-cold` / `ap-flex` <br>
+&emsp;&emsp;  `che01-standard` / `che01-vault` / `che01-cold` / `che01-flex` <br>
 &emsp;&emsp;  `mel01-standard` / `mel01-vault` / `mel01-cold` / `mel01-flex` <br>
 &emsp;&emsp;  `tor01-standard` / `tor01-vault` / `tor01-cold` / `tor01-flex` <br>
 
@@ -158,6 +160,7 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 ibm-service-instance-id: {ibm-service-instance-id}
 Content-Length: 110
 ```
+
 ```xml
 <CreateBucketConfiguration>
   <LocationConstraint>us-vault</LocationConstraint>
@@ -430,65 +433,6 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 
 ----
 
-## Deleting multiple objects
-
-A `POST` given a path to an bucket and proper parameters will delete a specified set of objects.
-
-**Syntax**
-
-```bash
-POST https://{endpoint}/{bucket-name}?delete= # path style
-POST https://{bucket-name}.{endpoint}?delete= # virtual host style
-```
-
-**Sample request**
-
-```http
-POST /apiary?delete= HTTP/1.1
-Authorization: Bearer {token}
-Host: s3-api.us-geo.objectstorage.softlayer.net
-Content-Type: text/plain; charset=utf-8
-```
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<Delete>
-    <Object>
-         <Key>surplus-bee</Key>
-    </Object>
-    <Object>
-         <Key>unnecessary-bee</Key>
-    </Object>
-</Delete>
-```
-
-**Sample response**
-
-```http
-HTTP/1.1 200 OK
-Date: Wed, 30 Nov 2016 18:54:53 GMT
-X-Clv-Request-Id: a6232735-c3b7-4c13-a7b2-cd40c4728d51
-Accept-Ranges: bytes
-Server: Cleversafe/3.9.0.137
-X-Clv-S3-Version: 2.5
-x-amz-request-id: a6232735-c3b7-4c13-a7b2-cd40c4728d51
-Content-Type: application/xml
-Content-Length: 207
-```
-```xml
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DeleteResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-    <Deleted>
-         <Key>surplus-bee</Key>
-    </Deleted>
-    <Deleted>
-         <Key>unnecessary-bee</Key>
-    </Deleted>
-</DeleteResult>
-```
-
-----
-
 ## List canceled/incomplete multipart uploads for a bucket
 
 A `GET` issued to a bucket with the proper parameters retrieves information about any canceled or incomplete multipart uploads for a bucket.
@@ -638,6 +582,7 @@ GET /apiary?cors= HTTP/1.1
 Authorization: Bearer {token}
 Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
+Content-MD5: M625BaNwd/OytcM7O5gIaQ==
 Content-Length: 237
 ```
 

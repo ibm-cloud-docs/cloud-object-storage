@@ -16,12 +16,17 @@ lastupdated: "2017-09-27"
 
 ## Common Request Headers
 The following table describes supported common request headers. {{site.data.keyword.cos_full}} ignores any common headers not listed below if sent in a request, although some requests may support other headers as defined in this documentation.
- 
-| Header                    | Note                                                                            |
-|---------------------------|---------------------------------------------------------------------------------|
-| Authorization             | **Required** for all requests (OAuth2 `bearer` token).                          |
-| ibm-service-instance-id   | **Required** for requests to create or list buckets.                            |
 
+| Header                  | Note                                                                                                                               |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Authorization           | **Required** for all requests (OAuth2 `bearer` token).                                                                             |
+| ibm-service-instance-id | **Required** for requests to create or list buckets.                                                                               |
+| Content-MD5             | The base64 encoded 128-bit MD5 hash of the payload, used as an integrity check to ensure the payload was not altered in transit.   |
+| Expect                  | The value `100-continue` will wait for acknowledgment from the system that the headers are appropriate before sending the payload. |
+| host                    | Either the endpoint or the 'virtual host' syntax of `{bucket-name}.{endpoint}`. Typically, this header is automatically added.     | 
+
+### Custom metadata
+A benefit of using object storage is the ability to add custom metadata by sending key-value pairs as headers.  These headers take the form of `x-amz-meta-{KEY}`.  Note that unlike AWS S3, IBM COS will combine multiple headers with the same metadata key into a comma-seperated list of values.
 
 ## Common Response Headers
 The following table describes common response headers.
