@@ -14,13 +14,15 @@ lastupdated: "2018-5-30"
 
 # Getting started with IAM
 
-{{site.data.keyword.cloud}} Identity & Access Management enables you to securely authenticate users and control access to all cloud resources consistently in the {{site.data.keyword.cloud_notm}} Platform.
+{{site.data.keyword.cloud}} Identity & Access Management enables you to securely authenticate users and control access to all cloud resources consistently in the {{site.data.keyword.cloud_notm}} Platform. See the [Getting started tutorial](https://console.bluemix.net/docs/iam/quickstart.html#getstarted) for more information.
 
 ## Identity management
 
 Identity management includes the interaction of users, services, and resources. Users are identified by their IBMid. Services are identified by their service IDs. And, resources are identified and addressed by using CRNs.
 
 The {{site.data.keyword.cloud_notm}} IAM Token Service allows you to create, update, delete and use API keys for users and services. Those API keys can be created either with API calls or the Identity & Access section of the {{site.data.keyword.cloud}} Platform Console. The same key can be used across multiple services. Each user can have multiple API keys to support key rotation scenarios, as well as scenarios using different keys for different purposes to limit the exposure of a single key.
+
+See [What is Cloud IAM?](https://console.bluemix.net/docs/iam/index.html#iamoverview) for more information.
 
 ### Users and API keys
 
