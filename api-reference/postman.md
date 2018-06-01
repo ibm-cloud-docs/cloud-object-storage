@@ -21,3 +21,105 @@ A Postman Collection is available for [download](ewoJImluZm8iOiB7CgkJIl9wb3N0bWF
             * s3.eu-gb
 7. Click on Update
 
+### Running the samples
+
+The API sample requests are fairly straightforward and easy to use.  They are designed to run in order and demonstrate how to interact with Cloud Storage.
+
+<table>
+    <tr>
+        <th>Request</th>
+        <th>Expected Result</th>
+    </tr>
+    <tr>
+        <td>Create new bucket</td>
+        <td>
+            <ul>
+                <li>Click on <strong>Send</strong></li>
+                <li>
+                    You should receive a Status Code 200 OK<br/>
+                    <img src="images/postman-collection-status-ok.png" width="300px" />
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Create new text file</td>
+        <td>
+            <ul>
+                <li>
+                    Click on Body and add or update the text in the box<br/>
+                    <img src="images/postman-collection-body-text.png" width="400px" />
+                </li>
+                <li>Click on <strong>Send</strong></li>
+                <li>
+                    You should receive a Status Code 200 OK<br/>
+                    <img src="images/postman-collection-status-ok.png" width="300px" />
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Create new binary file</td>
+        <td>
+            <ul>
+                <li>
+                    Click on Body and click on Choose File to select an image to upload<br/>
+                    <img src="images/postman-collection-body-binary.png" width="400px" />
+                </li>
+                <li>Click on <strong>Send</strong></li>
+                <li>
+                    You should receive a Status Code 200 OK<br/>
+                    <img src="images/postman-collection-status-ok.png" width="300px" />
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Retrieve list of files from bucket</td>
+        <td>
+            <ul>
+                <li>Click on <strong>Send</strong></li>
+                <li>
+                    You should receive a Status Code 200 OK<br/>
+                    <img src="images/postman-collection-status-ok.png" width="300px" />
+                </li>
+                <li>
+                    In the Body of the response you should see the two files you created in the previous requests<br/>
+                    <img src="images/postman-collection-contents.png" width="700px" />
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Retrieve text file</td>
+        <td>
+            <ul>
+                <li>Click on <strong>Send</strong></li>
+                <li>
+                    You should receive a Status Code 200 OK<br/>
+                    <img src="images/postman-collection-status-ok.png" width="300px" />
+                </li>
+                <li>
+                    In the Body of the response you should see the text you entered in the previous request<br/>
+                    <img src="images/postman-collection-text-response.png" width="400px" />
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Retrieve binary file</td>
+        <td>
+            <ul>
+                <li>Click on <strong>Send</strong></li>
+                <li>
+                    You should receive a Status Code 200 OK<br/>
+                    <img src="images/postman-collection-status-ok.png" width="300px" />
+                </li>
+                <li>
+                    In the Body of the response you should see the text you entered in the previous request<br/>
+                    <img src="images/postman-collection-binary-response.png" width="200px" />
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
