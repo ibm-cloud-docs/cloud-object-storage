@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2017-09-27"
+  years: 2017, 2018
+lastupdated: "2018-5-30"
 
 ---
 {:new_window: target="_blank"}
@@ -14,13 +14,15 @@ lastupdated: "2017-09-27"
 
 # Getting started with IAM
 
-{{site.data.keyword.cloud}} Identity & Access Management enables you to securely authenticate users and control access to all cloud resources consistently in the {{site.data.keyword.cloud_notm}} Platform.
+{{site.data.keyword.cloud}} Identity & Access Management enables you to securely authenticate users and control access to all cloud resources consistently in the {{site.data.keyword.cloud_notm}} Platform. See the [Getting started tutorial](https://console.bluemix.net/docs/iam/quickstart.html#getstarted) for more information.
 
 ## Identity management
 
 Identity management includes the interaction of users, services, and resources. Users are identified by their IBMid. Services are identified by their service IDs. And, resources are identified and addressed by using CRNs.
 
 The {{site.data.keyword.cloud_notm}} IAM Token Service allows you to create, update, delete and use API keys for users and services. Those API keys can be created either with API calls or the Identity & Access section of the {{site.data.keyword.cloud}} Platform Console. The same key can be used across multiple services. Each user can have multiple API keys to support key rotation scenarios, as well as scenarios using different keys for different purposes to limit the exposure of a single key.
+
+See [What is Cloud IAM?](https://console.bluemix.net/docs/iam/index.html#iamoverview) for more information.
 
 ### Users and API keys
 
@@ -44,4 +46,6 @@ IAM Access Control provides a common way to assign user roles for {{site.data.ke
 
 IAM Access Control enables the assignment of policies per service or service instance to allow levels of access for managing resources and users within the assigned context. A policy grants a user a role or roles to a set of resources by using a combination of attributes to define the applicable set of resources. When you assign a policy to a user, you first specify the service then a role or roles to assign. Additional configuration options might be available depending on the service you select.
 
-While roles are a collection of actions, the actions that are mapped to these roles are service specific. Each [service determines this role to action mapping](/docs/services/cloud-object-storage/iam/buckets.html) during the onboarding process and this mapping is applicable to all users of the service. Roles and Access Policies are configured through the Policy Administration Point (PAP) and enforced through the Policy Enforcement Point (PEP) and Policy Decision Point (PDP).
+While roles are a collection of actions, the actions that are mapped to these roles are service specific. Each service determines this role to action mapping during the onboarding process and this mapping is applicable to all users of the service. Roles and Access Policies are configured through the Policy Administration Point (PAP) and enforced through the Policy Enforcement Point (PEP) and Policy Decision Point (PDP.
+
+See [Best practices for organizing users, teams, applications](https://console.bluemix.net/docs/tutorials/users-teams-applications.html#best-practices-for-organizing-users-teams-applications) to learn more.

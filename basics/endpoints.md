@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017
-lastupdated: "2018-02-16"
+lastupdated: "2018-05-25"
 
 ---
 {:new_window: target="_blank"}
@@ -182,7 +182,17 @@ Types of endpoint:
   <tr>
     <td>private</td>
     <td><code class="highlighter-rouge">s3.eu-gb.objectstorage.service.networklayer.com</code></td>
+  </tr>    <td rowspan="2">EU Germany</td>
+    <td>public</td>
+    <td>
+      <code class="highlighter-rouge">s3.eu-de.objectstorage.softlayer.net</code>
+    </td>
   </tr>
+  <tr>
+    <td>private</td>
+    <td>
+      <code class="highlighter-rouge">s3.eu-de.objectstorage.service.networklayer.com</code>
+    </td>
 </table>
 {:.endpointtable}
 
@@ -283,6 +293,9 @@ Types of endpoint:
     <td>
       <code class="highlighter-rouge">s3.tor01.objectstorage.service.networklayer.com</code>
     </td>
+  </tr>
+   <tr>
+
   </tr>
 </table>
 {:.endpointtable}
