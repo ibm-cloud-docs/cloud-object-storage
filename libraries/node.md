@@ -365,7 +365,7 @@ function cancelMultiPartUpload(bucket, name, uploadID) {
 
 ## Using Key Protect
 
-Key Protect can be added to a storage bucket to encrypt sensitive data at rest in the cloud.
+Key Protect can be added to a storage bucket to manage encryption keys.  All data is encrypted in IBM COS, but Key Protect provides a service for generating, rotating, and controlling access to encryption keys using a centralized service.
 
 ### Before You Begin
 
@@ -383,7 +383,7 @@ The following items are necessary in order to create a bucket with Key-Protect e
 
 `crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
 
-### Creating a bucket with key-protect enabled
+### Creating a bucket with Key Protect enabled
 
 ```javascript
 function createBucketKP(bucketName) {

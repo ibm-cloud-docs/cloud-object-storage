@@ -25,7 +25,7 @@ You'll need:
   * and some files on your local computer to upload.
 {: #prereqs}
 
-This guide takes a new user through the first steps with the {{site.data.keyword.cloud_notm}} Platform console, but for developers looking to get started with the API, see the [Developer's Guide](/docs/services/cloud-object-storage/basics/developers.html) or [API overview](/docs/services/cloud-object-storage/api-reference/about-compatibility-api.html).
+This guide takes a new user through the first steps with the {{site.data.keyword.cloud_notm}} Platform console, but for developers looking to get started with the API, see the [Developer's Guide](/docs/services/cloud-object-storage/basics/developers.html) or [API overview](/docs/services/cloud-object-storage/api-reference/about-api.html).
 
 ## Step 1: Create some buckets to store your data
 {: #create-buckets}
@@ -72,4 +72,4 @@ Now you're going to bring in another user and allow them to act as an administra
 
 ## Next steps
 
-Now that you are familiar with managing and using your object storage via the web-based console, you might be interested in doing a similar workflow from the command line using  the `bx` command line utility for creating the service instance and interacting with IAM, and `curl` for accessing COS directly. [Check out the API overview](/docs/services/cloud-object-storage/api-reference/about-compatibility-api.html) to get started.
+Now that you are familiar with managing and using your object storage via the web-based console, you might be interested in doing a similar workflow from the command line using  the `bx` command line utility for creating the service instance and interacting with IAM, and `curl` for accessing COS directly. [Check out the API overview](/docs/services/cloud-object-storage/api-reference/about-api.html) to get started.
