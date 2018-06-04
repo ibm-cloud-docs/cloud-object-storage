@@ -22,7 +22,7 @@ Applications that expect to read and write to a NFS-style filesystem can use `s3
 * Credentials (either an [IAM API key](/docs/services/cloud-object-storage/iam/overview.html) or [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html))
 
 ## Installation
-On OSX, use [Homebrew(http://brew.sh/)]:
+On OSX, use [Homebrew](http://brew.sh/):
 
 ```sh
 brew cask install osxfuse
@@ -78,6 +78,7 @@ Now you can mount a bucket using:
 ```sh
 s3fs <bucket> <mountpoint> -o url=http{s}://<endpoint> –o passwd_file=<credentials_file>
 ```
+{:codeblock}
 
 The `<bucket>` is an exising bucket and the `<mountpoint>` is the local directory where you want to mount the bucket.  The `<endpoint>` must correspond to the [bucket's location](/docs/services/cloud-object-storage/basics/endpoints.html).  The `credentials_file` is the file created with the API key or HMAC credentials.
 
@@ -98,6 +99,7 @@ s3fs <bucket_name> <mountpoint> -o url=http{s}://<COS_endpoint> –o passwd_file
 -o multireq_max=30 \
 -o dbglevel=warn
 ```
+{:codeblock}
 
 1.	`cipher_suites=AESGCM` is only relevant when using an HTTPS endpoint.  By default, secure connections to IBM COS use the `AES256-SHA` cipher suite. Using an `AESGCM` suite instead greatly reduces the CPU overhead on your client machine, caused by the TLS crypto functions, while offering the same level of cryptographic security.
 2.	`kernel_cache` enables the kernel buffer cache on your `s3fs` mountpoint. This means that objects will only be read once by `s3fs`, as repetitive reading of the same file can be served from the kernel’s buffer cache. The kernel buffer cache will only use free memory which is not in use by other processes. This option is not recommend if you expect the bucket objects to be overwritten from another process/machine while the bucket is mounted, and your use-case requires live accessing the most up-to-date content. 
