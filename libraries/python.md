@@ -52,6 +52,8 @@ If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_creden
 
 ## Code Examples
 
+Code examples were written using **Python 2.7.15**
+
 ### Initializing configuration
 
 ```python
@@ -274,7 +276,7 @@ def get_item_acl(bucket, name):
 ### Execute a multi-part upload
 
 #### Upload binary file (preferred method)
-The upload_fileobj method of the S3.Object class automatically executes a multi-part upload when necessary.  The TransferConfig class is used to determine the threshold for using the mult-part upload.
+The [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.upload_fileobj){:new_window} method of the [S3.Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){:new_window} class automatically executes a multi-part upload when necessary.  The [TransferConfig](https://ibm.github.io/ibm-cos-sdk-python/reference/customizations/s3.html#s3-transfers){:new_window} class is used to determine the threshold for using the mult-part upload.
 
 ```python
 def multi_part_upload(bucket, name, file_path):
@@ -292,7 +294,8 @@ def multi_part_upload(bucket, name, file_path):
             multipart_chunksize=part_size
         )
         
-        # the upload_fileobj method will automatically execute a multi-part upload based on the transfer config options
+        # the upload_fileobj method will automatically execute a multi-part upload 
+        # in 5 MB chunks for all files over 15 MB
         with open(file_path, "rb") as file_data:
             cos.Object(bucket, name).upload_fileobj(
                 Fileobj=file_data,
@@ -314,11 +317,12 @@ def multi_part_upload(bucket, name, file_path):
     * [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.upload_fileobj){:new_window}
 
 #### Manually execute a multi-part upload
-If desired, the S3.Client class can be used to perform a multi-part upload.  This can be useful if more control over the upload process is necessary.
+If desired, the [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window} class can be used to perform a multi-part upload.  This can be useful if more control over the upload process is necessary.
 
 ```python
 def multi_part_upload_manual(bucket, name, file_path):
     try:
+        # create client object
         cos_cli = ibm_boto3.client("s3",
             ibm_api_key_id=COS_API_KEY_ID,
             ibm_service_instance_id=COS_SERVICE_CRN,
@@ -329,6 +333,7 @@ def multi_part_upload_manual(bucket, name, file_path):
     
         print("Starting multi-part upload for {0} to bucket: {1}\n".format(name, bucket))
 
+        # initiate the multi-part upload
         mp = cos_cli.create_multipart_upload(
             Bucket=bucket,
             Key=name
