@@ -172,3 +172,16 @@ The API sample requests are fairly straightforward and easy to use.  They are de
         </td>                
     </tr>
 </table>
+
+## Using the Postman Collection Runner
+
+The Postman Collection Runner provides a user interface for testing a collection and allows you to run all requests in a Collection at once. 
+
+To try it, click on the Runner button in the main Postman window:
+<img src="images/postman-collection-runner.png" width="300px" />
+
+In the Runner window, select your collection and click on the big blue Run button below:
+<img src="images/postman-collection-runner-load.png" width="500px" />
+
+Your tests will run, and you'll get the results to your Tests displayed:
+<img src="images/postman-collection-runner-results.png" width="800px" />
