@@ -237,6 +237,9 @@ Content-Length: 0
 
 A `HEAD` issued to a bucket will return the headers for that bucket.
 
+`HEAD` requests don't return a body and thus can't return specific error messages such as `NoSuchBucket`, only `NotFound`.
+{:tip}
+
 **Syntax**
 
 ```bash
