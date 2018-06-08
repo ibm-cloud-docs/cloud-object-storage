@@ -28,7 +28,7 @@ interact with each other over the web, typically using standard HTTP URLs and ve
 A REST API client provides a simple GUI-based application to interface with an existing REST API library. A good client makes it easy to test, develop, and document APIs by allowing users to quickly put together both simple and complex HTTP requests. Postman is an excellent REST API client that provides a complete API development environment that include built-in tools for design and mock, debug, test, documentation, monitor, and publish APIs. It also provides helpful features such as Collections and Workspaces that make collaboration a cinch. 
 
 ## Prerequisites
-* Bluemix account
+* IBM Cloud account
 * Cloud Storage resource created (lite/free plan works fine)
   - https://console.bluemix.net/docs/tutorials/static-files-cdn.html#create_cos
 * IBM Cloud CLI installed configured

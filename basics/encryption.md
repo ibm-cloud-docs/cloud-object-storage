@@ -86,5 +86,5 @@ When your key exists in {{site.data.keyword.keymanagementserviceshort}} and you 
 
 In the **Buckets and objects** listing, the bucket now has a key icon under **Advanced**, indicating that the bucket has a Key Protect key enabled. To view the key details, click the menu at the right of the bucket and then click **View Key Protect key**.
 
-Note that the `Etag` value returned for objects encrypted using SSE-KP will **not** be the MD5 hash of the original unencrypted object.
+Note that the `Etag` value returned for objects encrypted using SSE-KP **will** be the actual MD5 hash of the original unencrypted object.
 {:tip}
