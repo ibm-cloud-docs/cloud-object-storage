@@ -116,15 +116,7 @@ public static void main(String[] args)
 
 public static AmazonS3 createClient(String api_key, String service_instance_id, String endpoint_url, String location)
 {
-    AWSCredentials credentials;
-    if (endpoint_url.contains("objectstorage.softlayer.net")) {
-        credentials = new BasicIBMOAuthCredentials(api_key, service_instance_id);
-    } else {
-        String access_key = api_key;
-        String secret_key = service_instance_id;
-        credentials = new BasicAWSCredentials(access_key, secret_key);
-    }
-
+    AWSCredentials credentials = new BasicIBMOAuthCredentials(api_key, service_instance_id);
     ClientConfiguration clientConfig = new ClientConfiguration().withRequestTimeout(5000);
     clientConfig.setUseTcpKeepAlive(true);
 
@@ -152,6 +144,61 @@ public static AmazonS3 createClient(String api_key, String service_instance_id, 
     * [ClientConfiguration](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/ClientConfiguration.html){:new_window}
     * [EndpointConfiguration](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/client/builder/AwsClientBuilder.EndpointConfiguration.html){:new_window}
     * [SdkClientException](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/SdkClientException.html){:new_window}
+
+### Determining Endpoint
+The methods below can be used to determine the service endpoint based on the bucket location, endpoint type (public or private), and specific region (optional)
+
+```java
+/**
+* Returns a service endpoint based on the 
+* storage class location (i.e. us-standard, us-south-standard), 
+* endpoint type (public or private)
+*/
+public static String getEndpoint(String location, String endPointType) {
+    return getEndpoint(location, "", endPointType);
+}
+
+/**
+* Returns a service endpoint based on the 
+* storage class location (i.e. us-standard, us-south-standard), 
+* specific region if desired (i.e. sanjose, amsterdam) - only use if you want a specific regional endpoint,
+* endpoint type (public or private)
+*/
+public static String getEndpoint(String location, String region, String endpointType) {
+    HashMap locationMap = new HashMap<String, String>();
+    locationMap.put("us", "s3-api.us-geo");
+    locationMap.put("us-dallas", "s3-api.dal-us-geo");
+    locationMap.put("us-sanjose", "s3-api.sjc-us-geo");
+    locationMap.put("us-washington", "s3-api.wdc-us-geo");
+    locationMap.put("us-south", "s3.us-south");
+    locationMap.put("us-east", "s3.us-east");
+    locationMap.put("eu", "s3.eu-geo");
+    locationMap.put("eu-amsterdam", "s3.ams-eu-geo");
+    locationMap.put("eu-frankfurt", "s3.fra-eu-geo");
+    locationMap.put("eu-milan", "s3.mil-eu-geo");
+    locationMap.put("eu-gb", "s3.eu-gb");
+    locationMap.put("eu-germany", "s3.eu-de");
+    locationMap.put("ap", "s3.ap-geo");
+    locationMap.put("ap-tokyo", "s3.tok-ap-geo");
+    locationMap.put("ap-seoul", "s3.seo-ap-geo");
+    locationMap.put("ap-hongkong", "s3.hkg-ap-geo");
+    locationMap.put("che01", "s3.che01");
+    locationMap.put("mel01", "s3.mel01");
+    locationMap.put("tor01", "s3.tor01");
+
+    String key = location.substring(0, location.lastIndexOf("-")) + (region != null && !region.isEmpty() ? "-" + region : "");
+    String endpoint = locationMap.getOrDefault(key, null).toString();
+
+    if (endpoint != null) {
+        if (endpointType.toLowerCase() == "private")
+            endpoint += ".objectstorage.service.networklayer.com";
+        else
+            endpoint += ".objectstorage.softlayer.net";
+    }
+
+    return endpoint;
+}
+```
 
 ### Creating a new bucket
 ```java
