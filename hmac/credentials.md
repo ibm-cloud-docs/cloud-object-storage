@@ -20,7 +20,7 @@ In addition to IAM token-based authentication, it is also possible to [authentic
 
 Users can create a set of HMAC credentials when creating a [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html) by providing a configuration parameter during credential creation. After the Service Credential is created, the HMAC Key is included in the `cos_hmac_keys` field. These HMAC keys are then associated with a [Service ID](/docs/services/cloud-object-storage/iam/users-serviceids.html) and can be used to access any resources or operations allowed by the Service ID's role. 
 
-Note that when using HMAC credentials to create signatures to use with direct [REST API](/docs/services/cloud-object-storage/api-reference/about-compatibility-api.html) calls that additional headers are required:
+Note that when using HMAC credentials to create signatures to use with direct [REST API](/docs/services/cloud-object-storage/api-reference/about-api.html) calls that additional headers are required:
 1. All requests must have an `x-amz-date` header with the date in `%Y%m%dT%H%M%SZ` format.
 2. Any request that has a payload (object uploads, deleting multiple objects, etc.) must provide a `x-amz-content-sha256` header with a SHA256 hash of the payload contents.
 3. ACLs (other than `public-read`) are unsupported.
