@@ -146,7 +146,7 @@ public static AmazonS3 createClient(String api_key, String service_instance_id, 
     * [SdkClientException](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/SdkClientException.html){:new_window}
 
 ### Determining Endpoint
-The methods below can be used to determine the service endpoint based on the bucket location, endpoint type (public or private), and specific region (optional)
+The methods below can be used to determine the service endpoint based on the bucket location, endpoint type (public or private), and specific region (optional).
 
 ```java
 /**
