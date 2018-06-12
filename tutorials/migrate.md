@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-04-17"
+lastupdated: "2018-06-12"
 
 ---
 
@@ -27,28 +27,39 @@ The concept of a Swift 'container' is identical to a COS 'bucket'.  COS limits s
   3. Re-write your application to use the COS SDKs ([Java](/docs/services/cloud-object-storage/libraries/java.html), [Python](/docs/services/cloud-object-storage/libraries/python.html), [Node.js](/docs/services/cloud-object-storage/libraries/node.html)) or the [REST API](/docs/services/cloud-object-storage/api-reference/about-compatibility-api.html).
   4. You should now see two different object storage instances on the [dashboard](/dashboard/storage) for storage services.  Ensure that you have resource groups and all regions displayed.
 
-## Get Swift credentials
+ ## Set up a compute resource to run the migration tool
+  1. Choose a Linux/macOS/BSD machine or an IBM Cloud Infrastructure Bare Metal or Virtual Server
+     with the best proximity to your data.
+  2. If you are running the migration on an IBM Cloud Infrastructure Bare Metal or Virtual Server
+     use the **private** Swift and COS endpoints.
+  3. Otherwise use the **public** Swift and COS endpoints.  
+  2. Install `rclone` from [either a package manager or precompiled binary](https://rclone.org/install/).
 
+      ```
+      curl https://rclone.org/install.sh | sudo bash
+      ```
+
+## Get Credentials and Endpoints
+
+# Get Swift Credential
   1. Click on your Swift instance in the console.
   2. Click on **Service Credentials** in the navigation panel.
   3. Click on **New credential** to generate credential information.  Click **Add**.
-  4. View the credential you created, and copy the JSON contents and save to a file for reference.
+  4. View the credential you created, and copy the JSON contents and save to a file for reference.  
 
-## Get COS credentials
-
+# Get COS Credential
   1. Click on your COS instance in the console.
   2. Click on **Service Credentials** in the navigation panel.
   3. Click on **New credential** to generate credential information.
   4. Under **Inline Configuration Parameters** add `{"HMAC":true}`. Click **Add**.
   5. View the credential you created, and copy the JSON contents and save to a file for reference.
 
-## Set up a compute resource
-  1. Choose a Linux/macOS/BSD machine with the best proximity to your data.
-  2. Install `rclone` from [either a package manager or precompiled binary](https://rclone.org/install/).
-
-    ```
-    curl https://rclone.org/install.sh | sudo bash
-    ```
+# Get COS Endpoint for bucket
+  1. Click on **Buckets** in the navigation panel.
+  2. Click on the target bucket for the migration.
+  3. Click on **Configuration** in the navigation panel.
+  4. Scroll down to the **Endpoints** section and choose the endpoint based on where
+     you are running the migration tool then save to a file for reference.
 
 ## Configure `rclone`
 1. Create an `rclone` config file in `~/.rclone.conf`.
@@ -61,55 +72,39 @@ The concept of a Swift 'container' is identical to a COS 'bucket'.  COS limits s
 
     ```
     [SWIFT]
-    type = swift
-    env_auth = false
-    user =
-    key =
-    auth = https://identity.open.softlayer.com/v3
-    user_id =
-    domain =
-    tenant =
-    tenant_id =
-    tenant_domain =
-    region =
-    storage_url =
-    auth_token =
-    endpoint_type = public
+  type = swift
+  auth = https://identity.open.softlayer.com/v3
+  user_id =
+  key =
+  region =
+  endpoint_type =
     ```
 
 3. Using the Swift Service Credential, fill in the following fields:
 
     ```
-    user = <username>
-    key = <password>
     user_id = <userId>
-    domain = <domainName>
-    tenant = <project>
-    tenant_id = <projectId>
-    tenant_domain = <domainId>
+    key = <password>
+    region = **dallas** OR **london**  depending on the location of the container
+    endpoint_type =  **public** OR **internal**  internal is the private endpoint
     ```
 
-4. Create the COS target by copying the following and pasting into `rclone.conf`. Adjust the `endpoint` and `location_constraint` fields if not using a standard [storage class](/docs/services/cloud-object-storage/basics/classes.html) located in the `us-south` [region](/docs/services/cloud-object-storage/basics/endpoints.html).  
+4. Create the COS target by copying the following and pasting into `rclone.conf`.  .  
 
     ```
     [COS]
     type = s3
-    env_auth = false
     access_key_id =
     secret_access_key =
-    region = other-v4-signature
-    endpoint = s3.us-south.objectstorage.softlayer.net
-    location_constraint =
-    acl =
-    server_side_encryption =
-    storage_class =
+    endpoint =
     ```
 
-5. Using the COS Service Credential, fill in the following fields:
+5. Using the COS Service Credential and Endpoint, fill in the following fields:
 
     ```
     access_key_id = <access_key_id>
     secret_access_key = <secret_access_key>
+    endpoint = <bucket endpoint from above>       
     ```
 
 6. List the Swift container to verify `rclone` is properly configured.
