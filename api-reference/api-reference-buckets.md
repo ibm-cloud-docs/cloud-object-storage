@@ -324,12 +324,12 @@ Name | Type | Description
 `continuation-token` | string | Specifies the next set of objects to be returned when your response is truncated (`IsTruncated` element returns `true`).<br/><br/>Your initial response will include the `NextContinuationToken` element.  Use this token in the next request as the value for `continuation-token`.
 `start-after` | string | Returns key names after a specific key object.<br/><br/>*This parameter is only valid in your initial request.*  If a `continuation-token` parameter is included in your request, this parameter is ignored.
 
-**Sample request**
+**Sample request (simple)**
 
 This request lists the objects inside the "apiary" bucket.
 
 ```http
-GET /apiary HTTP/1.1
+GET /apiary?list-type=2 HTTP/1.1
 Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
 Authorization: Bearer {token}
@@ -342,7 +342,7 @@ HTTP/1.1 200 OK
 Date: Wed, 24 Aug 2016 17:36:24 GMT
 X-Clv-Request-Id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
 Accept-Ranges: bytes
-Server: Cleversafe/3.9.0.115
+Server: Cleversafe/3.13.3.57
 X-Clv-S3-Version: 2.5
 x-amz-request-id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
 Content-Type: application/xml
@@ -381,6 +381,17 @@ Content-Length: 814
 </ListBucketResult>
 ```
 
+**Sample request (max-keys parameter)**
+
+This request lists the objects inside the "apiary" bucket with a max key returned set to 1.
+
+```http
+GET /apiary?list-type=2&max-keys=1 HTTP/1.1
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
+Authorization: Bearer {token}
+```
+
 **Sample response (Truncated Response)**
 
 ```http
@@ -388,7 +399,7 @@ HTTP/1.1 200 OK
 Date: Wed, 24 Aug 2016 17:36:24 GMT
 X-Clv-Request-Id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
 Accept-Ranges: bytes
-Server: Cleversafe/3.9.0.115
+Server: Cleversafe/3.13.3.57
 X-Clv-S3-Version: 2.5
 x-amz-request-id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
 Content-Type: application/xml
@@ -414,11 +425,56 @@ Content-Length: 598
 </ListBucketResult>
 ```
 
+**Sample request (continuation-token parameter)**
+
+This request lists the objects inside the "apiary" bucket with a continuation token specified.
+
+```http
+GET /apiary?list-type=2&max-keys=1&continuation-token=1dPe45g5uuxjyASPegLq80sQsZKL5OB2by4Iz_7YGR5NjiOENBPZXqvKJN6_PgKGVzZYTlws7qqdWaMklzb8HX2iDxxl72ane3rUFQrvNMeIih49MZ4APUjrAuYI83KxSMmfKHGZyKallFkD5N6PwKg HTTP/1.1
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
+Authorization: Bearer {token}
+```
+
+**Sample response (Truncated Response, continuation-token parameter)**
+
+```http
+HTTP/1.1 200 OK
+Date: Wed, 24 Aug 2016 17:36:24 GMT
+X-Clv-Request-Id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
+Accept-Ranges: bytes
+Server: Cleversafe/3.13.3.57
+X-Clv-S3-Version: 2.5
+x-amz-request-id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
+Content-Type: application/xml
+Content-Length: 604
+```
+
+```xml
+<ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+  <Name>apiary</Name>
+  <Prefix/>
+  <ContinuationToken>1dPe45g5uuxjyASPegLq80sQsZKL5OB2by4Iz_7YGR5NjiOENBPZXqvKJN6_PgKGVzZYTlws7qqdWaMklzb8HX2iDxxl72ane3rUFQrvNMeIih49MZ4APUjrAuYI83KxSMmfKHGZyKallFkD5N6PwKg</ContinuationToken>
+  <NextContinuationToken>1a8j20CqowRrM4epIQ7fTBuyPZWZUeA8Epog16wYu9KhAPNoYkWQYhGURsIQbll1lP7c-OO-V5Vyzu6mogiakC4NSwlK4LyRDdHQgY-yPH4wMB76MfQR61VyxI4TJLxIWTPSZA0nmQQWcuV2mE4jiDA</NextContinuationToken>
+  <KeyCount>1</KeyCount>
+  <MaxKeys>1</MaxKeys>
+  <Delimiter/>
+  <IsTruncated>true</IsTruncated>
+  <Contents>
+    <Key>soldier-bee</Key>
+    <LastModified>2016-08-25T17:49:06.006Z</LastModified>
+    <ETag>"37d4c94839ee181a2224d6242176c4b5"</ETag>
+    <Size>11</Size>
+    <StorageClass>STANDARD</StorageClass>
+  </Contents>
+</ListBucketResult>
+```
+
 ----
 
 ## List objects in a given bucket (Version 1)
 
-**Note:** This API is included for backwards compatibility.  See [Version 2](api-reference-buckets.html#list-objects-v2) for the recommended method of retrieving objects in a bucket.
+**Note:** *This API is included for backwards compatibility.*  See [Version 2](api-reference-buckets.html#list-objects-v2) for the recommended method of retrieving objects in a bucket.
 
 A `GET` request addressed to a bucket returns a list of objects, limited to 1,000 at a time and returned in non-lexographical order. The `StorageClass` value that is returned in the response is a default value as storage class operations are not implemented in COS. This operation does not make use of operation specific headers or payload elements.
 
