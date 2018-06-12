@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "15-03-2018"
+lastupdated: "2018-06-11"
 
 ---
 {:new_window: target="_blank"}
@@ -299,7 +299,126 @@ ibm-see-kp-crk-id: {customer-root-key-id}
 
 ----
 
-## List objects in a given bucket
+## List objects in a given bucket (Version 2)
+{: #list-objects-v2}
+
+A `GET` request addressed to a bucket returns a list of objects, limited to 1,000 at a time and returned in non-lexographical order. The `StorageClass` value that is returned in the response is a default value as storage class operations are not implemented in COS. This operation does not make use of operation specific headers or payload elements.
+
+**Syntax**
+
+```bash
+GET https://{endpoint}/{bucket-name}?list-type=2 # path style
+GET https://{bucket-name}.{endpoint}?list-type=2 # virtual host style
+```
+
+## Optional query parameters
+
+Name | Type | Description
+--- | ---- | ------------
+`list-type` | string | Indicates version 2 of the API and the value must be 2.
+`prefix` | string | Constrains response to object names beginning with `prefix`.
+`delimiter` | string | Groups objects between the `prefix` and the `delimiter`.
+`encoding-type` | string | If unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.
+`max-keys` | string | Restricts the number of objects to display in the response.  Default and maximum is 1,000.
+`fetch-owner` | string | Version 2 of the API does not include the `Owner` information by default.  Set this parameter to `true` if `Owner` information is desired in the response.
+`continuation-token` | string | Specifies the next set of objects to be returned when your response is truncated (`IsTruncated` element returns `true`).<br/><br/>Your initial response will include the `NextContinuationToken` element.  Use this token in the next request as the value for `continuation-token`.
+`start-after` | string | Returns key names after a specific key object.<br/><br/>*This parameter is only valid in your initial request.*  If a `continuation-token` parameter is included in your request, this parameter is ignored.
+
+**Sample request**
+
+This request lists the objects inside the "apiary" bucket.
+
+```http
+GET /apiary HTTP/1.1
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
+Authorization: Bearer {token}
+```
+
+**Sample response (simple)**
+
+```http
+HTTP/1.1 200 OK
+Date: Wed, 24 Aug 2016 17:36:24 GMT
+X-Clv-Request-Id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
+Accept-Ranges: bytes
+Server: Cleversafe/3.9.0.115
+X-Clv-S3-Version: 2.5
+x-amz-request-id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
+Content-Type: application/xml
+Content-Length: 814
+```
+
+```xml
+<ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+  <Name>apiary</Name>
+  <Prefix/>
+  <KeyCount>3</KeyCount>
+  <MaxKeys>1000</MaxKeys>
+  <Delimiter/>
+  <IsTruncated>false</IsTruncated>
+  <Contents>
+    <Key>drone-bee</Key>
+    <LastModified>2016-08-25T17:38:38.549Z</LastModified>
+    <ETag>"0cbc6611f5540bd0809a388dc95a615b"</ETag>
+    <Size>4</Size>
+    <StorageClass>STANDARD</StorageClass>
+  </Contents>
+  <Contents>
+    <Key>soldier-bee</Key>
+    <LastModified>2016-08-25T17:49:06.006Z</LastModified>
+    <ETag>"37d4c94839ee181a2224d6242176c4b5"</ETag>
+    <Size>11</Size>
+    <StorageClass>STANDARD</StorageClass>
+  </Contents>
+  <Contents>
+    <Key>worker-bee</Key>
+    <LastModified>2016-08-25T17:46:53.288Z</LastModified>
+    <ETag>"d34d8aada2996fc42e6948b926513907"</ETag>
+    <Size>467</Size>
+    <StorageClass>STANDARD</StorageClass>
+  </Contents>
+</ListBucketResult>
+```
+
+**Sample response (Truncated Response)**
+
+```http
+HTTP/1.1 200 OK
+Date: Wed, 24 Aug 2016 17:36:24 GMT
+X-Clv-Request-Id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
+Accept-Ranges: bytes
+Server: Cleversafe/3.9.0.115
+X-Clv-S3-Version: 2.5
+x-amz-request-id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
+Content-Type: application/xml
+Content-Length: 598
+```
+
+```xml
+<ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+  <Name>apiary</Name>
+  <Prefix/>
+  <NextContinuationToken>1dPe45g5uuxjyASPegLq80sQsZKL5OB2by4Iz_7YGR5NjiOENBPZXqvKJN6_PgKGVzZYTlws7qqdWaMklzb8HX2iDxxl72ane3rUFQrvNMeIih49MZ4APUjrAuYI83KxSMmfKHGZyKallFkD5N6PwKg</NextContinuationToken>
+  <KeyCount>1</KeyCount>
+  <MaxKeys>1</MaxKeys>
+  <Delimiter/>
+  <IsTruncated>true</IsTruncated>
+  <Contents>
+    <Key>drone-bee</Key>
+    <LastModified>2016-08-25T17:38:38.549Z</LastModified>
+    <ETag>"0cbc6611f5540bd0809a388dc95a615b"</ETag>
+    <Size>4</Size>
+    <StorageClass>STANDARD</StorageClass>
+  </Contents>
+</ListBucketResult>
+```
+
+----
+
+## List objects in a given bucket (Version 1)
+
+**Note:** This API is included for backwards compatibility.  See [Version 2](api-reference-buckets.html#list-objects-v2) for the recommended method of retrieving objects in a bucket.
 
 A `GET` request addressed to a bucket returns a list of objects, limited to 1,000 at a time and returned in non-lexographical order. The `StorageClass` value that is returned in the response is a default value as storage class operations are not implemented in COS. This operation does not make use of operation specific headers or payload elements.
 
