@@ -25,6 +25,8 @@ The following table describes supported common request headers. {{site.data.keyw
 | Expect                  | The value `100-continue` will wait for acknowledgment from the system that the headers are appropriate before sending the payload. |
 | host                    | Either the endpoint or the 'virtual host' syntax of `{bucket-name}.{endpoint}`. Typically, this header is automatically added.     | 
 
+### Custom metadata
+A benefit of using object storage is the ability to add custom metadata by sending key-value pairs as headers.  These headers take the form of `x-amz-meta-{KEY}`.  Note that unlike AWS S3, IBM COS will combine multiple headers with the same metadata key into a comma-seperated list of values.
 
 ## Common Response Headers
 The following table describes common response headers.

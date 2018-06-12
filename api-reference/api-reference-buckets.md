@@ -188,7 +188,7 @@ To create a bucket where the encryption keys are managed by Key Protect, it is n
 
 For more information on using Key Protect to manage your encryption keys, [see the documentation](/docs/services/keymgmt/index.html).
 
-Note that Key Protect is not available in a Cross Region configuration and any SSE-KP buckets must be Regional.
+Note that Key Protect is **not** available in a Cross Region configuration and any SSE-KP buckets must be Regional.
 {:tip}
 
 Header                                        | Type   | Description
@@ -236,6 +236,9 @@ Content-Length: 0
 ## Retrieve a bucket's headers
 
 A `HEAD` issued to a bucket will return the headers for that bucket.
+
+`HEAD` requests don't return a body and thus can't return specific error messages such as `NoSuchBucket`, only `NotFound`.
+{:tip}
 
 **Syntax**
 
