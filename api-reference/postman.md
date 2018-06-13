@@ -20,6 +20,7 @@ Using `Postman` assumes a certain amount of familiarity with object storage and 
 
 **Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
 {:tip}
+
 ## REST API client overview
 
 REST (REpresentational State Transfer) is an architectural style that provides a standard for computer systems to
@@ -83,7 +84,7 @@ b.	Value: Resource Instance ID for you cloud storage service.
 
 ## Using the sample collection
 
-A Postman Collection is available for [download](files/IBM_COS.postman_collection.json.zip) with configurable {{site.data.keyword.cos_full}} API request samples.
+A Postman Collection is available for [download](https://s3-api.us-geo.objectstorage.softlayer.net/docs-resources/cos-postman) with configurable {{site.data.keyword.cos_full}} API request samples.
 
 ### Import the collection to Postman
 1. In Postman click on Import in the upper right<br/><br/><img src="images/postman-collection-fig1.png" alt="Figure 1" width="400px" /><br/>`Figure 1: Import menu`<br/><br/>
