@@ -32,7 +32,7 @@ What is expected in terms of ACLs, metadata, etc.
 
 ## Set up {{site.data.keyword.cos_full_notm}}
 
-  1. If you haven't created one yet, provision an instance of {{site.data.keyword.cos_full_notm}} from the [catalog](/catalog/services/cloud-object-storage).  
+  1. If you haven't created one yet, provision an instance of {{site.data.keyword.cos_full_notm}} from the [catalog](https://console.bluemix.net/catalog/services/cloud-object-storage).  
   2. Read through the [getting started guide](/docs/services/cloud-object-storage/getting-started.html) to familiarize yourself with key concepts such as [endpoints](/docs/services/cloud-object-storage/basics/endpoints.html) and [storage classes](/docs/services/cloud-object-storage/basics/classes.html).  Create any buckets that you will need to store your transferred data.
   3. Re-write your application to use the COS SDKs ([Java](/docs/services/cloud-object-storage/libraries/java.html), [Python](/docs/services/cloud-object-storage/libraries/python.html), [Node.js](/docs/services/cloud-object-storage/libraries/node.html)) or the [REST API](/docs/services/cloud-object-storage/api-reference/about-api.html).
 
@@ -68,7 +68,7 @@ What is expected in terms of ACLs, metadata, etc.
         ```
 
   3. Get OpenStack Swift credential
-    a. Click on your Swift instance in the [IBM Cloud console dashboard](/dashboard).
+    a. Click on your Swift instance in the [IBM Cloud console dashboard](https://console.bluemix.net/dashboard).
     b. Click on **Service Credentials** in the navigation panel.
     c. Click on **New credential** to generate credential information.  Click **Add**.
     d. View the credential you created, and copy the JSON contents.
