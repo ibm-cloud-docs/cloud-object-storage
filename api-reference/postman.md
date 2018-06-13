@@ -30,19 +30,14 @@ A REST API client provides a simple GUI-based application to interface with an e
 
 ## Prerequisites
 * IBM Cloud account
-* Cloud Storage resource created (lite/free plan works fine)
-  - https://console.bluemix.net/docs/tutorials/static-files-cdn.html#create_cos
-* IBM Cloud CLI installed configured
-  - https://console.bluemix.net/docs/services/cloud-object-storage/getting-started-cli.html
-* Resource Instance ID for your Cloud Storage
-  - https://console.bluemix.net/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information
-* IAM (Identity and Access Management) Token 
-  - https://console.bluemix.net/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information
-* Endpoint for your COS resource
-  - IBM Cloud Dashboard – Cloud Storage Instance: Use the entry under Public/us-geo
--------------------------------------
+* [Cloud Storage resource created](https://console.bluemix.net/catalog/) (lite/free plan works fine)
+* [IBM Cloud CLI installed and configured]( https://console.bluemix.net/docs/services/cloud-object-storage/getting-started-cli.html)
+* [Service Instance ID for your Cloud Storage](https://console.bluemix.net/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information)
+* [IAM (Identity and Access Management) Token](https://console.bluemix.net/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information) 
+* [Endpoint for your COS bucket](https://console.bluemix.net/docs/services/cloud-object-storage/basics/endpoints)
+
 ### Create a bucket
-----------------------------
+
 1.	Launch Postman
 2.	In the New Tab select PUT the drop-down list
 3.	Enter the endpoint in the address bar and add the name for your new bucket.
@@ -57,9 +52,9 @@ a.	Key: ibm-service-instance-id
 b.	Value: Resource Instance ID for you cloud storage service.
 9.	Click Send.
 10.	You will receive a status 200 OK message.
-----------------------------
+
 ### Create a new text file
-----------------------------
+
 1.	Create a new tab by clicking the Plus (+) icon.
 2.	Select PUT from the list.
 3.	In the address bar, enter the endpoint address with the bucket name from previous section and a file name.
@@ -70,9 +65,9 @@ b.	Value: Resource Instance ID for you cloud storage service.
 8.	Enter text in the provided space.
 9.	Click Send.
 10.	You will receive a status 200 OK message.
-----------------------------
+
 ### List the contents of a bucket
----------------------------
+
 1.	Create a new tab by selecting the Plus (+) icon.
 2.	Verify GET is selected in the list.
 3.	In the address bar, enter the endpoint address with the bucket name from the previous section.

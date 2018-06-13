@@ -193,6 +193,13 @@ x-amz-request-id: 8ff4dc32-a6f0-447f-86cf-427b564d5855
 
 A `POST` given a path to an bucket and proper parameters will delete a specified set of objects. A `Content-MD5` header specifying the base64 encoded MD5 hash of the request body is required.
 
+The required `Content-MD5` header needs to be the binary representation of a base64 encoded MD5 hash.
+
+```
+echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
+```
+{:codeblock}
+
 **Syntax**
 
 ```bash
