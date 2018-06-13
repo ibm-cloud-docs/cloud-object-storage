@@ -107,9 +107,9 @@ What is expected in terms of ACLs, metadata, etc.
     <br>b. Click on the data center of the migration source container.
     <br>c. Click on **View Credentials**.
     <br>d. Copy the following.
-      <br>*  **Username**
-      <br>*  **API Key (Password)**
-      <br>*  **Authentication Endpoint** based on where you are running the migration tool
+      <br>&nbsp;&nbsp;*  **Username**
+      <br>&nbsp;&nbsp;*  **API Key**
+      <br>&nbsp;&nbsp;*  **Authentication Endpoint** based on where you are running the migration tool
 
   4. Using the OpenStack Swift (infrastructure) credential, fill in the following fields:
 
