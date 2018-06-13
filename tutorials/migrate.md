@@ -68,10 +68,10 @@ What is expected in terms of ACLs, metadata, etc.
         ```
 
   3. Get OpenStack Swift credential
-    a. Click on your Swift instance in the [IBM Cloud console dashboard](https://console.bluemix.net/dashboard).
-    b. Click on **Service Credentials** in the navigation panel.
-    c. Click on **New credential** to generate credential information.  Click **Add**.
-    d. View the credential you created, and copy the JSON contents.
+    <br>a. Click on your Swift instance in the [IBM Cloud console dashboard](https://console.bluemix.net/dashboard).
+    <br>b. Click on **Service Credentials** in the navigation panel.
+    <br>c. Click on **New credential** to generate credential information.  Click **Add**.
+    <br>d. View the credential you created, and copy the JSON contents.
 
   4. Fill in the following fields:
 
@@ -82,7 +82,7 @@ What is expected in terms of ACLs, metadata, etc.
         endpoint_type = public OR internal   internal is the private endpoint
         ```
 
-  5. Go to [Configure `rclone` for COS](/docs/services/cloud-object-storage/migrate.html#configurecos)
+  5. Go to [Configure `rclone` for COS](#configure-rclone-for-cos)
 
 
 ## Configure `rclone` for OpenStack Swift (infrastructure)
@@ -103,11 +103,11 @@ What is expected in terms of ACLs, metadata, etc.
         ```
 
   3. Get OpenStack Swift (infrastructure) credential
-    a. Click on your Swift account in the <a href="https://control.softlayer.com/storage/objectstorage">IBM Cloud     
+    <br>a. Click on your Swift account in the <a href="https://control.softlayer.com/storage/objectstorage">IBM Cloud     
        infrastructure customer portal</a>.
-    b. Click on the data center of the migration source container.
-    c. Click on **View Credentials**.
-    d. Copy the following.
+    <br>b. Click on the data center of the migration source container.
+    <br>c. Click on **View Credentials**.
+    <br>d. Copy the following.
       i.   **Username**
       ii.  **API Key (Password)**
       iii. **Authentication Endpoint** based on where you are running the migration tool
@@ -120,7 +120,7 @@ What is expected in terms of ACLs, metadata, etc.
         auth = <public or private endpoint address>
         ```
 
-## [Configure `rclone` for COS](#configurecos)
+## Configure `rclone` for COS
 ### Get COS credential
   1. Click on your COS instance in the IBM Cloud console.
   2. Click on **Service Credentials** in the navigation panel.
