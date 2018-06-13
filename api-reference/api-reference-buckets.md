@@ -581,7 +581,7 @@ PUT https://{bucket-name}.{endpoint}?cors= # virtual host style
 This is an example of adding a CORS configuration that allows requests from `www.ibm.com` to issue `GET`, `PUT`, and `POST` requests to the bucket.
 
 ```http
-GET /apiary?cors= HTTP/1.1
+PUT /apiary?cors= HTTP/1.1
 Authorization: Bearer {token}
 Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
