@@ -569,6 +569,13 @@ Content-Length: 123
 
 A `PUT` issued to a bucket with the proper parameters creates or replaces a cross-origin resource sharing (CORS) configuration for a bucket.
 
+The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash.
+
+```
+echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
+```
+{:codeblock}
+
 **Syntax**
 
 ```bash
