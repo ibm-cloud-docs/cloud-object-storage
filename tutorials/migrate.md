@@ -82,7 +82,7 @@ What is expected in terms of ACLs, metadata, etc.
         endpoint_type = public OR internal   internal is the private endpoint
         ```
 
-  5. Go to [Configure `rclone` for COS](#configure-rclone-for-cos)
+  5. Skip to section Configure `rclone` for COS
 
 
 ## Configure `rclone` for OpenStack Swift (infrastructure)
@@ -103,14 +103,13 @@ What is expected in terms of ACLs, metadata, etc.
         ```
 
   3. Get OpenStack Swift (infrastructure) credential
-    <br>a. Click on your Swift account in the <a href="https://control.softlayer.com/storage/objectstorage">IBM Cloud     
-       infrastructure customer portal</a>.
+    <br>a. Click on your Swift account in the <a href="https://control.softlayer.com/storage/objectstorage">IBM Cloud   infrastructure customer portal</a>.
     <br>b. Click on the data center of the migration source container.
     <br>c. Click on **View Credentials**.
     <br>d. Copy the following.
-      i.   **Username**
-      ii.  **API Key (Password)**
-      iii. **Authentication Endpoint** based on where you are running the migration tool
+      <br>*  **Username**
+      <br>*  **API Key (Password)**
+      <br>*  **Authentication Endpoint** based on where you are running the migration tool
 
   4. Using the OpenStack Swift (infrastructure) credential, fill in the following fields:
 
@@ -135,7 +134,7 @@ What is expected in terms of ACLs, metadata, etc.
   4. Scroll down to the **Endpoints** section and choose the endpoint based on where
      where you are running the migration tool.
 
-  1. Create the COS target by copying the following and pasting into `rclone.conf`.  
+  5. Create the COS target by copying the following and pasting into `rclone.conf`.  
 
     ```
     [COS]
@@ -145,12 +144,12 @@ What is expected in terms of ACLs, metadata, etc.
     endpoint =
     ```
 
-  2. Using the COS credential and endpoint, fill in the following fields:
+  6. Using the COS credential and endpoint, fill in the following fields:
 
     ```
     access_key_id = <access_key_id>
     secret_access_key = <secret_access_key>
-    endpoint = <bucket endpoint from above>       
+    endpoint = <bucket endpoint>       
     ```
 
 ## Verify the migration source and target are properly configured
