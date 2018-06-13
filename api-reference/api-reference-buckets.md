@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-06-11"
+lastupdated: "2018-06-12"
 
 ---
 {:new_window: target="_blank"}
@@ -812,3 +812,152 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
 The server responds with `204 No Content`.
+
+----
+
+## List the location constraint for a bucket
+
+A `GET` issued to a bucket with the proper parameter retrieves the location information for a bucket.
+
+**Syntax**
+
+```bash
+GET https://{endpoint}/{bucket-name}?location # path style
+GET https://{bucket-name}.{endpoint}?location # virtual host style
+```
+
+**Sample request**
+
+This is an example of retrieving the location of the "apiary" bucket.
+
+```http
+GET /apiary?location HTTP/1.1
+Authorization: Bearer {token}
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample response**
+
+```http
+HTTP/1.1 200 OK
+Date: Tue, 12 Jun 2018 21:10:57 GMT
+X-Clv-Request-Id: 0e469546-3e43-4c6b-b814-5ad0db5b638f
+Accept-Ranges: bytes
+Server: Cleversafe/3.13.3.57
+X-Clv-S3-Version: 2.5
+x-amz-request-id: 0e469546-3e43-4c6b-b814-5ad0db5b638f
+Content-Type: application/xml
+Content-Length: 161
+```
+
+```xml
+<LocationConstraint xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+  us-south-standard
+</LocationConstraint>
+```
+
+----
+
+## List the access control list (ACL) of a bucket
+
+A `GET` issued to a bucket with the proper parameter retrieves the list the users and their specified permissions.
+
+**Syntax**
+
+```bash
+GET https://{endpoint}/{bucket-name}?acl # path style
+GET https://{bucket-name}.{endpoint}?acl # virtual host style
+```
+
+**Sample request**
+
+This is an example of listing the ACL on the "apiary" bucket.
+
+```http
+GET /apiary?acl HTTP/1.1
+Authorization: Bearer {token}
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample response**
+
+```http
+HTTP/1.1 200 OK
+Date: Tue, 12 Jun 2018 20:31:14 GMT
+X-Clv-Request-Id: 2afda54d-d718-4c0a-a992-e1ba5af1e890
+Accept-Ranges: bytes
+Server: Cleversafe/3.13.3.57
+X-Clv-S3-Version: 2.5
+x-amz-request-id: 2afda54d-d718-4c0a-a992-e1ba5af1e890
+Content-Type: application/xml
+Content-Length: 566
+```
+
+```xml
+<AccessControlPolicy xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+  <Owner>
+    <ID>8898b05b-a153-4618-9d8f-8d5c32fa2603</ID>
+    <DisplayName>8898b05b-a153-4618-9d8f-8d5c32fa2603</DisplayName>
+  </Owner>
+  <AccessControlList>
+    <Grant>
+      <Grantee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="CanonicalUser">
+        <ID>8898b05b-a153-4618-9d8f-8d5c32fa2603</ID>
+        <DisplayName>8898b05b-a153-4618-9d8f-8d5c32fa2603</DisplayName>
+      </Grantee>
+      <Permission>FULL_CONTROL</Permission>
+    </Grant>
+  </AccessControlList>
+</AccessControlPolicy>
+```
+
+----
+
+## Set the access control list (ACL) of a bucket
+
+A `PUT` issued to a bucket with the proper parameters adds or updates users' specified permission.
+
+**Syntax**
+
+```bash
+PUT https://{endpoint}/{bucket-name}?acl # path style
+PUT https://{bucket-name}.{endpoint}?acl # virtual host style
+```
+
+**Sample request**
+
+This is an example of granting a user WRITE access to the "apiary" bucket.
+
+```http
+PUT /apiary?acl HTTP/1.1
+Authorization: Bearer {token}
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+```xml
+<AccessControlPolicy xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+  <AccessControlList>
+    <Grant>
+      <Grantee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="CanonicalUser">
+        <ID>8898b05b-a153-4618-9d8f-8d5c32fa2603</ID>
+        <DisplayName>8898b05b-a153-4618-9d8f-8d5c32fa2603</DisplayName>
+      </Grantee>
+      <Permission>WRITE</Permission>
+    </Grant>
+  </AccessControlList>
+</AccessControlPolicy>
+```
+
+**Sample response**
+
+```http
+HTTP/1.1 200 OK
+Date: Tue, 12 Jun 2018 20:42:14 GMT
+X-Clv-Request-Id: 55d28fe1-6565-4a2c-99d2-1e3fa241e814
+Accept-Ranges: bytes
+Server: Cleversafe/3.13.3.57
+X-Clv-S3-Version: 2.5
+x-amz-request-id: 55d28fe1-6565-4a2c-99d2-1e3fa241e814
+Content-Type: application/xml
+Content-Length: 270
+```
