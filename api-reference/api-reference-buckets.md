@@ -14,6 +14,22 @@ lastupdated: "2018-06-12"
 
 # Bucket operations
 
+## Authentication Options
+
+### OAUTH
+IAM bearer tokens generated using the [IBM Cloud CLI](/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information)
+
+### HMAC (Headers or Pre-signed URL)
+Adding headers to your request using the following values subtituted:
+
+|Key|Value|Example|
+|---|---|---|
+|{access_key}|Access key assigned to your Service Credential|cf4965cebe074720a4929759f57e1214|
+|{datestamp}|The formatted date of your request (yyyymmdd)|20180613|
+|{location}|The location code for your endpoint|us-standard|
+|{signature}|The hash created using the secret key, location, and date|ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e|
+|{timestamp}|The formatted date and time of your request|20180614T001804Z|
+
 ## List buckets belonging to an account (`GET` service)
 {: #list-buckets}
 
@@ -29,7 +45,7 @@ Header                    | Type   | Description
 GET https://{endpoint}/
 ```
 
-**Sample request**
+**Sample request (OAUTH)**
 
 ```http
 GET / HTTP/1.1
@@ -37,6 +53,24 @@ Authorization: Bearer {token}
 Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ibm-service-instance-id: {ibm-service-instance-id}
+```
+
+**Sample request (HMAC Headers)**
+
+```http
+GET / HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Pre-signed URL)**
+
+```http
+GET /?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
 **Sample response**
