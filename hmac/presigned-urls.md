@@ -270,7 +270,7 @@ print 'request_url: %s' % request_url
 
 print '\nSending `%s` request to IBM COS -----------------------' % http_method
 print 'Request URL = ' + request_url
-request = requests.PUT(request_url)
+request = requests.put(request_url)
 
 print '\nResponse from IBM COS ---------------------------------'
 print 'Response code: %d\n' % request.status_code
