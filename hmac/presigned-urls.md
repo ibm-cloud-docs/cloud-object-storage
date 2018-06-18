@@ -222,7 +222,7 @@ public class CoSHMAC {
             String timestamp = datestamp + "T" + time.format(DateTimeFormatter.ofPattern("HHmmss")) + "Z";
 
             String standardizedQuerystring = "X-Amz-Algorithm=AWS4-HMAC-SHA256" +
-                "&X-Amz-Credential=" + URLEncoder.encode(accessKey + "/" + datestamp + "/" + region + "/s3/aws4_request") +
+                "&X-Amz-Credential=" + URLEncoder.encode(accessKey + "/" + datestamp + "/" + region + "/s3/aws4_request", StandardCharsets.UTF_8.toString()) +
                 "&X-Amz-Date=" + timestamp +
                 "&X-Amz-Expires=" + String.valueOf(expiration) +
                 "&X-Amz-SignedHeaders=host";

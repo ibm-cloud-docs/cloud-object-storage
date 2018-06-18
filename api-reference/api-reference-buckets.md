@@ -295,7 +295,6 @@ Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
-ibm-service-instance-id: {ibm-service-instance-id}
 ibm-sse-kp-encryption-algorithm: "AES256"
 ibm-sse-kp-customer-root-key-crn: {customer-root-key-id}
 ```
@@ -306,7 +305,6 @@ ibm-sse-kp-customer-root-key-crn: {customer-root-key-id}
 PUT /secure-files?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
 Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
-ibm-service-instance-id: {ibm-service-instance-id}
 ibm-sse-kp-encryption-algorithm: "AES256"
 ibm-sse-kp-customer-root-key-crn: {customer-root-key-id}
 ```
@@ -382,7 +380,7 @@ x-amz-request-id: 0c2832e3-3c51-4ea6-96a3-cd8482aca08a
 Content-Length: 0
 ```
 
-**Sample request**
+**Sample request (IAM)**
 
 `HEAD` requests on buckets with Key Protect encrytions will return extra headers.
 
@@ -391,6 +389,24 @@ HEAD /secure-files HTTP/1.1
 Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
 Authorization:Bearer {token}
+```
+
+**Sample request (HMAC Headers)**
+
+```http
+HEAD /secure-files HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Pre-signed URL)**
+
+```http
+HEAD /secure-files?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
 **Sample response**
@@ -1020,6 +1036,8 @@ Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
+Content-MD5: M625BaNwd/OytcM7O5gIaQ==
+Content-Length: 237
 ```
 
 **Sample request (HMAC Pre-signed URL)**
@@ -1028,6 +1046,8 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 PUT /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&cors=&x-amz-signature={signature} HTTP/1.1
 Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
+Content-MD5: M625BaNwd/OytcM7O5gIaQ==
+Content-Length: 237
 ```
 
 
@@ -1158,110 +1178,4 @@ Content-Length: 161
 <LocationConstraint xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
   us-south-standard
 </LocationConstraint>
-```
-
-----
-
-## List the access control list (ACL) of a bucket
-
-A `GET` issued to a bucket with the proper parameter retrieves the list the users and their specified permissions.
-
-**Syntax**
-
-```bash
-GET https://{endpoint}/{bucket-name}?acl # path style
-GET https://{bucket-name}.{endpoint}?acl # virtual host style
-```
-
-**Sample request**
-
-This is an example of listing the ACL on the "apiary" bucket.
-
-```http
-GET /apiary?acl HTTP/1.1
-Authorization: Bearer {token}
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample response**
-
-```http
-HTTP/1.1 200 OK
-Date: Tue, 12 Jun 2018 20:31:14 GMT
-X-Clv-Request-Id: 2afda54d-d718-4c0a-a992-e1ba5af1e890
-Accept-Ranges: bytes
-Server: Cleversafe/3.13.3.57
-X-Clv-S3-Version: 2.5
-x-amz-request-id: 2afda54d-d718-4c0a-a992-e1ba5af1e890
-Content-Type: application/xml
-Content-Length: 566
-```
-
-```xml
-<AccessControlPolicy xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-  <Owner>
-    <ID>8898b05b-a153-4618-9d8f-8d5c32fa2603</ID>
-    <DisplayName>8898b05b-a153-4618-9d8f-8d5c32fa2603</DisplayName>
-  </Owner>
-  <AccessControlList>
-    <Grant>
-      <Grantee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="CanonicalUser">
-        <ID>8898b05b-a153-4618-9d8f-8d5c32fa2603</ID>
-        <DisplayName>8898b05b-a153-4618-9d8f-8d5c32fa2603</DisplayName>
-      </Grantee>
-      <Permission>FULL_CONTROL</Permission>
-    </Grant>
-  </AccessControlList>
-</AccessControlPolicy>
-```
-
-----
-
-## Set the access control list (ACL) of a bucket
-
-A `PUT` issued to a bucket with the proper parameters adds or updates users' specified permission.
-
-**Syntax**
-
-```bash
-PUT https://{endpoint}/{bucket-name}?acl # path style
-PUT https://{bucket-name}.{endpoint}?acl # virtual host style
-```
-
-**Sample request**
-
-This is an example of granting a user WRITE access to the "apiary" bucket.
-
-```http
-PUT /apiary?acl HTTP/1.1
-Authorization: Bearer {token}
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-```xml
-<AccessControlPolicy xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-  <AccessControlList>
-    <Grant>
-      <Grantee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="CanonicalUser">
-        <ID>8898b05b-a153-4618-9d8f-8d5c32fa2603</ID>
-        <DisplayName>8898b05b-a153-4618-9d8f-8d5c32fa2603</DisplayName>
-      </Grantee>
-      <Permission>WRITE</Permission>
-    </Grant>
-  </AccessControlList>
-</AccessControlPolicy>
-```
-
-**Sample response**
-
-```http
-HTTP/1.1 200 OK
-Date: Tue, 12 Jun 2018 20:42:14 GMT
-X-Clv-Request-Id: 55d28fe1-6565-4a2c-99d2-1e3fa241e814
-Accept-Ranges: bytes
-Server: Cleversafe/3.13.3.57
-X-Clv-S3-Version: 2.5
-x-amz-request-id: 55d28fe1-6565-4a2c-99d2-1e3fa241e814
-Content-Type: application/xml
-Content-Length: 270
 ```
