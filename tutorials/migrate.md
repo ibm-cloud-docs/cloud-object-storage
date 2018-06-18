@@ -68,7 +68,7 @@ What is expected in terms of ACLs, metadata, etc.
         ```
 
   3. Get OpenStack Swift credential
-    <br>a. Click on your Swift instance in the [IBM Cloud console dashboard](https://console.bluemix.net/dashboard).
+    <br>a. Click on your Swift instance in the [IBM Cloud console dashboard](https://console.bluemix.net/).
     <br>b. Click on **Service Credentials** in the navigation panel.
     <br>c. Click on **New credential** to generate credential information.  Click **Add**.
     <br>d. View the credential you created, and copy the JSON contents.
