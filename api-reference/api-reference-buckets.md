@@ -195,6 +195,7 @@ Valid provisioning codes for `LocationConstraint` are: <br>
 &emsp;&emsp;  `us-south-standard` / `us-south-vault`  / `us-south-cold` / `us-south-flex` <br>
 &emsp;&emsp;  `eu-standard` / `eu-vault` / `eu-cold` / `eu-flex` <br>
 &emsp;&emsp;  `eu-gb-standard` / `eu-gb-vault` / `eu-gb-cold` / `eu-gb-flex` <br>
+&emsp;&emsp;  `eu-de-standard` / `eu-de-vault` / `eu-de-cold` / `eu-de-flex` <br>
 &emsp;&emsp;  `ap-standard` / `ap-vault` / `ap-cold` / `ap-flex` <br>
 &emsp;&emsp;  `che01-standard` / `che01-vault` / `che01-cold` / `che01-flex` <br>
 &emsp;&emsp;  `mel01-standard` / `mel01-vault` / `mel01-cold` / `mel01-flex` <br>
@@ -1007,6 +1008,13 @@ Content-Length: 123
 ## Create a cross-origin resource sharing configuration for a bucket
 
 A `PUT` issued to a bucket with the proper parameters creates or replaces a cross-origin resource sharing (CORS) configuration for a bucket.
+
+The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash.
+
+```
+echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
+```
+{:codeblock}
 
 **Syntax**
 

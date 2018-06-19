@@ -43,4 +43,4 @@ There isn't an 'official' command line utility for managing data stored in {{sit
 
 ## Using libraries and SDKs
 
-There are IBM COS SDKs available for [Python](/docs/services/cloud-object-storage/libraries/python), [Java](/docs/services/cloud-object-storage/libraries/java), and [Node.js]((/docs/services/cloud-object-storage/libraries/node). These are forked versions of the AWS S3 SDKs that have been modified to support [IAM token-based authentication]((/docs/services/cloud-object-storage/iam/overview), as well as support for [Key Protect]((/docs/services/cloud-object-storage/basics/encryption).
+There are IBM COS SDKs available for [Python](/docs/services/cloud-object-storage/libraries/python.html), [Java](/docs/services/cloud-object-storage/libraries/java.html), and [Node.js]((/docs/services/cloud-object-storage/libraries/node.html). These are forked versions of the AWS S3 SDKs that have been modified to support [IAM token-based authentication]((/docs/services/cloud-object-storage/iam/overview.html), as well as support for [Key Protect]((/docs/services/cloud-object-storage/basics/encryption.html). 
