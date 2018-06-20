@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017
-lastupdated: "2018-02-16"
+lastupdated: "2018-06-18"
 
 ---
 {:new_window: target="_blank"}
@@ -13,6 +13,22 @@ lastupdated: "2018-02-16"
 {:tip: .tip}
 
 # Object operations
+
+## Authentication Options
+
+### IAM
+IAM bearer tokens generated using the [IBM Cloud CLI](/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information)
+
+### HMAC (Headers or Pre-signed URL)
+Adding headers to your request using the following values subtituted:
+
+|Key|Value|Example|
+|---|---|---|
+|{access_key}|Access key assigned to your Service Credential|cf4965cebe074720a4929759f57e1214|
+|{datestamp}|The formatted date of your request (yyyymmdd)|20180613|
+|{location}|The location code for your endpoint|us-standard|
+|{signature}|The hash created using the secret key, location, and date|ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e|
+|{timestamp}|The formatted date and time of your request|20180614T001804Z|
 
 ## Upload an object
 {: #upload-object}
@@ -29,7 +45,7 @@ PUT https://{endpoint}/{bucket-name}/{object-name} # path style
 PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
 
-**Sample request**
+**Sample request (IAM)**
 
 ```http
 PUT /apiary/queen-bee HTTP/1.1
@@ -44,6 +60,24 @@ Content-Length: 533
  short while the 'queen' is the mother of nearly every bee in the hive, and
  the colony will fight fiercely to protect her.
 
+```
+
+**Sample request (HMAC Headers)**
+
+```http
+PUT /apiary/queen-bee HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain; charset=utf-8
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Pre-signed URL)**
+
+```http
+PUT /apiary/queen-bee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
+Content-Type: text/plain; charset=utf-8
+Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
 **Sample response**
@@ -76,13 +110,28 @@ HEAD https://{endpoint}/{bucket-name}/{object-name} # path style
 HEAD https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
 
-**Sample request**
+**Sample request (IAM)**
 
 ```http
 HEAD /apiary/soldier-bee HTTP/1.1
 Authorization: Bearer {token}
 Host: s3-api.sjc-us-geo.objectstorage.softlayer.net
+```
 
+**Sample request (HMAC Headers)**
+
+```http
+HEAD /apiary/soldier-bee HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Pre-signed URL)**
+
+```http
+HEAD /apiary/soldier-bee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
+Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
 **Sample response**
@@ -123,13 +172,28 @@ Header | Type | Description
 --- | ---- | ------------
 `range` | string | Returns the bytes of an object within the specified range.
 
-**Sample request**
+**Sample request (IAM)**
 
 ```http
 GET /apiary/worker-bee HTTP/1.1
 Authorization: Bearer {token}
 Host: s3-api.us-geo.objectstorage.softlayer.net
+```
 
+**Sample request (HMAC Headers)**
+
+```http
+GET /apiary/worker-bee HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Pre-signed URL)**
+
+```http
+GET /apiary/worker-bee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
+Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
 **Sample response**
@@ -166,13 +230,28 @@ DELETE https://{endpoint}/{bucket-name}/{object-name} # path style
 DELETE https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
 
-**Sample request**
+**Sample request (IAM)**
 
 ```http
 DELETE /apiary/soldier-bee HTTP/1.1
 Authorization: Bearer {token}
 Host: s3-api.sjc-us-geo.objectstorage.softlayer.net
+```
 
+**Sample request (HMAC Headers)**
+
+```http
+DELETE /apiary/soldier-bee HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Pre-signed URL)**
+
+```http
+DELETE /apiary/soldier-bee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
+Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
 **Sample response**
@@ -193,6 +272,13 @@ x-amz-request-id: 8ff4dc32-a6f0-447f-86cf-427b564d5855
 
 A `POST` given a path to an bucket and proper parameters will delete a specified set of objects. A `Content-MD5` header specifying the base64 encoded MD5 hash of the request body is required.
 
+The required `Content-MD5` header needs to be the binary representation of a base64 encoded MD5 hash.
+
+```
+echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
+```
+{:codeblock}
+
 **Syntax**
 
 ```bash
@@ -200,7 +286,7 @@ POST https://{endpoint}/{bucket-name}?delete= # path style
 POST https://{bucket-name}.{endpoint}?delete= # virtual host style
 ```
 
-**Sample request**
+**Sample request (IAM)**
 
 ```http
 POST /apiary?delete= HTTP/1.1
@@ -208,6 +294,26 @@ Authorization: Bearer {token}
 Host: s3-api.us-geo.objectstorage.softlayer.net
 Content-Type: text/plain; charset=utf-8
 Content-MD5: xj/vf7lD7vbIe/bqHTaLvg==
+```
+
+**Sample request (HMAC Headers)**
+
+```http
+POST /apiary?delete= HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain; charset=utf-8
+Content-MD5: xj/vf7lD7vbIe/bqHTaLvg==
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Pre-signed URL)**
+
+```http
+POST /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&delete=&x-amz-signature={signature} HTTP/1.1
+Content-Type: text/plain; charset=utf-8
+Content-MD5: xj/vf7lD7vbIe/bqHTaLvg==
+Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
 ```xml
@@ -274,13 +380,31 @@ Header | Type | Description
 `x-amz-copy-source-if-unmodified-since` | string (timestamp)| Creates a copy if the the source object has not been modified since the specified date.  Date must be a valid HTTP date (e.g. `Wed, 30 Nov 2016 20:21:38 GMT`).
 `x-amz-copy-source-if-modified-since` | string (timestamp)| Creates a copy if the source object has been modified since the specified date.  Date must be a valid HTTP date (e.g. `Wed, 30 Nov 2016 20:21:38 GMT`).
 
-**Sample request**
+**Sample request (IAM)**
 
 This basic example takes the `bee` object from the `garden` bucket, and creates a copy in the `apiary` bucket with the new key `wild-bee`.
 
 ```http
 PUT /apiary/wild-bee HTTP/1.1
 Authorization: Bearer {token}
+x-amz-copy-source: /garden/bee
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Headers)**
+
+```http
+PUT /apiary/wild-bee HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+x-amz-copy-source: /garden/bee
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Pre-signed URL)**
+
+```http
+PUT /apiary/wild-bee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
 x-amz-copy-source: /garden/bee
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
@@ -321,14 +445,33 @@ OPTIONS https://{endpoint}/{bucket-name}/{object-name} # path style
 OPTIONS https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
 
-**Sample request**
+**Sample request (IAM)**
 
 ```http
 OPTIONS /apiary/queen-bee HTTP/1.1
 Access-Control-Request-Method: PUT
 Origin: http://ibm.com
 Host: s3-api.us-geo.objectstorage.softlayer.net
+```
 
+**Sample request (HMAC Headers)**
+
+```http
+OPTIONS /apiary/queen-bee HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Access-Control-Request-Method: PUT
+Origin: http://ibm.com
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Pre-signed URL)**
+
+```http
+OPTIONS /apiary/queen-bee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
+Access-Control-Request-Method: PUT
+Origin: http://ibm.com
+Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
 **Sample response**
@@ -386,11 +529,27 @@ POST https://{endpoint}/{bucket-name}/{object-name}?uploads= # path style
 POST https://{bucket-name}.{endpoint}/{object-name}?uploads= # virtual host style
 ```
 
-**Sample request**
+**Sample request (IAM)**
 
 ```http
 POST /some-bucket/multipart-object-123?uploads= HTTP/1.1
 Authorization: Bearer {token}
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Headers)**
+
+```http
+POST /some-bucket/multipart-object-123?uploads= HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Pre-signed URL)**
+
+```http
+POST /some-bucket/multipart-object-123?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&uploads=&x-amz-signature={signature} HTTP/1.1
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
@@ -431,11 +590,31 @@ PUT https://{endpoint}/{bucket-name}/{object-name}?partNumber={sequential-intege
 PUT https://{bucket-name}.{endpoint}/{object-name}?partNumber={sequential-integer}&uploadId={uploadId}= # virtual host style
 ```
 
-**Sample request**
+**Sample request (IAM)**
 
 ```http
 PUT /some-bucket/multipart-object-123?partNumber=1&uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
 Authorization: Bearer {token}
+Content-Type: application/pdf
+Host: s3-api.us-geo.objectstorage.softlayer.net
+Content-Length: 13374550
+```
+
+**Sample request (HMAC Headers)**
+
+```http
+PUT /some-bucket/multipart-object-123?partNumber=1&uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: application/pdf
+Host: s3-api.us-geo.objectstorage.softlayer.net
+Content-Length: 13374550
+```
+
+**Sample request (HMAC Pre-signed URL)**
+
+```http
+PUT /some-bucket/multipart-object-123?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&partNumber=1&uploadId=0000015a-df89-51d0-2790-dee1ac994053&x-amz-signature={signature} HTTP/1.1
 Content-Type: application/pdf
 Host: s3-api.us-geo.objectstorage.softlayer.net
 Content-Length: 13374550
@@ -482,12 +661,27 @@ Header | Type | Description
 `max-parts` | string | Defaults to 1,000.
 `part-number​-marker` | string | Defines where the list of parts will begin.
 
-**Sample request**
-
+**Sample request (IAM)**
 
 ```http
 GET /farm/spaceship?uploadId=01000162-3f46-6ab8-4b5f-f7060b310f37 HTTP/1.1
 Authorization: bearer {token}
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Headers)**
+
+```http
+GET /farm/spaceship?uploadId=01000162-3f46-6ab8-4b5f-f7060b310f37 HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Pre-signed URL)**
+
+```http
+GET /farm/spaceship?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&uploadId=01000162-3f46-6ab8-4b5f-f7060b310f37&x-amz-signature={signature} HTTP/1.1
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
@@ -551,11 +745,31 @@ POST https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # virtu
 </CompleteMultipartUpload>
 ```
 
-**Sample request**
+**Sample request (IAM)**
 
 ```http
 POST /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
 Authorization: Bearer {token}
+Content-Type: text/plain; charset=utf-8
+Host: s3-api.us-geo.objectstorage.softlayer.net
+Content-Length: 257
+```
+
+**Sample request (HMAC Headers)**
+
+```http
+POST /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain; charset=utf-8
+Host: s3-api.us-geo.objectstorage.softlayer.net
+Content-Length: 257
+```
+
+**Sample request (HMAC Pre-signed URL)**
+
+```http
+POST /some-bucket/multipart-object-123?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&uploadId=0000015a-df89-51d0-2790-dee1ac994053&x-amz-signature={signature} HTTP/1.1
 Content-Type: text/plain; charset=utf-8
 Host: s3-api.us-geo.objectstorage.softlayer.net
 Content-Length: 257
@@ -610,11 +824,27 @@ DELETE https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId}= # pat
 DELETE https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # virtual host style
 ```
 
-**Sample request**
+**Sample request (IAM)**
 
 ```http
 DELETE /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
 Authorization: Bearer {token}
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Headers)**
+
+```http
+DELETE /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Pre-signed URL)**
+
+```http
+DELETE /some-bucket/multipart-object-123?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&uploadId=0000015a-df89-51d0-2790-dee1ac994053&x-amz-signature={signature} HTTP/1.1
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
