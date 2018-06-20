@@ -1124,7 +1124,6 @@ Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
-
 The server responds with `204 No Content`.
 
 ----
