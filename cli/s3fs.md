@@ -18,7 +18,7 @@ Applications that expect to read and write to a NFS-style filesystem can use `s3
 
 ## Prerequisites
 
-* IBM Cloud account and an instance of {site.data.keyword.cos_full}}
+* IBM Cloud account and an instance of {{site.data.keyword.cos_full}}
 * A Linux or OSX environment
 * Credentials (either an [IAM API key](/docs/services/cloud-object-storage/iam/overview.html) or [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html))
 

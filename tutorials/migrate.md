@@ -20,15 +20,18 @@ Before {{site.data.keyword.cos_full_notm}} became available as an {{site.data.ke
 The concept of a Swift 'container' is identical to a COS 'bucket'.  COS limits service instances to 100 buckets and some Swift instances may have a larger number of containers. COS buckets can hold billions of objects and supports forward slashes (`/`) in object names for directory-like 'prefixes' when organizing data.  COS supports IAM policies at the bucket and service instance levels.
 {:tip}
 
-<!---
-TODO
-Placeholder for
-What is expected in terms of ACLs, metadata, etc.
-* What won't be migrated
-  expiration policies, custom metadata, versioning
-  COS supports object-level metadata via the x-amz-meta header but rclone won't migrate
-* What will be migrated
--->
+One approach to migrating data across object storage services is to use a 'sync' or 'clone' tool, such as [the open source `rclone` command line utility](https://rclone.org/docs).  This utility will sync a filetree between two locations, including cloud storage.  When `rclone` writes data to COS it will use the COS/S3 API to segment large objects and upload the parts in parallel according to sizes and thresholds set as configuration parameters.  
+
+There are some differences between COS and Swift that must be considered as part of data migration.
+
+  - COS does not yet support expiration policies or versioning.  Workflows that depend on these Swift features must instead handle them as part of their application logic upon migration into COS.
+  - COS supports object-level metadata, but this information is not preserved when using `rclone` to migrate data.  Custom metadata can be set on objects in COS using a `x-amz-meta-{key}: {value}` header, but it is recommended that object-level metadata is backed up to a database prior to using `rclone`.  Custom metadata can be applied to existing objects by [copying the object onto itself](https://console.bluemix.net/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#copy-object).  Note that `rclone` **can** preserve timestamps.
+  - COS uses IAM policies for service instance and bucket-level access control.  [Objects can be made publicly available](/docs/services/cloud-object-storage/iam/public-access.html)) by setting a `public-read` ACL, which eliminates the need for an authorization header.
+  - [Multipart uploads](/docs/services/cloud-object-storage/basics/multipart.html) for large objects are handled differently in the COS/S3 API relative to the Swift API. 
+  - COS allows for familiar optional HTTP headers such as `Cache-Control`, `Content-Encoding`, `Content-MD5`, and `Content-Type`.  
+
+This guide provides instructions for migrating data from a single Swift container to a single COS bucket. This will need to be repeated for all containers that you want to migrate, and then your application logic will need to be updated to use the new API.  After the data is migrated you can verify the integrity of the transfer using `rclone check`, which will compare MD5 checksums and produce a list of any objects where they don't match.
+
 
 ## Set up {{site.data.keyword.cos_full_notm}}
 
