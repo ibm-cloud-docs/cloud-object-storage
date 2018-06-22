@@ -14,12 +14,10 @@ lastupdated: "15-03-2018"
 
 # What's new
 ## Q2 2018
-
-
-## Q1 2018
 ### June 2018
 Users who upload or download files or folders using the web-based console have the option to use [Aspera high-speed transfer](https://www.ibm.com/cloud/high-speed-data-transfer) for these operations via a browser plug-in.  This allows for transfers of objects larger than 200MB, and also allows for greater control and visibility of uploads and downloads. Additional information can be found in the [Uploading Data](/docs/services/cloud-object-storage/basics/upload.html#high-speed-transfer) documentation.
 
+## Q1 2018
 ### March 2018
 Users who upload or download files using the web-based console have the option to use [Aspera high-speed transfer](https://www.ibm.com/cloud/high-speed-data-transfer) for these operations via a browser plug-in.  This allows for transfers of objects larger than 200MB, and also allows for greater control and visibility of uploads and downloads. Additional information can be found in the [Uploading Data](/docs/services/cloud-object-storage/basics/upload.html#high-speed-transfer) documentation.
 
