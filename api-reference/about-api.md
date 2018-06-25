@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017
-lastupdated: "2017-12-01"
+lastupdated: "2018-06-11"
 
 ---
 {:new_window: target="_blank"}
@@ -41,7 +41,6 @@ These operations create, destroy, get information about, and control behavior of
 | `PUT` bucket            | Buckets have naming restrictions. Accounts are limited to 100 buckets.          |
 | `PUT` bucket CORS       | Creates a cross-origin resource sharing configuration for a bucket.             |
 
-Note that the S3 API 'version 2' method of listing objects within a bucket is not supported, and the 'version 1' syntax is needed.
 
 ## Object operations
 

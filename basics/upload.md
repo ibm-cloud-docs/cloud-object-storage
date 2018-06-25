@@ -40,7 +40,7 @@ When uploading an object using the console, the dialog box will present the opti
 
 The plug-in can be [installed from the Aspera website](http://downloads.asperasoft.com/connect2/) directly. For help troubleshooting issues with the Aspera Connect plug-in, [see the documentation](http://downloads.asperasoft.com/en/documentation/8).
 
-Once the plugin is installed you will have the option to set Aspera high-speed transfer as the default for any uploads to the target bucket that use the same browser. Simply check the box labeled Remember my browser preferences. Toggle switches are also available in the bucket configuration page under **"Transfer options".** These switches allow you to set the default transport for uploads and downloads.
+Once the plug-in is installed you will have the option to set Aspera high-speed transfer as the default for any uploads to the target bucket that use the same browser. Simply check the box labeled Remember my browser preferences. Toggle switches are also available in the bucket configuration page under **"Transfer options".** These switches allow you to set the default transport for uploads and downloads.
 
 ## Using a compatible tool
 
