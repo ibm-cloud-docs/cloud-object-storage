@@ -104,7 +104,7 @@ The following table lists where to view the event depending on COS bucket locati
     <td>US South</td>
   </tr>
   <tr>
-    <td>Toronto</td>
+    <td>Toronto (tor01)</td>
     <td>US South</td>
   </tr>
   <tr>
