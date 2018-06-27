@@ -417,7 +417,7 @@ Key Protect can be added to a storage bucket to encrypt sensitive data at rest i
 
 The following items are necessary in order to create a bucket with Key-Protect enabled:
 
-* A Key Protect service [provisioned](/docs/services/keymgmt/keyprotect_provision.html#provision)
+* A Key Protect service [provisioned](/docs/services/keymgmt/keyprotect_provision.html)
 * A Root key available (either [generated](/docs/services/keymgmt/keyprotect_create_root.html#create_root_keys) or [imported](/docs/services/keymgmt/keyprotect_import_root.html#import_root_keys))
 
 ### Retrieving the Root Key CRN

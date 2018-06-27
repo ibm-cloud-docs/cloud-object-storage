@@ -26,11 +26,11 @@ To invite users or manage user invitations in your account, complete the followi
 1. From the menu bar, click **Manage** &gt; **Security** &gt; **Identity & Access** &gt; **Users**. The Users window displays a list of users with their email addresses and current status in the currently selected account.
 2. Click **Invite users**.
 3. Specify the email address or IBMid of the user. If you are providing multiple users the same access, enter multiple email addresses or IBMids by separating the user ID entries with commas, spaces, or line breaks.
-4. Add one or more of the access options that you manage. You must assign at least one access option and configure the settings for the user in each access option that you assign. For any additional access options that you don't add and configure, the default value of *no access* is assigned. You might see one or all of the following access options, depending on the options that you are authorized to manage: **Identity and access enabled services**, **Cloud Foundry access**, **Infrastructure access**. See [Assigning user access](/docs/iam/assignaccess.html) for more information.
+4. Add one or more of the access options that you manage. You must assign at least one access option and configure the settings for the user in each access option that you assign. For any additional access options that you don't add and configure, the default value of *no access* is assigned. You might see one or all of the following access options, depending on the options that you are authorized to manage: **Identity and access enabled services**, **Cloud Foundry access**, **Infrastructure access**. See [Assigning user access](/docs/iam/iamuserinv.html) for more information.
 
 If you determine that a user does not need access, you can cancel an invitation for any users that are shown in a **Processing** or **Pending** state in the **Status** column. If an invited user did not receive an invitation, you can resend the invitation to any user in a **Pending** state.
 
-If you want to invite users using the CLI, see the [`bluemix iam account-user-invite`](https://console.stage1.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_account_user_invite) command.
+If you want to invite users using the CLI, see the [`bluemix iam account-user-invite`](/docs/cli/reference/bluemix_cli/bx_cli.html) command.
 
 ### Assigning user access
 {: #assignaccess}
@@ -54,7 +54,7 @@ You can assign a single service policy when you invite a new user. Once the user
 6. Select a role to define the scope of access for the policy.
 7. Optional: Select **Add role** to specify an additional role for the policy.
 
-See [Identity and access management policies and roles](/docs/iam/users_roles.html#iamusermanpol) for more specific information about the roles when setting service policies.
+See [Identity and access management policies and roles](/docs/iam/users_roles.html) for more specific information about the roles when setting service policies.
 
 #### Cloud Foundry access
 
@@ -69,16 +69,16 @@ When you invite new users, you can choose to add the user to an organization in 
 7. Select a space role to define the level of access to the selected spaces.  The minimum required is `auditor`.
 8. Optional: Select **Add role** to specify an additional role.
 
-See [Cloud Foundry roles](/docs/iam/users_roles.html#cfroles) for more specific information about these roles.
+See [Cloud Foundry roles](/docs/iam/users_roles.html) for more specific information about these roles.
 
-**Note**: You can add a Cloud Foundry role using the [`bluemix iam account-user-invite`](/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_account_user_invite) {{site.data.keyword.cloud_notm}} CLI command, but the UI must be used to assign other access or permissions.
+**Note**: You can add a Cloud Foundry role using the [`bluemix iam account-user-invite`](/docs/cli/reference/bluemix_cli/bx_cli.html) {{site.data.keyword.cloud_notm}} CLI command, but the UI must be used to assign other access or permissions.
 
 ## Managing user API keys
 {: #userapikey}
 
-A federated or non-federated user can create an API key to use on the CLI or as part of automation to log in as your user identity. You can use the {{site.data.keyword.cloud_notm}} Platform UI or the {{site.data.keyword.cloud_notm}} CLI to manage your API keys by listing your keys, creating keys, updating keys, or deleting keys. To manage the {{site.data.keyword.cloud_notm}} API keys associated with your user identity, go to **Manage** &gt; **Security** &gt; **{{site.data.keyword.cloud_notm}} Platform API keys** to see a list of your API Keys with descriptions and dates. Then, you can create, edit or delete API keys from this page. And, for a full list of available CLI commands, see [`bluemix iam api-keys`](/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam).
+A federated or non-federated user can create an API key to use on the CLI or as part of automation to log in as your user identity. You can use the {{site.data.keyword.cloud_notm}} Platform UI or the {{site.data.keyword.cloud_notm}} CLI to manage your API keys by listing your keys, creating keys, updating keys, or deleting keys. To manage the {{site.data.keyword.cloud_notm}} API keys associated with your user identity, go to **Manage** &gt; **Security** &gt; **{{site.data.keyword.cloud_notm}} Platform API keys** to see a list of your API Keys with descriptions and dates. Then, you can create, edit or delete API keys from this page. And, for a full list of available CLI commands, see [`bluemix iam api-keys`](/docs/cli/reference/bluemix_cli/bx_cli.html).
 
-As a [federated user](/docs/admin/adminpublic.html#federatedid), you can use an API key to login by using the `BLUEMIX_API_KEY` environment variable. For more information about using an API key for logging in, see the documentation for the [{{site.data.keyword.cloud_notm}} CLI `bluemix login` command](/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_login) and the [cf CLI `cf login` command](/docs/cli/reference/cfcommands/index.html#cf_login).
+You can use an API key to login by using the `BLUEMIX_API_KEY` environment variable. For more information about using an API key for logging in, see the documentation for the [{{site.data.keyword.cloud_notm}} CLI `bluemix login` command](/docs/cli/reference/bluemix_cli/bx_cli.html) and the [cf CLI `cf login` command](/docs/cli/reference/cfcommands/index.html).
 
 ### Creating an API key
 
@@ -176,7 +176,7 @@ The access policies associated with a service ID enable specific actions that ca
 
 ### Creating a service ID
 
-To create a service ID, go to **Manage** &gt; **Security** &gt; **Identity & Access** &gt; **Service IDs**. Follow the process to create a name and description for your service ID. Then, use the **Actions** menu to manage your service ID. You can start by assigning a policy and creating API keys. For more information about working with API keys, see [API keys for service IDs](apikeys.html#api-keys-for-service-ids).
+To create a service ID, go to **Manage** &gt; **Security** &gt; **Identity & Access** &gt; **Service IDs**. Follow the process to create a name and description for your service ID. Then, use the **Actions** menu to manage your service ID. You can start by assigning a policy and creating API keys. For more information about working with API keys, see [API keys for service IDs](/docs/iam/apikeys.html).
 
 ###  Updating a service ID
 
@@ -224,7 +224,7 @@ To delete an existing policy:
 
 Service IDs are created to enable access to your {{site.data.keyword.cloud_notm}} services by applications hosted both inside and outside of {{site.data.keyword.cloud_notm}} Platform. API keys are used by an application to authenticate as a particular service ID and be granted the access associated with that service ID.
 
-Once you create a service ID, you can start creating API keys and assigning service policies. Each policy specifies the level of access that is allowed when the API key is used to authenticate with your services. For more information about creating a service ID and assigning policies, see [Creating and managing service IDs](serviceids.html).
+Once you create a service ID, you can start creating API keys and assigning service policies. Each policy specifies the level of access that is allowed when the API key is used to authenticate with your services. For more information about creating a service ID and assigning policies, see [Creating and managing service IDs](/docs/iam/serviceid.html).
 
 Each API key that is associated with a service ID inherits the policy that has been assigned to the service ID. For example, if you want one application to be able to simply view resources within a service, then you need to use an API key associated with a service ID that has a policy assigned with the `Viewer` role. And, if you want another application to be able to have full access within a service, then you need to use an API key associated with a second service ID that has a policy assigned with the `Administrator` role.
 

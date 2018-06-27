@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2017
-lastupdated: '2017-09-27'
+  years: 2017, 2018
+lastupdated: '2018-06-21'
 ---
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -74,6 +74,7 @@ Authorize {{site.data.keyword.keymanagementserviceshort}} for use with IBM COS:
 10. Click **Authorize**.
 
 ### Create a bucket
+{: #createbucket}
 
 When your key exists in {{site.data.keyword.keymanagementserviceshort}} and you authorized the Key Protect service for use with IBM COS, associate the key with a new bucket:
 
@@ -88,3 +89,22 @@ In the **Buckets and objects** listing, the bucket now has a key icon under **Ad
 
 Note that the `Etag` value returned for objects encrypted using SSE-KP **will** be the actual MD5 hash of the original unencrypted object.
 {:tip}
+
+
+## Rotating Keys
+
+Key rotation is an important part of mitigating the risk of a data breach.   Periodically changing keys reduces the potential data loss if the key is lost or compromised.  The frequency of key rotations varies by organization and depends on a number of variables including the environment, the amount of encrypted data, classification of the data, and compliance laws.  The [National Institute of Standards and Technology (NIST)](https://www.nist.gov/topics/cryptography){:new_window} provides definitions of appropriate key lengths and provides guidelines for how long keys should be used.
+
+### Manual Key Rotation
+
+To rotate the keys for your {{site.data.keyword.cos_short}} you will need to create a new bucket with Key Protect enabled using a new Root Key and copy the contents from your existing bucket to the new one.
+
+**NOTE**: Deleting a key from the system will shred its contents and any data still encrypted with that key.  Once removed, it cannot be undone or reversed and will result in permanent data loss.
+
+1. Create or add a new Root Key in your [Key Protect]((/docs/services/keymgmt/index.html#getting-started-with-key-protect)) service.
+2. [Create a new bucket](encryption.html#createbucket) and add the new Root Key
+3. Copy all the objects from your original bucket into the new bucket.
+    1. This step can be accomplished using a number of different methods:
+        1. From the command-line using [CURL](/docs/services/cloud-object-storage/cli/curl.html#copy-an-object) or [AWS CLI](/docs/services/cloud-object-storage/cli/aws-cli.html#use-the-aws-cli)
+        2. Using the (API)[/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#copy-object]
+        3. Using the SDK with [Java](/docs/services/cloud-object-storage/libraries/java.html#code-examples), [Python](https://console.bluemix.net/docs/services/cloud-object-storage/libraries/python.html#code-examples), or [Node.js](/docs/services/cloud-object-storage/libraries/node.html#code-examples)
