@@ -84,15 +84,15 @@ cos = ibm_boto3.resource("s3",
 
 ### Creating a new bucket
 ```python
-def create_bucket(bucket):
-    print("Creating new bucket: {0}".format(bucket))
+def create_bucket(bucketName):
+    print("Creating new bucket: {0}".format(bucketName))
     try:
-        cos.Bucket(bucket).create(
+        cos.Bucket(bucketName).create(
             CreateBucketConfiguration={
                 "LocationConstraint":COS_BUCKET_LOCATION
             }
         )
-        print("Bucket: {0} created!".format(bucket))
+        print("Bucket: {0} created!".format(bucketName))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
@@ -107,13 +107,13 @@ def create_bucket(bucket):
 
 ### Creating a new text file
 ```python
-def create_text_file(bucket, name, file_text):
-    print("Creating new item: {0}".format(name))
+def create_text_file(bucketName, itemName, file_text):
+    print("Creating new item: {0}".format(itemName))
     try:
-        cos.Object(bucket, name).put(
+        cos.Object(bucketName, itemName).put(
             Body=file_text
         )
-        print("Item: {0} created!".format(name))
+        print("Item: {0} created!".format(itemName))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
@@ -149,10 +149,10 @@ def get_buckets():
 
 ### List items in a bucket
 ```python
-def get_bucket_contents(bucket):
-    print("Retrieving bucket contents from: {0}".format(bucket))
+def get_bucket_contents(bucketName):
+    print("Retrieving bucket contents from: {0}".format(bucketName))
     try:
-        files = cos.Bucket(bucket).objects.all()
+        files = cos.Bucket(bucketName).objects.all()
         for file in files:
             print("Item: {0} ({1} bytes).".format(file.key, file.size))
     except ClientError as be:
@@ -170,10 +170,10 @@ def get_bucket_contents(bucket):
 
 ### Get file contents of particular item
 ```python
-def get_item(bucket, name):
-    print("Retrieving item from bucket: {0}, key: {1}".format(bucket, name))
+def get_item(bucketName, itemName):
+    print("Retrieving item from bucket: {0}, key: {1}".format(bucketName, itemName))
     try:
-        file = cos.Object(bucket, name).get()
+        file = cos.Object(bucketName, itemName).get()
         print("File Contents: {0}".format(file["Body"].read()))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
@@ -189,11 +189,11 @@ def get_item(bucket, name):
 
 ### Delete an item from a bucket
 ```python
-def delete_item(bucket, name):
-    print("Deleting item: {0}".format(name))
+def delete_item(bucketName, itemName):
+    print("Deleting item: {0}".format(itemName))
     try:
-        cos.Object(bucket, name).delete()
-        print("Item: {0} deleted!".format(name))
+        cos.Object(bucketName, itemName).delete()
+        print("Item: {0} deleted!".format(itemName))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
@@ -208,11 +208,11 @@ def delete_item(bucket, name):
 
 ### Delete a bucket
 ```python
-def delete_bucket(bucket):
-    print("Deleting bucket: {0}".format(bucket))
+def delete_bucket(bucketName):
+    print("Deleting bucket: {0}".format(bucketName))
     try:
-        cos.Bucket(bucket).delete()
-        print("Bucket: {0} deleted!".format(bucket))
+        cos.Bucket(bucketName).delete()
+        print("Bucket: {0} deleted!".format(bucketName))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
@@ -227,10 +227,10 @@ def delete_bucket(bucket):
 
 ### View a bucket's security
 ```python
-def get_bucket_acl(bucket):
-    print("Retrieving ACL for bucket: {0}".format(bucket))
+def get_bucket_acl(bucketName):
+    print("Retrieving ACL for bucket: {0}".format(bucketName))
     try:
-        acl_data = cos.BucketAcl(bucket)
+        acl_data = cos.BucketAcl(bucketName)
         print("Owner: {0}".format(acl_data.owner["DisplayName"]))
         for grant in acl_data.grants:
             displayName = grant["Grantee"]["DisplayName"]
@@ -251,10 +251,10 @@ def get_bucket_acl(bucket):
 
 ### View a file's security
 ```python
-def get_item_acl(bucket, name):
-    print("Retrieving ACL for {0} from bucket: {1}".format(name, bucket))
+def get_item_acl(bucketName, itemName):
+    print("Retrieving ACL for {0} from bucket: {1}".format(itemName, bucketName))
     try:
-        acl_data = cos.ObjectAcl(bucket, name)
+        acl_data = cos.ObjectAcl(bucketName, itemName)
         print("Owner: {0}".format(acl_data.owner["DisplayName"]))
         for grant in acl_data.grants:
             displayName = grant["Grantee"]["DisplayName"]
@@ -279,9 +279,9 @@ def get_item_acl(bucket, name):
 The [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.upload_fileobj){:new_window} method of the [S3.Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){:new_window} class automatically executes a multi-part upload when necessary.  The [TransferConfig](https://ibm.github.io/ibm-cos-sdk-python/reference/customizations/s3.html#s3-transfers){:new_window} class is used to determine the threshold for using the mult-part upload.
 
 ```python
-def multi_part_upload(bucket, name, file_path):
+def multi_part_upload(bucketName, itemName, file_path):
     try:
-        print("Starting file transfer for {0} to bucket: {1}\n".format(name, bucket))
+        print("Starting file transfer for {0} to bucket: {1}\n".format(itemName, bucketName))
         # set 5 MB chunks
         part_size = 1024 * 1024 * 5
 
@@ -297,12 +297,12 @@ def multi_part_upload(bucket, name, file_path):
         # the upload_fileobj method will automatically execute a multi-part upload 
         # in 5 MB chunks for all files over 15 MB
         with open(file_path, "rb") as file_data:
-            cos.Object(bucket, name).upload_fileobj(
+            cos.Object(bucketName, itemName).upload_fileobj(
                 Fileobj=file_data,
                 Config=transfer_config
             )
         
-        print("Transfer for {0} Complete!\n".format(name))
+        print("Transfer for {0} Complete!\n".format(itemName))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
@@ -320,7 +320,7 @@ def multi_part_upload(bucket, name, file_path):
 If desired, the [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window} class can be used to perform a multi-part upload.  This can be useful if more control over the upload process is necessary.
 
 ```python
-def multi_part_upload_manual(bucket, name, file_path):
+def multi_part_upload_manual(bucketName, itemName, file_path):
     try:
         # create client object
         cos_cli = ibm_boto3.client("s3",
@@ -331,12 +331,12 @@ def multi_part_upload_manual(bucket, name, file_path):
             endpoint_url=COS_ENDPOINT
         )
     
-        print("Starting multi-part upload for {0} to bucket: {1}\n".format(name, bucket))
+        print("Starting multi-part upload for {0} to bucket: {1}\n".format(itemName, bucketName))
 
         # initiate the multi-part upload
         mp = cos_cli.create_multipart_upload(
-            Bucket=bucket,
-            Key=name
+            Bucket=bucketName,
+            Key=itemName
         )
 
         upload_id = mp["UploadId"]
@@ -355,13 +355,13 @@ def multi_part_upload_manual(bucket, name, file_path):
                 part_num = i + 1
                 part_size = min(part_size, (file_size - position))
 
-                print("Uploading to {0} (part {1} of {2})".format(name, part_num, part_count))
+                print("Uploading to {0} (part {1} of {2})".format(itemName, part_num, part_count))
 
                 file_data = file.read(part_size)
 
                 mp_part = cos_cli.upload_part(
-                    Bucket=bucket,
-                    Key=name,
+                    Bucket=bucketName,
+                    Key=itemName,
                     PartNumber=part_num,
                     Body=file_data,
                     ContentLength=part_size,
@@ -377,22 +377,22 @@ def multi_part_upload_manual(bucket, name, file_path):
 
         # complete upload
         cos_cli.complete_multipart_upload(
-            Bucket=bucket,
-            Key=name,
+            Bucket=bucketName,
+            Key=itemName,
             UploadId=upload_id,
             MultipartUpload={
                 "Parts": data_packs
             }
         )
-        print("Upload for {0} Complete!\n".format(name))
+        print("Upload for {0} Complete!\n".format(itemName))
     except ClientError as be:
         # abort the upload
         cos_cli.abort_multipart_upload(
-            Bucket=bucket,
-            Key=name,
+            Bucket=bucketName,
+            Key=itemName,
             UploadId=upload_id            
         )
-        print("Multi-part upload aborted for {0}\n".format(name))
+        print("Multi-part upload aborted for {0}\n".format(itemName))
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
         print("Unable to complete multi-part upload: {0}".format(e))
@@ -435,17 +435,17 @@ COS_KP_ALGORITHM = "<algorithm>"
 COS_KP_ROOTKEY_CRN = "<root-key-crn>"
 
 # Create a new bucket with key protect (encryption)
-def create_bucket_kp(bucket):
-    print("Creating new encrypted bucket: {0}".format(bucket))
+def create_bucket_kp(bucketName):
+    print("Creating new encrypted bucket: {0}".format(bucketName))
     try:
-        cos.Bucket(bucket).create(
+        cos.Bucket(bucketName).create(
             CreateBucketConfiguration={
                 "LocationConstraint":COS_BUCKET_LOCATION
             },
             IBMSSEKPEncryptionAlgorithm=COS_KP_ALGORITHM,
             IBMSSEKPCustomerRootKeyCrn=COS_KP_ROOTKEY_CRN
         )
-        print("Encrypted Bucket: {0} created!".format(bucket))
+        print("Encrypted Bucket: {0} created!".format(bucketName))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
