@@ -38,14 +38,12 @@ Cloud Object Storage
     basics/multipart.md
     basics/encryption.md
     basics/sql.md
-    basics/at.md
     
     {: .topicgroup}
     Use the command line
         cli/curl.md
         cli/aws-cli.md
         cli/s3fs.md
-
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
@@ -64,6 +62,8 @@ Cloud Object Storage
         libraries/java.md
         libraries/python.md
         libraries/node.md
+
+    basics/at.md
 
     {: .topicgroup}
     Tutorials
