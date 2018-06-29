@@ -41,6 +41,10 @@ There is no charge for deleting buckets or objects from the system.
 | Class A | PUT, COPY, and POST requests, as well as GET requests used to list buckets and objects | Creating buckets, uploading or copying objects, listing buckets, listing contents of buckets, setting ACLs, and setting CORS configurations |
 | Class B | GET (excluding listing), HEAD, and OPTIONS requests | Retrieving objects and metadata |
 
+## Aspera transfers
+
+Note that any downloads using [Aspera](/docs/services/cloud-object-storage/api-reference) will incur additional egress charges.  For more info, see the pricing page.
+
 ## Storage classes
 
 Not all data that is stored needs to be accessed frequently, and some archival data might be rarely accessed if at all.  For less active workloads, buckets can be created in a different storage class and objects stored in these buckets will incur charges on a different schedule than standard storage.
