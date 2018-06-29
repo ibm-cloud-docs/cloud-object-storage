@@ -17,13 +17,10 @@ lastupdated: "15-03-2018"
 ### June 2018
 Users who upload or download files or folders using the web-based console have the option to use [Aspera high-speed transfer](https://www.ibm.com/cloud/high-speed-data-transfer) for these operations via a browser plug-in.  This allows for transfers of objects larger than 200MB, and also allows for greater control and visibility of uploads and downloads. Additional information can be found in the [Uploading Data](/docs/services/cloud-object-storage/basics/upload.html#high-speed-transfer) documentation.
 
-Buckets can now be created in a US Cross Region configuration.
- Data stored in these buckets is distributed across the Washington, DC and Dallas  data center. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html) documentation.
+ Buckets can now be created in the EU Germany region.
+ Data stored in these buckets is distributed across three availability zones in the EU Germany region.  More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html) documentation.
 
- Buckets can now be created in an EU Region configuration.
- Data stored in these buckets is distributed across the EU Germany data center.  More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html) documentation.
-
- Buckets can now be created in a Single Data Center configuration in Chennai, India  and Amsterdam, Netherlands. This allows for lower latency when accessing storage from compute resources co-located within the same data center, or for data requiring a specific geographic location. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html) documentation.
+ Buckets can now be created in a Single Data Center configuration in Chennai and Amsterdam. This allows for lower latency when accessing storage from compute resources co-located within the same data center, or for data requiring a specific geographic location. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html) documentation.
 
 ## Q1 2018
 ### March 2018
