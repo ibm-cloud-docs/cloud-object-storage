@@ -64,6 +64,7 @@ Cloud Object Storage
         libraries/node.md
 
     basics/at.md
+    basics/aspera.md
 
     {: .topicgroup}
     Tutorials
