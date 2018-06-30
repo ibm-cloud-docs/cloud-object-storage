@@ -21,8 +21,7 @@ Using `curl` assumes a certain amount of familiarity with the command line and o
 **Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
 {:tip}
 
-Request an IAM token using an API key
--------------------------------------
+## Request an IAM token using an API key
 
 ```
 curl -X "POST" "https://iam.bluemix.net/oidc/token" \
@@ -34,8 +33,7 @@ curl -X "POST" "https://iam.bluemix.net/oidc/token" \
 ```
 {:codeblock}
 
-List buckets
-------------
+## List buckets
 
 ```
 curl "https://(endpoint)/"
@@ -44,8 +42,7 @@ curl "https://(endpoint)/"
 ```
 {:codeblock}
 
-Add a bucket
-------------
+## Add a bucket
 
 ```
 curl -X "PUT" "https://(endpoint)/(bucket-name)"
@@ -54,8 +51,8 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)"
 ```
 {:codeblock}
 
-Add a bucket (storage class)
-----------------------------
+## Add a bucket (storage class)
+
 
 ```
 curl -X "PUT" "https://(endpoint)/(bucket-name)"
@@ -68,8 +65,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)"
 ```
 {:codeblock}
 
-Allow public object listing
----------------------------
+## Allow public object listing
 
 ```
 curl -X "PUT" "https://(endpoint)/(bucket-name)/?acl"
@@ -78,8 +74,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)/?acl"
 ```
 {:codeblock}
 
-Check a bucket ACL
-------------------
+## Check a bucket ACL
 
 ```
 curl "https://(endpoint)/(bucket-name)/?acl"
@@ -87,8 +82,7 @@ curl "https://(endpoint)/(bucket-name)/?acl"
 ```
 {:codeblock}
 
-Create a bucket CORS
---------------------
+## Create a bucket CORS
 
 ```
 curl -X "PUT" "https://(endpoint)/(bucket-name)/?cors"
@@ -105,8 +99,14 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)/?cors"
 ```
 {:codeblock}
 
-Get a bucket CORS
------------------
+The `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash.
+
+```
+echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
+```
+{:codeblock}
+
+## Get a bucket CORS
 
 ```
 curl "https://(endpoint)/(bucket-name)/?cors"
@@ -114,8 +114,7 @@ curl "https://(endpoint)/(bucket-name)/?cors"
 ```
 {:codeblock}
 
-Delete a bucket CORS
---------------------
+## Delete a bucket CORS
 
 ```
 curl -X "DELETE" "https://(endpoint)/(bucket-name)/?cors"
@@ -123,8 +122,7 @@ curl -X "DELETE" "https://(endpoint)/(bucket-name)/?cors"
 ```
 {:codeblock}
 
-List objects
-------------
+## List objects
 
 ```
 curl "https://(endpoint)/(bucket-name)"
@@ -132,8 +130,7 @@ curl "https://(endpoint)/(bucket-name)"
 ```
 {:codeblock}
 
-Get bucket headers
-------------------
+## Get bucket headers
 
 ```
 curl --head "https://(endpoint)/(bucket-name)/"
@@ -141,8 +138,7 @@ curl --head "https://(endpoint)/(bucket-name)/"
 ```
 {:codeblock}
 
-Delete a bucket
----------------
+## Delete a bucket
 
 ```
 curl -X "DELETE" "https://(endpoint)/(bucket-name)/"
@@ -150,8 +146,7 @@ curl -X "DELETE" "https://(endpoint)/(bucket-name)/"
 ```
 {:codeblock}
 
-Upload an object
-----------------
+## Upload an object
 
 ```
 curl -X "PUT" "https://(endpoint)/(bucket-name)/(object-key)" \
@@ -161,8 +156,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)/(object-key)" \
 ```
 {:codeblock}
 
-Get an object's headers
------------------------
+## Get an object's headers
 
 ```
 curl --head "https://(endpoint)/(bucket-name)/(object-key)"
@@ -170,8 +164,7 @@ curl --head "https://(endpoint)/(bucket-name)/(object-key)"
 ```
 {:codeblock}
 
-Copy an object
---------------
+## Copy an object
 
 ```
 curl -X "PUT" "https://(endpoint)/(bucket-name)/(object-key)"
@@ -180,8 +173,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)/(object-key)"
 ```
 {:codeblock}
 
-Check CORS info
----------------
+## Check CORS info
 
 ```
 curl -X "OPTIONS" "https://(endpoint)/(bucket-name)/(object-key)"
@@ -190,8 +182,7 @@ curl -X "OPTIONS" "https://(endpoint)/(bucket-name)/(object-key)"
 ```
 {:codeblock}
 
-Download an object
-------------------
+## Download an object
 
 ```
 curl "https://(endpoint)/(bucket-name)/(object-key)"
@@ -199,8 +190,7 @@ curl "https://(endpoint)/(bucket-name)/(object-key)"
 ```
 {:codeblock}
 
-Check object's ACL
-------------------
+## Check object's ACL
 
 ```
 curl "https://(endpoint)/(bucket-name)/(object-key)?acl"
@@ -208,8 +198,7 @@ curl "https://(endpoint)/(bucket-name)/(object-key)?acl"
 ```
 {:codeblock}
 
-Allow anonymous access to an object
------------------------------------
+## Allow anonymous access to an object
 
 ```
 curl -X "PUT" "https://(endpoint)/(bucket-name)/(object-key)?acl"
@@ -219,8 +208,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)/(object-key)?acl"
 ```
 {:codeblock}
 
-Delete an object
-----------------
+## Delete an object
 
 ```
 curl -X "DELETE" "https://(endpoint)/(bucket-name)/(object-key)"
@@ -228,8 +216,7 @@ curl -X "DELETE" "https://(endpoint)/(bucket-name)/(object-key)"
 ```
 {:codeblock}
 
-Delete multiple objects
------------------------
+## Delete multiple objects
 
 ```
 curl -X "POST" "https://(endpoint)/(bucket-name)?delete"
@@ -248,8 +235,14 @@ curl -X "POST" "https://(endpoint)/(bucket-name)?delete"
 ```
 {:codeblock}
 
-Initiate a multipart upload
----------------------------
+The `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash.
+
+```
+echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
+```
+{:codeblock}
+
+## Initiate a multipart upload
 
 ```
 curl -X "POST" "https://(endpoint)/(bucket-name)/(object-key)?uploads"
@@ -257,8 +250,7 @@ curl -X "POST" "https://(endpoint)/(bucket-name)/(object-key)?uploads"
 ```
 {:codeblock}
 
-Upload a part
--------------
+## Upload a part
 
 ```
 curl -X "PUT" "https://(endpoint)/(bucket-name)/(object-key)?partNumber=(sequential-integer)&uploadId=(upload-id)"
@@ -267,8 +259,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)/(object-key)?partNumber=(sequent
 ```
 {:codeblock}
 
-Complete a multipart upload
----------------------------
+## Complete a multipart upload
 
 ```
 curl -X "POST" "https://(endpoint)/(bucket-name)/(object-key)?uploadId=(upload-id)"
@@ -287,8 +278,7 @@ curl -X "POST" "https://(endpoint)/(bucket-name)/(object-key)?uploadId=(upload-i
 ```
 {:codeblock}
 
-Get incomplete multipart uploads
---------------------------------
+## Get incomplete multipart uploads
 
 ```
 curl "https://(endpoint)/(bucket-name)/?uploads"
@@ -296,8 +286,7 @@ curl "https://(endpoint)/(bucket-name)/?uploads"
 ```
 {:codeblock}
 
-Abort incomplete multipart uploads
-----------------------------------
+## Abort incomplete multipart uploads
 
 ```
 curl -X "DELETE" "https://(endpoint)/(bucket-name)/(object-key)?uploadId"

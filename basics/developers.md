@@ -40,3 +40,7 @@ Learn more about using the the {{site.data.keyword.cloud_notm}} CLI to create ap
 ## Using the API
 
 There isn't an 'official' command line utility for managing data stored in {{site.data.keyword.cos_short}}, although S3 API compatible tools like the [AWS CLI](/docs/services/cloud-object-storage/cli/aws-cli.html) will work using [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html) for compatibility.  As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage.  More information can be found in [the `curl` reference](/docs/services/cloud-object-storage/cli/curl.html), as well as [the API reference documentation](/docs/services/cloud-object-storage/api-reference/about-api.html).
+
+## Using libraries and SDKs
+
+There are IBM COS SDKs available for [Python](/docs/services/cloud-object-storage/libraries/python.html), [Java](/docs/services/cloud-object-storage/libraries/java.html), and [Node.js]((/docs/services/cloud-object-storage/libraries/node.html). These are forked versions of the AWS S3 SDKs that have been modified to support [IAM token-based authentication]((/docs/services/cloud-object-storage/iam/overview.html), as well as support for [Key Protect]((/docs/services/cloud-object-storage/basics/encryption.html). 

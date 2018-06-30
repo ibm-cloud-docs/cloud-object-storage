@@ -12,7 +12,7 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:tip: .tip}
 
-# Using Aspera high-speed transfer
+# Aspera high-speed transfer
 
 onAspera high-speed transfer is available for buckets created in these regions:
 
@@ -28,9 +28,8 @@ Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP
 
 - Faster transfer speeds
 - Transfer large object uploads over 200MB.
-- Upload entire folders of any type of data including multi-media files, disk images, unstructured data.
+- Upload entire folders of any type of data including multi-media files, disk images, or any other unstructured data.
 - Customize transfer speeds and default preferences.
-- Transfer any type of data.
 - Transfers take place in the background instead of in the active browser window.
 - Transfers can be viewed, paused/resumed, or cancelled independently.
 
@@ -46,6 +45,7 @@ When you create a bucket in a supported region, you have the option to select As
 The Aspera Connect plug-in can also be [installed from the Aspera website](http://downloads.asperasoft.com/connect2/) directly. For help troubleshooting issues with the Aspera Connect plug-in, [see the documentation](http://downloads.asperasoft.com/en/documentation/8).
 
 Once the plug-in is installed, you have the option to set Aspera high-speed transfer as the default for any uploads to the target bucket that use the same browser. Select **Remember my browser preferences**. Options are also available in the bucket configuration page under **Transfer options**. These options allow you to choose between Standard and High-speed as the default transport for uploads and downloads.
+
 ## Using the console
 
 Typically, using the web-based console is not the most common way to use {{site.data.keyword.cos_short}}. The Standard transfer option limits objects size to 200MB and the file name and key will be identical.  Support for larger object sizes and improved performance (depending on network factors) is provided by Aspera high-speed transfer.
@@ -60,6 +60,4 @@ Preferences: You can set the default for uploads and/or downloads to High-speed.
 
 Advanced Preferences: You can limit bandwidth for uploads and downloads by default.
 
-## Using the API
 
-Most programmatic applications of object storage will use an SDK (such as [Java](/docs/services/cloud-object-storage/libraries/java.html), [node.js](/docs/services/cloud-object-storage/libraries/node.html), or [Python](/docs/services/cloud-object-storage/libraries/python.html)) or the [Cloud Object Storage API](/docs/services/cloud-object-storage/api-reference/about-api.html). Typically objects will be uploaded in [multiple parts](/docs/services/cloud-object-storage/basics/multipart.html), with part size and number of parts configured by a Transfer Manager class.
