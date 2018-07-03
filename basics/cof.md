@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-06-27"
+lastupdated: "2018-07-03"
 
 ---
 
@@ -33,28 +33,53 @@ Provide an example of storing credentials as VCAP variables
 
 ```json
 {
-  "apikey": "abcDEFg_loQtE13laVRPAbnnBUqKIPayN4EyJnBnYU9S-",
-  "endpoints": "https://cos-service.bluemix.net/endpoints",
-  "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:bluemix:public:cloud-object-storage:global:a/123456cabcddda99gd8eff3191340732:8899d05c-b172-2416-4d7e-0e5c326b2605::",
-  "iam_apikey_name": "auto-generated-apikey-cf4999ce-be10-4712-b489-9876e57a1234",
-  "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
-  "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/ad123ab94a1cca96fd8efe3191340999::serviceid:ServiceId-41e36abc-7171-4545-8b34-983330d55f4d",
-  "resource_instance_id": "crn:v1:bluemix:public:cloud-object-storage:global:a/1d524cd94a0dda86fd8eff3191340732:8888c05a-b144-4816-9d7f-1d2b333a1444::"
+    "cloud-object-storage": [
+        {
+            "credentials": {
+                "apikey": "abcDEFg_loQtE13laVRPAbnnBUqKIPayN4EyJnBnYU9S-",
+                "endpoints": "https://cos-service.bluemix.net/endpoints",
+                "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:bluemix:public:cloud-object-storage:global:a/123456cabcddda99gd8eff3191340732:8899d05c-b172-2416-4d7e-0e5c326b2605::",
+                "iam_apikey_name": "auto-generated-apikey-cf4999ce-be10-4712-b489-9876e57a1234",
+                "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+                "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/ad123ab94a1cca96fd8efe3191340999::serviceid:ServiceId-41e36abc-7171-4545-8b34-983330d55f4d",
+                "resource_instance_id": "crn:v1:bluemix:public:cloud-object-storage:global:a/1d524cd94a0dda86fd8eff3191340732:8888c05a-b144-4816-9d7f-1d2b333a1444::"
+            },
+            "syslog_drain_url": null,
+            "volume_mounts": [],
+            "label": "cloud-object-storage",
+            "provider": null,
+            "plan": "Lite",
+            "name": "mycos",
+            "tags": [
+                "Lite",
+                "storage",
+                "ibm_release",
+                "ibm_created",
+                "rc_compatible",
+                "ibmcloud-alias"
+            ]
+        }
+    ]
 }
 ```
 
-The VCAP_SERVICES environment variable can then be parsed within your application in order to access your cloud storage content.  Consider the following Python example:
+The VCAP_SERVICES environment variable can then be parsed within your application in order to access your cloud storage content.  Below is an example of integrating the environment variable with the COS SDK using Node.js.
 
-```Python
-import os
-import json
+```javascript
+const appEnv = cfenv.getAppEnv();
+const cosService = 'cloud-object-storage';
 
-vcap_env = os.environ['VCAP_SERVICES']
-vcap = json.loads(vcap_env)
+// init the cos sdk
+var cosCreds = appEnv.services[cosService][0].credentials;
+var AWS = require('ibm-cos-sdk');
+var config = {
+    endpoint: 's3.us-south.objectstorage.softlayer.net',
+    apiKeyId: cosCreds.apikey,
+    ibmAuthEndpoint: 'https://iam.ng.bluemix.net/oidc/token',
+    serviceInstanceId: cosCreds.iam_serviceid_crn,
+};
 
-# Constants for IBM COS values
-COS_API_KEY_ID = vcap['apikey']
-COS_SERVICE_CRN = vcap['iam_serviceid_crn']
+var cos = new AWS.S3(config);
 ```
 
 For more information on how to use the SDK to access {{site.data.keyword.cos_short}} with code examples visit:
@@ -63,13 +88,87 @@ For more information on how to use the SDK to access {{site.data.keyword.cos_sho
 * [Using Python](/docs/services/cloud-object-storage/libraries/python.html#using-python)
 * [Using Node.js](/docs/services/cloud-object-storage/libraries/node.html#using-node-js)
 
-## Creating Bindings 
+## Creating Service Bindings 
 
 ### Dashboard
-Provide examples of using the UI to create bindings
+
+The simplest way to create a service binding is by using the [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps).  
+
+1. Login to the [Dashboard](https://console.bluemix.net/dashboard/apps)
+2. Click on your Cloud Foundry application
+3. Click on Connections in the menu on the left
+4. Click on the **Create Connection** button on the right
+5. From the *Connect Existing Compatible Service* page hover over your Cloud Object Storage service and click on the **Connect** button.
+6. From the *Connect IAM-Enabled Service* popup screen select the Access Role, leave Auto Generate for the Service ID, and click **Connect**
+7. The Cloud Foundry application will need to be restaged in order to use the new service binding.  Click the **Restage** button to start the process.
+8. Once restaging is complete your Cloud Object Storage service will be available to your application.
+
+The applications VCAP_SERVICES environment variable will be automatically updated with the service information.  To view the new variable:
+
+1. Click on *Runtime* in the menu on the right
+2. Click on *Environment variables*
+3. Verify your COS service is now listed
 
 ### IBM Client Tools (CLI)
-Provide example of using the CLI to create bindings
 
-### IBM Client Tools (CLI) with HMAC
-Provide example of using the CLI to create a binding with HMAC credentials
+1. Login to with IBM Cloud CLI
+```
+ bx login --apikey <your api key>
+```
+{:codeblock}
+2. Target your Cloud Foundry environment
+```
+ bx target --cf
+```
+{:codeblock}
+3. Create a service alias for your Cloud Object Storage
+```
+bx resource service-alias-create <service alias> --instance-name <cos instance name>
+```
+{:codeblock}
+4. Create a service binding between your Cloud Object Storage alias and your Cloud Foundry application and provide a role for your binding.  Valid roles are:
+* Writer
+* Reader
+* Manager
+* Administrator
+* Operator
+* Viewer
+* Editor
+```
+bx resource service-binding-create <service alias> <cf app name> <role>
+```
+{:codeblock}
+
+### IBM Client Tools (CLI) with HMAC Credentials
+
+Hash-based message authentication code (HMAC) is a mechanism for calculating a message authentication code created using a pair of access and secret keys. This can be used to verify the integrity and authenticity of a message.  More information about using [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html#using-hmac-credentials) is available in the {{site.data.keyword.cos_short}} documentation.
+
+1. Login to with IBM Cloud CLI
+```
+ bx login --apikey <your api key>
+```
+{:codeblock}
+2. Target your Cloud Foundry environment
+```
+ bx target --cf
+```
+{:codeblock}
+3. Create a service alias for your Cloud Object Storage
+```
+bx resource service-alias-create <service alias> --instance-name <cos instance name>
+```
+{:codeblock}
+4. Create a service binding between your Cloud Object Storage alias and your Cloud Foundry application and provide a role for your binding.  Valid roles are:
+* Writer
+* Reader
+* Manager
+* Administrator
+* Operator
+* Viewer
+* Editor
+
+An additional parameter (`{"HMAC":true}`) is necessary to create service credentals with HMAC enabled.
+```
+bx resource service-binding-create <service alias> <cf app name> <role> -p '{"HMAC":true}'
+```
+{:codeblock}
