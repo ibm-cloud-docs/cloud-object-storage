@@ -23,11 +23,17 @@ IBM&reg; Cloud Foundry Enterprise Environment is a platform for hosting apps and
 
 Successful implementation of a Cloud Foundry platform requires [proper planning and design](/docs/cloud-foundry/design-structure.html#bpimplementation) for necessary resources and enterprise requirements.  Learn more about [getting started](/docs/cloud-foundry/index.html#creating) with the Cloud Foundry Enterprise Environment as well as an introductory [tutorial](/docs/cloud-foundry/getting-started.html#getting-started).
 
-## Regions and Aliasing
-Explain the nature of IBM Cloud regions and why aliasing is necessary for COS
+### Regions
+
+[Regional endpoints](/docs/services/cloud-object-storage/basics/endpoints.html#select-regions-and-endpoints) are an important part of the IBM Cloud Environment.  You can create applications and service instances in different regions with the same IBM Cloud infrastructure for application management and the same usage details view for billing.  By choosing an IBM Cloud region that is geographically close to you or your customers, you can reduce data latency in your applications as well as minimize costs. Regions can also be selected address any security concerns or regulatory requirements.  
+
+With {{site.data.keyword.cos_full}} you can choose to disperse data across a single data center, an entire region, or even a combination of regions by [selecting the endpoint](/docs/services/cloud-object-storage/basics/endpoints.html#select-regions-and-endpoints) where your application sends API requests.
+
+### Resource Connections and Aliases
+
+An alias is a connection between your managed service within a resource group and an application within an org or a space. Aliases are like symbolic links that hold references to remote resources.  It enables interoperability and reuse of an instance across the platform.  In the IBM Cloud console, the connection (alias) is represented as a service instance.  You can create an instance of a service in a resource group and then reuse it from any available region by creating an alias in an org or space in those regions.
 
 ## Storing Credentials as VCAP Variables 
-Provide an example of storing credentials as VCAP variables
 
 {{site.data.keyword.cos_short}} credentials can stored in the VCAP_SERVICES environment variable which can be parsed for use when accessing the Cloud Storage service.  The credentials include information as presented in the following example:
 
