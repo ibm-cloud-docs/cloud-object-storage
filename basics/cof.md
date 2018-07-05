@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-07-03"
+lastupdated: "2018-07-05"
 
 ---
 
@@ -15,11 +15,11 @@ lastupdated: "2018-07-03"
 {:screen: .screen}
 {:tip: .tip}
 
-{{site.data.keyword.cos_full}} can be paired with IBM&reg; Cloud Foundry Enterprise Environment applications to provide highly-available content through the use of regions and endpoints.
+{{site.data.keyword.cos_full}} can be paired with {{site.data.keyword.cfee_full}} applications to provide highly-available content through the use of regions and endpoints.
 
 ## Cloud Foundry Enterprise Environment
 
-IBM&reg; Cloud Foundry Enterprise Environment is a platform for hosting apps and services in the cloud. You can instantiate multiple, isolated, enterprise-grade platforms on demand that is run within your own account and can be deployed on either shared or dedicated hardware.  The platform makes it easy to scale apps as consumption grows, simplifying the runtime and infrastructure so that you can focus on development.
+{{site.data.keyword.cfee_full}} is a platform for hosting apps and services in the cloud. You can instantiate multiple, isolated, enterprise-grade platforms on demand that is run within your own account and can be deployed on either shared or dedicated hardware.  The platform makes it easy to scale apps as consumption grows, simplifying the runtime and infrastructure so that you can focus on development.
 
 Successful implementation of a Cloud Foundry platform requires [proper planning and design](/docs/cloud-foundry/design-structure.html#bpimplementation) for necessary resources and enterprise requirements.  Learn more about [getting started](/docs/cloud-foundry/index.html#creating) with the Cloud Foundry Enterprise Environment as well as an introductory [tutorial](/docs/cloud-foundry/getting-started.html#getting-started).
 
@@ -31,20 +31,20 @@ With {{site.data.keyword.cos_full}} you can choose to disperse data across a sin
 
 ### Resource Connections and Aliases
 
-An alias is a connection between your managed service within a resource group and an application within an org or a space. Aliases are like symbolic links that hold references to remote resources.  It enables interoperability and reuse of an instance across the platform.  In the IBM Cloud console, the connection (alias) is represented as a service instance.  You can create an instance of a service in a resource group and then reuse it from any available region by creating an alias in an org or space in those regions.
+An alias is a connection between your managed service within a resource group and an application within an org or a space. Aliases are like symbolic links that hold references to remote resources.  It enables interoperability and reuse of an instance across the platform.  In the {{site.data.keyword.cloud_notm}} console, the connection (alias) is represented as a service instance.  You can create an instance of a service in a resource group and then reuse it from any available region by creating an alias in an org or space in those regions.
 
 ## Storing Credentials as VCAP Variables 
 
-{{site.data.keyword.cos_short}} credentials can stored in the VCAP_SERVICES environment variable which can be parsed for use when accessing the Cloud Storage service.  The credentials include information as presented in the following example:
+{{site.data.keyword.cos_short}} credentials can stored in the VCAP_SERVICES environment variable which can be parsed for use when accessing the {{site.data.keyword.cos_short}} service.  The credentials include information as presented in the following example:
 
 ```json
 {
     "cloud-object-storage": [
         {
             "credentials": {
-                "apikey": "abcDEFg_loQtE13laVRPAbnnBUqKIPayN4EyJnBnYU9S-",
+                "apikey": "abcDEFg_lpQtE23laVRPAbmmBIqKIPmyN4EyJnAnYU9S-",
                 "endpoints": "https://cos-service.bluemix.net/endpoints",
-                "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:bluemix:public:cloud-object-storage:global:a/123456cabcddda99gd8eff3191340732:8899d05c-b172-2416-4d7e-0e5c326b2605::",
+                "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:bluemix:public:cloud-object-storage:global:a/123456cabcddda99gd8eff3191340732:7766d05c-b182-2425-4d7e-0e5c123b4567::",
                 "iam_apikey_name": "auto-generated-apikey-cf4999ce-be10-4712-b489-9876e57a1234",
                 "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
                 "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/ad123ab94a1cca96fd8efe3191340999::serviceid:ServiceId-41e36abc-7171-4545-8b34-983330d55f4d",
@@ -69,7 +69,7 @@ An alias is a connection between your managed service within a resource group an
 }
 ```
 
-The VCAP_SERVICES environment variable can then be parsed within your application in order to access your cloud storage content.  Below is an example of integrating the environment variable with the COS SDK using Node.js.
+The VCAP_SERVICES environment variable can then be parsed within your application in order to access your {{site.data.keyword.cos_short}} content.  Below is an example of integrating the environment variable with the COS SDK using Node.js.
 
 ```javascript
 const appEnv = cfenv.getAppEnv();
@@ -98,13 +98,13 @@ For more information on how to use the SDK to access {{site.data.keyword.cos_sho
 
 ### Dashboard
 
-The simplest way to create a service binding is by using the [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps).  
+The simplest way to create a service binding is by using the [{{site.data.keyword.cloud}} Dashboard](https://console.bluemix.net/dashboard/apps).  
 
 1. Login to the [Dashboard](https://console.bluemix.net/dashboard/apps)
 2. Click on your Cloud Foundry application
 3. Click on Connections in the menu on the left
 4. Click on the **Create Connection** button on the right
-5. From the *Connect Existing Compatible Service* page hover over your Cloud Object Storage service and click on the **Connect** button.
+5. From the *Connect Existing Compatible Service* page hover over your {{site.data.keyword.cos_short}} service and click on the **Connect** button.
 6. From the *Connect IAM-Enabled Service* popup screen select the Access Role, leave Auto Generate for the Service ID, and click **Connect**
 7. The Cloud Foundry application will need to be restaged in order to use the new service binding.  Click the **Restage** button to start the process.
 8. Once restaging is complete your Cloud Object Storage service will be available to your application.
@@ -127,12 +127,12 @@ The applications VCAP_SERVICES environment variable will be automatically update
  bx target --cf
 ```
 {:codeblock}
-3. Create a service alias for your Cloud Object Storage
+3. Create a service alias for your {{site.data.keyword.cos_short}}
 ```
 bx resource service-alias-create <service alias> --instance-name <cos instance name>
 ```
 {:codeblock}
-4. Create a service binding between your Cloud Object Storage alias and your Cloud Foundry application and provide a role for your binding.  Valid roles are:
+4. Create a service binding between your {{site.data.keyword.cos_short}} alias and your Cloud Foundry application and provide a role for your binding.  Valid roles are:
 * Writer
 * Reader
 * Manager
@@ -159,12 +159,12 @@ Hash-based message authentication code (HMAC) is a mechanism for calculating a m
  bx target --cf
 ```
 {:codeblock}
-3. Create a service alias for your Cloud Object Storage
+3. Create a service alias for your {{site.data.keyword.cos_short}}
 ```
 bx resource service-alias-create <service alias> --instance-name <cos instance name>
 ```
 {:codeblock}
-4. Create a service binding between your Cloud Object Storage alias and your Cloud Foundry application and provide a role for your binding.  Valid roles are:
+4. Create a service binding between your {{site.data.keyword.cos_short}} alias and your Cloud Foundry application and provide a role for your binding.  Valid roles are:
 * Writer
 * Reader
 * Manager
