@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-06-29"
+lastupdated: "2018-07-05"
 
 ---
 {:new_window: target="_blank"}
@@ -22,10 +22,10 @@ Typically, using the web-based console is not the most common way to use {{site.
 
 ## Using a compatible tool
 
-Some users will want to use some sort of standalone utility to interact with their storage. As the Cloud Object Storage API supports the most common set of S3 API operations, many S3-compatible tools can also connect to {{site.data.keyword.cos_short}} using [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html).
+Some users will want to use a standalone utility to interact with their storage. As the Cloud Object Storage API supports the most common set of S3 API operations, many S3-compatible tools can also connect to {{site.data.keyword.cos_short}} using [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html).
 
 Some examples include file explorers like [Cyberduck](https://cyberduck.io/) or [Transmit](https://panic.com/transmit/), backup utilities like [Cloudberry](https://www.cloudberrylab.com/) and [Duplicati](https://www.duplicati.com/), command line utilities like [s3cmd](https://github.com/s3tools/s3cmd) or [Minio Client](https://github.com/minio/mc), and many others.
 
 ## Using the API
 
-Most programmatic applications of object storage will use an SDK (such as [Java](/docs/services/cloud-object-storage/libraries/java.html), [node.js](/docs/services/cloud-object-storage/libraries/node.html), or [Python](/docs/services/cloud-object-storage/libraries/python.html)) or the [Cloud Object Storage API](/docs/services/cloud-object-storage/api-reference/about-api.html). Typically objects will be uploaded in [multiple parts](/docs/services/cloud-object-storage/basics/multipart.html), with part size and number of parts configured by a Transfer Manager class.
+Most programmatic applications of object storage use an SDK (such as [Java](/docs/services/cloud-object-storage/libraries/java.html), [node.js](/docs/services/cloud-object-storage/libraries/node.html), or [Python](/docs/services/cloud-object-storage/libraries/python.html)) or the [Cloud Object Storage API](/docs/services/cloud-object-storage/api-reference/about-api.html). Typically objects will be uploaded in [multiple parts](/docs/services/cloud-object-storage/basics/multipart.html), with part size and number of parts configured by a Transfer Manager class.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-05"
 
 ---
 {:new_window: target="_blank"}
@@ -13,16 +13,6 @@ lastupdated: "2018-06-22"
 {:tip: .tip}
 
 # Aspera high-speed transfer
-
-onAspera high-speed transfer is available for buckets created in these regions:
-
-- US South
-- US East
-- EU-GB
-- EU-Frankfurt
-- Toronto 01
-- Melbourne 01
-- Chennai
 
 Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP transfers to improve data transfer performance under most conditions, especially on networks experiencing high latency and packet loss. Using Aspera high-speed transfer for browser-based uploads and downloads offers the following benefits:
 
@@ -59,5 +49,3 @@ Completed: Upon completion of your transfer, information about this and all tran
 Preferences: You can set the default for uploads and/or downloads to High-speed. 
 
 Advanced Preferences: You can limit bandwidth for uploads and downloads by default.
-
-
