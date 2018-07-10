@@ -109,15 +109,15 @@ The following table lists where to view the event depending on COS bucket locati
   </tr>
   <tr>
     <td>eu-geo</td>
-    <td>Germany</td>
+    <td>United Kingdom</td>
   </tr>
   <tr>
     <td>eu-de</td>
-    <td>Germany</td>
+    <td>United Kingdom</td>
   </tr>
   <tr>
     <td>Amsterdam (ams03)</td>
-    <td>Germany</td>
+    <td>United Kingdom</td>
   </tr>
   <tr>
     <td>eu-gb</td>
