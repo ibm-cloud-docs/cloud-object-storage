@@ -92,6 +92,10 @@ If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_creden
  For more details on client construction, [see the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/client/builder/AwsClientBuilder.html).
 
 ## Code Examples
+{ #metadata}
+
+Note that when adding custom metadata to an object, it is necessary to create an `ObjectMetadata` object using the SDK, and not to manually send a custom header containing `x-amz-meta-{key}`.  The latter can cause issues when authenticating using HMAC credentials.
+{: .tip}
 
 ### Initializing configuration
 ```java

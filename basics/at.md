@@ -36,7 +36,7 @@ The following table lists the actions that generate an event:
   <tr>
     <th>Actions</th>
 	  <th>Description</th>
-  <tr>
+  </tr>
   <tr>
     <td>cloud-object-storage.bucket.info</td>
 	  <td>An event is generated when a user requests bucket metadata and whether IBM Key Protect is enabled on the bucket.</td>
@@ -48,6 +48,10 @@ The following table lists the actions that generate an event:
   <tr>
     <td>cloud-object-storage.bucket.read</td>
 	  <td>An event is generated when a user requests the list of objects in a bucket.</td>
+  </tr>
+  <tr>
+    <td>cloud-object-storage.bucket.update</td>
+	  <td>An event is generated when a user updates a bucket, for example, when a user renames a bucket.</td>
   </tr>
   <tr>
     <td>cloud-object-storage.bucket.delete</td>
@@ -68,6 +72,10 @@ The following table lists the actions that generate an event:
   <tr>
     <td>cloud-object-storage.bucket-cors.read</td>
 	  <td>An event is generated when a user requests if cross-origin resource sharing configuration is enabled on a bucket.</td>
+  </tr>
+  <tr>
+    <td>cloud-object-storage.bucket-cors.update</td>
+	  <td>An event is generated when a user modifies a cross-origin resource sharing configuration for a bucket.</td>
   </tr>
   <tr>
     <td>cloud-object-storage.bucket-cors.delete</td>
