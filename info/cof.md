@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-07-05"
+lastupdated: "2018-07-11"
 
 ---
 
@@ -82,7 +82,7 @@ var config = {
     endpoint: 's3.us-south.objectstorage.softlayer.net',
     apiKeyId: cosCreds.apikey,
     ibmAuthEndpoint: 'https://iam.ng.bluemix.net/oidc/token',
-    serviceInstanceId: cosCreds.iam_serviceid_crn,
+    serviceInstanceId: cosCreds.resource_instance_id,
 };
 
 var cos = new AWS.S3(config);
@@ -122,16 +122,19 @@ The applications VCAP_SERVICES environment variable will be automatically update
  bx login --apikey <your api key>
 ```
 {:codeblock}
+
 2. Target your Cloud Foundry environment
 ```
  bx target --cf
 ```
 {:codeblock}
+
 3. Create a service alias for your {{site.data.keyword.cos_short}}
 ```
 bx resource service-alias-create <service alias> --instance-name <cos instance name>
 ```
 {:codeblock}
+
 4. Create a service binding between your {{site.data.keyword.cos_short}} alias and your Cloud Foundry application and provide a role for your binding.  Valid roles are:
 * Writer
 * Reader
@@ -154,16 +157,19 @@ Hash-based message authentication code (HMAC) is a mechanism for calculating a m
  bx login --apikey <your api key>
 ```
 {:codeblock}
+
 2. Target your Cloud Foundry environment
 ```
  bx target --cf
 ```
 {:codeblock}
+
 3. Create a service alias for your {{site.data.keyword.cos_short}}
 ```
 bx resource service-alias-create <service alias> --instance-name <cos instance name>
 ```
 {:codeblock}
+
 4. Create a service binding between your {{site.data.keyword.cos_short}} alias and your Cloud Foundry application and provide a role for your binding.  Valid roles are:
 * Writer
 * Reader
