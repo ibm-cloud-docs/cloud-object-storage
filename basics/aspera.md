@@ -49,7 +49,7 @@ Active: Once you initiate a transfer, the transfer status displays as active. Wh
 
 Completed: Upon completion of your transfer, information about this and all transfers in this session display on the Completed tab. You can clear this information. You will only see information about transfers completed in the current session.
 
-Preferences: You can set the default for uploads and/or downloads to High-speed. 
+Preferences: You can set the default for uploads and/or downloads to High-speed.
 
 Downloads using Aspera high-speed will incur additional egress charges. For more information, see the [pricing page](/docs/services/cloud-object-storage/help/billing.md)).
 {:tip}
