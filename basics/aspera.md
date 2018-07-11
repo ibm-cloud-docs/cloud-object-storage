@@ -23,6 +23,8 @@ Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP
 - Transfers take place in the background instead of in the active browser window.
 - Transfers can be viewed, paused/resumed, or cancelled independently.
 
+Aspera high-speed is avilable 
+
 ## Installing the Aspera High-speed plug-in
 
 When you create a bucket in a supported region, you have the option to select Aspera high-speed transfer to upload files or folders. Once you attempt to upload an object, you are prompted to install the Aspera Connect client.
