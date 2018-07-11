@@ -48,4 +48,6 @@ Completed: Upon completion of your transfer, information about this and all tran
 
 Preferences: You can set the default for uploads and/or downloads to High-speed. 
 
+Downloads using Aspera high-speed will incur additional egress charges. For more information, see
+
 Advanced Preferences: You can limit bandwidth for uploads and downloads by default.
