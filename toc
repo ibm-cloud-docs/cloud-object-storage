@@ -34,6 +34,7 @@ Cloud Object Storage
         hmac/presigned-urls.md
 
     basics/endpoints.md
+        basics/services.md
     basics/classes.md
     basics/multipart.md
     basics/encryption.md
