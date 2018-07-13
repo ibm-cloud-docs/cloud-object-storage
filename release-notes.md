@@ -19,12 +19,6 @@ Users who upload or download files or folders using the web-based console have t
 
 Downloads using Aspera high-speed incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
 
-Buckets can now be created in a US Cross Region configuration.
- Data stored in these buckets is distributed across the Washington, DC and Dallas  data center. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html) documentation.
-
- Buckets can now be created in an EU Region configuration.
- Data stored in these buckets is distributed across the EU Germany data center.  More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html) documentation.
-
  Buckets can now be created in a Single Data Center configuration in Chennai, India  and Amsterdam, Netherlands. This allows for lower latency when accessing storage from compute resources co-located within the same data center, or for data requiring a specific geographic location. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html) documentation.
 
 ## Q1 2018

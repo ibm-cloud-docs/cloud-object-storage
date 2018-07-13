@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-07-05"
+lastupdated: "2018-07-11"
 
 ---
 {:new_window: target="_blank"}
@@ -13,6 +13,11 @@ lastupdated: "2018-07-05"
 {:tip: .tip}
 
 # Service availability
+When creating a bucket, [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics/aspera.md) and [Key Protect](/docs/services/keymgmt/index.html#getting-started-with-key-protect)) are options available depending on the region you select. 
+
+Downloads using Aspera high-speed will incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
+{:tip}
+
 
 <table>
   <thead>
