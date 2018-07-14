@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-07-05"
+lastupdated: "2018-07-13"
 
 ---
 {:new_window: target="_blank"}
@@ -31,7 +31,8 @@ Aspera high-speed is available only in areas listed [Integrated services](/docs/
 When you create a bucket in a [supported region](/docs/services/cloud-object-storage/basics/services.md), you have the option to select Aspera high-speed transfer to upload files or folders. Once you attempt to upload an object, you are prompted to install the Aspera Connect client.
 
 ### Install Aspera Connect
-1. Select Install Aspera Connect client.
+
+1. Select **Install Aspera Connect** client.
 2. Follow the install instructions depending on your operating system and browser.
 3. Resume file or folder upload.
 
@@ -45,13 +46,14 @@ Typically, using the web-based console is not the most common way to use {{site.
 
 Instead of the standard HTTP `PUT`, Aspera high-speed transfer uploads the object using the [FASP protocol](http://asperasoft.com/technology/transport/fasp/) from [Aspera high-speed transfer](https://www.ibm.com/cloud/high-speed-data-transfer). 
 ### Transfer status
-Active: Once you initiate a transfer, the transfer status displays as active. While the transfer is active, you can pause, resume or cancel an active transer. 
 
-Completed: Upon completion of your transfer, information about this and all transfers in this session display on the Completed tab. You can clear this information. You will only see information about transfers completed in the current session.
+**Active:** Once you initiate a transfer, the transfer status displays as active. While the transfer is active, you can pause, resume or cancel an active transer. 
 
-Preferences: You can set the default for uploads and/or downloads to High-speed.
+**Completed:** Upon completion of your transfer, information about this and all transfers in this session display on the Completed tab. You can clear this information. You will only see information about transfers completed in the current session.
+
+**Preferences:** You can set the default for uploads and/or downloads to High-speed.
 
 Downloads using Aspera high-speed will incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
 {:tip}
 
-Advanced Preferences: You can limit bandwidth for uploads and downloads by default.
+**Advanced Preferences:** You can limit bandwidth for uploads and downloads by default.
