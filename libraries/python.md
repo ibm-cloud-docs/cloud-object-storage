@@ -84,15 +84,15 @@ cos = ibm_boto3.resource("s3",
 
 ### Creating a new bucket
 ```python
-def create_bucket(bucket):
-    print("Creating new bucket: {0}".format(bucket))
+def create_bucket(bucket_name):
+    print("Creating new bucket: {0}".format(bucket_name))
     try:
-        cos.Bucket(bucket).create(
+        cos.Bucket(bucket_name).create(
             CreateBucketConfiguration={
                 "LocationConstraint":COS_BUCKET_LOCATION
             }
         )
-        print("Bucket: {0} created!".format(bucket))
+        print("Bucket: {0} created!".format(bucket_name))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
@@ -107,13 +107,13 @@ def create_bucket(bucket):
 
 ### Creating a new text file
 ```python
-def create_text_file(bucket, name, file_text):
-    print("Creating new item: {0}".format(name))
+def create_text_file(bucket_name, item_name, file_text):
+    print("Creating new item: {0}".format(item_name))
     try:
-        cos.Object(bucket, name).put(
+        cos.Object(bucket_name, item_name).put(
             Body=file_text
         )
-        print("Item: {0} created!".format(name))
+        print("Item: {0} created!".format(item_name))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
@@ -149,10 +149,10 @@ def get_buckets():
 
 ### List items in a bucket
 ```python
-def get_bucket_contents(bucket):
-    print("Retrieving bucket contents from: {0}".format(bucket))
+def get_bucket_contents(bucket_name):
+    print("Retrieving bucket contents from: {0}".format(bucket_name))
     try:
-        files = cos.Bucket(bucket).objects.all()
+        files = cos.Bucket(bucket_name).objects.all()
         for file in files:
             print("Item: {0} ({1} bytes).".format(file.key, file.size))
     except ClientError as be:
@@ -170,10 +170,10 @@ def get_bucket_contents(bucket):
 
 ### Get file contents of particular item
 ```python
-def get_item(bucket, name):
-    print("Retrieving item from bucket: {0}, key: {1}".format(bucket, name))
+def get_item(bucket_name, item_name):
+    print("Retrieving item from bucket: {0}, key: {1}".format(bucket_name, item_name))
     try:
-        file = cos.Object(bucket, name).get()
+        file = cos.Object(bucket_name, item_name).get()
         print("File Contents: {0}".format(file["Body"].read()))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
