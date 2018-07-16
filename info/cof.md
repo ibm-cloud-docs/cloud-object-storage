@@ -121,19 +121,16 @@ The applications VCAP_SERVICES environment variable will be automatically update
 ```
  bx login --apikey <your api key>
 ```
-{:codeblock}
 
 2. Target your Cloud Foundry environment
 ```
  bx target --cf
 ```
-{:codeblock}
 
 3. Create a service alias for your {{site.data.keyword.cos_short}}
 ```
 bx resource service-alias-create <service alias> --instance-name <cos instance name>
 ```
-{:codeblock}
 
 4. Create a service binding between your {{site.data.keyword.cos_short}} alias and your Cloud Foundry application and provide a role for your binding.  Valid roles are:
 * Writer
@@ -146,7 +143,6 @@ bx resource service-alias-create <service alias> --instance-name <cos instance n
 ```
 bx resource service-binding-create <service alias> <cf app name> <role>
 ```
-{:codeblock}
 
 ### IBM Client Tools (CLI) with HMAC Credentials
 
@@ -156,19 +152,16 @@ Hash-based message authentication code (HMAC) is a mechanism for calculating a m
 ```
  bx login --apikey <your api key>
 ```
-{:codeblock}
 
 2. Target your Cloud Foundry environment
 ```
  bx target --cf
 ```
-{:codeblock}
 
 3. Create a service alias for your {{site.data.keyword.cos_short}}
 ```
 bx resource service-alias-create <service alias> --instance-name <cos instance name>
 ```
-{:codeblock}
 
 4. Create a service binding between your {{site.data.keyword.cos_short}} alias and your Cloud Foundry application and provide a role for your binding.  Valid roles are:
 * Writer
@@ -183,4 +176,3 @@ An additional parameter (`{"HMAC":true}`) is necessary to create service credent
 ```
 bx resource service-binding-create <service alias> <cf app name> <role> -p '{"HMAC":true}'
 ```
-{:codeblock}
