@@ -23,7 +23,7 @@ Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP
 - Transfers take place in the background instead of in the active browser window.
 - Transfers can be viewed, paused/resumed, or cancelled independently.
 
-Aspera high-speed is available only in areas listed [Integrated services](/docs/services/cloud-object-storage/basics/services.html#service-availability).
+Aspera high-speed is available only in regions listed in [Integrated services](/docs/services/cloud-object-storage/basics/services.html#service-availability).
 {:tip}
 
 ## Installing the Aspera high-speed plug-in
