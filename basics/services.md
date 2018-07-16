@@ -13,7 +13,7 @@ lastupdated: "2018-07-11"
 {:tip: .tip}
 
 # Service availability
-When creating a bucket, [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics/aspera.html#Aspera-high-speed-transfer) and [Key Protect](/docs/services/keymgmt/index.html#getting-started-with-key-protect)) are options available depending on the region you select. 
+The table below describes the regions where the [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics/aspera.html#Aspera-high-speed-transfer) and [Key Protect](/docs/services/keymgmt/index.html#getting-started-with-key-protect) are supported. 
 
 Downloads using Aspera high-speed will incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
 {:tip}
@@ -105,8 +105,8 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
   <tr>
   <tr>
     <td rowspan="2">Frankfurt Access Point</td>
-    <td>Yes</td>
-    <td>Yes</td>
+    <td>No</td>
+    <td>No</td>
   <tr>
   <tr>
     <td rowspan="2">Milan Access Point</td>
@@ -135,8 +135,8 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <tr>
   <tr>
     <td rowspan="2">EU Germany</td>
-    <td>No</td>
-    <td>No</td>
+    <td>Yes</td>
+    <td>Yes</td>
     <tr>
   <tr>
     </td>
