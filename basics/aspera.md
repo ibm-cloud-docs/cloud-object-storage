@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-07-13"
+lastupdated: "07-16-2018"
 
 ---
 {:new_window: target="_blank"}
@@ -23,12 +23,12 @@ Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP
 - Transfers take place in the background instead of in the active browser window.
 - Transfers can be viewed, paused/resumed, or cancelled independently.
 
-Aspera high-speed is available only in areas listed [Integrated services](/docs/services/cloud-object-storage/basics/services.md).
+Aspera high-speed is available only in areas listed [Integrated services](/docs/services/cloud-object-storage/basics/services.html#service-availability).
 {:tip}
 
 ## Installing the Aspera high-speed plug-in
 
-When you create a bucket in a [supported region](/docs/services/cloud-object-storage/basics/services.md), you have the option to select Aspera high-speed transfer to upload files or folders. Once you attempt to upload an object, you are prompted to install the Aspera Connect client.
+When you create a bucket in a [supported region](/docs/services/cloud-object-storage/basics/services.html#service-availability), you have the option to select Aspera high-speed transfer to upload files or folders. Once you attempt to upload an object, you are prompted to install the Aspera Connect client.
 
 ### Install Aspera Connect
 

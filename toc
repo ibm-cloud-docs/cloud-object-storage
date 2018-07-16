@@ -33,8 +33,11 @@ Cloud Object Storage
         hmac/hmac-signature.md
         hmac/presigned-urls.md
 
+    {: .topicgroup}
     basics/endpoints.md
         basics/services.md
+    {: .navgroup-end}
+    
     basics/classes.md
     basics/multipart.md
     basics/encryption.md

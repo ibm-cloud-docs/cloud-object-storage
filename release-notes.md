@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "15-03-2018"
+  years: 2017, 2018
+lastupdated: "07-16-2018"
 
 ---
 {:new_window: target="_blank"}
@@ -23,7 +23,7 @@ Downloads using Aspera high-speed incur additional egress charges. For more info
 
 ## Q1 2018
 ### March 2018
-Users who upload or download files using the web-based console have the option to use [Aspera high-speed transfer](https://www.ibm.com/cloud/high-speed-data-transfer) for these operations via a browser plug-in.  This allows for transfers of objects larger than 200MB, and also allows for greater control and visibility of uploads and downloads. Additional information can be found in the [Uploading Data](/docs/services/cloud-object-storage/basics/upload.html#high-speed-transfer) documentation.
+Users who upload or download files using the web-based console have the option to use [Aspera high-speed transfer](https://www.ibm.com/cloud/high-speed-data-transfer) for these operations via a browser plug-in.  This allows for transfers of objects larger than 200MB, and also allows for greater control and visibility of uploads and downloads. Additional information can be found in the [Uploading Data](/docs/services/cloud-object-storage/basics/aspera.html) documentation.
 
 Buckets can now be created in an AP Cross Region configuration.
  Data stored in these buckets is distributed across the Seoul, Tokyo, and Hong Kong data centers.  More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html) documentation.
