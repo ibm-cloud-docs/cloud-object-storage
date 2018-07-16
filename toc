@@ -37,7 +37,7 @@ Cloud Object Storage
     basics/endpoints.md
         basics/services.md
     {: .navgroup-end}
-    
+
     basics/classes.md
     basics/multipart.md
     basics/encryption.md
@@ -86,6 +86,7 @@ Cloud Object Storage
     Technical guides
         info/data-security-encryption.md
         info/developer-guidance.md
+        info/cof.md
         help/object-storage.md
     {: .navgroup-end}
 
