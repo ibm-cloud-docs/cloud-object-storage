@@ -34,7 +34,8 @@ Cloud Object Storage
         hmac/presigned-urls.md
 
     {: .topicgroup}
-    basics/endpoints.md
+    Endpoints and services
+        basics/endpoints.md
         basics/services.md
     {: .navgroup-end}
 
