@@ -37,7 +37,6 @@ Cloud Object Storage
     Endpoints and services
         basics/endpoints.md
         basics/services.md
-    {: .navgroup-end}
 
     basics/classes.md
     basics/multipart.md
