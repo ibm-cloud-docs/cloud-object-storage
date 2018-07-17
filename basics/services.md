@@ -18,6 +18,7 @@ The table below describes the regions where the [Aspera high-speed transfer](/do
 Downloads using Aspera high-speed will incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
 {:tip}
 
+## US Cross Region
 
 <table>
   <thead>
