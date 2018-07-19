@@ -156,7 +156,7 @@ Hash-based message authentication code (HMAC) is a mechanism for calculating a m
 bx resource service-alias-create <service alias> --instance-name <cos instance name>
 ```
 
-4. Create a service binding between your {{site.data.keyword.cos_short}} alias and your Cloud Foundry application and provide a role for your binding.<br/><br/>***Note:** An additional parameter* (`{"HMAC":true}`) *is necessary to create service credentals with HMAC enabled.*<br/><br/>Valid roles are:<br/><ul><li>Writer</li><li>Reader</li><li>Manager</li><li>Administrator</li><li>Operator</li><li>Viewer</li><li>Editor</li></ul>
+4. Create a service binding between your {{site.data.keyword.cos_short}} alias and your Cloud Foundry application and provide a role for your binding.<br/><br/>* **Note:** An additional parameter* (`{"HMAC":true}`) *is necessary to create service credentals with HMAC enabled.*<br/><br/>Valid roles are:<br/><ul><li>Writer</li><li>Reader</li><li>Manager</li><li>Administrator</li><li>Operator</li><li>Viewer</li><li>Editor</li></ul>
 ```
 bx resource service-binding-create <service alias> <cf app name> <role> -p '{"HMAC":true}'
 ```
@@ -165,7 +165,7 @@ bx resource service-binding-create <service alias> <cf app name> <role> -p '{"HM
 
 Creating a service binding to {{site.data.keyword.containershort}} requires a slightly different procedure.  For this section you will also need to install [jq - a lightweight command-line JSON processor](https://stedolan.github.io/jq/){:new_window}.
 
-1. Generate COS HMAC credentials and put in K8s<br/><br/>***Note:** cluster-service-bind requires an existing alias to a COS global instance*
+1. Generate COS HMAC credentials and put in K8s<br/><br/>* **Note:** cluster-service-bind requires an existing alias to a COS global instance*
 ```
 bx resource service-alias-create cos-alias --instance-name
 ```
@@ -185,7 +185,7 @@ bx cs cluster-service-bind default cos-alias
 bx cs cluster-services cos-alias 0fd0adbe-4811-4c85-b781-2d0d68f2207e cos-hmac default
 ```
 
-5. Verify COS HMAC credentials are available in your cluster Secrets<br/><br/>***Note:** This should be changed to verify all COS credentials are in Secrets*
+5. Verify COS HMAC credentials are available in your cluster Secrets<br/><br/>* **Note:** This should be changed to verify all COS credentials are in Secrets*
 ```
 kubectl get secret binding-cos-alias -o json | jq .data.binding | sed -e 's/^"//' -e 's/"$//' | base64 -D | jq .cos_hmac_keys
 ```
