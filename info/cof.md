@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-07-11"
+lastupdated: "2018-07-19"
 
 ---
 
@@ -132,14 +132,7 @@ The applications VCAP_SERVICES environment variable will be automatically update
 bx resource service-alias-create <service alias> --instance-name <cos instance name>
 ```
 
-4. Create a service binding between your {{site.data.keyword.cos_short}} alias and your Cloud Foundry application and provide a role for your binding.  Valid roles are:
-* Writer
-* Reader
-* Manager
-* Administrator
-* Operator
-* Viewer
-* Editor
+4. Create a service binding between your {{site.data.keyword.cos_short}} alias and your Cloud Foundry application and provide a role for your binding.  Valid roles are:<br/><ul><li>Writer</li><li>Reader</li><li>Manager</li><li>Administrator</li><li>Operator</li><li>Viewer</li><li>Editor</li></ul>
 ```
 bx resource service-binding-create <service alias> <cf app name> <role>
 ```
@@ -163,16 +156,43 @@ Hash-based message authentication code (HMAC) is a mechanism for calculating a m
 bx resource service-alias-create <service alias> --instance-name <cos instance name>
 ```
 
-4. Create a service binding between your {{site.data.keyword.cos_short}} alias and your Cloud Foundry application and provide a role for your binding.  Valid roles are:
-* Writer
-* Reader
-* Manager
-* Administrator
-* Operator
-* Viewer
-* Editor
-
-An additional parameter (`{"HMAC":true}`) is necessary to create service credentals with HMAC enabled.
+4. Create a service binding between your {{site.data.keyword.cos_short}} alias and your Cloud Foundry application and provide a role for your binding.<br/><br/>* **Note:** An additional parameter (`{"HMAC":true}`) is necessary to create service credentals with HMAC enabled.*<br/><br/>Valid roles are:<br/><ul><li>Writer</li><li>Reader</li><li>Manager</li><li>Administrator</li><li>Operator</li><li>Viewer</li><li>Editor</li></ul>
 ```
 bx resource service-binding-create <service alias> <cf app name> <role> -p '{"HMAC":true}'
+```
+
+### Binding to {{site.data.keyword.containershort_notm}}
+
+Creating a service binding to {{site.data.keyword.containershort}} requires a slightly different procedure.  For this section you will also need to install [jq - a lightweight command-line JSON processor](https://stedolan.github.io/jq/){:new_window}.
+
+1. Generate COS HMAC credentials and put in K8s<br/><br/>* **Note:** cluster-service-bind requires an existing alias to a COS global instance*
+```
+bx resource service-alias-create cos-alias --instance-name
+```
+ 
+2. Create a new service key with write permissions to the COS 
+```
+bx resource service-key-create "cos-hmac" Writer --alias-name cos-alias --parameters '{"HMAC":true}’
+```
+
+3. Bind the cluster service to COS
+```
+bx cs cluster-service-bind default cos-alias
+```
+
+4. Verify cos-alias is bound to the cluster
+```
+bx cs cluster-services cos-alias 0fd0adbe-4811-4c85-b781-2d0d68f2207e cos-hmac default
+```
+
+5. Verify COS HMAC credentials are available in your cluster Secrets<br/><br/>* **Note:** This should be changed to verify all COS credentials are in Secrets*
+```
+kubectl get secret binding-cos-alias -o json | jq .data.binding | sed -e 's/^"//' -e 's/"$//' | base64 -D | jq .cos_hmac_keys
+```
+output should look like this:
+```json
+{
+    "access_key_id": "9XX0adb9948c41eebb577bdce6709760",
+    "secret_access_key": "bXXX5d8df62748a46ea798be7eaf8efeb6b27cdfc40a3cf2"
+}
 ```
