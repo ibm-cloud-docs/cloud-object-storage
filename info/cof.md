@@ -156,7 +156,7 @@ Hash-based message authentication code (HMAC) is a mechanism for calculating a m
 bx resource service-alias-create <service alias> --instance-name <cos instance name>
 ```
 
-4. Create a service binding between your {{site.data.keyword.cos_short}} alias and your Cloud Foundry application and provide a role for your binding.<br/><br/>***Note:** An additional parameter (`{"HMAC":true}`) is necessary to create service credentals with HMAC enabled.*<br/><br/>Valid roles are:<br/><ul><li>Writer</li><li>Reader</li><li>Manager</li><li>Administrator</li><li>Operator</li><li>Viewer</li><li>Editor</li></ul>
+4. Create a service binding between your {{site.data.keyword.cos_short}} alias and your Cloud Foundry application and provide a role for your binding.<br/><br/>***Note:** An additional parameter* (`{"HMAC":true}`) *is necessary to create service credentals with HMAC enabled.*<br/><br/>Valid roles are:<br/><ul><li>Writer</li><li>Reader</li><li>Manager</li><li>Administrator</li><li>Operator</li><li>Viewer</li><li>Editor</li></ul>
 ```
 bx resource service-binding-create <service alias> <cf app name> <role> -p '{"HMAC":true}'
 ```
