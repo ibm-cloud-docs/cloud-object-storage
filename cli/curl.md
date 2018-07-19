@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2017-09-27"
+  years: 2017, 2018
+lastupdated: "2018-07-12"
 
 ---
 {:new_window: target="_blank"}
@@ -21,7 +21,10 @@ Using `curl` assumes a certain amount of familiarity with the command line and o
 **Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
 {:tip}
 
-## Request an IAM token using an API key
+## Request an IAM Token
+There are two ways to generate an IAM oauth token for authenticating requests: using a `curl` command with an API key (described below) or from the command line using [IBM Cloud CLI](/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information).  
+### Request an IAM token using an API key
+First ensure that you have an API key.  Get this from [{{site.data.keyword.iamlong}](https://www.bluemix.net/iam/#/apikeys).
 
 ```
 curl -X "POST" "https://iam.bluemix.net/oidc/token" \
