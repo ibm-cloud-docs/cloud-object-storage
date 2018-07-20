@@ -27,7 +27,7 @@ There are two ways to generate an IAM oauth token for authenticating requests: u
 
 ### Request an IAM token using an API key
 
-First ensure that you have an API key.  Get this from [{{site.data.keyword.iamlong}](https://www.bluemix.net/iam/#/apikeys).
+First ensure that you have an API key.  Get this from [{{site.data.keyword.iamlong}}](https://www.bluemix.net/iam/#/apikeys).
 
 ```
 curl -X "POST" "https://iam.bluemix.net/oidc/token" \
