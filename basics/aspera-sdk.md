@@ -73,16 +73,204 @@ Maven uses a file named `pom.xml` to specify the libraries (and their versions) 
 
 ### Getting the SDK
 
-The {{site.data.keyword.cos_full_notm}} and Aspera Connect Python SDK is available from the Python Package Index (PyPI) software repository.  Both can be installed using the following commands:
+The {{site.data.keyword.cos_full_notm}} and Aspera Connect Python SDK is available from the Python Package Index (PyPI) software repository.  The Aspera SDK is an optional dependency that can be included in the requirements.txt or setup.py.
+
+```json
+extras_requires = {
+    "aspera": ["ibm-aspera-sdk==1.0.0"]
+}
+```
+
+Both can be installed using the following commands:
 
 For Mac OS X
 ```
-pip install ibm-cos-sdk
+pip install ibm-cos-sdk["aspera"]
 pip install cos-aspera-mac-10.7-64
 ```
 
 For Linux
 ```
-pip install ibm-cos-sdk
+pip install ibm-cos-sdk["aspera"]
 pip install cos-aspera-linux-64
 ```
+
+### Creating a client and sourcing credentials
+
+To connect to COS, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.  
+
+More information for using a credentials file is available in the [Python SDK](/docs/services/cloud-object-storage/libraries/python.html#client-credentials).
+
+An example for storing and using VCAP variables is available in the [Cloud Foundry Applications](/docs/services/cloud-object-storage/info/cof.html#storing-credentials-as-vcap-variables) guide.
+
+### Code Examples
+
+The Aspera SDK currently supports **Python 2.7** only.  The following operations are **supported**:
+* File upload/download
+* Directory upload/download
+* Pause/Resume/Cancel operations
+
+The following items are **not supported**:
+* Multi-threading within the Aspera Transfer Manager
+* Sub-directory exclusion
+* Configuration settings
+    * Minimal configuration settings can be overrided by are subject to change
+* Windows OS
+* HMAC credentials
+
+#### Initializing configuration
+
+```python
+# Constants for IBM COS values
+COS_ENDPOINT = "<endpoint>"
+COS_API_KEY_ID = "<api-key>"
+COS_AUTH_ENDPOINT = "https://iam.ng.bluemix.net/oidc/token"
+COS_SERVICE_CRN = "<resource-instance-id>"
+
+# Create client
+session = boto3.session.Session()
+client = session.client("s3",
+                        endpoint_url=COS_ENDPOINT,
+                        ibm_api_key_id=COS_API_KEY_ID,
+                        ibm_service_instance_id=COS_SERVICE_CRN,
+                        ibm_auth_endpoint=COS_AUTH_ENDPOINT,
+                        verify=False,
+                        config=Config(signature_version='oauth'))
+)
+```
+
+*Key Values*
+* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps){:new_window}).
+* `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples).
+* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps){:new_window}).
+
+#### File Upload
+
+```python
+bucket_name = "<bucket-name>"
+upload_filename = "<path-to-file>"
+object_name = "<item-name>"
+
+class CallbackOnDone(AsperaBaseSubscriber):
+    def __init__(self):
+        pass
+
+    def on_done(self, future, **kwargs):
+        print("OnDone called %s" % future.meta.call_args.transfer_id)
+
+
+# Create Transfer manager
+transfer_manager = AsperaTransferManager(client)
+
+subscribers = [CallbackOnDone()]
+
+# Perform upload
+future = transfer_manager.upload(upload_filename, bucket_name, object_name, None, subscribers)
+
+# Wait for upload to complete
+future.result()
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<path-to-file>` - directory and file name to the file to be uploaded to Object Storage.
+* `<item-name>` - name of the new file added to the bucket.
+
+#### File Download
+
+```python
+bucket_name = "<bucket-name>"
+download_filename = "<path-to-local-file>"
+object_name = "<object-to-download>"
+
+class CallbackOnDone(AsperaBaseSubscriber):
+    def __init__(self):
+        pass
+
+    def on_done(self, future, **kwargs):
+        print("OnDone called %s" % future.meta.call_args.transfer_id)
+
+
+# Create Transfer manager
+transfer_manager = AsperaTransferManager(client)
+
+# Perform upload with S3
+client.put_object(Bucket=bucket_name, Key=object_name, Body="This is a test upload for aspera download")
+
+# Get object with Aspera
+subscribers = [CallbackOnDone()]
+future = transfer_manager.download(bucket_name, object_name, download_filename, None, subscribers)
+
+# Wait for download to complete
+future.result()
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<path-to-local-file>` - directory and file name where save the file to the local system.
+* `<object-to-download>` - name of the file in the bucket to download.
+
+#### Directory Upload
+
+```python
+bucket_name = "<bucket-name>"
+# THIS DIRECTORY MUST EXIST LOCALLY, and have objects in it.
+local_upload_directory = "<path-to-local-directory>"
+# THIS SHOULD NOT HAVE A LEADING "/"
+remote_directory = "<bucket-directory>"
+
+class CallbackOnDone(AsperaBaseSubscriber):
+    def __init__(self):
+        pass
+
+    def on_done(self, future, **kwargs):
+        print("OnDone called %s" % future.meta.call_args.transfer_id)
+
+
+# Create Transfer manager
+transfer_manager = AsperaTransferManager(client)
+
+subscribers = [CallbackOnDone()]
+
+# Perform upload
+future = transfer_manager.upload_directory(local_upload_directory, bucket_name, remote_directory, None, subscribers)
+
+# Wait for upload to complete
+future.result()
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
+* `<path-to-local-directory>` - local directory that contains the files to be uploaded.  Must have leading and trailing `/` (i.e. `/Users/testuser/Documents/Upload/`)
+* `<bucket-directory>` - name of the directory in the bucket to store the files. Must not have a leading `/` (i.e. `newuploads/`)
+
+#### Directory Download
+```python
+bucket_name = "<bucket-name>"
+# THIS DIRECTORY MUST EXIST LOCALLY
+local_download_directory = "<path-to-local-directory>"
+remote_directory = "<bucket-directory>"
+
+class CallbackOnDone(AsperaBaseSubscriber):
+    def __init__(self):
+        pass
+
+    def on_done(self, future, **kwargs):
+        print("OnDone called %s" % future.meta.call_args.transfer_id)
+
+
+# Create Transfer manager
+transfer_manager = AsperaTransferManager(client)
+
+# Get object with Aspera
+subscribers = [CallbackOnDone()]
+future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory, None, subscribers)
+
+# Wait for download to complete
+future.result()
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
+* `<path-to-local-directory>` - local directory to save the downloaded files.  Must have leading and trailing `/` (i.e. `/Users/testuser/Downloads/`)
+* `<bucket-directory>` - name of the directory in the bucket to store the files. Must not have a leading `/` (i.e. `todownload/`)
