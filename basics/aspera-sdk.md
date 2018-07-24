@@ -68,6 +68,135 @@ Maven uses a file named `pom.xml` to specify the libraries (and their versions) 
   </build>
 </project>
 ```
+### Creating a client and sourcing credentials
+
+To connect to COS, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.  
+
+More information for using a credentials file is available in the [Java SDK](/docs/services/cloud-object-storage/libraries/java.html#client-credentials).
+
+An example for storing and using VCAP variables is available in the [Cloud Foundry Applications](/docs/services/cloud-object-storage/info/cof.html#storing-credentials-as-vcap-variables) guide.
+
+### Code Examples
+
+The following operations are **supported**:
+* File upload/download
+* Directory upload/download
+* Pause/Resume/Cancel operations
+
+The following items are **not supported**:
+* Multi-threading within the Aspera Transfer Manager
+* Sub-directory exclusion
+* Configuration settings
+    * Minimal configuration settings can be overrided by are subject to change
+* Windows OS
+* HMAC credentials
+
+#### Initializing configuration
+
+```java
+private static final String BLUEMIX_URL = "<endpoint>";
+private static final String API_KEY = "<api-key>";
+private static final String SERVICE_INSTANCE = "<service-instance-id>";
+private static final String IAM_URL = "https://iam.ng.bluemix.net/oidc/token";
+
+// Create S3 Client
+BasicIBMOAuthCredentials credentials = new BasicIBMOAuthCredentials(API_KEY, SERVICE_INSTANCE);
+EndpointConfiguration endpoint = new EndpointConfiguration(BLUEMIX_URL, "Us-South");
+
+AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withEndpointConfiguration(endpoint)
+        .withCredentials(new AWSStaticCredentialsProvider(credentials)).withPathStyleAccessEnabled(true)
+        .withIAMEndpoint(IAM_URL).build();
+```
+*Key Values*
+* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps){:new_window}).
+* `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples).
+* `<service-instance-id>` - service ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps){:new_window}). (i.e. `ServiceId-cb9fc456-3d8d-493a-afd5-d08ec674c18d`)
+
+#### File Upload
+
+```java
+String bucketName = "<bucket-name>";
+String filePath = "<path-to-local-file>";
+String itemName = "<item-name>";
+
+//Load file
+File inputFile = new File(filePath);
+
+// Create AsperaTransferManager for FASP upload
+AsperaTransferManager asperaTransfer = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+
+// Upload test file and report progress
+AsperaTransfer AsperaTransfer = asperaTransfer.upload(bucketName, itemName, inputFile);
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<path-to-local-file>` - directory and file name to the file to be uploaded to Object Storage.
+* `<item-name>` - name of the new file added to the bucket.
+
+#### File Download
+
+```java
+String bucketName = "<bucket-name>";
+String outputFile = "<path-to-local-file>";
+String itemName = "<item-name>";
+
+// Create AsperaTransferManager for FASP download
+AsperaTransferManager asperaTransfer = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+
+// Download file
+AsperaTransfer AsperaTransfer = asperaTransfer.download(bucketName, itemName, outputFile);
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<path-to-local-file>` - directory and file name to save from Object Storage.
+* `<item-name>` - name of the file in the bucket.
+
+#### Directory Upload
+
+```java
+String bucketName = "<bucket-name>";
+String directoryPath = "<path-to-local-directory>";
+String directoryPrefix = "<virtual-directory-prefix>";
+
+//Load Directory
+File inputDirectory = new File(directoryPath);
+
+// Create AsperaTransferManager for FASP upload
+AsperaTransferManager asperaTransfer = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+
+// Upload test directory
+AsperaTransfer AsperaTransfer = asperaTransfer.uploadDirectory(bucketName, directoryPrefix, inputDirectory, true);
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<path-to-local-directory>` - directory of the files to be uploaded to Object Storage.
+* `<virtual-directory-prefix>` - name of the directory prefix to be added to each file upon upload.
+
+#### Directory Download
+
+```java
+String bucketName = "<bucket-name>";
+String directoryPath = "<path-to-local-directory>";
+String directoryPrefix = "<virtual-directory-prefix>";
+
+//Load Directory
+File outputDirectory = new File(directoryPath);
+
+// Create AsperaTransferManager for FASP download
+AsperaTransferManager asperaTransfer = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+
+// Download test directory
+AsperaTransfer AsperaTransfer = asperaTransfer.downloadDirectory(bucketName, directoryPrefix, outputDirectory);
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<path-to-local-directory>` - directory to save downloaded files from Object Storage.
+* `<virtual-directory-prefix>` - name of the directory prefix of each file to download.
+
 
 ## Using Python
 
