@@ -173,7 +173,7 @@ AsperaTransfer AsperaTransfer = asperaTransfer.uploadDirectory(bucketName, direc
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
 * `<path-to-local-directory>` - directory of the files to be uploaded to Object Storage.
-* `<virtual-directory-prefix>` - name of the directory prefix to be added to each file upon upload.
+* `<virtual-directory-prefix>` - name of the directory prefix to be added to each file upon upload.  Use null or empty string to upload the files to the bucket root.
 
 #### Directory Download
 
@@ -195,7 +195,7 @@ AsperaTransfer AsperaTransfer = asperaTransfer.downloadDirectory(bucketName, dir
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
 * `<path-to-local-directory>` - directory to save downloaded files from Object Storage.
-* `<virtual-directory-prefix>` - name of the directory prefix of each file to download.
+* `<virtual-directory-prefix>` - name of the directory prefix of each file to download.  Use null or empty string to download all files in the bucket.
 
 
 ## Using Python
