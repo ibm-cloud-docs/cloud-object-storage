@@ -29,7 +29,7 @@ The {{site.data.keyword.cloudaccesstrailfull_notm}} service records user-initiat
 ## List of events
 {: #events}
 
-The following table lists the actions that generate an event:
+The following table lists the actions that generate an event: 
 
 <table>
   <caption>Actions that generate events</caption>
