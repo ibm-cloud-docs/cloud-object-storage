@@ -66,10 +66,6 @@ The following table lists the actions that generate an event:
 	  <td>An event is generated when a user reads the access control list on a bucket which can be public-read or private.</td>
   </tr>
   <tr>
-    <td>cloud-object-storage.bucket-acl.update</td>
-	  <td>An event is generated when a user modifies one or more access roles that a user or a serviceID has to work with a bucket.</td>
-  </tr>
-  <tr>
     <td>cloud-object-storage.bucket-cors.create</td>
 	  <td>An event is generated when a user creates a cross-origin resource sharing configuration for a bucket.</td>
   </tr>
@@ -121,15 +117,15 @@ The following table lists where to view the event depending on COS bucket locati
   </tr>
   <tr>
     <td>eu-geo</td>
-    <td>Germany</td>
+    <td>United Kingdom</td>
   </tr>
   <tr>
     <td>eu-de</td>
-    <td>Germany</td>
+    <td>United Kingdom</td>
   </tr>
   <tr>
     <td>Amsterdam (ams03)</td>
-    <td>Germany</td>
+    <td>United Kingdom</td>
   </tr>
   <tr>
     <td>eu-gb</td>
