@@ -215,13 +215,30 @@ Both can be installed using the following commands:
 For Mac OS X
 ```
 pip install ibm-cos-sdk["aspera"]
-pip install cos-aspera-mac-10.7-64
+pip install cos-aspera-mac-10-7-64-py-27
 ```
 
 For Linux
 ```
 pip install ibm-cos-sdk["aspera"]
-pip install cos-aspera-linux-64
+pip install cos-aspera-linux-64-py-36
+```
+
+An additional dependency is also required for **Python 2.7**
+```
+pip install backports.functools_lru_cache
+```
+
+Final step is to add COS Aspera install path to the `PYTHONPATH` environment variable (typically located in your `site-packages` folder, i.e. `~/Library/Python/2.7/lib/python/site-packages`)
+
+```
+export PYTHONPATH=$PYTHONPATH:~/Library/Python/2.7/lib/python/site-packages/cos-aspera-mac-10-7-64-py-27
+```
+
+To test your installation run the following command and ensure you do not receive any errors:
+
+```
+python -c  "import faspmanager2"
 ```
 
 ### Creating a client and sourcing credentials
@@ -280,21 +297,11 @@ bucket_name = "<bucket-name>"
 upload_filename = "<path-to-file>"
 object_name = "<item-name>"
 
-class CallbackOnDone(AsperaBaseSubscriber):
-    def __init__(self):
-        pass
-
-    def on_done(self, future, **kwargs):
-        print("OnDone called %s" % future.meta.call_args.transfer_id)
-
-
 # Create Transfer manager
 transfer_manager = AsperaTransferManager(client)
 
-subscribers = [CallbackOnDone()]
-
 # Perform upload
-future = transfer_manager.upload(upload_filename, bucket_name, object_name, None, subscribers)
+future = transfer_manager.upload(upload_filename, bucket_name, object_name, None, None)
 
 # Wait for upload to complete
 future.result()
@@ -312,23 +319,11 @@ bucket_name = "<bucket-name>"
 download_filename = "<path-to-local-file>"
 object_name = "<object-to-download>"
 
-class CallbackOnDone(AsperaBaseSubscriber):
-    def __init__(self):
-        pass
-
-    def on_done(self, future, **kwargs):
-        print("OnDone called %s" % future.meta.call_args.transfer_id)
-
-
 # Create Transfer manager
 transfer_manager = AsperaTransferManager(client)
 
-# Perform upload with S3
-client.put_object(Bucket=bucket_name, Key=object_name, Body="This is a test upload for aspera download")
-
 # Get object with Aspera
-subscribers = [CallbackOnDone()]
-future = transfer_manager.download(bucket_name, object_name, download_filename, None, subscribers)
+future = transfer_manager.download(bucket_name, object_name, download_filename, None, None)
 
 # Wait for download to complete
 future.result()
@@ -348,21 +343,11 @@ local_upload_directory = "<path-to-local-directory>"
 # THIS SHOULD NOT HAVE A LEADING "/"
 remote_directory = "<bucket-directory>"
 
-class CallbackOnDone(AsperaBaseSubscriber):
-    def __init__(self):
-        pass
-
-    def on_done(self, future, **kwargs):
-        print("OnDone called %s" % future.meta.call_args.transfer_id)
-
-
 # Create Transfer manager
 transfer_manager = AsperaTransferManager(client)
 
-subscribers = [CallbackOnDone()]
-
 # Perform upload
-future = transfer_manager.upload_directory(local_upload_directory, bucket_name, remote_directory, None, subscribers)
+future = transfer_manager.upload_directory(local_upload_directory, bucket_name, remote_directory, None, None)
 
 # Wait for upload to complete
 future.result()
@@ -380,19 +365,63 @@ bucket_name = "<bucket-name>"
 local_download_directory = "<path-to-local-directory>"
 remote_directory = "<bucket-directory>"
 
+# Create Transfer manager
+transfer_manager = AsperaTransferManager(client)
+
+# Get object with Aspera
+future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory, None, None)
+
+# Wait for download to complete
+future.result()
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
+* `<path-to-local-directory>` - local directory to save the downloaded files.  Must have leading and trailing `/` (i.e. `/Users/testuser/Downloads/`)
+* `<bucket-directory>` - name of the directory in the bucket to store the files. Must not have a leading `/` (i.e. `todownload/`)
+
+#### Using Subscribers
+
+Subscribers allow you monitor the progress of your operations by attach custom callback methods.  There are three subscribers currently available:
+
+* Queued
+* Progress
+* Done
+
+```python
+bucket_name = "<bucket-name>"
+local_download_directory = "<path-to-local-directory>"
+remote_directory = "<bucket-directory>"
+
+# Subscriber callbacks
+class CallbackOnQueued(AsperaBaseSubscriber):
+    def __init__(self):
+        pass
+
+    def on_queued(self, future, **kwargs):
+        print("Directory download queued.")
+
+class CallbackOnProgress(AsperaBaseSubscriber):
+    def __init__(self):
+        pass
+
+    def on_progress(self, future, bytes_transferred, **kwargs):
+        print("Directory download in progress: %s bytes transferred" % bytes_transferred)
+
 class CallbackOnDone(AsperaBaseSubscriber):
     def __init__(self):
         pass
 
     def on_done(self, future, **kwargs):
-        print("OnDone called %s" % future.meta.call_args.transfer_id)
-
+        print("Downloads complete!")
 
 # Create Transfer manager
 transfer_manager = AsperaTransferManager(client)
 
+# Attach subscribers
+subscribers = [CallbackOnQueued(), CallbackOnProgress(), CallbackOnDone()]
+
 # Get object with Aspera
-subscribers = [CallbackOnDone()]
 future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory, None, subscribers)
 
 # Wait for download to complete
@@ -403,3 +432,35 @@ future.result()
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
 * `<path-to-local-directory>` - local directory to save the downloaded files.  Must have leading and trailing `/` (i.e. `/Users/testuser/Downloads/`)
 * `<bucket-directory>` - name of the directory in the bucket to store the files. Must not have a leading `/` (i.e. `todownload/`)
+
+The sample code above produces the following output:
+
+```
+Directory download queued.
+Directory download in progress: 5632 bytes transferred
+Directory download in progress: 1047552 bytes transferred
+Directory download in progress: 2095104 bytes transferred
+Directory download in progress: 4190208 bytes transferred
+Directory download in progress: 5237760 bytes transferred
+Directory download in progress: 7332864 bytes transferred
+Directory download in progress: 8380416 bytes transferred
+Directory download in progress: 10475520 bytes transferred
+Directory download in progress: 12570624 bytes transferred
+Directory download in progress: 13618176 bytes transferred
+Directory download in progress: 15713280 bytes transferred
+Directory download in progress: 16760832 bytes transferred
+Directory download in progress: 18855936 bytes transferred
+Directory download in progress: 20706509 bytes transferred
+Directory download in progress: 28920781 bytes transferred
+Directory download in progress: 32225357 bytes transferred
+Directory download in progress: 33957197 bytes transferred
+Directory download in progress: 35368013 bytes transferred
+Directory download in progress: 36415565 bytes transferred
+Directory download in progress: 37463117 bytes transferred
+Directory download in progress: 38510669 bytes transferred
+Directory download in progress: 40605773 bytes transferred
+Directory download in progress: 41418650 bytes transferred
+Directory download in progress: 53295130 bytes transferred
+Directory download in progress: 62106855 bytes transferred
+Download complete!
+```
