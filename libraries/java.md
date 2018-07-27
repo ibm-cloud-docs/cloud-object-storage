@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-07-13"
+lastupdated: "2018-07-27"
 
 ---
 
@@ -98,6 +98,8 @@ Note that when adding custom metadata to an object, it is necessary to create an
 {: .tip}
 
 ### Initializing configuration
+{: #init-config}
+
 ```java
 private static String COS_ENDPOINT = "<endpoint>";
 private static String COS_API_KEY_ID = "<api-key>";
@@ -711,6 +713,113 @@ HeadBucketResult result = s3client.headBucket(headBucketRequest)
 boolean KPEnabled = result.getIBMSSEKPEnabled();
 String crn = result.getIBMSSEKPCUSTOMERROOTKEYCRN();
 ```
+
+## Using Aspera Connect High-Speed Transfer
+
+By installing the [Aspera SDK](/docs/services/cloud-object-storage/basics/aspera.html#aspera-sdk-java) you can utilize high-speed file transfers within your application.
+
+### Initalizing the AsperaTransferManager
+
+Pass your existing [S3 Client](#init-config) object to create the AsperaTransferManager
+
+```java
+AsperaTransferManager asperaTransfer = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+```
+
+*Key Values*
+* `API_KEY` - api key generated when creating the service credentials (write access is required)
+
+### File Upload
+
+```java
+String bucketName = "<bucket-name>";
+String filePath = "<path-to-local-file>";
+String itemName = "<item-name>";
+
+// Load file
+File inputFile = new File(filePath);
+
+// Create AsperaTransferManager for FASP upload
+AsperaTransferManager asperaTransfer = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+
+// Upload test file and report progress
+AsperaTransfer AsperaTransfer = asperaTransfer.upload(bucketName, itemName, inputFile);
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<path-to-local-file>` - directory and file name to the file to be uploaded to Object Storage.
+* `<item-name>` - name of the new file added to the bucket.
+
+### File Download
+
+```java
+String bucketName = "<bucket-name>";
+String outputPath = "<path-to-local-file>";
+String itemName = "<item-name>";
+
+// Create local file
+File outputFile = new File(outputPath);
+outputFile.createNewFile();
+
+// Create AsperaTransferManager for FASP download
+AsperaTransferManager asperaTransfer = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+
+// Download file
+AsperaTransfer AsperaTransfer = asperaTransfer.download(bucketName, itemName, outputFile);
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<path-to-local-file>` - directory and file name to save from Object Storage.
+* `<item-name>` - name of the file in the bucket.
+
+### Directory Upload
+
+```java
+String bucketName = "<bucket-name>";
+String directoryPath = "<path-to-local-directory>";
+String directoryPrefix = "<virtual-directory-prefix>";
+boolean includeSubDirectories = true;
+
+// Load Directory
+File inputDirectory = new File(directoryPath);
+
+// Create AsperaTransferManager for FASP upload
+AsperaTransferManager asperaTransfer = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+
+// Upload test directory
+AsperaTransfer AsperaTransfer = asperaTransfer.uploadDirectory(bucketName, directoryPrefix, inputDirectory, includeSubDirectories);
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<path-to-local-directory>` - directory of the files to be uploaded to Object Storage.
+* `<virtual-directory-prefix>` - name of the directory prefix to be added to each file upon upload.  Use null or empty string to upload the files to the bucket root.
+
+### Directory Download
+
+```java
+String bucketName = "<bucket-name>";
+String directoryPath = "<path-to-local-directory>";
+String directoryPrefix = "<virtual-directory-prefix>";
+boolean includeSubDirectories = true;
+
+// Load Directory
+File outputDirectory = new File(directoryPath);
+
+// Create AsperaTransferManager for FASP download
+AsperaTransferManager asperaTransfer = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+
+// Download test directory
+AsperaTransfer AsperaTransfer = asperaTransfer.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<path-to-local-directory>` - directory to save downloaded files from Object Storage.
+* `<virtual-directory-prefix>` - name of the directory prefix of each file to download.  Use null or empty string to download all files in the bucket.
+
 
 ## API reference
 
