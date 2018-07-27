@@ -39,8 +39,8 @@ Maven uses a file named `pom.xml` to specify the libraries (and their versions) 
         </dependency>
         <dependency>
             <groupId>com.ibm.cos-aspera</groupId>
-            <artifactId>cos-aspera</artifactId>
-            <version>0.1.161418</version>
+            <artifactId>cos-aspera-mac-10.7-64</artifactId>
+            <version>0.1.162112</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -68,6 +68,13 @@ Maven uses a file named `pom.xml` to specify the libraries (and their versions) 
   </build>
 </project>
 ```
+
+Additional code is necessary to use the Aspera library within your application.  The shared library will need to be explicitly loaded.
+
+```java
+System.load("<path-to-local-folder/libfaspmanager2.jnilib");
+```
+
 ### Creating a client and sourcing credentials
 
 To connect to COS, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.  
@@ -138,8 +145,11 @@ AsperaTransfer AsperaTransfer = asperaTransfer.upload(bucketName, itemName, inpu
 
 ```java
 String bucketName = "<bucket-name>";
-String outputFile = "<path-to-local-file>";
+String outputPath = "<path-to-local-file>";
 String itemName = "<item-name>";
+
+File outputFile = new File(outputPath);
+outputFile.createNewFile();
 
 // Create AsperaTransferManager for FASP download
 AsperaTransferManager asperaTransfer = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
@@ -159,6 +169,7 @@ AsperaTransfer AsperaTransfer = asperaTransfer.download(bucketName, itemName, ou
 String bucketName = "<bucket-name>";
 String directoryPath = "<path-to-local-directory>";
 String directoryPrefix = "<virtual-directory-prefix>";
+boolean includeSubDirectories = true;
 
 //Load Directory
 File inputDirectory = new File(directoryPath);
@@ -167,7 +178,7 @@ File inputDirectory = new File(directoryPath);
 AsperaTransferManager asperaTransfer = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
 
 // Upload test directory
-AsperaTransfer AsperaTransfer = asperaTransfer.uploadDirectory(bucketName, directoryPrefix, inputDirectory, true);
+AsperaTransfer AsperaTransfer = asperaTransfer.uploadDirectory(bucketName, directoryPrefix, inputDirectory, includeSubDirectories);
 ```
 
 *Key Values*
@@ -181,6 +192,7 @@ AsperaTransfer AsperaTransfer = asperaTransfer.uploadDirectory(bucketName, direc
 String bucketName = "<bucket-name>";
 String directoryPath = "<path-to-local-directory>";
 String directoryPrefix = "<virtual-directory-prefix>";
+boolean includeSubDirectories = true;
 
 //Load Directory
 File outputDirectory = new File(directoryPath);
@@ -189,7 +201,7 @@ File outputDirectory = new File(directoryPath);
 AsperaTransferManager asperaTransfer = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
 
 // Download test directory
-AsperaTransfer AsperaTransfer = asperaTransfer.downloadDirectory(bucketName, directoryPrefix, outputDirectory);
+AsperaTransfer AsperaTransfer = asperaTransfer.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
 ```
 
 *Key Values*
