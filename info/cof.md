@@ -163,31 +163,63 @@ bx resource service-binding-create <service alias> <cf app name> <role> -p '{"HM
 
 ### Binding to {{site.data.keyword.containershort_notm}}
 
-Creating a service binding to {{site.data.keyword.containershort}} requires a slightly different procedure.  For this section you will also need to install [jq - a lightweight command-line JSON processor](https://stedolan.github.io/jq/){:new_window}.
+Creating a service binding to {{site.data.keyword.containershort}} requires a slightly different procedure.  
 
-1. Generate COS HMAC credentials and put in K8s<br/><br/>* **Note:** cluster-service-bind requires an existing alias to a COS global instance*
+*For this section you will also need to install [jq - a lightweight command-line JSON processor](https://stedolan.github.io/jq/){:new_window}.*
+
+You will need the following information and subtitute the key values in commands below:
+
+* `<service alias>` - new alias name for COS service
+* `<cos instance name>` - name of your existing COS instance
+* `<service key name>` - new name for your service key 
+* `<role>` - role to attach to your service key (see above for valid roles, `Writer` is most often specified)
+* `<cluster name>` - name of your existing Kubernetes cluster service
+* `<secret binding name>` - this value is generated when COS is bound to the cluster service
+
+
+1. Create a service alias for your COS Instance<br/><br/>* **Note:** COS Instance can only have one service alias*
 ```
-bx resource service-alias-create cos-alias --instance-name
+bx resource service-alias-create <service alias> --instance-name <cos instance name>
 ```
  
-2. Create a new service key with write permissions to the COS 
+1. Create a new service key with permissions to the COS service alias
 ```
-bx resource service-key-create "cos-hmac" Writer --alias-name cos-alias --parameters '{"HMAC":true}’
+bx resource service-key-create <service key name> <role> --alias-name <service alias> --parameters '{"HMAC":true}’
 ```
 
 3. Bind the cluster service to COS
 ```
-bx cs cluster-service-bind default cos-alias
+bx cs cluster-service-bind --cluster <cluster name> --namespace default --service <service alias>
 ```
 
-4. Verify cos-alias is bound to the cluster
+4. Verify COS service alias is bound to the cluster
 ```
-bx cs cluster-services cos-alias 0fd0adbe-4811-4c85-b781-2d0d68f2207e cos-hmac default
+bx cs cluster-services --cluster <cluster name>
+```
+output should look like this:
+```
+OK
+Service   Instance GUID                          Key             Namespace
+sv-cos    91e0XXXX-9982-4XXd-be60-ee328xxxacxx   cos-hmac        default
 ```
 
-5. Verify COS HMAC credentials are available in your cluster Secrets<br/><br/>* **Note:** This should be changed to verify all COS credentials are in Secrets*
+5. Retrieve the list of Secrets in your cluster and find the secret for your COS service.  Typically it will be `binding-` plus the `<service alias>` you specified in step 1 (i.e. `binding-sv-cos`).  Use this value as `<secret binding name>` in step 6.
 ```
-kubectl get secret binding-cos-alias -o json | jq .data.binding | sed -e 's/^"//' -e 's/"$//' | base64 -D | jq .cos_hmac_keys
+kubectl get secrets
+```
+output should look like this:
+```
+NAME                                   TYPE                                  DATA      AGE
+binding-sv-cos                         Opaque                                1         18d
+bluemix-default-secret                 kubernetes.io/dockerconfigjson        1         20d
+bluemix-default-secret-international   kubernetes.io/dockerconfigjson        1         20d
+bluemix-default-secret-regional        kubernetes.io/dockerconfigjson        1         20d
+default-token-8hncf                    kubernetes.io/service-account-token   3         20d
+```
+
+6. Verify COS HMAC credentials are available in your cluster Secrets
+```
+kubectl get secret <secret binding name> -o json | jq .data.binding | sed -e 's/^"//' -e 's/"$//' | base64 -D | jq .cos_hmac_keys
 ```
 output should look like this:
 ```json
