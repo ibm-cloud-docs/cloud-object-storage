@@ -298,6 +298,19 @@ Types of endpoint:
     </td>
   </tr>
   <tr>
+    <td rowspan="2">São Paulo, Brazil</td>
+    <td>public</td>
+    <td>
+      <code class="highlighter-rouge">s3.sao01.objectstorage.softlayer.net</code>
+    </td>
+  </tr>
+  <tr>
+    <td>private</td>
+    <td>
+      <code class="highlighter-rouge">s3.sao01.objectstorage.service.networklayer.com</code>
+    </td>
+  </tr>
+  <tr>
     <td rowspan="2">Toronto, Canada</td>
     <td>public</td>
     <td>
