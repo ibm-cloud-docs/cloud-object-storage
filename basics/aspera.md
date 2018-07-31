@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "07-27-2018"
+lastupdated: "07-31-2018"
 
 ---
 {:new_window: target="_blank"}
@@ -71,7 +71,7 @@ The following items are **not supported**:
 * Multi-threading within the Aspera Transfer Manager
 * Sub-directory exclusion
 * Configuration settings
-    * Minimal configuration settings can be overrided by are subject to change
+    * Minimal configuration settings can be overridden but are subject to change
 * Windows OS
 * HMAC credentials
 
@@ -135,6 +135,10 @@ Additional code is necessary to use the Aspera library within your application. 
 System.load("<path-to-local-folder>/libfaspmanager2.jnilib");
 ```
 
+#### Aspera/Java code examples
+
+Examples of initiating Aspera transfers with Java are available in [Using Java](/docs/services/cloud-object-storage/libraries/java.html#using-aspera-connect-high-speed-transfer) section.
+
 ### Getting the SDK using Python
 {: #aspera-sdk-python}
 
@@ -176,3 +180,7 @@ To test your installation run the following command and ensure you do not receiv
 ```
 python -c  "import faspmanager2"
 ```
+
+#### Aspera/Python code examples
+
+Examples of initiating Aspera transfers with Python are available in [Using Python](/docs/services/cloud-object-storage/libraries/python.html#using-aspera-connect-high-speed-transfer) section.
