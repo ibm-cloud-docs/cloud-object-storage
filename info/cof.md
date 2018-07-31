@@ -171,7 +171,7 @@ You will need the following information and subtitute the key values in commands
 
 * `<service alias>` - new alias name for COS service
 * `<cos instance name>` - name of your existing COS instance
-* `<service key name>` - new name for your service key 
+* `<service credential name>` - new name for your service key/credential
 * `<role>` - role to attach to your service key (see above for valid roles, `Writer` is most often specified)
 * `<cluster name>` - name of your existing Kubernetes cluster service
 * `<secret binding name>` - this value is generated when COS is bound to the cluster service
@@ -184,7 +184,7 @@ bx resource service-alias-create <service alias> --instance-name <cos instance n
  
 1. Create a new service key with permissions to the COS service alias
 ```
-bx resource service-key-create <service key name> <role> --alias-name <service alias> --parameters '{"HMAC":true}’
+bx resource service-key-create <service credential name> <role> --alias-name <service alias> --parameters '{"HMAC":true}’
 ```
 
 3. Bind the cluster service to COS
