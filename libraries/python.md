@@ -649,3 +649,85 @@ Directory download in progress: 53295130 bytes transferred
 Directory download in progress: 62106855 bytes transferred
 Download complete!
 ```
+
+<!---
+
+### Pause/Resume/Cancel
+
+The SDK provides the ability to manage the progress of file/directory transfers though the following methods of the `AsperaTransferFuture` object:
+
+* `pause()`
+* `resume()`
+* `cancel()`
+
+The following example shows a possible use for these methods:
+
+```python
+bucket_name = "<bucket-name>"
+local_download_directory = "<path-to-local-directory>"
+remote_directory = "<bucket-directory>"
+
+# Subscriber callbacks
+class CallbackOnQueued(AsperaBaseSubscriber):
+    def __init__(self):
+        pass
+
+    def on_queued(self, future, **kwargs):
+        print("Directory download queued.")
+
+class CallbackOnProgress(AsperaBaseSubscriber):
+    def __init__(self):
+        pass
+
+    def on_progress(self, future, bytes_transferred, **kwargs):
+        print("Directory download in progress: %s bytes transferred" % bytes_transferred)
+
+class CallbackOnDone(AsperaBaseSubscriber):
+    def __init__(self):
+        pass
+
+    def on_done(self, future, **kwargs):
+        print("Downloads complete!")
+
+# Create Transfer manager
+transfer_manager = AsperaTransferManager(client)
+
+# Attach subscribers
+subscribers = [CallbackOnQueued(), CallbackOnProgress(), CallbackOnDone()]
+
+# Get object with Aspera
+future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory, None, subscribers)
+
+pauseCount = 0
+
+# Wait for download to complete
+while future.done() == False:
+    # sleep for 3 seconds
+    time.sleep(3)
+    pauseCount += 1
+
+    # if transfer takes more than 15 seconds, pause for one minute and resume
+    if pauseCount == 5:
+        print("Pausing the transfer for 1 minute...")
+
+        # pause the transfer
+        future.pause()
+
+        # sleep for 1 minute
+        time.sleep(60)
+
+        print("Resuming the transfer...")
+
+        # resume the transfer
+        future.resume()
+
+    # if the transfer takes more than 1 minute, cancel the transfer
+    if pauseCount >= 20:
+        print("Canceling the transfer!")
+
+        # cancel the transfer
+        future.cancel()
+        break
+```
+--->
+
