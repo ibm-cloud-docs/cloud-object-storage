@@ -723,7 +723,7 @@ By installing the [Aspera SDK](/docs/services/cloud-object-storage/basics/aspera
 Pass your existing [S3 Client](#init-config) object to create the AsperaTransferManager
 
 ```java
-AsperaTransferManager asperaTransfer = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
 ```
 
 *Key Values*
@@ -740,10 +740,10 @@ String itemName = "<item-name>";
 File inputFile = new File(filePath);
 
 // Create AsperaTransferManager for FASP upload
-AsperaTransferManager asperaTransfer = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
 
 // Upload test file and report progress
-AsperaTransfer AsperaTransfer = asperaTransfer.upload(bucketName, itemName, inputFile);
+AsperaTransfer asperaTransfer = asperaTransferMgr.upload(bucketName, itemName, inputFile);
 ```
 
 *Key Values*
@@ -763,10 +763,10 @@ File outputFile = new File(outputPath);
 outputFile.createNewFile();
 
 // Create AsperaTransferManager for FASP download
-AsperaTransferManager asperaTransfer = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
 
 // Download file
-AsperaTransfer AsperaTransfer = asperaTransfer.download(bucketName, itemName, outputFile);
+AsperaTransfer asperaTransfer = asperaTransferMgr.download(bucketName, itemName, outputFile);
 ```
 
 *Key Values*
@@ -786,10 +786,10 @@ boolean includeSubDirectories = true;
 File inputDirectory = new File(directoryPath);
 
 // Create AsperaTransferManager for FASP upload
-AsperaTransferManager asperaTransfer = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
 
 // Upload test directory
-AsperaTransfer AsperaTransfer = asperaTransfer.uploadDirectory(bucketName, directoryPrefix, inputDirectory, includeSubDirectories);
+AsperaTransfer asperaTransfer = asperaTransferMgr.uploadDirectory(bucketName, directoryPrefix, inputDirectory, includeSubDirectories);
 ```
 
 *Key Values*
@@ -809,10 +809,10 @@ boolean includeSubDirectories = true;
 File outputDirectory = new File(directoryPath);
 
 // Create AsperaTransferManager for FASP download
-AsperaTransferManager asperaTransfer = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
 
 // Download test directory
-AsperaTransfer AsperaTransfer = asperaTransfer.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+AsperaTransfer asperaTransfer = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
 ```
 
 *Key Values*
@@ -820,6 +820,87 @@ AsperaTransfer AsperaTransfer = asperaTransfer.downloadDirectory(bucketName, dir
 * `<path-to-local-directory>` - directory to save downloaded files from Object Storage.
 * `<virtual-directory-prefix>` - name of the directory prefix of each file to download.  Use null or empty string to download all files in the bucket.
 
+### Monitoring Transfer Progress
+
+The simplest way to monitor the progress of your file/directory transfers is to use the `isDone()` property that returns `true` when your transfer is complete.
+
+```java
+AsperaTransfer asperaTransfer = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+
+while (!asperaTransfer.isDone()) {
+    System.out.println("Directory download is in progress");
+
+    //pause for 3 seconds
+    Thread.sleep(1000 * 3);
+}
+```
+
+<!---
+
+### Pause/Resume/Cancel
+
+The SDK provides the ability to manage the progress of file/directory transfers though the following methods of the `AsperaTransfer` object:
+
+* `pause()`
+* `resume()`
+* `cancel()`
+
+The following example shows a possible use for these methods:
+
+```java
+String bucketName = "<bucket-name>";
+String directoryPath = "<path-to-local-directory>";
+String directoryPrefix = "<virtual-directory-prefix>";
+boolean includeSubDirectories = true;
+
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, _cos).build();
+
+File outputDirectory = new File(directoryName);
+
+System.out.println("Starting directory download...");
+
+//download the directory from cloud storage
+AsperaTransfer asperaTransfer = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+
+int pauseCount = 0;
+
+while (!asperaTransfer.isDone()) {
+    System.out.println("Directory download in progress...");
+
+    //sleep for 3 seconds
+    Thread.sleep(1000 * 3);
+    pauseCount++;
+
+    //if transfer takes more than 15 seconds, pause for one minute and resume
+    if (pauseCount == 5) {
+        System.out.println("Pausing the transfer for 1 minute...");
+
+        //pause the transfer
+        asperaTransfer.pause();
+
+        //sleep for 1 minute
+        Thread.sleep(1000 * 60);
+
+        System.out.println("Resuming the transfer...");
+
+        //resume the transfer
+        asperaTransfer.resume();
+    }
+
+    //if the transfer takes more than 1 minute, cancel the transfer
+    if (pauseCount >= 20) {
+        System.out.println("Canceling the transfer!");
+
+        //cancel the transfer
+        asperaTransfer.cancel();
+        break;
+    }
+}
+
+System.out.println("Directory download complete!");
+```
+
+--->
 
 ## API reference
 
