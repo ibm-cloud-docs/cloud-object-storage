@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2018-03-16"
+  years: 2017, 2018
+lastupdated: "2018-08-02"
 
 ---
 {:new_window: target="_blank"}
@@ -187,7 +187,7 @@ Content-Length: 364
 
 ----
 
-## Abort incomplete multipart uploads
+### Abort incomplete multipart uploads
 
 A `DELETE` request issued to an object with query parameter `uploadId` will delete all unfinished parts of a multipart upload.
 
@@ -216,3 +216,25 @@ Accept-Ranges: bytes
 Server: Cleversafe/3.9.1.114
 X-Clv-S3-Version: 2.5
 ```
+
+## Using S4CMD (CLI)
+
+## Using the Java SDK
+
+The Java SDK provides two ways to execute large object uploads:
+
+* [Multi-part Uploads](/docs/services/cloud-object-storage/libraries/java.html#multipart-upload)
+* [TransferManager](/docs/services/cloud-object-storage/libraries/java.html#transfer-manager)
+
+## Using the Python SDK
+
+The Python SDK provides two ways to execute large object uploads:
+
+* [Multi-part Uploads](/docs/services/cloud-object-storage/libraries/python.html#multipart-upload)
+* [TransferManager](/docs/services/cloud-object-storage/libraries/python.html#transfer-manager)
+
+## Using the Node.js SDK
+
+The Node.js SDK provides a single way to execute large object uploads:
+
+* [Multi-part Uploads](/docs/services/cloud-object-storage/libraries/node.html#multipart-upload)

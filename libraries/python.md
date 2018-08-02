@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-07-27"
+lastupdated: "2018-08-02"
 
 ---
 
@@ -275,6 +275,7 @@ def get_item_acl(bucket_name, item_name):
     * [owner](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.ObjectAcl.owner){:new_window}
 
 ### Execute a multi-part upload
+{: #multipart-upload}
 
 #### Upload binary file (preferred method)
 The [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.upload_fileobj){:new_window} method of the [S3.Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){:new_window} class automatically executes a multi-part upload when necessary.  The [TransferConfig](https://ibm.github.io/ibm-cos-sdk-python/reference/customizations/s3.html#s3-transfers){:new_window} class is used to determine the threshold for using the mult-part upload.
@@ -408,7 +409,52 @@ def multi_part_upload_manual(bucket_name, item_name, file_path):
     * [create_multipart_upload](){:new_window}
     * [upload_part](){:new_window}
 
+### Large Object Upload using TransferManager
+{: #transfer-manager}
 
+The `TransferManager` provides another way to execute large file transfers by automatically incorporating multi-part uploads whenever necessary setting configuration parameters.
+
+```python
+def upload_large_file(bucket_name, item_name, file_path):
+    print("Starting large file upload for {0} to bucket: {1}".format(item_name, bucket_name))
+
+    # set the chunk size to 5 MB
+    part_size = 1024 * 1024 * 5
+
+    # set threadhold to 5 MB
+    file_threshold = 1024 * 1024 * 5
+
+    # Create client connection
+    cos_cli = ibm_boto3.client("s3",
+        ibm_api_key_id=COS_API_KEY_ID,
+        ibm_service_instance_id=COS_SERVICE_CRN,
+        ibm_auth_endpoint=COS_AUTH_ENDPOINT,
+        config=Config(signature_version="oauth"),
+        endpoint_url=COS_ENDPOINT
+    )
+
+    # set the transfer threshold and chunk size in config settings
+    transfer_config = ibm_boto3.s3.transfer.TransferConfig(
+        multipart_threshold=file_threshold,
+        multipart_chunksize=part_size
+    )
+
+    # create transfer manager
+    transfer_mgr = ibm_boto3.s3.transfer.TransferManager(cos_cli, config=transfer_config)
+
+    try:
+        # initiate file upload
+        future = transfer_mgr.upload(file_path, bucket_name, item_name)
+
+        # wait for upload to complete
+        future.result()
+
+        print ("Large file upload complete!")
+    except Exception as e:
+        print("Unable to complete large file upload: {0}".format(e))
+    finally:
+        transfer_mgr.shutdown()
+```
 
 ## Using Key Protect
 
