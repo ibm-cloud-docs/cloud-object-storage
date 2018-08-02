@@ -47,7 +47,7 @@ Typically, using the web-based console is not the most common way to use {{site.
 Instead of the standard HTTP `PUT`, Aspera high-speed transfer uploads the object using the [FASP protocol](http://asperasoft.com/technology/transport/fasp/) from [Aspera high-speed transfer](https://www.ibm.com/cloud/high-speed-data-transfer). 
 ### Transfer status
 
-**Active:** Once you initiate a transfer, the transfer status displays as active. While the transfer is active, you can pause, resume or cancel an active transer. 
+**Active:** Once you initiate a transfer, the transfer status displays as active. You can pause, resume or cancel an active transfer. 
 
 **Completed:** Upon completion of your transfer, information about this and all transfers in this session display on the Completed tab. You can clear this information. You will only see information about transfers completed in the current session.
 
