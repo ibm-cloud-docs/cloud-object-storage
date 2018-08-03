@@ -203,7 +203,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
   </tr>
   <tr>
     <td rowspan="2">Chennai, India</td>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
   <tr>
   <tr>
