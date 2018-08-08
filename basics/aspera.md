@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "07-31-2018"
+lastupdated: "08-08-2018"
 
 ---
 {:new_window: target="_blank"}
@@ -72,7 +72,6 @@ The following items are **not supported**:
 * Sub-directory exclusion
 * Configuration settings
     * Minimal configuration settings can be overridden but are subject to change
-* Windows OS
 * HMAC credentials
 
 ### Getting the SDK using Java
@@ -152,16 +151,9 @@ extras_requires = {
 
 Both can be installed using the following commands:
 
-For Mac OS X
 ```
 pip install ibm-cos-sdk["aspera"]
-pip install cos-aspera-mac-10-7-64-py-27
-```
-
-For Linux
-```
-pip install ibm-cos-sdk["aspera"]
-pip install cos-aspera-linux-64-py-36
+pip install cos-aspera
 ```
 
 An additional dependency is also required for **Python 2.7**

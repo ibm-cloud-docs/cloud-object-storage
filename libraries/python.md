@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-07-27"
+lastupdated: "2018-08-08"
 
 ---
 
@@ -474,6 +474,9 @@ Pass your existing [S3 Client](#init-config) object to create the AsperaTransfer
 ```python
 transfer_manager = AsperaTransferManager(client)
 ```
+
+You will need to provide an IAM API Key for Aspera transfers.  HMAC Credentials are **NOT** currently supported.  For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
+{:tip}
 
 ### File Upload
 
