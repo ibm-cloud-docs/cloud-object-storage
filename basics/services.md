@@ -31,26 +31,26 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <tr>
     <td rowspan="2">US Cross Region</td>
   <tr>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
   </tr>
   <tr>
     <td rowspan="2">Dallas Access Point</td>
   </tr>
   <tr>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
   </tr>
   <tr>
     <td rowspan="2">San Jose Access Point</td>
   </tr>
   <tr>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
   </tr>
   <tr>
     <td rowspan="2">Washington, DC Access Point</td>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
   </tr>
   </tr>
@@ -195,7 +195,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
   </thead>
   <tr>
     <td rowspan="2">Amsterdam, Netherlands</td>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
   <tr>
   <tr>
