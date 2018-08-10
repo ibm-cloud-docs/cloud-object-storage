@@ -156,26 +156,26 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
   </thead>
     <tr>
     <td rowspan="2">AP Cross Region</td>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
     <tr>
   <tr>
   <tr>
     <td rowspan="2">Tokyo Access Point</td>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
     <tr>
   <tr>
   <tr>
     <td rowspan="2">Seoul Access Point</td>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
     <tr>
   <tr>
   </tr>
   <tr>
     <td rowspan="2">Hong Kong Access Point</td>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
     <tr>
   <tr>
