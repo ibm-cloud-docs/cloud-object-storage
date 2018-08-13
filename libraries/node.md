@@ -90,6 +90,8 @@ function createBucket(bucketName) {
     });
 }
 ```
+
+
 *SDK References*
 * [createBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createBucket-property){:new_window}
 
