@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "08-08-2018"
+lastupdated: "08-13-2018"
 
 ---
 {:new_window: target="_blank"}
@@ -60,18 +60,14 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
 
 ## Using Libraries and SDKs
 
-The {{site.data.keyword.cos_short}} and Aspera SDK works together to provide the ability to initiate high-speed transfer within your custom applications when using either Java or Python (*currently only **Python 2.7** is supported*)
+The {{site.data.keyword.cos_short}} and Aspera SDK works together to provide the ability to initiate high-speed transfer within your custom applications when using either Java or Python.
 
 The following operations are **supported**:
 * File upload/download
 * Directory upload/download
 * Pause/Resume/Cancel operations
 
-The following items are **not supported**:
-* Multi-threading within the Aspera Transfer Manager
-* Sub-directory exclusion
-* Configuration settings
-    * Minimal configuration settings can be overridden but are subject to change
+The following item is **not supported**:
 * HMAC credentials
 
 ### Getting the SDK using Java

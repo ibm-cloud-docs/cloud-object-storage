@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-07-27"
+lastupdated: "2018-08-13"
 
 ---
 {:new_window: target="_blank"}
@@ -1188,24 +1188,6 @@ This is an example of listing the Aspera service api keys on the "apiary" bucket
 ```http
 GET /apiary?faspConnectionInfo= HTTP/1.1
 Authorization: Bearer {token}
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Headers)**
-
-```http
-GET /apiary?faspConnectionInfo= HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-GET /faspConnectionInfo?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&cors=&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
