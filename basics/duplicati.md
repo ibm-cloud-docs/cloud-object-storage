@@ -44,7 +44,11 @@ To create a backup job.
 
 On the subsequent page you will choose 'S3 Compatible' from the drop-down next to Storage Type click the 'Use SSL' checkbox and in the Server drop-down choose Custom URL. This will provide you with an additional box to specify the US Geo Cloud Object Storage (S3) endpoint. In this example I am using the Private network endpoint (s3-api.us-geo.objectstorage.service.networklayer.com). Provide a name for the bucket you would like the backups to go to. Duplicati will create the bucket if it does not already exist. You can leave both 'Bucket create region' and 'Storage class' set to Default and then specify a sub-folder for your backups to reside in if you so desire. In the bottom 2 boxes provide your 'Access Key ID' and 'Secret Access Key'. Due to incompatibility with SSLv3 and TLS1 we will need to make one more adjustment. To do this click on 'Advanced options', select 'allowed-ssl-versions' from the drop-down, and set the version to either TLS1.1 or TLS1.2.
 
-Click 'Test Connection' and you will likely be greeted with the message 'The bucket name should start with your username, prepend automatically?'. Click Yes and have Duplicati create the Bucket. If everything went smoothly you should now see a box that says 'Connection worked!', click Ok and scroll to the bottom of the page and click Next.
+Click 'Test Connection' and you will likely be greeted with the message 'The bucket name should start with your username, prepend automatically?'. 
+
+Click Yes and have Duplicati create the Bucket. If everything went smoothly you should now see a box that says 'Connection worked!', 
+
+click Ok and scroll to the bottom of the page and click Next.
 
 On this page you will select the files and/or the directories you would like to backup to Cloud Object Storage (S3). The configuration supports filtering and the ability to exlude certain files based on specific attributes. When you have selected the files/directories to backup click Next to set your backup schedule.
 
