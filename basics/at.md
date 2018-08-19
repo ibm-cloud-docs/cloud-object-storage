@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-26"
+lastupdated: "2018-08-18"
 
 ---
 
@@ -29,7 +29,7 @@ The {{site.data.keyword.cloudaccesstrailfull_notm}} service records user-initiat
 ## List of events
 {: #events}
 
-The following table lists the actions that generate an event: 
+The following table lists the actions that generate an event:
 
 <table>
   <caption>Actions that generate events</caption>
@@ -116,6 +116,10 @@ The following table lists where to view the event depending on COS bucket locati
     <td>US South</td>
   </tr>
   <tr>
+    <td>São Paulo (sao01)</td>
+    <td>US South</td>
+  </tr>
+  <tr>
     <td>eu-geo</td>
     <td>United Kingdom</td>
   </tr>
@@ -129,6 +133,10 @@ The following table lists where to view the event depending on COS bucket locati
   </tr>
   <tr>
     <td>eu-gb</td>
+    <td>United Kingdom</td>
+  </tr>
+  <tr>
+    <td>Oslo (osl01)</td>
     <td>United Kingdom</td>
   </tr>
   <tr>
