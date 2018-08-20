@@ -96,22 +96,22 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
   </thead>
     <tr>
     <td rowspan="2">EU Cross Region</td>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
   <tr>
   <tr>
     <td rowspan="2">Amsterdam Access Point</td>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
   <tr>
   <tr>
     <td rowspan="2">Frankfurt Access Point</td>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
   <tr>
   <tr>
     <td rowspan="2">Milan Access Point</td>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
   <tr>
   </tr>
@@ -212,6 +212,14 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
   <tr>
     <td rowspan="2">Melbourne, Australia</td>
     <td>Yes</td>
+    <td>No</td>
+  <tr>
+  <tr>
+    </td>
+  </tr>
+  <tr>
+    <td rowspan="2">Oslo, Norway</td>
+    <td>No</td>
     <td>No</td>
   <tr>
   <tr>
