@@ -90,5 +90,5 @@ The following table lists the actions that generate an event:
 
 {{site.data.keyword.cloudaccesstrailshort}} events are available in the {{site.data.keyword.cloudaccesstrailshort}} **account domain**.
 
-The {{site.data.keyword.cloudaccesstrailshort}} event will be sent to the Activity Tracker instance closest to the bucket location
+Events will be sent to the {{site.data.keyword.cloudaccesstrailshort}} region closest to the {{site.data.keyword.cos_short}} bucket location
 which is shown on the [services supported page](/docs/services/cloud-object-storage/basics/services.html#integrated-service-availability).
