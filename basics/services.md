@@ -16,7 +16,7 @@ lastupdated: "2018-08-20"
 The table below describes the regions where the following services are supported
 * [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics/aspera.html#Aspera-high-speed-transfer)
 * [Key Protect](/docs/services/cloud-object-storage/basics/encryption.html#sse-kp)
-* [Activity Tracker](docs/services/cloud-object-storage/basics/at.html#at_events)
+* [Activity Tracker](/docs/services/cloud-object-storage/basics/at.html#at_events)
 
 Downloads using Aspera high-speed will incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
 {:tip}
