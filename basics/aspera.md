@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "08-13-2018"
+lastupdated: "2018-08-20"
 
 ---
 {:new_window: target="_blank"}
@@ -69,6 +69,14 @@ The following operations are **supported**:
 
 The following item is **not supported**:
 * HMAC credentials
+
+### Supported Platforms
+
+|OS|Version|Architecture|Java Version|Python Version|
+|---|---|---|---|---|
+|Ubuntu|14.04 LTS<br/>16.04 LTS<br/>18.04 LTS|64-Bit|6, 7, 8|2.7, 3.6|
+|Mac OS X|10.3<br/>10.13|64-Bit|6, 7, 8|2.7, 3.6|
+|Micosoft&reg; Windows|10|64-Bit|6, 7, 8|2.7, 3.6|
 
 ### Getting the SDK using Java
 {: #aspera-sdk-java}
