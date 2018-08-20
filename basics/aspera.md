@@ -74,9 +74,14 @@ The following item is **not supported**:
 
 |OS|Version|Architecture|Java Version|Python Version|
 |---|---|---|---|---|
-|Ubuntu|14.04 LTS<br/>16.04 LTS<br/>18.04 LTS|64-Bit|6, 7, 8|2.7, 3.6|
-|Mac OS X|10.3<br/>10.13|64-Bit|6, 7, 8|2.7, 3.6|
-|Micosoft&reg; Windows|10|64-Bit|6, 7, 8|2.7, 3.6|
+|Ubuntu|18.04 LTS|64-Bit|6, 8|2.7, 3.6|
+|Mac OS X|10.13|64-Bit|6|2.7, 3.6|
+|Microsoft&reg; Windows|10|64-Bit|6|2.7, 3.6|
+
+*Limitations for initial release*
+* No 32-Bit support for any OS
+* No Windows support other than Windows 10
+* No Linux support for any distribution other than Ubuntu (tested against the latest LTS)
 
 ### Getting the SDK using Java
 {: #aspera-sdk-java}
