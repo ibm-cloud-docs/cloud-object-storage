@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-08-08"
+lastupdated: "2018-08-22"
 
 ---
 
@@ -473,6 +473,15 @@ Pass your existing [S3 Client](#init-config) object to create the AsperaTransfer
 
 ```python
 transfer_manager = AsperaTransferManager(client)
+```
+
+You can also configure the `AsperaTransferManager` to use multiple sessions with an additional configuration option.
+
+```python
+# Configure 5 sessions for transfer or specify "all" for dynamic number of sessions
+ms_transfer_config = AsperaConfig(multi_session=5)
+
+transfer_manager = AsperaTransferManager(client=client, transfer_config=ms_transfer_config)
 ```
 
 You will need to provide an IAM API Key for Aspera transfers.  HMAC Credentials are **NOT** currently supported.  For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
