@@ -440,6 +440,9 @@ function getLifecycleConfiguration(bucketName) {
 * [getBucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
 
 ### Create a lifecycle configuration 
+
+Detailed information about structuring the lifecycle configuration rules are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#bucket-operations)
+
 ```javascript
 function createLifecycleConfiguration(bucketName) {
     //
@@ -495,6 +498,9 @@ function deleteLifecycleConfiguration(bucketName) {
 * [deleteBucketLifecycle](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
 
 ### Temporarily restore an object
+
+Detailed information about the restore request parameters are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#object-operations)
+
 ```javascript
 function restoreItem(bucketName, itemName) {
     var params = {
