@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2018-06-18"
+  years: 2017, 2018
+lastupdated: "2018-08-22"
 
 ---
 {:new_window: target="_blank"}
@@ -852,6 +852,94 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 
 ```http
 HTTP/1.1 204 No Content
+Date: Thu, 16 Mar 2017 22:07:48 GMT
+X-Clv-Request-Id: 06d67542-6a3f-4616-be25-fc4dbdf242ad
+Accept-Ranges: bytes
+Server: Cleversafe/3.9.1.114
+X-Clv-S3-Version: 2.5
+```
+
+## Temporarily restore an archived object
+
+A `POST` request issued to an object with query parameter `restore` to request temporary restoration of an archived object.  A `Content-MD5` header is required as an integrity check for the payload.
+
+An archived object must be restored before downloading or modifying the object.  The lifetime of the object must be specifed, after which the temporary copy of the object will be deleted.
+
+There can be a delay of up to 15 hours before the restored copy is available for access. A HEAD request can check if the restored copy is available.
+
+To permanently restore the object, it must be copied to a bucket that does not have an active lifecycle configuration.
+
+**Syntax**
+
+```bash
+POST https://{endpoint}/{bucket-name}/{object-name}?restore # path style
+POST https://{bucket-name}.{endpoint}/{object-name}?restore # virtual host style
+```
+
+**Payload Elements**
+
+The body of the request must contain an XML block with the following schema:
+
+|Element|Type|Children|Ancestor|Constraint|
+|---|---|---|---|---|
+|RestoreRequest|Container|Days, GlacierJobParameters|None|None|
+|Days|Integer|None|RestoreRequest|Specified the lifetime of the temporarily restored object. The minimum number of days that a restored copy of the object can exist is 1. After the restore period has elapsed, temporary copy of the object will be removed.|
+|GlacierJobParameters|String|Tier|RestoreRequest|None|
+|Tier|String|None|GlacierJobParameters|**Must** be set to `Bulk`.|
+
+```xml
+<RestoreRequest>
+    <Days>{integer}</Days>
+    <GlacierJobParameters>
+        <Tier>Bulk</Tier>
+    </GlacierJobParameters>
+</RestoreRequest>
+```
+
+**Sample Request (IAM)**
+
+```http
+POST /apiary/queenbee?restore HTTP/1.1
+Authorization: {authorization-string}
+Content-Type: text/plain
+Content-MD5: rgRRGfd/OytcM7O5gIaQ== 
+Content-Length: 305
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Headers)**
+
+```http
+POST /apiary/queenbee?restore HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Content-MD5: rgRRGfd/OytcM7O5gIaQ== 
+Content-Length: 305
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Pre-signed URL)**
+
+```http
+POST /apiary/queenbee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&restore&x-amz-signature={signature} HTTP/1.1
+Content-MD5: rgRRGfd/OytcM7O5gIaQ== 
+Content-Length: 305
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+```xml
+<RestoreRequest>
+    <Days>3</Days>
+    <GlacierJobParameters>
+        <Tier>Bulk</Tier>
+    </GlacierJobParameters>
+</RestoreRequest>
+```
+
+**Sample Response**
+
+```http
+HTTP/1.1 202 Accepted
 Date: Thu, 16 Mar 2017 22:07:48 GMT
 X-Clv-Request-Id: 06d67542-6a3f-4616-be25-fc4dbdf242ad
 Accept-Ranges: bytes
