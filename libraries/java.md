@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-07-27"
+lastupdated: "2018-08-22"
 
 ---
 
@@ -726,6 +726,17 @@ Pass your existing [S3 Client](#init-config) object to create the AsperaTransfer
 AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
 ```
 
+You can also allow the `AsperaTransferManager` to use multiple sessions with an additonal configuration option.
+
+```java
+AsperaConfig asperaConfig = new AsperaConfig()
+    .withMultiSession(5);
+            
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, _cos)
+    .withAsperaConfig(asperaConfig)
+    .build();
+```
+
 *Key Values*
 * `API_KEY` - api key generated when creating the service credentials (write access is required)
 
@@ -835,8 +846,6 @@ while (!asperaTransfer.isDone()) {
 }
 ```
 
-<!---
-
 ### Pause/Resume/Cancel
 
 The SDK provides the ability to manage the progress of file/directory transfers though the following methods of the `AsperaTransfer` object:
@@ -899,8 +908,6 @@ while (!asperaTransfer.isDone()) {
 
 System.out.println("Directory download complete!");
 ```
-
---->
 
 ## API reference
 
