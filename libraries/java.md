@@ -726,17 +726,6 @@ Pass your existing [S3 Client](#init-config) object to create the AsperaTransfer
 AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
 ```
 
-You can also configure the `AsperaTransferManager` to use multiple sessions with an additional configuration option.
-
-```java
-AsperaConfig asperaConfig = new AsperaConfig()
-    .withMultiSession(5);
-
-AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, s3Client)
-    .withAsperaConfig(asperaConfig)
-    .build();
-```
-
 *Key Values*
 * `API_KEY` - api key generated when creating the service credentials (write access is required)
 
