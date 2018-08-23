@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-08-22"
+lastupdated: "2018-08-23"
 
 ---
 
@@ -908,6 +908,32 @@ while (!asperaTransfer.isDone()) {
 
 System.out.println("Directory download complete!");
 ```
+
+### Troubleshooting Aspera Issues
+
+#### JVM unexpectedly and silently crashes during transfers
+
+**Cause:** The native code requires its own signal handlers which could be overriding the JVM's signal handlers. It might might be necessary to use the JVM's signal chaining facility.
+
+**Solution:** Link and load the JVM's signal chaining library.
+* On Linux locate the ***libjsig.so*** shared library and set the following environment variable:
+    * `LD_PRELOAD=<PATH_TO_SHARED_LIB>/libjsig.so`
+
+* On Mac OS X locate the shared library ***libjsig.dylib*** and set the following environment variables:
+    * `DYLD_INSERT_LIBRARIES=<PATH_TO_SHARED_LIB>/libjsig.dylib` 
+    * `DYLD_FORCE_FLAT_NAMESPACE=0`
+
+Visit the [Oracle&reg; JDK documentation](https://docs.oracle.com/javase/10/vm/signal-chaining.htm){:new_window} for more information about signal chaining.
+
+#### UnsatisfiedLinkError on Linux
+
+**Cause:** System unable to load dependent libraries.  Errors such as the following may be seen in the application logs:
+
+```libfaspmanager2.so: libawt.so: cannot open shared object file: No such file or directory```
+
+**Solution:** Set the following environment variable:
+
+`LD_LIBRARY_PATH=<JAV_HOME>/jre/lib/amd64/server:<JAVA_HOME>/jre/lib/amd64`
 
 ## API reference
 
