@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-08-20"
+lastupdated: "2018-08-23"
 
 ---
 {:new_window: target="_blank"}
@@ -142,12 +142,6 @@ Additional code is necessary to use the Aspera library within your application. 
 ```java
 System.load("<path-to-local-folder>/libfaspmanager2.jnilib");
 ```
-
-#### Signal Chaining
-
-Developers using the Oracle&reg; JDK on Linux or Mac OS X are recommended to pre-load signal chain libraries.  Those using the IBM&reg; JDK or running on Microsoft&reg; Windows may safely skip this step. 
-
-Visit the [Oracle&reg; JDK documentation](https://docs.oracle.com/javase/10/vm/signal-chaining.htm){:new_window} for more information about signal chaining and examples of how to pre-load the signal chain libraries.
 
 #### Aspera/Java code examples
 
