@@ -1257,7 +1257,7 @@ The body of the request must contain an XML block with the following schema:
 |Rule|Container|ID, Status, Filter, Transition|LifecycleConfiguration|Limit 1|
 |ID|String|None|Rule|**Must** consist of `(a-z,A- Z0-9)` and the following symbols:`` !`_ .*'()- ``|
 |Filter|String|Prefix|Rule|**Must** contain a `Prefix` element.|
-|Prefix|String|None|Filter|**Must** be set to <Prefix/>.|
+|Prefix|String|None|Filter|**Must** be set to `<Prefix/>`.|
 |Transition|Container|Days, StorageClass|Rule|Limit 1.|
 |Days|Non-negative integer|None|Transition|**Must** be a value greater than 0.|
 |Date|Date|None|Transition|**Must** be in ISO 8601 Format and the date must be in the future.|

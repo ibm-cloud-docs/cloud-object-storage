@@ -454,7 +454,7 @@ function createLifecycleConfiguration(bucketName) {
                 Prefix: ''
             },
             Transitions: [{
-                Days: 1, 
+                Days: <number-of-days>, 
                 StorageClass: 'GLACIER'
             }]
         }]
@@ -475,6 +475,7 @@ function createLifecycleConfiguration(bucketName) {
 
 *Key Values*
 * `<policy-id>` - Name of the lifecycle policy (must be unqiue)
+* `<number-of-days>` - Number of days to keep the restored file
 
 *SDK References*
 * [putBucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
@@ -507,7 +508,7 @@ function restoreItem(bucketName, itemName) {
         Bucket: bucketName, 
         Key: itemName, 
         RestoreRequest: {
-            Days: 1, 
+            Days: <number-of-days>, 
             GlacierJobParameters: {
                 Tier: 'Bulk' 
             },
@@ -523,6 +524,9 @@ function restoreItem(bucketName, itemName) {
     });
 }
 ```
+
+*Key Values*
+* `<number-of-days>` - Number of days to keep the restored file
 
 *SDK References*
 * [restoreObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}

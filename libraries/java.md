@@ -902,6 +902,161 @@ System.out.println("Directory download complete!");
 
 --->
 
+## Using Archive Feature
+
+Archive Tier allows users to archive stale data and reduce their storage costs. Archival policies (also known as *Lifecycle Configurations*) are created for buckets and applies to any objects added to the bucket after the policy is created.
+
+### View a bucket's lifecycle configuration
+```java
+public static void getLifecycleConfiguration(String bucketName) {
+    System.out.printf("Retrieving lifecycle config for bucket: %s\n", bucketName);
+
+    GetBucketLifecycleConfigurationRequest request = new GetBucketLifecycleConfigurationRequest(bucketName);
+
+    BucketLifecycleConfiguration config = _cos.getBucketLifecycleConfiguration(request);
+    
+    if (config == null) {
+        System.out.println("No lifecycle configuration exists for bucket: " + bucketName);
+    }
+    else {
+        List<Rule> rules = config.getRules();
+        for (Rule rule : rules) {
+            System.out.printf("Rule: %s; Expiration (Days): %s; Status: %s\n", 
+                rule.getId(), 
+                rule.getTransitions().get(0).getDays(), 
+                rule.getStatus());
+        }
+    }
+}
+```
+
+*SDK References*
+* Classes
+    * [BucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
+    * [GetBucketLifecycleConfigurationRequest](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
+    * [Rule](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
+* Methods
+    * [getBucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
+    * [getRules](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
+
+### Create a lifecycle configuration 
+
+Detailed information about structuring the lifecycle configuration rules are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#bucket-operations)
+
+```java
+public static void setLifecycleConfiguration(String bucketName) {
+    System.out.printf("Creating lifecycle config for bucket: %s\n", bucketName);
+
+    Transition transition = new Transition()
+        .withDays(<number-of-days>)
+        .withStorageClass("GLACIER");
+
+    List<Transition> transitions = new ArrayList<Transition>();
+    transitions.add(transition);
+
+    Rule rule = new Rule()
+        .withId("<policy-id>")
+        .withStatus("Enabled")
+        .withFilter(new LifecycleFilter()
+            .withPredicate(new LifecyclePrefixPredicate("")))
+        .withTransitions(transitions);
+
+    BucketLifecycleConfiguration config = new BucketLifecycleConfiguration().withRules(rule);
+
+    SetBucketLifecycleConfigurationRequest request = new SetBucketLifecycleConfigurationRequest(bucketName, config);
+
+    _cos.setBucketLifecycleConfiguration(request);
+
+    System.out.println("Lifecycle configuration has been set!");
+}
+```
+
+*Key Values*
+* `<policy-id>` - Name of the lifecycle policy (must be unqiue)
+* `<number-of-days>` - Number of days to keep the restored file
+
+*SDK References*
+* Classes
+    * [BucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
+    * [Rule](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
+    * [SetBucketLifecycleConfigurationRequest](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
+    * [Transition](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
+* Methods
+    * [setBucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
+
+### Delete a bucket's lifecycle configuration
+```java
+public static void deleteLifecycleConfiguration(String bucketName) {
+    System.out.printf("Deleting lifecycle config for bucket: %s\n", bucketName);
+
+    DeleteBucketLifecycleConfigurationRequest request = new DeleteBucketLifecycleConfigurationRequest(bucketName);
+
+    _cos.deleteBucketLifecycleConfiguration(request);
+
+    System.out.println("Lifecycle configuration has been deleted!");
+}
+```
+
+*SDK References*
+* Classes
+    * [DeleteBucketLifecycleConfigurationRequest](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
+* Methods
+    * [deleteBucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
+
+### Temporarily restore an object
+
+Detailed information about the restore request parameters are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#object-operations)
+
+```java
+public static void restoreArchiveItem(String bucketName, String itemName) {
+    System.out.printf("Restoring item: %s for bucket: %s\n", itemName, bucketName);
+
+    RestoreObjectRequest request = new RestoreObjectRequest(
+        bucketName, 
+        itemName,
+        <number-of-days>);
+
+    _cos.restoreObject(request);
+
+    System.out.println("Restore request has been submitted!");
+}
+```
+
+*Key Values*
+* `<number-of-days>` - Number of days to keep the restored file
+
+*SDK References*
+* Classes
+    * [RestoreObjectRequest](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
+* Methods
+    * [restoreObject](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
+
+### View HEAD information for an object
+```java
+    public static void getHeadObject(String bucketName, String itemName) {
+    System.out.printf("Retrieve HEAD metadata for item: %s from bucket: %s\n\n", itemName, bucketName);
+
+    GetObjectMetadataRequest request = new GetObjectMetadataRequest(bucketName, itemName);
+
+    ObjectMetadata headData = _cos.getObjectMetadata(request);
+
+    Map<String, Object> headItems = headData.getRawMetadata();
+    for (String key : headItems.keySet()) {
+        System.out.printf("%s : %s\n", key, headItems.get(key));
+    }
+
+}
+```
+
+*SDK References*
+* Classes
+    * [GetObjectMetadataRequest](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
+    * [ObjectMetadata](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
+* Methods
+    * [getObjectMetadata](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
+    * [getRawMetadata](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
+
+
 ## API reference
 
 This list summarizes the AWS Java SDK methods that are supported by {{site.data.keyword.cos_full_notm}}. More detailed documentation on individual classes and methods can be found in the [the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/)
