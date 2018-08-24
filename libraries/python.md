@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-08-22"
+lastupdated: "2018-08-24"
 
 ---
 
@@ -833,3 +833,139 @@ while future.done() == False:
         future.cancel()
         break
 ```
+
+## Using Archive Feature
+
+Archive Tier allows users to archive stale data and reduce their storage costs. Archival policies (also known as *Lifecycle Configurations*) are created for buckets and applies to any objects added to the bucket after the policy is created.
+
+### View a bucket's lifecycle configuration
+```python
+def get_bucket_lifecycle_config(bucket_name):
+    print("Retrieving bucket lifecycle config from: {0}".format(bucket_name))
+    
+    try:
+        response = cos_cli.get_bucket_lifecycle_configuration(Bucket=bucket_name)
+
+        print(json.dumps(response["Rules"], indent=4, sort_keys=True))
+    except ClientError as be:
+        print("CLIENT ERROR: {0}\n".format(be))
+    except Exception as e:
+        log_error("Unable to retrieve bucket lifecycle config: {0}".format(e))
+```
+
+*SDK References*
+* [get_bucket_lifecycle_configuration](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window}
+
+### Create a lifecycle configuration 
+
+Detailed information about structuring the lifecycle configuration rules are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#bucket-operations)
+
+```python
+def create_bucket_lifecycle_config(bucket_name):
+    print("Creating bucket lifecycle config for: {0}".format(bucket_name))
+    try:
+        lifecycle_config = {
+            'Rules': [
+                {
+                    'Filter': {
+                        'Prefix': ''
+                    },
+                    'ID': '<policy-id>',
+                    'Status': 'ENABLED',
+                    'Transitions': [
+                        {
+                            'Days': <number-of-days>,
+                            'StorageClass': 'GLACIER'
+                        }
+                    ]
+                }
+            ]        
+        }
+
+        response = cos_cli.put_bucket_lifecycle_configuration(
+            Bucket=bucket_name, 
+            LifecycleConfiguration=lifecycle_config)
+        
+        print(json.dumps(response, indent=4, sort_keys=True))
+    except ClientError as be:
+        print("CLIENT ERROR: {0}\n".format(be))
+    except Exception as e:
+        log_error("Unable to retrieve bucket lifecycle config: {0}".format(e))
+```
+
+*Key Values*
+* `<policy-id>` - Name of the lifecycle policy (must be unqiue)
+* `<number-of-days>` - Number of days to keep the restored file
+
+*SDK References*
+* [put_bucket_lifecycle_configuration](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window}
+
+### Delete a bucket's lifecycle configuration
+```python
+def delete_bucket_lifecycle_config(bucket_name):
+    print("Deleting bucket lifecycle config from: {0}".format(bucket_name))
+    try:
+        response = cos_cli.delete_bucket_lifecycle(Bucket=bucket_name)
+
+        print(json.dumps(response, indent=4, sort_keys=True))
+    except ClientError as be:
+        print("CLIENT ERROR: {0}\n".format(be))
+    except Exception as e:
+        log_error("Unable to retrieve bucket lifecycle config: {0}".format(e))
+```
+
+*SDK References*
+* [delete_bucket_lifecycle](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window}
+
+### Temporarily restore an object
+
+Detailed information about the restore request parameters are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#object-operations)
+
+```python
+def restore_archive_object(bucket_name, item_name):
+    print("Restoring item: {0} from bucket: {1}".format(item_name, bucket_name))
+    try:
+        restore_request = {
+            "Days": <number-of-days>, 
+            "GlacierJobParameters": {
+                "Tier": "Bulk" 
+            }
+        }
+
+        response = cos_cli.restore_object(
+            Bucket=bucket_name, 
+            Key=item_name, 
+            RestoreRequest=restore_request)
+
+        print(json.dumps(response, indent=4, sort_keys=True))
+    except ClientError as be:
+        print("CLIENT ERROR: {0}\n".format(be))
+    except Exception as e:
+        log_error("Unable to retrieve bucket lifecycle config: {0}".format(e))
+```
+
+*Key Values*
+* `<number-of-days>` - Number of days to keep the restored file
+
+*SDK References*
+* [restore_object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window}
+
+### View HEAD information for an object
+```python
+def retrieve_head_object(bucket_name, item_name):
+    print("Retrieving HEAD for item: {0} from bucket: {1}".format(item_name, bucket_name))
+
+    try:
+        response = cos_cli.head_object(
+            Bucket=bucket_name, 
+            Key=item_name)
+
+        print(json.dumps(response, indent=4, sort_keys=True, default=str))
+    except ClientError as be:
+        print("CLIENT ERROR: {0}\n".format(be))
+    except Exception as e:
+        log_error("Unable to retrieve bucket lifecycle config: {0}".format(e))
+```
+
+*SDK References*
+* [head_object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window}
