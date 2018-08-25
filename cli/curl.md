@@ -39,7 +39,7 @@ curl -X "POST" "https://iam.bluemix.net/oidc/token" \
 ## Obtain your resource instance id
 Some of the following commands require an `ibm-service-instance-id` parameter. To find this value, go to the **Service credentials** tab of your Object Storage instance in the cloud console. Create a new credential if needed, then use the *View credentials* drop-down to see the JSON format. Use the value of `resource_instance_id`. 
 
-For use with curl APIs you only need the UUID that starts after the last single colon and ends before the final double colon. For example, the id `crn:v1:bluemix:public:cloud-object-storage:global:a/81caa02546315e5f9331ae427618f209:36d8d161-22c4-4b77-a856-f11db5130d6c::` can be abbreviated to `36d8d161-22c4-4b77-a856-f11db5130d6c`.
+For use with curl APIs you only need the UUID that starts after the last single colon and ends before the final double colon. For example, the id `crn:v1:bluemix:public:cloud-object-storage:global:a/81caa02546315e5f9331ae427618f209:36d8d161-22c4-4b77-a856-f11db5130d7d::` can be abbreviated to `36d8d161-22c4-4b77-a856-f11db5130d7d`.
 {:tip}
 
 ## List buckets
