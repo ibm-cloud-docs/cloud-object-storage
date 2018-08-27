@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-08-08"
+lastupdated: "2018-08-22"
 
 ---
 
@@ -403,12 +403,56 @@ def multi_part_upload_manual(bucket_name, item_name, file_path):
 * Classes
     * [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window}
 * Methods
-    * [abort_multipart_upload](){:new_window}
-    * [complete_multipart_upload](){:new_window}
-    * [create_multipart_upload](){:new_window}
-    * [upload_part](){:new_window}
+    * [abort_multipart_upload](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.abort_multipart_upload){:new_window}
+    * [complete_multipart_upload](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.complete_multipart_upload){:new_window}
+    * [create_multipart_upload](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.create_multipart_upload){:new_window}
+    * [upload_part](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.upload_part){:new_window}
 
+## List items in a bucket (v2)
+{: #list-objects-v2}
 
+The [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window} object contains an updated method to list the contents ([list_objects_v2](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){:new_window}).  This method allows you to limit the number of records returned and retrieve the records in batches.  This could be useful for paging your results within an application and improve performance.
+
+```python
+def get_bucket_contents_v2(bucket_name, max_keys):
+    print("Retrieving bucket contents from: {0}".format(bucket_name))
+    try:
+        # create client object
+        cos_cli = ibm_boto3.client("s3",
+            ibm_api_key_id=COS_API_KEY_ID,
+            ibm_service_instance_id=COS_SERVICE_CRN,
+            ibm_auth_endpoint=COS_AUTH_ENDPOINT,
+            config=Config(signature_version="oauth"),
+            endpoint_url=COS_ENDPOINT
+
+        more_results = True
+        next_token = ""
+
+        while (more_results):
+            response = cos_cli.list_objects_v2(Bucket=bucket_name, MaxKeys=max_keys, ContinuationToken=next_token)
+            files = response["Contents"]
+            for file in files:
+                print("Item: {0} ({1} bytes).".format(file["Key"], file["Size"]))
+            
+            if (response["IsTruncated"]):
+                next_token = response["NextContinuationToken"]
+                print("...More results in next batch!\n")
+            else:
+                more_results = False
+                next_token = ""
+
+        log_done()
+    except ClientError as be:
+        print("CLIENT ERROR: {0}\n".format(be))
+    except Exception as e:
+        print("Unable to retrieve bucket contents: {0}".format(e))
+```
+
+*SDK References*
+* Classes
+    * [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window}
+* Methods
+    * [list_objects_v2](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){:new_window}
 
 ## Using Key Protect
 
@@ -477,6 +521,17 @@ transfer_manager = AsperaTransferManager(client)
 
 You will need to provide an IAM API Key for Aspera transfers.  HMAC Credentials are **NOT** currently supported.  For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
 {:tip}
+
+You can also allow the `AsperaTransferManager` to use multiple sessions with an additonal configuration option.
+
+```python
+# Configure 5 sessions for transfer, or specify "all" for dynamic number of sessions.
+ms_transfer_config = AsperaConfig(multi_session=5)
+
+# Create Transfer Manager
+transfer_manager = AsperaTransferManager(client=client, transfer_config=ms_transfer_config)
+```
+
 
 ### File Upload
 
@@ -653,8 +708,6 @@ Directory download in progress: 62106855 bytes transferred
 Download complete!
 ```
 
-<!---
-
 ### Pause/Resume/Cancel
 
 The SDK provides the ability to manage the progress of file/directory transfers though the following methods of the `AsperaTransferFuture` object:
@@ -732,5 +785,3 @@ while future.done() == False:
         future.cancel()
         break
 ```
---->
-

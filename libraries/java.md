@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-08-08"
+lastupdated: "2018-08-23"
 
 ---
 
@@ -478,6 +478,52 @@ public static void multiPartUpload(String bucketName, String itemName, String fi
     * [initiateMultipartUpload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#initiateMultipartUpload-com.ibm.cloud.objectstorage.services.s3.model.InitiateMultipartUploadRequest-){:new_window}
     * [uploadPart](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#uploadPart-com.ibm.cloud.objectstorage.services.s3.model.UploadPartRequest-){:new_window}
 
+## List items in a bucket (v2)
+{: #list-objects-v2}
+
+The [AmazonS3](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html){:new_window} object contains an updated method to list the contents ([listObjectsV2](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){:new_window}).  This method allows you to limit the number of records returned and retrieve the records in batches.  This could be useful for paging your results within an application and improve performance.
+
+```java
+public static void getBucketContentsV2(String bucketName, int maxKeys) {
+    System.out.printf("Retrieving bucket contents (V2) from: %s\n", bucketName);
+
+    boolean moreResults = true;
+    String nextToken = "";
+
+    while (moreResults) {
+        ListObjectsV2Request request = new ListObjectsV2Request()
+            .withBucketName(bucketName)
+            .withMaxKeys(maxKeys)
+            .withContinuationToken(nextToken);
+
+        ListObjectsV2Result result = _cos.listObjectsV2(request);
+        for(S3ObjectSummary objectSummary : result.getObjectSummaries()) {
+            System.out.printf("Item: %s (%s bytes)\n", objectSummary.getKey(), objectSummary.getSize());
+        }
+        
+        if (result.isTruncated()) {
+            nextToken = result.getNextContinuationToken();
+            System.out.println("...More results in next batch!\n");
+        }
+        else {
+            nextToken = "";
+            moreResults = false;
+        }
+    }
+    System.out.println("...No more results!");
+}
+```
+
+*SDK References*
+* Classes
+    * [ListObjectsV2Request](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Request.html){:new_window}
+    * [ListObjectsV2Result](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html){:new_window}
+    * [S3ObjectSummary](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/S3ObjectSummary.html){:new_window}
+* Methods
+    * [getObjectSummaries](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html#getObjectSummaries--){:new_window}
+    * [getNextContinuationToken](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html#getNextContinuationToken--){:new_window}
+    * [listObjectsV2](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){:new_window}
+
 ## Additional code snippets
 
 ### Create a Vault bucket
@@ -726,6 +772,17 @@ Pass your existing [S3 Client](#init-config) object to create the AsperaTransfer
 AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
 ```
 
+You can also allow the `AsperaTransferManager` to use multiple sessions with an additonal configuration option.
+
+```java
+AsperaConfig asperaConfig = new AsperaConfig()
+    .withMultiSession(5);
+            
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, _cos)
+    .withAsperaConfig(asperaConfig)
+    .build();
+```
+
 *Key Values*
 * `API_KEY` - api key generated when creating the service credentials (write access is required)
 
@@ -839,8 +896,6 @@ while (!asperaTransfer.isDone()) {
 }
 ```
 
-<!---
-
 ### Pause/Resume/Cancel
 
 The SDK provides the ability to manage the progress of file/directory transfers though the following methods of the `AsperaTransfer` object:
@@ -904,7 +959,31 @@ while (!asperaTransfer.isDone()) {
 System.out.println("Directory download complete!");
 ```
 
---->
+### Troubleshooting Aspera Issues
+
+#### JVM unexpectedly and silently crashes during transfers
+
+**Cause:** The native code requires its own signal handlers which could be overriding the JVM's signal handlers. It might might be necessary to use the JVM's signal chaining facility.
+
+**Solution:** Link and load the JVM's signal chaining library.
+* On Linux locate the ***libjsig.so*** shared library and set the following environment variable:
+    * `LD_PRELOAD=<PATH_TO_SHARED_LIB>/libjsig.so`
+
+* On Mac OS X locate the shared library ***libjsig.dylib*** and set the following environment variables:
+    * `DYLD_INSERT_LIBRARIES=<PATH_TO_SHARED_LIB>/libjsig.dylib` 
+    * `DYLD_FORCE_FLAT_NAMESPACE=0`
+
+Visit the [Oracle&reg; JDK documentation](https://docs.oracle.com/javase/10/vm/signal-chaining.htm){:new_window} for more information about signal chaining.
+
+#### UnsatisfiedLinkError on Linux
+
+**Cause:** System unable to load dependent libraries.  Errors such as the following may be seen in the application logs:
+
+```libfaspmanager2.so: libawt.so: cannot open shared object file: No such file or directory```
+
+**Solution:** Set the following environment variable:
+
+`LD_LIBRARY_PATH=<JAV_HOME>/jre/lib/amd64/server:<JAVA_HOME>/jre/lib/amd64`
 
 ## API reference
 
