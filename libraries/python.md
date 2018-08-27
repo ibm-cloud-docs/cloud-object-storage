@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-07-27"
+lastupdated: "2018-08-22"
 
 ---
 
@@ -475,6 +475,16 @@ Pass your existing [S3 Client](#init-config) object to create the AsperaTransfer
 transfer_manager = AsperaTransferManager(client)
 ```
 
+You can also allow the `AsperaTransferManager` to use multiple sessions with an additonal configuration option.
+
+```python
+# Configure 5 sessions for transfer, or specify "all" for dynamic number of sessions.
+ms_transfer_config = AsperaConfig(multi_session=5)
+
+# Create Transfer Manager
+transfer_manager = AsperaTransferManager(client=client, transfer_config=ms_transfer_config)
+```
+
 ### File Upload
 
 ```python
@@ -650,8 +660,6 @@ Directory download in progress: 62106855 bytes transferred
 Download complete!
 ```
 
-<!---
-
 ### Pause/Resume/Cancel
 
 The SDK provides the ability to manage the progress of file/directory transfers though the following methods of the `AsperaTransferFuture` object:
@@ -729,5 +737,3 @@ while future.done() == False:
         future.cancel()
         break
 ```
---->
-
