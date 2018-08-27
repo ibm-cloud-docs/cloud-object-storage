@@ -478,6 +478,52 @@ public static void multiPartUpload(String bucketName, String itemName, String fi
     * [initiateMultipartUpload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#initiateMultipartUpload-com.ibm.cloud.objectstorage.services.s3.model.InitiateMultipartUploadRequest-){:new_window}
     * [uploadPart](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#uploadPart-com.ibm.cloud.objectstorage.services.s3.model.UploadPartRequest-){:new_window}
 
+## List items in a bucket (v2)
+{: #list-objects-v2}
+
+The [AmazonS3](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html){:new_window} object contains an updated method to list the contents ([listObjectsV2](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){:new_window}).  This method allows you to limit the number of records returned and retrieve the records in batches.  This could be useful for paging your results within an application and improve performance.
+
+```java
+public static void getBucketContentsV2(String bucketName, int maxKeys) {
+    System.out.printf("Retrieving bucket contents (V2) from: %s\n", bucketName);
+
+    boolean moreResults = true;
+    String nextToken = "";
+
+    while (moreResults) {
+        ListObjectsV2Request request = new ListObjectsV2Request()
+            .withBucketName(bucketName)
+            .withMaxKeys(maxKeys)
+            .withContinuationToken(nextToken);
+
+        ListObjectsV2Result result = _cos.listObjectsV2(request);
+        for(S3ObjectSummary objectSummary : result.getObjectSummaries()) {
+            System.out.printf("Item: %s (%s bytes)\n", objectSummary.getKey(), objectSummary.getSize());
+        }
+        
+        if (result.isTruncated()) {
+            nextToken = result.getNextContinuationToken();
+            System.out.println("...More results in next batch!\n");
+        }
+        else {
+            nextToken = "";
+            moreResults = false;
+        }
+    }
+    System.out.println("...No more results!");
+}
+```
+
+*SDK References*
+* Classes
+    * [ListObjectsV2Request](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Request.html){:new_window}
+    * [ListObjectsV2Result](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html){:new_window}
+    * [S3ObjectSummary](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/S3ObjectSummary.html){:new_window}
+* Methods
+    * [getObjectSummaries](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html#getObjectSummaries--){:new_window}
+    * [getNextContinuationToken](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html#getNextContinuationToken--){:new_window}
+    * [listObjectsV2](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){:new_window}
+
 ## Additional code snippets
 
 ### Create a Vault bucket
