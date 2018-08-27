@@ -410,6 +410,8 @@ public static void getItemACL(String bucketName, String itemName) {
     * [getObjectAcl](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#getObjectAcl-java.lang.String-java.lang.String-){:new_window}
 
 ### Execute a multi-part upload
+{: #multipart-upload}
+
 ```java
 public static void multiPartUpload(String bucketName, String itemName, String filePath) {
     File file = new File(filePath);
@@ -478,6 +480,63 @@ public static void multiPartUpload(String bucketName, String itemName, String fi
     * [initiateMultipartUpload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#initiateMultipartUpload-com.ibm.cloud.objectstorage.services.s3.model.InitiateMultipartUploadRequest-){:new_window}
     * [uploadPart](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#uploadPart-com.ibm.cloud.objectstorage.services.s3.model.UploadPartRequest-){:new_window}
 
+### Large Object Upload using TransferManager
+{: #transfer-manager}
+
+The `TransferManager` simplifies large file transfers by automatically incorporating multi-part uploads whenever necessary setting configuration parameters.
+
+```java
+public static void largeObjectUpload(String bucketName, String itemName, String filePath) throws IOException, InterruptedException {
+    File uploadFile = new File(filePath);
+
+    if (!uploadFile.isFile()) {
+        System.out.printf("The file '%s' does not exist or is not accessible.\n", filePath);
+        return;
+    }
+
+    System.out.println("Starting large file upload with TransferManager");
+
+    //set the part size to 5 MB    
+    long partSize = 1024 * 1024 * 5;
+
+    //set the threshold size to 5 MB
+    long thresholdSize = 1024 * 1024 * 5;
+
+    String endPoint = getEndpoint(COS_BUCKET_LOCATION, "public");
+    AmazonS3 s3client = createClient(COS_API_KEY_ID, COS_SERVICE_CRN, endPoint, COS_BUCKET_LOCATION);
+
+    TransferManager transferManager = TransferManagerBuilder.standard()
+        .withS3Client(s3client)
+        .withMinimumUploadPartSize(partSize)
+        .withMultipartCopyThreshold(thresholdSize)
+        .build();
+
+    try {
+        Upload lrgUpload = transferManager.upload(bucketName, itemName, uploadFile);
+
+        lrgUpload.waitForCompletion();
+
+        System.out.println("Large file upload complete!");
+    }
+    catch (SdkClientException e) {
+        System.out.printf("Upload error: %s\n", e.getMessage());            
+    }
+    finally {
+        transferManager.shutdownNow();
+    }
+```
+
+*SDK References*
+* Classes
+    * [TransferManager](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html){:new_window}
+    * [TransferManagerBuilder](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManagerBuilder.html){:new_window}
+    * [Upload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/Upload.html){:new_window}
+
+* Methods
+    * [shutdownNow](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html#shutdownNow--){:new_window}
+    * [upload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html#upload-java.lang.String-java.lang.String-java.io.File-){:new_window}
+    * [waitForCompletion](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/internal/AbstractTransfer.html#waitForCompletion--){:new_window}
+    
 ## List items in a bucket (v2)
 {: #list-objects-v2}
 
