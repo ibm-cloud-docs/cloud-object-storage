@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "07-31-2018"
+lastupdated: "2018-08-23"
 
 ---
 {:new_window: target="_blank"}
@@ -60,20 +60,28 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
 
 ## Using Libraries and SDKs
 
-The {{site.data.keyword.cos_short}} and Aspera SDK works together to provide the ability to initiate high-speed transfer within your custom applications when using either Java or Python (*currently only **Python 2.7** is supported*)
+The {{site.data.keyword.cos_short}} and Aspera SDK works together to provide the ability to initiate high-speed transfer within your custom applications when using either Java or Python.
 
 The following operations are **supported**:
 * File upload/download
 * Directory upload/download
 * Pause/Resume/Cancel operations
 
-The following items are **not supported**:
-* Multi-threading within the Aspera Transfer Manager
-* Sub-directory exclusion
-* Configuration settings
-    * Minimal configuration settings can be overridden but are subject to change
-* Windows OS
+The following item is **not supported**:
 * HMAC credentials
+
+### Supported Platforms
+
+|OS|Version|Architecture|Java Version|Python Version|
+|---|---|---|---|---|
+|Ubuntu|18.04 LTS|64-Bit|6, 8|2.7, 3.6|
+|Mac OS X|10.13|64-Bit|6|2.7, 3.6|
+|Microsoft&reg; Windows|10|64-Bit|6|2.7, 3.6|
+
+*Limitations for initial release*
+* No 32-Bit support for any OS
+* No Windows support other than Windows 10
+* No Linux support for any distribution other than Ubuntu (tested against the latest LTS)
 
 ### Getting the SDK using Java
 {: #aspera-sdk-java}
@@ -152,16 +160,9 @@ extras_requires = {
 
 Both can be installed using the following commands:
 
-For Mac OS X
 ```
 pip install ibm-cos-sdk["aspera"]
-pip install cos-aspera-mac-10-7-64-py-27
-```
-
-For Linux
-```
-pip install ibm-cos-sdk["aspera"]
-pip install cos-aspera-linux-64-py-36
+pip install cos-aspera
 ```
 
 An additional dependency is also required for **Python 2.7**

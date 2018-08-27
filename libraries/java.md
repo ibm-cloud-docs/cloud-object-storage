@@ -786,6 +786,10 @@ AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_A
 *Key Values*
 * `API_KEY` - api key generated when creating the service credentials (write access is required)
 
+
+You will need to provide an IAM API Key for Aspera transfers.  HMAC Credentials are **NOT** currently supported.  For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
+{:tip}
+
 ### File Upload
 
 ```java
