@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-08-22"
+lastupdated: "2018-08-27"
 
 ---
 
@@ -443,7 +443,7 @@ function getLifecycleConfiguration(bucketName) {
 
 ### Create a lifecycle configuration 
 
-Detailed information about structuring the lifecycle configuration rules are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#bucket-operations)
+Detailed information about structuring the lifecycle configuration rules are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#create-bucket-lifecycle)
 
 ```javascript
 function createLifecycleConfiguration(bucketName) {
@@ -502,7 +502,7 @@ function deleteLifecycleConfiguration(bucketName) {
 
 ### Temporarily restore an object
 
-Detailed information about the restore request parameters are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#object-operations)
+Detailed information about the restore request parameters are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#restore-object)
 
 ```javascript
 function restoreItem(bucketName, itemName) {

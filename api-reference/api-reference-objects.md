@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-08-22"
+lastupdated: "2018-08-27"
 
 ---
 {:new_window: target="_blank"}
@@ -881,6 +881,7 @@ X-Clv-S3-Version: 2.5
 ```
 
 ## Temporarily restore an archived object
+{: #restore-object}
 
 A `POST` request issued to an object with query parameter `restore` to request temporary restoration of an archived object.  A `Content-MD5` header is required as an integrity check for the payload.
 

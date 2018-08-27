@@ -858,7 +858,7 @@ def get_bucket_lifecycle_config(bucket_name):
 
 ### Create a lifecycle configuration 
 
-Detailed information about structuring the lifecycle configuration rules are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#bucket-operations)
+Detailed information about structuring the lifecycle configuration rules are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#create-bucket-lifecycle)
 
 ```python
 def create_bucket_lifecycle_config(bucket_name):
@@ -919,7 +919,7 @@ def delete_bucket_lifecycle_config(bucket_name):
 
 ### Temporarily restore an object
 
-Detailed information about the restore request parameters are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#object-operations)
+Detailed information about the restore request parameters are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#restore-object)
 
 ```python
 def restore_archive_object(bucket_name, item_name):
