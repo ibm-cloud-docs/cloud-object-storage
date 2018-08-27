@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2017-09-27"
+  years: 2017, 2018
+lastupdated: "2018-08-15"
 
 ---
 {:new_window: target="_blank"}
@@ -31,3 +31,30 @@ Incomplete multipart uploads do persist until the object is deleted or the multi
 ## Using software development kits
 
 It is not mandatory to use published S3 API SDKs; custom software can leverage the API to integrate directly with {{site.data.keyword.cos_short}}. However, using published S3 API libraries provide advantages such as authentication/signature generation, automatic retry logic on `5xx` errors, and pre-signed url generation. Care must be taken when writing software that uses the API directly to handle transient errors, such as by providing retries with exponential backoff when receiving `503` errors.
+
+## Pagination
+
+When dealing with a large number of objects in a bucket, web applications can begin to suffer performance degradation.  Many applications employ a technique called **pagination** (*the process of dividing a large recordset into discrete pages*).  Almost all development platforms provide objects or methods to accomplish pagination either by built-in functionality or through 3rd party libraries.
+
+The {{site.data.keyword.cos_short}} SDKs provides support for pagination through a method that lists the objects within a specified bucket.  This method provides a number of parameters that make it extremely useful when attempting to break apart a large resultset.
+
+### Basic Usage
+
+The basic concept behind the object listing method involves setting the maximum number of keys (`MaxKeys`) to return in the response.  The response also includes a `boolean` value (`IsTruncated`) that indicates whether more results are available and a `string` value called `NextContinuationToken`.  Setting the continuation token in the follow-up requests returns the next batch of objects until no more results are available.
+
+#### Common Parameters
+
+|Parameter|Description|
+|---|---|
+|`ContinuationToken`|Sets token to specify the next batch of records|
+|`MaxKeys`|Sets the maximum number of keys to include in the response|
+|`Prefix`|Restricts the response to keys that begin with the specified prefix|
+|`StartAfter`|Sets where to start the object listing from based on the key|
+
+### Using Java
+
+The {{site.data.keyword.cos_full}} SDK for Java provides the [`listObjectsV2`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){:new_window} method that allows for returning the object listing in the desired size.  There is a complete code example available [here](/docs/services/cloud-object-storage/libraries/java.html#list-objects-v2).
+
+### Using Python
+
+The {{site.data.keyword.cos_full}} SDK for Python provides the [`list_objects_v2`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){:new_window} method that allows for returning the object listing in the desired size.  There is a complete code example available [here](/docs/services/cloud-object-storage/libraries/python.html#list-objects-v2).
