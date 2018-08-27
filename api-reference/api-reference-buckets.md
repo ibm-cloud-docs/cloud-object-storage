@@ -1308,6 +1308,156 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 **Sample Response**
 
 ```xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FASPConnectionInfo xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+  <AccessKey>
+    <Id>5CX9km-xFFFjAPab0aJ7HaFa</Id>
+    <Secret>g0sXx2X1VbLXXb9vjPABwjHU1CYPKhZT9-X1x0E6xXXX</Secret>
+  </AccessKey>
+  <ATSEndpoint>https://ats-sl-dal.aspera.io:443</ATSEndpoint>
+</FASPConnectionInfo>
+```
+
+----
+
+## Create a bucket lifecycle configuration
+
+A `PUT` operation uses the lifecycle query parameter to set lifecycle settings for the bucket.  A `Content-MD5` header is required as an integrity check for the payload.
+
+**Syntax**
+
+```bash
+PUT https://{endpoint}/{bucket-name}?lifecycle # path style
+PUT https://{bucket-name}.{endpoint}?lifecycle # virtual host style
+```
+
+**Payload Elements**
+
+The body of the request must contain an XML block with the following schema:
+
+|Element|Type|Children|Ancestor|Constraint|
+|---|---|---|---|---|
+|LifecycleConfiguration|Container|Rule|None|Limit 1|
+|Rule|Container|ID, Status, Filter, Transition|LifecycleConfiguration|Limit 1|
+|ID|String|None|Rule|**Must** consist of `(a-z,A- Z0-9)` and the following symbols:`` !`_ .*'()- ``|
+|Filter|String|Prefix|Rule|**Must** contain a `Prefix` element.|
+|Prefix|String|None|Filter|**Must** be set to `<Prefix/>`.|
+|Transition|Container|Days, StorageClass|Rule|Limit 1.|
+|Days|Non-negative integer|None|Transition|**Must** be a value greater than 0.|
+|Date|Date|None|Transition|**Must** be in ISO 8601 Format and the date must be in the future.|
+|StorageClass|String|None|Transition|**Must** be set to GLACIER.|
+
+```xml
+<LifecycleConfiguration>
+    <Rule>
+        <ID>{string}</ID>
+        <Status>Enabled</Status>
+        <Filter>
+            <Prefix/>
+        </Filter>
+        <Transition>
+            <Days>{integer}</Days>
+            <StorageClass>GLACIER</StorageClass>
+        </Transition>
+    </Rule>
+</LifecycleConfiguration>
+```
+
+**Sample Request (IAM)**
+
+```http
+PUT /apiary?lifecycle HTTP/1.1
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
+Authorization: {authorization-string}
+Content-Type: text/plain
+Content-MD5: M625BaNwd/OytcM7O5gIaQ== 
+Content-Length: 305
+```
+
+**Sample request (HMAC Headers)**
+
+```http
+PUT /apiary?lifecycle HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Content-MD5: M625BaNwd/OytcM7O5gIaQ== 
+Content-Length: 305
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Pre-signed URL)**
+
+```http
+PUT /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&lifecycle=&x-amz-signature={signature} HTTP/1.1
+Content-Type: text/plain
+Content-MD5: M625BaNwd/OytcM7O5gIaQ== 
+Content-Length: 305
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+```xml
+<LifecycleConfiguration>
+    <Rule>
+        <ID>my-archive-policy</ID>
+        <Filter>
+            <Prefix/>
+        </Filter>
+        <Status>Enabled</Status>
+        <Transition>
+            <Days>20</Days>
+            <StorageClass>GLACIER</StorageClass>
+        </Transition>
+    </Rule>
+</LifecycleConfiguration>
+```
+
+The server responds with `200 OK`.
+
+----
+
+## Retrieve a bucket lifecycle configuration
+
+A `GET` operation uses the lifecycle query parameter to retrieve lifecycle settings for the bucket.
+
+**Syntax**
+
+```bash
+GET https://{endpoint}/{bucket-name}?lifecycle # path style
+GET https://{bucket-name}.{endpoint}?lifecycle # virtual host style
+```
+
+**Sample Request (IAM)**
+
+```http
+GET /apiary?lifecycle HTTP/1.1
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
+Authorization: {authorization-string}
+```
+
+**Sample request (HMAC Headers)**
+
+```http
+GET /apiary?lifecycle HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Pre-signed URL)**
+
+```http
+GET /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&lifecycle=&x-amz-signature={signature} HTTP/1.1
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample Response**
+
+```xml
 <LifecycleConfiguration>
     <Rule>
         <ID>my-archive-policy</ID>
@@ -1362,4 +1512,8 @@ Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
+<<<<<<< HEAD
 The server responds with `204 No Content`.
+=======
+The server responds with `204 No Content`.
+>>>>>>> 4bbdb0d3284940bbd44490b83198973afdf3add0
