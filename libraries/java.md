@@ -819,7 +819,7 @@ boolean KPEnabled = result.getIBMSSEKPEnabled();
 String crn = result.getIBMSSEKPCUSTOMERROOTKEYCRN();
 ```
 
-## Using Aspera Connect High-Speed Transfer
+## Using Aspera High-Speed Transfer
 
 By installing the [Aspera SDK](/docs/services/cloud-object-storage/basics/aspera.html#aspera-sdk-java) you can utilize high-speed file transfers within your application.
 
@@ -833,9 +833,14 @@ AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_K
 
 You can also allow the `AsperaTransferManager` to use multiple sessions with an additonal configuration option.
 
+The minimum thresholds for using multi-session:
+* 2 sessions
+* 60 MB threshold (*minimum 100 MB total file size*)
+
 ```java
 AsperaConfig asperaConfig = new AsperaConfig()
-    .withMultiSession(5);
+    .withMultiSession(5)
+    .withMultiSessionThresholdMb(10);
             
 AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, _cos)
     .withAsperaConfig(asperaConfig)
@@ -985,34 +990,14 @@ int pauseCount = 0;
 while (!asperaTransfer.isDone()) {
     System.out.println("Directory download in progress...");
 
-    //sleep for 3 seconds
-    Thread.sleep(1000 * 3);
-    pauseCount++;
+    //pause the transfer
+    asperaTransfer.pause();
 
-    //if transfer takes more than 15 seconds, pause for one minute and resume
-    if (pauseCount == 5) {
-        System.out.println("Pausing the transfer for 1 minute...");
+    //resume the transfer
+    asperaTransfer.resume();
 
-        //pause the transfer
-        asperaTransfer.pause();
-
-        //sleep for 1 minute
-        Thread.sleep(1000 * 60);
-
-        System.out.println("Resuming the transfer...");
-
-        //resume the transfer
-        asperaTransfer.resume();
-    }
-
-    //if the transfer takes more than 1 minute, cancel the transfer
-    if (pauseCount >= 20) {
-        System.out.println("Canceling the transfer!");
-
-        //cancel the transfer
-        asperaTransfer.cancel();
-        break;
-    }
+    //cancel the transfer
+    asperaTransfer.cancel();
 }
 
 System.out.println("Directory download complete!");

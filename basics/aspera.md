@@ -40,7 +40,7 @@ The Aspera Connect plug-in can also be installed from the [Aspera website](http:
 
 Once the plug-in is installed, you have the option to set Aspera high-speed transfer as the default for any uploads to the target bucket that use the same browser. Select **Remember my browser preferences**. Options are also available in the bucket configuration page under **Transfer options**. These options allow you to choose between Standard and High-speed as the default transport for uploads and downloads.
 
-## Using the console
+### Using the console
 
 Typically, using the web-based console is not the most common way to use {{site.data.keyword.cos_short}}. The Standard transfer option limits objects size to 200MB and the file name and key will be identical.  Support for larger object sizes and improved performance (depending on network factors) is provided by Aspera high-speed transfer.
 
@@ -57,6 +57,8 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
 {:tip}
 
 **Advanced Preferences:** You can set bandwidth for uploads and downloads.
+
+----
 
 ## Using Libraries and SDKs
 
@@ -117,7 +119,7 @@ Maven uses a file named `pom.xml` to specify the libraries (and their versions) 
 
 #### Aspera/Java code examples
 
-Examples of initiating Aspera transfers with Java are available in [Using Java](/docs/services/cloud-object-storage/libraries/java.html#using-aspera-connect-high-speed-transfer) section.
+Examples of initiating Aspera transfers with Java are available in [Using Java](/docs/services/cloud-object-storage/libraries/java.html#using-aspera-high-speed-transfer) section.
 
 ### Getting the SDK using Python
 {: #aspera-sdk-python}
@@ -138,4 +140,4 @@ python -c  "import faspmanager2"
 
 #### Aspera/Python code examples
 
-Examples of initiating Aspera transfers with Python are available in [Using Python](/docs/services/cloud-object-storage/libraries/python.html#using-aspera-connect-high-speed-transfer) section.
+Examples of initiating Aspera transfers with Python are available in [Using Python](/docs/services/cloud-object-storage/libraries/python.html#using-aspera-high-speed-transfer) section.
