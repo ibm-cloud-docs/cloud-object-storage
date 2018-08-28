@@ -1020,9 +1020,11 @@ System.out.println("Directory download complete!");
 
 ### Troubleshooting Aspera Issues
 
-#### JVM unexpectedly and silently crashes during transfers
+#### Developers using the Oracle&reg; JDK on Linux or Mac OS X may experience unexpected and silent crashes during transfers
 
 **Cause:** The native code requires its own signal handlers which could be overriding the JVM's signal handlers. It might might be necessary to use the JVM's signal chaining facility.
+
+*IBM&reg; JDK users or Microsoft&reg; Windows users are not affected.*
 
 **Solution:** Link and load the JVM's signal chaining library.
 * On Linux locate the ***libjsig.so*** shared library and set the following environment variable:

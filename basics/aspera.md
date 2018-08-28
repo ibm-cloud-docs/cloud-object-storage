@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-08-23"
+lastupdated: "2018-08-27"
 
 ---
 {:new_window: target="_blank"}
@@ -82,6 +82,7 @@ The following item is **not supported**:
 * No 32-Bit support for any OS
 * No Windows support other than Windows 10
 * No Linux support for any distribution other than Ubuntu (tested against the latest LTS)
+* Java versions 6+ should be compatible but not tested in initial release (additional support expected for future releases)
 
 ### Getting the SDK using Java
 {: #aspera-sdk-java}
@@ -107,40 +108,11 @@ Maven uses a file named `pom.xml` to specify the libraries (and their versions) 
         </dependency>
         <dependency>
             <groupId>com.ibm.cos-aspera</groupId>
-            <artifactId>cos-aspera-mac-10.7-64</artifactId>
-            <version>0.1.162112</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.8.2</version>
-            <scope>test</scope>
+            <artifactId>cos-aspera</artifactId>
+            <version>0.1.163682</version>
         </dependency>
     </dependencies>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-shade-plugin</artifactId>
-        <version>2.4.3</version>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
 </project>
-```
-
-Additional code is necessary to use the Aspera library within your application.  The shared library will need to be explicitly loaded in your application initialization.
-
-```java
-System.load("<path-to-local-folder>/libfaspmanager2.jnilib");
 ```
 
 #### Aspera/Java code examples
@@ -150,30 +122,12 @@ Examples of initiating Aspera transfers with Java are available in [Using Java](
 ### Getting the SDK using Python
 {: #aspera-sdk-python}
 
-The {{site.data.keyword.cos_full_notm}} and Aspera Connect Python SDK is available from the Python Package Index (PyPI) software repository.  The Aspera SDK is an optional dependency that can be included in the requirements.txt or setup.py.
-
-```json
-extras_requires = {
-    "aspera": ["ibm-aspera-sdk==1.0.0"]
-}
-```
+The {{site.data.keyword.cos_full_notm}} and Aspera Connect Python SDK is available from the Python Package Index (PyPI) software repository.  
 
 Both can be installed using the following commands:
 
 ```
 pip install ibm-cos-sdk["aspera"]
-pip install cos-aspera
-```
-
-An additional dependency is also required for **Python 2.7**
-```
-pip install backports.functools_lru_cache
-```
-
-Final step is to add COS Aspera install path to the `PYTHONPATH` environment variable (typically located in your `site-packages` folder, i.e. `~/Library/Python/2.7/lib/python/site-packages`)
-
-```
-export PYTHONPATH=$PYTHONPATH:~/Library/Python/2.7/lib/python/site-packages/cos-aspera-mac-10-7-64-py-27
 ```
 
 To test your installation run the following command and ensure you do not receive any errors:
