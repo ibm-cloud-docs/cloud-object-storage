@@ -555,7 +555,7 @@ def create_bucket_kp(bucket_name):
 * Methods
     * [create](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.create){:new_window}
 
-## Using Aspera Connect High-Speed Transfer
+## Using Aspera High-Speed Transfer
 
 By installing the [Aspera SDK](/docs/services/cloud-object-storage/basics/aspera.html#aspera-sdk-python) you can utilize high-speed file transfers within your application.
 
@@ -571,6 +571,10 @@ You will need to provide an IAM API Key for Aspera transfers.  HMAC Credentials 
 {:tip}
 
 You can also allow the `AsperaTransferManager` to use multiple sessions with an additonal configuration option.
+
+The minimum thresholds for using multi-session:
+* 2 sessions
+* 60 MB threshold (*minimum 100 MB total file size*)
 
 ```python
 # Configure 5 sessions for transfer, or specify "all" for dynamic number of sessions.
@@ -589,13 +593,13 @@ upload_filename = "<path-to-file>"
 object_name = "<item-name>"
 
 # Create Transfer manager
-transfer_manager = AsperaTransferManager(client)
+with AsperaTransferManager(client) as transfer_manager:
 
-# Perform upload
-future = transfer_manager.upload(upload_filename, bucket_name, object_name, None, None)
+    # Perform upload
+    future = transfer_manager.upload(upload_filename, bucket_name, object_name, None, None)
 
-# Wait for upload to complete
-future.result()
+    # Wait for upload to complete
+    future.result()
 ```
 
 *Key Values*
@@ -611,13 +615,13 @@ download_filename = "<path-to-local-file>"
 object_name = "<object-to-download>"
 
 # Create Transfer manager
-transfer_manager = AsperaTransferManager(client)
+with AsperaTransferManager(client) as transfer_manager:
 
-# Get object with Aspera
-future = transfer_manager.download(bucket_name, object_name, download_filename, None, None)
+    # Get object with Aspera
+    future = transfer_manager.download(bucket_name, object_name, download_filename, None, None)
 
-# Wait for download to complete
-future.result()
+    # Wait for download to complete
+    future.result()
 ```
 
 *Key Values*
@@ -635,13 +639,13 @@ local_upload_directory = "<path-to-local-directory>"
 remote_directory = "<bucket-directory>"
 
 # Create Transfer manager
-transfer_manager = AsperaTransferManager(client)
+with AsperaTransferManager(client) as transfer_manager:
 
-# Perform upload
-future = transfer_manager.upload_directory(local_upload_directory, bucket_name, remote_directory, None, None)
+    # Perform upload
+    future = transfer_manager.upload_directory(local_upload_directory, bucket_name, remote_directory, None, None)
 
-# Wait for upload to complete
-future.result()
+    # Wait for upload to complete
+    future.result()
 ```
 
 *Key Values*
@@ -657,13 +661,13 @@ local_download_directory = "<path-to-local-directory>"
 remote_directory = "<bucket-directory>"
 
 # Create Transfer manager
-transfer_manager = AsperaTransferManager(client)
+with AsperaTransferManager(client) as transfer_manager:
 
-# Get object with Aspera
-future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory, None, None)
+    # Get object with Aspera
+    future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory, None, None)
 
-# Wait for download to complete
-future.result()
+    # Wait for download to complete
+    future.result()
 ```
 
 *Key Values*
@@ -730,27 +734,7 @@ The sample code above produces the following output:
 Directory download queued.
 Directory download in progress: 5632 bytes transferred
 Directory download in progress: 1047552 bytes transferred
-Directory download in progress: 2095104 bytes transferred
-Directory download in progress: 4190208 bytes transferred
-Directory download in progress: 5237760 bytes transferred
-Directory download in progress: 7332864 bytes transferred
-Directory download in progress: 8380416 bytes transferred
-Directory download in progress: 10475520 bytes transferred
-Directory download in progress: 12570624 bytes transferred
-Directory download in progress: 13618176 bytes transferred
-Directory download in progress: 15713280 bytes transferred
-Directory download in progress: 16760832 bytes transferred
-Directory download in progress: 18855936 bytes transferred
-Directory download in progress: 20706509 bytes transferred
-Directory download in progress: 28920781 bytes transferred
-Directory download in progress: 32225357 bytes transferred
-Directory download in progress: 33957197 bytes transferred
-Directory download in progress: 35368013 bytes transferred
-Directory download in progress: 36415565 bytes transferred
-Directory download in progress: 37463117 bytes transferred
-Directory download in progress: 38510669 bytes transferred
-Directory download in progress: 40605773 bytes transferred
-Directory download in progress: 41418650 bytes transferred
+...
 Directory download in progress: 53295130 bytes transferred
 Directory download in progress: 62106855 bytes transferred
 Download complete!
@@ -764,72 +748,23 @@ The SDK provides the ability to manage the progress of file/directory transfers 
 * `resume()`
 * `cancel()`
 
-The following example shows a possible use for these methods:
-
 ```python
+# Create Transfer manager
 bucket_name = "<bucket-name>"
 local_download_directory = "<path-to-local-directory>"
 remote_directory = "<bucket-directory>"
 
-# Subscriber callbacks
-class CallbackOnQueued(AsperaBaseSubscriber):
-    def __init__(self):
-        pass
+with AsperaTransferManager(client) as transfer_manager:
 
-    def on_queued(self, future, **kwargs):
-        print("Directory download queued.")
+    # download a directory with Aspera
+    future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory, None, None)
 
-class CallbackOnProgress(AsperaBaseSubscriber):
-    def __init__(self):
-        pass
+    # pause the transfer
+    future.pause()
 
-    def on_progress(self, future, bytes_transferred, **kwargs):
-        print("Directory download in progress: %s bytes transferred" % bytes_transferred)
+    # resume the transfer
+    future.resume()
 
-class CallbackOnDone(AsperaBaseSubscriber):
-    def __init__(self):
-        pass
-
-    def on_done(self, future, **kwargs):
-        print("Downloads complete!")
-
-# Create Transfer manager
-transfer_manager = AsperaTransferManager(client)
-
-# Attach subscribers
-subscribers = [CallbackOnQueued(), CallbackOnProgress(), CallbackOnDone()]
-
-# Get object with Aspera
-future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory, None, subscribers)
-
-pauseCount = 0
-
-# Wait for download to complete
-while future.done() == False:
-    # sleep for 3 seconds
-    time.sleep(3)
-    pauseCount += 1
-
-    # if transfer takes more than 15 seconds, pause for one minute and resume
-    if pauseCount == 5:
-        print("Pausing the transfer for 1 minute...")
-
-        # pause the transfer
-        future.pause()
-
-        # sleep for 1 minute
-        time.sleep(60)
-
-        print("Resuming the transfer...")
-
-        # resume the transfer
-        future.resume()
-
-    # if the transfer takes more than 1 minute, cancel the transfer
-    if pauseCount >= 20:
-        print("Canceling the transfer!")
-
-        # cancel the transfer
-        future.cancel()
-        break
+    # cancel the transfer
+    future.cancel()
 ```
