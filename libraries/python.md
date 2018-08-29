@@ -570,7 +570,7 @@ transfer_manager = AsperaTransferManager(client)
 You will need to provide an IAM API Key for Aspera transfers.  HMAC Credentials are **NOT** currently supported.  For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
 {:tip}
 
-You can also allow the `AsperaTransferManager` to use multiple sessions with an additonal configuration option.
+You can also allow the `AsperaTransferManager` to use multiple sessions with an additonal configuration option.  Multiple sessions is available on single file transfers when a threshold is set to split the file or directory transfers which contain multiple files (no threshold required).
 
 The minimum thresholds for using multi-session:
 * 2 sessions
@@ -578,7 +578,7 @@ The minimum thresholds for using multi-session:
 
 ```python
 # Configure 5 sessions for transfer, or specify "all" for dynamic number of sessions.
-ms_transfer_config = AsperaConfig(multi_session=5)
+ms_transfer_config = AsperaConfig(multi_session=5, multi_session_threshold_mb=60)
 
 # Create Transfer Manager
 transfer_manager = AsperaTransferManager(client=client, transfer_config=ms_transfer_config)
@@ -596,7 +596,7 @@ object_name = "<item-name>"
 with AsperaTransferManager(client) as transfer_manager:
 
     # Perform upload
-    future = transfer_manager.upload(upload_filename, bucket_name, object_name, None, None)
+    future = transfer_manager.upload(upload_filename, bucket_name, object_name)
 
     # Wait for upload to complete
     future.result()
@@ -618,7 +618,7 @@ object_name = "<object-to-download>"
 with AsperaTransferManager(client) as transfer_manager:
 
     # Get object with Aspera
-    future = transfer_manager.download(bucket_name, object_name, download_filename, None, None)
+    future = transfer_manager.download(bucket_name, object_name, download_filename)
 
     # Wait for download to complete
     future.result()
@@ -642,7 +642,7 @@ remote_directory = "<bucket-directory>"
 with AsperaTransferManager(client) as transfer_manager:
 
     # Perform upload
-    future = transfer_manager.upload_directory(local_upload_directory, bucket_name, remote_directory, None, None)
+    future = transfer_manager.upload_directory(local_upload_directory, bucket_name, remote_directory)
 
     # Wait for upload to complete
     future.result()
@@ -664,7 +664,7 @@ remote_directory = "<bucket-directory>"
 with AsperaTransferManager(client) as transfer_manager:
 
     # Get object with Aspera
-    future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory, None, None)
+    future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory)
 
     # Wait for download to complete
     future.result()
