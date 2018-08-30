@@ -1005,7 +1005,7 @@ System.out.println("Directory download complete!");
 
 ### Troubleshooting Aspera Issues
 
-#### Developers using the Oracle&reg; JDK on Linux or Mac OS X may experience unexpected and silent crashes during transfers
+#### Developers using the Oracle JDK on Linux or Mac OS X may experience unexpected and silent crashes during transfers
 
 **Cause:** The native code requires its own signal handlers which could be overriding the JVM's signal handlers. It might might be necessary to use the JVM's signal chaining facility.
 
