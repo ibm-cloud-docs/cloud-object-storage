@@ -282,7 +282,7 @@ function multiPartUpload(bucketName, itemName, filePath) {
     var uploadID = null;
 
     if (!fs.existsSync(filePath)) {
-        logError(new Error(`The file \'${filePath}\' does not exist or is not accessible.`));
+        log.error(new Error(`The file \'${filePath}\' does not exist or is not accessible.`));
         return;
     }
 
@@ -306,7 +306,7 @@ function multiPartUpload(bucketName, itemName, filePath) {
     
                 partNum++;
 
-                console.log(`Uploading to ${name} (part ${partNum} of ${partCount})`);  
+                console.log(`Uploading to ${itemName} (part ${partNum} of ${partCount})`);  
 
                 cos.uploadPart({
                     Body: fileData.slice(start, end),
