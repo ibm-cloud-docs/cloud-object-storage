@@ -86,7 +86,7 @@ function createBucket(bucketName) {
         console.log(`Bucket: ${bucketName} created!`);
     }))
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -108,7 +108,7 @@ function createTextFile(bucketName, itemName, fileText) {
         console.log(`Item: ${itemName} created!`);
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -130,7 +130,7 @@ function getBuckets() {
         }
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -155,7 +155,7 @@ function getBucketContents(bucketName) {
         }    
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -177,7 +177,7 @@ function getItem(bucketName, itemName) {
         }    
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -197,7 +197,7 @@ function deleteItem(bucketName, itemName) {
         console.log(`Item: ${itemName} deleted!`);
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -215,7 +215,7 @@ function deleteBucket(bucketName) {
         console.log(`Bucket: ${bucketName} deleted!`);
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -241,7 +241,7 @@ function getBucketACL(bucketName) {
         }
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -268,7 +268,7 @@ function getItemACL(bucketName, itemName) {
         }
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
