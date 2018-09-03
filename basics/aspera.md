@@ -14,7 +14,9 @@ lastupdated: "07-16-2018"
 
 # Aspera high-speed transfer
 
-Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP transfers to improve data transfer performance under most conditions, especially on networks experiencing high latency and packet loss. Using Aspera high-speed transfer for browser-based uploads and downloads offers the following benefits:
+Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP transfers to improve data transfer performance under most conditions, especially on networks experiencing high latency and packet loss. Note that the use of Aspera high-speed transfer for console browser-based file uploads and downloads is not currently available for IaaS provisioned Object Storage instances (i.e. from control.softlayer.com/storage/objectstorage).
+
+For PaaS instances of Object Storage in the IBM Cloud, using Aspera high-speed transfer for browser-based (i.e. console.bluemix.net) file uploads and downloads offers the following benefits:
 
 - Faster transfer speeds
 - Transfer large object uploads over 200MB.
@@ -40,9 +42,9 @@ The Aspera Connect plug-in can also be installed from the [Aspera website](http:
 
 Once the plug-in is installed, you have the option to set Aspera high-speed transfer as the default for any uploads to the target bucket that use the same browser. Select **Remember my browser preferences**. Options are also available in the bucket configuration page under **Transfer options**. These options allow you to choose between Standard and High-speed as the default transport for uploads and downloads.
 
-## Using the console
+## Using the IBM Cloud Object Storage console
 
-Typically, using the web-based console is not the most common way to use {{site.data.keyword.cos_short}}. The Standard transfer option limits objects size to 200MB and the file name and key will be identical.  Support for larger object sizes and improved performance (depending on network factors) is provided by Aspera high-speed transfer.
+Typically, using the IBM Cloud Object Storage web-based console is not the most common way to use {{site.data.keyword.cos_short}}. The Standard transfer option limits objects size to 200MB and the file name and key will be identical.  Support for larger object sizes and improved performance (depending on network factors) is provided by Aspera high-speed transfer.
 
 Instead of the standard HTTP `PUT`, Aspera high-speed transfer uploads the object using the [FASP protocol](http://asperasoft.com/technology/transport/fasp/) from [Aspera high-speed transfer](https://www.ibm.com/cloud/high-speed-data-transfer). 
 ### Transfer status
