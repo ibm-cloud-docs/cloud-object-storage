@@ -320,7 +320,7 @@ function multiPartUpload(bucketName, itemName, filePath) {
                 })
                 .catch((e) => {
                     cancelMultiPartUpload(bucketName, itemName, uploadID);
-                    console.log(`ERROR: ${e.code} - ${e.message}\n`);
+                    console.error(`ERROR: ${e.code} - ${e.message}\n`);
                 });
             }, (e, dataPacks) => {
                 cos.completeMultipartUpload({
@@ -331,16 +331,16 @@ function multiPartUpload(bucketName, itemName, filePath) {
                     },
                     UploadId: uploadID
                 }).promise()
-                .then(logDone)
+                .then(console.log(`Upload of all ${partCount} parts of ${itemName} successful.`)
                 .catch((e) => {
                     cancelMultiPartUpload(bucketName, itemName, uploadID);
-                    console.log(`ERROR: ${e.code} - ${e.message}\n`);
+                    console.error(`ERROR: ${e.code} - ${e.message}\n`);
                 });
             });
         });
     })
     .catch(e) {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     };
 }
 
@@ -354,7 +354,7 @@ function cancelMultiPartUpload(bucketName, itemName, uploadID) {
         console.log(`Multi-part upload aborted for ${itemName}`);
     })
     .catch((e){
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
