@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-26"
+lastupdated: "2018-08-20"
 
 ---
 
@@ -66,10 +66,6 @@ The following table lists the actions that generate an event:
 	  <td>An event is generated when a user reads the access control list on a bucket which can be public-read or private.</td>
   </tr>
   <tr>
-    <td>cloud-object-storage.bucket-acl.update</td>
-	  <td>An event is generated when a user modifies one or more access roles that a user or a serviceID has to work with a bucket.</td>
-  </tr>
-  <tr>
     <td>cloud-object-storage.bucket-cors.create</td>
 	  <td>An event is generated when a user creates a cross-origin resource sharing configuration for a bucket.</td>
   </tr>
@@ -94,57 +90,5 @@ The following table lists the actions that generate an event:
 
 {{site.data.keyword.cloudaccesstrailshort}} events are available in the {{site.data.keyword.cloudaccesstrailshort}} **account domain**.
 
-The {{site.data.keyword.cloudaccesstrailshort}} event will be sent to the Activity Tracker instance closest to the bucket location.
-
-The following table lists where to view the event depending on COS bucket location:
-
-<table>
-  <tr>
-    <th>COS bucket location</th>
-	  <th>Activity Tracker region</th>
-  <tr>
-  <tr>
-    <td>us-geo</td>
-	  <td>US South</td>
-  </tr>
-  <tr>
-    <td>us-south</td>
-    <td>US South</td>
-  </tr>
-  <tr>
-    <td>us-east</td>
-    <td>US South</td>
-  </tr>
-  <tr>
-    <td>Toronto (tor01)</td>
-    <td>US South</td>
-  </tr>
-  <tr>
-    <td>eu-geo</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>eu-de</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Amsterdam (ams03)</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>eu-gb</td>
-    <td>United Kingdom</td>
-  </tr>
-  <tr>
-    <td>ap-geo</td>
-    <td>Sydney</td>
-  </tr>
-  <tr>
-    <td>Melbourne (mel01)</td>
-    <td>Sydney</td>
-  </tr>
-  <tr>
-    <td>Chennai (che01)</td>
-    <td>Sydney</td>
-  </tr>
-</table>
+Events will be sent to the {{site.data.keyword.cloudaccesstrailshort}} region closest to the {{site.data.keyword.cos_full_notm}} bucket location
+which is shown on the [services supported page](/docs/services/cloud-object-storage/basics/services.html#integrated-service-availability).

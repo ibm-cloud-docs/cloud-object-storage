@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2018-06-05"
+  years: 2017, 2018
+lastupdated: "2018-07-27"
 
 ---
 
@@ -55,6 +55,7 @@ If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_creden
 Code examples were written using **Python 2.7.15**
 
 ### Initializing configuration
+{: #init-config}
 
 ```python
 # Constants for IBM COS values
@@ -84,15 +85,15 @@ cos = ibm_boto3.resource("s3",
 
 ### Creating a new bucket
 ```python
-def create_bucket(bucket):
-    print("Creating new bucket: {0}".format(bucket))
+def create_bucket(bucket_name):
+    print("Creating new bucket: {0}".format(bucket_name))
     try:
-        cos.Bucket(bucket).create(
+        cos.Bucket(bucket_name).create(
             CreateBucketConfiguration={
                 "LocationConstraint":COS_BUCKET_LOCATION
             }
         )
-        print("Bucket: {0} created!".format(bucket))
+        print("Bucket: {0} created!".format(bucket_name))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
@@ -107,13 +108,13 @@ def create_bucket(bucket):
 
 ### Creating a new text file
 ```python
-def create_text_file(bucket, name, file_text):
-    print("Creating new item: {0}".format(name))
+def create_text_file(bucket_name, item_name, file_text):
+    print("Creating new item: {0}".format(item_name))
     try:
-        cos.Object(bucket, name).put(
+        cos.Object(bucket_name, item_name).put(
             Body=file_text
         )
-        print("Item: {0} created!".format(name))
+        print("Item: {0} created!".format(item_name))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
@@ -149,10 +150,10 @@ def get_buckets():
 
 ### List items in a bucket
 ```python
-def get_bucket_contents(bucket):
-    print("Retrieving bucket contents from: {0}".format(bucket))
+def get_bucket_contents(bucket_name):
+    print("Retrieving bucket contents from: {0}".format(bucket_name))
     try:
-        files = cos.Bucket(bucket).objects.all()
+        files = cos.Bucket(bucket_name).objects.all()
         for file in files:
             print("Item: {0} ({1} bytes).".format(file.key, file.size))
     except ClientError as be:
@@ -170,10 +171,10 @@ def get_bucket_contents(bucket):
 
 ### Get file contents of particular item
 ```python
-def get_item(bucket, name):
-    print("Retrieving item from bucket: {0}, key: {1}".format(bucket, name))
+def get_item(bucket_name, item_name):
+    print("Retrieving item from bucket: {0}, key: {1}".format(bucket_name, item_name))
     try:
-        file = cos.Object(bucket, name).get()
+        file = cos.Object(bucket_name, item_name).get()
         print("File Contents: {0}".format(file["Body"].read()))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
@@ -189,11 +190,11 @@ def get_item(bucket, name):
 
 ### Delete an item from a bucket
 ```python
-def delete_item(bucket, name):
-    print("Deleting item: {0}".format(name))
+def delete_item(bucket_name, item_name):
+    print("Deleting item: {0}".format(item_name))
     try:
-        cos.Object(bucket, name).delete()
-        print("Item: {0} deleted!".format(name))
+        cos.Object(bucket_name, item_name).delete()
+        print("Item: {0} deleted!".format(item_name))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
@@ -208,11 +209,11 @@ def delete_item(bucket, name):
 
 ### Delete a bucket
 ```python
-def delete_bucket(bucket):
-    print("Deleting bucket: {0}".format(bucket))
+def delete_bucket(bucket_name):
+    print("Deleting bucket: {0}".format(bucket_name))
     try:
-        cos.Bucket(bucket).delete()
-        print("Bucket: {0} deleted!".format(bucket))
+        cos.Bucket(bucket_name).delete()
+        print("Bucket: {0} deleted!".format(bucket_name))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
@@ -227,15 +228,15 @@ def delete_bucket(bucket):
 
 ### View a bucket's security
 ```python
-def get_bucket_acl(bucket):
-    print("Retrieving ACL for bucket: {0}".format(bucket))
+def get_bucket_acl(bucket_name):
+    print("Retrieving ACL for bucket: {0}".format(bucket_name))
     try:
-        acl_data = cos.BucketAcl(bucket)
+        acl_data = cos.BucketAcl(bucket_name)
         print("Owner: {0}".format(acl_data.owner["DisplayName"]))
         for grant in acl_data.grants:
-            displayName = grant["Grantee"]["DisplayName"]
+            display_name = grant["Grantee"]["DisplayName"]
             permission = grant["Permission"]
-            print("User: {0} ({1})".format(displayName, permission))
+            print("User: {0} ({1})".format(display_name, permission))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
@@ -251,15 +252,15 @@ def get_bucket_acl(bucket):
 
 ### View a file's security
 ```python
-def get_item_acl(bucket, name):
-    print("Retrieving ACL for {0} from bucket: {1}".format(name, bucket))
+def get_item_acl(bucket_name, item_name):
+    print("Retrieving ACL for {0} from bucket: {1}".format(item_name, bucket_name))
     try:
-        acl_data = cos.ObjectAcl(bucket, name)
+        acl_data = cos.ObjectAcl(bucket_name, item_name)
         print("Owner: {0}".format(acl_data.owner["DisplayName"]))
         for grant in acl_data.grants:
-            displayName = grant["Grantee"]["DisplayName"]
+            display_name = grant["Grantee"]["DisplayName"]
             permission = grant["Permission"]
-            print("User: {0} ({1})".format(displayName, permission))
+            print("User: {0} ({1})".format(display_name, permission))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
@@ -279,9 +280,9 @@ def get_item_acl(bucket, name):
 The [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.upload_fileobj){:new_window} method of the [S3.Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){:new_window} class automatically executes a multi-part upload when necessary.  The [TransferConfig](https://ibm.github.io/ibm-cos-sdk-python/reference/customizations/s3.html#s3-transfers){:new_window} class is used to determine the threshold for using the mult-part upload.
 
 ```python
-def multi_part_upload(bucket, name, file_path):
+def multi_part_upload(bucket_name, item_name, file_path):
     try:
-        print("Starting file transfer for {0} to bucket: {1}\n".format(name, bucket))
+        print("Starting file transfer for {0} to bucket: {1}\n".format(item_name, bucket_name))
         # set 5 MB chunks
         part_size = 1024 * 1024 * 5
 
@@ -297,12 +298,12 @@ def multi_part_upload(bucket, name, file_path):
         # the upload_fileobj method will automatically execute a multi-part upload 
         # in 5 MB chunks for all files over 15 MB
         with open(file_path, "rb") as file_data:
-            cos.Object(bucket, name).upload_fileobj(
+            cos.Object(bucket_name, item_name).upload_fileobj(
                 Fileobj=file_data,
                 Config=transfer_config
             )
         
-        print("Transfer for {0} Complete!\n".format(name))
+        print("Transfer for {0} Complete!\n".format(item_name))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
@@ -320,7 +321,7 @@ def multi_part_upload(bucket, name, file_path):
 If desired, the [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window} class can be used to perform a multi-part upload.  This can be useful if more control over the upload process is necessary.
 
 ```python
-def multi_part_upload_manual(bucket, name, file_path):
+def multi_part_upload_manual(bucket_name, item_name, file_path):
     try:
         # create client object
         cos_cli = ibm_boto3.client("s3",
@@ -331,12 +332,12 @@ def multi_part_upload_manual(bucket, name, file_path):
             endpoint_url=COS_ENDPOINT
         )
     
-        print("Starting multi-part upload for {0} to bucket: {1}\n".format(name, bucket))
+        print("Starting multi-part upload for {0} to bucket: {1}\n".format(item_name, bucket_name))
 
         # initiate the multi-part upload
         mp = cos_cli.create_multipart_upload(
-            Bucket=bucket,
-            Key=name
+            Bucket=bucket_name,
+            Key=item_name
         )
 
         upload_id = mp["UploadId"]
@@ -355,13 +356,13 @@ def multi_part_upload_manual(bucket, name, file_path):
                 part_num = i + 1
                 part_size = min(part_size, (file_size - position))
 
-                print("Uploading to {0} (part {1} of {2})".format(name, part_num, part_count))
+                print("Uploading to {0} (part {1} of {2})".format(item_name, part_num, part_count))
 
                 file_data = file.read(part_size)
 
                 mp_part = cos_cli.upload_part(
-                    Bucket=bucket,
-                    Key=name,
+                    Bucket=bucket_name,
+                    Key=item_name,
                     PartNumber=part_num,
                     Body=file_data,
                     ContentLength=part_size,
@@ -377,22 +378,22 @@ def multi_part_upload_manual(bucket, name, file_path):
 
         # complete upload
         cos_cli.complete_multipart_upload(
-            Bucket=bucket,
-            Key=name,
+            Bucket=bucket_name,
+            Key=item_name,
             UploadId=upload_id,
             MultipartUpload={
                 "Parts": data_packs
             }
         )
-        print("Upload for {0} Complete!\n".format(name))
+        print("Upload for {0} Complete!\n".format(item_name))
     except ClientError as be:
         # abort the upload
         cos_cli.abort_multipart_upload(
-            Bucket=bucket,
-            Key=name,
+            Bucket=bucket_name,
+            Key=item_name,
             UploadId=upload_id            
         )
-        print("Multi-part upload aborted for {0}\n".format(name))
+        print("Multi-part upload aborted for {0}\n".format(item_name))
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
         print("Unable to complete multi-part upload: {0}".format(e))
@@ -435,21 +436,21 @@ COS_KP_ALGORITHM = "<algorithm>"
 COS_KP_ROOTKEY_CRN = "<root-key-crn>"
 
 # Create a new bucket with key protect (encryption)
-def create_bucket_kp(bucket):
-    print("Creating new encrypted bucket: {0}".format(bucket))
+def create_bucket_kp(bucket_name):
+    print("Creating new encrypted bucket: {0}".format(bucket_name))
     try:
-        cos.Bucket(bucket).create(
+        cos.Bucket(bucket_name).create(
             CreateBucketConfiguration={
                 "LocationConstraint":COS_BUCKET_LOCATION
             },
             IBMSSEKPEncryptionAlgorithm=COS_KP_ALGORITHM,
             IBMSSEKPCustomerRootKeyCrn=COS_KP_ROOTKEY_CRN
         )
-        print("Encrypted Bucket: {0} created!".format(bucket))
+        print("Encrypted Bucket: {0} created!".format(bucket_name))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
-        print("Unable to create encrypted bucket: {0}".format(e))```
+        print("Unable to create encrypted bucket: {0}".format(e))
 ```
 
 *Key Values*
@@ -461,3 +462,272 @@ def create_bucket_kp(bucket):
     * [Bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){:new_window}
 * Methods
     * [create](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.create){:new_window}
+
+## Using Aspera Connect High-Speed Transfer
+
+By installing the [Aspera SDK](/docs/services/cloud-object-storage/basics/aspera.html#aspera-sdk-python) you can utilize high-speed file transfers within your application.
+
+### Initalizing the AsperaTransferManager
+
+Pass your existing [S3 Client](#init-config) object to create the AsperaTransferManager
+
+```python
+transfer_manager = AsperaTransferManager(client)
+```
+
+### File Upload
+
+```python
+bucket_name = "<bucket-name>"
+upload_filename = "<path-to-file>"
+object_name = "<item-name>"
+
+# Create Transfer manager
+transfer_manager = AsperaTransferManager(client)
+
+# Perform upload
+future = transfer_manager.upload(upload_filename, bucket_name, object_name, None, None)
+
+# Wait for upload to complete
+future.result()
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<path-to-file>` - directory and file name to the file to be uploaded to Object Storage.
+* `<item-name>` - name of the new file added to the bucket.
+
+### File Download
+
+```python
+bucket_name = "<bucket-name>"
+download_filename = "<path-to-local-file>"
+object_name = "<object-to-download>"
+
+# Create Transfer manager
+transfer_manager = AsperaTransferManager(client)
+
+# Get object with Aspera
+future = transfer_manager.download(bucket_name, object_name, download_filename, None, None)
+
+# Wait for download to complete
+future.result()
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<path-to-local-file>` - directory and file name where save the file to the local system.
+* `<object-to-download>` - name of the file in the bucket to download.
+
+### Directory Upload
+
+```python
+bucket_name = "<bucket-name>"
+# THIS DIRECTORY MUST EXIST LOCALLY, and have objects in it.
+local_upload_directory = "<path-to-local-directory>"
+# THIS SHOULD NOT HAVE A LEADING "/"
+remote_directory = "<bucket-directory>"
+
+# Create Transfer manager
+transfer_manager = AsperaTransferManager(client)
+
+# Perform upload
+future = transfer_manager.upload_directory(local_upload_directory, bucket_name, remote_directory, None, None)
+
+# Wait for upload to complete
+future.result()
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
+* `<path-to-local-directory>` - local directory that contains the files to be uploaded.  Must have leading and trailing `/` (i.e. `/Users/testuser/Documents/Upload/`)
+* `<bucket-directory>` - name of the directory in the bucket to store the files. Must not have a leading `/` (i.e. `newuploads/`)
+
+### Directory Download
+```python
+bucket_name = "<bucket-name>"
+# THIS DIRECTORY MUST EXIST LOCALLY
+local_download_directory = "<path-to-local-directory>"
+remote_directory = "<bucket-directory>"
+
+# Create Transfer manager
+transfer_manager = AsperaTransferManager(client)
+
+# Get object with Aspera
+future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory, None, None)
+
+# Wait for download to complete
+future.result()
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
+* `<path-to-local-directory>` - local directory to save the downloaded files.  Must have leading and trailing `/` (i.e. `/Users/testuser/Downloads/`)
+* `<bucket-directory>` - name of the directory in the bucket to store the files. Must not have a leading `/` (i.e. `todownload/`)
+
+### Using Subscribers
+
+Subscribers allow you monitor the progress of your operations by attach custom callback methods.  There are three subscribers currently available:
+
+* Queued
+* Progress
+* Done
+
+```python
+bucket_name = "<bucket-name>"
+local_download_directory = "<path-to-local-directory>"
+remote_directory = "<bucket-directory>"
+
+# Subscriber callbacks
+class CallbackOnQueued(AsperaBaseSubscriber):
+    def __init__(self):
+        pass
+
+    def on_queued(self, future, **kwargs):
+        print("Directory download queued.")
+
+class CallbackOnProgress(AsperaBaseSubscriber):
+    def __init__(self):
+        pass
+
+    def on_progress(self, future, bytes_transferred, **kwargs):
+        print("Directory download in progress: %s bytes transferred" % bytes_transferred)
+
+class CallbackOnDone(AsperaBaseSubscriber):
+    def __init__(self):
+        pass
+
+    def on_done(self, future, **kwargs):
+        print("Downloads complete!")
+
+# Create Transfer manager
+transfer_manager = AsperaTransferManager(client)
+
+# Attach subscribers
+subscribers = [CallbackOnQueued(), CallbackOnProgress(), CallbackOnDone()]
+
+# Get object with Aspera
+future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory, None, subscribers)
+
+# Wait for download to complete
+future.result()
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
+* `<path-to-local-directory>` - local directory to save the downloaded files.  Must have leading and trailing `/` (i.e. `/Users/testuser/Downloads/`)
+* `<bucket-directory>` - name of the directory in the bucket to store the files. Must not have a leading `/` (i.e. `todownload/`)
+
+The sample code above produces the following output:
+
+```
+Directory download queued.
+Directory download in progress: 5632 bytes transferred
+Directory download in progress: 1047552 bytes transferred
+Directory download in progress: 2095104 bytes transferred
+Directory download in progress: 4190208 bytes transferred
+Directory download in progress: 5237760 bytes transferred
+Directory download in progress: 7332864 bytes transferred
+Directory download in progress: 8380416 bytes transferred
+Directory download in progress: 10475520 bytes transferred
+Directory download in progress: 12570624 bytes transferred
+Directory download in progress: 13618176 bytes transferred
+Directory download in progress: 15713280 bytes transferred
+Directory download in progress: 16760832 bytes transferred
+Directory download in progress: 18855936 bytes transferred
+Directory download in progress: 20706509 bytes transferred
+Directory download in progress: 28920781 bytes transferred
+Directory download in progress: 32225357 bytes transferred
+Directory download in progress: 33957197 bytes transferred
+Directory download in progress: 35368013 bytes transferred
+Directory download in progress: 36415565 bytes transferred
+Directory download in progress: 37463117 bytes transferred
+Directory download in progress: 38510669 bytes transferred
+Directory download in progress: 40605773 bytes transferred
+Directory download in progress: 41418650 bytes transferred
+Directory download in progress: 53295130 bytes transferred
+Directory download in progress: 62106855 bytes transferred
+Download complete!
+```
+
+<!---
+
+### Pause/Resume/Cancel
+
+The SDK provides the ability to manage the progress of file/directory transfers though the following methods of the `AsperaTransferFuture` object:
+
+* `pause()`
+* `resume()`
+* `cancel()`
+
+The following example shows a possible use for these methods:
+
+```python
+bucket_name = "<bucket-name>"
+local_download_directory = "<path-to-local-directory>"
+remote_directory = "<bucket-directory>"
+
+# Subscriber callbacks
+class CallbackOnQueued(AsperaBaseSubscriber):
+    def __init__(self):
+        pass
+
+    def on_queued(self, future, **kwargs):
+        print("Directory download queued.")
+
+class CallbackOnProgress(AsperaBaseSubscriber):
+    def __init__(self):
+        pass
+
+    def on_progress(self, future, bytes_transferred, **kwargs):
+        print("Directory download in progress: %s bytes transferred" % bytes_transferred)
+
+class CallbackOnDone(AsperaBaseSubscriber):
+    def __init__(self):
+        pass
+
+    def on_done(self, future, **kwargs):
+        print("Downloads complete!")
+
+# Create Transfer manager
+transfer_manager = AsperaTransferManager(client)
+
+# Attach subscribers
+subscribers = [CallbackOnQueued(), CallbackOnProgress(), CallbackOnDone()]
+
+# Get object with Aspera
+future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory, None, subscribers)
+
+pauseCount = 0
+
+# Wait for download to complete
+while future.done() == False:
+    # sleep for 3 seconds
+    time.sleep(3)
+    pauseCount += 1
+
+    # if transfer takes more than 15 seconds, pause for one minute and resume
+    if pauseCount == 5:
+        print("Pausing the transfer for 1 minute...")
+
+        # pause the transfer
+        future.pause()
+
+        # sleep for 1 minute
+        time.sleep(60)
+
+        print("Resuming the transfer...")
+
+        # resume the transfer
+        future.resume()
+
+    # if the transfer takes more than 1 minute, cancel the transfer
+    if pauseCount >= 20:
+        print("Canceling the transfer!")
+
+        # cancel the transfer
+        future.cancel()
+        break
+```
+--->
+

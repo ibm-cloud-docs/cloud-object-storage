@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-06-01"
+lastupdated: "2018-07-27"
 
 ---
 
@@ -98,6 +98,8 @@ Note that when adding custom metadata to an object, it is necessary to create an
 {: .tip}
 
 ### Initializing configuration
+{: #init-config}
+
 ```java
 private static String COS_ENDPOINT = "<endpoint>";
 private static String COS_API_KEY_ID = "<api-key>";
@@ -206,10 +208,10 @@ public static String getEndpoint(String location, String region, String endpoint
 
 ### Creating a new bucket
 ```java
-public static void createBucket(String bucket) {
-    System.out.printf("Creating new bucket: %s\n", bucket);
-    _cos.createBucket(bucket);
-    System.out.printf("Bucket: %s created!\n", bucket);
+public static void createBucket(String bucketName) {
+    System.out.printf("Creating new bucket: %s\n", bucketName);
+    _cos.createBucket(bucketName);
+    System.out.printf("Bucket: %s created!\n", bucketName);
 }
 ```
 
@@ -218,18 +220,18 @@ public static void createBucket(String bucket) {
 
 ### Creating a new text file
 ```java
-public static void createTextFile(String bucket, String name, String fileText) {
-    System.out.printf("Creating new item: %s\n", name);
+public static void createTextFile(String bucketName, String itemName, String fileText) {
+    System.out.printf("Creating new item: %s\n", itemName);
 
     InputStream newStream = new ByteArrayInputStream(fileText.getBytes(StandardCharsets.UTF_8));
 
     ObjectMetadata metadata = new ObjectMetadata();        
     metadata.setContentLength(fileText.length());
 
-    PutObjectRequest req = new PutObjectRequest(bucket, name, newStream, metadata);
+    PutObjectRequest req = new PutObjectRequest(bucketName, itemName, newStream, metadata);
     _cos.putObject(req);
     
-    System.out.printf("Item: %s created!\n", name);
+    System.out.printf("Item: %s created!\n", itemName);
 }
 ```
 
@@ -285,10 +287,10 @@ public static void getBuckets() {
 
 ### List items in a bucket
 ```java
-public static void getBucketContents(String bucket) {
-    System.out.printf("Retrieving bucket contents from: %s\n", bucket);
+public static void getBucketContents(String bucketName) {
+    System.out.printf("Retrieving bucket contents from: %s\n", bucketName);
 
-    ObjectListing objectListing = _cos.listObjects(new ListObjectsRequest().withBucketName(bucket));
+    ObjectListing objectListing = _cos.listObjects(new ListObjectsRequest().withBucketName(bucketName));
     for (S3ObjectSummary objectSummary : objectListing.getObjectSummaries()) {
         System.out.printf("Item: %s (%s bytes)\n", objectSummary.getKey(), objectSummary.getSize());
     }
@@ -305,10 +307,10 @@ public static void getBucketContents(String bucket) {
 
 ### Get file contents of particular item
 ```java
-public static void getItem(String bucket, String name) {
-    System.out.printf("Retrieving item from bucket: %s, key: %s\n", bucket, name);
+public static void getItem(String bucketName, String itemName) {
+    System.out.printf("Retrieving item from bucket: %s, key: %s\n", bucketName, itemName);
 
-    S3Object item = _cos.getObject(new GetObjectRequest(bucket, name));
+    S3Object item = _cos.getObject(new GetObjectRequest(bucketName, itemName));
 
     try {
         final int bufferSize = 1024;
@@ -338,10 +340,10 @@ public static void getItem(String bucket, String name) {
 
 ### Delete an item from a bucket
 ```java
-public static void deleteItem(String bucket, String name) {
-    System.out.printf("Deleting item: %s\n", name);
-    _cos.deleteObject(bucket, name);
-    System.out.printf("Item: %s deleted!\n", name);
+public static void deleteItem(String bucketName, String itemName) {
+    System.out.printf("Deleting item: %s\n", itemName);
+    _cos.deleteObject(bucketName, itemName);
+    System.out.printf("Item: %s deleted!\n", itemName);
 }
 ```
 *SDK References*
@@ -350,10 +352,10 @@ public static void deleteItem(String bucket, String name) {
 
 ### Delete a bucket
 ```java
-public static void deleteBucket(String bucket) {
-    System.out.printf("Deleting bucket: %s\n", bucket);
-    _cos.deleteBucket(bucket);
-    System.out.printf("Bucket: %s deleted!\n", bucket);
+public static void deleteBucket(String bucketName) {
+    System.out.printf("Deleting bucket: %s\n", bucketName);
+    _cos.deleteBucket(bucketName);
+    System.out.printf("Bucket: %s deleted!\n", bucketName);
 }
 ```
 
@@ -363,10 +365,10 @@ public static void deleteBucket(String bucket) {
 
 ### View a bucket's security
 ```java
-public static void getBucketACL(String bucket) {
-    System.out.printf("Retrieving ACL for bucket: %s\n", bucket);
+public static void getBucketACL(String bucketName) {
+    System.out.printf("Retrieving ACL for bucket: %s\n", bucketName);
 
-    AccessControlList acl = _cos.getBucketAcl(bucket);
+    AccessControlList acl = _cos.getBucketAcl(bucketName);
 
     List<Grant> grants = acl.getGrantsAsList();
     
@@ -387,10 +389,10 @@ public static void getBucketACL(String bucket) {
 
 ### View a file's security
 ```java
-public static void getItemACL(String bucket, String name) {
-    System.out.printf("Retrieving ACL for %s from bucket: %s\n", name, bucket);
+public static void getItemACL(String bucketName, String itemName) {
+    System.out.printf("Retrieving ACL for %s from bucket: %s\n", itemName, bucketName);
 
-    AccessControlList acl = _cos.getObjectAcl(bucket, name);
+    AccessControlList acl = _cos.getObjectAcl(bucketName, itemName);
 
     List<Grant> grants = acl.getGrantsAsList();
 
@@ -409,16 +411,16 @@ public static void getItemACL(String bucket, String name) {
 
 ### Execute a multi-part upload
 ```java
-public static void multiPartUpload(String bucket, String name, String filePath) {
+public static void multiPartUpload(String bucketName, String itemName, String filePath) {
     File file = new File(filePath);
     if (!file.isFile()) {
         System.out.printf("The file '%s' does not exist or is not accessible.\n", filePath);
         return;
     }
 
-    System.out.printf("Starting multi-part upload for %s to bucket: %s\n", name, bucket);
+    System.out.printf("Starting multi-part upload for %s to bucket: %s\n", itemName, bucketName);
 
-    InitiateMultipartUploadResult mpResult = _cos.initiateMultipartUpload(new InitiateMultipartUploadRequest(bucket, name));
+    InitiateMultipartUploadResult mpResult = _cos.initiateMultipartUpload(new InitiateMultipartUploadRequest(bucketName, itemName));
     String uploadID = mpResult.getUploadId();
 
     //begin uploading the parts
@@ -436,8 +438,8 @@ public static void multiPartUpload(String bucket, String name, String filePath) 
             System.out.printf("Uploading to %s (part %s of %s)\n", name, partNum, partCount);  
 
             UploadPartRequest upRequest = new UploadPartRequest()
-                    .withBucketName(bucket)
-                    .withKey(name)
+                    .withBucketName(bucketName)
+                    .withKey(itemName)
                     .withUploadId(uploadID)
                     .withPartNumber(partNum)
                     .withFileOffset(position)
@@ -451,12 +453,12 @@ public static void multiPartUpload(String bucket, String name, String filePath) 
         } 
 
         //complete upload
-        _cos.completeMultipartUpload(new CompleteMultipartUploadRequest(bucket, name, uploadID, dataPacks));
-        System.out.printf("Upload for %s Complete!\n", name);
+        _cos.completeMultipartUpload(new CompleteMultipartUploadRequest(bucketName, itemName, uploadID, dataPacks));
+        System.out.printf("Upload for %s Complete!\n", itemName);
     } catch (SdkClientException sdke) {
-        System.out.printf("Multi-part upload aborted for %s\n", name);
+        System.out.printf("Multi-part upload aborted for %s\n", itemName);
         System.out.printf("Upload Error: %s\n", sdke.getMessage());
-        _cos.abortMultipartUpload(new AbortMultipartUploadRequest(bucket, name, uploadID));
+        _cos.abortMultipartUpload(new AbortMultipartUploadRequest(bucketName, itemName, uploadID));
     }
 }
 ```
@@ -603,18 +605,18 @@ The following items are necessary in order to create a bucket with Key-Protect e
 private static String COS_KP_ALGORITHM = "<algorithm>";
 private static String COS_KP_ROOTKEY_CRN = "<root-key-crn>";
 
-public static void createBucketKP(String bucket) {
-    System.out.printf("Creating new encrypted bucket: %s\n", bucket);
+public static void createBucketKP(String bucketName) {
+    System.out.printf("Creating new encrypted bucket: %s\n", bucketName);
 
     EncryptionType encType = new EncryptionType();
     encType.setKmsEncryptionAlgorithm(COS_KP_ALGORITHM);
     encType.setIBMSSEKMSCustomerRootKeyCrn(COS_KP_ROOTKEY_CRN);
 
-    CreateBucketRequest req = new CreateBucketRequest(bucket).withEncryptionType(encType);
+    CreateBucketRequest req = new CreateBucketRequest(bucketName).withEncryptionType(encType);
 
     _cos.createBucket(req);
 
-    System.out.printf("Bucket: %s created!", bucket);
+    System.out.printf("Bucket: %s created!", bucketName);
 }
 ```
 *Key Values*
@@ -711,6 +713,194 @@ HeadBucketResult result = s3client.headBucket(headBucketRequest)
 boolean KPEnabled = result.getIBMSSEKPEnabled();
 String crn = result.getIBMSSEKPCUSTOMERROOTKEYCRN();
 ```
+
+## Using Aspera Connect High-Speed Transfer
+
+By installing the [Aspera SDK](/docs/services/cloud-object-storage/basics/aspera.html#aspera-sdk-java) you can utilize high-speed file transfers within your application.
+
+### Initalizing the AsperaTransferManager
+
+Pass your existing [S3 Client](#init-config) object to create the AsperaTransferManager
+
+```java
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+```
+
+*Key Values*
+* `API_KEY` - api key generated when creating the service credentials (write access is required)
+
+### File Upload
+
+```java
+String bucketName = "<bucket-name>";
+String filePath = "<path-to-local-file>";
+String itemName = "<item-name>";
+
+// Load file
+File inputFile = new File(filePath);
+
+// Create AsperaTransferManager for FASP upload
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+
+// Upload test file and report progress
+AsperaTransfer asperaTransfer = asperaTransferMgr.upload(bucketName, itemName, inputFile);
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<path-to-local-file>` - directory and file name to the file to be uploaded to Object Storage.
+* `<item-name>` - name of the new file added to the bucket.
+
+### File Download
+
+```java
+String bucketName = "<bucket-name>";
+String outputPath = "<path-to-local-file>";
+String itemName = "<item-name>";
+
+// Create local file
+File outputFile = new File(outputPath);
+outputFile.createNewFile();
+
+// Create AsperaTransferManager for FASP download
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+
+// Download file
+AsperaTransfer asperaTransfer = asperaTransferMgr.download(bucketName, itemName, outputFile);
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<path-to-local-file>` - directory and file name to save from Object Storage.
+* `<item-name>` - name of the file in the bucket.
+
+### Directory Upload
+
+```java
+String bucketName = "<bucket-name>";
+String directoryPath = "<path-to-local-directory>";
+String directoryPrefix = "<virtual-directory-prefix>";
+boolean includeSubDirectories = true;
+
+// Load Directory
+File inputDirectory = new File(directoryPath);
+
+// Create AsperaTransferManager for FASP upload
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+
+// Upload test directory
+AsperaTransfer asperaTransfer = asperaTransferMgr.uploadDirectory(bucketName, directoryPrefix, inputDirectory, includeSubDirectories);
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<path-to-local-directory>` - directory of the files to be uploaded to Object Storage.
+* `<virtual-directory-prefix>` - name of the directory prefix to be added to each file upon upload.  Use null or empty string to upload the files to the bucket root.
+
+### Directory Download
+
+```java
+String bucketName = "<bucket-name>";
+String directoryPath = "<path-to-local-directory>";
+String directoryPrefix = "<virtual-directory-prefix>";
+boolean includeSubDirectories = true;
+
+// Load Directory
+File outputDirectory = new File(directoryPath);
+
+// Create AsperaTransferManager for FASP download
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+
+// Download test directory
+AsperaTransfer asperaTransfer = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<path-to-local-directory>` - directory to save downloaded files from Object Storage.
+* `<virtual-directory-prefix>` - name of the directory prefix of each file to download.  Use null or empty string to download all files in the bucket.
+
+### Monitoring Transfer Progress
+
+The simplest way to monitor the progress of your file/directory transfers is to use the `isDone()` property that returns `true` when your transfer is complete.
+
+```java
+AsperaTransfer asperaTransfer = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+
+while (!asperaTransfer.isDone()) {
+    System.out.println("Directory download is in progress");
+
+    //pause for 3 seconds
+    Thread.sleep(1000 * 3);
+}
+```
+
+<!---
+
+### Pause/Resume/Cancel
+
+The SDK provides the ability to manage the progress of file/directory transfers though the following methods of the `AsperaTransfer` object:
+
+* `pause()`
+* `resume()`
+* `cancel()`
+
+The following example shows a possible use for these methods:
+
+```java
+String bucketName = "<bucket-name>";
+String directoryPath = "<path-to-local-directory>";
+String directoryPrefix = "<virtual-directory-prefix>";
+boolean includeSubDirectories = true;
+
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, _cos).build();
+
+File outputDirectory = new File(directoryName);
+
+System.out.println("Starting directory download...");
+
+//download the directory from cloud storage
+AsperaTransfer asperaTransfer = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+
+int pauseCount = 0;
+
+while (!asperaTransfer.isDone()) {
+    System.out.println("Directory download in progress...");
+
+    //sleep for 3 seconds
+    Thread.sleep(1000 * 3);
+    pauseCount++;
+
+    //if transfer takes more than 15 seconds, pause for one minute and resume
+    if (pauseCount == 5) {
+        System.out.println("Pausing the transfer for 1 minute...");
+
+        //pause the transfer
+        asperaTransfer.pause();
+
+        //sleep for 1 minute
+        Thread.sleep(1000 * 60);
+
+        System.out.println("Resuming the transfer...");
+
+        //resume the transfer
+        asperaTransfer.resume();
+    }
+
+    //if the transfer takes more than 1 minute, cancel the transfer
+    if (pauseCount >= 20) {
+        System.out.println("Canceling the transfer!");
+
+        //cancel the transfer
+        asperaTransfer.cancel();
+        break;
+    }
+}
+
+System.out.println("Directory download complete!");
+```
+
+--->
 
 ## API reference
 

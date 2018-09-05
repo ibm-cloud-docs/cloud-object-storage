@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2018-05-24"
+  years: 2017, 2018
+lastupdated: "2018-07-13"
 
 ---
 
@@ -38,7 +38,7 @@ To run the SDK you will need **Node 4.x+**.
 ### Creating a client and sourcing credentials
 {: #client-credentials}
 
-To connect to COS, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
+To connect to COS, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables (`AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` respectively).
 
 After generating a [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`.  The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client will authenticate with a signature, otherwise the client will use the provided API key to authenticate using a bearer token.
 
@@ -95,15 +95,15 @@ function createBucket(bucketName) {
 
 ### Creating a new text file
 ```javascript
-function createTextFile(bucket, name, fileText) {
-    console.log(`Creating new item: ${name}`);
+function createTextFile(bucketName, itemName, fileText) {
+    console.log(`Creating new item: ${itemName}`);
     return cos.putObject({
-        Bucket: bucket, 
-        Key: name, 
+        Bucket: bucketName, 
+        Key: itemName, 
         Body: fileText
     }).promise()
     .then(() => {
-        console.log(`Item: ${name} created!`);
+        console.log(`Item: ${itemName} created!`);
     })
     .catch((e) => {
         console.log(`ERROR: ${e.code} - ${e.message}\n`);
@@ -138,10 +138,10 @@ function getBuckets() {
 
 ### List items in a bucket
 ```javascript
-function getBucketContents(bucket) {
-    console.log(`Retrieving bucket contents from: ${bucket}`);
+function getBucketContents(bucketName) {
+    console.log(`Retrieving bucket contents from: ${bucketName}`);
     return cos.listObjects(
-        {Bucket: bucket},
+        {Bucket: bucketName},
     ).promise()
     .then((data) => {
         if (data != null && data.Contents != null) {
@@ -163,11 +163,11 @@ function getBucketContents(bucket) {
 
 ### Get file contents of particular item
 ```javascript
-function getItem(bucket, name) {
-    console.log(`Retrieving item from bucket: ${bucket}, key: ${name}`);
+function getItem(bucketName, itemName) {
+    console.log(`Retrieving item from bucket: ${bucketName}, key: ${itemName}`);
     return cos.getObject({
-        Bucket: bucket, 
-        Key: name
+        Bucket: bucketName, 
+        Key: itemName
     }).promise()
     .then((data) => {
         if (data != null) {
@@ -185,14 +185,14 @@ function getItem(bucket, name) {
 
 ### Delete an item from a bucket
 ```javascript
-function deleteItem(bucket, name) {
-    console.log(`Deleting item: ${name}`);
+function deleteItem(bucketName, itemName) {
+    console.log(`Deleting item: ${itemName}`);
     return cos.deleteObject({
-        Bucket: bucket,
-        Key: name
+        Bucket: bucketName,
+        Key: itemName
     }).promise()
     .then(() =>{
-        console.log(`Item: ${name} deleted!`);
+        console.log(`Item: ${itemName} deleted!`);
     })
     .catch((e) => {
         console.log(`ERROR: ${e.code} - ${e.message}\n`);
@@ -204,13 +204,13 @@ function deleteItem(bucket, name) {
 
 ### Delete a bucket
 ```javascript
-function deleteBucket(bucket) {
-    console.log(`Deleting bucket: ${bucket}`);
+function deleteBucket(bucketName) {
+    console.log(`Deleting bucket: ${bucketName}`);
     return cos.deleteBucket({
-        Bucket: bucket
+        Bucket: bucketName
     }).promise()
     .then(() => {
-        console.log(`Bucket: ${bucket} deleted!`);
+        console.log(`Bucket: ${bucketName} deleted!`);
     })
     .catch((e) => {
         console.log(`ERROR: ${e.code} - ${e.message}\n`);
@@ -223,10 +223,10 @@ function deleteBucket(bucket) {
 
 ### View a bucket's security
 ```javascript
-function getBucketACL(bucket) {
-    console.log(`Retrieving ACL for bucket: ${bucket}`);
+function getBucketACL(bucketName) {
+    console.log(`Retrieving ACL for bucket: ${bucketName}`);
     return cos.getBucketAcl({
-        Bucket: bucket
+        Bucket: bucketName
     }).promise()
     .then((data) => {
         if (data != null) {
@@ -249,11 +249,11 @@ function getBucketACL(bucket) {
 
 ### View a file's security
 ```javascript
-function getItemACL(bucket, name) {
-    console.log(`Retrieving ACL for ${name} from bucket: ${bucket}`);
+function getItemACL(bucketName, itemName) {
+    console.log(`Retrieving ACL for ${itemName} from bucket: ${bucketName}`);
     return cos.getObjectAcl({
-        Bucket: bucket,
-        Key: name
+        Bucket: bucketName,
+        Key: itemName
     }).promise()
     .then((data) => {
         if (data != null) {
@@ -276,7 +276,7 @@ function getItemACL(bucket, name) {
 
 ### Execute a multi-part upload
 ```javascript
-function multiPartUpload(bucket, name, filePath) {
+function multiPartUpload(bucketName, itemName, filePath) {
     var uploadID = null;
 
     if (!fs.existsSync(filePath)) {
@@ -284,10 +284,10 @@ function multiPartUpload(bucket, name, filePath) {
         return;
     }
 
-    console.log(`Starting multi-part upload for ${name} to bucket: ${bucket}`);
+    console.log(`Starting multi-part upload for ${itemName} to bucket: ${bucketName}`);
     return cos.createMultipartUpload({
-        Bucket: bucket,
-        Key: name
+        Bucket: bucketName,
+        Key: itemName
     }).promise()
     .then((data) => {
         uploadID = data.UploadId;
@@ -308,8 +308,8 @@ function multiPartUpload(bucket, name, filePath) {
 
                 cos.uploadPart({
                     Body: fileData.slice(start, end),
-                    Bucket: bucket,
-                    Key: name,
+                    Bucket: bucketName,
+                    Key: itemName,
                     PartNumber: partNum,
                     UploadId: uploadID
                 }).promise()
@@ -317,13 +317,13 @@ function multiPartUpload(bucket, name, filePath) {
                     next(e, {ETag: data.ETag, PartNumber: partNum});
                 })
                 .catch((e) => {
-                    cancelMultiPartUpload(bucket, name, uploadID);
+                    cancelMultiPartUpload(bucketName, itemName, uploadID);
                     console.log(`ERROR: ${e.code} - ${e.message}\n`);
                 });
             }, (e, dataPacks) => {
                 cos.completeMultipartUpload({
-                    Bucket: bucket,
-                    Key: name,
+                    Bucket: bucketName,
+                    Key: itemName,
                     MultipartUpload: {
                         Parts: dataPacks
                     },
@@ -331,7 +331,7 @@ function multiPartUpload(bucket, name, filePath) {
                 }).promise()
                 .then(logDone)
                 .catch((e) => {
-                    cancelMultiPartUpload(bucket, name, uploadID);
+                    cancelMultiPartUpload(bucketName, itemName, uploadID);
                     console.log(`ERROR: ${e.code} - ${e.message}\n`);
                 });
             });
@@ -342,14 +342,14 @@ function multiPartUpload(bucket, name, filePath) {
     };
 }
 
-function cancelMultiPartUpload(bucket, name, uploadID) {
+function cancelMultiPartUpload(bucketName, itemName, uploadID) {
     return cos.abortMultipartUpload({
-        Bucket: bucket,
-        Key: name,
+        Bucket: bucketName,
+        Key: itemName,
         UploadId: uploadID
     }).promise()
     .then(() => {
-        console.log(`Multi-part upload aborted for ${name}`);
+        console.log(`Multi-part upload aborted for ${itemName}`);
     })
     .catch((e){
         console.log(`ERROR: ${e.code} - ${e.message}\n`);
