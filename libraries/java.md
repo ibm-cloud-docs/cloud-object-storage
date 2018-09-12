@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-07-27"
+lastupdated: "2018-08-23"
 
 ---
 
@@ -410,6 +410,8 @@ public static void getItemACL(String bucketName, String itemName) {
     * [getObjectAcl](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#getObjectAcl-java.lang.String-java.lang.String-){:new_window}
 
 ### Execute a multi-part upload
+{: #multipart-upload}
+
 ```java
 public static void multiPartUpload(String bucketName, String itemName, String filePath) {
     File file = new File(filePath);
@@ -477,6 +479,109 @@ public static void multiPartUpload(String bucketName, String itemName, String fi
     * [completeMultipartUpload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#completeMultipartUpload-com.ibm.cloud.objectstorage.services.s3.model.CompleteMultipartUploadRequest-){:new_window}
     * [initiateMultipartUpload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#initiateMultipartUpload-com.ibm.cloud.objectstorage.services.s3.model.InitiateMultipartUploadRequest-){:new_window}
     * [uploadPart](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#uploadPart-com.ibm.cloud.objectstorage.services.s3.model.UploadPartRequest-){:new_window}
+
+### Large Object Upload using TransferManager
+{: #transfer-manager}
+
+The `TransferManager` simplifies large file transfers by automatically incorporating multi-part uploads whenever necessary setting configuration parameters.
+
+```java
+public static void largeObjectUpload(String bucketName, String itemName, String filePath) throws IOException, InterruptedException {
+    File uploadFile = new File(filePath);
+
+    if (!uploadFile.isFile()) {
+        System.out.printf("The file '%s' does not exist or is not accessible.\n", filePath);
+        return;
+    }
+
+    System.out.println("Starting large file upload with TransferManager");
+
+    //set the part size to 5 MB    
+    long partSize = 1024 * 1024 * 5;
+
+    //set the threshold size to 5 MB
+    long thresholdSize = 1024 * 1024 * 5;
+
+    String endPoint = getEndpoint(COS_BUCKET_LOCATION, "public");
+    AmazonS3 s3client = createClient(COS_API_KEY_ID, COS_SERVICE_CRN, endPoint, COS_BUCKET_LOCATION);
+
+    TransferManager transferManager = TransferManagerBuilder.standard()
+        .withS3Client(s3client)
+        .withMinimumUploadPartSize(partSize)
+        .withMultipartCopyThreshold(thresholdSize)
+        .build();
+
+    try {
+        Upload lrgUpload = transferManager.upload(bucketName, itemName, uploadFile);
+
+        lrgUpload.waitForCompletion();
+
+        System.out.println("Large file upload complete!");
+    }
+    catch (SdkClientException e) {
+        System.out.printf("Upload error: %s\n", e.getMessage());            
+    }
+    finally {
+        transferManager.shutdownNow();
+    }
+```
+
+*SDK References*
+* Classes
+    * [TransferManager](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html){:new_window}
+    * [TransferManagerBuilder](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManagerBuilder.html){:new_window}
+    * [Upload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/Upload.html){:new_window}
+
+* Methods
+    * [shutdownNow](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html#shutdownNow--){:new_window}
+    * [upload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html#upload-java.lang.String-java.lang.String-java.io.File-){:new_window}
+    * [waitForCompletion](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/internal/AbstractTransfer.html#waitForCompletion--){:new_window}
+    
+## List items in a bucket (v2)
+{: #list-objects-v2}
+
+The [AmazonS3](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html){:new_window} object contains an updated method to list the contents ([listObjectsV2](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){:new_window}).  This method allows you to limit the number of records returned and retrieve the records in batches.  This could be useful for paging your results within an application and improve performance.
+
+```java
+public static void getBucketContentsV2(String bucketName, int maxKeys) {
+    System.out.printf("Retrieving bucket contents (V2) from: %s\n", bucketName);
+
+    boolean moreResults = true;
+    String nextToken = "";
+
+    while (moreResults) {
+        ListObjectsV2Request request = new ListObjectsV2Request()
+            .withBucketName(bucketName)
+            .withMaxKeys(maxKeys)
+            .withContinuationToken(nextToken);
+
+        ListObjectsV2Result result = _cos.listObjectsV2(request);
+        for(S3ObjectSummary objectSummary : result.getObjectSummaries()) {
+            System.out.printf("Item: %s (%s bytes)\n", objectSummary.getKey(), objectSummary.getSize());
+        }
+        
+        if (result.isTruncated()) {
+            nextToken = result.getNextContinuationToken();
+            System.out.println("...More results in next batch!\n");
+        }
+        else {
+            nextToken = "";
+            moreResults = false;
+        }
+    }
+    System.out.println("...No more results!");
+}
+```
+
+*SDK References*
+* Classes
+    * [ListObjectsV2Request](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Request.html){:new_window}
+    * [ListObjectsV2Result](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html){:new_window}
+    * [S3ObjectSummary](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/S3ObjectSummary.html){:new_window}
+* Methods
+    * [getObjectSummaries](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html#getObjectSummaries--){:new_window}
+    * [getNextContinuationToken](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html#getNextContinuationToken--){:new_window}
+    * [listObjectsV2](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){:new_window}
 
 ## Additional code snippets
 
@@ -714,7 +819,7 @@ boolean KPEnabled = result.getIBMSSEKPEnabled();
 String crn = result.getIBMSSEKPCUSTOMERROOTKEYCRN();
 ```
 
-## Using Aspera Connect High-Speed Transfer
+## Using Aspera High-Speed Transfer
 
 By installing the [Aspera SDK](/docs/services/cloud-object-storage/basics/aspera.html#aspera-sdk-java) you can utilize high-speed file transfers within your application.
 
@@ -726,8 +831,28 @@ Pass your existing [S3 Client](#init-config) object to create the AsperaTransfer
 AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
 ```
 
+You can also allow the `AsperaTransferManager` to use multiple sessions with an additonal configuration option.
+
+The minimum thresholds for using multi-session:
+* 2 sessions
+* 60 MB threshold (*minimum 100 MB total file size*)
+
+```java
+AsperaConfig asperaConfig = new AsperaConfig()
+    .withMultiSession(5)
+    .withMultiSessionThresholdMb(10);
+            
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, _cos)
+    .withAsperaConfig(asperaConfig)
+    .build();
+```
+
 *Key Values*
 * `API_KEY` - api key generated when creating the service credentials (write access is required)
+
+
+You will need to provide an IAM API Key for Aspera transfers.  HMAC Credentials are **NOT** currently supported.  For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
+{:tip}
 
 ### File Upload
 
@@ -835,8 +960,6 @@ while (!asperaTransfer.isDone()) {
 }
 ```
 
-<!---
-
 ### Pause/Resume/Cancel
 
 The SDK provides the ability to manage the progress of file/directory transfers though the following methods of the `AsperaTransfer` object:
@@ -867,40 +990,46 @@ int pauseCount = 0;
 while (!asperaTransfer.isDone()) {
     System.out.println("Directory download in progress...");
 
-    //sleep for 3 seconds
-    Thread.sleep(1000 * 3);
-    pauseCount++;
+    //pause the transfer
+    asperaTransfer.pause();
 
-    //if transfer takes more than 15 seconds, pause for one minute and resume
-    if (pauseCount == 5) {
-        System.out.println("Pausing the transfer for 1 minute...");
+    //resume the transfer
+    asperaTransfer.resume();
 
-        //pause the transfer
-        asperaTransfer.pause();
-
-        //sleep for 1 minute
-        Thread.sleep(1000 * 60);
-
-        System.out.println("Resuming the transfer...");
-
-        //resume the transfer
-        asperaTransfer.resume();
-    }
-
-    //if the transfer takes more than 1 minute, cancel the transfer
-    if (pauseCount >= 20) {
-        System.out.println("Canceling the transfer!");
-
-        //cancel the transfer
-        asperaTransfer.cancel();
-        break;
-    }
+    //cancel the transfer
+    asperaTransfer.cancel();
 }
 
 System.out.println("Directory download complete!");
 ```
 
---->
+### Troubleshooting Aspera Issues
+
+#### Developers using the Oracle JDK on Linux or Mac OS X may experience unexpected and silent crashes during transfers
+
+**Cause:** The native code requires its own signal handlers which could be overriding the JVM's signal handlers. It might might be necessary to use the JVM's signal chaining facility.
+
+*IBM&reg; JDK users or Microsoft&reg; Windows users are not affected.*
+
+**Solution:** Link and load the JVM's signal chaining library.
+* On Linux locate the ***libjsig.so*** shared library and set the following environment variable:
+    * `LD_PRELOAD=<PATH_TO_SHARED_LIB>/libjsig.so`
+
+* On Mac OS X locate the shared library ***libjsig.dylib*** and set the following environment variables:
+    * `DYLD_INSERT_LIBRARIES=<PATH_TO_SHARED_LIB>/libjsig.dylib` 
+    * `DYLD_FORCE_FLAT_NAMESPACE=0`
+
+Visit the [Oracle&reg; JDK documentation](https://docs.oracle.com/javase/10/vm/signal-chaining.htm){:new_window} for more information about signal chaining.
+
+#### UnsatisfiedLinkError on Linux
+
+**Cause:** System unable to load dependent libraries.  Errors such as the following may be seen in the application logs:
+
+```libfaspmanager2.so: libawt.so: cannot open shared object file: No such file or directory```
+
+**Solution:** Set the following environment variable:
+
+`LD_LIBRARY_PATH=<JAV_HOME>/jre/lib/amd64/server:<JAVA_HOME>/jre/lib/amd64`
 
 ## API reference
 

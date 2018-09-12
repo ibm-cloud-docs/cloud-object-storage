@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-07-13"
+lastupdated: "2018-08-02"
 
 ---
 
@@ -275,6 +275,8 @@ function getItemACL(bucketName, itemName) {
 * [getObjectAcl](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#getObjectAcl-property){:new_window}
 
 ### Execute a multi-part upload
+{: #multipart-upload}
+
 ```javascript
 function multiPartUpload(bucketName, itemName, filePath) {
     var uploadID = null;

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-07-27"
+lastupdated: "2018-08-13"
 
 ---
 {:new_window: target="_blank"}
@@ -1166,70 +1166,3 @@ Content-Length: 161
 <LocationConstraint xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
   us-south-standard
 </LocationConstraint>
-```
-
-----
-
-## List Aspera service access api key for a bucket
-
-A `GET` issued to a bucket with the proper parameters retrieves Aspera service access api key for a bucket.
-
-**Syntax**
-
-```bash
-GET https://{endpoint}/{bucket-name}?faspConnectionInfo= # path style
-GET https://{bucket-name}.{endpoint}?faspConnectionInfo= # virtual host style
-```
-
-**Sample request (IAM)**
-
-This is an example of listing the Aspera service api keys on the "apiary" bucket.
-
-```http
-GET /apiary?faspConnectionInfo= HTTP/1.1
-Authorization: Bearer {token}
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Headers)**
-
-```http
-GET /apiary?faspConnectionInfo= HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-GET /faspConnectionInfo?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&cors=&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample response**
-
-```http
-HTTP/1.1 200 OK
-Date: Thu, 5 Jul 2018 15:20:30 GMT
-X-Clv-Request-Id: dbfc054e-702e-4d72-9456-0393efa63159
-Accept-Ranges: bytes
-Server: Cleversafe/3.13.4.52
-X-Clv-S3-Version: 2.5
-x-amz-request-id: dbfc054e-702e-4d72-9456-0393efa63159
-Content-Type: application/xml
-Content-Length: 326
-```
-
-```xml
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<FASPConnectionInfo xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-  <AccessKey>
-    <Id>5CX9km-xFFFjAPab0aJ7HaFa</Id>
-    <Secret>g0sXx2X1VbLXXb9vjPABwjHU1CYPKhZT9-X1x0E6xXXX</Secret>
-  </AccessKey>
-  <ATSEndpoint>https://ats-sl-dal.aspera.io:443</ATSEndpoint>
-</FASPConnectionInfo>
-```

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-07-27"
+lastupdated: "2018-08-29"
 
 ---
 
@@ -275,6 +275,7 @@ def get_item_acl(bucket_name, item_name):
     * [owner](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.ObjectAcl.owner){:new_window}
 
 ### Execute a multi-part upload
+{: #multipart-upload}
 
 #### Upload binary file (preferred method)
 The [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.upload_fileobj){:new_window} method of the [S3.Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){:new_window} class automatically executes a multi-part upload when necessary.  The [TransferConfig](https://ibm.github.io/ibm-cos-sdk-python/reference/customizations/s3.html#s3-transfers){:new_window} class is used to determine the threshold for using the mult-part upload.
@@ -403,12 +404,103 @@ def multi_part_upload_manual(bucket_name, item_name, file_path):
 * Classes
     * [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window}
 * Methods
-    * [abort_multipart_upload](){:new_window}
-    * [complete_multipart_upload](){:new_window}
-    * [create_multipart_upload](){:new_window}
-    * [upload_part](){:new_window}
+    * [abort_multipart_upload](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.abort_multipart_upload){:new_window}
+    * [complete_multipart_upload](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.complete_multipart_upload){:new_window}
+    * [create_multipart_upload](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.create_multipart_upload){:new_window}
+    * [upload_part](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.upload_part){:new_window}
 
+### Large Object Upload using TransferManager
+{: #transfer-manager}
 
+The `TransferManager` provides another way to execute large file transfers by automatically incorporating multi-part uploads whenever necessary setting configuration parameters.
+
+```python
+def upload_large_file(bucket_name, item_name, file_path):
+    print("Starting large file upload for {0} to bucket: {1}".format(item_name, bucket_name))
+
+    # set the chunk size to 5 MB
+    part_size = 1024 * 1024 * 5
+
+    # set threadhold to 5 MB
+    file_threshold = 1024 * 1024 * 5
+
+    # Create client connection
+    cos_cli = ibm_boto3.client("s3",
+        ibm_api_key_id=COS_API_KEY_ID,
+        ibm_service_instance_id=COS_SERVICE_CRN,
+        ibm_auth_endpoint=COS_AUTH_ENDPOINT,
+        config=Config(signature_version="oauth"),
+        endpoint_url=COS_ENDPOINT
+    )
+
+    # set the transfer threshold and chunk size in config settings
+    transfer_config = ibm_boto3.s3.transfer.TransferConfig(
+        multipart_threshold=file_threshold,
+        multipart_chunksize=part_size
+    )
+
+    # create transfer manager
+    transfer_mgr = ibm_boto3.s3.transfer.TransferManager(cos_cli, config=transfer_config)
+
+    try:
+        # initiate file upload
+        future = transfer_mgr.upload(file_path, bucket_name, item_name)
+
+        # wait for upload to complete
+        future.result()
+
+        print ("Large file upload complete!")
+    except Exception as e:
+        print("Unable to complete large file upload: {0}".format(e))
+    finally:
+        transfer_mgr.shutdown()
+```
+
+## List items in a bucket (v2)
+{: #list-objects-v2}
+
+The [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window} object contains an updated method to list the contents ([list_objects_v2](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){:new_window}).  This method allows you to limit the number of records returned and retrieve the records in batches.  This could be useful for paging your results within an application and improve performance.
+
+```python
+def get_bucket_contents_v2(bucket_name, max_keys):
+    print("Retrieving bucket contents from: {0}".format(bucket_name))
+    try:
+        # create client object
+        cos_cli = ibm_boto3.client("s3",
+            ibm_api_key_id=COS_API_KEY_ID,
+            ibm_service_instance_id=COS_SERVICE_CRN,
+            ibm_auth_endpoint=COS_AUTH_ENDPOINT,
+            config=Config(signature_version="oauth"),
+            endpoint_url=COS_ENDPOINT
+
+        more_results = True
+        next_token = ""
+
+        while (more_results):
+            response = cos_cli.list_objects_v2(Bucket=bucket_name, MaxKeys=max_keys, ContinuationToken=next_token)
+            files = response["Contents"]
+            for file in files:
+                print("Item: {0} ({1} bytes).".format(file["Key"], file["Size"]))
+            
+            if (response["IsTruncated"]):
+                next_token = response["NextContinuationToken"]
+                print("...More results in next batch!\n")
+            else:
+                more_results = False
+                next_token = ""
+
+        log_done()
+    except ClientError as be:
+        print("CLIENT ERROR: {0}\n".format(be))
+    except Exception as e:
+        print("Unable to retrieve bucket contents: {0}".format(e))
+```
+
+*SDK References*
+* Classes
+    * [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window}
+* Methods
+    * [list_objects_v2](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){:new_window}
 
 ## Using Key Protect
 
@@ -463,7 +555,7 @@ def create_bucket_kp(bucket_name):
 * Methods
     * [create](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.create){:new_window}
 
-## Using Aspera Connect High-Speed Transfer
+## Using Aspera High-Speed Transfer
 
 By installing the [Aspera SDK](/docs/services/cloud-object-storage/basics/aspera.html#aspera-sdk-python) you can utilize high-speed file transfers within your application.
 
@@ -475,6 +567,24 @@ Pass your existing [S3 Client](#init-config) object to create the AsperaTransfer
 transfer_manager = AsperaTransferManager(client)
 ```
 
+You will need to provide an IAM API Key for Aspera transfers.  HMAC Credentials are **NOT** currently supported.  For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
+{:tip}
+
+You can also allow the `AsperaTransferManager` to use multiple sessions with an additonal configuration option.  Multiple sessions is available on single file transfers when a threshold is set to split the file or directory transfers which contain multiple files (no threshold required).
+
+The minimum thresholds for using multi-session:
+* 2 sessions
+* 60 MB threshold (*minimum 100 MB total file size*)
+
+```python
+# Configure 5 sessions for transfer, or specify "all" for dynamic number of sessions.
+ms_transfer_config = AsperaConfig(multi_session=5, multi_session_threshold_mb=60)
+
+# Create Transfer Manager
+transfer_manager = AsperaTransferManager(client=client, transfer_config=ms_transfer_config)
+```
+
+
 ### File Upload
 
 ```python
@@ -483,13 +593,13 @@ upload_filename = "<path-to-file>"
 object_name = "<item-name>"
 
 # Create Transfer manager
-transfer_manager = AsperaTransferManager(client)
+with AsperaTransferManager(client) as transfer_manager:
 
-# Perform upload
-future = transfer_manager.upload(upload_filename, bucket_name, object_name, None, None)
+    # Perform upload
+    future = transfer_manager.upload(upload_filename, bucket_name, object_name)
 
-# Wait for upload to complete
-future.result()
+    # Wait for upload to complete
+    future.result()
 ```
 
 *Key Values*
@@ -505,13 +615,13 @@ download_filename = "<path-to-local-file>"
 object_name = "<object-to-download>"
 
 # Create Transfer manager
-transfer_manager = AsperaTransferManager(client)
+with AsperaTransferManager(client) as transfer_manager:
 
-# Get object with Aspera
-future = transfer_manager.download(bucket_name, object_name, download_filename, None, None)
+    # Get object with Aspera
+    future = transfer_manager.download(bucket_name, object_name, download_filename)
 
-# Wait for download to complete
-future.result()
+    # Wait for download to complete
+    future.result()
 ```
 
 *Key Values*
@@ -529,13 +639,13 @@ local_upload_directory = "<path-to-local-directory>"
 remote_directory = "<bucket-directory>"
 
 # Create Transfer manager
-transfer_manager = AsperaTransferManager(client)
+with AsperaTransferManager(client) as transfer_manager:
 
-# Perform upload
-future = transfer_manager.upload_directory(local_upload_directory, bucket_name, remote_directory, None, None)
+    # Perform upload
+    future = transfer_manager.upload_directory(local_upload_directory, bucket_name, remote_directory)
 
-# Wait for upload to complete
-future.result()
+    # Wait for upload to complete
+    future.result()
 ```
 
 *Key Values*
@@ -551,13 +661,13 @@ local_download_directory = "<path-to-local-directory>"
 remote_directory = "<bucket-directory>"
 
 # Create Transfer manager
-transfer_manager = AsperaTransferManager(client)
+with AsperaTransferManager(client) as transfer_manager:
 
-# Get object with Aspera
-future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory, None, None)
+    # Get object with Aspera
+    future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory)
 
-# Wait for download to complete
-future.result()
+    # Wait for download to complete
+    future.result()
 ```
 
 *Key Values*
@@ -624,33 +734,11 @@ The sample code above produces the following output:
 Directory download queued.
 Directory download in progress: 5632 bytes transferred
 Directory download in progress: 1047552 bytes transferred
-Directory download in progress: 2095104 bytes transferred
-Directory download in progress: 4190208 bytes transferred
-Directory download in progress: 5237760 bytes transferred
-Directory download in progress: 7332864 bytes transferred
-Directory download in progress: 8380416 bytes transferred
-Directory download in progress: 10475520 bytes transferred
-Directory download in progress: 12570624 bytes transferred
-Directory download in progress: 13618176 bytes transferred
-Directory download in progress: 15713280 bytes transferred
-Directory download in progress: 16760832 bytes transferred
-Directory download in progress: 18855936 bytes transferred
-Directory download in progress: 20706509 bytes transferred
-Directory download in progress: 28920781 bytes transferred
-Directory download in progress: 32225357 bytes transferred
-Directory download in progress: 33957197 bytes transferred
-Directory download in progress: 35368013 bytes transferred
-Directory download in progress: 36415565 bytes transferred
-Directory download in progress: 37463117 bytes transferred
-Directory download in progress: 38510669 bytes transferred
-Directory download in progress: 40605773 bytes transferred
-Directory download in progress: 41418650 bytes transferred
+...
 Directory download in progress: 53295130 bytes transferred
 Directory download in progress: 62106855 bytes transferred
 Download complete!
 ```
-
-<!---
 
 ### Pause/Resume/Cancel
 
@@ -660,74 +748,23 @@ The SDK provides the ability to manage the progress of file/directory transfers 
 * `resume()`
 * `cancel()`
 
-The following example shows a possible use for these methods:
-
 ```python
+# Create Transfer manager
 bucket_name = "<bucket-name>"
 local_download_directory = "<path-to-local-directory>"
 remote_directory = "<bucket-directory>"
 
-# Subscriber callbacks
-class CallbackOnQueued(AsperaBaseSubscriber):
-    def __init__(self):
-        pass
+with AsperaTransferManager(client) as transfer_manager:
 
-    def on_queued(self, future, **kwargs):
-        print("Directory download queued.")
+    # download a directory with Aspera
+    future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory, None, None)
 
-class CallbackOnProgress(AsperaBaseSubscriber):
-    def __init__(self):
-        pass
+    # pause the transfer
+    future.pause()
 
-    def on_progress(self, future, bytes_transferred, **kwargs):
-        print("Directory download in progress: %s bytes transferred" % bytes_transferred)
+    # resume the transfer
+    future.resume()
 
-class CallbackOnDone(AsperaBaseSubscriber):
-    def __init__(self):
-        pass
-
-    def on_done(self, future, **kwargs):
-        print("Downloads complete!")
-
-# Create Transfer manager
-transfer_manager = AsperaTransferManager(client)
-
-# Attach subscribers
-subscribers = [CallbackOnQueued(), CallbackOnProgress(), CallbackOnDone()]
-
-# Get object with Aspera
-future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory, None, subscribers)
-
-pauseCount = 0
-
-# Wait for download to complete
-while future.done() == False:
-    # sleep for 3 seconds
-    time.sleep(3)
-    pauseCount += 1
-
-    # if transfer takes more than 15 seconds, pause for one minute and resume
-    if pauseCount == 5:
-        print("Pausing the transfer for 1 minute...")
-
-        # pause the transfer
-        future.pause()
-
-        # sleep for 1 minute
-        time.sleep(60)
-
-        print("Resuming the transfer...")
-
-        # resume the transfer
-        future.resume()
-
-    # if the transfer takes more than 1 minute, cancel the transfer
-    if pauseCount >= 20:
-        print("Canceling the transfer!")
-
-        # cancel the transfer
-        future.cancel()
-        break
+    # cancel the transfer
+    future.cancel()
 ```
---->
-
