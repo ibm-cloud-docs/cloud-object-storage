@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-07-13"
+lastupdated: "2018-08-27"
 
 ---
 
@@ -414,3 +414,143 @@ function createBucketKP(bucketName) {
 
 *SDK References*
 * [createBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createBucket-property){:new_window}
+
+## Using Archive Feature
+
+Archive Tier allows users to archive stale data and reduce their storage costs. Archival policies (also known as *Lifecycle Configurations*) are created for buckets and applies to any objects added to the bucket after the policy is created.
+
+### View a bucket's lifecycle configuration
+```javascript
+function getLifecycleConfiguration(bucketName) {
+    return cos.getBucketLifecycleConfiguration({
+        Bucket: bucketName
+    }).promise()
+    .then((data) => {
+        if (data != null) {
+            console.log(`Retrieving bucket lifecycle config from: ${bucketName}`);
+            console.log(JSON.stringify(data, null, 4));
+        }
+        else {
+            console.log(`No lifecycle configuration for ${bucketName}`);
+        }
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+
+*SDK References*
+* [getBucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
+
+### Create a lifecycle configuration 
+
+Detailed information about structuring the lifecycle configuration rules are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#create-bucket-lifecycle)
+
+```javascript
+function createLifecycleConfiguration(bucketName) {
+    //
+    var config = {
+        Rules: [{
+            Status: 'Enabled', 
+            ID: '<policy-id>',
+            Filter: {
+                Prefix: ''
+            },
+            Transitions: [{
+                Days: <number-of-days>, 
+                StorageClass: 'GLACIER'
+            }]
+        }]
+    };
+    
+    return cos.putBucketLifecycleConfiguration({
+        Bucket: bucketName,
+        LifecycleConfiguration: config
+    }).promise()
+    .then(() => {
+        console.log(`Created bucket lifecycle config for: ${bucketName}`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+
+*Key Values*
+* `<policy-id>` - Name of the lifecycle policy (must be unqiue)
+* `<number-of-days>` - Number of days to keep the restored file
+
+*SDK References*
+* [putBucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
+
+### Delete a bucket's lifecycle configuration
+```javascript
+function deleteLifecycleConfiguration(bucketName) {
+    return cos.deleteBucketLifecycle({
+        Bucket: bucketName
+    }).promise()
+    .then(() => {
+        console.log(`Deleted bucket lifecycle config from: ${bucketName}`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+
+*SDK References*
+* [deleteBucketLifecycle](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
+
+### Temporarily restore an object
+
+Detailed information about the restore request parameters are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#restore-object)
+
+```javascript
+function restoreItem(bucketName, itemName) {
+    var params = {
+        Bucket: bucketName, 
+        Key: itemName, 
+        RestoreRequest: {
+            Days: <number-of-days>, 
+            GlacierJobParameters: {
+                Tier: 'Bulk' 
+            },
+        } 
+    };
+    
+    return cos.restoreObject(params).promise()
+    .then(() => {
+        console.log(`Restoring item: ${itemName} from bucket: ${bucketName}`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+
+*Key Values*
+* `<number-of-days>` - Number of days to keep the restored file
+
+*SDK References*
+* [restoreObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
+
+### View HEAD information for an object
+```javascript
+function getHEADItem(bucketName, itemName) {
+    return cos.headObject({
+        Bucket: bucketName,
+        Key: itemName
+    }).promise()
+    .then((data) => {
+        console.log(`Retrieving HEAD for item: ${itemName} from bucket: ${bucketName}`);
+        console.log(JSON.stringify(data, null, 4));
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+
+*SDK References*
+* [headObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
