@@ -38,7 +38,7 @@ To run the SDK you will need **Node 4.x+**.
 ### Creating a client and sourcing credentials
 {: #client-credentials}
 
-To connect to COS, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
+To connect to COS, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables (`AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` respectively).
 
 After generating a [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`.  The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client will authenticate with a signature, otherwise the client will use the provided API key to authenticate using a bearer token.
 
@@ -90,6 +90,8 @@ function createBucket(bucketName) {
     });
 }
 ```
+
+
 *SDK References*
 * [createBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createBucket-property){:new_window}
 

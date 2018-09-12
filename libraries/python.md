@@ -100,6 +100,20 @@ def create_bucket(bucket_name):
         print("Unable to create bucket: {0}".format(e))
 ```
 
+Valid provisioning codes for `LocationConstraint` are: <br>
+&emsp;&emsp;  `us-standard` / `us-vault` / `us-cold` / `us-flex` <br>
+&emsp;&emsp;  `us-east-standard` / `us-east-vault`  / `us-east-cold` / `us-east-flex` <br>
+&emsp;&emsp;  `us-south-standard` / `us-south-vault`  / `us-south-cold` / `us-south-flex` <br>
+&emsp;&emsp;  `eu-standard` / `eu-vault` / `eu-cold` / `eu-flex` <br>
+&emsp;&emsp;  `eu-gb-standard` / `eu-gb-vault` / `eu-gb-cold` / `eu-gb-flex` <br>
+&emsp;&emsp;  `eu-de-standard` / `eu-de-vault` / `eu-de-cold` / `eu-de-flex` <br>
+&emsp;&emsp;  `ap-standard` / `ap-vault` / `ap-cold` / `ap-flex` <br>
+&emsp;&emsp;  `ams03-standard` / `ams03-vault` / `ams03-cold` / `ams03-flex` <br>
+&emsp;&emsp;  `che01-standard` / `che01-vault` / `che01-cold` / `che01-flex` <br>
+&emsp;&emsp;  `mel01-standard` / `mel01-vault` / `mel01-cold` / `mel01-flex` <br>
+&emsp;&emsp;  `osl01-standard` / `osl01-vault` / `osl01-cold` / `osl01-flex` <br>
+&emsp;&emsp;  `tor01-standard` / `tor01-vault` / `tor01-cold` / `tor01-flex` <br>
+
 *SDK References*
 * Classes
   * [Bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){:new_window}
@@ -522,7 +536,7 @@ The following items are necessary in order to create a bucket with Key-Protect e
 
 `crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
 
-### Creating a bucket with key-protect enabled
+### Creating a bucket with Key Protect enabled
 ```python
 COS_KP_ALGORITHM = "<algorithm>"
 COS_KP_ROOTKEY_CRN = "<root-key-crn>"
@@ -549,292 +563,18 @@ def create_bucket_kp(bucket_name):
 * `<algorithm>` - The encryption algorithm used for new objects added to the bucket (Default is AES256).
 * `<root-key-crn>` - CRN of the Root Key obtained from the Key Protect service.
 
+Valid provisioning codes for `LocationConstraint` with Key Protect: <br>
+&emsp;&emsp;  `us-south-standard` / `us-south-vault`  / `us-south-cold` / `us-south-flex` <br>
+&emsp;&emsp;  `eu-gb-standard` / `eu-gb-vault` / `eu-gb-cold` / `eu-gb-flex` <br>
+&emsp;&emsp;  `eu-de-standard` / `eu-de-vault` / `eu-de-cold` / `eu-de-flex` <br>
+
 *SDK References*
 * Classes
     * [Bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){:new_window}
 * Methods
     * [create](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.create){:new_window}
 
-## Using Aspera Connect High-Speed Transfer
-
-By installing the [Aspera SDK](/docs/services/cloud-object-storage/basics/aspera.html#aspera-sdk-python) you can utilize high-speed file transfers within your application.
-
-### Initalizing the AsperaTransferManager
-
-Pass your existing [S3 Client](#init-config) object to create the AsperaTransferManager
-
-```python
-transfer_manager = AsperaTransferManager(client)
-```
-
-You will need to provide an IAM API Key for Aspera transfers.  HMAC Credentials are **NOT** currently supported.  For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
-{:tip}
-
-You can also allow the `AsperaTransferManager` to use multiple sessions with an additonal configuration option.
-
-```python
-# Configure 5 sessions for transfer, or specify "all" for dynamic number of sessions.
-ms_transfer_config = AsperaConfig(multi_session=5)
-
-# Create Transfer Manager
-transfer_manager = AsperaTransferManager(client=client, transfer_config=ms_transfer_config)
-```
-
-
-### File Upload
-
-```python
-bucket_name = "<bucket-name>"
-upload_filename = "<path-to-file>"
-object_name = "<item-name>"
-
-# Create Transfer manager
-transfer_manager = AsperaTransferManager(client)
-
-# Perform upload
-future = transfer_manager.upload(upload_filename, bucket_name, object_name, None, None)
-
-# Wait for upload to complete
-future.result()
-```
-
-*Key Values*
-* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
-* `<path-to-file>` - directory and file name to the file to be uploaded to Object Storage.
-* `<item-name>` - name of the new file added to the bucket.
-
-### File Download
-
-```python
-bucket_name = "<bucket-name>"
-download_filename = "<path-to-local-file>"
-object_name = "<object-to-download>"
-
-# Create Transfer manager
-transfer_manager = AsperaTransferManager(client)
-
-# Get object with Aspera
-future = transfer_manager.download(bucket_name, object_name, download_filename, None, None)
-
-# Wait for download to complete
-future.result()
-```
-
-*Key Values*
-* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
-* `<path-to-local-file>` - directory and file name where save the file to the local system.
-* `<object-to-download>` - name of the file in the bucket to download.
-
-### Directory Upload
-
-```python
-bucket_name = "<bucket-name>"
-# THIS DIRECTORY MUST EXIST LOCALLY, and have objects in it.
-local_upload_directory = "<path-to-local-directory>"
-# THIS SHOULD NOT HAVE A LEADING "/"
-remote_directory = "<bucket-directory>"
-
-# Create Transfer manager
-transfer_manager = AsperaTransferManager(client)
-
-# Perform upload
-future = transfer_manager.upload_directory(local_upload_directory, bucket_name, remote_directory, None, None)
-
-# Wait for upload to complete
-future.result()
-```
-
-*Key Values*
-* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
-* `<path-to-local-directory>` - local directory that contains the files to be uploaded.  Must have leading and trailing `/` (i.e. `/Users/testuser/Documents/Upload/`)
-* `<bucket-directory>` - name of the directory in the bucket to store the files. Must not have a leading `/` (i.e. `newuploads/`)
-
-### Directory Download
-```python
-bucket_name = "<bucket-name>"
-# THIS DIRECTORY MUST EXIST LOCALLY
-local_download_directory = "<path-to-local-directory>"
-remote_directory = "<bucket-directory>"
-
-# Create Transfer manager
-transfer_manager = AsperaTransferManager(client)
-
-# Get object with Aspera
-future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory, None, None)
-
-# Wait for download to complete
-future.result()
-```
-
-*Key Values*
-* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
-* `<path-to-local-directory>` - local directory to save the downloaded files.  Must have leading and trailing `/` (i.e. `/Users/testuser/Downloads/`)
-* `<bucket-directory>` - name of the directory in the bucket to store the files. Must not have a leading `/` (i.e. `todownload/`)
-
-### Using Subscribers
-
-Subscribers allow you monitor the progress of your operations by attach custom callback methods.  There are three subscribers currently available:
-
-* Queued
-* Progress
-* Done
-
-```python
-bucket_name = "<bucket-name>"
-local_download_directory = "<path-to-local-directory>"
-remote_directory = "<bucket-directory>"
-
-# Subscriber callbacks
-class CallbackOnQueued(AsperaBaseSubscriber):
-    def __init__(self):
-        pass
-
-    def on_queued(self, future, **kwargs):
-        print("Directory download queued.")
-
-class CallbackOnProgress(AsperaBaseSubscriber):
-    def __init__(self):
-        pass
-
-    def on_progress(self, future, bytes_transferred, **kwargs):
-        print("Directory download in progress: %s bytes transferred" % bytes_transferred)
-
-class CallbackOnDone(AsperaBaseSubscriber):
-    def __init__(self):
-        pass
-
-    def on_done(self, future, **kwargs):
-        print("Downloads complete!")
-
-# Create Transfer manager
-transfer_manager = AsperaTransferManager(client)
-
-# Attach subscribers
-subscribers = [CallbackOnQueued(), CallbackOnProgress(), CallbackOnDone()]
-
-# Get object with Aspera
-future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory, None, subscribers)
-
-# Wait for download to complete
-future.result()
-```
-
-*Key Values*
-* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
-* `<path-to-local-directory>` - local directory to save the downloaded files.  Must have leading and trailing `/` (i.e. `/Users/testuser/Downloads/`)
-* `<bucket-directory>` - name of the directory in the bucket to store the files. Must not have a leading `/` (i.e. `todownload/`)
-
-The sample code above produces the following output:
-
-```
-Directory download queued.
-Directory download in progress: 5632 bytes transferred
-Directory download in progress: 1047552 bytes transferred
-Directory download in progress: 2095104 bytes transferred
-Directory download in progress: 4190208 bytes transferred
-Directory download in progress: 5237760 bytes transferred
-Directory download in progress: 7332864 bytes transferred
-Directory download in progress: 8380416 bytes transferred
-Directory download in progress: 10475520 bytes transferred
-Directory download in progress: 12570624 bytes transferred
-Directory download in progress: 13618176 bytes transferred
-Directory download in progress: 15713280 bytes transferred
-Directory download in progress: 16760832 bytes transferred
-Directory download in progress: 18855936 bytes transferred
-Directory download in progress: 20706509 bytes transferred
-Directory download in progress: 28920781 bytes transferred
-Directory download in progress: 32225357 bytes transferred
-Directory download in progress: 33957197 bytes transferred
-Directory download in progress: 35368013 bytes transferred
-Directory download in progress: 36415565 bytes transferred
-Directory download in progress: 37463117 bytes transferred
-Directory download in progress: 38510669 bytes transferred
-Directory download in progress: 40605773 bytes transferred
-Directory download in progress: 41418650 bytes transferred
-Directory download in progress: 53295130 bytes transferred
-Directory download in progress: 62106855 bytes transferred
-Download complete!
-```
-
-### Pause/Resume/Cancel
-
-The SDK provides the ability to manage the progress of file/directory transfers though the following methods of the `AsperaTransferFuture` object:
-
-* `pause()`
-* `resume()`
-* `cancel()`
-
-The following example shows a possible use for these methods:
-
-```python
-bucket_name = "<bucket-name>"
-local_download_directory = "<path-to-local-directory>"
-remote_directory = "<bucket-directory>"
-
-# Subscriber callbacks
-class CallbackOnQueued(AsperaBaseSubscriber):
-    def __init__(self):
-        pass
-
-    def on_queued(self, future, **kwargs):
-        print("Directory download queued.")
-
-class CallbackOnProgress(AsperaBaseSubscriber):
-    def __init__(self):
-        pass
-
-    def on_progress(self, future, bytes_transferred, **kwargs):
-        print("Directory download in progress: %s bytes transferred" % bytes_transferred)
-
-class CallbackOnDone(AsperaBaseSubscriber):
-    def __init__(self):
-        pass
-
-    def on_done(self, future, **kwargs):
-        print("Downloads complete!")
-
-# Create Transfer manager
-transfer_manager = AsperaTransferManager(client)
-
-# Attach subscribers
-subscribers = [CallbackOnQueued(), CallbackOnProgress(), CallbackOnDone()]
-
-# Get object with Aspera
-future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory, None, subscribers)
-
-pauseCount = 0
-
-# Wait for download to complete
-while future.done() == False:
-    # sleep for 3 seconds
-    time.sleep(3)
-    pauseCount += 1
-
-    # if transfer takes more than 15 seconds, pause for one minute and resume
-    if pauseCount == 5:
-        print("Pausing the transfer for 1 minute...")
-
-        # pause the transfer
-        future.pause()
-
-        # sleep for 1 minute
-        time.sleep(60)
-
-        print("Resuming the transfer...")
-
-        # resume the transfer
-        future.resume()
-
-    # if the transfer takes more than 1 minute, cancel the transfer
-    if pauseCount >= 20:
-        print("Canceling the transfer!")
-
-        # cancel the transfer
-        future.cancel()
-        break
-```
-
-## Using Archive Feature
+## Using Archive Tiering
 
 Archive Tier allows users to archive stale data and reduce their storage costs. Archival policies (also known as *Lifecycle Configurations*) are created for buckets and applies to any objects added to the bucket after the policy is created.
 

@@ -587,6 +587,20 @@ public static void getBucketContentsV2(String bucketName, int maxKeys) {
 
 ### Create a Vault bucket
 
+Valid provisioning codes for `LocationConstraint` are: <br>
+&emsp;&emsp;  `us-standard` / `us-vault` / `us-cold` / `us-flex` <br>
+&emsp;&emsp;  `us-east-standard` / `us-east-vault`  / `us-east-cold` / `us-east-flex` <br>
+&emsp;&emsp;  `us-south-standard` / `us-south-vault`  / `us-south-cold` / `us-south-flex` <br>
+&emsp;&emsp;  `eu-standard` / `eu-vault` / `eu-cold` / `eu-flex` <br>
+&emsp;&emsp;  `eu-gb-standard` / `eu-gb-vault` / `eu-gb-cold` / `eu-gb-flex` <br>
+&emsp;&emsp;  `eu-de-standard` / `eu-de-vault` / `eu-de-cold` / `eu-de-flex` <br>
+&emsp;&emsp;  `ap-standard` / `ap-vault` / `ap-cold` / `ap-flex` <br>
+&emsp;&emsp;  `ams03-standard` / `ams03-vault` / `ams03-cold` / `ams03-flex` <br>
+&emsp;&emsp;  `che01-standard` / `che01-vault` / `che01-cold` / `che01-flex` <br>
+&emsp;&emsp;  `mel01-standard` / `mel01-vault` / `mel01-cold` / `mel01-flex` <br>
+&emsp;&emsp;  `osl01-standard` / `osl01-vault` / `osl01-cold` / `osl01-flex` <br>
+&emsp;&emsp;  `tor01-standard` / `tor01-vault` / `tor01-cold` / `tor01-flex` <br>
+
 ```java
 cos.createBucket("sample", "us-vault"); // the name of the bucket, and the storage class (LocationConstraint)
 ```
@@ -819,7 +833,7 @@ boolean KPEnabled = result.getIBMSSEKPEnabled();
 String crn = result.getIBMSSEKPCUSTOMERROOTKEYCRN();
 ```
 
-## Using Aspera Connect High-Speed Transfer
+## Using Aspera High-Speed Transfer
 
 By installing the [Aspera SDK](/docs/services/cloud-object-storage/basics/aspera.html#aspera-sdk-java) you can utilize high-speed file transfers within your application.
 
@@ -833,9 +847,14 @@ AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_K
 
 You can also allow the `AsperaTransferManager` to use multiple sessions with an additonal configuration option.
 
+The minimum thresholds for using multi-session:
+* 2 sessions
+* 60 MB threshold (*minimum 100 MB total file size*)
+
 ```java
 AsperaConfig asperaConfig = new AsperaConfig()
-    .withMultiSession(5);
+    .withMultiSession(5)
+    .withMultiSessionThresholdMb(10);
             
 AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, _cos)
     .withAsperaConfig(asperaConfig)
@@ -985,34 +1004,14 @@ int pauseCount = 0;
 while (!asperaTransfer.isDone()) {
     System.out.println("Directory download in progress...");
 
-    //sleep for 3 seconds
-    Thread.sleep(1000 * 3);
-    pauseCount++;
+    //pause the transfer
+    asperaTransfer.pause();
 
-    //if transfer takes more than 15 seconds, pause for one minute and resume
-    if (pauseCount == 5) {
-        System.out.println("Pausing the transfer for 1 minute...");
+    //resume the transfer
+    asperaTransfer.resume();
 
-        //pause the transfer
-        asperaTransfer.pause();
-
-        //sleep for 1 minute
-        Thread.sleep(1000 * 60);
-
-        System.out.println("Resuming the transfer...");
-
-        //resume the transfer
-        asperaTransfer.resume();
-    }
-
-    //if the transfer takes more than 1 minute, cancel the transfer
-    if (pauseCount >= 20) {
-        System.out.println("Canceling the transfer!");
-
-        //cancel the transfer
-        asperaTransfer.cancel();
-        break;
-    }
+    //cancel the transfer
+    asperaTransfer.cancel();
 }
 
 System.out.println("Directory download complete!");
@@ -1020,9 +1019,11 @@ System.out.println("Directory download complete!");
 
 ### Troubleshooting Aspera Issues
 
-#### JVM unexpectedly and silently crashes during transfers
+#### Developers using the Oracle JDK on Linux or Mac OS X may experience unexpected and silent crashes during transfers
 
 **Cause:** The native code requires its own signal handlers which could be overriding the JVM's signal handlers. It might might be necessary to use the JVM's signal chaining facility.
+
+*IBM&reg; JDK users or Microsoft&reg; Windows users are not affected.*
 
 **Solution:** Link and load the JVM's signal chaining library.
 * On Linux locate the ***libjsig.so*** shared library and set the following environment variable:
