@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-08-02"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -90,6 +90,8 @@ function createBucket(bucketName) {
     });
 }
 ```
+
+
 *SDK References*
 * [createBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createBucket-property){:new_window}
 

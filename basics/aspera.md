@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-08-27"
+lastupdated: "07-16-2018"
 
 ---
 {:new_window: target="_blank"}
@@ -58,86 +58,3 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
 
 **Advanced Preferences:** You can set bandwidth for uploads and downloads.
 
-----
-
-## Using Libraries and SDKs
-
-The {{site.data.keyword.cos_short}} and Aspera SDK works together to provide the ability to initiate high-speed transfer within your custom applications when using either Java or Python.
-
-The following operations are **supported**:
-* File upload/download
-* Directory upload/download
-* Pause/Resume/Cancel operations
-
-The following item is **not supported**:
-* HMAC credentials
-
-### Supported Platforms
-
-|OS|Version|Architecture|Java Version|Python Version|
-|---|---|---|---|---|
-|Ubuntu|18.04 LTS|64-Bit|6, 8|2.7, 3.6|
-|Mac OS X|10.13|64-Bit|6|2.7, 3.6|
-|Microsoft&reg; Windows|10|64-Bit|6|2.7, 3.6|
-
-*Limitations for initial release*
-* No 32-Bit support for any OS
-* No Windows support other than Windows 10
-* No Linux support for any distribution other than Ubuntu (tested against the latest LTS)
-* Java versions 6+ should be compatible but not tested in initial release (additional support expected for future releases)
-
-### Getting the SDK using Java
-{: #aspera-sdk-java}
-
-The best way to use {{site.data.keyword.cos_full_notm}} and Aspera Connect Java SDK is to use Maven to manage dependencies. If you aren't familiar with Maven, you get can get up and running using the [Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html){:new_window} guide.
-
-Maven uses a file named `pom.xml` to specify the libraries (and their versions) needed for a Java project.  Below is an example `pom.xml` file for using the {{site.data.keyword.cos_full_notm}} and Aspera Java SDK
-
-```xml
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.cos</groupId>
-    <artifactId>docs</artifactId>
-    <packaging>jar</packaging>
-    <version>2.0-SNAPSHOT</version>
-    <name>docs</name>
-    <url>http://maven.apache.org</url>
-    <dependencies>
-        <dependency>
-            <groupId>com.ibm.cos</groupId>
-            <artifactId>ibm-cos-java-sdk</artifactId>
-            <version>2.1.3</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ibm.cos-aspera</groupId>
-            <artifactId>cos-aspera</artifactId>
-            <version>0.1.163682</version>
-        </dependency>
-    </dependencies>
-</project>
-```
-
-#### Aspera/Java code examples
-
-Examples of initiating Aspera transfers with Java are available in [Using Java](/docs/services/cloud-object-storage/libraries/java.html#using-aspera-high-speed-transfer) section.
-
-### Getting the SDK using Python
-{: #aspera-sdk-python}
-
-The {{site.data.keyword.cos_full_notm}} and Aspera Connect Python SDK is available from the Python Package Index (PyPI) software repository.  
-
-Both can be installed using the following commands:
-
-```
-pip install ibm-cos-sdk["aspera"]
-```
-
-To test your installation run the following command and ensure you do not receive any errors:
-
-```
-python -c  "import faspmanager2"
-```
-
-#### Aspera/Python code examples
-
-Examples of initiating Aspera transfers with Python are available in [Using Python](/docs/services/cloud-object-storage/libraries/python.html#using-aspera-high-speed-transfer) section.
