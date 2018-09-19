@@ -18,10 +18,10 @@ Cloud Object Storage
     {: .navgroup id="howto"}
     basics/order-storage.md
     basics/upload.md
+    basics/archiving.md
 
     {: .topicgroup}
     Manage access
-        iam/iam.md
         iam/overview.md
         iam/users-serviceids.md
         iam/service-credentials.md
@@ -70,6 +70,12 @@ Cloud Object Storage
 
     basics/at.md
     basics/aspera.md
+
+    {: .topicgroup}
+    Desktop clients
+        gui/cyberduck.md
+        gui/cloudberry.md
+        gui/simpana.md
 
     {: .topicgroup}
     Tutorials
