@@ -124,7 +124,7 @@ Examples of initiating Aspera transfers with Java are available in [Using Java](
 ### Getting the SDK using Python
 {: #aspera-sdk-python}
 
-The {{site.data.keyword.cos_full_notm}} and Aspera Connect Python SDK is available from the Python Package Index (PyPI) software repository.  
+The {{site.data.keyword.cos_full_notm}} and Aspera Python SDK is available from the Python Package Index (PyPI) software repository.  
 
 Both can be installed using the following commands:
 
