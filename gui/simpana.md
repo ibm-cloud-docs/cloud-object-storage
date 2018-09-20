@@ -17,7 +17,7 @@ lastupdated: "2018-07-27"
 
 CommVault Simpana integrates with the Archive tier of {{site.data.keyword.cos_full_notm}}. For more information about Simpana, see: [CommVault Simpana documentation](https://documentation.commvault.com/commvault/)
 
-For more information about IBM COS Infrastructure Archive, see [How to: Archive Data](docs/services/cloud-object-storage/basics/archiving.html#archive-data).
+For more information about IBM COS Infrastructure Archive, see [How to: Archive Data](/docs/services/cloud-object-storage/basics/archiving.html#archive-data).
 
 ## Integration steps
 
@@ -52,7 +52,7 @@ For more information about IBM COS Infrastructure Archive, see [How to: Archive 
 1.  Execute the following CLI command:
 
 ```shell
-aws s3api put-bucket-lifecycle-configuration --bucket <bucket name> --lifecycle-configuration file://<saved policy file> --endpoint <end point>
+aws s3api put-bucket-lifecycle-configuration --bucket <bucket name> --lifecycle-configuration file://<saved policy file> --endpoint <endpoint>
 ```
 
 2.	Create a storage policy with Simpana and associate the storage policy to the Cloud Storage library that you created in the first step. A storage policy governs the way Simpana interacts with COS for backup transfers. A policy overview can be found [here](https://documentation.commvault.com/commvault/v11/article?p=13804.htm).
