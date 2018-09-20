@@ -73,7 +73,7 @@ The following item is **not supported**:
 * HMAC credentials
 
 ### When to use Aspera
-
+{: #aspera-guidance}
 The FASP protocol that Aspera uses is not suited for all data transfers to and from COS. Specifically, any transfers making use of Aspera should:
 
 1. Always make use of multiple sessions - at least two parallel sessions will minimize the overhead associated with instatiating the transfer.  See specific guidance for [Java](/docs/services/cloud-object-storage/libraries/java.html#aspera) and [Python](/docs/services/cloud-object-storage/libraries/python.html#aspera).
