@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-08-27"
+lastupdated: "2018-08-23"
 
 ---
 
@@ -587,20 +587,6 @@ public static void getBucketContentsV2(String bucketName, int maxKeys) {
 
 ### Create a Vault bucket
 
-Valid provisioning codes for `LocationConstraint` are: <br>
-&emsp;&emsp;  `us-standard` / `us-vault` / `us-cold` / `us-flex` <br>
-&emsp;&emsp;  `us-east-standard` / `us-east-vault`  / `us-east-cold` / `us-east-flex` <br>
-&emsp;&emsp;  `us-south-standard` / `us-south-vault`  / `us-south-cold` / `us-south-flex` <br>
-&emsp;&emsp;  `eu-standard` / `eu-vault` / `eu-cold` / `eu-flex` <br>
-&emsp;&emsp;  `eu-gb-standard` / `eu-gb-vault` / `eu-gb-cold` / `eu-gb-flex` <br>
-&emsp;&emsp;  `eu-de-standard` / `eu-de-vault` / `eu-de-cold` / `eu-de-flex` <br>
-&emsp;&emsp;  `ap-standard` / `ap-vault` / `ap-cold` / `ap-flex` <br>
-&emsp;&emsp;  `ams03-standard` / `ams03-vault` / `ams03-cold` / `ams03-flex` <br>
-&emsp;&emsp;  `che01-standard` / `che01-vault` / `che01-cold` / `che01-flex` <br>
-&emsp;&emsp;  `mel01-standard` / `mel01-vault` / `mel01-cold` / `mel01-flex` <br>
-&emsp;&emsp;  `osl01-standard` / `osl01-vault` / `osl01-cold` / `osl01-flex` <br>
-&emsp;&emsp;  `tor01-standard` / `tor01-vault` / `tor01-cold` / `tor01-flex` <br>
-
 ```java
 cos.createBucket("sample", "us-vault"); // the name of the bucket, and the storage class (LocationConstraint)
 ```
@@ -833,161 +819,217 @@ boolean KPEnabled = result.getIBMSSEKPEnabled();
 String crn = result.getIBMSSEKPCUSTOMERROOTKEYCRN();
 ```
 
+## Using Aspera High-Speed Transfer
 
-## Using Archive Feature
+By installing the [Aspera SDK](/docs/services/cloud-object-storage/basics/aspera.html#aspera-sdk-java) you can utilize high-speed file transfers within your application.
 
-Archive Tier allows users to archive stale data and reduce their storage costs. Archival policies (also known as *Lifecycle Configurations*) are created for buckets and applies to any objects added to the bucket after the policy is created.
+### Initalizing the AsperaTransferManager
 
-### View a bucket's lifecycle configuration
+Pass your existing [S3 Client](#init-config) object to create the AsperaTransferManager
+
 ```java
-public static void getLifecycleConfiguration(String bucketName) {
-    System.out.printf("Retrieving lifecycle config for bucket: %s\n", bucketName);
-
-    GetBucketLifecycleConfigurationRequest request = new GetBucketLifecycleConfigurationRequest(bucketName);
-
-    BucketLifecycleConfiguration config = _cos.getBucketLifecycleConfiguration(request);
-    
-    if (config == null) {
-        System.out.println("No lifecycle configuration exists for bucket: " + bucketName);
-    }
-    else {
-        List<Rule> rules = config.getRules();
-        for (Rule rule : rules) {
-            System.out.printf("Rule: %s; Expiration (Days): %s; Status: %s\n", 
-                rule.getId(), 
-                rule.getTransitions().get(0).getDays(), 
-                rule.getStatus());
-        }
-    }
-}
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
 ```
 
-*SDK References*
-* Classes
-    * [BucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
-    * [GetBucketLifecycleConfigurationRequest](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
-    * [Rule](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
-* Methods
-    * [getBucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
-    * [getRules](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
+You can also allow the `AsperaTransferManager` to use multiple sessions with an additonal configuration option.
 
-### Create a lifecycle configuration 
-
-Detailed information about structuring the lifecycle configuration rules are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#bucket-operations)
+The minimum thresholds for using multi-session:
+* 2 sessions
+* 60 MB threshold (*minimum 100 MB total file size*)
 
 ```java
-public static void setLifecycleConfiguration(String bucketName) {
-    System.out.printf("Creating lifecycle config for bucket: %s\n", bucketName);
-
-    Transition transition = new Transition()
-        .withDays(<number-of-days>)
-        .withStorageClass("GLACIER");
-
-    List<Transition> transitions = new ArrayList<Transition>();
-    transitions.add(transition);
-
-    Rule rule = new Rule()
-        .withId("<policy-id>")
-        .withStatus("Enabled")
-        .withFilter(new LifecycleFilter()
-            .withPredicate(new LifecyclePrefixPredicate("")))
-        .withTransitions(transitions);
-
-    BucketLifecycleConfiguration config = new BucketLifecycleConfiguration().withRules(rule);
-
-    SetBucketLifecycleConfigurationRequest request = new SetBucketLifecycleConfigurationRequest(bucketName, config);
-
-    _cos.setBucketLifecycleConfiguration(request);
-
-    System.out.println("Lifecycle configuration has been set!");
-}
+AsperaConfig asperaConfig = new AsperaConfig()
+    .withMultiSession(5)
+    .withMultiSessionThresholdMb(10);
+            
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, _cos)
+    .withAsperaConfig(asperaConfig)
+    .build();
 ```
 
 *Key Values*
-* `<policy-id>` - Name of the lifecycle policy (must be unqiue)
-* `<number-of-days>` - Number of days to keep the restored file
+* `API_KEY` - api key generated when creating the service credentials (write access is required)
 
-*SDK References*
-* Classes
-    * [BucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
-    * [Rule](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
-    * [SetBucketLifecycleConfigurationRequest](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
-    * [Transition](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
-* Methods
-    * [setBucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
 
-### Delete a bucket's lifecycle configuration
-```java
-public static void deleteLifecycleConfiguration(String bucketName) {
-    System.out.printf("Deleting lifecycle config for bucket: %s\n", bucketName);
+You will need to provide an IAM API Key for Aspera transfers.  HMAC Credentials are **NOT** currently supported.  For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
+{:tip}
 
-    DeleteBucketLifecycleConfigurationRequest request = new DeleteBucketLifecycleConfigurationRequest(bucketName);
-
-    _cos.deleteBucketLifecycleConfiguration(request);
-
-    System.out.println("Lifecycle configuration has been deleted!");
-}
-```
-
-*SDK References*
-* Classes
-    * [DeleteBucketLifecycleConfigurationRequest](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
-* Methods
-    * [deleteBucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
-
-### Temporarily restore an object
-
-Detailed information about the restore request parameters are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#object-operations)
+### File Upload
 
 ```java
-public static void restoreArchiveItem(String bucketName, String itemName) {
-    System.out.printf("Restoring item: %s for bucket: %s\n", itemName, bucketName);
+String bucketName = "<bucket-name>";
+String filePath = "<path-to-local-file>";
+String itemName = "<item-name>";
 
-    RestoreObjectRequest request = new RestoreObjectRequest(
-        bucketName, 
-        itemName,
-        <number-of-days>);
+// Load file
+File inputFile = new File(filePath);
 
-    _cos.restoreObject(request);
+// Create AsperaTransferManager for FASP upload
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
 
-    System.out.println("Restore request has been submitted!");
-}
+// Upload test file and report progress
+AsperaTransfer asperaTransfer = asperaTransferMgr.upload(bucketName, itemName, inputFile);
 ```
 
 *Key Values*
-* `<number-of-days>` - Number of days to keep the restored file
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<path-to-local-file>` - directory and file name to the file to be uploaded to Object Storage.
+* `<item-name>` - name of the new file added to the bucket.
 
-*SDK References*
-* Classes
-    * [RestoreObjectRequest](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
-* Methods
-    * [restoreObject](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
+### File Download
 
-### View HEAD information for an object
 ```java
-    public static void getHeadObject(String bucketName, String itemName) {
-    System.out.printf("Retrieve HEAD metadata for item: %s from bucket: %s\n\n", itemName, bucketName);
+String bucketName = "<bucket-name>";
+String outputPath = "<path-to-local-file>";
+String itemName = "<item-name>";
 
-    GetObjectMetadataRequest request = new GetObjectMetadataRequest(bucketName, itemName);
+// Create local file
+File outputFile = new File(outputPath);
+outputFile.createNewFile();
 
-    ObjectMetadata headData = _cos.getObjectMetadata(request);
+// Create AsperaTransferManager for FASP download
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
 
-    Map<String, Object> headItems = headData.getRawMetadata();
-    for (String key : headItems.keySet()) {
-        System.out.printf("%s : %s\n", key, headItems.get(key));
-    }
+// Download file
+AsperaTransfer asperaTransfer = asperaTransferMgr.download(bucketName, itemName, outputFile);
+```
 
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<path-to-local-file>` - directory and file name to save from Object Storage.
+* `<item-name>` - name of the file in the bucket.
+
+### Directory Upload
+
+```java
+String bucketName = "<bucket-name>";
+String directoryPath = "<path-to-local-directory>";
+String directoryPrefix = "<virtual-directory-prefix>";
+boolean includeSubDirectories = true;
+
+// Load Directory
+File inputDirectory = new File(directoryPath);
+
+// Create AsperaTransferManager for FASP upload
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+
+// Upload test directory
+AsperaTransfer asperaTransfer = asperaTransferMgr.uploadDirectory(bucketName, directoryPrefix, inputDirectory, includeSubDirectories);
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<path-to-local-directory>` - directory of the files to be uploaded to Object Storage.
+* `<virtual-directory-prefix>` - name of the directory prefix to be added to each file upon upload.  Use null or empty string to upload the files to the bucket root.
+
+### Directory Download
+
+```java
+String bucketName = "<bucket-name>";
+String directoryPath = "<path-to-local-directory>";
+String directoryPrefix = "<virtual-directory-prefix>";
+boolean includeSubDirectories = true;
+
+// Load Directory
+File outputDirectory = new File(directoryPath);
+
+// Create AsperaTransferManager for FASP download
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+
+// Download test directory
+AsperaTransfer asperaTransfer = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<path-to-local-directory>` - directory to save downloaded files from Object Storage.
+* `<virtual-directory-prefix>` - name of the directory prefix of each file to download.  Use null or empty string to download all files in the bucket.
+
+### Monitoring Transfer Progress
+
+The simplest way to monitor the progress of your file/directory transfers is to use the `isDone()` property that returns `true` when your transfer is complete.
+
+```java
+AsperaTransfer asperaTransfer = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+
+while (!asperaTransfer.isDone()) {
+    System.out.println("Directory download is in progress");
+
+    //pause for 3 seconds
+    Thread.sleep(1000 * 3);
 }
 ```
 
-*SDK References*
-* Classes
-    * [GetObjectMetadataRequest](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
-    * [ObjectMetadata](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
-* Methods
-    * [getObjectMetadata](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
-    * [getRawMetadata](https://ibm.github.io/ibm-cos-sdk-java){:new_window}
+### Pause/Resume/Cancel
 
+The SDK provides the ability to manage the progress of file/directory transfers though the following methods of the `AsperaTransfer` object:
+
+* `pause()`
+* `resume()`
+* `cancel()`
+
+The following example shows a possible use for these methods:
+
+```java
+String bucketName = "<bucket-name>";
+String directoryPath = "<path-to-local-directory>";
+String directoryPrefix = "<virtual-directory-prefix>";
+boolean includeSubDirectories = true;
+
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, _cos).build();
+
+File outputDirectory = new File(directoryName);
+
+System.out.println("Starting directory download...");
+
+//download the directory from cloud storage
+AsperaTransfer asperaTransfer = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+
+int pauseCount = 0;
+
+while (!asperaTransfer.isDone()) {
+    System.out.println("Directory download in progress...");
+
+    //pause the transfer
+    asperaTransfer.pause();
+
+    //resume the transfer
+    asperaTransfer.resume();
+
+    //cancel the transfer
+    asperaTransfer.cancel();
+}
+
+System.out.println("Directory download complete!");
+```
+
+### Troubleshooting Aspera Issues
+
+#### Developers using the Oracle JDK on Linux or Mac OS X may experience unexpected and silent crashes during transfers
+
+**Cause:** The native code requires its own signal handlers which could be overriding the JVM's signal handlers. It might might be necessary to use the JVM's signal chaining facility.
+
+*IBM&reg; JDK users or Microsoft&reg; Windows users are not affected.*
+
+**Solution:** Link and load the JVM's signal chaining library.
+* On Linux locate the ***libjsig.so*** shared library and set the following environment variable:
+    * `LD_PRELOAD=<PATH_TO_SHARED_LIB>/libjsig.so`
+
+* On Mac OS X locate the shared library ***libjsig.dylib*** and set the following environment variables:
+    * `DYLD_INSERT_LIBRARIES=<PATH_TO_SHARED_LIB>/libjsig.dylib` 
+    * `DYLD_FORCE_FLAT_NAMESPACE=0`
+
+Visit the [Oracle&reg; JDK documentation](https://docs.oracle.com/javase/10/vm/signal-chaining.htm){:new_window} for more information about signal chaining.
+
+#### UnsatisfiedLinkError on Linux
+
+**Cause:** System unable to load dependent libraries.  Errors such as the following may be seen in the application logs:
+
+```libfaspmanager2.so: libawt.so: cannot open shared object file: No such file or directory```
+
+**Solution:** Set the following environment variable:
+
+`LD_LIBRARY_PATH=<JAV_HOME>/jre/lib/amd64/server:<JAVA_HOME>/jre/lib/amd64`
 
 ## API reference
 
