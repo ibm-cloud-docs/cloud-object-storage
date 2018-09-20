@@ -556,7 +556,7 @@ def create_bucket_kp(bucket_name):
     * [create](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.create){:new_window}
 
 ## Using Aspera High-Speed Transfer
-
+{: #aspera}
 By installing the [Aspera SDK](/docs/services/cloud-object-storage/basics/aspera.html#aspera-sdk-python) you can utilize high-speed file transfers within your application.
 
 ### Initalizing the AsperaTransferManager

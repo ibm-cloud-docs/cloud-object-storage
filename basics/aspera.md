@@ -72,6 +72,14 @@ The following operations are **supported**:
 The following item is **not supported**:
 * HMAC credentials
 
+### When to use Aspera
+
+The FASP protocol that Aspera uses is not suited for all data transfers to and from COS. Specifically, any transfers making use of Aspera should:
+
+1. Always make use of multiple sessions - at least two parallel sessions will minimize the overhead associated with instatiating the transfer.  See specific guidance for [Java](/docs/services/cloud-object-storage/libraries/java.html#aspera) and [Python](/docs/services/cloud-object-storage/libraries/python.html#aspera).
+2. Aspera is ideal for larger files, and any files smaller than 1 GB should avoid Aspera and instead make use of the standard Transfer Manager classes to transfer the object in multiple parts.
+3. Aspera was designed in part to improve performance in network environments with large amounts of packet loss. This makes the protocol especially performant over large distances and public wide area networks.  Aspera should not be used for transfers within a region or data center.
+
 ### Supported Platforms
 
 |OS|Version|Architecture|Java Version|Python Version|
@@ -119,7 +127,7 @@ Maven uses a file named `pom.xml` to specify the libraries (and their versions) 
 
 #### Aspera/Java code examples
 
-Examples of initiating Aspera transfers with Java are available in [Using Java](/docs/services/cloud-object-storage/libraries/java.html#using-aspera-high-speed-transfer) section.
+Examples of initiating Aspera transfers with Java are available in [Using Java](/docs/services/cloud-object-storage/libraries/java.html#aspera) section.
 
 ### Getting the SDK using Python
 {: #aspera-sdk-python}
@@ -140,4 +148,4 @@ python -c  "import faspmanager2"
 
 #### Aspera/Python code examples
 
-Examples of initiating Aspera transfers with Python are available in [Using Python](/docs/services/cloud-object-storage/libraries/python.html#using-aspera-high-speed-transfer) section.
+Examples of initiating Aspera transfers with Python are available in [Using Python](/docs/services/cloud-object-storage/libraries/python.html#aspera) section.

@@ -820,7 +820,7 @@ String crn = result.getIBMSSEKPCUSTOMERROOTKEYCRN();
 ```
 
 ## Using Aspera High-Speed Transfer
-
+{: #aspera}
 By installing the [Aspera SDK](/docs/services/cloud-object-storage/basics/aspera.html#aspera-sdk-java) you can utilize high-speed file transfers within your application.
 
 ### Initalizing the AsperaTransferManager
