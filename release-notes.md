@@ -14,6 +14,9 @@ lastupdated: "07-16-2018"
 
 # What's new
 ## Q2 2018
+### September 2018
+Users can archive cold data by setting the proper parameters in a bucket lifecycle configuration policy, either using the console, REST API, or a language-specific SDK.
+
 ### June 2018
 Users who upload or download files or folders using the web-based console have the option to use [Aspera high-speed transfer](https://www.ibm.com/cloud/high-speed-data-transfer) for these operations via a browser plug-in.  This allows for transfers of objects larger than 200MB, and also allows for greater control and visibility of uploads and downloads. Additional information can be found in the [Uploading Data](/docs/services/cloud-object-storage/basics/aspera.html) documentation.
 
