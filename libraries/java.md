@@ -817,15 +817,19 @@ String crn = result.getIBMSSEKPCUSTOMERROOTKEYCRN();
 {: #aspera}
 By installing the [Aspera SDK](/docs/services/cloud-object-storage/basics/aspera.html#aspera-sdk-java) you can utilize high-speed file transfers within your application.
 
-### Initalizing the AsperaTransferManager
+You will need instances of the S3 Client and IAM Token Manager classes to initialize the `AsperaTransferManager`. The `s3Client` is required to get FASP connection information for the bucket for targeting for upload or download. The `tokenManager` is required to allow the Aspera SDK to authenticate with the COS target.
 
-Pass your existing [S3 Client](#init-config) object to create the AsperaTransferManager
+### Initializing the `AsperaTransferManager`
+
+Pass an existing [`s3Client`](#init-config) and [`tokenManager`](#init-config) objects to create a basic `AsperaTransferManager`:
 
 ```java
-AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client)
+    .withTokenManager(tokenManager)
+    .build();
 ```
 
-You can also allow the `AsperaTransferManager` to use multiple sessions with an additonal configuration option.
+You can also allow the `AsperaTransferManager` to use multiple sessions with an additional configuration option.
 
 The minimum thresholds for using multi-session:
 * 2 sessions
@@ -836,12 +840,13 @@ AsperaConfig asperaConfig = new AsperaConfig()
     .withMultiSession(2)
     .withMultiSessionThresholdMb(60);
             
-AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, _cos)
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, s3Client)
+    .withTokenManager(tokenManager)
     .withAsperaConfig(asperaConfig)
     .build();
 ```
 
-For best performance in most scenarios, always make use of multiple sessions to minimize any overhead associated with instantiating an Aspera transfer.  **If your network capacity is at least 1 Gbps you should use 10 sessions.  Otherwise, it is recommended to use 2 sessions.
+For best performance in most scenarios, always make use of multiple sessions to minimize any overhead associated with instantiating an Aspera transfer.  **If your network capacity is at least 1 Gbps you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
 {:tip}
 
 *Key Values*
@@ -865,7 +870,8 @@ File inputFile = new File(filePath);
 AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
 
 // Upload test file and report progress
-AsperaTransfer asperaTransfer = asperaTransferMgr.upload(bucketName, itemName, inputFile);
+Future<AsperaTransaction> asperaTransactionFuture = asperaTransferMgr.upload(bucketName, itemName, inputFile);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
 ```
 
 *Key Values*
@@ -877,7 +883,7 @@ AsperaTransfer asperaTransfer = asperaTransferMgr.upload(bucketName, itemName, i
 
 ```java
 String bucketName = "<bucket-name>";
-String outputPath = "<path-to-local-file>";
+String outputPath = "<absolute-path-to-file>";
 String itemName = "<item-name>";
 
 // Create local file
@@ -885,22 +891,27 @@ File outputFile = new File(outputPath);
 outputFile.createNewFile();
 
 // Create AsperaTransferManager for FASP download
-AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, s3Client)
+    .withTokenManager(tokenManager)
+    .withAsperaConfig(asperaConfig)
+    .build();
 
 // Download file
-AsperaTransfer asperaTransfer = asperaTransferMgr.download(bucketName, itemName, outputFile);
+Future<AsperaTransaction> asperaTransactionFuture = asperaTransferMgr.download(bucketName, itemName, outputFile);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
+
 ```
 
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
-* `<path-to-local-file>` - directory and file name to save from Object Storage.
+* `<absolute-path-to-file>` - directory and file name to save from Object Storage.
 * `<item-name>` - name of the object in the bucket.
 
 ### Directory Upload
 
 ```java
 String bucketName = "<bucket-name>";
-String directoryPath = "<path-to-local-directory>";
+String directoryPath = "<absolute-path-to-directory>";
 String directoryPrefix = "<virtual-directory-prefix>";
 boolean includeSubDirectories = true;
 
@@ -908,22 +919,26 @@ boolean includeSubDirectories = true;
 File inputDirectory = new File(directoryPath);
 
 // Create AsperaTransferManager for FASP upload
-AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, s3Client)
+    .withTokenManager(tokenManager)
+    .withAsperaConfig(asperaConfig)
+    .build();
 
 // Upload test directory
-AsperaTransfer asperaTransfer = asperaTransferMgr.uploadDirectory(bucketName, directoryPrefix, inputDirectory, includeSubDirectories);
+Future<AsperaTransaction> asperaTransactionFuture  = asperaTransferMgr.uploadDirectory(bucketName, directoryPrefix, inputDirectory, includeSubDirectories);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
 ```
 
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
-* `<path-to-local-directory>` - directory of the files to be uploaded to Object Storage.
+* `<absolute-path-to-directory>` - directory of the files to be uploaded to Object Storage.
 * `<virtual-directory-prefix>` - name of the directory prefix to be added to each file upon upload.  Use null or empty string to upload the files to the bucket root.
 
 ### Directory Download
 
 ```java
 String bucketName = "<bucket-name>";
-String directoryPath = "<path-to-local-directory>";
+String directoryPath = "<absolute-path-to-directory>";
 String directoryPrefix = "<virtual-directory-prefix>";
 boolean includeSubDirectories = true;
 
@@ -931,26 +946,120 @@ boolean includeSubDirectories = true;
 File outputDirectory = new File(directoryPath);
 
 // Create AsperaTransferManager for FASP download
-AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, s3Client)
+    .withTokenManager(tokenManager)
+    .withAsperaConfig(asperaConfig)
+    .build();
 
 // Download test directory
-AsperaTransfer asperaTransfer = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+Future<AsperaTransaction> asperaTransactionFuture   = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
+
 ```
 
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
-* `<path-to-local-directory>` - directory to save downloaded files from Object Storage.
+* `<absolute-path-to-directory>` - directory to save downloaded files from Object Storage.
 * `<virtual-directory-prefix>` - name of the directory prefix of each file to download.  Use null or empty string to download all files in the bucket.
+
+### Overriding Session Configuration on a Per Transfer Basis
+You can override the multi-session configuration values on a per transfer basis by passing an instance of `AsperaConfig` to the upload and download overloaded methods. Using `AsperaConfig` you can specify the number of sessions and minimum file threshold size per session. 
+
+```java
+String bucketName = "<bucket-name>";
+String filePath = "<absolute-path-to-file>";
+String itemName = "<item-name>";
+
+// Load file
+File inputFile = new File(filePath);
+
+// Create AsperaTransferManager for FASP upload
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client)
+.withTokenManager(TOKEN_MANAGER)
+.withAsperaConfig(asperaConfig)
+.build();
+
+// Create AsperaConfig to set number of sessions
+// and file threshold per session.
+AsperaConfig asperaConfig = new AsperaConfig().
+withMultiSession(10).
+withMultiSessionThresholdMb(60);
+
+// Upload test file and report progress
+Future<AsperaTransaction> asperaTransactionFuture  = asperaTransferMgr.upload(bucketName, itemName, inputFile, asperaConfig, null);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
+```
 
 ### Monitoring Transfer Progress
 
 The simplest way to monitor the progress of your file/directory transfers is to use the `isDone()` property that returns `true` when your transfer is complete.
 
 ```java
-AsperaTransfer asperaTransfer = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+Future<AsperaTransaction> asperaTransactionFuture  = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
 
-while (!asperaTransfer.isDone()) {
+while (!asperaTransaction.isDone()) {
     System.out.println("Directory download is in progress");
+
+    //pause for 3 seconds
+    Thread.sleep(1000 * 3);
+}
+```
+
+You can also check if a transfer is queued for processing by calling the `onQueue` method on the `AsperaTransaction`. `onQueue` will return a Boolean with `true` indicating that the transfer is queued.
+
+```java
+Future<AsperaTransaction> asperaTransactionFuture  = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
+
+while (!asperaTransaction.isDone()) {
+    System.out.println("Directory download is in queueing: " + asperaTransaction.onQueue());
+
+    //pause for 3 seconds
+    Thread.sleep(1000 * 3);
+}
+```
+
+To check if a transfer is in progress call the progress method in `AsperaTransaction`.
+
+```java
+Future<AsperaTransaction> asperaTransactionFuture  = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
+
+while (!asperaTransaction.isDone()) {
+    System.out.println("Directory download is in progress: " + asperaTransaction.progress());
+
+    //pause for 3 seconds
+    Thread.sleep(1000 * 3);
+}
+```
+
+Every transfer by default will have a `TransferProgress` attached to it. The `TransferProgress` will report the number of bytes transferred and the percentage transferred of the total bytes to transfer. To access a transfer’s `TransferProgress` use the `getProgress` method in `AsperaTransaction`.
+
+```java
+Future<AsperaTransaction> asperaTransactionFuture  = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
+
+while (!asperaTransaction.isDone()) {
+    TransferProgress transferProgress = asperaTransaction.getProgress();
+
+    //pause for 3 seconds
+    Thread.sleep(1000 * 3);
+}
+```
+
+To report the number of bytes transferred call the `getBytesTransferred` method on `TransferProgress`. To report the percentage transferred of the total bytes to transfer call the `getPercentTransferred` method on `TransferProgress`.
+
+```java
+Future<AsperaTransaction> asperaTransactionFuture  = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
+
+while (!asperaTransaction.isDone()) {
+    TransferProgress transferProgress = asperaTransaction.getProgress();
+
+    System.out.println("Bytes transferred: " + transferProgress.getBytesTransferred());
+    System.out.println("Percent transferred: " + transferProgress.getPercentTransferred());
+
 
     //pause for 3 seconds
     Thread.sleep(1000 * 3);
@@ -969,22 +1078,25 @@ The following example shows a possible use for these methods:
 
 ```java
 String bucketName = "<bucket-name>";
-String directoryPath = "<path-to-local-directory>";
+String directoryPath = "<absolute-path-to-directory>";
 String directoryPrefix = "<virtual-directory-prefix>";
 boolean includeSubDirectories = true;
 
-AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, _cos).build();
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, _cos)
+    .withTokenManager(TOKEN_MANAGER)
+    .build();
 
 File outputDirectory = new File(directoryName);
 
 System.out.println("Starting directory download...");
 
 //download the directory from cloud storage
-AsperaTransfer asperaTransfer = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+Future<AsperaTransaction> asperaTransactionFuture  = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
 
 int pauseCount = 0;
 
-while (!asperaTransfer.isDone()) {
+while (!asperaTransaction.isDone()) {
     System.out.println("Directory download in progress...");
 
     //pause the transfer
@@ -1002,23 +1114,23 @@ System.out.println("Directory download complete!");
 
 ### Troubleshooting Aspera Issues
 
-#### Developers using the Oracle JDK on Linux or Mac OS X may experience unexpected and silent crashes during transfers
+**Issue:** developers using the Oracle JDK on Linux or Mac OS X may experience unexpected and silent crashes during transfers
 
-**Cause:** The native code requires its own signal handlers which could be overriding the JVM's signal handlers. It might might be necessary to use the JVM's signal chaining facility.
+**Cause:** The native code requires its own signal handlers which could be overriding the JVM's signal handlers. It might be necessary to use the JVM's signal chaining facility.
 
 *IBM&reg; JDK users or Microsoft&reg; Windows users are not affected.*
 
 **Solution:** Link and load the JVM's signal chaining library.
-* On Linux locate the ***libjsig.so*** shared library and set the following environment variable:
+* On Linux locate the `libjsig.so` shared library and set the following environment variable:
     * `LD_PRELOAD=<PATH_TO_SHARED_LIB>/libjsig.so`
 
-* On Mac OS X locate the shared library ***libjsig.dylib*** and set the following environment variables:
+* On Mac OS X locate the shared library `libjsig.dylib` and set the following environment variables:
     * `DYLD_INSERT_LIBRARIES=<PATH_TO_SHARED_LIB>/libjsig.dylib` 
     * `DYLD_FORCE_FLAT_NAMESPACE=0`
 
 Visit the [Oracle&reg; JDK documentation](https://docs.oracle.com/javase/10/vm/signal-chaining.htm){:new_window} for more information about signal chaining.
 
-#### UnsatisfiedLinkError on Linux
+**Issue:** `UnsatisfiedLinkError` on Linux
 
 **Cause:** System unable to load dependent libraries.  Errors such as the following may be seen in the application logs:
 

@@ -570,18 +570,20 @@ transfer_manager = AsperaTransferManager(client)
 You will need to provide an IAM API Key for Aspera transfers.  HMAC Credentials are **NOT** currently supported.  For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
 {:tip}
 
-Allow the `AsperaTransferManager` to use multiple sessions with an additional configuration option. This will split the transfer into the specified number of parallel **sessions** if the file meets or exceeds the **threshold**. 
+Allow the `AsperaTransferManager` to use multiple sessions with an additional configuration option passed by the `AsperaConfig` class. This will split the transfer into the specified number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value. 
 
-The minimum configuration for using multi-session:
+The typical configuration for using multi-session should be:
 * 2 sessions
-* 60 MB threshold (*although minimum recommended file size for Aspera transfers is a 1 GB total file size*)
+* 60 MB threshold (*this is the recommended value for most appplications*)
 
 ```python
 # Configure 2 sessions for transfer
-ms_transfer_config = AsperaConfig(multi_session=2, multi_session_threshold_mb=60)
+ms_transfer_config = AsperaConfig(multi_session=2, 
+                                  multi_session_threshold_mb=60)
 
-# Create Transfer Manager
-transfer_manager = AsperaTransferManager(client=client, transfer_config=ms_transfer_config)
+# Create the Aspera Transfer Manager
+transfer_manager = AsperaTransferManager(client=client, 
+                                         transfer_config=ms_transfer_config)
 ```
 For best performance in most scenarios, always make use of multiple sessions to minimize any overhead associated with instantiating an Aspera transfer.  **If your network capacity is at least 1 Gbps you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
 {:tip}
@@ -590,7 +592,7 @@ For best performance in most scenarios, always make use of multiple sessions to 
 
 ```python
 bucket_name = "<bucket-name>"
-upload_filename = "<path-to-file>"
+upload_filename = "<absolute-path-to-file>"
 object_name = "<item-name>"
 
 # Create Transfer manager
@@ -604,15 +606,15 @@ with AsperaTransferManager(client) as transfer_manager:
 ```
 
 *Key Values*
-* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
-* `<path-to-file>` - directory and file name to the file to be uploaded to Object Storage.
-* `<item-name>` - name of the new file added to the bucket.
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
+* `<absolute-path-to-file>` - directory path and file name to the file to be uploaded
+* `<item-name>` - name of the new file added to the bucket
 
 ### File Download
 
 ```python
 bucket_name = "<bucket-name>"
-download_filename = "<path-to-local-file>"
+download_filename = "<absolute-path-to-file>"
 object_name = "<object-to-download>"
 
 # Create Transfer manager
@@ -627,7 +629,7 @@ with AsperaTransferManager(client) as transfer_manager:
 
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
-* `<path-to-local-file>` - directory and file name where save the file to the local system.
+* `<absolute-path-to-file>` - directory and file name where save the file to the local system.
 * `<object-to-download>` - name of the file in the bucket to download.
 
 ### Directory Upload
@@ -635,9 +637,9 @@ with AsperaTransferManager(client) as transfer_manager:
 ```python
 bucket_name = "<bucket-name>"
 # THIS DIRECTORY MUST EXIST LOCALLY, and have objects in it.
-local_upload_directory = "<path-to-local-directory>"
+local_upload_directory = "<absolute-path-to-directory>"
 # THIS SHOULD NOT HAVE A LEADING "/"
-remote_directory = "<bucket-directory>"
+remote_directory = "<object prefix>"
 
 # Create Transfer manager
 with AsperaTransferManager(client) as transfer_manager:
@@ -651,15 +653,15 @@ with AsperaTransferManager(client) as transfer_manager:
 
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
-* `<path-to-local-directory>` - local directory that contains the files to be uploaded.  Must have leading and trailing `/` (i.e. `/Users/testuser/Documents/Upload/`)
-* `<bucket-directory>` - name of the directory in the bucket to store the files. Must not have a leading `/` (i.e. `newuploads/`)
+* `<absolute-path-to-directory>` - local directory that contains the files to be uploaded.  Must have leading and trailing `/` (i.e. `/Users/testuser/Documents/Upload/`)
+* `<object prefix>` - name of the directory in the bucket to store the files. Must not have a leading `/` (i.e. `newuploads/`)
 
 ### Directory Download
 ```python
 bucket_name = "<bucket-name>"
 # THIS DIRECTORY MUST EXIST LOCALLY
-local_download_directory = "<path-to-local-directory>"
-remote_directory = "<bucket-directory>"
+local_download_directory = "<absolute-path-to-directory>"
+remote_directory = "<object prefix>"
 
 # Create Transfer manager
 with AsperaTransferManager(client) as transfer_manager:
@@ -673,12 +675,12 @@ with AsperaTransferManager(client) as transfer_manager:
 
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
-* `<path-to-local-directory>` - local directory to save the downloaded files.  Must have leading and trailing `/` (i.e. `/Users/testuser/Downloads/`)
-* `<bucket-directory>` - name of the directory in the bucket to store the files. Must not have a leading `/` (i.e. `todownload/`)
+* `<absolute-path-to-directory>` - local directory to save the downloaded files.  Must have leading and trailing `/` (i.e. `/Users/testuser/Downloads/`)
+* `<object prefix>` - name of the directory in the bucket to store the files. Must not have a leading `/` (i.e. `todownload/`)
 
 ### Using Subscribers
 
-Subscribers allow you to monitor the progress of your operations by attaching custom callback methods.  There are three available subscribers:
+Subscribers provide observability into transfers by attaching custom callback methods.  There are three available subscribers:
 
 * `CallbackOnQueued()`
 * `CallbackOnProgress()`
@@ -686,8 +688,8 @@ Subscribers allow you to monitor the progress of your operations by attaching cu
 
 ```python
 bucket_name = "<bucket-name>"
-local_download_directory = "<path-to-local-directory>"
-remote_directory = "<bucket-directory>"
+local_download_directory = "<absolute-path-to-directory>"
+remote_directory = "<object prefix>"
 
 # Subscriber callbacks
 class CallbackOnQueued(AsperaBaseSubscriber):
@@ -726,8 +728,8 @@ future.result()
 
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
-* `<path-to-local-directory>` - local directory to save the downloaded files.  Must have leading and trailing `/` (i.e. `/Users/testuser/Downloads/`)
-* `<bucket-directory>` - name of the directory in the bucket to store the files. Must not have a leading `/` (i.e. `todownload/`)
+* `<absolute-path-to-directory>` - local directory to save the downloaded files.  Must have leading and trailing `/` (i.e. `/Users/testuser/Downloads/`)
+* `<object prefix>` - name of the directory in the bucket to store the files. Must not have a leading `/` (i.e. `todownload/`)
 
 The sample code above produces the following output:
 
@@ -752,8 +754,8 @@ The SDK provides the ability to manage the progress of file/directory transfers 
 ```python
 # Create Transfer manager
 bucket_name = "<bucket-name>"
-local_download_directory = "<path-to-local-directory>"
-remote_directory = "<bucket-directory>"
+local_download_directory = "<absolute-path-to-directory>"
+remote_directory = "<object prefix>"
 
 with AsperaTransferManager(client) as transfer_manager:
 
