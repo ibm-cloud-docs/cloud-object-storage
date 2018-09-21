@@ -570,20 +570,21 @@ transfer_manager = AsperaTransferManager(client)
 You will need to provide an IAM API Key for Aspera transfers.  HMAC Credentials are **NOT** currently supported.  For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
 {:tip}
 
-You can also allow the `AsperaTransferManager` to use multiple sessions with an additonal configuration option.  Multiple sessions is available on single file transfers when a threshold is set to split the file or directory transfers which contain multiple files (no threshold required).
+Allow the `AsperaTransferManager` to use multiple sessions with an additional configuration option. This will split the transfer into the specified number of parallel **sessions** if the file meets or exceeds the **threshold**. 
 
-The minimum thresholds for using multi-session:
+The minimum configuration for using multi-session:
 * 2 sessions
-* 60 MB threshold (*minimum 100 MB total file size*)
+* 600 MB threshold (* although minimum recommended file size for Aspera transfers is a 1 GB total file size*)
 
 ```python
-# Configure 5 sessions for transfer, or specify "all" for dynamic number of sessions.
-ms_transfer_config = AsperaConfig(multi_session=5, multi_session_threshold_mb=60)
+# Configure 2 sessions for transfer
+ms_transfer_config = AsperaConfig(multi_session=2, multi_session_threshold_mb=600)
 
 # Create Transfer Manager
 transfer_manager = AsperaTransferManager(client=client, transfer_config=ms_transfer_config)
 ```
-
+For best performance in most scenarios, always make use of multiple sessions to minimize any overhead associated with instantiating an Aspera transfer.  **If your network capacity is at least 1 Gbps you should use 10 sessions.  Otherwise, it is recommended to use 2 sessions.
+{:tip}
 
 ### File Upload
 

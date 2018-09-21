@@ -215,6 +215,12 @@ public static void createBucket(String bucketName) {
 }
 ```
 
+#### Create a bucket with a different storage class
+
+```java
+cos.createBucket("sample", "us-vault"); // the name of the bucket, and the storage class (LocationConstraint)
+```
+
 *SDK References*
 * [createBucket](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#createBucket-java.lang.String-){:new_window}
 
@@ -233,6 +239,93 @@ public static void createTextFile(String bucketName, String itemName, String fil
     
     System.out.printf("Item: %s created!\n", itemName);
 }
+```
+
+### Upload object from a file
+
+This example assumes that the bucket `sample` already exists.
+
+```java
+cos.putObject(
+    "sample", // the name of the destination bucket
+    "myfile", // the object key
+    new File("/home/user/test.txt") // the file name and path of the object to be uploaded
+);
+```
+
+### Upload object using a stream
+
+This example assumes that the bucket `sample` already exists.
+
+```java
+String obj = "An example"; // the object to be stored
+ByteArrayOutputStream theBytes = new ByteArrayOutputStream(); // create a new output stream to store the object data
+ObjectOutputStream serializer = new ObjectOutputStream(theBytes); // set the object data to be serialized
+serializer.writeObject(obj); // serialize the object data
+serializer.flush();
+serializer.close();
+InputStream stream = new ByteArrayInputStream(theBytes.toByteArray()); // convert the serialized data to a new input stream to store
+ObjectMetadata metadata = new ObjectMetadata(); // define the metadata
+metadata.setContentType("application/x-java-serialized-object"); // set the metadata
+metadata.setContentLength(theBytes.size()); // set metadata for the length of the data stream
+cos.putObject(
+    "sample", // the name of the bucket to which the object is being written
+    "serialized-object", // the name of the object being written
+    stream, // the name of the data stream writing the object
+    metadata // the metadata for the object being written
+);
+```
+
+### Download object to a file
+
+This example assumes that the bucket `sample` already exists.
+
+```java
+GetObjectRequest request = new // create a new request to get an object
+GetObjectRequest( // request the new object by identifying
+    "sample", // the name of the bucket
+    "myFile" // the name of the object
+);
+
+s3Client.getObject( // write the contents of the object
+    request, // using the request that was just created
+    new File("retrieved.txt") // to write to a new file
+);
+```
+
+
+### Download object using a stream
+
+This example assumes that the bucket `sample` already exists.
+
+```java
+S3Object returned = cos.getObject( // request the object by identifying
+    "sample", // the name of the bucket
+    "serialized-object" // the name of the serialized object
+);
+S3ObjectInputStream s3Input = s3Response.getObjectContent(); // set the object stream
+```
+
+### Copy objects
+
+```java
+// copy an object within the same Bucket
+cos.copyObject( // copy the Object, passing…
+    "sample",  // the name of the Bucket in which the Object to be copied is stored,
+    "myFile.txt",  // the name of the Object being copied from the source Bucket,
+    "sample",  // the name of the Bucket in which the Object to be copied is stored,
+    "myFile.txt.backup"    // and the new name of the copy of the Object to be copied
+);
+```
+
+```java
+// copy an object between two Buckets
+cos.copyObject( // copy the Object, passing…
+    "sample", // the name of the Bucket from which the Object will be copied,
+    "myFile.txt", // the name of the Object being copied from the source Bucket,
+    "backup", // the name of the Bucket to which the Object will be copied,
+    "myFile.txt" // and the name of the copied Object in the destination Bucket
+);
 ```
 
 *SDK References*
@@ -257,7 +350,7 @@ Caused by: java.lang.ClassNotFoundException: javax.xml.bind.JAXBException
 	... 3 more
 ```
 
-**Root Cause:** The JAXB APIs are considered to be Java EE APIs, and therefore are no longer contained on the default class path in Java SE 9
+**Root Cause:** The JAXB APIs are considered to be Java EE APIs, and are no longer contained on the default class path in Java SE 9.
 
 **Fix:** Add the following entry to the pom.xml file in your project folder and repackage your project
 ```xml
@@ -285,7 +378,53 @@ public static void getBuckets() {
 * Methods
     * [listBuckets](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listBuckets--){:new_window}
 
-### List items in a bucket
+### List items in a bucket (v2)
+{: #list-objects-v2}
+
+The [AmazonS3](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html){:new_window} object contains an updated method to list the contents ([listObjectsV2](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){:new_window}).  This method allows you to limit the number of records returned and retrieve the records in batches.  This could be useful for paging your results within an application and improve performance.
+
+```java
+public static void getBucketContentsV2(String bucketName, int maxKeys) {
+    System.out.printf("Retrieving bucket contents (V2) from: %s\n", bucketName);
+
+    boolean moreResults = true;
+    String nextToken = "";
+
+    while (moreResults) {
+        ListObjectsV2Request request = new ListObjectsV2Request()
+            .withBucketName(bucketName)
+            .withMaxKeys(maxKeys)
+            .withContinuationToken(nextToken);
+
+        ListObjectsV2Result result = _cos.listObjectsV2(request);
+        for(S3ObjectSummary objectSummary : result.getObjectSummaries()) {
+            System.out.printf("Item: %s (%s bytes)\n", objectSummary.getKey(), objectSummary.getSize());
+        }
+        
+        if (result.isTruncated()) {
+            nextToken = result.getNextContinuationToken();
+            System.out.println("...More results in next batch!\n");
+        }
+        else {
+            nextToken = "";
+            moreResults = false;
+        }
+    }
+    System.out.println("...No more results!");
+}
+```
+
+*SDK References*
+* Classes
+    * [ListObjectsV2Request](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Request.html){:new_window}
+    * [ListObjectsV2Result](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html){:new_window}
+    * [S3ObjectSummary](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/S3ObjectSummary.html){:new_window}
+* Methods
+    * [getObjectSummaries](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html#getObjectSummaries--){:new_window}
+    * [getNextContinuationToken](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html#getNextContinuationToken--){:new_window}
+    * [listObjectsV2](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){:new_window}
+  
+### List items in a bucket (v1)
 ```java
 public static void getBucketContents(String bucketName) {
     System.out.printf("Retrieving bucket contents from: %s\n", bucketName);
@@ -480,7 +619,7 @@ public static void multiPartUpload(String bucketName, String itemName, String fi
     * [initiateMultipartUpload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#initiateMultipartUpload-com.ibm.cloud.objectstorage.services.s3.model.InitiateMultipartUploadRequest-){:new_window}
     * [uploadPart](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#uploadPart-com.ibm.cloud.objectstorage.services.s3.model.UploadPartRequest-){:new_window}
 
-### Large Object Upload using TransferManager
+## Upload larger objects using a Transfer Manager
 {: #transfer-manager}
 
 The `TransferManager` simplifies large file transfers by automatically incorporating multi-part uploads whenever necessary setting configuration parameters.
@@ -537,152 +676,7 @@ public static void largeObjectUpload(String bucketName, String itemName, String 
     * [upload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html#upload-java.lang.String-java.lang.String-java.io.File-){:new_window}
     * [waitForCompletion](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/internal/AbstractTransfer.html#waitForCompletion--){:new_window}
     
-## List items in a bucket (v2)
-{: #list-objects-v2}
 
-The [AmazonS3](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html){:new_window} object contains an updated method to list the contents ([listObjectsV2](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){:new_window}).  This method allows you to limit the number of records returned and retrieve the records in batches.  This could be useful for paging your results within an application and improve performance.
-
-```java
-public static void getBucketContentsV2(String bucketName, int maxKeys) {
-    System.out.printf("Retrieving bucket contents (V2) from: %s\n", bucketName);
-
-    boolean moreResults = true;
-    String nextToken = "";
-
-    while (moreResults) {
-        ListObjectsV2Request request = new ListObjectsV2Request()
-            .withBucketName(bucketName)
-            .withMaxKeys(maxKeys)
-            .withContinuationToken(nextToken);
-
-        ListObjectsV2Result result = _cos.listObjectsV2(request);
-        for(S3ObjectSummary objectSummary : result.getObjectSummaries()) {
-            System.out.printf("Item: %s (%s bytes)\n", objectSummary.getKey(), objectSummary.getSize());
-        }
-        
-        if (result.isTruncated()) {
-            nextToken = result.getNextContinuationToken();
-            System.out.println("...More results in next batch!\n");
-        }
-        else {
-            nextToken = "";
-            moreResults = false;
-        }
-    }
-    System.out.println("...No more results!");
-}
-```
-
-*SDK References*
-* Classes
-    * [ListObjectsV2Request](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Request.html){:new_window}
-    * [ListObjectsV2Result](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html){:new_window}
-    * [S3ObjectSummary](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/S3ObjectSummary.html){:new_window}
-* Methods
-    * [getObjectSummaries](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html#getObjectSummaries--){:new_window}
-    * [getNextContinuationToken](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html#getNextContinuationToken--){:new_window}
-    * [listObjectsV2](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){:new_window}
-
-## Additional code snippets
-
-### Create a Vault bucket
-
-```java
-cos.createBucket("sample", "us-vault"); // the name of the bucket, and the storage class (LocationConstraint)
-```
-
-### Create a Cold Vault bucket
-
-```java
-cos.createBucket("sample", "us-cold"); // the name of the bucket, and the storage class (LocationConstraint)
-```
-
-### Upload object from a file
-
-This example assumes that the bucket `sample` already exists.
-
-```java
-cos.putObject(
-    "sample", // the name of the destination bucket
-    "myfile", // the object key
-    new File("/home/user/test.txt") // the file name and path of the object to be uploaded
-);
-```
-
-### Upload object using a stream
-
-This example assumes that the bucket `sample` already exists.
-
-```java
-String obj = "An example"; // the object to be stored
-ByteArrayOutputStream theBytes = new ByteArrayOutputStream(); // create a new output stream to store the object data
-ObjectOutputStream serializer = new ObjectOutputStream(theBytes); // set the object data to be serialized
-serializer.writeObject(obj); // serialize the object data
-serializer.flush();
-serializer.close();
-InputStream stream = new ByteArrayInputStream(theBytes.toByteArray()); // convert the serialized data to a new input stream to store
-ObjectMetadata metadata = new ObjectMetadata(); // define the metadata
-metadata.setContentType("application/x-java-serialized-object"); // set the metadata
-metadata.setContentLength(theBytes.size()); // set metadata for the length of the data stream
-cos.putObject(
-    "sample", // the name of the bucket to which the object is being written
-    "serialized-object", // the name of the object being written
-    stream, // the name of the data stream writing the object
-    metadata // the metadata for the object being written
-);
-```
-
-### Download object to a file
-
-This example assumes that the bucket `sample` already exists.
-
-```java
-GetObjectRequest request = new // create a new request to get an object
-GetObjectRequest( // request the new object by identifying
-    "sample", // the name of the bucket
-    "myFile" // the name of the object
-);
-
-s3Client.getObject( // write the contents of the object
-    request, // using the request that was just created
-    new File("retrieved.txt") // to write to a new file
-);
-```
-
-
-### Download object using a stream
-
-This example assumes that the bucket `sample` already exists.
-
-```java
-S3Object returned = cos.getObject( // request the object by identifying
-    "sample", // the name of the bucket
-    "serialized-object" // the name of the serialized object
-);
-S3ObjectInputStream s3Input = s3Response.getObjectContent(); // set the object stream
-```
-
-### Copy objects
-
-```java
-// copy an object within the same Bucket
-cos.copyObject( // copy the Object, passing…
-    "sample",  // the name of the Bucket in which the Object to be copied is stored,
-    "myFile.txt",  // the name of the Object being copied from the source Bucket,
-    "sample",  // the name of the Bucket in which the Object to be copied is stored,
-    "myFile.txt.backup"    // and the new name of the copy of the Object to be copied
-);
-```
-
-```java
-// copy an object between two Buckets
-cos.copyObject( // copy the Object, passing…
-    "sample", // the name of the Bucket from which the Object will be copied,
-    "myFile.txt", // the name of the Object being copied from the source Bucket,
-    "backup", // the name of the Bucket to which the Object will be copied,
-    "myFile.txt" // and the name of the copied Object in the destination Bucket
-);
-```
 
 ## Using Key Protect
 
@@ -847,6 +841,9 @@ AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_A
     .build();
 ```
 
+For best performance in most scenarios, always make use of multiple sessions to minimize any overhead associated with instantiating an Aspera transfer.  **If your network capacity is at least 1 Gbps you should use 10 sessions.  Otherwise, it is recommended to use 2 sessions.
+{:tip}
+
 *Key Values*
 * `API_KEY` - api key generated when creating the service credentials (write access is required)
 
@@ -857,8 +854,8 @@ You will need to provide an IAM API Key for Aspera transfers.  HMAC Credentials 
 ### File Upload
 
 ```java
+String filePath = "<absolute-path-to-source-data>";
 String bucketName = "<bucket-name>";
-String filePath = "<path-to-local-file>";
 String itemName = "<item-name>";
 
 // Load file
@@ -873,8 +870,8 @@ AsperaTransfer asperaTransfer = asperaTransferMgr.upload(bucketName, itemName, i
 
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
-* `<path-to-local-file>` - directory and file name to the file to be uploaded to Object Storage.
-* `<item-name>` - name of the new file added to the bucket.
+* `<absolute-path-to-source-data>` - directory and file name to upload to Object Storage.
+* `<item-name>` - name of the new object added to the bucket.
 
 ### File Download
 
@@ -897,7 +894,7 @@ AsperaTransfer asperaTransfer = asperaTransferMgr.download(bucketName, itemName,
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
 * `<path-to-local-file>` - directory and file name to save from Object Storage.
-* `<item-name>` - name of the file in the bucket.
+* `<item-name>` - name of the object in the bucket.
 
 ### Directory Upload
 
