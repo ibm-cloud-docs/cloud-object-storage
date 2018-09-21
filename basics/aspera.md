@@ -81,11 +81,12 @@ The FASP protocol that Aspera uses is not suited for all data transfers to and f
 |Mac OS X|10.13|64-Bit|6|2.7, 3.6|
 |Microsoft&reg; Windows|10|64-Bit|6|2.7, 3.6|
 
-*Limitations for initial release*
-* No 32-Bit support for any OS
-* No Windows support other than Windows 10
-* No Linux support for any distribution other than Ubuntu (tested against the latest LTS)
-* Java versions 6+ should be compatible but not tested in initial release (additional support expected for future releases)
+**Additional limitations**
+
+* 32-bit binaries are not supported
+* Windows support requires Windows 10
+* Linux support is limited to Ubuntu (tested against the latest LTS)
+* Java 6 is well tested, but there are no known issues for Java 7 or higher.
 * Aspera Transfer Manager clients must be created using IAM API keys and not HMAC credentials.
 
 ### Getting the SDK using Java

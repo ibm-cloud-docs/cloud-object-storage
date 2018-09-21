@@ -1138,9 +1138,10 @@ Visit the [Oracle&reg; JDK documentation](https://docs.oracle.com/javase/10/vm/s
 
 **Solution:** Set the following environment variable:
 
-`LD_LIBRARY_PATH=<JAV_HOME>/jre/lib/amd64/server:<JAVA_HOME>/jre/lib/amd64`
+`LD_LIBRARY_PATH=<JAVA_HOME>/jre/lib/amd64/server:<JAVA_HOME>/jre/lib/amd64`
 
-## API reference
+<!--
+## S3 API compatibility reference
 
 This list summarizes the AWS Java SDK methods that are supported by {{site.data.keyword.cos_full_notm}}. More detailed documentation on individual classes and methods can be found in the [the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/)
 
@@ -1204,3 +1205,4 @@ setObjectAcl(SetObjectAclRequest setObjectAclRequest)
 setS3ClientOptions(S3ClientOptions clientOptions)
 uploadPart(UploadPartRequest request)
 ```
+-->
