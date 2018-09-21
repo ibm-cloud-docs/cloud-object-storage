@@ -574,16 +574,16 @@ Allow the `AsperaTransferManager` to use multiple sessions with an additional co
 
 The minimum configuration for using multi-session:
 * 2 sessions
-* 600 MB threshold (* although minimum recommended file size for Aspera transfers is a 1 GB total file size*)
+* 60 MB threshold (*although minimum recommended file size for Aspera transfers is a 1 GB total file size*)
 
 ```python
 # Configure 2 sessions for transfer
-ms_transfer_config = AsperaConfig(multi_session=2, multi_session_threshold_mb=600)
+ms_transfer_config = AsperaConfig(multi_session=2, multi_session_threshold_mb=60)
 
 # Create Transfer Manager
 transfer_manager = AsperaTransferManager(client=client, transfer_config=ms_transfer_config)
 ```
-For best performance in most scenarios, always make use of multiple sessions to minimize any overhead associated with instantiating an Aspera transfer.  **If your network capacity is at least 1 Gbps you should use 10 sessions.  Otherwise, it is recommended to use 2 sessions.
+For best performance in most scenarios, always make use of multiple sessions to minimize any overhead associated with instantiating an Aspera transfer.  **If your network capacity is at least 1 Gbps you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
 {:tip}
 
 ### File Upload
@@ -678,11 +678,11 @@ with AsperaTransferManager(client) as transfer_manager:
 
 ### Using Subscribers
 
-Subscribers allow you monitor the progress of your operations by attach custom callback methods.  There are three subscribers currently available:
+Subscribers allow you to monitor the progress of your operations by attaching custom callback methods.  There are three available subscribers:
 
-* Queued
-* Progress
-* Done
+* `CallbackOnQueued()`
+* `CallbackOnProgress()`
+* `CallbackOnDone()`
 
 ```python
 bucket_name = "<bucket-name>"

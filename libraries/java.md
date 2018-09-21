@@ -833,8 +833,8 @@ The minimum thresholds for using multi-session:
 
 ```java
 AsperaConfig asperaConfig = new AsperaConfig()
-    .withMultiSession(5)
-    .withMultiSessionThresholdMb(10);
+    .withMultiSession(2)
+    .withMultiSessionThresholdMb(60);
             
 AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, _cos)
     .withAsperaConfig(asperaConfig)
