@@ -815,7 +815,10 @@ String crn = result.getIBMSSEKPCUSTOMERROOTKEYCRN();
 
 ## Using Aspera High-Speed Transfer
 {: #aspera}
-By installing the [Aspera SDK](/docs/services/cloud-object-storage/basics/aspera.html#aspera-sdk-java) you can utilize high-speed file transfers within your application.
+By installing the [Aspera SDK](/docs/services/cloud-object-storage/basics/aspera.html#aspera-sdk-java) you can utilize high-speed file transfers within your application. The Aspera SDK is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license). 
+
+Each Aspera session spawns an individual `ascp` process that runs on the client machine to perform the transfer. Ensure that your computing environment can allow this process to run.
+{:tip}
 
 You will need instances of the S3 Client and IAM Token Manager classes to initialize the `AsperaTransferManager`. The `s3Client` is required to get FASP connection information for the bucket for targeting for upload or download. The `tokenManager` is required to allow the Aspera SDK to authenticate with the COS target.
 
@@ -829,11 +832,11 @@ AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_K
     .build();
 ```
 
-You can also allow the `AsperaTransferManager` to use multiple sessions with an additional configuration option.
+Allow the `AsperaTransferManager` to use multiple sessions with the `AsperaConfig` class. This will split the transfer into the specified number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value. 
 
-The minimum thresholds for using multi-session:
+The typical configuration for using multi-session should be:
 * 2 sessions
-* 60 MB threshold (*minimum 100 MB total file size*)
+* 60 MB threshold (*this is the recommended value for most appplications*)
 
 ```java
 AsperaConfig asperaConfig = new AsperaConfig()

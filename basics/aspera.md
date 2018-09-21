@@ -71,22 +71,25 @@ The FASP protocol that Aspera uses is not suited for all data transfers to and f
 
 1. Always make use of multiple sessions - at least two parallel sessions will minimize the overhead associated with initializing the transfer.  See specific guidance for [Java](/docs/services/cloud-object-storage/libraries/java.html#aspera) and [Python](/docs/services/cloud-object-storage/libraries/python.html#aspera).
 2. Aspera is ideal for larger files, and any files smaller than 1 GB should avoid Aspera and instead make use of the standard Transfer Manager classes to transfer the object in multiple parts.
-3. Aspera was designed in part to improve performance in network environments with large amounts of packet loss. This makes the protocol especially performant over large distances and public wide area networks.  Aspera should not be used for transfers within a region or data center.
+3. Aspera was designed in part to improve performance in network environments with large amounts of packet loss, making the protocol performant over large distances and public wide area networks.  Aspera should not be used for transfers within a region or data center.
 
 ### Supported Platforms
 
-|OS|Version|Architecture|Java Version|Python Version|
-|---|---|---|---|---|
-|Ubuntu|18.04 LTS|64-Bit|6, 8|2.7, 3.6|
-|Mac OS X|10.13|64-Bit|6|2.7, 3.6|
-|Microsoft&reg; Windows|10|64-Bit|6|2.7, 3.6|
+| OS                     | Version   | Architecture | Tested Java Version | Python Version |
+|------------------------|-----------|--------------|--------------|----------------|
+| Ubuntu                 | 18.04 LTS | 64-Bit       | 6, 8         | 2.7, 3.6       |
+| Mac OS X               | 10.13     | 64-Bit       | 6            | 2.7, 3.6       |
+| Microsoft&reg; Windows | 10        | 64-Bit       | 6            | 2.7, 3.6       |
+
+Each Aspera session spawns an individual `ascp` process that runs on the client machine to perform the transfer. Ensure that your computing environment can allow this process to run.
+{:tip}
 
 **Additional limitations**
 
 * 32-bit binaries are not supported
 * Windows support requires Windows 10
 * Linux support is limited to Ubuntu (tested against the latest LTS)
-* Java 6 is well tested, but there are no known issues for Java 7 or higher.
+* Only Java 6 is well tested (with the exception of Ubuntu), but there are no known issues for Java 7 or higher.
 * Aspera Transfer Manager clients must be created using IAM API keys and not HMAC credentials.
 
 ### Getting the SDK using Java
