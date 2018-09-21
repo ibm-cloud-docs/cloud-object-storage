@@ -13,7 +13,7 @@ lastupdated: "2018-07-26"
 {:tip: .tip}
 
 
-# Archive tiering
+# Archive cold data
 
 {{site.data.keyword.cos_full}} Archive is our [lowest cost](
 https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage) option for data that is rarely accessed. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option. 

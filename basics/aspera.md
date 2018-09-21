@@ -12,7 +12,7 @@ lastupdated: "07-16-2018"
 {:screen: .screen}
 {:tip: .tip}
 
-# Aspera high-speed transfer
+# Use Aspera high-speed transfer
 
 Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP transfers to improve data transfer performance under most conditions, especially in networks experiencing high latency and packet loss. Using Aspera high-speed transfer for uploads and downloads offers the following benefits:
 
@@ -23,11 +23,13 @@ Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP
 - Transfers take place in the background instead of in the active browser window
 - Transfers can be viewed, paused/resumed, or cancelled independently
 
-Aspera is available in regions listed in [Integrated Services](/docs/services/cloud-object-storage/basics/services.html#service-availability).
+Aspera is available in the {{site.data.keyword.cloud_notm}} [console](#console) and can also be used programatically using an [SDK](#sdk). 
+
+Aspera high-speed is not available in all regions. See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html#service-availability) for more details.
 {:tip}
 
 ## Using the console
-
+{: #console}
 When you create a bucket in a [supported region](/docs/services/cloud-object-storage/basics/services.html#service-availability), you have the option to select Aspera high-speed transfer to upload files or folders. Once you attempt to upload an object, you are prompted to install the Aspera Connect client.
 
 ### Install Aspera Connect
@@ -60,7 +62,7 @@ Downloads using Aspera high-speed will incur egress charges. For more informatio
 ----
 
 ## Using Libraries and SDKs
-
+{: #sdk}
 The {{site.data.keyword.cos_short}} and Aspera SDK works together to provide the ability to initiate high-speed transfer within your custom applications when using either Java or Python.
 
 ### When to use Aspera
