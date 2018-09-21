@@ -815,7 +815,7 @@ String crn = result.getIBMSSEKPCUSTOMERROOTKEYCRN();
 
 ## Using Aspera High-Speed Transfer
 {: #aspera}
-By installing the [Aspera SDK](/docs/services/cloud-object-storage/basics/aspera.html#aspera-sdk-java) you can utilize high-speed file transfers within your application. The Aspera SDK is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license). 
+By installing the [Aspera SDK](/docs/services/cloud-object-storage/basics/aspera.html#aspera-sdk-java) you can utilize high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license). 
 
 Each Aspera session spawns an individual `ascp` process that runs on the client machine to perform the transfer. Ensure that your computing environment can allow this process to run.
 {:tip}
@@ -824,15 +824,10 @@ You will need instances of the S3 Client and IAM Token Manager classes to initia
 
 ### Initializing the `AsperaTransferManager`
 
-Pass an existing [`s3Client`](#init-config) and [`tokenManager`](#init-config) objects to create a basic `AsperaTransferManager`:
+Before initializing the `AsperaTransferManager`, make sure you've got working [`s3Client`](#init-config) and [`tokenManager`](#init-config) objects. 
 
-```java
-AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client)
-    .withTokenManager(tokenManager)
-    .build();
-```
 
-Allow the `AsperaTransferManager` to use multiple sessions with the `AsperaConfig` class. This will split the transfer into the specified number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value. 
+There isn't a lot of benefit to using a single session of Aspera unless you expect to see significant noise or packet loss in the network.  So we need to tell the `AsperaTransferManager` to use multiple sessions by spe the `AsperaConfig` class. This will split the transfer into the specified number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value. 
 
 The typical configuration for using multi-session should be:
 * 2 sessions
@@ -843,7 +838,7 @@ AsperaConfig asperaConfig = new AsperaConfig()
     .withMultiSession(2)
     .withMultiSessionThresholdMb(60);
             
-AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, s3Client)
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client)
     .withTokenManager(tokenManager)
     .withAsperaConfig(asperaConfig)
     .build();
@@ -853,10 +848,9 @@ For best performance in most scenarios, always make use of multiple sessions to 
 {:tip}
 
 *Key Values*
-* `API_KEY` - api key generated when creating the service credentials (write access is required)
+* `API_KEY` - An API key for a user or service ID with Writer or Manager roles
 
-
-You will need to provide an IAM API Key for Aspera transfers.  HMAC Credentials are **NOT** currently supported.  For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
+You will need to provide an IAM API Key for constructing an `AsperaTransferManager`, not HMAC credentials.  For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
 {:tip}
 
 ### File Upload

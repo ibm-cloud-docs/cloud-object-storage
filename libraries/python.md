@@ -610,7 +610,7 @@ with AsperaTransferManager(client) as transfer_manager:
 ```
 
 *Key Values*
-* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
+* `<bucket-name>` - name of the target bucket
 * `<absolute-path-to-file>` - directory path and file name to the file to be uploaded
 * `<item-name>` - name of the new file added to the bucket
 

@@ -54,7 +54,7 @@ Instead of the standard HTTP `PUT`, Aspera high-speed transfer uploads the objec
 
 **Preferences:** You can set the default for uploads and/or downloads to High-speed.
 
-Downloads using Aspera high-speed will incur egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
+Downloads using Aspera high-speed incur egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
 {:tip}
 
 **Advanced Preferences:** You can set bandwidth for uploads and downloads.
