@@ -14,19 +14,19 @@ lastupdated: "07-16-2018"
 
 # Aspera high-speed transfer
 
-Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP transfers to improve data transfer performance under most conditions, especially on networks experiencing high latency and packet loss. Using Aspera high-speed transfer for browser-based uploads and downloads offers the following benefits:
+Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP transfers to improve data transfer performance under most conditions, especially in networks experiencing high latency and packet loss. Using Aspera high-speed transfer for uploads and downloads offers the following benefits:
 
 - Faster transfer speeds
-- Transfer large object uploads over 200MB.
-- Upload entire folders of any type of data including multi-media files, disk images, or any other unstructured data.
-- Customize transfer speeds and default preferences.
-- Transfers take place in the background instead of in the active browser window.
-- Transfers can be viewed, paused/resumed, or cancelled independently.
+- Transfer large object uploads over 200MB in the console and 1GB using a SDK or library
+- Upload entire folders of any type of data including multi-media files, disk images, and any other structured or unstructured data
+- Customize transfer speeds and default preferences
+- Transfers take place in the background instead of in the active browser window
+- Transfers can be viewed, paused/resumed, or cancelled independently
 
-Aspera high-speed is available only in regions listed in [Integrated services](/docs/services/cloud-object-storage/basics/services.html#service-availability).
+Aspera is available in regions listed in [Integrated Services](/docs/services/cloud-object-storage/basics/services.html#service-availability).
 {:tip}
 
-## Installing the Aspera high-speed plug-in
+## Using the console
 
 When you create a bucket in a [supported region](/docs/services/cloud-object-storage/basics/services.html#service-availability), you have the option to select Aspera high-speed transfer to upload files or folders. Once you attempt to upload an object, you are prompted to install the Aspera Connect client.
 
@@ -40,20 +40,19 @@ The Aspera Connect plug-in can also be installed from the [Aspera website](http:
 
 Once the plug-in is installed, you have the option to set Aspera high-speed transfer as the default for any uploads to the target bucket that use the same browser. Select **Remember my browser preferences**. Options are also available in the bucket configuration page under **Transfer options**. These options allow you to choose between Standard and High-speed as the default transport for uploads and downloads.
 
-### Using the console
-
 Typically, using the web-based console is not the most common way to use {{site.data.keyword.cos_short}}. The Standard transfer option limits objects size to 200MB and the file name and key will be identical.  Support for larger object sizes and improved performance (depending on network factors) is provided by Aspera high-speed transfer.
 
 Instead of the standard HTTP `PUT`, Aspera high-speed transfer uploads the object using the [FASP protocol](http://asperasoft.com/technology/transport/fasp/) from [Aspera high-speed transfer](https://www.ibm.com/cloud/high-speed-data-transfer). 
+
 ### Transfer status
 
-**Active:** Once you initiate a transfer, the transfer status displays as active. While the transfer is active, you can pause, resume or cancel an active transer. 
+**Active:** Once you initiate a transfer, the transfer status displays as active. While the transfer is active, you can pause, resume or cancel an active transfer. 
 
 **Completed:** Upon completion of your transfer, information about this and all transfers in this session display on the Completed tab. You can clear this information. You will only see information about transfers completed in the current session.
 
 **Preferences:** You can set the default for uploads and/or downloads to High-speed.
 
-Downloads using Aspera high-speed will incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
+Downloads using Aspera high-speed will incur egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
 {:tip}
 
 **Advanced Preferences:** You can set bandwidth for uploads and downloads.
@@ -63,14 +62,6 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
 ## Using Libraries and SDKs
 
 The {{site.data.keyword.cos_short}} and Aspera SDK works together to provide the ability to initiate high-speed transfer within your custom applications when using either Java or Python.
-
-The following operations are **supported**:
-* File upload/download
-* Directory upload/download
-* Pause/Resume/Cancel operations
-
-The following item is **not supported**:
-* HMAC credentials
 
 ### When to use Aspera
 {: #aspera-guidance}
@@ -93,6 +84,7 @@ The FASP protocol that Aspera uses is not suited for all data transfers to and f
 * No Windows support other than Windows 10
 * No Linux support for any distribution other than Ubuntu (tested against the latest LTS)
 * Java versions 6+ should be compatible but not tested in initial release (additional support expected for future releases)
+* Clients must be created using IAM API keys and not HMAC credentials.
 
 ### Getting the SDK using Java
 {: #aspera-sdk-java}
