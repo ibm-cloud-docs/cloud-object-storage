@@ -831,7 +831,7 @@ There isn't a lot of benefit to using a single session of Aspera unless you expe
 
 The typical configuration for using multi-session should be:
 * 2 or 10 sessions
-* 60 MB threshold (*this is the recommended value for most appplications*)
+* 60 MB threshold (*this is the recommended value for most applications*)
 
 ```java
 AsperaConfig asperaConfig = new AsperaConfig()
