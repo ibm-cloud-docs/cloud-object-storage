@@ -20,7 +20,6 @@ Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP
 - Transfer large object uploads over 200MB in the console and 1GB using a SDK or library
 - Upload entire folders of any type of data including multi-media files, disk images, and any other structured or unstructured data
 - Customize transfer speeds and default preferences
-- Transfers take place in the background instead of in the active browser window
 - Transfers can be viewed, paused/resumed, or cancelled independently
 
 Aspera is available in the {{site.data.keyword.cloud_notm}} [console](#console) and can also be used programatically using an [SDK](#sdk). 
@@ -70,7 +69,7 @@ The {{site.data.keyword.cos_short}} and Aspera SDK works together to provide the
 The FASP protocol that Aspera uses is not suited for all data transfers to and from COS. Specifically, any transfers making use of Aspera should:
 
 1. Always make use of multiple sessions - at least two parallel sessions will minimize the overhead associated with initializing the transfer.  See specific guidance for [Java](/docs/services/cloud-object-storage/libraries/java.html#aspera) and [Python](/docs/services/cloud-object-storage/libraries/python.html#aspera).
-2. Aspera is ideal for larger files, and any files or directories smaller than 1 GB should to transfer the object in multiple parts using the standard Transfer Manager classes. The chain of authorization events that allows COS users access to a central Aspera server results in a longer time-to-first-byte than normal HTTP transfers.  The instantiation of many Aspera Transfer Manager objects to manage the transfers of individual smaller files can result in subpar performance relative to basic HTTP requests.
+2. Aspera is ideal for larger files, and any files or directories that contain a total amount of data less than 1 GB should instead transfer the object in multiple parts using the standard Transfer Manager classes. Aspera transfers require a longer time-to-first-byte than normal HTTP transfers.  The instantiation of many Aspera Transfer Manager objects to manage the transfers of individual smaller files can result in subpar performance relative to basic HTTP requests, so it is best to instantiate a single client to upload a directory of smaller files instead.
 3. Aspera was designed in part to improve performance in network environments with large amounts of packet loss, making the protocol performant over large distances and public wide area networks.  Aspera should not be used for transfers within a region or data center.
 
 The Aspera SDK is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license). 
@@ -78,7 +77,7 @@ The Aspera SDK is closed-source, and thus an optional dependency for the COS SDK
 
 ### Supported Platforms
 
-| OS                     | Version   | Architecture | Tested Java Version | Python Version |
+| OS                     | Version   | Architecture | Tested Java Version | Tested Python Version |
 |------------------------|-----------|--------------|--------------|----------------|
 | Ubuntu                 | 18.04 LTS | 64-Bit       | 6, 8         | 2.7, 3.6       |
 | Mac OS X               | 10.13     | 64-Bit       | 6            | 2.7, 3.6       |
@@ -91,8 +90,8 @@ Each Aspera session spawns an individual `ascp` process that runs on the client 
 
 * 32-bit binaries are not supported
 * Windows support requires Windows 10
-* Linux support is limited to Ubuntu (tested against the latest LTS)
-* Only Java 6 is well tested (with the exception of Ubuntu), but there are no known issues for Java 7 or higher.
+* Linux support is limited to Ubuntu (tested against the 18.04 LTS)
+* Only Java 6 is well tested (with the exception of Ubuntu). 
 * Aspera Transfer Manager clients must be created using IAM API keys and not HMAC credentials.
 
 ### Getting the SDK using Java

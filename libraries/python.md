@@ -577,8 +577,8 @@ You will need to provide an IAM API Key for Aspera transfers.  HMAC Credentials 
 Allow the `AsperaTransferManager` to use multiple sessions with an additional configuration option passed by the `AsperaConfig` class. This will split the transfer into the specified number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value. 
 
 The typical configuration for using multi-session should be:
-* 2 sessions
-* 60 MB threshold (*this is the recommended value for most appplications*)
+* 2 or 10 sessions
+* 60 MB threshold (*this is the recommended value for most applications*)
 
 ```python
 # Configure 2 sessions for transfer
