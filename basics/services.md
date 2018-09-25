@@ -100,7 +100,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
 </table>
 {:.endpointtable}
 
-## EU Region
+## EU Regional
 
 <table>
   <thead>
