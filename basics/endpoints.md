@@ -247,6 +247,31 @@ Types of endpoint:
 </table>
 {:.endpointtable}
 
+## AP Region Endpoints
+
+<table>
+  <thead>
+    <tr>
+      <th>Region</th>
+      <th>Type</th>
+      <th>Endpoint</th>
+    </tr>
+  </thead>
+  <tr>
+    <td rowspan="2">AP Japan</td>
+    <td>public</td>
+    <td>
+      <code class="highlighter-rouge">s3.jp-tok.objectstorage.softlayer.net</code>
+    </td>
+  </tr>
+  <tr>
+    <td>private</td>
+    <td>
+      <code class="highlighter-rouge">s3.jp-tok.objectstorage.service.networklayer.com</code>
+    </td>
+</table>
+{:.endpointtable}
+
 ## Single Data Center Endpoints
 
 <table>
