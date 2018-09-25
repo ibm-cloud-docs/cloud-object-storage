@@ -155,6 +155,30 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
 </table>
 {:.endpointtable}
 
+## AP Regional
+
+<table>
+  <thead>
+    <tr>
+      <th>Region</th>
+      <th>Aspera</th>
+      <th>Key Protect</th>
+      <th>Archive Data</th>
+      <th>Activity Tracker</th>
+    </tr>
+  </thead>
+    <tr>
+    <td rowspan="2">AP Japan</td>
+    <td>No</td>
+    <td>No</td>
+    <td>No</td>
+    <td>Sydney</td>
+  <tr>
+  </tr>
+  <tr>
+</table>
+{:.endpointtable}
+
 ## Single Data Center
 
 <table>
