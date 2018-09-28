@@ -74,7 +74,7 @@ The Aspera high-speed transfer SDK is closed-source and thus an optional depende
 {:tip}
 
 #### COS/Aspera High-Speed Transfer Packaging
-{: #apera-packaging}
+{: #aspera-packaging}
 The image below displays a high-level overview of the how the COS SDK interacts with the Aspera high-speed transfer library to provide functionality.
 
 <img src="images/asperapackaging.png" height="450px" />
