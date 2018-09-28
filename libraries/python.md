@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-08-29"
+lastupdated: "2018-09-27"
 
 ---
 
@@ -557,7 +557,7 @@ def create_bucket_kp(bucket_name):
 
 ## Using Aspera High-Speed Transfer
 {: #aspera}
-By installing the [Aspera SDK](/docs/services/cloud-object-storage/basics/aspera.html#aspera-sdk-python) you can utilize high-speed file transfers within your application. The Aspera SDK is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license). 
+By installing the [Aspera high-speed transfer library](/docs/services/cloud-object-storage/basics/aspera.html#aspera-packaging) you can utilize high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license). 
 
 Each Aspera session spawns an individual `ascp` process that runs on the client machine to perform the transfer. Ensure that your computing environment can allow this process to run.
 {:tip}
@@ -565,16 +565,16 @@ Each Aspera session spawns an individual `ascp` process that runs on the client 
 
 ### Initalizing the AsperaTransferManager
 
-Pass your existing [S3 Client](#init-config) object to create the AsperaTransferManager
+Before initializing the `AsperaTransferManager`, make sure you've got working [`s3Client`](#init-config) object.
 
 ```python
 transfer_manager = AsperaTransferManager(client)
 ```
 
-You will need to provide an IAM API Key for Aspera transfers.  HMAC Credentials are **NOT** currently supported.  For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
+You will need to provide an IAM API Key for Aspera high-speed transfers.  [HMAC Credentials](/docs/services/cloud-object-storage/iam/service-credentials.html#iam-vs-hmac){:new_window} are **NOT** currently supported.  For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
 {:tip}
 
-Allow the `AsperaTransferManager` to use multiple sessions with an additional configuration option passed by the `AsperaConfig` class. This will split the transfer into the specified number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value. 
+Enable the use multiple sessions by initializing `AsperaTransferManager` with an additional configuration option passed by the `AsperaConfig` class. This will split the transfer into the specified number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value. 
 
 The typical configuration for using multi-session should be:
 * 2 or 10 sessions
@@ -589,7 +589,7 @@ ms_transfer_config = AsperaConfig(multi_session=2,
 transfer_manager = AsperaTransferManager(client=client, 
                                          transfer_config=ms_transfer_config)
 ```
-For best performance in most scenarios, always make use of multiple sessions to minimize any overhead associated with instantiating an Aspera transfer.  **If your network capacity is at least 1 Gbps you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
+For best performance in most scenarios, always make use of multiple sessions to minimize any overhead associated with instantiating an Aspera high-speed transfer.  **If your network capacity is at least 1 Gbps you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
 {:tip}
 
 ### File Upload
@@ -658,7 +658,7 @@ with AsperaTransferManager(client) as transfer_manager:
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
 * `<absolute-path-to-directory>` - local directory that contains the files to be uploaded.  Must have leading and trailing `/` (i.e. `/Users/testuser/Documents/Upload/`)
-* `<object prefix>` - name of the directory in the bucket to store the files. Must not have a leading `/` (i.e. `newuploads/`)
+* `<object prefix>` - name of the directory in the bucket to store the files. Must not have a leading slash `/` (i.e. `newuploads/`)
 
 ### Directory Download
 ```python
@@ -679,16 +679,20 @@ with AsperaTransferManager(client) as transfer_manager:
 
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
-* `<absolute-path-to-directory>` - local directory to save the downloaded files.  Must have leading and trailing `/` (i.e. `/Users/testuser/Downloads/`)
-* `<object prefix>` - name of the directory in the bucket to store the files. Must not have a leading `/` (i.e. `todownload/`)
+* `<absolute-path-to-directory>` - local directory to save the downloaded files.  Must have leading and trailing slash `/` (i.e. `/Users/testuser/Downloads/`)
+* `<object prefix>` - name of the directory in the bucket to store the files. Must not have a leading slash `/` (i.e. `todownload/`)
 
 ### Using Subscribers
 
-Subscribers provide observability into transfers by attaching custom callback methods.  There are three available subscribers:
+Subscribers provide observability into transfers by attaching custom callback methods. All transfers transition between the following phases:
 
-* `CallbackOnQueued()`
-* `CallbackOnProgress()`
-* `CallbackOnDone()`
+`Queued - In Progress - Done`
+
+There are three available subscribers for each phase:
+
+* `CallbackOnQueued()` - called when a new transfer has been added to the `AsperaTransferManager`
+* `CallbackOnProgress()` - called when a transfer has begun to transmit data (fired repeatedly while the transfer is in progress).
+* `CallbackOnDone()` - called once the transfer is completed
 
 ```python
 bucket_name = "<bucket-name>"
@@ -732,8 +736,8 @@ future.result()
 
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
-* `<absolute-path-to-directory>` - local directory to save the downloaded files.  Must have leading and trailing `/` (i.e. `/Users/testuser/Downloads/`)
-* `<object prefix>` - name of the directory in the bucket to store the files. Must not have a leading `/` (i.e. `todownload/`)
+* `<absolute-path-to-directory>` - local directory to save the downloaded files.  Must have leading and trailing slash `/` (i.e. `/Users/testuser/Downloads/`)
+* `<object prefix>` - name of the directory in the bucket to store the files. Must not have a leading slash `/` (i.e. `todownload/`)
 
 The sample code above produces the following output:
 
@@ -749,11 +753,14 @@ Download complete!
 
 ### Pause/Resume/Cancel
 
-The SDK provides the ability to manage the progress of file/directory transfers though the following methods of the `AsperaTransferFuture` object:
+The SDK provides the ability to manage the progress of file/directory transfers through the following methods of the `AsperaTransferFuture` object:
 
 * `pause()`
 * `resume()`
 * `cancel()`
+
+There are no side-effects from calling either of the methods outined above.  Proper clean up and housekeeping is handled by the SDK.
+{:tip}
 
 ```python
 # Create Transfer manager
