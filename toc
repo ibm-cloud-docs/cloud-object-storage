@@ -45,11 +45,6 @@ Cloud Object Storage
     basics/encryption.md
     basics/sql.md
     
-    {: .topicgroup}
-    Use the command line
-        cli/curl.md
-        cli/aws-cli.md
-        cli/s3fs.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
@@ -68,6 +63,13 @@ Cloud Object Storage
         libraries/java.md
         libraries/python.md
         libraries/node.md
+
+    {: .topicgroup}
+    Use the command line
+        cli/ibmcli.md
+        cli/curl.md
+        cli/aws-cli.md
+        cli/s3fs.md
 
     {: .topicgroup}
     Desktop clients
