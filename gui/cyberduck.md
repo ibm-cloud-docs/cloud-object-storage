@@ -22,7 +22,7 @@ To use Cyberduck to create a connection to IBM COS and synchronize a folder of l
 
  1. Download, install, and start Cyberduck.
  2. The main window of the application opens, where you can create a connection to IBM COS. Click **Open Connection** to configure a connection to IBM COS.
- 3. A pop-up window opens. From the drop-down menu at the top, select "S3 storage". Enter information into the following fields, and then click Connect:
+ 3. A pop-up window opens. From the drop-down menu at the top, select `S3 (HTTPS)`. Enter information into the following fields, and then click Connect:
 
     * `Server`: enter endpoint of IBM COS
         * *Ensure the endpoint region matches the intended bucket*
@@ -43,4 +43,15 @@ To use Cyberduck to create a connection to IBM COS and synchronize a folder of l
 
 ## Mountain Duck
 
-Mountain Duck builds upon Cyberduck to allow you to mount cloud object storage as a disk in Finder on Mac or Explorer on Windows. 
+Mountain Duck builds upon Cyberduck to allow you to mount cloud object storage as a disk in Finder on Mac or Explorer on Windows.  Trial versions are available but a registration key is required for continued use.
+
+Creating a bookmark in Mountain Duck is very similar to creating connections in Cyberduck:
+
+1. Download, install, and start Mountain Duck
+2. Create a New Bookmark
+3. From the drop-down menu select `S3 (HTTPS)` and enter the following information:
+    * `Server`: enter endpoint of IBM COS 
+        * *Ensure the endpoint region matches the intended bucket*
+    * `Username`: enter the Access Key
+    * Click **Connect**
+    * You will be prompted for your `Secret Key` which will then be saved in the keychain
