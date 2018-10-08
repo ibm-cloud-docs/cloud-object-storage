@@ -18,10 +18,11 @@ There is a beta version of a {{site.data.keyword.cos_short}} plugin [{{site.data
 
 ## Installation and Configuration
 
-The plugin can be installed using the `plugin install` command.
+The plugin can be installed using the `plugin install` command. 
 
 ```
-ibmcloud plugin install cloud-object-storage
+ibmcloud plugin repo-add test https://plugins.stage1.ng.bluemix.net/
+ibmcloud plugin install cloud-object-storage -r test
 ```
 
 Configure the plugin with `ibmcloud cos config`.  This will populate your credentials or repopulate them if your _~/.bluemix/config.json_ file has reset. 
