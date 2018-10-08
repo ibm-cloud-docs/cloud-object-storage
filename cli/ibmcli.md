@@ -21,7 +21,7 @@ There is a beta version of a {{site.data.keyword.cos_short}} plugin [{{site.data
 The plugin can be installed using the `plugin install` command.
 
 ```
-ibmcloud plugin install cos
+ibmcloud plugin install cloud-object-storage
 ```
 
 Configure the plugin with `ibmcloud cos config`.  This will populate your credentials or repopulate them if your _~/.bluemix/config.json_ file has reset. 
@@ -54,7 +54,7 @@ The IBM Cloud CLI mandates that commands start with `ibmcloud`. However, until t
 	   * Flag: `--class CLASS_TYPE`
 
 
-### Delete an Existing Bucket
+### Delete an existing bucket
 * **Action:** Delete an existing bucket in an IBM Cloud Object Storage account.
 * **Usage:** `ibmcloud cos delete-bucket --bucket [BUCKET_NAME] [--region REGION_NAME]`
 * **Parameters to provide:**
@@ -63,8 +63,8 @@ The IBM Cloud CLI mandates that commands start with `ibmcloud`. However, until t
        * Flag: `--region REGION_NAME`
 
 
-### Get a Bucket's Location
-* **Action:** Determine the location and class of a bucket in an IBM Cloud Object Storage account.
+### Find a Bucket
+* **Action:** Determine the location and class of a bucket in an IBM Cloud Object Storage account. 
 * **Usage:** `ibmcloud cos get-bucket-location --bucket [BUCKET_NAME]`
 * **Parameters to provide:**
 	* The name of the bucket to get the location.
@@ -75,7 +75,7 @@ The IBM Cloud CLI mandates that commands start with `ibmcloud`. However, until t
 * **Usage:** `ibmcloud cos head-bucket --bucket [BUCKET_NAME] [--region REGION_NAME]`
 * **Parameters to provide:**
 	* The name of the bucket to get the details.
-	* _Optional_: The region where the bucket is located. If this parameter is not provided, the program will use the `DefaultRegion` value in the `credentials.json` file located in the user's `.bluemix` folder. The AWS SDK requires the region of the bucket to successfully determine if it exists.
+	* _Optional_: The region where the bucket is located. If this parameter is not provided, the program will use the `DefaultRegion` value in the `credentials.json` file located in the user's `.bluemix` folder. 
 		* Flag: `--region REGION_NAME`
 
 ### List All Buckets
