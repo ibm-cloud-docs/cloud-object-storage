@@ -55,3 +55,63 @@ Creating a bookmark in Mountain Duck is very similar to creating connections in 
     * `Username`: enter the Access Key
     * Click **Connect**
     * You will be prompted for your `Secret Key` which will then be saved in the keychain
+
+Your buckets will now be available in Finder or Explorer.  You may interact with {{site.data.keywords.cos_short}} like any other mounted file system.
+
+## CLI
+
+Cyberduck also provides `duck`, a command-line interface (CLI) that runs in shell on Linux, Mac OS X, and Windows.  Installation instructions are available on the `duck` [wiki page](https://trac.cyberduck.io/wiki/help/en/howto/cli#Installation){:new_window}.
+
+In order to use `duck` with {{site.data.keywords.cos_full}}, a custom profile will need to be added to the [Application Support Directory](https://trac.cyberduck.io/wiki/help/en/howto/cli#Profiles){:new_window}.  Detailed information about `duck` connection profiles including sample and pre-configured profiles are available on the [CLI help/howto](https://trac.cyberduck.io/wiki/help/en/howto/profiles){:new_window}.
+
+Below is an example profile for a regional COS endpoint:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>Protocol</key>
+        <string>s3</string>
+        <key>Vendor</key>
+        <string>cos</string>
+        <key>Scheme</key>
+        <string>https</string>
+	    <key>Default Hostname</key>
+	    <string>s3.us-south.objectstorage.softlayer.net</string>
+        <key>Description</key>
+        <string>IBM COS</string>
+        <key>Default Port</key>
+        <string>443</string>
+        <key>Hostname Configurable</key>
+        <true/>
+        <key>Port Configurable</key>
+        <true/>
+        <key>Username Configurable</key>
+        <true/>
+    </dict>
+</plist>
+```
+
+Adding this profile to `duck` will allow you to access {{site.data.keywords.cos_short}} using a command similar to below:
+
+```
+duck --nokeychain --longlist cos://<bucket-name> --username <access-key> --password <secret-access-key>
+```
+
+*Key Values*
+* `<bucket-name>` - name of the COS bucket (*ensure bucket and endpoint regions are consistent*)
+* `<access-key>` - HMAC access key
+* `<secret-access-key>` - HMAC secret key
+
+```
+Login successful…
+---	May 31, 2018 1:48:16 AM		mynewfile1.txt
+---	May 31, 2018 1:49:26 AM		mynewfile12.txt
+---	Aug 14, 2018 12:57:55 PM        mynewfilehmacurl.txt
+---	Aug 10, 2018 9:49:08 AM		newbigfile.pdf
+---	May 29, 2018 3:36:50 PM		newkptestfile.txt
+---	Oct 8, 2018 7:44:49 AM		testsave.rtf
+```
+
+A full list of command line options are available by entering `duck --help` in the shell or visiting the [wiki site](https://trac.cyberduck.io/wiki/help/en/howto/cli#Usage){:new_window}
