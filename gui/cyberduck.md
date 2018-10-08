@@ -16,7 +16,7 @@ lastupdated: "2018-10-05"
 
 ## Cyberduck
 
-Cyberduck is a popular, open-source, and easy to use cloud object storage browser for Mac and Windows.  Cyberduck is capable of calculating the correct authorization signatures needed to connect to IBM COS.  Cyberduck can be downloaded from [cyberduck.io/](https://cyberduck.io/).
+Cyberduck is a popular, open-source, and easy to use cloud object storage browser for Mac and Windows.  Cyberduck is capable of calculating the correct authorization signatures needed to connect to IBM COS.  Cyberduck can be downloaded from [cyberduck.io/](https://cyberduck.io/){:new_window}.
 
 To use Cyberduck to create a connection to IBM COS and synchronize a folder of local files to a bucket, follow these steps:
 
@@ -25,13 +25,21 @@ To use Cyberduck to create a connection to IBM COS and synchronize a folder of l
  3. A pop-up window opens. From the drop-down menu at the top, select `S3 (HTTPS)`. Enter information into the following fields, and then click Connect:
 
     * `Server`: enter endpoint of IBM COS
-        * *Ensure the endpoint region matches the intended bucket*
+        * *Ensure the endpoint's region matches the intended bucket*
     * `Access Key ID`
     * `Secret Access Key`
     * `Add to Keychain`: Save the connection to the keychain to allow use across other applications *(optional)*
 
- 4. Cyberduck takes you to the root of the account where buckets can be created. Right-click within the main panel and select **New Folder** (the application deals with many transfer protocols where Folder is the more common container construct). Enter the bucket name and then click Create.
- 5. After the bucket is created, double-click the bucket to view it. Within the bucket you can perform various functions such as upload files to the bucket, list bucket contents, download objects from the bucket, synchronize local files to a bucket, synchronize objects to another bucket, or create an archive of a bucket.
+ 4. Cyberduck takes you to the root of the account where buckets can be created.
+    * Right-click within the main panel and select **New Folder** (*the application deals with many transfer protocols where Folder is the more common container construct*).
+    * Enter the bucket name and then click Create.
+ 5. After the bucket is created, double-click the bucket to view it. Within the bucket you can perform various functions such as:
+    * upload files to the bucket
+    * list bucket contents
+    * download objects from the bucket
+    * synchronize local files to a bucket
+    * synchronize objects to another bucket
+    * create an archive of a bucket
  6. Right-click within the bucket and select **Synchronize**. A pop-up panel opens where you can browse to the folder that you want to synchronize to the bucket. Select the folder and click Choose.
  7. After you select the folder, a new pop-up panel opens. Here, a drop-down menu is available where you select the synchronization operation with the bucket. Three possible synchronize options are available from the menu:
 
@@ -56,13 +64,13 @@ Creating a bookmark in Mountain Duck is very similar to creating connections in 
     * Click **Connect**
     * You will be prompted for your `Secret Key` which will then be saved in the keychain
 
-Your buckets will now be available in Finder or Explorer.  You may interact with {{site.data.keywords.cos_short}} like any other mounted file system.
+Your buckets will now be available in Finder or Explorer.  You may interact with {{site.data.keyword.cos_short}} like any other mounted file system.
 
 ## CLI
 
 Cyberduck also provides `duck`, a command-line interface (CLI) that runs in shell on Linux, Mac OS X, and Windows.  Installation instructions are available on the `duck` [wiki page](https://trac.cyberduck.io/wiki/help/en/howto/cli#Installation){:new_window}.
 
-In order to use `duck` with {{site.data.keywords.cos_full}}, a custom profile will need to be added to the [Application Support Directory](https://trac.cyberduck.io/wiki/help/en/howto/cli#Profiles){:new_window}.  Detailed information about `duck` connection profiles including sample and pre-configured profiles are available on the [CLI help/howto](https://trac.cyberduck.io/wiki/help/en/howto/profiles){:new_window}.
+In order to use `duck` with {{site.data.keyword.cos_full}}, a custom profile will need to be added to the [Application Support Directory](https://trac.cyberduck.io/wiki/help/en/howto/cli#Profiles){:new_window}.  Detailed information about `duck` connection profiles including sample and pre-configured profiles are available on the [CLI help/how-to](https://trac.cyberduck.io/wiki/help/en/howto/profiles){:new_window}.
 
 Below is an example profile for a regional COS endpoint:
 
@@ -93,7 +101,7 @@ Below is an example profile for a regional COS endpoint:
 </plist>
 ```
 
-Adding this profile to `duck` will allow you to access {{site.data.keywords.cos_short}} using a command similar to below:
+Adding this profile to `duck` will allow you to access {{site.data.keyword.cos_short}} using a command similar to below:
 
 ```
 duck --nokeychain --longlist cos://<bucket-name> --username <access-key> --password <secret-access-key>
@@ -108,10 +116,8 @@ duck --nokeychain --longlist cos://<bucket-name> --username <access-key> --passw
 Login successful…
 ---	May 31, 2018 1:48:16 AM		mynewfile1.txt
 ---	May 31, 2018 1:49:26 AM		mynewfile12.txt
----	Aug 14, 2018 12:57:55 PM        mynewfilehmacurl.txt
 ---	Aug 10, 2018 9:49:08 AM		newbigfile.pdf
 ---	May 29, 2018 3:36:50 PM		newkptestfile.txt
----	Oct 8, 2018 7:44:49 AM		testsave.rtf
 ```
 
 A full list of command line options are available by entering `duck --help` in the shell or visiting the [wiki site](https://trac.cyberduck.io/wiki/help/en/howto/cli#Usage){:new_window}

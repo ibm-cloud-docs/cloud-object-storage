@@ -44,7 +44,6 @@ Cloud Object Storage
     basics/multipart.md
     basics/encryption.md
     basics/sql.md
-    
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
