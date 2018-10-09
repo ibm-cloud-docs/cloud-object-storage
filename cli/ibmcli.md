@@ -14,11 +14,11 @@ lastupdated: "15-03-2018"
 
 # Use the IBM Cloud CLI
 
-There is a beta version of a {{site.data.keyword.cos_short}} plugin [{{site.data.keyword.cloud}} Platform CLI](https://clis.ng.bluemix.net/ui/home.html) available for anyone interested in trying it out.  Note that this plug-in is beta software and subject to change, and is not suitable for production workloads.
+The beta version of a {{site.data.keyword.cos_short}} plugin [{{site.data.keyword.cloud}} Platform CLI](https://clis.ng.bluemix.net/ui/home.html) is available for anyone interested in trying it out.  Note that this plug-in is beta software and subject to change, and is not suitable for production workloads.
 
 ## Installation and Configuration
 
-The plugin can be installed using the `plugin install` command. 
+Install the plugin can using the `plugin install` command.
 
 ```
 ibmcloud plugin repo-add test https://plugins.stage1.ng.bluemix.net/
@@ -31,7 +31,7 @@ You can also configure the program to use Amazon HMAC credentials to log into yo
 
 At any time, to switch between HMAC and IAM authentication, you can type `ibmcloud cos config --switch [iam | hmac]`. For more information on IAM-based authentication, click [here](https://console.bluemix.net/docs/iam/quickstart.html#getstarted).
 
-The program also offers the ability for you to set the default location where files will be downloaded (by default, this is set to the user's Downloads folder), and to set a default region where the program will look for and create buckets in. To set the default download location, type `ibmcloud cos config --dl` and input into the program a valid download file path. To set a default region, type `ibmcloud cos config --region` and provide a input into the program a region code, such as `us-south`. By default, this value is set to `us-geo`.
+The program also offers the ability for you to set the default local directory for downloaded files (by default, this is set to `~/Downloads`), and to set a default region. To set the default download location, type `ibmcloud cos config --dl` and input into the program a valid file path. To set a default region, type `ibmcloud cos config --region` and provide a input into the program a region code, such as `us-south`. By default, this value is set to `us-geo`.
 
 
   After a period of inactivity, the credentials under ~/.bluemix/config.json will reset.
@@ -40,7 +40,7 @@ The program also offers the ability for you to set the default location where fi
 
 ## Supported Commands
 
-Each operation listed below has an explanaton of what it does, how it's supposed to be used, what parameters are necessary, and a technical explanation of how it works. Unless specified as optional, all parameters listed under "Parameters to provide" are required. For an explanation of the `credentials.json` file, refer to the "`credentials.json` Guide" below.
+Each operation listed below has an explanation of what it does, how to use it, and any optional or required parameters. Unless specified as optional, any listed parameters are mandatory.
 
 The IBM Cloud CLI mandates that commands start with `ibmcloud`. However, until the "Bluemix" brand is phased out, you can also start commands by `bx` and `bluemix`. So, you can do `ibmcloud cos`, `bluemix cos`, or `bx cos` to start a command.
 
