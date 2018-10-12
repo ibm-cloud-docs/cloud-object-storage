@@ -13,11 +13,19 @@ lastupdated: "07-16-2018"
 {:tip: .tip}
 
 # What's new
-## Q2 2018
-### September 2018
-Users can [archive cold data](/docs/services/cloud-object-storage/basics/archive.html) by setting the proper parameters in a bucket lifecycle configuration policy, either using the console, REST API, or a language-specific SDK.
+
+## Q3 2018
+### October 2018
 
 The [Java](/docs/services/cloud-object-storage/libraries/java.html) and [Python](/docs/services/cloud-object-storage/libraries/python.html) SDKs now provide support for [transferring data using the Aspera FASP protocol](/docs/services/cloud-object-storage/basics/aspera.html). Downloads using Aspera high-speed incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
+
+## Q2 2018
+### September 2018
+Buckets can now be created in a Regional configuration in Tokyo, Japan. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html).
+
+Users who make use of COS SDKs have the option to use [Aspera high-speed transfer](https://www.ibm.com/cloud/high-speed-data-transfer) for these operations.  Additional information can be found in the [Uploading Data](/docs/services/cloud-object-storage/basics/aspera.html) documentation. Downloads using Aspera high-speed incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
+
+Users can [archive cold data](/docs/services/cloud-object-storage/basics/archive.html) by setting the proper parameters in a bucket lifecycle configuration policy, either using the console, REST API, or a language-specific SDK.
 
 ### August 2018
 Buckets can now be created in a Single Data Center configuration in Sao Paolo, Brazil and Oslo, Norway. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html).

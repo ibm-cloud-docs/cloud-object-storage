@@ -51,7 +51,7 @@ Typically, using the web-based console is not the most common way to use {{site.
 
 **Preferences:** You can set the default for uploads and/or downloads to High-speed.
 
-Downloads using Aspera high-speed incur egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
+Downloads using Aspera high-speed transfer incur egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
 {:tip}
 
 **Advanced Preferences:** You can set bandwidth for uploads and downloads.
