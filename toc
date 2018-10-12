@@ -65,7 +65,6 @@ Cloud Object Storage
 
     {: .topicgroup}
     Use the command line
-        cli/ibmcli.md
         cli/curl.md
         cli/aws-cli.md
         cli/s3fs.md
