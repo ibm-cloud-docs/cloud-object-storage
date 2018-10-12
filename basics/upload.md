@@ -12,7 +12,7 @@ lastupdated: "2018-07-05"
 {:screen: .screen}
 {:tip: .tip}
 
-# Uploading data
+# Upload data
 
 After getting your buckets organized it's time to add some objects.  Depending on how you want to use your storage, there are different ways to get data into the system. A data scientist might have a small number of very large files that are used for analytics, a systems administrator might need to keep database backups synchronized with local files, and a developer could be writing software that needs to read and write millions of files. Each of these scenarios will likely want to use different methods for data ingest.
 

@@ -30,7 +30,7 @@ Adding headers to your request using the following values subtituted:
 |{signature}|The hash created using the secret key, location, and date|ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e|
 |{timestamp}|The formatted date and time of your request|20180614T001804Z|
 
-## List buckets belonging to an account (`GET` service)
+## List buckets
 {: #list-buckets}
 
 A `GET` issued to the endpoint root returns a list of buckets associated with the specified service instance. This operation does not make use of operation specific query parameters or payload elements.
@@ -443,7 +443,7 @@ GET https://{endpoint}/{bucket-name}?list-type=2 # path style
 GET https://{bucket-name}.{endpoint}?list-type=2 # virtual host style
 ```
 
-## Optional query parameters
+### Optional query parameters
 
 Name | Type | Description
 --- | ---- | ------------
@@ -651,7 +651,7 @@ Content-Length: 604
 
 ----
 
-## List objects in a given bucket (Version 1)
+### List objects in a given bucket (deprecated)
 
 **Note:** *This API is included for backwards compatibility.*  See [Version 2](api-reference-buckets.html#list-objects-v2) for the recommended method of retrieving objects in a bucket.
 
@@ -664,7 +664,7 @@ GET https://{endpoint}/{bucket-name} # path style
 GET https://{bucket-name}.{endpoint} # virtual host style
 ```
 
-## Optional query parameters
+### Optional query parameters
 
 Name | Type | Description
 --- | ---- | ------------
@@ -1021,6 +1021,17 @@ Content-MD5: M625BaNwd/OytcM7O5gIaQ==
 Content-Length: 237
 ```
 
+```xml
+<CORSConfiguration>
+  <CORSRule>
+    <AllowedOrigin>http:www.ibm.com</AllowedOrigin>
+    <AllowedMethod>GET</AllowedMethod>
+    <AllowedMethod>PUT</AllowedMethod>
+    <AllowedMethod>POST</AllowedMethod>
+  </CORSRule>
+</CORSConfiguration>
+```
+
 **Sample request (HMAC Headers)**
 
 ```http
@@ -1031,6 +1042,17 @@ Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
 Content-MD5: M625BaNwd/OytcM7O5gIaQ==
 Content-Length: 237
+```
+
+```xml
+<CORSConfiguration>
+  <CORSRule>
+    <AllowedOrigin>http:www.ibm.com</AllowedOrigin>
+    <AllowedMethod>GET</AllowedMethod>
+    <AllowedMethod>PUT</AllowedMethod>
+    <AllowedMethod>POST</AllowedMethod>
+  </CORSRule>
+</CORSConfiguration>
 ```
 
 **Sample request (HMAC Pre-signed URL)**

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-08-24"
+lastupdated: "2018-09-27"
 
 ---
 
@@ -99,20 +99,6 @@ def create_bucket(bucket_name):
     except Exception as e:
         print("Unable to create bucket: {0}".format(e))
 ```
-
-Valid provisioning codes for `LocationConstraint` are: <br>
-&emsp;&emsp;  `us-standard` / `us-vault` / `us-cold` / `us-flex` <br>
-&emsp;&emsp;  `us-east-standard` / `us-east-vault`  / `us-east-cold` / `us-east-flex` <br>
-&emsp;&emsp;  `us-south-standard` / `us-south-vault`  / `us-south-cold` / `us-south-flex` <br>
-&emsp;&emsp;  `eu-standard` / `eu-vault` / `eu-cold` / `eu-flex` <br>
-&emsp;&emsp;  `eu-gb-standard` / `eu-gb-vault` / `eu-gb-cold` / `eu-gb-flex` <br>
-&emsp;&emsp;  `eu-de-standard` / `eu-de-vault` / `eu-de-cold` / `eu-de-flex` <br>
-&emsp;&emsp;  `ap-standard` / `ap-vault` / `ap-cold` / `ap-flex` <br>
-&emsp;&emsp;  `ams03-standard` / `ams03-vault` / `ams03-cold` / `ams03-flex` <br>
-&emsp;&emsp;  `che01-standard` / `che01-vault` / `che01-cold` / `che01-flex` <br>
-&emsp;&emsp;  `mel01-standard` / `mel01-vault` / `mel01-cold` / `mel01-flex` <br>
-&emsp;&emsp;  `osl01-standard` / `osl01-vault` / `osl01-cold` / `osl01-flex` <br>
-&emsp;&emsp;  `tor01-standard` / `tor01-vault` / `tor01-cold` / `tor01-flex` <br>
 
 *SDK References*
 * Classes
@@ -563,149 +549,236 @@ def create_bucket_kp(bucket_name):
 * `<algorithm>` - The encryption algorithm used for new objects added to the bucket (Default is AES256).
 * `<root-key-crn>` - CRN of the Root Key obtained from the Key Protect service.
 
-Valid provisioning codes for `LocationConstraint` with Key Protect: <br>
-&emsp;&emsp;  `us-south-standard` / `us-south-vault`  / `us-south-cold` / `us-south-flex` <br>
-&emsp;&emsp;  `eu-gb-standard` / `eu-gb-vault` / `eu-gb-cold` / `eu-gb-flex` <br>
-&emsp;&emsp;  `eu-de-standard` / `eu-de-vault` / `eu-de-cold` / `eu-de-flex` <br>
-
 *SDK References*
 * Classes
     * [Bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){:new_window}
 * Methods
     * [create](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.create){:new_window}
 
-## Using Archive Tiering
+## Using Aspera High-Speed Transfer
+{: #aspera}
+By installing the [Aspera high-speed transfer library](/docs/services/cloud-object-storage/basics/aspera.html#aspera-packaging) you can utilize high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license). 
 
-Archive Tier allows users to archive stale data and reduce their storage costs. Archival policies (also known as *Lifecycle Configurations*) are created for buckets and applies to any objects added to the bucket after the policy is created.
+Each Aspera session spawns an individual `ascp` process that runs on the client machine to perform the transfer. Ensure that your computing environment can allow this process to run.
+{:tip}
 
-### View a bucket's lifecycle configuration
+
+### Initalizing the AsperaTransferManager
+
+Before initializing the `AsperaTransferManager`, make sure you've got working [`s3Client`](#init-config) object.
+
 ```python
-def get_bucket_lifecycle_config(bucket_name):
-    print("Retrieving bucket lifecycle config from: {0}".format(bucket_name))
-    
-    try:
-        response = cos_cli.get_bucket_lifecycle_configuration(Bucket=bucket_name)
-
-        print(json.dumps(response["Rules"], indent=4, sort_keys=True))
-    except ClientError as be:
-        print("CLIENT ERROR: {0}\n".format(be))
-    except Exception as e:
-        log_error("Unable to retrieve bucket lifecycle config: {0}".format(e))
+transfer_manager = AsperaTransferManager(client)
 ```
 
-*SDK References*
-* [get_bucket_lifecycle_configuration](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window}
+You will need to provide an IAM API Key for Aspera high-speed transfers.  [HMAC Credentials](/docs/services/cloud-object-storage/iam/service-credentials.html#iam-vs-hmac){:new_window} are **NOT** currently supported.  For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
+{:tip}
 
-### Create a lifecycle configuration 
+Enable the use multiple sessions by initializing `AsperaTransferManager` with an additional configuration option passed by the `AsperaConfig` class. This will split the transfer into the specified number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value. 
 
-Detailed information about structuring the lifecycle configuration rules are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#create-bucket-lifecycle)
+The typical configuration for using multi-session should be:
+* 2 or 10 sessions
+* 60 MB threshold (*this is the recommended value for most applications*)
 
 ```python
-def create_bucket_lifecycle_config(bucket_name):
-    print("Creating bucket lifecycle config for: {0}".format(bucket_name))
-    try:
-        lifecycle_config = {
-            'Rules': [
-                {
-                    'Filter': {
-                        'Prefix': ''
-                    },
-                    'ID': '<policy-id>',
-                    'Status': 'ENABLED',
-                    'Transitions': [
-                        {
-                            'Days': <number-of-days>,
-                            'StorageClass': 'GLACIER'
-                        }
-                    ]
-                }
-            ]        
-        }
+# Configure 2 sessions for transfer
+ms_transfer_config = AsperaConfig(multi_session=2, 
+                                  multi_session_threshold_mb=60)
 
-        response = cos_cli.put_bucket_lifecycle_configuration(
-            Bucket=bucket_name, 
-            LifecycleConfiguration=lifecycle_config)
-        
-        print(json.dumps(response, indent=4, sort_keys=True))
-    except ClientError as be:
-        print("CLIENT ERROR: {0}\n".format(be))
-    except Exception as e:
-        log_error("Unable to retrieve bucket lifecycle config: {0}".format(e))
+# Create the Aspera Transfer Manager
+transfer_manager = AsperaTransferManager(client=client, 
+                                         transfer_config=ms_transfer_config)
+```
+For best performance in most scenarios, always make use of multiple sessions to minimize any overhead associated with instantiating an Aspera high-speed transfer.  **If your network capacity is at least 1 Gbps you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
+{:tip}
+
+### File Upload
+
+```python
+bucket_name = "<bucket-name>"
+upload_filename = "<absolute-path-to-file>"
+object_name = "<item-name>"
+
+# Create Transfer manager
+with AsperaTransferManager(client) as transfer_manager:
+
+    # Perform upload
+    future = transfer_manager.upload(upload_filename, bucket_name, object_name)
+
+    # Wait for upload to complete
+    future.result()
 ```
 
 *Key Values*
-* `<policy-id>` - Name of the lifecycle policy (must be unqiue)
-* `<number-of-days>` - Number of days to keep the restored file
+* `<bucket-name>` - name of the target bucket
+* `<absolute-path-to-file>` - directory path and file name to the file to be uploaded
+* `<item-name>` - name of the new file added to the bucket
 
-*SDK References*
-* [put_bucket_lifecycle_configuration](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window}
-
-### Delete a bucket's lifecycle configuration
-```python
-def delete_bucket_lifecycle_config(bucket_name):
-    print("Deleting bucket lifecycle config from: {0}".format(bucket_name))
-    try:
-        response = cos_cli.delete_bucket_lifecycle(Bucket=bucket_name)
-
-        print(json.dumps(response, indent=4, sort_keys=True))
-    except ClientError as be:
-        print("CLIENT ERROR: {0}\n".format(be))
-    except Exception as e:
-        log_error("Unable to retrieve bucket lifecycle config: {0}".format(e))
-```
-
-*SDK References*
-* [delete_bucket_lifecycle](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window}
-
-### Temporarily restore an object
-
-Detailed information about the restore request parameters are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#restore-object)
+### File Download
 
 ```python
-def restore_archive_object(bucket_name, item_name):
-    print("Restoring item: {0} from bucket: {1}".format(item_name, bucket_name))
-    try:
-        restore_request = {
-            "Days": <number-of-days>, 
-            "GlacierJobParameters": {
-                "Tier": "Bulk" 
-            }
-        }
+bucket_name = "<bucket-name>"
+download_filename = "<absolute-path-to-file>"
+object_name = "<object-to-download>"
 
-        response = cos_cli.restore_object(
-            Bucket=bucket_name, 
-            Key=item_name, 
-            RestoreRequest=restore_request)
+# Create Transfer manager
+with AsperaTransferManager(client) as transfer_manager:
 
-        print(json.dumps(response, indent=4, sort_keys=True))
-    except ClientError as be:
-        print("CLIENT ERROR: {0}\n".format(be))
-    except Exception as e:
-        log_error("Unable to retrieve bucket lifecycle config: {0}".format(e))
+    # Get object with Aspera
+    future = transfer_manager.download(bucket_name, object_name, download_filename)
+
+    # Wait for download to complete
+    future.result()
 ```
 
 *Key Values*
-* `<number-of-days>` - Number of days to keep the restored file
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<absolute-path-to-file>` - directory and file name where save the file to the local system.
+* `<object-to-download>` - name of the file in the bucket to download.
 
-*SDK References*
-* [restore_object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window}
+### Directory Upload
 
-### View HEAD information for an object
 ```python
-def retrieve_head_object(bucket_name, item_name):
-    print("Retrieving HEAD for item: {0} from bucket: {1}".format(item_name, bucket_name))
+bucket_name = "<bucket-name>"
+# THIS DIRECTORY MUST EXIST LOCALLY, and have objects in it.
+local_upload_directory = "<absolute-path-to-directory>"
+# THIS SHOULD NOT HAVE A LEADING "/"
+remote_directory = "<object prefix>"
 
-    try:
-        response = cos_cli.head_object(
-            Bucket=bucket_name, 
-            Key=item_name)
+# Create Transfer manager
+with AsperaTransferManager(client) as transfer_manager:
 
-        print(json.dumps(response, indent=4, sort_keys=True, default=str))
-    except ClientError as be:
-        print("CLIENT ERROR: {0}\n".format(be))
-    except Exception as e:
-        log_error("Unable to retrieve bucket lifecycle config: {0}".format(e))
+    # Perform upload
+    future = transfer_manager.upload_directory(local_upload_directory, bucket_name, remote_directory)
+
+    # Wait for upload to complete
+    future.result()
 ```
 
-*SDK References*
-* [head_object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window}
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
+* `<absolute-path-to-directory>` - local directory that contains the files to be uploaded.  Must have leading and trailing `/` (i.e. `/Users/testuser/Documents/Upload/`)
+* `<object prefix>` - name of the directory in the bucket to store the files. Must not have a leading slash `/` (i.e. `newuploads/`)
+
+### Directory Download
+```python
+bucket_name = "<bucket-name>"
+# THIS DIRECTORY MUST EXIST LOCALLY
+local_download_directory = "<absolute-path-to-directory>"
+remote_directory = "<object prefix>"
+
+# Create Transfer manager
+with AsperaTransferManager(client) as transfer_manager:
+
+    # Get object with Aspera
+    future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory)
+
+    # Wait for download to complete
+    future.result()
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
+* `<absolute-path-to-directory>` - local directory to save the downloaded files.  Must have leading and trailing slash `/` (i.e. `/Users/testuser/Downloads/`)
+* `<object prefix>` - name of the directory in the bucket to store the files. Must not have a leading slash `/` (i.e. `todownload/`)
+
+### Using Subscribers
+
+Subscribers provide observability into transfers by attaching custom callback methods. All transfers transition between the following phases:
+
+`Queued - In Progress - Done`
+
+There are three available subscribers for each phase:
+
+* `CallbackOnQueued()` - called when a new transfer has been added to the `AsperaTransferManager`
+* `CallbackOnProgress()` - called when a transfer has begun to transmit data (fired repeatedly while the transfer is in progress).
+* `CallbackOnDone()` - called once the transfer is completed
+
+```python
+bucket_name = "<bucket-name>"
+local_download_directory = "<absolute-path-to-directory>"
+remote_directory = "<object prefix>"
+
+# Subscriber callbacks
+class CallbackOnQueued(AsperaBaseSubscriber):
+    def __init__(self):
+        pass
+
+    def on_queued(self, future, **kwargs):
+        print("Directory download queued.")
+
+class CallbackOnProgress(AsperaBaseSubscriber):
+    def __init__(self):
+        pass
+
+    def on_progress(self, future, bytes_transferred, **kwargs):
+        print("Directory download in progress: %s bytes transferred" % bytes_transferred)
+
+class CallbackOnDone(AsperaBaseSubscriber):
+    def __init__(self):
+        pass
+
+    def on_done(self, future, **kwargs):
+        print("Downloads complete!")
+
+# Create Transfer manager
+transfer_manager = AsperaTransferManager(client)
+
+# Attach subscribers
+subscribers = [CallbackOnQueued(), CallbackOnProgress(), CallbackOnDone()]
+
+# Get object with Aspera
+future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory, None, subscribers)
+
+# Wait for download to complete
+future.result()
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
+* `<absolute-path-to-directory>` - local directory to save the downloaded files.  Must have leading and trailing slash `/` (i.e. `/Users/testuser/Downloads/`)
+* `<object prefix>` - name of the directory in the bucket to store the files. Must not have a leading slash `/` (i.e. `todownload/`)
+
+The sample code above produces the following output:
+
+```
+Directory download queued.
+Directory download in progress: 5632 bytes transferred
+Directory download in progress: 1047552 bytes transferred
+...
+Directory download in progress: 53295130 bytes transferred
+Directory download in progress: 62106855 bytes transferred
+Download complete!
+```
+
+### Pause/Resume/Cancel
+
+The SDK provides the ability to manage the progress of file/directory transfers through the following methods of the `AsperaTransferFuture` object:
+
+* `pause()`
+* `resume()`
+* `cancel()`
+
+There are no side-effects from calling either of the methods outined above.  Proper clean up and housekeeping is handled by the SDK.
+{:tip}
+
+```python
+# Create Transfer manager
+bucket_name = "<bucket-name>"
+local_download_directory = "<absolute-path-to-directory>"
+remote_directory = "<object prefix>"
+
+with AsperaTransferManager(client) as transfer_manager:
+
+    # download a directory with Aspera
+    future = transfer_manager.download_directory(bucket_name, remote_directory, local_download_directory, None, None)
+
+    # pause the transfer
+    future.pause()
+
+    # resume the transfer
+    future.resume()
+
+    # cancel the transfer
+    future.cancel()
+```
