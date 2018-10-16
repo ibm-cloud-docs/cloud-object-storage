@@ -138,13 +138,7 @@ Examples of initiating Aspera high-speed transfers with Java are available in th
 The {{site.data.keyword.cos_full_notm}} and Aspera high-speed transfer Python SDKs are available from the Python Package Index (PyPI) software repository.  
 
 ```
-pip install ibm-cos-sdk["aspera"]
-```
-
-To test your installation run the following command:
-
-```
-python -c  "import faspmanager2"
+pip install cos-aspera
 ```
 
 Examples of initiating Aspera transfers with Python are available in [Using Aspera High-Speed Transfer](/docs/services/cloud-object-storage/libraries/python.html#aspera) section.
