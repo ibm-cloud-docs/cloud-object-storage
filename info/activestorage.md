@@ -22,8 +22,6 @@ In Rails, the Model (business data and logic layer) of the MVC pattern is handle
 
 [Active Storage](https://guides.rubyonrails.org/active_storage_overview.html){:new_window} is a built-in framework for attaching files from cloud storage services like {{site.data.keyword.cos_full}} to Active Record objects.  Amazon S3, Google Cloud Storage, and Microsoft Azure are also supported as well as local disk-based services.
 
-### Setup
-
 To get started with Active Storage, run the following commands from your application's home directory: 
 
 ```
@@ -33,10 +31,7 @@ bin/rails db:migrate
 
 This will create the two required tables (`active_storage_blobs` and `active_storage_attachments`) in the application's database to manage Active Record file attachments.  
 
-
-### COS Storage Configuration
-
-#### Storage Configuration
+### Storage Configuration
 Declare your {{site.data.keyword.cos_short}} service in `config/storage.yml`:
 
 ```
@@ -49,8 +44,19 @@ ibmcos:
   endpoint: <regional-endpoint>
 ```
 
-You can declare multiple service instances to be used in different environments by specifying different endpoints and buckets.
+Add the [aws-sdk-s3](https://github.com/aws/aws-sdk-ruby){:new_window} gem to your Gemfile:
+
+```
+gem "aws-sdk-s3", require: false
+```
+
+You can declare multiple service instances with different endpoints and buckets to be used in different environments.
 {:tip}
+
+*Key Values*
+* `<bucket-region>` - Region that match your bucket (i.e. `us-south-standard`).  Full list available [here](/docs/services/cloud-object-storage/basics/classes.html#how-do-i-create-a-bucket-with-a-different-storage-class-).
+* `<bucket-name>` - Name of your bucket
+* `<regional-endpoint>` - Endpoint to access your bucket (i.e. `https://s3.us-south.objectstorage.softlayer.net`)  Full list of endpoints available [here](/docs/services/cloud-object-storage/basics/endpoints.html#select-regions-and-endpoints).
 
 The statement `<%= Rails.application.credentials.dig(:aws, :access_key_id|secret_access_key) %>` instructs Rails to pull the access key and secret key from the credentials data stored at `~/.aws/credentials` in the format:
 
@@ -60,20 +66,22 @@ aws_access_key_id = <access_key_id>
 aws_secret_access_key = <secret_access_key>
 ```
 
-*Key Values*
-* `<bucket-region>` - Region that match your bucket (i.e. `us-south-standard`).  Full list available [here](/docs/services/cloud-object-storage/basics/classes.html#how-do-i-create-a-bucket-with-a-different-storage-class-).
-* `<bucket-name>` - Name of your bucket
-* `<regional-endpoint>` - Endpoint to access your bucket (i.e. `https://s3.us-south.objectstorage.softlayer.net`)  Full list of endpoints available [here](/docs/services/cloud-object-storage/basics/endpoints.html#select-regions-and-endpoints).
+### Rails Environment
 
-#### Rails Environment
-
-Set your environments to use your {{site.data.keyword.cos_short}} service by setting the `config/environments/development.rb`, `config/environments/test.rb`, `config/environments/production.rb` respectively.
+Configure your environments to use your {{site.data.keyword.cos_short}} service by updating the following setting:
 
 ```
 config.active_storage.service = :ibmcos
 ```
 
-### CORS Configuration
+Update the corresponding configuration file for each of the environments:
+
+ * `config/environments/development.rb`
+ * `config/environments/test.rb`
+ * `config/environments/production.rb`
+
+
+## CORS Configuration
 
 To enable Rails access to your bucket you must create a Cross-Origin Resource Sharing (CORS) configuration similar to below:
 
@@ -90,4 +98,6 @@ To enable Rails access to your bucket you must create a Cross-Origin Resource Sh
 </CORSConfiguration>
 ```
 
-This configuration will allow requests from `www.ibm.com` to execute `GET`, `PUT`, and `POST` requests to your bucket.  Adjust the `<AllowedOrigin>` entry to suit your application's needs.  Allowing `x-amz-*` and `content-*` headers is also required in order for Rails to properly interact with your bucket.  More information about CORS is available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#create-a-cross-origin-resource-sharing-configuration-for-a-bucket).
+This configuration will allow requests from `www.ibm.com` to execute `GET`, `PUT`, and `POST` requests to your bucket.  Adjust the `<AllowedOrigin>` entry to suit your application's needs.  
+
+Allowing `x-amz-*` and `content-*` headers is also required in order for Rails to properly interact with your bucket.  More information about CORS is available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#create-a-cross-origin-resource-sharing-configuration-for-a-bucket).
