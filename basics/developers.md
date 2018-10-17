@@ -1,7 +1,7 @@
 ---
 
 copyright:
-  years: 2017
+  years: 2017, 2018
 lastupdated: "2017-09-27"
 
 ---
@@ -21,14 +21,14 @@ First, ensure you have the [{{site.data.keyword.cloud}} Platform CLI](https://cl
   2. Login to {{site.data.keyword.cloud_notm}} Platform using the CLI.  It's also possible to store the API key in a file or set it as an environment variable.
 
 ```
-bx login --apikey <value>
+ibmcloud login --apikey <value>
 ```
 {:codeblock}
 
   3. Next, provision an instance of {{site.data.keyword.cos_full_notm}} specifying the name for the instance, the ID and the desired plan (lite or standard).  This will get us the CRN.  If you have an upgraded account, specify the `Standard` plan.  Otherwise specify `Lite`.
 
 ```
-bx resource service-instance-create <instance-name> cloud-object-storage <plan> global
+ibmcloud resource service-instance-create <instance-name> cloud-object-storage <plan> global
 ```
 {:codeblock}
 

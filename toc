@@ -18,6 +18,8 @@ Cloud Object Storage
     {: .navgroup id="howto"}
     basics/order-storage.md
     basics/upload.md
+    basics/archive.md
+    basics/aspera.md
 
     {: .topicgroup}
     Manage access
@@ -34,7 +36,7 @@ Cloud Object Storage
         hmac/presigned-urls.md
 
     {: .topicgroup}
-    Endpoints and services
+    Choose regions and connect services
         basics/endpoints.md
         basics/services.md
 
@@ -42,12 +44,6 @@ Cloud Object Storage
     basics/multipart.md
     basics/encryption.md
     basics/sql.md
-    
-    {: .topicgroup}
-    Use the command line
-        cli/curl.md
-        cli/aws-cli.md
-        cli/s3fs.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
@@ -67,9 +63,20 @@ Cloud Object Storage
         libraries/python.md
         libraries/node.md
 
-    basics/at.md
-    basics/aspera.md
+    {: .topicgroup}
+    Use the command line
+        cli/curl.md
+        cli/aws-cli.md
+        cli/s3fs.md
 
+    {: .topicgroup}
+    Desktop clients
+        gui/cyberduck.md
+        gui/cloudberry.md
+        gui/simpana.md
+
+    basics/at.md
+    
     {: .topicgroup}
     Tutorials
         [Get started with IBM COS](https://developer.ibm.com/clouddataservices/docs/cos/get-started/)

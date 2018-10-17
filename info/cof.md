@@ -173,6 +173,7 @@ You will need the following information and subtitute the key values in commands
 * `<cos instance name>` - name of your existing COS instance
 * `<service credential name>` - new name for your service key/credential
 * `<role>` - role to attach to your service key (see above for valid roles, `Writer` is most often specified)
+* `<cluster name>` - name of your existing Kubernetes cluster service
 * `<secret binding name>` - this value is generated when COS is bound to the cluster service
 
 

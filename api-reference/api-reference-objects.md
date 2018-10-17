@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2018-06-18"
+  years: 2017, 2018
+lastupdated: "2018-08-27"
 
 ---
 {:new_window: target="_blank"}
@@ -29,6 +29,7 @@ Adding headers to your request using the following values subtituted:
 |{location}|The location code for your endpoint|us-standard|
 |{signature}|The hash created using the secret key, location, and date|ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e|
 |{timestamp}|The formatted date and time of your request|20180614T001804Z|
+|{payload_hash}|The hexadecimal value of the SHA256 hash of the request body (required for uploading objects)|2cd5697803d5409ed17e4c9a09debad05afa9af830c2d56a966b531ddda5cac8|
 
 ## Upload an object
 {: #upload-object}
@@ -68,8 +69,17 @@ Content-Length: 533
 PUT /apiary/queen-bee HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
+x-amz-content-sha256: {payload_hash}
 Content-Type: text/plain; charset=utf-8
 Host: s3-api.us-geo.objectstorage.softlayer.net
+
+Content-Length: 533
+
+ The 'queen' bee is developed from larvae selected by worker bees and fed a
+ substance referred to as 'royal jelly' to accelerate sexual maturity. After a
+ short while the 'queen' is the mother of nearly every bee in the hive, and
+ the colony will fight fiercely to protect her.
+
 ```
 
 **Sample request (HMAC Pre-signed URL)**
@@ -78,6 +88,14 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 PUT /apiary/queen-bee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
 Content-Type: text/plain; charset=utf-8
 Host: s3-api.us-geo.objectstorage.softlayer.net
+
+Content-Length: 533
+
+ The 'queen' bee is developed from larvae selected by worker bees and fed a
+ substance referred to as 'royal jelly' to accelerate sexual maturity. After a
+ short while the 'queen' is the mother of nearly every bee in the hive, and
+ the colony will fight fiercely to protect her.
+
 ```
 
 **Sample response**
@@ -606,6 +624,9 @@ Content-Length: 13374550
 PUT /some-bucket/multipart-object-123?partNumber=1&uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
+x-amz-content-sha256: STREAMING-AWS4-HMAC-SHA256-PAYLOAD
+Content-Encoding: aws-chunked
+x-amz-decoded-content-length: 13374550
 Content-Type: application/pdf
 Host: s3-api.us-geo.objectstorage.softlayer.net
 Content-Length: 13374550
@@ -852,6 +873,95 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 
 ```http
 HTTP/1.1 204 No Content
+Date: Thu, 16 Mar 2017 22:07:48 GMT
+X-Clv-Request-Id: 06d67542-6a3f-4616-be25-fc4dbdf242ad
+Accept-Ranges: bytes
+Server: Cleversafe/3.9.1.114
+X-Clv-S3-Version: 2.5
+```
+
+## Temporarily restore an archived object
+{: #restore-object}
+
+A `POST` request issued to an object with query parameter `restore` to request temporary restoration of an archived object.  A `Content-MD5` header is required as an integrity check for the payload.
+
+An archived object must be restored before downloading or modifying the object.  The lifetime of the object must be specifed, after which the temporary copy of the object will be deleted.
+
+There can be a delay of up to 15 hours before the restored copy is available for access. A HEAD request can check if the restored copy is available.
+
+To permanently restore the object, it must be copied to a bucket that does not have an active lifecycle configuration.
+
+**Syntax**
+
+```bash
+POST https://{endpoint}/{bucket-name}/{object-name}?restore # path style
+POST https://{bucket-name}.{endpoint}/{object-name}?restore # virtual host style
+```
+
+**Payload Elements**
+
+The body of the request must contain an XML block with the following schema:
+
+|Element|Type|Children|Ancestor|Constraint|
+|---|---|---|---|---|
+|RestoreRequest|Container|Days, GlacierJobParameters|None|None|
+|Days|Integer|None|RestoreRequest|Specified the lifetime of the temporarily restored object. The minimum number of days that a restored copy of the object can exist is 1. After the restore period has elapsed, temporary copy of the object will be removed.|
+|GlacierJobParameters|String|Tier|RestoreRequest|None|
+|Tier|String|None|GlacierJobParameters|**Must** be set to `Bulk`.|
+
+```xml
+<RestoreRequest>
+    <Days>{integer}</Days>
+    <GlacierJobParameters>
+        <Tier>Bulk</Tier>
+    </GlacierJobParameters>
+</RestoreRequest>
+```
+
+**Sample Request (IAM)**
+
+```http
+POST /apiary/queenbee?restore HTTP/1.1
+Authorization: {authorization-string}
+Content-Type: text/plain
+Content-MD5: rgRRGfd/OytcM7O5gIaQ== 
+Content-Length: 305
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Headers)**
+
+```http
+POST /apiary/queenbee?restore HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Content-MD5: rgRRGfd/OytcM7O5gIaQ== 
+Content-Length: 305
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Pre-signed URL)**
+
+```http
+POST /apiary/queenbee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&restore&x-amz-signature={signature} HTTP/1.1
+Content-MD5: rgRRGfd/OytcM7O5gIaQ== 
+Content-Length: 305
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+```xml
+<RestoreRequest>
+    <Days>3</Days>
+    <GlacierJobParameters>
+        <Tier>Bulk</Tier>
+    </GlacierJobParameters>
+</RestoreRequest>
+```
+
+**Sample Response**
+
+```http
+HTTP/1.1 202 Accepted
 Date: Thu, 16 Mar 2017 22:07:48 GMT
 X-Clv-Request-Id: 06d67542-6a3f-4616-be25-fc4dbdf242ad
 Accept-Ranges: bytes

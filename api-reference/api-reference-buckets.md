@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-06-12"
+lastupdated: "2018-08-27"
 
 ---
 {:new_window: target="_blank"}
@@ -30,7 +30,7 @@ Adding headers to your request using the following values subtituted:
 |{signature}|The hash created using the secret key, location, and date|ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e|
 |{timestamp}|The formatted date and time of your request|20180614T001804Z|
 
-## List buckets belonging to an account (`GET` service)
+## List buckets
 {: #list-buckets}
 
 A `GET` issued to the endpoint root returns a list of buckets associated with the specified service instance. This operation does not make use of operation specific query parameters or payload elements.
@@ -197,10 +197,12 @@ Valid provisioning codes for `LocationConstraint` are: <br>
 &emsp;&emsp;  `eu-gb-standard` / `eu-gb-vault` / `eu-gb-cold` / `eu-gb-flex` <br>
 &emsp;&emsp;  `eu-de-standard` / `eu-de-vault` / `eu-de-cold` / `eu-de-flex` <br>
 &emsp;&emsp;  `ap-standard` / `ap-vault` / `ap-cold` / `ap-flex` <br>
+&emsp;&emsp;  `ap-tok-standard` / `ap-tok-vault` / `ap-tok-cold` / `ap-tok-flex` <br>
 &emsp;&emsp;  `ams03-standard` / `ams03-vault` / `ams03-cold` / `ams03-flex` <br>
 &emsp;&emsp;  `che01-standard` / `che01-vault` / `che01-cold` / `che01-flex` <br>
 &emsp;&emsp;  `mel01-standard` / `mel01-vault` / `mel01-cold` / `mel01-flex` <br>
 &emsp;&emsp;  `osl01-standard` / `osl01-vault` / `osl01-cold` / `osl01-flex` <br>
+&emsp;&emsp;  `sao01-standard` / `sao01-vault` / `sao01-cold` / `sao01-flex` <br>
 &emsp;&emsp;  `tor01-standard` / `tor01-vault` / `tor01-cold` / `tor01-flex` <br>
 
 **Sample request (IAM)**
@@ -441,7 +443,7 @@ GET https://{endpoint}/{bucket-name}?list-type=2 # path style
 GET https://{bucket-name}.{endpoint}?list-type=2 # virtual host style
 ```
 
-## Optional query parameters
+### Optional query parameters
 
 Name | Type | Description
 --- | ---- | ------------
@@ -649,7 +651,7 @@ Content-Length: 604
 
 ----
 
-## List objects in a given bucket (Version 1)
+### List objects in a given bucket (deprecated)
 
 **Note:** *This API is included for backwards compatibility.*  See [Version 2](api-reference-buckets.html#list-objects-v2) for the recommended method of retrieving objects in a bucket.
 
@@ -662,7 +664,7 @@ GET https://{endpoint}/{bucket-name} # path style
 GET https://{bucket-name}.{endpoint} # virtual host style
 ```
 
-## Optional query parameters
+### Optional query parameters
 
 Name | Type | Description
 --- | ---- | ------------
@@ -772,10 +774,17 @@ DELETE https://{endpoint}/{bucket-name} # path style
 DELETE https://{bucket-name}.{endpoint} # virtual host style
 ```
 
+### Optional headers
+
+Name | Type | Description
+--- | ---- | ------------
+`aspera-ak-max-tries` | string | Specifies the number of times to attempt the delete operation.  Default value is 2.
+
+
 **Sample request (IAM)**
 
 ```http
-DELETE /images HTTP/1.1
+DELETE /apiary HTTP/1.1
 Host: s3-api.us-geo.objectstorage.softlayer.net
 Authorization: Bearer {token}
 ```
@@ -801,32 +810,6 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 The server responds with `204 No Content`.
 
 If a non-empty bucket is requested for deletion, the server responds with `409 Conflict`.
-
-**Sample request (IAM)**
-
-```http
-DELETE /apiary HTTP/1.1
-Authorization: Bearer {token}
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Headers)**
-
-```http
-DELETE /apiary HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-DELETE /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
 
 **Sample response**
 
@@ -1038,6 +1021,17 @@ Content-MD5: M625BaNwd/OytcM7O5gIaQ==
 Content-Length: 237
 ```
 
+```xml
+<CORSConfiguration>
+  <CORSRule>
+    <AllowedOrigin>http:www.ibm.com</AllowedOrigin>
+    <AllowedMethod>GET</AllowedMethod>
+    <AllowedMethod>PUT</AllowedMethod>
+    <AllowedMethod>POST</AllowedMethod>
+  </CORSRule>
+</CORSConfiguration>
+```
+
 **Sample request (HMAC Headers)**
 
 ```http
@@ -1048,6 +1042,17 @@ Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
 Content-MD5: M625BaNwd/OytcM7O5gIaQ==
 Content-Length: 237
+```
+
+```xml
+<CORSConfiguration>
+  <CORSRule>
+    <AllowedOrigin>http:www.ibm.com</AllowedOrigin>
+    <AllowedMethod>GET</AllowedMethod>
+    <AllowedMethod>PUT</AllowedMethod>
+    <AllowedMethod>POST</AllowedMethod>
+  </CORSRule>
+</CORSConfiguration>
 ```
 
 **Sample request (HMAC Pre-signed URL)**
@@ -1188,3 +1193,200 @@ Content-Length: 161
   us-south-standard
 </LocationConstraint>
 ```
+
+----
+
+## Create a bucket lifecycle configuration
+{: #create-bucket-lifecycle}
+
+A `PUT` operation uses the lifecycle query parameter to set lifecycle settings for the bucket.  A `Content-MD5` header is required as an integrity check for the payload.
+
+**Syntax**
+
+```bash
+PUT https://{endpoint}/{bucket-name}?lifecycle # path style
+PUT https://{bucket-name}.{endpoint}?lifecycle # virtual host style
+```
+
+**Payload Elements**
+
+The body of the request must contain an XML block with the following schema:
+
+|Element|Type|Children|Ancestor|Constraint|
+|---|---|---|---|---|
+|LifecycleConfiguration|Container|Rule|None|Limit 1|
+|Rule|Container|ID, Status, Filter, Transition|LifecycleConfiguration|Limit 1|
+|ID|String|None|Rule|**Must** consist of `(a-z,A- Z0-9)` and the following symbols:`` !`_ .*'()- ``|
+|Filter|String|Prefix|Rule|**Must** contain a `Prefix` element.|
+|Prefix|String|None|Filter|**Must** be set to `<Prefix/>`.|
+|Transition|Container|Days, StorageClass|Rule|Limit 1.|
+|Days|Non-negative integer|None|Transition|**Must** be a value greater than 0.|
+|Date|Date|None|Transition|**Must** be in ISO 8601 Format and the date must be in the future.|
+|StorageClass|String|None|Transition|**Must** be set to GLACIER.|
+
+```xml
+<LifecycleConfiguration>
+    <Rule>
+        <ID>{string}</ID>
+        <Status>Enabled</Status>
+        <Filter>
+            <Prefix/>
+        </Filter>
+        <Transition>
+            <Days>{integer}</Days>
+            <StorageClass>GLACIER</StorageClass>
+        </Transition>
+    </Rule>
+</LifecycleConfiguration>
+```
+
+**Sample Request (IAM)**
+
+```http
+PUT /apiary?lifecycle HTTP/1.1
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
+Authorization: {authorization-string}
+Content-Type: text/plain
+Content-MD5: M625BaNwd/OytcM7O5gIaQ== 
+Content-Length: 305
+```
+
+**Sample request (HMAC Headers)**
+
+```http
+PUT /apiary?lifecycle HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Content-MD5: M625BaNwd/OytcM7O5gIaQ== 
+Content-Length: 305
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Pre-signed URL)**
+
+```http
+PUT /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&lifecycle=&x-amz-signature={signature} HTTP/1.1
+Content-Type: text/plain
+Content-MD5: M625BaNwd/OytcM7O5gIaQ== 
+Content-Length: 305
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+```xml
+<LifecycleConfiguration>
+    <Rule>
+        <ID>my-archive-policy</ID>
+        <Filter>
+            <Prefix/>
+        </Filter>
+        <Status>Enabled</Status>
+        <Transition>
+            <Days>20</Days>
+            <StorageClass>GLACIER</StorageClass>
+        </Transition>
+    </Rule>
+</LifecycleConfiguration>
+```
+
+The server responds with `200 OK`.
+
+----
+
+## Retrieve a bucket lifecycle configuration
+
+A `GET` operation uses the lifecycle query parameter to retrieve lifecycle settings for the bucket.
+
+**Syntax**
+
+```bash
+GET https://{endpoint}/{bucket-name}?lifecycle # path style
+GET https://{bucket-name}.{endpoint}?lifecycle # virtual host style
+```
+
+**Sample Request (IAM)**
+
+```http
+GET /apiary?lifecycle HTTP/1.1
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
+Authorization: {authorization-string}
+```
+
+**Sample request (HMAC Headers)**
+
+```http
+GET /apiary?lifecycle HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Pre-signed URL)**
+
+```http
+GET /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&lifecycle=&x-amz-signature={signature} HTTP/1.1
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample Response**
+
+```xml
+<LifecycleConfiguration>
+    <Rule>
+        <ID>my-archive-policy</ID>
+        <Filter>
+            <Prefix/>
+        </Filter>
+        <Status>Enabled</Status>
+        <Transition>
+            <Days>20</Days>
+            <StorageClass>GLACIER</StorageClass>
+        </Transition>
+    </Rule>
+</LifecycleConfiguration>
+```
+
+----
+
+## Delete the lifecycle configuration for a bucket
+
+A `DELETE` issued to a bucket with the proper parameters removes any lifecycle configurations for a bucket.
+
+**Syntax**
+
+```bash
+DELETE https://{endpoint}/{bucket-name}?lifecycle # path style
+DELETE https://{bucket-name}.{endpoint}?lifecycle # virtual host style
+```
+
+**Sample Request (IAM)**
+
+```http
+DELETE /apiary?lifecycle HTTP/1.1
+Authorization: {authorization-string}
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Headers)**
+
+```http
+DELETE /apiary?lifecycle HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample request (HMAC Pre-signed URL)**
+
+```http
+DELETE /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&lifecycle=&x-amz-signature={signature} HTTP/1.1
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+The server responds with `204 No Content`.

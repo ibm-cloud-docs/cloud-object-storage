@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-07-13"
+lastupdated: "2018-09-27"
 
 ---
 
@@ -98,6 +98,8 @@ Note that when adding custom metadata to an object, it is necessary to create an
 {: .tip}
 
 ### Initializing configuration
+{: #init-config}
+
 ```java
 private static String COS_ENDPOINT = "<endpoint>";
 private static String COS_API_KEY_ID = "<api-key>";
@@ -213,6 +215,12 @@ public static void createBucket(String bucketName) {
 }
 ```
 
+#### Create a bucket with a different storage class
+
+```java
+cos.createBucket("sample", "us-vault"); // the name of the bucket, and the storage class (LocationConstraint)
+```
+
 *SDK References*
 * [createBucket](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#createBucket-java.lang.String-){:new_window}
 
@@ -231,6 +239,93 @@ public static void createTextFile(String bucketName, String itemName, String fil
     
     System.out.printf("Item: %s created!\n", itemName);
 }
+```
+
+### Upload object from a file
+
+This example assumes that the bucket `sample` already exists.
+
+```java
+cos.putObject(
+    "sample", // the name of the destination bucket
+    "myfile", // the object key
+    new File("/home/user/test.txt") // the file name and path of the object to be uploaded
+);
+```
+
+### Upload object using a stream
+
+This example assumes that the bucket `sample` already exists.
+
+```java
+String obj = "An example"; // the object to be stored
+ByteArrayOutputStream theBytes = new ByteArrayOutputStream(); // create a new output stream to store the object data
+ObjectOutputStream serializer = new ObjectOutputStream(theBytes); // set the object data to be serialized
+serializer.writeObject(obj); // serialize the object data
+serializer.flush();
+serializer.close();
+InputStream stream = new ByteArrayInputStream(theBytes.toByteArray()); // convert the serialized data to a new input stream to store
+ObjectMetadata metadata = new ObjectMetadata(); // define the metadata
+metadata.setContentType("application/x-java-serialized-object"); // set the metadata
+metadata.setContentLength(theBytes.size()); // set metadata for the length of the data stream
+cos.putObject(
+    "sample", // the name of the bucket to which the object is being written
+    "serialized-object", // the name of the object being written
+    stream, // the name of the data stream writing the object
+    metadata // the metadata for the object being written
+);
+```
+
+### Download object to a file
+
+This example assumes that the bucket `sample` already exists.
+
+```java
+GetObjectRequest request = new // create a new request to get an object
+GetObjectRequest( // request the new object by identifying
+    "sample", // the name of the bucket
+    "myFile" // the name of the object
+);
+
+s3Client.getObject( // write the contents of the object
+    request, // using the request that was just created
+    new File("retrieved.txt") // to write to a new file
+);
+```
+
+
+### Download object using a stream
+
+This example assumes that the bucket `sample` already exists.
+
+```java
+S3Object returned = cos.getObject( // request the object by identifying
+    "sample", // the name of the bucket
+    "serialized-object" // the name of the serialized object
+);
+S3ObjectInputStream s3Input = s3Response.getObjectContent(); // set the object stream
+```
+
+### Copy objects
+
+```java
+// copy an object within the same Bucket
+cos.copyObject( // copy the Object, passing…
+    "sample",  // the name of the Bucket in which the Object to be copied is stored,
+    "myFile.txt",  // the name of the Object being copied from the source Bucket,
+    "sample",  // the name of the Bucket in which the Object to be copied is stored,
+    "myFile.txt.backup"    // and the new name of the copy of the Object to be copied
+);
+```
+
+```java
+// copy an object between two Buckets
+cos.copyObject( // copy the Object, passing…
+    "sample", // the name of the Bucket from which the Object will be copied,
+    "myFile.txt", // the name of the Object being copied from the source Bucket,
+    "backup", // the name of the Bucket to which the Object will be copied,
+    "myFile.txt" // and the name of the copied Object in the destination Bucket
+);
 ```
 
 *SDK References*
@@ -255,7 +350,7 @@ Caused by: java.lang.ClassNotFoundException: javax.xml.bind.JAXBException
 	... 3 more
 ```
 
-**Root Cause:** The JAXB APIs are considered to be Java EE APIs, and therefore are no longer contained on the default class path in Java SE 9
+**Root Cause:** The JAXB APIs are considered to be Java EE APIs, and are no longer contained on the default class path in Java SE 9.
 
 **Fix:** Add the following entry to the pom.xml file in your project folder and repackage your project
 ```xml
@@ -283,7 +378,53 @@ public static void getBuckets() {
 * Methods
     * [listBuckets](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listBuckets--){:new_window}
 
-### List items in a bucket
+### List items in a bucket (v2)
+{: #list-objects-v2}
+
+The [AmazonS3](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html){:new_window} object contains an updated method to list the contents ([listObjectsV2](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){:new_window}).  This method allows you to limit the number of records returned and retrieve the records in batches.  This could be useful for paging your results within an application and improve performance.
+
+```java
+public static void getBucketContentsV2(String bucketName, int maxKeys) {
+    System.out.printf("Retrieving bucket contents (V2) from: %s\n", bucketName);
+
+    boolean moreResults = true;
+    String nextToken = "";
+
+    while (moreResults) {
+        ListObjectsV2Request request = new ListObjectsV2Request()
+            .withBucketName(bucketName)
+            .withMaxKeys(maxKeys)
+            .withContinuationToken(nextToken);
+
+        ListObjectsV2Result result = _cos.listObjectsV2(request);
+        for(S3ObjectSummary objectSummary : result.getObjectSummaries()) {
+            System.out.printf("Item: %s (%s bytes)\n", objectSummary.getKey(), objectSummary.getSize());
+        }
+        
+        if (result.isTruncated()) {
+            nextToken = result.getNextContinuationToken();
+            System.out.println("...More results in next batch!\n");
+        }
+        else {
+            nextToken = "";
+            moreResults = false;
+        }
+    }
+    System.out.println("...No more results!");
+}
+```
+
+*SDK References*
+* Classes
+    * [ListObjectsV2Request](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Request.html){:new_window}
+    * [ListObjectsV2Result](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html){:new_window}
+    * [S3ObjectSummary](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/S3ObjectSummary.html){:new_window}
+* Methods
+    * [getObjectSummaries](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html#getObjectSummaries--){:new_window}
+    * [getNextContinuationToken](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html#getNextContinuationToken--){:new_window}
+    * [listObjectsV2](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){:new_window}
+  
+### List items in a bucket (v1)
 ```java
 public static void getBucketContents(String bucketName) {
     System.out.printf("Retrieving bucket contents from: %s\n", bucketName);
@@ -408,6 +549,8 @@ public static void getItemACL(String bucketName, String itemName) {
     * [getObjectAcl](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#getObjectAcl-java.lang.String-java.lang.String-){:new_window}
 
 ### Execute a multi-part upload
+{: #multipart-upload}
+
 ```java
 public static void multiPartUpload(String bucketName, String itemName, String filePath) {
     File file = new File(filePath);
@@ -476,120 +619,63 @@ public static void multiPartUpload(String bucketName, String itemName, String fi
     * [initiateMultipartUpload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#initiateMultipartUpload-com.ibm.cloud.objectstorage.services.s3.model.InitiateMultipartUploadRequest-){:new_window}
     * [uploadPart](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#uploadPart-com.ibm.cloud.objectstorage.services.s3.model.UploadPartRequest-){:new_window}
 
-## Additional code snippets
+## Upload larger objects using a Transfer Manager
+{: #transfer-manager}
 
-### Create a Vault bucket
-
-Valid provisioning codes for `LocationConstraint` are: <br>
-&emsp;&emsp;  `us-standard` / `us-vault` / `us-cold` / `us-flex` <br>
-&emsp;&emsp;  `us-east-standard` / `us-east-vault`  / `us-east-cold` / `us-east-flex` <br>
-&emsp;&emsp;  `us-south-standard` / `us-south-vault`  / `us-south-cold` / `us-south-flex` <br>
-&emsp;&emsp;  `eu-standard` / `eu-vault` / `eu-cold` / `eu-flex` <br>
-&emsp;&emsp;  `eu-gb-standard` / `eu-gb-vault` / `eu-gb-cold` / `eu-gb-flex` <br>
-&emsp;&emsp;  `eu-de-standard` / `eu-de-vault` / `eu-de-cold` / `eu-de-flex` <br>
-&emsp;&emsp;  `ap-standard` / `ap-vault` / `ap-cold` / `ap-flex` <br>
-&emsp;&emsp;  `ams03-standard` / `ams03-vault` / `ams03-cold` / `ams03-flex` <br>
-&emsp;&emsp;  `che01-standard` / `che01-vault` / `che01-cold` / `che01-flex` <br>
-&emsp;&emsp;  `mel01-standard` / `mel01-vault` / `mel01-cold` / `mel01-flex` <br>
-&emsp;&emsp;  `osl01-standard` / `osl01-vault` / `osl01-cold` / `osl01-flex` <br>
-&emsp;&emsp;  `tor01-standard` / `tor01-vault` / `tor01-cold` / `tor01-flex` <br>
+The `TransferManager` simplifies large file transfers by automatically incorporating multi-part uploads whenever necessary setting configuration parameters.
 
 ```java
-cos.createBucket("sample", "us-vault"); // the name of the bucket, and the storage class (LocationConstraint)
+public static void largeObjectUpload(String bucketName, String itemName, String filePath) throws IOException, InterruptedException {
+    File uploadFile = new File(filePath);
+
+    if (!uploadFile.isFile()) {
+        System.out.printf("The file '%s' does not exist or is not accessible.\n", filePath);
+        return;
+    }
+
+    System.out.println("Starting large file upload with TransferManager");
+
+    //set the part size to 5 MB    
+    long partSize = 1024 * 1024 * 5;
+
+    //set the threshold size to 5 MB
+    long thresholdSize = 1024 * 1024 * 5;
+
+    String endPoint = getEndpoint(COS_BUCKET_LOCATION, "public");
+    AmazonS3 s3client = createClient(COS_API_KEY_ID, COS_SERVICE_CRN, endPoint, COS_BUCKET_LOCATION);
+
+    TransferManager transferManager = TransferManagerBuilder.standard()
+        .withS3Client(s3client)
+        .withMinimumUploadPartSize(partSize)
+        .withMultipartCopyThreshold(thresholdSize)
+        .build();
+
+    try {
+        Upload lrgUpload = transferManager.upload(bucketName, itemName, uploadFile);
+
+        lrgUpload.waitForCompletion();
+
+        System.out.println("Large file upload complete!");
+    }
+    catch (SdkClientException e) {
+        System.out.printf("Upload error: %s\n", e.getMessage());            
+    }
+    finally {
+        transferManager.shutdownNow();
+    }
 ```
 
-### Create a Cold Vault bucket
+*SDK References*
+* Classes
+    * [TransferManager](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html){:new_window}
+    * [TransferManagerBuilder](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManagerBuilder.html){:new_window}
+    * [Upload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/Upload.html){:new_window}
 
-```java
-cos.createBucket("sample", "us-cold"); // the name of the bucket, and the storage class (LocationConstraint)
-```
-
-### Upload object from a file
-
-This example assumes that the bucket `sample` already exists.
-
-```java
-cos.putObject(
-    "sample", // the name of the destination bucket
-    "myfile", // the object key
-    new File("/home/user/test.txt") // the file name and path of the object to be uploaded
-);
-```
-
-### Upload object using a stream
-
-This example assumes that the bucket `sample` already exists.
-
-```java
-String obj = "An example"; // the object to be stored
-ByteArrayOutputStream theBytes = new ByteArrayOutputStream(); // create a new output stream to store the object data
-ObjectOutputStream serializer = new ObjectOutputStream(theBytes); // set the object data to be serialized
-serializer.writeObject(obj); // serialize the object data
-serializer.flush();
-serializer.close();
-InputStream stream = new ByteArrayInputStream(theBytes.toByteArray()); // convert the serialized data to a new input stream to store
-ObjectMetadata metadata = new ObjectMetadata(); // define the metadata
-metadata.setContentType("application/x-java-serialized-object"); // set the metadata
-metadata.setContentLength(theBytes.size()); // set metadata for the length of the data stream
-cos.putObject(
-    "sample", // the name of the bucket to which the object is being written
-    "serialized-object", // the name of the object being written
-    stream, // the name of the data stream writing the object
-    metadata // the metadata for the object being written
-);
-```
-
-### Download object to a file
-
-This example assumes that the bucket `sample` already exists.
-
-```java
-GetObjectRequest request = new // create a new request to get an object
-GetObjectRequest( // request the new object by identifying
-    "sample", // the name of the bucket
-    "myFile" // the name of the object
-);
-
-s3Client.getObject( // write the contents of the object
-    request, // using the request that was just created
-    new File("retrieved.txt") // to write to a new file
-);
-```
-
-
-### Download object using a stream
-
-This example assumes that the bucket `sample` already exists.
-
-```java
-S3Object returned = cos.getObject( // request the object by identifying
-    "sample", // the name of the bucket
-    "serialized-object" // the name of the serialized object
-);
-S3ObjectInputStream s3Input = s3Response.getObjectContent(); // set the object stream
-```
-
-### Copy objects
-
-```java
-// copy an object within the same Bucket
-cos.copyObject( // copy the Object, passing…
-    "sample",  // the name of the Bucket in which the Object to be copied is stored,
-    "myFile.txt",  // the name of the Object being copied from the source Bucket,
-    "sample",  // the name of the Bucket in which the Object to be copied is stored,
-    "myFile.txt.backup"    // and the new name of the copy of the Object to be copied
-);
-```
-
-```java
-// copy an object between two Buckets
-cos.copyObject( // copy the Object, passing…
-    "sample", // the name of the Bucket from which the Object will be copied,
-    "myFile.txt", // the name of the Object being copied from the source Bucket,
-    "backup", // the name of the Bucket to which the Object will be copied,
-    "myFile.txt" // and the name of the copied Object in the destination Bucket
-);
-```
+* Methods
+    * [shutdownNow](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html#shutdownNow--){:new_window}
+    * [upload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html#upload-java.lang.String-java.lang.String-java.io.File-){:new_window}
+    * [waitForCompletion](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/internal/AbstractTransfer.html#waitForCompletion--){:new_window}
+    
 
 ## Using Key Protect
 
@@ -726,7 +812,335 @@ boolean KPEnabled = result.getIBMSSEKPEnabled();
 String crn = result.getIBMSSEKPCUSTOMERROOTKEYCRN();
 ```
 
-## API reference
+## Using Aspera High-Speed Transfer
+{: #aspera}
+By installing the [Aspera high-speed transfer library](/docs/services/cloud-object-storage/basics/aspera.html#aspera-packaging) you can utilize high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license). 
+
+Each Aspera high-speed transfer session spawns an individual `ascp` process that runs on the client machine to perform the transfer. Ensure that your computing environment can allow this process to run.
+{:tip}
+
+You will need instances of the S3 Client and IAM Token Manager classes to initialize the `AsperaTransferManager`. The `s3Client` is required to get FASP connection information for the COS target bucket. The `tokenManager` is required to allow the Aspera high-speed transfer SDK to authenticate with the COS target bucket.
+
+### Initializing the `AsperaTransferManager`
+
+Before initializing the `AsperaTransferManager`, make sure you've got working [`s3Client`](#init-config) and [`tokenManager`](#init-config) objects. 
+
+
+There isn't a lot of benefit to using a single session of Aspera high-speed transfer unless you expect to see significant noise or packet loss in the network.  So we need to tell the `AsperaTransferManager` to use multiple sessions using the `AsperaConfig` class. This will split the transfer into the specified number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value. 
+
+The typical configuration for using multi-session should be:
+* 2 or 10 sessions
+* 60 MB threshold (*this is the recommended value for most applications*)
+
+```java
+AsperaConfig asperaConfig = new AsperaConfig()
+    .withMultiSession(2)
+    .withMultiSessionThresholdMb(60);
+            
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client)
+    .withTokenManager(tokenManager)
+    .withAsperaConfig(asperaConfig)
+    .build();
+```
+
+For best performance in most scenarios, always make use of multiple sessions to minimize any overhead associated with instantiating an Aspera high-speed transfer.  **If your network capacity is at least 1 Gbps you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
+{:tip}
+
+*Key Values*
+* `API_KEY` - An API key for a user or service ID with Writer or Manager roles
+
+You will need to provide an IAM API Key for constructing an `AsperaTransferManager`.  [HMAC Credentials](/docs/services/cloud-object-storage/iam/service-credentials.html#iam-vs-hmac){:new_window} are **NOT** currently supported.  For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
+{:tip}
+
+### File Upload
+
+```java
+String filePath = "<absolute-path-to-source-data>";
+String bucketName = "<bucket-name>";
+String itemName = "<item-name>";
+
+// Load file
+File inputFile = new File(filePath);
+
+// Create AsperaTransferManager for FASP upload
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client).build();
+
+// Upload test file and report progress
+Future<AsperaTransaction> asperaTransactionFuture = asperaTransferMgr.upload(bucketName, itemName, inputFile);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<absolute-path-to-source-data>` - directory and file name to upload to Object Storage.
+* `<item-name>` - name of the new object added to the bucket.
+
+### File Download
+
+```java
+String bucketName = "<bucket-name>";
+String outputPath = "<absolute-path-to-file>";
+String itemName = "<item-name>";
+
+// Create local file
+File outputFile = new File(outputPath);
+outputFile.createNewFile();
+
+// Create AsperaTransferManager for FASP download
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, s3Client)
+    .withTokenManager(tokenManager)
+    .withAsperaConfig(asperaConfig)
+    .build();
+
+// Download file
+Future<AsperaTransaction> asperaTransactionFuture = asperaTransferMgr.download(bucketName, itemName, outputFile);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
+
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<absolute-path-to-file>` - directory and file name to save from Object Storage.
+* `<item-name>` - name of the object in the bucket.
+
+### Directory Upload
+
+```java
+String bucketName = "<bucket-name>";
+String directoryPath = "<absolute-path-to-directory>";
+String directoryPrefix = "<virtual-directory-prefix>";
+boolean includeSubDirectories = true;
+
+// Load Directory
+File inputDirectory = new File(directoryPath);
+
+// Create AsperaTransferManager for FASP upload
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, s3Client)
+    .withTokenManager(tokenManager)
+    .withAsperaConfig(asperaConfig)
+    .build();
+
+// Upload test directory
+Future<AsperaTransaction> asperaTransactionFuture  = asperaTransferMgr.uploadDirectory(bucketName, directoryPrefix, inputDirectory, includeSubDirectories);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<absolute-path-to-directory>` - directory of the files to be uploaded to Object Storage.
+* `<virtual-directory-prefix>` - name of the directory prefix to be added to each file upon upload.  Use null or empty string to upload the files to the bucket root.
+
+### Directory Download
+
+```java
+String bucketName = "<bucket-name>";
+String directoryPath = "<absolute-path-to-directory>";
+String directoryPrefix = "<virtual-directory-prefix>";
+boolean includeSubDirectories = true;
+
+// Load Directory
+File outputDirectory = new File(directoryPath);
+
+// Create AsperaTransferManager for FASP download
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, s3Client)
+    .withTokenManager(tokenManager)
+    .withAsperaConfig(asperaConfig)
+    .build();
+
+// Download test directory
+Future<AsperaTransaction> asperaTransactionFuture   = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
+
+```
+
+*Key Values*
+* `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
+* `<absolute-path-to-directory>` - directory to save downloaded files from Object Storage.
+* `<virtual-directory-prefix>` - name of the directory prefix of each file to download.  Use null or empty string to download all files in the bucket.
+
+### Overriding Session Configuration on a Per Transfer Basis
+You can override the multi-session configuration values on a per transfer basis by passing an instance of `AsperaConfig` to the upload and download overloaded methods. Using `AsperaConfig` you can specify the number of sessions and minimum file threshold size per session. 
+
+```java
+String bucketName = "<bucket-name>";
+String filePath = "<absolute-path-to-file>";
+String itemName = "<item-name>";
+
+// Load file
+File inputFile = new File(filePath);
+
+// Create AsperaTransferManager for FASP upload
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client)
+.withTokenManager(TOKEN_MANAGER)
+.withAsperaConfig(asperaConfig)
+.build();
+
+// Create AsperaConfig to set number of sessions
+// and file threshold per session.
+AsperaConfig asperaConfig = new AsperaConfig().
+withMultiSession(10).
+withMultiSessionThresholdMb(60);
+
+// Upload test file and report progress
+Future<AsperaTransaction> asperaTransactionFuture  = asperaTransferMgr.upload(bucketName, itemName, inputFile, asperaConfig, null);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
+```
+
+### Monitoring Transfer Progress
+
+The simplest way to monitor the progress of your file/directory transfers is to use the `isDone()` property that returns `true` when your transfer is complete.
+
+```java
+Future<AsperaTransaction> asperaTransactionFuture  = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
+
+while (!asperaTransaction.isDone()) {
+    System.out.println("Directory download is in progress");
+
+    //pause for 3 seconds
+    Thread.sleep(1000 * 3);
+}
+```
+
+You can also check if a transfer is queued for processing by calling the `onQueue` method on the `AsperaTransaction`. `onQueue` will return a Boolean with `true` indicating that the transfer is queued.
+
+```java
+Future<AsperaTransaction> asperaTransactionFuture  = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
+
+while (!asperaTransaction.isDone()) {
+    System.out.println("Directory download is in queueing: " + asperaTransaction.onQueue());
+
+    //pause for 3 seconds
+    Thread.sleep(1000 * 3);
+}
+```
+
+To check if a transfer is in progress call the progress method in `AsperaTransaction`.
+
+```java
+Future<AsperaTransaction> asperaTransactionFuture  = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
+
+while (!asperaTransaction.isDone()) {
+    System.out.println("Directory download is in progress: " + asperaTransaction.progress());
+
+    //pause for 3 seconds
+    Thread.sleep(1000 * 3);
+}
+```
+
+Every transfer by default will have a `TransferProgress` attached to it. The `TransferProgress` will report the number of bytes transferred and the percentage transferred of the total bytes to transfer. To access a transfer’s `TransferProgress` use the `getProgress` method in `AsperaTransaction`.
+
+```java
+Future<AsperaTransaction> asperaTransactionFuture  = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
+
+while (!asperaTransaction.isDone()) {
+    TransferProgress transferProgress = asperaTransaction.getProgress();
+
+    //pause for 3 seconds
+    Thread.sleep(1000 * 3);
+}
+```
+
+To report the number of bytes transferred call the `getBytesTransferred` method on `TransferProgress`. To report the percentage transferred of the total bytes to transfer call the `getPercentTransferred` method on `TransferProgress`.
+
+```java
+Future<AsperaTransaction> asperaTransactionFuture  = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
+
+while (!asperaTransaction.isDone()) {
+    TransferProgress transferProgress = asperaTransaction.getProgress();
+
+    System.out.println("Bytes transferred: " + transferProgress.getBytesTransferred());
+    System.out.println("Percent transferred: " + transferProgress.getPercentTransferred());
+
+
+    //pause for 3 seconds
+    Thread.sleep(1000 * 3);
+}
+```
+
+### Pause/Resume/Cancel
+
+The SDK provides the ability to manage the progress of file/directory transfers through the following methods of the `AsperaTransfer` object:
+
+* `pause()`
+* `resume()`
+* `cancel()`
+
+There are no side-effects from calling either of the methods outined above.  Proper clean up and housekeeping is handled by the SDK.
+{:tip}
+
+The following example shows a possible use for these methods:
+
+```java
+String bucketName = "<bucket-name>";
+String directoryPath = "<absolute-path-to-directory>";
+String directoryPrefix = "<virtual-directory-prefix>";
+boolean includeSubDirectories = true;
+
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_API_KEY_ID, _cos)
+    .withTokenManager(TOKEN_MANAGER)
+    .build();
+
+File outputDirectory = new File(directoryName);
+
+System.out.println("Starting directory download...");
+
+//download the directory from cloud storage
+Future<AsperaTransaction> asperaTransactionFuture  = asperaTransferMgr.downloadDirectory(bucketName, directoryPrefix, outputDirectory, includeSubDirectories);
+AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
+
+int pauseCount = 0;
+
+while (!asperaTransaction.isDone()) {
+    System.out.println("Directory download in progress...");
+
+    //pause the transfer
+    asperaTransfer.pause();
+
+    //resume the transfer
+    asperaTransfer.resume();
+
+    //cancel the transfer
+    asperaTransfer.cancel();
+}
+
+System.out.println("Directory download complete!");
+```
+
+### Troubleshooting Aspera Issues
+
+**Issue:** developers using the Oracle JDK on Linux or Mac OS X may experience unexpected and silent crashes during transfers
+
+**Cause:** The native code requires its own signal handlers which could be overriding the JVM's signal handlers. It might be necessary to use the JVM's signal chaining facility.
+
+*IBM&reg; JDK users or Microsoft&reg; Windows users are not affected.*
+
+**Solution:** Link and load the JVM's signal chaining library.
+* On Linux locate the `libjsig.so` shared library and set the following environment variable:
+    * `LD_PRELOAD=<PATH_TO_SHARED_LIB>/libjsig.so`
+
+* On Mac OS X locate the shared library `libjsig.dylib` and set the following environment variables:
+    * `DYLD_INSERT_LIBRARIES=<PATH_TO_SHARED_LIB>/libjsig.dylib` 
+    * `DYLD_FORCE_FLAT_NAMESPACE=0`
+
+Visit the [Oracle&reg; JDK documentation](https://docs.oracle.com/javase/10/vm/signal-chaining.htm){:new_window} for more information about signal chaining.
+
+**Issue:** `UnsatisfiedLinkError` on Linux
+
+**Cause:** System unable to load dependent libraries.  Errors such as the following may be seen in the application logs:
+
+```libfaspmanager2.so: libawt.so: cannot open shared object file: No such file or directory```
+
+**Solution:** Set the following environment variable:
+
+`LD_LIBRARY_PATH=<JAVA_HOME>/jre/lib/amd64/server:<JAVA_HOME>/jre/lib/amd64`
+
+<!--
+## S3 API compatibility reference
 
 This list summarizes the AWS Java SDK methods that are supported by {{site.data.keyword.cos_full_notm}}. More detailed documentation on individual classes and methods can be found in the [the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/)
 
@@ -790,3 +1204,4 @@ setObjectAcl(SetObjectAclRequest setObjectAclRequest)
 setS3ClientOptions(S3ClientOptions clientOptions)
 uploadPart(UploadPartRequest request)
 ```
+-->
