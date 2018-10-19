@@ -72,6 +72,13 @@ The IBM Cloud CLI mandates that commands start with `ibmcloud`. However, until t
 	* The name of the bucket to get the location.
 
 
+### Get a Bucket's Class
+* **Action:** Determine the class of a bucket in an IBM Cloud Object Storage account.
+* **Usage:** `ibmcloud get-bucket-class --bucket [BUCKET_NAME]`
+* **Parameters to provide:**
+	* The name of the bucket to get the class.
+	
+	
 ### Get a Bucket's Headers
 * **Action:** Determine if a bucket exists in an IBM Cloud Object Storage account.
 * **Usage:** `ibmcloud cos head-bucket --bucket [BUCKET_NAME] [--region REGION_NAME]`
