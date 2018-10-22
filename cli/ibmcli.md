@@ -22,7 +22,6 @@ The beta version of a {{site.data.keyword.cos_short}} plugin [{{site.data.keywor
 Install the plugin can using the `plugin install` command.
 
 ```
-ibmcloud plugin repo-add test https://plugins.stage1.ng.bluemix.net/
 ibmcloud plugin install cloud-object-storage
 ```
 
@@ -105,17 +104,6 @@ The IBM Cloud CLI mandates that commands start with `ibmcloud`. However, until t
 	* _Optional_: The region where the bucket is located. If this parameter is not provided, the program will use the `DefaultRegion` value in the `credentials.json` file located in the user's `.bluemix` folder.
 		* Flag: `--region REGION_NAME`
 
-### Copy objects From a Bucket to another bucket
-* **Action:** Copy an object from source bucket to destination bucket.
-* **Usage:** `ibmcloud cos copy-object --bucket [DESTINATION_BUCKET] --copysource [COPY_SOURCE] --key [KEY_NAME] [--region REGION_NAME] `
-* **Parameters to provide:**
-    * Destination bucket name
-	* Copy Source name of the source bucket and key name of the source object, separated by a slash (/). Must be URL-encoded.
-	*  The name of the key to copy to
-	* _Optional_: Region which both buckets exists in, if not provided it will use the default region in config file.  It is not possible to copy between regions.
-		* Flag: `--region REGION_NAME`
-
-
 ### Get the Headers of a Object
 * **Action:** Determine if a file exists in a bucket in a user's IBM Cloud Object Storage account.
 * **Usage:** `ibmcloud cos head-object --bucket [BUCKET_NAME] --key [KEY_NAME] [--region REGION_NAME]`
@@ -145,6 +133,15 @@ The IBM Cloud CLI mandates that commands start with `ibmcloud`. However, until t
 	* _Optional_: The region where the bucket is located. If this parameter is not provided, the program will use the `DefaultRegion` value in the `credentials.json` file located in the user's `.bluemix` folder.
 		* Flag: `--region REGION_NAME`
 
+### Copy objects From a Bucket to another bucket
+* **Action:** Copy an object from source bucket to destination bucket.
+* **Usage:** `ibmcloud cos copy-object --bucket [DESTINATION_BUCKET] --copysource [COPY_SOURCE] --key [KEY_NAME] [--region REGION_NAME] `
+* **Parameters to provide:**
+    * Destination bucket name
+	* Copy Source name of the source bucket and key name of the source object, separated by a slash (/). Must be URL-encoded.
+	*  The name of the key to copy to
+	* _Optional_: Region which both buckets exists in, if not provided it will use the default region in config file.  It is not possible to copy between regions.
+		* Flag: `--region REGION_NAME`
 
 ### List All Files in a Bucket
 * **Action:** List all the files present in a bucket in a user's IBM Cloud Object Storage Account
