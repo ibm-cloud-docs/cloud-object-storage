@@ -522,7 +522,7 @@ The following items are necessary in order to create a bucket with Key-Protect e
 
 `crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
 
-### Creating a bucket with Key Protect enabled
+### Creating a bucket with key-protect enabled
 ```python
 COS_KP_ALGORITHM = "<algorithm>"
 COS_KP_ROOTKEY_CRN = "<root-key-crn>"

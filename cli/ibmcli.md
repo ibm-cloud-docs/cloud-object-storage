@@ -14,7 +14,8 @@ lastupdated: "15-03-2018"
 
 # Use the IBM Cloud CLI
 
-The beta version of a {{site.data.keyword.cos_short}} plugin [{{site.data.keyword.cloud}} Platform CLI](https://clis.ng.bluemix.net/ui/home.html) is available for anyone interested in trying it out.  Note that this plug-in is beta software and subject to change, and is not suitable for production workloads.
+The beta version of a {{site.data.keyword.cos_short}} plugin [{{site.data.keyword.cloud}} Platform CLI](https://clis.ng.bluemix.net/ui/home.html) is available for anyone interested in trying it out.  Note that this plug-in is beta software and subject to change, and is not suitable for production workloads. If you have any comments or suggestions on the CLI plugin, click on the "Feedback" button on this page and select the relevant section of the documentation.
+{:tip}
 
 ## Installation and Configuration
 
