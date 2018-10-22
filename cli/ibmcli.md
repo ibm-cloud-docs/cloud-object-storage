@@ -23,7 +23,7 @@ Install the plugin can using the `plugin install` command.
 
 ```
 ibmcloud plugin repo-add test https://plugins.stage1.ng.bluemix.net/
-ibmcloud plugin install cloud-object-storage -r test
+ibmcloud plugin install cloud-object-storage
 ```
 
 Configure the plugin with `ibmcloud cos config`.  This will populate your credentials or repopulate them if your _~/.bluemix/config.json_ file has reset. 
