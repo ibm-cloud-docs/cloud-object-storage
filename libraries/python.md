@@ -59,7 +59,7 @@ Code examples were written using **Python 2.7.15**
 
 ```python
 # Constants for IBM COS values
-COS_ENDPOINT = "<endpoint>"
+COS_ENDPOINT = "<endpoint>" # Current list avaiable at https://cos-service.bluemix.net/endpoints
 COS_API_KEY_ID = "<api-key>"
 COS_AUTH_ENDPOINT = "https://iam.ng.bluemix.net/oidc/token"
 COS_SERVICE_CRN = "<resource-instance-id>"
@@ -71,7 +71,7 @@ cos = ibm_boto3.resource("s3",
     ibm_service_instance_id=COS_SERVICE_CRN,
     ibm_auth_endpoint=COS_AUTH_ENDPOINT,
     config=Config(signature_version="oauth"),
-    endpoint_url=COS_ENDPOINT
+    endpoint_url=COS_ENDPOINT 
 )
 ```
 *Key Values*
