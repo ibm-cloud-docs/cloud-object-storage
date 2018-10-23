@@ -144,7 +144,7 @@ The IBM Cloud CLI mandates that commands start with `ibmcloud`. However, until t
 		* Flag: `--region REGION_NAME`
 
 ### List objects
-* **Action:** List all the files present in a bucket in a user's IBM Cloud Object Storage Account
+* **Action:** List files present in a bucket in a user's IBM Cloud Object Storage Account.  This operation is currently limited to the 1000 most recently created objects and can't be filtered.
 * **Usage:** `ibmcloud cos list-objects --bucket [BUCKET_NAME] [--region REGION_NAME]`
 * **Parameters to provide:**
 	* Bucket name to print the list of files
