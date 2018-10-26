@@ -203,6 +203,7 @@ Valid provisioning codes for `LocationConstraint` are: <br>
 &emsp;&emsp;  `mel01-standard` / `mel01-vault` / `mel01-cold` / `mel01-flex` <br>
 &emsp;&emsp;  `osl01-standard` / `osl01-vault` / `osl01-cold` / `osl01-flex` <br>
 &emsp;&emsp;  `sao01-standard` / `sao01-vault` / `sao01-cold` / `sao01-flex` <br>
+&emsp;&emsp;  `seo01-standard` / `seo01-vault` / `seo01-cold` / `seo01-flex` <br>
 &emsp;&emsp;  `tor01-standard` / `tor01-vault` / `tor01-cold` / `tor01-flex` <br>
 
 **Sample request (IAM)**
