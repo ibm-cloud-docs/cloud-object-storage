@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "19-10-2018"
+lastupdated: "30-10-2018"
 
 ---
 {:new_window: target="_blank"}
@@ -44,7 +44,19 @@ If preferred, HMAC credentials associated with a Service ID can be used to conne
 
 At any time, to switch between HMAC and IAM authentication, you can type `ibmcloud cos config --switch [iam | hmac]`. For more information on IAM-based authentication, click [here](https://console.bluemix.net/docs/iam/quickstart.html#getstarted).
 
-## Supported commands
+## Command index
+
+[create bucket](#create-a-new-bucket) | [delete bucket](#delete-an-existing-bucket)  | [find bucket](#find-a-bucket)
+
+[get bucket class](#get-a-bucket-s-class) | [list bucket](#list-all-buckets)  | [download object](#download-an-object)
+
+[get object header](#get-an-object-s-headers) | [upload object](#upload-an-object)  | [delete object](#delete-an-object)
+
+[copy object](#copy-object-between-buckets) | [list object](#list-objects)  | [configure](#configure-the-program)
+
+[create multipart upload](#create-a-new-multipart-upload) | [upload part](#upload-a-part)  | [list parts](#list-parts)
+
+[abort multipart upload](#abort-a-multipart-upload) | [complete multipart upload](#complete-a-multipart-upload)
 
 Each operation listed below has an explanation of what it does, how to use it, and any optional or required parameters. Unless specified as optional, any listed parameters are mandatory.
 
@@ -137,7 +149,7 @@ The IBM Cloud CLI mandates that commands start with `ibmcloud`. However, until t
 	* _Optional_: The region where the bucket is located. If this parameter is not provided, the program will use the `DefaultRegion` value in the `credentials.json` file located in the user's `.bluemix` folder.
 		* Flag: `--region REGION_NAME`
 
-### Copy objects between buckets
+### Copy object between buckets
 * **Action:** Copy an object from source bucket to destination bucket.
 * **Usage:** `ibmcloud cos copy-object --bucket [DESTINATION_BUCKET] --copysource [COPY_SOURCE] --key [KEY_NAME] [--region REGION_NAME] `
 * **Parameters to provide:**
