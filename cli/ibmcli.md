@@ -48,17 +48,12 @@ At any time, to switch between HMAC and IAM authentication, you can type `ibmclo
 
 |Command index |  |  |
 | --- | --- | --- |
-[create bucket](#create-a-new-bucket) | [delete bucket](#delete-an-existing-bucket)  | [find bucket](#find-a-bucket)
-
-[get bucket class](#get-a-buckets-class) | [list bucket](#list-all-buckets)  | [download object](#download-an-object)
-
-[get object header](#get-an-objects-headers) | [upload object](#upload-an-object)  | [delete object](#delete-an-object)
-
-[copy object](#copy-object-between-buckets) | [list object](#list-objects)  | [configure](#configure-the-program)
-
-[create multipart upload](#create-a-new-multipart-upload) | [upload part](#upload-a-part)  | [list parts](#list-parts)
-
-[abort multipart upload](#abort-a-multipart-upload) | [complete multipart upload](#complete-a-multipart-upload)
+|[create bucket](#create-a-new-bucket) | [delete bucket](#delete-an-existing-bucket)  | [find bucket](#find-a-bucket)|
+|[get bucket class](#get-a-buckets-class) | [list bucket](#list-all-buckets)  | [download object](#download-an-object)|
+|[get object header](#get-an-objects-headers) | [upload object](#upload-an-object)  | [delete object](#delete-an-object)|
+|[copy object](#copy-object-between-buckets) | [list object](#list-objects)  | [configure](#configure-the-program)|
+|[create multipart upload](#create-a-new-multipart-upload) | [upload part](#upload-a-part)  | [list parts](#list-parts)|
+|[abort multipart upload](#abort-a-multipart-upload) | [complete multipart upload](#complete-a-multipart-upload)|
 
 Each operation listed below has an explanation of what it does, how to use it, and any optional or required parameters. Unless specified as optional, any listed parameters are mandatory.
 
