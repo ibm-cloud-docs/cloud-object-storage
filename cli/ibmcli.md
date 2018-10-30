@@ -48,9 +48,9 @@ At any time, to switch between HMAC and IAM authentication, you can type `ibmclo
 
 [create bucket](#create-a-new-bucket) | [delete bucket](#delete-an-existing-bucket)  | [find bucket](#find-a-bucket)
 
-[get bucket class](#get-a-bucket-s-class) | [list bucket](#list-all-buckets)  | [download object](#download-an-object)
+[get bucket class](#get-a-buckets-class) | [list bucket](#list-all-buckets)  | [download object](#download-an-object)
 
-[get object header](#get-an-object-s-headers) | [upload object](#upload-an-object)  | [delete object](#delete-an-object)
+[get object header](#get-an-objects-headers) | [upload object](#upload-an-object)  | [delete object](#delete-an-object)
 
 [copy object](#copy-object-between-buckets) | [list object](#list-objects)  | [configure](#configure-the-program)
 
