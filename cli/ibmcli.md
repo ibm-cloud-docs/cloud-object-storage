@@ -40,13 +40,16 @@ If preferred, HMAC credentials associated with a Service ID can be used to conne
 
 At any time, to switch between HMAC and IAM authentication, you can type `ibmcloud cos config --switch [iam | hmac]`. For more information on IAM-based authentication, click [here](https://console.bluemix.net/docs/iam/quickstart.html#getstarted).
 
-## Supported commands
+## Command index
+
+[create bucket](#foo) | [delete bucket](#foo)  | [create bucket](#foo)
 
 Each operation listed below has an explanation of what it does, how to use it, and any optional or required parameters. Unless specified as optional, any listed parameters are mandatory.
 
 The IBM Cloud CLI mandates that commands start with `ibmcloud`. However, until the "Bluemix" brand is phased out, you can also start commands by `bx` and `bluemix`. So, you can do `ibmcloud cos`, `bluemix cos`, or `bx cos` to start a command.
 
 ### Create a new bucket
+{: #create-bucket}
 * **Action:** Create a new bucket in an IBM Cloud Object Storage instance.
 * **Usage:** `ibmcloud cos create-bucket --bucket [BUCKET_NAME] [--region REGION_NAME] [--class CLASS_TYPE]`
 * **Parameters to provide:**
