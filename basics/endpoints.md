@@ -322,6 +322,19 @@ Types of endpoint:
       <code class="highlighter-rouge">s3.mel01.objectstorage.service.networklayer.com</code>
     </td>
   </tr>
+   <tr>
+    <td rowspan="2">Montréal, Canada</td>
+    <td>public</td>
+    <td>
+      <code class="highlighter-rouge">s3.mon01.objectstorage.softlayer.net</code>
+    </td>
+  </tr>
+  <tr>
+    <td>private</td>
+    <td>
+      <code class="highlighter-rouge">s3.mon01.objectstorage.service.networklayer.com</code>
+    </td>
+  </tr>
     <tr>
     <td rowspan="2">Oslo, Norway</td>
     <td>public</td>
