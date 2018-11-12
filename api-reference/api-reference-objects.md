@@ -968,3 +968,94 @@ Accept-Ranges: bytes
 Server: Cleversafe/3.9.1.114
 X-Clv-S3-Version: 2.5
 ```
+
+## Updating Metadata
+
+There are two ways to update the metadata on an existing object:
+* A `PUT` request with the new metadata and the original object contents
+* Executing a `COPY` request with the new metadata specifying the original object as the copy source
+
+All metadata key must be prefixed with `x-amz-meta-`
+{: tip}
+
+### Using PUT to update metadata
+
+**Note:** The `PUT` request requires a copy of existing object as the contents will be overwritten.
+
+**Syntax**
+
+```bash
+PUT https://{endpoint}/{bucket-name}/{object-name} # path style
+PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
+```
+
+**Sample request**
+
+```http
+PUT /apiary/queen-bee HTTP/1.1
+Authorization: Bearer {token}
+Content-Type: text/plain; charset=utf-8
+Host: s3-api.us-geo.objectstorage.softlayer.net
+x-amz-meta-key1: value1
+x-amz-meta-key2: value2
+
+Content-Length: 533
+
+ The 'queen' bee is developed from larvae selected by worker bees and fed a
+ substance referred to as 'royal jelly' to accelerate sexual maturity. After a
+ short while the 'queen' is the mother of nearly every bee in the hive, and
+ the colony will fight fiercely to protect her.
+
+```
+
+**Sample response**
+
+```http
+HTTP/1.1 200 OK
+Date: Thu, 25 Aug 2016 18:30:02 GMT
+X-Clv-Request-Id: 9f0ca49a-ae13-4d2d-925b-117b157cf5c3
+Accept-Ranges: bytes
+Server: Cleversafe/3.9.0.121
+X-Clv-S3-Version: 2.5
+x-amz-request-id: 9f0ca49a-ae13-4d2d-925b-117b157cf5c3
+ETag: "3ca744fa96cb95e92081708887f63de5"
+Content-Length: 0
+```
+
+### Using COPY to update metadata
+
+For additional details about executing a `COPY` request, click [here](#copy-object)
+
+**Syntax**
+
+```bash
+PUT https://{endpoint}/{bucket-name}/{object-name} # path style
+PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
+```
+
+**Sample request**
+
+```http
+PUT /apiary/queen-bee HTTP/1.1
+Authorization: Bearer {token}
+Content-Type: text/plain; charset=utf-8
+Host: s3-api.us-geo.objectstorage.softlayer.net
+x-amz-copy-source: /apiary/queen-bee
+x-amz-metadata-directive: REPLACE
+x-amz-meta-key1: value1
+x-amz-meta-key2: value2
+```
+
+**Sample response**
+
+```http
+HTTP/1.1 200 OK
+Date: Thu, 25 Aug 2016 18:30:02 GMT
+X-Clv-Request-Id: 9f0ca49a-ae13-4d2d-925b-117b157cf5c3
+Accept-Ranges: bytes
+Server: Cleversafe/3.9.0.121
+X-Clv-S3-Version: 2.5
+x-amz-request-id: 9f0ca49a-ae13-4d2d-925b-117b157cf5c3
+ETag: "3ca744fa96cb95e92081708887f63de5"
+Content-Length: 0
+```

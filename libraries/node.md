@@ -554,3 +554,72 @@ function getHEADItem(bucketName, itemName) {
 
 *SDK References*
 * [headObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
+
+## Updating Metadata
+
+There are two ways to update the metadata on an existing object:
+* A `PUT` request with the new metadata and the original object contents
+* Executing a `COPY` request with the new metadata specifying the original object as the copy source
+
+### Using PUT to update metadata
+
+```javascript
+function updateMetadataPut(bucketName, itemName, metaValue) {
+    console.log(`Updating metadata for item: ${itemName}`);
+
+    //retrieve the existing item to reload the contents
+    return cos.getObject({
+        Bucket: bucketName, 
+        Key: itemName
+    }).promise()
+    .then((data) => {
+        //set the new metadata
+        var newMetadata = {
+            newkey: metaValue
+        };
+
+        return cos.putObject({
+            Bucket: bucketName,
+            Key: itemName,
+            Body: data.Body,
+            Metadata: newMetadata
+        }).promise()
+        .then(() => {
+            console.log(`Updated metadata for item: ${itemName} from bucket: ${bucketName}`);
+        })
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+
+### Using COPY to update metadata
+
+```javascript
+function updateMetadataCopy(bucketName, itemName, metaValue) {
+    console.log(`Updating metadata for item: ${itemName}`);
+
+    //set the copy source to itself
+    var copySource = bucketName + '/' + itemName;
+
+    //set the new metadata
+    var newMetadata = {
+        newkey: metaValue
+    };
+
+    return cos.copyObject({
+        Bucket: bucketName, 
+        Key: itemName,
+        CopySource: copySource,
+        Metadata: newMetadata,
+        MetadataDirective: 'REPLACE'
+    }).promise()
+    .then((data) => {
+        console.log(`Updated metadata for item: ${itemName} from bucket: ${bucketName}`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
