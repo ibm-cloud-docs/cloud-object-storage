@@ -677,7 +677,6 @@ public static void largeObjectUpload(String bucketName, String itemName, String 
     * [waitForCompletion](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/internal/AbstractTransfer.html#waitForCompletion--){:new_window}
     
 
-
 ## Using Key Protect
 
 Key Protect can be added to a storage bucket to encrypt sensitive data at rest in the cloud.

@@ -30,7 +30,7 @@ Types of endpoint:
 {{site.data.keyword.cloud}} services are connected to a three-tiered network, segmenting public, private, and management traffic.
 
 * **Private endpoints** are available for requests originating from Kubernetes clusters, bare metal servers, virtual servers, and other cloud storage services. Private endpoints provide better performance and do not incur charges for any outgoing or incoming bandwidth even if the traffic is cross regions or across data centers. **Whenever possible, it is best to use a private endpoint.**
-* **Public endpoints** can accept requests from anywhere and charges are assessed on outgoing bandwidth. Incoming bandwidth is free. Public endpoints should be used for access not originating from an {{site.data.keyword.cloud_notm}} cloud computing resource.  **Note**: Cloud Foundry applications are unable to access the private network, so data transfer is metered and charged at standard public network bandwidth rates.
+* **Public endpoints** can accept requests from anywhere and charges are assessed on outgoing bandwidth. Incoming bandwidth is free. Public endpoints should be used for access not originating from an {{site.data.keyword.cloud_notm}} cloud computing resource.  **Note**: Cloud Foundry applications and Cloud Functions are unable to access the private network, so data transfer is metered and charged at standard public network bandwidth rates.
 
 
 ## US Cross Region Endpoints
@@ -247,6 +247,31 @@ Types of endpoint:
 </table>
 {:.endpointtable}
 
+## AP Region Endpoints
+
+<table>
+  <thead>
+    <tr>
+      <th>Region</th>
+      <th>Type</th>
+      <th>Endpoint</th>
+    </tr>
+  </thead>
+  <tr>
+    <td rowspan="2">AP Japan</td>
+    <td>public</td>
+    <td>
+      <code class="highlighter-rouge">s3.jp-tok.objectstorage.softlayer.net</code>
+    </td>
+  </tr>
+  <tr>
+    <td>private</td>
+    <td>
+      <code class="highlighter-rouge">s3.jp-tok.objectstorage.service.networklayer.com</code>
+    </td>
+</table>
+{:.endpointtable}
+
 ## Single Data Center Endpoints
 
 <table>
@@ -297,6 +322,19 @@ Types of endpoint:
       <code class="highlighter-rouge">s3.mel01.objectstorage.service.networklayer.com</code>
     </td>
   </tr>
+   <tr>
+    <td rowspan="2">Montréal, Canada</td>
+    <td>public</td>
+    <td>
+      <code class="highlighter-rouge">s3.mon01.objectstorage.softlayer.net</code>
+    </td>
+  </tr>
+  <tr>
+    <td>private</td>
+    <td>
+      <code class="highlighter-rouge">s3.mon01.objectstorage.service.networklayer.com</code>
+    </td>
+  </tr>
     <tr>
     <td rowspan="2">Oslo, Norway</td>
     <td>public</td>
@@ -321,6 +359,19 @@ Types of endpoint:
     <td>private</td>
     <td>
       <code class="highlighter-rouge">s3.sao01.objectstorage.service.networklayer.com</code>
+    </td>
+  </tr>
+  <tr>
+    <td rowspan="2">Seoul, South Korea</td>
+    <td>public</td>
+    <td>
+      <code class="highlighter-rouge">s3.seo01.objectstorage.softlayer.net</code>
+    </td>
+  </tr>
+  <tr>
+    <td>private</td>
+    <td>
+      <code class="highlighter-rouge">s3.seo01.objectstorage.service.networklayer.com</code>
     </td>
   </tr>
   <tr>
