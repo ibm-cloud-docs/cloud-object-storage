@@ -568,6 +568,7 @@ Each Aspera session spawns an individual `ascp` process that runs on the client 
 Before initializing the `AsperaTransferManager`, make sure you've got working [`s3Client`](#init-config) object.
 
 ```python
+from ibm_s3transfer.aspera.manager import AsperaTransferManager
 transfer_manager = AsperaTransferManager(client)
 ```
 
@@ -581,6 +582,7 @@ The typical configuration for using multi-session should be:
 * 60 MB threshold (*this is the recommended value for most applications*)
 
 ```python
+from ibm_s3transfer.aspera.manager import AsperaConfig
 # Configure 2 sessions for transfer
 ms_transfer_config = AsperaConfig(multi_session=2, 
                                   multi_session_threshold_mb=60)
