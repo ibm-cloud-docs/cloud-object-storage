@@ -291,3 +291,55 @@ rclone sync /path/to/local remote:current --backup-dir remote:old
 will `sync` `/path/to/local` to `remote:current`, but for any files which would have been updated or deleted will be stored in `remote:old`.
 
 If running `rclone` from a script you might want to use today’s date as the directory name passed to `--backup-dir` to store the old files, or you might want to pass `--suffix` with today’s date.
+
+# `rclone` daily sync
+Scheduling a backup is important to automating backups. Depending on your platform will depend on how you do this. Windows can use Task Scheduler while Mac OS and Linux can use crontabs.
+
+## Syncing a Directory
+`Rclone` will sync a local directory with the remote container, storing all the files in the local directory in the container. `Rclone` uses the syntax, `rclone sync source destination`, where `source` is the local folder and `destination` is the container within your IBM COS.
+
+For example
+```
+rclone sync /path/to/my/backup/directory RemoteName:newbucket
+```
+
+You may already have a destination created, but if you don't then you can create a new bucket using the steps above.
+
+## Scheduling a Job
+Before scheduling a job, make sure you have done your initial upload and it has completed.
+
+### Windows
+1. Create a text file called `backup.bat` somewhere on your computer and paste in the command you used in the section [Syncing a Directory](#syncing-a-directory). It will look something like the following. Specify the full path to the rclone.exe and don’t forget to save the file.
+```
+ C:\full\path\to\rclone.exe sync "C:\path\to\my\backup\directory" RemoteName:newbucket
+```
+2. Use `schtasks` to schedule a job. This utility takes a number of parameters.
+	* /RU – the user to run the job as. This is needed if the the user you want to use is logged out.
+	* /RP – the password for the user.
+	* /SC – set to DAILY
+	* /TN – the name of the job. Call it Backup
+	* /TR – the path to the backup.bat file you just created.
+	* /ST – the time to start the task. This is in the 24 hour time format. 01:05:00 is 1:05 AM. 13:05:00 would be 1:05 PM.
+```
+schtasks /Create /RU username /RP "password" /SC DAILY /TN Backup /TR C:\path\to\backup.bat /ST 01:05:00
+```
+
+### Mac and Linux
+1. Create a text file called `backup.sh` somewhere on your computer, and paste the command you used in the section [Syncing a Directory](#syncing-a-directory). It will look something like the following. Specify the full path to the rclone executable and don’t forget to save the file.
+```
+#!/bin/sh
+/full/path/to/rclone sync /path/to/my/backup/directory RemoteName:newbucket
+```
+2. Make the script executable with `chmod`.
+```
+chmod +x backup.sh
+```
+3. Edit crontabs.
+```
+sudo crontab -e
+```
+4. Add an entry to the bottom of the crontabs file. Crontabs are straight forward: the first 5 fields represent in order minutes, hours, days, months, and weekdays. Using * will denote all. To make the `backup.sh` run at Daily at 1:05 AM, use something that looks like this:
+```
+5 1 * * * /full/path/to/backup.sh
+```
+5. Save the crontabs and you’re ready to go.
