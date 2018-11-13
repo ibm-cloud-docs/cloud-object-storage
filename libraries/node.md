@@ -86,7 +86,7 @@ function createBucket(bucketName) {
         console.log(`Bucket: ${bucketName} created!`);
     }))
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -108,7 +108,7 @@ function createTextFile(bucketName, itemName, fileText) {
         console.log(`Item: ${itemName} created!`);
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -130,7 +130,7 @@ function getBuckets() {
         }
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -155,7 +155,7 @@ function getBucketContents(bucketName) {
         }    
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -177,7 +177,7 @@ function getItem(bucketName, itemName) {
         }    
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -197,7 +197,7 @@ function deleteItem(bucketName, itemName) {
         console.log(`Item: ${itemName} deleted!`);
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -215,7 +215,7 @@ function deleteBucket(bucketName) {
         console.log(`Bucket: ${bucketName} deleted!`);
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -241,7 +241,7 @@ function getBucketACL(bucketName) {
         }
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -268,7 +268,7 @@ function getItemACL(bucketName, itemName) {
         }
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -284,7 +284,7 @@ function multiPartUpload(bucketName, itemName, filePath) {
     var uploadID = null;
 
     if (!fs.existsSync(filePath)) {
-        logError(new Error(`The file \'${filePath}\' does not exist or is not accessible.`));
+        log.error(new Error(`The file \'${filePath}\' does not exist or is not accessible.`));
         return;
     }
 
@@ -308,7 +308,7 @@ function multiPartUpload(bucketName, itemName, filePath) {
     
                 partNum++;
 
-                console.log(`Uploading to ${name} (part ${partNum} of ${partCount})`);  
+                console.log(`Uploading to ${itemName} (part ${partNum} of ${partCount})`);  
 
                 cos.uploadPart({
                     Body: fileData.slice(start, end),
@@ -322,7 +322,7 @@ function multiPartUpload(bucketName, itemName, filePath) {
                 })
                 .catch((e) => {
                     cancelMultiPartUpload(bucketName, itemName, uploadID);
-                    console.log(`ERROR: ${e.code} - ${e.message}\n`);
+                    console.error(`ERROR: ${e.code} - ${e.message}\n`);
                 });
             }, (e, dataPacks) => {
                 cos.completeMultipartUpload({
@@ -333,16 +333,16 @@ function multiPartUpload(bucketName, itemName, filePath) {
                     },
                     UploadId: uploadID
                 }).promise()
-                .then(logDone)
+                .then(console.log(`Upload of all ${partCount} parts of ${itemName} successful.`)
                 .catch((e) => {
                     cancelMultiPartUpload(bucketName, itemName, uploadID);
-                    console.log(`ERROR: ${e.code} - ${e.message}\n`);
+                    console.error(`ERROR: ${e.code} - ${e.message}\n`);
                 });
             });
         });
     })
     .catch(e) {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     };
 }
 
@@ -356,7 +356,7 @@ function cancelMultiPartUpload(bucketName, itemName, uploadID) {
         console.log(`Multi-part upload aborted for ${itemName}`);
     })
     .catch((e){
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
