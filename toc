@@ -20,6 +20,7 @@ Cloud Object Storage
     basics/upload.md
     basics/archive.md
     basics/aspera.md
+    basics/immutable.md
 
     {: .topicgroup}
     Manage access
