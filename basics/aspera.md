@@ -77,7 +77,7 @@ The Aspera high-speed transfer SDK is closed-source and thus an optional depende
 {: #aspera-packaging}
 The image below displays a high-level overview of the how the COS SDK interacts with the Aspera high-speed transfer library to provide functionality.
 
-<img src="https://s3-api.us-geo.objectstorage.softlayer.net/docs-resources/aspera-packaging.png" height="450px" />
+<img src="https://s3-api.us-geo.objectstorage.softlayer.net/docs-resources/aspera-packaging.png" height="200px" />
 
 `Figure 1: COS/Aspera High-Speed Transfer SDK`
 

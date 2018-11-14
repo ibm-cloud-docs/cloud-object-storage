@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "19-10-2018"
+lastupdated: "30-10-2018"
 
 ---
 {:new_window: target="_blank"}
@@ -14,12 +14,16 @@ lastupdated: "19-10-2018"
 
 # Use the IBM Cloud CLI
 
+The Cloud Object Storage plugin for command-line interface (CLI) provides extra capabilities for working with IBM® Cloud Object Storage. You can use the Cloud Object Storage plugin for CLI to manage and maintain buckets and objects within IBM® Cloud Object Storage.
+
+**Note:** The Cloud Object Storage plugin for command-line interface (CLI) is compatible with Windows, Linux, MacOS V10 and must be a 64-bit machine.
+
 The beta version of a {{site.data.keyword.cos_short}} plugin [{{site.data.keyword.cloud}} Platform CLI](https://clis.ng.bluemix.net/ui/home.html) is available for anyone interested in trying it out.  Note that this plug-in is beta software and subject to change, and is not suitable for production workloads. If you have any comments or suggestions on the CLI plugin, click on the "Feedback" button on this page and select the relevant section of the documentation.
 {:tip}
 
 ## Installation and configuration
 
-Install the plugin can using the `plugin install` command.
+Install the plugin using the `plugin install` command.
 
 ```
 ibmcloud plugin install cloud-object-storage
@@ -42,7 +46,14 @@ At any time, to switch between HMAC and IAM authentication, you can type `ibmclo
 
 ## Command index
 
-[create bucket](#foo) | [delete bucket](#foo)  | [create bucket](#foo)
+|Bucket | Object | Other |
+| --- | --- | --- |
+| [create-bucket](#create-a-new-bucket) | [get-object](#download-an-object) | [config](#configure-the-program) |
+| [delete-bucket](#delete-an-existing-bucket) | [head-object](#get-an-objects-headers) | [create-multipart-upload](#create-a-new-multipart-upload) |
+| [get-bucket-location](#find-a-bucket) | [put-object](#upload-an-object) | [upload-part](#upload-a-part) |
+| [get-bucket-class](#get-a-buckets-class) | [delete-object](#delete-an-object) | [list-parts](#list-parts) |
+| [head-bucket](#get-a-buckets-headers) | [copy-object](#copy-object-between-buckets) | [abort-multipart-upload](#abort-a-multipart-upload) |
+| [list-buckets](#list-all-buckets) | [list-objects](#list-objects) | [complete-multipart-upload](#complete-a-multipart-upload) |
 
 Each operation listed below has an explanation of what it does, how to use it, and any optional or required parameters. Unless specified as optional, any listed parameters are mandatory.
 
@@ -136,7 +147,7 @@ The IBM Cloud CLI mandates that commands start with `ibmcloud`. However, until t
 	* _Optional_: The region where the bucket is located. If this parameter is not provided, the program will use the `DefaultRegion` value in the `credentials.json` file located in the user's `.bluemix` folder.
 		* Flag: `--region REGION_NAME`
 
-### Copy objects between buckets
+### Copy object between buckets
 * **Action:** Copy an object from source bucket to destination bucket.
 * **Usage:** `ibmcloud cos copy-object --bucket [DESTINATION_BUCKET] --copysource [COPY_SOURCE] --key [KEY_NAME] [--region REGION_NAME] `
 * **Parameters to provide:**
