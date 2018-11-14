@@ -5,6 +5,10 @@ copyright:
 lastupdated: "2018-09-27"
 
 ---
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
@@ -14,7 +18,7 @@ lastupdated: "2018-09-27"
 
 # Use Immutable Object Storage
 
-Some industries, such as financial services, have strict oversight and audit requirements that require retention of certain records for prescribed lengths of time without modification. In 2003 the SEC issued an Interpretive Release that software defined storage could meet the retention requirements if it can meet a set of rules.
+Some industries, such as financial services, have strict oversight and audit requirements that require retention of certain records  without modification for prescribed lengths of time. In 2003 the SEC issued an Interpretive Release that software defined storage could meet the retention requirements if it can meet a set of rules.
 
 | Rule | Requirement |
 | :--- | :--- |
@@ -28,473 +32,370 @@ Users configuring buckets with Immutable Object Storage can set the length of re
 
 IBM Cloud administrators and operators are unable to override the constraints imposed by Immutable Object Storage.
 
-Immutable Object Storage is not available in all regions. See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html#service-availability) for more details.
+Immutable Object Storage is not available in all regions, and requires a Standard plan. See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html#service-availability) for more details.
 {:tip}
+
+## Who needs Immutable Object Storage?
+
+Users who may benefit from using Immutable Object Storage include:
+    * Financial Industry
+    * Healthcare Industry
+    * Media content archives
+    * General archives
+    * Those who have a regulatory requirement to prevent destruction of data
+    * Those who are looking to prevent privileged modification or deletion of objects or documents
+
+Immutable object storage policies prevent users with `Writer` or `Manager` roles from deleting or modifying an object once it is written. Therefore, it should be used when governance dictates that documents must adhere to a retention policy that prevents privileged users from maliciously or accidentally altering data.
+
+Immutable object storage policies should not be used for objects that are frequently modified or that privileged users must be allowed to delete.
+
+### Event-based retention
+User applications can store an object in {{site.data.keyword.cos_full}} with an indefinite retention period and then can change the object retention to a finite value at a later time. For example, a company has a policy of retaining employee records for three years after the employee leaves the company. When an employee joins the company, the records associated with that employee can be indefinitely retained. When the employee leaves the company, the indefinite retention is converted to a finite value of three years from the current time, as defined by company policy. The object is then protected for three years after the retention period change. {{site.data.keyword.cos_full}} provides the interface by which a third party application or a user can convert the retention of those documents from an indefinite to a finite retention. The user or third party application is responsible for triggering the change in the retention period using the SDK or REST API.
+
+### Permanent retention
+Objects can be stored in {{site.data.keyword.cos_full}} with a permanent retention period. A permanent retention period never expires, so these objects cannot ever be deleted or modified. The bucket in which the object resides must have permanent retention enabled to store an object permanently. Lifting permanent retention from a bucket or objects is impossible without a legal review process and the engagement of a data fiduciary.
+
+### Audit of access and transactions
+Access log data for Immutable Object Storage to review changes to retention parameters, object retention period, and application of legal holds is available on a case-by-case basis by opening a customer service ticket.
 
 ## Using the console
 {: #console}
 
 TBD
 
-## Using Libraries and SDKs
+## Using the REST API, Libraries, and SDKs
 {: #sdk}
 Several new APIs have been introduced to the IBM COS SDKs to provide support for applications working with Immutable Object Storage.
 
+{: http}
+### Create a protected bucket
+This implementation of the `PUT` operation uses the protection query parameter to set the retention parameters for an existing bucket. This operation allows you to set or change the minimum, default, and maximum retention period. This operation also allows you to change the protection state of the bucket. 
+
+Objects written to a protected bucket cannot be deleted until the protection period has expired and all legal holds on the object are removed. The bucket's default retention value is given to an object unless an object specific value is provided when the object is created. Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object. 
+
+The minimum supported value for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` is 0 days and the maximum supported value is 36159 days. 
+
+A `Content-MD5` header is required. This operation does not make use of additional query parameters.
+
+**Syntax**
+
+```
+PUT https://{endpoint}/{bucket-name}?protection= # path style
+PUT https://{bucket-name}.{endpoint}?protection= # virtual host style
+```
+
+**Sample request**
+```xml
+PUT /example-bucket?protection= HTTP/1.1
+Authorization: {authorization-string}
+x-amz-date: 20181011T190354Z
+x-amz-content-sha256: 2938f51643d63c864fdbea618fe71b13579570a86f39da2837c922bae68d72df
+Content-MD5: GQmpTNpruOyK6YrxHnpj7g==
+Content-Type: text/plain
+Host: 67.228.254.193
+Content-Length: 299
+<ProtectionConfiguration>
+  <Status>Retention</Status>
+  <MinimumRetention>
+    <Days>100</Days>
+  </MinimumRetention>
+  <MaximumRetention>
+    <Days>10000</Days>
+  </MaximumRetention>
+  <DefaultRetention>
+    <Days>2555</Days>
+  </DefaultRetention>
+</ProtectionConfiguration>
+```
+
+**Sample response**
+```
+HTTP/1.1 200 OK
+Date: Wed, 5 Oct 2018 15:39:38 GMT
+X-Clv-Request-Id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
+Accept-Ranges: bytes
+Server: Cleversafe/3.14.1 
+X-Clv-S3-Version: 2.5
+x-amz-request-id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
+Content-Length: 0
+```
+
+### Check protection on a bucket
+This implementation of the GET operation uses the protection query parameter to fetch the retention parameters for an existing bucket. 
+
+**Syntax**
+
+```
+GET https://{endpoint}/{bucket-name}?protection= # path style
+GET https://{bucket-name}.{endpoint}?protection= # virtual host style
+```
+
+**Sample request**
+
+```xml
+GET /example-bucket?protection= HTTP/1.1
+Authorization: {authorization-string}
+x-amz-date: 20181011T190354Z
+Content-Type: text/plain
+Host: 67.228.254.193
+Sample response
+HTTP/1.1 200 OK
+Date: Wed, 5 Oct 2018 15:39:38 GMT
+X-Clv-Request-Id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
+Accept-Ranges: bytes
+Server: Cleversafe/3.13.1 
+X-Clv-S3-Version: 2.5
+x-amz-request-id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
+Content-Length: 299
+<ProtectionConfiguration>
+  <Status>Retention</Status>
+  <MinimumRetention>
+    <Days>100</Days>
+  </MinimumRetention>
+  <MaximumRetention>
+    <Days>10000</Days>
+  </MaximumRetention>
+  <DefaultRetention>
+    <Days>2555</Days>
+  </DefaultRetention>
+</ProtectionConfiguration>
+```
+
+If there is no protection configuration on the bucket, the server responds with disabled status instead.
+
+```xml
+<ProtectionConfiguration>
+  <Status>Disabled</Status>
+</ProtectionConfiguration>
+```
+
+### Upload a protected object
+This enhancement of the `PUT` operation adds three new request headers: two for specifying the retention period in different ways, and one for adding a single legal hold to the new object. New errors are defined for illegal values for the new headers, and if an object is under retention any overwrites will fail.
+
+Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
+
+A `Content-MD5` header is required.
+
+These headers apply to POST object and multipart upload requests as well. If uploading an object in multiple parts, each part requires a `Content-MD5` header.
+
+|Header	| Type	| Description|
+| --- | --- | --- | 
+|`Retention-Period` |	Non-negative integer (seconds)	| Retention period to store on the object in seconds. The object can be neither overwritten nor deleted until the amount of time specified in the retention period has elapsed. If this field and Retention-Expiration-Date are specified a 400 error is returned. If neither is specified the bucket's DefaultRetention period will be used. | 
+0 is a legal value assuming the bucket's minimum retention period is also 0.
+| `Retention-expiration-date`	| Date (ISO 8601 Format) | Date on which it will be legal to delete or modify the object. You can only specify this or the Retention-Period header. If both are specified a 400 error will be returned. If neither is specified the bucket's DefaultRetention period will be used. This header should be used to calculate a retention period in seconds and then stored in that manner. | 
+| `Retention-legal-hold-id` |	string | A single legal hold to apply to the object. A legal hold is a Y character long string. The object cannot be overwritten or deleted until all legal holds associated with the object are removed. | 
+
+
+### Add or remove a legal hold to or from a protected object
+This implementation of the `POST` operation uses the legalHold query parameter and add and remove query parameters to add or remove a single legal hold from a protected object in a protected bucket.
+
+The object can support 100 legal holds
+    * A legal hold identifier is a string of maximum length 64 characters and a minimum length of 1 character. Valid characters are letters, numbers, !, _, ., *, ', (, ), and -.
+    * If the addition of the given legal hold exceeds 100 total legal holds on the object, the new legal hold will not be added, a 400 error will be returned.
+    * If an identifier is too long it will not be added to the object and a 400 error is returned.
+    * If an identifier contains invalid characters, it will not be added to the object and a 400 error is returned.
+    * If an identifier is already in use on an object, the existing legal hold is not modified and the response indicates the identifier was already in use with a 409 error.
+    * If an object does not have retention period metadata, a 400 error is returned and adding or removing a legal hold is not allowed.
+
+The legal hold identifiers are stored in the object metadata along with the timestamp of when they are applied to the object. The presence of any legal hold identifiers prevents the modification or deletion of the object data, even if the retention period has expired. The presence of a retention period header is required, otherwise a 400 error is returned.
+
+The user making a `POST ?legalHold` request must have `Manager` permissions for this bucket. 
+
+A `Content-MD5` header is required. This operation does not make use of operation specific payload elements.
+
+**Syntax**
+
+```
+POST https://{endpoint}/{bucket-name}?legalHold # path style
+POST https://{bucket-name}.{endpoint}?legalHold= # virtual host style
+```
+
+**Sample request**
+
+```
+POST /BucketName/ObjectName?legalHold&add=legalHoldID HTTP/1.1
+Host: myBucket.mydsNet.corp.com
+Date: Wed, 8 Feb 2017 17:50:00 GMT
+Authorization: authorization string
+Content-Type: text/plain
+```
+
+**Sample response**
+
+```
+HTTP/1.1 200 OK
+Date: Wed, 8 Feb 2017 17:51:00 GMT
+Connection: close
+```
+
+### Extend the retention period of a protected object
+This implementation of the `POST` operation uses the `extendRetention` query parameter to extend the retention period of a protected object in a protected bucket.
+
+    * The retention period of an object can only be extended. It cannot be decreased from the currently configured value.
+    * The retention expansion value can be set in one of three ways: 
+        * additional time from the current value
+        * new extension period in seconds
+        * new retention expiry date of the object
+
+The current retention period stored in the object metadata is either increased by the given additional time or replaced with the new value, depending on the parameter that is set in the `extendRetention` request. In all cases, the extend retention parameter is checked against the current retention period and the extended parameter is only accepted if the updated retention period is greater than the current retention period.
+
+Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
+
+**Syntax**
+
+```
+POST https://{endpoint}/{bucket-name}?extendRetention= # path style
+POST https://{bucket-name}.{endpoint}?extendRetention= # virtual host style
+```
+
+**Sample request**
+
+```
+POST /BucketName/ObjectName?extendRetention HTTP/1.1
+Host: myBucket.mydsNet.corp.com
+Date: Wed, 8Feb 201717:50:00GMT
+Authorization: authorization string
+Content-Type: text/plain
+Additional-Retention-Period: 31470552
+```
+
+**Sample response**
+
+```
+HTTP/1.1 200 OK
+Date: Wed, 8Feb 201717:51:00GMT
+Connection: close
+```
+
+### List legal holds on a protected object
+This implementation of the `GET` operation uses the `legalHold` query parameter to return the list of legal holds on an object and related retention state in an XML response body.
+
+    * Object creation date
+    * Object retention period in seconds (our chosen unit of time for S3 API retention periods)
+    * Calculated retention expiration date based on the period and creation date
+    * List of legal holds
+    * Legal hold identifier
+    * Time stamp when legal hold was applied
+
+If there are no legal holds on the object, an empty `LegalHoldSet` is returned.
+If there is no retention period specified on the object, a 404 error is returned.
+
+**Syntax**
+
+```
+GET https://{endpoint}/{bucket-name}?legalHold= # path style
+GET https://{bucket-name}.{endpoint}?legalHold= # virtual host style
+```
+
+**Sample request**
+
+```
+GET /BucketName/ObjectName?legalHold HTTP/1.1
+Host: myBucket.mydsNet.corp.com
+Date: Wed, 8 Feb 2017 17:50:00 GMT
+Authorization: {authorization-string}
+Content-Type: text/plain
+```
+
+**Sample response**
+
+```xml
+HTTP/1.1 200 OK
+Date: Wed, 8 Feb 2017 17:51:00 GMT
+Connection: close
+<?xml version="1.0" encoding="UTF-8"?>
+<RetentionState>
+  <CreateTime>Thu, 2 Sep 2016 21:33:08 GMT</CreateTime>
+  <RetentionPeriod>220752000</RetentionPeriod>
+  <RetentionPeriodExpirationDate>Fri, 1 Sep 2023 21:33:08
+GMT</RetentionPeriodExpirationDate>
+  <LegalHoldSet>
+    <LegalHold>
+      <ID>SomeLegalHoldID</ID>
+      <Date>Thu, 15 Sep 2016 23:13:18 GMT</Date>
+    </LegalHold>
+    <LegalHold>
+    ...
+    </LegalHold>
+  </LegalHoldSet>
+</RetentionState>
+```
+
+{: http}
+
 {: python}
 ```py
-import string
-import os
-import pytz
-import random
-import ibm_boto3 as boto3
-import ibm_botocore as botocore
-import logging
-from ibm_botocore.exceptions import ClientError
-from ibm_botocore.config import Config
-from datetime import datetime as datetimex
-from datetime import timedelta
-
-endpoint_url = 'https://10.137.15.35:8443'
-ibm_api_key_id = 'bfe4bc68ec914c23bb5ce43a8fefaf29'
-ibm_service_instance_id = 'admin'
-ibm_auth_endpoint = 'https://192.168.11.7:4567/oidc/token'
-
-
-def set_debug_level(level):
-    logs = ['ibm_boto3',
-            'ibm_botocore',
-            'requests',
-            'urllib3',
-            'endpoint',
-            'client',
-            'auth']
-    for name in logs:
-        add_debug_logging_handler(name, level)
-
-
-def add_debug_logging_handler(name, level=logging.DEBUG):
-    logger = logging.getLogger(name)
-    if logger:
-        handler = logging.StreamHandler()
-        handler.setFormatter(
-            logging.Formatter('%(asctime)s %(levelname)s %(message)s'))
-        logger.addHandler(handler)
-        logger.setLevel(level)
-
-
-set_debug_level(logging.DEBUG)
-
-default_bucket_protection_config = {
-            'Status': 'Retention',
-            'MinimumRetention': {'Days': 10},
-            'DefaultRetention': {'Days': 10},
-            'MaximumRetention': {'Days': 1000},
-            'EnablePermanentRetention': True}
-
-
-def create_resource():
-    session = boto3.session.Session()
-    res = session.resource(
-        's3',
-        endpoint_url=endpoint_url,
-        ibm_api_key_id=ibm_api_key_id,
-        ibm_service_instance_id=ibm_service_instance_id,
-        ibm_auth_endpoint=ibm_auth_endpoint,
-        verify=False,
-        config=Config(signature_version='oauth')
-    )
-
-    return res
-
-
-def get_random_name(num_chars=10):
-    base = string.ascii_lowercase + string.digits
-    random_bytes = bytearray(os.urandom(num_chars))
-    bucket_name = "demo-object-retention" + ''.join([base[b % len(base)]
-                                                     for b in random_bytes]
-                                                    )
-
-    return bucket_name
-
-
-class DemoWORM(object):
-
-    # Create resource
-    cos_res = create_resource()
-
-    # Get client from resource
-    s3client = cos_res.meta.client
-
-    def __init__(self):
-        # Create bucket
-        _bucket = self.cos_res.create_bucket(
-            Bucket=get_random_name(),
-            IBMServiceInstanceId=ibm_service_instance_id)
-
-        # Confirm that the bucket was created
-        try:
-            self.s3client.head_bucket(Bucket=_bucket.name)
-        except ClientError:
-            raise Exception('Bucket was not created correctly.')
-        print _bucket
-        # Test WORM operations
-        self.test_worm_operations(_bucket.name)
-
-    def test_worm_operations(self, bucket_name):
-
-        # Put bucket protection
-        protection = self.s3client.put_bucket_protection_configuration(
-            Bucket=bucket_name,
-            ProtectionConfiguration=default_bucket_protection_config)
-        print "Bucket Protection values="
-        print protection
-
-        # Get bucket protection and confirm it matches expected
-        protection_conf = self.check_bucket_protection(bucket_name)
-
-        print "GET Bucket Protection values Response conf "
-        print protection_conf
-
-        # Put object with retention period of 12 days
-        key = get_random_name()
-        period = 12*24*60*60
-        put_object_w_Retention = self.put_object_with_retention(
-            bucket_name,
-            key,
-            retention_period=period)
-
-        print "PUT Bucket Protection values Response = "
-        print put_object_w_Retention
-
-        # Head object and confirm retention detail matches expected
-        self.check_head_object_retention_headers(bucket_name,
-                                                 key,
-                                                 str(period),
-                                                 self.get_expiration_date(12))
-
-        # GET object and confirm retention detail matches expected
-        self.check_get_object_retention_headers(bucket_name,
-                                                key,
-                                                str(period),
-                                                self.get_expiration_date(12))
-
-        # Add 5 random object legal holds
-        _legal_holds = []
-        for pos in range(0, 5):
-            _legal_holds.append("test-legal-hold-%d" % pos)
-
-        for legal_hold_id in _legal_holds:
-            self.s3client.add_legal_hold(Bucket=bucket_name,
-                                         Key=key,
-                                         RetentionLegalHoldId=legal_hold_id)
-
-        # HEAD object and confirm legal hold matches expected
-        self.check_legal_hold_count(bucket_name, key, 5)
-
-        # List legal holds
-        legal_holds = self.s3client.list_legal_holds(Bucket=bucket_name,
-                                                     Key=key)
-
-        # Delete random legal hold
-        legal_hold_to_delete = legal_holds['LegalHolds'][2]
-        legal_hold_id = legal_hold_to_delete['ID']
-        self.s3client.delete_legal_hold(
-                                        Bucket=bucket_name,
-                                        Key=key,
-                                        RetentionLegalHoldId=legal_hold_id)
-
-        # HEAD object and confirm legal hold count matches expected
-        self.check_legal_hold_count(bucket_name, key, 4)
-
-        # Extend object retention with additional retention period of 10 days
-        add_retention_period = 10 * 24 * 60 * 60
-        self.s3client.extend_object_retention(
-            Bucket=bucket_name,
-            Key=key,
-            AdditionalRetentionPeriod=add_retention_period)
-
-        # HEAD object and confirm retention detail matches expected
-        self.check_head_object_retention_headers(
-            bucket_name,
-            key,
-            str(period + add_retention_period),
-            self.get_expiration_date(22))
-
-        # Copy object with retention detail retained
-        new_key = get_random_name()
-        self.s3client.copy_object(
-            Bucket=bucket_name,
-            Key=new_key,
-            CopySource='%s/%s' % (bucket_name, key),
-            RetentionDirective="Copy")
-
-        # HEAD object and confirm retention detail for new object
-        # matches expected
-        self.check_head_object_retention_headers(
-            bucket_name,
-            new_key,
-            str(period + add_retention_period),
-            self.get_expiration_date(22))
-
-        # Copy object replacing retention detail
-        new_key = get_random_name()
-        self.s3client.copy_object(
-            Bucket=bucket_name,
-            Key=new_key,
-            CopySource='%s/%s' % (bucket_name, key),
-            RetentionDirective="Replace")
-
-        # HEAD object and confirm retention detail for new object
-        # matches expected. Since we aren't retaining retention info
-        # the new object's retention info should assume the bucket's default
-        # retention.
-        self.check_head_object_retention_headers(
-            bucket_name,
-            new_key,
-            str(default_bucket_protection_config['DefaultRetention']['Days']
-                * 24 * 60 * 60),
-            self.get_expiration_date(
-                default_bucket_protection_config['DefaultRetention']['Days']))
-
-        # Do a multipart upload with object retention period 20 days
-        key = get_random_name()
-        period = 20 * 24 * 60 * 60
-        retention_args = self.get_retention_args(retention_period=period)
-        self.create_multipart_upload(bucket_name, key, retention_args)
-
-        # HEAD object and confirm retention detail matches expected
-        self.check_head_object_retention_headers(bucket_name,
-                                                 key,
-                                                 str(period),
-                                                 self.get_expiration_date(20))
-
-        # Put object with indefinite retention
-        key = get_random_name()
-        period = -1
-        put_object_w_Retention = self.put_object_with_retention(
-            bucket_name,
-            key,
-            retention_period=period)
-
-        # Head object and confirm retention detail matches expected
-        self.check_head_object_retention_headers(bucket_name,
-                                                 key,
-                                                 str(period))
-
-        # Put object with permanent retention
-        key = get_random_name()
-        period = -2
-        put_object_w_Retention = self.put_object_with_retention(
-            bucket_name,
-            key,
-            retention_period=period)
-
-        # Head object and confirm retention detail matches expected
-        self.check_head_object_retention_headers(bucket_name,
-                                                 key,
-                                                 str(period))
-
-    def check_bucket_protection(self, bucket_name):
-
-        returned = self.s3client.get_bucket_protection_configuration(
-            Bucket=bucket_name)
-        returned_protection_config = returned['ProtectionConfiguration']
-        returned_minimum_days = \
-            returned_protection_config['MinimumRetention']['Days']
-        returned_maximum_days = \
-            returned_protection_config['MaximumRetention']['Days']
-        returned_default_days = \
-            returned_protection_config['DefaultRetention']['Days']
-        expected_minimum_days = \
-            default_bucket_protection_config['MinimumRetention']['Days']
-        expected_maximum_days = \
-            default_bucket_protection_config['MaximumRetention']['Days']
-        expected_default_days = \
-            default_bucket_protection_config['DefaultRetention']['Days']
-        assert(returned_minimum_days == expected_minimum_days)
-        assert(returned_maximum_days == expected_maximum_days)
-        assert(returned_default_days == expected_default_days)
-
-    ''' Puts an object with required retention information '''
-    def put_object_with_retention(self,
-                                  bucket_name,
-                                  key,
-                                  retention_expiration_date=None,
-                                  retention_legal_hold_id=None,
-                                  retention_period=None,
-                                  retention_directive=None):
-
-        # Create common put object arguments
-        _args = {}
-        _args['Bucket'] = bucket_name
-        _args['Body'] = 'some test content'
-        _args['Key'] = key
-
-        # Add object retention arguments
-        retention_args = self.get_retention_args(
-            retention_expiration_date,
-            retention_legal_hold_id,
-            retention_period,
-            retention_directive)
-        _args.update(retention_args)
-
-        self.s3client.put_object(**_args)
-
-    ''' Returns object retention arguments '''
-    def get_retention_args(
-            self,
-            retention_expiration_date=None,
-            retention_legal_hold_id=None,
-            retention_period=None,
-            retention_directive=None):
-        _args = {}
-        if retention_expiration_date:
-            _args['RetentionExpirationDate'] = retention_expiration_date
-        if retention_legal_hold_id is not None:
-            _args['RetentionLegalHoldId'] = retention_legal_hold_id
-        if retention_period:
-            _args['RetentionPeriod'] = retention_period
-        if retention_directive:
-            _args['RetentionDirective'] = retention_directive
-        return _args
-
-    ''' HEAD object and check that retention headers match expected '''
-    def check_head_object_retention_headers(
-            self,
-            bucket_name,
-            key,
-            expected_retention_period=None,
-            expected_retention_expiration=None):
-
-        # HEAD object
-        returned = self.s3client.head_object(Bucket=bucket_name, Key=key)
-
-        # Confirm retention headers match expected
-        returned_headers = returned['ResponseMetadata']['HTTPHeaders']
-        if 'retention-period' in returned_headers:
-            returned_retention_period = returned_headers['retention-period']
-            assert(returned_retention_period == expected_retention_period)
-        if 'retention-expiration-date' in returned_headers:
-            returned_retention_expiration = \
-                self.convert_date_to_string(
-                    returned_headers['retention-expiration-date'])
-            assert(
-                returned_retention_expiration == expected_retention_expiration)
-
-    ''' GET object and check that retention headers match expected '''
-    def check_get_object_retention_headers(self,
-                                           bucket_name,
-                                           key,
-                                           expected_retention_period,
-                                           expected_retention_expiration):
-
-        # GET object
-        returned = self.s3client.get_object(Bucket=bucket_name, Key=key)
-
-        # Confirm retention headers match expected
-        returned_headers = returned['ResponseMetadata']['HTTPHeaders']
-        returned_retention_period = returned_headers['retention-period']
-        returned_retention_expiration = \
-            self.convert_date_to_string(
-                returned_headers['retention-expiration-date'])
-        assert(returned_retention_period == expected_retention_period)
-        assert(returned_retention_expiration == expected_retention_expiration)
-
-    ''' HEAD object and confirm legal hold count matches expected '''
-    def check_legal_hold_count(self,
-                               bucket_name,
-                               key,
-                               expected_count):
-
-        # HEAD object
-        returned = self.s3client.head_object(Bucket=bucket_name, Key=key)
-        returned_headers = returned['ResponseMetadata']['HTTPHeaders']
-        legal_hold_count = returned_headers['retention-legal-hold-count']
-        assert(legal_hold_count == str(expected_count))
-
-    def get_expiration_date(self, add_days=0):
-        _dt = datetimex.now(pytz.timezone('UTC'))
-        if add_days != 0:
-            _dt += timedelta(days=add_days)
-        return _dt.strftime("%Y-%m-%d")
-
-    def get_expiration_date_with_time(self, add_days=0):
-        _dt = datetimex.now(pytz.timezone('UTC'))
-        if add_days != 0:
-            _dt += timedelta(days=add_days)
-        return _dt.strftime("%Y-%m-%d %H:%M:%S+00:00")
-
-    def convert_date_to_string(self, date):
-        wday, day, month, year, time, _ = date.split(' ')
-        hour, minute, second = time.split(':')
-        date_object = datetimex.strptime(
-            day + ' ' + month + ' ' + year
-            + ' ' + hour + ' ' + minute + ' '
-            + second, "%d %b %Y %H %M %S")
-        return date_object.strftime("%Y-%m-%d")
-
-    def create_multipart_upload(self, bucket_name, key, extra_args={}):
-
-        _size = 6 * 1024 * 1024
-        _part_size = 5 * 1024 * 1024
-        upload = self.s3client.create_multipart_upload(Bucket=bucket_name,
-                                                       Key=key,
-                                                       ContentType='',
-                                                       Metadata={})
-
-        _upload_id = upload.get('UploadId')
-        _parts = []
-        for i, part in enumerate(self.generate_random(_size, _part_size)):
-            _part_number = i + 1
-            uploaded_part = self.s3client.upload_part(Bucket=bucket_name,
-                                                      Key=key,
-                                                      PartNumber=_part_number,
-                                                      UploadId=_upload_id,
-                                                      Body=part)
-
-            _parts.append(
-                {'ETag': uploaded_part.get('ETag').replace('"', '').strip(),
-                 'PartNumber': _part_number})
-
-        _args = {}
-        _args['Bucket'] = bucket_name
-        _args['Key'] = key
-        _args['MultipartUpload'] = {'Parts': _parts}
-        _args['UploadId'] = _upload_id
-
-        _args.update(extra_args)
-
-        _ret = self.s3client.complete_multipart_upload(**_args)
-        assert(_ret['ResponseMetadata']['HTTPStatusCode'] == 200)
-
-    def generate_random(self, size, part_size=5*1024*1024):
-        """
-        Generate the specified number random data.
-        (actually each MB is a repetition of the first KB)
-        """
-        chunk = 1024
-        # allowed = string.ascii_letters
-        allowed = '1234567890'
-        for x in range(0, size, part_size):
-            strpart = ''.join([allowed[random.randint(0, len(allowed) - 1)] for _ in range(chunk)])
-            s = ''
-            left = size - x
-            this_part_size = min(left, part_size)
-            for y in range(int(this_part_size / chunk)):
-                s = s + strpart
-            s = s + strpart[:(this_part_size % chunk)]
-            yield s
-            if (x == size):
-                return
-
-
-def main():
-    set_debug_level(logging.DEBUG)
-    demo = DemoWORM()
-
-
-if __name__ == "__main__":
-    main()
+client.put_bucket_protection_configuration(
+    Bucket=bucket,
+    ProtectionConfiguration={
+    'Status': 'Retention',
+    'MinimumRetention': {'Days': 10},
+    'DefaultRetention': {'Days': 100},
+    'MaximumRetention': {'Days': 1000}
+    })
+
+client.get_bucket_protection_configuration(
+    Bucket=bucket
+)
+
+client.add_legal_hold(
+    Bucket=bucket,
+    Key=key,
+    RetentionLegalHoldId=legal_hold_id
+)
+
+client.delete_legal_hold(
+    Bucket=bucket,
+    Key=key,
+    RetentionLegalHoldId=legal_hold_id
+)
+
+client.list_legal_holds(
+    Bucket=bucket,
+    Key=key
+)
+
+client.extend_object_retention(
+    Bucket=bucket,
+    Key=key,
+    AdditionalRetentionPeriod=10
+)
+	
+client.put_object(
+    Bucket=bucket,
+    Body=f,
+    Key=key,
+    RetentionLegalHoldId="put-object-legal-hold"
+)
+
+client.copy_object(
+    Bucket=bucket,
+    Key='newkey',
+    CopySource='%s/%s' % (bucket, key),
+    RetentionDirective="Copy"
+)
+
+client.complete_multipart_upload(
+    Bucket=bucket,
+    Key=key,
+    MultipartUpload={
+        'Parts':[
+            {
+                'ETag': part['ETag'],
+                'PartNumber': 1
+            }
+        ]
+    },
+    UploadId=initiate['UploadId'],
+    RetentionPeriod=365000
+)
+
+client.upload_file(
+    obj,
+    bucket,
+    key,
+    ExtraArgs={'RetentionPeriod': 365000}
+)
 ```
 {: python}
 
@@ -624,3 +525,35 @@ function copyProtectedObject(sourceBucketName, sourceObjectName, destinationBuck
 }
 ```
 {: javascript}
+
+{: java}
+
+More Java examples are coming soon.
+
+### **AmazonS3** Interface
+
+```java
+/**
+* Set the protection configuration for the specified bucket.
+*
+* @param setBucketProtectionRequest
+*                 The request object containing all options for setting the
+*                 bucket protection configuration
+*/
+public void setBucketProtectionConfiguration(SetBucketProtectionConfigurationRequest setBucketProtectionRequest)
+            throws SdkClientException, AmazonServiceException;
+
+/**
+*
+* @param bucketName
+*                 The name of the bucket for which to set protection configuration
+* @param bucketProtection
+*                 The new protection configuration for this bucket, which
+*                 completely replaces any existing configuration.
+*/
+public void setBucketProtection(String bucketName, BucketProtectionConfiguration protectionConfiguration)
+            throws SdkClientException, AmazonServiceException;       
+```
+
+
+{: java}
