@@ -1,4 +1,4 @@
-{: .toc subcollection="cloud-object-storage" audience="services" href="/docs/services/cloud-object-storage/about-cos.html"}
+{: .toc subcollection="cloud-object-storage" audience="services" href="/docs/services/cloud-object-storage/about-cos.html" path="services/cloud-object-storage"}
 Cloud Object Storage
 
     {: .navgroup id="learn"}
@@ -75,6 +75,7 @@ Cloud Object Storage
         gui/cyberduck.md
         gui/cloudberry.md
         gui/simpana.md
+        gui/crossftp.md
 
     basics/at.md
     

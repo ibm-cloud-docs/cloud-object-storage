@@ -217,6 +217,8 @@ public static void createBucket(String bucketName) {
 
 #### Create a bucket with a different storage class
 
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).
+
 ```java
 cos.createBucket("sample", "us-vault"); // the name of the bucket, and the storage class (LocationConstraint)
 ```
