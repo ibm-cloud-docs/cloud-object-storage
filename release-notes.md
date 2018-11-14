@@ -13,6 +13,12 @@ lastupdated: "07-16-2018"
 {:tip: .tip}
 
 # What's new
+
+## Q3 2018
+### October 2018
+
+The [Java](/docs/services/cloud-object-storage/libraries/java.html) and [Python](/docs/services/cloud-object-storage/libraries/python.html) SDKs now provide support for [transferring data using the Aspera FASP protocol](/docs/services/cloud-object-storage/basics/aspera.html). Downloads using Aspera high-speed incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
+
 ## Q2 2018
 ### September 2018
 Users can [archive cold data](/docs/services/cloud-object-storage/basics/archive.html) by setting the proper parameters in a bucket lifecycle configuration policy, either using the console, REST API, or a language-specific SDK.

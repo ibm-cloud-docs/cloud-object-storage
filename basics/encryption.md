@@ -101,10 +101,10 @@ To rotate the keys for your {{site.data.keyword.cos_short}} you will need to cre
 
 **NOTE**: Deleting a key from the system will shred its contents and any data still encrypted with that key.  Once removed, it cannot be undone or reversed and will result in permanent data loss.
 
-1. Create or add a new Root Key in your [Key Protect]((/docs/services/keymgmt/index.html#getting-started-with-key-protect)) service.
+1. Create or add a new Root Key in your [Key Protect](/docs/services/keymgmt/index.html#getting-started-with-key-protect) service.
 2. [Create a new bucket](encryption.html#createbucket) and add the new Root Key
 3. Copy all the objects from your original bucket into the new bucket.
     1. This step can be accomplished using a number of different methods:
         1. From the command-line using [CURL](/docs/services/cloud-object-storage/cli/curl.html#copy-an-object) or [AWS CLI](/docs/services/cloud-object-storage/cli/aws-cli.html#use-the-aws-cli)
         2. Using the (API)[/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#copy-object]
-        3. Using the SDK with [Java](/docs/services/cloud-object-storage/libraries/java.html#code-examples), [Python](https://console.bluemix.net/docs/services/cloud-object-storage/libraries/python.html#code-examples), or [Node.js](/docs/services/cloud-object-storage/libraries/node.html#code-examples)
+        3. Using the SDK with [Java](/docs/services/cloud-object-storage/libraries/java.html#code-examples), [Python](/docs/services/cloud-object-storage/libraries/python.html#code-examples), or [Node.js](/docs/services/cloud-object-storage/libraries/node.html#code-examples)

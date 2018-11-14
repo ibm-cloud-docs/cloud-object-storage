@@ -217,6 +217,8 @@ public static void createBucket(String bucketName) {
 
 #### Create a bucket with a different storage class
 
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).
+
 ```java
 cos.createBucket("sample", "us-vault"); // the name of the bucket, and the storage class (LocationConstraint)
 ```
@@ -676,7 +678,6 @@ public static void largeObjectUpload(String bucketName, String itemName, String 
     * [upload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html#upload-java.lang.String-java.lang.String-java.io.File-){:new_window}
     * [waitForCompletion](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/internal/AbstractTransfer.html#waitForCompletion--){:new_window}
     
-
 
 ## Using Key Protect
 
@@ -1206,7 +1207,6 @@ setS3ClientOptions(S3ClientOptions clientOptions)
 uploadPart(UploadPartRequest request)
 ```
 -->
-
 ## Updating Metadata
 
 There are two ways to update the metadata on an existing object:

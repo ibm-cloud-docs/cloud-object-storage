@@ -20,6 +20,7 @@ Cloud Object Storage
     basics/upload.md
     basics/archive.md
     basics/aspera.md
+    basics/immutable.md
 
     {: .topicgroup}
     Manage access
@@ -75,6 +76,7 @@ Cloud Object Storage
         gui/cyberduck.md
         gui/cloudberry.md
         gui/simpana.md
+        gui/crossftp.md
 
     basics/at.md
     

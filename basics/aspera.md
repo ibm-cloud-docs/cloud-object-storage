@@ -51,7 +51,7 @@ Typically, using the web-based console is not the most common way to use {{site.
 
 **Preferences:** You can set the default for uploads and/or downloads to High-speed.
 
-Downloads using Aspera high-speed incur egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
+Downloads using Aspera high-speed transfer incur egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
 {:tip}
 
 **Advanced Preferences:** You can set bandwidth for uploads and downloads.
@@ -77,7 +77,7 @@ The Aspera high-speed transfer SDK is closed-source and thus an optional depende
 {: #aspera-packaging}
 The image below displays a high-level overview of the how the COS SDK interacts with the Aspera high-speed transfer library to provide functionality.
 
-<img src="https://s3-api.us-geo.objectstorage.softlayer.net/docs-resources/aspera-packaging.png" height="450px" />
+<img src="https://s3-api.us-geo.objectstorage.softlayer.net/docs-resources/aspera-packaging.png" height="200px" />
 
 `Figure 1: COS/Aspera High-Speed Transfer SDK`
 
@@ -138,13 +138,7 @@ Examples of initiating Aspera high-speed transfers with Java are available in th
 The {{site.data.keyword.cos_full_notm}} and Aspera high-speed transfer Python SDKs are available from the Python Package Index (PyPI) software repository.  
 
 ```
-pip install ibm-cos-sdk["aspera"]
-```
-
-To test your installation run the following command:
-
-```
-python -c  "import faspmanager2"
+pip install cos-aspera
 ```
 
 Examples of initiating Aspera transfers with Python are available in [Using Aspera High-Speed Transfer](/docs/services/cloud-object-storage/libraries/python.html#aspera) section.
