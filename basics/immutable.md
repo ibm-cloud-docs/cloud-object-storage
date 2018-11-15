@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-09-27"
+lastupdated: "2018-11-14"
 
 ---
 {:http: .ph data-hd-programlang='http'} 
@@ -38,12 +38,12 @@ Immutable Object Storage is not available in all regions, and requires a Standar
 ## Who needs Immutable Object Storage?
 
 Users who may benefit from using Immutable Object Storage include:
-    * Financial Industry
-    * Healthcare Industry
-    * Media content archives
-    * General archives
-    * Those who have a regulatory requirement to prevent destruction of data
-    * Those who are looking to prevent privileged modification or deletion of objects or documents
+* Financial Industry
+* Healthcare Industry
+* Media content archives
+* General archives
+* Those who have a regulatory requirement to prevent destruction of data
+* Those who are looking to prevent privileged modification or deletion of objects or documents
 
 Immutable object storage policies prevent users with `Writer` or `Manager` roles from deleting or modifying an object once it is written. Therefore, it should be used when governance dictates that documents must adhere to a retention policy that prevents privileged users from maliciously or accidentally altering data.
 
@@ -79,13 +79,15 @@ A `Content-MD5` header is required. This operation does not make use of addition
 
 **Syntax**
 
-```
+```http
 PUT https://{endpoint}/{bucket-name}?protection= # path style
 PUT https://{bucket-name}.{endpoint}?protection= # virtual host style
 ```
+{: codeblock}
+{: http}
 
 **Sample request**
-```xml
+```http
 PUT /example-bucket?protection= HTTP/1.1
 Authorization: {authorization-string}
 x-amz-date: 20181011T190354Z
@@ -107,6 +109,8 @@ Content-Length: 299
   </DefaultRetention>
 </ProtectionConfiguration>
 ```
+{: codeblock}
+{: http}
 
 **Sample response**
 ```
@@ -119,6 +123,8 @@ X-Clv-S3-Version: 2.5
 x-amz-request-id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
 Content-Length: 0
 ```
+{: codeblock}
+{: http}
 
 ### Check protection on a bucket
 This implementation of the GET operation uses the protection query parameter to fetch the retention parameters for an existing bucket. 
@@ -129,6 +135,8 @@ This implementation of the GET operation uses the protection query parameter to 
 GET https://{endpoint}/{bucket-name}?protection= # path style
 GET https://{bucket-name}.{endpoint}?protection= # virtual host style
 ```
+{: codeblock}
+{: http}
 
 **Sample request**
 
@@ -160,6 +168,8 @@ Content-Length: 299
   </DefaultRetention>
 </ProtectionConfiguration>
 ```
+{: codeblock}
+{: http}
 
 If there is no protection configuration on the bucket, the server responds with disabled status instead.
 
@@ -168,6 +178,8 @@ If there is no protection configuration on the bucket, the server responds with 
   <Status>Disabled</Status>
 </ProtectionConfiguration>
 ```
+{: codeblock}
+{: http}
 
 ### Upload a protected object
 This enhancement of the `PUT` operation adds three new request headers: two for specifying the retention period in different ways, and one for adding a single legal hold to the new object. New errors are defined for illegal values for the new headers, and if an object is under retention any overwrites will fail.
@@ -219,6 +231,8 @@ Date: Wed, 8 Feb 2017 17:50:00 GMT
 Authorization: authorization string
 Content-Type: text/plain
 ```
+{: codeblock}
+{: http}
 
 **Sample response**
 
@@ -227,6 +241,8 @@ HTTP/1.1 200 OK
 Date: Wed, 8 Feb 2017 17:51:00 GMT
 Connection: close
 ```
+{: codeblock}
+{: http}
 
 ### Extend the retention period of a protected object
 This implementation of the `POST` operation uses the `extendRetention` query parameter to extend the retention period of a protected object in a protected bucket.
@@ -247,6 +263,8 @@ Objects in protected buckets that are no longer under retention (retention perio
 POST https://{endpoint}/{bucket-name}?extendRetention= # path style
 POST https://{bucket-name}.{endpoint}?extendRetention= # virtual host style
 ```
+{: codeblock}
+{: http}
 
 **Sample request**
 
@@ -258,6 +276,8 @@ Authorization: authorization string
 Content-Type: text/plain
 Additional-Retention-Period: 31470552
 ```
+{: codeblock}
+{: http}
 
 **Sample response**
 
@@ -266,6 +286,8 @@ HTTP/1.1 200 OK
 Date: Wed, 8Feb 201717:51:00GMT
 Connection: close
 ```
+{: codeblock}
+{: http}
 
 ### List legal holds on a protected object
 This implementation of the `GET` operation uses the `legalHold` query parameter to return the list of legal holds on an object and related retention state in an XML response body.
@@ -296,6 +318,8 @@ Date: Wed, 8 Feb 2017 17:50:00 GMT
 Authorization: {authorization-string}
 Content-Type: text/plain
 ```
+{: codeblock}
+{: http}
 
 **Sample response**
 
@@ -320,8 +344,9 @@ GMT</RetentionPeriodExpirationDate>
   </LegalHoldSet>
 </RetentionState>
 ```
-
+{: codeblock}
 {: http}
+
 
 {: python}
 ```py
@@ -397,6 +422,7 @@ client.upload_file(
     ExtraArgs={'RetentionPeriod': 365000}
 )
 ```
+{: codeblock}
 {: python}
 
 {: javascript}
@@ -525,6 +551,7 @@ function copyProtectedObject(sourceBucketName, sourceObjectName, destinationBuck
 }
 ```
 {: javascript}
+{: codeblock}
 
 {: java}
 
@@ -554,6 +581,5 @@ public void setBucketProtectionConfiguration(SetBucketProtectionConfigurationReq
 public void setBucketProtection(String bucketName, BucketProtectionConfiguration protectionConfiguration)
             throws SdkClientException, AmazonServiceException;       
 ```
-
-
 {: java}
+{: codeblock}
