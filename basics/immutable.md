@@ -79,6 +79,8 @@ A `Content-MD5` header is required. This operation does not make use of addition
 {: http}
 
 **Syntax**
+{: http}
+
 ```http
 PUT https://{endpoint}/{bucket-name}?protection= # path style
 PUT https://{bucket-name}.{endpoint}?protection= # virtual host style
@@ -87,6 +89,8 @@ PUT https://{bucket-name}.{endpoint}?protection= # virtual host style
 {: http}
 
 **Sample request**
+{: http}
+
 ```
 PUT /example-bucket?protection= HTTP/1.1
 Authorization: {authorization-string}
@@ -113,6 +117,8 @@ Content-Length: 299
 {: http}
 
 **Sample response**
+{: http}
+
 ```
 HTTP/1.1 200 OK
 Date: Wed, 5 Oct 2018 15:39:38 GMT
@@ -194,6 +200,8 @@ This implementation of a GET operation fetches the retention parameters for an e
 {: http}
 
 **Syntax**
+{: http}
+
 ```
 GET https://{endpoint}/{bucket-name}?protection= # path style
 GET https://{bucket-name}.{endpoint}?protection= # virtual host style
@@ -202,6 +210,8 @@ GET https://{bucket-name}.{endpoint}?protection= # virtual host style
 {: http}
 
 **Sample request**
+{: http}
+
 ```xml
 GET /example-bucket?protection= HTTP/1.1
 Authorization: {authorization-string}
@@ -392,6 +402,8 @@ A `Content-MD5` header is required. This operation does not make use of operatio
 {: http}
 
 **Syntax**
+{: http}
+
 ```
 POST https://{endpoint}/{bucket-name}?legalHold # path style
 POST https://{bucket-name}.{endpoint}?legalHold= # virtual host style
@@ -399,6 +411,8 @@ POST https://{bucket-name}.{endpoint}?legalHold= # virtual host style
 {: http}
 
 **Sample request**
+{: http}
+
 ```
 POST /BucketName/ObjectName?legalHold&add=legalHoldID HTTP/1.1
 Host: myBucket.mydsNet.corp.com
@@ -410,6 +424,8 @@ Content-Type: text/plain
 {: http}
 
 **Sample response**
+{: http}
+
 ```
 HTTP/1.1 200 OK
 Date: Wed, 8 Feb 2017 17:51:00 GMT
@@ -486,6 +502,8 @@ The current retention period stored in the object metadata is either increased b
 Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
 
 **Syntax**
+{: http}
+
 ```
 POST https://{endpoint}/{bucket-name}?extendRetention= # path style
 POST https://{bucket-name}.{endpoint}?extendRetention= # virtual host style
@@ -494,6 +512,8 @@ POST https://{bucket-name}.{endpoint}?extendRetention= # virtual host style
 {: http}
 
 **Sample request**
+{: http}
+
 ```yaml
 POST /BucketName/ObjectName?extendRetention HTTP/1.1
 Host: myBucket.mydsNet.corp.com
@@ -506,6 +526,8 @@ Additional-Retention-Period: 31470552
 {: http}
 
 **Sample response**
+{: http}
+
 ```
 HTTP/1.1 200 OK
 Date: Wed, 8Feb 201717:51:00GMT
@@ -552,16 +574,18 @@ This implementation of the `GET` operation uses the `legalHold` query parameter 
 
 This operation returns:
 * Object creation date
-* Object retention period in seconds (our chosen unit of time for S3 API retention periods)
+* Object retention period in seconds
 * Calculated retention expiration date based on the period and creation date
 * List of legal holds
 * Legal hold identifier
-* Time stamp when legal hold was applied
+* Timestamp when legal hold was applied
 
 If there are no legal holds on the object, an empty `LegalHoldSet` is returned.
 If there is no retention period specified on the object, a `404` error is returned.
 
 **Syntax**
+{: http}
+
 ```
 GET https://{endpoint}/{bucket-name}?legalHold= # path style
 GET https://{bucket-name}.{endpoint}?legalHold= # virtual host style
@@ -569,6 +593,8 @@ GET https://{bucket-name}.{endpoint}?legalHold= # virtual host style
 {: http}
 
 **Sample request**
+{: http}
+
 ```
 GET /BucketName/ObjectName?legalHold HTTP/1.1
 Host: myBucket.mydsNet.corp.com
@@ -580,6 +606,8 @@ Content-Type: text/plain
 {: http}
 
 **Sample response**
+{: http}
+
 ```xml
 HTTP/1.1 200 OK
 Date: Wed, 8 Feb 2017 17:51:00 GMT
