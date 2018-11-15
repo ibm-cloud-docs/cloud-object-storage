@@ -67,6 +67,7 @@ TBD
 {: #sdk}
 Several new APIs have been introduced to the IBM COS SDKs to provide support for applications working with Immutable Object Storage.
 
+## REST API
 {: http}
 ### Create a protected bucket
 This implementation of the `PUT` operation uses the protection query parameter to set the retention parameters for an existing bucket. This operation allows you to set or change the minimum, default, and maximum retention period. This operation also allows you to change the protection state of the bucket. 
@@ -268,7 +269,7 @@ POST https://{bucket-name}.{endpoint}?extendRetention= # virtual host style
 
 **Sample request**
 
-```
+```yaml
 POST /BucketName/ObjectName?extendRetention HTTP/1.1
 Host: myBucket.mydsNet.corp.com
 Date: Wed, 8Feb 201717:50:00GMT
@@ -347,7 +348,7 @@ GMT</RetentionPeriodExpirationDate>
 {: codeblock}
 {: http}
 
-
+## Python
 {: python}
 ```py
 client.put_bucket_protection_configuration(
@@ -425,6 +426,7 @@ client.upload_file(
 {: codeblock}
 {: python}
 
+## Javascript
 {: javascript}
 ```js
 function addProtectionConfigurationToBucket(bucketName) {
@@ -555,6 +557,7 @@ function copyProtectedObject(sourceBucketName, sourceObjectName, destinationBuck
 
 {: java}
 
+## Java
 More Java examples are coming soon.
 
 ### **AmazonS3** Interface
