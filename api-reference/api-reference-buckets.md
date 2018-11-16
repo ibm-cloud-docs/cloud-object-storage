@@ -246,7 +246,7 @@ Content-Length: 0
 
 To create a bucket where the encryption keys are managed by Key Protect, it is necessary to have access to an active Key Protect service instance located in the same location as the new bucket. This operation does not make use of operation specific query parameters.
 
-For more information on using Key Protect to manage your encryption keys, [see the documentation](/docs/services/keymgmt/index.html).
+For more information on using Key Protect to manage your encryption keys, [see the documentation](/docs/services/key-protect/index.html).
 
 Note that Key Protect is **not** available in a Cross Region configuration and any SSE-KP buckets must be Regional.
 {:tip}

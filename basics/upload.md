@@ -18,7 +18,7 @@ After getting your buckets organized it's time to add some objects.  Depending o
 
 ## Using the console
 
-Typically, using the web-based console is not the most common way to use {{site.data.keyword.cos_short}}. Objects are limited to 200MB in size and the file name and key will be identical. Multiple objects can be uploaded at the same time, and if the browser allows for multiple threads each object will be uploaded using multiple parts in parallel. Support for larger object sizes and improved performance (depending on network factors) is provided by [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics/aspera.html#Aspera-high-speed-transfer).
+Typically, using the web-based console is not the most common way to use {{site.data.keyword.cos_short}}. Objects are limited to 200MB in size and the file name and key will be identical. Multiple objects can be uploaded at the same time, and if the browser allows for multiple threads each object will be uploaded using multiple parts in parallel. Support for larger object sizes and improved performance (depending on network factors) is provided by [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics/aspera.html).
 
 ## Using a compatible tool
 

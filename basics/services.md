@@ -13,8 +13,10 @@ lastupdated: "2018-08-20"
 {:tip: .tip}
 
 # Integrated service availability
+{: #service-availability}
+
 The table below describes the regions where the following services are supported
-* [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics/aspera.html#Aspera-high-speed-transfer)
+* [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics/aspera.html)
 * [Key Protect](/docs/services/cloud-object-storage/basics/encryption.html#sse-kp)
 * [Archive Data](/docs/services/cloud-object-storage/basics/archive.html)
 * [Activity Tracker](/docs/services/cloud-object-storage/basics/at.html#at_events)

@@ -30,7 +30,7 @@ To invite users or manage user invitations in your account, complete the followi
 
 If you determine that a user does not need access, you can cancel an invitation for any users that are shown in a **Processing** or **Pending** state in the **Status** column. If an invited user did not receive an invitation, you can resend the invitation to any user in a **Pending** state.
 
-If you want to invite users using the CLI, see the [`bluemix iam account-user-invite`](/docs/cli/reference/bluemix_cli/bx_cli.html) command.
+If you want to invite users using the CLI, see the [`bluemix iam account-user-invite`](/docs/cli/reference/ibmcloud/bx_cli.html) command.
 
 ### Assigning user access
 {: #assignaccess}
@@ -71,14 +71,14 @@ When you invite new users, you can choose to add the user to an organization in 
 
 See [Cloud Foundry roles](/docs/iam/users_roles.html) for more specific information about these roles.
 
-**Note**: You can add a Cloud Foundry role using the [`bluemix iam account-user-invite`](/docs/cli/reference/bluemix_cli/bx_cli.html) {{site.data.keyword.cloud_notm}} CLI command, but the UI must be used to assign other access or permissions.
+**Note**: You can add a Cloud Foundry role using the [`bluemix iam account-user-invite`](/docs/cli/reference/ibmcloud/bx_cli.html) {{site.data.keyword.cloud_notm}} CLI command, but the UI must be used to assign other access or permissions.
 
 ## Managing user API keys
 {: #userapikey}
 
-A federated or non-federated user can create an API key to use on the CLI or as part of automation to log in as your user identity. You can use the {{site.data.keyword.cloud_notm}} Platform UI or the {{site.data.keyword.cloud_notm}} CLI to manage your API keys by listing your keys, creating keys, updating keys, or deleting keys. To manage the {{site.data.keyword.cloud_notm}} API keys associated with your user identity, go to **Manage** &gt; **Security** &gt; **{{site.data.keyword.cloud_notm}} Platform API keys** to see a list of your API Keys with descriptions and dates. Then, you can create, edit or delete API keys from this page. And, for a full list of available CLI commands, see [`bluemix iam api-keys`](/docs/cli/reference/bluemix_cli/bx_cli.html).
+A federated or non-federated user can create an API key to use on the CLI or as part of automation to log in as your user identity. You can use the {{site.data.keyword.cloud_notm}} Platform UI or the {{site.data.keyword.cloud_notm}} CLI to manage your API keys by listing your keys, creating keys, updating keys, or deleting keys. To manage the {{site.data.keyword.cloud_notm}} API keys associated with your user identity, go to **Manage** &gt; **Security** &gt; **{{site.data.keyword.cloud_notm}} Platform API keys** to see a list of your API Keys with descriptions and dates. Then, you can create, edit or delete API keys from this page. And, for a full list of available CLI commands, see [`bluemix iam api-keys`](/docs/cli/reference/ibmcloud/bx_cli.html).
 
-You can use an API key to login by using the `BLUEMIX_API_KEY` environment variable. For more information about using an API key for logging in, see the documentation for the [{{site.data.keyword.cloud_notm}} CLI `bluemix login` command](/docs/cli/reference/bluemix_cli/bx_cli.html) and the [cf CLI `cf login` command](/docs/cli/reference/cfcommands/index.html).
+You can use an API key to login by using the `BLUEMIX_API_KEY` environment variable. For more information about using an API key for logging in, see the documentation for the [{{site.data.keyword.cloud_notm}} CLI `bluemix login` command](/docs/cli/reference/ibmcloud/bx_cli.html) and the [cf CLI `cf login` command](/docs/cli/reference/cfcommands/index.html).
 
 ### Creating an API key
 

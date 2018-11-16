@@ -40,7 +40,7 @@ You can choose to use {{site.data.keyword.keymanagementserviceshort}} to manage 
 
 When creating the bucket, you need to provide additional headers.
 
-For more information on {{site.data.keyword.keymanagementservicelong_notm}}, [see the documentation](/docs/services/keymgmt/index.html#getting-started-with-key-protect).
+For more information on {{site.data.keyword.keymanagementservicelong_notm}}, [see the documentation](/docs/services/key-protect/index.html#getting-started-with-key-protect).
 
 ### Getting started with SSE-KP
 
@@ -56,7 +56,7 @@ You'll need:
 
 ### Create or add a key in {{site.data.keyword.keymanagementserviceshort}}
 
-Navigate to your instance of {{site.data.keyword.keymanagementserviceshort}} and [generate or enter a key](/docs/services/keymgmt/index.html#getting-started-with-key-protect).
+Navigate to your instance of {{site.data.keyword.keymanagementserviceshort}} and [generate or enter a key](/docs/services/key-protect/index.html#getting-started-with-key-protect).
 
 ### Grant service authorization
 
@@ -101,7 +101,7 @@ To rotate the keys for your {{site.data.keyword.cos_short}} you will need to cre
 
 **NOTE**: Deleting a key from the system will shred its contents and any data still encrypted with that key.  Once removed, it cannot be undone or reversed and will result in permanent data loss.
 
-1. Create or add a new Root Key in your [Key Protect](/docs/services/keymgmt/index.html#getting-started-with-key-protect) service.
+1. Create or add a new Root Key in your [Key Protect](/docs/services/key-protect/index.html#getting-started-with-key-protect) service.
 2. [Create a new bucket](encryption.html#createbucket) and add the new Root Key
 3. Copy all the objects from your original bucket into the new bucket.
     1. This step can be accomplished using a number of different methods:

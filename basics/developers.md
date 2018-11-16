@@ -34,7 +34,7 @@ ibmcloud resource service-instance-create <instance-name> cloud-object-storage <
 
 The [Getting Started guide](/docs/services/cloud-object-storage/getting-started.html) walks through the basic steps of creating buckets and objects, as well as inviting users and creating policies.  A list of basic 'curl' commands can be found [here](/docs/services/cloud-object-storage/cli/curl.html).
 
-Learn more about using the the {{site.data.keyword.cloud_notm}} CLI to create applications, manage Kubernetes clusters, and more [in the documentation](/docs/cli/reference/bluemix_cli/bx_cli.html).
+Learn more about using the the {{site.data.keyword.cloud_notm}} CLI to create applications, manage Kubernetes clusters, and more [in the documentation](/docs/cli/reference/ibmcloud/bx_cli.html).
 
 
 ## Using the API

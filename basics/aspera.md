@@ -14,7 +14,7 @@ lastupdated: "2018-09-27"
 
 # Use Aspera high-speed transfer
 
-Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP transfers to improve data transfer performance under most conditions, especially in networks experiencing high latency and packet loss.  Instead of the standard HTTP `PUT`, Aspera high-speed transfer uploads the object using the [FASP protocol](http://asperasoft.com/technology/transport/fasp/).  Using Aspera high-speed transfer for uploads and downloads offers the following benefits:
+Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP transfers to improve data transfer performance under most conditions, especially in networks experiencing high latency and packet loss.  Instead of the standard HTTP `PUT`, Aspera high-speed transfer uploads the object using the [FASP protocol](https://asperasoft.com/technology/transport/fasp/).  Using Aspera high-speed transfer for uploads and downloads offers the following benefits:
 
 - Faster transfer speeds
 - Transfer large object uploads over 200MB in the console and 1GB using a SDK or library
@@ -24,12 +24,12 @@ Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP
 
 Aspera high-speed transfer is available in the {{site.data.keyword.cloud_notm}} [console](#console) and can also be used programatically using an [SDK](#sdk). 
 
-Aspera high-speed transfer is not available in all regions. See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html#service-availability) for more details.
+Aspera high-speed transfer is not available in all regions. See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html) for more details.
 {:tip}
 
 ## Using the console
 {: #console}
-When you create a bucket in a [supported region](/docs/services/cloud-object-storage/basics/services.html#service-availability), you have the option to select Aspera high-speed transfer to upload files or folders. Once you attempt to upload an object, you are prompted to install the Aspera Connect client.
+When you create a bucket in a [supported region](/docs/services/cloud-object-storage/basics/services.html), you have the option to select Aspera high-speed transfer to upload files or folders. Once you attempt to upload an object, you are prompted to install the Aspera Connect client.
 
 ### Install Aspera Connect
 

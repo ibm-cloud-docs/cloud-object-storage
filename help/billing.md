@@ -43,7 +43,7 @@ There is no charge for deleting buckets or objects from the system.
 
 ## Aspera transfers
 
-Note that any downloads using [Aspera](/docs/services/basics/aspera.md) will incur additional egress charges.  For more info, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api).
+Note that any downloads using [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics/aspera.html) will incur additional egress charges.  For more info, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api).
 
 ## Storage classes
 
