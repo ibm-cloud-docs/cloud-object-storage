@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-11-14"
+lastupdated: "2018-11-23"
 
 ---
 {:http: .ph data-hd-programlang='http'} 
@@ -133,60 +133,79 @@ Content-Length: 0
 {: http}
 
 ```py
-client.put_bucket_protection_configuration(
-    Bucket=bucket,
-    ProtectionConfiguration={
-    'Status': 'Retention',
-    'MinimumRetention': {'Days': 10},
-    'DefaultRetention': {'Days': 100},
-    'MaximumRetention': {'Days': 1000}
-    })
+def add_protection_configuration_to_bucket(bucket_name):
+    try:
+        new_protection_config = {
+            "Status": "Retention",
+            "MinimumRetention": {"Days": 10},
+            "DefaultRetention": {"Days": 100},
+            "MaximumRetention": {"Days": 1000}
+        }
+
+        cos_cli.put_bucket_protection_configuration(Bucket=bucket_name, ProtectionConfiguration=new_protection_config)
+
+        print("Protection added to bucket {0}\n".format(bucket_name))
+    except ClientError as be:
+        print("CLIENT ERROR: {0}\n".format(be))
+    except Exception as e:
+        print("Unable to set bucket protection config: {0}".format(e))
 ```
 {: python}
 
 ```js
 function addProtectionConfigurationToBucket(bucketName) {
-  console.log(`Adding protection to bucket ${bucketName}`);
-  return cos.putBucketProtectionConfiguration({
-    Bucket: bucketName,
-    ProtectionConfiguration: {
-      'Status': 'Retention',
-      'MinimumRetention': {'Days': 10},
-      'DefaultRetention': {'Days': 100},
-      'MaximumRetention': {'Days': 1000}
-    }
-  }).promise()
-  .then(() => {
-    console.log(`Protection added to bucket ${bucketName}!`);
-  })
-  .catch((e) => {
-      console.log(`ERROR: ${e.code} - ${e.message}\n`);
-  });
+    console.log(`Adding protection to bucket ${bucketName}`);
+    return cos.putBucketProtectionConfiguration({
+        Bucket: bucketName,
+        ProtectionConfiguration: {
+            'Status': 'Retention',
+            'MinimumRetention': {'Days': 10},
+            'DefaultRetention': {'Days': 100},
+            'MaximumRetention': {'Days': 1000}
+        }
+    }).promise()
+    .then(() => {
+        console.log(`Protection added to bucket ${bucketName}!`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
 }
 ```
 {: javascript}
 
 ```java
-/**
-* Set the protection configuration for the specified bucket.
-*
-* @param setBucketProtectionRequest
-*                 The request object containing all options for setting the
-*                 bucket protection configuration
-*/
-public void setBucketProtectionConfiguration(SetBucketProtectionConfigurationRequest setBucketProtectionRequest)
-            throws SdkClientException, AmazonServiceException;
+public static void addProtectionConfigurationToBucket(String bucketName) {
+    System.out.printf("Adding protection to bucket: %s\n", bucketName);
 
-/**
-*
-* @param bucketName
-*                 The name of the bucket for which to set protection configuration
-* @param bucketProtection
-*                 The new protection configuration for this bucket, which
-*                 completely replaces any existing configuration.
-*/
-public void setBucketProtection(String bucketName, BucketProtectionConfiguration protectionConfiguration)
-            throws SdkClientException, AmazonServiceException;       
+    BucketProtectionConfiguration newConfig = new BucketProtectionConfiguration()
+        .withStatus(BucketProtectionStatus.Retention)
+        .withMinimumRetentionInDays(10)
+        .withDefaultRetentionInDays(100)
+        .withMaximumRetentionInDays(1000);
+
+    _cos.setBucketProtection(bucketName, newConfig);
+
+    System.out.printf("Protection added to bucket %s\n", bucketName);
+}
+
+public static void addProtectionConfigurationToBucketWithRequest(String bucketName) {
+    System.out.printf("Adding protection to bucket: %s\n", bucketName);
+
+    BucketProtectionConfiguration newConfig = new BucketProtectionConfiguration()
+        .withStatus(BucketProtectionStatus.Retention)
+        .withMinimumRetentionInDays(10)
+        .withDefaultRetentionInDays(100)
+        .withMaximumRetentionInDays(1000);
+
+    SetBucketProtectionConfigurationRequest newRequest = new SetBucketProtectionConfigurationRequest()
+        .withBucketName(bucketName)
+        .withProtectionConfiguration(newConfig);
+
+    _cos.setBucketProtectionConfiguration(newRequest);
+
+    System.out.printf("Protection added to bucket %s\n", bucketName);
+}
 ```
 {: java}
 {: codeblock}
@@ -255,20 +274,30 @@ If there is no protection configuration on the bucket, the server responds with 
 {: http}
 
 ```py
-client.get_bucket_protection_configuration(
-    Bucket=bucket
-)
+def get_protection_configuration_on_bucket(bucket_name):
+    try:
+        response = cos_cli.get_bucket_protection_configuration(Bucket=bucket_name)
+        protection_config = response.get("ProtectionConfiguration")
+
+        print("Bucket protection config for {0}\n".format(bucket_name))
+        print(protection_config)
+        print("\n")
+    except ClientError as be:
+        print("CLIENT ERROR: {0}\n".format(be))
+    except Exception as e:
+        print("Unable to get bucket protection config: {0}".format(e))
 ```
 {: python}
 
 ```js
 function getProtectionConfigurationOnBucket(bucketName) {
-  console.log(`Retrieve the protection on bucket ${bucketName}`);
-  return cos.getBucketProtectionConfiguration({
-    Bucket: bucketName
+    console.log(`Retrieve the protection on bucket ${bucketName}`);
+    return cos.getBucketProtectionConfiguration({
+        Bucket: bucketName
     }).promise()
     .then((data) => {
-      console.log(`Configuration on bucket ${bucketName}: ${data}`);
+        console.log(`Configuration on bucket ${bucketName}:`);
+        console.log(data);
     }
     .catch((e) => {
         console.log(`ERROR: ${e.code} - ${e.message}\n`);
@@ -276,6 +305,26 @@ function getProtectionConfigurationOnBucket(bucketName) {
 }
 ```
 {: javascript}
+
+```java
+public static void getProtectionConfigurationOnBucket(String bucketName) {
+    System.out.printf("Retrieving protection configuration from bucket: %s\n", bucketName);
+
+    BucketProtectionConfiguration config = _cos.getBucketProtection(bucketName);
+
+    String status = config.getStatus();
+
+    System.out.printf("Status: %s\n", status);
+
+    if (!status.toUpperCase().equals("DISABLED")) {
+        System.out.printf("Minimum Retention (Days): %s\n", config.getMinimumRetentionInDays());
+        System.out.printf("Default Retention (Days): %s\n", config.getDefaultRetentionInDays());
+        System.out.printf("Maximum Retention (Days): %s\n", config.getMaximumRetentionInDays());
+    }
+}
+```
+{: java}
+{: codeblock}
 
 More Java examples are coming soon.
 {: java}
