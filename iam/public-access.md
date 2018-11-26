@@ -35,8 +35,7 @@ Using the query parameter `?acl` without a payload and the `x-amz-acl: public-re
 ```sh
 curl -X "PUT" "https://{endpoint}/{bucket-name}/{object-name}?acl" \
      -H "x-amz-acl: public-read" \
-     -H "Authorization: Bearer {token}" \
-     -H "Content-Type: text/plain; charset=utf-8" \
+     -H "Authorization: Bearer {token}"
 ```
 {:codeblock}
 
@@ -46,8 +45,7 @@ Using the query parameter `?acl` without a payload and an empty `x-amz-acl:` hea
 ```sh
 curl -X "PUT" "https://{endpoint}/{bucket-name}/{object-name}?acl" \
      -H "Authorization: Bearer {token}" \
-     -H "x-amz-acl:" \
-     -H "Content-Type: text/plain; charset=utf-8" \
+     -H "x-amz-acl:"
 ```
 {:codeblock}
 
