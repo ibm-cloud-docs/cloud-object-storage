@@ -326,9 +326,6 @@ public static void getProtectionConfigurationOnBucket(String bucketName) {
 {: java}
 {: codeblock}
 
-More Java examples are coming soon.
-{: java}
-
 ### Upload a protected object
 
 This enhancement of the `PUT` operation adds three new request headers: two for specifying the retention period in different ways, and one for adding a single legal hold to the new object. New errors are defined for illegal values for the new headers, and if an object is under retention any overwrites will fail.
@@ -421,10 +418,38 @@ function copyProtectedObject(sourceBucketName, sourceObjectName, destinationBuck
   });
 }
 ```
-{: javascript}
 {: codeblock}
+{: javascript}
 
-More Java examples are coming soon.
+```java
+public static void putObjectAddLegalHold(String bucketName, String objectName, String fileText, String legalHoldId) {
+    System.out.printf("Add legal hold %s to %s in bucket %s with a putObject operation.\n", legalHoldId, objectName, bucketName);
+
+    InputStream newStream = new ByteArrayInputStream(fileText.getBytes(StandardCharsets.UTF_8));
+
+    ObjectMetadata metadata = new ObjectMetadata();        
+    metadata.setContentLength(fileText.length());
+
+    PutObjectRequest req = new PutObjectRequest(bucketName, objectName, newStream, metadata);
+    req.setRetentionLegalHoldId(legalHoldId);
+
+    _cos.putObject(req);
+
+    System.out.printf("Legal hold %s added to object %s in bucket %s\n", legalHoldId, objectName, bucketName);
+}
+
+public static void copyProtectedObject(String sourceBucketName, String sourceObjectName, String destinationBucketName, String newObjectName) {
+    System.out.printf("Copy protected object %s from bucket %s to %s/%s.\n", sourceObjectName, sourceBucketName, destinationBucketName, newObjectName);
+
+    CopyObjectRequest req = new CopyObjectRequest(sourceBucketName, sourceObjectName, destinationBucketName, newObjectName);
+    req.setRetentionDirective(RetentionDirective.COPY);
+
+    _cos.copyObject(req);
+
+    System.out.printf("Protected object copied from %s/%s to %s/%s\n", sourceObjectName, sourceBucketName, destinationBucketName, newObjectName);
+}
+```
+{: codeblock}
 {: java}
 
 ### Add or remove a legal hold to or from a protected object
@@ -496,42 +521,61 @@ client.delete_legal_hold(
     RetentionLegalHoldId=legal_hold_id
 )
 ```
+{: codeblock}
 {: python}
 
 ```js
 function addLegalHoldToObject(bucketName, objectName, legalHoldId) {
-  console.log(`Adding legal hold ${legalHoldId} to object ${objectName} in bucket ${bucketName}`);
-  return cos.client.addLegalHold({
-    Bucket: bucketName,
-    Key: objectId,
-    RetentionLegalHoldId: legalHoldId
-  }).promise()
-  .then(() => {
-    console.log(`Legal hold ${legalHoldId} added to object ${objectName} in bucket ${bucketName}!`);
-  })
-  .catch((e) => {
-      console.log(`ERROR: ${e.code} - ${e.message}\n`);
-  });
+    console.log(`Adding legal hold ${legalHoldId} to object ${objectName} in bucket ${bucketName}`);
+    return cos.client.addLegalHold({
+        Bucket: bucketName,
+        Key: objectId,
+        RetentionLegalHoldId: legalHoldId
+    }).promise()
+    .then(() => {
+        console.log(`Legal hold ${legalHoldId} added to object ${objectName} in bucket ${bucketName}!`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
 }
 
 function deleteLegalHoldFromObject(bucketName, objectName, legalHoldId) {
-  console.log(`Deleting legal hold ${legalHoldId} from object ${objectName} in bucket ${bucketName}`);
-  return cos.client.deleteLegalHold({
-    Bucket: bucketName,
-    Key: objectId,
-    RetentionLegalHoldId: legalHoldId
-  }).promise()
-  .then(() => {
-    console.log(`Legal hold ${legalHoldId} deleted from object ${objectName} in bucket ${bucketName}!`);
-  })
-  .catch((e) => {
-      console.log(`ERROR: ${e.code} - ${e.message}\n`);
-  });
+    console.log(`Deleting legal hold ${legalHoldId} from object ${objectName} in bucket ${bucketName}`);
+    return cos.client.deleteLegalHold({
+        Bucket: bucketName,
+        Key: objectId,
+        RetentionLegalHoldId: legalHoldId
+    }).promise()
+    .then(() => {
+        console.log(`Legal hold ${legalHoldId} deleted from object ${objectName} in bucket ${bucketName}!`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
 }
 ```
+{: codeblock}
 {: javascript}
 
-More Java examples are coming soon.
+```java
+public static void addLegalHoldToObject(String bucketName, String objectName, String legalHoldId) {
+    System.out.printf("Adding legal hold %s to object %s in bucket %s\n", legalHoldId, objectName, bucketName);
+
+    _cos.addLegalHold(bucketName, objectName, legalHoldId);
+
+    System.out.printf("Legal hold %s added to object %s in bucket %s!\n", legalHoldId, objectName, bucketName);
+}
+
+public static void deleteLegalHoldFromObject(String bucketName, String objectName, String legalHoldId) {
+    System.out.printf("Deleting legal hold %s from object %s in bucket %s\n", legalHoldId, objectName, bucketName);
+
+    _cos.deleteLegalHold(bucketName, objectName, legalHoldId);
+
+    System.out.printf("Legal hold %s deleted from object %s in bucket %s!\n", legalHoldId, objectName, bucketName);
+}
+```
+{: codeblock}
 {: java}
 
 ### Extend the retention period of a protected object
@@ -597,23 +641,36 @@ client.extend_object_retention(
 
 ```js
 function extendRetentionPeriodOnObject(bucketName, objectName, additionalDays) {
-  console.log(`Extend the retention period on ${objectName} in bucket ${bucketName} by ${additionalDays} days.`);
-  return cos.extendObjectRetention({
-    Bucket: bucketName,
-    Key: objectName,
-    AdditionalRetentionPeriod: additionalDays
-  }).promise()
-  .then((data) => {
-    console.log(`New retention period on ${objectName} is ${data.RetentionPeriod}`);
-  })
-  .catch((e) => {
-      console.log(`ERROR: ${e.code} - ${e.message}\n`);
-  });
+    console.log(`Extend the retention period on ${objectName} in bucket ${bucketName} by ${additionalDays} days.`);
+    return cos.extendObjectRetention({
+        Bucket: bucketName,
+        Key: objectName,
+        AdditionalRetentionPeriod: additionalDays
+    }).promise()
+    .then((data) => {
+        console.log(`New retention period on ${objectName} is ${data.RetentionPeriod}`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
 }
 ```
+{: codeblock}
 {: javascript}
 
-More Java examples are coming soon.
+```java
+public static void extendRetentionPeriodOnObject(String bucketName, String objectName, Long additionalDays) {
+    System.out.printf("Extend the retention period on %s in bucket %s by %s days.\n", objectName, bucketName, additionalDays);
+
+    ExtendObjectRetentionRequest req = new ExtendObjectRetentionRequest(bucketName, objectName)
+        .withAdditionalRetentionPeriod(additionalDays);
+
+    _cos.extendObjectRetention(req);
+
+    System.out.printf("New retention period on %s is %s\n", objectName, additionalDays);
+}
+```
+{: codeblock}
 {: java}
 
 ### List legal holds on a protected object
@@ -692,20 +749,35 @@ client.list_legal_holds(
 
 ```js
 function listLegalHoldsOnObject(bucketName, objectName) {
-  console.log(`List all legal holds on object ${objectName} in bucket ${bucketName}`);
-  return cos.listLegalHolds({
-    Bucket: bucketName,
-    Key: objectId
-  }).promise()
-  .then((data) => {
-    console.log(`Legal holds on bucket ${bucketName}: ${data}`);
-  })
-  .catch((e) => {
-      console.log(`ERROR: ${e.code} - ${e.message}\n`);
-  });
+    console.log(`List all legal holds on object ${objectName} in bucket ${bucketName}`);
+    return cos.listLegalHolds({
+        Bucket: bucketName,
+        Key: objectId
+    }).promise()
+    .then((data) => {
+        console.log(`Legal holds on bucket ${bucketName}: ${data}`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
 }
 ```
+{: codeblock}
 {: javascript}
 
-More Java examples are coming soon.
+```java
+public static void listLegalHoldsOnObject(String bucketName, String objectName) {
+    System.out.printf("List all legal holds on object %s in bucket %s\n", objectName, bucketName);
+
+    ListLegalHoldsResult result = _cos.listLegalHolds(bucketName, objectName);
+
+    System.out.printf("Legal holds on bucket %s: \n", bucketName);
+
+    List<LegalHold> holds = result.getLegalHolds();
+    for (LegalHold hold : holds) {
+        System.out.printf("Legal Hold: %s", hold);
+    }
+}
+```
+{: codeblock}
 {: java}
