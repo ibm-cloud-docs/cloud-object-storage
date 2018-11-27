@@ -210,11 +210,17 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>Sydney</td>
   <tr>
   <tr>
+    </td>
+  </tr>
+  <tr>
     <td rowspan="2">Toronto, Canada</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>US South</td>
   <tr>
+  <tr>
+    </td>
+  </tr>
 </table>
 {:.endpointtable}
