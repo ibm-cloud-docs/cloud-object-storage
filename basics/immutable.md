@@ -347,41 +347,67 @@ These headers apply to POST object and multipart upload requests as well. If upl
 | `Retention-legal-hold-id` | string | A single legal hold to apply to the object. A legal hold is a Y character long string. The object cannot be overwritten or deleted until all legal holds associated with the object are removed. |
 
 ```py
-client.put_object(
-    Bucket=bucket,
-    Body=f,
-    Key=key,
-    RetentionLegalHoldId="put-object-legal-hold"
-)
+def put_object_add_legal_hold(bucket_name, object_name, file_text, legal_hold_id):
+    print("Add legal hold {0} to {1} in bucket {2} with a putObject operation.\n".format(legal_hold_id, object_name, bucket_name))
+    
+    cos_cli.put_object(
+        Bucket=bucket_name,
+        Key=object_name,
+        Body=file_text, 
+        RetentionLegalHoldId=legal_hold_id)
 
-client.copy_object(
-    Bucket=bucket,
-    Key='newkey',
-    CopySource='%s/%s' % (bucket, key),
-    RetentionDirective="Copy"
-)
+    print("Legal hold {0} added to object {1} in bucket {2}\n".format(legal_hold_id, object_name, bucket_name))
+  
+def copy_protected_object(source_bucket_name, source_object_name, destination_bucket_name, new_object_name):
+    print("Copy protected object {0} from bucket {1} to {2}/{3}.\n".format(source_object_name, source_bucket_name, destination_bucket_name, new_object_name))
 
-client.complete_multipart_upload(
-    Bucket=bucket,
-    Key=key,
-    MultipartUpload={
-        'Parts':[
-            {
-                'ETag': part['ETag'],
-                'PartNumber': 1
-            }
-        ]
-    },
-    UploadId=initiate['UploadId'],
-    RetentionPeriod=365000
-)
+    copy_source = {
+        "Bucket": source_bucket_name,
+        "Key": source_object_name
+    }
 
-client.upload_file(
-    obj,
-    bucket,
-    key,
-    ExtraArgs={'RetentionPeriod': 365000}
-)
+    cos_cli.copy_object(
+        Bucket=destination_bucket_name, 
+        Key=new_object_name, 
+        CopySource=copy_source, 
+        RetentionDirective="Copy"
+    )
+
+    print("Protected object copied from {0}/{1} to {2}/{3}\n".format(source_bucket_name, source_object_name, destination_bucket_name, new_object_name));
+
+def complete_multipart_upload_with_retention(bucket_name, object_name, upload_id, retention_period):
+    print("Completing multi-part upload for object {0} in bucket {1}\n".format(object_name, bucket_name))
+
+    cos_cli.complete_multipart_upload(
+        Bucket=bucket_name, 
+        Key=object_name,
+        MultipartUpload={
+            "Parts":[{
+                "ETag": part["ETag"],
+                "PartNumber": 1
+            }]
+        },
+        UploadId=upload_id,
+        RetentionPeriod=retention_period
+    )
+
+    print("Multi-part upload completed for object {0} in bucket {1}\n".format(object_name, bucket_name))
+
+def upload_file_with_retention(bucket_name, object_name, path_to_file, retention_period):
+    print("Uploading file {0} to object {1} in bucket {2}\n".format(path_to_file, object_name, bucket_name))
+    
+    args = {
+        "RetentionPeriod": retention_period
+    }
+
+    cos_cli.upload_file(
+        Filename=path_to_file,
+        Bucket=bucket_name,
+        Key=object_name,
+        ExtraArgs=args
+    )
+
+    print("File upload complete to object {0} in bucket {1}\n".format(object_name, bucket_name))
 ```
 {: codeblock}
 {: python}
@@ -510,17 +536,27 @@ Connection: close
 {: http}
 
 ```py
-client.add_legal_hold(
-    Bucket=bucket,
-    Key=key,
-    RetentionLegalHoldId=legal_hold_id
-)
+def add_legal_hold_to_object(bucket_name, object_name, legal_hold_id):
+    print("Adding legal hold {0} to object {1} in bucket {2}\n".format(legal_hold_id, object_name, bucket_name))
 
-client.delete_legal_hold(
-    Bucket=bucket,
-    Key=key,
-    RetentionLegalHoldId=legal_hold_id
-)
+    cos_cli.add_legal_hold(
+        Bucket=bucket_name,
+        Key=object_name,
+        RetentionLegalHoldId=legal_hold_id
+    )
+
+    print("Legal hold {0} added to object {1} in bucket {2}!\n".format(legal_hold_id, object_name, bucket_name))
+
+def delete_legal_hold_from_object(bucket_name, object_name, legal_hold_id):
+    print("Deleting legal hold {0} from object {1} in bucket {2}\n".format(legal_hold_id, object_name, bucket_name))
+
+    cos_cli.delete_legal_hold(
+        Bucket=bucket_name,
+        Key=object_name,
+        RetentionLegalHoldId=legal_hold_id
+    )
+
+    print("Legal hold {0} deleted from object {1} in bucket {2}!\n".format(legal_hold_id, object_name, bucket_name))
 ```
 {: codeblock}
 {: python}
@@ -631,11 +667,16 @@ Connection: close
 {: http}
 
 ```py
-client.extend_object_retention(
-    Bucket=bucket,
-    Key=key,
-    AdditionalRetentionPeriod=10
-)
+def extend_retention_period_on_object(bucket_name, object_name, additional_days):
+    print("Extend the retention period on {0} in bucket {1} by {2} days.\n".format(object_name, bucket_name, additional_days))
+
+    cos_cli.extend_object_retention(
+        Bucket=bucket_ame,
+        Key=object_name,
+        AdditionalRetentionPeriod=additional_days
+    )
+
+    print("New retention period on {0} is {1}\n".format(object_name, additional_days))
 ```
 {: codeblock}
 {: python}
@@ -740,10 +781,15 @@ GMT</RetentionPeriodExpirationDate>
 {: http}
 
 ```py 
-client.list_legal_holds(
-    Bucket=bucket,
-    Key=key
-)
+def list_legal_holds_on_object(bucket_name, object_name):
+    print("List all legal holds on object {0} in bucket {1}\n".format(object_name, bucket_name));
+
+    response = cos_cli.list_legal_holds(
+        Bucket=bucket_name,
+        Key=object_name
+    )
+
+    print("Legal holds on bucket {0}: {1}\n".format(bucket_name, response))
 ```
 {: codeblock}
 {: python}
