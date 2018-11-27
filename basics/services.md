@@ -78,7 +78,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
       <th>Activity Tracker</th>
     </tr>
   </thead>
-    <tr>
+   <tr>
     <tr>
      <td rowspan="2">AP Japan</td>
     </tr>
@@ -96,16 +96,17 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>Yes</td>
     <td>United Kingdom</td>
    </tr>
-    <tr>
-      <td rowspan="2">EU Germany</td>
+   <tr>
+    <td rowspan="2">EU Germany</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>United Kingdom</td>
    </tr>
+   <tr>
     <tr>
-      <td rowspan="2">US South</td>
-    <tr>
+    <td rowspan="2">US South</td>
+    </tr>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
