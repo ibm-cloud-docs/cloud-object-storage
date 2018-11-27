@@ -35,14 +35,14 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     </tr>
   </thead>
     <tr>
-     <td rowspan="2">US Cross Region</td>
-    <tr>
+     <td rowspan="2">AP Cross Region</td>
+    </tr>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
-    <td>US South</td>
-  </tr>
-  <tr>
+    <td>Sydney</td>
+   </tr>
+   <tr>
     <td rowspan="2">EU Cross Region</td>
     <td>Yes</td>
     <td>No</td>
@@ -51,13 +51,15 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
    </tr>
   <tr>
     <tr>
-     <td rowspan="2">AP Cross Region</td>
-    </tr>
+     <td rowspan="2">US Cross Region</td>
+    <tr>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
-    <td>Sydney</td>
-   </tr>
+    <td>US South</td>
+  </tr>
+ 
+    
 </table>
 {:.endpointtable}
 
@@ -77,21 +79,15 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     </tr>
   </thead>
     <tr>
-      <td rowspan="2">US South</td>
     <tr>
+     <td rowspan="2">AP Japan</td>
+    </tr>
+    <td>No</td>
     <td>Yes</td>
     <td>Yes</td>
-    <td>Yes</td>
-    <td>US South</td>
-  </tr>
-  <tr>
-    <td rowspan="2">US East</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>US South</td>
+    <td>Sydney</td>
    </tr>
-  <tr>
+   <tr>
     <tr>
       <td rowspan="2">EU Great Britain</td>
     </tr>
@@ -108,14 +104,22 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>United Kingdom</td>
    </tr>
     <tr>
+      <td rowspan="2">US South</td>
     <tr>
-     <td rowspan="2">AP Japan</td>
-    </tr>
-    <td>No</td>
     <td>Yes</td>
     <td>Yes</td>
-    <td>Sydney</td>
+    <td>Yes</td>
+    <td>US South</td>
+  </tr>
+  <tr>
+    <td rowspan="2">US East</td>
+    <td>Yes</td>
+    <td>Yes</td>
+    <td>Yes</td>
+    <td>US South</td>
    </tr>
+ 
+    
 </table>
 {:.endpointtable}
 
