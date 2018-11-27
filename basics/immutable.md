@@ -150,6 +150,7 @@ def add_protection_configuration_to_bucket(bucket_name):
     except Exception as e:
         print("Unable to set bucket protection config: {0}".format(e))
 ```
+{: codeblock}
 {: python}
 
 ```js
@@ -172,6 +173,7 @@ function addProtectionConfigurationToBucket(bucketName) {
     });
 }
 ```
+{: codeblock}
 {: javascript}
 
 ```java
@@ -207,10 +209,7 @@ public static void addProtectionConfigurationToBucketWithRequest(String bucketNa
     System.out.printf("Protection added to bucket %s\n", bucketName);
 }
 ```
-{: java}
 {: codeblock}
-
-More Java examples are coming soon.
 {: java}
 
 ### Check protection on a bucket
@@ -287,6 +286,7 @@ def get_protection_configuration_on_bucket(bucket_name):
     except Exception as e:
         print("Unable to get bucket protection config: {0}".format(e))
 ```
+{: codeblock}
 {: python}
 
 ```js
@@ -304,6 +304,7 @@ function getProtectionConfigurationOnBucket(bucketName) {
     });
 }
 ```
+{: codeblock}
 {: javascript}
 
 ```java
@@ -323,8 +324,8 @@ public static void getProtectionConfigurationOnBucket(String bucketName) {
     }
 }
 ```
-{: java}
 {: codeblock}
+{: java}
 
 ### Upload a protected object
 
@@ -387,35 +388,35 @@ client.upload_file(
 
 ```js
 function putObjectAddLegalHold(bucketName, objectName, legalHoldId) {
-  console.log(`Add legal hold ${legalHoldId} to ${objectName} in bucket ${bucketName} with a putObject operation.`);
-  return cos.putObject({
-    Bucket: bucketName,
-    Key: objectName,
-    Body: 'body',
-    RetentionLegalHoldId: legalHoldId
-  }).promise()
-  .then((data) => {
-    console.log(`Legal hold ${legalHoldId} added to object ${objectName} in bucket ${bucketName}`);
-  })
-  .catch((e) => {
-      console.log(`ERROR: ${e.code} - ${e.message}\n`);
-  });
+    console.log(`Add legal hold ${legalHoldId} to ${objectName} in bucket ${bucketName} with a putObject operation.`);
+    return cos.putObject({
+        Bucket: bucketName,
+        Key: objectName,
+        Body: 'body',
+        RetentionLegalHoldId: legalHoldId
+    }).promise()
+    .then((data) => {
+        console.log(`Legal hold ${legalHoldId} added to object ${objectName} in bucket ${bucketName}`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
 }
 
 function copyProtectedObject(sourceBucketName, sourceObjectName, destinationBucketName, newObjectName, ) {
-  console.log(`Copy protected object ${sourceObjectName} from bucket ${sourceBucketName} to ${destinationBucketName}/${newObjectName}.`);
-  return cos.copyObject({
-    Bucket: destinationBucketName,
-    Key: newObjectName,
-    CopySource: sourceBucketName + '/' + sourceObjectName,
-    RetentionDirective: 'Copy'
-  }).promise()
-  .then((data) => {
-    console.log(`Protected object copied from ${sourceBucketName}/${sourceObjectName} to ${destinationBucketName}/${newObjectName}`);
-  })
-  .catch((e) => {
-      console.log(`ERROR: ${e.code} - ${e.message}\n`);
-  });
+    console.log(`Copy protected object ${sourceObjectName} from bucket ${sourceBucketName} to ${destinationBucketName}/${newObjectName}.`);
+    return cos.copyObject({
+        Bucket: destinationBucketName,
+        Key: newObjectName,
+        CopySource: sourceBucketName + '/' + sourceObjectName,
+        RetentionDirective: 'Copy'
+    }).promise()
+    .then((data) => {
+        console.log(`Protected object copied from ${sourceBucketName}/${sourceObjectName} to ${destinationBucketName}/${newObjectName}`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
 }
 ```
 {: codeblock}
