@@ -34,33 +34,34 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
       <th>Activity Tracker</th>
     </tr>
   </thead>
-    <tr>
-     <td rowspan="2">AP Cross Region</td>
-    </tr>
+  <tr>
+    <td rowspan="2">AP Cross Region</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>Sydney</td>
-   </tr>
-   <tr>
+  <tr>
+  <tr>
+    </td>
+  </tr>
+  <tr>
     <td rowspan="2">EU Cross Region</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>United Kingdom</td>
-   </tr>
   <tr>
-    <tr>
-     <td rowspan="2">US Cross Region</td>
-    <tr>
+  <tr>
+    </td>
+  </tr>
+  <tr>
+    <td rowspan="2">US Cross Region</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>US South</td>
   </tr>
- 
-    
-</table>
+ </table>
 {:.endpointtable}
 
 
@@ -79,22 +80,24 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     </tr>
   </thead>
    <tr>
-    <tr>
-     <td rowspan="2">AP Japan</td>
-    </tr>
+    <td rowspan="2">AP Japan</td>
     <td>No</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Sydney</td>
+   <tr>
+   <tr>
+    </td>
    </tr>
    <tr>
-    <tr>
-      <td rowspan="2">EU Great Britain</td>
-    </tr>
+     <td rowspan="2">EU Great Britain</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>United Kingdom</td>
+   <tr>
+   <tr>
+    </td>
    </tr>
    <tr>
     <td rowspan="2">EU Germany</td>
@@ -102,25 +105,27 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>Yes</td>
     <td>Yes</td>
     <td>United Kingdom</td>
+   <tr>
+   <tr>
+    </td>
    </tr>
    <tr>
-    <tr>
     <td rowspan="2">US South</td>
-    </tr>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>US South</td>
-  </tr>
-  <tr>
+   <tr>
+   <tr>
+    </td>
+   </tr>
+   <tr>
     <td rowspan="2">US East</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>US South</td>
-   </tr>
- 
-    
+   <tr>
 </table>
 {:.endpointtable}
 
@@ -211,6 +216,5 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>No</td>
     <td>US South</td>
   <tr>
-  
 </table>
 {:.endpointtable}
