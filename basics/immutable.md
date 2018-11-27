@@ -457,7 +457,12 @@ public static void putObjectAddLegalHold(String bucketName, String objectName, S
     ObjectMetadata metadata = new ObjectMetadata();        
     metadata.setContentLength(fileText.length());
 
-    PutObjectRequest req = new PutObjectRequest(bucketName, objectName, newStream, metadata);
+    PutObjectRequest req = new PutObjectRequest(
+        bucketName, 
+        objectName, 
+        newStream, 
+        metadata
+    );
     req.setRetentionLegalHoldId(legalHoldId);
 
     _cos.putObject(req);
@@ -468,8 +473,14 @@ public static void putObjectAddLegalHold(String bucketName, String objectName, S
 public static void copyProtectedObject(String sourceBucketName, String sourceObjectName, String destinationBucketName, String newObjectName) {
     System.out.printf("Copy protected object %s from bucket %s to %s/%s.\n", sourceObjectName, sourceBucketName, destinationBucketName, newObjectName);
 
-    CopyObjectRequest req = new CopyObjectRequest(sourceBucketName, sourceObjectName, destinationBucketName, newObjectName);
+    CopyObjectRequest req = new CopyObjectRequest(
+        sourceBucketName, 
+        sourceObjectName, 
+        destinationBucketName, 
+        newObjectName
+    );
     req.setRetentionDirective(RetentionDirective.COPY);
+    
 
     _cos.copyObject(req);
 
@@ -599,7 +610,11 @@ function deleteLegalHoldFromObject(bucketName, objectName, legalHoldId) {
 public static void addLegalHoldToObject(String bucketName, String objectName, String legalHoldId) {
     System.out.printf("Adding legal hold %s to object %s in bucket %s\n", legalHoldId, objectName, bucketName);
 
-    _cos.addLegalHold(bucketName, objectName, legalHoldId);
+    _cos.addLegalHold(
+        bucketName, 
+        objectName, 
+        legalHoldId
+    );
 
     System.out.printf("Legal hold %s added to object %s in bucket %s!\n", legalHoldId, objectName, bucketName);
 }
@@ -607,7 +622,11 @@ public static void addLegalHoldToObject(String bucketName, String objectName, St
 public static void deleteLegalHoldFromObject(String bucketName, String objectName, String legalHoldId) {
     System.out.printf("Deleting legal hold %s from object %s in bucket %s\n", legalHoldId, objectName, bucketName);
 
-    _cos.deleteLegalHold(bucketName, objectName, legalHoldId);
+    _cos.deleteLegalHold(
+        bucketName, 
+        objectName, 
+        legalHoldId
+    );
 
     System.out.printf("Legal hold %s deleted from object %s in bucket %s!\n", legalHoldId, objectName, bucketName);
 }
@@ -704,7 +723,9 @@ function extendRetentionPeriodOnObject(bucketName, objectName, additionalDays) {
 public static void extendRetentionPeriodOnObject(String bucketName, String objectName, Long additionalDays) {
     System.out.printf("Extend the retention period on %s in bucket %s by %s days.\n", objectName, bucketName, additionalDays);
 
-    ExtendObjectRetentionRequest req = new ExtendObjectRetentionRequest(bucketName, objectName)
+    ExtendObjectRetentionRequest req = new ExtendObjectRetentionRequest(
+        bucketName, 
+        objectName)
         .withAdditionalRetentionPeriod(additionalDays);
 
     _cos.extendObjectRetention(req);
@@ -816,7 +837,10 @@ function listLegalHoldsOnObject(bucketName, objectName) {
 public static void listLegalHoldsOnObject(String bucketName, String objectName) {
     System.out.printf("List all legal holds on object %s in bucket %s\n", objectName, bucketName);
 
-    ListLegalHoldsResult result = _cos.listLegalHolds(bucketName, objectName);
+    ListLegalHoldsResult result = _cos.listLegalHolds(
+        bucketName, 
+        objectName
+    );
 
     System.out.printf("Legal holds on bucket %s: \n", bucketName);
 
@@ -828,3 +852,5 @@ public static void listLegalHoldsOnObject(String bucketName, String objectName) 
 ```
 {: codeblock}
 {: java}
+
+More examples coming soon.
