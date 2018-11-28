@@ -20,15 +20,15 @@ lastupdated: "2018-11-23"
 
 Immutable Object Storage  feature allows client(s) to preserve electronic records and maintain data integrity in a WORM (Write-Once-Read-Many), non-erasable and non-rewritable manner until the end of their retention period and the removal of any legal holds. This feature can be used by any client(s) having the need for long term data retention in their environment, including but not limited to organizations in the following industries:
 
-* Financial 
-* Healthcare 
-* Media content archives
-* Those who are looking to prevent privileged modification or deletion of objects or documents
+  * Financial 
+  * Healthcare 
+  * Media content archives
+  * Those who are looking to prevent privileged modification or deletion of objects or documents
 
 The underlying feature capabilities can also be used by organizations that deal with financial records management, such as broker-dealer transactions, and may have need to retain the objects in a non-rewritable and non-erasable format.
 
 Immutable Object Storage is not available in all regions, and requires a Standard plan. See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html#service-availability) for more details.
-{:tip}
+{:important}
 
 ## Terminology and usage
 For the scope of Immutable Object Storage following terms are introduced and explained:
@@ -67,14 +67,11 @@ Permanent retention can only be enabled at a COS bucket level with retention pol
 ## Immutable Object Storage and considerations for various regulations
 When using immutable object storage, it is the client(s) responsibility to check for and ensure whether any of the feature capabilities discussed can be leveraged to satisfy and comply with the key rules around electronic records storage and retention that are generally governed by:
 
+  * Securities and Exchange Commission (SEC) Rule 17a-4(f),
+  * Financial Industry Regulatory Authority (FINRA) Rule 4511(c), and
+  * Commodity Futures Trading Commission (CFTC) Rule 1.31(c)-(d)
 
-·      Securities and Exchange Commission (SEC) Rule 17a-4(f), 
-·      Financial Industry Regulatory Authority (FINRA) Rule 4511(c), and 
-·      Commodity Futures Trading Commission (CFTC) Rule 1.31(c)-(d)
-
-
-To assist our client(s) in making informed decision(s), IBM engaged Cohasset Associates Inc. to conduct an independent assessment of IBM’s Immutable Object Storage capability. Please review Cohasset Associates Inc.’s report which provides details on the assessment of the Immutable Object Storage capability of IBM Cloud Object Storage. 
-
+To assist our client(s) in making informed decision(s), IBM engaged Cohasset Associates Inc. to conduct an independent assessment of IBM’s Immutable Object Storage capability. Please review Cohasset Associates Inc.’s report which provides details on the assessment of the Immutable Object Storage capability of IBM Cloud Object Storage.
 
 ### Audit of access and transactions
 Access log data for Immutable Object Storage to review changes to retention parameters, object retention period, and application of legal holds is available on a case-by-case basis by opening a customer service ticket.
@@ -330,7 +327,7 @@ function getProtectionConfigurationOnBucket(bucketName) {
 
 ```java
 public static void getProtectionConfigurationOnBucket(String bucketName) {
-    System.out.printf("Retrieving protection configuration from bucket: %s\n", bucketName);
+    System.out.printf("Retrieving protection configuration from bucket: %s\n", bucketName;
 
     BucketProtectionConfiguration config = _cos.getBucketProtection(bucketName);
 
@@ -475,13 +472,13 @@ public static void putObjectAddLegalHold(String bucketName, String objectName, S
 
     InputStream newStream = new ByteArrayInputStream(fileText.getBytes(StandardCharsets.UTF_8));
 
-    ObjectMetadata metadata = new ObjectMetadata();        
+    ObjectMetadata metadata = new ObjectMetadata();
     metadata.setContentLength(fileText.length());
 
     PutObjectRequest req = new PutObjectRequest(
-        bucketName, 
-        objectName, 
-        newStream, 
+        bucketName,
+        objectName,
+        newStream,
         metadata
     );
     req.setRetentionLegalHoldId(legalHoldId);
