@@ -1207,3 +1207,69 @@ setS3ClientOptions(S3ClientOptions clientOptions)
 uploadPart(UploadPartRequest request)
 ```
 -->
+## Updating Metadata
+
+There are two ways to update the metadata on an existing object:
+* A `PUT` request with the new metadata and the original object contents
+* Executing a `COPY` request with the new metadata specifying the original object as the copy source
+
+### Using PUT to update metadata
+
+**Note:** The `PUT` request overwrites the existing contents of the object so it must first be downloaded and re-uploaded with the new metdata
+
+```java
+public static void updateMetadataPut(String bucketName, String itemName, String key, String value) throws IOException {
+    System.out.printf("Updating metadata for item: %s\n", itemName);
+
+    //retrieve the existing item to reload the contents
+    S3Object item = _cos.getObject(new GetObjectRequest(bucketName, itemName));
+    S3ObjectInputStream itemContents = item.getObjectContent();
+
+    //read the contents of the item in order to set the content length and create a copy
+    ByteArrayOutputStream output = new ByteArrayOutputStream();
+    int b;
+    while ((b = itemContents.read()) != -1) {
+        output.write(b);
+    }
+
+    int contentLength = output.size();
+    InputStream itemCopy = new ByteArrayInputStream(output.toByteArray());
+
+    //set the new metadata
+    HashMap<String, String> userMetadata = new HashMap<String, String>();
+    userMetadata.put(key, value);
+
+    ObjectMetadata metadata = new ObjectMetadata();   
+    metadata.setContentLength(contentLength);
+    metadata.setUserMetadata(userMetadata);     
+
+    PutObjectRequest req = new PutObjectRequest(bucketName, itemName, itemCopy, metadata);
+
+    _cos.putObject(req);
+    
+    System.out.printf("Updated metadata for item %s from bucket %s\n", itemName, bucketName);
+}
+```
+
+### Using COPY to update metadata
+
+```java
+public static void updateMetadataCopy(String bucketName, String itemName, String key, String value) {
+    System.out.printf("Updating metadata for item: %s\n", itemName);
+
+    //set the new metadata
+    HashMap<String, String> userMetadata = new HashMap<String, String>();
+    userMetadata.put(key, value);
+
+    ObjectMetadata metadata = new ObjectMetadata();   
+    metadata.setUserMetadata(userMetadata);     
+
+    //set the copy source to itself
+    CopyObjectRequest req = new CopyObjectRequest(bucketName, itemName, bucketName, itemName);
+    req.setNewObjectMetadata(metadata);
+
+    _cos.copyObject(req);
+
+    System.out.printf("Updated metadata for item %s from bucket %s\n", itemName, bucketName);
+}
+```

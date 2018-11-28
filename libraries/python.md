@@ -787,3 +787,59 @@ with AsperaTransferManager(client) as transfer_manager:
     # cancel the transfer
     future.cancel()
 ```
+
+## Updating Metadata
+
+There are two ways to update the metadata on an existing object:
+* A `PUT` request with the new metadata and the original object contents
+* Executing a `COPY` request with the new metadata specifying the original object as the copy source
+
+### Using PUT to update metadata
+
+**Note:** The `PUT` request overwrites the existing contents of the object so it must first be downloaded and re-uploaded with the new metdata
+
+```python
+def update_metadata_put(bucket_name, item_name, key, value):
+    try:
+        # retrieve the existing item to reload the contents
+        response = cos_cli.get_object(Bucket=bucket_name, Key=item_name)
+        existing_body = response.get("Body").read()
+
+        # set the new metadata
+        new_metadata = {
+            key: value
+        }
+
+        cos_cli.put_object(Bucket=bucket_name, Key=item_name, Body=existing_body, Metadata=new_metadata)
+
+        print("Metadata update (PUT) for {0} Complete!\n".format(item_name))
+    except ClientError as be:
+        print("CLIENT ERROR: {0}\n".format(be))
+    except Exception as e:
+        log_error("Unable to update metadata: {0}".format(e))
+```
+
+### Using COPY to update metadata
+
+```python
+def update_metadata_copy(bucket_name, item_name, key, value):
+    try:
+        # set the new metadata
+        new_metadata = {
+            key: value
+        }
+
+        # set the copy source to itself
+        copy_source = {
+            "Bucket": bucket_name,
+            "Key": item_name
+        }
+
+        cos_cli.copy_object(Bucket=bucket_name, Key=item_name, CopySource=copy_source, Metadata=new_metadata, MetadataDirective="REPLACE")
+
+        print("Metadata update (COPY) for {0} Complete!\n".format(item_name))
+    except ClientError as be:
+        print("CLIENT ERROR: {0}\n".format(be))
+    except Exception as e:
+        log_error("Unable to update metadata: {0}".format(e))
+```
