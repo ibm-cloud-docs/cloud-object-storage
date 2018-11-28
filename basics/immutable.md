@@ -18,42 +18,63 @@ lastupdated: "2018-11-23"
 
 # Use Immutable Object Storage
 
-Some industries, such as financial services, have strict oversight and audit requirements that require retention of certain records  without modification for prescribed lengths of time. In 2003 the SEC issued an Interpretive Release that software defined storage could meet the retention requirements if it can meet a set of rules.
+Immutable Object Storage  feature allows client(s) to preserve electronic records and maintain data integrity in a WORM (Write-Once-Read-Many), non-erasable and non-rewritable manner until the end of their retention period and the removal of any legal holds. This feature can be used by any client(s) having the need for long term data retention in their environment, including but not limited to organizations in the following industries:
 
-| Rule | Requirement |
-| :--- | :--- |
-| SEC 17a-4(f)(2)(ii)(A) | Protect data from overwrites and deletion |
-| SEC 17a-4(f)(2)(ii)(B) | Automatically verify the storage system properly stored the data. |
-| SEC 17a-4(f)(2)(ii)(C) | Manage retention policies for the objects. |
-| SEC 17a-4(f)(2)(ii)(D) | Ability to download indices and records. |
-| SEC 17a-4(f)(3)(iii/v) | Store duplicate copies and provide auditing capabilities. |
+* Financial 
+* Healthcare 
+* Media content archives
+* Those who are looking to prevent privileged modification or deletion of objects or documents
 
-Users configuring buckets with Immutable Object Storage can set the length of retention on a per-object basis, or allow objects to inherit a default retention period set on the bucket.  Objects are also subject to optional 'legal holds' that prevent modification or deletion even after the retention period has expired.  
-
-IBM Cloud administrators and operators are unable to override the constraints imposed by Immutable Object Storage.
+The underlying feature capabilities can also be used by organizations that deal with financial records management, such as broker-dealer transactions, and may have need to retain the objects in a non-rewritable and non-erasable format.
 
 Immutable Object Storage is not available in all regions, and requires a Standard plan. See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html#service-availability) for more details.
 {:tip}
 
-## Who needs Immutable Object Storage?
+## Terminology and usage
+For the scope of Immutable Object Storage following terms are introduced and explained:
 
-Users who may benefit from using Immutable Object Storage include:
-* Financial Industry
-* Healthcare Industry
-* Media content archives
-* General archives
-* Those who have a regulatory requirement to prevent destruction of data
-* Those who are looking to prevent privileged modification or deletion of objects or documents
+### Retention Period
+The duration of time an object must remain stored in the COS bucket.
 
-Immutable object storage policies prevent users with `Writer` or `Manager` roles from deleting or modifying an object once it is written. Therefore, it should be used when governance dictates that documents must adhere to a retention policy that prevents privileged users from maliciously or accidentally altering data.
+### Retention Policy
+A retention policy is enabled at the COS bucket level. This is needed in order to mark the bucket as eligible for using the immutable object storage capabilities. When enabling retention policy on the COS bucket a minimum, maximum and default retention period needs to be specified for the objects.
 
-Immutable object storage policies should not be used for objects that are frequently modified or that privileged users must be allowed to delete.
+Minimum retention period is the minimum duration of time an object must be retained in the COS bucket.
+
+Maximum retention period is the maximum duration of time an object can be retained in the COS bucket.
+
+Default retention period is the duration of time set if an object is stored in the COS bucket without specifying a custom retention period. This value needs to be between the minimum and maximum retention periods i.e.
+minimum retention period <= default retention period <= maximum retention period
+Note: a maximum retention period of 1000 years can be specified for the objects.
+
+### Legal Hold 
+Certain records (objects) may need to be prevented from deletion even after retention period expiration e.g. a legal review that is pending completion may require access to records for an extended duration that goes beyond the retention period that was originally set for the object. In such a scenario a legal hold flag can be applied at the object level. 
+ 
+Legal hold(s) can be applied to object(s) during initial uploads to cos bucket or after an object has been added.
+ 
+Note: A maximum of 100 legal holds can be applied per object.
+
+### Indefinite retention
+Allows the user to set the object to be stored indefinitely until a new retention period is applied. This is set at a per object level.
 
 ### Event-based retention
-User applications can store an object in {{site.data.keyword.cos_full}} with an indefinite retention period and then can change the object retention to a finite value at a later time. For example, a company has a policy of retaining employee records for three years after the employee leaves the company. When an employee joins the company, the records associated with that employee can be indefinitely retained. When the employee leaves the company, the indefinite retention is converted to a finite value of three years from the current time, as defined by company policy. The object is then protected for three years after the retention period change. {{site.data.keyword.cos_full}} provides the interface by which a third party application or a user can convert the retention of those documents from an indefinite to a finite retention. The user or third party application is responsible for triggering the change in the retention period using the SDK or REST API.
+Immutable object storage allows users to set indefinite retention on the object if they are unsure on the final duration of the retention period for their use case or would like to make use of the event based retention capability. Once set to indefinite, user applications can then can change the object retention to a finite value at a later time. For example, a company has a policy of retaining employee records for three years after the employee leaves the company. When an employee joins the company, the records associated with that employee can be indefinitely retained. When the employee leaves the company, the indefinite retention is converted to a finite value of three years from the current time, as defined by company policy. The object is then protected for three years after the retention period change. IBM® Cloud Object Storage provides the interface by which a third party application or a user can convert the retention of those documents from an indefinite to a finite retention. The user or third party application is responsible for triggering the change in the retention period using the SDK or REST API.
 
 ### Permanent retention
-Objects can be stored in {{site.data.keyword.cos_full}} with a permanent retention period. A permanent retention period never expires, so these objects cannot ever be deleted or modified. The bucket in which the object resides must have permanent retention enabled to store an object permanently. Lifting permanent retention from a bucket or objects is impossible without a legal review process and the engagement of a data fiduciary.
+Permanent retention can only be enabled at a COS bucket level with retention policy enabled. Once enabled, this process cannot be reversed and objects uploaded using permanent retention period cannot be deleted. It is the responsibility of the users to validate at their end if there is a legitimate need to permanently store objects using COS buckets with retention policy.
+
+
+## Immutable Object Storage and considerations for various regulations
+When using immutable object storage, it is the client(s) responsibility to check for and ensure whether any of the feature capabilities discussed can be leveraged to satisfy and comply with the key rules around electronic records storage and retention that are generally governed by:
+
+
+·      Securities and Exchange Commission (SEC) Rule 17a-4(f), 
+·      Financial Industry Regulatory Authority (FINRA) Rule 4511(c), and 
+·      Commodity Futures Trading Commission (CFTC) Rule 1.31(c)-(d)
+
+
+To assist our client(s) in making informed decision(s), IBM engaged Cohasset Associates Inc. to conduct an independent assessment of IBM’s Immutable Object Storage capability. Please review Cohasset Associates Inc.’s report which provides details on the assessment of the Immutable Object Storage capability of IBM Cloud Object Storage. 
+
 
 ### Audit of access and transactions
 Access log data for Immutable Object Storage to review changes to retention parameters, object retention period, and application of legal holds is available on a case-by-case basis by opening a customer service ticket.
