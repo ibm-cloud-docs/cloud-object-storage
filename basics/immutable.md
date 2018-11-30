@@ -31,7 +31,6 @@ Immutable Object Storage is not available in all regions, and requires a Standar
 {:important}
 
 ## Terminology and usage
-For the scope of Immutable Object Storage following terms are introduced and explained:
 
 ### Retention Period
 The duration of time an object must remain stored in the COS bucket.
@@ -43,8 +42,8 @@ Minimum retention period is the minimum duration of time an object must be retai
 
 Maximum retention period is the maximum duration of time an object can be retained in the COS bucket.
 
-Default retention period is the duration of time set if an object is stored in the COS bucket without specifying a custom retention period. This value needs to be between the minimum and maximum retention periods i.e.
-minimum retention period <= default retention period <= maximum retention period
+Default retention period is the duration of time set if an object is stored in the COS bucket without specifying a custom retention period. This value needs to be between the minimum and maximum retention periods.  For example, minimum retention period <= default retention period <= maximum retention period
+
 Note: a maximum retention period of 1000 years can be specified for the objects.
 
 ### Legal Hold 
@@ -61,7 +60,7 @@ Allows the user to set the object to be stored indefinitely until a new retentio
 Immutable object storage allows users to set indefinite retention on the object if they are unsure on the final duration of the retention period for their use case or would like to make use of the event based retention capability. Once set to indefinite, user applications can then can change the object retention to a finite value at a later time. For example, a company has a policy of retaining employee records for three years after the employee leaves the company. When an employee joins the company, the records associated with that employee can be indefinitely retained. When the employee leaves the company, the indefinite retention is converted to a finite value of three years from the current time, as defined by company policy. The object is then protected for three years after the retention period change. IBM® Cloud Object Storage provides the interface by which a third party application or a user can convert the retention of those documents from an indefinite to a finite retention. The user or third party application is responsible for triggering the change in the retention period using the SDK or REST API.
 
 ### Permanent retention
-Permanent retention can only be enabled at a COS bucket level with retention policy enabled. Once enabled, this process cannot be reversed and objects uploaded using permanent retention period cannot be deleted. It is the responsibility of the users to validate at their end if there is a legitimate need to permanently store objects using COS buckets with retention policy.
+Permanent retention can only be enabled at a COS bucket level with retention policy enabled. Once enabled, this process cannot be reversed and objects uploaded using permanent retention period **cannot be deleted**. It is the responsibility of the users to validate whether there exists a legitimate need to **permanently** store objects using retention policies.
 
 
 ## Immutable Object Storage and considerations for various regulations
@@ -71,7 +70,7 @@ When using immutable object storage, it is the client(s) responsibility to check
   * Financial Industry Regulatory Authority (FINRA) Rule 4511(c), and
   * Commodity Futures Trading Commission (CFTC) Rule 1.31(c)-(d)
 
-To assist our client(s) in making informed decision(s), IBM engaged Cohasset Associates Inc. to conduct an independent assessment of IBM’s Immutable Object Storage capability. Please review Cohasset Associates Inc.’s report which provides details on the assessment of the Immutable Object Storage capability of IBM Cloud Object Storage.
+To assist clients in making informed decisions, IBM engaged Cohasset Associates Inc. to conduct an independent assessment of IBM’s Immutable Object Storage capability. [Please review Cohasset Associates Inc.’s report for additional details]().
 
 ### Audit of access and transactions
 Access log data for Immutable Object Storage to review changes to retention parameters, object retention period, and application of legal holds is available on a case-by-case basis by opening a customer service ticket.
@@ -83,7 +82,10 @@ TBD
 
 ## Using the REST API, Libraries, and SDKs
 {: #sdk}
-Several new APIs have been introduced to the IBM COS SDKs to provide support for applications working with Immutable Object Storage.
+Several new APIs have been introduced to the IBM COS SDKs to provide support for applications working with Immutable Object Storage.  Select a language (HTTP, Java, Javascript, or Python) at the top of this page to view examples using the appropriate COS SDK.  Note that all code examples assume the existence of a client object called `cos` that can call the different methods.  For details on creating clients, see the specific SDK guides.
+
+All date values used to set retention periods are GMT.
+{:important}
 
 ### Add a protection configuration to an existing bucket
 
@@ -91,7 +93,7 @@ This implementation of the `PUT` operation uses the `protection` query parameter
 
 Objects written to a protected bucket cannot be deleted until the protection period has expired and all legal holds on the object are removed. The bucket's default retention value is given to an object unless an object specific value is provided when the object is created. Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object. 
 
-The minimum supported value for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` is 0 days and the maximum supported value is 36159 days. 
+The minimum supported value for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` is 0 days and the maximum supported value is 365243 days (1000 years). 
 
 A `Content-MD5` header is required. This operation does not make use of additional query parameters.
 {: http}
@@ -160,7 +162,7 @@ def add_protection_configuration_to_bucket(bucket_name):
             "MaximumRetention": {"Days": 1000}
         }
 
-        cos_cli.put_bucket_protection_configuration(Bucket=bucket_name, ProtectionConfiguration=new_protection_config)
+        cos.put_bucket_protection_configuration(Bucket=bucket_name, ProtectionConfiguration=new_protection_config)
 
         print("Protection added to bucket {0}\n".format(bucket_name))
     except ClientError as be:
@@ -204,7 +206,7 @@ public static void addProtectionConfigurationToBucket(String bucketName) {
         .withDefaultRetentionInDays(100)
         .withMaximumRetentionInDays(1000);
 
-    _cos.setBucketProtection(bucketName, newConfig);
+    cos.setBucketProtection(bucketName, newConfig);
 
     System.out.printf("Protection added to bucket %s\n", bucketName);
 }
@@ -222,7 +224,7 @@ public static void addProtectionConfigurationToBucketWithRequest(String bucketNa
         .withBucketName(bucketName)
         .withProtectionConfiguration(newConfig);
 
-    _cos.setBucketProtectionConfiguration(newRequest);
+    cos.setBucketProtectionConfiguration(newRequest);
 
     System.out.printf("Protection added to bucket %s\n", bucketName);
 }
@@ -293,7 +295,7 @@ If there is no protection configuration on the bucket, the server responds with 
 ```py
 def get_protection_configuration_on_bucket(bucket_name):
     try:
-        response = cos_cli.get_bucket_protection_configuration(Bucket=bucket_name)
+        response = cos.get_bucket_protection_configuration(Bucket=bucket_name)
         protection_config = response.get("ProtectionConfiguration")
 
         print("Bucket protection config for {0}\n".format(bucket_name))
@@ -329,7 +331,7 @@ function getProtectionConfigurationOnBucket(bucketName) {
 public static void getProtectionConfigurationOnBucket(String bucketName) {
     System.out.printf("Retrieving protection configuration from bucket: %s\n", bucketName;
 
-    BucketProtectionConfiguration config = _cos.getBucketProtection(bucketName);
+    BucketProtectionConfiguration config = cos.getBucketProtection(bucketName);
 
     String status = config.getStatus();
 
@@ -361,14 +363,14 @@ These headers apply to POST object and multipart upload requests as well. If upl
 |Value	| Type	| Description |
 | --- | --- | --- | 
 |`Retention-Period` | Non-negative integer (seconds) | Retention period to store on the object in seconds. The object can be neither overwritten nor deleted until the amount of time specified in the retention period has elapsed. If this field and `Retention-Expiration-Date` are specified a `400`  error is returned. If neither is specified the bucket's `DefaultRetention` period will be used. Zero (`0`) is a legal value assuming the bucket's minimum retention period is also `0`. |
-| `Retention-expiration-date` | Date (ISO 8601 Format) | Date on which it will be legal to delete or modify the object. You can only specify this or the Retention-Period header. If both are specified a `400`  error will be returned. If neither is specified the bucket's DefaultRetention period will be used. This header should be used to calculate a retention period in seconds and then stored in that manner. |
+| `Retention-expiration-date` | Date (ISO 8601 Format) | Date on which it will be legal to delete or modify the object. You can only specify this or the Retention-Period header. If both are specified a `400`  error will be returned. If neither is specified the bucket's DefaultRetention period will be used. |
 | `Retention-legal-hold-id` | string | A single legal hold to apply to the object. A legal hold is a Y character long string. The object cannot be overwritten or deleted until all legal holds associated with the object are removed. |
 
 ```py
 def put_object_add_legal_hold(bucket_name, object_name, file_text, legal_hold_id):
     print("Add legal hold {0} to {1} in bucket {2} with a putObject operation.\n".format(legal_hold_id, object_name, bucket_name))
     
-    cos_cli.put_object(
+    cos.put_object(
         Bucket=bucket_name,
         Key=object_name,
         Body=file_text, 
@@ -384,7 +386,7 @@ def copy_protected_object(source_bucket_name, source_object_name, destination_bu
         "Key": source_object_name
     }
 
-    cos_cli.copy_object(
+    cos.copy_object(
         Bucket=destination_bucket_name, 
         Key=new_object_name, 
         CopySource=copy_source, 
@@ -396,7 +398,7 @@ def copy_protected_object(source_bucket_name, source_object_name, destination_bu
 def complete_multipart_upload_with_retention(bucket_name, object_name, upload_id, retention_period):
     print("Completing multi-part upload for object {0} in bucket {1}\n".format(object_name, bucket_name))
 
-    cos_cli.complete_multipart_upload(
+    cos.complete_multipart_upload(
         Bucket=bucket_name, 
         Key=object_name,
         MultipartUpload={
@@ -418,7 +420,7 @@ def upload_file_with_retention(bucket_name, object_name, path_to_file, retention
         "RetentionPeriod": retention_period
     }
 
-    cos_cli.upload_file(
+    cos.upload_file(
         Filename=path_to_file,
         Bucket=bucket_name,
         Key=object_name,
@@ -483,7 +485,7 @@ public static void putObjectAddLegalHold(String bucketName, String objectName, S
     );
     req.setRetentionLegalHoldId(legalHoldId);
 
-    _cos.putObject(req);
+    cos.putObject(req);
 
     System.out.printf("Legal hold %s added to object %s in bucket %s\n", legalHoldId, objectName, bucketName);
 }
@@ -500,7 +502,7 @@ public static void copyProtectedObject(String sourceBucketName, String sourceObj
     req.setRetentionDirective(RetentionDirective.COPY);
     
 
-    _cos.copyObject(req);
+    cos.copyObject(req);
 
     System.out.printf("Protected object copied from %s/%s to %s/%s\n", sourceObjectName, sourceBucketName, destinationBucketName, newObjectName);
 }
@@ -514,7 +516,7 @@ This implementation of the `POST` operation uses the `legalHold` query parameter
 {: http}
 
 The object can support 100 legal holds:
-* A legal hold identifier is a string of maximum length 64 characters and a minimum length of 1 character. Valid characters are letters, numbers, !, _, ., *, ', (, ), and -.
+* A legal hold identifier is a string of maximum length 64 characters and a minimum length of 1 character. Valid characters are letters, numbers, `!`, `_`, `.`, `*`, `(`, `)`, `-` and `.
 * If the addition of the given legal hold exceeds 100 total legal holds on the object, the new legal hold will not be added, a `400` error will be returned.
 * If an identifier is too long it will not be added to the object and a `400` error is returned.
 * If an identifier contains invalid characters, it will not be added to the object and a `400` error is returned.
@@ -568,7 +570,7 @@ Connection: close
 def add_legal_hold_to_object(bucket_name, object_name, legal_hold_id):
     print("Adding legal hold {0} to object {1} in bucket {2}\n".format(legal_hold_id, object_name, bucket_name))
 
-    cos_cli.add_legal_hold(
+    cos.add_legal_hold(
         Bucket=bucket_name,
         Key=object_name,
         RetentionLegalHoldId=legal_hold_id
@@ -579,7 +581,7 @@ def add_legal_hold_to_object(bucket_name, object_name, legal_hold_id):
 def delete_legal_hold_from_object(bucket_name, object_name, legal_hold_id):
     print("Deleting legal hold {0} from object {1} in bucket {2}\n".format(legal_hold_id, object_name, bucket_name))
 
-    cos_cli.delete_legal_hold(
+    cos.delete_legal_hold(
         Bucket=bucket_name,
         Key=object_name,
         RetentionLegalHoldId=legal_hold_id
@@ -628,7 +630,7 @@ function deleteLegalHoldFromObject(bucketName, objectName, legalHoldId) {
 public static void addLegalHoldToObject(String bucketName, String objectName, String legalHoldId) {
     System.out.printf("Adding legal hold %s to object %s in bucket %s\n", legalHoldId, objectName, bucketName);
 
-    _cos.addLegalHold(
+    cos.addLegalHold(
         bucketName, 
         objectName, 
         legalHoldId
@@ -640,7 +642,7 @@ public static void addLegalHoldToObject(String bucketName, String objectName, St
 public static void deleteLegalHoldFromObject(String bucketName, String objectName, String legalHoldId) {
     System.out.printf("Deleting legal hold %s from object %s in bucket %s\n", legalHoldId, objectName, bucketName);
 
-    _cos.deleteLegalHold(
+    cos.deleteLegalHold(
         bucketName, 
         objectName, 
         legalHoldId
@@ -659,10 +661,27 @@ This implementation of the `POST` operation uses the `extendRetention` query par
 
 The retention period of an object can only be extended. It cannot be decreased from the currently configured value.
 
-The retention expansion value can be set in one of three ways: 
-* additional time from the current value
-* new extension period in seconds
-* * new retention expiry date of the object
+The retention expansion value is set in one of three ways:
+
+* additional time from the current value (`Additional-Retention-Period` header)
+* new extension period in seconds (`Extend-Retention-From-Current-Time` header)
+* new retention expiry date of the object (`New-Retention-Expiration-Date` header)
+{: http}
+
+* additional time from the current value (`AdditionalRetentionPeriod` kwarg)
+* new extension period in seconds (`ExtendRetentionFromCurrentTime` kwarg)
+* new retention expiry date of the object (`NewRetentionExpirationDate` kwarg)
+{: python}
+
+* additional time from the current value (`withAdditionalRetentionPeriod()`)
+* new extension period in seconds (`withExtendRetentionFromCurrentTime()` )
+* new retention expiry date of the object (`withNewRetentionExpirationDate()` )
+{: java}
+
+* additional time from the current value (`Additional-Retention-Period` kwarg)
+* new extension period in seconds (`Extend-Retention-From-Current-Time` kwarg)
+* new retention expiry date of the object (`New-Retention-Expiration-Date` kwarg)
+{: javascript}
 
 The current retention period stored in the object metadata is either increased by the given additional time or replaced with the new value, depending on the parameter that is set in the `extendRetention` request. In all cases, the extend retention parameter is checked against the current retention period and the extended parameter is only accepted if the updated retention period is greater than the current retention period.
 
@@ -704,27 +723,27 @@ Connection: close
 {: http}
 
 ```py
-def extend_retention_period_on_object(bucket_name, object_name, additional_days):
-    print("Extend the retention period on {0} in bucket {1} by {2} days.\n".format(object_name, bucket_name, additional_days))
+def extend_retention_period_on_object(bucket_name, object_name, additional_seconds):
+    print("Extend the retention period on {0} in bucket {1} by {2} days.\n".format(object_name, bucket_name, additional_seconds))
 
-    cos_cli.extend_object_retention(
+    cos.extend_object_retention(
         Bucket=bucket_ame,
         Key=object_name,
-        AdditionalRetentionPeriod=additional_days
+        AdditionalRetentionPeriod=additional_seconds
     )
 
-    print("New retention period on {0} is {1}\n".format(object_name, additional_days))
+    print("New retention period on {0} is {1}\n".format(object_name, additional_seconds))
 ```
 {: codeblock}
 {: python}
 
 ```js
-function extendRetentionPeriodOnObject(bucketName, objectName, additionalDays) {
-    console.log(`Extend the retention period on ${objectName} in bucket ${bucketName} by ${additionalDays} days.`);
+function extendRetentionPeriodOnObject(bucketName, objectName, additionalSeconds) {
+    console.log(`Extend the retention period on ${objectName} in bucket ${bucketName} by ${additionalSeconds} days.`);
     return cos.extendObjectRetention({
         Bucket: bucketName,
         Key: objectName,
-        AdditionalRetentionPeriod: additionalDays
+        AdditionalRetentionPeriod: additionalSeconds
     }).promise()
     .then((data) => {
         console.log(`New retention period on ${objectName} is ${data.RetentionPeriod}`);
@@ -738,17 +757,17 @@ function extendRetentionPeriodOnObject(bucketName, objectName, additionalDays) {
 {: javascript}
 
 ```java
-public static void extendRetentionPeriodOnObject(String bucketName, String objectName, Long additionalDays) {
-    System.out.printf("Extend the retention period on %s in bucket %s by %s days.\n", objectName, bucketName, additionalDays);
+public static void extendRetentionPeriodOnObject(String bucketName, String objectName, Long additionalSeconds) {
+    System.out.printf("Extend the retention period on %s in bucket %s by %s days.\n", objectName, bucketName, additionalSeconds);
 
     ExtendObjectRetentionRequest req = new ExtendObjectRetentionRequest(
         bucketName, 
         objectName)
-        .withAdditionalRetentionPeriod(additionalDays);
+        .withAdditionalRetentionPeriod(additionalSeconds);
 
-    _cos.extendObjectRetention(req);
+    cos.extendObjectRetention(req);
 
-    System.out.printf("New retention period on %s is %s\n", objectName, additionalDays);
+    System.out.printf("New retention period on %s is %s\n", objectName, additionalSeconds);
 }
 ```
 {: codeblock}
@@ -760,6 +779,7 @@ This implementation of the `GET` operation uses the `legalHold` query parameter 
 {: http}
 
 This operation returns:
+
 * Object creation date
 * Object retention period in seconds
 * Calculated retention expiration date based on the period and creation date
@@ -823,7 +843,7 @@ GMT</RetentionPeriodExpirationDate>
 def list_legal_holds_on_object(bucket_name, object_name):
     print("List all legal holds on object {0} in bucket {1}\n".format(object_name, bucket_name));
 
-    response = cos_cli.list_legal_holds(
+    response = cos.list_legal_holds(
         Bucket=bucket_name,
         Key=object_name
     )
@@ -855,7 +875,7 @@ function listLegalHoldsOnObject(bucketName, objectName) {
 public static void listLegalHoldsOnObject(String bucketName, String objectName) {
     System.out.printf("List all legal holds on object %s in bucket %s\n", objectName, bucketName);
 
-    ListLegalHoldsResult result = _cos.listLegalHolds(
+    ListLegalHoldsResult result = cos.listLegalHolds(
         bucketName, 
         objectName
     );
@@ -870,5 +890,3 @@ public static void listLegalHoldsOnObject(String bucketName, String objectName) 
 ```
 {: codeblock}
 {: java}
-
-More examples coming soon.
