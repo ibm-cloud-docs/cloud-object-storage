@@ -93,7 +93,7 @@ This implementation of the `PUT` operation uses the `protection` query parameter
 
 Objects written to a protected bucket cannot be deleted until the protection period has expired and all legal holds on the object are removed. The bucket's default retention value is given to an object unless an object specific value is provided when the object is created. Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object. 
 
-The minimum supported value for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` is 0 days and the maximum supported value is 365243 days (1000 years). 
+The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are 0 days and 365243 days (1000 years) respectively. 
 
 A `Content-MD5` header is required. This operation does not make use of additional query parameters.
 {: http}
@@ -724,7 +724,7 @@ Connection: close
 
 ```py
 def extend_retention_period_on_object(bucket_name, object_name, additional_seconds):
-    print("Extend the retention period on {0} in bucket {1} by {2} days.\n".format(object_name, bucket_name, additional_seconds))
+    print("Extend the retention period on {0} in bucket {1} by {2} seconds.\n".format(object_name, bucket_name, additional_seconds))
 
     cos.extend_object_retention(
         Bucket=bucket_ame,
@@ -739,7 +739,7 @@ def extend_retention_period_on_object(bucket_name, object_name, additional_secon
 
 ```js
 function extendRetentionPeriodOnObject(bucketName, objectName, additionalSeconds) {
-    console.log(`Extend the retention period on ${objectName} in bucket ${bucketName} by ${additionalSeconds} days.`);
+    console.log(`Extend the retention period on ${objectName} in bucket ${bucketName} by ${additionalSeconds} seconds.`);
     return cos.extendObjectRetention({
         Bucket: bucketName,
         Key: objectName,
@@ -758,7 +758,7 @@ function extendRetentionPeriodOnObject(bucketName, objectName, additionalSeconds
 
 ```java
 public static void extendRetentionPeriodOnObject(String bucketName, String objectName, Long additionalSeconds) {
-    System.out.printf("Extend the retention period on %s in bucket %s by %s days.\n", objectName, bucketName, additionalSeconds);
+    System.out.printf("Extend the retention period on %s in bucket %s by %s seconds.\n", objectName, bucketName, additionalSeconds);
 
     ExtendObjectRetentionRequest req = new ExtendObjectRetentionRequest(
         bucketName, 
