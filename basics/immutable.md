@@ -678,9 +678,9 @@ The retention expansion value is set in one of three ways:
 * new retention expiry date of the object (`withNewRetentionExpirationDate()` )
 {: java}
 
-* additional time from the current value (`Additional-Retention-Period` kwarg)
-* new extension period in seconds (`Extend-Retention-From-Current-Time` kwarg)
-* new retention expiry date of the object (`New-Retention-Expiration-Date` kwarg)
+* additional time from the current value (`AdditionalRetentionPeriod` kwarg)
+* new extension period in seconds (`ExtendRetentionFrom-CurrentTime` kwarg)
+* new retention expiry date of the object (`NewRetentionExpirationDate` kwarg)
 {: javascript}
 
 The current retention period stored in the object metadata is either increased by the given additional time or replaced with the new value, depending on the parameter that is set in the `extendRetention` request. In all cases, the extend retention parameter is checked against the current retention period and the extended parameter is only accepted if the updated retention period is greater than the current retention period.
