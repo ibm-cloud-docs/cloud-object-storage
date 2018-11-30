@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-08-27"
+lastupdated: "2018-11-29"
 
 ---
 {:new_window: target="_blank"}
@@ -379,6 +379,10 @@ Content-Length: 207
 A `PUT` given a path to a new object creates a new copy of another object specified by the `x-amz-copy-source` header. Unless otherwise altered the metadata remains the same.
 
 **Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
+{:tip}
+
+
+**Note**: Copying an item from a *Key Protect*-enabled bucket to a destination bucket in another region is restricted and will result in a `500 - Internal Error`.
 {:tip}
 
 **Syntax**
