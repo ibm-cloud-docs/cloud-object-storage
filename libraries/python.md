@@ -36,7 +36,7 @@ The 2.0 release of the SDK introduces a namespacing change that allows an applic
 ## Creating a client and sourcing credentials
 {: #client-credentials}
 
-To connect to COS, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.  
+To connect to COS, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
 
 After generating a [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`.  The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client will authenticate with a signature, otherwise the client will use the provided API key to authenticate using a bearer token.
 
@@ -58,7 +58,7 @@ Code examples were written using **Python 2.7.15**
 {: #init-config}
 
 ```python
-import ibm_boto3 
+import ibm_boto3
 from ibm_botocore.client import Config
 
 # Constants for IBM COS values
@@ -74,7 +74,7 @@ cos = ibm_boto3.resource("s3",
     ibm_service_instance_id=COS_RESOURCE_CRN,
     ibm_auth_endpoint=COS_AUTH_ENDPOINT,
     config=Config(signature_version="oauth"),
-    endpoint_url=COS_ENDPOINT 
+    endpoint_url=COS_ENDPOINT
 )
 ```
 *Key Values*
@@ -300,15 +300,15 @@ def multi_part_upload(bucket_name, item_name, file_path):
             multipart_threshold=file_threshold,
             multipart_chunksize=part_size
         )
-        
-        # the upload_fileobj method will automatically execute a multi-part upload 
+
+        # the upload_fileobj method will automatically execute a multi-part upload
         # in 5 MB chunks for all files over 15 MB
         with open(file_path, "rb") as file_data:
             cos.Object(bucket_name, item_name).upload_fileobj(
                 Fileobj=file_data,
                 Config=transfer_config
             )
-        
+
         print("Transfer for {0} Complete!\n".format(item_name))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
@@ -337,7 +337,7 @@ def multi_part_upload_manual(bucket_name, item_name, file_path):
             config=Config(signature_version="oauth"),
             endpoint_url=COS_ENDPOINT
         )
-    
+
         print("Starting multi-part upload for {0} to bucket: {1}\n".format(item_name, bucket_name))
 
         # initiate the multi-part upload
@@ -397,7 +397,7 @@ def multi_part_upload_manual(bucket_name, item_name, file_path):
         cos_cli.abort_multipart_upload(
             Bucket=bucket_name,
             Key=item_name,
-            UploadId=upload_id            
+            UploadId=upload_id
         )
         print("Multi-part upload aborted for {0}\n".format(item_name))
         print("CLIENT ERROR: {0}\n".format(be))
@@ -486,7 +486,7 @@ def get_bucket_contents_v2(bucket_name, max_keys):
             files = response["Contents"]
             for file in files:
                 print("Item: {0} ({1} bytes).".format(file["Key"], file["Size"]))
-            
+
             if (response["IsTruncated"]):
                 next_token = response["NextContinuationToken"]
                 print("...More results in next batch!\n")
@@ -562,7 +562,7 @@ def create_bucket_kp(bucket_name):
 
 ## Using Aspera High-Speed Transfer
 {: #aspera}
-By installing the [Aspera high-speed transfer library](/docs/services/cloud-object-storage/basics/aspera.html#aspera-packaging) you can utilize high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license). 
+By installing the [Aspera high-speed transfer library](/docs/services/cloud-object-storage/basics/aspera.html#aspera-packaging) you can utilize high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license).
 
 Each Aspera session spawns an individual `ascp` process that runs on the client machine to perform the transfer. Ensure that your computing environment can allow this process to run.
 {:tip}
@@ -580,7 +580,7 @@ transfer_manager = AsperaTransferManager(client)
 You will need to provide an IAM API Key for Aspera high-speed transfers.  [HMAC Credentials](/docs/services/cloud-object-storage/iam/service-credentials.html#iam-vs-hmac){:new_window} are **NOT** currently supported.  For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
 {:tip}
 
-Enable the use multiple sessions by initializing `AsperaTransferManager` with an additional configuration option passed by the `AsperaConfig` class. This will split the transfer into the specified number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value. 
+Enable the use multiple sessions by initializing `AsperaTransferManager` with an additional configuration option passed by the `AsperaConfig` class. This will split the transfer into the specified number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value.
 
 The typical configuration for using multi-session should be:
 * 2 or 10 sessions
@@ -589,11 +589,11 @@ The typical configuration for using multi-session should be:
 ```python
 from ibm_s3transfer.aspera.manager import AsperaConfig
 # Configure 2 sessions for transfer
-ms_transfer_config = AsperaConfig(multi_session=2, 
+ms_transfer_config = AsperaConfig(multi_session=2,
                                   multi_session_threshold_mb=60)
 
 # Create the Aspera Transfer Manager
-transfer_manager = AsperaTransferManager(client=client, 
+transfer_manager = AsperaTransferManager(client=client,
                                          transfer_config=ms_transfer_config)
 ```
 For best performance in most scenarios, always make use of multiple sessions to minimize any overhead associated with instantiating an Aspera high-speed transfer.  **If your network capacity is at least 1 Gbps you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
