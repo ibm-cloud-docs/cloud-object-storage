@@ -36,7 +36,7 @@ The 2.0 release of the SDK introduces a namespacing change that allows an applic
 ## Creating a client and sourcing credentials
 {: #client-credentials}
 
-To connect to COS, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.  
+To connect to COS, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
 
 After generating a [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`.  The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client will authenticate with a signature, otherwise the client will use the provided API key to authenticate using a bearer token.
 
@@ -58,7 +58,7 @@ Code examples were written using **Python 2.7.15**
 {: #init-config}
 
 ```python
-import ibm_boto3 
+import ibm_boto3
 from ibm_botocore.client import Config
 
 # Constants for IBM COS values
@@ -74,7 +74,7 @@ cos = ibm_boto3.resource("s3",
     ibm_service_instance_id=COS_RESOURCE_CRN,
     ibm_auth_endpoint=COS_AUTH_ENDPOINT,
     config=Config(signature_version="oauth"),
-    endpoint_url=COS_ENDPOINT 
+    endpoint_url=COS_ENDPOINT
 )
 ```
 *Key Values*
@@ -300,15 +300,15 @@ def multi_part_upload(bucket_name, item_name, file_path):
             multipart_threshold=file_threshold,
             multipart_chunksize=part_size
         )
-        
-        # the upload_fileobj method will automatically execute a multi-part upload 
+
+        # the upload_fileobj method will automatically execute a multi-part upload
         # in 5 MB chunks for all files over 15 MB
         with open(file_path, "rb") as file_data:
             cos.Object(bucket_name, item_name).upload_fileobj(
                 Fileobj=file_data,
                 Config=transfer_config
             )
-        
+
         print("Transfer for {0} Complete!\n".format(item_name))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
@@ -337,7 +337,7 @@ def multi_part_upload_manual(bucket_name, item_name, file_path):
             config=Config(signature_version="oauth"),
             endpoint_url=COS_ENDPOINT
         )
-    
+
         print("Starting multi-part upload for {0} to bucket: {1}\n".format(item_name, bucket_name))
 
         # initiate the multi-part upload
@@ -397,7 +397,7 @@ def multi_part_upload_manual(bucket_name, item_name, file_path):
         cos_cli.abort_multipart_upload(
             Bucket=bucket_name,
             Key=item_name,
-            UploadId=upload_id            
+            UploadId=upload_id
         )
         print("Multi-part upload aborted for {0}\n".format(item_name))
         print("CLIENT ERROR: {0}\n".format(be))
@@ -461,7 +461,7 @@ def upload_large_file(bucket_name, item_name, file_path):
         transfer_mgr.shutdown()
 ```
 
-## List items in a bucket (v2)
+### List items in a bucket (v2)
 {: #list-objects-v2}
 
 The [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window} object contains an updated method to list the contents ([list_objects_v2](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){:new_window}).  This method allows you to limit the number of records returned and retrieve the records in batches.  This could be useful for paging your results within an application and improve performance.
@@ -486,7 +486,7 @@ def get_bucket_contents_v2(bucket_name, max_keys):
             files = response["Contents"]
             for file in files:
                 print("Item: {0} ({1} bytes).".format(file["Key"], file["Size"]))
-            
+
             if (response["IsTruncated"]):
                 next_token = response["NextContinuationToken"]
                 print("...More results in next batch!\n")
@@ -562,7 +562,7 @@ def create_bucket_kp(bucket_name):
 
 ## Using Aspera High-Speed Transfer
 {: #aspera}
-By installing the [Aspera high-speed transfer library](/docs/services/cloud-object-storage/basics/aspera.html#aspera-packaging) you can utilize high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license). 
+By installing the [Aspera high-speed transfer library](/docs/services/cloud-object-storage/basics/aspera.html#aspera-packaging) you can utilize high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license).
 
 Each Aspera session spawns an individual `ascp` process that runs on the client machine to perform the transfer. Ensure that your computing environment can allow this process to run.
 {:tip}
@@ -573,25 +573,27 @@ Each Aspera session spawns an individual `ascp` process that runs on the client 
 Before initializing the `AsperaTransferManager`, make sure you've got working [`s3Client`](#init-config) object.
 
 ```python
+from ibm_s3transfer.aspera.manager import AsperaTransferManager
 transfer_manager = AsperaTransferManager(client)
 ```
 
 You will need to provide an IAM API Key for Aspera high-speed transfers.  [HMAC Credentials](/docs/services/cloud-object-storage/iam/service-credentials.html#iam-vs-hmac){:new_window} are **NOT** currently supported.  For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
 {:tip}
 
-Enable the use multiple sessions by initializing `AsperaTransferManager` with an additional configuration option passed by the `AsperaConfig` class. This will split the transfer into the specified number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value. 
+Enable the use multiple sessions by initializing `AsperaTransferManager` with an additional configuration option passed by the `AsperaConfig` class. This will split the transfer into the specified number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value.
 
 The typical configuration for using multi-session should be:
 * 2 or 10 sessions
 * 60 MB threshold (*this is the recommended value for most applications*)
 
 ```python
+from ibm_s3transfer.aspera.manager import AsperaConfig
 # Configure 2 sessions for transfer
-ms_transfer_config = AsperaConfig(multi_session=2, 
+ms_transfer_config = AsperaConfig(multi_session=2,
                                   multi_session_threshold_mb=60)
 
 # Create the Aspera Transfer Manager
-transfer_manager = AsperaTransferManager(client=client, 
+transfer_manager = AsperaTransferManager(client=client,
                                          transfer_config=ms_transfer_config)
 ```
 For best performance in most scenarios, always make use of multiple sessions to minimize any overhead associated with instantiating an Aspera high-speed transfer.  **If your network capacity is at least 1 Gbps you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
@@ -843,3 +845,230 @@ def update_metadata_copy(bucket_name, item_name, key, value):
     except Exception as e:
         log_error("Unable to update metadata: {0}".format(e))
 ```
+
+## Using Immutable Object Storage
+### Add a protection configuration to an existing bucket
+
+Objects written to a protected bucket cannot be deleted until the protection period has expired and all legal holds on the object are removed. The bucket's default retention value is given to an object unless an object specific value is provided when the object is created. Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object. 
+
+The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are 0 days and 365243 days (1000 years) respectively. 
+
+```py
+def add_protection_configuration_to_bucket(bucket_name):
+    try:
+        new_protection_config = {
+            "Status": "Retention",
+            "MinimumRetention": {"Days": 10},
+            "DefaultRetention": {"Days": 100},
+            "MaximumRetention": {"Days": 1000}
+        }
+
+        cos.put_bucket_protection_configuration(Bucket=bucket_name, ProtectionConfiguration=new_protection_config)
+
+        print("Protection added to bucket {0}\n".format(bucket_name))
+    except ClientError as be:
+        print("CLIENT ERROR: {0}\n".format(be))
+    except Exception as e:
+        print("Unable to set bucket protection config: {0}".format(e))
+```
+{: codeblock}
+{: python}
+
+### Check protection on a bucket
+
+```py
+def get_protection_configuration_on_bucket(bucket_name):
+    try:
+        response = cos.get_bucket_protection_configuration(Bucket=bucket_name)
+        protection_config = response.get("ProtectionConfiguration")
+
+        print("Bucket protection config for {0}\n".format(bucket_name))
+        print(protection_config)
+        print("\n")
+    except ClientError as be:
+        print("CLIENT ERROR: {0}\n".format(be))
+    except Exception as e:
+        print("Unable to get bucket protection config: {0}".format(e))
+```
+{: codeblock}
+{: python}
+
+
+### Upload a protected object
+
+Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
+
+
+|Value	| Type	| Description |
+| --- | --- | --- | 
+|`Retention-Period` | Non-negative integer (seconds) | Retention period to store on the object in seconds. The object can be neither overwritten nor deleted until the amount of time specified in the retention period has elapsed. If this field and `Retention-Expiration-Date` are specified a `400`  error is returned. If neither is specified the bucket's `DefaultRetention` period will be used. Zero (`0`) is a legal value assuming the bucket's minimum retention period is also `0`. |
+| `Retention-expiration-date` | Date (ISO 8601 Format) | Date on which it will be legal to delete or modify the object. You can only specify this or the Retention-Period header. If both are specified a `400`  error will be returned. If neither is specified the bucket's DefaultRetention period will be used. |
+| `Retention-legal-hold-id` | string | A single legal hold to apply to the object. A legal hold is a Y character long string. The object cannot be overwritten or deleted until all legal holds associated with the object are removed. |
+
+```py
+def put_object_add_legal_hold(bucket_name, object_name, file_text, legal_hold_id):
+    print("Add legal hold {0} to {1} in bucket {2} with a putObject operation.\n".format(legal_hold_id, object_name, bucket_name))
+    
+    cos.put_object(
+        Bucket=bucket_name,
+        Key=object_name,
+        Body=file_text, 
+        RetentionLegalHoldId=legal_hold_id)
+
+    print("Legal hold {0} added to object {1} in bucket {2}\n".format(legal_hold_id, object_name, bucket_name))
+  
+def copy_protected_object(source_bucket_name, source_object_name, destination_bucket_name, new_object_name):
+    print("Copy protected object {0} from bucket {1} to {2}/{3}.\n".format(source_object_name, source_bucket_name, destination_bucket_name, new_object_name))
+
+    copy_source = {
+        "Bucket": source_bucket_name,
+        "Key": source_object_name
+    }
+
+    cos.copy_object(
+        Bucket=destination_bucket_name, 
+        Key=new_object_name, 
+        CopySource=copy_source, 
+        RetentionDirective="Copy"
+    )
+
+    print("Protected object copied from {0}/{1} to {2}/{3}\n".format(source_bucket_name, source_object_name, destination_bucket_name, new_object_name));
+
+def complete_multipart_upload_with_retention(bucket_name, object_name, upload_id, retention_period):
+    print("Completing multi-part upload for object {0} in bucket {1}\n".format(object_name, bucket_name))
+
+    cos.complete_multipart_upload(
+        Bucket=bucket_name, 
+        Key=object_name,
+        MultipartUpload={
+            "Parts":[{
+                "ETag": part["ETag"],
+                "PartNumber": 1
+            }]
+        },
+        UploadId=upload_id,
+        RetentionPeriod=retention_period
+    )
+
+    print("Multi-part upload completed for object {0} in bucket {1}\n".format(object_name, bucket_name))
+
+def upload_file_with_retention(bucket_name, object_name, path_to_file, retention_period):
+    print("Uploading file {0} to object {1} in bucket {2}\n".format(path_to_file, object_name, bucket_name))
+    
+    args = {
+        "RetentionPeriod": retention_period
+    }
+
+    cos.upload_file(
+        Filename=path_to_file,
+        Bucket=bucket_name,
+        Key=object_name,
+        ExtraArgs=args
+    )
+
+    print("File upload complete to object {0} in bucket {1}\n".format(object_name, bucket_name))
+```
+{: codeblock}
+{: python}
+
+### Add or remove a legal hold to or from a protected object
+
+The object can support 100 legal holds:
+
+*  A legal hold identifier is a string of maximum length 64 characters and a minimum length of 1 character. Valid characters are letters, numbers, `!`, `_`, `.`, `*`, `(`, `)`, `-` and `.
+* If the addition of the given legal hold exceeds 100 total legal holds on the object, the new legal hold will not be added, a `400` error will be returned.
+* If an identifier is too long it will not be added to the object and a `400` error is returned.
+* If an identifier contains invalid characters, it will not be added to the object and a `400` error is returned.
+* If an identifier is already in use on an object, the existing legal hold is not modified and the response indicates the identifier was already in use with a `409` error.
+* If an object does not have retention period metadata, a `400` error is returned and adding or removing a legal hold is not allowed.
+
+
+The user making adding or removing a legal hold must have `Manager` permissions for this bucket.
+
+
+```py
+def add_legal_hold_to_object(bucket_name, object_name, legal_hold_id):
+    print("Adding legal hold {0} to object {1} in bucket {2}\n".format(legal_hold_id, object_name, bucket_name))
+
+    cos.add_legal_hold(
+        Bucket=bucket_name,
+        Key=object_name,
+        RetentionLegalHoldId=legal_hold_id
+    )
+
+    print("Legal hold {0} added to object {1} in bucket {2}!\n".format(legal_hold_id, object_name, bucket_name))
+
+def delete_legal_hold_from_object(bucket_name, object_name, legal_hold_id):
+    print("Deleting legal hold {0} from object {1} in bucket {2}\n".format(legal_hold_id, object_name, bucket_name))
+
+    cos.delete_legal_hold(
+        Bucket=bucket_name,
+        Key=object_name,
+        RetentionLegalHoldId=legal_hold_id
+    )
+
+    print("Legal hold {0} deleted from object {1} in bucket {2}!\n".format(legal_hold_id, object_name, bucket_name))
+```
+{: codeblock}
+{: python}
+
+### Extend the retention period of a protected object
+
+The retention period of an object can only be extended. It cannot be decreased from the currently configured value.
+
+The retention expansion value is set in one of three ways:
+
+* additional time from the current value (`Additional-Retention-Period` or similar method)
+* new extension period in seconds (`Extend-Retention-From-Current-Time` or similar method)
+* new retention expiry date of the object (`New-Retention-Expiration-Date` or similar method)
+
+The current retention period stored in the object metadata is either increased by the given additional time or replaced with the new value, depending on the parameter that is set in the `extendRetention` request. In all cases, the extend retention parameter is checked against the current retention period and the extended parameter is only accepted if the updated retention period is greater than the current retention period.
+
+Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
+
+
+
+```py
+def extend_retention_period_on_object(bucket_name, object_name, additional_seconds):
+    print("Extend the retention period on {0} in bucket {1} by {2} seconds.\n".format(object_name, bucket_name, additional_seconds))
+
+    cos.extend_object_retention(
+        Bucket=bucket_ame,
+        Key=object_name,
+        AdditionalRetentionPeriod=additional_seconds
+    )
+
+    print("New retention period on {0} is {1}\n".format(object_name, additional_seconds))
+```
+{: codeblock}
+{: python}
+
+### List legal holds on a protected object
+
+This operation returns:
+
+* Object creation date
+* Object retention period in seconds
+* Calculated retention expiration date based on the period and creation date
+* List of legal holds
+* Legal hold identifier
+* Timestamp when legal hold was applied
+
+If there are no legal holds on the object, an empty `LegalHoldSet` is returned.
+If there is no retention period specified on the object, a `404` error is returned.
+
+
+```py 
+def list_legal_holds_on_object(bucket_name, object_name):
+    print("List all legal holds on object {0} in bucket {1}\n".format(object_name, bucket_name));
+
+    response = cos.list_legal_holds(
+        Bucket=bucket_name,
+        Key=object_name
+    )
+
+    print("Legal holds on bucket {0}: {1}\n".format(bucket_name, response))
+```
+{: codeblock}
+{: python}
+

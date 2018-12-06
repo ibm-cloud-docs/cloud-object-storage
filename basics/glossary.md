@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2017-12-20"
+  years: 2017, 2018
+lastupdated: "2018-07-31"
 
 ---
 {:new_window: target="_blank"}
@@ -52,7 +52,7 @@ A service credential is a collection of important information used by developers
 ```
 
 ## Service ID
-A service ID is an abstracted user that is intended to be used by developers to identify applications (or components of applications that access object storage resources. Service IDs can be granted IAM roles on resources just like any other user.
+A service ID is an abstracted user that is intended to be used by developers to identify applications (or components of applications) that access object storage resources. Service IDs can be granted IAM roles on resources just like any other user.
 
 ## IAM roles
 IAM roles represent the level of access that a given subject should have on a given resource.  There are two types of roles:

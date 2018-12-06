@@ -88,7 +88,7 @@ function createBucket(bucketName) {
         console.log(`Bucket: ${bucketName} created!`);
     }))
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -110,7 +110,7 @@ function createTextFile(bucketName, itemName, fileText) {
         console.log(`Item: ${itemName} created!`);
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -132,7 +132,7 @@ function getBuckets() {
         }
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -157,7 +157,7 @@ function getBucketContents(bucketName) {
         }    
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -179,7 +179,7 @@ function getItem(bucketName, itemName) {
         }    
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -199,7 +199,7 @@ function deleteItem(bucketName, itemName) {
         console.log(`Item: ${itemName} deleted!`);
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -217,7 +217,7 @@ function deleteBucket(bucketName) {
         console.log(`Bucket: ${bucketName} deleted!`);
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -243,7 +243,7 @@ function getBucketACL(bucketName) {
         }
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -270,7 +270,7 @@ function getItemACL(bucketName, itemName) {
         }
     })
     .catch((e) => {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -286,7 +286,7 @@ function multiPartUpload(bucketName, itemName, filePath) {
     var uploadID = null;
 
     if (!fs.existsSync(filePath)) {
-        logError(new Error(`The file \'${filePath}\' does not exist or is not accessible.`));
+        log.error(new Error(`The file \'${filePath}\' does not exist or is not accessible.`));
         return;
     }
 
@@ -310,7 +310,7 @@ function multiPartUpload(bucketName, itemName, filePath) {
     
                 partNum++;
 
-                console.log(`Uploading to ${name} (part ${partNum} of ${partCount})`);  
+                console.log(`Uploading to ${itemName} (part ${partNum} of ${partCount})`);  
 
                 cos.uploadPart({
                     Body: fileData.slice(start, end),
@@ -324,7 +324,7 @@ function multiPartUpload(bucketName, itemName, filePath) {
                 })
                 .catch((e) => {
                     cancelMultiPartUpload(bucketName, itemName, uploadID);
-                    console.log(`ERROR: ${e.code} - ${e.message}\n`);
+                    console.error(`ERROR: ${e.code} - ${e.message}\n`);
                 });
             }, (e, dataPacks) => {
                 cos.completeMultipartUpload({
@@ -335,16 +335,16 @@ function multiPartUpload(bucketName, itemName, filePath) {
                     },
                     UploadId: uploadID
                 }).promise()
-                .then(logDone)
+                .then(console.log(`Upload of all ${partCount} parts of ${itemName} successful.`)
                 .catch((e) => {
                     cancelMultiPartUpload(bucketName, itemName, uploadID);
-                    console.log(`ERROR: ${e.code} - ${e.message}\n`);
+                    console.error(`ERROR: ${e.code} - ${e.message}\n`);
                 });
             });
         });
     })
     .catch(e) {
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     };
 }
 
@@ -358,7 +358,7 @@ function cancelMultiPartUpload(bucketName, itemName, uploadID) {
         console.log(`Multi-part upload aborted for ${itemName}`);
     })
     .catch((e){
-        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
 ```
@@ -628,3 +628,214 @@ function updateMetadataCopy(bucketName, itemName, metaValue) {
     });
 }
 ```
+
+## Using Immutable Object Storage
+### Add a protection configuration to an existing bucket
+
+Objects written to a protected bucket cannot be deleted until the protection period has expired and all legal holds on the object are removed. The bucket's default retention value is given to an object unless an object specific value is provided when the object is created. Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object. 
+
+The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are 0 days and 365243 days (1000 years) respectively. 
+
+
+```js
+function addProtectionConfigurationToBucket(bucketName) {
+    console.log(`Adding protection to bucket ${bucketName}`);
+    return cos.putBucketProtectionConfiguration({
+        Bucket: bucketName,
+        ProtectionConfiguration: {
+            'Status': 'Retention',
+            'MinimumRetention': {'Days': 10},
+            'DefaultRetention': {'Days': 100},
+            'MaximumRetention': {'Days': 1000}
+        }
+    }).promise()
+    .then(() => {
+        console.log(`Protection added to bucket ${bucketName}!`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+{: codeblock}
+{: javascript}
+
+### Check protection on a bucket
+
+```js
+function getProtectionConfigurationOnBucket(bucketName) {
+    console.log(`Retrieve the protection on bucket ${bucketName}`);
+    return cos.getBucketProtectionConfiguration({
+        Bucket: bucketName
+    }).promise()
+    .then((data) => {
+        console.log(`Configuration on bucket ${bucketName}:`);
+        console.log(data);
+    }
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+{: codeblock}
+{: javascript}
+
+### Upload a protected object
+
+Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
+
+|Value	| Type	| Description |
+| --- | --- | --- | 
+|`Retention-Period` | Non-negative integer (seconds) | Retention period to store on the object in seconds. The object can be neither overwritten nor deleted until the amount of time specified in the retention period has elapsed. If this field and `Retention-Expiration-Date` are specified a `400`  error is returned. If neither is specified the bucket's `DefaultRetention` period will be used. Zero (`0`) is a legal value assuming the bucket's minimum retention period is also `0`. |
+| `Retention-expiration-date` | Date (ISO 8601 Format) | Date on which it will be legal to delete or modify the object. You can only specify this or the Retention-Period header. If both are specified a `400`  error will be returned. If neither is specified the bucket's DefaultRetention period will be used. |
+| `Retention-legal-hold-id` | string | A single legal hold to apply to the object. A legal hold is a Y character long string. The object cannot be overwritten or deleted until all legal holds associated with the object are removed. |
+
+```js
+function putObjectAddLegalHold(bucketName, objectName, legalHoldId) {
+    console.log(`Add legal hold ${legalHoldId} to ${objectName} in bucket ${bucketName} with a putObject operation.`);
+    return cos.putObject({
+        Bucket: bucketName,
+        Key: objectName,
+        Body: 'body',
+        RetentionLegalHoldId: legalHoldId
+    }).promise()
+    .then((data) => {
+        console.log(`Legal hold ${legalHoldId} added to object ${objectName} in bucket ${bucketName}`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+
+function copyProtectedObject(sourceBucketName, sourceObjectName, destinationBucketName, newObjectName, ) {
+    console.log(`Copy protected object ${sourceObjectName} from bucket ${sourceBucketName} to ${destinationBucketName}/${newObjectName}.`);
+    return cos.copyObject({
+        Bucket: destinationBucketName,
+        Key: newObjectName,
+        CopySource: sourceBucketName + '/' + sourceObjectName,
+        RetentionDirective: 'Copy'
+    }).promise()
+    .then((data) => {
+        console.log(`Protected object copied from ${sourceBucketName}/${sourceObjectName} to ${destinationBucketName}/${newObjectName}`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+{: codeblock}
+{: javascript}
+
+### Add or remove a legal hold to or from a protected object
+
+The object can support 100 legal holds:
+
+*  A legal hold identifier is a string of maximum length 64 characters and a minimum length of 1 character. Valid characters are letters, numbers, `!`, `_`, `.`, `*`, `(`, `)`, `-` and `.
+* If the addition of the given legal hold exceeds 100 total legal holds on the object, the new legal hold will not be added, a `400` error will be returned.
+* If an identifier is too long it will not be added to the object and a `400` error is returned.
+* If an identifier contains invalid characters, it will not be added to the object and a `400` error is returned.
+* If an identifier is already in use on an object, the existing legal hold is not modified and the response indicates the identifier was already in use with a `409` error.
+* If an object does not have retention period metadata, a `400` error is returned and adding or removing a legal hold is not allowed.
+
+The user making adding or removing a legal hold must have `Manager` permissions for this bucket.
+
+```js
+function addLegalHoldToObject(bucketName, objectName, legalHoldId) {
+    console.log(`Adding legal hold ${legalHoldId} to object ${objectName} in bucket ${bucketName}`);
+    return cos.client.addLegalHold({
+        Bucket: bucketName,
+        Key: objectId,
+        RetentionLegalHoldId: legalHoldId
+    }).promise()
+    .then(() => {
+        console.log(`Legal hold ${legalHoldId} added to object ${objectName} in bucket ${bucketName}!`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+
+function deleteLegalHoldFromObject(bucketName, objectName, legalHoldId) {
+    console.log(`Deleting legal hold ${legalHoldId} from object ${objectName} in bucket ${bucketName}`);
+    return cos.client.deleteLegalHold({
+        Bucket: bucketName,
+        Key: objectId,
+        RetentionLegalHoldId: legalHoldId
+    }).promise()
+    .then(() => {
+        console.log(`Legal hold ${legalHoldId} deleted from object ${objectName} in bucket ${bucketName}!`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+{: codeblock}
+{: javascript}
+
+### Extend the retention period of a protected object
+
+The retention period of an object can only be extended. It cannot be decreased from the currently configured value.
+
+The retention expansion value is set in one of three ways:
+
+* additional time from the current value (`Additional-Retention-Period` or similar method)
+* new extension period in seconds (`Extend-Retention-From-Current-Time` or similar method)
+* new retention expiry date of the object (`New-Retention-Expiration-Date` or similar method)
+
+The current retention period stored in the object metadata is either increased by the given additional time or replaced with the new value, depending on the parameter that is set in the `extendRetention` request. In all cases, the extend retention parameter is checked against the current retention period and the extended parameter is only accepted if the updated retention period is greater than the current retention period.
+
+Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
+
+```js
+function extendRetentionPeriodOnObject(bucketName, objectName, additionalSeconds) {
+    console.log(`Extend the retention period on ${objectName} in bucket ${bucketName} by ${additionalSeconds} seconds.`);
+    return cos.extendObjectRetention({
+        Bucket: bucketName,
+        Key: objectName,
+        AdditionalRetentionPeriod: additionalSeconds
+    }).promise()
+    .then((data) => {
+        console.log(`New retention period on ${objectName} is ${data.RetentionPeriod}`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+{: codeblock}
+{: javascript}
+
+### List legal holds on a protected object
+
+
+This operation returns:
+
+* Object creation date
+* Object retention period in seconds
+* Calculated retention expiration date based on the period and creation date
+* List of legal holds
+* Legal hold identifier
+* Timestamp when legal hold was applied
+
+If there are no legal holds on the object, an empty `LegalHoldSet` is returned.
+If there is no retention period specified on the object, a `404` error is returned.
+
+
+```js
+function listLegalHoldsOnObject(bucketName, objectName) {
+    console.log(`List all legal holds on object ${objectName} in bucket ${bucketName}`);
+    return cos.listLegalHolds({
+        Bucket: bucketName,
+        Key: objectId
+    }).promise()
+    .then((data) => {
+        console.log(`Legal holds on bucket ${bucketName}: ${data}`);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+{: codeblock}
+{: javascript}

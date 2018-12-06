@@ -15,19 +15,20 @@ lastupdated: "2018-11-23"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+
 
 # Use Immutable Object Storage
 
-Immutable Object Storage  feature allows client(s) to preserve electronic records and maintain data integrity in a WORM (Write-Once-Read-Many), non-erasable and non-rewritable manner until the end of their retention period and the removal of any legal holds. This feature can be used by any client(s) having the need for long term data retention in their environment, including but not limited to organizations in the following industries:
+Immutable Object Storage preserves electronic records in a WORM (Write-Once-Read-Many), non-erasable and non-rewritable manner. Data can be protected from any modification or deletion for days, years, or even indefinitely. It's even possible to permanently store files that can never be altered. Retention policies are set at the bucket level, and apply to all objects stored in a bucket.
 
-  * Financial 
-  * Healthcare 
-  * Media content archives
-  * Those who are looking to prevent privileged modification or deletion of objects or documents
+Typically retention policies are used by organizations that deal with financial records management, such as broker-dealer transactions, who can have need to retain this data in a non-rewritable and non-erasable format.
 
-The underlying feature capabilities can also be used by organizations that deal with financial records management, such as broker-dealer transactions, and may have need to retain the objects in a non-rewritable and non-erasable format.
+Immutable Object Storage is not available in all regions, and requires a Standard plan. See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html#service-availability) for more details. 
+{:note}
 
-Immutable Object Storage is not available in all regions, and requires a Standard plan. See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html#service-availability) for more details.
+It is not possible to use Aspera high-speed transfer with buckets with a retention policy.
 {:important}
 
 ## Terminology and usage
@@ -36,13 +37,13 @@ Immutable Object Storage is not available in all regions, and requires a Standar
 The duration of time an object must remain stored in the COS bucket.
 
 ### Retention Policy
-A retention policy is enabled at the COS bucket level. This is needed in order to mark the bucket as eligible for using the immutable object storage capabilities. When enabling retention policy on the COS bucket a minimum, maximum and default retention period needs to be specified for the objects.
+A retention policy is enabled at the COS bucket level. Minimum, maximum and default retention period are defined by this policy and apply to all objects in the bucket.
 
-Minimum retention period is the minimum duration of time an object must be retained in the COS bucket.
+Minimum retention period is the minimum duration of time an object must be retained in the bucket.
 
-Maximum retention period is the maximum duration of time an object can be retained in the COS bucket.
+Maximum retention period is the maximum duration of time an object can be retained in the bucket.
 
-Default retention period is the duration of time set if an object is stored in the COS bucket without specifying a custom retention period. This value needs to be between the minimum and maximum retention periods.  For example, minimum retention period <= default retention period <= maximum retention period
+If an object is stored in the bucket without specifying a custom retention period, the default retention period is used. The minimum retention period must be less than or equal to the default retention period, which in turn must be less than or equal to the maximum retention period.
 
 Note: a maximum retention period of 1000 years can be specified for the objects.
 
@@ -57,11 +58,13 @@ Note: A maximum of 100 legal holds can be applied per object.
 Allows the user to set the object to be stored indefinitely until a new retention period is applied. This is set at a per object level.
 
 ### Event-based retention
-Immutable object storage allows users to set indefinite retention on the object if they are unsure on the final duration of the retention period for their use case or would like to make use of the event based retention capability. Once set to indefinite, user applications can then can change the object retention to a finite value at a later time. For example, a company has a policy of retaining employee records for three years after the employee leaves the company. When an employee joins the company, the records associated with that employee can be indefinitely retained. When the employee leaves the company, the indefinite retention is converted to a finite value of three years from the current time, as defined by company policy. The object is then protected for three years after the retention period change. IBM® Cloud Object Storage provides the interface by which a third party application or a user can convert the retention of those documents from an indefinite to a finite retention. The user or third party application is responsible for triggering the change in the retention period using the SDK or REST API.
+Immutable Object Storage allows users to set indefinite retention on the object if they are unsure on the final duration of the retention period for their use case or would like to make use of the event based retention capability. Once set to indefinite, user applications can then can change the object retention to a finite value at a later time. For example, a company has a policy of retaining employee records for three years after the employee leaves the company. When an employee joins the company, the records associated with that employee can be indefinitely retained. When the employee leaves the company, the indefinite retention is converted to a finite value of three years from the current time, as defined by company policy. The object is then protected for three years after the retention period change. A user or third party application can change the retention period from indefinite to finite retention using an SDK or REST API.
 
 ### Permanent retention
 Permanent retention can only be enabled at a COS bucket level with retention policy enabled. Once enabled, this process cannot be reversed and objects uploaded using permanent retention period **cannot be deleted**. It is the responsibility of the users to validate whether there exists a legitimate need to **permanently** store objects using retention policies.
 
+When using Immutable Object Storage, you are responsible for ensuring that your IBM Cloud Account is kept in good standing per IBM Cloud policies and guidelines for as long as the data is subject to a retention policy. Refer to IBM Cloud Service terms for more information.
+{:important}
 
 ## Immutable Object Storage and considerations for various regulations
 When using immutable object storage, it is the client(s) responsibility to check for and ensure whether any of the feature capabilities discussed can be leveraged to satisfy and comply with the key rules around electronic records storage and retention that are generally governed by:
@@ -78,14 +81,16 @@ Access log data for Immutable Object Storage to review changes to retention para
 ## Using the console
 {: #console}
 
-TBD
+Retention policies can be added to new or existing buckets, and cannot be removed.  For a new bucket, ensure you are creating the bucket in a supported region, and then choose the **Add retention policy** option. For an existing bucket, navigate to configuration settings and click the **Create policy** button below the bucket retention policy section. In either case, set a minimum, maximum, and default retention periods.
 
 ## Using the REST API, Libraries, and SDKs
 {: #sdk}
-Several new APIs have been introduced to the IBM COS SDKs to provide support for applications working with Immutable Object Storage.  Select a language (HTTP, Java, Javascript, or Python) at the top of this page to view examples using the appropriate COS SDK.  Note that all code examples assume the existence of a client object called `cos` that can call the different methods.  For details on creating clients, see the specific SDK guides.
+Several new APIs have been introduced to the IBM COS SDKs to provide support for applications working with retention policies.  Select a language (HTTP, Java, Javascript, or Python) at the top of this page to view examples using the appropriate COS SDK.  
+
+Note that all code examples assume the existence of a client object called `cos` that can call the different methods.  For details on creating clients, see the specific SDK guides.
 
 All date values used to set retention periods are GMT.
-{:important}
+{:note}
 
 ### Add a protection configuration to an existing bucket
 
@@ -516,14 +521,13 @@ This implementation of the `POST` operation uses the `legalHold` query parameter
 {: http}
 
 The object can support 100 legal holds:
-* A legal hold identifier is a string of maximum length 64 characters and a minimum length of 1 character. Valid characters are letters, numbers, `!`, `_`, `.`, `*`, `(`, `)`, `-` and `.
+
+*  A legal hold identifier is a string of maximum length 64 characters and a minimum length of 1 character. Valid characters are letters, numbers, `!`, `_`, `.`, `*`, `(`, `)`, `-` and `.
 * If the addition of the given legal hold exceeds 100 total legal holds on the object, the new legal hold will not be added, a `400` error will be returned.
 * If an identifier is too long it will not be added to the object and a `400` error is returned.
 * If an identifier contains invalid characters, it will not be added to the object and a `400` error is returned.
-* If an identifier is already in use on an object, the existing legal hold is not modified and the response indicates theidentifier was already in use with a 409 error.
+* If an identifier is already in use on an object, the existing legal hold is not modified and the response indicates the identifier was already in use with a `409` error.
 * If an object does not have retention period metadata, a `400` error is returned and adding or removing a legal hold is not allowed.
-
-The legal hold identifiers are stored in the object metadata along with the timestamp of when they are applied to the object. The presence of any legal hold identifiers prevents the modification or deletion of the object data, even if the retention period has expired. 
 
 The presence of a retention period header is required, otherwise a `400` error is returned.
 {: http}
@@ -663,25 +667,9 @@ The retention period of an object can only be extended. It cannot be decreased f
 
 The retention expansion value is set in one of three ways:
 
-* additional time from the current value (`Additional-Retention-Period` header)
-* new extension period in seconds (`Extend-Retention-From-Current-Time` header)
-* new retention expiry date of the object (`New-Retention-Expiration-Date` header)
-{: http}
-
-* additional time from the current value (`AdditionalRetentionPeriod` kwarg)
-* new extension period in seconds (`ExtendRetentionFromCurrentTime` kwarg)
-* new retention expiry date of the object (`NewRetentionExpirationDate` kwarg)
-{: python}
-
-* additional time from the current value (`withAdditionalRetentionPeriod()`)
-* new extension period in seconds (`withExtendRetentionFromCurrentTime()` )
-* new retention expiry date of the object (`withNewRetentionExpirationDate()` )
-{: java}
-
-* additional time from the current value (`AdditionalRetentionPeriod` kwarg)
-* new extension period in seconds (`ExtendRetentionFrom-CurrentTime` kwarg)
-* new retention expiry date of the object (`NewRetentionExpirationDate` kwarg)
-{: javascript}
+* additional time from the current value (`Additional-Retention-Period` or similar method)
+* new extension period in seconds (`Extend-Retention-From-Current-Time` or similar method)
+* new retention expiry date of the object (`New-Retention-Expiration-Date` or similar method)
 
 The current retention period stored in the object metadata is either increased by the given additional time or replaced with the new value, depending on the parameter that is set in the `extendRetention` request. In all cases, the extend retention parameter is checked against the current retention period and the extended parameter is only accepted if the updated retention period is greater than the current retention period.
 

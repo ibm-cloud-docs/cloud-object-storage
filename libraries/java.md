@@ -1273,3 +1273,232 @@ public static void updateMetadataCopy(String bucketName, String itemName, String
     System.out.printf("Updated metadata for item %s from bucket %s\n", itemName, bucketName);
 }
 ```
+
+## Using Immutable Object Storage
+### Add a protection configuration to an existing bucket
+
+This implementation of the `PUT` operation uses the `protection` query parameter to set the retention parameters for an existing bucket. This operation allows you to set or change the minimum, default, and maximum retention period. This operation also allows you to change the protection state of the bucket. 
+
+Objects written to a protected bucket cannot be deleted until the protection period has expired and all legal holds on the object are removed. The bucket's default retention value is given to an object unless an object specific value is provided when the object is created. Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object. 
+
+The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are 0 days and 365243 days (1000 years) respectively. 
+
+```java
+public static void addProtectionConfigurationToBucket(String bucketName) {
+    System.out.printf("Adding protection to bucket: %s\n", bucketName);
+
+    BucketProtectionConfiguration newConfig = new BucketProtectionConfiguration()
+        .withStatus(BucketProtectionStatus.Retention)
+        .withMinimumRetentionInDays(10)
+        .withDefaultRetentionInDays(100)
+        .withMaximumRetentionInDays(1000);
+
+    cos.setBucketProtection(bucketName, newConfig);
+
+    System.out.printf("Protection added to bucket %s\n", bucketName);
+}
+
+public static void addProtectionConfigurationToBucketWithRequest(String bucketName) {
+    System.out.printf("Adding protection to bucket: %s\n", bucketName);
+
+    BucketProtectionConfiguration newConfig = new BucketProtectionConfiguration()
+        .withStatus(BucketProtectionStatus.Retention)
+        .withMinimumRetentionInDays(10)
+        .withDefaultRetentionInDays(100)
+        .withMaximumRetentionInDays(1000);
+
+    SetBucketProtectionConfigurationRequest newRequest = new SetBucketProtectionConfigurationRequest()
+        .withBucketName(bucketName)
+        .withProtectionConfiguration(newConfig);
+
+    cos.setBucketProtectionConfiguration(newRequest);
+
+    System.out.printf("Protection added to bucket %s\n", bucketName);
+}
+```
+{: codeblock}
+{: java}
+
+### Check protection on a bucket
+
+```java
+public static void getProtectionConfigurationOnBucket(String bucketName) {
+    System.out.printf("Retrieving protection configuration from bucket: %s\n", bucketName;
+
+    BucketProtectionConfiguration config = cos.getBucketProtection(bucketName);
+
+    String status = config.getStatus();
+
+    System.out.printf("Status: %s\n", status);
+
+    if (!status.toUpperCase().equals("DISABLED")) {
+        System.out.printf("Minimum Retention (Days): %s\n", config.getMinimumRetentionInDays());
+        System.out.printf("Default Retention (Days): %s\n", config.getDefaultRetentionInDays());
+        System.out.printf("Maximum Retention (Days): %s\n", config.getMaximumRetentionInDays());
+    }
+}
+```
+{: codeblock}
+{: java}
+
+### Upload a protected object
+
+Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
+
+|Value	| Type	| Description |
+| --- | --- | --- | 
+|`Retention-Period` | Non-negative integer (seconds) | Retention period to store on the object in seconds. The object can be neither overwritten nor deleted until the amount of time specified in the retention period has elapsed. If this field and `Retention-Expiration-Date` are specified a `400`  error is returned. If neither is specified the bucket's `DefaultRetention` period will be used. Zero (`0`) is a legal value assuming the bucket's minimum retention period is also `0`. |
+| `Retention-expiration-date` | Date (ISO 8601 Format) | Date on which it will be legal to delete or modify the object. You can only specify this or the Retention-Period header. If both are specified a `400`  error will be returned. If neither is specified the bucket's DefaultRetention period will be used. |
+| `Retention-legal-hold-id` | string | A single legal hold to apply to the object. A legal hold is a Y character long string. The object cannot be overwritten or deleted until all legal holds associated with the object are removed. |
+
+```java
+public static void putObjectAddLegalHold(String bucketName, String objectName, String fileText, String legalHoldId) {
+    System.out.printf("Add legal hold %s to %s in bucket %s with a putObject operation.\n", legalHoldId, objectName, bucketName);
+
+    InputStream newStream = new ByteArrayInputStream(fileText.getBytes(StandardCharsets.UTF_8));
+
+    ObjectMetadata metadata = new ObjectMetadata();
+    metadata.setContentLength(fileText.length());
+
+    PutObjectRequest req = new PutObjectRequest(
+        bucketName,
+        objectName,
+        newStream,
+        metadata
+    );
+    req.setRetentionLegalHoldId(legalHoldId);
+
+    cos.putObject(req);
+
+    System.out.printf("Legal hold %s added to object %s in bucket %s\n", legalHoldId, objectName, bucketName);
+}
+
+public static void copyProtectedObject(String sourceBucketName, String sourceObjectName, String destinationBucketName, String newObjectName) {
+    System.out.printf("Copy protected object %s from bucket %s to %s/%s.\n", sourceObjectName, sourceBucketName, destinationBucketName, newObjectName);
+
+    CopyObjectRequest req = new CopyObjectRequest(
+        sourceBucketName, 
+        sourceObjectName, 
+        destinationBucketName, 
+        newObjectName
+    );
+    req.setRetentionDirective(RetentionDirective.COPY);
+    
+
+    cos.copyObject(req);
+
+    System.out.printf("Protected object copied from %s/%s to %s/%s\n", sourceObjectName, sourceBucketName, destinationBucketName, newObjectName);
+}
+```
+{: codeblock}
+{: java}
+
+### Add or remove a legal hold to or from a protected object
+
+The object can support 100 legal holds:
+
+*  A legal hold identifier is a string of maximum length 64 characters and a minimum length of 1 character. Valid characters are letters, numbers, `!`, `_`, `.`, `*`, `(`, `)`, `-` and `.
+* If the addition of the given legal hold exceeds 100 total legal holds on the object, the new legal hold will not be added, a `400` error will be returned.
+* If an identifier is too long it will not be added to the object and a `400` error is returned.
+* If an identifier contains invalid characters, it will not be added to the object and a `400` error is returned.
+* If an identifier is already in use on an object, the existing legal hold is not modified and the response indicates the identifier was already in use with a `409` error.
+* If an object does not have retention period metadata, a `400` error is returned and adding or removing a legal hold is not allowed.
+
+The presence of a retention period header is required, otherwise a `400` error is returned.
+{: http}
+
+The user making adding or removing a legal hold must have `Manager` permissions for this bucket.
+
+```java
+public static void addLegalHoldToObject(String bucketName, String objectName, String legalHoldId) {
+    System.out.printf("Adding legal hold %s to object %s in bucket %s\n", legalHoldId, objectName, bucketName);
+
+    cos.addLegalHold(
+        bucketName, 
+        objectName, 
+        legalHoldId
+    );
+
+    System.out.printf("Legal hold %s added to object %s in bucket %s!\n", legalHoldId, objectName, bucketName);
+}
+
+public static void deleteLegalHoldFromObject(String bucketName, String objectName, String legalHoldId) {
+    System.out.printf("Deleting legal hold %s from object %s in bucket %s\n", legalHoldId, objectName, bucketName);
+
+    cos.deleteLegalHold(
+        bucketName, 
+        objectName, 
+        legalHoldId
+    );
+
+    System.out.printf("Legal hold %s deleted from object %s in bucket %s!\n", legalHoldId, objectName, bucketName);
+}
+```
+{: codeblock}
+{: java}
+
+### Extend the retention period of a protected object
+
+
+The retention period of an object can only be extended. It cannot be decreased from the currently configured value.
+
+The retention expansion value is set in one of three ways:
+
+* additional time from the current value (`Additional-Retention-Period` or similar method)
+* new extension period in seconds (`Extend-Retention-From-Current-Time` or similar method)
+* new retention expiry date of the object (`New-Retention-Expiration-Date` or similar method)
+
+The current retention period stored in the object metadata is either increased by the given additional time or replaced with the new value, depending on the parameter that is set in the `extendRetention` request. In all cases, the extend retention parameter is checked against the current retention period and the extended parameter is only accepted if the updated retention period is greater than the current retention period.
+
+Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
+
+```java
+public static void extendRetentionPeriodOnObject(String bucketName, String objectName, Long additionalSeconds) {
+    System.out.printf("Extend the retention period on %s in bucket %s by %s seconds.\n", objectName, bucketName, additionalSeconds);
+
+    ExtendObjectRetentionRequest req = new ExtendObjectRetentionRequest(
+        bucketName, 
+        objectName)
+        .withAdditionalRetentionPeriod(additionalSeconds);
+
+    cos.extendObjectRetention(req);
+
+    System.out.printf("New retention period on %s is %s\n", objectName, additionalSeconds);
+}
+```
+{: codeblock}
+{: java}
+
+### List legal holds on a protected object
+
+This operation returns:
+
+* Object creation date
+* Object retention period in seconds
+* Calculated retention expiration date based on the period and creation date
+* List of legal holds
+* Legal hold identifier
+* Timestamp when legal hold was applied
+
+If there are no legal holds on the object, an empty `LegalHoldSet` is returned.
+If there is no retention period specified on the object, a `404` error is returned.
+
+```java
+public static void listLegalHoldsOnObject(String bucketName, String objectName) {
+    System.out.printf("List all legal holds on object %s in bucket %s\n", objectName, bucketName);
+
+    ListLegalHoldsResult result = cos.listLegalHolds(
+        bucketName, 
+        objectName
+    );
+
+    System.out.printf("Legal holds on bucket %s: \n", bucketName);
+
+    List<LegalHold> holds = result.getLegalHolds();
+    for (LegalHold hold : holds) {
+        System.out.printf("Legal Hold: %s", hold);
+    }
+}
+```
+{: codeblock}
+{: java}

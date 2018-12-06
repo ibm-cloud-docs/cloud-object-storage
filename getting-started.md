@@ -30,7 +30,7 @@ This guide takes a new user through the first steps with the {{site.data.keyword
 ## Step 1: Create some buckets to store your data
 {: #create-buckets}
 
-  1. When you [order {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics/order-storage.html), you create what is called a _resource instance_. {{site.data.keyword.cos_full_notm}} is a multi-tenant system, and all instances of {{site.data.keyword.cos_short}} share the same physical infrastructure.  After creation, you will be automatically redirected to that resource instance where you may start creating buckets. Your {{site.data.keyword.cos_short}} instances will be listed under **Global Services** in [the console dashboard](https://console.bluemix.net/dashboard/apps).
+  1. When you [order {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics/order-storage.html), you create what is called a _resource instance_. {{site.data.keyword.cos_full_notm}} is a multi-tenant system, and all instances of {{site.data.keyword.cos_short}} share the same physical infrastructure.  After creation, you will be automatically redirected to that resource instance where you may start creating buckets. Your {{site.data.keyword.cos_short}} instances will be listed under **Services** in [the console dashboard](https://console.bluemix.net/dashboard/apps).
 
 The terms 'resource instance' and 'service instance' refer to the same concept, and may be used interchangeably.
 {:tip}

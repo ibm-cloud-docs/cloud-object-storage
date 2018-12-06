@@ -14,12 +14,19 @@ lastupdated: "07-16-2018"
 
 # What's new
 
-## Q3 2018
-### October 2018
+## Q4 2018
+### December 2018
+Users can use [Immutable Object Storage](docs/services/cloud-object-storage/basics/immutable.html) to create retention policies that prevent object deletion or modification.
 
+### November 2018
+Buckets can now be created in a Single Data Center configuration in Toronto, Canada. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html).
+
+### October 2018
 The [Java](/docs/services/cloud-object-storage/libraries/java.html) and [Python](/docs/services/cloud-object-storage/libraries/python.html) SDKs now provide support for [transferring data using the Aspera FASP protocol](/docs/services/cloud-object-storage/basics/aspera.html). Downloads using Aspera high-speed incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
 
-## Q2 2018
+Buckets can now be created in a Single Data Center configuration in Montreal, Canada and Seoul, South Korea. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html).
+
+## Q3 2018
 ### September 2018
 Users can [archive cold data](/docs/services/cloud-object-storage/basics/archive.html) by setting the proper parameters in a bucket lifecycle configuration policy, either using the console, REST API, or a language-specific SDK.
 
@@ -28,6 +35,7 @@ The [Java](/docs/services/cloud-object-storage/libraries/java.html) and [Python]
 ### August 2018
 Buckets can now be created in a Single Data Center configuration in Sao Paolo, Brazil and Oslo, Norway. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html).
 
+## Q2 2018
 ### June 2018
 Users who upload or download files or folders using the web-based console have the option to use [Aspera high-speed transfer](https://www.ibm.com/cloud/high-speed-data-transfer) for these operations via a browser plug-in.  This allows for transfers of objects larger than 200MB using the console, and also allows for greater control and visibility of uploads and downloads. Additional information can be found in the [Uploading Data](/docs/services/cloud-object-storage/basics/aspera.html) documentation. Downloads using Aspera high-speed incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
 

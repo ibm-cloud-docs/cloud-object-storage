@@ -16,10 +16,10 @@ lastupdated: "30-10-2018"
 
 The Cloud Object Storage plugin for command-line interface (CLI) provides extra capabilities for working with IBM® Cloud Object Storage. You can use the Cloud Object Storage plugin for CLI to manage and maintain buckets and objects within IBM® Cloud Object Storage.
 
-**Note:** The Cloud Object Storage plugin for command-line interface (CLI) is compatible with Windows, Linux, MacOS V10 and must be a 64-bit machine.
+The Cloud Object Storage plugin for command-line interface (CLI) is compatible with Windows, Linux, MacOS V10 and must be a 64-bit machine.
 
 The beta version of a {{site.data.keyword.cos_short}} plugin [{{site.data.keyword.cloud}} Platform CLI](https://clis.ng.bluemix.net/ui/home.html) is available for anyone interested in trying it out.  Note that this plug-in is beta software and subject to change, and is not suitable for production workloads. If you have any comments or suggestions on the CLI plugin, click on the "Feedback" button on this page and select the relevant section of the documentation.
-{:tip}
+{:note}
 
 ## Installation and configuration
 
