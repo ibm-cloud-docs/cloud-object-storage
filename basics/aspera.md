@@ -24,7 +24,7 @@ Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP
 
 Aspera high-speed transfer is available in the {{site.data.keyword.cloud_notm}} [console](#console) and can also be used programatically using an [SDK](#sdk). 
 
-Aspera high-speed transfer is not available in all regions. See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html) for more details.
+Aspera high-speed transfer is available in certain regions only. See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html) for more details.
 {:tip}
 
 ## Using the console
