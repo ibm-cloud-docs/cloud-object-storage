@@ -21,9 +21,14 @@ lastupdated: "2018-12-07"
 
 # Use Immutable Object Storage
 
-Immutable Object Storage preserves electronic records in a WORM (Write-Once-Read-Many), non-erasable and non-rewritable manner. Data can be protected from any modification or deletion for days, years, or even indefinitely. It's even possible to permanently store files that can never be altered. Retention policies are set at the bucket level, and apply to all objects stored in a bucket.
+Immutable Object Storage allows client(s) to preserve electronic records and maintain data integrity in a WORM (Write-Once-Read-Many), non-erasable and non-rewritable manner until the end of their retention period and the removal of any legal holds. This feature can be used by any client(s) having the need for long term data retention in their environment, including but not limited to organizations in the following industries:
 
-Typically retention policies are used by organizations that deal with financial records management, such as broker-dealer transactions, who can have need to retain this data in a non-rewritable and non-erasable format.
+ * Financial
+ * Healthcare
+ * Media content archives
+ * Those who are looking to prevent privileged modification or deletion of objects or documents
+
+The underlying feature capabilities can also be used by organizations that deal with financial records management, such as broker-dealer transactions, and may have need to retain the objects in a rewritable and non-erasable format. 
 
 Immutable Object Storage is available in certain regions only, See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html#service-availability) for details. It also requires a Standard pricing plan. See [pricing](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage) for details.
 {:note}
@@ -33,10 +38,10 @@ It is not possible to use Aspera high-speed transfer with buckets with a retenti
 
 ## Terminology and usage
 
-### Retention Period
+### Retention period
 The duration of time an object must remain stored in the COS bucket.
 
-### Retention Policy
+### Retention policy
 A retention policy is enabled at the COS bucket level. Minimum, maximum and default retention period are defined by this policy and apply to all objects in the bucket.
 
 Minimum retention period is the minimum duration of time an object must be retained in the bucket.
@@ -47,7 +52,9 @@ If an object is stored in the bucket without specifying a custom retention perio
 
 Note: a maximum retention period of 1000 years can be specified for the objects.
 
-### Legal Hold 
+Note: In order to create a retention plocy, you need Manager role. See [Bucket permissions](/docs/services/cloud-object-storage/iam/buckets.html#bucket-permissions) for more details.
+
+### Legal hold 
 Certain records (objects) may need to be prevented from deletion even after retention period expiration e.g. a legal review that is pending completion may require access to records for an extended duration that goes beyond the retention period that was originally set for the object. In such a scenario a legal hold flag can be applied at the object level. 
  
 Legal hold(s) can be applied to object(s) during initial uploads to cos bucket or after an object has been added.
@@ -61,7 +68,8 @@ Allows the user to set the object to be stored indefinitely until a new retentio
 Immutable Object Storage allows users to set indefinite retention on the object if they are unsure on the final duration of the retention period for their use case or would like to make use of the event based retention capability. Once set to indefinite, user applications can then can change the object retention to a finite value at a later time. For example, a company has a policy of retaining employee records for three years after the employee leaves the company. When an employee joins the company, the records associated with that employee can be indefinitely retained. When the employee leaves the company, the indefinite retention is converted to a finite value of three years from the current time, as defined by company policy. The object is then protected for three years after the retention period change. A user or third party application can change the retention period from indefinite to finite retention using an SDK or REST API.
 
 ### Permanent retention
-Permanent retention can only be enabled at a COS bucket level with retention policy enabled. Once enabled, this process cannot be reversed and objects uploaded using permanent retention period **cannot be deleted**. It is the responsibility of the users to validate whether there exists a legitimate need to **permanently** store objects using retention policies.
+Permanent retention can only be enabled at a COS bucket level with retention policy enabled and users are able to select the permanent retention period option during object uploads. Once enabled, this process cannot be reversed and objects uploaded using permanent retention period **cannot be deleted**. It is the responsibility of the users to validate at their end if there is a legitimate need to **permanently** store objects using COS buckets with retention policy. 
+
 
 When using Immutable Object Storage, you are responsible for ensuring that your IBM Cloud Account is kept in good standing per IBM Cloud policies and guidelines for as long as the data is subject to a retention policy. Refer to IBM Cloud Service terms for more information.
 {:important}
@@ -69,11 +77,11 @@ When using Immutable Object Storage, you are responsible for ensuring that your 
 ## Immutable Object Storage and considerations for various regulations
 When using immutable object storage, it is the client(s) responsibility to check for and ensure whether any of the feature capabilities discussed can be leveraged to satisfy and comply with the key rules around electronic records storage and retention that are generally governed by:
 
-  * Securities and Exchange Commission (SEC) Rule 17a-4(f),
-  * Financial Industry Regulatory Authority (FINRA) Rule 4511(c), and
-  * Commodity Futures Trading Commission (CFTC) Rule 1.31(c)-(d)
+  * [Securities and Exchange Commission (SEC) Rule 17a-4(f)](https://www.ecfr.gov/cgi-bin/text-idx?SID=b6b7a79d18d000a733725e88d333ddb5&mc=true&node=pt17.4.240&rgn=div5#se17.4.240_117a_64),
+  * [Financial Industry Regulatory Authority (FINRA) Rule 4511(c)](http://finra.complinet.com/en/display/display_main.html?rbid=2403&element_id=9957), and
+  * [Commodity Futures Trading Commission (CFTC) Rule 1.31(c)-(d)](https://www.ecfr.gov/cgi-bin/text-idx?SID=2404f765a6f79e0b7fcf05b6844046cb&mc=true&node=se17.1.1_131&rgn=div8)
 
-To assist clients in making informed decisions, IBM engaged Cohasset Associates Inc. to conduct an independent assessment of IBM’s Immutable Object Storage capability. [Please review Cohasset Associates Inc.’s report for additional details]().
+To assist clients in making informed decisions, IBM engaged Cohasset Associates Inc. to conduct an independent assessment of IBM’s Immutable Object Storage capability. Please review Cohasset Associates Inc.’s [report]() which provides details on the assessment of the Immutable Object Storage capability of IBM Cloud Object Storage. 
 
 ### Audit of access and transactions
 Access log data for Immutable Object Storage to review changes to retention parameters, object retention period, and application of legal holds is available on a case-by-case basis by opening a customer service ticket.
@@ -92,7 +100,7 @@ Note that all code examples assume the existence of a client object called `cos`
 All date values used to set retention periods are GMT.
 {:note}
 
-### Add a protection configuration to an existing bucket
+### Add a retention policy on an existing bucket
 
 This implementation of the `PUT` operation uses the `protection` query parameter to set the retention parameters for an existing bucket. This operation allows you to set or change the minimum, default, and maximum retention period. This operation also allows you to change the protection state of the bucket. 
 
@@ -237,7 +245,7 @@ public static void addProtectionConfigurationToBucketWithRequest(String bucketNa
 {: codeblock}
 {: java}
 
-### Check protection on a bucket
+### Check retention policy on a bucket
 
 This implementation of a GET operation fetches the retention parameters for an existing bucket. 
 {: http}
@@ -352,12 +360,12 @@ public static void getProtectionConfigurationOnBucket(String bucketName) {
 {: codeblock}
 {: java}
 
-### Upload a protected object
+### Upload a object to a bucket with retention policy
 
 This enhancement of the `PUT` operation adds three new request headers: two for specifying the retention period in different ways, and one for adding a single legal hold to the new object. New errors are defined for illegal values for the new headers, and if an object is under retention any overwrites will fail.
 {: http}
 
-Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
+Objects in buckets with retention policy that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
 
 A `Content-MD5` header is required.
 {: http}
@@ -515,7 +523,7 @@ public static void copyProtectedObject(String sourceBucketName, String sourceObj
 {: codeblock}
 {: java}
 
-### Add or remove a legal hold to or from a protected object
+### Add or remove a legal hold to or from an object
 
 This implementation of the `POST` operation uses the `legalHold` query parameter and `add` and `remove` query parameters to add or remove a single legal hold from a protected object in a protected bucket.
 {: http}
@@ -552,7 +560,7 @@ POST https://{bucket-name}.{endpoint}?legalHold= # virtual host style
 ```
 POST /BucketName/ObjectName?legalHold&add=legalHoldID HTTP/1.1
 Host: myBucket.mydsNet.corp.com
-Date: Wed, 8 Feb 2017 17:50:00 GMT
+Date: Fri, 8 Dec 2018 17:50:00 GMT
 Authorization: authorization string
 Content-Type: text/plain
 ```
@@ -564,7 +572,7 @@ Content-Type: text/plain
 
 ```
 HTTP/1.1 200 OK
-Date: Wed, 8 Feb 2017 17:51:00 GMT
+Date: Fri, 8 Dec 2018 17:51:00 GMT
 Connection: close
 ```
 {: codeblock}
@@ -658,7 +666,7 @@ public static void deleteLegalHoldFromObject(String bucketName, String objectNam
 {: codeblock}
 {: java}
 
-### Extend the retention period of a protected object
+### Extend the retention period of an object
 
 This implementation of the `POST` operation uses the `extendRetention` query parameter to extend the retention period of a protected object in a protected bucket.
 {: http}
@@ -761,7 +769,7 @@ public static void extendRetentionPeriodOnObject(String bucketName, String objec
 {: codeblock}
 {: java}
 
-### List legal holds on a protected object
+### List legal holds on an object
 
 This implementation of the `GET` operation uses the `legalHold` query parameter to return the list of legal holds on an object and related retention state in an XML response body.
 {: http}
