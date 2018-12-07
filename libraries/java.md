@@ -491,6 +491,41 @@ public static void deleteItem(String bucketName, String itemName) {
 * Methods
     * [deleteObject](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#deleteObject-java.lang.String-java.lang.String-){:new_window}
 
+### Delete multiple items from a bucket
+
+The delete request can contain a maximum of 1000 keys that you want to delete.  While this is very useful in reducing the per-request overhead, be mindful when deleting a large number of keys.  Also take into account the sizes of the objects to ensure suitable performance.
+{:tip}
+
+```java
+public static void deleteItems(String bucketName) {
+    DeleteObjectsRequest req = new DeleteObjectsRequest(bucketName);
+    req.withKeys(
+        "deletetest/testfile1.txt",
+        "deletetest/testfile2.txt",
+        "deletetest/testfile3.txt",
+        "deletetest/testfile4.txt",
+        "deletetest/testfile5.txt"
+    );
+
+    DeleteObjectsResult res = _cos.deleteObjects(req);
+    
+    System.out.printf("Deleted items for %s\n", bucketName);
+
+    List<DeleteObjectsResult.DeletedObject> deletedItems = res.getDeletedObjects();
+    for(DeleteObjectsResult.DeletedObject deletedItem : deletedItems) {
+        System.out.printf("Deleted item: %s\n", deletedItem.getKey());
+    }
+}
+```
+
+*SDK References*
+* Classes
+    * [DeleteObjectsRequest](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/DeleteObjectsRequest.html){:new_window}
+    * [DeleteObjectsResult](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/DeleteObjectsResult.html){:new_window}
+    * [DeleteObjectsResult.DeletedObject](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/DeleteObjectsResult.DeletedObject.html){:new_window}
+* Methods
+    * [deleteObjects](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3Client.html#deleteObjects-com.ibm.cloud.objectstorage.services.s3.model.DeleteObjectsRequest-){:new_window}
+  
 ### Delete a bucket
 ```java
 public static void deleteBucket(String bucketName) {
