@@ -52,7 +52,7 @@ If an object is stored in the bucket without specifying a custom retention perio
 
 Note: a maximum retention period of 1000 years can be specified for the objects.
 
-Note: In order to create a retention plocy, you need Manager role. See [Bucket permissions](/docs/services/cloud-object-storage/iam/buckets.html#bucket-permissions) for more details.
+Note: In order to create a retention policy on a bucket, you will need Manager role. See [Bucket permissions](/docs/services/cloud-object-storage/iam/buckets.html#bucket-permissions) for more details.
 
 ### Legal hold 
 Certain records (objects) may need to be prevented from deletion even after retention period expiration e.g. a legal review that is pending completion may require access to records for an extended duration that goes beyond the retention period that was originally set for the object. In such a scenario a legal hold flag can be applied at the object level. 
@@ -81,7 +81,7 @@ When using immutable object storage, it is the client(s) responsibility to check
   * [Financial Industry Regulatory Authority (FINRA) Rule 4511(c)](http://finra.complinet.com/en/display/display_main.html?rbid=2403&element_id=9957), and
   * [Commodity Futures Trading Commission (CFTC) Rule 1.31(c)-(d)](https://www.ecfr.gov/cgi-bin/text-idx?SID=2404f765a6f79e0b7fcf05b6844046cb&mc=true&node=se17.1.1_131&rgn=div8)
 
-To assist clients in making informed decisions, IBM engaged Cohasset Associates Inc. to conduct an independent assessment of IBM’s Immutable Object Storage capability. Please review Cohasset Associates Inc.’s [report]() which provides details on the assessment of the Immutable Object Storage capability of IBM Cloud Object Storage. 
+To assist clients in making informed decisions, IBM engaged Cohasset Associates Inc. to conduct an independent assessment of IBM’s Immutable Object Storage capability. Please review Cohasset Associates Inc.’s [report](https://www-01.ibm.com/common/ssi/cgi-bin/ssialias?htmlfid=WUL12394USEN) which provides details on the assessment of the Immutable Object Storage capability of IBM Cloud Object Storage. 
 
 ### Audit of access and transactions
 Access log data for Immutable Object Storage to review changes to retention parameters, object retention period, and application of legal holds is available on a case-by-case basis by opening a customer service ticket.
