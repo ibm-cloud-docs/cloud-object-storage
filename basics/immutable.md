@@ -28,7 +28,7 @@ Immutable Object Storage allows client(s) to preserve electronic records and mai
  * Media content archives
  * Those who are looking to prevent privileged modification or deletion of objects or documents
 
-The underlying feature capabilities can also be used by organizations that deal with financial records management, such as broker-dealer transactions, and may have need to retain the objects in a rewritable and non-erasable format. 
+The underlying feature capabilities can also be used by organizations that deal with financial records management, such as broker-dealer transactions, and may have need to retain the objects in a non-rewritable and non-erasable format. 
 
 Immutable Object Storage is available in certain regions only, See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html#service-availability) for details. It also requires a Standard pricing plan. See [pricing](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage) for details.
 {:note}
