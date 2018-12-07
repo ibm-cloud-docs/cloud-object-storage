@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-11-29"
+lastupdated: "2018-12-07"
 
 ---
 {:new_window: target="_blank"}
@@ -291,6 +291,16 @@ x-amz-request-id: 8ff4dc32-a6f0-447f-86cf-427b564d5855
 A `POST` given a path to an bucket and proper parameters will delete a specified set of objects. A `Content-MD5` header specifying the base64 encoded MD5 hash of the request body is required.
 
 The required `Content-MD5` header needs to be the binary representation of a base64 encoded MD5 hash.
+
+**Note:** If an object specified in the request is not found the result returns as deleted. 
+
+### Optional Elements
+|Header|Type|Description|
+|---|---|---|
+|`Quiet`|Boolean|Enable quiet mode for the request.|
+
+The request can contain a maximum of 1000 keys that you want to delete.  While this is very useful in reducing the per-request overhead, be mindful when deleting a large number of keys.  Also take into account the sizes of the objects to ensure suitable performance.
+{:tip}
 
 ```
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
