@@ -107,7 +107,7 @@ UAA token:  Bearer <refresh-token>
 
   1. Take your new token, and the ID of the instance, and create a new bucket in the `us-south` region.
 
-    **Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
+    **Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means in the name of the bucket or object.
     {:tip}
 
 ```sh
