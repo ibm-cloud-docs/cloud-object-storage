@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-11-23"
+lastupdated: "2018-12-07"
 
 ---
 {:http: .ph data-hd-programlang='http'} 
@@ -25,7 +25,7 @@ Immutable Object Storage preserves electronic records in a WORM (Write-Once-Read
 
 Typically retention policies are used by organizations that deal with financial records management, such as broker-dealer transactions, who can have need to retain this data in a non-rewritable and non-erasable format.
 
-Immutable Object Storage is not available in all regions, and requires a Standard plan. See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html#service-availability) for more details. 
+Immutable Object Storage is available in certain regions only, See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html#service-availability) for details. It also requires a Standard pricing plan. See [pricing](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage) for details.
 {:note}
 
 It is not possible to use Aspera high-speed transfer with buckets with a retention policy.
@@ -81,7 +81,7 @@ Access log data for Immutable Object Storage to review changes to retention para
 ## Using the console
 {: #console}
 
-Retention policies can be added to new or existing buckets, and cannot be removed.  For a new bucket, ensure you are creating the bucket in a supported region, and then choose the **Add retention policy** option. For an existing bucket, navigate to configuration settings and click the **Create policy** button below the bucket retention policy section. In either case, set a minimum, maximum, and default retention periods.
+Retention policies can be added to new or existing empty buckets, and cannot be removed.  For a new bucket, ensure you are creating the bucket in a [supported region](/docs/services/cloud-object-storage/basics/services.html#service-availability), and then choose the **Add retention policy** option. For an existing bucket, ensure that it has no objects and then navigate to configuration settings and click the **Create policy** button below the bucket retention policy section. In either case, set a minimum, maximum, and default retention periods.
 
 ## Using the REST API, Libraries, and SDKs
 {: #sdk}
@@ -691,7 +691,7 @@ POST https://{bucket-name}.{endpoint}?extendRetention= # virtual host style
 ```yaml
 POST /BucketName/ObjectName?extendRetention HTTP/1.1
 Host: myBucket.mydsNet.corp.com
-Date: Wed, 8Feb 201717:50:00GMT
+Date: Fri, 8 Dec 2018 17:50:00GMT
 Authorization: authorization string
 Content-Type: text/plain
 Additional-Retention-Period: 31470552
@@ -704,7 +704,7 @@ Additional-Retention-Period: 31470552
 
 ```
 HTTP/1.1 200 OK
-Date: Wed, 8Feb 201717:51:00GMT
+Date: Fri, 8 Dec 2018 17:50:00GMT
 Connection: close
 ```
 {: codeblock}
@@ -793,7 +793,7 @@ GET https://{bucket-name}.{endpoint}?legalHold= # virtual host style
 ```
 GET /BucketName/ObjectName?legalHold HTTP/1.1
 Host: myBucket.mydsNet.corp.com
-Date: Wed, 8 Feb 2017 17:50:00 GMT
+Date: Fri, 8 Dec 2018 17:50:00 GMT
 Authorization: {authorization-string}
 Content-Type: text/plain
 ```
@@ -805,18 +805,18 @@ Content-Type: text/plain
 
 ```xml
 HTTP/1.1 200 OK
-Date: Wed, 8 Feb 2017 17:51:00 GMT
+Date: Fri, 8 Dec 2018 17:51:00 GMT
 Connection: close
 <?xml version="1.0" encoding="UTF-8"?>
 <RetentionState>
-  <CreateTime>Thu, 2 Sep 2016 21:33:08 GMT</CreateTime>
+  <CreateTime>Fri, 8 Sep 2018 21:33:08 GMT</CreateTime>
   <RetentionPeriod>220752000</RetentionPeriod>
   <RetentionPeriodExpirationDate>Fri, 1 Sep 2023 21:33:08
 GMT</RetentionPeriodExpirationDate>
   <LegalHoldSet>
     <LegalHold>
       <ID>SomeLegalHoldID</ID>
-      <Date>Thu, 15 Sep 2016 23:13:18 GMT</Date>
+      <Date>Fri, 8 Sep 2018 23:13:18 GMT</Date>
     </LegalHold>
     <LegalHold>
     ...
