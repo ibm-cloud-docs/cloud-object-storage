@@ -40,15 +40,17 @@ The following table details actions that are mapped to platform management roles
 | Administrator | Perform all platform actions based on the resource this role is being assigned, including assigning access policies to other users |<ul><li>Create serivce instances</li><li>Remove service instances</li><li>Update user policies</li>Update pricing plans</ul>|
 {: caption="Table 1. IAM user roles and actions" caption-side="top"}
 
- For `service name`, the following actions exist:
+ For {{site.data.keyword.cos_full}}, the following actions exist:
 
 | Role | Action | Operation on service | 
 |:-----------------|:-----------------|:--------------|
-| IAM role it maps to | Action name from the IAM service registration | Operation allowed on the service for this action | 
-| IAM role it maps to | Action name from the IAM service registration | Operation allowed on the service for this action |
+| Viewer role | View instances, credentials, buckets, and objects | View service instance details | 
+| Editor role | Create, delete, edit instances, manage credentials, create, delete, edit buckets and objects | Create, delete, and edit service instances |
+| Operator role | Edit service instances, view service dashboard | Manage service instances |
+| Administrator role | All actions including managing user access | All management actions |
 {: caption="Table 2. Service actions and operations" caption-side="top"}
 
-The following table details actions that are mapped to service access roles. Service access roles enable users access to `service name` as well as the ability to call the `service name's` API.
+The following table details actions that are mapped to service access roles. Service access roles enable users access to {{site.data.keyword.cos_short}} as well as the ability to call the {{site.data.keyword.cos_short}} API.
 
 | Service access role | Description of actions | Example actions|
 |:-----------------|:-----------------|:-----------------|
@@ -61,8 +63,9 @@ The following table details actions that are mapped to service access roles. Ser
 
 | Role | Action | Operation on service | 
 |:-----------------|:-----------------|:--------------|
-| IAM role it maps to | Action name from the IAM service registration | Operation allowed on the service for this action | 
-| IAM role it maps to | Action name from the IAM service registration | Operation allowed on the service for this action | 
+| Reader role | View service instance resources | View buckets and objects within service instance | 
+| Writer role | Create, delete, and edit service instance resources | Create, delete and edit buckets and objects within service instance |
+| Manager role | All actions on service instance resources and update user access | Update user access roles | 
 {: caption="Table 4. Service actions and operations" caption-side="top"}
 
 For information about assigning user roles in the UI, see [Managing IAM access](/docs/iam/mngiam.html#iammanidaccser).
