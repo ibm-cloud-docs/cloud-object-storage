@@ -189,7 +189,7 @@ PUT https://{bucket-name}.{endpoint} # virtual host style
 </CreateBucketConfiguration>
 ```
 
-A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes.html#locationconstraint).
 
 **Sample request (IAM)**
 
