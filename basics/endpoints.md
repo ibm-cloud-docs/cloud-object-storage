@@ -42,42 +42,71 @@ Types of endpoint:
       <th>Endpoint</th>
     </tr>
   </thead>
+  <tbody>
     <tr>
-    <td rowspan="2">US Cross Region</td>
-    <td>public</td>
-    <td><code class="highlighter-rouge">s3-api.us-geo.objectstorage.softlayer.net</code></td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td><code class="highlighter-rouge">s3-api.us-geo.objectstorage.service.networklayer.com</code></td>
-  </tr>
-  <tr>
-    <td rowspan="2">Dallas Access Point</td>
-    <td>public</td>
-    <td><code class="highlighter-rouge">s3-api.dal-us-geo.objectstorage.softlayer.net</code></td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td><code class="highlighter-rouge">s3-api.dal-us-geo.objectstorage.service.networklayer.com</code></td>
-  </tr>
-  <tr>
-    <td rowspan="2">San Jose Access Point</td>
-        <td>public</td>
-    <td><code class="highlighter-rouge">s3-api.sjc-us-geo.objectstorage.softlayer.net</code></td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td><code class="highlighter-rouge">s3-api.sjc-us-geo.objectstorage.service.networklayer.com</code></td>
-  </tr>
-  <tr>
-    <td rowspan="2">Washington, DC Access Point</td>
-    <td>public</td>
-    <td><code class="highlighter-rouge">s3-api.wdc-us-geo.objectstorage.softlayer.net</code></td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td><code class="highlighter-rouge">s3-api.wdc-us-geo.objectstorage.service.networklayer.com</code></td>
-  </tr>
+      <td>US Cross Region</td>
+      <td>
+        <p>Public</p>
+        <p>Private</p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3-api.us-geo.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3-api.us-geo.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Dallas Access Point</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3-api.dal-us-geo.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3-api.dal-us-geo.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>San Jose Access Point</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3-api.sjc-us-geo.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3-api.sjc-us-geo.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Washington, DC Access Point</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3-api.wdc-us-geo.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3-api.wdc-us-geo.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+  </tbody>
 </table>
 {:.endpointtable}
 
@@ -92,24 +121,39 @@ Types of endpoint:
       <th>Endpoint</th>
     </tr>
   </thead>
+  <tbody>
     <tr>
-    <td rowspan="2">US South</td>
-    <td>public</td>
-    <td><code class="highlighter-rouge">s3.us-south.objectstorage.softlayer.net</code></td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td><code class="highlighter-rouge">s3.us-south.objectstorage.service.networklayer.com</code></td>
-  </tr>
-  <tr>
-  <td rowspan="2">US East</td>
-  <td>public</td>
-  <td><code class="highlighter-rouge">s3.us-east.objectstorage.softlayer.net</code></td>
-</tr>
-<tr>
-  <td>private</td>
-  <td><code class="highlighter-rouge">s3.us-east.objectstorage.service.networklayer.com</code></td>
-</tr>
+      <td>US South</td>
+      <td>
+        <p>Public</p>
+        <p>Private</p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.us-south.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.us-south.objectstorage.service.networklayer.com</span>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>US East</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.us-east.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.us-east.objectstorage.service.networklayer.com</span>
+        </p>
+      </td>
+    </tr>
+  </tbody>
 </table>
 {:.endpointtable}
 
@@ -124,48 +168,83 @@ Types of endpoint:
       <th>Endpoint</th>
     </tr>
   </thead>
+  <tbody>
     <tr>
-    <td rowspan="2">EU Cross Region</td>
-    <td>public</td>
-    <td><code class="highlighter-rouge">s3.eu-geo.objectstorage.softlayer.net</code></td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td><code class="highlighter-rouge">s3.eu-geo.objectstorage.service.networklayer.com</code></td>
-  </tr>
-  <tr>
-    <td rowspan="2">Amsterdam Access Point</td>
-    <td>public</td>
-    <td><code class="highlighter-rouge">s3.ams-eu-geo.objectstorage.softlayer.net</code></td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td><code class="highlighter-rouge">s3.ams-eu-geo.objectstorage.service.networklayer.com</code></td>
-  </tr>
-  <tr>
-    <td rowspan="2">Frankfurt Access Point</td>
-        <td>public</td>
-    <td><code class="highlighter-rouge">s3.fra-eu-geo.objectstorage.softlayer.net</code></td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td><code class="highlighter-rouge">s3.fra-eu-geo.objectstorage.service.networklayer.com</code></td>
-  </tr>
-  <tr>
-    <td rowspan="2">Milan Access Point</td>
-    <td>public</td>
-    <td><code class="highlighter-rouge">s3.mil-eu-geo.objectstorage.softlayer.net</code></td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td><code class="highlighter-rouge">s3.mil-eu-geo.objectstorage.service.networklayer.com</code></td>
-  </tr>
+      <td>EU Cross Region</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.eu-geo.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.eu-geo.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Amsterdam Access Point</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.ams-eu-geo.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.ams-eu-geo.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Frankfurt Access Point</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.fra-eu-geo.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.fra-eu-geo.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Milan Access Point</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.mil-eu-geo.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.mil-eu-geo.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+  </tbody>
 </table>
 {:.endpointtable}
 
 ## EU Region Endpoints
 
 <table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
   <thead>
     <tr>
       <th>Region</th>
@@ -173,33 +252,51 @@ Types of endpoint:
       <th>Endpoint</th>
     </tr>
   </thead>
-  <tr>
-    <td rowspan="2">EU Great Britain</td>
-    <td>public</td>
-    <td><code class="highlighter-rouge">s3.eu-gb.objectstorage.softlayer.net</code></td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td><code class="highlighter-rouge">s3.eu-gb.objectstorage.service.networklayer.com</code></td>
-  </tr>    
-  <tr>
-    <td rowspan="2">EU Germany</td>
-    <td>public</td>
-    <td>
-      <code class="highlighter-rouge">s3.eu-de.objectstorage.softlayer.net</code>
-    </td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td>
-      <code class="highlighter-rouge">s3.eu-de.objectstorage.service.networklayer.com</code>
-    </td>
+  <tbody>
+    <tr>
+      <td>EU United Kingdom</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.eu-gb.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.eu-gb.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>EU Germany</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.eu-de.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.eu-de.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+  </tbody>
 </table>
 {:.endpointtable}
 
 ## AP Cross Region Endpoints
 
 <table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
   <thead>
     <tr>
       <th>Region</th>
@@ -207,48 +304,83 @@ Types of endpoint:
       <th>Endpoint</th>
     </tr>
   </thead>
+  <tbody>
     <tr>
-    <td rowspan="2">AP Cross Region</td>
-    <td>public</td>
-    <td><code class="highlighter-rouge">s3.ap-geo.objectstorage.softlayer.net</code></td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td><code class="highlighter-rouge">s3.ap-geo.objectstorage.service.networklayer.com</code></td>
-  </tr>
-  <tr>
-    <td rowspan="2">Tokyo Access Point</td>
-    <td>public</td>
-    <td><code class="highlighter-rouge">s3.tok-ap-geo.objectstorage.softlayer.net</code></td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td><code class="highlighter-rouge">s3.tok-ap-geo.objectstorage.service.networklayer.com</code></td>
-  </tr>
-  <tr>
-    <td rowspan="2">Seoul Access Point</td>
-        <td>public</td>
-    <td><code class="highlighter-rouge">s3.seo-ap-geo.objectstorage.softlayer.net</code></td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td><code class="highlighter-rouge">s3.seo-ap-geo.objectstorage.service.networklayer.com</code></td>
-  </tr>
-  <tr>
-    <td rowspan="2">Hong Kong Access Point</td>
-    <td>public</td>
-    <td><code class="highlighter-rouge">s3.hkg-ap-geo.objectstorage.softlayer.net</code></td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td><code class="highlighter-rouge">s3.hkg-ap-geo.objectstorage.service.networklayer.com</code></td>
-  </tr>
+      <td>AP Cross Region</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.ap-geo.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.ap-geo.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Tokyo Access Point</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.tok-ap-geo.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.tok-ap-geo.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Seoul Access Point</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.seo-ap-geo.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.seo-ap-geo.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Hong Kong Access Point</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.hkg-ap-geo.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.hkg-ap-geo.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+  </tbody>
 </table>
 {:.endpointtable}
 
 ## AP Region Endpoints
 
 <table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
   <thead>
     <tr>
       <th>Region</th>
@@ -256,20 +388,27 @@ Types of endpoint:
       <th>Endpoint</th>
     </tr>
   </thead>
-  <tr>
-    <td rowspan="2">AP Japan</td>
-    <td>public</td>
-    <td>
-      <code class="highlighter-rouge">s3.jp-tok.objectstorage.softlayer.net</code>
-    </td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td>
-      <code class="highlighter-rouge">s3.jp-tok.objectstorage.service.networklayer.com</code>
-    </td>
+  <tbody>
+    <tr>
+      <td>AP Japan</td>
+      <td>
+        <p>Public</p>
+        <p>Private</p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.jp-tok.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.jp-tok.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+  </tbody>
 </table>
 {:.endpointtable}
+
+
 
 ## Single Data Center Endpoints
 
@@ -281,123 +420,146 @@ Types of endpoint:
       <th>Endpoint</th>
     </tr>
   </thead>
-  <tr>
-    <td rowspan="2">Amsterdam, Netherlands</td>
-    <td>public</td>
-    <td>
-      <code class="highlighter-rouge">s3.ams03.objectstorage.softlayer.net</code>
-    </td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td>
-      <code class="highlighter-rouge">s3.ams03.objectstorage.service.networklayer.com</code>
-    </td>
-  </tr>
-  
-  <tr>
-    <td rowspan="2">Chennai, India</td>
-    <td>public</td>
-    <td>
-      <code class="highlighter-rouge">s3.che01.objectstorage.softlayer.net</code>
-    </td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td>
-      <code class="highlighter-rouge">s3.che01.objectstorage.service.networklayer.com</code>
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="2">Melbourne, Australia</td>
-    <td>public</td>
-    <td>
-      <code class="highlighter-rouge">s3.mel01.objectstorage.softlayer.net</code>
-    </td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td>
-      <code class="highlighter-rouge">s3.mel01.objectstorage.service.networklayer.com</code>
-    </td>
-  </tr>
-   <tr>
-    <td rowspan="2">Mexico City, Mexico</td>
-    <td>public</td>
-    <td>
-      <code class="highlighter-rouge">s3.mex01.objectstorage.softlayer.net</code>
-    </td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td>
-      <code class="highlighter-rouge">s3.mex01.objectstorage.service.networklayer.com</code>
-    </td>
-  </tr>
-   <tr>
-    <td rowspan="2">Montréal, Canada</td>
-    <td>public</td>
-    <td>
-      <code class="highlighter-rouge">s3.mon01.objectstorage.softlayer.net</code>
-    </td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td>
-      <code class="highlighter-rouge">s3.mon01.objectstorage.service.networklayer.com</code>
-    </td>
-  </tr>
+  <tbody>
     <tr>
-    <td rowspan="2">Oslo, Norway</td>
-    <td>public</td>
-    <td>
-      <code class="highlighter-rouge">s3.osl01.objectstorage.softlayer.net</code>
-    </td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td>
-      <code class="highlighter-rouge">s3.osl01.objectstorage.service.networklayer.com</code>
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="2">São Paulo, Brazil</td>
-    <td>public</td>
-    <td>
-      <code class="highlighter-rouge">s3.sao01.objectstorage.softlayer.net</code>
-    </td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td>
-      <code class="highlighter-rouge">s3.sao01.objectstorage.service.networklayer.com</code>
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="2">Seoul, South Korea</td>
-    <td>public</td>
-    <td>
-      <code class="highlighter-rouge">s3.seo01.objectstorage.softlayer.net</code>
-    </td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td>
-      <code class="highlighter-rouge">s3.seo01.objectstorage.service.networklayer.com</code>
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="2">Toronto, Canada</td>
-    <td>public</td>
-    <td>
-      <code class="highlighter-rouge">s3.tor01.objectstorage.softlayer.net</code>
-    </td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td>
-      <code class="highlighter-rouge">s3.tor01.objectstorage.service.networklayer.com</code>
-    </td>
-  </tr>
+      <td>Amsterdam, Netherlands</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.ams03.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.ams03.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Chennai, India</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.che01.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.che01.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Melbourne, Australia</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.mel01.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.mel01.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Mexico City, Mexico</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.mex01.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.mex01.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Montréal, Canada</td>
+      <td>
+        <p>Public</p>
+        <p>Private</p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.mon01.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.mon01.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Oslo, Norway</td>
+      <td>Public</td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.osl01.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.osl01.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>São Paulo, Brazil</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.sao01.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.sao01.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Seoul, South Korea</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.seo01.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.seo01.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Toronto, Canada</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.tor01.objectstorage.softlayer.net</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.tor01.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+  </tbody>
 </table>
 {:.endpointtable}
