@@ -21,12 +21,12 @@ Users can use [Immutable Object Storage](docs/services/cloud-object-storage/basi
 Buckets can now be created in a Single Data Center configuration in Mexico City, Mexico. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html).
 
 ### November 2018
-Buckets can now be created in a Single Data Center configuration in Toronto, Canada. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html).
+Buckets can now be created in a Single Data Center configuration in Montréal, Canada. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html).
 
 ### October 2018
 The [Java](/docs/services/cloud-object-storage/libraries/java.html) and [Python](/docs/services/cloud-object-storage/libraries/python.html) SDKs now provide support for [transferring data using the Aspera FASP protocol](/docs/services/cloud-object-storage/basics/aspera.html). Downloads using Aspera high-speed incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
 
-Buckets can now be created in a Single Data Center configuration in Montreal, Canada and Seoul, South Korea. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html).
+Buckets can now be created in a Single Data Center configuration in Seoul, South Korea. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html).
 
 ## Q3 2018
 ### September 2018
