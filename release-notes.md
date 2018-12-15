@@ -55,7 +55,7 @@ Buckets can now be created in an AP Cross Region configuration. Data stored in t
 Users can run `SELECT` SQL queries directly against structured data objects using IBM Cloud SQL Query.  More information can be found in the [SQL Query documentation](/docs/services/sql-query/sql-query.html).
 
 ### February 2018
-Buckets can now be created in a Single Data Center configuration in Toronto and Melbourne.  This allows for lower latency when accessing storage from compute resources co-located within the same data center, or for data requiring a specific geographic location. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html) documentation.
+Buckets can now be created in a Single Data Center configuration in Toronto, Canada and Melbourne, Australia.  This allows for lower latency when accessing storage from compute resources co-located within the same data center, or for data requiring a specific geographic location. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html) documentation.
 
 ### January 2018
 The IBM COS SDK for Java has been updated to 2.0. This release primarily fixes an issue for users trying to connect to IBM COS and AWS services within the same application by changing the namespacing for the library from `amazonaws` to `ibm.cloud.objectstorage`. For more information check out the [Github repository](https://github.com/IBM/ibm-cos-sdk-java) and the [API documentation](https://ibm.github.io/ibm-cos-sdk-java).
