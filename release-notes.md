@@ -18,6 +18,8 @@ lastupdated: "07-16-2018"
 ### December 2018
 Users can use [Immutable Object Storage](docs/services/cloud-object-storage/basics/immutable.html) to create retention policies that prevent object deletion or modification.
 
+Buckets can now be created in a Single Data Center configuration in Mexico City, Mexico. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html).
+
 ### November 2018
 Buckets can now be created in a Single Data Center configuration in Toronto, Canada. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html).
 
