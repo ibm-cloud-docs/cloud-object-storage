@@ -32,7 +32,546 @@ Types of endpoint:
 * **Private endpoints** are available for requests originating from Kubernetes clusters, bare metal servers, virtual servers, and other cloud storage services. Private endpoints provide better performance and do not incur charges for any outgoing or incoming bandwidth even if the traffic is cross regions or across data centers. **Whenever possible, it is best to use a private endpoint.**
 * **Public endpoints** can accept requests from anywhere and charges are assessed on outgoing bandwidth. Incoming bandwidth is free. Public endpoints should be used for access not originating from an {{site.data.keyword.cloud_notm}} cloud computing resource.  **Note**: Cloud Foundry applications and Cloud Functions are unable to access the private network, so data transfer is metered and charged at standard public network bandwidth rates.
 
+
+As of December 2018, we have updated our endpoints. Legacy endpoints will continue to work until further notice. Please update your applications to use the new endpoints listed below. {:important}
+
+# New Endpoints
+
 ## US Cross Region Endpoints
+
+<table>
+  <thead>
+    <tr>
+      <th>Region</th>
+      <th>Type</th>
+      <th>Endpoint</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>US Cross Region</td>
+      <td>
+        <p>Public</p>
+        <p>Private</p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.us.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.us.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Dallas Access Point</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.dal.us.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.dal.us.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>San Jose Access Point</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.sjc.us.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.sjc.us.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Washington, DC Access Point</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.wdc.us.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.wdc.us.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+{:.endpointtable}
+
+
+## US Regional Endpoints
+
+<table>
+  <thead>
+    <tr>
+      <th>Region</th>
+      <th>Type</th>
+      <th>Endpoint</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>US South</td>
+      <td>
+        <p>Public</p>
+        <p>Private</p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.us-south.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.us-south.cloud-object-storage.appdomain.cloud</span>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>US East</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.us-east.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.us-east.cloud-object-storage.appdomain.cloud</span>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+{:.endpointtable}
+
+
+## EU Cross Region Endpoints
+
+<table>
+  <thead>
+    <tr>
+      <th>Region</th>
+      <th>Type</th>
+      <th>Endpoint</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>EU Cross Region</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.eu.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.eu.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Amsterdam Access Point</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.ams.eu.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.ams.eu.cloud-object-storage.appdomain.cloud/code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Frankfurt Access Point</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.fra.eu.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.fra.eu.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Milan Access Point</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.mil.eu.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.mil.eu.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+{:.endpointtable}
+
+## EU Region Endpoints
+
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Region</th>
+      <th>Type</th>
+      <th>Endpoint</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>EU United Kingdom</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.eu-gb.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.eu-gb.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>EU Germany</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.eu-de.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.eu-de.cloud-object-storage.appdomain.cloud/code>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+{:.endpointtable}
+
+## AP Cross Region Endpoints
+
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Region</th>
+      <th>Type</th>
+      <th>Endpoint</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>AP Cross Region</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.ap.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.ap.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Tokyo Access Point</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.tok.ap.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.tok.ap.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Seoul Access Point</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.seo.ap.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.seo.ap.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Hong Kong Access Point</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.hkg.ap.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.hkg.ap.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+{:.endpointtable}
+
+## AP Region Endpoints
+
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Region</th>
+      <th>Type</th>
+      <th>Endpoint</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>AP Japan</td>
+      <td>
+        <p>Public</p>
+        <p>Private</p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.jp-tok.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.jp-tok.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+{:.endpointtable}
+
+
+
+## Single Data Center Endpoints
+
+<table>
+  <thead>
+    <tr>
+      <th>Region</th>
+      <th>Type</th>
+      <th>Endpoint</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Amsterdam, Netherlands</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.ams03.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.ams03.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Chennai, India</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.che01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.che01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Melbourne, Australia</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.mel01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.mel01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Mexico City, Mexico</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.mex01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.mex01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Montréal, Canada</td>
+      <td>
+        <p>Public</p>
+        <p>Private</p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.mon01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.mon01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Oslo, Norway</td>
+      <td>Public</td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.osl01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.osl01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>São Paulo, Brazil</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.sao01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.sao01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Seoul, South Korea</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.seo01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.seo01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Toronto, Canada</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.tor01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.tor01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+{:.endpointtable}
+
+# Legacy Endpoints
+
+## US Cross Region Endpoints (Legacy)
 
 <table>
   <thead>
@@ -111,7 +650,7 @@ Types of endpoint:
 {:.endpointtable}
 
 
-## US Regional Endpoints
+## US Regional Endpoints (Legacy)
 
 <table>
   <thead>
@@ -158,7 +697,7 @@ Types of endpoint:
 {:.endpointtable}
 
 
-## EU Cross Region Endpoints
+## EU Cross Region Endpoints (Legacy)
 
 <table>
   <thead>
@@ -237,7 +776,7 @@ Types of endpoint:
 </table>
 {:.endpointtable}
 
-## EU Region Endpoints
+## EU Region Endpoints (Legacy)
 
 <table>
   <colgroup>
@@ -289,7 +828,7 @@ Types of endpoint:
 </table>
 {:.endpointtable}
 
-## AP Cross Region Endpoints
+## AP Cross Region Endpoints (Legacy)
 
 <table>
   <colgroup>
@@ -373,7 +912,7 @@ Types of endpoint:
 </table>
 {:.endpointtable}
 
-## AP Region Endpoints
+## AP Region Endpoints (Legacy)
 
 <table>
   <colgroup>
@@ -410,7 +949,7 @@ Types of endpoint:
 
 
 
-## Single Data Center Endpoints
+## Single Data Center Endpoints (Legacy)
 
 <table>
   <thead>
