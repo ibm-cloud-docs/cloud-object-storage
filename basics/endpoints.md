@@ -33,8 +33,8 @@ Types of endpoint:
 * **Public endpoints** can accept requests from anywhere and charges are assessed on outgoing bandwidth. Incoming bandwidth is free. Public endpoints should be used for access not originating from an {{site.data.keyword.cloud_notm}} cloud computing resource.  **Note**: Cloud Foundry applications and Cloud Functions are unable to access the private network, so data transfer is metered and charged at standard public network bandwidth rates.
 
 
-As of December 2018, we have updated our endpoints. Legacy endpoints will continue to work until further notice. Please update your applications to use the new endpoints listed below. 
-{:important}
+As of December 2018, we have updated our endpoints. Legacy endpoints will continue to work until further notice. Please update your applications to use the new endpoints listed below.{:note}
+
 
 ## New Endpoints
 
