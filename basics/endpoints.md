@@ -11,6 +11,8 @@ lastupdated: "2018-05-25"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
 
 # Select regions and endpoints
 
