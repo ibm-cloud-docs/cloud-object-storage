@@ -24,6 +24,13 @@ Adding your {{site.data.keyword.cos_short}} is accomplished by simply running th
 mc config host add <ALIAS> <COS-ENDPOINT> <ACCESS-KEY> <SECRET-KEY>
 ```
 
+* `<ALIAS>` - short name for referencing {{site.data.keyword.cos_short}} in commands
+* `<COS-ENDPOINT` - endpoint for your {{site.data.keyword.cos_short}} instance 
+* `<ACCESS-KEY>` - access key assigned to your Service Credential
+* `<SECRET-KEY>` - secret key assigned to your Service Credential
+
+The configuration information is stored in a JSON file located at `~/.mc/config.json`
+
 for example:
 ```
 mc config host add cosgeo https://s3-api.us-geo.objectstorage.softlayer.net xx1111cfbe094710x4819759x57e9999 9f99fc08347d1a6xxxxx0b7e0a9ee7b0c9999c2c08ed0000
@@ -40,16 +47,16 @@ mc mb cosgeo/my_test_bucket
 ```
 
 ### ls - List Buckets
-
+*Though all your available bucket will be listed, not all objects may be accessible depending on the specified endpoint's region*
 ```
 mc ls cosgeo
 ```
-
 ```
 [2018-06-05 09:55:08 HST]     0B testbucket1/
 [2018-05-24 04:17:34 HST]     0B testbucket_south/
 [2018-10-15 16:14:28 HST]     0B my_test_bucket/
 ```
+
 
 ### ls - List Objects
 
@@ -99,4 +106,10 @@ mc cp cosgeo/testbucket1/mynewfile1.txt cosgeo/my_test_bucket/cp_from_minio.txt
 
 ```
 mc rm cosgeo/my_test_bucket/cp_from_minio.txt
+```
+
+### pipe - Copies STDIN to an object
+
+```
+echo -n 'this is a test' | mc pipe cosgeo/my_test_bucket/stdin_pipe_test.txt
 ```
