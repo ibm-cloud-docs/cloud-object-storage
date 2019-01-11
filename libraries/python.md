@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-09-27"
+lastupdated: "2018-12-07"
 
 ---
 
@@ -211,6 +211,43 @@ def delete_item(bucket_name, item_name):
     * [Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){:new_window}
 * Methods
     * [delete](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.delete){:new_window}
+
+### Delete multiple items from a bucket
+
+The delete request can contain a maximum of 1000 keys that you want to delete.  While this is very useful in reducing the per-request overhead, be mindful when deleting a large number of keys.  Also take into account the sizes of the objects to ensure suitable performance.
+{:tip}
+
+```python
+def delete_items(bucket_name):
+    try:
+        delete_request = {
+            "Objects": [
+                { "Key": "deletetest/testfile1.txt" },
+                { "Key": "deletetest/testfile2.txt" },
+                { "Key": "deletetest/testfile3.txt" },
+                { "Key": "deletetest/testfile4.txt" },
+                { "Key": "deletetest/testfile5.txt" }
+            ]
+        }
+
+        response = cos_cli.delete_objects(
+            Bucket=bucket_name,
+            Delete=delete_request
+        )
+
+        print("Deleted items for {0}\n".format(bucket_name))
+        print(json.dumps(response.get("Deleted"), indent=4))
+    except ClientError as be:
+        print("CLIENT ERROR: {0}\n".format(be))
+    except Exception as e:
+        print("Unable to copy item: {0}".format(e))
+```
+
+*SDK References*
+* Classes
+    * [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window}
+* Methods
+    * [delete_objects](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_objects){:new_window}
 
 ### Delete a bucket
 ```python

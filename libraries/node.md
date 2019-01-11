@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-08-27"
+lastupdated: "2018-12-07"
 
 ---
 
@@ -205,6 +205,39 @@ function deleteItem(bucketName, itemName) {
 ```
 *SDK References*
 * [deleteObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteObject-property){:new_window}
+
+### Delete multiple items from a bucket
+
+The delete request can contain a maximum of 1000 keys that you want to delete.  While this is very useful in reducing the per-request overhead, be mindful when deleting a large number of keys.  Also take into account the sizes of the objects to ensure suitable performance.
+{:tip}
+
+```javascript
+function deleteItems(bucketName) {
+    var deleteRequest = {
+        "Objects": [
+            { "Key": "deletetest/testfile1.txt" },
+            { "Key": "deletetest/testfile2.txt" },
+            { "Key": "deletetest/testfile3.txt" },
+            { "Key": "deletetest/testfile4.txt" },
+            { "Key": "deletetest/testfile5.txt" }
+        ]        
+    }
+    return cos.deleteObjects({
+        Bucket: bucketName,
+        Delete: deleteRequest
+    }).promise()
+    .then((data) => {
+        console.log(`Deleted items for ${bucketName}`);
+        console.log(data.Deleted);
+    })
+    .catch((e) => {
+        console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });    
+}
+```
+
+*SDK References*
+* [deleteObjects](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteObjects-property){:new_window}
 
 ### Delete a bucket
 ```javascript
