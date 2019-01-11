@@ -214,7 +214,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
   </tr>
   <tr>
     <td rowspan="2">Oslo, Norway</td>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
@@ -225,7 +225,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
   </tr> 
   <tr>
     <td rowspan="2">São Paulo, Brazil</td>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
