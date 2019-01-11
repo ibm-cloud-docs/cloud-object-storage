@@ -44,3 +44,22 @@ There isn't an 'official' command line utility for managing data stored in {{sit
 ## Using libraries and SDKs
 
 There are IBM COS SDKs available for [Python](/docs/services/cloud-object-storage/libraries/python.html), [Java](/docs/services/cloud-object-storage/libraries/java.html), and [Node.js](/docs/services/cloud-object-storage/libraries/node.html). These are forked versions of the AWS S3 SDKs that have been modified to support [IAM token-based authentication](/docs/services/cloud-object-storage/iam/overview.html), as well as support for [Key Protect](/docs/services/cloud-object-storage/basics/encryption.html). 
+
+## Building applications on {{site.data.keyword.cloud}}
+
+{{site.data.keyword.cloud}} provides flexibility to developers in choosing the right architectural and deployment options for a given application.  Run your code on [bare metal](https://cloud.ibm.com/catalog/infrastructure/bare-metal), in [virtual machines](https://cloud.ibm.com/catalog/infrastructure/virtual-server-group), using a [serverless framework](https://cloud.ibm.com/openwhisk), in [containers](https://cloud.ibm.com/containers-kubernetes/catalog/cluster), or using [Cloud Foundry](https://cloud.ibm.com/catalog/starters/sdk-for-nodejs).  
+
+The [Cloud Native Computing Foundation](https://www.cncf.io) incubated and recently "graduated" the [Kubernetes](https://kubernetes.io) container orchestration framework, and it forms the foundation for the {{site.data.keyword.cloud}} Kubernetes Service.  Developers who wish to use object storage for persistent storage in their Kubernetes applications can learn more at the following links:
+
+ * [Choosing a storage solution](https://console.bluemix.net/docs/containers/cs_storage_planning.html#choose_storage_solution)
+ * [Comparison table for persistent storage options](https://console.bluemix.net/docs/containers/cs_storage_planning.html#persistent_storage_overview)
+ * [Main COS page](https://console.bluemix.net/docs/containers/cs_storage_cos.html)
+ * [Installing COS](https://console.bluemix.net/docs/containers/cs_storage_cos.html#install_cos)
+ * [Creating COS service instance](https://console.bluemix.net/docs/containers/cs_storage_cos.html#create_cos_service)
+ * [Creating COS secret](https://console.bluemix.net/docs/containers/cs_storage_cos.html#create_cos_secret)
+ * [Decide on the configuration](https://console.bluemix.net/docs/containers/cs_storage_cos.html#configure_cos)
+ * [Provision COS](https://console.bluemix.net/docs/containers/cs_storage_cos.html#add_cos)
+ * [Backup and restore info](https://console.bluemix.net/docs/containers/cs_storage_cos.html#backup_restore)
+ * [Storage Class reference](https://console.bluemix.net/docs/containers/cs_storage_cos.html#storageclass_reference)
+
+

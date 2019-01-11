@@ -504,31 +504,8 @@ public static void deleteBucket(String bucketName) {
 * Methods
     * [deleteBucket](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#deleteBucket-java.lang.String-){:new_window}
 
-### View a bucket's security
-```java
-public static void getBucketACL(String bucketName) {
-    System.out.printf("Retrieving ACL for bucket: %s\n", bucketName);
 
-    AccessControlList acl = _cos.getBucketAcl(bucketName);
-
-    List<Grant> grants = acl.getGrantsAsList();
-    
-    System.out.printf("Owner: %s\n", acl.getOwner().getDisplayName());
-    
-    for (Grant grant : grants) {
-        System.out.printf("User: %s (%s)\n", grant.getGrantee().getIdentifier(), grant.getPermission().toString());
-    }
-}
-```
-
-*SDK References*
-* Classes
-    * [AccessControlList](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/AccessControlList.html){:new_window}
-    * [Grant](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/Grant.html){:new_window}
-* Methods
-    * [getBucketAcl](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#getBucketAcl-java.lang.String-){:new_window}
-
-### View a file's security
+### Check if an object is publicly readable
 ```java
 public static void getItemACL(String bucketName, String itemName) {
     System.out.printf("Retrieving ACL for %s from bucket: %s\n", itemName, bucketName);

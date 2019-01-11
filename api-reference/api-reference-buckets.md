@@ -33,11 +33,16 @@ Adding headers to your request using the following values subtituted:
 ## List buckets
 {: #list-buckets}
 
-A `GET` issued to the endpoint root returns a list of buckets associated with the specified service instance. This operation does not make use of operation specific query parameters or payload elements.
+A `GET` issued to the endpoint root returns a list of buckets associated with the specified service instance. 
 
-Header                    | Type   | Description
---------------------------|--------|---------------------------------------------------------------------------------------------------------------------
-`ibm-service-instance-id` | string | This header references the service instance where the bucket will be created and to which data usage will be billed.
+Header                    | Type   | Required? |  Description
+--------------------------|--------|---| -----------------------------
+`ibm-service-instance-id` | string | Yes | Buckets created in this service instance will be listed.
+
+Query Parameter                    | Value   | Required? |  Description
+--------------------------|--------|---| -----------------------------------------------------------
+`extended` | none | No | Provides bucket metadata in the listing, such as `LocationConstraint`.
+
 
 **Syntax**
 
@@ -98,6 +103,73 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
         <Bucket>
             <Name>bucket-28731-k0o1gde2rm</Name>
             <CreationDate>2016-08-18T14:25:09.599Z</CreationDate>
+        </Bucket>
+    </Buckets>
+</ListAllMyBucketsResult>
+```
+
+### Getting an extended listing
+{: #list-buckets-extended}
+
+**Syntax**
+
+```bash
+GET https://{endpoint}?extended/
+```
+
+**Sample request (IAM)**
+
+```http
+GET /?extended HTTP/1.1
+Authorization: Bearer {token}
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
+ibm-service-instance-id: {ibm-service-instance-id}
+```
+
+**Sample request (HMAC Headers)**
+
+```http
+GET /?extended HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3-api.us-geo.objectstorage.softlayer.net
+```
+
+**Sample response**
+
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ListAllMyBucketsResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+    <Owner>
+        <ID>{account-id}</ID>
+        <DisplayName>{account-id}</DisplayName>
+    </Owner>
+    <IsTruncated>false</IsTruncated>
+    <MaxKeys>1000</MaxKeys>
+    <Prefix/>
+    <Marker/>
+    <Buckets>
+        <Bucket>
+            <Name>bucket-27200-lwx4cfvcue</Name>
+            <CreationDate>2016-08-18T14:21:36.593Z</CreationDate>
+            <LocationConstraint>us-south-standard</LocationConstraint>
+        </Bucket>
+        <Bucket>
+            <Name>bucket-27590-drqmydpfdv</Name>
+            <CreationDate>2016-08-18T14:22:32.366Z</CreationDate>
+            <LocationConstraint>seo01-standard</LocationConstraint>
+        </Bucket>
+        <Bucket>
+            <Name>bucket-27852-290jtb0n2y</Name>
+            <CreationDate>2016-08-18T14:23:03.141Z</CreationDate>
+            <LocationConstraint>eu-standard</LocationConstraint>
+        </Bucket>
+        <Bucket>
+            <Name>bucket-28731-k0o1gde2rm</Name>
+            <CreationDate>2016-08-18T14:25:09.599Z</CreationDate>
+            <LocationConstraint>us-cold</LocationConstraint>
         </Bucket>
     </Buckets>
 </ListAllMyBucketsResult>
