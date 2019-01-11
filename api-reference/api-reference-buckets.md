@@ -43,6 +43,8 @@ Query Parameter                    | Value   | Required? |  Description
 --------------------------|--------|---| -----------------------------------------------------------
 `extended` | none | No | Provides bucket metadata in the listing, such as `LocationConstraint`.
 
+Extended listing is not supported in the SDKs or CLI.
+{:note}
 
 **Syntax**
 
