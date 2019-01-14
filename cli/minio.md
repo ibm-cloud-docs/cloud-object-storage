@@ -31,7 +31,7 @@ mc config host add <ALIAS> <COS-ENDPOINT> <ACCESS-KEY> <SECRET-KEY>
 
 The configuration information is stored in a JSON file located at `~/.mc/config.json`
 
-for example:
+*Example:*
 ```
 mc config host add cosgeo https://s3-api.us-geo.objectstorage.softlayer.net xx1111cfbe094710x4819759x57e9999 9f99fc08347d1a6xxxxx0b7e0a9ee7b0c9999c2c08ed0000
 ```
@@ -51,6 +51,7 @@ mc mb cosgeo/my_test_bucket
 ```
 mc ls cosgeo
 ```
+*Output:*
 ```
 [2018-06-05 09:55:08 HST]     0B testbucket1/
 [2018-05-24 04:17:34 HST]     0B testbucket_south/
@@ -63,7 +64,7 @@ mc ls cosgeo
 ```
 mc ls cosgeo/testbucket1
 ```
-
+*Output:*
 ```
 [2018-11-12 08:09:53 HST]    34B mynewfile1.txt
 [2018-05-31 01:49:26 HST]    34B mynewfile12.txt
@@ -73,12 +74,12 @@ mc ls cosgeo/testbucket1
 
 ### find - Search for Objects by Name
 
-*Other search options are available on the [complete guide](https://docs.minio.io/docs/minio-client-complete-guide#find){:new_window}*
+*A full list of search options are available in the [complete guide](https://docs.minio.io/docs/minio-client-complete-guide#find){:new_window}*
 
 ```
 mc find cosgeo/testbucket1 --name my*
 ```
-
+*Output:*
 ```
 [2018-11-12 08:09:53 HST]    34B mynewfile1.txt
 [2018-05-31 01:49:26 HST]    34B mynewfile12.txt
@@ -95,7 +96,7 @@ mc head cosgeo/testbucket1/mynewfile1.txt
 ```
 mc cp cosgeo/testbucket1/mynewfile1.txt cosgeo/my_test_bucket/cp_from_minio.txt
 ```
-
+*Output:*
 ```
 ...1/mynewfile1.txt:  34 B / 34 B  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓  100.00% 27 B/s 1s
 ```

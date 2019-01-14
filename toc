@@ -70,6 +70,7 @@ Cloud Object Storage
         cli/curl.md
         cli/aws-cli.md
         cli/s3fs.md
+        cli/minio.md
 
     {: .topicgroup}
     Desktop clients
