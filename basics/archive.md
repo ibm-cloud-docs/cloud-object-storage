@@ -361,15 +361,14 @@ HTTP/1.1 200 OK
 Date: Wed, 7 Feb 2018 19:51:00 GMT
 X-Clv-Request-Id: da214d69-1999-4461-a130-81ba33c484a6
 Accept-Ranges: bytes
-Server: Cleversafe/3.12.0.121
+Server: 3.x
 X-Clv-S3-Version: 2.5
-x-amz-request-id: da214d69-1999-4461-a130-81ba33c484a6
 ETag: "37d4c94839ee181a2224d6242176c4b5"
 Content-Type: text/plain; charset=UTF-8
 Last-Modified: Thu, 25 Aug 2017 17:49:06 GMT
 Content-Length: 11
-x-ibm-transition: "transition:archive, date: Mon, Feb 5 2018 17:50:00 GMT"
-x-amz-restore: "ongoing-request" = false, expiry-date="Wed, Feb 14 2018 17:50:00 GMT"
+x-ibm-transition: transition="ARCHIVE", date="Mon, 03 Dec 2018 22:28:38 GMT"
+x-amz-restore: ongoing-request="false", expiry-date="Thu, 06 Dec 2018 18:28:38 GMT"
 x-amz-storage-class: "GLACIER"
 x-ibm-restored-copy-storage-class: "Standard"
 ```
