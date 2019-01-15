@@ -323,6 +323,7 @@ Connection: close
 ---
 
 ### Get an object's headers
+{: #headers}
 
 A `HEAD` given a path to an object retrieves that object's headers. This operation does not make use of operation specific query parameters or payload elements.
 
