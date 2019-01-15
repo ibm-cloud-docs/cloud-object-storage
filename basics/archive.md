@@ -66,7 +66,7 @@ The transition action enables future objects written to the bucket to an archive
 
 Cloud IAM users must have the `Writer` role to add a lifecycle policy to the bucket.
 
-Classic Infrastructure Users must have Owner Permissions on the container and be able to create buckets in the storage account in order to add a lifecycle policy to the bucket.
+Classic Infrastructure Users must have Owner Permissions and be able to create buckets in the storage account to add a lifecycle policy to the bucket.
 
 This operation does not make use of additional operation specific query parameters.
 
