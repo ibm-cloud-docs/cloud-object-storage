@@ -400,21 +400,6 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
   </thead>
   <tbody>
     <tr>
-      <td>AP Japan</td>
-      <td>
-        <p>Public</p>
-        <p>Private</p>
-      </td>
-      <td>
-        <p>
-          <code class="highlighter-rouge">s3.jp-tok.cloud-object-storage.appdomain.cloud</code>
-        </p>
-        <p>
-          <code class="highlighter-rouge">s3.private.jp-tok.cloud-object-storage.appdomain.cloud</code>
-        </p>
-      </td>
-    </tr>
-    <tr>
       <td>AP Australia</td>
       <td>
         <p>Public</p>
@@ -429,6 +414,22 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
         </p>
       </td>
     </tr>
+    <tr>
+      <td>AP Japan</td>
+      <td>
+        <p>Public</p>
+        <p>Private</p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.jp-tok.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.jp-tok.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    
   </tbody>
 </table>
 {:.endpointtable}
