@@ -414,6 +414,21 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
         </p>
       </td>
     </tr>
+    <tr>
+      <td>AP Australia</td>
+      <td>
+        <p>Public</p>
+        <p>Private</p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.au-syd.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.au-syd.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
   </tbody>
 </table>
 {:.endpointtable}
@@ -945,6 +960,21 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
         </p>
         <p>
           <code class="highlighter-rouge">s3.jp-tok.objectstorage.service.networklayer.com</code>
+        </p>
+      </td>
+    </tr>
+     <tr>
+      <td>AP Australia</td>
+      <td>
+        <p>Public</p>
+        <p>Private</p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.au-syd.objectstorage.service.networklayer.com</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.au-syd.objectstorage.softlayer.net</code>
         </p>
       </td>
     </tr>
