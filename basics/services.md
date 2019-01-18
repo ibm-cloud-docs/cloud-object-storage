@@ -89,6 +89,14 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     </tr>
   </thead>
    <tr>
+    <td rowspan="2">AP Australia</td>
+    <td>No</td>
+    <td>Yes</td>
+    <td>Yes</td>
+    <td>Yes</td>
+    <td>Sydney</td>
+   <tr>
+    <tr>
     <td rowspan="2">AP Japan</td>
     <td>No</td>
     <td>Yes</td>
