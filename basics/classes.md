@@ -44,6 +44,7 @@ When creating buckets programmatically, it is necessary to specify a `LocationCo
 &emsp;&emsp;  **EU Germany:** `eu-de-standard` / `eu-de-vault` / `eu-de-cold` / `eu-de-flex` <br>
 &emsp;&emsp;  **AP Geo:** `ap-standard` / `ap-vault` / `ap-cold` / `ap-flex` <br>
 &emsp;&emsp;  **AP Japan:** `jp-tok-standard` / `jp-tok-vault` / `jp-tok-cold` / `jp-tok-flex` <br>
+&emsp;&emsp;  **AP Australia:** `au-syd-standard` / `au-syd-vault` / `au-syd-cold` / `au-syd-flex` <br>
 &emsp;&emsp;  **Amsterdam:** `ams03-standard` / `ams03-vault` / `ams03-cold` / `ams03-flex` <br>
 &emsp;&emsp;  **Chennai:** `che01-standard` / `che01-vault` / `che01-cold` / `che01-flex` <br>
 &emsp;&emsp;  **Melbourne:** `mel01-standard` / `mel01-vault` / `mel01-cold` / `mel01-flex` <br>
@@ -53,7 +54,7 @@ When creating buckets programmatically, it is necessary to specify a `LocationCo
 &emsp;&emsp;  **São Paulo:** `sao01-standard` / `sao01-vault` / `sao01-cold` / `sao01-flex` <br>
 &emsp;&emsp;  **Seoul:** `seo01-standard` / `seo01-vault` / `seo01-cold` / `seo01-flex` <br>
 &emsp;&emsp;  **Toronto:** `tor01-standard` / `tor01-vault` / `tor01-cold` / `tor01-flex` <br>
-&emsp;&emsp;  **AP Australia:** `au-syd-standard` / `au-syd-vault` / `au-syd-cold` / `au-syd-flex` <br>
+
 
 A request to create a Cold Vault bucket in the US Cross Region would look like:
 
