@@ -20,7 +20,7 @@ In this getting started tutorial, you'll walk through the steps needed to create
 
 ## Before you begin
 You'll need:
-  * an [{{site.data.keyword.cloud}} Platform account](https://console.bluemix.net/registration/?target=%2Fcatalog%2Finfrastructure%2Fcloud-object-storage)
+  * an [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com/registration/?target=%2Fcatalog%2Fservices%2Fcloud-object-storage)
   * an [instance of {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics/order-storage.html)
   * and some files on your local computer to upload.
 {: #prereqs}
