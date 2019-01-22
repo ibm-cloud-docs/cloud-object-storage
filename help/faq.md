@@ -24,6 +24,10 @@ Bucket names are required to be DNS addressable, and thus not case sensitive.
 
 1024
 
+**How can I find out the total size of my bucket using the API?**
+
+It's not possible to fetch the size of a bucket with a single request.  You'll need to list the contents of a bucket and sum the size of each object.
+
 **Can I migrate data from AWS S3 into {{site.data.keyword.cos_full_notm}}?**
 
 Yes, you can use your existing tools to read and write data into {{site.data.keyword.cos_full_notm}}. You will need to configure HMAC credentials allow your tools to authenticate. Not all S3-compatible tools are currently unsupported. For more details, see [Using HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html).
