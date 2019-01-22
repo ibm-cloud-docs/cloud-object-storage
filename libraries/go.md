@@ -118,9 +118,6 @@ func (suite *SuiteBucketCreate) TestBadExists() {
 	suite.Require().Nil(e, "%s", e)
 	suite.mainBucket = bName
 
-	_, e = createBucket(bName, suite.mainSvc)
-	suite.Require().NotNil(e, "Operation should Not Succeed!")
-
 	if awsErr, ok := e.(awserr.RequestFailure); ok {
 		suite.Assert().Equal(bucketAlreadyOwnedByYouCode, awsErr.Code())
 		suite.Assert().Equal(httpConflictStatusCode, awsErr.StatusCode())
@@ -140,7 +137,7 @@ func (suite *SuiteBucketCreate) TestBadExists() {
 
 ### List available buckets
 ```Go
-func (suite *SuiteBucketList) TestBucketListCreateThenList() {
+func (suite *SuiteBucketList) ListAllBuckets() {
 	
 	params := s3.ListBucketsInput{}
 	d, e := suite.mainSvc.ListBuckets(&params)
