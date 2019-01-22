@@ -72,6 +72,7 @@ Cloud Object Storage
         cli/aws-cli.md
         cli/s3fs.md
         cli/minio.md
+        cli/rclone.md
 
     {: .topicgroup}
     Desktop clients

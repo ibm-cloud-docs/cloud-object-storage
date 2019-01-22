@@ -12,16 +12,18 @@ lastupdated: "17-10-2018"
 {:screen: .screen}
 {:tip: .tip}
 
-# Install `rclone`
+# Using `rclone`
+
+## Install `rclone`
 
 Rclone is a Go program and comes as a single binary file.
 
-## Quickstart Installation
+### Quickstart Installation
 *  Download the relevant binary - https://rclone.org/downloads. 
 *  Extract the `rclone` or `rclone.exe` binary from the archive.
 *  Run `rclone config` to setup.
 
-## Script Installation
+### Script Installation
 
 To install rclone on Linux/macOS/BSD systems, run:
 ```
@@ -33,7 +35,7 @@ curl https://rclone.org/install.sh | sudo bash -s beta
 ```
 Note that this script checks the version of rclone installed first and won’t re-download if not needed.
 
-## Linux installation from precompiled binary
+### Linux installation from precompiled binary
 
 Fetch and unpack:
 ```
@@ -58,7 +60,7 @@ Run `rclone config` to setup:
 rclone config
 ```
 
-## macOS installation from precompiled binary
+### macOS installation from precompiled binary
 
 Download the latest version of rclone:
 ```
@@ -83,7 +85,7 @@ Run `rclone config` to setup:
 rclone config
 ```
 
-# Configure access to IBM COS
+## Configure access to IBM COS
   1. Run `rclone config` and select `n` for a new remote.
 ```
 No remotes found - make a new one
@@ -212,7 +214,7 @@ acl>1
 	acl = private
 ```
 
-# Commands
+## Commands
 
 ### Create a bucket.
 ```
@@ -248,7 +250,7 @@ There are several related list commands
 
 
 
-# `rclone` sync
+## `rclone` sync
 Make source and dest identical, modifying destination only.
 
 ### Synopsis
@@ -265,7 +267,7 @@ If dest:path doesn’t exist, it is created and the source:path contents go ther
 rclone sync source:path dest:path [flags]
 ```
 
-## Using rclone from multiple locations at the same time
+### Using rclone from multiple locations at the same time
 You can use rclone from multiple places at the same time if you choose different subdirectory for the output, eg
 ```
 Server A> rclone sync /tmp/whatever remote:ServerA
@@ -277,7 +279,7 @@ Server A> rclone copy /tmp/whatever remote:Backup
 Server B> rclone copy /tmp/whatever remote:Backup
 ```
 
-## --backup-dir=DIR
+### --backup-dir=DIR
 When using `sync`, `copy` or `move` any files which would have been overwritten or deleted are moved in their original hierarchy into this directory.
 
 If `--suffix` is set, then the moved files will have the suffix added to them. If there is a file with the same path (after the suffix has been added) in DIR, then it will be overwritten.
@@ -292,10 +294,10 @@ will `sync` `/path/to/local` to `remote:current`, but for any files which would 
 
 If running `rclone` from a script you might want to use today’s date as the directory name passed to `--backup-dir` to store the old files, or you might want to pass `--suffix` with today’s date.
 
-# `rclone` daily sync
+## `rclone` daily sync
 Scheduling a backup is important to automating backups. Depending on your platform will depend on how you do this. Windows can use Task Scheduler while Mac OS and Linux can use crontabs.
 
-## Syncing a Directory
+### Syncing a Directory
 `Rclone` will sync a local directory with the remote container, storing all the files in the local directory in the container. `Rclone` uses the syntax, `rclone sync source destination`, where `source` is the local folder and `destination` is the container within your IBM COS.
 
 For example
@@ -305,10 +307,10 @@ rclone sync /path/to/my/backup/directory RemoteName:newbucket
 
 You may already have a destination created, but if you don't then you can create a new bucket using the steps above.
 
-## Scheduling a Job
+### Scheduling a Job
 Before scheduling a job, make sure you have done your initial upload and it has completed.
 
-### Windows
+#### Windows
 1. Create a text file called `backup.bat` somewhere on your computer and paste in the command you used in the section [Syncing a Directory](#syncing-a-directory). It will look something like the following. Specify the full path to the rclone.exe and don’t forget to save the file.
 ```
  C:\full\path\to\rclone.exe sync "C:\path\to\my\backup\directory" RemoteName:newbucket
@@ -324,7 +326,7 @@ Before scheduling a job, make sure you have done your initial upload and it has 
 schtasks /Create /RU username /RP "password" /SC DAILY /TN Backup /TR C:\path\to\backup.bat /ST 01:05:00
 ```
 
-### Mac and Linux
+#### Mac and Linux
 1. Create a text file called `backup.sh` somewhere on your computer, and paste the command you used in the section [Syncing a Directory](#syncing-a-directory). It will look something like the following. Specify the full path to the rclone executable and don’t forget to save the file.
 ```
 #!/bin/sh
