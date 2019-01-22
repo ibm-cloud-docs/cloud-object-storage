@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "30-10-2018"
+  years: 2017, 2018, 2019
+lastupdated: "22-01-2019"
 
 ---
 {:new_window: target="_blank"}
@@ -62,7 +62,7 @@ The IBM Cloud CLI mandates that commands start with `ibmcloud`. However, until t
 ### Create a new bucket
 {: #create-bucket}
 * **Action:** Create a new bucket in an IBM Cloud Object Storage instance.
-* **Usage:** `ibmcloud cos create-bucket --bucket [BUCKET_NAME] [--region REGION_NAME] [--class CLASS_TYPE]`
+* **Usage:** `ibmcloud cos create-bucket --bucket BUCKET_NAME [--region REGION_NAME] [--class CLASS_TYPE]`
 * **Parameters to provide:**
     * The name of the new bucket.
     * _Optional_: The region where the bucket will be created. If this parameter is not provided, the program will use the `DefaultRegion` value in the `credentials.json` file located in the user's `.bluemix` folder.
@@ -73,30 +73,32 @@ The IBM Cloud CLI mandates that commands start with `ibmcloud`. However, until t
 
 ### Delete an existing bucket
 * **Action:** Delete an existing bucket in an IBM Cloud Object Storage instance.
-* **Usage:** `ibmcloud cos delete-bucket --bucket [BUCKET_NAME] [--region REGION_NAME]`
+* **Usage:** `ibmcloud cos delete-bucket --bucket BUCKET_NAME [--region REGION_NAME]  [--force]`
 * **Parameters to provide:**
     * The name of the bucket to be deleted.
     * _Optional_: The region where the bucket is located. If this parameter is not provided, the program will use the `DefaultRegion` value in the `credentials.json` file located in the user's `.bluemix` folder.
        * Flag: `--region REGION_NAME`
+    * _Optional_: Delete the bucket without confirmation.
+       * Flag: `--force`
 
 
 ### Find a bucket
 * **Action:** Determine the location and class of a bucket in an IBM Cloud Object Storage instance. 
-* **Usage:** `ibmcloud cos get-bucket-location --bucket [BUCKET_NAME]`
+* **Usage:** `ibmcloud cos get-bucket-location --bucket BUCKET_NAME`
 * **Parameters to provide:**
 	* The name of the bucket to get the location.
 
 
 ### Get a bucket's class
 * **Action:** Determine the class of a bucket in an IBM Cloud Object Storage instance.
-* **Usage:** `ibmcloud get-bucket-class --bucket [BUCKET_NAME]`
+* **Usage:** `ibmcloud get-bucket-class --bucket BUCKET_NAME`
 * **Parameters to provide:**
 	* The name of the bucket to get the class.
 	
 
 ### Get a bucket's headers
 * **Action:** Determine if a bucket exists in an IBM Cloud Object Storage instance.
-* **Usage:** `ibmcloud cos head-bucket --bucket [BUCKET_NAME] [--region REGION_NAME]`
+* **Usage:** `ibmcloud cos head-bucket --bucket BUCKET_NAME [--region REGION_NAME]`
 * **Parameters to provide:**
 	* The name of the bucket to get the details.
 	* _Optional_: The region where the bucket is located. If this parameter is not provided, the program will use the `DefaultRegion` value in the `credentials.json` file located in the user's `.bluemix` folder. 
@@ -111,7 +113,7 @@ The IBM Cloud CLI mandates that commands start with `ibmcloud`. However, until t
 
 ### Download an object
 * **Action:** Download an object from a bucket in a user's IBM Cloud Object Storage account.
-* **Usage:** `ibmcloud cos get-object --bucket [BUCKET_NAME] --key [KEY_NAME] [--region REGION_NAME]`
+* **Usage:** `ibmcloud cos get-object --bucket BUCKET_NAME --key KEY_NAME [--region REGION_NAME] [OUTFILE]`
 * **Parameters to provide:**
     * Bucket name
     * Object name to download
@@ -120,7 +122,7 @@ The IBM Cloud CLI mandates that commands start with `ibmcloud`. However, until t
 
 ### Get an object's headers
 * **Action:** Determine if a file exists in a bucket in a user's IBM Cloud Object Storage account.
-* **Usage:** `ibmcloud cos head-object --bucket [BUCKET_NAME] --key [KEY_NAME] [--region REGION_NAME]`
+* **Usage:** `ibmcloud cos head-object --bucket BUCKET_NAME --key KEY_NAME [--region REGION_NAME]`
 * **Parameters to provide:**
     * Bucket name to upload to
     * Name of the file to get the head of
@@ -130,36 +132,40 @@ The IBM Cloud CLI mandates that commands start with `ibmcloud`. However, until t
 
 ### Upload an object
 * **Action:** Upload an object to a bucket in a user's IBM Cloud Object Storage account.
-* **Usage:** `ibmcloud cos put-object --bucket [BUCKET_NAME] --key [KEY_NAME] [--region REGION_NAME]`
+* **Usage:** `ibmcloud cos put-object --bucket BUCKET_NAME --key KEY_NAME [--region REGION_NAME] [--body FILE_LOCATION]`
 * **Parameters to provide:**
     * Bucket name to upload to
     * Path of the file the user is uploading
 	* _Optional_: The region where the bucket is located. If this parameter is not provided, the program will use the `DefaultRegion` value in the `credentials.json` file located in the user's `.bluemix` folder.
 		* Flag: `--region REGION_NAME`
+	* _Optional_: Where the object is located. If this parameter is not provided, the program will use the default location.
+		* Flag: `--body FILE_LOCATION`
 
 
 ### Delete an object
 * **Action:** Delete an object from a bucket in a user's IBM Cloud Object Storage account.
-* **Usage:** `ibmcloud cos delete-object --bucket [BUCKET_NAME] --key [KEY_NAME] [--region REGION_NAME]`
+* **Usage:** `ibmcloud cos delete-object --bucket BUCKET_NAME --key KEY_NAME [--region REGION_NAME] [--force]`
 * **Parameters to provide:**
     * Bucket name to delete from
     * Object name to delete
 	* _Optional_: The region where the bucket is located. If this parameter is not provided, the program will use the `DefaultRegion` value in the `credentials.json` file located in the user's `.bluemix` folder.
 		* Flag: `--region REGION_NAME`
+    * _Optional_: Delete the bucket without confirmation.
+       * Flag: `--force`
 
 ### Copy object between buckets
 * **Action:** Copy an object from source bucket to destination bucket.
-* **Usage:** `ibmcloud cos copy-object --bucket [DESTINATION_BUCKET] --copysource [COPY_SOURCE] --key [KEY_NAME] [--region REGION_NAME] `
+* **Usage:** `ibmcloud cos copy-object --bucket DESTINATION_BUCKET --copysource COPY_SOURCE --key KEY_NAME [--region REGION_NAME] `
 * **Parameters to provide:**
     * Destination bucket name
 	* Copy Source name of the source bucket and key name of the source object, separated by a slash (/). Must be URL-encoded.
-	*  The name of the key to copy to
+	*  The name of the key to copy
 	* _Optional_: Region which both buckets exists in, if not provided it will use the default region in config file.  It is not possible to copy between regions.
 		* Flag: `--region REGION_NAME`
 
 ### List objects
 * **Action:** List files present in a bucket in a user's IBM Cloud Object Storage Account.  This operation is currently limited to the 1000 most recently created objects and can't be filtered.
-* **Usage:** `ibmcloud cos list-objects --bucket [BUCKET_NAME] [--region REGION_NAME]`
+* **Usage:** `ibmcloud cos list-objects --bucket BUCKET_NAME [--region REGION_NAME]`
 * **Parameters to provide:**
 	* Bucket name to print the list of files
 	* _Optional_: The region where the bucket is located. If this parameter is not provided, the program will use the `DefaultRegion` value in the `credentials.json` file located in the user's `.bluemix` folder.
@@ -211,67 +217,73 @@ To see the status of your multipart upload instance, you can always run the `par
 
 ### Create a new multipart upload
 * **Action:** Begin the multipart file upload process by creating a new multipart upload instance.
-* **Usage:** `ibmcloud cos create-multipart-upload --bucket [BUCKET_NAME] --key [KEY_NAME] --metadata [MD5_CODE]`
+* **Usage:** `ibmcloud cos create-multipart-upload --bucket BUCKET_NAME --key KEY_NAME [--region REGION_NAME]`
 * **Parameters to provide:**
-	* The name of the bucket where the file will be uploaded to.
+    * The name of the bucket where the file will be uploaded to.
 		* Flag: `--bucket BUCKET_NAME`
 	* The name of the file that is being uploaded (the key).
-		* Flag: `--key FILE_NAME`
-	* An MD5 hash of the file name.
-		* Flag: `--metadata MD5_CODE`
+		* Flag: `--key KEY_NAME`
+	* _Optional_: The region where the bucket is located. If this parameter is not provided, the program will use the `DefaultRegion` value in the `credentials.json` file located in the user's `.bluemix` folder.
+		* Flag: `--region REGION_NAME`
 
 ### Upload a part
 * **Action:** Upload a part of a file in an existing multipart upload instance.
-* **Usage:** `ibmcloud cos upload-part --bucket [BUCKET_NAME] --key [FILE_NAME] --part-number [PART-NUMBER] --body [FILE_PATH] --upload-id [UPLOAD_ID]`
+* **Usage:** `ibmcloud cos upload-part --bucket BUCKET_NAME --key KEY_NAME  --upload-id UPLOAD_ID --part-number PART_NUMBER [--body FILE_PATH] [--region REGION_NAME]`
 	* Note that you must save each uploaded file part's number and ETag (which the CLI will print out for you) for each part into a JSON file. Refer to the "Multipart Upload Guide" below for more information.
 * **Parameters to provide:**
-	* The name of the bucket where the file will be uploaded to.
+	* The bucket name where the multipart upload is taking place.
 		* Flag: `--bucket BUCKET_NAME`
-	* The name of the file that is being uploaded via multipart.
-		* Flag: `--key FILE_NAME`
-	* The file part's number (i.e. whether it is the first, second, etc. part uploaded)
-		* Flag: `--part-number PART_NUMBER`
-	* The filepath of the file part.
-		* Flag: `--body FILE_PATH`
+	* The original name of the object.
+		* Flag: `--key KEY_NAME`
 	* The upload ID generated in the `multipart-upload-create` command.
 		* Flag: `--upload-id UPLOAD_ID`
+	* The upload-id generated in the create-multipart-upload command.
+		* Flag: `--part-number PART_NUMBER`
+	* _Optional_: The filepath of the file part.
+		* Flag: `--body FILE_PATH`
+	* _Optional_: The region where the bucket is located. If this parameter is not provided, the program will use the `DefaultRegion` value in the `credentials.json` file located in the user's `.bluemix` folder.
+		* Flag: `--region REGION_NAME`
 
 
 ### List parts
 * **Action:** Print out information about an in progress multipart upload instance.
-* **Usage:** `ibmcloud cos list-parts --bucket [BUCKET_NAME] --key [KEY_NAME] --upload-id [UPLOAD_ID]`
+* **Usage:** `ibmcloud cos list-parts --bucket BUCKET_NAME --key KEY_NAME --upload-id UPLOAD_ID [--region REGION_NAME]`
 * **Parameters to provide:**
 	* The name of the bucket where the file will be uploaded to.
 		* Flag: `--bucket BUCKET_NAME`
-	* The name of the file that is being uploaded via multipart.
-		* Flag: `--key FILE_NAME`
+	* The name of the object that is being uploaded via multipart.
+		* Flag: `--key KEY_NAME`
 	* The upload ID generated in the `create-multipart-upload` command.
 		* Flag: `--upload-id UPLOAD_ID`
+	* _Optional_: The region where the bucket is located. If this parameter is not provided, the program will use the `DefaultRegion` value in the `credentials.json` file located in the user's `.bluemix` folder.
+		* Flag: `--region REGION_NAME`
 
 
 ### Abort a multipart upload
 * **Action:** Abort a multipart upload instance by ending the upload to the bucket in the user's IBM Cloud Object Storage account.
-* **Usage:** `ibmcloud cos abort-multipart-upload --bucket [BUCKET_NAME] --key [KEY] --upload-id [UPLOAD-ID]`
+* **Usage:** `ibmcloud cos abort-multipart-upload --bucket BUCKET_NAME --key KEY_NAME --upload-id UPLOAD_ID`
 * **Parameters to provide:**
 	* The bucket name where the abort of the multipart upload is taking place.
 		* Flag: `--bucket BUCKET_NAME`
 	* The name of the file that is being uploaded via multipart.
-		* Flag: `--key FILE_NAME`
+		* Flag: `--key KEY_NAME`
 	* The upload ID generated in the `create-multipart-upload` command.
 		* Flag: `--upload-id UPLOAD_ID`
 
 ### Complete a multipart upload
 * **Action:** Complete a multipart upload instance by assembling the currently uploaded parts and uploading the file to the bucket in the user's IBM Cloud Object Storage account.
-* **Usage:** `ibmcloud cos complete-multipart-upload --etag-data [ETAG_DATA_FILEPATH] --bucket [BUCKET_NAME] --key [KEY_NAME] --upload-id [UPLOAD_ID]`
+* **Usage:** `ibmcloud cos complete-multipart-upload --bucket BUCKET_NAME --key KEY_NAME --upload-id UPLOAD_ID  [--etag-data ETAG_FILEPATH]  [--region REGION_NAME]`
 * **Parameters to provide:**
-	* The filepath of the JSON file that contains the ETag and part number data for each part uploaded. This is a file the user is required to create on their own. For a guide on how to create this file, refer to the "Multipart Upload Guide" below.
-		* Flag: `--etag-data ETAG_DATA_FILEPATH`
 	* The name of the bucket where the file will be uploaded to.
 		* Flag: `--bucket BUCKET_NAME`
 	* The name of the file that is being uploaded via multipart.
-		* Flag: `--key FILE_NAME`
+		* Flag: `--key KEY_NAME`
 	* The upload ID generated in the `multipart-upload-create` command.
 		* Flag: `--upload-id UPLOAD_ID`
+	* _Optional_: The filepath of the JSON file that contains the ETag and part number data for each part uploaded. This is a file the user is required to create on their own. For a guide on how to create this file, refer to the "Multipart Upload Guide" below.
+		* Flag: `--etag-data ETAG_DATA_FILEPATH`
+	* _Optional_: The region where the bucket is located. If this parameter is not provided, the program will use the `DefaultRegion` value in the `credentials.json` file located in the user's `.bluemix` folder.
+		* Flag: `--region REGION_NAME`
 
 ### `credentials.json` Guide
 The `credentials.json` file stores user preferences. The IBM Cloud Object Storage CLI reads and writes to this file periodically. Below is an example of a `credentials.json` file, and an explanation of each field:
