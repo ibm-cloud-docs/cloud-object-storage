@@ -17,11 +17,14 @@ Cloud Object Storage
 
     {: .navgroup id="howto"}
     basics/order-storage.md
+    
+    {: .topicgroup}
+    Choose regions and connect services
+        basics/endpoints.md
+        basics/services.md    
+        
     basics/upload.md
-    basics/archive.md
-    basics/aspera.md
-    basics/immutable.md
-
+    
     {: .topicgroup}
     Manage access
         iam/overview.md
@@ -35,12 +38,10 @@ Cloud Object Storage
         hmac/credentials.md
         hmac/hmac-signature.md
         hmac/presigned-urls.md
-
-    {: .topicgroup}
-    Choose regions and connect services
-        basics/endpoints.md
-        basics/services.md
-
+    
+    basics/archive.md
+    basics/aspera.md
+    basics/immutable.md
     basics/classes.md
     basics/multipart.md
     basics/encryption.md
@@ -80,7 +81,8 @@ Cloud Object Storage
         gui/crossftp.md
 
     basics/at.md
-    
+    info/advanced_endpoints.md
+
     {: .topicgroup}
     Tutorials
         [Get started with IBM COS](https://developer.ibm.com/clouddataservices/docs/cos/get-started/)
