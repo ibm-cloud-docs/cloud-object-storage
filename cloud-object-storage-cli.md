@@ -119,6 +119,8 @@ The IBM Cloud CLI mandates that commands start with `ibmcloud`. However, until t
     * Object name to download
 	* _Optional_: The region where the bucket is located. If this parameter is not provided, the program will use the `DefaultRegion` value in the `credentials.json` file located in the user's `.bluemix` folder.
 		* Flag: `--region REGION_NAME`
+	* _Optional_: The location where to save the content of the object. If this parameter is not provided, the program will use the default location.
+		* Flag: `--region REGION_NAME`
 
 ### Get an object's headers
 * **Action:** Determine if a file exists in a bucket in a user's IBM Cloud Object Storage account.
@@ -135,7 +137,7 @@ The IBM Cloud CLI mandates that commands start with `ibmcloud`. However, until t
 * **Usage:** `ibmcloud cos put-object --bucket BUCKET_NAME --key KEY_NAME [--region REGION_NAME] [--body FILE_LOCATION]`
 * **Parameters to provide:**
     * Bucket name to upload to
-    * Path of the file the user is uploading
+    * Key of the file the user is uploading
 	* _Optional_: The region where the bucket is located. If this parameter is not provided, the program will use the `DefaultRegion` value in the `credentials.json` file located in the user's `.bluemix` folder.
 		* Flag: `--region REGION_NAME`
 	* _Optional_: Where the object is located. If this parameter is not provided, the program will use the default location.
