@@ -136,47 +136,34 @@ func (suite *SuiteBucketCreate) TestBadExists() {
 * Methods
     * [create](#){:new_window}
 
-### Creating a new text file
-```python
-def create_text_file(bucket_name, item_name, file_text):
-    print("Creating new item: {0}".format(item_name))
-    try:
-        cos.Object(bucket_name, item_name).put(
-            Body=file_text
-        )
-        print("Item: {0} created!".format(item_name))
-    except ClientError as be:
-        print("CLIENT ERROR: {0}\n".format(be))
-    except Exception as e:
-        print("Unable to create text file: {0}".format(e))
-```
 
-*SDK References*
-* Classes
-    * [Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){:new_window}
-* Methods
-    * [put](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.put){:new_window}
 
 ### List available buckets
-```python
-def get_buckets():
-    print("Retrieving list of buckets")
-    try:
-        buckets = cos.buckets.all()
-        for bucket in buckets:
-            print("Bucket Name: {0}".format(bucket.name))
-    except ClientError as be:
-        print("CLIENT ERROR: {0}\n".format(be))
-    except Exception as e:
-        print("Unable to retrieve list buckets: {0}".format(e))
+```Go
+func (suite *SuiteBucketList) TestBucketListCreateThenList() {
+	
+	params := s3.ListBucketsInput{}
+	d, e := suite.mainSvc.ListBuckets(&params)
+	suite.Require().Nil(e, "%s", e)
+
+	suite.Require().NotEqual(0, len(d.Buckets))
+}
 ```
 
 *SDK References*
 * Classes
-    * [Bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){:new_window}
-    * [ServiceResource](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#service-resource){:new_window}
+    * [Bucket](#){:new_window}
+    * [ServiceResource](#){:new_window}
 * Collections
-    * [buckets](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.ServiceResource.buckets){:new_window}
+    * [buckets](#){:new_window}
+
+
+
+
+
+
+
+
 
 ### List items in a bucket
 ```python
