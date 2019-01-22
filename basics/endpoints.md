@@ -21,10 +21,7 @@ Sending a REST API request or configuring a storage client requires setting a ta
 As of December 2018, we have updated our endpoints. Legacy endpoints will continue to work until further notice. Please update your applications to use the new endpoints listed below.
 {:note}
 
-
-## New Endpoints
-
-### US Cross Region Endpoints
+## US Cross Region Endpoints
 
 <table>
   <thead>
@@ -55,7 +52,7 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 {:.endpointtable}
 
 
-### US Regional Endpoints
+## US Regional Endpoints
 
 <table>
   <thead>
@@ -133,7 +130,7 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 </table>
 {:.endpointtable}
 
-### EU Region Endpoints
+## EU Region Endpoints
 
 <table>
   <colgroup>
@@ -185,7 +182,7 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 </table>
 {:.endpointtable}
 
-### AP Cross Region Endpoints
+## AP Cross Region Endpoints
 
 <table>
   <colgroup>
@@ -221,7 +218,7 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 </table>
 {:.endpointtable}
 
-### AP Region Endpoints
+## AP Region Endpoints
 
 <table>
   <colgroup>
@@ -274,7 +271,7 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 
 
 
-### Single Data Center Endpoints
+## Single Data Center Endpoints
 
 <table>
   <thead>
