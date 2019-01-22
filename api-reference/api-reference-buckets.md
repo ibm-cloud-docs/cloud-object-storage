@@ -182,6 +182,9 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 
 A `PUT` issued to the endpoint root will create a bucket when a string is provided. Bucket names must be unique, and accounts are limited to 100 buckets each. Bucket names must be DNS-compliant; names between 3 and 63 characters long must be made of lowercase letters, numbers, and dashes. Bucket names must begin and end with a lowercase letter or number. Bucket names resembling IP addresses are not allowed. This operation does not make use of operation specific query parameters.
 
+Bucket names must be unique because all buckets in the public cloud share a global namespace. This allows for access to a bucket without needing to provide any service instance or account information.
+{:important}
+
 Header                                        | Type   | Description
 ------------------------------------------------- | ------ | ----
 `ibm-service-instance-id`  | string  |  This header references the service instance where the bucket will be created and to which data usage will be billed.
