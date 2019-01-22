@@ -28,6 +28,6 @@ Before ordering a new {{site.data.keyword.cos_full}} storage instance, it is nec
 
 1. Login to [the console](https://cloud.ibm.com/){: new_window}.
 2. Navigate to the catalog, by clicking **Catalog** in the navigation bar.
-3. Look for the **Cloud Object Storage** tile in the storage section and select it.
+3. Look for the **Object Storage** tile in the storage section and select it.
 4. Give the service instance a name and choose either the lite or standard plan.
 5. Click **Create** and you will be automatically redirected to your new instance.
