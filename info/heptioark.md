@@ -25,7 +25,8 @@ Ark consists of two parts:
 
 Before you begin you'll need to ensure you have the following:
 
-* The `kubectl` command-line tool installed and configured to connect to your cluster
+* The [`IBM Cloud CLI`](https://cloud.ibm.com/docs/cli/index.html#overview){:new_window} installed
+* The [`kubectl`](https://kubernetes.io/docs/user-guide/kubectl-overview/){:new_window} command-line tool installed and configured to connect to your cluster
 * An {{site.data.keyword.cos_short}} instance 
 * A {{site.data.keyword.cos_short}} bucket
 * HMAC credentials with Writer access to bucket
@@ -79,6 +80,156 @@ Available Commands:
 
 ## Install and Configure Ark Server
 
+### Create credentials file
 
+Create a credentials file (`credentials-ark`) using the HMAC pair of access and secret keys in your local Ark folder (*folder that the tarball was extracted*)
+
+```
+ [default]
+ aws_access_key_id=<ACCESS_KEY_ID>
+ aws_secret_access_key=<SECRET_ACCESS_KEY>
+```
+
+### Configure kubectl
+
+Configure [`kubectl`](https://kubernetes.io/docs/user-guide/kubectl-overview/){:new_window} to connect to your cluster.
+
+1. Login to the IBM Cloud Platform using the CLI.<br/><br/>*For increased security, it's also possible to store the API key in a file or set it as an environment variable.*
+
+```
+bx login --apikey <value>
+```
+
+2. Retrieve the cluster configuration 
+
+```
+bx cs cluster-config <cluster-name>
+```
+
+3. Copy and paste the **export** command to set the KUBECONFIG environment variable
+
+4. Ensure `kubectl` is configure correctly by running:
+
+```
+kubectl cluster-config
+```
+```
+Kubernetes master is running at https://c6.hou02.containers.cloud.ibm.com:29244
+Heapster is running at https://c6.hou02.containers.cloud.ibm.com:29244/api/v1/namespaces/kube-system/services/heapster/proxy
+KubeDNS is running at https://c6.hou02.containers.cloud.ibm.com:29244/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+kubernetes-dashboard is running at https://c6.hou02.containers.cloud.ibm.com:29244/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy
+```
+
+### Configure Ark Server and Cloud Storage
+
+1. In the Ark folder run the following to setup namespaces, RBAC, and other scaffolding<br/><br/>*The default namespace is `heptio-ark`.  If you wish to create a custom namespace, see the instructions at [Run in custom namespace](https://heptio.github.io/ark/v0.10.0/namespace.html){:new_window}*
+
+```
+kubectl apply -f config/common/00-prereqs.yaml
+```
+```
+customresourcedefinition.apiextensions.k8s.io/backups.ark.heptio.com created
+customresourcedefinition.apiextensions.k8s.io/schedules.ark.heptio.com created
+customresourcedefinition.apiextensions.k8s.io/restores.ark.heptio.com created
+customresourcedefinition.apiextensions.k8s.io/downloadrequests.ark.heptio.com created
+customresourcedefinition.apiextensions.k8s.io/deletebackuprequests.ark.heptio.com created
+customresourcedefinition.apiextensions.k8s.io/podvolumebackups.ark.heptio.com created
+customresourcedefinition.apiextensions.k8s.io/podvolumerestores.ark.heptio.com created
+customresourcedefinition.apiextensions.k8s.io/resticrepositories.ark.heptio.com created
+customresourcedefinition.apiextensions.k8s.io/backupstoragelocations.ark.heptio.com created
+customresourcedefinition.apiextensions.k8s.io/volumesnapshotlocations.ark.heptio.com created
+namespace/heptio-ark created
+serviceaccount/ark created
+clusterrolebinding.rbac.authorization.k8s.io/ark created
+```
+
+2. Create a Secret with your credentials file
+
+```
+kubectl create secret generic cloud-credentials --namespace heptio-ark --from-file cloud=credentials-ark
+```
+
+```
+secret/cloud-credentials created
+```
+
+3. Specify the following values in `config/ibm/05-ark-backupstoragelocation.yaml`:
+* `<YOUR_BUCKET>` - Name of the bucket for storing backup files
+* `<YOUR_REGION>` - The [location constraint](/docs/services/cloud-object-storage/basics/classes.html#locationconstraint) of your bucket (i.e. `us-standard`)
+* `<YOUR_URL_ACCESS_POINT>` - The regional endpoint URL (i.e. `https://s3-api.us-geo.objectstorage.softlayer.net`)
+
+See the [BackupStorageLocation](https://heptio.github.io/ark/v0.10.0/api-types/backupstoragelocation.html#aws){:new_window} definition for additional information.
+
+### Start the Ark Server
+
+In the Ark folder run the following commands:
+
+```
+kubectl apply -f config/ibm/05-ark-backupstoragelocation.yaml
+```
+
+```
+backupstoragelocation.ark.heptio.com/default created
+```
+
+```
+kubectl apply -f config/ibm/10-deployment.yaml
+```
+
+```
+deployment.apps/ark created
+```
+
+Ensure deployment has been successfully scheduled using `kubectl get` on the `heptio-ark` namespace:
+
+```
+kubectl get deployments --namespace=heptio-ark
+```
+
+```
+NAME   DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+ark    1         1         1            0           48s
+```
 
 ## Testing Backup/Restore
+
+### Backup
+
+You can now perform a simple backup of your Kubernetes cluster by running the following command:
+
+```
+ark backup create <backup-name>
+```
+
+This will create a backup for every resource on the cluster, including persistent volumes.
+
+You can also restrict the backup to a particular namespace, resource type or label. 
+
+Ark doesn’t allow to select by name, just by labels
+{:tip}
+
+```
+ark backup create <backup-name> --selector app=<app-label>
+```
+
+This will backup only the components labeled with `app=<app-label>`. 
+
+A full list of options is available by running:
+
+```
+ark backup --help
+```
+
+### Restore
+
+Ro restore a backup run the following command:
+
+```
+ark restore create  --from-backup <backup-name>
+```
+
+A full list of options is available by running:
+
+```
+ark restore --help
+```
