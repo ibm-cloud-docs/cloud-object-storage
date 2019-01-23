@@ -223,7 +223,7 @@ To see the status of your multipart upload instance, you can always run the `par
 * **Parameters to provide:**
     * The name of the bucket where the file will be uploaded to.
 		* Flag: `--bucket BUCKET_NAME`
-	* The name of the obkject that is being uploaded (the key).
+	* The name of the object that is being uploaded (the key).
 		* Flag: `--key KEY_NAME`
 	* _Optional_: The region where the bucket is located. If this parameter is not provided, the program will use the `DefaultRegion` value in the `credentials.json` file located in the user's `.bluemix` folder.
 		* Flag: `--region REGION_NAME`
