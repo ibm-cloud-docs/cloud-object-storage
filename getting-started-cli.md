@@ -29,7 +29,7 @@ Looking for a walkthrough that uses the console instead of the CLI? [Click here]
 {:tip}
 
 ## Gather key information
-  1. First, make sure you have an API key.  Get this from [IBM Cloud Identity and Access Management](https://www.bluemix.net/iam/#/apikeys).
+  1. First, make sure you have an API key.  Get this from [IBM Cloud Identity and Access Management](https://cloud.ibm.com/iam#/apikeys).
   1. Login to the {{site.data.keyword.cloud_notm}} Platform using the CLI.
 
     For increased security, it's also possible to store the API key in a file or set it as an environment variable.
