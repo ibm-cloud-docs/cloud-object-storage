@@ -21,38 +21,10 @@ Sending a REST API request or configuring a storage client requires setting a ta
 As of December 2018, we have updated our endpoints. Legacy endpoints will continue to work until further notice. Please update your applications to use the new endpoints listed below.
 {:note}
 
-## US Cross Region Endpoints
+## Regional Endpoints
+{: #regional}
 
-<table>
-  <thead>
-    <tr>
-      <th>Region</th>
-      <th>Type</th>
-      <th>Endpoint</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>US Cross Region</td>
-      <td>
-        <p>Public</p>
-        <p>Private</p>
-      </td>
-      <td>
-        <p>
-          <code class="highlighter-rouge">s3.us.cloud-object-storage.appdomain.cloud</code>
-        </p>
-        <p>
-          <code class="highlighter-rouge">s3.private.us.cloud-object-storage.appdomain.cloud</code>
-        </p>
-      </td>
-    </tr>
-  </tbody>
-</table>
-{:.endpointtable}
-
-
-## US Regional Endpoints
+Buckets created at a regional endpoint distribute data across three data centers spread across a metro area.  Any one of these data centers can suffer an outage or even destruction without impacting availability.
 
 <table>
   <thead>
@@ -94,58 +66,6 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
         </p>
       </td>
     </tr>
-  </tbody>
-</table>
-{:.endpointtable}
-
-
-### EU Cross Region Endpoints
-
-<table>
-  <thead>
-    <tr>
-      <th>Region</th>
-      <th>Type</th>
-      <th>Endpoint</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>EU Cross Region</td>
-      <td>
-        <p>Public</p>
-        <p>Private
-        </p>
-      </td>
-      <td>
-        <p>
-          <code class="highlighter-rouge">s3.eu.cloud-object-storage.appdomain.cloud</code>
-        </p>
-        <p>
-          <code class="highlighter-rouge">s3.private.eu.cloud-object-storage.appdomain.cloud</code>
-        </p>
-      </td>
-    </tr>
-  </tbody>
-</table>
-{:.endpointtable}
-
-## EU Region Endpoints
-
-<table>
-  <colgroup>
-    <col/>
-    <col/>
-    <col/>
-  </colgroup>
-  <thead>
-    <tr>
-      <th>Region</th>
-      <th>Type</th>
-      <th>Endpoint</th>
-    </tr>
-  </thead>
-  <tbody>
     <tr>
       <td>EU United Kingdom</td>
       <td>
@@ -178,62 +98,6 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
         </p>
       </td>
     </tr>
-  </tbody>
-</table>
-{:.endpointtable}
-
-## AP Cross Region Endpoints
-
-<table>
-  <colgroup>
-    <col/>
-    <col/>
-    <col/>
-  </colgroup>
-  <thead>
-    <tr>
-      <th>Region</th>
-      <th>Type</th>
-      <th>Endpoint</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>AP Cross Region</td>
-      <td>
-        <p>Public</p>
-        <p>Private
-        </p>
-      </td>
-      <td>
-        <p>
-          <code class="highlighter-rouge">s3.ap.cloud-object-storage.appdomain.cloud</code>
-        </p>
-        <p>
-          <code class="highlighter-rouge">s3.private.ap.cloud-object-storage.appdomain.cloud</code>
-        </p>
-      </td>
-    </tr>
-  </tbody>
-</table>
-{:.endpointtable}
-
-## AP Region Endpoints
-
-<table>
-  <colgroup>
-    <col/>
-    <col/>
-    <col/>
-  </colgroup>
-  <thead>
-    <tr>
-      <th>Region</th>
-      <th>Type</th>
-      <th>Endpoint</th>
-    </tr>
-  </thead>
-  <tbody>
     <tr>
       <td>AP Australia</td>
       <td>
@@ -264,7 +128,70 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
         </p>
       </td>
     </tr>
-    
+  </tbody>
+</table>
+{:.endpointtable}
+
+## Cross Region Endpoints
+{: #cross-region}
+Buckets created at a cross region endpoint distribute data across three regions.  Any one of these regions can suffer an outage or even destruction without impacting availability.  Requests are routed to the nearest region's data center using Border Gateway Protocol (BGP) routing.  In the case of an outage, requests are automatically re-routed to an active region.  Advanced users who wish to write their own failover logic may do so by sending requests to a [specific access point](/docs/services/cloud-object-storage/info/advanced_endpoints.html) and bypassing the BGP routing.
+
+<table>
+  <thead>
+    <tr>
+      <th>Region</th>
+      <th>Type</th>
+      <th>Endpoint</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>US Cross Region</td>
+      <td>
+        <p>Public</p>
+        <p>Private</p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.us.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.us.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>EU Cross Region</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.eu.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.eu.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>AP Cross Region</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.ap.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.ap.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
   </tbody>
 </table>
 {:.endpointtable}
@@ -272,6 +199,12 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 
 
 ## Single Data Center Endpoints
+{: #single-data-center}
+
+Single data centers are not co-located with IBM Cloud services, such as IAM or Key Protect, and offer no resiliency in the event of an site outage or destruction.  
+
+If a networking failure results in a partition where the data center is unable to reach a core IBM Cloud region to access IAM, authentication and authorization information is read from a cache that may become stale. This may result in a lack of enforcement of new or altered IAM policies for up to 24 hours.
+{:important}
 
 <table>
   <thead>

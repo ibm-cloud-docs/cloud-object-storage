@@ -11,6 +11,8 @@ lastupdated: "17-10-2018"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
 
 # Using `rclone`
 
