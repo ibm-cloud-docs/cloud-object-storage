@@ -12,16 +12,19 @@ lastupdated: "17-10-2018"
 {:screen: .screen}
 {:tip: .tip}
 
-# Install `rclone`
+# Using `rclone`
 
-Rclone is a Go program and comes as a single binary file.
+`rclone` is a Go program and comes as a single binary file.  It is useful for keeping directories synchronized and for migrating data between storage platforms.
 
-## Quickstart Installation
+## Install `rclone`
+
+There are a few ways to get `rclone` depending on your environment.
+### Quickstart Installation
 *  Download the relevant binary - https://rclone.org/downloads. 
 *  Extract the `rclone` or `rclone.exe` binary from the archive.
 *  Run `rclone config` to setup.
 
-## Script Installation
+### Script Installation
 
 To install rclone on Linux/macOS/BSD systems, run:
 ```
@@ -83,7 +86,7 @@ Run `rclone config` to setup:
 rclone config
 ```
 
-# Configure access to IBM COS
+## Configure access to IBM COS
   1. Run `rclone config` and select `n` for a new remote.
 ```
 No remotes found - make a new one
@@ -212,7 +215,7 @@ acl>1
 	acl = private
 ```
 
-# Commands
+## Commands
 
 ### Create a bucket.
 ```
@@ -248,7 +251,7 @@ There are several related list commands
 
 
 
-# `rclone` sync
+## `rclone` sync
 Make source and dest identical, modifying destination only.
 
 ### Synopsis
@@ -265,7 +268,7 @@ If dest:path doesn’t exist, it is created and the source:path contents go ther
 rclone sync source:path dest:path [flags]
 ```
 
-## Using rclone from multiple locations at the same time
+### Using rclone from multiple locations at the same time
 You can use rclone from multiple places at the same time if you choose different subdirectory for the output, eg
 ```
 Server A> rclone sync /tmp/whatever remote:ServerA
@@ -292,10 +295,10 @@ will `sync` `/path/to/local` to `remote:current`, but for any files which would 
 
 If running `rclone` from a script you might want to use today’s date as the directory name passed to `--backup-dir` to store the old files, or you might want to pass `--suffix` with today’s date.
 
-# `rclone` daily sync
+## `rclone` daily sync
 Scheduling a backup is important to automating backups. Depending on your platform will depend on how you do this. Windows can use Task Scheduler while Mac OS and Linux can use crontabs.
 
-## Syncing a Directory
+### Syncing a Directory
 `Rclone` will sync a local directory with the remote container, storing all the files in the local directory in the container. `Rclone` uses the syntax, `rclone sync source destination`, where `source` is the local folder and `destination` is the container within your IBM COS.
 
 For example
@@ -305,10 +308,10 @@ rclone sync /path/to/my/backup/directory RemoteName:newbucket
 
 You may already have a destination created, but if you don't then you can create a new bucket using the steps above.
 
-## Scheduling a Job
+### Scheduling a Job
 Before scheduling a job, make sure you have done your initial upload and it has completed.
 
-### Windows
+#### Windows
 1. Create a text file called `backup.bat` somewhere on your computer and paste in the command you used in the section [Syncing a Directory](#syncing-a-directory). It will look something like the following. Specify the full path to the rclone.exe and don’t forget to save the file.
 ```
  C:\full\path\to\rclone.exe sync "C:\path\to\my\backup\directory" RemoteName:newbucket
