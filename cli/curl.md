@@ -24,7 +24,7 @@ Using `curl` assumes a certain amount of familiarity with the command line and o
 ## Request an IAM Token
 There are two ways to generate an IAM oauth token for authenticating requests: using a `curl` command with an API key (described below) or from the command line using [IBM Cloud CLI](/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information).  
 ### Request an IAM token using an API key
-First ensure that you have an API key.  Get this from [{{site.data.keyword.iamlong}}](https://www.bluemix.net/iam/#/apikeys).
+First ensure that you have an API key.  Get this from [{{site.data.keyword.iamlong}}](https://cloud.ibm.com/iam#/apikeys).
 
 ```
 curl -X "POST" "https://iam.bluemix.net/oidc/token" \

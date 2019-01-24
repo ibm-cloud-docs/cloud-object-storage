@@ -13,7 +13,6 @@ lastupdated: "2018-05-24"
 {:tip: .tip}
 
 # Order storage
-See this video for more help with [registration](https://ibm.box.com/s/4tb6uv7i2juxutnfc0swc98wsiuaabka){: new_window}.
 
 ## Creating a new {{site.data.keyword.cloud_notm}} Platform account
 

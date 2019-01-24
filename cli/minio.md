@@ -33,7 +33,7 @@ The configuration information is stored in a JSON file located at `~/.mc/config.
 
 *Example:*
 ```
-mc config host add cosgeo https://s3-api.us-geo.objectstorage.softlayer.net xx1111cfbe094710x4819759x57e9999 9f99fc08347d1a6xxxxx0b7e0a9ee7b0c9999c2c08ed0000
+mc config host add cos https://s3.us-south.cloud-object-storage.appdomain.cloud xx1111cfbe094710x4819759x57e9999 9f99fc08347d1a6xxxxx0b7e0a9ee7b0c9999c2c08ed0000
 ```
 
 ## Sample Commands
@@ -43,13 +43,13 @@ Below are brief examples for some of the most common commands available in Minio
 ### mb - Make a Bucket
 
 ```
-mc mb cosgeo/my_test_bucket
+mc mb cos/my_test_bucket
 ```
 
 ### ls - List Buckets
 *Though all your available bucket will be listed, not all objects may be accessible depending on the specified endpoint's region*
 ```
-mc ls cosgeo
+mc ls cos
 ```
 *Output:*
 ```
@@ -62,7 +62,7 @@ mc ls cosgeo
 ### ls - List Objects
 
 ```
-mc ls cosgeo/testbucket1
+mc ls cos/testbucket1
 ```
 *Output:*
 ```
@@ -77,7 +77,7 @@ mc ls cosgeo/testbucket1
 *A full list of search options are available in the [complete guide](https://docs.minio.io/docs/minio-client-complete-guide#find){:new_window}*
 
 ```
-mc find cosgeo/testbucket1 --name my*
+mc find cos/testbucket1 --name my*
 ```
 *Output:*
 ```
@@ -88,13 +88,14 @@ mc find cosgeo/testbucket1 --name my*
 ### head - Display few lines of object
 
 ```
-mc head cosgeo/testbucket1/mynewfile1.txt
+mc head cos/testbucket1/mynewfile1.txt
 ```
 
 ### cp - Copy objects
 
+This command can be used to copy an object between two locations.  These can be different hosts (such as different endpoints or storage services) or local filesystem locations (such as `~/foo/filename.pdf`).
 ```
-mc cp cosgeo/testbucket1/mynewfile1.txt cosgeo/my_test_bucket/cp_from_minio.txt
+mc cp cos/testbucket1/mynewfile1.txt cos/my_test_bucket/cp_from_minio.txt
 ```
 *Output:*
 ```
@@ -106,11 +107,11 @@ mc cp cosgeo/testbucket1/mynewfile1.txt cosgeo/my_test_bucket/cp_from_minio.txt
 *More removal options are available on the [complete guide](https://docs.minio.io/docs/minio-client-complete-guide#rm){:new_window}*
 
 ```
-mc rm cosgeo/my_test_bucket/cp_from_minio.txt
+mc rm cos/my_test_bucket/cp_from_minio.txt
 ```
 
 ### pipe - Copies STDIN to an object
 
 ```
-echo -n 'this is a test' | mc pipe cosgeo/my_test_bucket/stdin_pipe_test.txt
+echo -n 'this is a test' | mc pipe cos/my_test_bucket/stdin_pipe_test.txt
 ```

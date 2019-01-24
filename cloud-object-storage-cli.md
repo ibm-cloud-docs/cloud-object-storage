@@ -42,7 +42,7 @@ The program also offers the ability for you to set the default local directory f
 ### HMAC Credentials
 If preferred, HMAC credentials associated with a Service ID can be used to connect to object storage in lieu of the user API key used to authenticate to the CLI itself. To generate HMAC credentials, you can add the `{"HMAC":true}` parameter when generating a [service credential](/docs/services/cloud-object-storage/hmac/credentials.html). Then you can run `ibmcloud cos config --hmac` to input your HMAC credentials into the program (please note that you must switch priority to HMAC credentials using `ibmcloud cos config --switch` after inputing HMAC credentials). If you choose to use IAM authentication (the standard IBM way to authenticate), you do not need to provide any credentials – the program will authenticate you automatically.
 
-At any time, to switch between HMAC and IAM authentication, you can type `ibmcloud cos config --switch [iam | hmac]`. For more information on IAM-based authentication, click [here](https://console.bluemix.net/docs/iam/quickstart.html#getstarted).
+At any time, to switch between HMAC and IAM authentication, you can type `ibmcloud cos config --switch [iam | hmac]`. For more information on IAM-based authentication, click [here](/docs/iam/quickstart.html#getstarted).
 
 ## Command index
 
