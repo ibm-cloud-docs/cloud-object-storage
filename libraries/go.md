@@ -15,7 +15,7 @@ lastupdated: "2019-01-09"
 {:screen: .screen}
 {:tip: .tip}
 
-The {{site.data.keyword.cos_full}} SDK for Go is comprehensive, and has features and capabilities not described in this guide.  For detailed class and method documentation [see the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/). Source code can be found in the [GitHub repository](https://github.com/aws/aws-sdk-go).
+The {{site.data.keyword.cos_full}} SDK for Go is comprehensive, and has features and capabilities not described in this guide.  For detailed class and method documentation [see the Go Docs](https://ibm.github.io/ibm-cos-sdk-go/). Source code can be found in the [GitHub repository](https://github.com/IBM/ibm-cos-sdk-go).
 
 ## Getting the SDK
 Use `go get` to retrieve the SDK to add it to your GOPATH workspace, or project's Go module dependencies.
