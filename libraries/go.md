@@ -111,19 +111,50 @@ Note that when adding custom metadata to an object, it is necessary to create an
 A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).
 
 ```Go
-func (suite *SuiteBucketCreate) TestBadExists() {
-	bName := genNameValidChars(11)
+// Creates an S3 Bucket in the region configured in the shared config
+// or AWS_REGION environment variable.
+// Usage:
+//    go run s3_create_bucket BUCKET_NAME
+func main() {
+    if len(os.Args) != 2 {
+        exitErrorf("Bucket name missing!\nUsage: %s bucket_name", os.Args[0])
+    }
 
-	_, e := createBucket(bName, suite.mainSvc)
-	suite.Require().Nil(e, "%s", e)
-	suite.mainBucket = bName
+    bucket := os.Args[1]
 
-	if awsErr, ok := e.(awserr.RequestFailure); ok {
-		suite.Assert().Equal(bucketAlreadyOwnedByYouCode, awsErr.Code())
-		suite.Assert().Equal(httpConflictStatusCode, awsErr.StatusCode())
-	} else {
-		suite.Fail("Unexpected Error!")
-	}
+    // Initialize a session in us-west-2 that the SDK will use to load
+    // credentials from the shared credentials file ~/.aws/credentials.
+    sess, err := session.NewSession(&aws.Config{
+        Region: aws.String("us-west-2")},
+    )
+
+    // Create client
+    svc := s3.New(sess)
+
+    // Create the S3 Bucket
+    _, err = svc.CreateBucket(&s3.CreateBucketInput{
+        Bucket: aws.String(bucket),
+    })
+    if err != nil {
+        exitErrorf("Unable to create bucket %q, %v", bucket, err)
+    }
+
+    // Wait until bucket is created before finishing
+    fmt.Printf("Waiting for bucket %q to be created...\n", bucket)
+
+    err = svc.WaitUntilBucketExists(&s3.HeadBucketInput{
+        Bucket: aws.String(bucket),
+    })
+    if err != nil {
+        exitErrorf("Error occurred while waiting for bucket to be created, %v", bucket)
+    }
+
+    fmt.Printf("Bucket %q successfully created\n", bucket)
+}
+
+func exitErrorf(msg string, args ...interface{}) {
+    fmt.Fprintf(os.Stderr, msg+"\n", args...)
+    os.Exit(1)
 }
 ```
 
@@ -137,13 +168,32 @@ func (suite *SuiteBucketCreate) TestBadExists() {
 
 ### List available buckets
 ```Go
-func (suite *SuiteBucketList) ListAllBuckets() {
-	
-	params := s3.ListBucketsInput{}
-	d, e := suite.mainSvc.ListBuckets(&params)
-	suite.Require().Nil(e, "%s", e)
+func main() {
+    // Initialize a session in us-west-2 that the SDK will use to load
+    // credentials from the shared credentials file ~/.aws/credentials.
+    sess, err := session.NewSession(&aws.Config{
+        Region: aws.String("us-west-2")},
+    )
 
-	suite.Require().NotEqual(0, len(d.Buckets))
+    // Create S3 service client
+    svc := s3.New(sess)
+
+    result, err := svc.ListBuckets(nil)
+    if err != nil {
+        exitErrorf("Unable to list buckets, %v", err)
+    }
+
+    fmt.Println("Buckets:")
+
+    for _, b := range result.Buckets {
+        fmt.Printf("* %s created on %s\n",
+            aws.StringValue(b.Name), aws.TimeValue(b.CreationDate))
+    }
+}
+
+func exitErrorf(msg string, args ...interface{}) {
+    fmt.Fprintf(os.Stderr, msg+"\n", args...)
+    os.Exit(1)
 }
 ```
 
@@ -156,215 +206,270 @@ func (suite *SuiteBucketList) ListAllBuckets() {
 
 
 
-
-
-
-
-
-
 ### List items in a bucket
-```python
-def get_bucket_contents(bucket_name):
-    print("Retrieving bucket contents from: {0}".format(bucket_name))
-    try:
-        files = cos.Bucket(bucket_name).objects.all()
-        for file in files:
-            print("Item: {0} ({1} bytes).".format(file.key, file.size))
-    except ClientError as be:
-        print("CLIENT ERROR: {0}\n".format(be))
-    except Exception as e:
-        print("Unable to retrieve bucket contents: {0}".format(e))
+```Go
+// Lists the items in the specified S3 Bucket
+//
+// Usage:
+//    go run s3_list_objects.go BUCKET_NAME
+func main() {
+    if len(os.Args) != 2 {
+        exitErrorf("Bucket name required\nUsage: %s bucket_name",
+            os.Args[0])
+    }
+
+    bucket := os.Args[1]
+
+    // Initialize a session in us-west-2 that the SDK will use to load
+    // credentials from the shared credentials file ~/.aws/credentials.
+    sess, err := session.NewSession(&aws.Config{
+        Region: aws.String("us-west-2")},
+    )
+
+    // Create S3 service client
+    svc := s3.New(sess)
+
+    // Get the list of items
+    resp, err := svc.ListObjects(&s3.ListObjectsInput{Bucket: aws.String(bucket)})
+    if err != nil {
+        exitErrorf("Unable to list items in bucket %q, %v", bucket, err)
+    }
+
+    for _, item := range resp.Contents {
+        fmt.Println("Name:         ", *item.Key)
+        fmt.Println("Last modified:", *item.LastModified)
+        fmt.Println("Size:         ", *item.Size)
+        fmt.Println("Storage class:", *item.StorageClass)
+        fmt.Println("")
+    }
+
+    fmt.Println("Found", len(resp.Contents), "items in bucket", bucket)
+    fmt.Println("")
+}
+
+func exitErrorf(msg string, args ...interface{}) {
+    fmt.Fprintf(os.Stderr, msg+"\n", args...)
+    os.Exit(1)
+}
 ```
 
 *SDK References*
-* Classes
-    * [Bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){:new_window}
-    * [ObjectSummary](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#objectsummary){:new_window}
-* Collections
-    * [objects](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.objects){:new_window}
 
-### Get file contents of particular item
-```python
-def get_item(bucket_name, item_name):
-    print("Retrieving item from bucket: {0}, key: {1}".format(bucket_name, item_name))
-    try:
-        file = cos.Object(bucket_name, item_name).get()
-        print("File Contents: {0}".format(file["Body"].read()))
-    except ClientError as be:
-        print("CLIENT ERROR: {0}\n".format(be))
-    except Exception as e:
-        print("Unable to retrieve file contents: {0}".format(e))
+
+### Upload an object to a bucket
+```Go
+// Usage:
+//    go run s3_upload_object.go BUCKET_NAME FILENAME
+func main() {
+    if len(os.Args) != 3 {
+        exitErrorf("bucket and file name required\nUsage: %s bucket_name filename",
+            os.Args[0])
+    }
+
+    bucket := os.Args[1]
+    filename := os.Args[2]
+
+    file, err := os.Open(filename)
+    if err != nil {
+        exitErrorf("Unable to open file %q, %v", err)
+    }
+
+    defer file.Close()
+
+    // Initialize a session in us-west-2 that the SDK will use to load
+    // credentials from the shared credentials file ~/.aws/credentials.
+    sess, err := session.NewSession(&aws.Config{
+        Region: aws.String("us-west-2")},
+    )
+
+    // Setup the S3 Upload Manager.
+    uploader := s3manager.NewUploader(sess)
+
+    // Upload the file's body to S3 bucket as an object with the key being the
+    // same as the filename.
+    _, err = uploader.Upload(&s3manager.UploadInput{
+        Bucket: aws.String(bucket),
+
+        // Can also use the `filepath` standard library package to modify the
+        // filename as need for an S3 object key. Such as turning absolute path
+        // to a relative path.
+        Key: aws.String(filename),
+
+        // The file to be uploaded. io.ReadSeeker is preferred as the Uploader
+        // will be able to optimize memory when uploading large content. io.Reader
+        // is supported, but will require buffering of the reader's bytes for
+        // each part.
+        Body: file,
+    })
+    if err != nil {
+        // Print the error and exit.
+        exitErrorf("Unable to upload %q to %q, %v", filename, bucket, err)
+    }
+
+    fmt.Printf("Successfully uploaded %q to %q\n", filename, bucket)
+}
+
+func exitErrorf(msg string, args ...interface{}) {
+    fmt.Fprintf(os.Stderr, msg+"\n", args...)
+    os.Exit(1)
+}
 ```
 
 *SDK References*
-* Classes
-    * [Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){:new_window}
-* Methods
-    * [get](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.get){:new_window}
+
+
+
 
 ### Delete an item from a bucket
-```python
-def delete_item(bucket_name, item_name):
-    print("Deleting item: {0}".format(item_name))
-    try:
-        cos.Object(bucket_name, item_name).delete()
-        print("Item: {0} deleted!".format(item_name))
-    except ClientError as be:
-        print("CLIENT ERROR: {0}\n".format(be))
-    except Exception as e:
-        print("Unable to delete item: {0}".format(e))
+```Go
+// Deletes the specified object in the specified S3 Bucket in the region configured in the shared config
+// or AWS_REGION environment variable.
+//
+// Usage:
+//    go run s3_delete_object BUCKET_NAME OBJECT_NAME
+func main() {
+    if len(os.Args) != 3 {
+        exitErrorf("Bucket and object name required\nUsage: %s bucket_name object_name",
+            os.Args[0])
+    }
+
+    bucket := os.Args[1]
+    obj := os.Args[2]
+
+    // Initialize a session in us-west-2 that the SDK will use to load
+    // credentials from the shared credentials file ~/.aws/credentials.
+    sess, err := session.NewSession(&aws.Config{
+        Region: aws.String("us-west-2")},
+    )
+
+    // Create S3 service client
+    svc := s3.New(sess)
+
+    // Delete the item
+    _, err = svc.DeleteObject(&s3.DeleteObjectInput{Bucket: aws.String(bucket), Key: aws.String(obj)})
+    if err != nil {
+        exitErrorf("Unable to delete object %q from bucket %q, %v", obj, bucket, err)
+    }
+
+    err = svc.WaitUntilObjectNotExists(&s3.HeadObjectInput{
+        Bucket: aws.String(bucket),
+        Key:    aws.String(obj),
+    })
+    if err != nil {
+        exitErrorf("Error occurred while waiting for object %q to be deleted, %v", obj)
+    }
+
+    fmt.Printf("Object %q successfully deleted\n", obj)
+}
+
+func exitErrorf(msg string, args ...interface{}) {
+    fmt.Fprintf(os.Stderr, msg+"\n", args...)
+    os.Exit(1)
+}
 ```
 
 *SDK References*
-* Classes
-    * [Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){:new_window}
-* Methods
-    * [delete](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.delete){:new_window}
 
-### Delete multiple items from a bucket
 
-The delete request can contain a maximum of 1000 keys that you want to delete.  While this is very useful in reducing the per-request overhead, be mindful when deleting a large number of keys.  Also take into account the sizes of the objects to ensure suitable performance.
-{:tip}
 
-```python
-def delete_items(bucket_name):
-    try:
-        delete_request = {
-            "Objects": [
-                { "Key": "deletetest/testfile1.txt" },
-                { "Key": "deletetest/testfile2.txt" },
-                { "Key": "deletetest/testfile3.txt" },
-                { "Key": "deletetest/testfile4.txt" },
-                { "Key": "deletetest/testfile5.txt" }
-            ]
-        }
 
-        response = cos_cli.delete_objects(
-            Bucket=bucket_name,
-            Delete=delete_request
-        )
+### Delete all the items from a bucket
+```Go
+// Deletes all of the objects in the specified S3 Bucket in the region configured in the shared config
+// or AWS_REGION environment variable.
+//
+// Usage:
+//    go run s3_delete_objects BUCKET
+func main() {
+    if len(os.Args) != 2 {
+        exitErrorf("Bucket name required\nUsage: %s BUCKET", os.Args[0])
+    }
 
-        print("Deleted items for {0}\n".format(bucket_name))
-        print(json.dumps(response.get("Deleted"), indent=4))
-    except ClientError as be:
-        print("CLIENT ERROR: {0}\n".format(be))
-    except Exception as e:
-        print("Unable to copy item: {0}".format(e))
+    bucket := os.Args[1]
+
+    // Initialize a session in us-west-2 that the SDK will use to load
+    // credentials from the shared credentials file ~/.aws/credentials.
+    sess, _ := session.NewSession(&aws.Config{
+        Region: aws.String("us-west-2")},
+    )
+
+    // Create S3 service client
+    svc := s3.New(sess)
+
+    // Setup BatchDeleteIterator to iterate through a list of objects.
+    iter := s3manager.NewDeleteListIterator(svc, &s3.ListObjectsInput{
+        Bucket: aws.String(bucket),
+    })
+
+    // Traverse iterator deleting each object
+    if err := s3manager.NewBatchDeleteWithClient(svc).Delete(aws.BackgroundContext(), iter); err != nil {
+        exitErrorf("Unable to delete objects from bucket %q, %v", bucket, err)
+    }
+
+    fmt.Printf("Deleted object(s) from bucket: %s", bucket)
+}
+
+func exitErrorf(msg string, args ...interface{}) {
+    fmt.Fprintf(os.Stderr, msg+"\n", args...)
+    os.Exit(1)
+}
 ```
 
 *SDK References*
-* Classes
-    * [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window}
-* Methods
-    * [delete_objects](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_objects){:new_window}
+
+
 
 ### Delete a bucket
-```python
-def delete_bucket(bucket_name):
-    print("Deleting bucket: {0}".format(bucket_name))
-    try:
-        cos.Bucket(bucket_name).delete()
-        print("Bucket: {0} deleted!".format(bucket_name))
-    except ClientError as be:
-        print("CLIENT ERROR: {0}\n".format(be))
-    except Exception as e:
-        print("Unable to delete bucket: {0}".format(e))
+```Go
+// Deletes an S3 Bucket in the region configured in the shared config
+// or AWS_REGION environment variable.
+//
+// Usage:
+//    go run s3_delete_bucket BUCKET_NAME
+func main() {
+    if len(os.Args) != 2 {
+        exitErrorf("bucket name required\nUsage: %s bucket_name", os.Args[0])
+    }
+
+    bucket := os.Args[1]
+
+    // Initialize a session in us-west-2 that the SDK will use to load
+    // credentials from the shared credentials file ~/.aws/credentials.
+    sess, err := session.NewSession(&aws.Config{
+        Region: aws.String("us-west-2")},
+    )
+
+    // Create S3 service client
+    svc := s3.New(sess)
+
+    // Delete the S3 Bucket
+    // It must be empty or else the call fails
+    _, err = svc.DeleteBucket(&s3.DeleteBucketInput{
+        Bucket: aws.String(bucket),
+    })
+    if err != nil {
+        exitErrorf("Unable to delete bucket %q, %v", bucket, err)
+    }
+
+    // Wait until bucket is deleted before finishing
+    fmt.Printf("Waiting for bucket %q to be deleted...\n", bucket)
+
+    err = svc.WaitUntilBucketNotExists(&s3.HeadBucketInput{
+        Bucket: aws.String(bucket),
+    })
+    if err != nil {
+        exitErrorf("Error occurred while waiting for bucket to be deleted, %v", bucket)
+    }
+
+    fmt.Printf("Bucket %q successfully deleted\n", bucket)
+}
+
+func exitErrorf(msg string, args ...interface{}) {
+    fmt.Fprintf(os.Stderr, msg+"\n", args...)
+    os.Exit(1)
+}
 ```
 
 *SDK References*
-* Classes
-    * [Bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){:new_window}
-* Methods
-    * [delete](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.delete){:new_window}
 
-### View a bucket's security
-```python
-def get_bucket_acl(bucket_name):
-    print("Retrieving ACL for bucket: {0}".format(bucket_name))
-    try:
-        acl_data = cos.BucketAcl(bucket_name)
-        print("Owner: {0}".format(acl_data.owner["DisplayName"]))
-        for grant in acl_data.grants:
-            display_name = grant["Grantee"]["DisplayName"]
-            permission = grant["Permission"]
-            print("User: {0} ({1})".format(display_name, permission))
-    except ClientError as be:
-        print("CLIENT ERROR: {0}\n".format(be))
-    except Exception as e:
-        print("Unable to retrieve bucket ACL: {0}".format(e))
-```
 
-*SDK References*
-* Classes
-    * [BucketAcl](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucketacl){:new_window}
-* Attributes
-    * [grants](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.BucketAcl.grants){:new_window}
-    * [owner](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.ObjectAcl.owner){:new_window}
-
-### View a file's security
-```python
-def get_item_acl(bucket_name, item_name):
-    print("Retrieving ACL for {0} from bucket: {1}".format(item_name, bucket_name))
-    try:
-        acl_data = cos.ObjectAcl(bucket_name, item_name)
-        print("Owner: {0}".format(acl_data.owner["DisplayName"]))
-        for grant in acl_data.grants:
-            display_name = grant["Grantee"]["DisplayName"]
-            permission = grant["Permission"]
-            print("User: {0} ({1})".format(display_name, permission))
-    except ClientError as be:
-        print("CLIENT ERROR: {0}\n".format(be))
-    except Exception as e:
-        print("Unable to retrieve item ACL: {0}".format(e))
-```
-
-*SDK References*
-* Classes
-    * [ObjectAcl](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#objectacl){:new_window}
-* Attributes
-    * [grants](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.ObjectAcl.grants){:new_window}
-    * [owner](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.ObjectAcl.owner){:new_window}
-
-### Execute a multi-part upload
-{: #multipart-upload}
-
-#### Upload binary file (preferred method)
-The [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.upload_fileobj){:new_window} method of the [S3.Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){:new_window} class automatically executes a multi-part upload when necessary.  The [TransferConfig](https://ibm.github.io/ibm-cos-sdk-python/reference/customizations/s3.html#s3-transfers){:new_window} class is used to determine the threshold for using the mult-part upload.
-
-```python
-def multi_part_upload(bucket_name, item_name, file_path):
-    try:
-        print("Starting file transfer for {0} to bucket: {1}\n".format(item_name, bucket_name))
-        # set 5 MB chunks
-        part_size = 1024 * 1024 * 5
-
-        # set threadhold to 15 MB
-        file_threshold = 1024 * 1024 * 15
-
-        # set the transfer threshold and chunk size
-        transfer_config = ibm_boto3.s3.transfer.TransferConfig(
-            multipart_threshold=file_threshold,
-            multipart_chunksize=part_size
-        )
-
-        # the upload_fileobj method will automatically execute a multi-part upload
-        # in 5 MB chunks for all files over 15 MB
-        with open(file_path, "rb") as file_data:
-            cos.Object(bucket_name, item_name).upload_fileobj(
-                Fileobj=file_data,
-                Config=transfer_config
-            )
-
-        print("Transfer for {0} Complete!\n".format(item_name))
-    except ClientError as be:
-        print("CLIENT ERROR: {0}\n".format(be))
-    except Exception as e:
-        print("Unable to complete multi-part upload: {0}".format(e))
-```
-
-*SDK References*
-* Classes
-    * [Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){:new_window}
-    * [TransferConfig](https://ibm.github.io/ibm-cos-sdk-python/reference/customizations/s3.html#s3-transfers){:new_window}
-* Methods
-    * [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.upload_fileobj){:new_window}
