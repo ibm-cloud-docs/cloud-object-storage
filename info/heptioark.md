@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-01-22"
+lastupdated: "2019-01-25"
 
 ---
 {:new_window: target="_blank"}
@@ -77,7 +77,7 @@ Available Commands:
 ```
 
 *(OPTIONAL)* Move the ark binary out of the temporary folder to somewhere more permanent such as `/usr/local/bin` on Mac OS or Linux.
-{:tip}
+{: tip}
 
 ## Install and Configure Ark Server
 
@@ -213,7 +213,7 @@ This will create a backup for every resource on the cluster, including persisten
 You can also restrict the backup to a particular namespace, resource type or label. 
 
 Ark doesn’t allow to select by name, just by labels
-{:tip}
+{: tip}
 
 This will backup only the components labeled with `app=<app-label>`. 
 ```bash
