@@ -103,6 +103,7 @@ Cloud Object Storage
         [Using Cloud Object Storage with Kubernetes](https://console.bluemix.net/docs/containers/cs_storage_cos.html)
         info/cof.md
         info/activestorage.md
+        info/heptioark.md
         help/object-storage.md
     {: .navgroup-end}
 

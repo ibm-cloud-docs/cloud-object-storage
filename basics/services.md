@@ -101,7 +101,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
    </tr>
    <tr>
     <td rowspan="2">AP Japan</td>
-    <td>No</td>
+    <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
@@ -214,7 +214,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
   </tr>
   <tr>
     <td rowspan="2">Montréal, Canada</td>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
@@ -247,7 +247,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
   </tr>
   <tr>
     <td rowspan="2">Seoul, South Korea</td>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
