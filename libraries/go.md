@@ -62,43 +62,7 @@ If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_creden
 ### Initializing configuration
 {: #init-config}
 
-```Go
-import (
-    "github.ibm.com/cs-developer-enablement/ibm-cos-sdk-go/aws/credentials/ibmiam/providers"
-)
-
-const (
-
-# Constants for IBM COS values
-COS_ENDPOINT = "<endpoint>" # Current list avaiable at https://cos-service.bluemix.net/endpoints
-COS_API_KEY_ID = "<api-key>"
-COS_AUTH_ENDPOINT = "https://iam.ng.bluemix.net/oidc/token"
-COS_RESOURCE_CRN = "<resource-instance-id>"
-COS_BUCKET_LOCATION = "<location>"
-
-# Create resource
-cos = ibm_boto3.resource("s3",
-    ibm_api_key_id=COS_API_KEY_ID,
-    ibm_service_instance_id=COS_RESOURCE_CRN,
-    ibm_auth_endpoint=COS_AUTH_ENDPOINT,
-    config=Config(signature_version="oauth"),
-    endpoint_url=COS_ENDPOINT
-)
-
-```
-*Key Values*
-* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps){:new_window})
-* `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
-* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps){:new_window})
-* `<location>` - default location for your cloud object storage (must match the region used for `<endpoint>`)
-
-
-
-
-
-
-
-
+Waiting on confirmation of the new config names from Ricardo
 
 
 
@@ -111,8 +75,6 @@ Note that when adding custom metadata to an object, it is necessary to create an
 A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).
 
 ```Go
-// Creates an S3 Bucket in the region configured in the shared config
-// or AWS_REGION environment variable.
 // Usage:
 //    go run s3_create_bucket BUCKET_NAME
 func main() {
@@ -159,12 +121,21 @@ func exitErrorf(msg string, args ...interface{}) {
 ```
 
 *SDK References*
-* Classes
-  * [Bucket](#){:new_window}
-* Methods
-    * [create](#){:new_window}
 
 
+### Creating a new bucket (short)
+
+```Go
+func createBucketACL(bucketName string, acl string, client s3iface.S3API) (*s3.CreateBucketOutput, error) {
+	input := new(s3.CreateBucketInput).SetIBMServiceInstanceId( v: "")
+	conf := new(s3.CreateBucketConfiguration)
+	// conf.SetLocationConstraint("us-standard")
+	input.CreateBucketConfiguration = conf
+	input.Bucket = aws.String(bucketName)
+	input.ACL = aws.String(acl)
+	return client.CreateBucket(input)
+}
+```
 
 ### List available buckets
 ```Go
@@ -175,7 +146,7 @@ func main() {
         Region: aws.String("us-west-2")},
     )
 
-    // Create S3 service client
+    // Create  client
     svc := s3.New(sess)
 
     result, err := svc.ListBuckets(nil)
@@ -197,19 +168,9 @@ func exitErrorf(msg string, args ...interface{}) {
 }
 ```
 
-*SDK References*
-* Classes
-    * [Bucket](#){:new_window}
-    * [ServiceResource](#){:new_window}
-* Collections
-    * [buckets](#){:new_window}
-
-
 
 ### List items in a bucket
 ```Go
-// Lists the items in the specified S3 Bucket
-//
 // Usage:
 //    go run s3_list_objects.go BUCKET_NAME
 func main() {
@@ -226,7 +187,7 @@ func main() {
         Region: aws.String("us-west-2")},
     )
 
-    // Create S3 service client
+    // Create client
     svc := s3.New(sess)
 
     // Get the list of items
@@ -322,9 +283,6 @@ func exitErrorf(msg string, args ...interface{}) {
 
 ### Delete an item from a bucket
 ```Go
-// Deletes the specified object in the specified S3 Bucket in the region configured in the shared config
-// or AWS_REGION environment variable.
-//
 // Usage:
 //    go run s3_delete_object BUCKET_NAME OBJECT_NAME
 func main() {
@@ -342,7 +300,7 @@ func main() {
         Region: aws.String("us-west-2")},
     )
 
-    // Create S3 service client
+    // Create client
     svc := s3.New(sess)
 
     // Delete the item
@@ -375,9 +333,6 @@ func exitErrorf(msg string, args ...interface{}) {
 
 ### Delete all the items from a bucket
 ```Go
-// Deletes all of the objects in the specified S3 Bucket in the region configured in the shared config
-// or AWS_REGION environment variable.
-//
 // Usage:
 //    go run s3_delete_objects BUCKET
 func main() {
@@ -393,7 +348,7 @@ func main() {
         Region: aws.String("us-west-2")},
     )
 
-    // Create S3 service client
+    // Create client
     svc := s3.New(sess)
 
     // Setup BatchDeleteIterator to iterate through a list of objects.
@@ -421,9 +376,6 @@ func exitErrorf(msg string, args ...interface{}) {
 
 ### Delete a bucket
 ```Go
-// Deletes an S3 Bucket in the region configured in the shared config
-// or AWS_REGION environment variable.
-//
 // Usage:
 //    go run s3_delete_bucket BUCKET_NAME
 func main() {
@@ -439,7 +391,7 @@ func main() {
         Region: aws.String("us-west-2")},
     )
 
-    // Create S3 service client
+    // Create client
     svc := s3.New(sess)
 
     // Delete the S3 Bucket
