@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2018-05-25"
+  years: 2017, 2019
+lastupdated: "2019-01-28"
 
 ---
 {:new_window: target="_blank"}
@@ -15,6 +15,7 @@ lastupdated: "2018-05-25"
 {:note: .note}
 
 # Select regions and endpoints
+{: #select_endpoints}
 
 A bucket's resiliency is defined by the endpoint used to create it.  _Cross Region_ resiliency will spread your data across several metropolitan areas, while _Regional_ resiliency will spread data across a single metropolitan area.  _Single Data Center_ resiliency spreads data across multiple appliances within a single data center.  Regional and Cross Region buckets can maintain availability during a site outage.
 
