@@ -15,6 +15,7 @@ lastupdated: "2018-05-25"
 {:note: .note}
 
 # Endpoints and storage locations
+{: #endpoints}
 
 Sending a REST API request or configuring a storage client requires setting a target endpoint or URL.  Most users should use one of the following endpoints for a given storage location. Private endpoints should be used from within the IBM cloud and do not incur data transfer charges. Public endpoints should be used from Cloud Foundry, Cloud Functions and outside the IBM cloud and do incur transfer charges. If possible, it's recommended to use a private endpoint. [See this page](/docs/services/cloud-object-storage/info/advanced_endpoints.html) for more advanced usage.
 
