@@ -13,6 +13,7 @@ lastupdated: "2018-12-07"
 {:tip: .tip}
 
 # Object operations
+{: #object-operations}
 
 ## Authentication Options
 

@@ -13,6 +13,7 @@ lastupdated: "2018-08-27"
 {:tip: .tip}
 
 # Bucket operations
+{: #bucket-operations}
 
 ## Authentication Options
 
