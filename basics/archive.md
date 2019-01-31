@@ -31,6 +31,9 @@ When creating or modifying an archive policy for a bucket, consider the followin
 To immediately archive new objects uploaded to a bucket, enter 0 days on the archive policy.
 {:tip}
 
+Archive is available in certain regions only. See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html) for more details.
+{:tip}
+
 ## Restore an archived object
 
 In order to access an archived object, you must restore it to the original storage tier. When restoring an object, you can specify the number of days you want the object to be available. At the end of the specified period, the restored copy is deleted. 
