@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-07-26"
+lastupdated: "2019-01-31"
 
 ---
 {:shortdesc: .shortdesc}
@@ -29,6 +29,9 @@ When creating or modifying an archive policy for a bucket, consider the followin
 * A newly added or modified archive policy applies to new objects uploaded and does not affect existing objects.
 
 To immediately archive new objects uploaded to a bucket, enter 0 days on the archive policy.
+{:tip}
+
+Archive is available in certain regions only. See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html) for more details.
 {:tip}
 
 ## Restore an archived object
