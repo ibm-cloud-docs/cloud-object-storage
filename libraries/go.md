@@ -90,97 +90,39 @@ Note that when adding custom metadata to an object, it is necessary to create an
 A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).
 
 ```Go
-// Usage:
-//    go run s3_create_bucket BUCKET_NAME
 func main() {
-    if len(os.Args) != 2 {
-        exitErrorf("Bucket name missing!\nUsage: %s bucket_name", os.Args[0])
-    }
 
-    bucket := os.Args[1]
+	newBucket := "new-bucket"
+	// Create client
+	sess := session.Must(session.NewSession())
+	client := s3.New(sess, conf)
 
-    // Initialize a session in us-west-2 that the SDK will use to load
-    // credentials from the shared credentials file ~/.aws/credentials.
-    sess, err := session.NewSession(&aws.Config{
-        Region: aws.String("us-west-2")},
-    )
+	input := &s3.CreateBucketInput{
+		Bucket: aws.String(newBucket),
+	}
+	client.CreateBucket(input)
 
-    // Create client
-    svc := s3.New(sess)
-
-    // Create the S3 Bucket
-    _, err = svc.CreateBucket(&s3.CreateBucketInput{
-        Bucket: aws.String(bucket),
-    })
-    if err != nil {
-        exitErrorf("Unable to create bucket %q, %v", bucket, err)
-    }
-
-    // Wait until bucket is created before finishing
-    fmt.Printf("Waiting for bucket %q to be created...\n", bucket)
-
-    err = svc.WaitUntilBucketExists(&s3.HeadBucketInput{
-        Bucket: aws.String(bucket),
-    })
-    if err != nil {
-        exitErrorf("Error occurred while waiting for bucket to be created, %v", bucket)
-    }
-
-    fmt.Printf("Bucket %q successfully created\n", bucket)
-}
-
-func exitErrorf(msg string, args ...interface{}) {
-    fmt.Fprintf(os.Stderr, msg+"\n", args...)
-    os.Exit(1)
+	d, _ := client.ListBuckets(&s3.ListBucketsInput{})
+	fmt.Println(d)
 }
 ```
 
 *SDK References*
 
 
-### Creating a new bucket (short)
-
-```Go
-func createBucketACL(bucketName string, acl string, client s3iface.S3API) (*s3.CreateBucketOutput, error) {
-	input := new(s3.CreateBucketInput).SetIBMServiceInstanceId( v: "")
-	conf := new(s3.CreateBucketConfiguration)
-	// conf.SetLocationConstraint("us-standard")
-	input.CreateBucketConfiguration = conf
-	input.Bucket = aws.String(bucketName)
-	input.ACL = aws.String(acl)
-	return client.CreateBucket(input)
-}
-```
-
 ### List available buckets
 ```Go
 func main() {
-    // Initialize a session in us-west-2 that the SDK will use to load
-    // credentials from the shared credentials file ~/.aws/credentials.
-    sess, err := session.NewSession(&aws.Config{
-        Region: aws.String("us-west-2")},
-    )
+	// Create client
+	sess := session.Must(session.NewSession())
+	client := s3.New(sess, conf)
 
-    // Create  client
-    svc := s3.New(sess)
+	fmt.Println("Buckets:")
 
-    result, err := svc.ListBuckets(nil)
-    if err != nil {
-        exitErrorf("Unable to list buckets, %v", err)
-    }
-
-    fmt.Println("Buckets:")
-
-    for _, b := range result.Buckets {
-        fmt.Printf("* %s created on %s\n",
-            aws.StringValue(b.Name), aws.TimeValue(b.CreationDate))
-    }
+	d, _ := client.ListBuckets(&s3.ListBucketsInput{})
+	fmt.Println(d)
 }
 
-func exitErrorf(msg string, args ...interface{}) {
-    fmt.Fprintf(os.Stderr, msg+"\n", args...)
-    os.Exit(1)
-}
 ```
 
 
