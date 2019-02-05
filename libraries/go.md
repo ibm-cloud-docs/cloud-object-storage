@@ -62,9 +62,24 @@ If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_creden
 ### Initializing configuration
 {: #init-config}
 
-Waiting on confirmation of the new config names from Ricardo
+```Go
 
+# Constants for IBM COS values
+const (
+    apiKey            = "<API_KEY>"
+    serviceInstanceID = "<RESOURCE_INSTANCE_ID>"
+    authEndpoint      = "https://iam.bluemix.net/oidc/token"
+    serviceEndpoint   = "https://s3-api.us-geo.objectstorage.softlayer.net"
+)
 
+# Create resource
+conf := aws.NewConfig().
+		WithRegion("us-standard").
+		WithEndpoint(serviceEndpoint).
+		WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(), authEndpoint, apiKey, serviceInstanceID)).
+	WithS3ForcePathStyle(true)
+)
+```
 
 ## Code Examples
 
