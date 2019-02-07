@@ -69,7 +69,7 @@ const (
     apiKey            = "<API_KEY>"
     serviceInstanceID = "<RESOURCE_INSTANCE_ID>"
     authEndpoint      = "https://iam.bluemix.net/oidc/token"
-    serviceEndpoint   = "https://s3-api.us-geo.objectstorage.softlayer.net"
+    serviceEndpoint   = "<SERVICE_ENDPOINT>"
 )
 
 # Create resource
@@ -80,11 +80,15 @@ conf := aws.NewConfig().
 	WithS3ForcePathStyle(true)
 )
 ```
+*Key Values*
+* `<API_KEY>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
+* `<RESOURCE_INSTANCE_ID>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps){:new_window})
+* `<SERVICE_ENDPOINT>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps){:new_window})
+
+*SDK References*
+* [ServiceResource](#){:new_window} - * Pending Doc gen *
 
 ## Code Examples
-
-Note that when adding custom metadata to an object, it is necessary to create an `ObjectMetadata` object using the SDK, and not to manually send a custom header containing `x-amz-meta-{key}`.  The latter can cause issues when authenticating using HMAC credentials.
-{: .tip}
 
 ### Creating a new bucket
 A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).
@@ -92,10 +96,12 @@ A list of valid provisioning codes for `LocationConstraint` can be referenced in
 ```Go
 func main() {
 
-	newBucket := "new-bucket"
 	// Create client
 	sess := session.Must(session.NewSession())
 	client := s3.New(sess, conf)
+
+	// Bucket Name
+	newBucket := "new-bucket"
 
 	input := &s3.CreateBucketInput{
 		Bucket: aws.String(newBucket),
@@ -113,9 +119,11 @@ func main() {
 ### List available buckets
 ```Go
 func main() {
+
 	// Create client
 	sess := session.Must(session.NewSession())
 	client := s3.New(sess, conf)
+
 
 	fmt.Println("Buckets:")
 
@@ -124,51 +132,35 @@ func main() {
 }
 
 ```
+*SDK References*
 
 
 ### List items in a bucket
 ```Go
-// Usage:
-//    go run s3_list_objects.go BUCKET_NAME
 func main() {
-    if len(os.Args) != 2 {
-        exitErrorf("Bucket name required\nUsage: %s bucket_name",
-            os.Args[0])
-    }
 
-    bucket := os.Args[1]
+	// Create client
+	sess := session.Must(session.NewSession())
+	client := s3.New(sess, conf)
 
-    // Initialize a session in us-west-2 that the SDK will use to load
-    // credentials from the shared credentials file ~/.aws/credentials.
-    sess, err := session.NewSession(&aws.Config{
-        Region: aws.String("us-west-2")},
-    )
+	// Bucket Name
+	bucket := "<Bucket_Name>"
 
-    // Create client
-    svc := s3.New(sess)
+	// Get the list of items
+	resp, _ := client.ListObjects(&s3.ListObjectsInput{Bucket: aws.String(bucket)})
 
-    // Get the list of items
-    resp, err := svc.ListObjects(&s3.ListObjectsInput{Bucket: aws.String(bucket)})
-    if err != nil {
-        exitErrorf("Unable to list items in bucket %q, %v", bucket, err)
-    }
+	for _, item := range resp.Contents {
+		fmt.Println("Name:         ", *item.Key)
+		fmt.Println("Last modified:", *item.LastModified)
+		fmt.Println("Size:         ", *item.Size)
+		fmt.Println("Storage class:", *item.StorageClass)
+		fmt.Println("")
+	}
 
-    for _, item := range resp.Contents {
-        fmt.Println("Name:         ", *item.Key)
-        fmt.Println("Last modified:", *item.LastModified)
-        fmt.Println("Size:         ", *item.Size)
-        fmt.Println("Storage class:", *item.StorageClass)
-        fmt.Println("")
-    }
-
-    fmt.Println("Found", len(resp.Contents), "items in bucket", bucket)
-    fmt.Println("")
+	fmt.Println("Found", len(resp.Contents), "items in bucket", bucket)
+	fmt.Println("")
 }
 
-func exitErrorf(msg string, args ...interface{}) {
-    fmt.Fprintf(os.Stderr, msg+"\n", args...)
-    os.Exit(1)
-}
 ```
 
 *SDK References*
