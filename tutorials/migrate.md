@@ -25,7 +25,7 @@ One approach to migrating data across object storage services is to use a 'sync'
 There are some differences between COS and Swift that must be considered as part of data migration.
 
   - COS does not yet support expiration policies or versioning.  Workflows that depend on these Swift features must instead handle them as part of their application logic upon migration into COS.
-  - COS supports object-level metadata, but this information is not preserved when using `rclone` to migrate data.  Custom metadata can be set on objects in COS using a `x-amz-meta-{key}: {value}` header, but it is recommended that object-level metadata is backed up to a database prior to using `rclone`.  Custom metadata can be applied to existing objects by [copying the object onto itself](https://console.bluemix.net/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#copy-object) - the system will recognize that the object data is identical and only update the metadata.  Note that `rclone` **can** preserve timestamps.
+  - COS supports object-level metadata, but this information is not preserved when using `rclone` to migrate data.  Custom metadata can be set on objects in COS using a `x-amz-meta-{key}: {value}` header, but it is recommended that object-level metadata is backed up to a database prior to using `rclone`.  Custom metadata can be applied to existing objects by [copying the object onto itself](https://cloud.ibm.com/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#copy-object) - the system will recognize that the object data is identical and only update the metadata.  Note that `rclone` **can** preserve timestamps.
   - COS uses IAM policies for service instance and bucket-level access control.  [Objects can be made publicly available](/docs/services/cloud-object-storage/iam/public-access.html)) by setting a `public-read` ACL, which eliminates the need for an authorization header.
   - [Multipart uploads](/docs/services/cloud-object-storage/basics/multipart.html) for large objects are handled differently in the COS/S3 API relative to the Swift API. 
   - COS allows for familiar optional HTTP headers such as `Cache-Control`, `Content-Encoding`, `Content-MD5`, and `Content-Type`.  
@@ -35,7 +35,7 @@ This guide provides instructions for migrating data from a single Swift containe
 
 ## Set up {{site.data.keyword.cos_full_notm}}
 
-  1. If you haven't created one yet, provision an instance of {{site.data.keyword.cos_full_notm}} from the [catalog](https://console.bluemix.net/catalog/services/cloud-object-storage).  
+  1. If you haven't created one yet, provision an instance of {{site.data.keyword.cos_full_notm}} from the [catalog](https://cloud.ibm.com/catalog/services/cloud-object-storage).  
   2. Create any buckets that you will need to store your transferred data. Read through the [getting started guide](/docs/services/cloud-object-storage/getting-started.html) to familiarize yourself with key concepts such as [endpoints](/docs/services/cloud-object-storage/basics/endpoints.html) and [storage classes](/docs/services/cloud-object-storage/basics/classes.html).  
   3. Because the syntax of the Swift API is significantly different from the COS/S3 API, it may be necessary to refactor your application in order to use equivalent methods provided in the COS SDKs. Libraries are available in ([Java](/docs/services/cloud-object-storage/libraries/java.html), [Python](/docs/services/cloud-object-storage/libraries/python.html), [Node.js](/docs/services/cloud-object-storage/libraries/node.html)) or the [REST API](/docs/services/cloud-object-storage/api-reference/about-api.html).
 
@@ -71,7 +71,7 @@ This guide provides instructions for migrating data from a single Swift containe
         ```
 
   3. Get OpenStack Swift credential
-    <br>a. Click on your Swift instance in the [IBM Cloud console dashboard](https://console.bluemix.net/).
+    <br>a. Click on your Swift instance in the [IBM Cloud console dashboard](https://cloud.ibm.com/).
     <br>b. Click on **Service Credentials** in the navigation panel.
     <br>c. Click on **New credential** to generate credential information.  Click **Add**.
     <br>d. View the credential you created, and copy the JSON contents.

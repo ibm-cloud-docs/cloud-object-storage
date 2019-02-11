@@ -14,7 +14,7 @@ lastupdated: "2017-09-27"
 
 # For developers
 
-First, ensure you have the [{{site.data.keyword.cloud}} Platform CLI](https://clis.ng.bluemix.net/ui/home.html) and [IBM Developer Tools](https://console.bluemix.net/docs/cloudnative/idt/index.html) installed.
+First, ensure you have the [{{site.data.keyword.cloud}} Platform CLI](https://cloud.ibm.com/docs/cli/index.html) and [IBM Developer Tools](https://cloud.ibm.com/docs/cloudnative/idt/index.html) installed.
 
 ## Provision an instance of {{site.data.keyword.cos_full_notm}}
   1. First, make sure you have an API key.  Get this from [IBM Cloud Identity and Access Management](https://cloud.ibm.com/iam#/apikeys).
@@ -39,7 +39,7 @@ Learn more about using the the {{site.data.keyword.cloud_notm}} CLI to create ap
 
 ## Using the API
 
-The [IBM Cloud command line interface](docs/services/cloud-object-storage/cloud-object-storage-cli.html) has a [plugin](https://clis.ng.bluemix.net/ui/home.html) for managing data stored in {{site.data.keyword.cos_short}}, although S3 API compatible tools like the [AWS CLI](/docs/services/cloud-object-storage/cli/aws-cli.html) will also work using [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html) for compatibility.  As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage.  More information can be found in [the `curl` reference](/docs/services/cloud-object-storage/cli/curl.html), as well as [the API reference documentation](/docs/services/cloud-object-storage/api-reference/about-api.html).
+The [IBM Cloud command line interface](docs/services/cloud-object-storage/cloud-object-storage-cli.html) has a [plugin](https://cloud.ibm.com/docs/cli/index.html) for managing data stored in {{site.data.keyword.cos_short}}, although S3 API compatible tools like the [AWS CLI](/docs/services/cloud-object-storage/cli/aws-cli.html) will also work using [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html) for compatibility.  As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage.  More information can be found in [the `curl` reference](/docs/services/cloud-object-storage/cli/curl.html), as well as [the API reference documentation](/docs/services/cloud-object-storage/api-reference/about-api.html).
 
 ## Using libraries and SDKs
 

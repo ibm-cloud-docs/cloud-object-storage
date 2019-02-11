@@ -48,7 +48,7 @@ Targeted account <account-name> (<account-id>)
 
 Targeted resource group default
 
-API endpoint:     https://api.ng.bluemix.net (API version: 2.75.0)
+API endpoint:     https://api.ng.cloud.ibm.com (API version: 2.75.0)
 Region:           us-south
 User:             <email-address>
 Account:          <account-name> (<account-id>)

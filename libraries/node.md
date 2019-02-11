@@ -61,16 +61,16 @@ const AWS = require('ibm-cos-sdk');
 var config = {
     endpoint: '<endpoint>',
     apiKeyId: '<api-key>',
-    ibmAuthEndpoint: 'https://iam.ng.bluemix.net/oidc/token',
+    ibmAuthEndpoint: 'https://iam.cloud.ibm.com/oidc',
     serviceInstanceId: '<resource-instance-id>',
 };
 
 var cos = new AWS.S3(config);
 ```
 *Key Values*
-* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps){:new_window})
+* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window})
 * `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
-* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps){:new_window})
+* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window})
 
 ### Creating a new bucket
 A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).

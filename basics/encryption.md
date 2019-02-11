@@ -48,9 +48,9 @@ All objects stored in {{site.data.keyword.cos_full}} are encrypted by default us
 
 ### Before you begin
 You'll need:
-  * an [{{site.data.keyword.cloud}} Platform account](https://console.bluemix.net/registration/?target=%2Fcatalog%2Finfrastructure%2Fcloud-object-storage)
-  * an [instance of {{site.data.keyword.cos_full_notm}}](https://console.bluemix.net/catalog/infrastructure/object-storage-group?env_id=ibm:yp:us-south){: new_window}
-  * an [instance of {{site.data.keyword.keymanagementservicelong_notm}}](https://console.ng.bluemix.net/catalog/services/key-protect/?taxonomyNavigation=apps){: new_window}
+  * an [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com/registration/?target=%2Fcatalog%2Finfrastructure%2Fcloud-object-storage)
+  * an [instance of {{site.data.keyword.cos_full_notm}}](https://cloud.ibm.com/catalog/infrastructure/object-storage-group?env_id=ibm:yp:us-south){: new_window}
+  * an [instance of {{site.data.keyword.keymanagementservicelong_notm}}](https://cloud.ibm.com/catalog/services/key-protect/?taxonomyNavigation=apps){: new_window}
   * and some files on your local computer to upload.
 {: #prereqs}
 
