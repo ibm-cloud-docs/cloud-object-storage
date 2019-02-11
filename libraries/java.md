@@ -93,12 +93,13 @@ If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_creden
  For more details on client construction, [see the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/client/builder/AwsClientBuilder.html).
 
 ## Code Examples
-{ #metadata}
+{: #examples}
 
 Note that when adding custom metadata to an object, it is necessary to create an `ObjectMetadata` object using the SDK, and not to manually send a custom header containing `x-amz-meta-{key}`.  The latter can cause issues when authenticating using HMAC credentials.
 {: .tip}
 
 Let's start with an complete example class that will run through some basic functionality, then explore the classes individually.  This `CosExample` class will list objects in an existing bucket, create a new bucket, and then list all buckets in the service instance. 
+
 ```java
     package com.cos;
     
@@ -214,6 +215,7 @@ Let's start with an complete example class that will run through some basic func
 
 ### Initializing configuration
 {: #init-config}
+
 ```java
 private static String COS_ENDPOINT = "<endpoint>"; // eg "https://s3.us.cloud-object-storage.appdomain.cloud"
 private static String COS_API_KEY_ID = "<api-key>"; // eg "0viPHOY7LbLNa9eLftrtHPpTjoGv6hbLD1QalRXikliJ"
