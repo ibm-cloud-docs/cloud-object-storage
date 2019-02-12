@@ -18,16 +18,16 @@ lastupdated: "2019-01-09"
 The {{site.data.keyword.cos_full}} SDK for Go is comprehensive, and has features and capabilities not described in this guide.  For detailed class and method documentation [see the Go Docs](https://ibm.github.io/ibm-cos-sdk-go/). Source code can be found in the [GitHub repository](https://github.com/IBM/ibm-cos-sdk-go).
 
 ## Getting the SDK
-Use `go get` to retrieve the SDK to add it to your GOPATH workspace, or project's Go module dependencies.
+Use `go get` to retrieve the SDK to add it to your GOPATH workspace, or project's Go module dependencies. The SDK requires a minimum version of Go 1.9.
 
 ```
-go get github.ibm.com/cs-developer-enablement/ibm-cos-sdk-go
+go get github.com/IBM/ibm-cos-sdk-go
 ```
 
 To update the SDK use `go get -u` to retrieve the latest version of the SDK..
 
 ```
-go get -u github.ibm.com/cs-developer-enablement/ibm-cos-sdk-go
+go get -u github.com/IBM/ibm-cos-sdk-go
 ```
 
 ### Import packages
@@ -70,6 +70,7 @@ const (
     serviceInstanceID = "<RESOURCE_INSTANCE_ID>"
     authEndpoint      = "https://iam.bluemix.net/oidc/token"
     serviceEndpoint   = "<SERVICE_ENDPOINT>"
+	Bucket_Location	  = "<LOCATION>"
 )
 
 # Create resource
@@ -78,12 +79,13 @@ conf := aws.NewConfig().
 		WithEndpoint(serviceEndpoint).
 		WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(), authEndpoint, apiKey, serviceInstanceID)).
 	WithS3ForcePathStyle(true)
-)
+
 ```
 *Key Values*
 * `<API_KEY>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
 * `<RESOURCE_INSTANCE_ID>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps){:new_window})
 * `<SERVICE_ENDPOINT>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps){:new_window})
+* `<location>` - default location for your cloud object storage (must match the region used for `<endpoint>`)
 
 *SDK References*
 * [ServiceResource](#){:new_window} - * Pending Doc gen *
@@ -114,6 +116,10 @@ func main() {
 ```
 
 *SDK References*
+* Classes
+  * [Bucket](#){:new_window}
+* Methods
+    * [Create](#){:new_window}
 
 
 ### List available buckets
@@ -164,6 +170,88 @@ func main() {
 ```
 
 *SDK References*
+
+
+
+### Get object contents
+```Go
+func getObject(objectKey string, bucketName string, client s3iface.S3API) (*s3.GetObjectOutput, error) {
+	input := new(s3.GetObjectInput)
+	input.Bucket = aws.String(bucketName)
+	input.Key = aws.String(objectKey)
+	return client.GetObject(input)
+}
+
+func main() {
+	
+	// Create client
+	sess := session.Must(session.NewSession())
+	client := s3.New(sess, conf)
+
+	// Call Function
+	res, _ := getObject("<FILE_NAME>", "<BUCKET_NAME>", client)
+	fmt.Println(res.Body)
+
+	bytecont, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(bytecont)
+}
+
+```
+
+*SDK References*
+
+
+
+### Delete an item from a bucket
+```Go
+func deleteObject(objectKey string, bucketName string, client s3iface.S3API) (*s3.DeleteObjectOutput, error) {
+	input := new(s3.DeleteObjectInput)
+	input.Bucket = aws.String(bucketName)
+	input.Key = aws.String(objectKey)
+	return client.DeleteObject(input)
+}
+
+func main() {
+
+	// Create client
+	sess := session.Must(session.NewSession())
+	client := s3.New(sess, conf)
+
+	// Call Function
+	result, _ :=  deleteObject("<FILE_NAME>", "<BUCKET_NAME>", client)
+	fmt.Println(result)
+}
+```
+
+*SDK References*
+
+
+
+### Delete a bucket
+```Go
+func deleteBucket(bucketName string, client s3iface.S3API) (*s3.DeleteBucketOutput, error) {
+	input := new(s3.DeleteBucketInput)
+	input.Bucket = aws.String(bucketName)
+	return client.DeleteBucket(input)
+}
+
+func main() {
+
+	// Create client
+	sess := session.Must(session.NewSession())
+	client := s3.New(sess, conf)
+
+	result, _ := deleteBucket("<BUCKET_NAME>", client)
+
+	fmt.Println(result)
+}
+```
+
+*SDK References*
+
+
+
 
 
 ### Upload an object to a bucket
@@ -230,53 +318,6 @@ func exitErrorf(msg string, args ...interface{}) {
 
 
 
-### Delete an item from a bucket
-```Go
-// Usage:
-//    go run s3_delete_object BUCKET_NAME OBJECT_NAME
-func main() {
-    if len(os.Args) != 3 {
-        exitErrorf("Bucket and object name required\nUsage: %s bucket_name object_name",
-            os.Args[0])
-    }
-
-    bucket := os.Args[1]
-    obj := os.Args[2]
-
-    // Initialize a session in us-west-2 that the SDK will use to load
-    // credentials from the shared credentials file ~/.aws/credentials.
-    sess, err := session.NewSession(&aws.Config{
-        Region: aws.String("us-west-2")},
-    )
-
-    // Create client
-    svc := s3.New(sess)
-
-    // Delete the item
-    _, err = svc.DeleteObject(&s3.DeleteObjectInput{Bucket: aws.String(bucket), Key: aws.String(obj)})
-    if err != nil {
-        exitErrorf("Unable to delete object %q from bucket %q, %v", obj, bucket, err)
-    }
-
-    err = svc.WaitUntilObjectNotExists(&s3.HeadObjectInput{
-        Bucket: aws.String(bucket),
-        Key:    aws.String(obj),
-    })
-    if err != nil {
-        exitErrorf("Error occurred while waiting for object %q to be deleted, %v", obj)
-    }
-
-    fmt.Printf("Object %q successfully deleted\n", obj)
-}
-
-func exitErrorf(msg string, args ...interface{}) {
-    fmt.Fprintf(os.Stderr, msg+"\n", args...)
-    os.Exit(1)
-}
-```
-
-*SDK References*
-
 
 
 
@@ -320,57 +361,3 @@ func exitErrorf(msg string, args ...interface{}) {
 ```
 
 *SDK References*
-
-
-
-### Delete a bucket
-```Go
-// Usage:
-//    go run s3_delete_bucket BUCKET_NAME
-func main() {
-    if len(os.Args) != 2 {
-        exitErrorf("bucket name required\nUsage: %s bucket_name", os.Args[0])
-    }
-
-    bucket := os.Args[1]
-
-    // Initialize a session in us-west-2 that the SDK will use to load
-    // credentials from the shared credentials file ~/.aws/credentials.
-    sess, err := session.NewSession(&aws.Config{
-        Region: aws.String("us-west-2")},
-    )
-
-    // Create client
-    svc := s3.New(sess)
-
-    // Delete the S3 Bucket
-    // It must be empty or else the call fails
-    _, err = svc.DeleteBucket(&s3.DeleteBucketInput{
-        Bucket: aws.String(bucket),
-    })
-    if err != nil {
-        exitErrorf("Unable to delete bucket %q, %v", bucket, err)
-    }
-
-    // Wait until bucket is deleted before finishing
-    fmt.Printf("Waiting for bucket %q to be deleted...\n", bucket)
-
-    err = svc.WaitUntilBucketNotExists(&s3.HeadBucketInput{
-        Bucket: aws.String(bucket),
-    })
-    if err != nil {
-        exitErrorf("Error occurred while waiting for bucket to be deleted, %v", bucket)
-    }
-
-    fmt.Printf("Bucket %q successfully deleted\n", bucket)
-}
-
-func exitErrorf(msg string, args ...interface{}) {
-    fmt.Fprintf(os.Stderr, msg+"\n", args...)
-    os.Exit(1)
-}
-```
-
-*SDK References*
-
-
