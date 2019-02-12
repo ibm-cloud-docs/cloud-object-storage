@@ -105,6 +105,7 @@ func main() {
 	// Bucket Name
 	newBucket := "new-bucket"
 
+	// Call Function
 	input := &s3.CreateBucketInput{
 		Bucket: aws.String(newBucket),
 	}
@@ -130,9 +131,7 @@ func main() {
 	sess := session.Must(session.NewSession())
 	client := s3.New(sess, conf)
 
-
-	fmt.Println("Buckets:")
-
+	// Call Function
 	d, _ := client.ListBuckets(&s3.ListBucketsInput{})
 	fmt.Println(d)
 }
@@ -152,7 +151,7 @@ func main() {
 	// Bucket Name
 	bucket := "<Bucket_Name>"
 
-	// Get the list of items
+	// Call Function
 	resp, _ := client.ListObjects(&s3.ListObjectsInput{Bucket: aws.String(bucket)})
 
 	for _, item := range resp.Contents {
@@ -173,7 +172,7 @@ func main() {
 
 
 
-### Get object contents
+### Get file contents of particular object
 ```Go
 func getObject(objectKey string, bucketName string, client s3iface.S3API) (*s3.GetObjectOutput, error) {
 	input := new(s3.GetObjectInput)
@@ -242,6 +241,7 @@ func main() {
 	sess := session.Must(session.NewSession())
 	client := s3.New(sess, conf)
 
+	// Call Function
 	result, _ := deleteBucket("<BUCKET_NAME>", client)
 
 	fmt.Println(result)
