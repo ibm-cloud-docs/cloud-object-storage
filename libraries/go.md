@@ -68,7 +68,7 @@ const (
     serviceInstanceID = "<RESOURCE_INSTANCE_ID>"
     authEndpoint      = "https://iam.bluemix.net/oidc/token"
     serviceEndpoint   = "<SERVICE_ENDPOINT>"
-	BucketLocation	  = "<LOCATION>"
+	bucketLocation	  = "<LOCATION>"
 )
 
 # Create resource
