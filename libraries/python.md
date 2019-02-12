@@ -78,7 +78,7 @@ cos = ibm_boto3.client("s3",
 )
 ```
 *Key Values*
-* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window})
+* `<endpoint>` - public endpoint for your cloud object storage with schema prefixed (eg. 'https://') (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window})
 * `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
 * `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window})
 * `<location>` - default location for your cloud object storage (must match the region used for `<endpoint>`)
