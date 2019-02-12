@@ -248,56 +248,26 @@ func main() {
 
 
 
-
-
 ### Upload an object to a bucket
 ```Go
 func main() {
 
-    newBucket := "<NEW_BUCKET_NAME>"
-
-    conf := aws.NewConfig().
-        WithRegion("us-standard").
-        WithEndpoint(serviceEndpoint).
-        WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(),
-            authEndpoint, apiKey, serviceInstanceID)).
-        WithS3ForcePathStyle(true)
-
+    // Create client
     sess := session.Must(session.NewSession())
     client := s3.New(sess, conf)
+    
+    // users will need to create bucket, key (flat string name), body of an object
 
-    input := &s3.CreateBucketInput{
-        Bucket: aws.String(newBucket),
-    }
-    c, _ := client.CreateBucket(input)
-    fmt.Println(c)
-
-    uploader := s3manager.NewUploaderWithClient(client)
-
-    // Create an uploader with S3 client and custom options
-    uploader = s3manager.NewUploaderWithClient(client, func(u *s3manager.Uploader) {
-        u.PartSize = 5  1024  1024 // 64MB per part
-    })
-
-    buffer := make([]byte, 5*1024*1024, 5*1024*1024)
-
-    random := rand.New(rand.NewSource(time.Now().Unix()))
-    random.Read(buffer)
-
-    upParams := &s3manager.UploadInput{
-        Bucket: &newBucket,
-        Key:    aws.String("test"),
-        Body:   io.ReadSeeker(bytes.NewReader(buffer)),
+    input := s3.PutObjectInput{
+        Bucket:        aws.String(bucketName),
+        Key:           aws.String(key),
+        Body:          io.ReadSeeker(object),
+        ContentLength: aws.Int64(objectStat.Size()),
+        ContentType:   aws.String("application/octet-stream"),
     }
 
-    // Perform an upload.
-    result, _ := uploader.Upload(upParams)
-
-    // Perform upload with options different than the those in the Uploader.
-    result, _ = uploader.Upload(upParams, func(u *s3manager.Uploader) {
-        u.PartSize = 10  1024  1024 // 10MB part size
-        u.LeavePartsOnError = true    // Don't delete the parts if the upload fails.
-    })
+    // Call Function
+    result, _ := client.PutObject(&input)
     fmt.Println(result)
 }
 ```
