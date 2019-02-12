@@ -40,9 +40,9 @@ import "github.com/IBM/ibm-cos-sdk-go/service/s3"
 ## Creating a client and sourcing credentials
 {: #client-credentials}
 
-To connect to COS, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
+To connect to COS, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables. 
 
-After generating a [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`.  The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client will authenticate with a signature, otherwise the client will use the provided API key to authenticate using a bearer token.
+The credentials can be found by creating a [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html), or through the CLI.
 
 If migrating from AWS S3, you can also source credentials data from  `~/.aws/credentials` in the format:
 
@@ -51,8 +51,6 @@ If migrating from AWS S3, you can also source credentials data from  `~/.aws/cre
 aws_access_key_id = {API_KEY}
 aws_secret_access_key = {SERVICE_INSTANCE_ID}
 ```
-
-If `~/.aws/credentials` exist, `cos_credentials` will take preference.
 
 
 ## Code Examples
@@ -70,7 +68,7 @@ const (
     serviceInstanceID = "<RESOURCE_INSTANCE_ID>"
     authEndpoint      = "https://iam.bluemix.net/oidc/token"
     serviceEndpoint   = "<SERVICE_ENDPOINT>"
-	Bucket_Location	  = "<LOCATION>"
+	BucketLocation	  = "<LOCATION>"
 )
 
 # Create resource
@@ -174,24 +172,23 @@ func main() {
 
 ### Get file contents of particular object
 ```Go
-func getObject(objectKey string, bucketName string, client s3iface.S3API) (*s3.GetObjectOutput, error) {
-	input := new(s3.GetObjectInput)
-	input.Bucket = aws.String(bucketName)
-	input.Key = aws.String(objectKey)
-	return client.GetObject(input)
-}
-
 func main() {
 	
 	// Create client
 	sess := session.Must(session.NewSession())
 	client := s3.New(sess, conf)
 
+	// users will need to create bucket, key (flat string name)
+
+	input := s3.GetObjectInput{
+		Bucket: aws.String(bucketName),
+		Key:    aws.String(key),
+	}
+
 	// Call Function
-	res, _ := getObject("<FILE_NAME>", "<BUCKET_NAME>", client)
+	res, _ := client.GetObject(&input)
 
 	body, _ := ioutil.ReadAll(res.Body)
-
 	fmt.Println(body)
 }
 
