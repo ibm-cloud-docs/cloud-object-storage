@@ -198,7 +198,7 @@ func main() {
 
 
 
-### Delete an item from a bucket
+### Delete an object from a bucket
 ```Go
 func deleteObject(objectKey string, bucketName string, client s3iface.S3API) (*s3.DeleteObjectOutput, error) {
 	input := new(s3.DeleteObjectInput)
