@@ -52,7 +52,7 @@ aws_access_key_id = {API_KEY}
 aws_secret_access_key = {SERVICE_INSTANCE_ID}
 ```
 
-If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` will take preference.
+If `~/.aws/credentials` exist, `cos_credentials` will take preference.
 
 
 ## Code Examples
@@ -103,7 +103,7 @@ func main() {
 	client := s3.New(sess, conf)
 
 	// Bucket Name
-	newBucket := "new-bucket"
+	newBucket := "<NEW_BUCKET_NAME>"
 
 	// Call Function
 	input := &s3.CreateBucketInput{
@@ -149,7 +149,7 @@ func main() {
 	client := s3.New(sess, conf)
 
 	// Bucket Name
-	bucket := "<Bucket_Name>"
+	bucket := "<BUCKET_NAME>"
 
 	// Call Function
 	resp, _ := client.ListObjects(&s3.ListObjectsInput{Bucket: aws.String(bucket)})
@@ -189,11 +189,12 @@ func main() {
 
 	// Call Function
 	res, _ := getObject("<FILE_NAME>", "<BUCKET_NAME>", client)
-	fmt.Println(res.Body)
+	
 
-	bytecont, _ := ioutil.ReadAll(res.Body)
+	bytecont, body := ioutil.ReadAll(res.Body)
 
-	fmt.Println(bytecont)
+	fmt.Println("size",bytecont)
+	fmt.Println(body)
 }
 
 ```
@@ -256,108 +257,56 @@ func main() {
 
 ### Upload an object to a bucket
 ```Go
-// Usage:
-//    go run s3_upload_object.go BUCKET_NAME FILENAME
 func main() {
-    if len(os.Args) != 3 {
-        exitErrorf("bucket and file name required\nUsage: %s bucket_name filename",
-            os.Args[0])
+
+    newBucket := "<NEW_BUCKET_NAME>"
+
+    conf := aws.NewConfig().
+        WithRegion("us-standard").
+        WithEndpoint(serviceEndpoint).
+        WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(),
+            authEndpoint, apiKey, serviceInstanceID)).
+        WithS3ForcePathStyle(true)
+
+    sess := session.Must(session.NewSession())
+    client := s3.New(sess, conf)
+
+    input := &s3.CreateBucketInput{
+        Bucket: aws.String(newBucket),
     }
+    c, _ := client.CreateBucket(input)
+    fmt.Println(c)
 
-    bucket := os.Args[1]
-    filename := os.Args[2]
+    uploader := s3manager.NewUploaderWithClient(client)
 
-    file, err := os.Open(filename)
-    if err != nil {
-        exitErrorf("Unable to open file %q, %v", err)
-    }
-
-    defer file.Close()
-
-    // Initialize a session in us-west-2 that the SDK will use to load
-    // credentials from the shared credentials file ~/.aws/credentials.
-    sess, err := session.NewSession(&aws.Config{
-        Region: aws.String("us-west-2")},
-    )
-
-    // Setup the S3 Upload Manager.
-    uploader := s3manager.NewUploader(sess)
-
-    // Upload the file's body to S3 bucket as an object with the key being the
-    // same as the filename.
-    _, err = uploader.Upload(&s3manager.UploadInput{
-        Bucket: aws.String(bucket),
-
-        // Can also use the `filepath` standard library package to modify the
-        // filename as need for an S3 object key. Such as turning absolute path
-        // to a relative path.
-        Key: aws.String(filename),
-
-        // The file to be uploaded. io.ReadSeeker is preferred as the Uploader
-        // will be able to optimize memory when uploading large content. io.Reader
-        // is supported, but will require buffering of the reader's bytes for
-        // each part.
-        Body: file,
+    // Create an uploader with S3 client and custom options
+    uploader = s3manager.NewUploaderWithClient(client, func(u *s3manager.Uploader) {
+        u.PartSize = 5  1024  1024 // 64MB per part
     })
-    if err != nil {
-        // Print the error and exit.
-        exitErrorf("Unable to upload %q to %q, %v", filename, bucket, err)
+
+    buffer := make([]byte, 5*1024*1024, 5*1024*1024)
+
+    random := rand.New(rand.NewSource(time.Now().Unix()))
+    random.Read(buffer)
+
+    upParams := &s3manager.UploadInput{
+        Bucket: &newBucket,
+        Key:    aws.String("test"),
+        Body:   io.ReadSeeker(bytes.NewReader(buffer)),
     }
 
-    fmt.Printf("Successfully uploaded %q to %q\n", filename, bucket)
-}
+    // Perform an upload.
+    result, _ := uploader.Upload(upParams)
 
-func exitErrorf(msg string, args ...interface{}) {
-    fmt.Fprintf(os.Stderr, msg+"\n", args...)
-    os.Exit(1)
+    // Perform upload with options different than the those in the Uploader.
+    result, _ = uploader.Upload(upParams, func(u *s3manager.Uploader) {
+        u.PartSize = 10  1024  1024 // 10MB part size
+        u.LeavePartsOnError = true    // Don't delete the parts if the upload fails.
+    })
+    fmt.Println(result)
 }
 ```
 
 *SDK References*
 
 
-
-
-
-
-
-### Delete all the items from a bucket
-```Go
-// Usage:
-//    go run s3_delete_objects BUCKET
-func main() {
-    if len(os.Args) != 2 {
-        exitErrorf("Bucket name required\nUsage: %s BUCKET", os.Args[0])
-    }
-
-    bucket := os.Args[1]
-
-    // Initialize a session in us-west-2 that the SDK will use to load
-    // credentials from the shared credentials file ~/.aws/credentials.
-    sess, _ := session.NewSession(&aws.Config{
-        Region: aws.String("us-west-2")},
-    )
-
-    // Create client
-    svc := s3.New(sess)
-
-    // Setup BatchDeleteIterator to iterate through a list of objects.
-    iter := s3manager.NewDeleteListIterator(svc, &s3.ListObjectsInput{
-        Bucket: aws.String(bucket),
-    })
-
-    // Traverse iterator deleting each object
-    if err := s3manager.NewBatchDeleteWithClient(svc).Delete(aws.BackgroundContext(), iter); err != nil {
-        exitErrorf("Unable to delete objects from bucket %q, %v", bucket, err)
-    }
-
-    fmt.Printf("Deleted object(s) from bucket: %s", bucket)
-}
-
-func exitErrorf(msg string, args ...interface{}) {
-    fmt.Fprintf(os.Stderr, msg+"\n", args...)
-    os.Exit(1)
-}
-```
-
-*SDK References*
