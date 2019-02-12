@@ -69,7 +69,7 @@ COS_RESOURCE_CRN = "<resource-instance-id>"
 COS_BUCKET_LOCATION = "<location>"
 
 # Create resource
-cos = ibm_boto3.client("s3",
+cos = ibm_boto3.resource("s3",
     ibm_api_key_id=COS_API_KEY_ID,
     ibm_service_instance_id=COS_RESOURCE_CRN,
     ibm_auth_endpoint=COS_AUTH_ENDPOINT,
