@@ -85,7 +85,7 @@ conf := aws.NewConfig().
 * `<API_KEY>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
 * `<RESOURCE_INSTANCE_ID>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps){:new_window})
 * `<SERVICE_ENDPOINT>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps){:new_window})
-* `<location>` - default location for your cloud object storage (must match the region used for `<endpoint>`)
+* `<LOCATION>` - default location for your cloud object storage (must match the region used for `<endpoint>`)
 
 *SDK References*
 * [ServiceResource](#){:new_window} - * Pending Doc gen *
@@ -115,7 +115,7 @@ func main() {
 }
 ```
 
-*SDK References*
+*SDK References* * Pending Doc gen *
 * Classes
   * [Bucket](#){:new_window}
 * Methods
@@ -138,7 +138,7 @@ func main() {
 }
 
 ```
-*SDK References*
+*SDK References* * Pending Doc gen *
 
 
 ### List items in a bucket
@@ -169,7 +169,7 @@ func main() {
 
 ```
 
-*SDK References*
+*SDK References* * Pending Doc gen *
 
 
 
@@ -199,7 +199,7 @@ func main() {
 
 ```
 
-*SDK References*
+*SDK References* * Pending Doc gen *
 
 
 
@@ -224,7 +224,7 @@ func main() {
 }
 ```
 
-*SDK References*
+*SDK References* * Pending Doc gen *
 
 
 
@@ -248,7 +248,7 @@ func main() {
 }
 ```
 
-*SDK References*
+*SDK References* * Pending Doc gen *
 
 
 
