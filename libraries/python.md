@@ -69,7 +69,7 @@ COS_RESOURCE_CRN = "<resource-instance-id>"
 COS_BUCKET_LOCATION = "<location>"
 
 # Create resource
-cos = ibm_boto3.client("s3",
+cos = ibm_boto3.resource("s3",
     ibm_api_key_id=COS_API_KEY_ID,
     ibm_service_instance_id=COS_RESOURCE_CRN,
     ibm_auth_endpoint=COS_AUTH_ENDPOINT,
@@ -85,6 +85,7 @@ cos = ibm_boto3.client("s3",
 
 *SDK References*
 * [ServiceResource](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#service-resource){:new_window}
+
 
 ### Creating a new bucket
 A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).
