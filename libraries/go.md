@@ -189,11 +189,9 @@ func main() {
 
 	// Call Function
 	res, _ := getObject("<FILE_NAME>", "<BUCKET_NAME>", client)
-	
 
-	bytecont, body := ioutil.ReadAll(res.Body)
+	body, _ := ioutil.ReadAll(res.Body)
 
-	fmt.Println("size",bytecont)
 	fmt.Println(body)
 }
 
