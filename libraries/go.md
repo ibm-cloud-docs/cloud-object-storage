@@ -18,7 +18,7 @@ lastupdated: "2019-01-09"
 The {{site.data.keyword.cos_full}} SDK for Go is comprehensive, and has features and capabilities not described in this guide.  For detailed class and method documentation [see the Go Docs](https://ibm.github.io/ibm-cos-sdk-go/). Source code can be found in the [GitHub repository](https://github.com/IBM/ibm-cos-sdk-go).
 
 ## Getting the SDK
-Use `go get` to retrieve the SDK to add it to your GOPATH workspace, or project's Go module dependencies. The SDK requires a minimum version of Go 1.9 and maximum version of Go 1.11. Future Go versions will be supported once our quality control process has been completed.
+Use `go get` to retrieve the SDK to add it to your GOPATH workspace, or project's Go module dependencies. The SDK requires a minimum version of Go 1.9 and maximum version of Go 1.11. Future versions of Go will be supported once our quality control process has been completed.
 
 ```
 go get github.com/IBM/ibm-cos-sdk-go
