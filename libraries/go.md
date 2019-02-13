@@ -31,11 +31,15 @@ go get -u github.com/IBM/ibm-cos-sdk-go
 ```
 
 ### Import packages
-After you have installed the SDK, you will need to import the packages into your Go applications to use the SDK, as shown in the following example:
+After you have installed the SDK, you will need to import the packages that you require into your Go applications to use the SDK, as shown in the following example:
 ```
-import "github.com/IBM/ibm-cos-sdk-go/service/s3"
+import (
+	"github.com/IBM/ibm-cos-sdk-go/aws/credentials/ibmiam"
+	"github.com/IBM/ibm-cos-sdk-go/aws"
+	"github.com/IBM/ibm-cos-sdk-go/aws/session"
+	"github.com/IBM/ibm-cos-sdk-go/service/s3"
+)
 ```
-
 
 ## Creating a client and sourcing credentials
 {: #client-credentials}
@@ -52,11 +56,6 @@ aws_access_key_id = {API_KEY}
 aws_secret_access_key = {SERVICE_INSTANCE_ID}
 ```
 
-
-## Code Examples
-
-
-
 ### Initializing configuration
 {: #init-config}
 
@@ -71,7 +70,7 @@ const (
 	bucketLocation	  = "<LOCATION>"
 )
 
-# Create resource
+# Create config
 conf := aws.NewConfig().
 		WithRegion("us-standard").
 		WithEndpoint(serviceEndpoint).
@@ -200,22 +199,25 @@ func main() {
 
 ### Delete an object from a bucket
 ```Go
-func deleteObject(objectKey string, bucketName string, client s3iface.S3API) (*s3.DeleteObjectOutput, error) {
-	input := new(s3.DeleteObjectInput)
-	input.Bucket = aws.String(bucketName)
-	input.Key = aws.String(objectKey)
-	return client.DeleteObject(input)
-}
-
 func main() {
 
-	// Create client
-	sess := session.Must(session.NewSession())
-	client := s3.New(sess, conf)
+    bucket := "<BUCKET_NAME>"
 
-	// Call Function
-	result, _ :=  deleteObject("<FILE_NAME>", "<BUCKET_NAME>", client)
-	fmt.Println(result)
+    conf := aws.NewConfig().
+        WithEndpoint(serviceEndpoint).
+        WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(),
+            authEndpoint, apiKey, serviceInstanceID)).
+        WithS3ForcePathStyle(true)
+
+    sess := session.Must(session.NewSession())
+    client := s3.New(sess, conf)
+
+    input := &s3.DeleteObjectInput{
+        Bucket: aws.String(bucket),
+        Key:    aws.String("<OBJECT_KEY>"),
+    }
+    d, _ := client.DeleteObject(input)
+    fmt.Println(d)
 }
 ```
 
@@ -225,22 +227,24 @@ func main() {
 
 ### Delete a bucket
 ```Go
-func deleteBucket(bucketName string, client s3iface.S3API) (*s3.DeleteBucketOutput, error) {
-	input := new(s3.DeleteBucketInput)
-	input.Bucket = aws.String(bucketName)
-	return client.DeleteBucket(input)
-}
-
 func main() {
 
-	// Create client
-	sess := session.Must(session.NewSession())
-	client := s3.New(sess, conf)
+    bucket := "<BUCKET_NAME>"
 
-	// Call Function
-	result, _ := deleteBucket("<BUCKET_NAME>", client)
+    conf := aws.NewConfig().
+        WithEndpoint(serviceEndpoint).
+        WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(),
+            authEndpoint, apiKey, serviceInstanceID)).
+        WithS3ForcePathStyle(true)
 
-	fmt.Println(result)
+    sess := session.Must(session.NewSession())
+    client := s3.New(sess, conf)
+
+    input := &s3.DeleteBucketInput{
+        Bucket: aws.String(bucket),
+    }
+    d, _ := client.DeleteBucket(input)
+    fmt.Println(d)
 }
 ```
 
@@ -274,4 +278,89 @@ func main() {
 
 *SDK References*
 
+
+
+
+### multiple upload
+```Go
+func main() {
+
+    bucket := "<BUCKET_NAME>"
+    key := "<OBJECT_KEY>"
+
+    input := s3.CreateMultipartUploadInput{
+        Bucket: aws.String(bucket),
+        Key:    aws.String(key),
+    }
+    upload, _ := client.CreateMultipartUpload(&input)
+
+    uploadPartInput := s3.UploadPartInput{
+        Bucket:     aws.String(bucket),
+        Key:        aws.String(key),
+        PartNumber: aws.Int64(int64(1)),
+        UploadId:   upload.UploadId,
+    }
+    var completedParts []*s3.CompletedPart
+    completedPart, _ := client.UploadPart(&uploadPartInput)
+
+    completedParts = append(completedParts, &s3.CompletedPart{
+        ETag:       completedPart.ETag,
+        PartNumber: aws.Int64(int64(1)),
+    })
+
+    completeMPUInput := s3.CompleteMultipartUploadInput{
+        Bucket: aws.String(bucket),
+        Key:    aws.String(key),
+        MultipartUpload: &s3.CompletedMultipartUpload{
+            Parts: completedParts,
+        },
+        UploadId: upload.UploadId,
+    }
+    d, _ := client.CompleteMultipartUpload(&completeMPUInput)
+    fmt.Println(d)
+}
+```
+
+*SDK References*
+
+
+
+
+### S3Manager Upload
+```Go
+func main() {
+
+    bucket := "<BUCKET NAME>"
+    uploader := s3manager.NewUploaderWithClient(client)
+
+    // Create an uploader with S3 client and custom options
+    uploader = s3manager.NewUploaderWithClient(client, func(u *s3manager.Uploader) {
+        u.PartSize = 5 * 1024 * 1024 // 64MB per part
+    })
+
+    // make a buffer of 5MB
+    buffer := make([]byte, 5*1024*1024, 5*1024*1024)
+    random := rand.New(rand.NewSource(time.Now().Unix()))
+    random.Read(buffer)
+
+    input := &s3manager.UploadInput{
+        Bucket: aws.String("<BUCKET_NAME>"),
+        Key:    aws.String("<OBJECT_KEY>),
+        Body:   io.ReadSeeker(bytes.NewReader(buffer)),
+    }
+
+    // Perform an upload.
+    d, _ := uploader.Upload(input)
+    fmt.Println(d)
+
+    // Perform upload with options different than the those in the Uploader.
+    f, _ = uploader.Upload(input, func(u *s3manager.Uploader) {
+        u.PartSize = 10 * 1024 * 1024 // 10MB part size
+        u.LeavePartsOnError = true    // Don't delete the parts if the upload fails.
+    })
+    fmt.Println(f)
+}
+```
+
+*SDK References*
 
