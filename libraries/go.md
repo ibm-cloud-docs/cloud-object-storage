@@ -67,7 +67,7 @@ const (
     serviceInstanceID = "<RESOURCE_INSTANCE_ID>"
     authEndpoint      = "https://iam.bluemix.net/oidc/token"
     serviceEndpoint   = "<SERVICE_ENDPOINT>"
-bucketLocation	  = "<LOCATION>"
+	bucketLocation	  = "<LOCATION>"
 )
 
 # Create config
@@ -262,7 +262,7 @@ func main() {
     client := s3.New(sess, conf)
 
 	// Bucket Name
-	bucket := "<BUCKET NAME>"
+	bucket := "<BUCKET_NAME>"
 
     input := &s3.DeleteObjectsInput{
         Bucket: aws.String(bucket),
