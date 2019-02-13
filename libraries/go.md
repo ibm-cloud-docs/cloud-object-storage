@@ -67,7 +67,7 @@ const (
     serviceInstanceID = "<RESOURCE_INSTANCE_ID>"
     authEndpoint      = "https://iam.bluemix.net/oidc/token"
     serviceEndpoint   = "<SERVICE_ENDPOINT>"
-	bucketLocation	  = "<LOCATION>"
+bucketLocation	  = "<LOCATION>"
 )
 
 # Create config
@@ -99,14 +99,22 @@ func main() {
 	sess := session.Must(session.NewSession())
 	client := s3.New(sess, conf)
 
-	// Bucket Name
+	// Bucket Names
 	newBucket := "<NEW_BUCKET_NAME>"
-
-	// Call Function
+	newColdBucket := "<NEW_COLD_BUCKET_NAME>"
+		
 	input := &s3.CreateBucketInput{
 		Bucket: aws.String(newBucket),
 	}
 	client.CreateBucket(input)
+
+	input2 := &s3.CreateBucketInput{
+		Bucket: aws.String(newColdBucket),
+		CreateBucketConfiguration: &s3.CreateBucketConfiguration{
+			LocationConstraint: aws.String("us-cold"),
+		},
+	}
+	client.CreateBucket(input2)
 
 	d, _ := client.ListBuckets(&s3.ListBucketsInput{})
 	fmt.Println(d)
