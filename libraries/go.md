@@ -234,16 +234,12 @@ func main() {
 ```Go
 func main() {
 
-    bucket := "<BUCKET_NAME>"
-
-    conf := aws.NewConfig().
-        WithEndpoint(serviceEndpoint).
-        WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(),
-            authEndpoint, apiKey, serviceInstanceID)).
-        WithS3ForcePathStyle(true)
-
+    // Create client
     sess := session.Must(session.NewSession())
     client := s3.New(sess, conf)
+
+	// Bucket Name
+	bucket := "<BUCKET_NAME>"
 
     input := &s3.DeleteObjectInput{
         Bucket: aws.String(bucket),
@@ -261,16 +257,12 @@ func main() {
 ```Go
 func main() {
 
-    bucket := "<BUCKET NAME>"
-
-    conf := aws.NewConfig().
-        WithEndpoint(serviceEndpoint).
-        WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(),
-            authEndpoint, apiKey, serviceInstanceID)).
-        WithS3ForcePathStyle(true)
-
-    sess := session.Must(session.NewSession())
+    // Create client
+	sess := session.Must(session.NewSession())
     client := s3.New(sess, conf)
+
+	// Bucket Name
+	bucket := "<BUCKET NAME>"
 
     input := &s3.DeleteObjectsInput{
         Bucket: aws.String(bucket),
@@ -302,15 +294,11 @@ func main() {
 ```Go
 func main() {
 
-    bucket := "<BUCKET_NAME>"
+    // Bucket Name
+	bucket := "<BUCKET_NAME>"
 
-    conf := aws.NewConfig().
-        WithEndpoint(serviceEndpoint).
-        WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(),
-            authEndpoint, apiKey, serviceInstanceID)).
-        WithS3ForcePathStyle(true)
-
-    sess := session.Must(session.NewSession())
+    // Create client
+	sess := session.Must(session.NewSession())
     client := s3.New(sess, conf)
 
     input := &s3.DeleteBucketInput{
@@ -328,7 +316,7 @@ func main() {
 ```Go
 func main() {
 
-    bucket := "<BUCKET_NAME>"
+	bucket := "<BUCKET_NAME>"
     key := "<OBJECT_KEY>"
 
     input := s3.CreateMultipartUploadInput{
@@ -371,7 +359,9 @@ func main() {
 ```Go
 func main() {
 
-    bucket := "<BUCKET NAME>"
+    // Bucket Name
+	bucket := "<BUCKET_NAME>"
+
     uploader := s3manager.NewUploaderWithClient(client)
 
     // Create an uploader with S3 client and custom options
