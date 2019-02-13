@@ -137,6 +137,33 @@ func main() {
 *SDK References* * Pending Doc gen *
 
 
+### Upload an object to a bucket
+```Go
+func main() {
+
+    // Create client
+    sess := session.Must(session.NewSession())
+    client := s3.New(sess, conf)
+    
+    // users will need to create bucket, key (flat string name), body of an object
+
+    input := s3.PutObjectInput{
+        Bucket:        aws.String(bucketName),
+        Key:           aws.String(key),
+        Body:          io.ReadSeeker(object),
+        ContentLength: aws.Int64(objectStat.Size()),
+        ContentType:   aws.String("application/octet-stream"),
+    }
+
+    // Call Function
+    result, _ := client.PutObject(&input)
+    fmt.Println(result)
+}
+```
+
+*SDK References*
+
+
 ### List items in a bucket
 ```Go
 func main() {
@@ -168,7 +195,6 @@ func main() {
 *SDK References* * Pending Doc gen *
 
 
-
 ### Get file contents of particular object
 ```Go
 func main() {
@@ -194,7 +220,6 @@ func main() {
 ```
 
 *SDK References* * Pending Doc gen *
-
 
 
 ### Delete an object from a bucket
@@ -224,6 +249,46 @@ func main() {
 *SDK References* * Pending Doc gen *
 
 
+### Delete multiple objects from a bucket
+```Go
+func main() {
+
+    bucket := "<BUCKET NAME>"
+
+    conf := aws.NewConfig().
+        WithEndpoint(serviceEndpoint).
+        WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(),
+            authEndpoint, apiKey, serviceInstanceID)).
+        WithS3ForcePathStyle(true)
+
+    sess := session.Must(session.NewSession())
+    client := s3.New(sess, conf)
+
+    input := &s3.DeleteObjectsInput{
+        Bucket: aws.String(bucket),
+        Delete: &s3.Delete{
+            Objects: []*s3.ObjectIdentifier{
+                {
+                    Key: aws.String("<OBJECT_KEY1>"),
+                },
+                {
+                    Key: aws.String("<OBJECT_KEY2>"),
+                },
+                {
+                    Key: aws.String("<OBJECT_KEY3>"),
+                },
+            },
+            Quiet: aws.Bool(false),
+        },
+    }
+
+    d, _ := client.DeleteObjects(input)
+    fmt.Println(d)
+}
+```
+
+*SDK References* * Pending Doc gen *
+
 
 ### Delete a bucket
 ```Go
@@ -251,37 +316,7 @@ func main() {
 *SDK References* * Pending Doc gen *
 
 
-
-### Upload an object to a bucket
-```Go
-func main() {
-
-    // Create client
-    sess := session.Must(session.NewSession())
-    client := s3.New(sess, conf)
-    
-    // users will need to create bucket, key (flat string name), body of an object
-
-    input := s3.PutObjectInput{
-        Bucket:        aws.String(bucketName),
-        Key:           aws.String(key),
-        Body:          io.ReadSeeker(object),
-        ContentLength: aws.Int64(objectStat.Size()),
-        ContentType:   aws.String("application/octet-stream"),
-    }
-
-    // Call Function
-    result, _ := client.PutObject(&input)
-    fmt.Println(result)
-}
-```
-
-*SDK References*
-
-
-
-
-### multiple upload
+### Execute a multi-part upload
 ```Go
 func main() {
 
@@ -322,8 +357,6 @@ func main() {
 ```
 
 *SDK References*
-
-
 
 
 ### S3Manager Upload
