@@ -257,11 +257,11 @@ func main() {
 func main() {
 
     // Create client
-	sess := session.Must(session.NewSession())
+    sess := session.Must(session.NewSession())
     client := s3.New(sess, conf)
 
-	// Bucket Name
-	bucket := "<BUCKET_NAME>"
+    // Bucket Name
+    bucket := "<BUCKET_NAME>"
 
     input := &s3.DeleteObjectsInput{
         Bucket: aws.String(bucket),
@@ -294,10 +294,10 @@ func main() {
 func main() {
 
     // Bucket Name
-	bucket := "<BUCKET_NAME>"
+    bucket := "<BUCKET_NAME>"
 
     // Create client
-	sess := session.Must(session.NewSession())
+    sess := session.Must(session.NewSession())
     client := s3.New(sess, conf)
 
     input := &s3.DeleteBucketInput{
