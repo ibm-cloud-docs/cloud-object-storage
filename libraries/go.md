@@ -75,7 +75,7 @@ conf := aws.NewConfig().
 		WithRegion("us-standard").
 		WithEndpoint(serviceEndpoint).
 		WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(), authEndpoint, apiKey, serviceInstanceID)).
-	WithS3ForcePathStyle(true)
+		WithS3ForcePathStyle(true)
 
 ```
 *Key Values*
@@ -212,7 +212,6 @@ func main() {
 	client := s3.New(sess, conf)
 
 	// users will need to create bucket, key (flat string name)
-
 	input := s3.GetObjectInput{
 		Bucket: aws.String(bucketName),
 		Key:    aws.String(key),
@@ -359,7 +358,7 @@ func main() {
 ```Go
 func main() {
 
-    // Bucket Name
+	// Bucket Name
 	bucket := "<BUCKET_NAME>"
 
     uploader := s3manager.NewUploaderWithClient(client)
@@ -376,7 +375,7 @@ func main() {
 
     input := &s3manager.UploadInput{
         Bucket: aws.String("<BUCKET_NAME>"),
-        Key:    aws.String("<OBJECT_KEY>),
+        Key:    aws.String("<OBJECT_KEY>"),
         Body:   io.ReadSeeker(bytes.NewReader(buffer)),
     }
 
