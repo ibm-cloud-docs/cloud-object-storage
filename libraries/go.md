@@ -237,8 +237,8 @@ func main() {
     sess := session.Must(session.NewSession())
     client := s3.New(sess, conf)
 
-	// Bucket Name
-	bucket := "<BUCKET_NAME>"
+    // Bucket Name
+    bucket := "<BUCKET_NAME>"
 
     input := &s3.DeleteObjectInput{
         Bucket: aws.String(bucket),
