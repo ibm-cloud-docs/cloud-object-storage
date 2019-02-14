@@ -359,9 +359,9 @@ func main() {
 func main() {
 
     // Bucket Name
-	bucket := "<BUCKET_NAME>"
+bucket := "<BUCKET_NAME>"
 
-	uploader := s3manager.NewUploaderWithClient(client)
+    uploader := s3manager.NewUploaderWithClient(client)
 
     // Create an uploader with S3 client and custom options
     uploader = s3manager.NewUploaderWithClient(client, func(u *s3manager.Uploader) {
