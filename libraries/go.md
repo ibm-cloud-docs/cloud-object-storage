@@ -314,8 +314,9 @@ func main() {
 ### Execute a multi-part upload
 ```Go
 func main() {
-
-	bucket := "<BUCKET_NAME>"
+	
+    // Bucket Name
+    bucket := "<BUCKET_NAME>"
     key := "<OBJECT_KEY>"
 
     input := s3.CreateMultipartUploadInput{
