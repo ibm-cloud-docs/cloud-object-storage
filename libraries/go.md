@@ -360,7 +360,7 @@ func main() {
 
     // Bucket Name
 	bucket := "<BUCKET_NAME>"
-	
+
 	uploader := s3manager.NewUploaderWithClient(client)
 
     // Create an uploader with S3 client and custom options
