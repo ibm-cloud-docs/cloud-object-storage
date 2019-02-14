@@ -152,8 +152,6 @@ func main() {
     // Create client
     sess := session.Must(session.NewSession())
     client := s3.New(sess, conf)
-    
-    // users will need to create bucket, key (flat string name), body of an object
 
     input := s3.PutObjectInput{
         Bucket:        aws.String(bucketName),
