@@ -61,8 +61,8 @@ aws_secret_access_key = {SERVICE_INSTANCE_ID}
 
 ```Go
 
-# Constants for IBM COS values
-const (
+// Constants for IBM COS values
+var const (
     apiKey            = "<API_KEY>"
     serviceInstanceID = "<RESOURCE_INSTANCE_ID>"
     authEndpoint      = "https://iam.bluemix.net/oidc/token"
@@ -70,8 +70,8 @@ const (
     bucketLocation    = "<LOCATION>"
 )
 
-# Create config
-conf := aws.NewConfig().
+// Create config
+var conf := aws.NewConfig().
 		WithRegion("us-standard").
 		WithEndpoint(serviceEndpoint).
 		WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(), authEndpoint, apiKey, serviceInstanceID)).
@@ -153,6 +153,10 @@ func main() {
     sess := session.Must(session.NewSession())
     client := s3.New(sess, conf)
 
+	// Variables
+	bucketName := "<NEW_BUCKET_NAME>"
+	key := "<OBJECT_KEY>"
+
     input := s3.PutObjectInput{
         Bucket:        aws.String(bucketName),
         Key:           aws.String(key),
@@ -208,6 +212,10 @@ func main() {
 	// Create client
 	sess := session.Must(session.NewSession())
 	client := s3.New(sess, conf)
+
+	// Variables
+	bucketName := "<NEW_BUCKET_NAME>"
+	key := "<OBJECT_KEY>"
 
 	// users will need to create bucket, key (flat string name)
 	input := s3.GetObjectInput{
@@ -313,7 +321,7 @@ func main() {
 ```Go
 func main() {
 	
-    // Bucket Name
+    // Variables
     bucket := "<BUCKET_NAME>"
     key := "<OBJECT_KEY>"
 
@@ -321,6 +329,11 @@ func main() {
         Bucket: aws.String(bucket),
         Key:    aws.String(key),
     }
+
+	// Create client
+    sess := session.Must(session.NewSession())
+    client := s3.New(sess, conf)
+
     upload, _ := client.CreateMultipartUpload(&input)
 
     uploadPartInput := s3.UploadPartInput{
@@ -357,8 +370,13 @@ func main() {
 ```Go
 func main() {
 
-    // Bucket Name
+    // Variables
     bucket := "<BUCKET_NAME>"
+    key := "<OBJECT_KEY>"
+
+	// Create client
+    sess := session.Must(session.NewSession())
+    client := s3.New(sess, conf)
 
     uploader := s3manager.NewUploaderWithClient(client)
 
@@ -373,8 +391,8 @@ func main() {
     random.Read(buffer)
 
     input := &s3manager.UploadInput{
-        Bucket: aws.String("<BUCKET_NAME>"),
-        Key:    aws.String("<OBJECT_KEY>"),
+        Bucket: aws.String(bucket),
+        Key:    aws.String(key),
         Body:   io.ReadSeeker(bytes.NewReader(buffer)),
     }
 
