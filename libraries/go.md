@@ -156,13 +156,12 @@ func main() {
     // Variables
     bucketName := "<NEW_BUCKET_NAME>"
     key := "<OBJECT_KEY>"
+	content := "<CONTENT>"
 
     input := s3.PutObjectInput{
         Bucket:        aws.String(bucketName),
         Key:           aws.String(key),
-        Body:          io.ReadSeeker(object),
-        ContentLength: aws.Int64(objectStat.Size()),
-        ContentType:   aws.String("application/octet-stream"),
+        Body:          content,
     }
 
     // Call Function
@@ -345,8 +344,6 @@ func main() {
         PartNumber: aws.Int64(int64(1)),
         UploadId:   upload.UploadId,
 		Body:          file,
-		ContentLength: aws.Int64(objectStat.Size()),
-		ContentType:   aws.String("application/octet-stream"),
 	}
     var completedParts []*s3.CompletedPart
     completedPart, _ := client.UploadPart(&uploadPartInput)
@@ -384,10 +381,8 @@ func main() {
     sess := session.Must(session.NewSession())
     client := s3.New(sess, conf)
 
-    uploader := s3manager.NewUploaderWithClient(client)
-
     // Create an uploader with S3 client and custom options
-    uploader = s3manager.NewUploaderWithClient(client, func(u *s3manager.Uploader) {
+    uploader := s3manager.NewUploaderWithClient(client, func(u *s3manager.Uploader) {
         u.PartSize = 5 * 1024 * 1024 // 64MB per part
     })
 
@@ -407,7 +402,7 @@ func main() {
     fmt.Println(d)
 
     // Perform upload with options different than the those in the Uploader.
-    f, _ = uploader.Upload(input, func(u *s3manager.Uploader) {
+    f, _ := uploader.Upload(input, func(u *s3manager.Uploader) {
         u.PartSize = 10 * 1024 * 1024 // 10MB part size
         u.LeavePartsOnError = true    // Don't delete the parts if the upload fails.
     })
