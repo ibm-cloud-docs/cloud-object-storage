@@ -324,6 +324,7 @@ func main() {
     // Variables
     bucket := "<BUCKET_NAME>"
     key := "<OBJECT_KEY>"
+	filename := "<FILE_NAME>"
 
     input := s3.CreateMultipartUploadInput{
         Bucket: aws.String(bucket),
@@ -334,6 +335,8 @@ func main() {
     sess := session.Must(session.NewSession())
     client := s3.New(sess, conf)
 
+	file, err := os.Open(filename)
+
     upload, _ := client.CreateMultipartUpload(&input)
 
     uploadPartInput := s3.UploadPartInput{
@@ -341,7 +344,10 @@ func main() {
         Key:        aws.String(key),
         PartNumber: aws.Int64(int64(1)),
         UploadId:   upload.UploadId,
-    }
+		Body:          file,
+		ContentLength: aws.Int64(objectStat.Size()),
+		ContentType:   aws.String("application/octet-stream"),
+	}
     var completedParts []*s3.CompletedPart
     completedPart, _ := client.UploadPart(&uploadPartInput)
 
