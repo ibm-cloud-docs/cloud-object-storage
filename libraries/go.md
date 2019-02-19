@@ -153,9 +153,9 @@ func main() {
     sess := session.Must(session.NewSession())
     client := s3.New(sess, conf)
 
-	// Variables
-	bucketName := "<NEW_BUCKET_NAME>"
-	key := "<OBJECT_KEY>"
+    // Variables
+    bucketName := "<NEW_BUCKET_NAME>"
+    key := "<OBJECT_KEY>"
 
     input := s3.PutObjectInput{
         Bucket:        aws.String(bucketName),
@@ -331,7 +331,7 @@ func main() {
         Key:    aws.String(key),
     }
 
-	// Create client
+    // Create client
     sess := session.Must(session.NewSession())
     client := s3.New(sess, conf)
 
@@ -380,7 +380,7 @@ func main() {
     bucket := "<BUCKET_NAME>"
     key := "<OBJECT_KEY>"
 
-	// Create client
+    // Create client
     sess := session.Must(session.NewSession())
     client := s3.New(sess, conf)
 
