@@ -324,7 +324,7 @@ func main() {
     // Variables
     bucket := "<BUCKET_NAME>"
     key := "<OBJECT_KEY>"
-	filename := "<FILE_NAME>"
+    filename := "<FILE_NAME>"
 
     input := s3.CreateMultipartUploadInput{
         Bucket: aws.String(bucket),
