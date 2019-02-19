@@ -335,7 +335,7 @@ func main() {
     sess := session.Must(session.NewSession())
     client := s3.New(sess, conf)
 
-	file, err := os.Open(filename)
+    file, err := os.Open(filename)
 
     upload, _ := client.CreateMultipartUpload(&input)
 
