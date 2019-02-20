@@ -177,26 +177,26 @@ func main() {
 ```Go
 func main() {
 
-	// Create client
-	sess := session.Must(session.NewSession())
-	client := s3.New(sess, conf)
+    // Create client
+    sess := session.Must(session.NewSession())
+    client := s3.New(sess, conf)
 
-	// Bucket Name
-	bucket := "<BUCKET_NAME>"
+    // Bucket Name
+    bucket := "<BUCKET_NAME>"
 
-	// Call Function
-	resp, _ := client.ListObjects(&s3.ListObjectsInput{Bucket: aws.String(bucket)})
+    // Call Function
+    resp, _ := client.ListObjects(&s3.ListObjectsInput{Bucket: aws.String(bucket)})
 
-	for _, item := range resp.Contents {
-		fmt.Println("Name:         ", *item.Key)
-		fmt.Println("Last modified:", *item.LastModified)
-		fmt.Println("Size:         ", *item.Size)
-		fmt.Println("Storage class:", *item.StorageClass)
-		fmt.Println("")
-	}
+    for _, item := range resp.Contents {
+    	fmt.Println("Name:         ", *item.Key)
+    	fmt.Println("Last modified:", *item.LastModified)
+    	fmt.Println("Size:         ", *item.Size)
+    	fmt.Println("Storage class:", *item.StorageClass)
+    	fmt.Println("")
+    }
 
-	fmt.Println("Found", len(resp.Contents), "items in bucket", bucket)
-	fmt.Println("")
+    fmt.Println("Found", len(resp.Contents), "items in bucket", bucket)
+    fmt.Println("")
 }
 
 ```
