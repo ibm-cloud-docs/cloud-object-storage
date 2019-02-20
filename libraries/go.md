@@ -95,29 +95,29 @@ A list of valid provisioning codes for `LocationConstraint` can be referenced in
 ```Go
 func main() {
 
-	// Create client
-	sess := session.Must(session.NewSession())
-	client := s3.New(sess, conf)
+    // Create client
+    sess := session.Must(session.NewSession())
+    client := s3.New(sess, conf)
 
-	// Bucket Names
-	newBucket := "<NEW_BUCKET_NAME>"
-	newColdBucket := "<NEW_COLD_BUCKET_NAME>"
+    // Bucket Names
+    newBucket := "<NEW_BUCKET_NAME>"
+    newColdBucket := "<NEW_COLD_BUCKET_NAME>"
 		
-	input := &s3.CreateBucketInput{
-		Bucket: aws.String(newBucket),
-	}
-	client.CreateBucket(input)
+    input := &s3.CreateBucketInput{
+    	Bucket: aws.String(newBucket),
+    }
+    client.CreateBucket(input)
 
-	input2 := &s3.CreateBucketInput{
-		Bucket: aws.String(newColdBucket),
-		CreateBucketConfiguration: &s3.CreateBucketConfiguration{
-			LocationConstraint: aws.String("us-cold"),
-		},
-	}
-	client.CreateBucket(input2)
+    input2 := &s3.CreateBucketInput{
+    	Bucket: aws.String(newColdBucket),
+    	CreateBucketConfiguration: &s3.CreateBucketConfiguration{
+    		LocationConstraint: aws.String("us-cold"),
+    	},
+    }
+    client.CreateBucket(input2)
 
-	d, _ := client.ListBuckets(&s3.ListBucketsInput{})
-	fmt.Println(d)
+    d, _ := client.ListBuckets(&s3.ListBucketsInput{})
+    fmt.Println(d)
 }
 ```
 
@@ -132,13 +132,13 @@ func main() {
 ```Go
 func main() {
 
-	// Create client
-	sess := session.Must(session.NewSession())
-	client := s3.New(sess, conf)
+    // Create client
+    sess := session.Must(session.NewSession())
+    client := s3.New(sess, conf)
 
-	// Call Function
-	d, _ := client.ListBuckets(&s3.ListBucketsInput{})
-	fmt.Println(d)
+    // Call Function
+    d, _ := client.ListBuckets(&s3.ListBucketsInput{})
+    fmt.Println(d)
 }
 
 ```
