@@ -156,7 +156,7 @@ func main() {
     // Variables
     bucketName := "<NEW_BUCKET_NAME>"
     key := "<OBJECT_KEY>"
-	content := "<CONTENT>"
+    content := bytes.NewReader([]byte("<CONTENT>"))
 
     input := s3.PutObjectInput{
         Bucket:        aws.String(bucketName),
@@ -320,49 +320,52 @@ func main() {
 ```Go
 func main() {
 	
+func main() {
+
     // Variables
-    bucket := "<BUCKET_NAME>"
-    key := "<OBJECT_KEY>"
-    filename := "<FILE_NAME>"
+	bucket := "<BUCKET_NAME>"
+	key := "<OBJECT_KEY>"
+	content := bytes.NewReader([]byte("<CONTENT>"))
 
-    input := s3.CreateMultipartUploadInput{
-        Bucket: aws.String(bucket),
-        Key:    aws.String(key),
-    }
-
-    // Create client
-    sess := session.Must(session.NewSession())
-    client := s3.New(sess, conf)
-
-    file, err := os.Open(filename)
-
-    upload, _ := client.CreateMultipartUpload(&input)
-
-    uploadPartInput := s3.UploadPartInput{
-        Bucket:     aws.String(bucket),
-        Key:        aws.String(key),
-        PartNumber: aws.Int64(int64(1)),
-        UploadId:   upload.UploadId,
-		Body:          file,
+	input := s3.CreateMultipartUploadInput{
+		Bucket: aws.String(bucket),
+		Key:    aws.String(key),
 	}
-    var completedParts []*s3.CompletedPart
-    completedPart, _ := client.UploadPart(&uploadPartInput)
 
-    completedParts = append(completedParts, &s3.CompletedPart{
-        ETag:       completedPart.ETag,
-        PartNumber: aws.Int64(int64(1)),
-    })
+	// Create client
+	sess := session.Must(session.NewSession())
+	client := s3.New(sess, conf)
+		
+	upload, _ := client.CreateMultipartUpload(&input)
 
-    completeMPUInput := s3.CompleteMultipartUploadInput{
-        Bucket: aws.String(bucket),
-        Key:    aws.String(key),
-        MultipartUpload: &s3.CompletedMultipartUpload{
-            Parts: completedParts,
-        },
-        UploadId: upload.UploadId,
-    }
-    d, _ := client.CompleteMultipartUpload(&completeMPUInput)
-    fmt.Println(d)
+	uploadPartInput := s3.UploadPartInput{
+		Bucket:     aws.String(bucket),
+		Key:        aws.String(key),
+		PartNumber: aws.Int64(int64(1)),
+		UploadId:   upload.UploadId,
+		Body:          content,
+	}
+	
+	var completedParts []*s3.CompletedPart
+	completedPart, _ := client.UploadPart(&uploadPartInput)
+
+	completedParts = append(completedParts, &s3.CompletedPart{
+		ETag:       completedPart.ETag,
+		PartNumber: aws.Int64(int64(1)),
+	})
+
+	completeMPUInput := s3.CompleteMultipartUploadInput{
+		Bucket: aws.String(bucket),
+		Key:    aws.String(key),
+		MultipartUpload: &s3.CompletedMultipartUpload{
+			Parts: completedParts,
+		},
+		UploadId: upload.UploadId,
+	}
+	
+	d, _ := client.CompleteMultipartUpload(&completeMPUInput)
+	fmt.Println(d)
+	}
 }
 ```
 
@@ -374,39 +377,39 @@ func main() {
 func main() {
 
     // Variables
-    bucket := "<BUCKET_NAME>"
-    key := "<OBJECT_KEY>"
+	bucket := "<BUCKET_NAME>"
+	key := "<OBJECT_KEY>"
 
-    // Create client
-    sess := session.Must(session.NewSession())
-    client := s3.New(sess, conf)
+	// Create client
+	sess := session.Must(session.NewSession())
+	client := s3.New(sess, conf)
 
-    // Create an uploader with S3 client and custom options
-    uploader := s3manager.NewUploaderWithClient(client, func(u *s3manager.Uploader) {
-        u.PartSize = 5 * 1024 * 1024 // 64MB per part
-    })
+	// Create an uploader with S3 client and custom options
+	uploader := s3manager.NewUploaderWithClient(client, func(u *s3manager.Uploader) {
+		u.PartSize = 5 * 1024 * 1024 // 64MB per part
+	})
 
-    // make a buffer of 5MB
-    buffer := make([]byte, 5*1024*1024, 5*1024*1024)
-    random := rand.New(rand.NewSource(time.Now().Unix()))
-    random.Read(buffer)
+	// make a buffer of 5MB
+	buffer := make([]byte, 15*1024*1024, 15*1024*1024)
+	random := rand.New(rand.NewSource(time.Now().Unix()))
+	random.Read(buffer)
 
-    input := &s3manager.UploadInput{
-        Bucket: aws.String(bucket),
-        Key:    aws.String(key),
-        Body:   io.ReadSeeker(bytes.NewReader(buffer)),
-    }
+	input := &s3manager.UploadInput{
+		Bucket: aws.String(bucket),
+		Key:    aws.String(key),
+		Body:   io.ReadSeeker(bytes.NewReader(buffer)),
+	}
 
-    // Perform an upload.
-    d, _ := uploader.Upload(input)
-    fmt.Println(d)
+	// Perform an upload.
+	d, _ := uploader.Upload(input)
+	fmt.Println(d)
 
-    // Perform upload with options different than the those in the Uploader.
-    f, _ := uploader.Upload(input, func(u *s3manager.Uploader) {
-        u.PartSize = 10 * 1024 * 1024 // 10MB part size
-        u.LeavePartsOnError = true    // Don't delete the parts if the upload fails.
-    })
-    fmt.Println(f)
+	// Perform upload with options different than the those in the Uploader.
+	f, _ := uploader.Upload(input, func(u *s3manager.Uploader) {
+		u.PartSize = 10 * 1024 * 1024 // 10MB part size
+		u.LeavePartsOnError = true    // Don't delete the parts if the upload fails.
+	})
+	fmt.Println(f)
 }
 ```
 
