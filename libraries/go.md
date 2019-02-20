@@ -208,25 +208,25 @@ func main() {
 ```Go
 func main() {
 	
-	// Create client
-	sess := session.Must(session.NewSession())
-	client := s3.New(sess, conf)
+    // Create client
+    sess := session.Must(session.NewSession())
+    client := s3.New(sess, conf)
 
-	// Variables
-	bucketName := "<NEW_BUCKET_NAME>"
-	key := "<OBJECT_KEY>"
+    // Variables
+    bucketName := "<NEW_BUCKET_NAME>"
+    key := "<OBJECT_KEY>"
 
-	// users will need to create bucket, key (flat string name)
-	input := s3.GetObjectInput{
-		Bucket: aws.String(bucketName),
-		Key:    aws.String(key),
-	}
+    // users will need to create bucket, key (flat string name)
+    input := s3.GetObjectInput{
+    	Bucket: aws.String(bucketName),
+    	Key:    aws.String(key),
+    }
 
-	// Call Function
-	res, _ := client.GetObject(&input)
+    // Call Function
+    res, _ := client.GetObject(&input)
 
-	body, _ := ioutil.ReadAll(res.Body)
-	fmt.Println(body)
+    body, _ := ioutil.ReadAll(res.Body)
+    fmt.Println(body)
 }
 
 ```
