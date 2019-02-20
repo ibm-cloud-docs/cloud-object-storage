@@ -247,7 +247,7 @@ func main() {
 	
     input := &s3.DeleteObjectInput{
         Bucket: aws.String(bucket),
-	    Key:    aws.String("<OBJECT_KEY>"),
+		Key:    aws.String("<OBJECT_KEY>"),
     }
     
     d, _ := client.DeleteObject(input)
