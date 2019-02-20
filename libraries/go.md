@@ -317,55 +317,52 @@ func main() {
 
 
 ### Execute a multi-part upload
-```Go
-func main() {
-	
+```Go	
 func main() {
 
     // Variables
-	bucket := "<BUCKET_NAME>"
-	key := "<OBJECT_KEY>"
-	content := bytes.NewReader([]byte("<CONTENT>"))
+    bucket := "<BUCKET_NAME>"
+    key := "<OBJECT_KEY>"
+    content := bytes.NewReader([]byte("<CONTENT>"))
 
-	input := s3.CreateMultipartUploadInput{
-		Bucket: aws.String(bucket),
-		Key:    aws.String(key),
-	}
+    input := s3.CreateMultipartUploadInput{
+    	Bucket: aws.String(bucket),
+    	Key:    aws.String(key),
+    }
 
-	// Create client
-	sess := session.Must(session.NewSession())
-	client := s3.New(sess, conf)
+    // Create client
+    sess := session.Must(session.NewSession())
+    client := s3.New(sess, conf)
 		
-	upload, _ := client.CreateMultipartUpload(&input)
+    upload, _ := client.CreateMultipartUpload(&input)
 
-	uploadPartInput := s3.UploadPartInput{
-		Bucket:     aws.String(bucket),
-		Key:        aws.String(key),
-		PartNumber: aws.Int64(int64(1)),
-		UploadId:   upload.UploadId,
-		Body:          content,
-	}
+    uploadPartInput := s3.UploadPartInput{
+    	Bucket:     aws.String(bucket),
+    	Key:        aws.String(key),
+    	PartNumber: aws.Int64(int64(1)),
+    	UploadId:   upload.UploadId,
+    	Body:          content,
+    }
 	
-	var completedParts []*s3.CompletedPart
-	completedPart, _ := client.UploadPart(&uploadPartInput)
+    var completedParts []*s3.CompletedPart
+    completedPart, _ := client.UploadPart(&uploadPartInput)
 
-	completedParts = append(completedParts, &s3.CompletedPart{
-		ETag:       completedPart.ETag,
-		PartNumber: aws.Int64(int64(1)),
-	})
+    completedParts = append(completedParts, &s3.CompletedPart{
+    	ETag:       completedPart.ETag,
+    	PartNumber: aws.Int64(int64(1)),
+    })
 
-	completeMPUInput := s3.CompleteMultipartUploadInput{
-		Bucket: aws.String(bucket),
-		Key:    aws.String(key),
-		MultipartUpload: &s3.CompletedMultipartUpload{
-			Parts: completedParts,
-		},
-		UploadId: upload.UploadId,
-	}
+    completeMPUInput := s3.CompleteMultipartUploadInput{
+    	Bucket: aws.String(bucket),
+    	Key:    aws.String(key),
+    	MultipartUpload: &s3.CompletedMultipartUpload{
+    		Parts: completedParts,
+    	},
+    	UploadId: upload.UploadId,
+    }
 	
-	d, _ := client.CompleteMultipartUpload(&completeMPUInput)
-	fmt.Println(d)
-	}
+    d, _ := client.CompleteMultipartUpload(&completeMPUInput)
+    fmt.Println(d)
 }
 ```
 
