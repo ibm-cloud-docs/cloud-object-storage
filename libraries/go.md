@@ -377,39 +377,39 @@ func main() {
 func main() {
 
     // Variables
-	bucket := "<BUCKET_NAME>"
-	key := "<OBJECT_KEY>"
+    bucket := "<BUCKET_NAME>"
+    key := "<OBJECT_KEY>"
 
-	// Create client
-	sess := session.Must(session.NewSession())
-	client := s3.New(sess, conf)
+    // Create client
+    sess := session.Must(session.NewSession())
+    client := s3.New(sess, conf)
 
-	// Create an uploader with S3 client and custom options
-	uploader := s3manager.NewUploaderWithClient(client, func(u *s3manager.Uploader) {
-		u.PartSize = 5 * 1024 * 1024 // 64MB per part
-	})
+    // Create an uploader with S3 client and custom options
+    uploader := s3manager.NewUploaderWithClient(client, func(u *s3manager.Uploader) {
+    	u.PartSize = 5 * 1024 * 1024 // 64MB per part
+    })
 
-	// make a buffer of 5MB
-	buffer := make([]byte, 15*1024*1024, 15*1024*1024)
-	random := rand.New(rand.NewSource(time.Now().Unix()))
-	random.Read(buffer)
+    // make a buffer of 5MB
+    buffer := make([]byte, 15*1024*1024, 15*1024*1024)
+    random := rand.New(rand.NewSource(time.Now().Unix()))
+    random.Read(buffer)
 
-	input := &s3manager.UploadInput{
-		Bucket: aws.String(bucket),
-		Key:    aws.String(key),
-		Body:   io.ReadSeeker(bytes.NewReader(buffer)),
-	}
+    input := &s3manager.UploadInput{
+    	Bucket: aws.String(bucket),
+    	Key:    aws.String(key),
+    	Body:   io.ReadSeeker(bytes.NewReader(buffer)),
+    }
 
-	// Perform an upload.
-	d, _ := uploader.Upload(input)
-	fmt.Println(d)
-
-	// Perform upload with options different than the those in the Uploader.
-	f, _ := uploader.Upload(input, func(u *s3manager.Uploader) {
-		u.PartSize = 10 * 1024 * 1024 // 10MB part size
-		u.LeavePartsOnError = true    // Don't delete the parts if the upload fails.
-	})
-	fmt.Println(f)
+    // Perform an upload.
+    d, _ := uploader.Upload(input)
+    fmt.Println(d)
+    
+    // Perform upload with options different than the those in the Uploader.
+    f, _ := uploader.Upload(input, func(u *s3manager.Uploader) {
+    	u.PartSize = 10 * 1024 * 1024 // 10MB part size
+    	u.LeavePartsOnError = true    // Don't delete the parts if the upload fails.
+    })
+    fmt.Println(f)
 }
 ```
 
