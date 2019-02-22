@@ -63,14 +63,15 @@ aws_secret_access_key = {SERVICE_INSTANCE_ID}
 
 // Constants for IBM COS values
 var const (
-    apiKey            = "<API_KEY>"
-    serviceInstanceID = "<RESOURCE_INSTANCE_ID>"
-    authEndpoint      = "https://iam.bluemix.net/oidc/token"
-    serviceEndpoint   = "<SERVICE_ENDPOINT>"
-    bucketLocation    = "<LOCATION>"
+    apiKey            = "<API_KEY>"  // eg "0viPHOY7LbLNa9eLftrtHPpTjoGv6hbLD1QalRXikliJ"
+    serviceInstanceID = "<RESOURCE_INSTANCE_ID>" // "crn:v1:bluemix:public:iam-identity::a/3ag0e9402tyfd5d29761c3e97696b71n::serviceid:ServiceId-540a4a41-7322-4fdd-a9e7-e0cb7ab760f9"
+    authEndpoint      = "https://iam.cloud.ibm.com/oidc/token"
+    serviceEndpoint   = "<SERVICE_ENDPOINT>" // eg "https://s3.us.cloud-object-storage.appdomain.cloud"
+    bucketLocation    = "<LOCATION>" // eg "us"
 )
 
 // Create config
+
 var conf := aws.NewConfig().
 		WithRegion("us-standard").
 		WithEndpoint(serviceEndpoint).
@@ -78,14 +79,6 @@ var conf := aws.NewConfig().
 		WithS3ForcePathStyle(true)
 
 ```
-*Key Values*
-* `<API_KEY>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
-* `<RESOURCE_INSTANCE_ID>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps){:new_window})
-* `<SERVICE_ENDPOINT>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps){:new_window})
-* `<LOCATION>` - default location for your cloud object storage (must match the region used for `<endpoint>`)
-
-*SDK References*
-* [ServiceResource](#){:new_window} - * Pending Doc gen *
 
 ## Code Examples
 
@@ -121,13 +114,6 @@ func main() {
 }
 ```
 
-*SDK References* * Pending Doc gen *
-* Classes
-  * [Bucket](#){:new_window}
-* Methods
-    * [Create](#){:new_window}
-
-
 ### List available buckets
 ```Go
 func main() {
@@ -142,7 +128,6 @@ func main() {
 }
 
 ```
-*SDK References* * Pending Doc gen *
 
 
 ### Upload an object to a bucket
@@ -170,7 +155,6 @@ func main() {
 }
 ```
 
-*SDK References*
 
 
 ### List items in a bucket
@@ -201,8 +185,6 @@ func main() {
 
 ```
 
-*SDK References* * Pending Doc gen *
-
 
 ### Get file contents of particular object
 ```Go
@@ -231,8 +213,6 @@ func main() {
 
 ```
 
-*SDK References* * Pending Doc gen *
-
 
 ### Delete an object from a bucket
 ```Go
@@ -254,8 +234,6 @@ func main() {
     fmt.Println(d)
 }
 ```
-
-*SDK References* * Pending Doc gen *
 
 
 ### Delete multiple objects from a bucket
@@ -292,8 +270,6 @@ func main() {
 }
 ```
 
-*SDK References* * Pending Doc gen *
-
 
 ### Delete a bucket
 ```Go
@@ -314,7 +290,6 @@ func main() {
 }
 ```
 
-*SDK References* * Pending Doc gen *
 
 
 ### Execute a multi-part upload
@@ -367,8 +342,6 @@ func main() {
 }
 ```
 
-*SDK References*
-
 
 ### S3Manager Upload
 ```Go
@@ -411,5 +384,4 @@ func main() {
 }
 ```
 
-*SDK References*
 
