@@ -62,9 +62,9 @@ import ibm_boto3
 from ibm_botocore.client import Config
 
 # Constants for IBM COS values
-COS_ENDPOINT = "<endpoint>" # Current list avaiable at https://cos-service.bluemix.net/endpoints
+COS_ENDPOINT = "<endpoint>" # Current list avaiable at https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints
 COS_API_KEY_ID = "<api-key>"
-COS_AUTH_ENDPOINT = "https://iam.ng.bluemix.net/oidc/token"
+COS_AUTH_ENDPOINT = "https://iam.cloud.ibm.com/oidc"
 COS_RESOURCE_CRN = "<resource-instance-id>"
 COS_BUCKET_LOCATION = "<location>"
 
@@ -78,13 +78,14 @@ cos = ibm_boto3.resource("s3",
 )
 ```
 *Key Values*
-* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps){:new_window})
+* `<endpoint>` - public endpoint for your cloud object storage with schema prefixed (eg. 'https://') (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window})
 * `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
-* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps){:new_window})
+* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window})
 * `<location>` - default location for your cloud object storage (must match the region used for `<endpoint>`)
 
 *SDK References*
 * [ServiceResource](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#service-resource){:new_window}
+
 
 ### Creating a new bucket
 A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).
@@ -607,17 +608,35 @@ Each Aspera session spawns an individual `ascp` process that runs on the client 
 
 ### Initalizing the AsperaTransferManager
 
-Before initializing the `AsperaTransferManager`, make sure you've got working [`s3Client`](#init-config) object.
+Before initializing the `AsperaTransferManager`, make sure you've got working [`client`](#init-config) object.
 
 ```python
+import ibm_boto3
+from ibm_botocore.client import Config
 from ibm_s3transfer.aspera.manager import AsperaTransferManager
-transfer_manager = AsperaTransferManager(client)
+
+COS_ENDPOINT = "<endpoint>" # Current list avaiable at https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints
+COS_API_KEY_ID = "<api-key>"
+COS_AUTH_ENDPOINT = "https://iam.cloud.ibm.com/oidc"
+COS_RESOURCE_CRN = "<resource-instance-id>"
+COS_BUCKET_LOCATION = "<location>"
+
+# Create resource
+cos = ibm_boto3.client("s3",
+    ibm_api_key_id=COS_API_KEY_ID,
+    ibm_service_instance_id=COS_RESOURCE_CRN,
+    ibm_auth_endpoint=COS_AUTH_ENDPOINT,
+    config=Config(signature_version="oauth"),
+    endpoint_url=COS_ENDPOINT
+)
+
+transfer_manager = AsperaTransferManager(cos)
 ```
 
 You will need to provide an IAM API Key for Aspera high-speed transfers.  [HMAC Credentials](/docs/services/cloud-object-storage/iam/service-credentials.html#iam-vs-hmac){:new_window} are **NOT** currently supported.  For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
 {:tip}
 
-Enable the use multiple sessions by initializing `AsperaTransferManager` with an additional configuration option passed by the `AsperaConfig` class. This will split the transfer into the specified number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value.
+To get the highest throughput, split the transfer into a specified number of parallel **sessions** that send chunks of data whose size is defined by a **threshold** value.
 
 The typical configuration for using multi-session should be:
 * 2 or 10 sessions

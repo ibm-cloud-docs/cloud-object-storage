@@ -30,11 +30,11 @@ A REST API client provides a simple GUI-based application to interface with an e
 
 ## Prerequisites
 * IBM Cloud account
-* [Cloud Storage resource created](https://console.bluemix.net/catalog/) (lite/free plan works fine)
-* [IBM Cloud CLI installed and configured]( https://console.bluemix.net/docs/services/cloud-object-storage/getting-started-cli.html)
-* [Service Instance ID for your Cloud Storage](https://console.bluemix.net/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information)
-* [IAM (Identity and Access Management) Token](https://console.bluemix.net/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information) 
-* [Endpoint for your COS bucket](https://console.bluemix.net/docs/services/cloud-object-storage/basics/endpoints.html)
+* [Cloud Storage resource created](https://cloud.ibm.com/catalog/) (lite/free plan works fine)
+* [IBM Cloud CLI installed and configured]( https://cloud.ibm.com/docs/services/cloud-object-storage/getting-started-cli.html)
+* [Service Instance ID for your Cloud Storage](https://cloud.ibm.com/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information)
+* [IAM (Identity and Access Management) Token](https://cloud.ibm.com/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information) 
+* [Endpoint for your COS bucket](https://cloud.ibm.com/docs/services/cloud-object-storage/basics/endpoints.html)
 
 ### Create a bucket
 
@@ -94,7 +94,7 @@ A Postman Collection is available for [download](https://s3-api.us-geo.objectsto
     * **bucket** - Enter the name for the new bucket you wish to create (bucket names must be unique across Cloud Storage).
     * **serviceid** - Enter the CRN of your Cloud Storage service.  Instructions to obtain your CRN are available [here](/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information).
     * **iamtoken** - Enter the OAUTH token for your Cloud Storage service.  Instructions to objtain your OAUTH token are available [here](/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information).
-    * **endpoint** - Enter the regional endpoint for your Cloud Storage service.  Obtain the available endpoints from the [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps/){:new_window}
+    * **endpoint** - Enter the regional endpoint for your Cloud Storage service.  Obtain the available endpoints from the [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps/){:new_window}
         * Acceptable values include:
             * `s3-api.us-geo.objectstorage.softlayer.net`
             * `s3.us-south.objectstorage.softlayer.net`

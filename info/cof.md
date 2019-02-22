@@ -43,7 +43,7 @@ An alias is a connection between your managed service within a resource group an
         {
             "credentials": {
                 "apikey": "abcDEFg_lpQtE23laVRPAbmmBIqKIPmyN4EyJnAnYU9S-",
-                "endpoints": "https://cos-service.bluemix.net/endpoints",
+                "endpoints": "https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints",
                 "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:bluemix:public:cloud-object-storage:global:a/123456cabcddda99gd8eff3191340732:7766d05c-b182-2425-4d7e-0e5c123b4567::",
                 "iam_apikey_name": "auto-generated-apikey-cf4999ce-be10-4712-b489-9876e57a1234",
                 "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
@@ -81,7 +81,7 @@ var AWS = require('ibm-cos-sdk');
 var config = {
     endpoint: 's3.us-south.objectstorage.softlayer.net',
     apiKeyId: cosCreds.apikey,
-    ibmAuthEndpoint: 'https://iam.ng.bluemix.net/oidc/token',
+    ibmAuthEndpoint: 'https://iam.cloud.ibm.com/oidc',
     serviceInstanceId: cosCreds.resource_instance_id,
 };
 
@@ -98,9 +98,9 @@ For more information on how to use the SDK to access {{site.data.keyword.cos_sho
 
 ### Dashboard
 
-The simplest way to create a service binding is by using the [{{site.data.keyword.cloud}} Dashboard](https://console.bluemix.net/dashboard/apps).  
+The simplest way to create a service binding is by using the [{{site.data.keyword.cloud}} Dashboard](https://cloud.ibm.com/dashboard/apps).  
 
-1. Login to the [Dashboard](https://console.bluemix.net/dashboard/apps)
+1. Login to the [Dashboard](https://cloud.ibm.com/dashboard/apps)
 2. Click on your Cloud Foundry application
 3. Click on Connections in the menu on the left
 4. Click on the **Create Connection** button on the right

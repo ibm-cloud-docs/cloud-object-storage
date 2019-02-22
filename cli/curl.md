@@ -27,7 +27,7 @@ There are two ways to generate an IAM oauth token for authenticating requests: u
 First ensure that you have an API key.  Get this from [{{site.data.keyword.iamlong}}](https://cloud.ibm.com/iam#/apikeys).
 
 ```
-curl -X "POST" "https://iam.bluemix.net/oidc/token" \
+curl -X "POST" "https://iam.cloud.ibm.com/oidc/token" \
      -H 'Accept: application/json' \
      -H 'Content-Type: application/x-www-form-urlencoded' \
      --data-urlencode "apikey={api-key}" \

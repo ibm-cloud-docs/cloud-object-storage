@@ -38,7 +38,7 @@ matches the latest version supported by the SDK for Node.js buildpack on
 3.10, and it supports Node.js Version 6.9.4. You can find information
 about the latest {{site.data.keyword.cloud_notm}} SDK for Node.js buildpack on the [SDK for
 Nodejs latest
-updates](https://console.ng.bluemix.net/docs/runtimes/nodejs/updates.html#latest_updates)
+updates](https://cloud.ibm.com/docs/runtimes/nodejs/updates.html#latest_updates)
 page. Run the Node.js installer to set up Node.js and NPM on your
 system.
 
@@ -68,7 +68,7 @@ familiarize you with the flow. Feel free to experiment with it.
 
 ## Creating the Web Gallery app on {{site.data.keyword.cloud_notm}} Platform
 
-To create a Cloud Foundry app, log in to [{{site.data.keyword.cloud_notm}} Platform](https://console.ng.bluemix.net/docs/runtimes/nodejs/updates.html)
+To create a Cloud Foundry app, log in to [{{site.data.keyword.cloud_notm}} Platform](https://cloud.ibm.com/docs/runtimes/nodejs/updates.html)
 and click Create App (see figure below).
 
 ![bluemix_create_app](https://cloud.githubusercontent.com/assets/19173079/24821420/0d9b0af8-1bb4-11e7-80e3-cd1d91d19460.jpg)
