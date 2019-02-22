@@ -13,14 +13,17 @@ lastupdated: "2018-08-27"
 {:tip: .tip}
 
 # Bucket operations
-{: #bucket-operations}
+{: #compatibility-api-bucket-operations}
 
 ## Authentication Options
+{: #compatibility-api-auth}
 
 ### IAM
+{: #compatibility-api-iam}
 IAM bearer tokens generated using the [IBM Cloud CLI](/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information)
 
 ### HMAC (Headers or Pre-signed URL)
+{: #compatibility-api-hmac}
 Adding headers to your request using the following values subtituted:
 
 |Key|Value|Example|
@@ -32,7 +35,7 @@ Adding headers to your request using the following values subtituted:
 |{timestamp}|The formatted date and time of your request|20180614T001804Z|
 
 ## List buckets
-{: #list-buckets}
+{: #compatibility-api-list-buckets}
 
 A `GET` issued to the endpoint root returns a list of buckets associated with the specified service instance. 
 
@@ -112,7 +115,7 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
 ### Getting an extended listing
-{: #list-buckets-extended}
+{: #compatibility-api-list-buckets-extended}
 
 **Syntax**
 
@@ -179,7 +182,7 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
 ## Create a new bucket
-{: #new-bucket}
+{: #compatibility-api-new-bucket}
 
 A `PUT` issued to the endpoint root will create a bucket when a string is provided. Bucket names must be unique, and accounts are limited to 100 buckets each. Bucket names must be DNS-compliant; names between 3 and 63 characters long must be made of lowercase letters, numbers, and dashes. Bucket names must begin and end with a lowercase letter or number. Bucket names resembling IP addresses are not allowed. This operation does not make use of operation specific query parameters.
 
@@ -246,7 +249,7 @@ Content-Length: 0
 ----
 
 ## Create a bucket with a different storage class
-{: #storage-class}
+{: #compatibility-api-storage-class}
 
 To create a bucket with a different storage class, send an XML block specifying a bucket configuration with a `LocationConstraint` of `{provisioning code}` in the body of a `PUT` request to a bucket endpoint.  Note that standard bucket [naming rules](#new-bucket) apply. This operation does not make use of operation specific query parameters.
 
@@ -320,7 +323,7 @@ Content-Length: 0
 ----
 
 ## Create a new bucket with Key Protect managed encryption keys (SSE-KP)
-{: #key-protect}
+{: #compatibility-api-key-protect}
 
 To create a bucket where the encryption keys are managed by Key Protect, it is necessary to have access to an active Key Protect service instance located in the same location as the new bucket. This operation does not make use of operation specific query parameters.
 
@@ -394,6 +397,7 @@ Content-Length: 0
 ---
 
 ## Retrieve a bucket's headers
+{: #compatibility-api-head-bucket}
 
 A `HEAD` issued to a bucket will return the headers for that bucket.
 
@@ -496,7 +500,7 @@ ibm-see-kp-crk-id: {customer-root-key-id}
 ----
 
 ## List objects in a given bucket (Version 2)
-{: #list-objects-v2}
+{: #compatibility-api-list-objects-v2}
 
 A `GET` request addressed to a bucket returns a list of objects, limited to 1,000 at a time and returned in non-lexographical order. The `StorageClass` value that is returned in the response is a default value as storage class operations are not implemented in COS. This operation does not make use of operation specific headers or payload elements.
 
@@ -716,8 +720,9 @@ Content-Length: 604
 ----
 
 ### List objects in a given bucket (deprecated)
+{: #compatibility-api-list-objects}
 
-**Note:** *This API is included for backwards compatibility.*  See [Version 2](api-reference-buckets.html#list-objects-v2) for the recommended method of retrieving objects in a bucket.
+**Note:** *This API is included for backwards compatibility.*  See [Version 2](api-reference-buckets.html#compatibility-api-list-objects-v2) for the recommended method of retrieving objects in a bucket.
 
 A `GET` request addressed to a bucket returns a list of objects, limited to 1,000 at a time and returned in non-lexographical order. The `StorageClass` value that is returned in the response is a default value as storage class operations are not implemented in COS. This operation does not make use of operation specific headers or payload elements.
 
@@ -1261,7 +1266,7 @@ Content-Length: 161
 ----
 
 ## Create a bucket lifecycle configuration
-{: #create-bucket-lifecycle}
+{: #compatibility-api-create-bucket-lifecycle}
 
 A `PUT` operation uses the lifecycle query parameter to set lifecycle settings for the bucket.  A `Content-MD5` header is required as an integrity check for the payload.
 

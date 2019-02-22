@@ -13,7 +13,7 @@ lastupdated: "2018-06-11"
 {:tip: .tip}
 
 # About the {{site.data.keyword.cos_full_notm}} API
-
+{: #compatibility-api-about}
 
 The {{site.data.keyword.cos_full}} API is a REST-based API for reading and writing objects. It uses {{site.data.keyword.iamlong}} for authentication/authorization, and supports a subset of the S3 API for easy migration of applications to {{site.data.keyword.cloud_notm}}.
 
@@ -25,6 +25,7 @@ The following tables describe the complete set of operations when using the {{si
 
 
 ## Bucket operations
+{: #compatibility-api-bucket}
 
 These operations create, destroy, get information about, and control behavior of buckets.
 
@@ -42,6 +43,7 @@ These operations create, destroy, get information about, and control behavior of
 
 
 ## Object operations
+{: #compatibility-api-object}
 
 These operations create, destroy, get information about, and control behavior of objects.
 
