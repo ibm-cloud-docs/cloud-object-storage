@@ -64,7 +64,7 @@ from ibm_botocore.client import Config
 # Constants for IBM COS values
 COS_ENDPOINT = "<endpoint>" # Current list avaiable at https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints
 COS_API_KEY_ID = "<api-key>"
-COS_AUTH_ENDPOINT = "https://iam.cloud.ibm.com/oidc"
+COS_AUTH_ENDPOINT = "https://iam.cloud.ibm.com/oidc/token"
 COS_RESOURCE_CRN = "<resource-instance-id>"
 COS_BUCKET_LOCATION = "<location>"
 
