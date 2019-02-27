@@ -219,7 +219,7 @@ Let's start with an complete example class that will run through some basic func
 ```java
 private static String COS_ENDPOINT = "<endpoint>"; // eg "https://s3.us.cloud-object-storage.appdomain.cloud"
 private static String COS_API_KEY_ID = "<api-key>"; // eg "0viPHOY7LbLNa9eLftrtHPpTjoGv6hbLD1QalRXikliJ"
-private static String COS_AUTH_ENDPOINT = "https://iam.cloud.ibm.com/oidc";
+private static String COS_AUTH_ENDPOINT = "https://iam.cloud.ibm.com/oidc/token";
 private static String COS_SERVICE_CRN = "<resource-instance-id>"; // "crn:v1:bluemix:public:iam-identity::a/3ag0e9402tyfd5d29761c3e97696b71n::serviceid:ServiceId-540a4a41-7322-4fdd-a9e7-e0cb7ab760f9"
 private static String COS_BUCKET_LOCATION = "<location>"; // eg "us"
 
