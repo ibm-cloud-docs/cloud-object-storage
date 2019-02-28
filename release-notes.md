@@ -18,7 +18,7 @@ lastupdated: "07-16-2018"
 
 
 ### February 2019
-Buckets can now be created in San Jose single data center. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html).
+Buckets can now be created in a Single Data Center configuration in San Jose, USA. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html).
 
 ### January 2019
 
