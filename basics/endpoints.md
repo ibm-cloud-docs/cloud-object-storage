@@ -308,6 +308,17 @@ If a networking failure results in a partition where the data center is unable t
       </td>
     </tr>
     <tr>
+      <td>San Jose, USA</td>
+      <td>Public</td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.sjc04.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.sjc04.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr> 
       <td>São Paulo, Brazil</td>
       <td>
         <p>Public</p>

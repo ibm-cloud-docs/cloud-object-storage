@@ -69,7 +69,7 @@ aws_secret_access_key = {SERVICE_INSTANCE_ID}
 var const (
     apiKey            = "<API_KEY>"  // eg "0viPHOY7LbLNa9eLftrtHPpTjoGv6hbLD1QalRXikliJ"
     serviceInstanceID = "<RESOURCE_INSTANCE_ID>" // "crn:v1:bluemix:public:iam-identity::a/3ag0e9402tyfd5d29761c3e97696b71n::serviceid:ServiceId-540a4a41-7322-4fdd-a9e7-e0cb7ab760f9"
-    authEndpoint      = "https://iam.cloud.ibm.com/oidc/token"
+    authEndpoint      = "https://iam.cloud.ibm.com/identity/token"
     serviceEndpoint   = "<SERVICE_ENDPOINT>" // eg "https://s3.us.cloud-object-storage.appdomain.cloud"
     bucketLocation    = "<LOCATION>" // eg "us"
 )
