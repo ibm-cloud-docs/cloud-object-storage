@@ -90,7 +90,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
   </thead>
    <tr>
     <td rowspan="2">AP Australia</td>
-    <td>No</td>
+    <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
@@ -203,7 +203,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
   </tr>
   <tr>
     <td rowspan="2">Mexico City, Mexico</td>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
