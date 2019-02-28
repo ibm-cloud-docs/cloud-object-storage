@@ -61,7 +61,7 @@ const AWS = require('ibm-cos-sdk');
 var config = {
     endpoint: '<endpoint>',
     apiKeyId: '<api-key>',
-    ibmAuthEndpoint: 'https://iam.cloud.ibm.com/oidc/token',
+    ibmAuthEndpoint: 'https://iam.cloud.ibm.com/identity/token',
     serviceInstanceId: '<resource-instance-id>',
 };
 

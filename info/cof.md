@@ -81,7 +81,7 @@ var AWS = require('ibm-cos-sdk');
 var config = {
     endpoint: 's3.us-south.objectstorage.softlayer.net',
     apiKeyId: cosCreds.apikey,
-    ibmAuthEndpoint: 'https://iam.cloud.ibm.com/oidc/token',
+    ibmAuthEndpoint: 'https://iam.cloud.ibm.com/identity/token',
     serviceInstanceId: cosCreds.resource_instance_id,
 };
 
