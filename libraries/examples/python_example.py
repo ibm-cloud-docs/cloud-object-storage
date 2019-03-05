@@ -1,31 +1,9 @@
 import os
-import os.path
-import math
-import datetime
-import hashlib
-import json
 import uuid
 import ibm_boto3
 from ibm_botocore.client import Config
 from ibm_botocore.exceptions import ClientError
 import ibm_s3transfer.manager
-import ibm_s3transfer.subscribers
-
-# Constants for IBM COS values
-COS_ENDPOINT = "https://s3.us-south.objectstorage.softlayer.net"
-COS_API_KEY_ID = "xiid87V2QHXbjaM59G9tWyYDgF_0gYdlQ8aWALIQzWu4"
-COS_AUTH_ENDPOINT = "https://iam.ng.bluemix.net/oidc/token"
-COS_SERVICE_CRN = "crn:v1:bluemix:public:cloud-object-storage:global:a/1d524cd94a0dda86fd8eff3191340732:8888b05b-a143-4917-9d8e-9d5b326a1604::"
-COS_BUCKET_LOCATION = "us-south-standard"
-
-# Create client connection
-cos_cli = ibm_boto3.client("s3",
-    ibm_api_key_id=COS_API_KEY_ID,
-    ibm_service_instance_id=COS_SERVICE_CRN,
-    ibm_auth_endpoint=COS_AUTH_ENDPOINT,
-    config=Config(signature_version="oauth"),
-    endpoint_url=COS_ENDPOINT
-)
 
 def log_done():
     print("DONE!\n")
@@ -36,9 +14,12 @@ def log_client_error(e):
 def log_error(msg):
     print("UNKNOWN ERROR: {0}\n".format(msg))
 
+def get_uuid():
+    return str(uuid.uuid4().hex)
+
 def generate_big_random_file(file_name, size):
     with open('%s'%file_name, 'wb') as fout:
-        fout.write(os.urandom(size)) #1
+        fout.write(os.urandom(size))
 
 # Retrieve the list of available buckets
 def get_buckets():
@@ -90,7 +71,7 @@ def create_bucket(bucket_name):
         cos_cli.create_bucket(
             Bucket=bucket_name, 
             CreateBucketConfiguration={
-                "LocationConstraint":COS_BUCKET_LOCATION
+                "LocationConstraint":COS_STORAGE_CLASS
             }
         )
         print("Bucket: {0} created!".format(bucket_name))
@@ -143,58 +124,6 @@ def delete_bucket(bucket_name):
     except Exception as e:
         log_error("Unable to delete bucket: {0}".format(e))
 
-# initiate a multi-part upload using the client and transfer options
-def multi_part_upload(bucket_name, item_name, file_path):
-    try:
-        print("Starting file transfer for {0} to bucket: {1}\n".format(item_name, bucket_name))
-        part_size = 1024 * 1024 * 5
-
-        # set threadhold to 15 MB
-        file_threshold = 1024 * 1024 * 15
-
-        # set the transfer threshold and chunk size
-        transfer_config = ibm_boto3.s3.transfer.TransferConfig(
-            multipart_threshold=file_threshold,
-            multipart_chunksize=part_size
-        )
-                
-        # the upload_fileobj method will automatically execute a multi-part upload 
-        # in 5 MB chunks for all files over 15 MB
-        with open(file_path, "rb") as file_data:
-            cos_cli.upload_fileobj(
-                Fileobj=file_data,
-                Bucket=bucket_name,
-                Key=item_name,
-                Config=transfer_config
-            )
-        
-        print("Transfer for {0} Complete!\n".format(item_name))
-    except ClientError as be:
-        log_client_error(be)
-    except Exception as e:
-        log_error("Unable to complete multi-part upload: {0}".format(e))
-
-class CallbackOnDone(ibm_s3transfer.subscribers.BaseSubscriber):
-    def __init__(self):
-        pass
-
-    def on_done(self, future, **kwargs):
-        print("File download done!")
-
-class CallbackOnProgress(ibm_s3transfer.subscribers.BaseSubscriber):
-    def __init__(self):
-        pass
-
-    def on_progress(self, future, bytes_transferred, **kwargs):
-        print("File download in progress: %s bytes loaded" % bytes_transferred)
-
-class CallbackOnQueued(ibm_s3transfer.subscribers.BaseSubscriber):
-    def __init__(self):
-        pass
-
-    def on_queued(self, future, **kwargs):
-        print("File queued")
-
 def upload_large_file(bucket_name, item_name, file_path):
     print("Starting large file upload for {0} to bucket: {1}".format(item_name, bucket_name))
 
@@ -210,13 +139,10 @@ def upload_large_file(bucket_name, item_name, file_path):
         multipart_chunksize=part_size
     )
 
-    dl_subscribers = [CallbackOnQueued(), CallbackOnProgress(), CallbackOnDone()]
-
     # create transfer manager
     transfer_mgr = ibm_boto3.s3.transfer.TransferManager(cos_cli, config=transfer_config)
 
     try:
-        # future = transfer_mgr.upload(file_path, bucket_name, item_name, subscribers=dl_subscribers)
         # initiate file upload
         future = transfer_mgr.upload(file_path, bucket_name, item_name)
 
@@ -229,13 +155,29 @@ def upload_large_file(bucket_name, item_name, file_path):
     finally:
         transfer_mgr.shutdown()
 
+# Constants for IBM COS values
+COS_ENDPOINT = "<endpoint>" # example: https://s3.us-south.cloud-object-storage.appdomain.cloud
+COS_API_KEY_ID = "<api-key>" # example: xxxd12V2QHXbjaM99G9tWyYDgF_0gYdlQ8aWALIQxXx4
+COS_AUTH_ENDPOINT = "https://iam.ng.bluemix.net/oidc/token"
+COS_SERVICE_CRN = "<resource-instance-id>" # example: crn:v1:bluemix:public:cloud-object-storage:global:a/xx999cd94a0dda86fd8eff3191349999:9999b05b-x999-4917-xxxx-9d5b326a1111::
+COS_STORAGE_CLASS = "<storage-class>" # example: us-south-standard
+
+# Create client connection
+cos_cli = ibm_boto3.client("s3",
+    ibm_api_key_id=COS_API_KEY_ID,
+    ibm_service_instance_id=COS_SERVICE_CRN,
+    ibm_auth_endpoint=COS_AUTH_ENDPOINT,
+    config=Config(signature_version="oauth"),
+    endpoint_url=COS_ENDPOINT
+)
+
 # *** Main Program ***
 def main():
     try:
-        new_bucket_name = "py.bucket." + str(uuid.uuid4().hex)
-        new_text_file_name = "py_file_" + str(uuid.uuid4().hex) + ".txt"
+        new_bucket_name = "py.bucket." + get_uuid()
+        new_text_file_name = "py_file_" + get_uuid() + ".txt"
         new_text_file_contents = "This is a test file from Python code sample!!!"
-        new_large_file_name = "py_large_file_" + str(uuid.uuid4().hex) + ".bin"
+        new_large_file_name = "py_large_file_" + get_uuid() + ".bin"
         new_large_file_size = 1024 * 1024 * 20 
 
         # create a new bucket
