@@ -40,7 +40,7 @@ You will need:
 
 ## Getting the SDK
 
-Specific instructions for downloading and installing the SDK is available in [Using Python.](/docs/services/cloud-object-storage/libraries/python.html#using-python){: python}[Using Node.js.](/docs/services/cloud-object-storage/libraries/node.html#installing-the-sdk){: javascript}
+Specific instructions for downloading and installing the SDK is available in [Using Python.](/docs/services/cloud-object-storage/libraries/python.html#using-python){:new_window}{: python}[Using Node.js.](/docs/services/cloud-object-storage/libraries/node.html#installing-the-sdk){:new_window}{: javascript}
 
 ## Code Example
 
@@ -570,7 +570,7 @@ python python-example.py
 {: python}
 
 ```
-node node-example.py
+node node-example.js
 ```
 {: codeblock}
 {: javascript}
