@@ -258,17 +258,17 @@ function main() {
         var newLargeFileName = "js_large_file_" + getUUID() + ".bin";
         var newLargeFileSize = 1024 * 1024 * 20;
 
-        createBucket(newBucketName)
-            .then(() => getBuckets())
-            .then(() => createTextFile(newBucketName, newTextFileName, newTextFileContents))
-            .then(() => getBucketContents(newBucketName))
-            .then(() => getItem(newBucketName, newTextFileName))
-            .then(() => generateBigRandomFile(newLargeFileName, newLargeFileSize))
-            .then(() => multiPartUpload(newBucketName, newLargeFileName, newLargeFileName))
-            .then(() => getBucketContents(newBucketName))
-            .then(() => deleteItem(newBucketName, newLargeFileName))
-            .then(() => deleteItem(newBucketName, newTextFileName))
-            .then(() => deleteBucket(newBucketName));
+        createBucket(newBucketName) // create a new bucket
+            .then(() => getBuckets()) // get the list of buckets
+            .then(() => createTextFile(newBucketName, newTextFileName, newTextFileContents)) // create a new text file
+            .then(() => getBucketContents(newBucketName)) // get the list of files from the new bucket
+            .then(() => getItem(newBucketName, newTextFileName)) // get the text file contents
+            .then(() => generateBigRandomFile(newLargeFileName, newLargeFileSize)) // create a new local binary file that is 20 MB
+            .then(() => multiPartUpload(newBucketName, newLargeFileName, newLargeFileName)) // upload the large file using transfer manager
+            .then(() => getBucketContents(newBucketName)) // get the list of files from the new bucket
+            .then(() => deleteItem(newBucketName, newLargeFileName)) // remove the large file
+            .then(() => deleteItem(newBucketName, newTextFileName)) // remove the text file
+            .then(() => deleteBucket(newBucketName)); // remove the new bucket
     }
     catch(ex) {
         logError(ex);
