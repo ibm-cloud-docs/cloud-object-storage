@@ -50,7 +50,7 @@ You can assign a single service policy when you invite a new user. Once the user
 4. Select **All current service instances** or select a specific service instance.
 5. Depending on the service that you selected, you might see the following fields. If you do not enter values for these fields, the policy is assigned at the service instance level instead of the bucket level.
     * **Resource type**: Enter **bucket**.
-    * **Resource**: Enter the name of your bucket.
+    * **Resource ID**: Enter the name of your bucket.
 6. Select a role to define the scope of access for the policy.
 7. Optional: Select **Add role** to specify an additional role for the policy.
 
