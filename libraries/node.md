@@ -53,8 +53,8 @@ ibm_auth_endpoint = <DEFAULT_IBM_AUTH_ENDPOINT>
 If migrating from AWS S3, you can also source credentials data from  `~/.aws/credentials` in the format:
 
 ```
-aws_access_key_id = {API_KEY}
-aws_secret_access_key = {SERVICE_INSTANCE_ID}
+aws_access_key_id = <DEFAULT_ACCESS_KEY_ID>
+aws_secret_access_key = <DEFAULT_SECRET_ACCESS_KEY>
 ```
 
 If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` will take preference.
