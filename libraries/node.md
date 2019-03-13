@@ -368,7 +368,7 @@ function multiPartUpload(bucketName, itemName, filePath) {
                     },
                     UploadId: uploadID
                 }).promise()
-                .then(console.log(`Upload of all ${partCount} parts of ${itemName} successful.`)
+                .then(console.log(`Upload of all ${partCount} parts of ${itemName} successful.`))
                 .catch((e) => {
                     cancelMultiPartUpload(bucketName, itemName, uploadID);
                     console.error(`ERROR: ${e.code} - ${e.message}\n`);
@@ -376,9 +376,9 @@ function multiPartUpload(bucketName, itemName, filePath) {
             });
         });
     })
-    .catch(e) {
+    .catch((e) => {
         console.error(`ERROR: ${e.code} - ${e.message}\n`);
-    };
+    });
 }
 
 function cancelMultiPartUpload(bucketName, itemName, uploadID) {
