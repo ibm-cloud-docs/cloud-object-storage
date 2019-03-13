@@ -93,7 +93,7 @@ A Postman Collection is available for [download](https://s3-api.us-geo.objectsto
 6. Edit the variables to match your Cloud Storage environment
     * **bucket** - Enter the name for the new bucket you wish to create (bucket names must be unique across Cloud Storage).
     * **serviceid** - Enter the CRN of your Cloud Storage service.  Instructions to obtain your CRN are available [here](/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information).
-    * **iamtoken** - Enter the OAUTH token for your Cloud Storage service.  Instructions to objtain your OAUTH token are available [here](/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information).
+    * **iamtoken** - Enter the OAUTH token for your Cloud Storage service.  Instructions to obtain your OAUTH token are available [here](/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information).
     * **endpoint** - Enter the regional endpoint for your Cloud Storage service.  Obtain the available endpoints from the [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps/){:new_window}
         * Acceptable values include:
             * `s3-api.us-geo.objectstorage.softlayer.net`
