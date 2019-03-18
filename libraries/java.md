@@ -99,7 +99,7 @@ Let's start with an complete example class that will run through some basic func
 
 ### Gather required information
 
-* `bucketName` and `newBucketName` are [unique and DNS-safe](docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#compatibility-api-new-bucket) strings. Because bucket names are unique, these values will need to be changed if this example is run multiple times.  Note that names are reserved for 10-15 minutes after deletion.
+* `bucketName` and `newBucketName` are [unique and DNS-safe](docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#compatibility-api-new-bucket) strings. Because bucket names are unique across the entire system, these values will need to be changed if this example is run multiple times.  Note that names are reserved for 10-15 minutes after deletion.
 * `api_key` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html) as `apikey`.
 * `service_instance_id` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html) as `resource_instance_id`. 
 * `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol.  This is **not** the `endpoints` value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html).
