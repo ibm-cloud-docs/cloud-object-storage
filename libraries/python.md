@@ -50,6 +50,17 @@ aws_secret_access_key = {SERVICE_INSTANCE_ID}
 
 If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` will take preference.
 
+### Gather required information
+
+The following variables appear in the examples:
+
+* `bucket_name` must be a  [unique and DNS-safe](docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#compatibility-api-new-bucket) string. Because bucket names are unique, these values will need to be changed if this example is run multiple times.  Note that names are reserved for 10-15 minutes after deletion.
+* `ibm_api_key_id` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html) as `apikey`.
+* `ibm_service_instance_id` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html) as `resource_instance_id`. 
+* `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol.  This is **not** the `endpoints` value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html).
+* `LocationConstraint` is a [valid provisioning code](docs/services/cloud-object-storage/basics/classes.html#locationconstraint) that corresponds to the `endpoint` value.  
+
+
 ## Code Examples
 
 Code examples were written using **Python 2.7.15**
@@ -57,16 +68,16 @@ Code examples were written using **Python 2.7.15**
 ### Initializing configuration
 {: #init-config}
 
+  
 ```python
 import ibm_boto3
 from ibm_botocore.client import Config
 
 # Constants for IBM COS values
 COS_ENDPOINT = "<endpoint>" # Current list avaiable at https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints
-COS_API_KEY_ID = "<api-key>"
+COS_API_KEY_ID = "<api-key>" # eg "W00YiRnLW4a3fTjMB-oiB-2ySfTrFBIQQWanc--P3byk"
 COS_AUTH_ENDPOINT = "https://iam.cloud.ibm.com/identity/token"
-COS_RESOURCE_CRN = "<resource-instance-id>"
-COS_BUCKET_LOCATION = "<location>"
+COS_RESOURCE_CRN = "<resource-instance-id>" # eg "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
 
 # Create resource
 cos = ibm_boto3.resource("s3",
@@ -608,7 +619,7 @@ Each Aspera session spawns an individual `ascp` process that runs on the client 
 
 ### Initalizing the AsperaTransferManager
 
-Before initializing the `AsperaTransferManager`, make sure you've got working [`client`](#init-config) object.
+Before initializing the `AsperaTransferManager`, make sure you've got working [`client`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window} (not a `resource` or `session`) object.
 
 ```python
 import ibm_boto3
