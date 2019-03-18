@@ -390,7 +390,7 @@ function cancelMultiPartUpload(bucketName, itemName, uploadID) {
     .then(() => {
         console.log(`Multi-part upload aborted for ${itemName}`);
     })
-    .catch((e){
+    .catch((e)=>{
         console.error(`ERROR: ${e.code} - ${e.message}\n`);
     });
 }
