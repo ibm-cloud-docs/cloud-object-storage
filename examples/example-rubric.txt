@@ -1,9 +1,0 @@
-
-
-create bucket (random suffix)
-list buckets
-upload file
-list objects
-download file
-delete object
-delete bucket
