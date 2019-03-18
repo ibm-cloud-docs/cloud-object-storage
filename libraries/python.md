@@ -608,7 +608,7 @@ Each Aspera session spawns an individual `ascp` process that runs on the client 
 
 ### Initalizing the AsperaTransferManager
 
-Before initializing the `AsperaTransferManager`, make sure you've got working [`client`](#init-config) object.
+Before initializing the `AsperaTransferManager`, make sure you've got working [`client`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window} (not a `resource` or `session`) object.
 
 ```python
 import ibm_boto3

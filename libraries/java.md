@@ -76,7 +76,7 @@ The 2.0 release of the SDK introduces a namespacing change that allows an applic
 ## Creating a client and sourcing credentials
 {: #client-credentials}
 
-In the above example, a client `cos` was created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
+In the following example, a client `cos` is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
 
 After generating a [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`.  The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client will authenticate with a signature, otherwise the client will use the provided API key to authenticate using a bearer token.
 
@@ -95,10 +95,16 @@ If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_creden
 ## Code Examples
 {: #examples}
 
-Note that when adding custom metadata to an object, it is necessary to create an `ObjectMetadata` object using the SDK, and not to manually send a custom header containing `x-amz-meta-{key}`.  The latter can cause issues when authenticating using HMAC credentials.
-{: .tip}
-
 Let's start with an complete example class that will run through some basic functionality, then explore the classes individually.  This `CosExample` class will list objects in an existing bucket, create a new bucket, and then list all buckets in the service instance. 
+
+### Gather required information
+
+* `bucketName` and `newBucketName` are [unique and DNS-safe](docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#compatibility-api-new-bucket) strings. Because bucket names are unique, these values will need to be changed if this example is run multiple times.  Note that names are reserved for 10-15 minutes after deletion.
+* `api_key` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html) as `apikey`.
+* `service_instance_id` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html) as `resource_instance_id`. 
+* `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol.  This is **not** the `endpoints` value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html).
+* `storageClass` is a [valid provisioning code](docs/services/cloud-object-storage/basics/classes.html#locationconstraint) that corresponds to the `endpoint` value.  This is then used as the S3 API `LocationConstraint` variable.
+* `location` should be set to the location portion of the `storageClass`.  For `us-south-standard`, this would be `us-south`.  This variable is used only for the calculation of [HMAC signatures](/docs/services/cloud-object-storage/hmac/hm.html), but is required for any client, including this example that uses an IAM API key.
 
 ```java
     package com.cos;
@@ -134,12 +140,13 @@ Let's start with an complete example class that will run through some basic func
             SDKGlobalConfiguration.IAM_ENDPOINT = "https://iam.cloud.ibm.com/identity/token";
 
             String bucketName = "<BUCKET_NAME>";  // eg my-unique-bucket-name
-            String newBucketName = "<NEW_BUCKET_NAME>";
+            String newBucketName = "<NEW_BUCKET_NAME>"; // eg my-other-unique-bucket-name
             String api_key = "<API_KEY>"; // eg "W00YiRnLW4a3fTjMB-oiB-2ySfTrFBIQQWanc--P3byk"
             String service_instance_id = "<SERVICE_INSTANCE_ID"; // eg "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
-            String endpoint_url = "https://s3.us-south.cloud-object-storage.appdomain.cloud";
+            String endpoint_url = "https://s3.us-south.cloud-object-storage.appdomain.cloud"; // this could be any service endpoint
+
             String storageClass = "us-south-standard"
-            String location = "us";
+            String location = "us"; 
 
             System.out.println("Current time: " + new Timestamp(System.currentTimeMillis()).toString());
             _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
@@ -342,6 +349,8 @@ cos.createBucket("sample", "us-vault"); // the name of the bucket, and the stora
 *SDK References*
 * [createBucket](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#createBucket-java.lang.String-){:new_window}
 
+
+
 ### Creating a new text file
 ```java
 public static void createTextFile(String bucketName, String itemName, String fileText) {
@@ -358,6 +367,8 @@ public static void createTextFile(String bucketName, String itemName, String fil
     System.out.printf("Item: %s created!\n", itemName);
 }
 ```
+Note that when adding custom metadata to an object, it is necessary to create an `ObjectMetadata` object using the SDK, and not to manually send a custom header containing `x-amz-meta-{key}`.  The latter can cause issues when authenticating using HMAC credentials.
+{: .tip}
 
 ### Upload object from a file
 
