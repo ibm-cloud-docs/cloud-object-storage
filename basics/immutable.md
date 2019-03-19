@@ -121,7 +121,7 @@ PUT https://{bucket-name}.{endpoint}?protection= # virtual host style
 {: codeblock}
 {: http}
 
-**Sample request**
+**Example request**
 {: http}
 
 ```
@@ -149,7 +149,7 @@ Content-Length: 299
 {: codeblock}
 {: http}
 
-**Sample response**
+**Example response**
 {: http}
 
 ```
@@ -260,7 +260,7 @@ GET https://{bucket-name}.{endpoint}?protection= # virtual host style
 {: codeblock}
 {: http}
 
-**Sample request**
+**Example request**
 {: http}
 
 ```xml
@@ -269,7 +269,7 @@ Authorization: {authorization-string}
 x-amz-date: 20181011T190354Z
 Content-Type: text/plain
 Host: 67.228.254.193
-Sample response
+Example response
 HTTP/1.1 200 OK
 Date: Wed, 5 Oct 2018 15:39:38 GMT
 X-Clv-Request-Id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
@@ -554,7 +554,7 @@ POST https://{bucket-name}.{endpoint}?legalHold= # virtual host style
 ```
 {: http}
 
-**Sample request**
+**Example request**
 {: http}
 
 ```
@@ -567,7 +567,7 @@ Content-Type: text/plain
 {: codeblock}
 {: http}
 
-**Sample response**
+**Example response**
 {: http}
 
 ```
@@ -693,7 +693,7 @@ POST https://{bucket-name}.{endpoint}?extendRetention= # virtual host style
 {: codeblock}
 {: http}
 
-**Sample request**
+**Example request**
 {: http}
 
 ```yaml
@@ -707,7 +707,7 @@ Additional-Retention-Period: 31470552
 {: codeblock}
 {: http}
 
-**Sample response**
+**Example response**
 {: http}
 
 ```
@@ -795,7 +795,7 @@ GET https://{bucket-name}.{endpoint}?legalHold= # virtual host style
 ```
 {: http}
 
-**Sample request**
+**Example request**
 {: http}
 
 ```
@@ -808,7 +808,7 @@ Content-Type: text/plain
 {: codeblock}
 {: http}
 
-**Sample response**
+**Example response**
 {: http}
 
 ```xml

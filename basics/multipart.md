@@ -52,7 +52,7 @@ POST https://{endpoint}/{bucket-name}/{object-name}?uploads= # path style
 POST https://{bucket-name}.{endpoint}/{object-name}?uploads= # virtual host style
 ```
 
-**Sample request**
+**Example request**
 
 ```http
 POST /some-bucket/multipart-object-123?uploads= HTTP/1.1
@@ -60,7 +60,7 @@ Authorization: Bearer {token}
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
-**Sample response**
+**Example response**
 
 ```http
 HTTP/1.1 200 OK
@@ -94,7 +94,7 @@ PUT https://{endpoint}/{bucket-name}/{object-name}?partNumber={sequential-intege
 PUT https://{bucket-name}.{endpoint}/{object-name}?partNumber={sequential-integer}&uploadId={uploadId}= # virtual host style
 ```
 
-**Sample request**
+**Example request**
 
 ```http
 PUT /some-bucket/multipart-object-123?partNumber=1&uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
@@ -104,7 +104,7 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 Content-Length: 13374550
 ```
 
-**Sample response**
+**Example response**
 
 ```http
 HTTP/1.1 200 OK
@@ -139,7 +139,7 @@ POST https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # virtu
 </CompleteMultipartUpload>
 ```
 
-**Sample request**
+**Example request**
 
 ```http
 POST /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
@@ -162,7 +162,7 @@ Content-Length: 257
 </CompleteMultipartUpload>
 ```
 
-**Sample response**
+**Example response**
 
 ```http
 HTTP/1.1 200 OK
@@ -198,7 +198,7 @@ DELETE https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId}= # pat
 DELETE https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # virtual host style
 ```
 
-**Sample request**
+**Example request**
 
 ```http
 DELETE /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
@@ -206,7 +206,7 @@ Authorization: Bearer {token}
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
-**Sample response**
+**Example response**
 
 ```http
 HTTP/1.1 204 No Content

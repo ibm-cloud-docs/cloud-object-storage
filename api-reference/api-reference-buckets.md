@@ -15,39 +15,21 @@ lastupdated: "2018-08-27"
 # Bucket operations
 {: #compatibility-api-bucket-operations}
 
-## Authentication Options
-{: #compatibility-api-auth}
-
-### IAM
-{: #compatibility-api-iam}
-IAM bearer tokens generated using the [IBM Cloud CLI](/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information)
-
-### HMAC (Headers or Pre-signed URL)
-{: #compatibility-api-hmac}
-Adding headers to your request using the following values subtituted:
-
-|Key|Value|Example|
-|---|---|---|
-|{access_key}|Access key assigned to your Service Credential|cf4965cebe074720a4929759f57e1214|
-|{datestamp}|The formatted date of your request (yyyymmdd)|20180613|
-|{location}|The location code for your endpoint|us-standard|
-|{signature}|The hash created using the secret key, location, and date|ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e|
-|{timestamp}|The formatted date and time of your request|20180614T001804Z|
 
 ## List buckets
 {: #compatibility-api-list-buckets}
 
-A `GET` issued to the endpoint root returns a list of buckets associated with the specified service instance. 
+A `GET` request sent to the endpoint root returns a list of buckets that are associated with the specified service instance. 
 
 Header                    | Type   | Required? |  Description
 --------------------------|--------|---| -----------------------------
-`ibm-service-instance-id` | string | Yes | Buckets created in this service instance will be listed.
+`ibm-service-instance-id` | String | Yes | List buckets that were created in this service instance.
 
 Query Parameter                    | Value   | Required? |  Description
 --------------------------|--------|---| -----------------------------------------------------------
-`extended` | none | No | Provides bucket metadata in the listing, such as `LocationConstraint`.
+`extended` | None | No | Provides bucket metadata in the listing, such as `LocationConstraint`.
 
-Extended listing is not supported in the SDKs or CLI.
+Extended listing isn't supported in the SDKs or CLI.
 {:note}
 
 **Syntax**
@@ -56,7 +38,7 @@ Extended listing is not supported in the SDKs or CLI.
 GET https://{endpoint}/
 ```
 
-**Sample request (IAM)**
+**Example request**
 
 ```http
 GET / HTTP/1.1
@@ -66,25 +48,7 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 ibm-service-instance-id: {ibm-service-instance-id}
 ```
 
-**Sample request (HMAC Headers)**
-
-```http
-GET / HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-GET /?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample response**
+**Example response**
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -123,7 +87,7 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 GET https://{endpoint}?extended/
 ```
 
-**Sample request (IAM)**
+**Example request**
 
 ```http
 GET /?extended HTTP/1.1
@@ -133,17 +97,7 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 ibm-service-instance-id: {ibm-service-instance-id}
 ```
 
-**Sample request (HMAC Headers)**
-
-```http
-GET /?extended HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample response**
+**Example response**
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -181,17 +135,17 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 </ListAllMyBucketsResult>
 ```
 
-## Create a new bucket
+## Create a bucket
 {: #compatibility-api-new-bucket}
 
-A `PUT` issued to the endpoint root will create a bucket when a string is provided. Bucket names must be unique, and accounts are limited to 100 buckets each. Bucket names must be DNS-compliant; names between 3 and 63 characters long must be made of lowercase letters, numbers, and dashes. Bucket names must begin and end with a lowercase letter or number. Bucket names resembling IP addresses are not allowed. This operation does not make use of operation specific query parameters.
+A `PUT` request sent to the endpoint root followed by a string will create a bucket. Bucket names must be globally unique and DNS-compliant; names between 3 and 63 characters long must be made of lowercase letters, numbers, and dashes. Bucket names must begin and end with a lowercase letter or number. Bucket names resembling IP addresses are not allowed. This operation doesn't make use of operation specific query parameters.
 
 Bucket names must be unique because all buckets in the public cloud share a global namespace. This allows for access to a bucket without needing to provide any service instance or account information.  It is also not possible to create a bucket with a name beginning with `cosv1-` or `account-` as these prefixes are reserved by the system.
 {:important}
 
 Header                                        | Type   | Description
 ------------------------------------------------- | ------ | ----
-`ibm-service-instance-id`  | string  |  This header references the service instance where the bucket will be created and to which data usage will be billed.
+`ibm-service-instance-id`  | String  |  This header references the service instance where the bucket will be created and to which data usage will be billed.
 
 **Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means in the name of the bucket or object.
 {:tip}
@@ -203,7 +157,7 @@ PUT https://{endpoint}/{bucket-name} # path style
 PUT https://{bucket-name}.{endpoint} # virtual host style
 ```
 
-**Sample request (IAM)**
+**Example request**
 
 This is an example of creating a new bucket called 'images'.
 
@@ -215,25 +169,7 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 ibm-service-instance-id: {ibm-service-instance-id}
 ```
 
-**Sample request (HMAC Headers)**
-
-```http
-PUT /images HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-PUT /images?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample response**
+**Example response**
 
 ```http
 HTTP/1.1 200 OK
@@ -255,7 +191,7 @@ To create a bucket with a different storage class, send an XML block specifying 
 
 Header                                        | Type   | Description
 ------------------------------------------------- | ------ | ----
-`ibm-service-instance-id`  | string  |  This header references the service instance where the bucket will be created and to which data usage will be billed.
+`ibm-service-instance-id`  | String  |  This header references the service instance where the bucket will be created and to which data usage will be billed.
 
 **Syntax**
 
@@ -272,7 +208,7 @@ PUT https://{bucket-name}.{endpoint} # virtual host style
 
 A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes.html#locationconstraint).
 
-**Sample request (IAM)**
+**Example request**
 
 This is an example of creating a new bucket called 'vault-images'.
 
@@ -284,23 +220,6 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 ibm-service-instance-id: {ibm-service-instance-id}
 Content-Length: 110
 ```
-**Sample request (HMAC Headers)**
-
-```http
-PUT /vault-images HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-PUT /vault-images?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
 
 ```xml
 <CreateBucketConfiguration>
@@ -308,7 +227,7 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 </CreateBucketConfiguration>
 ```
 
-**Sample response**
+**Example response**
 
 ```http
 HTTP/1.1 200 OK
@@ -334,9 +253,9 @@ Note that Key Protect is **not** available in a Cross Region configuration and a
 
 Header                                        | Type   | Description
 ------------------------------------------------- | ------ | ----
-`ibm-service-instance-id`  | string  |  This header references the service instance where the bucket will be created and to which data usage will be billed.
-`ibm-sse-kp-encryption-algorithm` | string | This header is used to specify the algorithm and key size to use with the encryption key stored using Key Protect. This value must be set to the string `AES256`.
-`ibm-sse-kp-customer-root-key-crn`  | string | This header is used to reference the specific root key used by Key Protect to encrypt this bucket. This value must be the full CRN of the root key.
+`ibm-service-instance-id`  | String  |  This header references the service instance where the bucket will be created and to which data usage will be billed.
+`ibm-sse-kp-encryption-algorithm` | String | This header is used to specify the algorithm and key size to use with the encryption key stored by using Key Protect. This value must be set to the string `AES256`.
+`ibm-sse-kp-customer-root-key-crn`  | String | This header is used to reference the specific root key used by Key Protect to encrypt this bucket. This value must be the full CRN of the root key.
 
 **Syntax**
 
@@ -345,7 +264,7 @@ PUT https://{endpoint}/{bucket-name} # path style
 PUT https://{bucket-name}.{endpoint} # virtual host style
 ```
 
-**Sample request (IAM)**
+**Example request**
 
 This is an example of creating a new bucket called 'secure-files'.
 
@@ -359,29 +278,7 @@ ibm-sse-kp-encryption-algorithm: "AES256"
 ibm-sse-kp-customer-root-key-crn: {customer-root-key-id}
 ```
 
-**Sample request (HMAC Headers)**
-
-```http
-PUT /secure-files HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-ibm-sse-kp-encryption-algorithm: "AES256"
-ibm-sse-kp-customer-root-key-crn: {customer-root-key-id}
-```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-PUT /secure-files?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-ibm-sse-kp-encryption-algorithm: "AES256"
-ibm-sse-kp-customer-root-key-crn: {customer-root-key-id}
-```
-
-**Sample response**
+**Example response**
 
 ```http
 HTTP/1.1 200 OK
@@ -411,7 +308,7 @@ HEAD https://{endpoint}/{bucket-name} # path style
 HEAD https://{bucket-name}.{endpoint} # virtual host style
 ```
 
-**Sample request (IAM)**
+**Example request**
 
 This is an example of fetching the headers for the 'images' bucket.
 
@@ -422,25 +319,7 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 Authorization:Bearer {token}
 ```
 
-**Sample request (HMAC Headers)**
-
-```http
-HEAD /images HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-HEAD /images?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample response**
+**Example response**
 
 ```http
 HTTP/1.1 200 OK
@@ -453,9 +332,9 @@ x-amz-request-id: 0c2832e3-3c51-4ea6-96a3-cd8482aca08a
 Content-Length: 0
 ```
 
-**Sample request (IAM)**
+**Example request**
 
-`HEAD` requests on buckets with Key Protect encrytions will return extra headers.
+`HEAD` requests on buckets with Key Protect encryption will return extra headers.
 
 ```http
 HEAD /secure-files HTTP/1.1
@@ -464,25 +343,7 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 Authorization:Bearer {token}
 ```
 
-**Sample request (HMAC Headers)**
-
-```http
-HEAD /secure-files HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-HEAD /secure-files?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample response**
+**Example response**
 
 ```http
 HTTP/1.1 200 OK
@@ -515,16 +376,16 @@ GET https://{bucket-name}.{endpoint}?list-type=2 # virtual host style
 
 Name | Type | Description
 --- | ---- | ------------
-`list-type` | string | Indicates version 2 of the API and the value must be 2.
-`prefix` | string | Constrains response to object names beginning with `prefix`.
-`delimiter` | string | Groups objects between the `prefix` and the `delimiter`.
-`encoding-type` | string | If unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.
-`max-keys` | string | Restricts the number of objects to display in the response.  Default and maximum is 1,000.
-`fetch-owner` | string | Version 2 of the API does not include the `Owner` information by default.  Set this parameter to `true` if `Owner` information is desired in the response.
-`continuation-token` | string | Specifies the next set of objects to be returned when your response is truncated (`IsTruncated` element returns `true`).<br/><br/>Your initial response will include the `NextContinuationToken` element.  Use this token in the next request as the value for `continuation-token`.
-`start-after` | string | Returns key names after a specific key object.<br/><br/>*This parameter is only valid in your initial request.*  If a `continuation-token` parameter is included in your request, this parameter is ignored.
+`list-type` | String | Indicates version 2 of the API and the value must be 2.
+`prefix` | String | Constrains response to object names beginning with `prefix`.
+`delimiter` | String | Groups objects between the `prefix` and the `delimiter`.
+`encoding-type` | String | If unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.
+`max-keys` | String | Restricts the number of objects to display in the response.  Default and maximum is 1,000.
+`fetch-owner` | String | Version 2 of the API does not include the `Owner` information by default.  Set this parameter to `true` if `Owner` information is desired in the response.
+`continuation-token` | String | Specifies the next set of objects to be returned when your response is truncated (`IsTruncated` element returns `true`).<br/><br/>Your initial response will include the `NextContinuationToken` element.  Use this token in the next request as the value for `continuation-token`.
+`start-after` | String | Returns key names after a specific key object.<br/><br/>*This parameter is only valid in your initial request.*  If a `continuation-token` parameter is included in your request, this parameter is ignored.
 
-**Sample request (simple with IAM)**
+**Example request (simple with IAM)**
 
 This request lists the objects inside the "apiary" bucket.
 
@@ -535,25 +396,7 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 Authorization: Bearer {token}
 ```
 
-**Sample request (simple with HMAC Headers)**
-
-```http
-GET /apiary?list-type=2 HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (simple with HMAC Pre-signed URL)**
-
-```http
-GET /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&list-type=2&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample response (simple)**
+**Example response (simple)**
 
 ```http
 HTTP/1.1 200 OK
@@ -599,7 +442,7 @@ Content-Length: 814
 </ListBucketResult>
 ```
 
-**Sample request (max-keys parameter)**
+**Example request (max-keys parameter)**
 
 This request lists the objects inside the "apiary" bucket with a max key returned set to 1.
 
@@ -610,26 +453,7 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 Authorization: Bearer {token}
 ```
 
-**Sample request (max-keys with HMAC Headers)**
-
-```http
-GET /apiary?list-type=2&max-keys=1 HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (max-keys with HMAC Pre-signed URL)**
-
-```http
-GET /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&list-type=2&max-keys=1&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-
-**Sample response (Truncated Response)**
+**Example response (Truncated Response)**
 
 ```http
 HTTP/1.1 200 OK
@@ -662,7 +486,7 @@ Content-Length: 598
 </ListBucketResult>
 ```
 
-**Sample request (continuation-token parameter)**
+**Example request (continuation-token parameter)**
 
 This request lists the objects inside the "apiary" bucket with a continuation token specified.
 
@@ -673,17 +497,7 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 Authorization: Bearer {token}
 ```
 
-**Sample request (continuation-token with HMAC Headers)**
-
-```http
-GET /apiary?list-type=2&max-keys=1&continuation-token=1dPe45g5uuxjyASPegLq80sQsZKL5OB2by4Iz_7YGR5NjiOENBPZXqvKJN6_PgKGVzZYTlws7qqdWaMklzb8HX2iDxxl72ane3rUFQrvNMeIih49MZ4APUjrAuYI83KxSMmfKHGZyKallFkD5N6PwKg  HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample response (Truncated Response, continuation-token parameter)**
+**Example response (Truncated Response, continuation-token parameter)**
 
 ```http
 HTTP/1.1 200 OK
@@ -737,13 +551,13 @@ GET https://{bucket-name}.{endpoint} # virtual host style
 
 Name | Type | Description
 --- | ---- | ------------
-`prefix` | string | Constrains response to object names beginning with `prefix`.
-`delimiter` | string | Groups objects between the `prefix` and the `delimiter`.
-`encoding-type` | string | If unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.
-`max-keys` | string | Restricts the number of objects to display in the response.  Default and maximum is 1,000.
-`marker` | string | Specifies the object from where the listing should begin, in UTF-8 binary order.
+`prefix` | String | Constrains response to object names beginning with `prefix`.
+`delimiter` | String | Groups objects between the `prefix` and the `delimiter`.
+`encoding-type` | String | If unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.
+`max-keys` | String | Restricts the number of objects to display in the response.  Default and maximum is 1,000.
+`marker` | String | Specifies the object from where the listing should begin, in UTF-8 binary order.
 
-**Sample request (IAM)**
+**Example request**
 
 This request lists the objects inside the "apiary" bucket.
 
@@ -754,25 +568,7 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 Authorization: Bearer {token}
 ```
 
-**Sample request (HMAC Headers)**
-
-```http
-GET /apiary HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-GET /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&list-type=2&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample response**
+**Example response**
 
 ```http
 HTTP/1.1 200 OK
@@ -847,10 +643,10 @@ DELETE https://{bucket-name}.{endpoint} # virtual host style
 
 Name | Type | Description
 --- | ---- | ------------
-`aspera-ak-max-tries` | string | Specifies the number of times to attempt the delete operation.  Default value is 2.
+`aspera-ak-max-tries` | String | Specifies the number of times to attempt the delete operation.  Default value is 2.
 
 
-**Sample request (IAM)**
+**Example request**
 
 ```http
 DELETE /apiary HTTP/1.1
@@ -858,29 +654,11 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 Authorization: Bearer {token}
 ```
 
-**Sample request (HMAC Headers)**
-
-```http
-DELETE /apiary HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-DELETE /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&list-type=2&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
 The server responds with `204 No Content`.
 
 If a non-empty bucket is requested for deletion, the server responds with `409 Conflict`.
 
-**Sample response**
+**Example response**
 
 ```xml
 <Error>
@@ -909,14 +687,14 @@ GET https://{bucket-name}.{endpoint}?uploads= # virtual host style
 
 Name | Type | Description
 --- | ---- | ------------
-`prefix` | string | Constrains response to object names beginning with `{prefix}`.
-`delimiter` | string | Groups objects between the `prefix` and the `delimiter`.
-`encoding-type` | string | If unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.
+`prefix` | String | Constrains response to object names beginning with `{prefix}`.
+`delimiter` | String | Groups objects between the `prefix` and the `delimiter`.
+`encoding-type` | String | If unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.
 `max-uploads` | integer | Restricts the number of objects to display in the response.  Default and maximum is 1,000.
-`key-marker` | string | Specifies from where the listing should begin.
-`upload-id-marker` | string | Ignored if `key-marker` is not specified, otherwise sets a point at which to begin listing parts above `upload-id-marker`.
+`key-marker` | String | Specifies from where the listing should begin.
+`upload-id-marker` | String | Ignored if `key-marker` is not specified, otherwise sets a point at which to begin listing parts above `upload-id-marker`.
 
-**Sample request (IAM)**
+**Example request**
 
 This is an example of retrieving all current canceled and incomplete multipart uploads.
 
@@ -926,25 +704,7 @@ Authorization: Bearer {token}
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
-**Sample request (HMAC Headers)**
-
-```http
-GET /apiary?uploads= HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-GET /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&uploads=&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample response** (no multipart uploads in progress)
+**Example response** (no multipart uploads in progress)
 
 ```http
 HTTP/1.1 200 OK
@@ -1011,7 +771,7 @@ GET https://{endpoint}/{bucket-name}?cors= # path style
 GET https://{bucket-name}.{endpoint}?cors= # virtual host style
 ```
 
-**Sample request (IAM)**
+**Example request**
 
 This is an example of listing a CORS configuration on the "apiary" bucket.
 
@@ -1021,25 +781,7 @@ Authorization: Bearer {token}
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
-**Sample request (HMAC Headers)**
-
-```http
-GET /apiary?cors= HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-GET /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&cors=&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample response** No CORS configuration set
+**Example response** 
 
 ```http
 HTTP/1.1 200 OK
@@ -1054,7 +796,14 @@ Content-Length: 123
 ```
 
 ```xml
-<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/"/>
+<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+  <CORSRule>
+    <AllowedMethod>GET</AllowedMethod>
+    <AllowedMethod>PUT</AllowedMethod>
+    <AllowedMethod>POST</AllowedMethod>
+    <AllowedOrigin>http:www.ibm.com</AllowedOrigin>
+  </CORSRule>
+</CORSConfiguration>
 ```
 
 ----
@@ -1077,7 +826,7 @@ PUT https://{endpoint}/{bucket-name}?cors= # path style
 PUT https://{bucket-name}.{endpoint}?cors= # virtual host style
 ```
 
-**Sample request (IAM)**
+**Example request**
 
 This is an example of adding a CORS configuration that allows requests from `www.ibm.com` to issue `GET`, `PUT`, and `POST` requests to the bucket.
 
@@ -1101,52 +850,8 @@ Content-Length: 237
 </CORSConfiguration>
 ```
 
-**Sample request (HMAC Headers)**
 
-```http
-PUT /apiary?cors= HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-Content-MD5: M625BaNwd/OytcM7O5gIaQ==
-Content-Length: 237
-```
-
-```xml
-<CORSConfiguration>
-  <CORSRule>
-    <AllowedOrigin>http:www.ibm.com</AllowedOrigin>
-    <AllowedMethod>GET</AllowedMethod>
-    <AllowedMethod>PUT</AllowedMethod>
-    <AllowedMethod>POST</AllowedMethod>
-  </CORSRule>
-</CORSConfiguration>
-```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-PUT /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&cors=&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-Content-MD5: M625BaNwd/OytcM7O5gIaQ==
-Content-Length: 237
-```
-
-
-```xml
-<CORSConfiguration>
-  <CORSRule>
-    <AllowedOrigin>http:www.ibm.com</AllowedOrigin>
-    <AllowedMethod>GET</AllowedMethod>
-    <AllowedMethod>PUT</AllowedMethod>
-    <AllowedMethod>POST</AllowedMethod>
-  </CORSRule>
-</CORSConfiguration>
-```
-
-**Sample response**
+**Example response**
 
 ```http
 HTTP/1.1 200 OK
@@ -1172,31 +877,13 @@ DELETE https://{endpoint}/{bucket-name}?cors= # path style
 DELETE https://{bucket-name}.{endpoint}?cors= # virtual host style
 ```
 
-**Sample request (IAM)**
+**Example request**
 
 This is an example of deleting a CORS configuration for a bucket.
 
 ```http
 DELETE /apiary?cors= HTTP/1.1
 Authorization: Bearer {token}
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Headers)**
-
-```http
-DELETE /apiary?cors= HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-DELETE /?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&cors=&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
@@ -1215,7 +902,7 @@ GET https://{endpoint}/{bucket-name}?location # path style
 GET https://{bucket-name}.{endpoint}?location # virtual host style
 ```
 
-**Sample request (IAM)**
+**Example request**
 
 This is an example of retrieving the location of the "apiary" bucket.
 
@@ -1225,25 +912,7 @@ Authorization: Bearer {token}
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
-**Sample request (HMAC Headers)**
-
-```http
-GET /apiary?location= HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-GET /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&location=&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample response**
+**Example response**
 
 ```http
 HTTP/1.1 200 OK
@@ -1309,7 +978,7 @@ The body of the request must contain an XML block with the following schema:
 </LifecycleConfiguration>
 ```
 
-**Sample Request (IAM)**
+**Example request**
 
 ```http
 PUT /apiary?lifecycle HTTP/1.1
@@ -1319,28 +988,6 @@ Authorization: {authorization-string}
 Content-Type: text/plain
 Content-MD5: M625BaNwd/OytcM7O5gIaQ== 
 Content-Length: 305
-```
-
-**Sample request (HMAC Headers)**
-
-```http
-PUT /apiary?lifecycle HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Content-MD5: M625BaNwd/OytcM7O5gIaQ== 
-Content-Length: 305
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-PUT /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&lifecycle=&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Content-MD5: M625BaNwd/OytcM7O5gIaQ== 
-Content-Length: 305
-Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
 ```xml
@@ -1374,7 +1021,7 @@ GET https://{endpoint}/{bucket-name}?lifecycle # path style
 GET https://{bucket-name}.{endpoint}?lifecycle # virtual host style
 ```
 
-**Sample Request (IAM)**
+**Example request**
 
 ```http
 GET /apiary?lifecycle HTTP/1.1
@@ -1383,25 +1030,7 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 Authorization: {authorization-string}
 ```
 
-**Sample request (HMAC Headers)**
-
-```http
-GET /apiary?lifecycle HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-GET /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&lifecycle=&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample Response**
+**Example response**
 
 ```xml
 <LifecycleConfiguration>
@@ -1432,29 +1061,11 @@ DELETE https://{endpoint}/{bucket-name}?lifecycle # path style
 DELETE https://{bucket-name}.{endpoint}?lifecycle # virtual host style
 ```
 
-**Sample Request (IAM)**
+**Example request**
 
 ```http
 DELETE /apiary?lifecycle HTTP/1.1
 Authorization: {authorization-string}
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Headers)**
-
-```http
-DELETE /apiary?lifecycle HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
-x-amz-date: {timestamp}
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-DELETE /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&lifecycle=&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
 Host: s3-api.us-geo.objectstorage.softlayer.net
 ```
 
