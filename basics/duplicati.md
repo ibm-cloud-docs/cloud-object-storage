@@ -29,7 +29,7 @@ This guide focuses on the Web GUI interaction with Duplicati but there is also a
 
 The first time you launch Duplicati, the browser opens to the URL http://127.0.0.1:8200/ngax/index.html. 
 
-## Creating a Backup Job
+## Creating a backup Job
 
 To create a backup job.
 

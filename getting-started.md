@@ -7,6 +7,7 @@ lastupdated: "2019-03-19"
 keywords: data, object storage, unstructured, cleversafe
 
 subcollection: cloud-object-storage
+
 ---
 {:shortdesc: .shortdesc}
 {:new_window: target="_blank"}
@@ -22,6 +23,8 @@ This getting started tutorial walks through the steps that are needed to create 
 {: shortdesc}
 
 ## Before you begin
+{: #gs-prereqs}
+
 You need:
   * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com/registration/?target=%2Fcatalog%2Fservices%2Fcloud-object-storage)
   * An [instance of {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics/order-storage.html)

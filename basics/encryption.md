@@ -11,6 +11,7 @@ lastupdated: '2018-06-21'
 {:tip: .tip}
 
 # Manage encryption
+{: #manage-encryption}
 
 All objects stored in {{site.data.keyword.cos_full}} are encrypted by default using [randomly generated keys and an all-or-nothing-transform](/docs/services/cloud-object-storage/info/data-security-encryption.html). While this default encryption model provides at-rest security, some workloads need to be in possession of the encryption keys used.  You can manage your keys manually by providing your own encryption keys when storing data (SSE-C), or you can create buckets that use IBM Key Protect (SSE-KP) to manage encryption keys.
 
@@ -43,23 +44,26 @@ When creating the bucket, you need to provide additional headers.
 For more information on {{site.data.keyword.keymanagementservicelong_notm}}, [see the documentation](/docs/services/key-protect/index.html#getting-started-with-key-protect).
 
 ### Getting started with SSE-KP
+{: #sse-kp-gs}
 
 All objects stored in {{site.data.keyword.cos_full}} are encrypted by default using multiple randomly generated keys and an all-or-nothing-transform. While this default encryption model provides at-rest security, some workloads need to be in possession of the encryption keys used. You can use [{{site.data.keyword.keymanagementservicelong_notm}}](/docs/services/keymgmt/keyprotect_about.html) to create, add, and manage keys, which you can then associate with your instance of {{site.data.keyword.cos_full}} to encrypt buckets.
 
 ### Before you begin
+{: #sse-kp-prereqs}
+
 You'll need:
   * an [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com/registration/?target=%2Fcatalog%2Finfrastructure%2Fcloud-object-storage)
   * an [instance of {{site.data.keyword.cos_full_notm}}](https://cloud.ibm.com/catalog/infrastructure/object-storage-group?env_id=ibm:yp:us-south){: new_window}
   * an [instance of {{site.data.keyword.keymanagementservicelong_notm}}](https://cloud.ibm.com/catalog/services/key-protect/?taxonomyNavigation=apps){: new_window}
   * and some files on your local computer to upload.
-{: #prereqs}
 
 ### Create or add a key in {{site.data.keyword.keymanagementserviceshort}}
+{: #sse-kp-add-key}
 
 Navigate to your instance of {{site.data.keyword.keymanagementserviceshort}} and [generate or enter a key](/docs/services/key-protect/index.html#getting-started-with-key-protect).
 
 ### Grant service authorization
-
+{: #sse-kp}
 Authorize {{site.data.keyword.keymanagementserviceshort}} for use with IBM COS:
 
 1. Open your {{site.data.keyword.cloud_notm}} dashboard.

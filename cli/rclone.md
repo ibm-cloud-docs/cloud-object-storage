@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "17-10-2018"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: data migration, object storage, cli, rclone
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -17,34 +21,39 @@ lastupdated: "17-10-2018"
 # Using `rclone`
 
 ## Install `rclone`
+{: #rclone-install}
 
-`rclone` is a Go program and comes as a single binary file.  It is useful for keeping directories synchronized and for migrating data between storage platforms.
+The `rclone` tool is useful for keeping directories synchronized and for migrating data between storage platforms. It's a Go program and comes as a single binary file.
 
 ### Quickstart Installation
-*  Download the relevant binary - https://rclone.org/downloads. 
+{: #rclone-quick}
+
+*  [Download](https://rclone.org/downloads) the relevant binary. 
 *  Extract the `rclone` or `rclone.exe` binary from the archive.
-*  Run `rclone config` to setup.
+*  Run `rclone config` to set up.
 
-### Script Installation
+### Installation by using a script
+{: #rclone-script}
 
-To install rclone on Linux/macOS/BSD systems, run:
+Install `rclone` on Linux/macOS/BSD systems:
 
 ```
 curl https://rclone.org/install.sh | sudo bash
 ```
 
-For beta installation, run:
+Beta versions are available as well:
 
 ```
 curl https://rclone.org/install.sh | sudo bash -s beta
 ```
 
-This script checks the version of rclone installed first and won’t re-download if not needed.
+The installation script checks the version of `rclone` installed first, and skips downloading if the current version is already up-to-date.
 {:note}
 
 ### Linux installation from precompiled binary
+{: #rclone-linux-binary}
 
-Fetch and unpack:
+First, fetch, and unpack the binary:
 
 ```
 curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip
@@ -52,7 +61,7 @@ unzip rclone-current-linux-amd64.zip
 cd rclone-*-linux-amd64
 ```
 
-Copy binary file:
+Next, copy the binary file to a sensible location:
 
 ```
 sudo cp rclone /usr/bin/
@@ -60,7 +69,7 @@ sudo chown root:root /usr/bin/rclone
 sudo chmod 755 /usr/bin/rclone
 ```
 
-Install manpage:
+Install the documentation:
 
 ```
 sudo mkdir -p /usr/local/share/man/man1
@@ -68,34 +77,35 @@ sudo cp rclone.1 /usr/local/share/man/man1/
 sudo mandb
 ```
 
-Run `rclone config` to setup:
+Run `rclone config` to set up:
 
 ```
 rclone config
 ```
 
 ### macOS installation from precompiled binary
+{: #rclone-osx-binary}
 
-Download the latest version of rclone:
+First, download the `rclone` package:
 
 ```
 cd && curl -O https://downloads.rclone.org/rclone-current-osx-amd64.zip
 ```
 
-Unzip the download and cd to the extracted folder:
+Then, extract the downloaded file and `cd` to the extracted folder:
 
 ```
 unzip -a rclone-current-osx-amd64.zip && cd rclone-*-osx-amd64
 ```
 
-Move rclone to your $PATH. You will be prompted for your password.
+Move `rclone` to your `$PATH` and enter your password when prompted:
 
 ```
 sudo mkdir -p /usr/local/bin
 sudo mv rclone /usr/local/bin/
 ```
 
-The `mkdir` command is safe to run, even if the directory already exists.
+The `mkdir` command is safe to run, even if the directory exists.
 {:tip}
 
 Remove the leftover files.
@@ -104,13 +114,14 @@ Remove the leftover files.
 cd .. && rm -rf rclone-*-osx-amd64 rclone-current-osx-amd64.zip
 ```
 
-Run `rclone config` to setup:
+Run `rclone config` to set up:
 
 ```
 rclone config
 ```
 
 ## Configure access to IBM COS
+{: #rclone-config}
 
   1. Run `rclone config` and select `n` for a new remote.
 
@@ -122,7 +133,7 @@ No remotes found - make a new one
 	n/s/q> n
 ```
 
-  2. Enter the name for the configuration
+  2. Enter the name for the configuration:
 ```
 name> <YOUR NAME>
 ```
@@ -165,7 +176,7 @@ Choose a number from below, or type in your own value
 	 Provider>5
 ```
 
-  5. Enter False to allow you to enter your credentials.
+  1. Enter **False** to enter your credentials.
 
 ```
 Get AWS credentials from the runtime (environment variables or EC2/ECS meta data if no env vars). 
@@ -188,11 +199,10 @@ AWS Secret Access Key (password) - leave blank for anonymous access or runtime c
 	secret_access_key> <>
 ```
 
-  7. Specify the endpoint for IBM COS. For Public IBM COS, choose from the option below. For On Premise IBM COS, enter an endpoint address.
+  1. Specify the endpoint for IBM COS. For Public IBM COS, choose from the provided options. 
 
 ```
 Endpoint for IBM COS S3 API.
-	Specify if using an IBM COS On Premise.
 	Choose a number from below, or type in your own value
 	 1 / US Cross Region Endpoint
 	   \ "s3-api.us-geo.objectstorage.softlayer.net"
@@ -210,7 +220,7 @@ Endpoint for IBM COS S3 API.
 	endpoint>1
 ```
 
-  8. Specify a IBM COS Location Constraint. The location constraint must match endpoint when using IBM Cloud Public. For on-prem COS, do not make a selection from this list, hit enter
+  1. Specify an IBM COS Location Constraint. The location constraint must match the endpoint. 
 
 ```
  1 / US Cross Region Standard
@@ -229,19 +239,13 @@ Endpoint for IBM COS S3 API.
 location_constraint>1
 ```
 
-  9. Specify a canned ACL. IBM Cloud (Storage) supports “public-read” and “private”. IBM Cloud(Infra) supports all the canned ACLs. On-Premise COS supports all the canned ACLs.
+  1. Specify an ACL. Only `public-read` and `private` are supported. 
 
 ```
 Canned ACL used when creating buckets and/or storing objects in S3.
 Choose a number from below, or type in your own value
-   1 / / Owner gets FULL_CONTROL. No one else has access rights (default). This acl is available on IBM Cloud (Infra), IBM Cloud (Storage), On-Premise COS
-	   \ "private"
-	 2 / Owner gets FULL_CONTROL. The AllUsers group gets READ access. This acl is available on IBM Cloud (Infra), IBM Cloud (Storage), On-Premise IBM COS
-	   \ "public-read"
-	 3 / Owner gets FULL_CONTROL. The AllUsers group gets READ and WRITE access. This acl is available on IBM Cloud (Infra), On-Premise IBM COS
-	   \ "public-read-write"
-	 4 / Owner gets FULL_CONTROL. The AuthenticatedUsers group gets READ access. Not supported on Buckets. This acl is available on IBM Cloud (Infra) and On-Premise IBM COS
-	   \ "authenticated-read"
+   1 "private"
+	 2 "public-read"
 acl>1
 ```
 
@@ -258,45 +262,53 @@ acl>1
 	acl = private
 ```
 
-## Commands
+## Command reference
+{: #rclone-reference}
 
-### Create a bucket.
+### Create a bucket
+{: #rclone-reference-create-bucket}
 
 ```
 rclone mkdir RemoteName:newbucket
 ```
 
-### List available buckets.
+### List available buckets
+{: #rclone-reference-list-buckets}
 
 ```
 rclone lsd RemoteName:
 ```
 
-### List contents of a bucket.
+### List contents of a bucket
+{: #rclone-reference-list-objects}
 
 ```
 rclone ls RemoteName:newbucket
 ```
 
-### Copy a file from local to remote.
+### Copy a file from local to remote
+{: #rclone-reference-copy-local}
 
 ```
 rclone copy /Users/file.txt RemoteName:newbucket
 ```
 
-### Copy a file from remote to local.
+### Copy a file from remote to local
+{: #rclone-reference-copy-remote}
 
 ```
 rclone copy RemoteName:newbucket/file.txt /Users/Documents/
 ```
 
-### Delete a file on remote.
+### Delete a file on remote
+{: #rclone-reference-delete-file}
 
 ```
 rclone delete RemoteName:newbucket/file.txt
 ```
 
-### List Commands.
+### List Commands
+{: #rclone-reference-listing}
 
 There are several related list commands
 * `ls` to list size and path of objects only
@@ -305,52 +317,49 @@ There are several related list commands
 * `lsf` to list objects and directories in easy to parse format
 * `lsjson` to list objects and directories in JSON format
 
-## `rclone` sync
+## `rclone sync`
+{: #rclone-sync}
 
-Make source and dest identical, modifying destination only.
-
-### Synopsis
-
-Sync the source to the destination, changing the destination only. Doesn’t transfer unchanged files, testing by size and modification time or MD5SUM. Destination is updated to match source, including deleting files if necessary.
+The `sync` operation makes the source and destination identical, and modifies the destination only. Syncing doesn’t transfer unchanged files, testing by size and modification time or MD5SUM. Destination is updated to match source, including deleting files if necessary.
 
 Since this can cause data loss, test first with the `--dry-run` flag to see exactly what would be copied and deleted.
 {:important}
 
 Note that files in the destination won’t be deleted if there were any errors at any point.
 
-It is always the contents of the directory that is synced, not the directory so when source:path is a directory, it’s the contents of source:path that are copied, not the directory name and contents. See extended explanation in the `copy` command above if unsure.
+The _contents_ of the directory are synced, not the directory itself. When `source:path` is a directory, it’s the contents of `source:path` that are copied, not the directory name and contents. For more information, see the extended explanation in the `copy` command.
 
-If dest:path doesn’t exist, it is created and the source:path contents go there.
+If `dest:path` doesn’t exist, it is created and the `source:path` contents go there.
 
 ```
 rclone sync source:path dest:path [flags]
 ```
 
-### Using rclone from multiple locations at the same time
+### Using `rclone` from multiple locations at the same time
+{: #rclone-sync-multiple}
 
-You can use rclone from multiple places at the same time if you choose different subdirectory for the output, eg
+You can use `rclone` from multiple places at the same time if you choose different subdirectory for the output:
 
 ```
 Server A> rclone sync /tmp/whatever remote:ServerA
 Server B> rclone sync /tmp/whatever remote:ServerB
 ```
 
-If you sync to the same directory then you should use rclone copy otherwise the two rclones may delete each others files, eg
+If you `sync` to the same directory then you should use `rclone copy`otherwise the two processes may delete each others files:
 
 ```
 Server A> rclone copy /tmp/whatever remote:Backup
 Server B> rclone copy /tmp/whatever remote:Backup
 ```
 
-### --backup-dir=DIR
+### `--backup-dir=DIR`
+{: #rclone-sync-backup}
 
 When using `sync`, `copy` or `move` any files which would have been overwritten or deleted are moved in their original hierarchy into this directory.
 
-If `--suffix` is set, then the moved files will have the suffix added to them. If there is a file with the same path (after the suffix has been added) in DIR, then it will be overwritten.
+If `--suffix` is set, then the moved files will have the suffix added to them. If there is a file with the same path (after the suffix has been added) in the directory it will be overwritten.
 
 The remote in use must support server side move or copy and you must use the same remote as the destination of the sync. The backup directory must not overlap the destination directory.
-
-For example
 
 ```
 rclone sync /path/to/local remote:current --backup-dir remote:old
@@ -361,14 +370,14 @@ will `sync` `/path/to/local` to `remote:current`, but for any files which would 
 If running `rclone` from a script you might want to use today’s date as the directory name passed to `--backup-dir` to store the old files, or you might want to pass `--suffix` with today’s date.
 
 ## `rclone` daily sync
+{: #rclone-sync-daily}
 
-Scheduling a backup is important to automating backups. Depending on your platform will depend on how you do this. Windows can use Task Scheduler while Mac OS and Linux can use crontabs.
+Scheduling a backup is important to automating backups. Depending on your platform will depend on how you do this. Windows can use Task Scheduler while MacOS and Linux can use crontabs.
 
 ### Syncing a Directory
+{: #rclone-sync-directory}
 
 `Rclone` will sync a local directory with the remote container, storing all the files in the local directory in the container. `Rclone` uses the syntax, `rclone sync source destination`, where `source` is the local folder and `destination` is the container within your IBM COS.
-
-For example
 
 ```
 rclone sync /path/to/my/backup/directory RemoteName:newbucket
@@ -377,10 +386,12 @@ rclone sync /path/to/my/backup/directory RemoteName:newbucket
 You may already have a destination created, but if you don't then you can create a new bucket using the steps above.
 
 ### Scheduling a Job
+{: #rclone-sync-schedule}
 
 Before scheduling a job, make sure you have done your initial upload and it has completed.
 
 #### Windows
+{: #rclone-sync-windows}
 
 1. Create a text file called `backup.bat` somewhere on your computer and paste in the command you used in the section [Syncing a Directory](#syncing-a-directory). It will look something like the following. Specify the full path to the rclone.exe and don’t forget to save the file.
 
@@ -401,6 +412,7 @@ schtasks /Create /RU username /RP "password" /SC DAILY /TN Backup /TR C:\path\to
 ```
 
 #### Mac and Linux
+{: #rclone-sync-nix}
 
 1. Create a text file called `backup.sh` somewhere on your computer, and paste the command you used in the section [Syncing a Directory](#syncing-a-directory). It will look something like the following. Specify the full path to the rclone executable and don’t forget to save the file.
 

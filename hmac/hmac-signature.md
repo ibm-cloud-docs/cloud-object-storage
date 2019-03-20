@@ -14,7 +14,7 @@ lastupdated: "2018-06-15"
 
 # Constructing an HMAC signature
 
-Each request made against IBM COS using [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html) instead of an [API key or bearer token](/docs/services/cloud-object-storage/iam/overview.html) must be authenticated using an implementation of the AWS Signature Version 4 `authorization` header. Using a signature provides identity verification and in-transit data integrity, and because each signature is tied to the timestamp of the request it is not possible to reuse authorization headers.  The header is composed of four components: an algorithm declaration, credential information, signed headers, and the calculated signature:
+Each request that is made against IBM COS using [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html) instead of an [API key or bearer token](/docs/services/cloud-object-storage/iam/overview.html) must be authenticated that uses an implementation of the AWS Signature Version 4 `authorization` header. Using a signature provides identity verification and in-transit data integrity, and because each signature is tied to the timestamp of the request it is not possible to reuse authorization headers.  The header is composed of four components: an algorithm declaration, credential information, signed headers, and the calculated signature:
 
 ```
 AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;{other-required-headers},Signature={signature}
@@ -23,6 +23,7 @@ AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedH
 The date is provided in `YYYYMMDD` format, and the region should be correspond to the location of specified bucket, for example `us`, . The `host` and `x-amz-date` headers are always required, and depending on the request other headers may be required as well (e.g. `x-amz-content-sha256` in the case of requests with payloads).  Due to the need to recalculate the signature for every individual request, many developers prefer to use a tool or SDK that will produce the authorization header automatically.
 
 ## Creating an `authorization` header
+{: #hmac-auth-header}
 
 First we need to create a request in a standardized format.
 
@@ -63,8 +64,10 @@ AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedH
 ```
 
 ## Generating an `authorization` header
+{: #hmac-auth-header-generate}
 
 ### Python Example
+{: #hmac-auth-header-generate-python}
 
 ```python
 import os
@@ -159,6 +162,7 @@ print request.text
 ```
 
 ### Java Example
+{: #hmac-auth-header-generate-java}
 
 ```java
 import java.io.BufferedReader;
@@ -178,7 +182,7 @@ import java.util.Formatter;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-public class CoSHMAC {
+public class CosHMAC {
     // please don't store credentials directly in code
     private static final String accessKey = System.getenv("COS_HMAC_ACCESS_KEY_ID");
     private static final String secretKey = System.getenv("COS_HMAC_SECRET_ACCESS_KEY");
@@ -341,6 +345,8 @@ public class CoSHMAC {
 ```
 
 ### NodeJS Example
+{: #hmac-auth-header-generate-node}
+
 ```javascript
 const crypto = require('crypto');
 const moment = require('moment');
