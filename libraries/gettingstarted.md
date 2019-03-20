@@ -40,7 +40,7 @@ You will need:
 
 ## Getting the SDK
 
-Specific instructions for downloading and installing the SDK is available in [Using Python.](/docs/services/cloud-object-storage/libraries/python.html#using-python){:new_window}{: python}[Using Node.js.](/docs/services/cloud-object-storage/libraries/node.html#installing-the-sdk){:new_window}{: javascript}
+Specific instructions for downloading and installing the SDK is available in [Using Python.](/docs/services/cloud-object-storage/libraries/python.html#using-python){:new_window}{: python}[Using Node.js.](/docs/services/cloud-object-storage/libraries/node.html#installing-the-sdk){:new_window}{: javascript}[Using Java.](/docs/services/cloud-object-storage/libraries/java.html#using-java){:new_window}{: java}[Using Java.](/docs/services/cloud-object-storage/libraries/java.html#using-go){:new_window}{: go}
 
 ## Code Example
 
@@ -560,9 +560,411 @@ main();
 {: codeblock}
 {: javascript}
 
+```java
+// Required libraries
+import com.ibm.cloud.objectstorage.ClientConfiguration;
+import com.ibm.cloud.objectstorage.SDKGlobalConfiguration;
+import com.ibm.cloud.objectstorage.SdkClientException;
+import com.ibm.cloud.objectstorage.auth.AWSCredentials;
+import com.ibm.cloud.objectstorage.auth.AWSStaticCredentialsProvider;
+import com.ibm.cloud.objectstorage.client.builder.AwsClientBuilder;
+import com.ibm.cloud.objectstorage.oauth.BasicIBMOAuthCredentials;
+import com.ibm.cloud.objectstorage.services.s3.AmazonS3;
+import com.ibm.cloud.objectstorage.services.s3.AmazonS3ClientBuilder;
+import com.ibm.cloud.objectstorage.services.s3.model.*;
+import com.ibm.cloud.objectstorage.services.s3.transfer.TransferManager;
+import com.ibm.cloud.objectstorage.services.s3.transfer.TransferManagerBuilder;
+import com.ibm.cloud.objectstorage.services.s3.transfer.Upload;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
+import java.sql.Timestamp;
+import java.util.List;
+import java.util.UUID;
+
+public class JavaExampleCode {
+    private static AmazonS3 _cosClient;
+    private static String api_key;
+    private static String service_instance_id;
+    private static String endpoint_url;
+    private static String location;
+
+    public static void main(String[] args) throws IOException
+    {
+        // Creating a random UUID (Universally unique identifier).
+        UUID uuid = UUID.randomUUID();
+
+        // Constants for IBM COS values
+        SDKGlobalConfiguration.IAM_ENDPOINT = "https://iam.cloud.ibm.com/oidc/token";
+        api_key = "<api-key>"; // example: xxxd12V2QHXbjaM99G9tWyYDgF_0gYdlQ8aWALIQxXx4
+        service_instance_id = "<resource-instance-id>"; // example: crn:v1:bluemix:public:cloud-object-storage:global:a/xx999cd94a0dda86fd8eff3191349999:9999b05b-x999-4917-xxxx-9d5b326a1111::
+        endpoint_url = "<endpoint>"; // example: https://s3.us-south.cloud-object-storage.appdomain.cloud
+        location = "<storage-class>"; // example: us-south-standard
+
+        // Create client connection details
+        _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
+
+        // Setting string values
+        String bucketName = "java.bucket" + UUID.randomUUID().toString().replace("-","");
+        String itemName = UUID.randomUUID().toString().replace("-","") + "_java_file.txt";
+        String fileText = "This is a test file from the Java code sample!!!";
+
+        // create a new bucket
+        createBucket(bucketName, _cosClient);
+
+        // get the list of buckets
+        listBuckets(_cosClient);
+
+        // create a new text file & upload
+        createTextFile(bucketName, itemName, fileText);
+
+        // get the list of files from the new bucket
+        listObjects(bucketName, _cosClient);
+
+        // remove new file
+        deleteItem(bucketName, itemName);
+
+        // create & upload the large file using transfer manager & remove large file
+        createLargeFile(bucketName);
+
+        // remove the new bucket
+        deleteBucket(bucketName);
+    }
+
+    private static void createLargeFile(String bucketName)  throws IOException {
+        String fileName = "Sample"; //Setting the File Name
+
+        try {
+            File uploadFile = File.createTempFile(fileName,".tmp");
+            uploadFile.deleteOnExit();
+            fileName = uploadFile.getName();
+
+            largeObjectUpload(bucketName, uploadFile);
+        } catch (InterruptedException e) {
+            System.out.println("object upload timed out");
+        }
+
+        deleteItem(bucketName, fileName); // remove new large file
+    }
+
+    // Create client connection
+    public static AmazonS3 createClient(String api_key, String service_instance_id, String endpoint_url, String location)
+    {
+        AWSCredentials credentials;
+        credentials = new BasicIBMOAuthCredentials(api_key, service_instance_id);
+
+        ClientConfiguration clientConfig = new ClientConfiguration().withRequestTimeout(5000);
+        clientConfig.setUseTcpKeepAlive(true);
+
+        AmazonS3 cosClient = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(endpoint_url, location)).withPathStyleAccessEnabled(true)
+                .withClientConfiguration(clientConfig).build();
+        return cosClient;
+    }
+
+    // Create a new bucket
+    public static void createBucket(String bucketName, AmazonS3 cosClient)
+    {
+        cosClient.createBucket(bucketName);
+        System.out.printf("Bucket: %s created!\n", bucketName);
+    }
+
+    // Retrieve the list of available buckets
+    public static void listBuckets(AmazonS3 cosClient)
+    {
+        System.out.println("Listing buckets:");
+        final List<Bucket> bucketList = _cosClient.listBuckets();
+        for (final Bucket bucket : bucketList) {
+            System.out.println(bucket.getName());
+        }
+        System.out.println();
+    }
+
+    // Retrieve the list of contents for a bucket
+    public static void listObjects(String bucketName, AmazonS3 cosClient)
+    {
+        System.out.println("Listing objects in bucket " + bucketName);
+        ObjectListing objectListing = cosClient.listObjects(new ListObjectsRequest().withBucketName(bucketName));
+        for (S3ObjectSummary objectSummary : objectListing.getObjectSummaries()) {
+            System.out.println(" - " + objectSummary.getKey() + "  " + "(size = " + objectSummary.getSize() + ")");
+        }
+        System.out.println();
+    }
+
+    // Create file and upload to new bucket
+    public static void createTextFile(String bucketName, String itemName, String fileText) {
+        System.out.printf("Creating new item: %s\n", itemName);
+
+        InputStream newStream = new ByteArrayInputStream(fileText.getBytes(Charset.forName("UTF-8")));
+
+        ObjectMetadata metadata = new ObjectMetadata();
+        metadata.setContentLength(fileText.length());
+
+        PutObjectRequest req = new PutObjectRequest(bucketName, itemName, newStream, metadata);
+        _cosClient.putObject(req);
+
+        System.out.printf("Item: %s created!\n", itemName);
+    }
+
+    // Delete item
+    public static void deleteItem(String bucketName, String itemName) {
+        System.out.printf("Deleting item: %s\n", itemName);
+        _cosClient.deleteObject(bucketName, itemName);
+        System.out.printf("Item: %s deleted!\n", itemName);
+    }
+
+    // Delete bucket
+    public static void deleteBucket(String bucketName) {
+        System.out.printf("Deleting bucket: %s\n", bucketName);
+        _cosClient.deleteBucket(bucketName);
+        System.out.printf("Bucket: %s deleted!\n", bucketName);
+    }
+
+    //  Upload large file to new bucket
+    public static void largeObjectUpload(String bucketName, File uploadFile) throws IOException, InterruptedException {
+
+        if (!uploadFile.isFile()) {
+            System.out.printf("The file does not exist or is not accessible.\n");
+            return;
+        }
+
+        System.out.println("Starting large file upload with TransferManager");
+
+        //set the part size to 5 MB
+        long partSize = 1024 * 1024 * 20;
+
+        //set the threshold size to 5 MB
+        long thresholdSize = 1024 * 1024 * 20;
+
+        AmazonS3 s3client = createClient( api_key, service_instance_id, endpoint_url, location);
+
+        TransferManager transferManager = TransferManagerBuilder.standard()
+                .withS3Client(s3client)
+                .withMinimumUploadPartSize(partSize)
+                .withMultipartCopyThreshold(thresholdSize)
+                .build();
+
+        try {
+            Upload lrgUpload = transferManager.upload(bucketName, uploadFile.getName(), uploadFile);
+            lrgUpload.waitForCompletion();
+            System.out.println("Large file upload complete!");
+        } catch (SdkClientException e) {
+            System.out.printf("Upload error: %s\n", e.getMessage());
+        } finally {
+            transferManager.shutdownNow();
+        }
+    }
+}
+
+```
+{: codeblock}
+{: java}
+
+``` Go
+package main
+import (
+	"bytes"
+	"fmt"
+	"github.com/IBM/ibm-cos-sdk-go/aws"
+	"github.com/IBM/ibm-cos-sdk-go/aws/credentials/ibmiam"
+	"github.com/IBM/ibm-cos-sdk-go/aws/session"
+	"github.com/IBM/ibm-cos-sdk-go/service/s3"
+	"io"
+	"math/rand"
+	"os"
+	"time"
+)
+
+// Constants for IBM COS values
+const (
+	apiKey            = "<api-key>" // example: xxxd12V2QHXbjaM99G9tWyYDgF_0gYdlQ8aWALIQxXx4
+	serviceInstanceID = "<resource-instance-id>" // example: crn:v1:bluemix:public:cloud-object-storage:global:a/xx999cd94a0dda86fd8eff3191349999:9999b05b-x999-4917-xxxx-9d5b326a1111::
+	authEndpoint      = "https://iam.bluemix.net/oidc/token"
+	serviceEndpoint   = "<endpoint>" // example: https://s3.us-south.cloud-object-storage.appdomain.cloud
+)
+
+// UUID
+func random(min int, max int) int {
+	return rand.Intn(max-min) + min
+}
+
+func main() {
+
+	// UUID
+	rand.Seed(time.Now().UnixNano())
+	UUID := random(10, 2000)
+
+	// Variables
+	newBucket := fmt.Sprintf("%s%d", "go.bucket", UUID) // New bucket name
+	objectKey := fmt.Sprintf("%s%d%s", "go_file_", UUID, ".txt") // Object Key
+	content := bytes.NewReader([]byte("This is a test file from Go code sample!!!"))
+	downloadObjectKey := fmt.Sprintf("%s%d%s", "downloaded_go_file_", UUID, ".txt") // Downloaded Object Key
+
+	//Setting up a new configuration
+	conf := aws.NewConfig().
+		WithRegion("<storage-class>"). // Enter your storage class (LocationConstraint) - example: us-standard
+		WithEndpoint(serviceEndpoint).
+		WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(), authEndpoint, apiKey, serviceInstanceID)).
+		WithS3ForcePathStyle(true)
+
+	// Create client connection
+	sess := session.Must(session.NewSession()) // Creating a new session
+	client := s3.New(sess, conf)               // Creating a new client
+
+	// Create new bucket
+	_, err := client.CreateBucket(&s3.CreateBucketInput{
+		Bucket: aws.String(newBucket), // New Bucket Name
+	})
+	if err != nil {
+		exitErrorf("Unable to create bucket %q, %v", newBucket, err)
+	}
+
+	// Wait until bucket is created before finishing
+	fmt.Printf("Waiting for bucket %q to be created...\n", newBucket)
+
+	err = client.WaitUntilBucketExists(&s3.HeadBucketInput{
+		Bucket: aws.String(newBucket),
+	})
+	if err != nil {
+		exitErrorf("Error occurred while waiting for bucket to be created, %v", newBucket)
+	}
+
+	fmt.Printf("Bucket %q successfully created\n", newBucket)
+
+	// Retrieve the list of available buckets
+	bklist, err := client.ListBuckets(nil)
+	if err != nil {
+		exitErrorf("Unable to list buckets, %v", err)
+	}
+
+	fmt.Println("Buckets:")
+
+	for _, b := range bklist.Buckets {
+		fmt.Printf("* %s created on %s\n",
+			aws.StringValue(b.Name), aws.TimeValue(b.CreationDate))
+	}
+
+	// Uploading an object
+	input3 := s3.CreateMultipartUploadInput{
+		Bucket: aws.String(newBucket), // Bucket Name
+		Key:    aws.String(objectKey), // Object Key
+	}
+
+	upload, _ := client.CreateMultipartUpload(&input3)
+
+	uploadPartInput := s3.UploadPartInput{
+		Bucket:     aws.String(newBucket), // Bucket Name
+		Key:        aws.String(objectKey), // Object Key
+		PartNumber: aws.Int64(int64(1)),
+		UploadId:   upload.UploadId,
+		Body:       content,
+	}
+
+	var completedParts []*s3.CompletedPart
+	completedPart, _ := client.UploadPart(&uploadPartInput)
+
+	completedParts = append(completedParts, &s3.CompletedPart{
+		ETag:       completedPart.ETag,
+		PartNumber: aws.Int64(int64(1)),
+	})
+
+	completeMPUInput := s3.CompleteMultipartUploadInput{
+		Bucket: aws.String(newBucket), // Bucket Name
+		Key:    aws.String(objectKey), // Object Key
+		MultipartUpload: &s3.CompletedMultipartUpload{
+			Parts: completedParts,
+		},
+		UploadId: upload.UploadId,
+	}
+
+	d, _ := client.CompleteMultipartUpload(&completeMPUInput)
+	fmt.Println(d)
+
+	// List objects within a bucket
+	resp, err := client.ListObjects(&s3.ListObjectsInput{Bucket: aws.String(newBucket)})
+	if err != nil {
+		exitErrorf("Unable to list items in bucket %q, %v", newBucket, err)
+	}
+	for _, item := range resp.Contents {
+		fmt.Println("Name:         ", *item.Key)          // Print the object's name
+		fmt.Println("Last modified:", *item.LastModified) // Print the last modified date of the object
+		fmt.Println("Size:         ", *item.Size)         // Print the size of the object
+		fmt.Println("")
+	}
+
+	fmt.Println("Found", len(resp.Contents), "items in bucket", newBucket)
+
+
+	// Download an object
+	input4 := s3.GetObjectInput{
+		Bucket: aws.String(newBucket), // The bucket where the object is located
+		Key:    aws.String(objectKey), // Object you want to download
+	}
+
+	res, err := client.GetObject(&input4)
+	if err != nil {
+		exitErrorf("Unable to download object %q from bucket %q, %v", objectKey, newBucket, err)
+	}
+
+	f, _ := os.Create(downloadObjectKey)
+	defer f.Close()
+	io.Copy(f, res.Body)
+
+	fmt.Println("Downloaded", f.Name())
+
+
+	// Delete object within the new bucket
+	_, err = client.DeleteObject(&s3.DeleteObjectInput{Bucket: aws.String(newBucket), Key: aws.String(objectKey)})
+	if err != nil {
+		exitErrorf("Unable to delete object %q from bucket %q, %v", objectKey, newBucket, err)
+	}
+
+	err = client.WaitUntilObjectNotExists(&s3.HeadObjectInput{
+		Bucket: aws.String(newBucket),
+		Key:    aws.String(objectKey),
+	})
+	if err != nil {
+		exitErrorf("Error occurred while waiting for object %q to be deleted, %v", objectKey)
+	}
+
+	fmt.Printf("Object %q successfully deleted\n", objectKey)
+
+	// Delete the new bucket
+	// It must be empty or else the call fails
+	_, err = client.DeleteBucket(&s3.DeleteBucketInput{
+		Bucket: aws.String(newBucket),
+	})
+	if err != nil {
+		exitErrorf("Unable to delete bucket %q, %v", newBucket, err)
+	}
+
+	// Wait until bucket is deleted before finishing
+	fmt.Printf("Waiting for bucket %q to be deleted...\n", newBucket)
+
+	err = client.WaitUntilBucketNotExists(&s3.HeadBucketInput{
+		Bucket: aws.String(newBucket),
+	})
+	if err != nil {
+		exitErrorf("Error occurred while waiting for bucket to be deleted, %v", newBucket)
+	}
+
+	fmt.Printf("Bucket %q successfully deleted\n", newBucket)
+}
+
+
+func exitErrorf(msg string, args ...interface{}) {
+	fmt.Fprintf(os.Stderr, msg+"\n", args...)
+	os.Exit(1)
+```
+{: codeblock}
+{: Go}
+
 ## Running the Code Example
 
-To run the code sample, either copy the code blocks above or [download the Python example](/docs/services/cloud-object-storage/libraries/examples/python-example.py){: python}[download the Node.js example](/docs/services/cloud-object-storage/libraries/examples/node-example.js){: javascript} and run the following:
+To run the code sample, either copy the code blocks above or [download the Python example](/docs/services/cloud-object-storage/libraries/examples/python-example.py){: python}[download the Node.js example](/docs/services/cloud-object-storage/libraries/examples/node-example.js){: javascript}[download the Java example](/docs/services/cloud-object-storage/libraries/examples/JavaExampleCode.java){: java}[download the Go example](/docs/services/cloud-object-storage/libraries/examples/go_example.go){: go} and run the following:
 ```
 python python-example.py
 ```
@@ -574,6 +976,18 @@ node node-example.js
 ```
 {: codeblock}
 {: javascript}
+
+```
+java javaexamplecode
+```
+{: codeblock}
+{: java}
+
+```
+go run go_example.go
+```
+{: codeblock}
+{: Go}
 
 ## Output from the Code Example
 
@@ -669,5 +1083,62 @@ DONE!
 ```
 {: codeblock}
 {: javascript}
+
+```
+Bucket: java.bucket71bd68d087b948f5a1f1cbdd86e4fda2 created!
+DONE!
+
+Listing buckets:
+java.bucket71bd68d087b948f5a1f1cbdd86e4fda2
+
+Creating new item: 4e69e627be7e4e10bf8d39e3fa10058f_java_file.txt
+Item: 4e69e627be7e4e10bf8d39e3fa10058f_java_file.txt created!
+
+Listing objects in bucket java.bucket71bd68d087b948f5a1f1cbdd86e4fda2
+ - 4e69e627be7e4e10bf8d39e3fa10058f_java_file.txt  (size = 48)
+
+Deleting item: 4e69e627be7e4e10bf8d39e3fa10058f_java_file.txt
+Item: 4e69e627be7e4e10bf8d39e3fa10058f_java_file.txt deleted!
+
+Starting large file upload with TransferManager
+Large file upload complete!
+Deleting item: Sample5438677733541671254.tmp
+Item: Sample5438677733541671254.tmp deleted!
+
+Deleting bucket: java.bucket71bd68d087b948f5a1f1cbdd86e4fda2
+Bucket: java.bucket71bd68d087b948f5a1f1cbdd86e4fda2 deleted!
+```
+{: codeblock}
+{: java}
+
+```
+Waiting for bucket "go.bucket645" to be created...
+Bucket "go.bucket645" successfully created
+
+Listing buckets:
+* go.bucket645 created on 2019-03-10 13:25:12.072 +0000 UTC
+
+{
+  Bucket: "go.bucket645",
+  ETag: "\"686d1d07d6de02e920532342fcbd6d2a-1\"",
+  Key: "go_file_645.txt",
+  Location: "http://s3-api.us-geo.objectstorage.softlayer.net/go.bucket645/go_file_645.txt"
+}
+
+Name:          go_file_645.txt
+Last modified: 2019-03-10 13:25:14 +0000 UTC
+Size:          42
+
+Found 1 items in bucket go.bucket645
+
+Downloaded downloaded_go_file_645.txt
+
+Object "go_file_645.txt" successfully deleted
+
+Waiting for bucket "go.bucket645" to be deleted...
+Bucket "go.bucket645" successfully deleted
+```
+{: codeblock}
+{: go}
 
 <br/>
