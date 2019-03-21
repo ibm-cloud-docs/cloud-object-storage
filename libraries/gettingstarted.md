@@ -6,7 +6,7 @@ lastupdated: "2019-03-05"
 
 ---
 
-# Getting Started with the SDK
+# Getting Started with the SDKs
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -51,9 +51,9 @@ To complete the code example you will need to replace the following values:
 |Value|Description|Example|
 |---|---|---|
 |`<endpoint>`|Regional endpoint for your COS instance|`s3.us-south.cloud-object-storage.appdomain.cloud`|
-|`<api-key>`|IAM API Key with Writer permissions|`xxxd12V2QHXbjaM99G9tWyYDgF_0gYdlQ8aWALIQxXx4`|
-|`<resource-instance-id>`|Instance ID for your COS instance|`crn:v1:bluemix:public:cloud-object-storage:global:a/xx999cd94a0dda86fd8eff3191349999:9999b05b-x999-4917-xxxx-9d5b326a1111::`|
-|`<storage-class>`|Regional storage class (should match your regional endpoint)|`us-south-standard`|
+|`<api-key>`|IAM API Key with at least `Writer` permissions|`xxxd12V2QHXbjaM99G9tWyYDgF_0gYdlQ8aWALIQxXx4`|
+|`<resource-instance-id>`|Unique ID for the Service Instance|`crn:v1:bluemix:public:cloud-object-storage:global:a/xx999cd94a0dda86fd8eff3191349999:9999b05b-x999-4917-xxxx-9d5b326a1111::`|
+|`<storage-class>`|Storage class for a new bucket|`us-south-standard`|
 
 ```python
 import os

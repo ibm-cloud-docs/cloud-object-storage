@@ -18,7 +18,7 @@ Here's a basic `Postman` setup for the {{site.data.keyword.cos_full}} REST API. 
 
 Using `Postman` assumes a certain amount of familiarity with object storage and the necessary information from a [service credential](/docs/services/cloud-object-storage/iam/service-credentials.html) or the [console](/docs/services/cloud-object-storage/getting-started.html).  If any terms or variables are unfamiliar they can be found in the [glossary](/docs/services/cloud-object-storage/basics/glossary.html).
 
-**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
+Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
 {:tip}
 
 ## REST API client overview
