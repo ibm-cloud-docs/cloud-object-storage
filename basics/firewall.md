@@ -15,6 +15,8 @@ subcollection: cloud-object-storage
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
 
 # Setting a firewall
 {: #setting-a-firewall}
@@ -27,8 +29,10 @@ There are some rules around setting a firewall:
 * A user that sets or views a firewall must have the `Manager` role on the bucket. 
 * A user with the `Manager` role on the bucket will be able to view and edit the list of authorized IP addresses from any IP address to prevent accidental lockouts.
 * The {{site.data.keyword.cos_short}} Console can still be used to interact with the bucket, provided the user's IP address is authorized.
-* Other cloud services **are not authorized** to bypass the firewall.  This means that other services that rely on IAM policies to access a bucket (such as Key Protect, SQL Query, or Aspera) will be unable to do so.
+* Other {{site.data.keyword.cloud_notm}} services **are not authorized** to bypass the firewall.  This means that other services that rely on IAM policies for bucket access (such as Key Protect, Aspera, SQL Query, Security Advisor, Watson Studio, Cloud Functions, and others) will be unable to do so. 
 
+When a firewall is set, the bucket is isolated from the rest of {{site.data.keyword.cloud_notm}}. Consider how this may impact applications and workflows that depend on other services directly accessing a bucket before enabling the firewall.
+{: important}
 
 ## Using the console to set a firewall
 {: #firewall-console}
@@ -57,7 +61,7 @@ First, make sure that you have a bucket. If not, follow the [getting started tut
 4. Now all objects in this bucket are only accessible from these IP addesses!
 
 If there are no authorized IP addresses listed this means that normal IAM policies will apply to the bucket, with no restrictions on the user's IP address.  
-{: tip}
+{: note}
 
 
 ## Set a firewall through an API
