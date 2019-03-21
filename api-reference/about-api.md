@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2018-06-11"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: rest, s3, compatibility, api, error
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -10,7 +14,13 @@ lastupdated: "2018-06-11"
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:screen: .screen}
+{:tsSymptoms: .tsSymptoms}
+{:tsCauses: .tsCauses}
+{:tsResolve: .tsResolve}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
 
 # About the {{site.data.keyword.cos_full_notm}} S3 API
 {: #compatibility-api-about}

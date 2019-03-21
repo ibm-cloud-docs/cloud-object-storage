@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-03-21"
 
 keywords: ip address, firewall, configuration, api
 
@@ -14,9 +14,13 @@ subcollection: cloud-object-storage
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:screen: .screen}
+{:tsSymptoms: .tsSymptoms}
+{:tsCauses: .tsCauses}
+{:tsResolve: .tsResolve}
 {:tip: .tip}
 {:important: .important}
 {:note: .note}
+{:download: .download} 
 
 # Setting a firewall
 {: #setting-a-firewall}
