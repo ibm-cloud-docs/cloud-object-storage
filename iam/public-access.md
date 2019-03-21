@@ -30,7 +30,7 @@ First, make sure that you have a bucket. If not, follow the [getting started tut
 {: #public-access-console-enable}
 
 1. From the {{site.data.keyword.cloud_notm}} [console dashboard](https://cloud.ibm.com/), select **Storage** to view your resource list.
-2. Next, select the service instance with your bucket from within the **Storage** menu.
+2. Next, select the service instance with your bucket from within the **Storage** menu. This takes you to the {site.data.keyword.cos_short}} Console.
 3. Choose the bucket that you want to be publicly accessible. Keep in mind this policy makes _all objects in a bucket_ available to download for anyone with the appropriate URL.
 4. Select **Access policies** from the navigation menu.
 5. Select the **Public access** tab.

@@ -13,8 +13,7 @@ lastupdated: "2018-10-05"
 {:tip: .tip}
 
 # Transfer files using Cyberduck
-
-## Cyberduck
+{: #cyberduck}
 
 Cyberduck is a popular, open-source, and easy to use cloud object storage browser for Mac and Windows.  Cyberduck is capable of calculating the correct authorization signatures needed to connect to IBM COS.  Cyberduck can be downloaded from [cyberduck.io/](https://cyberduck.io/){:new_window}.
 
@@ -50,6 +49,7 @@ To use Cyberduck to create a connection to IBM COS and synchronize a folder of l
  8. Another window opens to show active and historical transfer requests. After the synchronization request is complete, the main window will perform a list operation on the bucket to reflect updated content in the bucket.
 
 ## Mountain Duck
+{: #mountain-duck}
 
 Mountain Duck builds upon Cyberduck to allow you to mount cloud object storage as a disk in Finder on Mac or Explorer on Windows.  Trial versions are available but a registration key is required for continued use.
 
@@ -67,6 +67,7 @@ Creating a bookmark in Mountain Duck is very similar to creating connections in 
 Your buckets will now be available in Finder or Explorer.  You may interact with {{site.data.keyword.cos_short}} like any other mounted file system.
 
 ## CLI
+{: #cyberduck-cli}
 
 Cyberduck also provides `duck`, a command-line interface (CLI) that runs in shell on Linux, Mac OS X, and Windows.  Installation instructions are available on the `duck` [wiki page](https://trac.cyberduck.io/wiki/help/en/howto/cli#Installation){:new_window}.
 
