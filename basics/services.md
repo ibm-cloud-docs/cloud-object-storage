@@ -243,6 +243,9 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>United Kingdom</td>
   <tr>
   <tr>
+    </td>
+  </tr>
+  <tr>
     <td rowspan="2">San Jose, USA</td>
     <td>No</td>
     <td>No</td>
