@@ -281,6 +281,22 @@ If a networking failure results in a partition where the data center is unable t
       </td>
     </tr>
     <tr>
+      <td>Milan, Italy</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.mil01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.mil01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
       <td>Montréal, Canada</td>
       <td>
         <p>Public</p>
