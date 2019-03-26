@@ -16,6 +16,8 @@ lastupdated: "07-16-2018"
 
 ## Q1 2019
 
+### March 2019
+IAM policies can now grant [public access](/docs/services/cloud-object-storage/iam/public-access.html) to entire buckets.
 
 ### February 2019
 Buckets can now be created in a Single Data Center configuration in San Jose, USA. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html).
