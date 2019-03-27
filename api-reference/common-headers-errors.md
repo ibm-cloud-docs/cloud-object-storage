@@ -13,8 +13,11 @@ lastupdated: "2017-08-27"
 {:tip: .tip}
 
 # Common Headers & Error Codes
+{: #compatibility-common}
 
 ## Common Request Headers
+{: #compatibility-request-headers}
+
 The following table describes supported common request headers. {{site.data.keyword.cos_full}} ignores any common headers not listed below if sent in a request, although some requests may support other headers as defined in this documentation.
 
 | Header                  | Note                                                                                                                               |
@@ -27,9 +30,13 @@ The following table describes supported common request headers. {{site.data.keyw
 | Cache-Control | Can be used to specify caching behavior along the request/reply chain. For more information, go to http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9 |
 
 ### Custom metadata
+{: #compatibility-headers-metadata}
+
 A benefit of using object storage is the ability to add custom metadata by sending key-value pairs as headers.  These headers take the form of `x-amz-meta-{KEY}`.  Note that unlike AWS S3, IBM COS will combine multiple headers with the same metadata key into a comma-seperated list of values.
 
 ## Common Response Headers
+{: #compatibility-response-headers}
+
 The following table describes common response headers.
 
 | Header           | Note                                                |
@@ -42,6 +49,7 @@ The following table describes common response headers.
 | X-Clv-Request-Id | Unique identifier generated per request.            |
 
 ### Lifecycle Response Headers
+{: #compatibility-lifecycle-headers}
 
 The following table describes response headers for archived objects
 
@@ -54,6 +62,7 @@ The following table describes response headers for archived objects
 |x-ibm-restored-copy-storage-class|Included if an object is in the `RestoreInProgress` or `Restored` states and returns the storage class of the bucket.|
 
 ## Error Codes
+{: #compatibility-errors}
 
 | Error Code                          | Description                                                                                                                                                             | HTTP Status Code                    |
 |-------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
