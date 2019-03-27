@@ -36,6 +36,7 @@ Cloud Object Storage
         iam/service-credentials.md
         iam/buckets.md
         iam/public-access.md
+        basics/firewall.md
 
     {: .topicgroup}
     Use Access/Secret Key (HMAC) authentication
