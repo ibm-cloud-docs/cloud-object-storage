@@ -51,7 +51,7 @@ Archive is available in certain regions only. See [Integrated Services](/docs/se
 
 In order to access an archived object, you must restore it to the original storage tier. When restoring an object, you can specify the number of days you want the object to be available. At the end of the specified period, the restored copy is deleted. 
 
-The restoration process can take up to 15 hours.
+The restoration process can take up to 12 hours.
 {:tip}
 
 The archived object sub-states are:
