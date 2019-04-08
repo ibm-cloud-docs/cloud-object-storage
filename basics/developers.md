@@ -13,10 +13,12 @@ lastupdated: "2017-09-27"
 {:tip: .tip}
 
 # For developers
-
+{: #gs-dev}
 First, ensure you have the [{{site.data.keyword.cloud}} Platform CLI](https://cloud.ibm.com/docs/cli/index.html) and [IBM Developer Tools](https://cloud.ibm.com/docs/cloudnative/idt/index.html) installed.
 
 ## Provision an instance of {{site.data.keyword.cos_full_notm}}
+{: #gs-dev-provision}
+
   1. First, make sure you have an API key.  Get this from [IBM Cloud Identity and Access Management](https://cloud.ibm.com/iam#/apikeys).
   2. Login to {{site.data.keyword.cloud_notm}} Platform using the CLI.  It's also possible to store the API key in a file or set it as an environment variable.
 
@@ -38,15 +40,16 @@ Learn more about using the the {{site.data.keyword.cloud_notm}} CLI to create ap
 
 
 ## Using the API
+{: #gs-dev-api}
 
-The [IBM Cloud command line interface](docs/services/cloud-object-storage/cloud-object-storage-cli.html) has a [plugin](https://cloud.ibm.com/docs/cli/index.html) for managing data stored in {{site.data.keyword.cos_short}}, although S3 API compatible tools like the [AWS CLI](/docs/services/cloud-object-storage/cli/aws-cli.html) will also work using [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html) for compatibility.  As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage.  More information can be found in [the `curl` reference](/docs/services/cloud-object-storage/cli/curl.html), as well as [the API reference documentation](/docs/services/cloud-object-storage/api-reference/about-api.html).
+For managing data stored in {{site.data.keyword.cos_short}}, you can use S3 API compatible tools like the [AWS CLI](/docs/services/cloud-object-storage/cli/aws-cli.html)with [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html) for compatibility.  As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage.  More information can be found in [the `curl` reference](/docs/services/cloud-object-storage/cli/curl.html), as well as [the API reference documentation](/docs/services/cloud-object-storage/api-reference/about-api.html).
 
 ## Using libraries and SDKs
-
+{: #gs-dev-sdk}
 There are IBM COS SDKs available for [Python](/docs/services/cloud-object-storage/libraries/python.html), [Java](/docs/services/cloud-object-storage/libraries/java.html), and [Node.js](/docs/services/cloud-object-storage/libraries/node.html). These are forked versions of the AWS S3 SDKs that have been modified to support [IAM token-based authentication](/docs/services/cloud-object-storage/iam/overview.html), as well as support for [Key Protect](/docs/services/cloud-object-storage/basics/encryption.html). 
 
 ## Building applications on IBM Cloud
-
+{: #gs-dev-apps}
 {{site.data.keyword.cloud}} provides flexibility to developers in choosing the right architectural and deployment options for a given application.  Run your code on [bare metal](https://cloud.ibm.com/catalog/infrastructure/bare-metal), in [virtual machines](https://cloud.ibm.com/catalog/infrastructure/virtual-server-group), using a [serverless framework](https://cloud.ibm.com/openwhisk), in [containers](https://cloud.ibm.com/containers-kubernetes/catalog/cluster), or using [Cloud Foundry](https://cloud.ibm.com/catalog/starters/sdk-for-nodejs).  
 
 The [Cloud Native Computing Foundation](https://www.cncf.io) incubated and recently "graduated" the [Kubernetes](https://kubernetes.io) container orchestration framework, and it forms the foundation for the {{site.data.keyword.cloud}} Kubernetes Service.  Developers who wish to use object storage for persistent storage in their Kubernetes applications can learn more at the following links:

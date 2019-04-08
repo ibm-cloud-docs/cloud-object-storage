@@ -13,6 +13,7 @@ lastupdated: "2018-06-11"
 {:tip: .tip}
 
 # Using `Postman`
+{: #postman}
 
 Here's a basic `Postman` setup for the {{site.data.keyword.cos_full}} REST API. Additional detail can be found in the API reference for [buckets](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html) or [objects](/docs/services/cloud-object-storage/api-reference/api-reference-objects.html).
 
@@ -22,6 +23,7 @@ Personally Identifiable Information (PII): When creating buckets and/or adding o
 {:tip}
 
 ## REST API client overview
+{: #postman-rest}
 
 REST (REpresentational State Transfer) is an architectural style that provides a standard for computer systems to
 interact with each other over the web, typically using standard HTTP URLs and verbs (GET, PUT, POST, etc.) which are supported by all major development languages and platforms. However, interacting with a REST API is not as simple as using a standard internet browser. Simple browsers do not allow any manipulation of the URL request.  This is where a REST API client comes in.
@@ -29,15 +31,16 @@ interact with each other over the web, typically using standard HTTP URLs and ve
 A REST API client provides a simple GUI-based application to interface with an existing REST API library. A good client makes it easy to test, develop, and document APIs by allowing users to quickly put together both simple and complex HTTP requests. Postman is an excellent REST API client that provides a complete API development environment that include built-in tools for design and mock, debug, test, documentation, monitor, and publish APIs. It also provides helpful features such as Collections and Workspaces that make collaboration a cinch. 
 
 ## Prerequisites
+{: #postman-prereqs}
 * IBM Cloud account
 * [Cloud Storage resource created](https://cloud.ibm.com/catalog/) (lite/free plan works fine)
-* [IBM Cloud CLI installed and configured]( https://cloud.ibm.com/docs/services/cloud-object-storage/getting-started-cli.html)
-* [Service Instance ID for your Cloud Storage](https://cloud.ibm.com/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information)
-* [IAM (Identity and Access Management) Token](https://cloud.ibm.com/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information) 
-* [Endpoint for your COS bucket](https://cloud.ibm.com/docs/services/cloud-object-storage/basics/endpoints.html)
+* [IBM Cloud CLI installed and configured](https://cloud.ibm.com/docs/services/cloud-object-storage/getting-started-cli.html)
+* [Service Instance ID for your Cloud Storage](/docs/services/cloud-object-storage/iam/service-credentials.md)
+* [IAM (Identity and Access Management) Token](/docs/services/cloud-object-storage/iam/service-credentials.md) 
+* [Endpoint for your COS bucket](/docs/services/cloud-object-storage/basics/endpoints.html)
 
 ### Create a bucket
-
+{: #postman-create-bucket}
 1.	Launch Postman
 2.	In the New Tab select `PUT` the drop-down list
 3.	Enter the endpoint in the address bar and add the name for your new bucket.
@@ -54,6 +57,7 @@ b.	Value: Resource Instance ID for your cloud storage service.
 10.	You will receive a status `200 OK` message.
 
 ### Create a new text file
+{: #postman-create-text-file}
 
 1.	Create a new tab by clicking the Plus (+) icon.
 2.	Select `PUT` from the list.
@@ -67,6 +71,7 @@ b.	Value: Resource Instance ID for your cloud storage service.
 10.	You will receive a status `200 OK` message.
 
 ### List the contents of a bucket
+{: #postman-list-objects}
 
 1.	Create a new tab by selecting the Plus (+) icon.
 2.	Verify `GET` is selected in the list.
@@ -78,10 +83,13 @@ b.	Value: Resource Instance ID for your cloud storage service.
 8.	In the Body of the Response section there is an XML message with the list of files in your bucket.
 
 ## Using the sample collection
+{: #postman-collection}
 
-A Postman Collection is available for [download](https://s3-api.us-geo.objectstorage.softlayer.net/docs-resources/ibm_cos_postman.json) with configurable {{site.data.keyword.cos_full}} API request samples.
+A Postman Collection is available for [download ![External link icon](../icons/launch-glyph.svg "External link icon")](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/ibm_cos_postman.json){: new_window} with configurable {{site.data.keyword.cos_full}} API request samples.
 
 ### Import the collection to Postman
+{: #postman-import-collection}
+
 1. In Postman click on the Import button in the upper right corner
 2. Import the Collection file using either of these methods:
     * From the Import window drag and drop the Collection file into the window labeled **Drop files here**
@@ -95,10 +103,6 @@ A Postman Collection is available for [download](https://s3-api.us-geo.objectsto
     * **serviceid** - Enter the CRN of your Cloud Storage service.  Instructions to obtain your CRN are available [here](/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information).
     * **iamtoken** - Enter the OAUTH token for your Cloud Storage service.  Instructions to obtain your OAUTH token are available [here](/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information).
     * **endpoint** - Enter the regional endpoint for your Cloud Storage service.  Obtain the available endpoints from the [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps/){:new_window}
-        * Acceptable values include:
-            * `s3-api.us-geo.objectstorage.softlayer.net`
-            * `s3.us-south.objectstorage.softlayer.net`
-            * `s3.eu-gb.objectstorage.softlayer.net`
         * *Ensure that your selected endpoint matches your key protect service to ensure the samples run correctly*
     * **rootkeycrn** - The CRN of the Root Key created in your primary Key Protect service.
         * The CRN should resemble the following:<br/>`crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
@@ -111,7 +115,7 @@ A Postman Collection is available for [download](https://s3-api.us-geo.objectsto
 7. Click on Update
 
 ### Running the samples
-
+{: #postman-samples}
 The API sample requests are fairly straightforward and easy to use.  They are designed to run in order and demonstrate how to interact with Cloud Storage.  They can also be used to run a functional test against your Cloud Storage service to ensure proper operation.
 
 <table>
@@ -423,7 +427,7 @@ The API sample requests are fairly straightforward and easy to use.  They are de
 </table>
 
 ## Using the Postman Collection Runner
-
+{: #postman-runner}
 The Postman Collection Runner provides a user interface for testing a collection and allows you to run all requests in a Collection at once. 
 
 1. Click on the Runner button in the upper right corner on the main Postman window.
