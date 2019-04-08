@@ -13,6 +13,7 @@ lastupdated: "2018-05-31"
 {:tip: .tip}
 
 # Use SQL Query
+{: #sql-query}
 
 IBM Cloud SQL Query is a fully-managed service that lets you run SQL queries (that is, `SELECT` statements) to analyze, transform, or clean up rectangular data.
 {:shortdesc}
