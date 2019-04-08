@@ -93,7 +93,7 @@ Cloud Object Storage
 
     {: .topicgroup}
     Tutorials
-        [Get started with IBM COS](https://developer.ibm.com/clouddataservices/docs/cos/get-started/)
+        [Get started with Watson Studio](https://developer.ibm.com/clouddataservices/docs/cos/get-started/)
         [Upload files using IBM Cloud Functions](https://medium.com/ibm-watson-data-lab/keeping-your-secrets-between-cloud-object-storage-and-your-browser-part-1-68f4b83bbd38)
         [Serve static content using NGINX](https://www.ibm.com/blogs/bluemix/2017/03/static-websites-cloud-object-storage-cos/)
         [Detach Cloudant Attachments to IBM COS](https://medium.com/ibm-watson-data-lab/detaching-cloudant-attachments-to-object-storage-with-serverless-functions-99b8c3c77925)
