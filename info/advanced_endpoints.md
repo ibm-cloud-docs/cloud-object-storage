@@ -14,8 +14,8 @@ lastupdated: "2019-01-28"
 {:important: .important}
 {:note: .note}
 
-# Select regions and endpoints
-{: #select_endpoints}
+# Additional endpoint information
+{: #advanced-endpoints}
 
 A bucket's resiliency is defined by the endpoint used to create it.  _Cross Region_ resiliency will spread your data across several metropolitan areas, while _Regional_ resiliency will spread data across a single metropolitan area.  _Single Data Center_ resiliency spreads data across multiple appliances within a single data center.  Regional and Cross Region buckets can maintain availability during a site outage.
 
@@ -33,7 +33,7 @@ Types of endpoint:
 {{site.data.keyword.cloud}} services are connected to a three-tiered network, segmenting public, private, and management traffic.
 
 * **Private endpoints** are available for requests originating from Kubernetes clusters, bare metal servers, virtual servers, and other cloud storage services. Private endpoints provide better performance and do not incur charges for any outgoing or incoming bandwidth even if the traffic is cross regions or across data centers. **Whenever possible, it is best to use a private endpoint.**
-* **Public endpoints** can accept requests from anywhere and charges are assessed on outgoing bandwidth. Incoming bandwidth is free. Public endpoints should be used for access not originating from an {{site.data.keyword.cloud_notm}} cloud computing resource.  **Note**: Cloud Foundry applications and Cloud Functions are unable to access the private network, so data transfer is metered and charged at standard public network bandwidth rates.
+* **Public endpoints** can accept requests from anywhere and charges are assessed on outgoing bandwidth. Incoming bandwidth is free. Public endpoints should be used for access not originating from an {{site.data.keyword.cloud_notm}} cloud computing resource. 
 
 Requests must be sent to the endpoint associated with a given bucket's location. If you aren't sure where a bucket is located, there is an [extension to the bucket listing API](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#list-buckets-extended) that returns the location and storage class information for all buckets in a service instance.
 
@@ -42,8 +42,9 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 
 
 ## New Endpoints
-
+{: #advanced-endpoints-new}
 ### US Cross Region Endpoints
+{: #advanced-endpoints-new-us}
 
 <table>
   <thead>
@@ -123,6 +124,7 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 
 
 ### US Regional Endpoints
+{: #advanced-endpoints-new-us-regional}
 
 <table>
   <thead>
@@ -170,7 +172,7 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 
 
 ### EU Cross Region Endpoints
-
+{: #advanced-endpoints-new-eu}
 <table>
   <thead>
     <tr>
@@ -249,7 +251,7 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 {:.endpointtable}
 
 ### EU Region Endpoints
-
+{: #advanced-endpoints-new-eu-regional}
 <table>
   <colgroup>
     <col/>
@@ -301,7 +303,7 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 {:.endpointtable}
 
 ### AP Cross Region Endpoints
-
+{: #advanced-endpoints-new-ap}
 <table>
   <colgroup>
     <col/>
@@ -385,7 +387,7 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 {:.endpointtable}
 
 ### AP Region Endpoints
-
+{: #advanced-endpoints-new-us-region}
 <table>
   <colgroup>
     <col/>
@@ -438,7 +440,7 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 
 
 ### Single Data Center Endpoints
-
+{: #advanced-endpoints-new-sdc}
 <table>
   <thead>
     <tr>
@@ -592,9 +594,9 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 {:.endpointtable}
 
 ## Legacy Endpoints
-
+{: #advanced-endpoints-legacy}
 ### US Cross Region Endpoints (Legacy)
-
+{: #advanced-endpoints-legacy-us}
 <table>
   <thead>
     <tr>
@@ -673,7 +675,7 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 
 
 ### US Regional Endpoints (Legacy)
-
+{: #advanced-endpoints-legacy-us-regional}
 <table>
   <thead>
     <tr>
@@ -720,7 +722,7 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 
 
 ### EU Cross Region Endpoints (Legacy)
-
+{: #advanced-endpoints-legacy-eu}
 <table>
   <thead>
     <tr>
@@ -799,7 +801,7 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 {:.endpointtable}
 
 ### EU Region Endpoints (Legacy)
-
+{: #advanced-endpoints-legacy-eu-regional}
 <table>
   <colgroup>
     <col/>
@@ -851,7 +853,7 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 {:.endpointtable}
 
 ### AP Cross Region Endpoints (Legacy)
-
+{: #advanced-endpoints-legacy-ap}
 <table>
   <colgroup>
     <col/>
@@ -935,7 +937,7 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 {:.endpointtable}
 
 ### AP Region Endpoints (Legacy)
-
+{: #advanced-endpoints-legacy-ap-regional}
 <table>
   <colgroup>
     <col/>
@@ -988,7 +990,7 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 
 
 ### Single Data Center Endpoints (Legacy)
-
+{: #advanced-endpoints-legacy-sdc}
 <table>
   <thead>
     <tr>
