@@ -49,6 +49,7 @@ When creating buckets programmatically, it is necessary to specify a `LocationCo
 &emsp;&emsp;  **Chennai:** `che01-standard` / `che01-vault` / `che01-cold` / `che01-flex` <br>
 &emsp;&emsp;  **Melbourne:** `mel01-standard` / `mel01-vault` / `mel01-cold` / `mel01-flex` <br>
 &emsp;&emsp;  **Mexico:** `mex01-standard` / `mex01-vault` / `mex01-cold` / `mex01-flex` <br>
+&emsp;&emsp;  **Milan:** `mil01-standard` / `mil01-vault` / `mil01-cold` / `mil01-flex` <br>
 &emsp;&emsp;  **Montréal:** `mon01-standard` / `mon01-vault` / `mon01-cold` / `mon01-flex` <br>
 &emsp;&emsp;  **Oslo:** `osl01-standard` / `osl01-vault` / `osl01-cold` / `osl01-flex` <br>
 &emsp;&emsp;  **San Jose:** `sjc04-standard` / `sjc04-vault` / `sjc04-cold` / `sjc04-flex` <br>
