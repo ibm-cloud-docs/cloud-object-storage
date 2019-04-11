@@ -63,7 +63,7 @@ IAM roles represent the level of access that a given subject should have on a gi
 The IAM endpoint (`iam.cloud.ibm.com`) is used to fetch an access token in exchange for an API key.  This token is used in the `Authorization` header in all REST API requests sent to an {{site.data.keyword.cos_short}} service endpoint.
 
 ## Service endpoints
-[Service endpoints](docs/services/cloud-object-storage/basics/endpoints.html) (for example, `s3.us-south.objectstorage.softlayer.net`) are the base URLs where API requests that interact with data are sent.
+[Service endpoints](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints) (for example, `s3.us-south.objectstorage.softlayer.net`) are the base URLs where API requests that interact with data are sent.
 
 ## {{site.data.keyword.cos_short}} bucket location
 All buckets in {{site.data.keyword.cos_short}} are scoped to a location. This is either a region (such as `us-south` or `us-east`) or a geography (such as `eu-geo` or `us-geo`).  Within this location, objects are sliced and dispersed across three different physical locations.

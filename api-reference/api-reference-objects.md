@@ -32,6 +32,9 @@ Adding headers to your request using the following values subtituted:
 |{timestamp}|The formatted date and time of your request|20180614T001804Z|
 |{payload_hash}|The hexadecimal value of the SHA256 hash of the request body (required for uploading objects)|2cd5697803d5409ed17e4c9a09debad05afa9af830c2d56a966b531ddda5cac8|
 
+For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
+{:tip}
+
 ## Upload an object
 {: #upload-object}
 

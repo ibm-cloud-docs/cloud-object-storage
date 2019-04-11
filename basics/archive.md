@@ -31,6 +31,9 @@ https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage) option for d
 
 You can archive objects using the web console, REST API, and 3rd party tools that are integrated with IBM Cloud Object Storage. 
 
+For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
+{:tip}
+
 ## Add or manage an archive policy on a bucket
 {: #archive-add}
 

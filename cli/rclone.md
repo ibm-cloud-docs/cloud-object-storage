@@ -123,37 +123,37 @@ rclone config
 ## Configure access to IBM COS
 {: #rclone-config}
 
-  1. Run `rclone config` and select `n` for a new remote.
+1. Run `rclone config` and select `n` for a new remote.
 
-```
-No remotes found - make a new one
-	n) New remote
-	s) Set configuration password
-	q) Quit config
-	n/s/q> n
-```
+	```
+	No remotes found - make a new one
+		n) New remote
+		s) Set configuration password
+		q) Quit config
+		n/s/q> n
+	```
 
-  2. Enter the name for the configuration:
-```
-name> <YOUR NAME>
-```
+2. Enter the name for the configuration:
+	```
+	name> <YOUR NAME>
+	```
 
-  3. Select “s3” storage.
+3. Select “s3” storage.
 
-```
-Choose a number from below, or type in your own value
-	1 / Alias for a existing remote
-	\ "alias"
-	2 / Amazon Drive
-	\ "amazon cloud drive"
-	3 / Amazon S3 Complaint Storage Providers (Dreamhost, Ceph, Minio, IBM COS)
-	\ "s3"
-	4 / Backblaze B2
-	\ "b2"
-[snip]
-	23 / http Connection
-  \ "http"
-Storage> 3
+	```
+	Choose a number from below, or type in your own value
+		1 / Alias for a existing remote
+		\ "alias"
+		2 / Amazon Drive
+		\ "amazon cloud drive"
+		3 / Amazon S3 Complaint Storage Providers (Dreamhost, Ceph, Minio, IBM COS)
+		\ "s3"
+		4 / Backblaze B2
+		\ "b2"
+	[snip]
+		23 / http Connection
+	  \ "http"
+	Storage> 3
 ```
 
   4. Select IBM COS as the S3 Storage Provider.
@@ -199,7 +199,7 @@ AWS Secret Access Key (password) - leave blank for anonymous access or runtime c
 	secret_access_key> <>
 ```
 
-  1. Specify the endpoint for IBM COS. For Public IBM COS, choose from the provided options. 
+  7. Specify the endpoint for IBM COS. For Public IBM COS, choose from the provided options. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
 ```
 Endpoint for IBM COS S3 API.
@@ -220,7 +220,7 @@ Endpoint for IBM COS S3 API.
 	endpoint>1
 ```
 
-  1. Specify an IBM COS Location Constraint. The location constraint must match the endpoint. 
+  8. Specify an IBM COS Location Constraint. The location constraint must match the endpoint. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
 ```
  1 / US Cross Region Standard
@@ -239,7 +239,7 @@ Endpoint for IBM COS S3 API.
 location_constraint>1
 ```
 
-  1. Specify an ACL. Only `public-read` and `private` are supported. 
+  9. Specify an ACL. Only `public-read` and `private` are supported. 
 
 ```
 Canned ACL used when creating buckets and/or storing objects in S3.

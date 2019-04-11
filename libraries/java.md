@@ -102,7 +102,7 @@ Let's start with an complete example class that will run through some basic func
 * `bucketName` and `newBucketName` are [unique and DNS-safe](docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#compatibility-api-new-bucket) strings. Because bucket names are unique across the entire system, these values will need to be changed if this example is run multiple times.  Note that names are reserved for 10-15 minutes after deletion.
 * `api_key` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html) as `apikey`.
 * `service_instance_id` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html) as `resource_instance_id`. 
-* `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol.  This is **not** the `endpoints` value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html).
+* `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol.  This is **not** the `endpoints` value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `storageClass` is a [valid provisioning code](docs/services/cloud-object-storage/basics/classes.html#locationconstraint) that corresponds to the `endpoint` value.  This is then used as the S3 API `LocationConstraint` variable.
 * `location` should be set to the location portion of the `storageClass`.  For `us-south-standard`, this would be `us-south`.  This variable is used only for the calculation of [HMAC signatures](/docs/services/cloud-object-storage/hmac/hm.html), but is required for any client, including this example that uses an IAM API key.
 
@@ -258,7 +258,7 @@ public static AmazonS3 createClient(String api_key, String service_instance_id, 
 ```
 
 *Key Values*
-* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window})
+* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
 * `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window})
 * `<location>` - default location for your cloud object storage (must match the region used for `<endpoint>`)
@@ -275,7 +275,7 @@ public static AmazonS3 createClient(String api_key, String service_instance_id, 
     * [SdkClientException](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/SdkClientException.html){:new_window}
 
 ### Determining Endpoint
-The methods below can be used to determine the service endpoint based on the bucket location, endpoint type (public or private), and specific region (optional).
+The methods below can be used to determine the service endpoint based on the bucket location, endpoint type (public or private), and specific region (optional). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
 ```java
 /**

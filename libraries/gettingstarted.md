@@ -55,6 +55,8 @@ To complete the code example you will need to replace the following values:
 |`<resource-instance-id>`|Unique ID for the Service Instance|`crn:v1:bluemix:public:cloud-object-storage:global:a/xx999cd94a0dda86fd8eff3191349999:9999b05b-x999-4917-xxxx-9d5b326a1111::`|
 |`<storage-class>`|Storage class for a new bucket|`us-south-standard`|
 
+For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+
 ```python
 import os
 import uuid

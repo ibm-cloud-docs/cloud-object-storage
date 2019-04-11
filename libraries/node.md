@@ -75,7 +75,7 @@ var config = {
 var cos = new AWS.S3(config);
 ```
 *Key Values*
-* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window})
+* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
 * `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window})
 

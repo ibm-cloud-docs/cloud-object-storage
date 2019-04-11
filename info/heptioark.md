@@ -159,7 +159,7 @@ Configure [`kubectl`](https://kubernetes.io/docs/user-guide/kubectl-overview/){:
 3. Specify the following values in `config/ibm/05-ark-backupstoragelocation.yaml`:
    * `<YOUR_BUCKET>` - Name of the bucket for storing backup files
    * `<YOUR_REGION>` - The [location constraint](/docs/services/cloud-object-storage/basics/classes.html#locationconstraint) of your bucket (i.e. `us-standard`)
-   * `<YOUR_URL_ACCESS_POINT>` - The regional endpoint URL (i.e. `https://s3-api.us-geo.objectstorage.softlayer.net`)
+   * `<YOUR_URL_ACCESS_POINT>` - The regional endpoint URL (i.e. `https://s3-api.us-geo.objectstorage.softlayer.net`). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
     *See the [BackupStorageLocation](https://heptio.github.io/ark/v0.10.0/api-types/backupstoragelocation.html#aws){:new_window} definition for additional information.*
 
