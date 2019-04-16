@@ -78,7 +78,7 @@ This guide provides instructions for migrating data from a single Swift containe
         ```
         [SWIFT]
         type = swift
-        auth = https://identity.open.softlayer.com/v3
+        auth = https://identity.open.s3.us-south.cloud-object-storage.appdomain.cloud.com/v3
         user_id =
         key =
         region =
@@ -123,7 +123,7 @@ This guide provides instructions for migrating data from a single Swift containe
         ```
 
   3. Get OpenStack Swift (infrastructure) credential
-    <br>a. Click on your Swift account in the <a href="https://control.softlayer.com/storage/objectstorage">IBM Cloud   infrastructure customer portal</a>.
+    <br>a. Click on your Swift account in the <a href="https://control.s3.us-south.cloud-object-storage.appdomain.cloud.com/storage/objectstorage">IBM Cloud   infrastructure customer portal</a>.
     <br>b. Click on the data center of the migration source container.
     <br>c. Click on **View Credentials**.
     <br>d. Copy the following.

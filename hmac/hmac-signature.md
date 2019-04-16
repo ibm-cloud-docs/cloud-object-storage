@@ -94,9 +94,9 @@ secret_key = os.environ.get('COS_HMAC_SECRET_ACCESS_KEY')
 
 # request elements
 http_method = 'GET'
-host = 's3-api.us-geo.objectstorage.softlayer.net'
+host = 's3.us.cloud-object-storage.appdomain.cloud'
 region = 'us-standard'
-endpoint = 'http://s3-api.us-geo.objectstorage.softlayer.net'
+endpoint = 'http://s3.us.cloud-object-storage.appdomain.cloud'
 bucket = '' # add a '/' before the bucket name to list buckets
 object_key = ''
 request_parameters = ''
@@ -200,9 +200,9 @@ public class CosHMAC {
     private static final String secretKey = System.getenv("COS_HMAC_SECRET_ACCESS_KEY");
     // constants
     private static final String httpMethod = "GET";
-    private static final String host = "s3-api.us-geo.objectstorage.softlayer.net";
+    private static final String host = "s3.us.cloud-object-storage.appdomain.cloud";
     private static final String region = "us-standard";
-    private static final String endpoint = "https://s3-api.us-geo.objectstorage.softlayer.net";
+    private static final String endpoint = "https://s3.us.cloud-object-storage.appdomain.cloud";
     private static final String bucket = ""; // add a '/' before the bucket name to list buckets
     private static final String objectKey = "";
     private static final String requestParameters = "";
@@ -369,9 +369,9 @@ const accessKey = process.env.COS_HMAC_ACCESS_KEY_ID;
 const secretKey = process.env.COS_HMAC_SECRET_ACCESS_KEY;
 
 const httpMethod = 'GET';
-const host = 's3-api.us-geo.objectstorage.softlayer.net';
+const host = 's3.us.cloud-object-storage.appdomain.cloud';
 const region = 'us-standard';
-const endpoint = 'https://s3-api.us-geo.objectstorage.softlayer.net';
+const endpoint = 'https://s3.us.cloud-object-storage.appdomain.cloud';
 const bucket = ''; // add a '/' before the bucket name to list buckets
 const objectKey = '';
 const requestParameters = '';

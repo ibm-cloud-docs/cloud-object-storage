@@ -68,7 +68,7 @@ You can declare multiple service instances with different endpoints and buckets 
 *Key Values*
 * `<bucket-region>` - Region that match your bucket (i.e. `us-south-standard`).  Full list available [here](/docs/services/cloud-object-storage/basics/classes.html#how-do-i-create-a-bucket-with-a-different-storage-class-).
 * `<bucket-name>` - Name of your bucket
-* `<regional-endpoint>` - Endpoint to access your bucket (i.e. `https://s3.us-south.objectstorage.softlayer.net`)  Full list of endpoints available [here](/docs/services/cloud-object-storage/basics/endpoints.html#select-regions-and-endpoints).
+* `<regional-endpoint>` - Endpoint to access your bucket (i.e. `https://s3.us-south.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net`)  Full list of endpoints available [here](/docs/services/cloud-object-storage/basics/endpoints.html#select-regions-and-endpoints).
 
 The statement `<%= Rails.application.credentials.dig(:aws, :access_key_id|secret_access_key) %>` instructs Rails to pull the access key and secret key from the credentials data stored at `~/.aws/credentials` in the format:
 

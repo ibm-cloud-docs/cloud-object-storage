@@ -51,7 +51,7 @@ GET https://{endpoint}/
 GET / HTTP/1.1
 Authorization: Bearer {token}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ibm-service-instance-id: {ibm-service-instance-id}
 ```
 
@@ -100,7 +100,7 @@ GET https://{endpoint}?extended/
 GET /?extended HTTP/1.1
 Authorization: Bearer {token}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ibm-service-instance-id: {ibm-service-instance-id}
 ```
 
@@ -172,7 +172,7 @@ This is an example of creating a new bucket called 'images'.
 PUT /images HTTP/1.1
 Authorization: Bearer {token}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ibm-service-instance-id: {ibm-service-instance-id}
 ```
 
@@ -223,7 +223,7 @@ This is an example of creating a new bucket called 'vault-images'.
 PUT /vault-images HTTP/1.1
 Authorization: Bearer {token}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ibm-service-instance-id: {ibm-service-instance-id}
 Content-Length: 110
 ```
@@ -279,7 +279,7 @@ This is an example of creating a new bucket called 'secure-files'.
 PUT /secure-files HTTP/1.1
 Authorization: Bearer {token}
 Content-Type: text/plain
-Host: s3.us-south.objectstorage.softlayer.net
+Host: s3.us-south.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net
 ibm-service-instance-id: {ibm-service-instance-id}
 ibm-sse-kp-encryption-algorithm: "AES256"
 ibm-sse-kp-customer-root-key-crn: {customer-root-key-id}
@@ -322,7 +322,7 @@ This is an example of fetching the headers for the 'images' bucket.
 ```http
 HEAD /images HTTP/1.1
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization:Bearer {token}
 ```
 
@@ -346,7 +346,7 @@ Content-Length: 0
 ```http
 HEAD /secure-files HTTP/1.1
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization:Bearer {token}
 ```
 
@@ -399,7 +399,7 @@ This request lists the objects inside the "apiary" bucket.
 ```http
 GET /apiary?list-type=2 HTTP/1.1
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization: Bearer {token}
 ```
 
@@ -456,7 +456,7 @@ This request lists the objects inside the "apiary" bucket with a max key returne
 ```http
 GET /apiary?list-type=2&max-keys=1 HTTP/1.1
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization: Bearer {token}
 ```
 
@@ -500,7 +500,7 @@ This request lists the objects inside the "apiary" bucket with a continuation to
 ```http
 GET /apiary?list-type=2&max-keys=1&continuation-token=1dPe45g5uuxjyASPegLq80sQsZKL5OB2by4Iz_7YGR5NjiOENBPZXqvKJN6_PgKGVzZYTlws7qqdWaMklzb8HX2iDxxl72ane3rUFQrvNMeIih49MZ4APUjrAuYI83KxSMmfKHGZyKallFkD5N6PwKg HTTP/1.1
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization: Bearer {token}
 ```
 
@@ -572,7 +572,7 @@ This request lists the objects inside the "apiary" bucket.
 ```http
 GET /apiary HTTP/1.1
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization: Bearer {token}
 ```
 
@@ -658,7 +658,7 @@ Name | Type | Description
 
 ```http
 DELETE /apiary HTTP/1.1
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization: Bearer {token}
 ```
 
@@ -709,7 +709,7 @@ This is an example of retrieving all current canceled and incomplete multipart u
 ```http
 GET /apiary?uploads= HTTP/1.1
 Authorization: Bearer {token}
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example response** (no multipart uploads in progress)
@@ -786,7 +786,7 @@ This is an example of listing a CORS configuration on the "apiary" bucket.
 ```http
 GET /apiary?cors= HTTP/1.1
 Authorization: Bearer {token}
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example response** 
@@ -842,7 +842,7 @@ This is an example of adding a CORS configuration that allows requests from `www
 PUT /apiary?cors= HTTP/1.1
 Authorization: Bearer {token}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-MD5: M625BaNwd/OytcM7O5gIaQ==
 Content-Length: 237
 ```
@@ -892,7 +892,7 @@ This is an example of deleting a CORS configuration for a bucket.
 ```http
 DELETE /apiary?cors= HTTP/1.1
 Authorization: Bearer {token}
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 The server responds with `204 No Content`.
@@ -917,7 +917,7 @@ This is an example of retrieving the location of the "apiary" bucket.
 ```http
 GET /apiary?location= HTTP/1.1
 Authorization: Bearer {token}
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example response**
@@ -991,7 +991,7 @@ The body of the request must contain an XML block with the following schema:
 ```http
 PUT /apiary?lifecycle HTTP/1.1
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization: {authorization-string}
 Content-Type: text/plain
 Content-MD5: M625BaNwd/OytcM7O5gIaQ== 
@@ -1034,7 +1034,7 @@ GET https://{bucket-name}.{endpoint}?lifecycle # virtual host style
 ```http
 GET /apiary?lifecycle HTTP/1.1
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization: {authorization-string}
 ```
 
@@ -1074,7 +1074,7 @@ DELETE https://{bucket-name}.{endpoint}?lifecycle # virtual host style
 ```http
 DELETE /apiary?lifecycle HTTP/1.1
 Authorization: {authorization-string}
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 The server responds with `204 No Content`.

@@ -98,7 +98,7 @@ Below is an example profile for a regional COS endpoint:
         <key>Scheme</key>
         <string>https</string>
 	    <key>Default Hostname</key>
-	    <string>s3.us-south.objectstorage.softlayer.net</string>
+	    <string>s3.us-south.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net</string>
         <key>Description</key>
         <string>IBM COS</string>
         <key>Default Port</key>

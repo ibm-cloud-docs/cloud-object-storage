@@ -342,7 +342,7 @@ public static String getEndpoint(String location, String region, String endpoint
         if (endpointType.toLowerCase() == "private")
             endpoint += ".objectstorage.service.networklayer.com";
         else
-            endpoint += ".objectstorage.softlayer.net";
+            endpoint += ".objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net";
     }
 
     return endpoint;

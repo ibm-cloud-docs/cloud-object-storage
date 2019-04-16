@@ -138,7 +138,7 @@ _Sample Request_
 
 ```
 PUT /images?lifecycle HTTP/1.1
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 17:50:00 GMT
 Authorization: authorization string
 Content-Type: text/plain
@@ -196,7 +196,7 @@ _Sample Request_
 
 ```
 GET /images?lifecycle HTTP/1.1
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 17:50:00 GMT
 Authorization: authorization string
 ```
@@ -251,7 +251,7 @@ _Sample Request_
 
 ```
 DELETE /images?lifecycle HTTP/1.1
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 18:50:00 GMT
 Authorization: authorization string
 ```
@@ -317,7 +317,7 @@ _Sample Request_
 
 ```
 POST /images/backup?restore HTTP/1.1
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 19:50:00 GMT
 Authorization: {authorization string}
 Content-Type: text/plain
@@ -373,7 +373,7 @@ _Sample request_
 HEAD /images/backup HTTP/1.1
 Authorization: {authorization-string}
 x-amz-date: 20160825T183244Z
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 _Sample response_

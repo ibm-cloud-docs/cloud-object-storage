@@ -92,7 +92,7 @@ const cosService = 'cloud-object-storage';
 var cosCreds = appEnv.services[cosService][0].credentials;
 var AWS = require('ibm-cos-sdk');
 var config = {
-    endpoint: 's3.us-south.objectstorage.softlayer.net',
+    endpoint: 's3.us-south.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net',
     apiKeyId: cosCreds.apikey,
     ibmAuthEndpoint: 'https://iam.cloud.ibm.com/identity/token',
     serviceInstanceId: cosCreds.resource_instance_id,

@@ -236,7 +236,7 @@ When a service credential is created, the underlying Service ID is granted a rol
 ## API Key vs HMAC
 {: #service-credentials-iam-hmac}
 
-In general IAM API Keys are the prefered method of authentication for {{site.data.keyword.cos_full}}. HMAC is supported primarily for backward-compatibility with Softlayer (IaaS) provisioned service instances and legacy S3 applications.  IAM is also natively supported when developing applications with the SDKs.  Token expiration and refresh is handled automatically to simplify the process.
+In general IAM API Keys are the prefered method of authentication for {{site.data.keyword.cos_full}}. HMAC is supported primarily for backward-compatibility with s3.us-south.cloud-object-storage.appdomain.cloud (IaaS) provisioned service instances and legacy S3 applications.  IAM is also natively supported when developing applications with the SDKs.  Token expiration and refresh is handled automatically to simplify the process.
 
 For more information about IAM visit - [Getting started with IAM](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam)
 

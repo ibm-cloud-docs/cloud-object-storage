@@ -1136,7 +1136,7 @@ Listing buckets:
   Bucket: "go.bucket645",
   ETag: "\"686d1d07d6de02e920532342fcbd6d2a-1\"",
   Key: "go_file_645.txt",
-  Location: "http://s3-api.us-geo.objectstorage.softlayer.net/go.bucket645/go_file_645.txt"
+  Location: "http://s3.us.cloud-object-storage.appdomain.cloud/go.bucket645/go_file_645.txt"
 }
 
 Name:          go_file_645.txt

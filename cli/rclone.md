@@ -206,13 +206,13 @@ AWS Secret Access Key (password) - leave blank for anonymous access or runtime c
 Endpoint for IBM COS S3 API.
 	Choose a number from below, or type in your own value
 	 1 / US Cross Region Endpoint
-	   \ "s3-api.us-geo.objectstorage.softlayer.net"
+	   \ "s3.us.cloud-object-storage.appdomain.cloud"
 	 2 / US Cross Region Dallas Endpoint
-	   \ "s3-api.dal.us-geo.objectstorage.softlayer.net"
+	   \ "s3-api.dal.us-geo.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net"
 	 3 / US Cross Region Washington DC Endpoint
-	   \ "s3-api.wdc-us-geo.objectstorage.softlayer.net"
+	   \ "s3-api.wdc-us-geo.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net"
 	 4 / US Cross Region San Jose Endpoint
-	   \ "s3-api.sjc-us-geo.objectstorage.softlayer.net"
+	   \ "s3-api.sjc-us-geo.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net"
 	 5 / US Cross Region Private Endpoint
 	   \ "s3-api.us-geo.objectstorage.service.networklayer.com"
 [snip]
@@ -258,7 +258,7 @@ acl>1
 	Provider = IBMCOS
 	access_key_id = xxx
 	secret_access_key = yyy
-	endpoint = s3-api.us-geo.objectstorage.softlayer.net
+	endpoint = s3.us.cloud-object-storage.appdomain.cloud
 	location_constraint = us-standard
 	acl = private
 ```
