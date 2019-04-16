@@ -913,7 +913,7 @@ public static void createBucketKP(String bucketName) {
 *SDK References*
 * Classes
     * [CreateBucketRequest](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/CreateBucketRequest.html){:new_window}
-    * [EncryptionType](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/EncryptionType.html){:new_window}
+    * [EncryptionType](https://ibm.github.io/ibm-cos-sdk-java/){:new_window}
 * Methods
     * [createBucket](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#createBucket-com.ibm.cloud.objectstorage.services.s3.model.CreateBucketRequest-){:new_window}
 

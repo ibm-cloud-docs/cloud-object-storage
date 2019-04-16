@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 
 All data in {{site.data.keyword.cos_full_notm}} is encrypted at rest. This technology individually encrypts each object using per-object generated keys. These keys are secured and reliably stored using the same Information Dispersal Algorithms that protect object data using an All-or-Nothing Transform (AONT), which prevents key data from being disclosed if individual nodes or hard drives are compromised.
 
-If it is necessary for the user to control encryption keys, root keys can be provided on a [per-object basis using SSE-C](/docs/services/cloud-object-storage/basics/encryption.html#sse-c), or a [per-bucket basis using SSE-KP](/docs/services/cloud-object-storage/basics/encryption.html#sse-kp).
+If it is necessary for the user to control encryption keys, root keys can be provided on a [per-object basis using SSE-C](/docs/services/cloud-object-storage?topic=cloud-object-storage-encryption#encryption-sse-c), or a [per-bucket basis using SSE-KP](/docs/services/cloud-object-storage?topic=cloud-object-storage-encryption#encryption-kp).
 
 Storage can be accessed over HTTPS, and internally storage devices are certified and communicate with each other using TLS.
 
@@ -43,4 +43,4 @@ After data is deleted various mechanisms exist which prevent recovery or reconst
 ## Tenant isolation
 {: #security-isolation}
 
-{{site.data.keyword.cos_full_notm}} is a shared infrastructure, multi-tenant object storage solution. If your workload requires dedicated or isolated storage, visit [{{site.data.keyword.cloud}}](https://www.ibm.com/cloud-computing/products/storage/object-storage/flexible-deployment/) for more information.
+{{site.data.keyword.cos_full_notm}} is a shared infrastructure, multi-tenant object storage solution. If your workload requires dedicated or isolated storage, visit [{{site.data.keyword.cloud}}](https://www.ibm.com/cloud/object-storage) for more information.
