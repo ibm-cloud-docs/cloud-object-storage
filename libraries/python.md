@@ -600,7 +600,7 @@ def create_bucket_kp(bucket_name):
 
 ## Using Aspera High-Speed Transfer
 {: #python-examples-aspera}
-{: #aspera}
+
 By installing the [Aspera high-speed transfer library](/docs/services/cloud-object-storage/basics/aspera.html#aspera-packaging) you can utilize high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license).
 
 Each Aspera session spawns an individual `ascp` process that runs on the client machine to perform the transfer. Ensure that your computing environment can allow this process to run.
