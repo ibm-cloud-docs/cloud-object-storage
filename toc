@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="cloud-object-storage" audience="services" href="/docs/services/cloud-object-storage/about-cos.html" path="services/cloud-object-storage"}
+{: .toc subcollection="cloud-object-storage" audience="services" href="/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started" path="services/cloud-object-storage"}
 Cloud Object Storage
 
     {: .navgroup id="learn"}
