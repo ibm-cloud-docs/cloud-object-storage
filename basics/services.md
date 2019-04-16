@@ -52,29 +52,23 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     </tr>
   </thead>
   <tr>
-    <td rowspan="2">AP Cross Region</td>
+    <td>AP Cross Region</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>Sydney</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
   <tr>
-    <td rowspan="2">EU Cross Region</td>
+    <td>EU Cross Region</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>United Kingdom</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
   <tr>
-    <td rowspan="2">US Cross Region</td>
+    <td>US Cross Region</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
@@ -102,68 +96,53 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     </tr>
   </thead>
    <tr>
-    <td rowspan="2">AP Australia</td>
+    <td>AP Australia</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Sydney</td>
-   <tr>
-     <tr>
-    </td>
    </tr>
    <tr>
-    <td rowspan="2">AP Japan</td>
+    <td>AP Japan</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Sydney</td>
-   <tr>
-   <tr>
-    </td>
    </tr>
    <tr>
-     <td rowspan="2">EU Great Britain</td>
+    <td>EU Great Britain</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>United Kingdom</td>
-   <tr>
-   <tr>
-    </td>
    </tr>
    <tr>
-    <td rowspan="2">EU Germany</td>
+    <td>EU Germany</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>United Kingdom</td>
-   <tr>
-   <tr>
-    </td>
    </tr>
    <tr>
-    <td rowspan="2">US South</td>
+    <td>US South</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>US South</td>
-   <tr>
-   <tr>
-    </td>
    </tr>
    <tr>
-    <td rowspan="2">US East</td>
+    <td>US East</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>US South</td>
-   <tr>
+   </tr>
 </table>
 
 
@@ -183,125 +162,92 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     </tr>
   </thead>
   <tr>
-    <td rowspan="2">Amsterdam, Netherlands</td>
+    <td>Amsterdam, Netherlands</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>United Kingdom</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
   <tr>
-    <td rowspan="2">Chennai, India</td>
+    <td>Chennai, India</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>Sydney</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
   <tr>
-    <td rowspan="2">Melbourne, Australia</td>
+    <td>Melbourne, Australia</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>Sydney</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
   <tr>
-    <td rowspan="2">Mexico City, Mexico</td>
+    <td>Mexico City, Mexico</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>US South</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
   <tr>
-    <td rowspan="2">Milan, Italy</td>
+    <td>Milan, Italy</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>United Kingdom</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
   <tr>
-    <td rowspan="2">Montréal, Canada</td>
+    <td>Montréal, Canada</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>US South</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
   <tr>
-    <td rowspan="2">Oslo, Norway</td>
+    <td>Oslo, Norway</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>United Kingdom</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
   <tr>
-    <td rowspan="2">San Jose, USA</td>
+    <td>San Jose, USA</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>US South</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
   <tr>
-    <td rowspan="2">São Paulo, Brazil</td>
+    <td>São Paulo, Brazil</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>US South</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
   <tr>
-    <td rowspan="2">Seoul, South Korea</td>
+    <td>Seoul, South Korea</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>Sydney</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
   <tr>
-    <td rowspan="2">Toronto, Canada</td>
+    <td>Toronto, Canada</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>US South</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
 </table>
 
