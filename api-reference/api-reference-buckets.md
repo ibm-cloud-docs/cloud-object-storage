@@ -380,7 +380,7 @@ GET https://{bucket-name}.{endpoint}?list-type=2 # virtual host style
 ```
 
 ### Optional query parameters
-
+{: #compatibility-api-list-objects-v2-params}
 Name | Type | Description
 --- | ---- | ------------
 `list-type` | String | Indicates version 2 of the API and the value must be 2.
@@ -555,6 +555,7 @@ GET https://{bucket-name}.{endpoint} # virtual host style
 ```
 
 ### Optional query parameters
+{: #compatibility-api-list-objects-params}
 
 Name | Type | Description
 --- | ---- | ------------
