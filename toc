@@ -32,7 +32,6 @@ Cloud Object Storage
     {: .topicgroup}
     Manage access
         iam/overview.md
-        iam/users-serviceids.md
         iam/service-credentials.md
         iam/buckets.md
         iam/public-access.md

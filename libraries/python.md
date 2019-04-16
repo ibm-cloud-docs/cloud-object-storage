@@ -1,19 +1,30 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-12-07"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: python, sdk
+
+subcollection: cloud-object-storage
 
 ---
-
-# Using Python
-
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
+
+# Using Python
+{: #python}
 
 Python support is provided through a fork of the Boto library.  It can be installed from the Python Package Index via `pip install ibm-cos-sdk`.
 
@@ -27,6 +38,8 @@ The service instance ID is also referred to as a _resource instance ID_.  The va
 Detailed documentation can be found at [here](https://ibm.github.io/ibm-cos-sdk-python/).
 
 ## Migrating from 1.x.x
+{: #python-migrate}
+
 The 2.0 release of the SDK introduces a namespacing change that allows an application to make use of the original `boto3` library to connect to AWS resources within the same application or environment.  To migrate from 1.x to 2.0 some changes are necessary.
 
     1. Update the `requirements.txt`, or from PyPI via `pip install -U ibm-cos-sdk`.  Verify no older versions exist with `pip list | grep ibm-cos`.
@@ -34,7 +47,7 @@ The 2.0 release of the SDK introduces a namespacing change that allows an applic
     3. If needed, reinstall the original `boto3` by updating the `requirements.txt`, or from PyPI via `pip install boto3`.
 
 ## Creating a client and sourcing credentials
-{: #client-credentials}
+{: #python-credentials}
 
 To connect to COS, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
 
@@ -51,6 +64,7 @@ aws_secret_access_key = {SERVICE_INSTANCE_ID}
 If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` will take preference.
 
 ### Gather required information
+{: #python-prereqs}
 
 The following variables appear in the examples:
 
@@ -62,11 +76,12 @@ The following variables appear in the examples:
 
 
 ## Code Examples
+{: #python-examples}
 
 Code examples were written using **Python 2.7.15**
 
 ### Initializing configuration
-{: #init-config}
+{: #python-examples-init}
 
   
 ```python
@@ -99,6 +114,8 @@ cos = ibm_boto3.resource("s3",
 
 
 ### Creating a new bucket
+{: #python-examples-new-bucket}
+
 A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).
 
 ```python
@@ -124,6 +141,8 @@ def create_bucket(bucket_name):
     * [create](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.create){:new_window}
 
 ### Creating a new text file
+{: #python-examples-new-file}
+
 ```python
 def create_text_file(bucket_name, item_name, file_text):
     print("Creating new item: {0}".format(item_name))
@@ -145,6 +164,8 @@ def create_text_file(bucket_name, item_name, file_text):
     * [put](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.put){:new_window}
 
 ### List available buckets
+{: #python-examples-list-buckets}
+
 ```python
 def get_buckets():
     print("Retrieving list of buckets")
@@ -166,6 +187,8 @@ def get_buckets():
     * [buckets](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.ServiceResource.buckets){:new_window}
 
 ### List items in a bucket
+{: #python-examples-list-objects}
+
 ```python
 def get_bucket_contents(bucket_name):
     print("Retrieving bucket contents from: {0}".format(bucket_name))
@@ -187,6 +210,8 @@ def get_bucket_contents(bucket_name):
     * [objects](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.objects){:new_window}
 
 ### Get file contents of particular item
+{: #python-examples-get-file-contents}
+
 ```python
 def get_item(bucket_name, item_name):
     print("Retrieving item from bucket: {0}, key: {1}".format(bucket_name, item_name))
@@ -206,6 +231,8 @@ def get_item(bucket_name, item_name):
     * [get](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.get){:new_window}
 
 ### Delete an item from a bucket
+{: #python-examples-delete-object}
+
 ```python
 def delete_item(bucket_name, item_name):
     print("Deleting item: {0}".format(item_name))
@@ -225,6 +252,7 @@ def delete_item(bucket_name, item_name):
     * [delete](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.delete){:new_window}
 
 ### Delete multiple items from a bucket
+{: #python-examples-delete-multiple-objects}
 
 The delete request can contain a maximum of 1000 keys that you want to delete.  While this is very useful in reducing the per-request overhead, be mindful when deleting a large number of keys.  Also take into account the sizes of the objects to ensure suitable performance.
 {:tip}
@@ -262,6 +290,8 @@ def delete_items(bucket_name):
     * [delete_objects](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_objects){:new_window}
 
 ### Delete a bucket
+{: #python-examples-delete-bucket}
+
 ```python
 def delete_bucket(bucket_name):
     print("Deleting bucket: {0}".format(bucket_name))
@@ -280,58 +310,12 @@ def delete_bucket(bucket_name):
 * Methods
     * [delete](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.delete){:new_window}
 
-### View a bucket's security
-```python
-def get_bucket_acl(bucket_name):
-    print("Retrieving ACL for bucket: {0}".format(bucket_name))
-    try:
-        acl_data = cos.BucketAcl(bucket_name)
-        print("Owner: {0}".format(acl_data.owner["DisplayName"]))
-        for grant in acl_data.grants:
-            display_name = grant["Grantee"]["DisplayName"]
-            permission = grant["Permission"]
-            print("User: {0} ({1})".format(display_name, permission))
-    except ClientError as be:
-        print("CLIENT ERROR: {0}\n".format(be))
-    except Exception as e:
-        print("Unable to retrieve bucket ACL: {0}".format(e))
-```
-
-*SDK References*
-* Classes
-    * [BucketAcl](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucketacl){:new_window}
-* Attributes
-    * [grants](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.BucketAcl.grants){:new_window}
-    * [owner](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.ObjectAcl.owner){:new_window}
-
-### View a file's security
-```python
-def get_item_acl(bucket_name, item_name):
-    print("Retrieving ACL for {0} from bucket: {1}".format(item_name, bucket_name))
-    try:
-        acl_data = cos.ObjectAcl(bucket_name, item_name)
-        print("Owner: {0}".format(acl_data.owner["DisplayName"]))
-        for grant in acl_data.grants:
-            display_name = grant["Grantee"]["DisplayName"]
-            permission = grant["Permission"]
-            print("User: {0} ({1})".format(display_name, permission))
-    except ClientError as be:
-        print("CLIENT ERROR: {0}\n".format(be))
-    except Exception as e:
-        print("Unable to retrieve item ACL: {0}".format(e))
-```
-
-*SDK References*
-* Classes
-    * [ObjectAcl](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#objectacl){:new_window}
-* Attributes
-    * [grants](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.ObjectAcl.grants){:new_window}
-    * [owner](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.ObjectAcl.owner){:new_window}
-
 ### Execute a multi-part upload
-{: #multipart-upload}
+{: #python-examples-multipart}
 
 #### Upload binary file (preferred method)
+{: #python-examples-multipart-binary}
+
 The [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.upload_fileobj){:new_window} method of the [S3.Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){:new_window} class automatically executes a multi-part upload when necessary.  The [TransferConfig](https://ibm.github.io/ibm-cos-sdk-python/reference/customizations/s3.html#s3-transfers){:new_window} class is used to determine the threshold for using the mult-part upload.
 
 ```python
@@ -373,6 +357,8 @@ def multi_part_upload(bucket_name, item_name, file_path):
     * [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.upload_fileobj){:new_window}
 
 #### Manually execute a multi-part upload
+{: #python-examples-multipart-manual}
+
 If desired, the [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window} class can be used to perform a multi-part upload.  This can be useful if more control over the upload process is necessary.
 
 ```python
@@ -464,7 +450,7 @@ def multi_part_upload_manual(bucket_name, item_name, file_path):
     * [upload_part](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.upload_part){:new_window}
 
 ### Large Object Upload using TransferManager
-{: #transfer-manager}
+{: #python-examples-multipart-transfer}
 
 The `TransferManager` provides another way to execute large file transfers by automatically incorporating multi-part uploads whenever necessary setting configuration parameters.
 
@@ -511,7 +497,7 @@ def upload_large_file(bucket_name, item_name, file_path):
 ```
 
 ### List items in a bucket (v2)
-{: #list-objects-v2}
+{: #python-examples-list-objects-v2}
 
 The [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window} object contains an updated method to list the contents ([list_objects_v2](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){:new_window}).  This method allows you to limit the number of records returned and retrieve the records in batches.  This could be useful for paging your results within an application and improve performance.
 
@@ -557,10 +543,11 @@ def get_bucket_contents_v2(bucket_name, max_keys):
     * [list_objects_v2](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){:new_window}
 
 ## Using Key Protect
-
+{: #python-examples-kp}
 Key Protect can be added to a storage bucket to encrypt sensitive data at rest in the cloud.
 
 ### Before You Begin
+{: #python-examples-kp-prereqs}
 
 The following items are necessary in order to create a bucket with Key-Protect enabled:
 
@@ -568,6 +555,7 @@ The following items are necessary in order to create a bucket with Key-Protect e
 * A Root key available (either [generated](/docs/services/keymgmt/keyprotect_create_root.html#create_root_keys) or [imported](/docs/services/keymgmt/keyprotect_import_root.html#import_root_keys))
 
 ### Retrieving the Root Key CRN
+{: #python-examples-kp-root}
 
 1. Retrieve the [instance ID](/docs/services/keymgmt/keyprotect_authentication.html#retrieve_instance_ID) for your Key Protect service
 2. Use the [Key Protect API](/docs/services/keymgmt/keyprotect_authentication.html#access-api) to retrieve all your [available keys](/docs/services/keymgmt/keyprotect_authentication.html#form_api_request)
@@ -577,6 +565,7 @@ The following items are necessary in order to create a bucket with Key-Protect e
 `crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
 
 ### Creating a bucket with key-protect enabled
+{: #python-examples-kp-new-bucket}
 ```python
 COS_KP_ALGORITHM = "<algorithm>"
 COS_KP_ROOTKEY_CRN = "<root-key-crn>"
@@ -610,6 +599,7 @@ def create_bucket_kp(bucket_name):
     * [create](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.create){:new_window}
 
 ## Using Aspera High-Speed Transfer
+{: #python-examples-aspera}
 {: #aspera}
 By installing the [Aspera high-speed transfer library](/docs/services/cloud-object-storage/basics/aspera.html#aspera-packaging) you can utilize high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license).
 
@@ -618,6 +608,7 @@ Each Aspera session spawns an individual `ascp` process that runs on the client 
 
 
 ### Initalizing the AsperaTransferManager
+{: #python-examples-aspera-init}
 
 Before initializing the `AsperaTransferManager`, make sure you've got working [`client`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window} (not a `resource` or `session`) object.
 
@@ -667,7 +658,7 @@ For best performance in most scenarios, always make use of multiple sessions to 
 {:tip}
 
 ### File Upload
-
+{: #python-examples-aspera-upload}
 ```python
 bucket_name = "<bucket-name>"
 upload_filename = "<absolute-path-to-file>"
@@ -689,6 +680,7 @@ with AsperaTransferManager(client) as transfer_manager:
 * `<item-name>` - name of the new file added to the bucket
 
 ### File Download
+{: #python-examples-aspera-download}
 
 ```python
 bucket_name = "<bucket-name>"
@@ -711,6 +703,7 @@ with AsperaTransferManager(client) as transfer_manager:
 * `<object-to-download>` - name of the file in the bucket to download.
 
 ### Directory Upload
+{: #python-examples-aspera-directory-upload}
 
 ```python
 bucket_name = "<bucket-name>"
@@ -735,6 +728,8 @@ with AsperaTransferManager(client) as transfer_manager:
 * `<object prefix>` - name of the directory in the bucket to store the files. Must not have a leading slash `/` (i.e. `newuploads/`)
 
 ### Directory Download
+{: #python-examples-aspera-directory-download}
+
 ```python
 bucket_name = "<bucket-name>"
 # THIS DIRECTORY MUST EXIST LOCALLY
@@ -757,6 +752,7 @@ with AsperaTransferManager(client) as transfer_manager:
 * `<object prefix>` - name of the directory in the bucket to store the files. Must not have a leading slash `/` (i.e. `todownload/`)
 
 ### Using Subscribers
+{: #python-examples-aspera-subscribers}
 
 Subscribers provide observability into transfers by attaching custom callback methods. All transfers transition between the following phases:
 
@@ -826,6 +822,7 @@ Download complete!
 ```
 
 ### Pause/Resume/Cancel
+{: #python-examples-aspera-pause}
 
 The SDK provides the ability to manage the progress of file/directory transfers through the following methods of the `AsperaTransferFuture` object:
 
@@ -858,7 +855,7 @@ with AsperaTransferManager(client) as transfer_manager:
 ```
 
 ### Troubleshooting Aspera Issues
-
+{: #python-examples-aspera-ts}
 **Issue:** Developers using Python 2.7.15 on Windows 10 may experience failures when installing Aspera SDK.
 
 **Cause:** If there are different versions of Python installed on your enviroment then you may encounter installation failures when you try to install the Aspera SDK. This can be caused by a missing DLL file(s) or wrong DLL in path.
@@ -866,13 +863,13 @@ with AsperaTransferManager(client) as transfer_manager:
 **Solution:** The first step to resolving this issue would be to reinstall the Aspera liburaries. There may have been a failure during the installation. As a result this could have effected the DLL files. If that does not resolve the issues then you will be required to update your version of Python. If you are unable to do this then you can use install [Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python){:new_window}. This will allow you to install the Aspeara SDK without any issues.
 
 ## Updating Metadata
-
+{: #python-examples-metadata}
 There are two ways to update the metadata on an existing object:
 * A `PUT` request with the new metadata and the original object contents
 * Executing a `COPY` request with the new metadata specifying the original object as the copy source
 
 ### Using PUT to update metadata
-
+{: #python-examples-metadata-put}
 **Note:** The `PUT` request overwrites the existing contents of the object so it must first be downloaded and re-uploaded with the new metdata
 
 ```python
@@ -897,6 +894,7 @@ def update_metadata_put(bucket_name, item_name, key, value):
 ```
 
 ### Using COPY to update metadata
+{: #python-examples-metadata-copy}
 
 ```python
 def update_metadata_copy(bucket_name, item_name, key, value):
@@ -922,7 +920,10 @@ def update_metadata_copy(bucket_name, item_name, key, value):
 ```
 
 ## Using Immutable Object Storage
+{: #python-examples-immutable}
+
 ### Add a protection configuration to an existing bucket
+{: #python-examples-immutable-add}
 
 Objects written to a protected bucket cannot be deleted until the protection period has expired and all legal holds on the object are removed. The bucket's default retention value is given to an object unless an object specific value is provided when the object is created. Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object. 
 
@@ -950,7 +951,7 @@ def add_protection_configuration_to_bucket(bucket_name):
 {: python}
 
 ### Check protection on a bucket
-
+{: #python-examples-immutable-check}
 ```py
 def get_protection_configuration_on_bucket(bucket_name):
     try:
@@ -970,6 +971,7 @@ def get_protection_configuration_on_bucket(bucket_name):
 
 
 ### Upload a protected object
+{: #python-examples-immutable-upload}
 
 Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
 
@@ -1047,6 +1049,7 @@ def upload_file_with_retention(bucket_name, object_name, path_to_file, retention
 {: python}
 
 ### Add or remove a legal hold to or from a protected object
+{: #python-examples-immutable-legal-hold}
 
 The object can support 100 legal holds:
 
@@ -1088,6 +1091,7 @@ def delete_legal_hold_from_object(bucket_name, object_name, legal_hold_id):
 {: python}
 
 ### Extend the retention period of a protected object
+{: #python-examples-immutable-extend}
 
 The retention period of an object can only be extended. It cannot be decreased from the currently configured value.
 
@@ -1119,6 +1123,7 @@ def extend_retention_period_on_object(bucket_name, object_name, additional_secon
 {: python}
 
 ### List legal holds on a protected object
+{: #python-examples-immutable-list-holds}
 
 This operation returns:
 

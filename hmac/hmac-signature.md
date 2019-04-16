@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-06-15"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: authorization, aws, hmac, signature, create
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,8 +15,16 @@ lastupdated: "2018-06-15"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
 
 # Constructing an HMAC signature
+{: #hmac-signature}
 
 Each request that is made against IBM COS using [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html) instead of an [API key or bearer token](/docs/services/cloud-object-storage/iam/overview.html) must be authenticated that uses an implementation of the AWS Signature Version 4 `authorization` header. Using a signature provides identity verification and in-transit data integrity, and because each signature is tied to the timestamp of the request it is not possible to reuse authorization headers.  The header is composed of four components: an algorithm declaration, credential information, signed headers, and the calculated signature:
 

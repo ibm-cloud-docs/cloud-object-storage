@@ -1,23 +1,28 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-08-20"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: activity tracker, event logging, observability
+
+subcollection: cloud-object-storage
 
 ---
-
-{:shortdesc: .shortdesc}
 {:new_window: target="_blank"}
+{:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
-{:download: .download}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
 {:table: .aria-labeledby="caption"}
 
 
 # {{site.data.keyword.cloudaccesstrailshort}} events
-{: #at_events}
+{: #at-events}
 
 Use the {{site.data.keyword.cloudaccesstrailfull}} service to track how users and applications interact with {{site.data.keyword.cos_full}}.
 {: shortdesc}
@@ -27,7 +32,7 @@ The {{site.data.keyword.cloudaccesstrailfull_notm}} service records user-initiat
 
 
 ## List of events
-{: #events}
+{: #at-events-list}
 
 The following table lists the actions that generate an event:
 
@@ -86,7 +91,7 @@ The following table lists the actions that generate an event:
 
 
 ## Where to view the events
-{: #ui}
+{: #at-ui}
 
 {{site.data.keyword.cloudaccesstrailshort}} events are available in the {{site.data.keyword.cloudaccesstrailshort}} **account domain**.
 

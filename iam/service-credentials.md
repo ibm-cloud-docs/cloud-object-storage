@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-08-06"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: authorization, iam, basics, credentials
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,8 +15,16 @@ lastupdated: "2018-08-06"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
 
 # Service credentials
+{: #service-credentials}
 
 A service credential provides the necessary information to connect an application to {{site.data.keyword.cos_short}} packaged in a JSON document.  Service credentials are always associated with a Service ID, and new Service IDs can be created along with a new credential.  
 
@@ -56,7 +68,7 @@ This is an example of a service credential:
 ```
 
 ## Understanding the `endpoints` objects
-{: #endpoints}
+{: #service-credential-endpoints}
 
 The `endpoints` URL provided as part of the service credential provides a list of all possible endpoints that can be used when connecting a client:
 
@@ -217,11 +229,12 @@ When creating a client using a library that requires an "auth" endpoint value, y
 {:tip}
 
 ## Using service credentials for single-bucket access
-{: #single-bucket}
+{: #service-credentials-bucket}
 
 When a service credential is created, the underlying Service ID is granted a role on the entire instance of {{site.data.keyword.cos_short}}. If the intention that the credential be used to grant access to a subset of buckets and not the entire instance, this policy will need to be edited.  See the [Bucket permissions](/docs/services/cloud-object-storage/iam/buckets.html) page for more details.
 
-## IAM vs HMAC
+## API Key vs HMAC
+{: #service-credentials-iam-hmac}
 
 In general IAM API Keys are the prefered method of authentication for {{site.data.keyword.cos_full}}. HMAC is supported primarily for backward-compatibility with Softlayer (IaaS) provisioned service instances and legacy S3 applications.  IAM is also natively supported when developing applications with the SDKs.  Token expiration and refresh is handled automatically to simplify the process.
 

@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-06-11"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: rest, s3, compatibility, api, postman, client, object storage
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,6 +15,9 @@ lastupdated: "2018-06-11"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
 
 # Using `Postman`
 {: #postman}
@@ -428,6 +435,7 @@ The API sample requests are fairly straightforward and easy to use.  They are de
 
 ## Using the Postman Collection Runner
 {: #postman-runner}
+
 The Postman Collection Runner provides a user interface for testing a collection and allows you to run all requests in a Collection at once. 
 
 1. Click on the Runner button in the upper right corner on the main Postman window.

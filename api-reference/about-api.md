@@ -14,16 +14,13 @@ subcollection: cloud-object-storage
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:screen: .screen}
-{:tsSymptoms: .tsSymptoms}
-{:tsCauses: .tsCauses}
-{:tsResolve: .tsResolve}
 {:tip: .tip}
 {:important: .important}
 {:note: .note}
 {:download: .download} 
 
 # About the {{site.data.keyword.cos_full_notm}} S3 API
-{: #compatibility-api-about}
+{: #compatibility-api}
 
 The {{site.data.keyword.cos_full}} API is a REST-based API for reading and writing objects. It uses {{site.data.keyword.iamlong}} for authentication and authorization, and supports a subset of the S3 API for easy migration of applications to {{site.data.keyword.cloud_notm}}.
 

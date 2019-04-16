@@ -1,12 +1,14 @@
 ---
 
 copyright:
-  years: 2019
-lastupdated: "2019-03-05"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: sdks, getting started
+
+subcollection: cloud-object-storage
 
 ---
-
-# Getting Started with the SDKs
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -14,10 +16,17 @@ lastupdated: "2019-03-05"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
-{:java: .ph data-hd-programlang='java'}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
-{:javascript: .ph data-hd-programlang='javascript'}
 {:go: .ph data-hd-programlang='go'}
+
+# Getting Started with the SDKs
+{: #sdk-gs}
 
 In this quickstart guide, you'll be provided a code example that will demonstrate the following operations:
 
@@ -31,6 +40,7 @@ In this quickstart guide, you'll be provided a code example that will demonstrat
 * Delete a bucket
 
 ## Before you begin
+{: #sdk-gs-prereqs}
 
 You will need:
 
@@ -39,10 +49,12 @@ You will need:
 * an [IAM API key](/docs/services/cloud-object-storage/iam/overview.html) with Writer access to your {{site.data.keyword.cos_short}}
 
 ## Getting the SDK
+{: #sdk-gs-install}
 
 Specific instructions for downloading and installing the SDK is available in [Using Python.](/docs/services/cloud-object-storage/libraries/python.html#using-python){:new_window}{: python}[Using Node.js.](/docs/services/cloud-object-storage/libraries/node.html#installing-the-sdk){:new_window}{: javascript}[Using Java.](/docs/services/cloud-object-storage/libraries/java.html#using-java){:new_window}{: java}[Using Java.](/docs/services/cloud-object-storage/libraries/java.html#using-go){:new_window}{: go}
 
 ## Code Example
+{: #sdk-gs-example}
 
 The code examples below provide introductory examples of executing the basic operations with {{site.data.keyword.cos_short}}.  For simplicity, the code example can be run multiple times as it uses Universally Unique Identifiers (UUIDs) for bucket/item names to prevent potential conflicts.
 
@@ -963,6 +975,7 @@ func exitErrorf(msg string, args ...interface{}) {
 {: Go}
 
 ## Running the Code Example
+{: #sdk-gs-run}
 
 To run the code sample, either copy the code blocks above or [download the Python example](/docs/services/cloud-object-storage/libraries/examples/python-example.py){: python}[download the Node.js example](/docs/services/cloud-object-storage/libraries/examples/node-example.js){: javascript}[download the Java example](/docs/services/cloud-object-storage/libraries/examples/JavaExampleCode.java){: java}[download the Go example](/docs/services/cloud-object-storage/libraries/examples/go_example.go){: go} and run the following:
 ```
@@ -990,6 +1003,7 @@ go run go_example.go
 {: Go}
 
 ## Output from the Code Example
+{: #sdk-gs-output}
 
 The output from the Code Example should resemble the following:
 

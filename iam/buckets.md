@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2017-09-27"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: access control, iam, basics, buckets
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,8 +15,16 @@ lastupdated: "2017-09-27"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
 
 # Bucket permissions
+{: #iam-bucket-permissions}
 
 Assign access roles for users and Service IDs against buckets, using either the UI or the CLI to create policies.
 
@@ -23,13 +35,15 @@ Assign access roles for users and Service IDs against buckets, using either the 
 | Reader      | List and download objects                                   |
 
 ## Granting access to a user
-{: #user-access}
+{: #iam-user-access}
 
 If the user needs to be able to use the console, it is necessary to **also** grant them a minimum service role of `Viewer` on the instance itself in addition to the access role (such as `Reader`).  This will allow them to view all buckets and list the objects within them. Then select **Bucket permissions** from the left navigation menu, select the user, and select the level of access (`Manager` or `Writer`) that they require.
 
 If the user will interact with data using the API and doesn't require console access, _and_ they are a member of your account, you can grant access to a single bucket without any access to the parent instance.
 
 ## Policy enforcement
+{: #iam-policy-enforcement}
+
 IAM policies are enforced hierarchically from greatest level of access to most restricted. Conflicts are resolved to the more permissive policy.  For example, if a user has both the `Writer` and `Reader` role on a bucket, the policy granting the `Reader` role will be ignored.
 
 This is also applicable to service instance and bucket level policies.
@@ -39,7 +53,7 @@ This is also applicable to service instance and bucket level policies.
 If it is necessary to restrict access to a single bucket (or set of buckets) ensure the user or Service ID doesn't have any instance level policies using either the console or CLI.
 
 ### Using the UI
-{: #user-ui}
+{: #iam-policy-enforcement-console}
 
   1. Navigate to the **Identity and Access** console from the **Manage** menu.
   2. Select **Users** from the left navigation menu.
@@ -52,7 +66,7 @@ Note that leaving the **Resource Type** or **Resource** fields blank will create
 {:tip}
 
 ### Using the CLI
-{: #user-cli}
+{: #iam-policy-enforcement-cli}
 
 From a terminal run the following command:
 
@@ -88,11 +102,11 @@ bx iam user-policy-update <user-name> <policy-id> \
 {:codeblock}
 
 ## Granting access to a service ID
-{: #serviceid-access}
+{: #iam-service-id}
 If you need to grant access to a bucket for an application or other non-human entity, use a Service ID.  The Service ID can be created specifically for this purpose, or can be an existing Service ID already in use.
 
 ### Using the UI
-{: #serviceid-ui}
+{: #iam-service-id-console}
 
   1. Navigate to the **Identity and Access** console from the **Manage** menu.
   2. Select **Service IDs** from the left navigation menu.
@@ -105,12 +119,12 @@ If you need to grant access to a bucket for an application or other non-human en
   {:tip}
 
 ### Using the CLI
-{: #serviceid-cli}
+{: #iam-service-id-cli}
 
 From a terminal run the following command:
 
 ```bash
-bx iam service-policy-create <service-id-name> \
+ibmcloud iam service-policy-create <service-id-name> \
       --roles <role> \
       --service-name cloud-object-storage \
       --service-instance <resource-instance-id>
@@ -123,14 +137,14 @@ bx iam service-policy-create <service-id-name> \
 To list existing policies:
 
 ```bash
-bx iam service-policies <service-id-name>
+ibmcloud iam service-policies <service-id-name>
 ```
 {:codeblock}
 
 To edit an existing policy:
 
 ```bash
-bx iam service-policy-update <service-id-name> <policy-id> \
+ibmcloud iam service-policy-update <service-id-name> <policy-id> \
       --roles <role> \
       --service-name cloud-object-storage \
       --service-instance <resource-instance-id>

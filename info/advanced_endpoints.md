@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-01-28"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: endpoints, legacy, access points, manual failover
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -13,6 +17,11 @@ lastupdated: "2019-01-28"
 {:tip: .tip}
 {:important: .important}
 {:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
 
 # Additional endpoint information
 {: #advanced-endpoints}
@@ -120,7 +129,6 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
     </tr>
   </tbody>
 </table>
-{:.endpointtable}
 
 
 ### US Regional Endpoints

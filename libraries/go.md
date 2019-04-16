@@ -1,12 +1,14 @@
 ---
 
 copyright:
-  years: 2019
-lastupdated: "2019-02-20"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: sdks, getting started, go
+
+subcollection: cloud-object-storage
 
 ---
-
-# Using Go
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -14,6 +16,17 @@ lastupdated: "2019-02-20"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
+{:go: .ph data-hd-programlang='go'}
+
+# Using Go
+{: #go}
 
 The {{site.data.keyword.cos_full}} SDK for Go is comprehensive, and has features and capabilities not described in this guide.  For detailed class and method documentation [see the Go Docs](https://ibm.github.io/ibm-cos-sdk-go/). Source code can be found in the [GitHub repository](https://github.com/IBM/ibm-cos-sdk-go).
 

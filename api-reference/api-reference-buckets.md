@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-08-27"
+  years: 2017, 2018, 2019
+lastupdated: "2019-04-12"
+
+keywords: rest, s3, compatibility, api, buckets
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,6 +15,9 @@ lastupdated: "2018-08-27"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
 
 # Bucket operations
 {: #compatibility-api-bucket-operations}
@@ -19,7 +26,7 @@ lastupdated: "2018-08-27"
 ## List buckets
 {: #compatibility-api-list-buckets}
 
-A `GET` request sent to the endpoint root returns a list of buckets that are associated with the specified service instance. 
+A `GET` request sent to the endpoint root returns a list of buckets that belong to the specified service instance. 
 
 Header                    | Type   | Required? |  Description
 --------------------------|--------|---| -----------------------------
@@ -27,7 +34,7 @@ Header                    | Type   | Required? |  Description
 
 Query Parameter                    | Value   | Required? |  Description
 --------------------------|--------|---| -----------------------------------------------------------
-`extended` | None | No | Provides bucket metadata in the listing, such as `LocationConstraint`.
+`extended` | None | No | Provides `LocationConstraint` metadata in the listing.
 
 Extended listing isn't supported in the SDKs or CLI.
 {:note}

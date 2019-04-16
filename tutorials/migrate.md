@@ -1,19 +1,30 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-06-13"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: tutorial, migrate, openstack swift
+
+subcollection: cloud-object-storage
 
 ---
-
-# Migrating data from OpenStack Swift
-
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
+
+# Migrating data from OpenStack Swift
+{: #migrate}
 
 Before {{site.data.keyword.cos_full_notm}} became available as an {{site.data.keyword.cloud_notm}} Platform service, projects that required an object store used [OpenStack Swift](/docs/services/ObjectStorage/index.html) or [OpenStack Swift (infrastructure)](/docs/infrastructure/objectstorage-swift/index.html#getting-started-with-object-storage-openstack-swift). We recommend developers update their applications and migrate their data to {{site.data.keyword.cloud_notm}} to take advantage of the new access control and encryption benefits provided by IAM and Key Protect, as well as new features as they become available.
 
@@ -34,12 +45,14 @@ This guide provides instructions for migrating data from a single Swift containe
 
 
 ## Set up {{site.data.keyword.cos_full_notm}}
+{: #migrate-setup}
 
   1. If you haven't created one yet, provision an instance of {{site.data.keyword.cos_full_notm}} from the [catalog](https://cloud.ibm.com/catalog/services/cloud-object-storage).  
   2. Create any buckets that you will need to store your transferred data. Read through the [getting started guide](/docs/services/cloud-object-storage/getting-started.html) to familiarize yourself with key concepts such as [endpoints](/docs/services/cloud-object-storage/basics/endpoints.html) and [storage classes](/docs/services/cloud-object-storage/basics/classes.html).  
   3. Because the syntax of the Swift API is significantly different from the COS/S3 API, it may be necessary to refactor your application in order to use equivalent methods provided in the COS SDKs. Libraries are available in ([Java](/docs/services/cloud-object-storage/libraries/java.html), [Python](/docs/services/cloud-object-storage/libraries/python.html), [Node.js](/docs/services/cloud-object-storage/libraries/node.html)) or the [REST API](/docs/services/cloud-object-storage/api-reference/about-api.html).
 
 ## Set up a compute resource to run the migration tool
+{: #migrate-compute}
   1. Choose a Linux/macOS/BSD machine or an IBM Cloud Infrastructure Bare Metal or Virtual Server
      with the best proximity to your data.
   2. If you are running the migration on an IBM Cloud Infrastructure Bare Metal or Virtual Server
@@ -52,6 +65,8 @@ This guide provides instructions for migrating data from a single Swift containe
       ```
 
 ## Configure `rclone` for OpenStack Swift
+{: #migrate-rclone}
+
   1. Create an `rclone` config file in `~/.rclone.conf`.
 
         ```
@@ -89,6 +104,8 @@ This guide provides instructions for migrating data from a single Swift containe
 
 
 ## Configure `rclone` for OpenStack Swift (infrastructure)
+{: #migrate-config-swift}
+
   1. Create an `rclone` config file in `~/.rclone.conf`.
 
         ```
@@ -123,7 +140,11 @@ This guide provides instructions for migrating data from a single Swift containe
         ```
 
 ## Configure `rclone` for COS
+{: #migrate-config-cos}
+
 ### Get COS credential
+{: #migrate-config-cos-credential}
+
   1. Click on your COS instance in the IBM Cloud console.
   2. Click on **Service Credentials** in the navigation panel.
   3. Click on **New credential** to generate credential information.
@@ -131,6 +152,8 @@ This guide provides instructions for migrating data from a single Swift containe
   5. View the credential you created, and copy the JSON contents.
 
 ### Get COS endpoint
+{: #migrate-config-cos-endpoint}
+
   1. Click on **Buckets** in the navigation panel.
   2. Click on the migration target bucket.
   3. Click on **Configuration** in the navigation panel.
@@ -156,6 +179,8 @@ This guide provides instructions for migrating data from a single Swift containe
     ```
 
 ## Verify the migration source and target are properly configured
+{: #migrate-verify}
+
 1. List the Swift container to verify `rclone` is properly configured.
 
     ```
@@ -169,6 +194,7 @@ This guide provides instructions for migrating data from a single Swift containe
     ```
 
 ## Run `rclone`
+{: #migrate-run}
 
 1. Do a dry run (no data copied) of `rclone` to sync the objects in your source
    Swift container (e.g. `swift-test`) to target COS bucket (e.g. `cos-test`).

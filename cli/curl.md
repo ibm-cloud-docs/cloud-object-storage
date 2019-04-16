@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-07-12"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: basics, upload, getting started, curl, cli
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,8 +15,16 @@ lastupdated: "2018-07-12"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
 
 # Using `curl`
+{: #curl}
 
 Here's a 'cheatsheet' of basic `curl` commands for the {{site.data.keyword.cos_full}} REST API.  Additional detail can be found in the API reference for [buckets](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html) or [objects](/docs/services/cloud-object-storage/api-reference/api-reference-objects.html).
 
@@ -22,8 +34,13 @@ Using `curl` assumes a certain amount of familiarity with the command line and o
 {:tip}
 
 ## Request an IAM Token
+{: #curl-iam}
+
 There are two ways to generate an IAM oauth token for authenticating requests: using a `curl` command with an API key (described below) or from the command line using [IBM Cloud CLI](/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information).  
+
 ### Request an IAM token using an API key
+{: #curl-token}
+
 First ensure that you have an API key.  Get this from [{{site.data.keyword.iamlong}}](https://cloud.ibm.com/iam#/apikeys).
 
 ```
@@ -37,12 +54,15 @@ curl -X "POST" "https://iam.cloud.ibm.com/identity/token" \
 {:codeblock}
 
 ## Obtain your resource instance id
+{: #curl-instance-id}
+
 Some of the following commands require an `ibm-service-instance-id` parameter. To find this value, go to the **Service credentials** tab of your Object Storage instance in the cloud console. Create a new credential if needed, then use the *View credentials* drop-down to see the JSON format. Use the value of `resource_instance_id`. 
 
 For use with curl APIs you only need the UUID that starts after the last single colon and ends before the final double colon. For example, the id `crn:v1:bluemix:public:cloud-object-storage:global:a/81caa0254631ce5f9330ae427618f209:39d8d161-22c4-4b77-a856-f11db5130d7d::` can be abbreviated to `39d8d161-22c4-4b77-a856-f11db5130d7d`.
 {:tip}
 
 ## List buckets
+{: #curl-list-buckets}
 
 ```
 curl "https://(endpoint)/"
@@ -52,6 +72,7 @@ curl "https://(endpoint)/"
 {:codeblock}
 
 ## Add a bucket
+{: #curl-add-bucket}
 
 ```
 curl -X "PUT" "https://(endpoint)/(bucket-name)"
@@ -61,6 +82,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)"
 {:codeblock}
 
 ## Add a bucket (storage class)
+{: #curl-add-bucket-class}
 
 ```
 curl -X "PUT" "https://(endpoint)/(bucket-name)"
@@ -75,24 +97,8 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)"
 
 A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).
 
-## Allow public object listing
-
-```
-curl -X "PUT" "https://(endpoint)/(bucket-name)/?acl"
- -H "Authorization: bearer (token)"
- -H "x-amz-acl: public-read"
-```
-{:codeblock}
-
-## Check a bucket ACL
-
-```
-curl "https://(endpoint)/(bucket-name)/?acl"
- -H "Authorization: bearer (token)"
-```
-{:codeblock}
-
 ## Create a bucket CORS
+{: #curl-new-cors}
 
 ```
 curl -X "PUT" "https://(endpoint)/(bucket-name)/?cors"
@@ -117,7 +123,7 @@ echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 {:codeblock}
 
 ## Get a bucket CORS
-
+{: #curl-get-cors}
 ```
 curl "https://(endpoint)/(bucket-name)/?cors"
  -H "Authorization: bearer (token)"
@@ -125,7 +131,7 @@ curl "https://(endpoint)/(bucket-name)/?cors"
 {:codeblock}
 
 ## Delete a bucket CORS
-
+{: #curl-delete-cors}
 ```
 curl -X "DELETE" "https://(endpoint)/(bucket-name)/?cors"
  -H "Authorization: bearer (token)"
@@ -133,7 +139,7 @@ curl -X "DELETE" "https://(endpoint)/(bucket-name)/?cors"
 {:codeblock}
 
 ## List objects
-
+{: #curl-list-objects}
 ```
 curl "https://(endpoint)/(bucket-name)"
  -H "Authorization: bearer (token)"
@@ -141,7 +147,7 @@ curl "https://(endpoint)/(bucket-name)"
 {:codeblock}
 
 ## Get bucket headers
-
+{: #curl-head-bucket}
 ```
 curl --head "https://(endpoint)/(bucket-name)/"
  -H "Authorization: bearer (token)"
@@ -149,6 +155,7 @@ curl --head "https://(endpoint)/(bucket-name)/"
 {:codeblock}
 
 ## Delete a bucket
+{: #curl-delete-bucket}
 
 ```
 curl -X "DELETE" "https://(endpoint)/(bucket-name)/"
@@ -157,6 +164,7 @@ curl -X "DELETE" "https://(endpoint)/(bucket-name)/"
 {:codeblock}
 
 ## Upload an object
+{: #curl-put-object}
 
 ```
 curl -X "PUT" "https://(endpoint)/(bucket-name)/(object-key)" \
@@ -167,6 +175,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)/(object-key)" \
 {:codeblock}
 
 ## Get an object's headers
+{: #curl-head-object}
 
 ```
 curl --head "https://(endpoint)/(bucket-name)/(object-key)"
@@ -175,6 +184,7 @@ curl --head "https://(endpoint)/(bucket-name)/(object-key)"
 {:codeblock}
 
 ## Copy an object
+{: #curl-copy-object}
 
 ```
 curl -X "PUT" "https://(endpoint)/(bucket-name)/(object-key)"
@@ -184,6 +194,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)/(object-key)"
 {:codeblock}
 
 ## Check CORS info
+{: #curl-options-object}
 
 ```
 curl -X "OPTIONS" "https://(endpoint)/(bucket-name)/(object-key)"
@@ -193,6 +204,7 @@ curl -X "OPTIONS" "https://(endpoint)/(bucket-name)/(object-key)"
 {:codeblock}
 
 ## Download an object
+{: #curl-get-object}
 
 ```
 curl "https://(endpoint)/(bucket-name)/(object-key)"
@@ -201,6 +213,7 @@ curl "https://(endpoint)/(bucket-name)/(object-key)"
 {:codeblock}
 
 ## Check object's ACL
+{: #curl-acl-object}
 
 ```
 curl "https://(endpoint)/(bucket-name)/(object-key)?acl"
@@ -209,7 +222,7 @@ curl "https://(endpoint)/(bucket-name)/(object-key)?acl"
 {:codeblock}
 
 ## Allow anonymous access to an object
-
+{: #curl-public-object}
 ```
 curl -X "PUT" "https://(endpoint)/(bucket-name)/(object-key)?acl"
  -H "Content-Type: (content-type)"
@@ -219,7 +232,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)/(object-key)?acl"
 {:codeblock}
 
 ## Delete an object
-
+{: #curl-delete-object}
 ```
 curl -X "DELETE" "https://(endpoint)/(bucket-name)/(object-key)"
  -H "Authorization: bearer (token)"
@@ -227,7 +240,7 @@ curl -X "DELETE" "https://(endpoint)/(bucket-name)/(object-key)"
 {:codeblock}
 
 ## Delete multiple objects
-
+{: #curl-delete-objects}
 ```
 curl -X "POST" "https://(endpoint)/(bucket-name)?delete"
  -H "Content-MD5: (md5-hash)"
@@ -253,6 +266,7 @@ echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 {:codeblock}
 
 ## Initiate a multipart upload
+{: #curl-multipart-initiate}
 
 ```
 curl -X "POST" "https://(endpoint)/(bucket-name)/(object-key)?uploads"
@@ -261,6 +275,7 @@ curl -X "POST" "https://(endpoint)/(bucket-name)/(object-key)?uploads"
 {:codeblock}
 
 ## Upload a part
+{: #curl-multipart-part}
 
 ```
 curl -X "PUT" "https://(endpoint)/(bucket-name)/(object-key)?partNumber=(sequential-integer)&uploadId=(upload-id)"
@@ -270,6 +285,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)/(object-key)?partNumber=(sequent
 {:codeblock}
 
 ## Complete a multipart upload
+{: #curl-multipart-complete}
 
 ```
 curl -X "POST" "https://(endpoint)/(bucket-name)/(object-key)?uploadId=(upload-id)"
@@ -289,6 +305,7 @@ curl -X "POST" "https://(endpoint)/(bucket-name)/(object-key)?uploadId=(upload-i
 {:codeblock}
 
 ## Get incomplete multipart uploads
+{: #curl-multipart-get}
 
 ```
 curl "https://(endpoint)/(bucket-name)/?uploads"
@@ -297,7 +314,7 @@ curl "https://(endpoint)/(bucket-name)/?uploads"
 {:codeblock}
 
 ## Abort incomplete multipart uploads
-
+{: #curl-multipart-abort}
 ```
 curl -X "DELETE" "https://(endpoint)/(bucket-name)/(object-key)?uploadId"
  -H "Authorization: bearer (token)"

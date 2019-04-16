@@ -1,23 +1,33 @@
 ---
 
 copyright:
-  years:  2017, 2018
-lastupdated: "2018-12-11"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: authorization, iam, basics
+
+subcollection: cloud-object-storage
 
 ---
-
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:screen: .screen}
-{:pre: .pre}
-{:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:pre: .pre}
+{:screen: .screen}
 {:tip: .tip}
-{:download: .download}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
 
 # Getting Started with IAM
+{: #iam}
 
 ## Identity and Access Management roles and actions
+{: #iam-roles}
 
 Access to {{site.data.keyword.cos_full}} service instances for users in your account is controlled by {{site.data.keyword.Bluemix_notm}} Identity and Access Management (IAM). Every user that accesses the {{site.data.keyword.cos_full}} service in your account must be assigned an access policy with an IAM user role defined. That policy determines what actions the user can perform within the context of the service or instance you select. The allowable actions are customized and defined by the {{site.data.keyword.Bluemix_notm}} service as operations that are allowed to be performed on the service. The actions are then mapped to IAM user roles.
 

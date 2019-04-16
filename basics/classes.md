@@ -1,23 +1,32 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2018-04-06"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: storage classes, tiers, cost, buckets, location constraint, provisioning code, locationconstraint
+
+subcollection: cloud-object-storage
 
 ---
-
-# Use storage classes
-
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:table: .aria-labeledby="caption"}
+
+# Use storage classes
+{: #classes}
 
 Not all data feeds active workloads.  Archival data may sit untouched for long periods of time.  For less active workloads, you can create buckets with different storage classes.  Objects stored in these buckets will incur charges on a different schedule than standard storage.
 
 ## What are the classes?
+{: #classes-about}
 
 There are four storage classes:
 
@@ -31,7 +40,7 @@ For pricing details please see [the pricing table at ibm.com](https://www.ibm.co
 For information on how to create buckets with different storage classes, please see the [API reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#storage-class).
 
 ## How do I create a bucket with a different storage class?
-{: #locationconstraint}
+{: #classes-locationconstraint}
 
 When creating a bucket in the console, there is a drop-down menu that allows for storage class selection. 
 

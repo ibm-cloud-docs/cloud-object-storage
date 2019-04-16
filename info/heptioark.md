@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2019
-lastupdated: "2019-01-25"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: heptio, kubernetes, backup
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,9 +15,16 @@ lastupdated: "2019-01-25"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
 
 # Heptio Ark Integration
-
+{: #ark}
 [Ark](https://github.com/heptio/ark){:new_window} is a toolset provided by [Heptio](https://heptio.com/){:new_window} to backup and restore your Kubernetes cluster resources.  Ark supports the use of S3-compatible storage providers including {{site.data.keyword.cos_full}} for different backup/snapshot operations.
 
 Ark consists of two parts:
@@ -22,6 +33,7 @@ Ark consists of two parts:
 * Command-line tool that runs on a local client
 
 ## Prerequisites
+{: #ark-prereqs}
 
 Before you begin you'll need to ensure you have the following:
 
@@ -32,6 +44,7 @@ Before you begin you'll need to ensure you have the following:
 * HMAC credentials with Writer access to bucket
 
 ## Install Ark Client
+{: #ark-install}
 
 1. Download the latest [release](https://github.com/heptio/ark/releases){:new_window} of Ark for your OS
 2. Extract the tarball to a folder on your local system
@@ -80,8 +93,10 @@ Available Commands:
 {: tip}
 
 ## Install and Configure Ark Server
+{: #ark-config}
 
 ### Create credentials file
+{: #ark-config-credentials}
 
 Create a credentials file (`credentials-ark`) using the HMAC pair of access and secret keys in your local Ark folder (*folder that the tarball was extracted*)
 
@@ -92,6 +107,7 @@ Create a credentials file (`credentials-ark`) using the HMAC pair of access and 
 ```
 
 ### Configure kubectl
+{: #ark-config-kubectl}
 
 Configure [`kubectl`](https://kubernetes.io/docs/user-guide/kubectl-overview/){:new_window} to connect to your cluster.
 
@@ -122,6 +138,7 @@ Configure [`kubectl`](https://kubernetes.io/docs/user-guide/kubectl-overview/){:
     {: pre}
 
 ### Configure Ark Server and Cloud Storage
+{: #ark-config-storage}
 
 1. In the Ark folder run the following to setup namespaces, RBAC, and other scaffolding<br/><br/>*The default namespace is `heptio-ark`.  If you wish to create a custom namespace, see the instructions at [Run in custom namespace](https://heptio.github.io/ark/v0.10.0/namespace.html){:new_window}*
     ```bash
@@ -164,6 +181,7 @@ Configure [`kubectl`](https://kubernetes.io/docs/user-guide/kubectl-overview/){:
     *See the [BackupStorageLocation](https://heptio.github.io/ark/v0.10.0/api-types/backupstoragelocation.html#aws){:new_window} definition for additional information.*
 
 ### Start the Ark Server
+{: #ark-config-server}
 
 1. In the Ark folder run the following command to create the object in your cluster:
     ```bash
@@ -199,8 +217,10 @@ Configure [`kubectl`](https://kubernetes.io/docs/user-guide/kubectl-overview/){:
     {: pre}
 
 ## Testing Backup/Restore
+{: #ark-test}
 
 ### Backup
+{: #ark-test-backup}
 
 You can now perform a simple backup of your Kubernetes cluster by running the following command:
 ```bash
@@ -228,6 +248,7 @@ ark backup --help
 {: pre}
 
 ### Restore
+{: #ark-test-restore}
 
 To restore a backup run the following command:
 ```bash

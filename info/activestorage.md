@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-10-15"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: ruby, activestorage, rails, aws
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,14 +15,20 @@ lastupdated: "2018-10-15"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
 
 # Ruby on Rails/Active Storage
+{: #ror-activestorage}
 
 [Rails](https://guides.rubyonrails.org/getting_started.html){:new_window} is an open-source, web application development framework that combines the Ruby programming language with HTML, CSS, and JavaScript.  It includes everything needed to create server-side web applications using the Model-View-Controller (MVC) pattern.  
 
 In Rails, the Model (business data and logic layer) of the MVC pattern is handled by [Active Record](https://guides.rubyonrails.org/active_record_basics.html){:new_window}.  It provides the [Object-Relational Mapping (ORM)](https://en.wikipedia.org/wiki/Object-relational_mapping){:new_window} framework that connects the business objects with persistent storage in the relational database management system.
-
-## Active Storage
 
 [Active Storage](https://guides.rubyonrails.org/active_storage_overview.html){:new_window} is a built-in framework for attaching files from cloud storage services like {{site.data.keyword.cos_full}} to Active Record objects.  Amazon S3, Google Cloud Storage, and Microsoft Azure are also supported as well as local disk-based services.
 
@@ -32,6 +42,8 @@ bin/rails db:migrate
 This will create the two required tables (`active_storage_blobs` and `active_storage_attachments`) in the application's database to manage Active Record file attachments.  
 
 ### Storage Configuration
+{: #ror-activestorage-config}
+
 Declare your {{site.data.keyword.cos_short}} service in `config/storage.yml`:
 
 ```
@@ -67,6 +79,7 @@ aws_secret_access_key = <secret_access_key>
 ```
 
 ### Rails Environment
+{: #ror-activestorage-rails}
 
 Configure your environments to use your {{site.data.keyword.cos_short}} service by updating the following setting:
 
@@ -82,6 +95,7 @@ Update the corresponding configuration file for each of the environments:
 
 
 ## CORS Configuration
+{: #ror-activestorage-cors}
 
 To enable Rails access to your bucket you must create a Cross-Origin Resource Sharing (CORS) configuration similar to below:
 

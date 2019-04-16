@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-11-08"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: gui, desktop, crossftp
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,8 +15,17 @@ lastupdated: "2018-11-08"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
+
 
 # Transfer files using CrossFTP
+{: #crossftp}
 
 [CrossFTP](http://www.crossftp.com/){:new_window} is a full-featured FTP client that supports S3-compatible cloud storage solutions including {{site.data.keyword.cos_full}}.  CrossFTP supports Mac OS X, Microsoft Windows, Linux and comes in Free, Pro, and Enterprise versions with features such as:
 
@@ -26,6 +39,7 @@ lastupdated: "2018-11-08"
 * Command-line interface (*Pro/Enterprise versions*)
 
 ## Connecting to IBM Cloud Object Storage
+{: #crossftp-connect}
 
 1. Download, install, and start CrossFTP.
 2. In the right-pane, create a new Site by click on the plus (+) icon to open the Site Manager.
