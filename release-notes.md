@@ -32,6 +32,9 @@ subcollection: cloud-object-storage
 ### March 2019
 {: #updates-2019-q1-mar}
 
+User can use [COS Firewall](/docs/services/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall#setting-a-firewall) to restrict access to the data in COS only if request originates from a list of allowed IP addresses.
+
+
 IAM policies can now grant [public access](/docs/services/cloud-object-storage/iam/public-access.html) to entire buckets.
 Buckets can now be created in a Single Data Center configuration in Milan, Italy. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html).
 
