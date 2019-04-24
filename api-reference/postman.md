@@ -42,8 +42,8 @@ A REST API client provides a simple GUI-based application to interface with an e
 * IBM Cloud account
 * [Cloud Storage resource created](https://cloud.ibm.com/catalog/) (lite/free plan works fine)
 * [IBM Cloud CLI installed and configured](https://cloud.ibm.com/docs/services/cloud-object-storage/getting-started-cli.html)
-* [Service Instance ID for your Cloud Storage](/docs/services/cloud-object-storage/iam/service-credentials.md)
-* [IAM (Identity and Access Management) Token](/docs/services/cloud-object-storage/iam/service-credentials.md) 
+* [Service Instance ID for your Cloud Storage](/docs/services/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials)
+* [IAM (Identity and Access Management) Token](/docs/services/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials) 
 * [Endpoint for your COS bucket](/docs/services/cloud-object-storage/basics/endpoints.html)
 
 ### Create a bucket
@@ -107,8 +107,8 @@ A Postman Collection is available for [download ![External link icon](../icons/l
     * Click on the three dots to the right of the collection to expand the menu and click Edit
 6. Edit the variables to match your Cloud Storage environment
     * **bucket** - Enter the name for the new bucket you wish to create (bucket names must be unique across Cloud Storage).
-    * **serviceid** - Enter the CRN of your Cloud Storage service.  Instructions to obtain your CRN are available [here](/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information).
-    * **iamtoken** - Enter the OAUTH token for your Cloud Storage service.  Instructions to obtain your OAUTH token are available [here](/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information).
+    * **serviceid** - Enter the CRN of your Cloud Storage service.  Instructions to obtain your CRN are available [here](/docs/cli?topic=cloud-cli-ibmcloud-cli#ibmcloud-cli).
+    * **iamtoken** - Enter the OAUTH token for your Cloud Storage service.  Instructions to obtain your OAUTH token are available [here](/docs/cli?topic=cloud-cli-ibmcloud-cli#ibmcloud-cli).
     * **endpoint** - Enter the regional endpoint for your Cloud Storage service.  Obtain the available endpoints from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources/){:new_window}
         * *Ensure that your selected endpoint matches your key protect service to ensure the samples run correctly*
     * **rootkeycrn** - The CRN of the Root Key created in your primary Key Protect service.

@@ -95,7 +95,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)"
 ```
 {:codeblock}
 
-A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](docs/services/cloud-object-storage/iam?topic=cloud-object-storage-classes#classes-locationconstraint).
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-classes#classes-locationconstraint).
 
 ## Create a bucket CORS
 {: #curl-new-cors}
