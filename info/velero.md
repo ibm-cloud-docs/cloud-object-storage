@@ -25,7 +25,7 @@ subcollection: cloud-object-storage
 
 # Velero Integration
 {: #velero}
-[Velero](https://github.com/heptio/velero){:new_window} (formerly Heptio Ark) is a toolset provided by [Heptio](https://heptio.com/){:new_window} to backup and restore your Kubernetes cluster resources.  Ark supports the use of S3-compatible storage providers including {{site.data.keyword.cos_full}} for different backup/snapshot operations.
+[Velero](https://github.com/heptio/velero){:new_window} (formerly Heptio Ark) is a toolset provided by [Heptio](https://heptio.com){:new_window} to backup and restore your Kubernetes cluster resources.  Ark supports the use of S3-compatible storage providers including {{site.data.keyword.cos_full}} for different backup/snapshot operations.
 
 Velero consists of two parts:
 
@@ -37,8 +37,8 @@ Velero consists of two parts:
 
 Before you begin you'll need to ensure you have the following:
 
-* The [`IBM Cloud CLI`](https://cloud.ibm.com/docs/cli/index.html#overview){:new_window} installed
-* The [`kubectl`](https://kubernetes.io/docs/user-guide/kubectl-overview/){:new_window} command-line tool installed and configured to connect to your cluster
+* The [`IBM Cloud CLI`](/docs/cli?topic=cloud-cli-ibmcloud-cli){:new_window} installed
+* The [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/){:new_window} command-line tool installed and configured to connect to your cluster
 * An {{site.data.keyword.cos_short}} instance 
 * A {{site.data.keyword.cos_short}} bucket
 * HMAC credentials with Writer access to bucket
@@ -108,7 +108,7 @@ Create a credentials file (`credentials-velero`) using the HMAC pair of access a
 ### Configure kubectl
 {: #velero-config-kubectl}
 
-Configure [`kubectl`](https://kubernetes.io/docs/user-guide/kubectl-overview/){:new_window} to connect to your cluster.
+Configure [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/){:new_window} to connect to your cluster.
 
 1. Login to the IBM Cloud Platform using the CLI.<br/><br/>*For increased security, it's also possible to store the API key in a file or set it as an environment variable.*
     ```bash
@@ -174,7 +174,7 @@ Configure [`kubectl`](https://kubernetes.io/docs/user-guide/kubectl-overview/){:
 
 3. Specify the following values in `config/ibm/05-ark-backupstoragelocation.yaml`:
    * `<YOUR_BUCKET>` - Name of the bucket for storing backup files
-   * `<YOUR_REGION>` - The [location constraint](/docs/services/cloud-object-storage/basics/classes.html#locationconstraint) of your bucket (i.e. `us-standard`)
+   * `<YOUR_REGION>` - The [location constraint](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint) of your bucket (i.e. `us-standard`)
    * `<YOUR_URL_ACCESS_POINT>` - The regional endpoint URL (i.e. `https://s3-api.us-geo.objectstorage.softlayer.net`). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
     *See the [BackupStorageLocation](https://heptio.github.io/velero/master/api-types/backupstoragelocation.html#aws){:new_window} definition for additional information.*

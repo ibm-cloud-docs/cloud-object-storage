@@ -68,11 +68,11 @@ If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_creden
 
 The following variables appear in the examples:
 
-* `bucket_name` must be a  [unique and DNS-safe](docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#compatibility-api-new-bucket) string. Because bucket names are unique across the entire system, these values will need to be changed if this example is run multiple times.  Note that names are reserved for 10-15 minutes after deletion.
+* `bucket_name` must be a  [unique and DNS-safe](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#compatibility-api-new-bucket) string. Because bucket names are unique across the entire system, these values will need to be changed if this example is run multiple times.  Note that names are reserved for 10-15 minutes after deletion.
 * `ibm_api_key_id` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html) as `apikey`.
 * `ibm_service_instance_id` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html) as `resource_instance_id`. 
 * `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol.  This is **not** the `endpoints` value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
-* `LocationConstraint` is a [valid provisioning code](docs/services/cloud-object-storage/basics/classes.html#locationconstraint) that corresponds to the `endpoint` value.  
+* `LocationConstraint` is a [valid provisioning code](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint) that corresponds to the `endpoint` value.  
 
 
 ## Code Examples
@@ -104,9 +104,9 @@ cos = ibm_boto3.resource("s3",
 )
 ```
 *Key Values*
-* `<endpoint>` - public endpoint for your cloud object storage with schema prefixed (eg. 'https://') (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+* `<endpoint>` - public endpoint for your cloud object storage with schema prefixed (eg. 'https://') (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
-* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window})
+* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window})
 * `<location>` - default location for your cloud object storage (must match the region used for `<endpoint>`)
 
 *SDK References*
@@ -116,7 +116,7 @@ cos = ibm_boto3.resource("s3",
 ### Creating a new bucket
 {: #python-examples-new-bucket}
 
-A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes).
 
 ```python
 def create_bucket(bucket_name):
@@ -551,15 +551,15 @@ Key Protect can be added to a storage bucket to encrypt sensitive data at rest i
 
 The following items are necessary in order to create a bucket with Key-Protect enabled:
 
-* A Key Protect service [provisioned](/docs/services/keymgmt/keyprotect_provision.html)
-* A Root key available (either [generated](/docs/services/keymgmt/keyprotect_create_root.html#create_root_keys) or [imported](/docs/services/keymgmt/keyprotect_import_root.html#import_root_keys))
+* A Key Protect service [provisioned](/docs/services/key-protect?topic=key-protect-provision)
+* A Root key available (either [generated](/docs/services/key-protect?topic=key-protect-create-root-keys#create_root_keys) or [imported](/docs/services/key-protect?topic=key-protect-import-root-keys#import_root_keys))
 
 ### Retrieving the Root Key CRN
 {: #python-examples-kp-root}
 
-1. Retrieve the [instance ID](/docs/services/keymgmt/keyprotect_authentication.html#retrieve_instance_ID) for your Key Protect service
-2. Use the [Key Protect API](/docs/services/keymgmt/keyprotect_authentication.html#access-api) to retrieve all your [available keys](/docs/services/keymgmt/keyprotect_authentication.html#form_api_request)
-    * You can either use `curl` commands or an API REST Client such as [Postman](../api-reference/postman.html) to access the [Key Protect API](/docs/services/keymgmt/keyprotect_authentication.html#access-api).
+1. Retrieve the [instance ID](/docs/services/key-protect?topic=key-protect-retrieve-instance-ID#retrieve-instance-ID) for your Key Protect service
+2. Use the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
+    * You can either use `curl` commands or an API REST Client such as [Postman](/docs/services/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api).
 3. Retrieve the CRN of the root key you will use to enabled Key Protect on the your bucket.  The CRN will look similar to below:
 
 `crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`

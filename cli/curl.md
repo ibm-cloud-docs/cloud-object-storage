@@ -36,7 +36,7 @@ Using `curl` assumes a certain amount of familiarity with the command line and o
 ## Request an IAM Token
 {: #curl-iam}
 
-There are two ways to generate an IAM oauth token for authenticating requests: using a `curl` command with an API key (described below) or from the command line using [IBM Cloud CLI](/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information).  
+There are two ways to generate an IAM oauth token for authenticating requests: using a `curl` command with an API key (described below) or from the command line using [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-ibmcloud-cli).  
 
 ### Request an IAM token using an API key
 {: #curl-token}
@@ -95,7 +95,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)"
 ```
 {:codeblock}
 
-A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](docs/services/cloud-object-storage/iam?topic=cloud-object-storage-classes#classes-locationconstraint).
 
 ## Create a bucket CORS
 {: #curl-new-cors}

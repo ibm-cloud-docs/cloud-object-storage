@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 ## Cloudberry Backup
 {: #cloudberry-backup}
 
-Cloudberry Backup is a flexible utility that allows users to back up some or all of a local filesystem to an S3 API compatible object storage system. Free and Professional versions are available for Windows, MacOS, and Linux and support a number of popular cloud storage services including {{site.data.keyword.cos_full}}.  Cloudberry Backup can be downloaded from [cloudberrylab.com](http://www.cloudberrylab.com/).
+Cloudberry Backup is a flexible utility that allows users to back up some or all of a local filesystem to an S3 API compatible object storage system. Free and Professional versions are available for Windows, MacOS, and Linux and support a number of popular cloud storage services including {{site.data.keyword.cos_full}}.  Cloudberry Backup can be downloaded from [cloudberrylab.com](https://www.cloudberrylab.com/).
 
 Cloudberry Backup includes many useful features including:
 

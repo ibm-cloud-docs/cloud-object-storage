@@ -57,7 +57,7 @@ There are IBM COS SDKs available for [Python](/docs/services/cloud-object-storag
 
 ## Building applications on IBM Cloud
 {: #gs-dev-apps}
-{{site.data.keyword.cloud}} provides flexibility to developers in choosing the right architectural and deployment options for a given application.  Run your code on [bare metal](https://cloud.ibm.com/catalog/infrastructure/bare-metal), in [virtual machines](https://cloud.ibm.com/catalog/infrastructure/virtual-server-group), using a [serverless framework](https://cloud.ibm.com/openwhisk), in [containers](https://cloud.ibm.com/containers-kubernetes/catalog/cluster), or using [Cloud Foundry](https://cloud.ibm.com/catalog/starters/sdk-for-nodejs).  
+{{site.data.keyword.cloud}} provides flexibility to developers in choosing the right architectural and deployment options for a given application.  Run your code on [bare metal](https://cloud.ibm.com/catalog/infrastructure/bare-metal), in [virtual machines](https://cloud.ibm.com/catalog/infrastructure/virtual-server-group), using a [serverless framework](https://cloud.ibm.com/openwhisk), in [containers](https://cloud.ibm.com/kubernetes/catalog/cluster), or using [Cloud Foundry](https://cloud.ibm.com/catalog/starters/sdk-for-nodejs).  
 
 The [Cloud Native Computing Foundation](https://www.cncf.io) incubated and recently "graduated" the [Kubernetes](https://kubernetes.io) container orchestration framework, and it forms the foundation for the {{site.data.keyword.cloud}} Kubernetes Service.  Developers who wish to use object storage for persistent storage in their Kubernetes applications can learn more at the following links:
 

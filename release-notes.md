@@ -34,7 +34,6 @@ subcollection: cloud-object-storage
 
 User can use [COS Firewall](/docs/services/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall#setting-a-firewall) to restrict access to the data in COS only if request originates from a list of allowed IP addresses.
 
-
 IAM policies can now grant [public access](/docs/services/cloud-object-storage/iam/public-access.html) to entire buckets.
 Buckets can now be created in a Single Data Center configuration in Milan, Italy. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html).
 
@@ -52,7 +51,7 @@ Buckets can now be created in AP Australia region. More information can be found
 ### December 2018
 {: #updates-2018-q4-dec}
 
-Users can use [Immutable Object Storage](docs/services/cloud-object-storage/basics/immutable.html) to create retention policies that prevent object deletion or modification.
+Users can use [Immutable Object Storage](/docs/services/cloud-object-storage/basics/immutable.html) to create retention policies that prevent object deletion or modification.
 
 Buckets can now be created in a Single Data Center configuration in Mexico City, Mexico. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html).
 
@@ -115,7 +114,7 @@ Buckets can now be created in a Single Data Center configuration in Toronto, Can
 ### January 2018
 {: #updates-2018-q1-jan}
 
-The IBM COS SDK for Java has been updated to 2.0. This release primarily fixes an issue for users trying to connect to IBM COS and AWS services within the same application by changing the namespacing for the library from `amazonaws` to `ibm.cloud.objectstorage`. For more information check out the [Github repository](https://github.com/IBM/ibm-cos-sdk-java) and the [API documentation](https://ibm.github.io/ibm-cos-sdk-java).
+The IBM COS SDK for Java has been updated to 2.0. This release primarily fixes an issue for users trying to connect to IBM COS and AWS services within the same application by changing the namespacing for the library from `amazonaws` to `ibm.cloud.objectstorage`. For more information check out the [Github repository](https://github.com/IBM/ibm-cos-sdk-java) and the [API documentation](https://ibm.github.io/ibm-cos-sdk-java/).
 
 ## Q4 2017
 {: #updates-2017-q4}
@@ -123,4 +122,4 @@ The IBM COS SDK for Java has been updated to 2.0. This release primarily fixes a
 ### December 2017
 {: #updates-2017-q4-dec}
 
-The IBM COS SDK for Python has been updated to 2.0.  This release primarily fixes an issue for users trying to connect to IBM COS and AWS services within the same application by changing the namespacing for the library from `boto3` to `ibm_boto3`.  For more infomation check out the [Github repository](https://github.com/IBM/ibm-cos-sdk-python), the [API documentation](https://ibm.github.io/ibm-cos-sdk-python), or this [blog post](https://www.ibm.com/blogs/bluemix/2017/11/ibm-cloud-object-storage-enhancements-help-companies-better-manage-access-data-app-development-analytics/).
+The IBM COS SDK for Python has been updated to 2.0.  This release primarily fixes an issue for users trying to connect to IBM COS and AWS services within the same application by changing the namespacing for the library from `boto3` to `ibm_boto3`.  For more infomation check out the [Github repository](https://github.com/IBM/ibm-cos-sdk-python), the [API documentation](https://ibm.github.io/ibm-cos-sdk-python/), or this [blog post](https://www.ibm.com/blogs/bluemix/2017/11/ibm-cloud-object-storage-enhancements-help-companies-better-manage-access-data-app-development-analytics/).

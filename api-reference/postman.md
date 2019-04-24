@@ -109,7 +109,7 @@ A Postman Collection is available for [download ![External link icon](../icons/l
     * **bucket** - Enter the name for the new bucket you wish to create (bucket names must be unique across Cloud Storage).
     * **serviceid** - Enter the CRN of your Cloud Storage service.  Instructions to obtain your CRN are available [here](/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information).
     * **iamtoken** - Enter the OAUTH token for your Cloud Storage service.  Instructions to obtain your OAUTH token are available [here](/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information).
-    * **endpoint** - Enter the regional endpoint for your Cloud Storage service.  Obtain the available endpoints from the [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps/){:new_window}
+    * **endpoint** - Enter the regional endpoint for your Cloud Storage service.  Obtain the available endpoints from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources/){:new_window}
         * *Ensure that your selected endpoint matches your key protect service to ensure the samples run correctly*
     * **rootkeycrn** - The CRN of the Root Key created in your primary Key Protect service.
         * The CRN should resemble the following:<br/>`crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`

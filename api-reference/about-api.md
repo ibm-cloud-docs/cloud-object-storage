@@ -71,4 +71,4 @@ These operations create, delete, get information about, and control behavior of 
 | List Parts                | Returns a list of parts that are associated with an upload ID                       |
 
 
-Some additional operations, such as tagging and versioning, are supported in private cloud implementations of {{site.data.keyword.cos_short}}, but not in public or dedicated clouds currently. More information custom object storage solutions can be found at [ibm.com](https://www.ibm.com/cloud-computing/products/storage/object-storage/cloud/).
+Some additional operations, such as tagging and versioning, are supported in private cloud implementations of {{site.data.keyword.cos_short}}, but not in public or dedicated clouds currently. More information custom object storage solutions can be found at [ibm.com](https://www.ibm.com/cloud/object-storage).

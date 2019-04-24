@@ -30,7 +30,7 @@ Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP
 - Customize transfer speeds and default preferences
 - Transfers can be viewed, paused/resumed, or cancelled independently
 
-Aspera high-speed transfer is available in the {{site.data.keyword.cloud_notm}} [console](#console) and can also be used programatically using an [SDK](#sdk). 
+Aspera high-speed transfer is available in the {{site.data.keyword.cloud_notm}} [console](#aspera-console) and can also be used programatically using an [SDK](#aspera-sdk). 
 
 Aspera high-speed transfer is available in certain regions only. See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html) for more details.
 {:tip}
@@ -47,7 +47,7 @@ When you create a bucket in a [supported region](/docs/services/cloud-object-sto
 2. Follow the install instructions depending on your operating system and browser.
 3. Resume file or folder upload.
 
-The Aspera Connect plug-in can also be installed from the [Aspera website](http://downloads.asperasoft.com/connect2/) directly. For help troubleshooting issues with the Aspera Connect plug-in, [see the documentation](http://downloads.asperasoft.com/en/documentation/8).
+The Aspera Connect plug-in can also be installed from the [Aspera website](https://downloads.asperasoft.com/connect2/) directly. For help troubleshooting issues with the Aspera Connect plug-in, [see the documentation](https://downloads.asperasoft.com/en/documentation/8).
 
 Once the plug-in is installed, you have the option to set Aspera high-speed transfer as the default for any uploads to the target bucket that use the same browser. Select **Remember my browser preferences**. Options are also available in the bucket configuration page under **Transfer options**. These options allow you to choose between Standard and High-speed as the default transport for uploads and downloads.
 

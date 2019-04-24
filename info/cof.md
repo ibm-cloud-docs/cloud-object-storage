@@ -113,9 +113,9 @@ For more information on how to use the SDK to access {{site.data.keyword.cos_sho
 ### Dashboard
 {: #cloud-foundry-bindings-console}
 
-The simplest way to create a service binding is by using the [{{site.data.keyword.cloud}} Dashboard](https://cloud.ibm.com/dashboard/apps).  
+The simplest way to create a service binding is by using the [{{site.data.keyword.cloud}} Dashboard](https://cloud.ibm.com/resources).  
 
-1. Login to the [Dashboard](https://cloud.ibm.com/dashboard/apps)
+1. Login to the [Dashboard](https://cloud.ibm.com/resources)
 2. Click on your Cloud Foundry application
 3. Click on Connections in the menu on the left
 4. Click on the **Create Connection** button on the right

@@ -38,7 +38,7 @@ Applications that expect to read and write to a NFS-style filesystem can use `s3
 ## Installation
 {: #s3fs-install}
 
-On OSX, use [Homebrew](http://brew.sh/):
+On OSX, use [Homebrew](https://brew.sh/):
 
 ```sh
 brew cask install osxfuse

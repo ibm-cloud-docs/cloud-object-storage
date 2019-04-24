@@ -55,15 +55,15 @@ For more information on {{site.data.keyword.keymanagementservicelong_notm}}, [se
 ### Getting started with SSE-KP
 {: #sse-kp-gs}
 
-All objects stored in {{site.data.keyword.cos_full}} are encrypted by default using multiple randomly generated keys and an all-or-nothing-transform. While this default encryption model provides at-rest security, some workloads need to be in possession of the encryption keys used. You can use [{{site.data.keyword.keymanagementservicelong_notm}}](/docs/services/keymgmt/keyprotect_about.html) to create, add, and manage keys, which you can then associate with your instance of {{site.data.keyword.cos_full}} to encrypt buckets.
+All objects stored in {{site.data.keyword.cos_full}} are encrypted by default using multiple randomly generated keys and an all-or-nothing-transform. While this default encryption model provides at-rest security, some workloads need to be in possession of the encryption keys used. You can use [{{site.data.keyword.keymanagementservicelong_notm}}](/docs/services/key-protect?topic=key-protect-about) to create, add, and manage keys, which you can then associate with your instance of {{site.data.keyword.cos_full}} to encrypt buckets.
 
 ### Before you begin
 {: #sse-kp-prereqs}
 
 You'll need:
-  * an [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com/registration/?target=%2Fcatalog%2Finfrastructure%2Fcloud-object-storage)
-  * an [instance of {{site.data.keyword.cos_full_notm}}](https://cloud.ibm.com/catalog/infrastructure/object-storage-group?env_id=ibm:yp:us-south){: new_window}
-  * an [instance of {{site.data.keyword.keymanagementservicelong_notm}}](https://cloud.ibm.com/catalog/services/key-protect/?taxonomyNavigation=apps){: new_window}
+  * an [{{site.data.keyword.cloud}} Platform account](http://cloud.ibm.com)
+  * an [instance of {{site.data.keyword.cos_full_notm}}](http://cloud.ibm.com/catalog/services/cloud-object-storage){: new_window}
+  * an [instance of {{site.data.keyword.keymanagementservicelong_notm}}](http://cloud.ibm.com/catalog/services/key-protect){: new_window}
   * and some files on your local computer to upload.
 
 ### Create or add a key in {{site.data.keyword.keymanagementserviceshort}}
@@ -116,7 +116,7 @@ To rotate the keys for your {{site.data.keyword.cos_short}} you will need to cre
 
 **NOTE**: Deleting a key from the system will shred its contents and any data still encrypted with that key.  Once removed, it cannot be undone or reversed and will result in permanent data loss.
 
-1. Create or add a new Root Key in your [Key Protect](/docs/services/key-protect) service.
+1. Create or add a new Root Key in your [Key Protect](/docs/services/key-protect?topic=key-protect-getting-started-tutorial) service.
 2. [Create a new bucket](#encryption-createbucket) and add the new Root Key
 3. Copy all the objects from your original bucket into the new bucket.
     1. This step can be accomplished using a number of different methods:

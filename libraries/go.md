@@ -104,7 +104,7 @@ For more information about endpoints, see [Endpoints and storage locations](/doc
 ### Creating a new bucket
 {: #go-new-bucket}
 
-A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes).
 
 ```Go
 func main() {

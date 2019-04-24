@@ -37,4 +37,4 @@ Input data is read from ORC, CSV, JSON, or Parquet files located in one or more 
 You can retrieve a SQL queryable URL for objects for a selected individual object (Object SQL URL) or for all objects currently displayed with an active prefix filter (Filtered SQL URL). You can use this URL inside the SQL statement as the table name.
 {:tip}
 
-For more information on using SQL Query see the [SQL Query documentation](/docs/services/sql-query/sql-query.html) and [Analyzing Data with IBM Cloud SQL Query](https://medium.com/ibm-watson-data-lab/analyzing-data-with-ibm-cloud-sql-query-bc53566a59f5?linkId=49971053).
+For more information on using SQL Query see the [SQL Query documentation](/docs/services/sql-query/sql-query.html) and [Analyzing Data with IBM Cloud SQL Query](https://medium.com/codait/analyzing-data-with-ibm-cloud-sql-query-bc53566a59f5?linkId=49971053).

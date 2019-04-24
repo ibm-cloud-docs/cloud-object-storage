@@ -35,7 +35,7 @@ These examples have been generated using version 1.14.2 of the CLI.  To check th
 
 To configure AWS CLI, type `aws configure` and provide your [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html) and a default region name.  The "region name" used by AWS S3 corresponds to the provisioning code (`LocationConstraint`) that {{site.data.keyword.cos_short}} uses to define the storage class of new buckets.
 
-A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes.html#locationconstraint).
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint).
 
 ```sh
 aws configure

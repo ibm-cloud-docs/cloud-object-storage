@@ -29,7 +29,7 @@ The `rclone` tool is useful for keeping directories synchronized and for migrati
 ### Quickstart Installation
 {: #rclone-quick}
 
-*  [Download](https://rclone.org/downloads) the relevant binary. 
+*  [Download](https://rclone.org/downloads/) the relevant binary. 
 *  Extract the `rclone` or `rclone.exe` binary from the archive.
 *  Run `rclone config` to set up.
 
@@ -126,22 +126,22 @@ rclone config
 
 1. Run `rclone config` and select `n` for a new remote.
 
-	```
+```
 	No remotes found - make a new one
 		n) New remote
 		s) Set configuration password
 		q) Quit config
 		n/s/q> n
-	```
+```
 
 2. Enter the name for the configuration:
-	```
+```
 	name> <YOUR NAME>
-	```
+```
 
 3. Select “s3” storage.
 
-	```
+```
 	Choose a number from below, or type in your own value
 		1 / Alias for a existing remote
 		\ "alias"
@@ -394,7 +394,7 @@ Before scheduling a job, make sure you have done your initial upload and it has 
 #### Windows
 {: #rclone-sync-windows}
 
-1. Create a text file called `backup.bat` somewhere on your computer and paste in the command you used in the section [Syncing a Directory](#syncing-a-directory). It will look something like the following. Specify the full path to the rclone.exe and don’t forget to save the file.
+1. Create a text file called `backup.bat` somewhere on your computer and paste in the command you used in the section [Syncing a Directory](#rclone-sync-directory). It will look something like the following. Specify the full path to the rclone.exe and don’t forget to save the file.
 
 ```
  C:\full\path\to\rclone.exe sync "C:\path\to\my\backup\directory" RemoteName:newbucket
@@ -415,7 +415,7 @@ schtasks /Create /RU username /RP "password" /SC DAILY /TN Backup /TR C:\path\to
 #### Mac and Linux
 {: #rclone-sync-nix}
 
-1. Create a text file called `backup.sh` somewhere on your computer, and paste the command you used in the section [Syncing a Directory](#syncing-a-directory). It will look something like the following. Specify the full path to the rclone executable and don’t forget to save the file.
+1. Create a text file called `backup.sh` somewhere on your computer, and paste the command you used in the section [Syncing a Directory](#rclone-sync-directory). It will look something like the following. Specify the full path to the rclone executable and don’t forget to save the file.
 
 ```
 #!/bin/sh

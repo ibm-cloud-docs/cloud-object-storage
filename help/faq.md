@@ -59,7 +59,7 @@ No, storage classes (and regions as well) are defined at the bucket level.  Simp
 
 **When I create a bucket using the API, how do I set the storage class?**
 
-The storage class (eg `us-flex`) is assigned to the `LocationConstraint` configuration variable for that bucket.  This is because of a key difference between the way AWS S3 and {{site.data.keyword.cos_full_notm}} handle storage classes.  {{site.data.keyword.cos_short}} sets storage classes at the bucket level, while AWS S3 assigns a storage class to an individual object. A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).
+The storage class (eg `us-flex`) is assigned to the `LocationConstraint` configuration variable for that bucket.  This is because of a key difference between the way AWS S3 and {{site.data.keyword.cos_full_notm}} handle storage classes.  {{site.data.keyword.cos_short}} sets storage classes at the bucket level, while AWS S3 assigns a storage class to an individual object. A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes).
 
 **Can the storage class of a bucket be changed?  For example, if you have production data in 'standard', can we easily switch it to 'vault' for billing purposes if we are not using it frequently?**
 
@@ -95,7 +95,7 @@ Yes, {{site.data.keyword.cos_short}} encrypts all data.
 
 **Does {{site.data.keyword.cos_short}} have FIPS 140-2 compliance for the encryption algorithms?**
 
-Yes, IBM COS Federal offering is approved for FedRAMP Moderate Security controls which require a validated FIPS configuration. IBM COS Federal is certified at FIPS 140-2 level 1. For more information on COS Federal Offering, please [contact us](https://www.ibm.com/cloud/federal#AlternateAction) via our Federal site.
+Yes, IBM COS Federal offering is approved for FedRAMP Moderate Security controls which require a validated FIPS configuration. IBM COS Federal is certified at FIPS 140-2 level 1. For more information on COS Federal Offering, please [contact us](https://www.ibm.com/cloud/government/federal) via our Federal site.
 
 **Will client-key encryption be supported?**
 

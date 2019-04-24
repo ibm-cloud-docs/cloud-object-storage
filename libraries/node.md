@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 {: #node-install}
 
 The preferred way to install the {{site.data.keyword.cos_full}} SDK for Node.js is to use the
-[npm](http://npmjs.org){:new_window} package manager for Node.js. Simply type the following
+[npm](https://npmjs.org){:new_window} package manager for Node.js. Simply type the following
 into a terminal window:
 
 ```sh
@@ -92,14 +92,14 @@ var config = {
 var cos = new AWS.S3(config);
 ```
 *Key Values*
-* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
-* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window})
+* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window})
 
 ### Creating a new bucket
 {: #node-examples-new-bucket}
 
-A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes).
 
 ```javascript
 function createBucket(bucketName) {
@@ -398,15 +398,15 @@ Key Protect can be added to a storage bucket to manage encryption keys.  All dat
 {: #node-examples-kp-prereqs}
 The following items are necessary in order to create a bucket with Key-Protect enabled:
 
-* A Key Protect service [provisioned](/docs/services/keymgmt/keyprotect_provision.html#provision)
-* A Root key available (either [generated](/docs/services/keymgmt/keyprotect_create_root.html#create_root_keys) or [imported](/docs/services/keymgmt/keyprotect_import_root.html#import_root_keys))
+* A Key Protect service [provisioned](/docs/services/key-protect?topic=key-protect-provision#provision)
+* A Root key available (either [generated](/docs/services/key-protect?topic=key-protect-create-root-keys#create_root_keys) or [imported](/docs/services/key-protect?topic=key-protect-import-root-keys#import_root_keys))
 
 ### Retrieving the Root Key CRN
 {: #node-examples-kp-root}
 
-1. Retrieve the [instance ID](/docs/services/keymgmt/keyprotect_authentication.html#retrieve_instance_ID) for your Key Protect service
-2. Use the [Key Protect API](/docs/services/keymgmt/keyprotect_authentication.html#access-api) to retrieve all your [available keys](/docs/services/keymgmt/keyprotect_authentication.html#form_api_request)
-    * You can either use `curl` commands or an API REST Client such as [Postman](../api-reference/postman.html) to access the [Key Protect API](/docs/services/keymgmt/keyprotect_authentication.html#access-api).
+1. Retrieve the [instance ID](/docs/services/key-protect?topic=key-protect-retrieve-instance-ID#retrieve-instance-ID) for your Key Protect service
+2. Use the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
+    * You can either use `curl` commands or an API REST Client such as [Postman](/docs/services/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api).
 3. Retrieve the CRN of the root key you will use to enabled Key Protect on the your bucket.  The CRN will look similar to below:
 
 `crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
@@ -433,7 +433,7 @@ function createBucketKP(bucketName) {
 }
 ```
 *Key Values*
-* `<bucket-location>` - Region or location for your bucket (Key Protect is only available in certain regions.  Ensure your location matches the Key Protect service) A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint)..
+* `<bucket-location>` - Region or location for your bucket (Key Protect is only available in certain regions.  Ensure your location matches the Key Protect service) A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes)..
 * `<algorithm>` - The encryption algorithm used for new objects added to the bucket (Default is AES256).
 * `<root-key-crn>` - CRN of the Root Key obtained from the Key Protect service.
 

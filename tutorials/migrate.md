@@ -26,12 +26,12 @@ subcollection: cloud-object-storage
 # Migrating data from OpenStack Swift
 {: #migrate}
 
-Before {{site.data.keyword.cos_full_notm}} became available as an {{site.data.keyword.cloud_notm}} Platform service, projects that required an object store used [OpenStack Swift](/docs/services/ObjectStorage/index.html) or [OpenStack Swift (infrastructure)](/docs/infrastructure/objectstorage-swift/index.html#getting-started-with-object-storage-openstack-swift). We recommend developers update their applications and migrate their data to {{site.data.keyword.cloud_notm}} to take advantage of the new access control and encryption benefits provided by IAM and Key Protect, as well as new features as they become available.
+Before {{site.data.keyword.cos_full_notm}} became available as an {{site.data.keyword.cloud_notm}} Platform service, projects that required an object store used [OpenStack Swift](https://docs.openstack.org/swift/latest/) or [OpenStack Swift (infrastructure)](/docs/infrastructure/objectstorage-swift/index.html#getting-started-with-object-storage-openstack-swift). We recommend developers update their applications and migrate their data to {{site.data.keyword.cloud_notm}} to take advantage of the new access control and encryption benefits provided by IAM and Key Protect, as well as new features as they become available.
 
 The concept of a Swift 'container' is identical to a COS 'bucket'.  COS limits service instances to 100 buckets and some Swift instances may have a larger number of containers. COS buckets can hold billions of objects and supports forward slashes (`/`) in object names for directory-like 'prefixes' when organizing data.  COS supports IAM policies at the bucket and service instance levels.
 {:tip}
 
-One approach to migrating data across object storage services is to use a 'sync' or 'clone' tool, such as [the open source `rclone` command line utility](https://rclone.org/docs).  This utility will sync a filetree between two locations, including cloud storage.  When `rclone` writes data to COS it will use the COS/S3 API to segment large objects and upload the parts in parallel according to sizes and thresholds set as configuration parameters.  
+One approach to migrating data across object storage services is to use a 'sync' or 'clone' tool, such as [the open source `rclone` command line utility](https://rclone.org/docs/).  This utility will sync a filetree between two locations, including cloud storage.  When `rclone` writes data to COS it will use the COS/S3 API to segment large objects and upload the parts in parallel according to sizes and thresholds set as configuration parameters.  
 
 There are some differences between COS and Swift that must be considered as part of data migration.
 
@@ -123,7 +123,7 @@ This guide provides instructions for migrating data from a single Swift containe
         ```
 
   3. Get OpenStack Swift (infrastructure) credential
-    <br>a. Click on your Swift account in the <a href="https://control.s3.us-south.cloud-object-storage.appdomain.cloud.com/storage/objectstorage">IBM Cloud   infrastructure customer portal</a>.
+    <br>a. Click on your Swift account in the IBM Cloud infrastructure customer portal.
     <br>b. Click on the data center of the migration source container.
     <br>c. Click on **View Credentials**.
     <br>d. Copy the following.

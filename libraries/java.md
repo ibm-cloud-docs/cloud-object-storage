@@ -117,11 +117,11 @@ Let's start with an complete example class that will run through some basic func
 ### Gather required information
 {: #java-examples-prereqs}
 
-* `bucketName` and `newBucketName` are [unique and DNS-safe](docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#compatibility-api-new-bucket) strings. Because bucket names are unique across the entire system, these values will need to be changed if this example is run multiple times.  Note that names are reserved for 10-15 minutes after deletion.
+* `bucketName` and `newBucketName` are [unique and DNS-safe](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#compatibility-api-new-bucket) strings. Because bucket names are unique across the entire system, these values will need to be changed if this example is run multiple times.  Note that names are reserved for 10-15 minutes after deletion.
 * `api_key` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html) as `apikey`.
 * `service_instance_id` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html) as `resource_instance_id`. 
 * `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol.  This is **not** the `endpoints` value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
-* `storageClass` is a [valid provisioning code](docs/services/cloud-object-storage/basics/classes.html#locationconstraint) that corresponds to the `endpoint` value.  This is then used as the S3 API `LocationConstraint` variable.
+* `storageClass` is a [valid provisioning code](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint) that corresponds to the `endpoint` value.  This is then used as the S3 API `LocationConstraint` variable.
 * `location` should be set to the location portion of the `storageClass`.  For `us-south-standard`, this would be `us-south`.  This variable is used only for the calculation of [HMAC signatures](/docs/services/cloud-object-storage/hmac/hm.html), but is required for any client, including this example that uses an IAM API key.
 
 ```java
@@ -276,9 +276,9 @@ public static AmazonS3 createClient(String api_key, String service_instance_id, 
 ```
 
 *Key Values*
-* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
-* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window})
+* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window})
 * `<location>` - default location for your cloud object storage (must match the region used for `<endpoint>`)
 
 *SDK References*
@@ -363,7 +363,7 @@ public static void createBucket(String bucketName) {
 #### Create a bucket with a different storage class
 {: #java-examples-storage-class}
 
-A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes).
 
 ```java
 cos.createBucket("sample", "us-vault"); // the name of the bucket, and the storage class (LocationConstraint)
@@ -872,15 +872,15 @@ Key Protect can be added to a storage bucket to encrypt sensitive data at rest i
 
 The following items are necessary in order to create a bucket with Key-Protect enabled:
 
-* A Key Protect service [provisioned](/docs/services/keymgmt/keyprotect_provision.html#provision)
-* A Root key available (either [generated](/docs/services/keymgmt/keyprotect_create_root.html#create_root_keys) or [imported](/docs/services/keymgmt/keyprotect_import_root.html#import_root_keys))
+* A Key Protect service [provisioned](/docs/services/key-protect?topic=key-protect-provision#provision)
+* A Root key available (either [generated](/docs/services/key-protect?topic=key-protect-create-root-keys#create_root_keys) or [imported](/docs/services/key-protect?topic=key-protect-import-root-keys#import_root_keys))
 
 ### Retrieving the Root Key CRN
 {: #java-examples-kp-root}
 
-1. Retrieve the [instance ID](/docs/services/keymgmt/keyprotect_authentication.html#retrieve_instance_ID) for your Key Protect service
-2. Use the [Key Protect API](/docs/services/keymgmt/keyprotect_authentication.html#access-api) to retrieve all your [available keys](/docs/services/keymgmt/keyprotect_authentication.html#form_api_request)
-    * You can either use `curl` commands or an API REST Client such as [Postman](../api-reference/postman.html) to access the [Key Protect API](/docs/services/keymgmt/keyprotect_authentication.html#access-api).
+1. Retrieve the [instance ID](/docs/services/key-protect?topic=key-protect-retrieve-instance-ID#retrieve-instance-ID) for your Key Protect service
+2. Use the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
+    * You can either use `curl` commands or an API REST Client such as [Postman](/docs/services/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api).
 3. Retrieve the CRN of the root key you will use to enabled Key Protect on the your bucket.  The CRN will look similar to below:
 
 `crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
@@ -1016,7 +1016,7 @@ You will need instances of the S3 Client and IAM Token Manager classes to initia
 ### Initializing the `AsperaTransferManager`
 {: #java-examples-aspera-init}
 
-Before initializing the `AsperaTransferManager`, make sure you've got working [`s3Client`](#init-config) and [`tokenManager`](#init-config) objects. 
+Before initializing the `AsperaTransferManager`, make sure you've got working [`s3Client`](#java-examples-config) and [`tokenManager`](#java-examples-config) objects. 
 
 
 There isn't a lot of benefit to using a single session of Aspera high-speed transfer unless you expect to see significant noise or packet loss in the network.  So we need to tell the `AsperaTransferManager` to use multiple sessions using the `AsperaConfig` class. This will split the transfer into the specified number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value. 

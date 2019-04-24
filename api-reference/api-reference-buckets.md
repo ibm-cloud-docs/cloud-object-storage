@@ -194,7 +194,7 @@ Content-Length: 0
 ## Create a bucket with a different storage class
 {: #compatibility-api-storage-class}
 
-To create a bucket with a different storage class, send an XML block specifying a bucket configuration with a `LocationConstraint` of `{provisioning code}` in the body of a `PUT` request to a bucket endpoint. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).  Note that standard bucket [naming rules](#new-bucket) apply. This operation does not make use of operation specific query parameters.
+To create a bucket with a different storage class, send an XML block specifying a bucket configuration with a `LocationConstraint` of `{provisioning code}` in the body of a `PUT` request to a bucket endpoint. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).  Note that standard bucket [naming rules](#compatibility-api-new-bucket) apply. This operation does not make use of operation specific query parameters.
 
 Header                                        | Type   | Description
 ------------------------------------------------- | ------ | ----
@@ -213,7 +213,7 @@ PUT https://{bucket-name}.{endpoint} # virtual host style
 </CreateBucketConfiguration>
 ```
 
-A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes.html#locationconstraint).
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint).
 
 **Example request**
 
@@ -543,7 +543,7 @@ Content-Length: 604
 ### List objects in a given bucket (deprecated)
 {: #compatibility-api-list-objects}
 
-**Note:** *This API is included for backwards compatibility.*  See [Version 2](api-reference-buckets.html#compatibility-api-list-objects-v2) for the recommended method of retrieving objects in a bucket.
+**Note:** *This API is included for backwards compatibility.*  See [Version 2](#compatibility-api-list-objects-v2) for the recommended method of retrieving objects in a bucket.
 
 A `GET` request addressed to a bucket returns a list of objects, limited to 1,000 at a time and returned in non-lexographical order. The `StorageClass` value that is returned in the response is a default value as storage class operations are not implemented in COS. This operation does not make use of operation specific headers or payload elements.
 
