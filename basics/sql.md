@@ -32,7 +32,7 @@ IBM Cloud SQL Query is a fully-managed service that lets you run SQL queries (th
 You can use SQL Query to create `SELECT` statements only; actions such as `CREATE`, `DELETE`, `INSERT`, and `UPDATE` are not possible.
 {:tip}
 
-Input data is read from ORC, CSV, JSON, or Parquet files located in one or more IBM Cloud Object Storage instances.  Each query result is written to a CSV file in a Cloud Object Storage instance of your choice.
+Input data is read from ORC, CSV, JSON, or Parquet files located in one or more IBM Cloud Object Storage instances. Each query result is written to a CSV file in a Cloud Object Storage instance of your choice.
 
 You can retrieve a SQL queryable URL for objects for a selected individual object (Object SQL URL) or for all objects currently displayed with an active prefix filter (Filtered SQL URL). You can use this URL inside the SQL statement as the table name.
 {:tip}

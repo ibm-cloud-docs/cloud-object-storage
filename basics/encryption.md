@@ -22,12 +22,12 @@ subcollection: cloud-object-storage
 # Manage encryption
 {: #encryption}
 
-All objects stored in {{site.data.keyword.cos_full}} are encrypted by default using [randomly generated keys and an all-or-nothing-transform](/docs/services/cloud-object-storage/info/data-security-encryption.html). While this default encryption model provides at-rest security, some workloads need to be in possession of the encryption keys used.  You can manage your keys manually by providing your own encryption keys when storing data (SSE-C), or you can create buckets that use IBM Key Protect (SSE-KP) to manage encryption keys.
+All objects stored in {{site.data.keyword.cos_full}} are encrypted by default using [randomly generated keys and an all-or-nothing-transform](/docs/services/cloud-object-storage/info/data-security-encryption.html). While this default encryption model provides at-rest security, some workloads need to be in possession of the encryption keys used. You can manage your keys manually by providing your own encryption keys when storing data (SSE-C), or you can create buckets that use IBM Key Protect (SSE-KP) to manage encryption keys.
 
 ## Server Side Encryption with Customer-Provided Keys (SSE-C)
 {: #encryption-sse-c}
 
-SSE-C is enforced on objects.  Requests to read or write objects or their metadata using customer manged keys send the required encryption infomation as headers in the HTTP requests.  The syntax is identical to the S3 API, and S3-compatible libraries that support SSE-C should work as expected against {{site.data.keyword.cos_full}}.
+SSE-C is enforced on objects. Requests to read or write objects or their metadata using customer manged keys send the required encryption infomation as headers in the HTTP requests. The syntax is identical to the S3 API, and S3-compatible libraries that support SSE-C should work as expected against {{site.data.keyword.cos_full}}.
 
 Any request using SSE-C headers must be sent using SSL. Note that `ETag` values in response headers are *not* the MD5 hash of the object, but a randomly generated 32-byte hexadecimal string.
 
@@ -41,11 +41,11 @@ Header | Type | Description
 ## Server Side Encryption with {{site.data.keyword.keymanagementservicelong_notm}} (SSE-KP)
 {: #encryption-kp}
 
-{{site.data.keyword.keymanagementservicefull}} is a centralized key management system (KMS) for generating, managing, and destroying encryption keys used by {{site.data.keyword.cloud_notm}} services.  You can create an instance of {{site.data.keyword.keymanagementserviceshort}} from the {{site.data.keyword.cloud_notm}} catalog.
+{{site.data.keyword.keymanagementservicefull}} is a centralized key management system (KMS) for generating, managing, and destroying encryption keys used by {{site.data.keyword.cloud_notm}} services. You can create an instance of {{site.data.keyword.keymanagementserviceshort}} from the {{site.data.keyword.cloud_notm}} catalog.
 
 Once you have an instance of {{site.data.keyword.keymanagementserviceshort}} in a region that you want to create a new bucket in, you need to create a root key and note the CRN of that key.
 
-You can choose to use {{site.data.keyword.keymanagementserviceshort}} to manage encryption for a bucket only at the time of creation.  It isn't possible to change an existing bucket to use {{site.data.keyword.keymanagementserviceshort}}.
+You can choose to use {{site.data.keyword.keymanagementserviceshort}} to manage encryption for a bucket only at the time of creation. It isn't possible to change an existing bucket to use {{site.data.keyword.keymanagementserviceshort}}.
 {:tip}
 
 When creating the bucket, you need to provide additional headers.
@@ -107,14 +107,14 @@ Note that the `Etag` value returned for objects encrypted using SSE-KP **will** 
 ## Rotating Keys
 {: #encryption-rotate}
 
-Key rotation is an important part of mitigating the risk of a data breach.   Periodically changing keys reduces the potential data loss if the key is lost or compromised.  The frequency of key rotations varies by organization and depends on a number of variables including the environment, the amount of encrypted data, classification of the data, and compliance laws.  The [National Institute of Standards and Technology (NIST)](https://www.nist.gov/topics/cryptography){:new_window} provides definitions of appropriate key lengths and provides guidelines for how long keys should be used.
+Key rotation is an important part of mitigating the risk of a data breach.  Periodically changing keys reduces the potential data loss if the key is lost or compromised. The frequency of key rotations varies by organization and depends on a number of variables including the environment, the amount of encrypted data, classification of the data, and compliance laws. The [National Institute of Standards and Technology (NIST)](https://www.nist.gov/topics/cryptography){:new_window} provides definitions of appropriate key lengths and provides guidelines for how long keys should be used.
 
 ### Manual Key Rotation
 {: #encryption-rotate-manual}
 
 To rotate the keys for your {{site.data.keyword.cos_short}} you will need to create a new bucket with Key Protect enabled using a new Root Key and copy the contents from your existing bucket to the new one.
 
-**NOTE**: Deleting a key from the system will shred its contents and any data still encrypted with that key.  Once removed, it cannot be undone or reversed and will result in permanent data loss.
+**NOTE**: Deleting a key from the system will shred its contents and any data still encrypted with that key. Once removed, it cannot be undone or reversed and will result in permanent data loss.
 
 1. Create or add a new Root Key in your [Key Protect](/docs/services/key-protect?topic=key-protect-getting-started-tutorial) service.
 2. [Create a new bucket](#encryption-createbucket) and add the new Root Key

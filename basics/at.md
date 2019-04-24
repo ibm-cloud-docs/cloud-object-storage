@@ -43,47 +43,47 @@ The following table lists the actions that generate an event:
 	  <th>Description</th>
   </tr>
   <tr>
-    <td>cloud-object-storage.bucket.info</td>
+    <td>`cloud-object-storage.bucket.info`</td>
 	  <td>An event is generated when a user requests bucket metadata and whether IBM Key Protect is enabled on the bucket.</td>
   </tr>
   <tr>
-    <td>cloud-object-storage.bucket.create</td>
+    <td>`cloud-object-storage.bucket.create`</td>
 	  <td>An event is generated when a user creates a bucket.</td>
   </tr>
   <tr>
-    <td>cloud-object-storage.bucket.read</td>
+    <td>`cloud-object-storage.bucket.read`</td>
 	  <td>An event is generated when a user requests the list of objects in a bucket.</td>
   </tr>
   <tr>
-    <td>cloud-object-storage.bucket.update</td>
+    <td>`cloud-object-storage.bucket.update`</td>
 	  <td>An event is generated when a user updates a bucket, for example, when a user renames a bucket.</td>
   </tr>
   <tr>
-    <td>cloud-object-storage.bucket.delete</td>
+    <td>`cloud-object-storage.bucket.delete`</td>
 	  <td>An event is generated when a user deletes a bucket.</td>
   </tr>
   <tr>
-    <td>cloud-object-storage.bucket-acl.create</td>
-	  <td>An event is generated when a user sets the access control list on a bucket which can be public-read or private.</td>
+    <td>`cloud-object-storage.bucket-acl.create`</td>
+	  <td>An event is generated when a user sets the access control list on a bucket to `public-read` or `private`.</td>
   </tr>
   <tr>
-    <td>cloud-object-storage.bucket-acl.read</td>
-	  <td>An event is generated when a user reads the access control list on a bucket which can be public-read or private.</td>
+    <td>`cloud-object-storage.bucket-acl.read`</td>
+	  <td>An event is generated when a user reads the access control list on a bucket.</td>
   </tr>
   <tr>
-    <td>cloud-object-storage.bucket-cors.create</td>
+    <td>`cloud-object-storage.bucket-cors.create`</td>
 	  <td>An event is generated when a user creates a cross-origin resource sharing configuration for a bucket.</td>
   </tr>
   <tr>
-    <td>cloud-object-storage.bucket-cors.read</td>
+    <td>`cloud-object-storage.bucket-cors.read`</td>
 	  <td>An event is generated when a user requests if cross-origin resource sharing configuration is enabled on a bucket.</td>
   </tr>
   <tr>
-    <td>cloud-object-storage.bucket-cors.update</td>
+    <td>`cloud-object-storage.bucket-cors.update`</td>
 	  <td>An event is generated when a user modifies a cross-origin resource sharing configuration for a bucket.</td>
   </tr>
   <tr>
-    <td>cloud-object-storage.bucket-cors.delete</td>
+    <td>`cloud-object-storage.bucket-cors.delete`</td>
 	  <td>An event is generated when a user deletes a cross-origin resource sharing configuration for a bucket.</td>
   </tr>
 </table>
@@ -95,5 +95,4 @@ The following table lists the actions that generate an event:
 
 {{site.data.keyword.cloudaccesstrailshort}} events are available in the {{site.data.keyword.cloudaccesstrailshort}} **account domain**.
 
-Events will be sent to the {{site.data.keyword.cloudaccesstrailshort}} region closest to the {{site.data.keyword.cos_full_notm}} bucket location
-which is shown on the [services supported page](/docs/services/cloud-object-storage/basics/services.html#integrated-service-availability).
+Events are sent to the {{site.data.keyword.cloudaccesstrailshort}} region closest to the {{site.data.keyword.cos_full_notm}} bucket location that is shown on the [services supported page](/docs/services/cloud-object-storage/basics/services.html#integrated-service-availability).

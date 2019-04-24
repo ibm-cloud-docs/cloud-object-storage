@@ -22,7 +22,7 @@ subcollection: cloud-object-storage
 # Use Aspera high-speed transfer
 {: #aspera}
 
-Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP transfers to improve data transfer performance under most conditions, especially in networks experiencing high latency and packet loss.  Instead of the standard HTTP `PUT`, Aspera high-speed transfer uploads the object using the [FASP protocol](https://asperasoft.com/technology/transport/fasp/).  Using Aspera high-speed transfer for uploads and downloads offers the following benefits:
+Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP transfers to improve data transfer performance under most conditions, especially in networks experiencing high latency and packet loss. Instead of the standard HTTP `PUT`, Aspera high-speed transfer uploads the object using the [FASP protocol](https://asperasoft.com/technology/transport/fasp/). Using Aspera high-speed transfer for uploads and downloads offers the following benefits:
 
 - Faster transfer speeds
 - Transfer large object uploads over 200MB in the console and 1GB using a SDK or library
@@ -51,7 +51,7 @@ The Aspera Connect plug-in can also be installed from the [Aspera website](https
 
 Once the plug-in is installed, you have the option to set Aspera high-speed transfer as the default for any uploads to the target bucket that use the same browser. Select **Remember my browser preferences**. Options are also available in the bucket configuration page under **Transfer options**. These options allow you to choose between Standard and High-speed as the default transport for uploads and downloads.
 
-Typically, using the IBM Cloud Object Storage web-based console is not the most common way to use {{site.data.keyword.cos_short}}. The Standard transfer option limits objects size to 200MB and the file name and key will be identical.  Support for larger object sizes and improved performance (depending on network factors) is provided by Aspera high-speed transfer.
+Typically, using the IBM Cloud Object Storage web-based console is not the most common way to use {{site.data.keyword.cos_short}}. The Standard transfer option limits objects size to 200MB and the file name and key will be identical. Support for larger object sizes and improved performance (depending on network factors) is provided by Aspera high-speed transfer.
 
 ### Transfer status
 {: #aspera-console-transfer-status}
@@ -78,9 +78,9 @@ The Aspera high-speed transfer SDK provides the ability to initiate high-speed t
 {: #aspera-guidance}
 The FASP protocol that Aspera high-speed transfer uses is not suited for all data transfers to and from COS. Specifically, any transfers making use of Aspera high-speed transfer should:
 
-1. Always make use of multiple sessions - at least two parallel sessions will best utilize Aspera high-speed transfers capabilities.  See specific guidance for [Java](/docs/services/cloud-object-storage/libraries/java.html#aspera) and [Python](/docs/services/cloud-object-storage/libraries/python.html#aspera).
-2. Aspera high-speed transfer is ideal for larger files, and any files or directories that contain a total amount of data less than 1 GB should instead transfer the object in multiple parts using the standard Transfer Manager classes. Aspera high-speed transfers require a longer time-to-first-byte than normal HTTP transfers.  The instantiation of many Aspera Transfer Manager objects to manage the transfers of individual smaller files can result in subpar performance relative to basic HTTP requests, so it is best to instantiate a single client to upload a directory of smaller files instead.
-3. Aspera high-speed transfer was designed in part to improve performance in network environments with large amounts of packet loss, making the protocol performant over large distances and public wide area networks.  Aspera high-speed transfer should not be used for transfers within a region or data center.
+1. Always make use of multiple sessions - at least two parallel sessions will best utilize Aspera high-speed transfers capabilities. See specific guidance for [Java](/docs/services/cloud-object-storage/libraries/java.html#aspera) and [Python](/docs/services/cloud-object-storage/libraries/python.html#aspera).
+2. Aspera high-speed transfer is ideal for larger files, and any files or directories that contain a total amount of data less than 1 GB should instead transfer the object in multiple parts using the standard Transfer Manager classes. Aspera high-speed transfers require a longer time-to-first-byte than normal HTTP transfers. The instantiation of many Aspera Transfer Manager objects to manage the transfers of individual smaller files can result in subpar performance relative to basic HTTP requests, so it is best to instantiate a single client to upload a directory of smaller files instead.
+3. Aspera high-speed transfer was designed in part to improve performance in network environments with large amounts of packet loss, making the protocol performant over large distances and public wide area networks. Aspera high-speed transfer should not be used for transfers within a region or data center.
 
 The Aspera high-speed transfer SDK is closed-source and thus an optional dependency for the COS SDK (which uses an Apache license). 
 {:tip}
@@ -118,7 +118,7 @@ Each Aspera high-speed transfer session spawns an individual `ascp` process that
 
 The best way to use {{site.data.keyword.cos_full_notm}} and Aspera high-speed transfer Java SDK is to use Maven to manage dependencies. If you aren't familiar with Maven, you get can get up and running using the [Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html){:new_window} guide.
 
-Maven uses a file named `pom.xml` to specify the libraries (and their versions) needed for a Java project.  Below is an example `pom.xml` file for using the {{site.data.keyword.cos_full_notm}} and Aspera high-speed transfer Java SDK
+Maven uses a file named `pom.xml` to specify the libraries (and their versions) needed for a Java project. Below is an example `pom.xml` file for using the {{site.data.keyword.cos_full_notm}} and Aspera high-speed transfer Java SDK
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -149,7 +149,7 @@ Examples of initiating Aspera high-speed transfers with Java are available in th
 ### Getting the SDK using Python
 {: #aspera-sdk-python}
 
-The {{site.data.keyword.cos_full_notm}} and Aspera high-speed transfer Python SDKs are available from the Python Package Index (PyPI) software repository.  
+The {{site.data.keyword.cos_full_notm}} and Aspera high-speed transfer Python SDKs are available from the Python Package Index (PyPI) software repository. 
 
 ```
 pip install cos-aspera

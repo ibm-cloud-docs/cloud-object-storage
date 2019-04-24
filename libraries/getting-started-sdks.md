@@ -56,7 +56,7 @@ Specific instructions for downloading and installing the SDK is available in [Us
 ## Code Example
 {: #sdk-gs-example}
 
-The code examples below provide introductory examples of executing the basic operations with {{site.data.keyword.cos_short}}.  For simplicity, the code example can be run multiple times as it uses Universally Unique Identifiers (UUIDs) for bucket/item names to prevent potential conflicts.
+The code examples below provide introductory examples of executing the basic operations with {{site.data.keyword.cos_short}}. For simplicity, the code example can be run multiple times as it uses Universally Unique Identifiers (UUIDs) for bucket/item names to prevent potential conflicts.
 
 To complete the code example you will need to replace the following values:
 

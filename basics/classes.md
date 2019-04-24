@@ -23,7 +23,7 @@ subcollection: cloud-object-storage
 # Use storage classes
 {: #classes}
 
-Not all data feeds active workloads.  Archival data may sit untouched for long periods of time.  For less active workloads, you can create buckets with different storage classes.  Objects stored in these buckets will incur charges on a different schedule than standard storage.
+Not all data feeds active workloads. Archival data may sit untouched for long periods of time. For less active workloads, you can create buckets with different storage classes. Objects stored in these buckets will incur charges on a different schedule than standard storage.
 
 ## What are the classes?
 {: #classes-about}
@@ -80,4 +80,4 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)"
 ```
 {:codeblock}
 
-It is not possible to change the storage class of a bucket once the bucket is created.  If objects need to be reclassified, it is necessary to move the data to another bucket with the desired storage class.
+It is not possible to change the storage class of a bucket once the bucket is created. If objects need to be reclassified, it is necessary to move the data to another bucket with the desired storage class.

@@ -46,7 +46,7 @@ Infrastructure offerings are connected to a three-tiered network, segmenting pub
 ## Request classes
 {: #billing-request-classes}
 
-'Class A' requests are operations that involve modification or listing.  This includes creating buckets, uploading or copying objects, creating or changing configurations, listing buckets, and listing the contents of buckets.
+'Class A' requests are operations that involve modification or listing. This includes creating buckets, uploading or copying objects, creating or changing configurations, listing buckets, and listing the contents of buckets.
 
 'Class B' requests are those related to retrieving objects or their associated metadata/configurations from the system.
 
@@ -60,12 +60,12 @@ There is no charge for deleting buckets or objects from the system.
 ## Aspera transfers
 {: #billing-aspera}
 
-Note that any downloads using [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics/aspera.html) will incur additional egress charges.  For more info, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api).
+Note that any downloads using [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics/aspera.html) will incur additional egress charges. For more info, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api).
 
 ## Storage classes
 {: #billing-storage-classes}
 
-Not all data that is stored needs to be accessed frequently, and some archival data might be rarely accessed if at all.  For less active workloads, buckets can be created in a different storage class and objects stored in these buckets will incur charges on a different schedule than standard storage.
+Not all data that is stored needs to be accessed frequently, and some archival data might be rarely accessed if at all. For less active workloads, buckets can be created in a different storage class and objects stored in these buckets will incur charges on a different schedule than standard storage.
 
 There are four storage classes:
 

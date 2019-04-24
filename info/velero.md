@@ -25,36 +25,34 @@ subcollection: cloud-object-storage
 
 # Velero Integration
 {: #velero}
-[Velero](https://github.com/heptio/velero){:new_window} (formerly Heptio Ark) is a toolset to backup and restore your Kubernetes cluster resources.  Ark supports the use of S3-compatible storage providers including {{site.data.keyword.cos_full}} for different backup/snapshot operations.
+[Velero](https://github.com/heptio/velero){:new_window} (formerly Heptio Ark) is a toolset for backing up and restoring Kubernetes clusters by using the S3 API.
 
 Velero consists of two parts:
 
 * Server component that runs on the cluster
-* Command-line tool that runs on a local client
+* Command-line interface that runs on a local client
 
 ## Prerequisites
 {: #velero-prereqs}
 
-Before you begin you'll need to ensure you have the following:
+Before you begin, you need the following setup:
 
 * The [`IBM Cloud CLI`](/docs/cli?topic=cloud-cli-ibmcloud-cli){:new_window} installed
-* The [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/){:new_window} command-line tool installed and configured to connect to your cluster
-* An {{site.data.keyword.cos_short}} instance 
+* The [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/){:new_window} command-line tool that is installed and configured to connect to your cluster
+* An {{site.data.keyword.cos_short}} instance
 * A {{site.data.keyword.cos_short}} bucket
 * HMAC credentials with Writer access to bucket
 
 ## Install Velero Client
 {: #velero-install}
 
-1. Download the latest [release](https://github.com/heptio/velero/releases){:new_window} of Ark for your OS
-2. Extract the tarball to a folder on your local system
-3. Verify you can run the `velero` binary such as the following:
+1. Download the most recent [version](https://github.com/heptio/velero/releases){:new_window} of Velero for your OS
+2. Extract the .tar file to a folder on your local system
+3. Verify you can run the `velero` binary:
 
 ```
 velero --help
 ```
-
-Output:
 
 ```
 Velero is a tool for managing disaster recovery, specifically for Kubernetes
@@ -97,7 +95,7 @@ Available Commands:
 ### Create credentials file
 {: #velero-config-credentials}
 
-Create a credentials file (`credentials-velero`) using the HMAC pair of access and secret keys in your local Velero folder (*folder that the tarball was extracted*)
+Create a credentials file (`credentials-velero`) with the HMAC keys in your local Velero folder (*folder that the .tar file was extracted*)
 
 ```
  [default]
@@ -110,7 +108,7 @@ Create a credentials file (`credentials-velero`) using the HMAC pair of access a
 
 Configure [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/){:new_window} to connect to your cluster.
 
-1. Login to the IBM Cloud Platform using the CLI.<br/><br/>*For increased security, it's also possible to store the API key in a file or set it as an environment variable.*
+1. Log in to the IBM Cloud Platform by using the CLI.<br/><br/>*For increased security, it's also possible to store the API key in a file or set it as an environment variable.*
     ```bash
     bx login --apikey <value>
     ```
@@ -127,7 +125,7 @@ Configure [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/){:n
     kubectl cluster-config
     ```
     {: pre}
-    Output:
+  
     ```bash
     Kubernetes master is running at https://c6.hou02.containers.cloud.ibm.com:29244
     Heapster is running at https://c6.hou02.containers.cloud.ibm.com:29244/api/v1/namespaces/kube-system/services/heapster/proxy
@@ -139,12 +137,12 @@ Configure [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/){:n
 ### Configure Velero Server and Cloud Storage
 {: #velero-config-storage}
 
-1. In the Velero folder run the following to setup namespaces, RBAC, and other scaffolding<br/><br/>*The default namespace is `velero`.  If you wish to create a custom namespace, see the instructions at [Run in custom namespace](https://heptio.github.io/velero/master/namespace.html){:new_window}*
+1. In the Velero folder, run the following to set up namespaces, RBAC, and other scaffolding<br/><br/>*The default namespace is `velero`. If you want to create a custom namespace, see the instructions at ['run in custom namespace'](https://heptio.github.io/velero/master/namespace.html){:new_window}*
     ```bash
     kubectl apply -f config/common/00-prereqs.yaml
     ```
     {: pre}
-    Output:
+
     ```bash
     customresourcedefinition.apiextensions.k8s.io/backups.velero.io created
     customresourcedefinition.apiextensions.k8s.io/schedules.velero.io created
@@ -166,7 +164,7 @@ Configure [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/){:n
     kubectl create secret generic cloud-credentials --namespace velero--from-file cloud=credentials-ark
     ```
     {: pre}
-    Output:
+
     ```bash
     secret/cloud-credentials created
     ```
@@ -174,12 +172,12 @@ Configure [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/){:n
 
 3. Specify the following values in `config/ibm/05-ark-backupstoragelocation.yaml`:
    * `<YOUR_BUCKET>` - Name of the bucket for storing backup files
-   * `<YOUR_REGION>` - The [location constraint](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint) of your bucket (i.e. `us-standard`)
-   * `<YOUR_URL_ACCESS_POINT>` - The regional endpoint URL (i.e. `https://s3-api.us-geo.objectstorage.softlayer.net`). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+   * `<YOUR_REGION>` - The [location constraint](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint) of your bucket (`us-standard`)
+   * `<YOUR_URL_ACCESS_POINT>` - The regional endpoint URL (`https://s3-api.us-geo.objectstorage.softlayer.net`). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
-    *See the [BackupStorageLocation](https://heptio.github.io/velero/master/api-types/backupstoragelocation.html#aws){:new_window} definition for additional information.*
+    *For more information, see [BackupStorageLocation](https://heptio.github.io/velero/master/api-types/backupstoragelocation.html#aws){:new_window} definition for additional information.*
 
-### Start the Velero Server
+### Start the Velero server
 {: #velero-config-server}
 
 1. In the Velero folder run the following command to create the object in your cluster:
@@ -187,7 +185,7 @@ Configure [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/){:n
     kubectl apply -f config/ibm/05-ark-backupstoragelocation.yaml
     ```
     {: pre}
-    Output:
+ 
     ```bash
     backupstoragelocation.velero.io/default created
     ```
@@ -198,43 +196,43 @@ Configure [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/){:n
     kubectl apply -f config/ibm/10-deployment.yaml
     ```
     {: pre}
-    Output:
+
     ```bash
     deployment.apps/ark created
     ```
     {: pre}
-3. Ensure deployment has been successfully scheduled using `kubectl get` on the `velero` namespace.  Once `Available` reads `1` Ark is ready to go:
+3. Ensure that deployment is successfully scheduled by using `kubectl get` on the `velero` namespace. When `Available` reads `1`, Ark is ready to go:
     ```bash
     kubectl get deployments --namespace=velero
     ```
     {: pre}
-    Output:
+
     ```bash
     NAME   DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
     ark    1         1         1            0           48s
     ```
     {: pre}
 
-## Testing Backup/Restore
+## Testing back up and restore
 {: #velero-test}
 
 ### Backup
 {: #velero-test-backup}
 
-You can now perform a simple backup of your Kubernetes cluster by running the following command:
+You can now create a simple backup of your Kubernetes cluster by running the following command:
 ```bash
 velero backup create <backup-name>
 ```
 {: pre}
 
-This will create a backup for every resource on the cluster, including persistent volumes.v$$
+This command creates a backup for every resource on the cluster, including persistent volumes.
 
-You can also restrict the backup to a particular namespace, resource type or label. 
+You can also restrict the backup to a particular namespace, resource type, or label.
 
-Velero doesn’t allow to select by name, just by labels
+Velero doesn’t allow selection by name, just by labels.
 {: tip}
 
-This will backup only the components labeled with `app=<app-label>`. 
+This command backs up only the components that are labeled with `app=<app-label>`. 
 ```bash
 velero backup create <backup-name> --selector app=<app-label>
 ```
@@ -249,7 +247,7 @@ velero backup --help
 ### Restore
 {: #velero-test-restore}
 
-To restore a backup run the following command:
+To restore a backup, run the following command:
 ```bash
 velero restore create  --from-backup <backup-name>
 ```

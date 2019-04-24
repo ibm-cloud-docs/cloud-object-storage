@@ -26,14 +26,14 @@ subcollection: cloud-object-storage
 # Store very large objects
 {: #large-objects}
 
-{{site.data.keyword.cos_full}} can support single objects as large as 10TB when using multipart uploads.  Large objects can also be uploaded [using the console with Aspera high-speed-transfer enabled](/docs/services/cloud-object-storage/basics/upload.html). Under most scenarios, Aspera high-speed transfer will result in significantly increased perfomance for transfering data, especially across long distances or under unstable network conditions.
+{{site.data.keyword.cos_full}} can support single objects as large as 10TB when using multipart uploads. Large objects can also be uploaded [using the console with Aspera high-speed-transfer enabled](/docs/services/cloud-object-storage/basics/upload.html). Under most scenarios, Aspera high-speed transfer will result in significantly increased perfomance for transfering data, especially across long distances or under unstable network conditions.
 
 ## Uploading objects in multiple parts
 {: #large-objects-multipart}
 
 When working with larger objects, multipart upload operations are recommended to write objects into {{site.data.keyword.cos_short}}. An upload of a single object is performed as a set of parts and these parts can be uploaded independently in any order and in parallel. Upon upload completion, {{site.data.keyword.cos_short}} then presents all parts as a single object. This provides many benefits: network interruptions do not cause large uploads to fail, uploads can be paused and restarted over time, and objects can be uploaded as they are being created.
 
-Multipart uploads are only available for objects larger than 5MB. For objects smaller than 50GB, a part size of 20MB to 100MB is recommended for optimum performance. For larger objects, part size can be increased without significant performance impact.  Multipart uploads are limited to no more than 10,000 parts of 5GB each up to a maximum object size of 10TB.
+Multipart uploads are only available for objects larger than 5MB. For objects smaller than 50GB, a part size of 20MB to 100MB is recommended for optimum performance. For larger objects, part size can be increased without significant performance impact. Multipart uploads are limited to no more than 10,000 parts of 5GB each up to a maximum object size of 10TB.
 
 Avoid using more than 500 parts when possible, this leads to inefficiencies in {{site.data.keyword.cos_short}}.
 {:tip}
@@ -45,7 +45,7 @@ Most tools, such as the AWS CLI or the IBM Cloud Console, as well as most compat
 ## Using the API
 {: #large-objects-multipart-api}
 
-Incomplete multipart uploads do persist until the object is deleted or the multipart upload is aborted with `AbortIncompleteMultipartUpload`. If an incomplete multipart upload is not aborted, the partial upload continues to use resources.  Interfaces should be designed with this point in mind, and clean up incomplete multipart uploads.
+Incomplete multipart uploads do persist until the object is deleted or the multipart upload is aborted with `AbortIncompleteMultipartUpload`. If an incomplete multipart upload is not aborted, the partial upload continues to use resources. Interfaces should be designed with this point in mind, and clean up incomplete multipart uploads.
 {:tip}
 
 There are three phases to uploading an object in multiple parts:
@@ -103,7 +103,7 @@ Content-Length: 276
 ### Upload a part
 {: #large-objects-multipart-api-upload-part}
 
-A `PUT` request issued to an object with query parameters `partNumber` and `uploadId` will upload one part of an object.  The parts may be uploaded serially or in parallel, but must be numbered in order.
+A `PUT` request issued to an object with query parameters `partNumber` and `uploadId` will upload one part of an object. The parts may be uploaded serially or in parallel, but must be numbered in order.
 
 **Syntax**
 
@@ -240,12 +240,12 @@ X-Clv-S3-Version: 2.5
 ## Using S3cmd (CLI)
 {: #large-objects-s3cmd}
 
-[S3cmd](https://s3tools.org/s3cmd){:new_window} is a free Linux and Mac command line tool and client for uploading, retrieving and managing data in cloud storage service providers that use the S3 protocol. It is designed for power users who are familiar with command line programs and is ideal for batch scripts and automated backup.  S3cmd is written in Python. It's an open source project available under GNU Public License v2 (GPLv2) and is free for both commercial and private use.
+[S3cmd](https://s3tools.org/s3cmd){:new_window} is a free Linux and Mac command line tool and client for uploading, retrieving and managing data in cloud storage service providers that use the S3 protocol. It is designed for power users who are familiar with command line programs and is ideal for batch scripts and automated backup. S3cmd is written in Python. It's an open source project available under GNU Public License v2 (GPLv2) and is free for both commercial and private use.
 
 ### Installation and Configuration
 {: #large-objects-s3cmd-install}
 
-S3cmd requires Python 2.6 or newer and is compatible with Python 3.  The easiest way to install S3cmd is with the Python Package Index (PyPi).
+S3cmd requires Python 2.6 or newer and is compatible with Python 3. The easiest way to install S3cmd is with the Python Package Index (PyPi).
 
 ```
 pip install s3cmd

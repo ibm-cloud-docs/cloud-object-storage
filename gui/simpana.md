@@ -63,7 +63,7 @@ For more information about IBM COS Infrastructure Archive, see [How to: Archive 
 ### Associate the policy with the bucket
 {: #commvault-assign-policy}
 
-1.  Execute the following CLI command:
+1. Execute the following CLI command:
 
 ```shell
 aws s3api put-bucket-lifecycle-configuration --bucket <bucket name> --lifecycle-configuration file://<saved policy file> --endpoint <endpoint>
