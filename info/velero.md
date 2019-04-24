@@ -25,7 +25,7 @@ subcollection: cloud-object-storage
 
 # Velero Integration
 {: #velero}
-[Velero](https://github.com/heptio/velero){:new_window} (formerly Heptio Ark) is a toolset provided by [Heptio](https://heptio.com/resources/tutorials/){:new_window} to backup and restore your Kubernetes cluster resources.  Ark supports the use of S3-compatible storage providers including {{site.data.keyword.cos_full}} for different backup/snapshot operations.
+[Velero](https://github.com/heptio/velero){:new_window} (formerly Heptio Ark) is a toolset to backup and restore your Kubernetes cluster resources.  Ark supports the use of S3-compatible storage providers including {{site.data.keyword.cos_full}} for different backup/snapshot operations.
 
 Velero consists of two parts:
 
