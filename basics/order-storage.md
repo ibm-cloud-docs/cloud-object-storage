@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-05-24"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: getting started, console
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,10 +15,18 @@ lastupdated: "2018-05-24"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
 
-# Order storage
-
+# Provision storage
+{: #provision}
 ## Creating a new {{site.data.keyword.cloud_notm}} Platform account
+{: #provision-account}
 
 Before ordering a new {{site.data.keyword.cos_full}} storage instance, it is necessary to create a customer account first.
 
@@ -24,6 +36,7 @@ Before ordering a new {{site.data.keyword.cos_full}} storage instance, it is nec
 4. Next up is ordering a new object storage service instance!
 
 ## Creating a new service instance
+{: #provision-instance}
 
 1. Login to [the console](https://cloud.ibm.com/){: new_window}.
 2. Navigate to the catalog, by clicking **Catalog** in the navigation bar.

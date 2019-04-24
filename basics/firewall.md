@@ -30,7 +30,7 @@ There are some rules around setting a firewall:
 * A user that sets or views a firewall must have the `Manager` role on the bucket. 
 * A user with the `Manager` role on the bucket can view and edit the list of allowed IP addresses from any IP address to prevent accidental lockouts.
 * The {{site.data.keyword.cos_short}} Console can still access the bucket, provided the user's IP address is authorized.
-* Other {{site.data.keyword.cloud_notm}} services **are not authorized** to bypass the firewall.  limitation means that other services that rely on IAM policies for bucket access (such as Aspera, SQL Query, Security Advisor, Watson Studio, Cloud Functions, and others) will be unable to do so.
+* Other {{site.data.keyword.cloud_notm}} services **are not authorized** to bypass the firewall. This limitation means that other services that rely on IAM policies for bucket access (such as Aspera, SQL Query, Security Advisor, Watson Studio, Cloud Functions, and others) will be unable to do so.
 
 When a firewall is set, the bucket is isolated from the rest of {{site.data.keyword.cloud_notm}}. Consider how this may impact applications and workflows that depend on other services directly accessing a bucket before enabling the firewall.
 {: important}

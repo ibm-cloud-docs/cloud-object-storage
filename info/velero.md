@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2019
-lastupdated: "2019-01-25"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: heptio, kubernetes, backup
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,9 +15,16 @@ lastupdated: "2019-01-25"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
 
 # Velero Integration
-
+{: #velero}
 [Velero](https://github.com/heptio/velero){:new_window} (formerly Heptio Ark) is a toolset provided by [Heptio](https://heptio.com/){:new_window} to backup and restore your Kubernetes cluster resources.  Ark supports the use of S3-compatible storage providers including {{site.data.keyword.cos_full}} for different backup/snapshot operations.
 
 Velero consists of two parts:
@@ -22,6 +33,7 @@ Velero consists of two parts:
 * Command-line tool that runs on a local client
 
 ## Prerequisites
+{: #velero-prereqs}
 
 Before you begin you'll need to ensure you have the following:
 
@@ -32,6 +44,7 @@ Before you begin you'll need to ensure you have the following:
 * HMAC credentials with Writer access to bucket
 
 ## Install Velero Client
+{: #velero-install}
 
 1. Download the latest [release](https://github.com/heptio/velero/releases){:new_window} of Ark for your OS
 2. Extract the tarball to a folder on your local system
@@ -80,8 +93,9 @@ Available Commands:
 {: tip}
 
 ## Install and Configure Velero Server
-
+{: #velero-config}
 ### Create credentials file
+{: #velero-config-credentials}
 
 Create a credentials file (`credentials-velero`) using the HMAC pair of access and secret keys in your local Velero folder (*folder that the tarball was extracted*)
 
@@ -92,6 +106,7 @@ Create a credentials file (`credentials-velero`) using the HMAC pair of access a
 ```
 
 ### Configure kubectl
+{: #velero-config-kubectl}
 
 Configure [`kubectl`](https://kubernetes.io/docs/user-guide/kubectl-overview/){:new_window} to connect to your cluster.
 
@@ -122,6 +137,7 @@ Configure [`kubectl`](https://kubernetes.io/docs/user-guide/kubectl-overview/){:
     {: pre}
 
 ### Configure Velero Server and Cloud Storage
+{: #velero-config-storage}
 
 1. In the Velero folder run the following to setup namespaces, RBAC, and other scaffolding<br/><br/>*The default namespace is `velero`.  If you wish to create a custom namespace, see the instructions at [Run in custom namespace](https://heptio.github.io/velero/master/namespace.html){:new_window}*
     ```bash
@@ -159,11 +175,12 @@ Configure [`kubectl`](https://kubernetes.io/docs/user-guide/kubectl-overview/){:
 3. Specify the following values in `config/ibm/05-ark-backupstoragelocation.yaml`:
    * `<YOUR_BUCKET>` - Name of the bucket for storing backup files
    * `<YOUR_REGION>` - The [location constraint](/docs/services/cloud-object-storage/basics/classes.html#locationconstraint) of your bucket (i.e. `us-standard`)
-   * `<YOUR_URL_ACCESS_POINT>` - The regional endpoint URL (i.e. `https://s3-api.us-geo.objectstorage.softlayer.net`)
+   * `<YOUR_URL_ACCESS_POINT>` - The regional endpoint URL (i.e. `https://s3.us.cloud-object-storage.appdomain.cloud`)
 
     *See the [BackupStorageLocation](https://heptio.github.io/velero/master/api-types/backupstoragelocation.html#aws){:new_window} definition for additional information.*
 
 ### Start the Velero Server
+{: #velero-config-server}
 
 1. In the Velero folder run the following command to create the object in your cluster:
     ```bash
@@ -199,8 +216,10 @@ Configure [`kubectl`](https://kubernetes.io/docs/user-guide/kubectl-overview/){:
     {: pre}
 
 ## Testing Backup/Restore
+{: #velero-test}
 
 ### Backup
+{: #velero-test-backup}
 
 You can now perform a simple backup of your Kubernetes cluster by running the following command:
 ```bash
@@ -228,6 +247,7 @@ velero backup --help
 {: pre}
 
 ### Restore
+{: #velero-test-restore}
 
 To restore a backup run the following command:
 ```bash

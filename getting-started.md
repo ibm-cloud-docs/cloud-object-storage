@@ -18,9 +18,14 @@ subcollection: cloud-object-storage
 
 
 # Getting started tutorial
+{: #getting-started}
 
 This getting started tutorial walks through the steps that are needed to create buckets, upload objects, and set up access policies to allow other users to work with your data.
 {: shortdesc}
+
+Gist?
+
+<script src="https://gist.github.com/nglange/9be17f30bd5e235dec58bb0a6244d7b0.js"></script>
 
 ## Before you begin
 {: #gs-prereqs}

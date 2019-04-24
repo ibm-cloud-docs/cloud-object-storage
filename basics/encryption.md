@@ -1,7 +1,13 @@
 ---
+
 copyright:
-  years: 2017, 2018
-lastupdated: '2018-06-21'
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: encryption, security, sse-c, key protect
+
+subcollection: cloud-object-storage
+
 ---
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -9,14 +15,17 @@ lastupdated: '2018-06-21'
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
 
 # Manage encryption
-{: #manage-encryption}
+{: #encryption}
 
 All objects stored in {{site.data.keyword.cos_full}} are encrypted by default using [randomly generated keys and an all-or-nothing-transform](/docs/services/cloud-object-storage/info/data-security-encryption.html). While this default encryption model provides at-rest security, some workloads need to be in possession of the encryption keys used.  You can manage your keys manually by providing your own encryption keys when storing data (SSE-C), or you can create buckets that use IBM Key Protect (SSE-KP) to manage encryption keys.
 
 ## Server Side Encryption with Customer-Provided Keys (SSE-C)
-{: #sse-c}
+{: #encryption-sse-c}
 
 SSE-C is enforced on objects.  Requests to read or write objects or their metadata using customer manged keys send the required encryption infomation as headers in the HTTP requests.  The syntax is identical to the S3 API, and S3-compatible libraries that support SSE-C should work as expected against {{site.data.keyword.cos_full}}.
 
@@ -30,7 +39,7 @@ Header | Type | Description
 
 
 ## Server Side Encryption with {{site.data.keyword.keymanagementservicelong_notm}} (SSE-KP)
-{: #sse-kp}
+{: #encryption-kp}
 
 {{site.data.keyword.keymanagementservicefull}} is a centralized key management system (KMS) for generating, managing, and destroying encryption keys used by {{site.data.keyword.cloud_notm}} services.  You can create an instance of {{site.data.keyword.keymanagementserviceshort}} from the {{site.data.keyword.cloud_notm}} catalog.
 
@@ -78,7 +87,7 @@ Authorize {{site.data.keyword.keymanagementserviceshort}} for use with IBM COS:
 10. Click **Authorize**.
 
 ### Create a bucket
-{: #createbucket}
+{: #encryption-createbucket}
 
 When your key exists in {{site.data.keyword.keymanagementserviceshort}} and you authorized the Key Protect service for use with IBM COS, associate the key with a new bucket:
 
@@ -96,19 +105,21 @@ Note that the `Etag` value returned for objects encrypted using SSE-KP **will** 
 
 
 ## Rotating Keys
+{: #encryption-rotate}
 
 Key rotation is an important part of mitigating the risk of a data breach.   Periodically changing keys reduces the potential data loss if the key is lost or compromised.  The frequency of key rotations varies by organization and depends on a number of variables including the environment, the amount of encrypted data, classification of the data, and compliance laws.  The [National Institute of Standards and Technology (NIST)](https://www.nist.gov/topics/cryptography){:new_window} provides definitions of appropriate key lengths and provides guidelines for how long keys should be used.
 
 ### Manual Key Rotation
+{: #encryption-rotate-manual}
 
 To rotate the keys for your {{site.data.keyword.cos_short}} you will need to create a new bucket with Key Protect enabled using a new Root Key and copy the contents from your existing bucket to the new one.
 
 **NOTE**: Deleting a key from the system will shred its contents and any data still encrypted with that key.  Once removed, it cannot be undone or reversed and will result in permanent data loss.
 
-1. Create or add a new Root Key in your [Key Protect](/docs/services/key-protect/index.html#getting-started-with-key-protect) service.
-2. [Create a new bucket](encryption.html#createbucket) and add the new Root Key
+1. Create or add a new Root Key in your [Key Protect](/docs/services/key-protect) service.
+2. [Create a new bucket](#encryption-createbucket) and add the new Root Key
 3. Copy all the objects from your original bucket into the new bucket.
     1. This step can be accomplished using a number of different methods:
-        1. From the command-line using [CURL](/docs/services/cloud-object-storage/cli/curl.html#copy-an-object) or [AWS CLI](/docs/services/cloud-object-storage/cli/aws-cli.html#use-the-aws-cli)
+        1. From the command-line using [CURL](/docs/services/cloud-object-storage/cli/curl.html) or [AWS CLI](/docs/services/cloud-object-storage/cli/aws-cli.html)
         2. Using the (API)[/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#copy-object]
-        3. Using the SDK with [Java](/docs/services/cloud-object-storage/libraries/java.html#code-examples), [Python](/docs/services/cloud-object-storage/libraries/python.html#code-examples), or [Node.js](/docs/services/cloud-object-storage/libraries/node.html#code-examples)
+        3. Using the SDK with [Java](/docs/services/cloud-object-storage/libraries/java.html), [Python](/docs/services/cloud-object-storage/libraries/python.html), or [Node.js](/docs/services/cloud-object-storage/libraries/node.html)

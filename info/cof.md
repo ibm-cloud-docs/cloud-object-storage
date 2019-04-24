@@ -1,39 +1,52 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-07-19"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: cloud foundry, compute, stateless
+
+subcollection: cloud-object-storage
 
 ---
-
-# Using Cloud Object Storage with Cloud Foundry Apps
-
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
+
+# Using Cloud Object Storage with Cloud Foundry Apps
+{: #cloud-foundry}
 
 {{site.data.keyword.cos_full}} can be paired with {{site.data.keyword.cfee_full}} applications to provide highly-available content through the use of regions and endpoints.
 
 ## Cloud Foundry Enterprise Environment
-
+{: #cloud-foundry-ee}
 {{site.data.keyword.cfee_full}} is a platform for hosting apps and services in the cloud. You can instantiate multiple, isolated, enterprise-grade platforms on demand that is run within your own account and can be deployed on either shared or dedicated hardware.  The platform makes it easy to scale apps as consumption grows, simplifying the runtime and infrastructure so that you can focus on development.
 
 Successful implementation of a Cloud Foundry platform requires [proper planning and design](/docs/cloud-foundry/design-structure.html#bpimplementation) for necessary resources and enterprise requirements.  Learn more about [getting started](/docs/cloud-foundry/index.html#creating) with the Cloud Foundry Enterprise Environment as well as an introductory [tutorial](/docs/cloud-foundry/getting-started.html#getting-started).
 
 ### Regions
-
+{: #cloud-foundry-regions}
 [Regional endpoints](/docs/services/cloud-object-storage/basics/endpoints.html#select-regions-and-endpoints) are an important part of the IBM Cloud Environment.  You can create applications and service instances in different regions with the same IBM Cloud infrastructure for application management and the same usage details view for billing.  By choosing an IBM Cloud region that is geographically close to you or your customers, you can reduce data latency in your applications as well as minimize costs. Regions can also be selected address any security concerns or regulatory requirements.  
 
 With {{site.data.keyword.cos_full}} you can choose to disperse data across a single data center, an entire region, or even a combination of regions by [selecting the endpoint](/docs/services/cloud-object-storage/basics/endpoints.html#select-regions-and-endpoints) where your application sends API requests.
 
 ### Resource Connections and Aliases
+{: #cloud-foundry-aliases}
 
 An alias is a connection between your managed service within a resource group and an application within an org or a space. Aliases are like symbolic links that hold references to remote resources.  It enables interoperability and reuse of an instance across the platform.  In the {{site.data.keyword.cloud_notm}} console, the connection (alias) is represented as a service instance.  You can create an instance of a service in a resource group and then reuse it from any available region by creating an alias in an org or space in those regions.
 
 ## Storing Credentials as VCAP Variables 
+{: #cloud-foundry-vcap}
 
 {{site.data.keyword.cos_short}} credentials can stored in the VCAP_SERVICES environment variable which can be parsed for use when accessing the {{site.data.keyword.cos_short}} service.  The credentials include information as presented in the following example:
 
@@ -79,7 +92,7 @@ const cosService = 'cloud-object-storage';
 var cosCreds = appEnv.services[cosService][0].credentials;
 var AWS = require('ibm-cos-sdk');
 var config = {
-    endpoint: 's3.us-south.objectstorage.softlayer.net',
+    endpoint: 's3.us-south.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net',
     apiKeyId: cosCreds.apikey,
     ibmAuthEndpoint: 'https://iam.cloud.ibm.com/identity/token',
     serviceInstanceId: cosCreds.resource_instance_id,
@@ -95,8 +108,10 @@ For more information on how to use the SDK to access {{site.data.keyword.cos_sho
 * [Using Node.js](/docs/services/cloud-object-storage/libraries/node.html#using-node-js)
 
 ## Creating Service Bindings 
+{: #cloud-foundry-bindings}
 
 ### Dashboard
+{: #cloud-foundry-bindings-console}
 
 The simplest way to create a service binding is by using the [{{site.data.keyword.cloud}} Dashboard](https://cloud.ibm.com/dashboard/apps).  
 
@@ -116,6 +131,7 @@ The applications VCAP_SERVICES environment variable will be automatically update
 3. Verify your COS service is now listed
 
 ### IBM Client Tools (CLI)
+{: #cloud-foundry-bindings-cli}
 
 1. Login to with IBM Cloud CLI
 ```
@@ -138,6 +154,7 @@ bx resource service-binding-create <service alias> <cf app name> <role>
 ```
 
 ### IBM Client Tools (CLI) with HMAC Credentials
+{: #cloud-foundry-hmac}
 
 Hash-based message authentication code (HMAC) is a mechanism for calculating a message authentication code created using a pair of access and secret keys. This can be used to verify the integrity and authenticity of a message.  More information about using [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html#using-hmac-credentials) is available in the {{site.data.keyword.cos_short}} documentation.
 
@@ -162,6 +179,7 @@ bx resource service-binding-create <service alias> <cf app name> <role> -p '{"HM
 ```
 
 ### Binding to {{site.data.keyword.containershort_notm}}
+{: #cloud-foundry-k8s}
 
 Creating a service binding to {{site.data.keyword.containershort}} requires a slightly different procedure.  
 

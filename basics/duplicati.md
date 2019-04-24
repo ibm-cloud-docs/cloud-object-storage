@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-08-03"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: backup, s3, compatibility, desktop
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,12 +15,17 @@ lastupdated: "2018-08-03"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
 
 # Using Duplicati
+{: #duplicati}
 
 This guide walks you through using Duplicati to perform backups to Cloud Object Storage (S3) and restore files from Cloud Object Storage (S3).
 
 ## Prerequisites
+{: #duplicati-prereqs}
 
 * [Duplicati downloaded and installed ](https://www.duplicati.com/download) on the drive you want backed up.
 * Cloud Object Storage (S3) Account credentials
@@ -24,12 +33,14 @@ This guide walks you through using Duplicati to perform backups to Cloud Object 
 * Firefox or Google Chrome installed if you would like to use SSL. 
 
 ## Running Duplicati for the first time
+{: #duplicati-first}
 
 This guide focuses on the Web GUI interaction with Duplicati but there is also a command line interface for those customers interested in being able to script it during deployment. 
 
 The first time you launch Duplicati, the browser opens to the URL http://127.0.0.1:8200/ngax/index.html. 
 
 ## Creating a backup Job
+{: #duplicati-backup}
 
 To create a backup job.
 
@@ -45,9 +56,7 @@ To create a backup job.
 On the next page choose 'S3 Compatible' from the drop-down next to Storage Type.
 
 Click  'Use SSL' checkbox and in the Server drop-down choose Custom URL. 
-This will provide you with an additional box to specify the US Geo Cloud Object Storage (S3) endpoint. 
-
-In this example I am using the Private network endpoint (s3-api.us-geo.objectstorage.service.networklayer.com). 
+This will provide you with an additional box to specify the endpoint (for example, `https://s3.us.cloud-object-storage.appdomain.cloud`). 
 
 Provide a name for the bucket you would like the backups to go to. Duplicati will create the bucket if it does not already exist. 
 
@@ -64,8 +73,9 @@ On this page you will select the files and/or the directories you would like to 
 With your schedule set click Next and set the 'Upload' (chunk) size for the backups as well as the retention scheme and click Save. Your backup job is not set up and ready to go. You can click 'Run now' to trigger a manual run of the backup job.
 
 ## Restoring Files
+{: #duplicati-restore}
 
-The first time you start a restore process in Duplicati you will be prompted for your Cloud Object Storage (S3) credentials again. Follow the same steps as you did when first creating the backup including changing the Allowed SSL Versions under the Advanced Options settings. Test the connection and if everything worked, click Next.
+The first time you start a restore process in Duplicati you will be prompted for your Cloud Object Storage credentials again. Follow the same steps as you did when first creating the backup including changing the Allowed SSL Versions under the Advanced Options settings. Test the connection and if everything worked, click Next.
 
 On the subsequent page enter the encryption password used when you created the backups or leave the box blank and click Next. On the following page you will see a box labeled 'Restore from' where you can select the specific backup you would like to restore from as as well as which files and directories you would like restored. After you have made your selections click Continue.
 

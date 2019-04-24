@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-12-07"
+  years: 2017, 2018, 2019
+lastupdated: "2019-04-12"
+
+keywords: rest, s3, compatibility, api, objects
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,29 +15,17 @@ lastupdated: "2018-12-07"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
 
 # Object operations
 {: #object-operations}
 
-## Authentication Options
-
-### IAM
-IAM bearer tokens generated using the [IBM Cloud CLI](/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information)
-
-### HMAC (Headers or Pre-signed URL)
-Adding headers to your request using the following values subtituted:
-
-|Key|Value|Example|
-|---|---|---|
-|{access_key}|Access key assigned to your Service Credential|cf4965cebe074720a4929759f57e1214|
-|{datestamp}|The formatted date of your request (yyyymmdd)|20180613|
-|{location}|The location code for your endpoint|us-standard|
-|{signature}|The hash created using the secret key, location, and date|ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e|
-|{timestamp}|The formatted date and time of your request|20180614T001804Z|
-|{payload_hash}|The hexadecimal value of the SHA256 hash of the request body (required for uploading objects)|2cd5697803d5409ed17e4c9a09debad05afa9af830c2d56a966b531ddda5cac8|
+These operations read, write, and configure the objects contained within a bucket.
 
 ## Upload an object
-{: #upload-object}
+{: #object-operations-put}
 
 A `PUT` given a path to an object uploads the request body as an object. All objects uploaded in a single thread should be smaller than 500MB (objects [uploaded in multiple parts](/docs/services/cloud-object-storage/basics/multipart.html#uploading-objects-in-multiple-parts) can be as large as 10TB).
 
@@ -53,7 +45,7 @@ PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 PUT /apiary/queen-bee HTTP/1.1
 Authorization: Bearer {token}
 Content-Type: text/plain; charset=utf-8
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 
 Content-Length: 533
 
@@ -64,7 +56,7 @@ Content-Length: 533
 
 ```
 
-**Example request (HMAC Headers)**
+**Example request (HMAC)**
 
 ```http
 PUT /apiary/queen-bee HTTP/1.1
@@ -72,7 +64,7 @@ Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/
 x-amz-date: {timestamp}
 x-amz-content-sha256: {payload_hash}
 Content-Type: text/plain; charset=utf-8
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 
 Content-Length: 533
 
@@ -88,7 +80,7 @@ Content-Length: 533
 ```http
 PUT /apiary/queen-bee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
 Content-Type: text/plain; charset=utf-8
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 
 Content-Length: 533
 
@@ -116,6 +108,7 @@ Content-Length: 0
 ----
 
 ## Get an object's headers
+{: #object-operations-head}
 
 A `HEAD` given a path to an object retrieves that object's headers.
 
@@ -134,7 +127,7 @@ HEAD https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```http
 HEAD /apiary/soldier-bee HTTP/1.1
 Authorization: Bearer {token}
-Host: s3-api.sjc-us-geo.objectstorage.softlayer.net
+Host: s3-api.sjc-us-geo.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net
 ```
 
 **Example request (HMAC Headers)**
@@ -143,14 +136,14 @@ Host: s3-api.sjc-us-geo.objectstorage.softlayer.net
 HEAD /apiary/soldier-bee HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example request (HMAC Pre-signed URL)**
 
 ```http
 HEAD /apiary/soldier-bee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example response**
@@ -172,6 +165,7 @@ Content-Length: 11
 ----
 
 ## Download an object
+{: #object-operations-get}
 
 A `GET` given a path to an object downloads the object.
 
@@ -185,7 +179,8 @@ GET https://{endpoint}/{bucket-name}/{object-name} # path style
 GET https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
 
-## Optional headers
+### Optional headers
+{: #object-operations-get-headers}
 
 Header | Type | Description
 --- | ---- | ------------
@@ -196,7 +191,7 @@ Header | Type | Description
 ```http
 GET /apiary/worker-bee HTTP/1.1
 Authorization: Bearer {token}
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example request (HMAC Headers)**
@@ -205,14 +200,14 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 GET /apiary/worker-bee HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example request (HMAC Pre-signed URL)**
 
 ```http
 GET /apiary/worker-bee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example response**
@@ -239,6 +234,7 @@ Content-Length: 467
 ----
 
 ## Delete an object
+{: #object-operations-delete}
 
 A `DELETE` given a path to an object deletes an object.
 
@@ -254,7 +250,7 @@ DELETE https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```http
 DELETE /apiary/soldier-bee HTTP/1.1
 Authorization: Bearer {token}
-Host: s3-api.sjc-us-geo.objectstorage.softlayer.net
+Host: s3-api.sjc-us-geo.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net
 ```
 
 **Example request (HMAC Headers)**
@@ -263,14 +259,14 @@ Host: s3-api.sjc-us-geo.objectstorage.softlayer.net
 DELETE /apiary/soldier-bee HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example request (HMAC Pre-signed URL)**
 
 ```http
 DELETE /apiary/soldier-bee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example response**
@@ -288,6 +284,7 @@ x-amz-request-id: 8ff4dc32-a6f0-447f-86cf-427b564d5855
 ----
 
 ## Deleting multiple objects
+{: #object-operations-multidelete}
 
 A `POST` given a path to an bucket and proper parameters will delete a specified set of objects. A `Content-MD5` header specifying the base64 encoded MD5 hash of the request body is required.
 
@@ -296,6 +293,8 @@ The required `Content-MD5` header needs to be the binary representation of a bas
 **Note:** If an object specified in the request is not found the result returns as deleted. 
 
 ### Optional Elements
+{: #object-operations-multidelete-options}
+
 |Header|Type|Description|
 |---|---|---|
 |`Quiet`|Boolean|Enable quiet mode for the request.|
@@ -320,7 +319,7 @@ POST https://{bucket-name}.{endpoint}?delete= # virtual host style
 ```http
 POST /apiary?delete= HTTP/1.1
 Authorization: Bearer {token}
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-Type: text/plain; charset=utf-8
 Content-MD5: xj/vf7lD7vbIe/bqHTaLvg==
 ```
@@ -333,7 +332,7 @@ Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/
 x-amz-date: {timestamp}
 Content-Type: text/plain; charset=utf-8
 Content-MD5: xj/vf7lD7vbIe/bqHTaLvg==
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example request (HMAC Pre-signed URL)**
@@ -342,7 +341,7 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 POST /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&delete=&x-amz-signature={signature} HTTP/1.1
 Content-Type: text/plain; charset=utf-8
 Content-MD5: xj/vf7lD7vbIe/bqHTaLvg==
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 ```xml
@@ -385,7 +384,7 @@ Content-Length: 207
 ----
 
 ## Copy an object
-{: #copy-object}
+{: #object-operations-copy}
 
 A `PUT` given a path to a new object creates a new copy of another object specified by the `x-amz-copy-source` header. Unless otherwise altered the metadata remains the same.
 
@@ -404,6 +403,7 @@ PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
 
 ### Optional headers
+{: #object-operations-copy-options}
 
 Header | Type | Description
 --- | ---- | ------------
@@ -421,7 +421,7 @@ This basic example takes the `bee` object from the `garden` bucket, and creates 
 PUT /apiary/wild-bee HTTP/1.1
 Authorization: Bearer {token}
 x-amz-copy-source: /garden/bee
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example request (HMAC Headers)**
@@ -431,7 +431,7 @@ PUT /apiary/wild-bee HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
 x-amz-copy-source: /garden/bee
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example request (HMAC Pre-signed URL)**
@@ -439,7 +439,7 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 ```http
 PUT /apiary/wild-bee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
 x-amz-copy-source: /garden/bee
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example response**
@@ -467,7 +467,7 @@ Content-Length: 240
 ----
 
 ## Check an object's CORS configuration
-{: #options}
+{: #object-operations-options}
 
 An `OPTIONS` given a path to an object along with an origin and request type checks to see if that object is accessible from that origin using that request type.  Unlike all other requests, an OPTIONS request does not require the `authorization` or `x-amx-date` headers.
 
@@ -484,7 +484,7 @@ OPTIONS https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 OPTIONS /apiary/queen-bee HTTP/1.1
 Access-Control-Request-Method: PUT
 Origin: http://ibm.com
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example request (HMAC Headers)**
@@ -495,7 +495,7 @@ Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/
 x-amz-date: {timestamp}
 Access-Control-Request-Method: PUT
 Origin: http://ibm.com
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example request (HMAC Pre-signed URL)**
@@ -504,7 +504,7 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 OPTIONS /apiary/queen-bee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
 Access-Control-Request-Method: PUT
 Origin: http://ibm.com
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example response**
@@ -528,7 +528,7 @@ Content-Length: 0
 ----
 
 ## Uploading objects in multiple parts
-{: multipart}
+{: #object-operations-multipart}
 
 When working with larger objects, multipart upload operations are recommended to write objects into {{site.data.keyword.cos_full}}. An upload of a single object can be performed as a set of parts and these parts can be uploaded independently in any order and in parallel. Upon upload completion, {{site.data.keyword.cos_short}} then presents all parts as a single object. This provides many benefits: network interruptions do not cause large uploads to fail, uploads can be paused and restarted over time, and objects can be uploaded as they are being created.
 
@@ -549,6 +549,7 @@ There are three phases to uploading an object in multiple parts:
 3. When all parts are finished uploading, the upload is completed by sending a request with the `UploadId` and an XML block that lists each part number and it's respective `Etag` value.
 
 ## Initiate a multipart upload
+{: #object-operations-multipart-initiate}
 
 A `POST` issued to an object with the query parameter `upload` creates a new `UploadId` value, which is then be referenced by each part of the object being uploaded.
 
@@ -567,7 +568,7 @@ POST https://{bucket-name}.{endpoint}/{object-name}?uploads= # virtual host styl
 ```http
 POST /some-bucket/multipart-object-123?uploads= HTTP/1.1
 Authorization: Bearer {token}
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example request (HMAC Headers)**
@@ -576,14 +577,14 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 POST /some-bucket/multipart-object-123?uploads= HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example request (HMAC Pre-signed URL)**
 
 ```http
 POST /some-bucket/multipart-object-123?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&uploads=&x-amz-signature={signature} HTTP/1.1
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example response**
@@ -610,6 +611,7 @@ Content-Length: 276
 ----
 
 ## Upload a part
+{: #object-operations-multipart-put-part}
 
 A `PUT` request issued to an object with query parameters `partNumber` and `uploadId` will upload one part of an object.  The parts may be uploaded serially or in parallel, but must be numbered in order.
 
@@ -629,7 +631,7 @@ PUT https://{bucket-name}.{endpoint}/{object-name}?partNumber={sequential-intege
 PUT /some-bucket/multipart-object-123?partNumber=1&uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
 Authorization: Bearer {token}
 Content-Type: application/pdf
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-Length: 13374550
 ```
 
@@ -643,7 +645,7 @@ x-amz-content-sha256: STREAMING-AWS4-HMAC-SHA256-PAYLOAD
 Content-Encoding: aws-chunked
 x-amz-decoded-content-length: 13374550
 Content-Type: application/pdf
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-Length: 13374550
 ```
 
@@ -652,7 +654,7 @@ Content-Length: 13374550
 ```http
 PUT /some-bucket/multipart-object-123?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&partNumber=1&uploadId=0000015a-df89-51d0-2790-dee1ac994053&x-amz-signature={signature} HTTP/1.1
 Content-Type: application/pdf
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-Length: 13374550
 ```
 
@@ -672,7 +674,7 @@ Content-Length: 0
 ----
 
 ## List parts
-{: #list-parts}
+{: #object-operations-multipart-list}
 
 A `GET` given a path to a multipart object with an active `UploadID` specified as a query parameter will return a list of all of the object's parts.
 
@@ -684,25 +686,20 @@ GET https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId} # path st
 GET https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId} # virtual host style
 ```
 
-### Required query parameters
-
-Header | Type | Description
+### Query parameters
+{: #object-operations-multipart-list-params}
+Parameter | Required?| Type | Description
 --- | ---- | ------------
-`uploadId` | string | Upload ID returned when initializing a multipart upload.
-
-### Optional query parameters
-
-Header | Type | Description
---- | ---- | ------------
-`max-parts` | string | Defaults to 1,000.
-`part-number​-marker` | string | Defines where the list of parts will begin.
+`uploadId` | Required | string | Upload ID returned when initializing a multipart upload.
+`max-parts` | Optional | string | Defaults to 1,000.
+`part-number​-marker` | Optional | string | Defines where the list of parts will begin.
 
 **Example request**
 
 ```http
 GET /farm/spaceship?uploadId=01000162-3f46-6ab8-4b5f-f7060b310f37 HTTP/1.1
 Authorization: bearer {token}
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example request (HMAC Headers)**
@@ -711,14 +708,14 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 GET /farm/spaceship?uploadId=01000162-3f46-6ab8-4b5f-f7060b310f37 HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example request (HMAC Pre-signed URL)**
 
 ```http
 GET /farm/spaceship?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&uploadId=01000162-3f46-6ab8-4b5f-f7060b310f37&x-amz-signature={signature} HTTP/1.1
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example response**
@@ -762,6 +759,7 @@ Content-Length: 743
 ----
 
 ## Complete a multipart upload
+{: #object-operations-multipart-complete}
 
 A `POST` request issued to an object with query parameter `uploadId` and the appropriate XML block in the body will complete a multipart upload.
 
@@ -787,7 +785,7 @@ POST https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # virtu
 POST /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
 Authorization: Bearer {token}
 Content-Type: text/plain; charset=utf-8
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-Length: 257
 ```
 
@@ -798,7 +796,7 @@ POST /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac99
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain; charset=utf-8
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-Length: 257
 ```
 
@@ -807,7 +805,7 @@ Content-Length: 257
 ```http
 POST /some-bucket/multipart-object-123?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&uploadId=0000015a-df89-51d0-2790-dee1ac994053&x-amz-signature={signature} HTTP/1.1
 Content-Type: text/plain; charset=utf-8
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-Length: 257
 ```
 
@@ -840,7 +838,7 @@ Content-Length: 364
 
 ```xml
 <CompleteMultipartUploadResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-  <Location>http://s3-api.us-geo.objectstorage.softlayer.net/zopse/multipart-object-123</Location>
+  <Location>http://s3.us.cloud-object-storage.appdomain.cloud/zopse/multipart-object-123</Location>
   <Bucket>some-bucket</Bucket>
   <Key>multipart-object-123</Key>
   <ETag>"765ba3df36cf24e49f67fc6f689dfc6e-2"</ETag>
@@ -850,6 +848,7 @@ Content-Length: 364
 ----
 
 ## Abort incomplete multipart uploads
+{: #object-operations-multipart-uploads}
 
 A `DELETE` request issued to an object with query parameter `uploadId` will delete all unfinished parts of a multipart upload.
 
@@ -865,7 +864,7 @@ DELETE https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # vir
 ```http
 DELETE /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
 Authorization: Bearer {token}
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example request (HMAC Headers)**
@@ -874,14 +873,14 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 DELETE /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example request (HMAC Pre-signed URL)**
 
 ```http
 DELETE /some-bucket/multipart-object-123?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&uploadId=0000015a-df89-51d0-2790-dee1ac994053&x-amz-signature={signature} HTTP/1.1
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example response**
@@ -896,7 +895,7 @@ X-Clv-S3-Version: 2.5
 ```
 
 ## Temporarily restore an archived object
-{: #restore-object}
+{: #object-operations-archive-restore}
 
 A `POST` request issued to an object with query parameter `restore` to request temporary restoration of an archived object.  A `Content-MD5` header is required as an integrity check for the payload.
 
@@ -941,7 +940,7 @@ Authorization: {authorization-string}
 Content-Type: text/plain
 Content-MD5: rgRRGfd/OytcM7O5gIaQ== 
 Content-Length: 305
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example request (HMAC Headers)**
@@ -952,7 +951,7 @@ Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/
 x-amz-date: {timestamp}
 Content-MD5: rgRRGfd/OytcM7O5gIaQ== 
 Content-Length: 305
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 **Example request (HMAC Pre-signed URL)**
@@ -961,7 +960,7 @@ Host: s3-api.us-geo.objectstorage.softlayer.net
 POST /apiary/queenbee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&restore&x-amz-signature={signature} HTTP/1.1
 Content-MD5: rgRRGfd/OytcM7O5gIaQ== 
 Content-Length: 305
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 ```xml
@@ -985,6 +984,7 @@ X-Clv-S3-Version: 2.5
 ```
 
 ## Updating Metadata
+{: #object-operations-metadata}
 
 There are two ways to update the metadata on an existing object:
 * A `PUT` request with the new metadata and the original object contents
@@ -994,8 +994,9 @@ All metadata key must be prefixed with `x-amz-meta-`
 {: tip}
 
 ### Using PUT to update metadata
+{: #object-operations-metadata-put}
 
-**Note:** The `PUT` request requires a copy of existing object as the contents will be overwritten.
+The `PUT` request requires a copy of existing object as the contents will be overwritten. {: important}
 
 **Syntax**
 
@@ -1010,7 +1011,7 @@ PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 PUT /apiary/queen-bee HTTP/1.1
 Authorization: Bearer {token}
 Content-Type: text/plain; charset=utf-8
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 x-amz-meta-key1: value1
 x-amz-meta-key2: value2
 
@@ -1038,8 +1039,9 @@ Content-Length: 0
 ```
 
 ### Using COPY to update metadata
+{: #object-operations-metadata-copy}
 
-For additional details about executing a `COPY` request, click [here](#copy-object)
+For additional details about executing a `COPY` request, click [here](#object-operations-copy)
 
 **Syntax**
 
@@ -1054,7 +1056,7 @@ PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 PUT /apiary/queen-bee HTTP/1.1
 Authorization: Bearer {token}
 Content-Type: text/plain; charset=utf-8
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 x-amz-copy-source: /apiary/queen-bee
 x-amz-metadata-directive: REPLACE
 x-amz-meta-key1: value1

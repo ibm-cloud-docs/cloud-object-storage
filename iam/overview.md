@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-5-30"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: authorization, iam, basics
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,12 +15,21 @@ lastupdated: "2018-5-30"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
 
-# Getting started with IAM
+# IAM overview
+{: #iam-overview}
 
 {{site.data.keyword.cloud}} Identity & Access Management enables you to securely authenticate users and control access to all cloud resources consistently in the {{site.data.keyword.cloud_notm}} Platform. See the [Getting started tutorial](/docs/iam/quickstart.html#getstarted) for more information.
 
 ## Identity management
+{: #iam-overview-identity}
 
 Identity management includes the interaction of users, services, and resources. Users are identified by their IBMid. Services are identified by their service IDs. And, resources are identified and addressed by using CRNs.
 
@@ -25,24 +38,29 @@ The {{site.data.keyword.cloud_notm}} IAM Token Service allows you to create, upd
 See [What is Cloud IAM?](/docs/iam/index.html#iamoverview) for more information.
 
 ### Users and API keys
+{: #iam-overview-user-api-keys}
 
 API keys can be created and used by Bluemix users for automation and scripting purposes as well as federated log in when using the CLI. API keys can be created in the Identity and access management UI or using the `bx` CLI.
 
 ### Service IDs and API keys
+{: #iam-overview-service-id-api-key}
 
 The IAM Token Service enables the ability to create Service IDs and API keys for Service IDs. A Service ID is similar to a "functional id" or an "application id" and is used to authenticate services, and not to represent a user.
 
 Users can create Service IDs and bind them to scopes like a {{site.data.keyword.cloud_notm}} Platform account, a CloudFoundry organization or a CloudFoundry space, although for adopting IAM, it is best to bind Service IDs to a {{site.data.keyword.cloud_notm}} Platform account. This binding is done to give the Service ID a container to live in. This container also defines who can update and delete the Service ID and who can create, update, read and delete API Keys that are associated to that Service ID. It is important to note that a Service ID is NOT related to a user.
 
 ### Key rotation
+{: #iam-overview-key-rotation}
 
 API keys should be regularly rotated to prevent any security breaches caused by leaked keys.
 
 ## Access management
+{: #iam-overview-access-management}
 
 IAM Access Control provides a common way to assign user roles for {{site.data.keyword.cloud_notm}} resources and controls the actions the users can perform on those resources. You can view and manage users across the account or organization, depending on the access options that you have been given. For example, account owners are automatically assigned the account Administrator role for Identity and Access Managemement which enables them to assign and manage service policies for all members of their account.
 
 ### Users, roles, resources, and policies
+{: #iam-overview-access-policies}
 
 IAM Access Control enables the assignment of policies per service or service instance to allow levels of access for managing resources and users within the assigned context. A policy grants a user a role or roles to a set of resources by using a combination of attributes to define the applicable set of resources. When you assign a policy to a user, you first specify the service then a role or roles to assign. Additional configuration options might be available depending on the service you select.
 

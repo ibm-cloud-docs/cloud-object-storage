@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "10-06-2018"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: s3fs, open source, file system, gateway
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,18 +15,28 @@ lastupdated: "10-06-2018"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
 
 # Mount a bucket using `s3fs`
+{: #s3fs}
 
 Applications that expect to read and write to a NFS-style filesystem can use `s3fs`, which can mount a bucket as directory while preserving the native object format for files. This allows you to interact with your cloud storage using familiar shell commands, like `ls` for listing or `cp` to copy files, as well as providing access to legacy applications that rely on reading and writing from local files. For a more detailed overview, [visit the project's official README](https://github.com/s3fs-fuse/s3fs-fuse).
 
 ## Prerequisites
+{: #s3fs-prereqs}
 
 * IBM Cloud account and an instance of {{site.data.keyword.cos_full}}
 * A Linux or OSX environment
 * Credentials (either an [IAM API key](/docs/services/cloud-object-storage/iam/overview.html) or [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html))
 
 ## Installation
+{: #s3fs-install}
 
 On OSX, use [Homebrew](http://brew.sh/):
 
@@ -68,6 +82,7 @@ sudo make install
 {:codeblock}
 
 ## Configuration
+{: #s3fs-config}
 
 Store your credentials in a file containing either `<access_key>:<secret_key>` or `:<api_key>`.  This file needs to have limited access so run:
 
@@ -95,6 +110,7 @@ The `<bucket>` is an exising bucket and the `<mountpoint>` is the local director
 Now, `ls <mountpoint>` will list the objects in that bucket as if they were local files (or in the case of object prefixes, as if they were nested directories).
 
 ## Performance optimization
+{: #s3fs-performance}
 
 While performance will never be equal to a true local filesystem, it is possible to use some advanced options to increase throughput. 
 
@@ -121,5 +137,6 @@ s3fs <bucket_name> <mountpoint> -o url=http{s}://<COS_endpoint> –o passwd_file
 8. `dbglevel=warn` sets the debug level to `warn` instead of the default (`crit`) for logging messages to /var/log/syslog.
 
 ## Limitations
+{: #s3fs-limitations}
 
 It is important to remember that s3fs may not be suitable for all applications, as object storage services have high-latency for time to first byte and lack random write access. Workloads that only read big files, like deep learning workloads, can achieve good throughput using `s3fs`. 

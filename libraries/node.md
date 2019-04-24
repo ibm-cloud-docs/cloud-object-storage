@@ -1,21 +1,33 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-12-07"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: node, javascript, sdk
+
+subcollection: cloud-object-storage
 
 ---
-
-# Using Node.js
-
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
+
+# Using Node.js
+{: #node}
 
 ## Installing the SDK
+{: #node-install}
 
 The preferred way to install the {{site.data.keyword.cos_full}} SDK for Node.js is to use the
 [npm](http://npmjs.org){:new_window} package manager for Node.js. Simply type the following
@@ -30,13 +42,15 @@ Source code is hosted on [GitHub](https://github.com/IBM/ibm-cos-sdk-js){:new_wi
 More detail on individual methods and classes can be found in [the API documentation for the SDK](https://ibm.github.io/ibm-cos-sdk-js/){:new_window}.
 
 ## Getting Started
+{: #node-gs}
 
-### Minimum requirements ####
+### Minimum requirements
+{: #node-gs-prereqs}
 
 To run the SDK you will need **Node 4.x+**.
 
 ### Creating a client and sourcing credentials
-{: #client-credentials}
+{: #node-gs-credentials}
 
 To connect to COS, a client is created and configured by providing credential information (API Key, Service Instance ID and IBM Authentication Endpoint). These values can also be automatically sourced from a credentials file or from environment variables.
 
@@ -60,8 +74,11 @@ aws_secret_access_key = <DEFAULT_SECRET_ACCESS_KEY>
 If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` will take preference.
 
 ## Code Examples
+{: #node-examples}
 
 ### Initializing configuration
+{: #node-examples-init}
+
 ```javascript
 const AWS = require('ibm-cos-sdk');
 
@@ -80,6 +97,8 @@ var cos = new AWS.S3(config);
 * `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window})
 
 ### Creating a new bucket
+{: #node-examples-new-bucket}
+
 A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).
 
 ```javascript
@@ -105,6 +124,8 @@ function createBucket(bucketName) {
 * [createBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createBucket-property){:new_window}
 
 ### Creating a new text file
+{: #node-examples-new-file}
+
 ```javascript
 function createTextFile(bucketName, itemName, fileText) {
     console.log(`Creating new item: ${itemName}`);
@@ -125,7 +146,9 @@ function createTextFile(bucketName, itemName, fileText) {
 *SDK References*
 * [putObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#putObject-property){:new_window}
 
-### List available buckets
+### List buckets
+{: #node-examples-list-buckets}
+
 ```javascript
 function getBuckets() {
     console.log('Retrieving list of buckets');
@@ -148,6 +171,8 @@ function getBuckets() {
 * [listBuckets](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#listBuckets-property){:new_window}
 
 ### List items in a bucket
+{: #node-examples-list-objects}
+
 ```javascript
 function getBucketContents(bucketName) {
     console.log(`Retrieving bucket contents from: ${bucketName}`);
@@ -173,6 +198,8 @@ function getBucketContents(bucketName) {
 * [listObjects](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#listObjects-property){:new_window}
 
 ### Get file contents of particular item
+{: #node-examples-get-contents}
+
 ```javascript
 function getItem(bucketName, itemName) {
     console.log(`Retrieving item from bucket: ${bucketName}, key: ${itemName}`);
@@ -195,6 +222,8 @@ function getItem(bucketName, itemName) {
 * [getObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#getObject-property){:new_window}
 
 ### Delete an item from a bucket
+{: #node-examples-delete-object}
+
 ```javascript
 function deleteItem(bucketName, itemName) {
     console.log(`Deleting item: ${itemName}`);
@@ -214,6 +243,7 @@ function deleteItem(bucketName, itemName) {
 * [deleteObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteObject-property){:new_window}
 
 ### Delete multiple items from a bucket
+{: #node-examples-multidelete}
 
 The delete request can contain a maximum of 1000 keys that you want to delete.  While this is very useful in reducing the per-request overhead, be mindful when deleting a large number of keys.  Also take into account the sizes of the objects to ensure suitable performance.
 {:tip}
@@ -247,6 +277,8 @@ function deleteItems(bucketName) {
 * [deleteObjects](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteObjects-property){:new_window}
 
 ### Delete a bucket
+{: #node-examples-delete-bucket}
+
 ```javascript
 function deleteBucket(bucketName) {
     console.log(`Deleting bucket: ${bucketName}`);
@@ -265,61 +297,9 @@ function deleteBucket(bucketName) {
 *SDK References*
 * [deleteBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteBucket-property){:new_window}
 
-### View a bucket's security
-```javascript
-function getBucketACL(bucketName) {
-    console.log(`Retrieving ACL for bucket: ${bucketName}`);
-    return cos.getBucketAcl({
-        Bucket: bucketName
-    }).promise()
-    .then((data) => {
-        if (data != null) {
-            console.log(`Owner: ${data.Owner.DisplayName}`);
-            if (data.Grants != null) {
-                data.Grants.forEach((grantee) => {
-                    console.log(`User: ${grantee.DisplayName} (${grantee.Permission})`)
-                })
-            }
-        }
-    })
-    .catch((e) => {
-        console.error(`ERROR: ${e.code} - ${e.message}\n`);
-    });
-}
-```
-
-*SDK References*
-* [getBucketAcl](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#getBucketAcl-property){:new_window}
-
-### View a file's security
-```javascript
-function getItemACL(bucketName, itemName) {
-    console.log(`Retrieving ACL for ${itemName} from bucket: ${bucketName}`);
-    return cos.getObjectAcl({
-        Bucket: bucketName,
-        Key: itemName
-    }).promise()
-    .then((data) => {
-        if (data != null) {
-            console.log(`Owner: ${data.Owner.DisplayName}`);
-            if (data.Grants != null) {
-                data.Grants.forEach((grantee) => {
-                    console.log(`User: ${grantee.DisplayName} (${grantee.Permission})`)
-                })
-            }
-        }
-    })
-    .catch((e) => {
-        console.error(`ERROR: ${e.code} - ${e.message}\n`);
-    });
-}
-```
-
-*SDK References*
-* [getObjectAcl](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#getObjectAcl-property){:new_window}
 
 ### Execute a multi-part upload
-{: #multipart-upload}
+{: #node-examples-multipart}
 
 ```javascript
 function multiPartUpload(bucketName, itemName, filePath) {
@@ -410,17 +390,19 @@ function cancelMultiPartUpload(bucketName, itemName, uploadID) {
 * [uploadPart](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#uploadPart-property){:new_window}
 
 ## Using Key Protect
+{: #node-examples-kp}
 
 Key Protect can be added to a storage bucket to manage encryption keys.  All data is encrypted in IBM COS, but Key Protect provides a service for generating, rotating, and controlling access to encryption keys using a centralized service.
 
 ### Before You Begin
-
+{: #node-examples-kp-prereqs}
 The following items are necessary in order to create a bucket with Key-Protect enabled:
 
 * A Key Protect service [provisioned](/docs/services/keymgmt/keyprotect_provision.html#provision)
 * A Root key available (either [generated](/docs/services/keymgmt/keyprotect_create_root.html#create_root_keys) or [imported](/docs/services/keymgmt/keyprotect_import_root.html#import_root_keys))
 
 ### Retrieving the Root Key CRN
+{: #node-examples-kp-root}
 
 1. Retrieve the [instance ID](/docs/services/keymgmt/keyprotect_authentication.html#retrieve_instance_ID) for your Key Protect service
 2. Use the [Key Protect API](/docs/services/keymgmt/keyprotect_authentication.html#access-api) to retrieve all your [available keys](/docs/services/keymgmt/keyprotect_authentication.html#form_api_request)
@@ -430,6 +412,7 @@ The following items are necessary in order to create a bucket with Key-Protect e
 `crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
 
 ### Creating a bucket with Key Protect enabled
+{: #node-examples-kp-new-bucket}
 
 ```javascript
 function createBucketKP(bucketName) {
@@ -458,10 +441,13 @@ function createBucketKP(bucketName) {
 * [createBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createBucket-property){:new_window}
 
 ## Using Archive Feature
+{: #node-examples-archive}
 
 Archive Tier allows users to archive stale data and reduce their storage costs. Archival policies (also known as *Lifecycle Configurations*) are created for buckets and applies to any objects added to the bucket after the policy is created.
 
 ### View a bucket's lifecycle configuration
+{: #node-examples-get-lifecycle}
+
 ```javascript
 function getLifecycleConfiguration(bucketName) {
     return cos.getBucketLifecycleConfiguration({
@@ -486,6 +472,7 @@ function getLifecycleConfiguration(bucketName) {
 * [getBucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
 
 ### Create a lifecycle configuration 
+{: #node-examples-put-lifecycle}
 
 Detailed information about structuring the lifecycle configuration rules are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#create-bucket-lifecycle)
 
@@ -527,6 +514,8 @@ function createLifecycleConfiguration(bucketName) {
 * [putBucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
 
 ### Delete a bucket's lifecycle configuration
+{: #node-examples-delete-lifecycle}
+
 ```javascript
 function deleteLifecycleConfiguration(bucketName) {
     return cos.deleteBucketLifecycle({
@@ -545,6 +534,7 @@ function deleteLifecycleConfiguration(bucketName) {
 * [deleteBucketLifecycle](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
 
 ### Temporarily restore an object
+{: #node-examples-restore-object}
 
 Detailed information about the restore request parameters are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#restore-object)
 
@@ -578,6 +568,7 @@ function restoreItem(bucketName, itemName) {
 * [restoreObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
 
 ### View HEAD information for an object
+{: #node-examples-lifecycle-head-object}
 ```javascript
 function getHEADItem(bucketName, itemName) {
     return cos.headObject({
@@ -598,12 +589,14 @@ function getHEADItem(bucketName, itemName) {
 * [headObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
 
 ## Updating Metadata
+{: #node-examples-metadata}
 
 There are two ways to update the metadata on an existing object:
 * A `PUT` request with the new metadata and the original object contents
 * Executing a `COPY` request with the new metadata specifying the original object as the copy source
 
 ### Using PUT to update metadata
+{: #node-examples-metadata-put}
 
 **Note:** The `PUT` request overwrites the existing contents of the object so it must first be downloaded and re-uploaded with the new metdata
 
@@ -640,6 +633,7 @@ function updateMetadataPut(bucketName, itemName, metaValue) {
 ```
 
 ### Using COPY to update metadata
+{: #node-examples-metadata-copy}
 
 ```javascript
 function updateMetadataCopy(bucketName, itemName, metaValue) {
@@ -670,7 +664,10 @@ function updateMetadataCopy(bucketName, itemName, metaValue) {
 ```
 
 ## Using Immutable Object Storage
+{: #node-examples-immutable}
+
 ### Add a protection configuration to an existing bucket
+{: #node-examples-immutable-add}
 
 Objects written to a protected bucket cannot be deleted until the protection period has expired and all legal holds on the object are removed. The bucket's default retention value is given to an object unless an object specific value is provided when the object is created. Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object. 
 
@@ -701,6 +698,7 @@ function addProtectionConfigurationToBucket(bucketName) {
 {: javascript}
 
 ### Check protection on a bucket
+{: #node-examples-immutable-check}
 
 ```js
 function getProtectionConfigurationOnBucket(bucketName) {
@@ -721,6 +719,7 @@ function getProtectionConfigurationOnBucket(bucketName) {
 {: javascript}
 
 ### Upload a protected object
+{: #node-examples-immutable-upload}
 
 Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
 
@@ -767,6 +766,7 @@ function copyProtectedObject(sourceBucketName, sourceObjectName, destinationBuck
 {: javascript}
 
 ### Add or remove a legal hold to or from a protected object
+{: #node-examples-immutable-legal-hold}
 
 The object can support 100 legal holds:
 
@@ -814,6 +814,7 @@ function deleteLegalHoldFromObject(bucketName, objectName, legalHoldId) {
 {: javascript}
 
 ### Extend the retention period of a protected object
+{: #node-examples-immutable-extend}
 
 The retention period of an object can only be extended. It cannot be decreased from the currently configured value.
 
@@ -847,7 +848,7 @@ function extendRetentionPeriodOnObject(bucketName, objectName, additionalSeconds
 {: javascript}
 
 ### List legal holds on a protected object
-
+{: #node-examples-immutable-list-holds}
 
 This operation returns:
 

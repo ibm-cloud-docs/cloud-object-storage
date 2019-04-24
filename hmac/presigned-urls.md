@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-06-15"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: authorization, aws, hmac, signature, presign
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,12 +15,18 @@ lastupdated: "2018-06-15"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
 
 # Create a presigned URL
+{: #presign-url}
 
 Presigned URLs create a temporary link that can be used to share an object publicly, or to [provide a temporary target for sending a PUT request](https://medium.com/ibm-watson-data-lab/keeping-your-secrets-between-cloud-object-storage-and-your-browser-part-1-68f4b83bbd38) without needing to provide authentication information.
-
-
 
 The easiest way to create presigned URLs is using the [AWS CLI](/docs/services/cloud-object-storage/cli/aws-cli.html):
 
@@ -33,8 +43,10 @@ $ aws --endpoint-url=https://{endpoint} s3 presign s3://bucket-1/new-file --expi
 It is also possible to construct them programmatically.  Here are examples for basic `GET` operations written in Python.
 
 ## Create a presigned URL to download an object
+{: #presign-url-get}
 
 ### Python Example
+{: #presign-url-get-python}
 
 ```python
 import datetime
@@ -182,6 +194,7 @@ print 'pre-signed url: %s' % request_url
 ```
 
 ### Java Example
+{: #presign-url-get-java}
 
 ```java
 import java.io.BufferedReader;
@@ -417,6 +430,7 @@ public class CoSHMAC {
 ```
 
 ## Create a presigned URL to upload an object
+{: #presign-url-put-python}
 
 ```python
 import datetime
@@ -563,6 +577,7 @@ print 'signature: %s' % signature
 ```
 
 ### NodeJS Example
+{: #presign-url-put-node}
 
 ```javascript
 const crypto = require('crypto');

@@ -138,7 +138,7 @@ _Sample Request_
 
 ```
 PUT /images?lifecycle HTTP/1.1
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 17:50:00 GMT
 Authorization: authorization string
 Content-Type: text/plain
@@ -196,7 +196,7 @@ _Sample Request_
 
 ```
 GET /images?lifecycle HTTP/1.1
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 17:50:00 GMT
 Authorization: authorization string
 ```
@@ -251,7 +251,7 @@ _Sample Request_
 
 ```
 DELETE /images?lifecycle HTTP/1.1
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 18:50:00 GMT
 Authorization: authorization string
 ```
@@ -270,7 +270,7 @@ Connection: close
 
 This implementation of the `POST` operation uses the `restore` query parameter to request temporary restoration of an archived object.  The user must first restore an archived object before downloading or modifying the object. When restoring an object, the user must specify a period after which the temporary copy of the object will be deleted.  The object maintains the storage class of the bucket.
 
-There can be a delay of up to 15 hours before the restored copy is available for access.  A `HEAD` request can check if the restored copy is available. 
+There can be a delay of up to 12 hours before the restored copy is available for access.  A `HEAD` request can check if the restored copy is available. 
 
 To permanently restore the object, the user must copy the restored object to a bucket that does not have an active lifecycle configuration.
 
@@ -317,7 +317,7 @@ _Sample Request_
 
 ```
 POST /images/backup?restore HTTP/1.1
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 19:50:00 GMT
 Authorization: {authorization string}
 Content-Type: text/plain
@@ -373,7 +373,7 @@ _Sample request_
 HEAD /images/backup HTTP/1.1
 Authorization: {authorization-string}
 x-amz-date: 20160825T183244Z
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 _Sample response_

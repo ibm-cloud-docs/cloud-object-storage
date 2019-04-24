@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-06-15"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: authorization, aws, hmac, signature, create
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,8 +15,16 @@ lastupdated: "2018-06-15"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
 
 # Constructing an HMAC signature
+{: #hmac-signature}
 
 Each request that is made against IBM COS using [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html) instead of an [API key or bearer token](/docs/services/cloud-object-storage/iam/overview.html) must be authenticated that uses an implementation of the AWS Signature Version 4 `authorization` header. Using a signature provides identity verification and in-transit data integrity, and because each signature is tied to the timestamp of the request it is not possible to reuse authorization headers.  The header is composed of four components: an algorithm declaration, credential information, signed headers, and the calculated signature:
 
@@ -82,9 +94,9 @@ secret_key = os.environ.get('COS_HMAC_SECRET_ACCESS_KEY')
 
 # request elements
 http_method = 'GET'
-host = 's3-api.us-geo.objectstorage.softlayer.net'
+host = 's3.us.cloud-object-storage.appdomain.cloud'
 region = 'us-standard'
-endpoint = 'http://s3-api.us-geo.objectstorage.softlayer.net'
+endpoint = 'http://s3.us.cloud-object-storage.appdomain.cloud'
 bucket = '' # add a '/' before the bucket name to list buckets
 object_key = ''
 request_parameters = ''
@@ -188,9 +200,9 @@ public class CosHMAC {
     private static final String secretKey = System.getenv("COS_HMAC_SECRET_ACCESS_KEY");
     // constants
     private static final String httpMethod = "GET";
-    private static final String host = "s3-api.us-geo.objectstorage.softlayer.net";
+    private static final String host = "s3.us.cloud-object-storage.appdomain.cloud";
     private static final String region = "us-standard";
-    private static final String endpoint = "https://s3-api.us-geo.objectstorage.softlayer.net";
+    private static final String endpoint = "https://s3.us.cloud-object-storage.appdomain.cloud";
     private static final String bucket = ""; // add a '/' before the bucket name to list buckets
     private static final String objectKey = "";
     private static final String requestParameters = "";
@@ -357,9 +369,9 @@ const accessKey = process.env.COS_HMAC_ACCESS_KEY_ID;
 const secretKey = process.env.COS_HMAC_SECRET_ACCESS_KEY;
 
 const httpMethod = 'GET';
-const host = 's3-api.us-geo.objectstorage.softlayer.net';
+const host = 's3.us.cloud-object-storage.appdomain.cloud';
 const region = 'us-standard';
-const endpoint = 'https://s3-api.us-geo.objectstorage.softlayer.net';
+const endpoint = 'https://s3.us.cloud-object-storage.appdomain.cloud';
 const bucket = ''; // add a '/' before the bucket name to list buckets
 const objectKey = '';
 const requestParameters = '';
