@@ -24,6 +24,9 @@ subcollection: cloud-object-storage
 
 These operations read, write, and configure the objects contained within a bucket.
 
+For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
+{:tip}
+
 ## Upload an object
 {: #object-operations-put}
 

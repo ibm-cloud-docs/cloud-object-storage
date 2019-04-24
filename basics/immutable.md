@@ -131,6 +131,10 @@ Objects written to a protected bucket cannot be deleted until the protection per
 The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are 0 days and 365243 days (1000 years) respectively. 
 
 A `Content-MD5` header is required. This operation does not make use of additional query parameters.
+
+For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
+{:tip}
+
 {: http}
 
 **Syntax**

@@ -38,7 +38,7 @@ mc config host add <ALIAS> <COS-ENDPOINT> <ACCESS-KEY> <SECRET-KEY>
 ```
 
 * `<ALIAS>` - short name for referencing {{site.data.keyword.cos_short}} in commands
-* `<COS-ENDPOINT` - endpoint for your {{site.data.keyword.cos_short}} instance 
+* `<COS-ENDPOINT` - endpoint for your {{site.data.keyword.cos_short}} instance. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `<ACCESS-KEY>` - access key assigned to your Service Credential
 * `<SECRET-KEY>` - secret key assigned to your Service Credential
 
@@ -64,7 +64,7 @@ mc mb cos/my_test_bucket
 ### ls - List Buckets
 {: #minio-ls}
 
-*Though all your available bucket will be listed, not all objects may be accessible depending on the specified endpoint's region*
+*Though all your available bucket will be listed, not all objects may be accessible depending on the specified [endpoint's](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints) region*
 ```
 mc ls cos
 ```
@@ -114,7 +114,7 @@ mc head cos/testbucket1/mynewfile1.txt
 ### cp - Copy objects
 {: #minio-cp}
 
-This command can be used to copy an object between two locations.  These can be different hosts (such as different endpoints or storage services) or local filesystem locations (such as `~/foo/filename.pdf`).
+This command can be used to copy an object between two locations.  These can be different hosts (such as different [endpoints](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints) or storage services) or local filesystem locations (such as `~/foo/filename.pdf`).
 ```
 mc cp cos/testbucket1/mynewfile1.txt cos/my_test_bucket/cp_from_minio.txt
 ```

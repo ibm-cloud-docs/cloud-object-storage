@@ -36,7 +36,7 @@ For more information about IBM COS Infrastructure Archive, see [How to: Archive 
 
 1.	From the Simpana console, create an Amazon S3 cloud storage library. 
 
-2. Ensure that the Service Host points to the endpoint. Simpana provisions buckets at this step or it can consume provisioned buckets. 
+2. Ensure that the Service Host points to the endpoint. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints). Simpana provisions buckets at this step or it can consume provisioned buckets. 
 
 3.	Create a policy on the bucket. You can use the AWS CLI, SDKs or the web console to create the policy. An example of a policy follows:
 

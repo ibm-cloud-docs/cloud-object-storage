@@ -35,7 +35,7 @@ To use Cyberduck to create a connection to IBM COS and synchronize a folder of l
  3. A pop-up window opens. From the drop-down menu at the top, select `S3 (HTTPS)`. Enter information into the following fields, and then click Connect:
 
     * `Server`: enter endpoint of IBM COS
-        * *Ensure the endpoint's region matches the intended bucket*
+        * *Ensure the endpoint's region matches the intended bucket. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).*
     * `Access Key ID`
     * `Secret Access Key`
     * `Add to Keychain`: Save the connection to the keychain to allow use across other applications *(optional)*
@@ -70,7 +70,7 @@ Creating a bookmark in Mountain Duck is very similar to creating connections in 
 2. Create a New Bookmark
 3. From the drop-down menu select `S3 (HTTPS)` and enter the following information:
     * `Server`: enter endpoint of IBM COS 
-        * *Ensure the endpoint region matches the intended bucket*
+        * *Ensure the endpoint region matches the intended bucket. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).*
     * `Username`: enter the Access Key
     * Click **Connect**
     * You will be prompted for your `Secret Key` which will then be saved in the keychain
@@ -112,6 +112,8 @@ Below is an example profile for a regional COS endpoint:
     </dict>
 </plist>
 ```
+
+For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
 Adding this profile to `duck` will allow you to access {{site.data.keyword.cos_short}} using a command similar to below:
 

@@ -26,7 +26,7 @@ The following table describes supported common request headers. {{site.data.keyw
 | ibm-service-instance-id | **Required** for requests to create or list buckets.                                                                               |
 | Content-MD5             | The base64 encoded 128-bit MD5 hash of the payload, used as an integrity check to ensure the payload was not altered in transit.   |
 | Expect                  | The value `100-continue` will wait for acknowledgment from the system that the headers are appropriate before sending the payload. |
-| host                    | Either the endpoint or the 'virtual host' syntax of `{bucket-name}.{endpoint}`. Typically, this header is automatically added.     | 
+| host                    | Either the endpoint or the 'virtual host' syntax of `{bucket-name}.{endpoint}`. Typically, this header is automatically added. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)    | 
 | Cache-Control | Can be used to specify caching behavior along the request/reply chain. For more information, go to http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9 |
 
 ### Custom metadata

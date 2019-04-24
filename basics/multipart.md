@@ -54,6 +54,9 @@ There are three phases to uploading an object in multiple parts:
 2. Individual parts are uploaded specifying their sequential part numbers and the `UploadId` for the object.
 3. When all parts are finished uploading, the upload is completed by sending a request with the `UploadId` and an XML block that lists each part number and it's respective `Etag` value.
 
+For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
+{:tip}
+
 ### Initiate a multipart upload
 {: #large-objects-multipart-api-initiate}
 

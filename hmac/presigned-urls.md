@@ -40,7 +40,7 @@ It is also possible to set an expiration time for the URL in seconds (default is
 $ aws --endpoint-url=https://{endpoint} s3 presign s3://bucket-1/new-file --expires-in 600
 ```
 
-It is also possible to construct them programmatically.  Here are examples for basic `GET` operations written in Python.
+It is also possible to construct them programmatically.  Here are examples for basic `GET` operations written in Python. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
 ## Create a presigned URL to download an object
 {: #presign-url-get}

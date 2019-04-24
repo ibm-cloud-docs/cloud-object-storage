@@ -81,7 +81,7 @@ The IBM COS endpoint must be sourced using the `--endpoint-url` option, and can 
 ## High-level syntax commands
 {: #aws-cli-high-level}
 
-Simple use cases can be accomplished using `aws --endpoint-url {endpoint} s3 <command>`. Objects are managed using familiar shell commands, such as `ls`, `mv`, `cp`, and `rm`.  Buckets can be created using `mb` and deleted using `rb`.
+Simple use cases can be accomplished using `aws --endpoint-url {endpoint} s3 <command>`. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints). Objects are managed using familiar shell commands, such as `ls`, `mv`, `cp`, and `rm`.  Buckets can be created using `mb` and deleted using `rb`.
 
 ### List all buckets within a service instance
 {: #aws-cli-high-level-list-buckets}

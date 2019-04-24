@@ -96,6 +96,7 @@ var conf := aws.NewConfig().
         WithS3ForcePathStyle(true)
 
 ```
+For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
 ## Code Examples
 {: #go-code-examples}
