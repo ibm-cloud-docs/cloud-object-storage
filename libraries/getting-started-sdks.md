@@ -28,7 +28,7 @@ subcollection: cloud-object-storage
 # Getting Started with the SDKs
 {: #sdk-gs}
 
-In this quickstart guide, you'll be provided a code example that will demonstrate the following operations:
+In this quickstart guide, you are provided a code example that demonstrates the following operations:
 
 * Create a new bucket
 * List the available buckets
@@ -42,11 +42,11 @@ In this quickstart guide, you'll be provided a code example that will demonstrat
 ## Before you begin
 {: #sdk-gs-prereqs}
 
-You will need:
+You need:
 
-* an [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com/)
-* an [instance of {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics/order-storage.html)
-* an [IAM API key](/docs/services/cloud-object-storage/iam/overview.html) with Writer access to your {{site.data.keyword.cos_short}}
+* An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com/)
+* An [instance of {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics/order-storage.html)
+* An [IAM API key](/docs/services/cloud-object-storage/iam/overview.html) with Writer access to your {{site.data.keyword.cos_short}}
 
 ## Getting the SDK
 {: #sdk-gs-install}
@@ -56,9 +56,9 @@ Specific instructions for downloading and installing the SDK is available in [Us
 ## Code Example
 {: #sdk-gs-example}
 
-The code examples below provide introductory examples of executing the basic operations with {{site.data.keyword.cos_short}}. For simplicity, the code example can be run multiple times as it uses Universally Unique Identifiers (UUIDs) for bucket/item names to prevent potential conflicts.
+The code examples below provide introductory examples of running the basic operations with {{site.data.keyword.cos_short}}. For simplicity, the code example can be run multiple times as it uses Universally Unique Identifiers (UUIDs) for bucket/item names to prevent potential conflicts.
 
-To complete the code example you will need to replace the following values:
+To complete the code example, you need to replace the following values:
 
 |Value|Description|Example|
 |---|---|---|

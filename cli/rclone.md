@@ -313,7 +313,7 @@ rclone delete RemoteName:newbucket/file.txt
 
 There are several related list commands
 * `ls` to list size and path of objects only
-* `lsl` to list modification time, size and path of objects only
+* `lsl` to list modification time, size, and path of objects only
 * `lsd` to list directories only
 * `lsf` to list objects and directories in easy to parse format
 * `lsjson` to list objects and directories in JSON format
@@ -346,7 +346,7 @@ Server A> rclone sync /tmp/whatever remote:ServerA
 Server B> rclone sync /tmp/whatever remote:ServerB
 ```
 
-If you `sync` to the same directory then you should use `rclone copy`otherwise the two processes may delete each others files:
+If you `sync` to the same directory than you should use `rclone copy`otherwise the two processes might delete each other's others files:
 
 ```sh
 Server A> rclone copy /tmp/whatever remote:Backup
@@ -356,57 +356,57 @@ Server B> rclone copy /tmp/whatever remote:Backup
 ### `--backup-dir=DIR`
 {: #rclone-sync-backup}
 
-When using `sync`, `copy` or `move` any files which would have been overwritten or deleted are moved in their original hierarchy into this directory.
+When using `sync`, `copy` or `move` any files that would have been overwritten or deleted are moved in their original hierarchy into this directory.
 
-If `--suffix` is set, then the moved files will have the suffix added to them. If there is a file with the same path (after the suffix has been added) in the directory it will be overwritten.
+If `--suffix` is set, then the moved files have the suffix added to them. If there is a file with the same path (after the suffix has been added) in the directory, it is overwritten.
 
-The remote in use must support server side move or copy and you must use the same remote as the destination of the sync. The backup directory must not overlap the destination directory.
+The remote in use must support server-side move or copy and you must use the same remote as the destination of the sync. The backup directory must not overlap the destination directory.
 
 ```sh
 rclone sync /path/to/local remote:current --backup-dir remote:old
 ```
 
-will `sync` `/path/to/local` to `remote:current`, but for any files which would have been updated or deleted will be stored in `remote:old`.
+will `sync` `/path/to/local` to `remote:current`, but for any files that would have been updated or deleted will be stored in `remote:old`.
 
 If running `rclone` from a script you might want to use today’s date as the directory name passed to `--backup-dir` to store the old files, or you might want to pass `--suffix` with today’s date.
 
 ## `rclone` daily sync
 {: #rclone-sync-daily}
 
-Scheduling a backup is important to automating backups. Depending on your platform will depend on how you do this. Windows can use Task Scheduler while MacOS and Linux can use crontabs.
+Scheduling a backup is important to automating backups. Depending on your platform depends on how you do this. Windows can use Task Scheduler while MacOS and Linux can use crontabs.
 
 ### Syncing a Directory
 {: #rclone-sync-directory}
 
-`Rclone` will sync a local directory with the remote container, storing all the files in the local directory in the container. `Rclone` uses the syntax, `rclone sync source destination`, where `source` is the local folder and `destination` is the container within your IBM COS.
+`Rclone` syncs a local directory with the remote container, storing all the files in the local directory in the container. `Rclone` uses the syntax, `rclone sync source destination`, where `source` is the local folder and `destination` is the container within your IBM COS.
 
 ```sh
 rclone sync /path/to/my/backup/directory RemoteName:newbucket
 ```
 
-You may already have a destination created, but if you don't then you can create a new bucket using the steps above.
+You might already have a destination that is created, but if you don't then you can create a new bucket by using the steps above.
 
 ### Scheduling a Job
 {: #rclone-sync-schedule}
 
-Before scheduling a job, make sure you have done your initial upload and it has completed.
+Before scheduling a job, make sure that you have done your initial upload and it has completed.
 
 #### Windows
 {: #rclone-sync-windows}
 
-1. Create a text file called `backup.bat` somewhere on your computer and paste in the command you used in the section [Syncing a Directory](#rclone-sync-directory). It will look something like the following. Specify the full path to the rclone.exe and don’t forget to save the file.
+1. Create a text file that is called `backup.bat` somewhere on your computer and paste in the command you used in the section about [syncing a directory](#rclone-sync-directory).  Specify the full path to the rclone.exe and don’t forget to save the file.
 
 ```
  C:\full\path\to\rclone.exe sync "C:\path\to\my\backup\directory" RemoteName:newbucket
 ```
 
 2. Use `schtasks` to schedule a job. This utility takes a number of parameters.
-	* /RU – the user to run the job as. This is needed if the the user you want to use is logged out.
+	* /RU – the user to run the job as. This is needed if the user you want to use is logged out.
 	* /RP – the password for the user.
 	* /SC – set to DAILY
-	* /TN – the name of the job. Call it Backup
+	* /TN – the name of the job. Call it backup
 	* /TR – the path to the backup.bat file you just created.
-	* /ST – the time to start the task. This is in the 24 hour time format. 01:05:00 is 1:05 AM. 13:05:00 would be 1:05 PM.
+	* /ST – the time to start the task. This is in the 24-hour time format. 01:05:00 is 1:05 AM. 13:05:00 would be 1:05 PM.
 
 ```sh
 schtasks /Create /RU username /RP "password" /SC DAILY /TN Backup /TR C:\path\to\backup.bat /ST 01:05:00
@@ -415,7 +415,7 @@ schtasks /Create /RU username /RP "password" /SC DAILY /TN Backup /TR C:\path\to
 #### Mac and Linux
 {: #rclone-sync-nix}
 
-1. Create a text file called `backup.sh` somewhere on your computer, and paste the command you used in the section [Syncing a Directory](#rclone-sync-directory). It will look something like the following. Specify the full path to the rclone executable and don’t forget to save the file.
+1. Create a text file called `backup.sh` somewhere on your computer, and paste the command that you used in the section [syncing a Directory](#rclone-sync-directory). It looks something like the following. Specify the full path to the rclone executable and don’t forget to save the file.
 
 ```sh
 #!/bin/sh
@@ -434,7 +434,7 @@ chmod +x backup.sh
 sudo crontab -e
 ```
 
-4. Add an entry to the bottom of the crontabs file. Crontabs are straight forward: the first 5 fields represent in order minutes, hours, days, months, and weekdays. Using * will denote all. To make the `backup.sh` run at Daily at 1:05 AM, use something that looks like this:
+4. Add an entry to the bottom of the crontabs file. Crontabs are straight forward: the first five fields represent in order minutes, hours, days, months, and weekdays. Using * denotes all. To make the `backup.sh` run at Daily at 1:05 AM, use something that looks like this:
 
 ```sh
 5 1 * * * /full/path/to/backup.sh
