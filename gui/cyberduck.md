@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-10-05"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: gui, desktop, cyberduck
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,6 +15,13 @@ lastupdated: "2018-10-05"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
 
 # Transfer files using Cyberduck
 {: #cyberduck}
@@ -87,7 +98,7 @@ Below is an example profile for a regional COS endpoint:
         <key>Scheme</key>
         <string>https</string>
 	    <key>Default Hostname</key>
-	    <string>s3.us-south.objectstorage.softlayer.net</string>
+	    <string>s3.us-south.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net</string>
         <key>Description</key>
         <string>IBM COS</string>
         <key>Default Port</key>

@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2017-09-27"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: administration, billing, platform
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,17 +15,28 @@ lastupdated: "2017-09-27"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
 
 # Billing
+{: #billing}
 
 Information on pricing can be found at [{{site.data.keyword.cloud}}](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api){:new_window}.
 
 ## Invoices
+{: #billing-invoices}
+
 Find your account invoices at **Manage** > **Billing and Usage** in the navigation menu.
 
 Each account receives a single bill. If you need separate billing for different sets of containers, then creating multiple accounts is necessary.
 
 ## {{site.data.keyword.cos_full_notm}} pricing
+{: #billing-pricing}
 
 Storage costs for {{site.data.keyword.cos_full}} are determined by total volume of data stored, the amount of public outbound bandwidth consumed, and the total number of operational requests processed by the system.
 
@@ -29,6 +44,7 @@ Infrastructure offerings are connected to a three-tiered network, segmenting pub
 {: tip}
 
 ## Request classes
+{: #billing-request-classes}
 
 'Class A' requests are operations that involve modification or listing.  This includes creating buckets, uploading or copying objects, creating or changing configurations, listing buckets, and listing the contents of buckets.
 
@@ -42,10 +58,12 @@ There is no charge for deleting buckets or objects from the system.
 | Class B | GET (excluding listing), HEAD, and OPTIONS requests | Retrieving objects and metadata |
 
 ## Aspera transfers
+{: #billing-aspera}
 
 Note that any downloads using [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics/aspera.html) will incur additional egress charges.  For more info, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api).
 
 ## Storage classes
+{: #billing-storage-classes}
 
 Not all data that is stored needs to be accessed frequently, and some archival data might be rarely accessed if at all.  For less active workloads, buckets can be created in a different storage class and objects stored in these buckets will incur charges on a different schedule than standard storage.
 

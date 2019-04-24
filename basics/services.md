@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-08-20"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: cloud services, integration, aspera, key protect, archive, worm
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,6 +15,13 @@ lastupdated: "2018-08-20"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
 
 # Integrated service availability
 {: #service-availability}
@@ -27,6 +38,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
 {:tip}
 
 ## Cross Region
+{: #service-availability-geo}
 
 <table>
   <thead>
@@ -40,29 +52,23 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     </tr>
   </thead>
   <tr>
-    <td rowspan="2">AP Cross Region</td>
+    <td>AP Cross Region</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>Sydney</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
   <tr>
-    <td rowspan="2">EU Cross Region</td>
+    <td>EU Cross Region</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>United Kingdom</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
   <tr>
-    <td rowspan="2">US Cross Region</td>
+    <td>US Cross Region</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
@@ -70,12 +76,13 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>US South</td>
   </tr>
  </table>
-{:.endpointtable}
+
 
 
 
 
 ## Regional
+{: #service-availability-region}
 
 <table>
   <thead>
@@ -89,73 +96,59 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     </tr>
   </thead>
    <tr>
-    <td rowspan="2">AP Australia</td>
+    <td>AP Australia</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Sydney</td>
-   <tr>
-     <tr>
-    </td>
    </tr>
    <tr>
-    <td rowspan="2">AP Japan</td>
+    <td>AP Japan</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Sydney</td>
-   <tr>
-   <tr>
-    </td>
    </tr>
    <tr>
-     <td rowspan="2">EU Great Britain</td>
+    <td>EU Great Britain</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>United Kingdom</td>
-   <tr>
-   <tr>
-    </td>
    </tr>
    <tr>
-    <td rowspan="2">EU Germany</td>
+    <td>EU Germany</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>United Kingdom</td>
-   <tr>
-   <tr>
-    </td>
    </tr>
    <tr>
-    <td rowspan="2">US South</td>
+    <td>US South</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>US South</td>
-   <tr>
-   <tr>
-    </td>
    </tr>
    <tr>
-    <td rowspan="2">US East</td>
+    <td>US East</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>US South</td>
-   <tr>
+   </tr>
 </table>
-{:.endpointtable}
+
 
 
 ## Single Data Centers
+{: #service-availability-zone}
 
 <table>
   <thead>
@@ -169,125 +162,92 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     </tr>
   </thead>
   <tr>
-    <td rowspan="2">Amsterdam, Netherlands</td>
+    <td>Amsterdam, Netherlands</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>United Kingdom</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
   <tr>
-    <td rowspan="2">Chennai, India</td>
+    <td>Chennai, India</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>Sydney</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
   <tr>
-    <td rowspan="2">Melbourne, Australia</td>
+    <td>Melbourne, Australia</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>Sydney</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
   <tr>
-    <td rowspan="2">Mexico City, Mexico</td>
+    <td>Mexico City, Mexico</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>US South</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
   <tr>
-    <td rowspan="2">Milan, Italy</td>
-    <td>No</td>
-    <td>No</td>
-    <td>No</td>
-    <td>No</td>
-    <td>United Kingdom</td>
-  <tr>
-  <tr>
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="2">Montréal, Canada</td>
-    <td>Yes</td>
-    <td>No</td>
-    <td>No</td>
-    <td>No</td>
-    <td>US South</td>
-  <tr>
-  <tr>
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="2">Oslo, Norway</td>
+    <td>Milan, Italy</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>United Kingdom</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
   <tr>
-    <td rowspan="2">San Jose, USA</td>
-    <td>No</td>
-    <td>No</td>
-    <td>No</td>
-    <td>No</td>
-    <td>US South</td>
-  <tr>
-  <tr>
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="2">São Paulo, Brazil</td>
+    <td>Montréal, Canada</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>US South</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
   <tr>
-    <td rowspan="2">Seoul, South Korea</td>
+    <td>Oslo, Norway</td>
+    <td>Yes</td>
+    <td>No</td>
+    <td>No</td>
+    <td>No</td>
+    <td>United Kingdom</td>
+  </tr>
+  <tr>
+    <td>San Jose, USA</td>
+    <td>Yes</td>
+    <td>No</td>
+    <td>No</td>
+    <td>No</td>
+    <td>US South</td>
+  </tr>
+  <tr>
+    <td>São Paulo, Brazil</td>
+    <td>Yes</td>
+    <td>No</td>
+    <td>No</td>
+    <td>No</td>
+    <td>US South</td>
+  </tr>
+  <tr>
+    <td>Seoul, South Korea</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>Sydney</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
   <tr>
-    <td rowspan="2">Toronto, Canada</td>
+    <td>Toronto, Canada</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
     <td>US South</td>
-  <tr>
-  <tr>
-    </td>
   </tr>
 </table>
-{:.endpointtable}
+

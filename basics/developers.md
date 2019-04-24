@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2017-09-27"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: developer, getting started, cli
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,6 +15,9 @@ lastupdated: "2017-09-27"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
 
 # For developers
 {: #gs-dev}

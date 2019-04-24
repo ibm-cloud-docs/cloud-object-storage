@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2018-02-16"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: about, overview, cos
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,9 +15,17 @@ lastupdated: "2018-02-16"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
 
 
 # About {{site.data.keyword.cos_full_notm}}
+{: #about}
 
 Information stored with {{site.data.keyword.cos_full}} is encrypted and dispersed across multiple geographic locations, and accessed over HTTP using a REST API. This service makes use of the distributed storage technologies provided by the {{site.data.keyword.cos_full_notm}} System (formerly Cleversafe).
 
@@ -21,9 +33,6 @@ Information stored with {{site.data.keyword.cos_full}} is encrypted and disperse
 
 Developers use an {{site.data.keyword.cos_full_notm}} API to interact with their object storage. This documentation provides support to [get started](/docs/services/cloud-object-storage/getting-started.html) with provisioning accounts, to create buckets, to upload objects, and to use a reference of common API interactions.
 
-
-
-
 ## Other IBM object storage services
-
+{: #about-other-cos}
 In addition to {{site.data.keyword.cos_full_notm}}, {{site.data.keyword.cloud_notm}} currently provides several additional object storage offerings for different user needs, all of which are accessible through web-based portals and REST APIs.  [Learn more.](/docs/services/ibm-cos/index.html)

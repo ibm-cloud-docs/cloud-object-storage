@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-09-27"
+  years: 2017, 2018, 2019
+lastupdated: "2019-04-12"
+
+keywords: aspera, high speed, big data, packet loss
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,8 +15,12 @@ lastupdated: "2018-09-27"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
 
 # Use Aspera high-speed transfer
+{: #aspera}
 
 Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP transfers to improve data transfer performance under most conditions, especially in networks experiencing high latency and packet loss.  Instead of the standard HTTP `PUT`, Aspera high-speed transfer uploads the object using the [FASP protocol](https://asperasoft.com/technology/transport/fasp/).  Using Aspera high-speed transfer for uploads and downloads offers the following benefits:
 
@@ -28,10 +36,12 @@ Aspera high-speed transfer is available in certain regions only. See [Integrated
 {:tip}
 
 ## Using the console
-{: #console}
+{: #aspera-console}
+
 When you create a bucket in a [supported region](/docs/services/cloud-object-storage/basics/services.html), you have the option to select Aspera high-speed transfer to upload files or folders. Once you attempt to upload an object, you are prompted to install the Aspera Connect client.
 
 ### Install Aspera Connect
+{: #aspera-install}
 
 1. Select **Install Aspera Connect** client.
 2. Follow the install instructions depending on your operating system and browser.
@@ -41,11 +51,10 @@ The Aspera Connect plug-in can also be installed from the [Aspera website](http:
 
 Once the plug-in is installed, you have the option to set Aspera high-speed transfer as the default for any uploads to the target bucket that use the same browser. Select **Remember my browser preferences**. Options are also available in the bucket configuration page under **Transfer options**. These options allow you to choose between Standard and High-speed as the default transport for uploads and downloads.
 
-## Using the IBM Cloud Object Storage console
-
 Typically, using the IBM Cloud Object Storage web-based console is not the most common way to use {{site.data.keyword.cos_short}}. The Standard transfer option limits objects size to 200MB and the file name and key will be identical.  Support for larger object sizes and improved performance (depending on network factors) is provided by Aspera high-speed transfer.
 
 ### Transfer status
+{: #aspera-console-transfer-status}
 
 **Active:** Once you initiate a transfer, the transfer status displays as active. While the transfer is active, you can pause, resume or cancel an active transfer. 
 
@@ -61,7 +70,8 @@ Downloads using Aspera high-speed transfer incur egress charges. For more inform
 ----
 
 ## Using Libraries and SDKs
-{: #sdk}
+{: #aspera-sdk}
+
 The Aspera high-speed transfer SDK provides the ability to initiate high-speed transfer within your custom applications when using either Java or Python.
 
 ### When to use Aspera High-Speed Transfer
@@ -77,13 +87,15 @@ The Aspera high-speed transfer SDK is closed-source and thus an optional depende
 
 #### COS/Aspera High-Speed Transfer Packaging
 {: #aspera-packaging}
+
 The image below displays a high-level overview of the how the COS SDK interacts with the Aspera high-speed transfer library to provide functionality.
 
-<img src="https://s3-api.us-geo.objectstorage.softlayer.net/docs-resources/aspera-packaging.png" height="200px" />
+<img src="https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/aspera-packaging.png" height="200px" />
 
 `Figure 1: COS/Aspera High-Speed Transfer SDK`
 
 ### Supported Platforms
+{: #aspera-sdk-platforms}
 
 | OS                     | Version   | Architecture | Tested Java Version | Tested Python Version |
 |------------------------|-----------|--------------|--------------|----------------|

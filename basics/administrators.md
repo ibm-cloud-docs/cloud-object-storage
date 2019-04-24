@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2017-09-27"
+  years: 2017, 2018, 2019
+lastupdated: "2019-04-12"
+
+keywords: administrator, storage, iam, access
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,24 +15,31 @@ lastupdated: "2017-09-27"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
 
 # For administrators
+{: #administrators}
 
 Storage and system administrators who need to configure object storage and manage access to data can take advantage of IBM Cloud Identity and Access Management (IAM) to manage users, create and rotate API keys, and grant roles to users and services. If you haven't already, go ahead and read through the [getting started tutorial](/docs/services/cloud-object-storage/getting-started.html) to familiarize yourself with the core concepts of buckets, objects, and users.
 
 ## Set up your storage
+{: #administrators-setup}
 
 First things first, you need to have at least one object storage resource instance, and some buckets to store data in.  Think of these buckets in terms of how you want to further segment access to your data, where you want your data to physically reside, and how often the data will be accessed.
 
 ### Segmenting access
+{: #administrators-access}
 
-There are two levels where you can segment access: at the resource instance level and at the bucket level.
+There are two levels where you can segment access: at the resource instance level and at the bucket level. 
 
 Perhaps you want to make sure that a development team can only access the instances of object storage that they are working with and not those used by other teams.  Or you want to ensure that only the software your team is making can actually edit the data being stored, so you want your developers with access to the cloud platform to only be able to read data for troubleshooting reasons.  These are examples of service level policies.
 
 Now if the development team, or any individual user, who has viewer access to a storage instance, but should be able to directly edit data in one or more buckets, then you can use bucket level policies to elevate the level of access granted to users within your account. For instance, a user might not be able to create new buckets, but can create and delete objects within existing buckets.
 
 ## Manage access
+{: #administrators-manage-access}
 
 IAM is based on a fundamental concept: A _subject_ is granted a _role_ on a _resource_.
 

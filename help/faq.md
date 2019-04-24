@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2017-09-27"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: faq, questions
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,10 +15,19 @@ lastupdated: "2017-09-27"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
 
 # FAQ
+{: #faq}
 
 ## API Questions
+{: #faq-api}
 
 **Are {{site.data.keyword.cos_full}} bucket names case sensitive?**
 
@@ -34,7 +47,7 @@ Yes, you can use your existing tools to read and write data into {{site.data.key
 
 
 ## Offering Questions
-
+{: #faq-offering}
 
 **Is there a 100-bucket limit to an account?  What happens if we need more?**
 
@@ -54,6 +67,7 @@ Today changing of storage class requires manually moving or copying the data fro
 
 
 ## Performance Questions
+{: #faq-performance}
 
 **Does data consistency in {{site.data.keyword.cos_short}} come with a performance impact?**
 
@@ -65,6 +79,7 @@ For performance optimization, objects can be uploaded and downloaded in multiple
 
 
 ## Encryption Questions
+{: #faq-encryption}
 
 **Does {{site.data.keyword.cos_short}} provide encryption at rest and in motion?**
 
@@ -87,6 +102,7 @@ Yes, IBM COS Federal offering is approved for FedRAMP Moderate Security controls
 Yes, client-key encryption is supported using SSE-C or Key Protect.
 
 ## General questions
+{: #faq-general}
 
 **How many objects can fit in a single bucket?**
 

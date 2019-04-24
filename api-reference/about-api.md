@@ -14,16 +14,13 @@ subcollection: cloud-object-storage
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:screen: .screen}
-{:tsSymptoms: .tsSymptoms}
-{:tsCauses: .tsCauses}
-{:tsResolve: .tsResolve}
 {:tip: .tip}
 {:important: .important}
 {:note: .note}
 {:download: .download} 
 
 # About the {{site.data.keyword.cos_full_notm}} S3 API
-{: #compatibility-api-about}
+{: #compatibility-api}
 
 The {{site.data.keyword.cos_full}} API is a REST-based API for reading and writing objects. It uses {{site.data.keyword.iamlong}} for authentication and authorization, and supports a subset of the S3 API for easy migration of applications to {{site.data.keyword.cloud_notm}}.
 
@@ -41,15 +38,15 @@ These operations create, delete, get information about, and control behavior of 
 
 | Bucket operation        | Note                                                                            |
 |:------------------------|:--------------------------------------------------------------------------------|
-| `GET` Buckets           | Used to retrieve a list of all buckets that belong to an account.                 |
+| `GET` Buckets           | Used to retrieve a list of all buckets that belong to an account.               |
 | `DELETE` Bucket         | Deletes an empty bucket.                                                        |
-| `DELETE` Bucket CORS    | Deletes any CORS (cross-origin resource sharing) configuration set on a bucket.        |
-| `GET` Bucket            | Lists objects in a bucket. Limited to listing 1,000 objects at a time. |
-| `GET` Bucket CORS       | Retrieves any CORS configuration set on a bucket.      |
+| `DELETE` Bucket CORS    | Deletes any CORS (cross-origin resource sharing) configuration set on a bucket. |
+| `GET` Bucket            | Lists objects in a bucket. Limited to listing 1,000 objects at a time.          |
+| `GET` Bucket CORS       | Retrieves any CORS configuration set on a bucket.                               |
 | `HEAD` Bucket           | Retrieves a bucket's headers.                                                   |
-| `GET` Multipart Uploads | Lists multipart uploads that aren't completed or canceled.               |
+| `GET` Multipart Uploads | Lists multipart uploads that aren't completed or canceled.                      |
 | `PUT` Bucket            | Buckets have naming restrictions. Accounts are limited to 100 buckets.          |
-| `PUT` Bucket CORS       | Creates a CORS configuration for a bucket.             |
+| `PUT` Bucket CORS       | Creates a CORS configuration for a bucket.                                      |
 
 
 ## Object operations
@@ -57,21 +54,21 @@ These operations create, delete, get information about, and control behavior of 
 
 These operations create, delete, get information about, and control behavior of objects.
 
-| Object operation          | Note                                                                      |
-|:--------------------------|:--------------------------------------------------------------------------|
-| `DELETE` Object           | Deletes an object from a bucket.                                          |
-| `DELETE` Batch | Deletes many objects from a bucket with one operation.                                   |
-| `GET` Object              | Retrieves an object from a bucket.                                        |
-| `HEAD` Object             | Retrieves an object's headers.                                            |
-| `OPTIONS` Object          | Checks CORS configuration to see whether a specific request can be sent.       |
-| `PUT` Object              | Adds an object to a bucket.                                               |
-| `PUT` Object (Copy)       | Creates a copy of an object.                                              |
-| Begin Multipart Upload | Creates an upload ID for a set of parts to be uploaded.             |
-| Upload Part               | Uploads a part of an object that is associated with an upload ID.                 |
-| Upload Part (Copy)        | Uploads a part of an existing object that is associated with an upload ID.        |
-| Complete Multipart Upload | Assembles an object from parts that are associated with an upload ID.              |
-| Cancel Multipart Upload    | Cancels upload and deletes outstanding parts that are associated with an upload ID. |
-| List Parts                | Returns a list of parts that are associated with an upload ID                      |
+| Object operation          | Note                                                                                |
+|:--------------------------|:------------------------------------------------------------------------------------|
+| `DELETE` Object           | Deletes an object from a bucket.                                                    |
+| `DELETE` Batch            | Deletes many objects from a bucket with one operation.                              |
+| `GET` Object              | Retrieves an object from a bucket.                                                  |
+| `HEAD` Object             | Retrieves an object's headers.                                                      |
+| `OPTIONS` Object          | Checks CORS configuration to see whether a specific request can be sent.            |
+| `PUT` Object              | Adds an object to a bucket.                                                         |
+| `PUT` Object (Copy)       | Creates a copy of an object.                                                        |
+| Begin Multipart Upload    | Creates an upload ID for a set of parts to be uploaded.                             |
+| Upload Part               | Uploads a part of an object that is associated with an upload ID.                   |
+| Upload Part (Copy)        | Uploads a part of an existing object that is associated with an upload ID.          |
+| Complete Multipart Upload | Assembles an object from parts that are associated with an upload ID.               |
+| Cancel Multipart Upload   | Cancels upload and deletes outstanding parts that are associated with an upload ID. |
+| List Parts                | Returns a list of parts that are associated with an upload ID                       |
 
 
 Some additional operations, such as tagging and versioning, are supported in private cloud implementations of {{site.data.keyword.cos_short}}, but not in public or dedicated clouds currently. More information custom object storage solutions can be found at [ibm.com](https://www.ibm.com/cloud-computing/products/storage/object-storage/cloud/).

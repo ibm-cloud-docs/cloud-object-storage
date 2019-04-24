@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2017-09-27"
+  years: 2017, 2018, 2019
+lastupdated: "2019-03-19"
+
+keywords: tutorial, photo galleries
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,12 +15,21 @@ lastupdated: "2017-09-27"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
 
 # Tutorial: Image Gallery
+{: #tutorial}
 
 This tutorial introduces how a simple web application can be built on the {{site.data.keyword.cloud}}.  This application uses {{site.data.keyword.cos_full}} as the back-end storage for a Node.js application that allows a user to upload and view photos or other images.
 
 ## Getting started
+{: #tutorial-gs}
 
 Before getting started with writing any code, you must ensure that you
 have the following items set up:
@@ -26,6 +39,7 @@ have the following items set up:
   - Git
 
 ### Installing Node.js
+{: #tutorial-gs-install-node}
 
 The app uses Node.js as the server-side JavaScript engine to run the
 JavaScript code. You must install node locally so that you can use the
@@ -43,6 +57,7 @@ page. Run the Node.js installer to set up Node.js and NPM on your
 system.
 
 ### Installing Git
+{: #tutorial-gs-install-git}
 
 Git is the most widely used source code versioning system in the
 industry. We use Git later when we create a toolchain in {{site.data.keyword.cloud_notm}} Platform for
@@ -67,6 +82,7 @@ repository named Tutorial that is included with GitHub Desktop to help
 familiarize you with the flow. Feel free to experiment with it.
 
 ## Creating the Web Gallery app on {{site.data.keyword.cloud_notm}} Platform
+{: #tutorial-create-app}
 
 To create a Cloud Foundry app, log in to [{{site.data.keyword.cloud_notm}} Platform](https://cloud.ibm.com/docs/runtimes/nodejs/updates.html)
 and click Create App (see figure below).
@@ -226,6 +242,7 @@ console by clicking View App button.
 
 
 ### Creating a {{site.data.keyword.cloud_notm}} Platform toolchain
+{: #tutorial-create-toolchain}
 
 You are almost ready to start working on the Web Gallery app, but before
 you start coding you must have a source repository for the code. It must
@@ -290,6 +307,7 @@ example, it is named COS-WebGallery.
 ![github_initialcommit](https://cloud.githubusercontent.com/assets/19173079/24822265/68a90e5e-1bb9-11e7-9bbe-d466ae5bb68d.jpg)
 
 ### Create a Git branch
+{: #tutorial-create-branch}
 
 Now, you need to create a branch for the local development environment
 to use for your {{site.data.keyword.cloud_notm}} Platform Delivery Pipeline Build Stage:
@@ -314,6 +332,7 @@ Deploying the app from the Cloud Foundry CLI will no longer be
 necessary.
 
 ### Setting up {{site.data.keyword.cos_full_notm}} credentials
+{: #tutorial-credentials}
 
 You need to setup {{site.data.keyword.cos_short}} credentials for the application, and a bucket
 where it will store and retrieve images. After you have them, complete
@@ -350,7 +369,7 @@ Head over to the {{site.data.keyword.cos_short}} portal for your service instanc
 
 
 ## Developing a simple {{site.data.keyword.cos_full_notm}} Web Gallery
-
+{: #tutorial-develop}
 
 Because this example uses an MVC architecture, adjusting the directory
 structure to reflect architecture is necessary. The directory structure
@@ -369,6 +388,7 @@ of the COS-WebGallery app that is committed and deployed to {{site.data.keyword.
 later.
 
 ### Designing the app
+{: #tutorial-develop-design}
 
 These are the two main tasks that a user should be able to do with the
 simple web app:
@@ -381,6 +401,7 @@ simple fashion rather than building a fully developed production grade
 app.
 
 ### Developing the app
+{: #tutorial-develop-app}
 
 Look at the main application file, which is app.js. This is the code
 that we have told Node.js to process first when you start your app with
@@ -470,6 +491,7 @@ directory:
 
 
 #### Image upload
+{: #tutorial-develop-image-upload}
 
 See imageUploadRoutes.js in the figure below. We must create an instance
 of a new express router and name it imageUploadRouter in lines 1 - 2.
@@ -533,6 +555,7 @@ a successful upload.
 ![localtest1](https://cloud.githubusercontent.com/assets/19173079/24823021/cf3704cc-1bbf-11e7-8190-932e99cded91.jpg)
 
 #### Image retrieval and display
+{: #tutorial-develop-image-display}
 
 The following figure refers to app.js. Line 19 creates galleryRouter,
 and tells express to use it when the “/gallery” route is requested. Look
@@ -585,8 +608,9 @@ in the following figure.
 ![localtest2](https://cloud.githubusercontent.com/assets/19173079/24822869/5310d658-1bbe-11e7-80fc-7a725314f7f5.jpg)
 
 
-Committing to Git
------------------
+## Committing to Git
+{: #tutorial-develop-commit}
+
 
 Now that the basic features of the app are working, we commit our code
 to our local repo, and push it to GitHub. Back in GitHub Desktop, we
