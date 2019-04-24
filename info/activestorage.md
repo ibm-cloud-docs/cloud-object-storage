@@ -41,7 +41,7 @@ bin/rails db:migrate
 
 This will create the two required tables (`active_storage_blobs` and `active_storage_attachments`) in the application's database to manage Active Record file attachments.  
 
-### Storage Configuration
+## Storage Configuration
 {: #ror-activestorage-config}
 
 Declare your {{site.data.keyword.cos_short}} service in `config/storage.yml`:
@@ -78,7 +78,7 @@ aws_access_key_id = <access_key_id>
 aws_secret_access_key = <secret_access_key>
 ```
 
-### Rails Environment
+## Rails Environment
 {: #ror-activestorage-rails}
 
 Configure your environments to use your {{site.data.keyword.cos_short}} service by updating the following setting:

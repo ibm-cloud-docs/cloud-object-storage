@@ -246,7 +246,7 @@ location_constraint>1
 Canned ACL used when creating buckets and/or storing objects in S3.
 Choose a number from below, or type in your own value
    1 "private"
-	 2 "public-read"
+   2 "public-read"
 acl>1
 ```
 
@@ -297,7 +297,7 @@ rclone copy /Users/file.txt RemoteName:newbucket
 ### Copy a file from remote to local
 {: #rclone-reference-copy-remote}
 
-```
+```sh
 rclone copy RemoteName:newbucket/file.txt /Users/Documents/
 ```
 
@@ -332,7 +332,7 @@ The _contents_ of the directory are synced, not the directory itself. When `sour
 
 If `dest:path` doesn’t exist, it is created and the `source:path` contents go there.
 
-```
+```sh
 rclone sync source:path dest:path [flags]
 ```
 
@@ -348,7 +348,7 @@ Server B> rclone sync /tmp/whatever remote:ServerB
 
 If you `sync` to the same directory then you should use `rclone copy`otherwise the two processes may delete each others files:
 
-```
+```sh
 Server A> rclone copy /tmp/whatever remote:Backup
 Server B> rclone copy /tmp/whatever remote:Backup
 ```
@@ -362,7 +362,7 @@ If `--suffix` is set, then the moved files will have the suffix added to them. I
 
 The remote in use must support server side move or copy and you must use the same remote as the destination of the sync. The backup directory must not overlap the destination directory.
 
-```
+```sh
 rclone sync /path/to/local remote:current --backup-dir remote:old
 ```
 
@@ -380,7 +380,7 @@ Scheduling a backup is important to automating backups. Depending on your platfo
 
 `Rclone` will sync a local directory with the remote container, storing all the files in the local directory in the container. `Rclone` uses the syntax, `rclone sync source destination`, where `source` is the local folder and `destination` is the container within your IBM COS.
 
-```
+```sh
 rclone sync /path/to/my/backup/directory RemoteName:newbucket
 ```
 
@@ -408,7 +408,7 @@ Before scheduling a job, make sure you have done your initial upload and it has 
 	* /TR – the path to the backup.bat file you just created.
 	* /ST – the time to start the task. This is in the 24 hour time format. 01:05:00 is 1:05 AM. 13:05:00 would be 1:05 PM.
 
-```
+```sh
 schtasks /Create /RU username /RP "password" /SC DAILY /TN Backup /TR C:\path\to\backup.bat /ST 01:05:00
 ```
 
@@ -417,26 +417,26 @@ schtasks /Create /RU username /RP "password" /SC DAILY /TN Backup /TR C:\path\to
 
 1. Create a text file called `backup.sh` somewhere on your computer, and paste the command you used in the section [Syncing a Directory](#rclone-sync-directory). It will look something like the following. Specify the full path to the rclone executable and don’t forget to save the file.
 
-```
+```sh
 #!/bin/sh
 /full/path/to/rclone sync /path/to/my/backup/directory RemoteName:newbucket
 ```
 
 2. Make the script executable with `chmod`.
 
-```
+```sh
 chmod +x backup.sh
 ```
 
 3. Edit crontabs.
 
-```
+```sh
 sudo crontab -e
 ```
 
 4. Add an entry to the bottom of the crontabs file. Crontabs are straight forward: the first 5 fields represent in order minutes, hours, days, months, and weekdays. Using * will denote all. To make the `backup.sh` run at Daily at 1:05 AM, use something that looks like this:
 
-```
+```sh
 5 1 * * * /full/path/to/backup.sh
 ```
 
