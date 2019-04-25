@@ -35,13 +35,13 @@ As a prerequisite, you will need to have the following:
 
   - {{site.data.keyword.cloud_notm}} Platform
   - Node.js
-  - Git
+  - Git (both Desktop app and Command Line Interface&mdash;CLI )
 
 ### Installing Node.js
 {: #tutorial-gs-install-node}
 
 The app uses Node.js as the server-side engine to run the
-JavaScript code for this web application. In order to use the Node Package Manager (NPM), to manage your app's dependencies, you must install Node.js locally. Also, having Node.js installed locally eases testing, speeding up development. 
+JavaScript code for this web application. In order to use the Node Package Manager (NPM), to manage your app's dependencies, you must install Node.js locally. Also, having Node.js installed locally simplifies testing, speeding up development. 
 
 Go to the
 [Node.js](https://nodejs.org/en/download/releases/) web site
