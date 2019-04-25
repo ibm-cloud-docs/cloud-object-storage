@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-04-25"
 
-keywords: tutorial, photo galleries
+keywords: tutorial, web application, photo galleries
 
 subcollection: cloud-object-storage
 
@@ -23,16 +23,15 @@ subcollection: cloud-object-storage
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
 
-# Tutorial: Image Gallery
-{: #tutorial}
+# Tutorial: Image Gallery Web Application
+{: #web-application}
 
-This tutorial introduces how a simple web application can be built on the {{site.data.keyword.cloud}}.  This application uses {{site.data.keyword.cos_full}} as the back-end storage for a Node.js application that allows a user to upload and view photos or other images.
+This tutorial shows how a simple web application can be built on the {{site.data.keyword.cloud}}.  This application uses {{site.data.keyword.cos_full}} as the back-end storage for a Node.js application that allows a user to upload and view photos or other images.
 
-## Getting started
-{: #tutorial-gs}
+## Before you begin
+{: #gs-prereqs}
 
-Before getting started with writing any code, you must ensure that you
-have the following items set up:
+As a prerequisite, you will need to have the following:
 
   - {{site.data.keyword.cloud_notm}} Platform
   - Node.js
@@ -41,28 +40,23 @@ have the following items set up:
 ### Installing Node.js
 {: #tutorial-gs-install-node}
 
-The app uses Node.js as the server-side JavaScript engine to run the
-JavaScript code. You must install node locally so that you can use the
-node package manager (NPM). It is also helpful to have Node.js installed
-so that you can test your code locally. Go to the
-[Node.js](https://nodejs.org/en/download/releases/) releases web page
-and download the Long Term Support (LTS) Version of Node.js, which
+The app uses Node.js as the server-side engine to run the
+JavaScript code for this web application. In order to use the Node Package Manager (NPM), to manage your app's dependencies, you must install Node.js locally. Also, having Node.js installed locally eases testing, speeding up development. 
+
+Go to the
+[Node.js](https://nodejs.org/en/download/releases/) web site
+and install the Long Term Support (LTS) Version of Node.js that
 matches the latest version supported by the SDK for Node.js buildpack on
-{{site.data.keyword.cloud_notm}} Platform. At the time of this writing the latest buildpack is Version
-3.10, and it supports Node.js Version 6.9.4. You can find information
+{{site.data.keyword.cloud_notm}} Platform. At the time of this writing, the latest buildpack is v3.26, and it supports Node.js community edition v6.17.0 (and others). You can find information
 about the latest {{site.data.keyword.cloud_notm}} SDK for Node.js buildpack on the [SDK for
 Nodejs latest
-updates](https://cloud.ibm.com/docs/runtimes/nodejs/updates.html#latest_updates)
-page. Run the Node.js installer to set up Node.js and NPM on your
-system.
+updates](https://cloud.ibm.com/docs/runtimes/nodejs/updates.html#latest_updates) page. Follow the instructions to install Node.js and NPM on your system.
 
 ### Installing Git
 {: #tutorial-gs-install-git}
 
-Git is the most widely used source code versioning system in the
-industry. We use Git later when we create a toolchain in {{site.data.keyword.cloud_notm}} Platform for
-continuous delivery. If you do development regularly, you probably are
-already familiar with Git. If you do not have a GitHub account, create a
+You are probably already familiar with Git, as it is the most widely used source code versioning system among developers building applications for the web. We will use Git later when we create a toolchain in {{site.data.keyword.cloud_notm}} Platform for
+continuous delivery. If you do not have a GitHub account, create a
 free public personal account at the [Github](https://github.com/join)
 website; otherwise, feel free to use any other account you might have.
 
@@ -77,15 +71,14 @@ commits to your repository.
 ![github_desktop_setup](https://cloud.githubusercontent.com/assets/19173079/24821330/a1c718e4-1bb3-11e7-8362-e3c6aa37bc7d.png)
 
 
-You do not have to create any repositories yet. You might notice a
-repository named Tutorial that is included with GitHub Desktop to help
-familiarize you with the flow. Feel free to experiment with it.
+You do not have to create any repositories yet. If you notice a
+repository named Tutorial included with GitHub Desktop, feel free to experiment with it to help familiarize you with the operations.
 
 ## Creating the Web Gallery app on {{site.data.keyword.cloud_notm}} Platform
 {: #tutorial-create-app}
 
 To create a Cloud Foundry app, log in to [{{site.data.keyword.cloud_notm}} Platform](https://cloud.ibm.com/docs/runtimes/nodejs/updates.html)
-and click Create App (see figure below).
+and click Create App (see figure).
 
 ![bluemix_create_app](https://cloud.githubusercontent.com/assets/19173079/24821420/0d9b0af8-1bb4-11e7-80e3-cd1d91d19460.jpg)
 
@@ -112,10 +105,10 @@ below).
 
 ![initiahhelloworldapp](https://cloud.githubusercontent.com/assets/19173079/24821547/da5bc302-1bb4-11e7-84c7-d0143c40d5c3.jpg)
 
-Notice back on the Getting Started page the prerequisites that you need
-in for developing a Node.js app on {{site.data.keyword.cloud_notm}} Platform are listed. You already
-created your {{site.data.keyword.cloud_notm}} Platform account, and installed Node.js. Download the [Cloud Foundry CLI](https://github.com/cloudfoundry/cli). Then run the installer. You
-can use the tool to log in to {{site.data.keyword.cloud_notm}} Platform and interact directly with your
+Let's recall the prerequisites that you need
+for developing a Node.js app on {{site.data.keyword.cloud_notm}} Platform as listed previously. You already
+created your {{site.data.keyword.cloud_notm}} Platform account, and installed Node.js. Install the [Cloud Foundry CLI](https://github.com/cloudfoundry/cli) as instructed. You
+can then use the tool to log in to {{site.data.keyword.cloud_notm}} Platform and interact directly with your
 account from your local environment. This tool puts many powerful
 commands at your disposal that you do not use in this scenario. More
 information is at the [Cloud Foundry CLI commands index
@@ -144,8 +137,8 @@ git clone https://github.com/IBMRedbooks/IBMRedbooks-SG248385-Cloud-Object-Stora
 ```
 
 2.  Run the app locally. Open a CLI and change your working directory to
-    the COS-WebGalleryStart directory. Notice the Node.js dependencies
-    listed in the package.json file. Download them using the command
+    the COS-WebGalleryStart directory. Please note the Node.js dependencies
+    listed in the package.json file. Download them into place using the command
     shown in the following example.
 
 ```
@@ -170,15 +163,15 @@ directory using: `nodemon`, to have nodemon start your app.
 3.  Prepare the app for deployment. Update the application name property
     value in the `manifest.yml` file from COS-WebGallery, to the name you
     entered for your app on {{site.data.keyword.cloud_notm}} Platform. The COS-WebGallery manifest.yml
-    looks like the following example. Also update the package.json file
-    located in the app root directory for your app to reflect the name
-    of your app, and your name as the author.
+    looks like the following example. In addition, customize the package.json file
+    located in the app root directory for your app with the name
+    of your app and your name as the author.
 
 
 ```
 applications:
 
-- name: COS-WebGalery
+- name: COS-WebGallery
 
 random-route: true
 
