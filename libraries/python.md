@@ -86,7 +86,7 @@ Code examples were written by using **Python 2.7.15**
   
 ```python
 import ibm_boto3
-from ibm_botocore.client import Config
+from ibm_botocore.client import Config, ClientError
 
 # Constants for IBM COS values
 COS_ENDPOINT = "<endpoint>" # Current list avaiable at https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints
