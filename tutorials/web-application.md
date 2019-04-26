@@ -35,12 +35,12 @@ As a prerequisite, you will need to have the following:
 
   - {{site.data.keyword.cloud_notm}} Platform
   - Node.js
-  - Git (both Desktop app and Command Line Interface&mdash;CLI )
+  - Git (both Desktop app and Command Line Interface&mdash;CLI)
 
 ### Installing Node.js
 {: #tutorial-gs-install-node}
 
-The app uses Node.js as the server-side engine to run the
+The app you will build uses Node.js as the server-side engine to run the
 JavaScript code for this web application. In order to use the Node Package Manager (NPM), to manage your app's dependencies, you must install Node.js locally. Also, having Node.js installed locally simplifies testing, speeding up development. 
 
 Go to the
@@ -88,12 +88,10 @@ below).
 ![cf_app_nodejs](https://cloud.githubusercontent.com/assets/19173079/24821453/52a651ac-1bb4-11e7-923e-e59f0b89dfec.jpg)
 
 
-The following figure shows the app creation page where you give a name
-to the app. Call it something descriptive, such as COS-WebGallery. The
-Host name is populated automatically to reflect the App name field. The
-Host name with the Domain name becomes the address that you use to view
-the app on {{site.data.keyword.cloud_notm}} Platform. The Host name can be updated later if necessary, so
-accept the default and click Create. {{site.data.keyword.cloud_notm}} Platform creates a starter app,
+The following figure shows the app creation page where you provide a name
+to identify the app. Call it something descriptive, such as COS-WebGallery. The App name will automatically appear in the host name field, or you can type your own. The host name, along with the the Domain you choose, becomes the internet address, or URL that you use to view
+the app on {{site.data.keyword.cloud_notm}} Platform. Additional routes can be configured later, so
+accept the defaults as given and click Create. {{site.data.keyword.cloud_notm}} Platform creates a starter app,
 deploys and starts it for us.
 
 ![clickcreatenodeapp](https://cloud.githubusercontent.com/assets/19173079/24821507/97cf54ea-1bb4-11e7-928c-611546f6d980.jpg)
@@ -188,12 +186,12 @@ a.  Set the API Endpoint for your region by using the api command (as
 
 
 ```
- cf api &lt;API Endpoint&gt;
+ cf api <API Endpoint>
 ```
 
 b.  Log in to {{site.data.keyword.cloud_notm}} Platform by using the login command. You can specify
     optional parameters if you want: your organization with option -o,
-    and the space with option -s (as shown in the following example).
+    and the space with option -s. or if you are using a federated account: --sso.
 
 
 ```
@@ -351,7 +349,7 @@ aws\_secret\_access\_key = {RESOURCE-INSTANCE-ID}
     page and scroll to the User-defined section, which allows you to add
     the variables.
 
-4.  Add two variables: API key and resoruce instance ID. These variables and their respective
+4.  Add two variables: API key and the resource instance ID. These variables and their respective
     values are what the app uses to authenticate to the {{site.data.keyword.cos_short}} instance
     when running on {{site.data.keyword.cloud_notm}} Platform (see figure below). When you finish with the
     entries, click Save, and {{site.data.keyword.cloud_notm}} Platform restarts the app.
