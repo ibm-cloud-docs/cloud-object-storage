@@ -29,6 +29,8 @@ subcollection: cloud-object-storage
 ## Q2 2019
 {: #updates-2019-q2}
 
+### April 2019
+
 Buckets can now be created in a Single Data Center configuration in Hong Kong. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html).
 
 ## Q1 2019
