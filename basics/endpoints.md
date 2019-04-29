@@ -250,11 +250,25 @@ If a networking failure results in a partition where the data center is unable t
       </td>
     </tr>
     <tr>
+      <td>Hong Kong</td>
+      <td>
+        <p>Public</p>
+        <p>Private</p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.hkg02.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.hkg02.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
       <td>Melbourne, Australia</td>
       <td>
         <p>Public</p>
-        <p>Private
-        </p>
+        <p>Private</p>
       </td>
       <td>
         <p>
@@ -269,8 +283,7 @@ If a networking failure results in a partition where the data center is unable t
       <td>Mexico City, Mexico</td>
       <td>
         <p>Public</p>
-        <p>Private
-        </p>
+        <p>Private</p>
       </td>
       <td>
         <p>
@@ -285,8 +298,7 @@ If a networking failure results in a partition where the data center is unable t
       <td>Milan, Italy</td>
       <td>
         <p>Public</p>
-        <p>Private
-        </p>
+        <p>Private</p>
       </td>
       <td>
         <p>
