@@ -30,8 +30,8 @@ subcollection: cloud-object-storage
 {: #node-install}
 
 The preferred way to install the {{site.data.keyword.cos_full}} SDK for Node.js is to use the
-[npm](https://npmjs.org){:new_window} package manager for Node.js. Simply type the following
-into a terminal window:
+[`npm`](https://npmjs.org){:new_window} package manager for Node.js. Type the following command
+into a command line:
 
 ```sh
 npm install ibm-cos-sdk
@@ -47,16 +47,16 @@ More detail on individual methods and classes can be found in [the API documenta
 ### Minimum requirements
 {: #node-gs-prereqs}
 
-To run the SDK you will need **Node 4.x+**.
+To run the SDK, you need **Node 4.x+**.
 
 ### Creating a client and sourcing credentials
 {: #node-gs-credentials}
 
-To connect to COS, a client is created and configured by providing credential information (API Key, Service Instance ID and IBM Authentication Endpoint). These values can also be automatically sourced from a credentials file or from environment variables.
+To connect to COS, a client is created and configured by providing credential information (API Key, Service Instance ID, and IBM Authentication Endpoint). These values can also be automatically sourced from a credentials file or from environment variables.
 
-After generating a [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client will authenticate with a signature, otherwise the client will use the provided API key to authenticate using a bearer token.
+After generating a [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client authenticates with a signature, otherwise the client uses the provided API key to authenticate with a bearer token.
 
-The `default` section heading specifies a default profile and associated values for credentials. You can create additional profiles in the same shared configuration file, each with its own credential information. The following example shows a configuration file with the default profile:
+The `default` section heading specifies a default profile and associated values for credentials. You can create more profiles in the same shared configuration file, each with its own credential information. The following example shows a configuration file with the default profile:
 ```
 [default]
 ibm_api_key_id = <DEFAULT_IBM_API_KEY>
@@ -71,7 +71,7 @@ aws_access_key_id = <DEFAULT_ACCESS_KEY_ID>
 aws_secret_access_key = <DEFAULT_SECRET_ACCESS_KEY>
 ```
 
-If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` will take preference.
+If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` takes preference.
 
 ## Code Examples
 {: #node-examples}
@@ -93,10 +93,10 @@ var cos = new AWS.S3(config);
 ```
 *Key Values*
 * `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
-* `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
+* `<api-key>` - API key generated when creating the service credentials (write access is required for creation and deletion examples)
 * `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](/docs/cli?topic=cloud-cli-ibmcloud-cli#ibmcloud-cli) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window})
 
-### Creating a new bucket
+### Creating a bucket
 {: #node-examples-new-bucket}
 
 A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes).
@@ -123,7 +123,7 @@ function createBucket(bucketName) {
 *SDK References*
 * [createBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createBucket-property){:new_window}
 
-### Creating a new text file
+### Creating a text object
 {: #node-examples-new-file}
 
 ```javascript
@@ -245,7 +245,7 @@ function deleteItem(bucketName, itemName) {
 ### Delete multiple items from a bucket
 {: #node-examples-multidelete}
 
-The delete request can contain a maximum of 1000 keys that you want to delete. While this is very useful in reducing the per-request overhead, be mindful when deleting a large number of keys. Also take into account the sizes of the objects to ensure suitable performance.
+The delete request can contain a maximum of 1000 keys that you want to delete. While deleting objects in batches is very useful in reducing the per-request overhead, be mindful when deleting many keys that the request may take some time to complete. Also, take into account the sizes of the objects to ensure suitable performance.
 {:tip}
 
 ```javascript
@@ -435,7 +435,7 @@ function createBucketKP(bucketName) {
 *Key Values*
 * `<bucket-location>` - Region or location for your bucket (Key Protect is only available in certain regions. Ensure your location matches the Key Protect service) A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes)..
 * `<algorithm>` - The encryption algorithm used for new objects added to the bucket (Default is AES256).
-* `<root-key-crn>` - CRN of the Root Key obtained from the Key Protect service.
+* `<root-key-crn>` - CRN of the Root Key that is obtained from the Key Protect service.
 
 *SDK References*
 * [createBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createBucket-property){:new_window}
