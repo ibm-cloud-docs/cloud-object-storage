@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-04-25"
+lastupdated: "2019-04-30"
 
 keywords: tutorial, web application, photo galleries
 
@@ -47,10 +47,8 @@ Go to the
 [Node.js](https://nodejs.org/en/download/releases/) web site
 and install the Long Term Support (LTS) Version of Node.js that
 matches the latest version supported by the SDK for Node.js buildpack on
-{{site.data.keyword.cloud_notm}} Platform. At the time of this writing, the latest buildpack is v3.26, and it supports Node.js community edition v6.17.0 (and others). You can find information
-about the latest {{site.data.keyword.cloud_notm}} SDK for Node.js buildpack on the [SDK for
-Nodejs latest
-updates](https://cloud.ibm.com/docs/runtimes/nodejs/updates.html#latest_updates) page. Follow the instructions to install Node.js and NPM on your system.
+{{site.data.keyword.cloud_notm}} Platform. At the time of this writing, the latest buildpack is v3.26, and it supports Node.js community edition v6.17.0+. You can find information
+about the latest {{site.data.keyword.cloud_notm}} SDK for Node.js buildpack on the [SDK for Nodejs latest updates](https://cloud.ibm.com/docs/runtimes/nodejs/updates.html#latest_updates) page. Follow the instructions to install Node.js and NPM on your system.
 
 ### Installing Git
 {: #tutorial-gs-install-git}
@@ -134,7 +132,7 @@ Follow these steps:
 git clone https://github.com/IBMRedbooks/IBMRedbooks-SG248385-Cloud-Object-Storage-as-a-Service.git
 ```
 
-2.  Run the app locally. Open a CLI and change your working directory to
+2.  Run the app locally. Open a terminal application providing a CLI and change your working directory to
     the COS-WebGalleryStart directory. Please note the Node.js dependencies
     listed in the package.json file. Download them into place using the command
     shown in the following example.
@@ -160,7 +158,7 @@ directory using: `nodemon`, to have nodemon start your app.
 
 3.  Prepare the app for deployment. Update the application name property
     value in the `manifest.yml` file from COS-WebGallery, to the name you
-    entered for your app on {{site.data.keyword.cloud_notm}} Platform. The COS-WebGallery manifest.yml
+    entered for your app on {{site.data.keyword.cloud_notm}} Platform. The COS-WebGallery `manifest.yml`
     looks like the following example. In addition, customize the package.json file
     located in the app root directory for your app with the name
     of your app and your name as the author.
@@ -182,7 +180,7 @@ memory: 256M
 
 a.  Set the API Endpoint for your region by using the api command (as
     shown in the following example). if you do not know your regional
-    API endpoint URL see the Getting Started page.
+    API endpoint URL, please see the Getting Started page.
 
 
 ```
@@ -191,7 +189,7 @@ a.  Set the API Endpoint for your region by using the api command (as
 
 b.  Log in to {{site.data.keyword.cloud_notm}} Platform by using the login command. You can specify
     optional parameters if you want: your organization with option -o,
-    and the space with option -s. or if you are using a federated account: --sso.
+    and the space with option -s, or, if you are using a federated account: --sso.
 
 
 ```
@@ -215,9 +213,9 @@ cf push
 ```
 
 If successful, Cloud Foundry reports that the app was uploaded,
-successfully deployed, and started. If you are logged in to the {{site.data.keyword.cloud_notm}} Platform
+successfully deployed, and started. If you are also logged in to the {{site.data.keyword.cloud_notm}} Platform
 web console, you are notified there also of the status of your app (see
-figure below).
+figure).
 
 ![app_stage_notification](https://cloud.githubusercontent.com/assets/19173079/24821846/9f35e1a2-1bb6-11e7-9c58-45c545ef6494.jpg)
 
@@ -227,7 +225,7 @@ console by clicking View App button.
 
 5.  Test the app. The visible change from the default app template that
     was deployed at creation to the starter app shown in the following
-    proves that deploying the app to {{site.data.keyword.cloud_notm}} Platform was successful.
+    proved that deploying the app to {{site.data.keyword.cloud_notm}} Platform was successful.
 
 ![verify_push](https://cloud.githubusercontent.com/assets/19173079/24821897/e7f82bca-1bb6-11e7-848c-29878a6fcc78.jpg)
 
@@ -235,12 +233,12 @@ console by clicking View App button.
 ### Creating a {{site.data.keyword.cloud_notm}} Platform toolchain
 {: #tutorial-create-toolchain}
 
-You are almost ready to start working on the Web Gallery app, but before
-you start coding you must have a source repository for the code. It must
-be accessible from both {{site.data.keyword.cloud_notm}} Platform and the local development environment.
-We will want to both push changes to {{site.data.keyword.cloud_notm}} Platform, and pull down the changes
-made in the {{site.data.keyword.cloud_notm}} Platform to our local development environment. To do
-so, create a Delivery Pipeline for the app in {{site.data.keyword.cloud_notm}} Platform by completing the
+You are almost ready to start working on the code for the Image Gallery app, but before
+you start coding, you must have a repository for the source code. It must
+be accessible from both {{site.data.keyword.cloud_notm}} Platform and your local development environment.
+
+With a repository in place, we will be able to pull changes from {{site.data.keyword.cloud_notm}} Platform 
+to our local development environment, as well as push any changes we make locally to {{site.data.keyword.cloud_notm}} Platform. To automate the process, we'll create a Delivery Pipeline for our web application in {{site.data.keyword.cloud_notm}} Platform by completing the
 following steps:
 
 1.  After signing in to {{site.data.keyword.cloud_notm}} Platform, select the COS-WebGallery app, and
@@ -280,7 +278,7 @@ input.
 
 ![emptytoolchainrepo](https://cloud.githubusercontent.com/assets/19173079/24822196/f5efc100-1bb8-11e7-903f-c3562598f2b2.jpg)
 
-This example uses the Quick setup option. Click Set up in Desktop. Allow
+Here we'll use the Quick setup option. Click Set up in Desktop. Allow
 GitHub desktop to open the link, and select an empty directory as the
 location for your new local repo. You now have a directory named the
 same as your app with nothing except the .git directory inside. In this
@@ -322,26 +320,31 @@ triggered followed by the deploy stage anytime you push a commit to it.
 Deploying the app from the Cloud Foundry CLI will no longer be
 necessary.
 
-### Setting up {{site.data.keyword.cos_full_notm}} credentials
+### Setting up {{site.data.keyword.cos_full_notm}} your storage credentials
 {: #tutorial-credentials}
 
-You need to setup {{site.data.keyword.cos_short}} credentials for the application, and a bucket
-where it will store and retrieve images. After you have them, complete
-the following steps:
+You need to configure {{site.data.keyword.cos_short}} credentials for your web application, as well as a 'bucket'
+where it will store and retrieve images. The API key you will create will need {{site.data.keyword.cos_short}} HMAC credentials, as defined by 
+[Service Credentials](https://cloud.ibm.com/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-service-credentials). 
+You may recognize the terms `access_key_id` and `secret_access_key` as you might have an AWS account, and use 
+a credentials file that already has `aws_access_key_id` and `aws_secret_access_key` entries. 
+
+After you have them, complete the following steps:
 
 1.  On the local development environment, place the credentials in the
-    Windows path %USERPROFILE%\\.aws\\credentials (for Mac/Linux, they
-    go into ~/.aws/credentials). Example 5-9 shows the contents of a
+    Windows path `%USERPROFILE%\\.aws\\credentials` (for Mac/Linux users, the credentials should 
+    go into `~/.aws/credentials)`. The following example shows the contents of a
     credentials file.
 
 ```
 \[default\]
 
-aws\_access\_key\_id = {IAM-API-KEY}
+aws\_access\_key\_id = {access_key_id}
 
-aws\_secret\_access\_key = {RESOURCE-INSTANCE-ID}
+aws\_secret\_access\_key = {secret_access_key}
 ```
-2.  In {{site.data.keyword.cloud_notm}} Platform, set up the credentials as environment variables by
+2.  In the web page for the application you created using the CLI command `cf push` on the {{site.data.keyword.cloud_notm}} Platform, 
+    define your required credentials per as environment variables per development best practices by
     logging in to {{site.data.keyword.cloud_notm}} Platform, and under Cloud Foundry Apps, select the
     app COS-WebGallery. From the app menu, click Runtime.
 
@@ -349,17 +352,18 @@ aws\_secret\_access\_key = {RESOURCE-INSTANCE-ID}
     page and scroll to the User-defined section, which allows you to add
     the variables.
 
-4.  Add two variables: API key and the resource instance ID. These variables and their respective
+4.  Add two variables: one with the value of your access_key_id, using `AWS_SECRET_ACCESS_KEY` as the name 
+    of the key, and another with the secret access key, named `AWS_ACCESS_KEY_ID`. These variables and their respective
     values are what the app uses to authenticate to the {{site.data.keyword.cos_short}} instance
     when running on {{site.data.keyword.cloud_notm}} Platform (see figure below). When you finish with the
     entries, click Save, and {{site.data.keyword.cloud_notm}} Platform restarts the app.
 
 ![bluemix_env_var](https://cloud.githubusercontent.com/assets/19173079/24822607/07019ace-1bbc-11e7-9d71-db6d53d3dc7a.jpg)
 
-Head over to the {{site.data.keyword.cos_short}} portal for your service instance and add a bucket to contain your images. This scenario uses the bucket named web-images.
+Next, over at the {{site.data.keyword.cos_short}} portal for your service instance, add a bucket to contain your images. This scenario uses the bucket named `web-images`.
 
 
-## Developing a simple {{site.data.keyword.cos_full_notm}} Web Gallery
+## Customizing a Node.js {{site.data.keyword.cos_full_notm}} Image Gallery Web Application
 {: #tutorial-develop}
 
 Because this example uses an MVC architecture, adjusting the directory
@@ -484,11 +488,11 @@ directory:
 #### Image upload
 {: #tutorial-develop-image-upload}
 
-See imageUploadRoutes.js in the figure below. We must create an instance
+See the code from imageUploadRoutes.js in the figure. We must create an instance
 of a new express router and name it imageUploadRouter in lines 1 - 2.
 Then, on line 5, we create a function that returns imageUploadRouter,
 and assign it to a variable called "router". We export the function in
-"router"on line 28 to make it accessible to app.js. On line 7, we
+"router" on line 28 to make it accessible to app.js. On line 7, we
 require a file named galleryController.js. Because some logic is
 dedicated to controlling how we upload our images, we put that logic in
 this function and save it in our ./src/controllers directory.
