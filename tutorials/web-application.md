@@ -178,35 +178,71 @@ memory: 256M
 4.  Deploy the app to {{site.data.keyword.cloud_notm}} Platform. To get the starter app with your changes
     to {{site.data.keyword.cloud_notm}} Platform, deploy it using the Cloud Foundry CLI:
 
-a.  Set the API Endpoint for your region by using the api command (as
-    shown in the following example). if you do not know your regional
-    API endpoint URL, please see the Getting Started page.
-
-
-```
- cf api <API Endpoint>
-```
-
-b.  Log in to {{site.data.keyword.cloud_notm}} Platform by using the login command. You can specify
+a.  Log in to {{site.data.keyword.cloud_notm}} Platform by using the login command. You can specify
     optional parameters if you want: your organization with option -o,
     and the space with option -s, or, if you are using a federated account: --sso.
 
 
 ```
-cf login
+ibmcloud login
 ```
 
-c.  Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the push command (as shown in the
+b.  Set the API Endpoint for your region by using the api command (as
+        shown in the following example). if you do not know your regional
+        API endpoint URL, please see the Getting Started page.
+
+
+```
+ibmcloud api <cloud.ibm.com|api.ng.bluemix.net|other.endpoint.uri>
+```
+
+c.  Target the Cloud Foundry aspect of {{site.data.keyword.cloud_notm}} Platform.
+
+
+```
+ibmcloud target cf
+```
+
+d.  Answer the generated questions about your project.
+
+
+```
+ibmcloud dev enable
+```
+
+f.  Build the app for delivery to {{site.data.keyword.cloud_notm}} Platform with the push command (as shown in the
     following example).
 
 
 ```
-cf push
+ibmcloud dev build
+```
+
+g.  In addition to building the app for deligery, building the app allows you to run the same code locally {{site.data.keyword.cloud_notm}} Platform with the push command (as shown in the
+    following example).
+
+
+```
+ibmcloud dev run 
+```
+
+h.  Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the push command (as shown in the
+    following example).
+
+```
+ibmcloud dev deploy
 ```
 
 The example below shows the commands we used to deploy the COS-WebGallery app.
 
 ```
+ibmcloud login --sso
+ibmcloud api cloud.ibm.com
+ibmcloud target cf
+ibmcloud dev enable
+ibmcloud dev build
+ibmcloud dev run
+ibmcloud dev deploy
 cf api https://api.ng.bluemix.net
 cf login -u myaccount@us.ibm.com -o “IBM Redbooks” -s scenarios
 cf push
@@ -352,15 +388,16 @@ aws\_secret\_access\_key = {secret_access_key}
     page and scroll to the User-defined section, which allows you to add
     the variables.
 
-4.  Add two variables: one with the value of your access_key_id, using `AWS_SECRET_ACCESS_KEY` as the name 
-    of the key, and another with the secret access key, named `AWS_ACCESS_KEY_ID`. These variables and their respective
+4.  Add two variables: one with the value of your access_key_id, using `AWS_ACCESS_KEY_ID` as the name 
+    of the key, and another with the secret access key, named `AWS_SECRET_ACCESS_KEY`. These variables and their respective
     values are what the app uses to authenticate to the {{site.data.keyword.cos_short}} instance
-    when running on {{site.data.keyword.cloud_notm}} Platform (see figure below). When you finish with the
-    entries, click Save, and {{site.data.keyword.cloud_notm}} Platform restarts the app.
+    when running on {{site.data.keyword.cloud_notm}} Platform (see figure). When you finish with the
+    entries, click Save, and {{site.data.keyword.cloud_notm}} Platform will restart the app.
 
 ![bluemix_env_var](https://cloud.githubusercontent.com/assets/19173079/24822607/07019ace-1bbc-11e7-9d71-db6d53d3dc7a.jpg)
 
-Next, over at the {{site.data.keyword.cos_short}} portal for your service instance, add a bucket to contain your images. This scenario uses the bucket named `web-images`.
+Next, over at the {{site.data.keyword.cos_short}} portal for your service instance, 
+add a bucket to contain your images. This scenario uses the bucket named `web-images`.
 
 
 ## Customizing a Node.js {{site.data.keyword.cos_full_notm}} Image Gallery Web Application
