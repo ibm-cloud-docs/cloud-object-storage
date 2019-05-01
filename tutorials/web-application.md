@@ -196,21 +196,24 @@ b.  Set the API Endpoint for your region by using the api command (as
 ibmcloud api <cloud.ibm.com|api.ng.bluemix.net|other.endpoint.uri>
 ```
 
-c.  Target the Cloud Foundry aspect of {{site.data.keyword.cloud_notm}} Platform.
+c.  Target the Cloud Foundry aspect of {{site.data.keyword.cloud_notm}} Platform, using the target command and the cf option.
 
 
 ```
 ibmcloud target cf
 ```
 
-d.  Answer the generated questions about your project.
+d.  Your directory will be home to a new application when you use the enable command. 
+Using the `dev` space of your organization this way, allows you to silo your applications.
+Answer the generated questions about your project after typing the following command.
 
 
 ```
 ibmcloud dev enable
 ```
 
-f.  Build the app for delivery to {{site.data.keyword.cloud_notm}} Platform with the push command (as shown in the
+f.  The previous command created entries based on your answers to define an app in the {{site.data.keyword.cloud_notm}} Platform. 
+Build the app for delivery that application with the build command (as shown in the
     following example).
 
 
@@ -218,15 +221,15 @@ f.  Build the app for delivery to {{site.data.keyword.cloud_notm}} Platform with
 ibmcloud dev build
 ```
 
-g.  In addition to building the app for deligery, building the app allows you to run the same code locally {{site.data.keyword.cloud_notm}} Platform with the push command (as shown in the
-    following example).
+g.  In addition to building the app for delivery, building the app allows you to run the same code locally with the run command (after you type the
+    command shown here).
 
 
 ```
 ibmcloud dev run 
 ```
 
-h.  Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the push command (as shown in the
+h.  Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the deploy command (as shown in the
     following example).
 
 ```
@@ -243,9 +246,6 @@ ibmcloud dev enable
 ibmcloud dev build
 ibmcloud dev run
 ibmcloud dev deploy
-cf api https://api.ng.bluemix.net
-cf login -u myaccount@us.ibm.com -o “IBM Redbooks” -s scenarios
-cf push
 ```
 
 If successful, Cloud Foundry reports that the app was uploaded,
