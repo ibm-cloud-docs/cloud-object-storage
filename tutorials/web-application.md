@@ -26,7 +26,10 @@ subcollection: cloud-object-storage
 # Tutorial: Image Gallery Web Application
 {: #web-application}
 
-This tutorial shows how a simple web application can be built on the {{site.data.keyword.cloud}}.  This application uses {{site.data.keyword.cos_full}} as the back-end storage for a Node.js application that allows a user to upload and view photos or other images.
+From beginning to end, a web application covers a lot of different concepts. This tutorial shows how 
+a simple image gallery can be built on the {{site.data.keyword.cloud}} Platform, and how to bring together
+many different concepts and practices. This application uses {{site.data.keyword.cos_full}} as the 
+back-end storage for a Node.js application that allows a user to upload and view JPEG image files.
 
 ## Before you begin
 {: #gs-prereqs}
@@ -927,7 +930,9 @@ the Summary field, and then click Commit to Local-dev.
 When we click
 Sync, our commit is sent to the remote Local-dev branch that we
 published to GitHub, and this action starts the Build Stage followed by
-the Deploy Stage in our Delivery Pipeline
+the Deploy Stage in our Delivery Pipeline. Congratulations! We have gone from beginning to end along this
+path to build a web application image gallery using the {{site.data.keyword.cloud_notm}} Platform. 
+Each of the concepts we've covered in this basic introduction can be explored further. Good luck!
 
 ![pipeline_triggled_aftersync](https://cloud.githubusercontent.com/assets/19173079/24822828/f29efe26-1bbd-11e7-8b9a-c472ea03ee2b.jpg)
 {: caption="Figure 22. CD Delivery Pipeline" caption-side="top"}
