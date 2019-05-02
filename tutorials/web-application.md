@@ -47,13 +47,18 @@ Go to the
 [Node.js](https://nodejs.org/en/download/releases/) web site
 and install the Long Term Support (LTS) Version of Node.js that
 matches the latest version supported by the SDK for Node.js buildpack on
-{{site.data.keyword.cloud_notm}} Platform. At the time of this writing, the latest buildpack is v3.26, and it supports Node.js community edition v6.17.0+. You can find information
-about the latest {{site.data.keyword.cloud_notm}} SDK for Node.js buildpack on the [SDK for Nodejs latest updates](https://cloud.ibm.com/docs/runtimes/nodejs/updates.html#latest_updates) page. Follow the instructions to install Node.js and NPM on your system.
+{{site.data.keyword.cloud_notm}} Platform. At the time of this writing, 
+the latest buildpack is v3.26, and it supports Node.js community edition v6.17.0+. 
+You can find information about the latest {{site.data.keyword.cloud_notm}} 
+SDK for Node.js buildpack on the [SDK for Nodejs latest updates](https://cloud.ibm.com/docs/runtimes/nodejs/updates.html#latest_updates) page. 
+Follow the instructions to install Node.js and NPM on your system.
 
 ### Installing Git
 {: #tutorial-gs-install-git}
 
-You are probably already familiar with Git, as it is the most widely used source code versioning system among developers building applications for the web. We will use Git later when we create a toolchain in {{site.data.keyword.cloud_notm}} Platform for
+You are probably already familiar with Git, as it is the most widely used 
+source code versioning system among developers building applications for the web. 
+We will use Git later when we create a toolchain in {{site.data.keyword.cloud_notm}} Platform for
 continuous delivery. If you do not have a GitHub account, create a
 free public personal account at the [Github](https://github.com/join)
 website; otherwise, feel free to use any other account you might have.
@@ -62,12 +67,13 @@ Go to the [Github Desktop](https://desktop.github.com/) page to download
 GitHub Desktop, and then run the installer. When the installer finishes,
 you are prompted to log in to GitHub with your account.
 
-In the Log in window (see figure below), enter the name and email you
+In the Log in window (see figure 1), enter the name and email you
 want displayed publicly (assuming you have a public account) for any
 commits to your repository.
 
+Figure 1:
 ![github_desktop_setup](https://cloud.githubusercontent.com/assets/19173079/24821330/a1c718e4-1bb3-11e7-8362-e3c6aa37bc7d.png)
-
+{: caption="Figure 1. Github Desktop Login window" caption-side="top"}
 
 You do not have to create any repositories yet. If you notice a
 repository named Tutorial included with GitHub Desktop, feel free to experiment with it to help familiarize you with the operations.
@@ -79,12 +85,13 @@ To create a Cloud Foundry app, log in to [{{site.data.keyword.cloud_notm}} Platf
 and click Create App (see figure).
 
 ![bluemix_create_app](https://cloud.githubusercontent.com/assets/19173079/24821420/0d9b0af8-1bb4-11e7-80e3-cd1d91d19460.jpg)
+{: caption="Figure 2. Create App on {{site.data.keyword.cloud_notm}} Platform" caption-side="top"}
 
 Then, under Cloud Foundry Apps, select SDK for Node.js (see figure
 below).
 
 ![cf_app_nodejs](https://cloud.githubusercontent.com/assets/19173079/24821453/52a651ac-1bb4-11e7-923e-e59f0b89dfec.jpg)
-
+{: caption="Figure 3. Cloud Foundry Apps" caption-side="top"}
 
 The following figure shows the app creation page where you provide a name
 to identify the app. Call it something descriptive, such as COS-WebGallery. The App name will automatically appear in the host name field, or you can type your own. The host name, along with the the Domain you choose, becomes the internet address, or URL that you use to view
@@ -93,6 +100,7 @@ accept the defaults as given and click Create. {{site.data.keyword.cloud_notm}} 
 deploys and starts it for us.
 
 ![clickcreatenodeapp](https://cloud.githubusercontent.com/assets/19173079/24821507/97cf54ea-1bb4-11e7-928c-611546f6d980.jpg)
+{: caption="Figure 4. {{site.data.keyword.cloud_notm}} Platform plans" caption-side="top"}
 
 Now that the app is created and running, click View App from the app’s
 Getting Started page to see it in a new browser window. It was created
@@ -100,6 +108,7 @@ with a basic Hello World starter app as a placeholder (see figure
 below).
 
 ![initiahhelloworldapp](https://cloud.githubusercontent.com/assets/19173079/24821547/da5bc302-1bb4-11e7-84c7-d0143c40d5c3.jpg)
+{: caption="Figure 5. Hello World!" caption-side="top"}
 
 Let's recall the prerequisites that you need
 for developing a Node.js app on {{site.data.keyword.cloud_notm}} Platform as listed previously. You already
@@ -131,6 +140,7 @@ Follow these steps:
 ```
 git clone https://github.com/IBMRedbooks/IBMRedbooks-SG248385-Cloud-Object-Storage-as-a-Service.git
 ```
+{: caption="Example 1. Git clone command details" caption-side="top"}
 
 2.  Run the app locally. Open a terminal application providing a CLI and change your working directory to
     the COS-WebGalleryStart directory. Please note the Node.js dependencies
@@ -140,12 +150,14 @@ git clone https://github.com/IBMRedbooks/IBMRedbooks-SG248385-Cloud-Object-Stora
 ```
 npm install
 ```
+{: caption="Example 2. Node Package Manager (npm) install" caption-side="top"}
 
 Run the app using the command shown in the following example.
 
 ```
 npm start
 ```
+{: caption="Example 3. Details on starting your app with npm" caption-side="top"}
 
 Open a browser and view your app on the address and port that is output
 to the console, <http://localhost:3000>.
@@ -173,6 +185,7 @@ random-route: true
 
 memory: 256M
 ```
+{: caption="Example 4. Contents of `manifest.yml`" caption-side="top"}
 
 
 4.  Deploy the app to {{site.data.keyword.cloud_notm}} Platform. To get the starter app with your changes
@@ -186,6 +199,7 @@ a.  Log in to {{site.data.keyword.cloud_notm}} Platform by using the login comma
 ```
 ibmcloud login
 ```
+{: caption="Example 5. CLI command for logging into {{site.data.keyword.cloud_notm}} Platform" caption-side="top"}
 
 b.  Set the API Endpoint for your region by using the api command (as
         shown in the following example). if you do not know your regional
@@ -195,6 +209,7 @@ b.  Set the API Endpoint for your region by using the api command (as
 ```
 ibmcloud api <cloud.ibm.com|api.ng.bluemix.net|other.endpoint.uri>
 ```
+{: caption="Example 6. {{site.data.keyword.cloud_notm}} Platform API endpoint" caption-side="top"}
 
 c.  Target the Cloud Foundry aspect of {{site.data.keyword.cloud_notm}} Platform, using the target command and the cf option.
 
@@ -202,6 +217,7 @@ c.  Target the Cloud Foundry aspect of {{site.data.keyword.cloud_notm}} Platform
 ```
 ibmcloud target cf
 ```
+{: caption="Example 7. {{site.data.keyword.cloud_notm}} Platform CLI targeting Cloud Foundry" caption-side="top"}
 
 d.  Your directory will be home to a new application when you use the enable command. 
 Using the `dev` space of your organization this way, allows you to silo your applications.
@@ -211,6 +227,7 @@ Answer the generated questions about your project after typing the following com
 ```
 ibmcloud dev enable
 ```
+{: caption="Example 8. {{site.data.keyword.cloud_notm}} Platform CLI to define an app" caption-side="top"}
 
 f.  The previous command created entries based on your answers to define an app in the {{site.data.keyword.cloud_notm}} Platform. 
 Build the app for delivery that application with the build command (as shown in the
@@ -220,6 +237,7 @@ Build the app for delivery that application with the build command (as shown in 
 ```
 ibmcloud dev build
 ```
+{: caption="Example 9. {{site.data.keyword.cloud_notm}} Platform build command" caption-side="top"}
 
 g.  In addition to building the app for delivery, building the app allows you to run the same code locally with the run command (after you type the
     command shown here).
@@ -228,6 +246,7 @@ g.  In addition to building the app for delivery, building the app allows you to
 ```
 ibmcloud dev run 
 ```
+{: caption="Example 10. {{site.data.keyword.cloud_notm}} Platform CLI command to run your app" caption-side="top"}
 
 h.  Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the deploy command (as shown in the
     following example).
@@ -235,6 +254,7 @@ h.  Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the deploy 
 ```
 ibmcloud dev deploy
 ```
+{: caption="Example 11. {{site.data.keyword.cloud_notm}} Platform CLI command to upload and deploys" caption-side="top"}
 
 The example below shows the commands we used to deploy the COS-WebGallery app.
 
@@ -247,13 +267,15 @@ ibmcloud dev build
 ibmcloud dev run
 ibmcloud dev deploy
 ```
+{: caption="Example 12. {{site.data.keyword.cloud_notm}} Platform CLI command list" caption-side="top"}
 
-If successful, Cloud Foundry reports that the app was uploaded,
+If successful, {{site.data.keyword.cloud_notm}} Platform reports that the app was uploaded,
 successfully deployed, and started. If you are also logged in to the {{site.data.keyword.cloud_notm}} Platform
 web console, you are notified there also of the status of your app (see
 figure).
 
 ![app_stage_notification](https://cloud.githubusercontent.com/assets/19173079/24821846/9f35e1a2-1bb6-11e7-9c58-45c545ef6494.jpg)
+{: caption="Figure 6. {{site.data.keyword.cloud_notm}} Platform notifications" caption-side="top"}
 
 You can verify that the app was deployed by visiting the app URL
 reported by Cloud Foundry with a browser, or from the {{site.data.keyword.cloud_notm}} Platform web
@@ -264,7 +286,7 @@ console by clicking View App button.
     proved that deploying the app to {{site.data.keyword.cloud_notm}} Platform was successful.
 
 ![verify_push](https://cloud.githubusercontent.com/assets/19173079/24821897/e7f82bca-1bb6-11e7-848c-29878a6fcc78.jpg)
-
+{: caption="Figure 7. Results of viewing your deployed app (Congratulations!)" caption-side="top"}
 
 ### Creating a {{site.data.keyword.cloud_notm}} Platform toolchain
 {: #tutorial-create-toolchain}
@@ -281,7 +303,8 @@ following steps:
     from the app Overview window, scroll to Continuous delivery and
     click Enable (see figure below).
 
-![continious_delivery_enable](https://cloud.githubusercontent.com/assets/19173079/24822095/3ffb0b70-1bb8-11e7-8d6d-190f58db2364.jpg)
+![continuous_delivery_enable](https://cloud.githubusercontent.com/assets/19173079/24822095/3ffb0b70-1bb8-11e7-8d6d-190f58db2364.jpg)
+{: caption="Figure 8. Enable Continuous Delivery (CD)" caption-side="top"}
 
 2.  Set up the Toolchain Integrations. Scroll down to see the
     information that is shown in the following figure. The Continuous
@@ -291,7 +314,7 @@ following steps:
     necessary values to create the toolchain. Click Create.
 
 ![toolchain_integrations_setup](https://cloud.githubusercontent.com/assets/19173079/24822139/7f5c43ba-1bb8-11e7-8610-6441b7d1a963.jpg)
-
+{: caption="Figure 9. Toolchain Integrations Setup" caption-side="top"}
 
 The {{site.data.keyword.cloud_notm}} Platform Toolchain is now set up (as shown in the figure below).
 
@@ -304,6 +327,7 @@ the Build Stage of your Delivery Pipeline will be unable to use it as
 input.
 
 ![created_toolchain](https://cloud.githubusercontent.com/assets/19173079/24822154/adf8fdb2-1bb8-11e7-8cae-7631f549c080.jpg)
+{: caption="Figure 10. CD toolchain configured" caption-side="top"}
 
 3.  Click GitHub Tool to open the new repo created by your toolchain
     on GitHub.
@@ -313,6 +337,7 @@ input.
     To do so, you have options as shown in the following figure.
 
 ![emptytoolchainrepo](https://cloud.githubusercontent.com/assets/19173079/24822196/f5efc100-1bb8-11e7-903f-c3562598f2b2.jpg)
+{: caption="Figure 11. Github Repository Code Tab with next steps" caption-side="top"}
 
 Here we'll use the Quick setup option. Click Set up in Desktop. Allow
 GitHub desktop to open the link, and select an empty directory as the
@@ -324,12 +349,14 @@ example, it is named COS-WebGallery.
     step 3. It looks like the following figure.
 
 ![localrepo_files](https://cloud.githubusercontent.com/assets/19173079/24822238/3aab33ba-1bb9-11e7-9476-78975d71e208.jpg)
+{: caption="Figure 12. How your local files might appear" caption-side="top"}
 
 6.  Return to GitHub Desktop and notice it detected what you added to
     the repo directory (see figure below). Type initial commit into the
     summary field, and click Commit to master.
 
 ![github_initialcommit](https://cloud.githubusercontent.com/assets/19173079/24822265/68a90e5e-1bb9-11e7-9bbe-d466ae5bb68d.jpg)
+{: caption="Figure 13. Commit your changes in Github Desktop" caption-side="top"}
 
 ### Create a Git branch
 {: #tutorial-create-branch}
@@ -341,6 +368,7 @@ to use for your {{site.data.keyword.cloud_notm}} Platform Delivery Pipeline Buil
     branch (see figure below). This example uses Local-dev as the name.
 
 ![new_git_branch](https://cloud.githubusercontent.com/assets/19173079/24822302/aba13902-1bb9-11e7-92af-be919c9a171e.jpg)
+{: caption="Figure 14. Use Github Desktop to create a local dev branch" caption-side="top"}
 
 2.  After you create the branch, GitHub compares the local files on the
     Local-dev branch with the files in the repository on the master
@@ -349,6 +377,7 @@ to use for your {{site.data.keyword.cloud_notm}} Platform Delivery Pipeline Buil
     (see figure below).
 
 ![publish_branch](https://cloud.githubusercontent.com/assets/19173079/24822322/de53cfa4-1bb9-11e7-8a2d-768acdaa4f95.jpg)
+{: caption="Figure 15. Publish your git branch to your repo's remote origin" caption-side="top"}
 
 Now that the Local-dev branch is published to the GitHub repo in your
 toolchain, the build stage of your {{site.data.keyword.cloud_notm}} Platform Delivery Pipeline will be
@@ -379,7 +408,9 @@ aws\_access\_key\_id = {access_key_id}
 
 aws\_secret\_access\_key = {secret_access_key}
 ```
-2.  In the web page for the application you created using the CLI command `cf push` on the {{site.data.keyword.cloud_notm}} Platform, 
+{: caption="Example 12. Credentials as they are defined in your `~/.aws/credentials` file" caption-side="top"}
+
+2.  In the web page for the application you created using the CLI command on the {{site.data.keyword.cloud_notm}} Platform, 
     define your required credentials per as environment variables per development best practices by
     logging in to {{site.data.keyword.cloud_notm}} Platform, and under Cloud Foundry Apps, select the
     app COS-WebGallery. From the app menu, click Runtime.
@@ -395,6 +426,7 @@ aws\_secret\_access\_key = {secret_access_key}
     entries, click Save, and {{site.data.keyword.cloud_notm}} Platform will restart the app.
 
 ![bluemix_env_var](https://cloud.githubusercontent.com/assets/19173079/24822607/07019ace-1bbc-11e7-9d71-db6d53d3dc7a.jpg)
+{: caption="Figure 16. Runtime Environment Variables defined for your app" caption-side="top"}
 
 Next, over at the {{site.data.keyword.cos_short}} portal for your service instance, 
 add a bucket to contain your images. This scenario uses the bucket named `web-images`.
@@ -411,7 +443,7 @@ the place to put the controller logic. Place these items under a source
 directory that is named src (see figure below).
 
 ![directorystructure](https://cloud.githubusercontent.com/assets/19173079/24822675/86a7084a-1bbc-11e7-9567-4fc6cea7a939.jpg)
-
+{: caption="Figure 17. Source code structure for your app" caption-side="top"}
 
 **Tip**: The repo you cloned in earlier contains a directory named
 COS-WebGalleryEnd. Viewing the source code in your preferred editor
@@ -437,7 +469,7 @@ app.
 
 Look at the main application file, which is app.js. This is the code
 that we have told Node.js to process first when you start your app with
-the npm start command (or nodemon). In the package.json file, inside the
+the npm start command (or nodemon). In the `package.json` file, inside the
 scripts object, you see how "start" is defined (Example 5-10). This file
 is what {{site.data.keyword.cloud_notm}} Platform uses to tell node to run app.js each time the app
 starts. Also use it when testing the app locally.
@@ -446,10 +478,11 @@ starts. Also use it when testing the app locally.
 ```
 ...
 "scripts": {
-"start": "node app.js"
+  "start": "node app.js"
 },
 ...
 ```
+{: caption="Example 13. Telling your app how to bootstrap your custom code" caption-side="top"}
 
 The following example shows the beginnings for the application in app.js.
 Lines 1 - 3 tell the node to load modules that are need to get started.
@@ -472,8 +505,9 @@ app.listen(port, function() {
 });
 ...
 ```
+{: caption="Example 14. Your Web Application has a humble, but powerful, start" caption-side="top"}
 
-The next example shows how to define a path and views. Line 7 tells the
+The next example shows how to define a path and views. The first line of code in Example 15 tells the
 express app to use the public directory to serve our static files, which
 include any static images and style sheets we use. Lines 8 - 9 tells the
 express app where to find the view templates for our views in the
@@ -499,21 +533,21 @@ app.get('/', function (req, res) {
 
 ...
 ```
-
+{: caption="Example 15. Web app views and template locations" caption-side="top"}
 
 The following figure shows what the index view template when rendered
 and sent to the browser. If you are using `nodemon` you may have noticed 
 that your browser refreshed when you saved your changes.
 
 ![uploadimageview](https://cloud.githubusercontent.com/assets/19173079/24822932/f087e44e-1bbe-11e7-9349-93ff489eeb36.jpg)
-
+{: caption="Figure 18. Your updated web app using templates and views for displays" caption-side="top"}
 
 In the next example, our view templates share HTML code between the
 &lt;head&gt;...&lt;/head&gt; tags, so we placed it into a separate
 include template (see figure below). This template (head-inc.ejs)
-contains a scriptlet for the page title on line 1. The title variable is
-being set in app.js on line 12, and passed in as data for our view
-template on line 15. Otherwise, we are simply using some CDN addresses
+contains a scriptlet&mdash;a binding for a JavaScript variable&mdash;for the page title on line 1. 
+The `title` variable is set in `app.js`, and passed in as data for our view
+template in the line below that. Otherwise, we are simply using some CDN addresses
 to pull in Bootstrap CSS, Bootstrap JavaScript, and JQuery. We use a
 static styles.css file from our pubic/style sheets directory.
 
@@ -538,6 +572,7 @@ static styles.css file from our pubic/style sheets directory.
 <link rel="stylesheet" href="stylesheets/style.css">
 
 ```
+{: caption="Example 16. HTML elements from head-inc.ejs" caption-side="top"}
 
 The body of the index view (see example below), contains our bootstrap
 styled navigation tabs, and our upload form in a basic bootstrap.
@@ -596,6 +631,8 @@ Consider these two notes:
 
 </html>
 ```
+{: caption="Example 17. HTML elements from index.ejs" caption-side="top"}
+
 The following example returns to `app.js`. Lines 18 - 19 sets up express
 routes to handle additional requests that will be made to our app. The
 code for these routing methods will be in two files under the `./src/routes`
@@ -617,6 +654,7 @@ app.use('/', imageUploadRoutes);
 
 ...
 ```
+{: caption="Example 18. Node Express router examples" caption-side="top"}
 
 #### Image upload
 {: #tutorial-develop-image-upload}
@@ -668,6 +706,7 @@ var router = function(title) {
 
 module.exports = router;
 ```
+{: caption="Example 19. Node express router details" caption-side="top"}
 
 In comparison, the code for the galleryRouter is a model of simplicity. We follow the same pattern
 that we did with imageUploadRouter and require galleryController on
@@ -693,6 +732,7 @@ var router = function(title) {
 module.exports = router;
 
 ```
+{: caption="Example 20. Node express router details" caption-side="top"}
 
 We next turn our attention to the controller for the gallery.
 
@@ -724,6 +764,7 @@ var galleryController = function(title) {
                 cb(null, {fieldName: file.fieldname});
             },
             key: function (req, file, cb) {
+                console.log(file);
                 cb(null, file.originalname);
             }
         })
@@ -741,6 +782,7 @@ var galleryController = function(title) {
 
 module.exports = galleryController;
 ```
+{: caption="Example 21. Node express controller details" caption-side="top"}
 
 We define upload used by imageUploadRouter on the line after the  by creating a new
 `multer` instance with a storage property on the fourth line of the example. This property tells
@@ -767,11 +809,13 @@ originalname: 'Chrysanthemum.jpg',
 encoding: '7bit',
 mimetype: 'image/jpeg' }
 ```
+{: caption="Example 22. Console display of debug object" caption-side="top"}
 
 The following figure shows that feedback from our callback saying it was
 a successful upload.
 
 ![localtest1](https://cloud.githubusercontent.com/assets/19173079/24823021/cf3704cc-1bbf-11e7-8190-932e99cded91.jpg)
+{: caption="Figure 19. Success!" caption-side="top"}
 
 #### Image retrieval and display
 {: #tutorial-develop-image-display}
@@ -779,9 +823,6 @@ a successful upload.
 The following figure refers to app.js. Line 19 creates galleryRouter,
 and tells express to use it when the “/gallery” route is requested. Look
 at the galleryRoutes.js file that is used to define galleryRouter.
-
-![app_3](https://cloud.githubusercontent.com/assets/19173079/24822769/5ed0c49a-1bbd-11e7-9d48-39c68428314d.jpg)
-
 
 Referring to galleryController.js (see the following example), we define the
 getGalleryImages function, the signature of which we have seen previously. Using the same `s3`
@@ -825,6 +866,7 @@ in an array, and pass it res.render as imageUrls.
 
 ...
 ```
+{: caption="Example 23. Partial contents of galleryController.js" caption-side="top"}
 
 The following figure shows the galleryView EJS template body with the code 
 needed to display the images. We get the imageUrls array from the res.render() 
@@ -862,12 +904,13 @@ is requested.
 
 </html>
 ```
+{: caption="Example 24. Loop and output scriptlets used in the gallery template" caption-side="top"}
 
 We test it locally from http://localhost:3000/gallery and see our image
 in the following figure.
 
 ![localtest2](https://cloud.githubusercontent.com/assets/19173079/24822869/5310d658-1bbe-11e7-80fc-7a725314f7f5.jpg)
-
+{: caption="Figure 20. Images uploaded to the bucket are on display" caption-side="top"}
 
 ## Committing to Git
 {: #tutorial-develop-commit}
@@ -876,11 +919,15 @@ in the following figure.
 Now that the basic features of the app are working, we will commit our code
 to our local repo, and then push it to GitHub. Using GitHub Desktop, we
 click Changes (see first figure below), type a summary of the changes in
-the Summary field, and then click Commit to Local-dev. When we click
+the Summary field, and then click Commit to Local-dev. 
+
+![commitupdates](https://cloud.githubusercontent.com/assets/19173079/24822835/0a6cdd66-1bbe-11e7-89ee-d57b8d64d4db.jpg)
+{: caption="Figure 21. Changes ready for commit in Git" caption-side="top"}
+
+When we click
 Sync, our commit is sent to the remote Local-dev branch that we
 published to GitHub, and this action starts the Build Stage followed by
 the Deploy Stage in our Delivery Pipeline
 
-![commitupdates](https://cloud.githubusercontent.com/assets/19173079/24822835/0a6cdd66-1bbe-11e7-89ee-d57b8d64d4db.jpg)
-
 ![pipeline_triggled_aftersync](https://cloud.githubusercontent.com/assets/19173079/24822828/f29efe26-1bbd-11e7-8b9a-c472ea03ee2b.jpg)
+{: caption="Figure 22. CD Delivery Pipeline" caption-side="top"}
