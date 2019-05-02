@@ -140,7 +140,7 @@ Follow these steps:
 ```
 git clone https://github.com/IBMRedbooks/IBMRedbooks-SG248385-Cloud-Object-Storage-as-a-Service.git
 ```
-{: caption="Example 1. Git clone command details" caption-side="top"}
+{: caption="Example 1. Git clone command details" caption-side="bottom"}
 
 2.  Run the app locally. Open a terminal application providing a CLI and change your working directory to
     the COS-WebGalleryStart directory. Please note the Node.js dependencies
@@ -150,14 +150,14 @@ git clone https://github.com/IBMRedbooks/IBMRedbooks-SG248385-Cloud-Object-Stora
 ```
 npm install
 ```
-{: caption="Example 2. Node Package Manager (npm) install" caption-side="top"}
+{: caption="Example 2. Node Package Manager (npm) install" caption-side="bottom"}
 
 Run the app using the command shown in the following example.
 
 ```
 npm start
 ```
-{: caption="Example 3. Details on starting your app with npm" caption-side="top"}
+{: caption="Example 3. Details on starting your app with npm" caption-side="bottom"}
 
 Open a browser and view your app on the address and port that is output
 to the console, <http://localhost:3000>.
@@ -185,7 +185,7 @@ random-route: true
 
 memory: 256M
 ```
-{: caption="Example 4. Contents of `manifest.yml`" caption-side="top"}
+{: caption="Example 4. Contents of `manifest.yml`" caption-side="bottom"}
 
 
 4.  Deploy the app to {{site.data.keyword.cloud_notm}} Platform. To get the starter app with your changes
@@ -199,7 +199,7 @@ a.  Log in to {{site.data.keyword.cloud_notm}} Platform by using the login comma
 ```
 ibmcloud login
 ```
-{: caption="Example 5. CLI command for logging into {{site.data.keyword.cloud_notm}} Platform" caption-side="top"}
+{: caption="Example 5. CLI command for logging into {{site.data.keyword.cloud_notm}} Platform" caption-side="bottom"}
 
 b.  Set the API Endpoint for your region by using the api command (as
         shown in the following example). if you do not know your regional
@@ -209,7 +209,7 @@ b.  Set the API Endpoint for your region by using the api command (as
 ```
 ibmcloud api <cloud.ibm.com|api.ng.bluemix.net|other.endpoint.uri>
 ```
-{: caption="Example 6. {{site.data.keyword.cloud_notm}} Platform API endpoint" caption-side="top"}
+{: caption="Example 6. {{site.data.keyword.cloud_notm}} Platform API endpoint" caption-side="bottom"}
 
 c.  Target the Cloud Foundry aspect of {{site.data.keyword.cloud_notm}} Platform, using the target command and the cf option.
 
@@ -217,7 +217,7 @@ c.  Target the Cloud Foundry aspect of {{site.data.keyword.cloud_notm}} Platform
 ```
 ibmcloud target cf
 ```
-{: caption="Example 7. {{site.data.keyword.cloud_notm}} Platform CLI targeting Cloud Foundry" caption-side="top"}
+{: caption="Example 7. {{site.data.keyword.cloud_notm}} Platform CLI targeting Cloud Foundry" caption-side="bottom"}
 
 d.  Your directory will be home to a new application when you use the enable command. 
 Using the `dev` space of your organization this way, allows you to silo your applications.
@@ -227,7 +227,7 @@ Answer the generated questions about your project after typing the following com
 ```
 ibmcloud dev enable
 ```
-{: caption="Example 8. {{site.data.keyword.cloud_notm}} Platform CLI to define an app" caption-side="top"}
+{: caption="Example 8. {{site.data.keyword.cloud_notm}} Platform CLI to define an app" caption-side="bottom"}
 
 f.  The previous command created entries based on your answers to define an app in the {{site.data.keyword.cloud_notm}} Platform. 
 Build the app for delivery that application with the build command (as shown in the
@@ -237,7 +237,7 @@ Build the app for delivery that application with the build command (as shown in 
 ```
 ibmcloud dev build
 ```
-{: caption="Example 9. {{site.data.keyword.cloud_notm}} Platform build command" caption-side="top"}
+{: caption="Example 9. {{site.data.keyword.cloud_notm}} Platform build command" caption-side="bottom"}
 
 g.  In addition to building the app for delivery, building the app allows you to run the same code locally with the run command (after you type the
     command shown here).
@@ -246,7 +246,7 @@ g.  In addition to building the app for delivery, building the app allows you to
 ```
 ibmcloud dev run 
 ```
-{: caption="Example 10. {{site.data.keyword.cloud_notm}} Platform CLI command to run your app" caption-side="top"}
+{: caption="Example 10. {{site.data.keyword.cloud_notm}} Platform CLI command to run your app" caption-side="bottom"}
 
 h.  Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the deploy command (as shown in the
     following example).
@@ -254,7 +254,7 @@ h.  Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the deploy 
 ```
 ibmcloud dev deploy
 ```
-{: caption="Example 11. {{site.data.keyword.cloud_notm}} Platform CLI command to upload and deploys" caption-side="top"}
+{: caption="Example 11. {{site.data.keyword.cloud_notm}} Platform CLI command to upload and deploys" caption-side="bottom"}
 
 The example below shows the commands we used to deploy the COS-WebGallery app.
 
@@ -267,7 +267,7 @@ ibmcloud dev build
 ibmcloud dev run
 ibmcloud dev deploy
 ```
-{: caption="Example 12. {{site.data.keyword.cloud_notm}} Platform CLI command list" caption-side="top"}
+{: caption="Example 12. {{site.data.keyword.cloud_notm}} Platform CLI command list" caption-side="bottom"}
 
 If successful, {{site.data.keyword.cloud_notm}} Platform reports that the app was uploaded,
 successfully deployed, and started. If you are also logged in to the {{site.data.keyword.cloud_notm}} Platform
@@ -408,7 +408,7 @@ aws\_access\_key\_id = {access_key_id}
 
 aws\_secret\_access\_key = {secret_access_key}
 ```
-{: caption="Example 12. Credentials as they are defined in your `~/.aws/credentials` file" caption-side="top"}
+{: caption="Example 12. Credentials as they are defined in your `~/.aws/credentials` file" caption-side="bottom"}
 
 2.  In the web page for the application you created using the CLI command on the {{site.data.keyword.cloud_notm}} Platform, 
     define your required credentials per as environment variables per development best practices by
@@ -482,7 +482,7 @@ starts. Also use it when testing the app locally.
 },
 ...
 ```
-{: caption="Example 13. Telling your app how to bootstrap your custom code" caption-side="top"}
+{: caption="Example 13. Telling your app how to bootstrap your custom code" caption-side="bottom"}
 
 The following example shows the beginnings for the application in app.js.
 Lines 1 - 3 tell the node to load modules that are need to get started.
@@ -505,7 +505,7 @@ app.listen(port, function() {
 });
 ...
 ```
-{: caption="Example 14. Your Web Application has a humble, but powerful, start" caption-side="top"}
+{: caption="Example 14. Your Web Application has a humble, but powerful, start" caption-side="bottom"}
 
 The next example shows how to define a path and views. The first line of code in Example 15 tells the
 express app to use the public directory to serve our static files, which
@@ -533,7 +533,7 @@ app.get('/', function (req, res) {
 
 ...
 ```
-{: caption="Example 15. Web app views and template locations" caption-side="top"}
+{: caption="Example 15. Web app views and template locations" caption-side="bottom"}
 
 The following figure shows what the index view template when rendered
 and sent to the browser. If you are using `nodemon` you may have noticed 
@@ -572,7 +572,7 @@ static styles.css file from our pubic/style sheets directory.
 <link rel="stylesheet" href="stylesheets/style.css">
 
 ```
-{: caption="Example 16. HTML elements from head-inc.ejs" caption-side="top"}
+{: caption="Example 16. HTML elements from head-inc.ejs" caption-side="bottom"}
 
 The body of the index view (see example below), contains our bootstrap
 styled navigation tabs, and our upload form in a basic bootstrap.
@@ -631,7 +631,7 @@ Consider these two notes:
 
 </html>
 ```
-{: caption="Example 17. HTML elements from index.ejs" caption-side="top"}
+{: caption="Example 17. HTML elements from index.ejs" caption-side="bottom"}
 
 The following example returns to `app.js`. Lines 18 - 19 sets up express
 routes to handle additional requests that will be made to our app. The
@@ -654,7 +654,7 @@ app.use('/', imageUploadRoutes);
 
 ...
 ```
-{: caption="Example 18. Node Express router examples" caption-side="top"}
+{: caption="Example 18. Node Express router examples" caption-side="bottom"}
 
 #### Image upload
 {: #tutorial-develop-image-upload}
@@ -706,7 +706,7 @@ var router = function(title) {
 
 module.exports = router;
 ```
-{: caption="Example 19. Node express router details" caption-side="top"}
+{: caption="Example 19. Node express router details" caption-side="bottom"}
 
 In comparison, the code for the galleryRouter is a model of simplicity. We follow the same pattern
 that we did with imageUploadRouter and require galleryController on
@@ -732,7 +732,7 @@ var router = function(title) {
 module.exports = router;
 
 ```
-{: caption="Example 20. Node express router details" caption-side="top"}
+{: caption="Example 20. Node express router details" caption-side="bottom"}
 
 We next turn our attention to the controller for the gallery.
 
@@ -782,7 +782,7 @@ var galleryController = function(title) {
 
 module.exports = galleryController;
 ```
-{: caption="Example 21. Node express controller details" caption-side="top"}
+{: caption="Example 21. Node express controller details" caption-side="bottom"}
 
 We define upload used by imageUploadRouter on the line after the  by creating a new
 `multer` instance with a storage property on the fourth line of the example. This property tells
@@ -809,7 +809,7 @@ originalname: 'Chrysanthemum.jpg',
 encoding: '7bit',
 mimetype: 'image/jpeg' }
 ```
-{: caption="Example 22. Console display of debug object" caption-side="top"}
+{: caption="Example 22. Console display of debug object" caption-side="bottom"}
 
 The following figure shows that feedback from our callback saying it was
 a successful upload.
@@ -866,7 +866,7 @@ in an array, and pass it res.render as imageUrls.
 
 ...
 ```
-{: caption="Example 23. Partial contents of galleryController.js" caption-side="top"}
+{: caption="Example 23. Partial contents of galleryController.js" caption-side="bottom"}
 
 The following figure shows the galleryView EJS template body with the code 
 needed to display the images. We get the imageUrls array from the res.render() 
@@ -904,7 +904,7 @@ is requested.
 
 </html>
 ```
-{: caption="Example 24. Loop and output scriptlets used in the gallery template" caption-side="top"}
+{: caption="Example 24. Loop and output scriptlets used in the gallery template" caption-side="bottom"}
 
 We test it locally from http://localhost:3000/gallery and see our image
 in the following figure.
