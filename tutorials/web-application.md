@@ -451,16 +451,29 @@ starts. Also use it when testing the app locally.
 ...
 ```
 
-The following figure shows the beginnings for the application in app.js.
+The following example shows the beginnings for the application in app.js.
 Lines 1 - 3 tell the node to load modules that are need to get started.
 Line 4 creates the express app by using the express module. Line 25 gets
 the Cloud Foundry environment object. Lines 28 - 32 tell the express app
 to listen on the port that is assigned to the port property. We print a
 message with the server URL to the console.
 
-![app_1](https://cloud.githubusercontent.com/assets/19173079/24822730/1bb0fc0c-1bbd-11e7-9d61-95478757dcb8.jpg)
+```
+var express = require('express');
+var cfenv = require('cfenv');
+var bodyParser = require('body-parser');
+var app = express();
+...
 
-The next figure shows how to define a path and views. Line 7 tells the
+// start server on the specified port and binding host
+var port = process.env.PORT || 3000;
+app.listen(port, function() {
+    console.log("To view your app, open this link in your browser: http://localhost:" + port);
+});
+...
+```
+
+The next example shows how to define a path and views. Line 7 tells the
 express app to use the public directory to serve our static files, which
 include any static images and style sheets we use. Lines 8 - 9 tells the
 express app where to find the view templates for our views in the
@@ -470,16 +483,32 @@ data to the app as JSON. In lines 12 - 16, the express app responds to
 all incoming GET requests to our app URL by rendering the index.ejs view
 template.
 
-![app_2](https://cloud.githubusercontent.com/assets/19173079/24822753/488a863a-1bbd-11e7-9fe9-ee376e8fe2e4.jpg)
+```
+...
+// serve the files out of ./public as our main files
+app.use(express.static('public'));
+app.set('views', './src/views');
+app.set('view engine', 'ejs');
+app.use(bodyParser.json());
+
+var title = 'COS Image Gallery Web Application';
+// Serve index.ejs
+app.get('/', function (req, res) {
+  res.render('index', {status: '', title: title});
+});
+
+...
+```
 
 
 The following figure shows what the index view template when rendered
-and sent to the browser.
+and sent to the browser. If you are using `nodemon` you may have noticed 
+that your browser refreshed when you saved your changes.
 
 ![uploadimageview](https://cloud.githubusercontent.com/assets/19173079/24822932/f087e44e-1bbe-11e7-9349-93ff489eeb36.jpg)
 
 
-In this example, our view templates share HTML code between the
+In the next example, our view templates share HTML code between the
 &lt;head&gt;...&lt;/head&gt; tags, so we placed it into a separate
 include template (see figure below). This template (head-inc.ejs)
 contains a scriptlet for the page title on line 1. The title variable is
@@ -488,10 +517,29 @@ template on line 15. Otherwise, we are simply using some CDN addresses
 to pull in Bootstrap CSS, Bootstrap JavaScript, and JQuery. We use a
 static styles.css file from our pubic/style sheets directory.
 
-![view_head-inc](https://cloud.githubusercontent.com/assets/19173079/24822956/18ec3ec6-1bbf-11e7-9240-3f5a913c1320.jpg)
+```
+<title><%=title%></title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous">
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous">
+</script>
 
+<link rel="stylesheet" href="stylesheets/style.css">
 
-The body of the index view (see figure below), contains our bootstrap
+```
+
+The body of the index view (see example below), contains our bootstrap
 styled navigation tabs, and our upload form in a basic bootstrap.
 Consider these two notes:
 
@@ -506,12 +554,52 @@ Consider these two notes:
     variable named "status", and is displayed below the upload form on
     line 31.
 
-![view_index-body](https://cloud.githubusercontent.com/assets/19173079/24822803/ae19fbd4-1bbd-11e7-8712-a720050cc3a6.jpg)
+```
+<!DOCTYPE html>
+<html>
 
-The following figure returns to `app.js`. Lines 18 - 19 sets up express
+<head>
+    <%- include('head-inc'); %>
+</head>
+
+<body>
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="/">Home</a></li>
+    <li role="presentation"><a href="/gallery">Gallery</a></li>
+</ul>
+<div class="container">
+    <h2>Upload Image to IBM Cloud Object Storage</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container" style="margin-top: 20px;">
+                <div class="row">
+
+                    <div class="col-lg-8 col-md-8 well">
+
+                        <p class="wellText">Upload your JPG image file here</p>
+
+                        <form method="post" enctype="multipart/form-data" action="/">
+                            <p><input class="wellText" type="file" size="100px" name="img-file" /></p>
+                            <br/>
+                            <p><input class="btn btn-danger" type="submit" value="Upload" /></p>
+                        </form>
+
+                        <br/>
+                        <span class="notice"><%=status%></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
+```
+The following example returns to `app.js`. Lines 18 - 19 sets up express
 routes to handle additional requests that will be made to our app. The
-code for these routers will be in two files under the `./src/routes`
-directory:
+code for these routing methods will be in two files under the `./src/routes`
+directory in your project:
 
 -   imageUploadRoutes.js: This file handles what happens when the user
     selects an image and clicks Upload.
@@ -519,13 +607,21 @@ directory:
 -   galleryRoutes.js: This file handles requests when the user clicks
     the Gallery tab to request the imageGallery view.
 
-![app_3](https://cloud.githubusercontent.com/assets/19173079/24822769/5ed0c49a-1bbd-11e7-9d48-39c68428314d.jpg)
+```
+...
+var imageUploadRoutes = require('./src/routes/imageUploadRoutes')(title);
+var galleryRouter = require('./src/routes/galleryRoutes')(title);
 
+app.use('/gallery', galleryRouter);
+app.use('/', imageUploadRoutes);
+
+...
+```
 
 #### Image upload
 {: #tutorial-develop-image-upload}
 
-See the code from imageUploadRoutes.js in the figure. We must create an instance
+See the code from imageUploadRoutes.js in the example. We must create an instance
 of a new express router and name it imageUploadRouter in lines 1 - 2.
 Then, on line 5, we create a function that returns imageUploadRouter,
 and assign it to a variable called "router". We export the function in
@@ -545,32 +641,121 @@ we had at least one file in our request object to upload. Based on those
 conditions, we set the feedback in our status variable and render the
 index view template with the new status.
 
-![imguploadrouter](https://cloud.githubusercontent.com/assets/19173079/24822982/6d0aac40-1bbf-11e7-9bb5-7dd0a4fb52bc.jpg)
+``` 
+var express = require('express');
+var imageUploadRoutes = express.Router();
+var status = '';
 
-Look at how we set up the `multer` upload in the following figure. We
-require modules `aws-sdk`, `multer`, and `multer-s3`. Lines 6 - 7 show how to
+var router = function(title) {
+
+    var galleryController =
+        require('../controllers/galleryController')(title);
+
+    imageUploadRoutes.route('/')
+    	.post(
+    		galleryController.upload.array('img-file', 1), function (req, res, next) {
+                if(res.statusCode===200 && req.files.length > 0) {
+                    status = 'uploaded file successfully';
+                }
+                else {
+                    status = 'upload failed';
+                }
+                res.render('index', {status: status, title: title});
+            });
+
+    return imageUploadRoutes;
+};
+
+module.exports = router;
+```
+
+In comparison, the code for the galleryRouter is a model of simplicity. We follow the same pattern
+that we did with imageUploadRouter and require galleryController on
+lines 6 - 7, then set up our route on line 9. The main difference is we
+are routing HTTP GET requests rather than POST, and sending all the
+output in the response from getGalleryImages, which is exposed by the
+galleryController on line 10.
+
+``` 
+var express = require('express');
+var galleryRouter = express.Router();
+
+var router = function(title) {
+
+    var galleryController =
+        require('../controllers/galleryController')(title);
+
+    galleryRouter.route('/')
+        .get(galleryController.getGalleryImages);
+
+    return galleryRouter;
+};
+module.exports = router;
+
+```
+
+We next turn our attention to the controller for the gallery.
+
+Please note how we set up the `multer` upload in the following example, 
+(which truncates some code we'll ignore for now). We
+require modules `ibm-cos-sdk`, `multer`, and `multer-s3`. Lines 6 - 7 show how to
 configure an S3 object that points to an {{site.data.keyword.cos_short}} server endpoint. We are
 statically setting values such as the endpoint address, region, and
 bucket for simplicity, but they could easily be referenced from an
 environment variable or JSON configuration file.
 
-![gallerycontroller](https://cloud.githubusercontent.com/assets/19173079/24822999/95634fda-1bbf-11e7-9414-c95b4e15eeb2.jpg)
+```
+var galleryController = function(title) {
 
+    var aws = require('ibm-cos-sdk');
+    var multer = require('multer');
+    var multerS3 = require('multer-s3');
+    
+    var ep = new aws.Endpoint('s3.us-south.cloud-object-storage.appdomain.cloud');
+    var s3 = new aws.S3({endpoint: ep, region: 'us-south-1'});
+    var myBucket = 'web-images';
 
-We define upload used by imageUploadRouter on line 11 by creating a new
-`multer` instance with a storage property on line 12. This property tells
-`multer` where to send the file from our multipart/form-data. Since IBM
-COS uses an implementation of the S3 API, we set storage to be an
-`s3-multer` object. This `s3-multer` object contains an s3 property that we
-have assigned to our s3 object from line 7, and a bucket property that
+    var upload = multer({
+        storage: multerS3({
+            s3: s3,
+            bucket: myBucket,
+            acl: 'public-read',
+            metadata: function (req, file, cb) {
+                cb(null, {fieldName: file.fieldname});
+            },
+            key: function (req, file, cb) {
+                cb(null, file.originalname);
+            }
+        })
+    });
+    
+    var imageUrlList = [];
+    
+    var getGalleryImages = function (req, res) { ... };
+
+    return {
+        getGalleryImages: getGalleryImages,
+        upload: upload
+    };
+};
+
+module.exports = galleryController;
+```
+
+We define upload used by imageUploadRouter on the line after the  by creating a new
+`multer` instance with a storage property on the fourth line of the example. This property tells
+`multer` where to send the file from our multipart/form-data. Since the {{site.data.keyword.cloud_notm}} 
+Platform uses an implementation of the S3 API, we set storage to be an
+`s3-multer` object. This `s3-multer` object contains an `s3` property that we
+have assigned to our `s3` object from line 7, and a bucket property that
 we have assigned the myBucket variable from line 8, which is assigned a
-value of “web-images”. The s3-multer object now has all the data
+value of “web-images”. The `s3-multer` object now has all the data
 necessary to connect and upload files to our {{site.data.keyword.cos_short}} bucket when it
 receives data from the upload form. The name or key of the uploaded
 object will be the original file name taken from the file object when it
 is stored in our {{site.data.keyword.cos_short}} “web-images” bucket 
 (TIP: use a timestamp as the filename for 
-maintinaing filename uniqueness. For local testing, a
+maintinaing filename uniqueness). For local testing, a
 helpful task is to print the file object to the console, on line 17.
 
 We perform a local test of the Upload form and the output from the
@@ -597,23 +782,11 @@ at the galleryRoutes.js file that is used to define galleryRouter.
 
 ![app_3](https://cloud.githubusercontent.com/assets/19173079/24822769/5ed0c49a-1bbd-11e7-9d48-39c68428314d.jpg)
 
-1.  Defining which router to use for each path
 
-The next figure shows galleryRoutes.js where we define the express
-router assigned to galleryRouter on line 2. We follow the same pattern
-that we did with imageUploadRouter and require galleryController on
-lines 6 - 7, then set up our route on line 9. The main difference is we
-are routing HTTP GET requests rather than POST, and sending all the
-output in the response from getGalleryImages, which is exposed by the
-galleryController on line 10.
-
-![galleryroutes](https://cloud.githubusercontent.com/assets/19173079/24823054/08cceb0c-1bc0-11e7-9853-ece1cfd12bee.jpg)
-
-
-Referring to galleryController.js (see the following figure), we define the
-getGalleryImages function we just saw on line 22. Using the same S3
-object that we set up for our image upload function, we call a function
-that named listObjectsV2 on line 26. This function returns the data comprising each of the
+Referring to galleryController.js (see the following example), we define the
+getGalleryImages function, the signature of which we have seen previously. Using the same `s3`
+object that we set up for our image upload function, we call a function named 
+listObjectsV2 on line 26. This function returns the data comprising each of the
 objects in our bucket. To display images within HTML, we need an image URL for each
 JPEG image in our web-images bucket to display in our view template. The
 content on line 28 is an array map from the data object returned by
@@ -624,17 +797,71 @@ function returns a signed URL for any object when we pass it the
 object’s bucket name and key. In the callback function we save each URL
 in an array, and pass it res.render as imageUrls.
 
-![gallerycontroller_getimages](https://cloud.githubusercontent.com/assets/19173079/24823067/28139b46-1bc0-11e7-8cc2-e202b51c4603.jpg)
+```
+...
+    var imageUrlList = [];
+    
+    var getGalleryImages = function (req, res) {
+        var params = {Bucket: myBucket};
+        s3.listObjectsV2(params, function (err, data) {
+            if(data) {
+                var bucketContents = data.Contents;
+                for (var i = 0; i < bucketContents.length; i++) {
+                		console.log(bucketContents[i].Key);
+                    if (bucketContents[i].Key.search(/.jpg/i) > -1) {
+                        var urlParams = {Bucket: myBucket, Key: bucketContents[i].Key};
+                        s3.getSignedUrl('getObject', urlParams, function (err, url) {
+                            imageUrlList.push(url);
+                        });
+                    }
+                }
+            }
+            res.render('galleryView', {
+                title: title,
+                imageUrls: imageUrlList
+            });
+        });
+    };
 
-1.  Retrieve the .jpg image URLs from {{site.data.keyword.cos_full_notm}}
+...
+```
 
-The following figure shows the galleryView EJS template body. We get the
-imageUrls array from the res.render() method and iterate over a pair of
-nested &lt;div&gt;&lt;/div&gt; tags where the image URL will make a GET
-request for the image when the /gallery route is requested.
+The following figure shows the galleryView EJS template body with the code 
+needed to display the images. We get the imageUrls array from the res.render() 
+method and iterate over a pair of nested &lt;div&gt;&lt;/div&gt; tags where 
+the image URL will make a GET request for the image when the /gallery route 
+is requested.
 
-![galleryview](https://cloud.githubusercontent.com/assets/19173079/24822878/6baf3a38-1bbe-11e7-8063-100e63480c02.jpg)
+``` 
+<!DOCTYPE html>
+<html>
 
+<head>
+    <%- include('head-inc'); %>
+</head>
+
+<body>
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a href="/">Home</a></li>
+        <li role="presentation" class="active"><a href="/gallery">Gallery</a></li>
+    </ul>
+    <div class="container">
+        <h2>IBM COS Image Gallery</h2>
+
+        <div class="row">
+            <% for (var i=0; i < imageUrls.length; i++) { %>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                            <img src="<%=imageUrls[i]%>" alt="Lights" style="width:100%">
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</body>
+
+</html>
+```
 
 We test it locally from http://localhost:3000/gallery and see our image
 in the following figure.
