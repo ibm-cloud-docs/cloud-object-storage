@@ -508,9 +508,9 @@ Consider these two notes:
 
 ![view_index-body](https://cloud.githubusercontent.com/assets/19173079/24822803/ae19fbd4-1bbd-11e7-8712-a720050cc3a6.jpg)
 
-The following figure returns to app.js. Lines 18 - 19 sets up express
+The following figure returns to `app.js`. Lines 18 - 19 sets up express
 routes to handle additional requests that will be made to our app. The
-code for these routers will be in two files under the ./src/routes
+code for these routers will be in two files under the `./src/routes`
 directory:
 
 -   imageUploadRoutes.js: This file handles what happens when the user
@@ -547,8 +547,8 @@ index view template with the new status.
 
 ![imguploadrouter](https://cloud.githubusercontent.com/assets/19173079/24822982/6d0aac40-1bbf-11e7-9bb5-7dd0a4fb52bc.jpg)
 
-Look at how we set up the multer upload in the following figure. We
-require modules aws-sdk, multer, and multer-s3. Lines 6 - 7 show how to
+Look at how we set up the `multer` upload in the following figure. We
+require modules `aws-sdk`, `multer`, and `multer-s3`. Lines 6 - 7 show how to
 configure an S3 object that points to an {{site.data.keyword.cos_short}} server endpoint. We are
 statically setting values such as the endpoint address, region, and
 bucket for simplicity, but they could easily be referenced from an
@@ -558,17 +558,19 @@ environment variable or JSON configuration file.
 
 
 We define upload used by imageUploadRouter on line 11 by creating a new
-multer instance with a storage property on line 12. This property tells
-multer where to send the file from our multipart/form-data. Since IBM
+`multer` instance with a storage property on line 12. This property tells
+`multer` where to send the file from our multipart/form-data. Since IBM
 COS uses an implementation of the S3 API, we set storage to be an
-s3-multer object. This s3-multer object contains an s3 property that we
+`s3-multer` object. This `s3-multer` object contains an s3 property that we
 have assigned to our s3 object from line 7, and a bucket property that
 we have assigned the myBucket variable from line 8, which is assigned a
 value of “web-images”. The s3-multer object now has all the data
 necessary to connect and upload files to our {{site.data.keyword.cos_short}} bucket when it
 receives data from the upload form. The name or key of the uploaded
 object will be the original file name taken from the file object when it
-is stored in our {{site.data.keyword.cos_short}} “web-images” bucket. For local testing, a
+is stored in our {{site.data.keyword.cos_short}} “web-images” bucket 
+(TIP: use a timestamp as the filename for 
+maintinaing filename uniqueness. For local testing, a
 helpful task is to print the file object to the console, on line 17.
 
 We perform a local test of the Upload form and the output from the
@@ -608,15 +610,15 @@ galleryController on line 10.
 ![galleryroutes](https://cloud.githubusercontent.com/assets/19173079/24823054/08cceb0c-1bc0-11e7-9853-ece1cfd12bee.jpg)
 
 
-Referring to galleryController.js (see figure below), we define the
+Referring to galleryController.js (see the following figure), we define the
 getGalleryImages function we just saw on line 22. Using the same S3
 object that we set up for our image upload function, we call a function
-that named listObjectsV2 on line 26. This function returns data of the
-objects in our bucket. To display images, we need an image URL for each
+that named listObjectsV2 on line 26. This function returns the data comprising each of the
+objects in our bucket. To display images within HTML, we need an image URL for each
 JPEG image in our web-images bucket to display in our view template. The
 content on line 28 is an array map from the data object returned by
 listObjectsV2 containing metadata about each object in our bucket. We
-loop the content and search for any object key ending in .jpg, and
+loop the content and search for any object key ending in ".jpg," and
 create a parameter to pass to the S3 getSignedUrl function. This
 function returns a signed URL for any object when we pass it the
 object’s bucket name and key. In the callback function we save each URL
@@ -644,8 +646,8 @@ in the following figure.
 {: #tutorial-develop-commit}
 
 
-Now that the basic features of the app are working, we commit our code
-to our local repo, and push it to GitHub. Back in GitHub Desktop, we
+Now that the basic features of the app are working, we will commit our code
+to our local repo, and then push it to GitHub. Using GitHub Desktop, we
 click Changes (see first figure below), type a summary of the changes in
 the Summary field, and then click Commit to Local-dev. When we click
 Sync, our commit is sent to the remote Local-dev branch that we
