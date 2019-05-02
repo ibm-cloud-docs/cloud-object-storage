@@ -70,11 +70,10 @@ Go to the [Github Desktop](https://desktop.github.com/) page to download
 GitHub Desktop, and then run the installer. When the installer finishes,
 you are prompted to log in to GitHub with your account.
 
-In the Log in window (see figure 1), enter the name and email you
+In the Log in window (see the first figure in this tutorial), enter the name and email you
 want displayed publicly (assuming you have a public account) for any
 commits to your repository.
 
-Figure 1:
 ![github_desktop_setup](https://cloud.githubusercontent.com/assets/19173079/24821330/a1c718e4-1bb3-11e7-8362-e3c6aa37bc7d.png)
 {: caption="Figure 1. Github Desktop Login window" caption-side="top"}
 
@@ -85,13 +84,12 @@ repository named Tutorial included with GitHub Desktop, feel free to experiment 
 {: #tutorial-create-app}
 
 To create a Cloud Foundry app, log in to [{{site.data.keyword.cloud_notm}} Platform](https://cloud.ibm.com/docs/runtimes/nodejs/updates.html)
-and click Create App (see figure).
+and click Create App (see the next figure).
 
 ![bluemix_create_app](https://cloud.githubusercontent.com/assets/19173079/24821420/0d9b0af8-1bb4-11e7-80e3-cd1d91d19460.jpg)
 {: caption="Figure 2. Create App on {{site.data.keyword.cloud_notm}} Platform" caption-side="top"}
 
-Then, under Cloud Foundry Apps, select SDK for Node.js (see figure
-below).
+Then, under Cloud Foundry Apps, select SDK for Node.js (see Figure 3).
 
 ![cf_app_nodejs](https://cloud.githubusercontent.com/assets/19173079/24821453/52a651ac-1bb4-11e7-923e-e59f0b89dfec.jpg)
 {: caption="Figure 3. Cloud Foundry Apps" caption-side="top"}
@@ -138,7 +136,7 @@ Follow these steps:
     repo you will find the starter app in the
     COS-WebGalleryStart directory. Open a Git CMD window and change to a
     directory where you want to clone Github repo. Use the command shown
-    in the following example.
+    in the first example.
 
 ```
 git clone https://github.com/IBMRedbooks/IBMRedbooks-SG248385-Cloud-Object-Storage-as-a-Service.git
@@ -148,14 +146,14 @@ git clone https://github.com/IBMRedbooks/IBMRedbooks-SG248385-Cloud-Object-Stora
 2.  Run the app locally. Open a terminal application providing a CLI and change your working directory to
     the COS-WebGalleryStart directory. Please note the Node.js dependencies
     listed in the package.json file. Download them into place using the command
-    shown in the following example.
+    shown in the next example.
 
 ```
 npm install
 ```
 {: caption="Example 2. Node Package Manager (npm) install" caption-side="bottom"}
 
-Run the app using the command shown in the following example.
+Run the app using the command shown in Example 3.
 
 ```
 npm start
@@ -470,10 +468,10 @@ app.
 ### Developing the app
 {: #tutorial-develop-app}
 
-Look at the main application file, which is app.js. This is the code
+Take a look at the main application file, which is called app.js. This is the code
 that we have told Node.js to process first when you start your app with
-the npm start command (or nodemon). In the `package.json` file, inside the
-scripts object, you see how "start" is defined (Example 5-10). This file
+the `npm start` command (or nodemon). In the `package.json` file, inside the
+scripts object, you see how "start" is defined (Example 13). This file
 is what {{site.data.keyword.cloud_notm}} Platform uses to tell node to run app.js each time the app
 starts. Also use it when testing the app locally.
 
@@ -487,12 +485,12 @@ starts. Also use it when testing the app locally.
 ```
 {: caption="Example 13. Telling your app how to bootstrap your custom code" caption-side="bottom"}
 
-The following example shows the beginnings for the application in app.js.
-Lines 1 - 3 tell the node to load modules that are need to get started.
-Line 4 creates the express app by using the express module. Line 25 gets
-the Cloud Foundry environment object. Lines 28 - 32 tell the express app
-to listen on the port that is assigned to the port property. We print a
-message with the server URL to the console.
+Our app.js file begins with the code shown in Example 14.
+At first, the code uses node to load modules that are needed to get started.
+The Express framework creates the app as a singleton simply called `app`. 
+The example ends (leaving out a majority of the code for now) telling the app
+to listen on the port that is assigned and an environment property, or 3000 by default. 
+When successfully launching at the start, it will print a message with the server URL to the console.
 
 ```
 var express = require('express');
@@ -510,13 +508,13 @@ app.listen(port, function() {
 ```
 {: caption="Example 14. Your Web Application has a humble, but powerful, start" caption-side="bottom"}
 
-The next example shows how to define a path and views. The first line of code in Example 15 tells the
-express app to use the public directory to serve our static files, which
-include any static images and style sheets we use. Lines 8 - 9 tells the
-express app where to find the view templates for our views in the
-src/views directory, and set our view engine to be EJS. Line 10 tells
-express to use the body-parser middleware to expose incoming request
-data to the app as JSON. In lines 12 - 16, the express app responds to
+Let's see how Example 15 shows how to define a path and views. The first line of code tells the
+Express framework to use the public directory to serve our static files, which
+include any static images and style sheets we use. The lines that follow tell the
+app where to find the templates for our views in the
+src/views directory, and set our view engine to be EJS. In addition, the framework will 
+use the body-parser middleware to expose incoming request
+data to the app as JSON. In the closing lines of the example, the express app responds to
 all incoming GET requests to our app URL by rendering the index.ejs view
 template.
 
@@ -545,13 +543,13 @@ that your browser refreshed when you saved your changes.
 ![uploadimageview](https://cloud.githubusercontent.com/assets/19173079/24822932/f087e44e-1bbe-11e7-9349-93ff489eeb36.jpg)
 {: caption="Figure 18. Your updated web app using templates and views for displays" caption-side="top"}
 
-In the next example, our view templates share HTML code between the
+In Example 16, our view templates share HTML code between the
 &lt;head&gt;...&lt;/head&gt; tags, so we placed it into a separate
 include template (see figure below). This template (head-inc.ejs)
 contains a scriptlet&mdash;a binding for a JavaScript variable&mdash;for the page title on line 1. 
 The `title` variable is set in `app.js`, and passed in as data for our view
 template in the line below that. Otherwise, we are simply using some CDN addresses
-to pull in Bootstrap CSS, Bootstrap JavaScript, and JQuery. We use a
+to pull in Bootstrap CSS, Bootstrap JavaScript, and JQuery. Finally, we add a custom 
 static styles.css file from our pubic/style sheets directory.
 
 ```
@@ -577,9 +575,11 @@ static styles.css file from our pubic/style sheets directory.
 ```
 {: caption="Example 16. HTML elements from head-inc.ejs" caption-side="bottom"}
 
-The body of the index view (see example below), contains our bootstrap
-styled navigation tabs, and our upload form in a basic bootstrap.
-Consider these two notes:
+The body of the index view contains our bootstrap
+styled navigation tabs (see Example 17), and our upload form in a basic layout provided by 
+the CSS styles included with bootstrap.
+
+Consider these two specifications for our app:
 
 -   We set our form method to POST and the form-data encoding type as
     multipart/form-data on line 24. For the form action, we send the
@@ -589,8 +589,7 @@ Consider these two notes:
 
 -   We want to display feedback about the status of the attempted file
     upload to the user. This feedback is passed to our view in a
-    variable named "status", and is displayed below the upload form on
-    line 31.
+    variable named "status", and is displayed below the upload form.
 
 ```
 <!DOCTYPE html>
@@ -636,7 +635,7 @@ Consider these two notes:
 ```
 {: caption="Example 17. HTML elements from index.ejs" caption-side="bottom"}
 
-The following example returns to `app.js`. Lines 18 - 19 sets up express
+Let's take a moment to return to `app.js` in Example 18. The example sets up Express
 routes to handle additional requests that will be made to our app. The
 code for these routing methods will be in two files under the `./src/routes`
 directory in your project:
@@ -662,24 +661,25 @@ app.use('/', imageUploadRoutes);
 #### Image upload
 {: #tutorial-develop-image-upload}
 
-See the code from imageUploadRoutes.js in the example. We must create an instance
-of a new express router and name it imageUploadRouter in lines 1 - 2.
-Then, on line 5, we create a function that returns imageUploadRouter,
-and assign it to a variable called "router". We export the function in
-"router" on line 28 to make it accessible to app.js. On line 7, we
-require a file named galleryController.js. Because some logic is
-dedicated to controlling how we upload our images, we put that logic in
-this function and save it in our ./src/controllers directory.
+See the code from imageUploadRoutes.js in Example 19. We must create an instance
+of a new express router and name it `imageUploadRoutes` at the start.
+Later, we create a function that returns `imageUploadRoutes`,
+and assign it to a variable called `router`. When completed, the function must be 
+exported as a module to make it accessible to the framework and our main code in app.js. 
+Separating our routing logic from the upload logic requires a controller file named 
+galleryController.js. Because that logic is dedicated to processing the incoming request and 
+providing the appropriate response, we put that logic in that function and save it in 
+the ./src/controllers directory.
 
-Line 12 is where our imageUploadRouter is told to route requests for the
-root app route ("/") when the HTTP POST method is used. Inside the post
-function of our imageUploadRouter, we use middleware from the multer and
-multer-s3 modules which is exposed by the galleryController as upload.
+The instance of the Router from the Express framework is where our imageUploadRoutes 
+is designed to route requests for the root app route ("/") when the HTTP POST method is used. 
+Inside the `post` method of our imageUploadRoutes, we use middleware from the `multer` and
+`multer-s3` modules which is exposed by the galleryController as `upload`.
 The middleware takes the data and file from our Upload form POST,
-processes it, and runs a callback function. In the callback function on
-line 13 - 22, we check that we get an HTTP status code of 200, and that
+processes it, and runs a callback function. In the callback function 
+we check that we get an HTTP status code of 200, and that
 we had at least one file in our request object to upload. Based on those
-conditions, we set the feedback in our status variable and render the
+conditions, we set the feedback in our `status` variable and render the
 index view template with the new status.
 
 ``` 
@@ -695,7 +695,7 @@ var router = function(title) {
     imageUploadRoutes.route('/')
     	.post(
     		galleryController.upload.array('img-file', 1), function (req, res, next) {
-                if(res.statusCode===200 && req.files.length > 0) {
+                if (res.statusCode === 200 && req.files.length > 0) {
                     status = 'uploaded file successfully';
                 }
                 else {
@@ -739,9 +739,9 @@ module.exports = router;
 
 We next turn our attention to the controller for the gallery.
 
-Please note how we set up the `multer` upload in the following example, 
+Please note how we set up the `multer` upload in the Example 21, 
 (which truncates some code we'll ignore for now). We
-require modules `ibm-cos-sdk`, `multer`, and `multer-s3`. Lines 6 - 7 show how to
+require modules `ibm-cos-sdk`, `multer`, and `multer-s3`. The code shows how to
 configure an S3 object that points to an {{site.data.keyword.cos_short}} server endpoint. We are
 statically setting values such as the endpoint address, region, and
 bucket for simplicity, but they could easily be referenced from an
@@ -773,8 +773,6 @@ var galleryController = function(title) {
         })
     });
     
-    var imageUrlList = [];
-    
     var getGalleryImages = function (req, res) { ... };
 
     return {
@@ -787,24 +785,24 @@ module.exports = galleryController;
 ```
 {: caption="Example 21. Node express controller details" caption-side="bottom"}
 
-We define upload used by imageUploadRouter on the line after the  by creating a new
-`multer` instance with a storage property on the fourth line of the example. This property tells
+We define `upload` as used in the imageUploadRouter by creating a new
+`multer` instance with `storage` as its only property. This property tells
 `multer` where to send the file from our multipart/form-data. Since the {{site.data.keyword.cloud_notm}} 
 Platform uses an implementation of the S3 API, we set storage to be an
 `s3-multer` object. This `s3-multer` object contains an `s3` property that we
-have assigned to our `s3` object from line 7, and a bucket property that
-we have assigned the myBucket variable from line 8, which is assigned a
+have assigned to our `s3` object earlier, and a bucket property that
+we have assigned the `myBucket` variable, which is assigned a
 value of “web-images”. The `s3-multer` object now has all the data
 necessary to connect and upload files to our {{site.data.keyword.cos_short}} bucket when it
 receives data from the upload form. The name or key of the uploaded
 object will be the original file name taken from the file object when it
 is stored in our {{site.data.keyword.cos_short}} “web-images” bucket 
-(TIP: use a timestamp as the filename for 
-maintinaing filename uniqueness). For local testing, a
-helpful task is to print the file object to the console, on line 17.
+(TIP: use a timestamp as the filename for maintinaing filename uniqueness). 
 
-We perform a local test of the Upload form and the output from the
-console log of the file in the following example.
+For local testing, a
+helpful task is to print the file object to the console, `console.log(file)`. 
+We perform a local test of the Upload form and show the output from the
+console log of the file in the Example 22.
 
 ```
 { fieldname: 'img-file',
@@ -814,7 +812,7 @@ mimetype: 'image/jpeg' }
 ```
 {: caption="Example 22. Console display of debug object" caption-side="bottom"}
 
-The following figure shows that feedback from our callback saying it was
+Figure 22 shows the feedback from our callback saying it was
 a successful upload.
 
 ![localtest1](https://cloud.githubusercontent.com/assets/19173079/24823021/cf3704cc-1bbf-11e7-8190-932e99cded91.jpg)
@@ -823,23 +821,23 @@ a successful upload.
 #### Image retrieval and display
 {: #tutorial-develop-image-display}
 
-The following figure refers to app.js. Line 19 creates galleryRouter,
-and tells express to use it when the “/gallery” route is requested. Look
-at the galleryRoutes.js file that is used to define galleryRouter.
-
-Referring to galleryController.js (see the following example), we define the
+Remember, back in app.js, the line of code `app.use('/gallery', galleryRouter);` 
+tells the express framework to use that router when the “/gallery” route is requested. 
+That router, if you recall, uses galleryController.js (see the code in Example 23), we define the
 getGalleryImages function, the signature of which we have seen previously. Using the same `s3`
-object that we set up for our image upload function, we call a function named 
-listObjectsV2 on line 26. This function returns the data comprising each of the
+object that we set up for our image upload function, we call the function named 
+`listObjectsV2`. This function returns the index data defining each of the
 objects in our bucket. To display images within HTML, we need an image URL for each
-JPEG image in our web-images bucket to display in our view template. The
-content on line 28 is an array map from the data object returned by
-listObjectsV2 containing metadata about each object in our bucket. We
-loop the content and search for any object key ending in ".jpg," and
+JPEG image in our `web-images` bucket to display in our view template. The
+closure with the data object returned by `listObjectsV2` contains metadata 
+about each object in our bucket. 
+
+The code loops through the `bucketContents` and search for any object key ending in ".jpg," and
 create a parameter to pass to the S3 getSignedUrl function. This
 function returns a signed URL for any object when we pass it the
 object’s bucket name and key. In the callback function we save each URL
-in an array, and pass it res.render as imageUrls.
+in an array, and pass it to the HTTP server response method `res.render` 
+as the value to a property named `imageUrls`.
 
 ```
 ...
@@ -847,11 +845,12 @@ in an array, and pass it res.render as imageUrls.
     
     var getGalleryImages = function (req, res) {
         var params = {Bucket: myBucket};
-        s3.listObjectsV2(params, function (err, data) {
-            if(data) {
+        var imageUrlList = [];
+        
+        s3.listObjectsV2(params, function (err, data) {    
+            if (data) {
                 var bucketContents = data.Contents;
                 for (var i = 0; i < bucketContents.length; i++) {
-                		console.log(bucketContents[i].Key);
                     if (bucketContents[i].Key.search(/.jpg/i) > -1) {
                         var urlParams = {Bucket: myBucket, Key: bucketContents[i].Key};
                         s3.getSignedUrl('getObject', urlParams, function (err, url) {
@@ -871,7 +870,7 @@ in an array, and pass it res.render as imageUrls.
 ```
 {: caption="Example 23. Partial contents of galleryController.js" caption-side="bottom"}
 
-The following figure shows the galleryView EJS template body with the code 
+The last code example in this tutorial shows the body for the galleryView template with the code 
 needed to display the images. We get the imageUrls array from the res.render() 
 method and iterate over a pair of nested &lt;div&gt;&lt;/div&gt; tags where 
 the image URL will make a GET request for the image when the /gallery route 
@@ -910,7 +909,7 @@ is requested.
 {: caption="Example 24. Loop and output scriptlets used in the gallery template" caption-side="bottom"}
 
 We test it locally from http://localhost:3000/gallery and see our image
-in the following figure.
+in Figure 20.
 
 ![localtest2](https://cloud.githubusercontent.com/assets/19173079/24822869/5310d658-1bbe-11e7-80fc-7a725314f7f5.jpg)
 {: caption="Figure 20. Images uploaded to the bucket are on display" caption-side="top"}
@@ -921,7 +920,7 @@ in the following figure.
 
 Now that the basic features of the app are working, we will commit our code
 to our local repo, and then push it to GitHub. Using GitHub Desktop, we
-click Changes (see first figure below), type a summary of the changes in
+click Changes (see Figure 21), type a summary of the changes in
 the Summary field, and then click Commit to Local-dev. 
 
 ![commitupdates](https://cloud.githubusercontent.com/assets/19173079/24822835/0a6cdd66-1bbe-11e7-89ee-d57b8d64d4db.jpg)
@@ -930,9 +929,11 @@ the Summary field, and then click Commit to Local-dev.
 When we click
 Sync, our commit is sent to the remote Local-dev branch that we
 published to GitHub, and this action starts the Build Stage followed by
-the Deploy Stage in our Delivery Pipeline. Congratulations! We have gone from beginning to end along this
-path to build a web application image gallery using the {{site.data.keyword.cloud_notm}} Platform. 
-Each of the concepts we've covered in this basic introduction can be explored further. Good luck!
+the Deploy Stage in our Delivery Pipeline, as exemplified in the last figure in this tutorial. 
 
 ![pipeline_triggled_aftersync](https://cloud.githubusercontent.com/assets/19173079/24822828/f29efe26-1bbd-11e7-8b9a-c472ea03ee2b.jpg)
 {: caption="Figure 22. CD Delivery Pipeline" caption-side="top"}
+
+Congratulations! We have gone from beginning to end along this
+path to build a web application image gallery using the {{site.data.keyword.cloud_notm}} Platform. 
+Each of the concepts we've covered in this basic introduction can be explored further. Good luck!
