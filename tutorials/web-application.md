@@ -79,7 +79,7 @@ want displayed publicly (assuming you have a public account) for any
 commits to your repository. Once you have linked the application to your account, you may be asked
 to verify the connection through your Github account online.
 
-![github_desktop_setup](https://cloud.githubusercontent.com/assets/19173079/24821330/a1c718e4-1bb3-11e7-8362-e3c6aa37bc7d.png)
+![github_desktop_setup](http://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-001-github-login.png)
 {: caption="Figure 1. Github Desktop Login window" caption-side="top"}
 
 You do not have to create any repositories yet. If you notice a
@@ -92,12 +92,12 @@ familiarize you with the operations.
 To create a Cloud Foundry app, log in to [{{site.data.keyword.cloud_notm}} Platform](https://cloud.ibm.com/docs/runtimes/nodejs/updates.html)
 and click Create App (see the next figure).
 
-![bluemix_create_app](https://cloud.githubusercontent.com/assets/19173079/24821420/0d9b0af8-1bb4-11e7-80e3-cd1d91d19460.jpg)
+![bluemix_create_app](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-create-app.jpg)
 {: caption="Figure 2. Create App on {{site.data.keyword.cloud_notm}} Platform" caption-side="top"}
 
 Then, under Cloud Foundry Apps, select SDK for Node.js (see Figure 3).
 
-![cf_app_nodejs](https://cloud.githubusercontent.com/assets/19173079/24821453/52a651ac-1bb4-11e7-923e-e59f0b89dfec.jpg)
+![cf_app_nodejs](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-003-cloud-foundry.jpg)
 {: caption="Figure 3. Cloud Foundry Apps" caption-side="top"}
 
 Figure 4 shows the app creation page where you provide a name
@@ -106,14 +106,14 @@ the app on {{site.data.keyword.cloud_notm}} Platform. Additional routes can be c
 accept the defaults as given and click Create. {{site.data.keyword.cloud_notm}} Platform creates a starter app,
 deploys and starts it for us.
 
-![clickcreatenodeapp](https://cloud.githubusercontent.com/assets/19173079/24821507/97cf54ea-1bb4-11e7-928c-611546f6d980.jpg)
+![clickcreatenodeapp](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-004-platform-plans.jpg)
 {: caption="Figure 4. {{site.data.keyword.cloud_notm}} Platform plans" caption-side="top"}
 
 Now that the app is created and running, click View App from the app’s
 Getting Started page to see it in a new browser window. It was created
 with a basic Hello World starter app as a placeholder (see Figure 5).
 
-![initiahhelloworldapp](https://cloud.githubusercontent.com/assets/19173079/24821547/da5bc302-1bb4-11e7-84c7-d0143c40d5c3.jpg)
+![initiahhelloworldapp](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-005-hello-world.jpg)
 {: caption="Figure 5. Hello World!" caption-side="top"}
 
 Let's recall the prerequisites that you need
@@ -278,7 +278,7 @@ successfully deployed, and started. If you are also logged in to the {{site.data
 web console, you are notified there also of the status of your app (see
 figure).
 
-![app_stage_notification](https://cloud.githubusercontent.com/assets/19173079/24821846/9f35e1a2-1bb6-11e7-9c58-45c545ef6494.jpg)
+![app_stage_notification](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-006-notifications.jpg)
 {: caption="Figure 6. {{site.data.keyword.cloud_notm}} Platform notifications" caption-side="top"}
 
 You can verify that the app was deployed by visiting the app URL
@@ -289,7 +289,7 @@ console by clicking View App button.
     was deployed at creation to the starter app shown in the following
     proved that deploying the app to {{site.data.keyword.cloud_notm}} Platform was successful.
 
-![verify_push](https://cloud.githubusercontent.com/assets/19173079/24821897/e7f82bca-1bb6-11e7-848c-29878a6fcc78.jpg)
+![verify_push](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-007-congrats.jpg)
 {: caption="Figure 7. Results of viewing your deployed app (Congratulations!)" caption-side="top"}
 
 ### Creating a {{site.data.keyword.cloud_notm}} Platform toolchain
@@ -308,7 +308,7 @@ Platform by completing the following steps:
     from the app Overview window, scroll to Continuous delivery and
     click Enable (see Figure 8).
 
-![continuous_delivery_enable](https://cloud.githubusercontent.com/assets/19173079/24822095/3ffb0b70-1bb8-11e7-8d6d-190f58db2364.jpg)
+![continuous_delivery_enable](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-008-continuous-delivery.jpg)
 {: caption="Figure 8. Enable Continuous Delivery (CD)" caption-side="top"}
 
 2.  Set up the Toolchain Integrations. Scroll down to see the
@@ -318,7 +318,7 @@ Platform by completing the following steps:
     of your app code in the cloud. Everything is populated with the
     necessary values to create the toolchain. Click Create.
 
-![toolchain_integrations_setup](https://cloud.githubusercontent.com/assets/19173079/24822139/7f5c43ba-1bb8-11e7-8610-6441b7d1a963.jpg)
+![toolchain_integrations_setup](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-009-toolchain-setup.jpg)
 {: caption="Figure 9. Toolchain Integrations Setup" caption-side="top"}
 
 The {{site.data.keyword.cloud_notm}} Platform Toolchain is now set up (shown in Figure 10).
@@ -331,7 +331,7 @@ GitHub password to confirm. If {{site.data.keyword.cloud_notm}} Platform cannot 
 the Build Stage of your Delivery Pipeline will be unable to use it as
 input.
 
-![created_toolchain](https://cloud.githubusercontent.com/assets/19173079/24822154/adf8fdb2-1bb8-11e7-8cae-7631f549c080.jpg)
+![created_toolchain](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-010-cd-toolchain.jpg)
 {: caption="Figure 10. CD toolchain configured" caption-side="top"}
 
 3.  Click GitHub Tool to open the new repo created by your toolchain
@@ -341,7 +341,7 @@ input.
     development environment, but first you need to clone the empty repo.
     To do so, you have options as shown in Figure 11.
 
-![emptytoolchainrepo](https://cloud.githubusercontent.com/assets/19173079/24822196/f5efc100-1bb8-11e7-903f-c3562598f2b2.jpg)
+![emptytoolchainrepo](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-011-github-next-steps.jpg)
 {: caption="Figure 11. Github Repository Code Tab with next steps" caption-side="top"}
 
 Here we'll use the Quick setup option. Click Set up in Desktop. Allow
@@ -353,14 +353,14 @@ example, it is named COS-WebGallery.
 5.  Copy the files and directories from the starter app you modified in
     step 3. Depending on your operating system, it may look like Figure 12.
 
-![localrepo_files](https://cloud.githubusercontent.com/assets/19173079/24822238/3aab33ba-1bb9-11e7-9476-78975d71e208.jpg)
+![localrepo_files](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-012-local-files.jpg)
 {: caption="Figure 12. How your local files might appear" caption-side="top"}
 
 6.  Return to GitHub Desktop and note that it detected what you added to
     the repo directory (Figure 13). Type initial commit into the
     summary field, and click Commit to master.
 
-![github_initialcommit](https://cloud.githubusercontent.com/assets/19173079/24822265/68a90e5e-1bb9-11e7-9bbe-d466ae5bb68d.jpg)
+![github_initialcommit](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-013-github-commit.jpg)
 {: caption="Figure 13. Commit your changes in Github Desktop" caption-side="top"}
 
 ### Create a Git branch
@@ -372,7 +372,7 @@ to use for your {{site.data.keyword.cloud_notm}} Platform Delivery Pipeline Buil
 1.  Click the branch icon; you are prompted to enter a name for the
     branch (see Figure 14). This example uses Local-dev as the name.
 
-![new_git_branch](https://cloud.githubusercontent.com/assets/19173079/24822302/aba13902-1bb9-11e7-92af-be919c9a171e.jpg)
+![new_git_branch](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-014-dev-branch.jpg)
 {: caption="Figure 14. Use Github Desktop to create a local dev branch" caption-side="top"}
 
 2.  After you create the branch, GitHub compares the local files on the
@@ -381,7 +381,7 @@ to use for your {{site.data.keyword.cloud_notm}} Platform Delivery Pipeline Buil
     add the branch you created on your local repo to your GitHub repo
     (as shown in Figure 15).
 
-![publish_branch](https://cloud.githubusercontent.com/assets/19173079/24822322/de53cfa4-1bb9-11e7-8a2d-768acdaa4f95.jpg)
+![publish_branch](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-015-git-push.jpg)
 {: caption="Figure 15. Publish your git branch to your repo's remote origin" caption-side="top"}
 
 Now that the Local-dev branch is published to the GitHub repo in your
@@ -431,7 +431,7 @@ aws\_secret\_access\_key = {secret_access_key}
     Platform (see Figure 16). When you finish with the
     entries, click Save, and {{site.data.keyword.cloud_notm}} Platform will automatically restart the app for you.
 
-![bluemix_env_var](https://cloud.githubusercontent.com/assets/19173079/24822607/07019ace-1bbc-11e7-9d71-db6d53d3dc7a.jpg)
+![bluemix_env_var](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-016-env-variables.jpg)
 {: caption="Figure 16. Runtime Environment Variables defined for your app" caption-side="top"}
 
 Next, over at the {{site.data.keyword.cos_short}} portal for your service instance, 
@@ -448,7 +448,7 @@ directory to contain the express routes, and a controllers directory as
 the place to put the controller logic. Place these items under a parent source
 directory named src (see Figure 17).
 
-![directorystructure](https://cloud.githubusercontent.com/assets/19173079/24822675/86a7084a-1bbc-11e7-9567-4fc6cea7a939.jpg)
+![directorystructure](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-017-soure-code.jpg)
 {: caption="Figure 17. Source code structure for your app" caption-side="top"}
 
 **Tip**: The repo you cloned in earlier contains a directory named
@@ -546,7 +546,7 @@ The following figure shows what the index view template when rendered
 and sent to the browser. If you are using `nodemon` you may have noticed 
 that your browser refreshed when you saved your changes, and your app should look like Figure 18.
 
-![uploadimageview](https://cloud.githubusercontent.com/assets/19173079/24822932/f087e44e-1bbe-11e7-9349-93ff489eeb36.jpg)
+![uploadimageview](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-018-templates.jpg)
 {: caption="Figure 18. Your updated web app using templates and views for displays" caption-side="top"}
 
 In Example 16, our view templates share HTML code between the
@@ -821,7 +821,7 @@ mimetype: 'image/jpeg' }
 Figure 22 shows the feedback from our callback saying it was
 a successful upload.
 
-![localtest1](https://cloud.githubusercontent.com/assets/19173079/24823021/cf3704cc-1bbf-11e7-8190-932e99cded91.jpg)
+![localtest1](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-019-success.jpg)
 {: caption="Figure 19. Success!" caption-side="top"}
 
 #### Image retrieval and display
@@ -917,7 +917,7 @@ is requested.
 We test it locally from http://localhost:3000/gallery and see our image
 in Figure 20.
 
-![localtest2](https://cloud.githubusercontent.com/assets/19173079/24822869/5310d658-1bbe-11e7-80fc-7a725314f7f5.jpg)
+![localtest2](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-020-image-display.jpg)
 {: caption="Figure 20. Images uploaded to the bucket are on display" caption-side="top"}
 
 ## Committing to Git
@@ -929,7 +929,7 @@ to our local repo, and then push it to GitHub. Using GitHub Desktop, we
 click Changes (see Figure 21), type a summary of the changes in
 the Summary field, and then click Commit to Local-dev. 
 
-![commitupdates](https://cloud.githubusercontent.com/assets/19173079/24822835/0a6cdd66-1bbe-11e7-89ee-d57b8d64d4db.jpg)
+![commitupdates](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-021-changes-in-git.jpg)
 {: caption="Figure 21. Changes ready for commit in Git" caption-side="top"}
 
 When we click
@@ -937,7 +937,7 @@ Sync, our commit is sent to the remote Local-dev branch that we
 published to GitHub, and this action starts the Build Stage followed by
 the Deploy Stage in our Delivery Pipeline, as exemplified in the last figure in this tutorial. 
 
-![pipeline_triggled_aftersync](https://cloud.githubusercontent.com/assets/19173079/24822828/f29efe26-1bbd-11e7-8b9a-c472ea03ee2b.jpg)
+![pipeline_triggled_aftersync](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-022-final-pipeline.jpg)
 {: caption="Figure 22. CD Delivery Pipeline" caption-side="top"}
 
 Congratulations! We have gone from beginning to end along this
