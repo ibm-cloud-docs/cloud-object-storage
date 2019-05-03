@@ -35,7 +35,7 @@ back-end storage for a Node.js application that allows a user to upload and view
 ## Before you begin
 {: #gs-prereqs}
 
-As prerequisites, we will start with the following:
+As prerequisites to building a web application, we will start with the following:
 
   - {{site.data.keyword.cloud_notm}} Platform account
   - Node.js
