@@ -84,7 +84,13 @@ continuous delivery. If you do not have a GitHub account, create a
 free public personal account at the [Github](https://github.com/join)
 website; otherwise, feel free to log in with any other account you might have.
 
-Go to the [Github Desktop](https://desktop.github.com/) page to download
+Please note, there are important, step-by-step, instructions on how to generate and upload SSH keys to your 
+[Github profile](https://github.com/settings/keys) for secure access to Github from the command line. However, if
+you do that now, you will only be getting good practice, as you will have to repeat the steps
+for the instance of Github used for {{site.data.keyword.cloud_notm}}, which we will access later. Although 
+the steps can be complicated, with practice, you, too, can be fluent with SSH on the CLI.
+
+For now, go to the [Github Desktop](https://desktop.github.com/) page to download
 GitHub Desktop, and then run the installer. When the installer finishes,
 you are prompted to log in to GitHub with your account.
 
@@ -100,10 +106,241 @@ You do not have to create any repositories yet. If you notice a
 repository named Tutorial included with GitHub Desktop, feel free to experiment with it to help 
 familiarize you with the operations.
 
-## Creating the Web Gallery app on {{site.data.keyword.cloud_notm}} Platform
+## Creating the Web Gallery app using the Developer Tools
 {: #tutorial-create-app}
 
-To create a Cloud Foundry app, log in to [{{site.data.keyword.cloud_notm}} Platform](https://cloud.ibm.com/docs/runtimes/nodejs/updates.html)
+```bash
+ibmcloud login
+```
+{: caption="Example x. Command to x" caption-side="bottom"}
+
+For the purposes of this exercise, when asked to choose a region, select `us-south` as the 
+same option will be used later when building a Continuous Deployment (CD) Toolchain, later on in this
+tutorial.  
+
+```bash
+ibmcloud api cloud.ibm.com
+```
+{: caption="Example x. Command to x" caption-side="bottom"}
+
+```bash
+ibmcloud target --cf
+```
+{: caption="Example x. Command to x" caption-side="bottom"}
+
+```bash
+ibmcloud dev create
+```
+{: caption="Example x. Command to x" caption-side="bottom"}
+
+
+```
+                                             
+--------------------------------------------------------------------------------
+Select an application type:
+--------------------------------------------------------------------------------
+ 1. Blank App
+ 2. Backend Service / Web App
+ 3. Mobile App
+--------------------------------------------------------------------------------
+ 0. Exit
+--------------------------------------------------------------------------------
+? Enter selection number:> 2
+
+
+```
+{: caption="Example x. Results from using `ibmcloud dev create`" caption-side="bottom"}
+
+
+
+
+
+
+
+```
+
+--------------------------------------------------------------------------------
+Select a language:
+--------------------------------------------------------------------------------
+ 1. Go
+ 2. Java - MicroProfile / Java EE
+ 3. Java - Spring
+ 4. Node
+ 5. Python - Django
+ 6. Python - Flask
+ 7. Scala
+ 8. Swift
+--------------------------------------------------------------------------------
+ 0. Return to the previous selection
+--------------------------------------------------------------------------------
+? Enter selection number:> 4
+
+
+```
+{: caption="Example x. Options from using `ibmcloud dev create` continued." caption-side="bottom"}
+
+
+
+
+
+After you have made your selection for the programming language and/or framework, the next selection
+will have so many options, it may scroll past your desired service. As you can see in the example, we
+wish to use a simple Node.js Web App with Express.js.
+
+```
+? Select a Starter Kit:
+
+--------------------------------------------------------------------------------
+APPSERVICE
+--------------------------------------------------------------------------------
+ 1. MEAN Stack: MongoDb, Express.js, Angular, Node.js - A starter 
+    project for setting up a mongodb, express, angular and node application
+ 2. MERN Stack: MongoDb, Express.js, React, Node.js - A starter 
+    project for setting up a mongodb, express, react and node application
+ 3. Node.js BFF Example with Express.js - A starter for building 
+    backend-for-frontend APIs in Node.js, using the Express.js framework.
+ 4. Node.js Example Serverless App - A starter providing a set of 
+    Cloud Functions and API for a serverless backend that uses Cloudant NoSQL 
+    database.
+ 5. Node.js Microservice with Express.js - A starter for building a 
+    microservice backend in Node.js, using the Express.js framework.
+ 6. Node.js Web App with Express.js - A starter that provides a basic 
+    web serving application in Node.js, using the Express.js framework.
+ 7. Node.js Web App with Express.js and React - A starter that 
+    provides a rich React frontend delivered from a Node.js application, 
+    including key web development tools Gulp, SaaS, and Webpack, using the 
+    Express.js framework.
+
+--------------------------------------------------------------------------------
+FINANCE
+--------------------------------------------------------------------------------
+ 8. Wealth Management Chatbot - A chatbot that allows the user to 
+    query the status of their investments and evaluate the impact of different 
+    market scenarios on their investment portfolio. It can easily be extended 
+    in several ways.
+
+--------------------------------------------------------------------------------
+WATSON
+--------------------------------------------------------------------------------
+ 9. Watson Assistant Basic - Simple application that demonstrates the 
+    Watson Assistant service in a chat interface simulating banking tasks.
+10. Watson Natural Language Understanding Basic - Collection of APIs 
+    that can analyze text to help you understand its concepts, entities, 
+    keywords, sentiment, and can create a custom model for some APIs to get 
+    specific results that are tailored to your domain.
+11. Watson News Intelligence - This starter kit demonstrates how to 
+    query news content to understand what people are saying or feeling about 
+    important topics.
+12. Watson Speech to Text Basic - Basic sample of Speech to Text 
+    service to convert speech in multiple languages into text.
+13. Watson Text to Speech Basic - Basic sample of how to use Text to 
+    Speech for streaming, low latency, synthesis of audio from text.
+14. Watson Visual Recognition Basic - Use deep learning algorithms to 
+    analyze images that can give you insights into your visual content.
+--------------------------------------------------------------------------------
+ 0. Return to the previous selection
+--------------------------------------------------------------------------------
+? Enter selection number:> 6
+
+```
+{: caption="Example x. Results from using `ibmcloud dev create` continued." caption-side="bottom"}
+
+
+
+```bash
+? Enter a name for your application> webapplication
+```
+
+```
+Using the resource group Default (default) of your account
+
+? Do you want to select a service to add to this application? [Y/n]> n
+
+```
+{: caption="Example x. Options from using `ibmcloud dev create` continued." caption-side="bottom"}
+
+
+
+```
+
+--------------------------------------------------------------------------------
+Select from the following DevOps toolchain and target runtime environment 
+options:
+ 1. IBM DevOps, deploy to Cloud Foundry buildpacks
+ 2. IBM DevOps, deploy to Kubernetes containers
+ 3. No DevOps, with manual deployment
+--------------------------------------------------------------------------------
+? Enter selection number:> 1
+
+```
+{: caption="Example x. Options from using `ibmcloud dev create` continued." caption-side="bottom"}
+
+
+
+```
+
+--------------------------------------------------------------------------------
+Select a region for your toolchain from the following options:
+--------------------------------------------------------------------------------
+ 1. eu-de (Frankfurt)
+ 2. eu-gb (London)
+ 3. jp-tok
+ 4. us-east (Washington DC)
+ 5. us-south (Dallas)
+--------------------------------------------------------------------------------
+ 0. Return to the previous selection
+--------------------------------------------------------------------------------
+? Enter selection number:> 5
+
+```
+
+{: caption="Example x. Options from using `ibmcloud dev create` continued." caption-side="bottom"}
+
+
+At this point, the process of generating a new application will remind us that the toolchain used
+for Continuous Delivery (CD) needs 
+
+```
+
+Note: For successful connection to the DevOps toolchain, this machine 
+must be configured for SSH access to your IBM Cloud GitLab account at 
+https://git.ng.bluemix.net/profile/keys in order to download the 
+application code.
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+To create a new app, log in to [{{site.data.keyword.cloud_notm}} Platform](https://cloud.ibm.com/docs/runtimes/nodejs/updates.html)
 and click Create App (see the next figure).
 
 ![bluemix_create_app](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-create-app.jpg)
@@ -132,16 +369,13 @@ with a basic Hello World starter app as a placeholder (see Figure 5).
 
 Let's recall the prerequisites that you need
 for developing a Node.js app on {{site.data.keyword.cloud_notm}} Platform as listed previously. You already
-created your {{site.data.keyword.cloud_notm}} Platform account, and installed Node.js. Install the [Cloud Foundry CLI](https://github.com/cloudfoundry/cli) as instructed. You
-can then use the tool to log in to {{site.data.keyword.cloud_notm}} Platform and interact directly with your
-account from your local environment. This tool puts many powerful
-commands at your disposal that you do not use in this scenario. More
-information is at the [Cloud Foundry CLI commands index
-page](https://github.com/cloudfoundry/cli).
+created your {{site.data.keyword.cloud_notm}} Platform account as well as the Developer Tools, and installed Node.js. 
 
-The next item listed as a prerequisite is the Git command line client.
-We will use Github Desktop in most this scenario, but you could also the
-Git command line client to complete the same tasks. We will only use it
+
+The next item listed as a prerequisite is the Git client.  You might need to set up SSH keys to interactively push code to your remote origin. 
+If you set a passphrase for your SSH key, you are required to enter this code each time.
+For now, we will use Github Desktop for this scenario, but you could also the
+Git command line client to complete the same tasks. We will only use it now
 to clone a starter template for the app. If you do not have Git
 installed, download it from [Git](https://git-scm.com/downloads) and run
 the installer accepting the default options.
@@ -161,7 +395,7 @@ Follow these steps:
 git clone https://github.com/IBMRedbooks/IBMRedbooks-SG248385-Cloud-Object-Storage-as-a-Service.git
 ```
 {: codeblock}
-{: caption="Example 1. Git clone command details" caption-side="bottom"}
+{: caption="Example x. Git clone command details" caption-side="bottom"}
 
 2.  Run the app locally. Open a terminal application providing a CLI and change your working directory to
     the COS-WebGalleryStart directory. Please note the Node.js dependencies
@@ -853,18 +1087,16 @@ helpful task is to print the file object to the console, `console.log(file)`.
 We perform a local test of the Upload form and show the output from the
 console log of the file in the Example 22.
 
-```javascript
+```
 { fieldname: 'img-file',
 originalname: 'Chrysanthemum.jpg',
 encoding: '7bit',
 mimetype: 'image/jpeg' }
 ```
-{: codeblock}
-{: javascript}
 {: caption="Example 22. Console display of debug object" caption-side="bottom"}
 
-Figure 22 shows the feedback from our callback saying it was
-a successful upload.
+While bragging is sometimes unseemly, Figure 22 shows the feedback from our callback 
+declaring that the application "uploaded file successfully."
 
 ![localtest1](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-019-success.jpg)
 {: caption="Figure 19. Success!" caption-side="top"}
