@@ -77,21 +77,21 @@ simplifies testing, thus speeding up development. Before you start, you may cons
 manager, like Node Version Manager, or `nvm`, to install Node, reducing the complexity of managing multiple versions of Node.js.
 
 As of this writing, to install or update `nvm` on a Mac or Linux machine, you can use the install script using cURL in 
-the CLI interface you just opened:
+the CLI interface you just opened by copy and pasting this command to your command line, and pressing enter:
 
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ```
 {:codeblock: .codeblock}
-{: caption="Example x. Command to x" caption-side="bottom"}
+{: caption="Example 1. Using cURL to install Node Version Manager (nvm)." caption-side="bottom"}
    
-...or Wget:
+...or Wget (just one is necessary, but not both; use whichever is available on your system):
 
 ```
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ```
 {:codeblock: .codeblock}
-{: caption="Example x. Command to x" caption-side="bottom"}
+{: caption="Example 2. Using Wget to install Node Version Manager (nvm)." caption-side="bottom"}
 
 Or, for Windows, you can use [nvm for Windows](https://github.com/coreybutler/nvm-windows) with installers
 and source code at the link.
@@ -106,15 +106,16 @@ the latest buildpack is v3.26, and it supports Node.js community edition v6.17.0
 You can find additional information about the latest {{site.data.keyword.cloud_notm}} 
 SDK for Node.js buildpack on the [SDK for Nodejs latest updates](https://cloud.ibm.com/docs/runtimes/nodejs/updates.html#latest_updates) page. 
 
-Using `nvm` you could install the latest version of Node using the following command from the command line.
+Using `nvm` you could install the version of Node that matches the requirements copying and pasting the following to your
+command line.
 
 ``` 
 nvm install v6.17.1
 ```
 {:codeblock: .codeblock}
-{: caption="Example x. Command to x" caption-side="bottom"}
+{: caption="Example 3. Using nvm to install a specific version of Node.js." caption-side="bottom"}
 
-Once you have followed the instructions to install Node.js and npm (included with Node) on your system, as appropriate 
+Whichever approach you use, once you have followed the instructions to install Node.js and npm (included with Node) on your system, as appropriate 
 to the operating system and strategy you are using, congratulate yourself on a job well started!
 
 ### Installing Git
@@ -158,7 +159,7 @@ To get your application
 ibmcloud login
 ```
 {:codeblock: .codeblock}
-{: caption="Example x. Command to x" caption-side="bottom"}
+{: caption="Example 4. Command to x" caption-side="bottom"}
 
 
 
