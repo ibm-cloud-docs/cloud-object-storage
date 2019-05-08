@@ -256,6 +256,8 @@ WATSON
 ? Enter a name for your application> webapplication
 ```
 
+Later, you may add as many services as needed or desired through the web console, for example.
+
 ```
 Using the resource group Default (default) of your account
 
@@ -316,7 +318,9 @@ application code.
 
 ```
 
-Further prompts will confirm the application and toolchain name you defined earlier.
+Further prompts will confirm the application and toolchain name you defined earlier. 
+The examples below will replace some of the text in the example with the specifics for your
+application.
 
 
 
@@ -324,9 +328,24 @@ Further prompts will confirm the application and toolchain name you defined earl
 
 
 
+```
+The DevOps toolchain for this app will be: webapplication
+? Press [Return] to accept this, or enter a new value now>
 
 
 
+The hostname for this app will be: webapplication
+? Press [Return] to accept this, or enter a new value now>
+
+The app webapplication has been created in IBM Cloud.
+
+DevOps toolchain created at                           
+https://cloud.ibm.com/devops/toolchains/6ffb568a-e48f-4e27-aed0-00ca931dde66?env_id=ibm:yp:us-south
+
+```
+
+
+ Copy and paste that link, although you will be able to access your CD Toolchain from the console.
 
 
 
@@ -350,8 +369,8 @@ Now that the app is created and running, click View App from the app’s
 Getting Started page to see it in a new browser window. It was created
 with a basic Hello World starter app as a placeholder (see Figure 5).
 
-![initiahhelloworldapp](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-005-hello-world.jpg)
-{: caption="Figure 5. New Node.js Application: Congratulations!" caption-side="top"}
+![initialnodeapp](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-splash-graphic.png)
+{: caption="Figure 2. New Node.js Application: Congratulations!" caption-side="top"}
 
 Let's recall the prerequisites that you need
 for developing a Node.js app on {{site.data.keyword.cloud_notm}} Platform as listed previously. You already
