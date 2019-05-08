@@ -110,6 +110,10 @@ familiarize you with the operations.
 ## Creating the Web Gallery app using the Developer Tools
 {: #tutorial-create-app}
 
+Open a terminal, or other appropriate Command Line Interface for your operating system, and create a directory. 
+Change your own reference directory to the new one you just created.
+Your application will have its own directory within 
+
 ```bash
 ibmcloud login
 ```
@@ -312,6 +316,7 @@ application code.
 
 ```
 
+Further prompts will confirm the application and toolchain name you defined earlier.
 
 
 
@@ -340,34 +345,13 @@ application code.
 
 
 
-
-
-To create a new app, log in to [{{site.data.keyword.cloud_notm}} Platform](https://cloud.ibm.com/docs/runtimes/nodejs/updates.html)
-and click Create App (see the next figure).
-
-![bluemix_create_app](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-create-app.jpg)
-{: caption="Figure 2. Create App on {{site.data.keyword.cloud_notm}} Platform" caption-side="top"}
-
-Then, under Cloud Foundry Apps, select SDK for Node.js (see Figure 3).
-
-![cf_app_nodejs](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-003-cloud-foundry.jpg)
-{: caption="Figure 3. Cloud Foundry Apps" caption-side="top"}
-
-Figure 4 shows the app creation page where you provide a name
-to identify the app. Call it something descriptive, such as COS-WebGallery. The App name will automatically appear in the host name field, or you can type your own. The host name, along with the the Domain you choose, becomes the internet address, or URL that you use to view
-the app on {{site.data.keyword.cloud_notm}} Platform. Additional routes can be configured later, so
-accept the defaults as given and click Create. {{site.data.keyword.cloud_notm}} Platform creates a starter app,
-deploys and starts it for us.
-
-![clickcreatenodeapp](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-004-platform-plans.jpg)
-{: caption="Figure 4. {{site.data.keyword.cloud_notm}} Platform plans" caption-side="top"}
 
 Now that the app is created and running, click View App from the app’s
 Getting Started page to see it in a new browser window. It was created
 with a basic Hello World starter app as a placeholder (see Figure 5).
 
 ![initiahhelloworldapp](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-005-hello-world.jpg)
-{: caption="Figure 5. Hello World!" caption-side="top"}
+{: caption="Figure 5. New Node.js Application" caption-side="top"}
 
 Let's recall the prerequisites that you need
 for developing a Node.js app on {{site.data.keyword.cloud_notm}} Platform as listed previously. You already
