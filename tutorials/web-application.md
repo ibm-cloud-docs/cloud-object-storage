@@ -69,6 +69,7 @@ Go to the
 and install the Long Term Support (LTS) Version of Node.js that
 matches the latest version supported by the SDK for Node.js buildpack on
 {{site.data.keyword.cloud_notm}} Platform. At the time of this writing, 
+the latest buildpack is v3.26, and it supports Node.js community edition v6.17.0+.
 You can find information about the latest {{site.data.keyword.cloud_notm}} 
 SDK for Node.js buildpack on the [SDK for Nodejs latest updates](https://cloud.ibm.com/docs/runtimes/nodejs/updates.html#latest_updates) page. 
 Follow the instructions to install Node.js and NPM on your system, as appropriate 
@@ -293,12 +294,13 @@ Select a region for your toolchain from the following options:
 ? Enter selection number:> 5
 
 ```
-
 {: caption="Example x. Options from using `ibmcloud dev create` continued." caption-side="bottom"}
 
 
 At this point, the process of generating a new application will remind us that the toolchain used
-for Continuous Delivery (CD) needs 
+to deploy your app later on in the process will need some additional configuration. As mentioned earlier,
+Uploading your public key to Github (at the CD Toolchain instance on the {{site.data.keyword.cloud_notm}} 
+Platform).
 
 ```
 
