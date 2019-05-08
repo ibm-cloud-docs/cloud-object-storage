@@ -351,7 +351,7 @@ Getting Started page to see it in a new browser window. It was created
 with a basic Hello World starter app as a placeholder (see Figure 5).
 
 ![initiahhelloworldapp](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-005-hello-world.jpg)
-{: caption="Figure 5. New Node.js Application" caption-side="top"}
+{: caption="Figure 5. New Node.js Application: Congratulations!" caption-side="top"}
 
 Let's recall the prerequisites that you need
 for developing a Node.js app on {{site.data.keyword.cloud_notm}} Platform as listed previously. You already
