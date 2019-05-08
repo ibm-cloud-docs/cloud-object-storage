@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-05-03"
+lastupdated: "2019-05-08"
 
 keywords: tutorial, web application, photo galleries
 
@@ -46,41 +46,83 @@ As prerequisites to building a web application, we will start with the following
 {: #tutorial-wa-install-docker}
 
 Transitioning from building web applications with traditional server instances or even virtual 
-servers to containers, like Docker, speeds up development and eases testing while supporting 
-automated deployment. A container doesn't need an operating system, just your code and 
-configuration for everything from dependencies to settings.
+servers to using containers, like Docker, speeds up development and eases testing while supporting 
+automated deployment. A container is a lightweight structure that doesn't need additional overhead, like an operating 
+system, just your code and configuration for everything from dependencies to settings.
 
-Install the [developer tools](https://cloud.ibm.com/docs/cli?topic=cloud-cli-ibmcloud-cli). The {{site.data.keyword.cloud_notm}} 
-Developer Tools offer a command line approach to creating, developing, and deploying cloud applications.
+Let's start by opening a tool familiar to experienced developers, and a new best friend to those just getting
+started: the command line. Ever since the graphic user interface (GUI) was invented, your computer's 
+command line interface has been relegated to second-class status. But now, it's time to bring it back (although the GUI
+isn't going away any time soon&mdash;especially when we need to browse the web to download our new command line toolset). 
 
-[Docker](https://www.docker.com) is installed as part of the developer tools. Docker must be running for the build 
-commands to work. You must create a Docker account, run the Docker app, and sign in.
+Go ahead and open the Terminal, or other appropriate Command Line Interface for your operating system, and create a 
+directory using the commands appropriate to the particular shell you are using. Change your own reference directory to 
+the new one you just created. When created, your application will have its own subdirectory within that one, containing 
+the starter code and configuration needed to get up and running.
+
+Leaving the command line and returning to the browser, follow the instructions to install the [{{site.data.keyword.cloud_notm}} Platform developer tools](https://cloud.ibm.com/docs/cli?topic=cloud-cli-ibmcloud-cli) at the link. 
+The Developer Tools offer a extensible and repeatable approach to building and deploying cloud applications.
+
+[Docker](https://www.docker.com) is installed as part of the Developer Tools, and we will need it, even though its work
+will take place mostly in the background, within routines that scaffold your new app. Docker must be running for the build 
+commands to work. Go ahead and create a Docker account online, run the Docker app, and sign in.
 
 ### Installing Node.js
 {: #tutorial-wa-install-node}
 
 The app you will build uses Node.js as the server-side engine to run the
-JavaScript code for this web application. In order to use the Node Package Manager (NPM), to manage 
+JavaScript code for this web application. In order to use Node's included Node Package Manager (npm), to manage 
 your app's dependencies, you must install Node.js locally. Also, having Node.js installed locally 
-simplifies testing, thus speeding up development. 
+simplifies testing, thus speeding up development. Before you start, you may consider using a version
+manager, like Node Version Manager, or `nvm`, to install Node, reducing the complexity of managing multiple versions of Node.js.
 
-Go to the
+As of this writing, to install or update `nvm` on a Mac or Linux machine, you can use the install script using cURL in 
+the CLI interface you just opened:
+
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+```
+{:codeblock: .codeblock}
+{: caption="Example x. Command to x" caption-side="bottom"}
+   
+...or Wget:
+
+```
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+```
+{:codeblock: .codeblock}
+{: caption="Example x. Command to x" caption-side="bottom"}
+
+Or, for Windows, you can use [nvm for Windows](https://github.com/coreybutler/nvm-windows) with installers
+and source code at the link.
+
+If you don't want the added complexity of supporting multiple releases of Node.js, please visit the
 [Node.js](https://nodejs.org/en/download/releases/) web site
 and install the Long Term Support (LTS) Version of Node.js that
-matches the latest version supported by the SDK for Node.js buildpack on
+matches the latest version supported by the SDK for Node.js buildpack now used on the
 {{site.data.keyword.cloud_notm}} Platform. At the time of this writing, 
-the latest buildpack is v3.26, and it supports Node.js community edition v6.17.0+.
-You can find information about the latest {{site.data.keyword.cloud_notm}} 
+the latest buildpack is v3.26, and it supports Node.js community edition v6.17.0+. 
+
+You can find additional information about the latest {{site.data.keyword.cloud_notm}} 
 SDK for Node.js buildpack on the [SDK for Nodejs latest updates](https://cloud.ibm.com/docs/runtimes/nodejs/updates.html#latest_updates) page. 
-Follow the instructions to install Node.js and NPM on your system, as appropriate 
-to the operating system you are using.
+
+Using `nvm` you could install the latest version of Node using the following command from the command line.
+
+``` 
+nvm install v6.17.1
+```
+{:codeblock: .codeblock}
+{: caption="Example x. Command to x" caption-side="bottom"}
+
+Once you have followed the instructions to install Node.js and npm (included with Node) on your system, as appropriate 
+to the operating system and strategy you are using, congratulate yourself on a job well started!
 
 ### Installing Git
 {: #tutorial-wa-install-git}
 
 You are probably already familiar with Git, as it is the most widely used 
 source code versioning system among developers building applications for the web. 
-We will use Git later when we create a toolchain in the {{site.data.keyword.cloud_notm}} Platform for
+We will use Git later when we create a Continuous Deployment (CD) Toolchain in the {{site.data.keyword.cloud_notm}} Platform for
 continuous delivery. If you do not have a GitHub account, create a
 free public personal account at the [Github](https://github.com/join)
 website; otherwise, feel free to log in with any other account you might have.
@@ -110,33 +152,79 @@ familiarize you with the operations.
 ## Creating the Web Gallery app using the Developer Tools
 {: #tutorial-create-app}
 
-Open a terminal, or other appropriate Command Line Interface for your operating system, and create a directory. 
-Change your own reference directory to the new one you just created.
-Your application will have its own directory within 
+To get your application   
 
 ```bash
 ibmcloud login
 ```
+{:codeblock: .codeblock}
 {: caption="Example x. Command to x" caption-side="bottom"}
 
-For the purposes of this exercise, when asked to choose a region, select `us-south` as the 
-same option will be used later when building a Continuous Deployment (CD) Toolchain, later on in this
+
+
+
+
+
+For the purposes of this exercise, when asked to choose a region, select `us-south` as the region, as the
+same option will be used when building a CD Toolchain, later on in this
 tutorial.  
+
+
+
+
+
+
+
+
+
+
+
+
 
 ```bash
 ibmcloud api cloud.ibm.com
 ```
+{:codeblock: .codeblock}
 {: caption="Example x. Command to x" caption-side="bottom"}
+
+
+
+
+
+
+
+
+
+
+
 
 ```bash
 ibmcloud target --cf
 ```
+{:codeblock: .codeblock}
 {: caption="Example x. Command to x" caption-side="bottom"}
+
+
+
+
+
+
+
+
+
+
 
 ```bash
 ibmcloud dev create
 ```
+{:codeblock: .codeblock}
 {: caption="Example x. Command to x" caption-side="bottom"}
+
+
+
+
+
+
 
 
 ```
@@ -154,7 +242,7 @@ Select an application type:
 
 
 ```
-{: caption="Example x. Results from using `ibmcloud dev create`" caption-side="bottom"}
+{: caption="Example x. Output from the command `ibmcloud dev create`" caption-side="bottom"}
 
 
 
@@ -317,6 +405,7 @@ application code.
 
 
 ```
+{: caption="Example x. Options from using `ibmcloud dev create` continued." caption-side="bottom"}
 
 Further prompts will confirm the application and toolchain name you defined earlier. 
 The examples below will replace some of the text in the example with the specifics for your
@@ -343,11 +432,39 @@ DevOps toolchain created at
 https://cloud.ibm.com/devops/toolchains/6ffb568a-e48f-4e27-aed0-00ca931dde66?env_id=ibm:yp:us-south
 
 ```
+{: caption="Example x. Options from using `ibmcloud dev create` continued." caption-side="bottom"}
 
 
- Copy and paste that link, although you will be able to access your CD Toolchain from the console.
 
 
+
+
+
+
+
+When you copy and paste that link, you will be able to access your CD Toolchain, but you can also do 
+that from the console. Further information follows, as the process continues.
+
+```
+Cloning repository 
+https://git.ng.bluemix.net/Organization.Name/webapplication...
+Cloning into 'webapplication'...
+remote: Counting objects: 60, done.
+remote: Compressing objects: 100% (54/54), done.
+remote: Total 60 (delta 4), reused 0 (delta 0)
+Receiving objects: 100% (60/60), 50.04 KiB | 1.52 MiB/s, done.
+Resolving deltas: 100% (4/4), done.
+OK
+
+The app, webapplication, has been successfully saved into the 
+current directory.
+
+```
+
+That last statement means that if you view your current directory, a new directory `webapplication` should
+now appear. Inside the `webapplication` directory you will find a scaffold of your new Node.js application.
+
+The text in the last example 
 
 
 
