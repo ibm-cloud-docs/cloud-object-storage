@@ -77,7 +77,8 @@ simplifies testing, thus speeding up development. Before you start, you may cons
 manager, like Node Version Manager, or `nvm`, to install Node, reducing the complexity of managing multiple versions of Node.js.
 
 As of this writing, to install or update `nvm` on a Mac or Linux machine, you can use the install script using cURL in 
-the CLI interface you just opened by copy and pasting this command to your command line, and pressing enter:
+the CLI interface you just opened by copying and pasting one of the commands in the first two examples to your command line, 
+and pressing enter:
 
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
@@ -106,17 +107,18 @@ the latest buildpack is v3.26, and it supports Node.js community edition v6.17.0
 You can find additional information about the latest {{site.data.keyword.cloud_notm}} 
 SDK for Node.js buildpack on the [SDK for Nodejs latest updates](https://cloud.ibm.com/docs/runtimes/nodejs/updates.html#latest_updates) page. 
 
-Using `nvm` you could install the version of Node that matches the requirements copying and pasting the following to your
+Using `nvm` you could install the version of Node that matches the requirements copying and pasting the command from Example 3 to your
 command line.
 
-``` 
+```bash
 nvm install v6.17.1
 ```
 {:codeblock: .codeblock}
-{: caption="Example 3. Using nvm to install a specific version of Node.js." caption-side="bottom"}
+{: caption="Example 3. Using `nvm` to install a specific version of Node.js." caption-side="bottom"}
 
-Whichever approach you use, once you have followed the instructions to install Node.js and npm (included with Node) on your system, as appropriate 
-to the operating system and strategy you are using, congratulate yourself on a job well started!
+Whichever approach you use, once you have followed the instructions to install Node.js and npm (included with Node) 
+on your computer, as appropriate to the operating system and strategy you are using, congratulate yourself on a job well 
+started!
 
 ### Installing Git
 {: #tutorial-wa-install-git}
@@ -124,15 +126,15 @@ to the operating system and strategy you are using, congratulate yourself on a j
 You are probably already familiar with Git, as it is the most widely used 
 source code versioning system among developers building applications for the web. 
 We will use Git later when we create a Continuous Deployment (CD) Toolchain in the {{site.data.keyword.cloud_notm}} Platform for
-continuous delivery. If you do not have a GitHub account, create a
+continuous delivery and deployment. If you do not have a GitHub account, create a
 free public personal account at the [Github](https://github.com/join)
 website; otherwise, feel free to log in with any other account you might have.
 
 Please note, there are important, step-by-step, instructions on how to generate and upload SSH keys to your 
 [Github profile](https://github.com/settings/keys) for secure access to Github from the command line. However, if
 you do that now, you will only be getting good practice, as you will have to repeat the steps
-for the instance of Github used for {{site.data.keyword.cloud_notm}}, which we will access later. Although 
-the steps can be complicated, with practice, you, too, can be fluent with SSH on the CLI.
+for the instance of Github used for the {{site.data.keyword.cloud_notm}} Platform, which we will access later. Although 
+the steps for using SSH keys can be complicated, with practice, you, too, can be fluent with SSH on the CLI.
 
 For now, go to the [Github Desktop](https://desktop.github.com/) page to download
 GitHub Desktop, and then run the installer. When the installer finishes,
@@ -141,92 +143,67 @@ you are prompted to log in to GitHub with your account.
 In the Log in window (see the first figure in this tutorial), enter the name and email you
 want displayed publicly (assuming you have a public account) for any
 commits to your repository. Once you have linked the application to your account, you may be asked
-to verify the connection through your Github account online.
+to verify the application connection through your Github account online.
 
 ![github_desktop_setup](http://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-001-github-login.png)
 {: caption="Figure 1. Github Desktop Login window" caption-side="top"}
 
-You do not have to create any repositories yet. If you notice a
-repository named Tutorial included with GitHub Desktop, feel free to experiment with it to help 
-familiarize you with the operations.
+You do not have to create any repositories yet. If you notice a repository named Tutorial included with GitHub Desktop, 
+feel free to experiment with it to help familiarize you with the operations. You have just completed the prerequisite 
+portion of this tutorial. Are you ready to build an app?
 
 ## Creating the Web Gallery app using the Developer Tools
 {: #tutorial-create-app}
 
-To get your application   
+To start developing your application locally, begin by logging in to the {{site.data.keyword.cloud_notm}} Platform directly
+from the command line, as shown in Example 4. 
 
 ```bash
 ibmcloud login
 ```
 {:codeblock: .codeblock}
-{: caption="Example 4. Command to x" caption-side="bottom"}
+{: caption="Example 4. Command to login to the " caption-side="bottom"}
 
+You may specify optional parameters if you want: your organization with option -o, and the space with option -s, or, 
+if you are using a federated account: --sso. For the purposes of this exercise, when you login, you may be asked to 
+choose a region, select `us-south` as the region, as that same option will be used when building a CD Toolchain, later 
+on in this tutorial.  
 
-
-
-
-
-For the purposes of this exercise, when asked to choose a region, select `us-south` as the region, as the
-same option will be used when building a CD Toolchain, later on in this
-tutorial.  
-
-
-
-
-
-
-
-
-
-
-
-
+Next, set the endpoint (if it is not set already) using the command shown in Example 5. Other endpoints are possible, and 
+may be preferable for production use, but for now, use the code as shown, if appropriate for your account.
 
 ```bash
 ibmcloud api cloud.ibm.com
 ```
 {:codeblock: .codeblock}
-{: caption="Example x. Command to x" caption-side="bottom"}
+{: caption="Example 5. Command to set the API endpoint for your account." caption-side="bottom"}
 
-
-
-
-
-
-
-
-
-
-
+Target the Cloud Foundry aspect of {{site.data.keyword.cloud_notm}} Platform using the code shown in 
+Example 6, using the target command and the --cf option. The `cf` API is embedded within the CLI Developer Tools.
 
 ```bash
 ibmcloud target --cf
 ```
 {:codeblock: .codeblock}
-{: caption="Example x. Command to x" caption-side="bottom"}
+{: caption="Example 6. Setting your options for using the Cloud Foundry API." caption-side="bottom"}
 
-
-
-
-
-
-
-
-
-
+And now, the moment you've been working towards, creating a web application, starts with the code shown in Example 7. The `dev` space
+is a default option for your organization, but you may wish to create others for isolating different efforts, keeping 'finance'
+separate from 'development', for example.
 
 ```bash
 ibmcloud dev create
 ```
 {:codeblock: .codeblock}
-{: caption="Example x. Command to x" caption-side="bottom"}
+{: caption="Example 7. Command to x" caption-side="bottom"}
 
+With that command, you will be asked a series of questions. You can go back at many points in the process, but if you feel
+you have become lost, or missed steps, please feel free to start over by deleting the directory, or creating another for
+your testing and exploration. Also, when you complete the process creating your application, you will see the results
+online, in your {{site.data.keyword.cloud_notm}} online portal where you created your account that allows you to manage the 
+resources you've created.
 
-
-
-
-
-
+In Example 8, note the option for creating a 'Web App'&mdash;that's the one you want. Type '2' and press enter.
 
 ```
                                              
@@ -243,13 +220,11 @@ Select an application type:
 
 
 ```
-{: caption="Example x. Output from the command `ibmcloud dev create`" caption-side="bottom"}
+{: caption="Example 8. Output from the command `ibmcloud dev create` where you select option #2, for a Web App" caption-side="bottom"}
 
 
-
-
-
-
+There are a number of options in Example 9 based on what are called "buildpacks," and please note the option for using 'Node'. 
+Type '4' and press enter.
 
 ```
 
@@ -271,15 +246,11 @@ Select a language:
 
 
 ```
-{: caption="Example x. Options from using `ibmcloud dev create` continued." caption-side="bottom"}
+{: caption="Example 9. Language options from `ibmcloud dev create` continued." caption-side="bottom"}
 
-
-
-
-
-After you have made your selection for the programming language and/or framework, the next selection
+After you have made your selection for the programming language and/or framework, the next selection shown in Example 10
 will have so many options, it may scroll past your desired service. As you can see in the example, we
-wish to use a simple Node.js Web App with Express.js.
+wish to use a simple Node.js Web App with Express.js. Type '6' and press enter.
 
 ```
 ? Select a Starter Kit:
@@ -337,15 +308,18 @@ WATSON
 ? Enter selection number:> 6
 
 ```
-{: caption="Example x. Results from using `ibmcloud dev create` continued." caption-side="bottom"}
+{: caption="Example 10. Skeleton application options from `ibmcloud dev create`." caption-side="bottom"}
 
-
+Now that you have chosen the more straightforward options, the hardest option for you to choose is still required. Please 
+follow the example shown in Example 11 and type 'webapplication', then press enter.
 
 ```bash
 ? Enter a name for your application> webapplication
 ```
+{: caption="Example 11. Name your application using `ibmcloud dev create`." caption-side="bottom"}
 
-Later, you may add as many services as needed or desired through the web console, for example.
+Later, you may add as many services, like datastores or compute functions, as needed or desired through the web console, 
+so, as shown in Example 12, type 'n' for no when asked if you want to add services at this time.
 
 ```
 Using the resource group Default (default) of your account
@@ -353,10 +327,16 @@ Using the resource group Default (default) of your account
 ? Do you want to select a service to add to this application? [Y/n]> n
 
 ```
-{: caption="Example x. Options from using `ibmcloud dev create` continued." caption-side="bottom"}
+{: caption="Example 12. Option to add services when using `ibmcloud dev create` continued." caption-side="bottom"}
 
+Earlier, the advantages of developing with containers, instead of traditional server iron, or even virtual servers, 
+was mentioned regarding Docker. One way to manage containers is with orchestration software, like Kubernetes, which has 
+become a _de facto_ standard in development. But for this tutorial, we can let the Cloud Foundry service manage a single 
+Docker container that will contain our code, libraries, and configuration needed by your app.
 
-
+As shown in Example 13, type '1' and press enter to use 'IBM DevOps' for the purpose of integrating CD within our project
+lifecycle.
+ 
 ```
 
 --------------------------------------------------------------------------------
@@ -369,9 +349,10 @@ options:
 ? Enter selection number:> 1
 
 ```
-{: caption="Example x. Options from using `ibmcloud dev create` continued." caption-side="bottom"}
+{: caption="Example 13. Deployment options from `ibmcloud dev create`." caption-side="bottom"}
 
-
+As noted earlier, we will choose a region for our automated deployment toolchain, so select the same option as earlier, 
+'5' as shown in Example 14.
 
 ```
 
@@ -389,13 +370,13 @@ Select a region for your toolchain from the following options:
 ? Enter selection number:> 5
 
 ```
-{: caption="Example x. Options from using `ibmcloud dev create` continued." caption-side="bottom"}
+{: caption="Example 14. Regions available as options in `ibmcloud dev create`." caption-side="bottom"}
 
-
-At this point, the process of generating a new application will remind us that the toolchain used
-to deploy your app later on in the process will need some additional configuration. As mentioned earlier,
-Uploading your public key to Github (at the CD Toolchain instance on the {{site.data.keyword.cloud_notm}} 
-Platform).
+At this point, generating a new application will remind us that the toolchain used
+to deploy your app later on will need some additional configuration, as shown in Example 15. As mentioned earlier,
+uploading your public key to Github (at the CD Toolchain instance on the {{site.data.keyword.cloud_notm}} 
+Platform), will be required to deliver the deployed application. Additional instructions can be found after you deploy
+your application and log in to the your IBM Cloud GitLab account at [README#generating-a-new-ssh-key-pair](https://git.ng.bluemix.net/help/ssh/README#generating-a-new-ssh-key-pair).
 
 ```
 
@@ -406,17 +387,11 @@ application code.
 
 
 ```
-{: caption="Example x. Options from using `ibmcloud dev create` continued." caption-side="bottom"}
+{: caption="Example 15. Note given re: SSH keys by the `ibmcloud dev create` command." caption-side="bottom"}
 
-Further prompts will confirm the application and toolchain name you defined earlier. 
-The examples below will replace some of the text in the example with the specifics for your
-application.
-
-
-
-
-
-
+Further prompts will confirm the application and toolchain name you defined earlier. Example 16 shows how we can alter the 
+host and toolchain names. The hostname has to be account for the endpoint of your application, but if there is no conflict, 
+you can simply press return asked for confirmation.
 
 ```
 The DevOps toolchain for this app will be: webapplication
@@ -433,18 +408,12 @@ DevOps toolchain created at
 https://cloud.ibm.com/devops/toolchains/6ffb568a-e48f-4e27-aed0-00ca931dde66?env_id=ibm:yp:us-south
 
 ```
-{: caption="Example x. Options from using `ibmcloud dev create` continued." caption-side="bottom"}
+{: caption="Example 16. Confirming names for properties in `ibmcloud dev create`." caption-side="bottom"}
 
-
-
-
-
-
-
-
-
-When you copy and paste that link, you will be able to access your CD Toolchain, but you can also do 
-that from the console. Further information follows, as the process continues.
+Should you copy and paste that link given at the end of the output you received as a result of using the command, you will 
+be able to access your CD Toolchain, but you can also do that from the console later, in case you missed capturing the link. 
+Further information follows, as the process continues, as shown in Example 17, where application entries have been created 
+online, and a directory with the scaffolded sample code has been created. 
 
 ```
 Cloning repository 
@@ -462,30 +431,32 @@ current directory.
 
 ```
 
-That last statement means that if you view your current directory, a new directory `webapplication` should
-now appear. Inside the `webapplication` directory you will find a scaffold of your new Node.js application.
+That last statement means that if you view your current directory, a new subdirectory `webapplication` should
+now be visible. Inside the `webapplication` directory you will find a scaffold of your new Node.js application. However, while 
+the recipe may be present, the ingredients themselves, still wrapped up in a Docker image, have to be "boiled"&mdash;sorry, 
+built&mdash;using the command in Example 18. Docker should be running on your local machine as a consequence of installation,
+but if you need to restart it, please do so. Any attempt to build your new web application without Docker running will 
+fail, but that's not the only possible reason. If there is any issue, check the resulting error messages which may have the 
+appropriate link to view result logs in your online portal for your {{site.data.keyword.cloud_notm}} Platform account.
 
-The text in the last example 
+```bash
+ibmcloud dev build
+```
+{: codeblock}
+{: caption="Example 18. {{site.data.keyword.cloud_notm}} Platform build command" caption-side="bottom"}
 
+In addition to building the app for delivery, building the app allows you to run the same code locally with the run command 
+(after you copy and paste or type the command from Example 19). When finished, copy and paste the provided URL into your
+browser's address bar, typically, <http://localhost:3000>.
 
+```bash
+ibmcloud dev run 
+```
+{: codeblock}
+{: caption="Example 19. {{site.data.keyword.cloud_notm}} Platform CLI command to run your app" caption-side="bottom"}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Now that the app is created and running, click View App from the app’s
-Getting Started page to see it in a new browser window. It was created
-with a basic Hello World starter app as a placeholder (see Figure 5).
+Now that the app is created and defined, view your application to confirm it works. If you see the placeholder image in Figure 2,
+Congratulations, you have created a new web application!
 
 ![initialnodeapp](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-splash-graphic.png)
 {: caption="Figure 2. New Node.js Application: Congratulations!" caption-side="top"}
@@ -571,8 +542,9 @@ applications:
 4.  Deploy the app to {{site.data.keyword.cloud_notm}} Platform. To get the starter app with your changes
     to {{site.data.keyword.cloud_notm}} Platform, deploy it using the Cloud Foundry CLI:
 
-a.  Log in to {{site.data.keyword.cloud_notm}} Platform by using the login command. In addition to how it
-is shown in Example 5, you can specify optional parameters if you want: your organization with option -o, and the space with option -s, or, if you are using a federated account: --sso.
+a.  If you haven't already, or if you've restarted or logged out, log in to {{site.data.keyword.cloud_notm}} Platform 
+by using the login command. As a reminder it is shown in Example 5, and note you can specify optional parameters if you 
+want: your organization with option -o, and the space with option -s, or, if you are using a federated account: --sso.
 
 
 ```bash
@@ -587,17 +559,17 @@ b.  Set the API Endpoint for your region by using the api command (as
 
 
 ```bash
-ibmcloud api <cloud.ibm.com>\|<api.ng.bluemix.net\|<other.endpoint.uri>
+ibmcloud api <cloud.ibm.com>\|<api.ng.bluemix.net>\|<other.endpoint.uri>
 ```
 {: codeblock}
 {: caption="Example 6. {{site.data.keyword.cloud_notm}} Platform API endpoint" caption-side="bottom"}
 
 c.  Target the Cloud Foundry aspect of {{site.data.keyword.cloud_notm}} Platform using the code shown in 
-Example 7, using the target command and the cf option.
+Example 7, using the target command and the --cf option.
 
 
 ```bash
-ibmcloud target cf
+ibmcloud target --cf
 ```
 {: codeblock}
 {: caption="Example 7. {{site.data.keyword.cloud_notm}} Platform CLI targeting Cloud Foundry" caption-side="bottom"}
