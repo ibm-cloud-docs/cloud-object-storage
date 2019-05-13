@@ -17,7 +17,9 @@ subcollection: cloud-object-storage
 {:tip: .tip}
 {:important: .important}
 {:note: .note}
-{:download: .download} 
+{:download: .download}
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'} 
 
 # Use Aspera high-speed transfer
 {: #aspera}
@@ -146,6 +148,8 @@ Maven uses a file named `pom.xml` to specify the libraries (and their versions) 
 
 Examples of initiating Aspera high-speed transfers with Java are available in the [Using Aspera High-Speed Transfer](/docs/services/cloud-object-storage/libraries/java.html#aspera) section.
 
+{: java}
+
 ### Getting the SDK using Python
 {: #aspera-sdk-python}
 
@@ -156,3 +160,4 @@ pip install cos-aspera
 ```
 
 Examples of initiating Aspera transfers with Python are available in [Using Aspera High-Speed Transfer](/docs/services/cloud-object-storage/libraries/python.html#aspera) section.
+{: python}
