@@ -1122,8 +1122,8 @@ mimetype: 'image/jpeg' }
 ```
 {: caption="Example 42. Console display of debug object" caption-side="bottom"}
 
-While bragging is sometimes unseemly, Figure 9 shows the feedback from our callback 
-declaring that the application "uploaded file successfully."
+While bragging is unseemly, Figure 9 shows the feedback from our callback 
+declaring that the application has indeed: "uploaded file successfully" when tested.
 
 ![localtest1](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-019-success.jpg)
 {: caption="Figure 9. Success!" caption-side="top"}
@@ -1133,7 +1133,7 @@ declaring that the application "uploaded file successfully."
 
 Remember, back in app.js, the line of code `app.use('/gallery', galleryRouter);` 
 tells the express framework to use that router when the “/gallery” route is requested. 
-That router, if you recall, uses galleryController.js (see the code in Example 44), we define the
+That router, if you recall, uses galleryController.js (see the code in Example 43), we define the
 getGalleryImages function, the signature of which we have seen previously. Using the same `s3`
 object that we set up for our image upload function, we call the function named 
 `listObjectsV2`. This function returns the index data defining each of the
@@ -1142,16 +1142,15 @@ JPEG image in our `web-images` bucket to display in our view template. The
 closure with the data object returned by `listObjectsV2` contains metadata 
 about each object in our bucket. 
 
-The code loops through the `bucketContents` and search for any object key ending in ".jpg," and
+The code loops through the `bucketContents` searcing for any object key ending in ".jpg," and
 create a parameter to pass to the S3 getSignedUrl function. This
-function returns a signed URL for any object when we pass it the
+function returns a signed URL for any object when we provide the
 object’s bucket name and key. In the callback function we save each URL
 in an array, and pass it to the HTTP server response method `res.render` 
 as the value to a property named `imageUrls`.
 
 ```javascript
 //...
-    var imageUrlList = [];
     
     var getGalleryImages = function (req, res) {
         var params = {Bucket: myBucket};
@@ -1180,9 +1179,9 @@ as the value to a property named `imageUrls`.
 ```
 {: codeblock}
 {: javascript}
-{: caption="Example 44. Partial contents of galleryController.js" caption-side="bottom"}
+{: caption="Example 43. Partial contents of galleryController.js" caption-side="bottom"}
 
-The last code example, number 45, in this tutorial shows the body for the galleryView template with the code 
+The last code example, number 44 in this tutorial, shows the body for the galleryView template with the code 
 needed to display the images. We get the imageUrls array from the res.render() 
 method and iterate over a pair of nested &lt;div&gt;&lt;/div&gt; tags where 
 the image URL will make a GET request for the image when the /gallery route 
@@ -1219,7 +1218,7 @@ is requested.
 </html>
 ```
 {: codeblock}
-{: caption="Example 45. Loop and output scriptlets used in the gallery template" caption-side="bottom"}
+{: caption="Example 44. Loop and output scriptlets used in the gallery template" caption-side="bottom"}
 
 We test it locally from http://localhost:3000/gallery and see our image
 in Figure 10.
