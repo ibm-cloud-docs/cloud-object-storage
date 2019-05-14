@@ -91,7 +91,7 @@ ibm-service-instance-id: {ibm-service-instance-id}
 **Syntax**
 
 ```bash
-GET https://{endpoint}?extended/
+GET https://{endpoint}/?extended
 ```
 
 **Example request**
