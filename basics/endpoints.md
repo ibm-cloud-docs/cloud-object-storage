@@ -17,7 +17,7 @@ lastupdated: "2018-05-25"
 # Endpoints and storage locations
 {: #endpoints}
 
-Sending a REST API request or configuring a storage client requires setting a target endpoint or URL. Each storage location has it's own set of URLs.
+Sending a REST API request or configuring a storage client requires setting a target endpoint or URL. Each storage location has its own set of URLs.
 
 Most users should use one of the following endpoints for a given storage location. Private endpoints should be used from within the IBM cloud and do not incur data transfer charges. Public endpoints should be used from outside the IBM cloud and do incur transfer charges. If possible, it's recommended to use a private endpoint.
 
