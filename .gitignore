@@ -6,3 +6,5 @@ scratch/
 */*/.DS_Store
 .vscode/
 .vscode/*
+.idea
+.idea/*
