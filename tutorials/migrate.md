@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-05-22"
 
 keywords: tutorial, migrate, openstack swift
 
@@ -17,10 +17,10 @@ subcollection: cloud-object-storage
 {:tip: .tip}
 {:important: .important}
 {:note: .note}
-{:download: .download} 
-{:http: .ph data-hd-programlang='http'} 
-{:javascript: .ph data-hd-programlang='javascript'} 
-{:java: .ph data-hd-programlang='java'} 
+{:download: .download}
+{:http: .ph data-hd-programlang='http'}
+{:javascript: .ph data-hd-programlang='javascript'}
+{:java: .ph data-hd-programlang='java'}
 {:python: .ph data-hd-programlang='python'}
 
 # Migrating data from OpenStack Swift
@@ -31,15 +31,15 @@ Before {{site.data.keyword.cos_full_notm}} became available as an {{site.data.ke
 The concept of a Swift 'container' is identical to a COS 'bucket'. COS limits service instances to 100 buckets and some Swift instances may have a larger number of containers. COS buckets can hold billions of objects and supports forward slashes (`/`) in object names for directory-like 'prefixes' when organizing data. COS supports IAM policies at the bucket and service instance levels.
 {:tip}
 
-One approach to migrating data across object storage services is to use a 'sync' or 'clone' tool, such as [the open source `rclone` command line utility](https://rclone.org/docs/). This utility will sync a filetree between two locations, including cloud storage. When `rclone` writes data to COS it will use the COS/S3 API to segment large objects and upload the parts in parallel according to sizes and thresholds set as configuration parameters. 
+One approach to migrating data across object storage services is to use a 'sync' or 'clone' tool, such as [the open source `rclone` command line utility](https://rclone.org/docs/). This utility will sync a filetree between two locations, including cloud storage. When `rclone` writes data to COS it will use the COS/S3 API to segment large objects and upload the parts in parallel according to sizes and thresholds set as configuration parameters.
 
 There are some differences between COS and Swift that must be considered as part of data migration.
 
   - COS does not yet support expiration policies or versioning. Workflows that depend on these Swift features must instead handle them as part of their application logic upon migration into COS.
   - COS supports object-level metadata, but this information is not preserved when using `rclone` to migrate data. Custom metadata can be set on objects in COS using a `x-amz-meta-{key}: {value}` header, but it is recommended that object-level metadata is backed up to a database prior to using `rclone`. Custom metadata can be applied to existing objects by [copying the object onto itself](https://cloud.ibm.com/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#copy-object) - the system will recognize that the object data is identical and only update the metadata. Note that `rclone` **can** preserve timestamps.
   - COS uses IAM policies for service instance and bucket-level access control. [Objects can be made publicly available](/docs/services/cloud-object-storage/iam/public-access.html)) by setting a `public-read` ACL, which eliminates the need for an authorization header.
-  - [Multipart uploads](/docs/services/cloud-object-storage/basics/multipart.html) for large objects are handled differently in the COS/S3 API relative to the Swift API. 
-  - COS allows for familiar optional HTTP headers such as `Cache-Control`, `Content-Encoding`, `Content-MD5`, and `Content-Type`. 
+  - [Multipart uploads](/docs/services/cloud-object-storage/basics/multipart.html) for large objects are handled differently in the COS/S3 API relative to the Swift API.
+  - COS allows for familiar optional HTTP headers such as `Cache-Control`, `Content-Encoding`, `Content-MD5`, and `Content-Type`.
 
 This guide provides instructions for migrating data from a single Swift container to a single COS bucket. This will need to be repeated for all containers that you want to migrate, and then your application logic will need to be updated to use the new API. After the data is migrated you can verify the integrity of the transfer using `rclone check`, which will compare MD5 checksums and produce a list of any objects where they don't match.
 
@@ -47,8 +47,8 @@ This guide provides instructions for migrating data from a single Swift containe
 ## Set up {{site.data.keyword.cos_full_notm}}
 {: #migrate-setup}
 
-  1. If you haven't created one yet, provision an instance of {{site.data.keyword.cos_full_notm}} from the [catalog](https://cloud.ibm.com/catalog/services/cloud-object-storage). 
-  2. Create any buckets that you will need to store your transferred data. Read through the [getting started guide](/docs/services/cloud-object-storage/getting-started.html) to familiarize yourself with key concepts such as [endpoints](/docs/services/cloud-object-storage/basics/endpoints.html) and [storage classes](/docs/services/cloud-object-storage/basics/classes.html). 
+  1. If you haven't created one yet, provision an instance of {{site.data.keyword.cos_full_notm}} from the [catalog](https://cloud.ibm.com/catalog/services/cloud-object-storage).
+  2. Create any buckets that you will need to store your transferred data. Read through the [getting started guide](/docs/services/cloud-object-storage/getting-started.html) to familiarize yourself with key concepts such as [endpoints](/docs/services/cloud-object-storage/basics/endpoints.html) and [storage classes](/docs/services/cloud-object-storage/basics/classes.html).
   3. Because the syntax of the Swift API is significantly different from the COS/S3 API, it may be necessary to refactor your application in order to use equivalent methods provided in the COS SDKs. Libraries are available in ([Java](/docs/services/cloud-object-storage/libraries/java.html), [Python](/docs/services/cloud-object-storage/libraries/python.html), [Node.js](/docs/services/cloud-object-storage/libraries/node.html)) or the [REST API](/docs/services/cloud-object-storage/api-reference/about-api.html).
 
 ## Set up a compute resource to run the migration tool
@@ -58,7 +58,7 @@ This guide provides instructions for migrating data from a single Swift containe
      The following Server configuration is recommended:  32 GB RAM, 2-4 core processor, and private network speed of 1000 Mbps.  
   2. If you are running the migration on an IBM Cloud Infrastructure Bare Metal or Virtual Server
      use the **private** Swift and COS endpoints.
-  3. Otherwise use the **public** Swift and COS endpoints. 
+  3. Otherwise use the **public** Swift and COS endpoints.
   4. Install `rclone` from [either a package manager or precompiled binary](https://rclone.org/install/).
 
       ```
@@ -161,7 +161,7 @@ This guide provides instructions for migrating data from a single Swift containe
   4. Scroll down to the **Endpoints** section and choose the endpoint based on where
      where you are running the migration tool.
 
-  5. Create the COS target by copying the following and pasting into `rclone.conf`. 
+  5. Create the COS target by copying the following and pasting into `rclone.conf`.
 
     ```
     [COS]
@@ -210,21 +210,18 @@ This guide provides instructions for migrating data from a single Swift containe
     rclone -v copy --checksum SWIFT:swift-test COS:cos-test
     ```
 
-    A couple other parameter for rclone to consider.
-    ```--checkers int  Number of checkers to run in parallel. (default 8)
-    ```
-    This is the number of checksum compare threads running. We recommend increasing this to 64 or more.
+   You should be trying to max out the CPU, memory, and network on the machine running rclone to get the fastest transfer time.
+   A few other parameter to consider for tuning rclone:
 
-    ```--transfers int Number of file transfers to run in parallel. (default 4)
-    ```
-    This is the number of objects to transfer in parallel. We recommend increasing this to 64 or 128 or higher.
+   --checkers int  Number of checkers to run in parallel. (default 8)
+   This is the number of checksum compare threads running. We recommend increasing this to 64 or more.
 
-    ```--fast-list Use recursive list if available. Uses more memory but fewer transactions.
-    ```
-    Use this option to improve performance - reduces the number of requests needed to copy an object.
+   --transfers int Number of file transfers to run in parallel. (default 4)
+   This is the number of objects to transfer in parallel. We recommend increasing this to 64 or 128 or higher.
 
-    Using this parameters to tune rclone, you should be trying to max out the CPU, memory,
-    and network on your transfer machine to get the fastest transfer time.
+   --fast-list Use recursive list if available. Uses more memory but fewer transactions.
+   Use this option to improve performance - reduces the number of requests needed to copy an object.
+
 Migrating data using `rclone` copies but does not delete the source data.
 {:tip}
 
