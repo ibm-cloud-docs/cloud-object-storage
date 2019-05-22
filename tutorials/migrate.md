@@ -55,6 +55,7 @@ This guide provides instructions for migrating data from a single Swift containe
 {: #migrate-compute}
   1. Choose a Linux/macOS/BSD machine or an IBM Cloud Infrastructure Bare Metal or Virtual Server
      with the best proximity to your data.
+     The following Server configuration is recommended:  32 GB RAM, 2-4 core processor, and private network speed of 1000 Mbps.  
   2. If you are running the migration on an IBM Cloud Infrastructure Bare Metal or Virtual Server
      use the **private** Swift and COS endpoints.
   3. Otherwise use the **public** Swift and COS endpoints. 
@@ -209,6 +210,21 @@ This guide provides instructions for migrating data from a single Swift containe
     rclone -v copy --checksum SWIFT:swift-test COS:cos-test
     ```
 
+    A couple other parameter for rclone to consider.
+    ```--checkers int  Number of checkers to run in parallel. (default 8)
+    ```
+    This is the number of checksum compare threads running. We recommend increasing this to 64 or more.
+
+    ```--transfers int Number of file transfers to run in parallel. (default 4)
+    ```
+    This is the number of objects to transfer in parallel. We recommend increasing this to 64 or 128 or higher.
+
+    ```--fast-list Use recursive list if available. Uses more memory but fewer transactions.
+    ```
+    Use this option to improve performance - reduces the number of requests needed to copy an object.
+
+    Using this parameters to tune rclone, you should be trying to max out the CPU, memory,
+    and network on your transfer machine to get the fastest transfer time.
 Migrating data using `rclone` copies but does not delete the source data.
 {:tip}
 
