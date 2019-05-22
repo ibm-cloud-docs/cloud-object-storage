@@ -1,3 +1,4 @@
+.idea
 outdated/
 not-yet/
 scratch/
@@ -8,3 +9,5 @@ scratch/
 .vscode/*
 .idea
 .idea/* 
+node_modules
+node_modules/*
