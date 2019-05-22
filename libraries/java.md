@@ -170,7 +170,7 @@ Let's start with an complete example class that will run through some basic func
             _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
             
             listObjects(bucketName, _cosClient);
-            createBucket(newBucketName, storageClass);
+            createBucket(newBucketName, _cosClient, storageClass);
             listBuckets(_cosClient);
         }
 
@@ -214,8 +214,9 @@ Let's start with an complete example class that will run through some basic func
         /**
          * @param bucketName
          * @param cosClient
+         * @param storageClass
          */
-        public static void createBucket(String bucketName, String storageClass)
+        public static void createBucket(String bucketName, AmazonS3 cosClient, String storageClass)
         {
             cosClient.createBucket(bucketName, storageClass);
         }
