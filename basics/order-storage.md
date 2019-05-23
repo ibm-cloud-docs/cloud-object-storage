@@ -40,6 +40,10 @@ Before ordering a new {{site.data.keyword.cos_full}} storage instance, it is nec
 
 1. Login to [the console](https://cloud.ibm.com/){: new_window}.
 2. Navigate to the catalog, by clicking **Catalog** in the navigation bar.
+	<img src="https://s3-api.us-geo.objectstorage.softlayer.net/docs-resources/console_provision_catalog.png" max-height="200px" />
+	`Figure 1: Provision storage Catalog`
 3. Look for the **Object Storage** tile in the storage section and select it.
+	<img src="https://s3-api.us-geo.objectstorage.softlayer.net/docs-resources/console_provision_os.png" max-height="200px" />
+	`Figure 2: Provision storage Object Storage`
 4. Give the service instance a name and choose either the lite or standard plan.
 5. Click **Create** and you will be automatically redirected to your new instance.
