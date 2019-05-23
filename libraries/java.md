@@ -163,14 +163,14 @@ Let's start with an complete example class that will run through some basic func
             String service_instance_id = "<SERVICE_INSTANCE_ID"; // eg "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
             String endpoint_url = "https://s3.us-south.cloud-object-storage.appdomain.cloud"; // this could be any service endpoint
 
-            String storageClass = "us-south-standard"
+            String storageClass = "us-south-standard";
             String location = "us"; 
 
             System.out.println("Current time: " + new Timestamp(System.currentTimeMillis()).toString());
             _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
             
             listObjects(bucketName, _cosClient);
-            createBucket(newBucketName, _cosClient)
+            createBucket(newBucketName, _cosClient, storageClass);
             listBuckets(_cosClient);
         }
 
@@ -214,8 +214,9 @@ Let's start with an complete example class that will run through some basic func
         /**
          * @param bucketName
          * @param cosClient
+         * @param storageClass
          */
-        public static void createBucket(String bucketName, AmazonS3 cosClient)
+        public static void createBucket(String bucketName, AmazonS3 cosClient, String storageClass)
         {
             cosClient.createBucket(bucketName, storageClass);
         }

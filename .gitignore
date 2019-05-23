@@ -7,4 +7,7 @@ scratch/
 */*/.DS_Store
 .vscode/
 .vscode/*
+.idea
+.idea/* 
 node_modules
+node_modules/*
