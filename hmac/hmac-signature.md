@@ -26,13 +26,13 @@ subcollection: cloud-object-storage
 # Constructing an HMAC signature
 {: #hmac-signature}
 
-Each request that is made against IBM COS using [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html) instead of an [API key or bearer token](/docs/services/cloud-object-storage/iam/overview.html) must be authenticated that uses an implementation of the AWS Signature Version 4 `authorization` header. Using a signature provides identity verification and in-transit data integrity, and because each signature is tied to the timestamp of the request it is not possible to reuse authorization headers.  The header is composed of four components: an algorithm declaration, credential information, signed headers, and the calculated signature:
+Each request that is made against IBM COS using [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html) instead of an [API key or bearer token](/docs/services/cloud-object-storage/iam/overview.html) must be authenticated that uses an implementation of the AWS Signature Version 4 `authorization` header. Using a signature provides identity verification and in-transit data integrity, and because each signature is tied to the timestamp of the request it is not possible to reuse authorization headers. The header is composed of four components: an algorithm declaration, credential information, signed headers, and the calculated signature:
 
 ```
 AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;{other-required-headers},Signature={signature}
 ```
 
-The date is provided in `YYYYMMDD` format, and the region should be correspond to the location of specified bucket, for example `us`, . The `host` and `x-amz-date` headers are always required, and depending on the request other headers may be required as well (e.g. `x-amz-content-sha256` in the case of requests with payloads).  Due to the need to recalculate the signature for every individual request, many developers prefer to use a tool or SDK that will produce the authorization header automatically.
+The date is provided in `YYYYMMDD` format, and the region should be correspond to the location of specified bucket, for example `us`, . The `host` and `x-amz-date` headers are always required, and depending on the request other headers may be required as well (e.g. `x-amz-content-sha256` in the case of requests with payloads). Due to the need to recalculate the signature for every individual request, many developers prefer to use a tool or SDK that will produce the authorization header automatically.
 
 ## Creating an `authorization` header
 {: #hmac-auth-header}
@@ -40,10 +40,10 @@ The date is provided in `YYYYMMDD` format, and the region should be correspond t
 First we need to create a request in a standardized format.
 
 1. Declare which HTTP method we are using (e.g. `PUT`)
-2. Define the resource we are accessing in a standardized fashion.  This is the part of the address in between `http(s)://` and the query string.  For requests at the account level (i.e. listing buckets) this is simply `/`.
+2. Define the resource we are accessing in a standardized fashion. This is the part of the address in between `http(s)://` and the query string. For requests at the account level (i.e. listing buckets) this is simply `/`.
 3. If there are any request parameters they must be standardized by being percent-encoded (e.g. spaces should be represented as `%20`) and alphabetized.
 4. Headers need to be standardized by removing whitespace, converting to lowercase, and adding a newline to each, then they must be sorted in ASCII order.
-5. After being listed in a standard format, they must be 'signed'.  This is taking just the header names, not their values, and listing them in alphabetical order, separated by semicolons. `Host` and `x-amz-date` are required for all requests.
+5. After being listed in a standard format, they must be 'signed'. This is taking just the header names, not their values, and listing them in alphabetical order, separated by semicolons. `Host` and `x-amz-date` are required for all requests.
 6. If the request has a body, such as when uploading an object or creating a new ACL, the request body must be hashed using the SHA-256 algorithm and represented as base-16 encoded lowercase characters.
 7. Combine the HTTP method, standardized resource, standardized parameters, standardized headers, signed headers, and hashed request body each separated by a newline to form a standardized request.
 

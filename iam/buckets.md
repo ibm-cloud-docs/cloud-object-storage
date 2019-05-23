@@ -33,18 +33,19 @@ Assign access roles for users and Service IDs against buckets, using either the 
 | Manager     | Make objects public, create and destroy buckets and objects |
 | Writer      | Create and destroy buckets and objects                      |
 | Reader      | List and download objects                                   |
+| ContentReader      | Download objects                                   |
 
 ## Granting access to a user
 {: #iam-user-access}
 
-If the user needs to be able to use the console, it is necessary to **also** grant them a minimum service role of `Viewer` on the instance itself in addition to the access role (such as `Reader`).  This will allow them to view all buckets and list the objects within them. Then select **Bucket permissions** from the left navigation menu, select the user, and select the level of access (`Manager` or `Writer`) that they require.
+If the user needs to be able to use the console, it is necessary to **also** grant them a minimum service role of `Viewer` on the instance itself in addition to the access role (such as `Reader`). This will allow them to view all buckets and list the objects within them. Then select **Bucket permissions** from the left navigation menu, select the user, and select the level of access (`Manager` or `Writer`) that they require.
 
 If the user will interact with data using the API and doesn't require console access, _and_ they are a member of your account, you can grant access to a single bucket without any access to the parent instance.
 
 ## Policy enforcement
 {: #iam-policy-enforcement}
 
-IAM policies are enforced hierarchically from greatest level of access to most restricted. Conflicts are resolved to the more permissive policy.  For example, if a user has both the `Writer` and `Reader` role on a bucket, the policy granting the `Reader` role will be ignored.
+IAM policies are enforced hierarchically from greatest level of access to most restricted. Conflicts are resolved to the more permissive policy. For example, if a user has both the `Writer` and `Reader` role on a bucket, the policy granting the `Reader` role will be ignored.
 
 This is also applicable to service instance and bucket level policies.
   - If a user has a policy granting the `Writer` role on a service instance and the `Reader` role on a single bucket, the bucket-level policy will be ignored.
@@ -103,7 +104,7 @@ bx iam user-policy-update <user-name> <policy-id> \
 
 ## Granting access to a service ID
 {: #iam-service-id}
-If you need to grant access to a bucket for an application or other non-human entity, use a Service ID.  The Service ID can be created specifically for this purpose, or can be an existing Service ID already in use.
+If you need to grant access to a bucket for an application or other non-human entity, use a Service ID. The Service ID can be created specifically for this purpose, or can be an existing Service ID already in use.
 
 ### Using the UI
 {: #iam-service-id-console}

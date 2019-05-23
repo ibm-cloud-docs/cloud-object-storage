@@ -26,7 +26,7 @@ subcollection: cloud-object-storage
 # Service credentials
 {: #service-credentials}
 
-A service credential provides the necessary information to connect an application to {{site.data.keyword.cos_short}} packaged in a JSON document.  Service credentials are always associated with a Service ID, and new Service IDs can be created along with a new credential.  
+A service credential provides the necessary information to connect an application to {{site.data.keyword.cos_short}} packaged in a JSON document. Service credentials are always associated with a Service ID, and new Service IDs can be created along with a new credential. 
 
 Use the following steps to create a service credential:
 1. Log in to the {{site.data.keyword.cloud_notm}} console and navigate to your instance of {{site.data.keyword.cos_short}}.
@@ -231,12 +231,12 @@ When creating a client using a library that requires an "auth" endpoint value, y
 ## Using service credentials for single-bucket access
 {: #service-credentials-bucket}
 
-When a service credential is created, the underlying Service ID is granted a role on the entire instance of {{site.data.keyword.cos_short}}. If the intention that the credential be used to grant access to a subset of buckets and not the entire instance, this policy will need to be edited.  See the [Bucket permissions](/docs/services/cloud-object-storage/iam/buckets.html) page for more details.
+When a service credential is created, the underlying Service ID is granted a role on the entire instance of {{site.data.keyword.cos_short}}. If the intention that the credential be used to grant access to a subset of buckets and not the entire instance, this policy will need to be edited. See the [Bucket permissions](/docs/services/cloud-object-storage/iam/buckets.html) page for more details.
 
 ## API Key vs HMAC
 {: #service-credentials-iam-hmac}
 
-In general IAM API Keys are the prefered method of authentication for {{site.data.keyword.cos_full}}. HMAC is supported primarily for backward-compatibility with s3.us-south.cloud-object-storage.appdomain.cloud (IaaS) provisioned service instances and legacy S3 applications.  IAM is also natively supported when developing applications with the SDKs.  Token expiration and refresh is handled automatically to simplify the process.
+In general IAM API Keys are the prefered method of authentication for {{site.data.keyword.cos_full}}. HMAC is supported primarily for backward-compatibility with applications which migrated from IaaS {site.data.keyword.cos_short}} and legacy S3 applications. IAM is also natively supported when developing applications with the COS SDKs. Token expiration and refresh is handled automatically to simplify the process.
 
 For more information about IAM visit - [Getting started with IAM](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam)
 

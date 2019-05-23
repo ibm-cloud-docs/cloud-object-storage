@@ -24,6 +24,9 @@ subcollection: cloud-object-storage
 
 These operations read, write, and configure the objects contained within a bucket.
 
+For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
+{:tip}
+
 ## Upload an object
 {: #object-operations-put}
 
@@ -299,7 +302,7 @@ The required `Content-MD5` header needs to be the binary representation of a bas
 |---|---|---|
 |`Quiet`|Boolean|Enable quiet mode for the request.|
 
-The request can contain a maximum of 1000 keys that you want to delete.  While this is very useful in reducing the per-request overhead, be mindful when deleting a large number of keys.  Also take into account the sizes of the objects to ensure suitable performance.
+The request can contain a maximum of 1000 keys that you want to delete. While this is very useful in reducing the per-request overhead, be mindful when deleting a large number of keys. Also take into account the sizes of the objects to ensure suitable performance.
 {:tip}
 
 ```
@@ -410,8 +413,8 @@ Header | Type | Description
 `x-amz-metadata-directive` | string (`COPY` or `REPLACE`) | `REPLACE` will overwrite original metadata with new metadata that is provided.
 `x-amz-copy-source-if-match` | string (`ETag`)| Creates a copy if the specified `ETag` matches the source object.
 `x-amz-copy-source-if-none-match` | string (`ETag`)| Creates a copy if the specified `ETag` is different from the source object.
-`x-amz-copy-source-if-unmodified-since` | string (timestamp)| Creates a copy if the the source object has not been modified since the specified date.  Date must be a valid HTTP date (e.g. `Wed, 30 Nov 2016 20:21:38 GMT`).
-`x-amz-copy-source-if-modified-since` | string (timestamp)| Creates a copy if the source object has been modified since the specified date.  Date must be a valid HTTP date (e.g. `Wed, 30 Nov 2016 20:21:38 GMT`).
+`x-amz-copy-source-if-unmodified-since` | string (timestamp)| Creates a copy if the the source object has not been modified since the specified date. Date must be a valid HTTP date (e.g. `Wed, 30 Nov 2016 20:21:38 GMT`).
+`x-amz-copy-source-if-modified-since` | string (timestamp)| Creates a copy if the source object has been modified since the specified date. Date must be a valid HTTP date (e.g. `Wed, 30 Nov 2016 20:21:38 GMT`).
 
 **Example request**
 
@@ -469,7 +472,7 @@ Content-Length: 240
 ## Check an object's CORS configuration
 {: #object-operations-options}
 
-An `OPTIONS` given a path to an object along with an origin and request type checks to see if that object is accessible from that origin using that request type.  Unlike all other requests, an OPTIONS request does not require the `authorization` or `x-amx-date` headers.
+An `OPTIONS` given a path to an object along with an origin and request type checks to see if that object is accessible from that origin using that request type. Unlike all other requests, an OPTIONS request does not require the `authorization` or `x-amx-date` headers.
 
 **Syntax**
 
@@ -532,14 +535,14 @@ Content-Length: 0
 
 When working with larger objects, multipart upload operations are recommended to write objects into {{site.data.keyword.cos_full}}. An upload of a single object can be performed as a set of parts and these parts can be uploaded independently in any order and in parallel. Upon upload completion, {{site.data.keyword.cos_short}} then presents all parts as a single object. This provides many benefits: network interruptions do not cause large uploads to fail, uploads can be paused and restarted over time, and objects can be uploaded as they are being created.
 
-Multipart uploads are only available for objects larger than 5MB. For objects smaller than 50GB, a part size of 20MB to 100MB is recommended for optimum performance. For larger objects, part size can be increased without significant performance impact.  Multipart uploads are limited to no more than 10,000 parts of 5GB each.
+Multipart uploads are only available for objects larger than 5MB. For objects smaller than 50GB, a part size of 20MB to 100MB is recommended for optimum performance. For larger objects, part size can be increased without significant performance impact. Multipart uploads are limited to no more than 10,000 parts of 5GB each.
 
 Using more than 500 parts leads to inefficiencies in {{site.data.keyword.cos_short}} and should be avoided when possible.
 {:tip}
 
 Due to the additional complexity involved, it is recommended that developers make use of a library that provide multipart upload support.
 
-Incomplete multipart uploads do persist until the object is deleted or the multipart upload is aborted with `AbortIncompleteMultipartUpload`. If an incomplete multipart upload is not aborted, the partial upload continues to use resources.  Interfaces should be designed with this point in mind, and clean up incomplete multipart uploads.
+Incomplete multipart uploads do persist until the object is deleted or the multipart upload is aborted with `AbortIncompleteMultipartUpload`. If an incomplete multipart upload is not aborted, the partial upload continues to use resources. Interfaces should be designed with this point in mind, and clean up incomplete multipart uploads.
 {:tip}
 
 There are three phases to uploading an object in multiple parts:
@@ -613,7 +616,7 @@ Content-Length: 276
 ## Upload a part
 {: #object-operations-multipart-put-part}
 
-A `PUT` request issued to an object with query parameters `partNumber` and `uploadId` will upload one part of an object.  The parts may be uploaded serially or in parallel, but must be numbered in order.
+A `PUT` request issued to an object with query parameters `partNumber` and `uploadId` will upload one part of an object. The parts may be uploaded serially or in parallel, but must be numbered in order.
 
 **Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
 {:tip}
@@ -897,9 +900,9 @@ X-Clv-S3-Version: 2.5
 ## Temporarily restore an archived object
 {: #object-operations-archive-restore}
 
-A `POST` request issued to an object with query parameter `restore` to request temporary restoration of an archived object.  A `Content-MD5` header is required as an integrity check for the payload.
+A `POST` request issued to an object with query parameter `restore` to request temporary restoration of an archived object. A `Content-MD5` header is required as an integrity check for the payload.
 
-An archived object must be restored before downloading or modifying the object.  The lifetime of the object must be specifed, after which the temporary copy of the object will be deleted.
+An archived object must be restored before downloading or modifying the object. The lifetime of the object must be specifed, after which the temporary copy of the object will be deleted.
 
 There can be a delay of up to 15 hours before the restored copy is available for access. A HEAD request can check if the restored copy is available.
 

@@ -30,7 +30,7 @@ An unique component of the {{site.data.keyword.cloud}} Platform (e.g. {{site.dat
 ## Resource
 {: #terminology-resource}
 
-Anything that you have created in the {{site.data.keyword.cloud_notm}}.  A resource could be an instance of a service, a Kubernetes cluster, an object storage bucket, a Cloud Foundry application, or nearly anything else created in the {{site.data.keyword.cloud_notm}} Platform.  Access to resources is controlled using Identity and Access Management policies.
+Anything that you have created in the {{site.data.keyword.cloud_notm}}. A resource could be an instance of a service, a Kubernetes cluster, an object storage bucket, a Cloud Foundry application, or nearly anything else created in the {{site.data.keyword.cloud_notm}} Platform. Access to resources is controlled using Identity and Access Management policies.
 
 ## Resource instance / Service instance
 {: #terminology-service-instance}
@@ -77,24 +77,23 @@ A service ID is an abstracted user that is intended to be used by developers to 
 ## IAM roles
 {: #terminology-roles}
 
-IAM roles represent the level of access that a given subject should have on a given resource.  There are two types of roles:
+IAM roles represent the level of access that a given subject should have on a given resource. There are two types of roles:
   - Platform roles: Work with the {{site.data.keyword.cloud_notm}} Platform itself (manage accounts, create instances, write IAM policies).
   - Service roles: Work with service-specific resources (access buckets and objects).
 
 ## Identity endpoint
 {: #terminology-identity}
 
-The IAM endpoint (`iam.cloud.ibm.com`) is used to fetch an access token in exchange for an API key.  This token is used in the `Authorization` header in all REST API requests sent to an {{site.data.keyword.cos_short}} service endpoint.
+The IAM endpoint (`iam.cloud.ibm.com`) is used to fetch an access token in exchange for an API key. This token is used in the `Authorization` header in all REST API requests sent to an {{site.data.keyword.cos_short}} service endpoint.
 
 ## Service endpoints
 {: #terminology-service-endpoint}
-
-[Service endpoints](docs/services/cloud-object-storage/basics/endpoints.html) (for example, `s3.us-south.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net`) are the base URLs where API requests that interact with data are sent.
+[Service endpoints](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints) (for example, `s3.us-south.objectstorage.softlayer.net`) are the base URLs where API requests that interact with data are sent.
 
 ## {{site.data.keyword.cos_short}} bucket location
 {: #terminology-location}
 
-All buckets in {{site.data.keyword.cos_short}} are scoped to a location. This is either a region (such as `us-south` or `us-east`) or a geography (such as `eu-geo` or `us-geo`).  Within this location, objects are sliced and dispersed across three different physical locations.
+All buckets in {{site.data.keyword.cos_short}} are scoped to a location. This is either a region (such as `us-south` or `us-east`) or a geography (such as `eu-geo` or `us-geo`). Within this location, objects are sliced and dispersed across three different physical locations.
 
 ## Regions
 {: #terminology-region}
@@ -108,4 +107,4 @@ Resiliency refers to the scope and scale of the geographic area across which you
 ## {{site.data.keyword.cos_short}} S3 Keys vs. IAM API Key
 {: #terminology-auth}
 
-Instances of {{site.data.keyword.cos_short}} provisioned as IaaS use access and secret key pairs (referred to as HMAC keys) instead of an {{site.data.keyword.cloud_notm}} IAM API key.  These key pairs allow for creating AWS V4 signatures for authentication and authorization instead of the OAuth2 bearer tokens used by {{site.data.keyword.cloud_notm}} IAM. While IAM API keys allow for much stronger and fine-grained access control, HMAC keys are required for using S3-compatible tools and gateways (such as the AWS CLI or Cyberduck).
+Instances of {{site.data.keyword.cos_short}} provisioned as IaaS use access and secret key pairs (referred to as HMAC keys) instead of an {{site.data.keyword.cloud_notm}} IAM API key. These key pairs allow for creating AWS V4 signatures for authentication and authorization instead of the OAuth2 bearer tokens used by {{site.data.keyword.cloud_notm}} IAM. While IAM API keys allow for much stronger and fine-grained access control, HMAC keys are required for using S3-compatible tools and gateways (such as the AWS CLI or Cyberduck).

@@ -29,6 +29,7 @@ Cloud Object Storage
     
     {: .topicgroup}
     Manage access
+        iam.md
         iam/overview.md
         iam/service-credentials.md
         iam/buckets.md
@@ -51,7 +52,6 @@ Cloud Object Storage
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
-
     {: .topicgroup}
     API reference
         api-reference/about-api.md
@@ -62,7 +62,7 @@ Cloud Object Storage
 
     {: .topicgroup}
     Libraries
-        libraries/gettingstarted.md
+        libraries/getting-started-sdks.md
         libraries/java.md
         libraries/python.md
         libraries/node.md
@@ -70,6 +70,7 @@ Cloud Object Storage
 
     {: .topicgroup}
     Use the command line
+        cloud-object-storage-cli-reference.md
         cli/curl.md
         cli/aws-cli.md
         cli/s3fs.md
@@ -88,13 +89,14 @@ Cloud Object Storage
     {: .topicgroup}
     Tutorials
         [Get started with Watson Studio](https://developer.ibm.com/clouddataservices/docs/cos/get-started/)
-        [Upload files using IBM Cloud Functions](https://medium.com/ibm-watson-data-lab/keeping-your-secrets-between-cloud-object-storage-and-your-browser-part-1-68f4b83bbd38)
+        [Upload files using IBM Cloud Functions](https://medium.com/codait/keeping-your-secrets-between-cloud-object-storage-and-your-browser-part-1-68f4b83bbd38)
         [Serve static content using NGINX](https://www.ibm.com/blogs/bluemix/2017/03/static-websites-cloud-object-storage-cos/)
         [Detach Cloudant Attachments to IBM COS](https://medium.com/ibm-watson-data-lab/detaching-cloudant-attachments-to-object-storage-with-serverless-functions-99b8c3c77925)
         [Build, deploy and scale real-world solutions on IBM Cloud.](https://cloud.ibm.com/docs/tutorials/index.html#tutorials)
         [Read and write data to and from IBM COS in Rstudio](https://medium.com/ibm-data-science-experience/read-and-write-data-to-and-from-ibm-cloud-object-storage-in-rstudio-e9cf86e903ed)
         [File-like access to IBM COS using s3fs](https://medium.com/@ozeri/file-like-access-to-ibm-cloud-object-storage-using-s3fs-f5094ed42594)
         tutorials/migrate.md
+        tutorials/web-application.md
         [Connect to IBM COS using IBM Cloud Direct Link](../../infrastructure/direct-link/direct-link-to-cos.html)
 
     {: .topicgroup}
@@ -104,7 +106,7 @@ Cloud Object Storage
         [Using Cloud Object Storage with Kubernetes](https://cloud.ibm.com/docs/containers/cs_storage_cos.html)
         info/cof.md
         info/activestorage.md
-        info/heptioark.md
+        info/velero.md
         help/object-storage.md
         info/advanced_endpoints.md
     {: .navgroup-end}

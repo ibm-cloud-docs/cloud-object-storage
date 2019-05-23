@@ -42,7 +42,7 @@ Using more than 500 parts leads to inefficiencies in {{site.data.keyword.cos_sho
 
 Due to the additional complexity involved, it is recommended that developers make use of S3 API libraries that provide multipart upload support.
 
-Incomplete multipart uploads do persist until the object is deleted or the multipart upload is aborted with `AbortIncompleteMultipartUpload`. If an incomplete multipart upload is not aborted, the partial upload continues to use resources.  Interfaces should be designed with this point in mind, and clean up incomplete multipart uploads.
+Incomplete multipart uploads do persist until the object is deleted or the multipart upload is aborted with `AbortIncompleteMultipartUpload`. If an incomplete multipart upload is not aborted, the partial upload continues to use resources. Interfaces should be designed with this point in mind, and clean up incomplete multipart uploads.
 
 ## Using software development kits
 {: #dev-guide-sdks}
@@ -52,13 +52,13 @@ It is not mandatory to use published S3 API SDKs; custom software can leverage t
 ## Pagination
 {: #dev-guide-pagination}
 
-When dealing with a large number of objects in a bucket, web applications can begin to suffer performance degradation.  Many applications employ a technique called **pagination** (*the process of dividing a large recordset into discrete pages*).  Almost all development platforms provide objects or methods to accomplish pagination either by built-in functionality or through 3rd party libraries.
+When dealing with a large number of objects in a bucket, web applications can begin to suffer performance degradation. Many applications employ a technique called **pagination** (*the process of dividing a large recordset into discrete pages*). Almost all development platforms provide objects or methods to accomplish pagination either by built-in functionality or through 3rd party libraries.
 
-The {{site.data.keyword.cos_short}} SDKs provides support for pagination through a method that lists the objects within a specified bucket.  This method provides a number of parameters that make it extremely useful when attempting to break apart a large resultset.
+The {{site.data.keyword.cos_short}} SDKs provides support for pagination through a method that lists the objects within a specified bucket. This method provides a number of parameters that make it extremely useful when attempting to break apart a large resultset.
 
 ### Basic Usage
 {: #dev-guide-pagination-basics}
-The basic concept behind the object listing method involves setting the maximum number of keys (`MaxKeys`) to return in the response.  The response also includes a `boolean` value (`IsTruncated`) that indicates whether more results are available and a `string` value called `NextContinuationToken`.  Setting the continuation token in the follow-up requests returns the next batch of objects until no more results are available.
+The basic concept behind the object listing method involves setting the maximum number of keys (`MaxKeys`) to return in the response. The response also includes a `boolean` value (`IsTruncated`) that indicates whether more results are available and a `string` value called `NextContinuationToken`. Setting the continuation token in the follow-up requests returns the next batch of objects until no more results are available.
 
 #### Common Parameters
 {: #dev-guide-pagination-params}
@@ -73,9 +73,9 @@ The basic concept behind the object listing method involves setting the maximum 
 ### Using Java
 {: #dev-guide-pagination-java}
 
-The {{site.data.keyword.cos_full}} SDK for Java provides the [`listObjectsV2`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){:new_window} method that allows for returning the object listing in the desired size.  There is a complete code example available [here](/docs/services/cloud-object-storage/libraries/java.html#list-objects-v2).
+The {{site.data.keyword.cos_full}} SDK for Java provides the [`listObjectsV2`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){:new_window} method that allows for returning the object listing in the desired size. There is a complete code example available [here](/docs/services/cloud-object-storage/libraries/java.html#list-objects-v2).
 
 ### Using Python
 {: #dev-guide-pagination-python}
 
-The {{site.data.keyword.cos_full}} SDK for Python provides the [`list_objects_v2`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){:new_window} method that allows for returning the object listing in the desired size.  There is a complete code example available [here](/docs/services/cloud-object-storage/libraries/python.html#list-objects-v2).
+The {{site.data.keyword.cos_full}} SDK for Python provides the [`list_objects_v2`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){:new_window} method that allows for returning the object listing in the desired size. There is a complete code example available [here](/docs/services/cloud-object-storage/libraries/python.html#list-objects-v2).

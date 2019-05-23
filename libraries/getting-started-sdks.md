@@ -28,7 +28,7 @@ subcollection: cloud-object-storage
 # Getting Started with the SDKs
 {: #sdk-gs}
 
-In this quickstart guide, you'll be provided a code example that will demonstrate the following operations:
+In this quickstart guide, you are provided a code example that demonstrates the following operations:
 
 * Create a new bucket
 * List the available buckets
@@ -42,11 +42,11 @@ In this quickstart guide, you'll be provided a code example that will demonstrat
 ## Before you begin
 {: #sdk-gs-prereqs}
 
-You will need:
+You need:
 
-* an [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com/registration/?target=%2Fcatalog%2Fservices%2Fcloud-object-storage)
-* an [instance of {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics/order-storage.html)
-* an [IAM API key](/docs/services/cloud-object-storage/iam/overview.html) with Writer access to your {{site.data.keyword.cos_short}}
+* An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com/)
+* An [instance of {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics/order-storage.html)
+* An [IAM API key](/docs/services/cloud-object-storage/iam/overview.html) with Writer access to your {{site.data.keyword.cos_short}}
 
 ## Getting the SDK
 {: #sdk-gs-install}
@@ -56,9 +56,9 @@ Specific instructions for downloading and installing the SDK is available in [Us
 ## Code Example
 {: #sdk-gs-example}
 
-The code examples below provide introductory examples of executing the basic operations with {{site.data.keyword.cos_short}}.  For simplicity, the code example can be run multiple times as it uses Universally Unique Identifiers (UUIDs) for bucket/item names to prevent potential conflicts.
+The code examples below provide introductory examples of running the basic operations with {{site.data.keyword.cos_short}}. For simplicity, the code example can be run multiple times as it uses Universally Unique Identifiers (UUIDs) for bucket/item names to prevent potential conflicts.
 
-To complete the code example you will need to replace the following values:
+To complete the code example, you need to replace the following values:
 
 |Value|Description|Example|
 |---|---|---|
@@ -66,6 +66,8 @@ To complete the code example you will need to replace the following values:
 |`<api-key>`|IAM API Key with at least `Writer` permissions|`xxxd12V2QHXbjaM99G9tWyYDgF_0gYdlQ8aWALIQxXx4`|
 |`<resource-instance-id>`|Unique ID for the Service Instance|`crn:v1:bluemix:public:cloud-object-storage:global:a/xx999cd94a0dda86fd8eff3191349999:9999b05b-x999-4917-xxxx-9d5b326a1111::`|
 |`<storage-class>`|Storage class for a new bucket|`us-south-standard`|
+
+For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
 ```python
 import os
@@ -977,7 +979,7 @@ func exitErrorf(msg string, args ...interface{}) {
 ## Running the Code Example
 {: #sdk-gs-run}
 
-To run the code sample, either copy the code blocks above or [download the Python example](/docs/services/cloud-object-storage/libraries/examples/python-example.py){: python}[download the Node.js example](/docs/services/cloud-object-storage/libraries/examples/node-example.js){: javascript}[download the Java example](/docs/services/cloud-object-storage/libraries/examples/JavaExampleCode.java){: java}[download the Go example](/docs/services/cloud-object-storage/libraries/examples/go_example.go){: go} and run the following:
+To run the code sample, copy the code blocks above and run the following:
 ```
 python python-example.py
 ```

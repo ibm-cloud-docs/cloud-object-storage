@@ -110,14 +110,14 @@ Access log data for Immutable Object Storage to review changes to retention para
 ## Using the console
 {: #immutable-console}
 
-Retention policies can be added to new or existing empty buckets, and cannot be removed.  For a new bucket, ensure you are creating the bucket in a [supported region](/docs/services/cloud-object-storage/basics/services.html#service-availability), and then choose the **Add retention policy** option. For an existing bucket, ensure that it has no objects and then navigate to configuration settings and click the **Create policy** button below the bucket retention policy section. In either case, set a minimum, maximum, and default retention periods.
+Retention policies can be added to new or existing empty buckets, and cannot be removed. For a new bucket, ensure you are creating the bucket in a [supported region](/docs/services/cloud-object-storage/basics/services.html#service-availability), and then choose the **Add retention policy** option. For an existing bucket, ensure that it has no objects and then navigate to configuration settings and click the **Create policy** button below the bucket retention policy section. In either case, set a minimum, maximum, and default retention periods.
 
 ## Using the REST API, Libraries, and SDKs
 {: #immutable-sdk}
 
-Several new APIs have been introduced to the IBM COS SDKs to provide support for applications working with retention policies.  Select a language (HTTP, Java, Javascript, or Python) at the top of this page to view examples using the appropriate COS SDK.  
+Several new APIs have been introduced to the IBM COS SDKs to provide support for applications working with retention policies. Select a language (HTTP, Java, Javascript, or Python) at the top of this page to view examples using the appropriate COS SDK. 
 
-Note that all code examples assume the existence of a client object called `cos` that can call the different methods.  For details on creating clients, see the specific SDK guides.
+Note that all code examples assume the existence of a client object called `cos` that can call the different methods. For details on creating clients, see the specific SDK guides.
 
 All date values used to set retention periods are GMT.
 {:note}
@@ -131,6 +131,10 @@ Objects written to a protected bucket cannot be deleted until the protection per
 The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are 0 days and 365243 days (1000 years) respectively. 
 
 A `Content-MD5` header is required. This operation does not make use of additional query parameters.
+
+For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
+{:tip}
+
 {: http}
 
 **Syntax**

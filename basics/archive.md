@@ -20,7 +20,10 @@ subcollection: cloud-object-storage
 {:tip: .tip}
 {:important: .important}
 {:note: .note}
-{:download: .download} 
+{:download: .download}
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'} 
 
 # Archive cold data
 {: #archive}
@@ -30,6 +33,9 @@ https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage) option for d
 {: shortdesc}
 
 You can archive objects using the web console, REST API, and 3rd party tools that are integrated with IBM Cloud Object Storage. 
+
+For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
+{:tip}
 
 ## Add or manage an archive policy on a bucket
 {: #archive-add}
@@ -80,7 +86,7 @@ Unsupported functionality includes:
 ### Create a bucket lifecycle configuration
 {: #archive-api-create}
 
-This implementation of the `PUT` operation uses the `lifecycle` query parameter to set lifecycle settings for the bucket.  This operation allows for a single lifecycle policy definition for a given bucket.  The policy is defined as a rule consisting of the following parameters: `ID`, `Status`, and `Transition`.
+This implementation of the `PUT` operation uses the `lifecycle` query parameter to set lifecycle settings for the bucket. This operation allows for a single lifecycle policy definition for a given bucket. The policy is defined as a rule consisting of the following parameters: `ID`, `Status`, and `Transition`.
 
 The transition action enables future objects written to the bucket to an archived state after a defined period of time. Changes to the lifecycle policy for a bucket are **only applied to new objects** written to that bucket.
 
@@ -99,15 +105,15 @@ The body of the request must contain an XML block with the following schema:
 
 | Element                  | Type                 | Children                               | Ancestor                 | Constraint                                                                                 |
 |--------------------------|----------------------|----------------------------------------|--------------------------|--------------------------------------------------------------------------------------------|
-| `LifecycleConfiguration` | Container            | `Rule`                                 | None                     | Limit 1.                                                                                   |
-| `Rule`                   | Container            | `ID`, `Status`, `Filter`, `Transition` | `LifecycleConfiguration` | Limit 1.                                                                                   |
+| `LifecycleConfiguration` | Container            | `Rule`                                 | None                     | Limit 1.                                                                                  |
+| `Rule`                   | Container            | `ID`, `Status`, `Filter`, `Transition` | `LifecycleConfiguration` | Limit 1.                                                                                  |
 | `ID`                     | String               | None                                   | `Rule`                   | Must consist of (`a-z,`A-Z0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-` |
 | `Filter`                 | String               | `Prefix`                               | `Rule`                   | Must contain a `Prefix` element                                                            |
-| `Prefix`                 | String               | None                                   | `Filter`                 | **Must** be set to `<Prefix/>`.                                                            |
-| `Transition`             | `Container`          | `Days`, `StorageClass`                 | `Rule`                   | Limit 1.                                                                                   |
-| `Days`                   | Non-negative integer | None                                   | `Transition`             | Must be a value greater than 0.                                                            |
-| `Date`                   | Date                 | None                                   | `Transistion`            | Must be in ISO 8601 Format and the date must be in the future.                             |
-| `StorageClass`           | String               | None                                   | `Transition`             | **Must** be set to `GLACIER`.                                                              |
+| `Prefix`                 | String               | None                                   | `Filter`                 | **Must** be set to `<Prefix/>`.                                                           |
+| `Transition`             | `Container`          | `Days`, `StorageClass`                 | `Rule`                   | Limit 1.                                                                                  |
+| `Days`                   | Non-negative integer | None                                   | `Transition`             | Must be a value greater than 0.                                                           |
+| `Date`                   | Date                 | None                                   | `Transistion`            | Must be in ISO 8601 Format and the date must be in the future.                            |
+| `StorageClass`           | String               | None                                   | `Transition`             | **Must** be set to `GLACIER`.                                                             |
 
 __Syntax__
 
@@ -175,7 +181,7 @@ Connection: close
 ### Retrieve a bucket lifecycle configuration
 {: #archive-api-retrieve}
 
-This implementation of the `GET` operation uses the `lifecycle` query parameter to retrieve the lifecycle settings for the bucket.  
+This implementation of the `GET` operation uses the `lifecycle` query parameter to retrieve the lifecycle settings for the bucket. 
 
 Cloud IAM users must have at minimum the `Reader` role to retrieve a lifecycle for a bucket.
 
@@ -228,7 +234,7 @@ Connection: close
 ### Delete a bucket lifecycle configuration
 {: #archive-api-delete}
 
-This implementation of the `DELETE` operation uses the `lifecycle` query parameter to remove any lifecycle settings for the bucket. Transitions defined by the rules will no longer take place for new objects.  
+This implementation of the `DELETE` operation uses the `lifecycle` query parameter to remove any lifecycle settings for the bucket. Transitions defined by the rules will no longer take place for new objects. 
 
 **Note:** Existing transition rules will be maintained for objects that were already written to the bucket before the rules were deleted.
 
@@ -268,9 +274,9 @@ Connection: close
 ### Temporarily restore an archived object 
 {: #archive-api-restore}
 
-This implementation of the `POST` operation uses the `restore` query parameter to request temporary restoration of an archived object.  The user must first restore an archived object before downloading or modifying the object. When restoring an object, the user must specify a period after which the temporary copy of the object will be deleted.  The object maintains the storage class of the bucket.
+This implementation of the `POST` operation uses the `restore` query parameter to request temporary restoration of an archived object. The user must first restore an archived object before downloading or modifying the object. When restoring an object, the user must specify a period after which the temporary copy of the object will be deleted. The object maintains the storage class of the bucket.
 
-There can be a delay of up to 12 hours before the restored copy is available for access.  A `HEAD` request can check if the restored copy is available. 
+There can be a delay of up to 12 hours before the restored copy is available for access. A `HEAD` request can check if the restored copy is available. 
 
 To permanently restore the object, the user must copy the restored object to a bucket that does not have an active lifecycle configuration.
 
@@ -289,11 +295,11 @@ The body of the request must contain an XML block with the following schema:
 Element                  | Type      | Children                               | Ancestor                 | Constraint
 -------------------------|-----------|----------------------------------------|--------------------------|--------------------
 `RestoreRequest` | Container | `Days`, `GlacierJobParameter`    | None       | None
-`Days`                   | Integer | None | `RestoreRequest` | Specified the lifetime of the temporarily restored object.  The minimum number of days that a restored copy of the object can exist is 1.  After the restore period has elapsed, temporary copy of the object will be removed.
+`Days`                   | Integer | None | `RestoreRequest` | Specified the lifetime of the temporarily restored object. The minimum number of days that a restored copy of the object can exist is 1. After the restore period has elapsed, temporary copy of the object will be removed.
 `GlacierJobParameter` | String | `Tier` | `RestoreRequest` | None
 `Tier` | String | None | `GlacierJobParameter` | **Must** be set to `Bulk`.
 
-A successful response returns a `202` if the object is in the archived state and a `200` if the object is already in the restored state.   If the object is already in the restored state and a new request to restore the object is received, the `Days` element will update the expiration time of the restored object.
+A successful response returns a `202` if the object is in the archived state and a `200` if the object is already in the restored state.  If the object is already in the restored state and a new request to restore the object is received, the `Days` element will update the expiration time of the restored object.
 
 __Syntax__
 
@@ -428,6 +434,8 @@ s3.putBucketLifecycleConfiguration(params, function(err, data) {
   else     console.log(data);           // successful response
 });
 ```
+{: codeblock}
+{: javascript}
 
 ### Retrieve a bucket lifecycle configuration
 {: #archive-node-retrieve}
@@ -441,6 +449,8 @@ s3.getBucketLifecycleConfiguration(params, function(err, data) {
   else     console.log(data);           // successful response
 });
 ```
+{: codeblock}
+{: javascript}
 
 ### Delete a bucket lifecycle configuration
 {: #archive-node-delete}
@@ -454,6 +464,8 @@ s3.deleteBucketLifecycle(params, function(err, data) {
   else     console.log(data);           // successful response
 });
 ```
+{: codeblock}
+{: javascript}
 
 ### Temporarily restore an archived object 
 {: #archive-node-restore}
@@ -475,6 +487,8 @@ var params = {
    else     console.log(data);           // successful response
 });
 ```
+{: codeblock}
+{: javascript}
 
 ### Get an object's headers
 {: #archive-node-head}
@@ -490,6 +504,8 @@ s3.headObject(params, function(err,data) {
     console.log(data);           // successful response
 });
 ```
+{: codeblock}
+{: javascript}
 
 ## Python Examples
 {: #archive-python}
@@ -519,6 +535,8 @@ response = client.put_bucket_lifecycle_configuration(
     }
 )
 ```
+{: codeblock}
+{: python}
 
 ### Retrieve a bucket lifecycle configuration
 {: #archive-python-retrieve}
@@ -526,13 +544,17 @@ response = client.put_bucket_lifecycle_configuration(
 ```py
 response = client.get_bucket_lifecycle_configuration(Bucket='string')
 ```
+{: codeblock}
+{: python}
 
 ### Delete a bucket lifecycle configuration
 {: #archive-python-delete}
 
-```python
+```py
 response = client.delete_bucket_lifecycle(Bucket='string')
 ```
+{: codeblock}
+{: python}
 
 ### Temporarily restore an archived object 
 {: #archive-python-restore}
@@ -549,6 +571,8 @@ response = client.restore_object(
     }
 )
 ```
+{: codeblock}
+{: python}
 
 ### Get an object's headers
 {: #archive-python-head}
@@ -559,6 +583,8 @@ response = client.head_object(
     Key='string'
 )
 ```
+{: codeblock}
+{: python}
 
 ## Java Examples 
 {: #archive-java}
@@ -570,6 +596,8 @@ response = client.head_object(
 public SetBucketLifecycleConfigurationRequest(String bucketName,
                                               BucketLifecycleConfiguration lifecycleConfiguration)
 ```
+{: codeblock}
+{: java}
 
 **Method Summary**
 
@@ -586,6 +614,8 @@ Method |  Description
 ```java
 public GetBucketLifecycleConfigurationRequest(String bucketName)
 ```
+{: codeblock}
+{: java}
 
 ### Delete a bucket lifecycle configuration
 {: #archive-java-put}
@@ -593,6 +623,8 @@ public GetBucketLifecycleConfigurationRequest(String bucketName)
 ```java
 public DeleteBucketLifecycleConfigurationRequest(String bucketName)
 ```
+{: codeblock}
+{: java}
 
 ### Temporarily restore an archived object 
 {: #archive-java-restore}
@@ -602,6 +634,8 @@ public RestoreObjectRequest(String bucketName,
                             String key,
                             int expirationInDays)
 ```
+{: codeblock}
+{: java}
 
 **Method Summary**
 
@@ -618,6 +652,8 @@ Method |  Description
 ```java
 public ObjectMetadata()
 ```
+{: codeblock}
+{: java}
 
 **Method Summary**
 

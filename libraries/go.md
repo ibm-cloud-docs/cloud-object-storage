@@ -28,7 +28,7 @@ subcollection: cloud-object-storage
 # Using Go
 {: #go}
 
-The {{site.data.keyword.cos_full}} SDK for Go is comprehensive, and has features and capabilities not described in this guide.  For detailed class and method documentation [see the Go Docs](https://ibm.github.io/ibm-cos-sdk-go/). Source code can be found in the [GitHub repository](https://github.com/IBM/ibm-cos-sdk-go).
+The {{site.data.keyword.cos_full}} SDK for Go is comprehensive, and has features and capabilities not described in this guide. For detailed class and method documentation [see the Go Docs](https://ibm.github.io/ibm-cos-sdk-go/). Source code can be found in the [GitHub repository](https://github.com/IBM/ibm-cos-sdk-go).
 
 ## Getting the SDK
 {: #go-get-sdk}
@@ -79,7 +79,7 @@ aws_secret_access_key = {SERVICE_INSTANCE_ID}
 ```Go
 
 // Constants for IBM COS values
-var const (
+const (
     apiKey            = "<API_KEY>"  // eg "0viPHOY7LbLNa9eLftrtHPpTjoGv6hbLD1QalRXikliJ"
     serviceInstanceID = "<RESOURCE_INSTANCE_ID>" // "crn:v1:bluemix:public:iam-identity::a/3ag0e9402tyfd5d29761c3e97696b71n::serviceid:ServiceId-540a4a41-7322-4fdd-a9e7-e0cb7ab760f9"
     authEndpoint      = "https://iam.cloud.ibm.com/identity/token"
@@ -89,13 +89,14 @@ var const (
 
 // Create config
 
-var conf := aws.NewConfig().
-        WithRegion("us-standard").
-        WithEndpoint(serviceEndpoint).
-        WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(), authEndpoint, apiKey, serviceInstanceID)).
-        WithS3ForcePathStyle(true)
+conf := aws.NewConfig().
+    WithRegion("us-standard").
+    WithEndpoint(serviceEndpoint).
+    WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(), authEndpoint, apiKey, serviceInstanceID)).
+    WithS3ForcePathStyle(true)
 
 ```
+For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
 ## Code Examples
 {: #go-code-examples}
@@ -103,7 +104,7 @@ var conf := aws.NewConfig().
 ### Creating a new bucket
 {: #go-new-bucket}
 
-A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes).
 
 ```Go
 func main() {

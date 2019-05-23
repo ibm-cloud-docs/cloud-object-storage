@@ -26,9 +26,9 @@ subcollection: cloud-object-storage
 # Using `curl`
 {: #curl}
 
-Here's a 'cheatsheet' of basic `curl` commands for the {{site.data.keyword.cos_full}} REST API.  Additional detail can be found in the API reference for [buckets](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html) or [objects](/docs/services/cloud-object-storage/api-reference/api-reference-objects.html).
+Here's a 'cheatsheet' of basic `curl` commands for the {{site.data.keyword.cos_full}} REST API. Additional detail can be found in the API reference for [buckets](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html) or [objects](/docs/services/cloud-object-storage/api-reference/api-reference-objects.html).
 
-Using `curl` assumes a certain amount of familiarity with the command line and object storage, and have gotten the necessary information from a [service credential](/docs/services/cloud-object-storage/iam/service-credentials.html), the [endpoints reference](/docs/services/cloud-object-storage/basics/endpoints.html), or the [console](/docs/services/cloud-object-storage/getting-started.html).  If any terms or variables are unfamiliar they can be found in the [glossary](/docs/services/cloud-object-storage/basics/glossary.html).
+Using `curl` assumes a certain amount of familiarity with the command line and object storage, and have gotten the necessary information from a [service credential](/docs/services/cloud-object-storage/iam/service-credentials.html), the [endpoints reference](/docs/services/cloud-object-storage/basics/endpoints.html), or the [console](/docs/services/cloud-object-storage/getting-started.html). If any terms or variables are unfamiliar they can be found in the [glossary](/docs/services/cloud-object-storage/basics/glossary.html).
 
 **Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
 {:tip}
@@ -36,12 +36,12 @@ Using `curl` assumes a certain amount of familiarity with the command line and o
 ## Request an IAM Token
 {: #curl-iam}
 
-There are two ways to generate an IAM oauth token for authenticating requests: using a `curl` command with an API key (described below) or from the command line using [IBM Cloud CLI](/docs/services/cloud-object-storage/getting-started-cli.html#gather-key-information).  
+There are two ways to generate an IAM oauth token for authenticating requests: using a `curl` command with an API key (described below) or from the command line using [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-ibmcloud-cli). 
 
 ### Request an IAM token using an API key
 {: #curl-token}
 
-First ensure that you have an API key.  Get this from [{{site.data.keyword.iamlong}}](https://cloud.ibm.com/iam#/apikeys).
+First ensure that you have an API key. Get this from [{{site.data.keyword.iamlong}}](https://cloud.ibm.com/iam#/apikeys).
 
 ```
 curl -X "POST" "https://iam.cloud.ibm.com/identity/token" \
@@ -95,7 +95,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)"
 ```
 {:codeblock}
 
-A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-classes#classes-locationconstraint).
 
 ## Create a bucket CORS
 {: #curl-new-cors}
@@ -105,13 +105,13 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)/?cors"
  -H "Content-MD5: (md5-hash)"
  -H "Authorization: bearer (token)"
  -H "Content-Type: text/plain; charset=utf-8"
- -d \$'<CORSConfiguration>
-         <CORSRule>
-           <AllowedOrigin>(url)</AllowedOrigin>
-           <AllowedMethod>(request-type)</AllowedMethod>
-           <AllowedHeader>(url)</AllowedHeader>
-         </CORSRule>
-       </CORSConfiguration>
+ -d "<CORSConfiguration>
+      <CORSRule>
+        <AllowedOrigin>(url)</AllowedOrigin>
+        <AllowedMethod>(request-type)</AllowedMethod>
+        <AllowedHeader>(url)</AllowedHeader>
+      </CORSRule>
+     </CORSConfiguration>"
 ```
 {:codeblock}
 
@@ -246,7 +246,7 @@ curl -X "POST" "https://(endpoint)/(bucket-name)?delete"
  -H "Content-MD5: (md5-hash)"
  -H "Authorization: bearer (token)"
  -H "Content-Type: text/plain; charset=utf-8"
- -d \$'<?xml version="1.0" encoding="UTF-8"?>
+ -d "<?xml version="1.0" encoding="UTF-8"?>
          <Delete>
            <Object>
              <Key>(first-object)</Key>
@@ -254,7 +254,7 @@ curl -X "POST" "https://(endpoint)/(bucket-name)?delete"
            <Object>
              <Key>(second-object)</Key>
            </Object>
-         </Delete> '
+         </Delete>"
 ```
 {:codeblock}
 
@@ -291,7 +291,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)/(object-key)?partNumber=(sequent
 curl -X "POST" "https://(endpoint)/(bucket-name)/(object-key)?uploadId=(upload-id)"
  -H "Authorization: bearer (token)"
  -H "Content-Type: text/plain; charset=utf-8"
- -d \$'<CompleteMultipartUpload>
+ -d "<CompleteMultipartUpload>
          <Part>
            <PartNumber>1</PartNumber>
            <ETag>(etag)</ETag>
@@ -300,7 +300,7 @@ curl -X "POST" "https://(endpoint)/(bucket-name)/(object-key)?uploadId=(upload-i
            <PartNumber>2</PartNumber>
            <ETag>(etag)</ETag>
          </Part>
-       </CompleteMultipartUpload>
+       </CompleteMultipartUpload>"
 ```
 {:codeblock}
 

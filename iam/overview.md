@@ -23,7 +23,7 @@ subcollection: cloud-object-storage
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
 
-# Getting started with IAM
+# IAM overview
 {: #iam-overview}
 
 {{site.data.keyword.cloud}} Identity & Access Management enables you to securely authenticate users and control access to all cloud resources consistently in the {{site.data.keyword.cloud_notm}} Platform. See the [Getting started tutorial](/docs/iam/quickstart.html#getstarted) for more information.

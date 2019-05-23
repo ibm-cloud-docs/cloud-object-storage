@@ -27,7 +27,7 @@ This getting started tutorial walks through the steps that are needed to create 
 {: #gs-prereqs}
 
 You need:
-  * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com/registration/?target=%2Fcatalog%2Fservices%2Fcloud-object-storage)
+  * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com)
   * An [instance of {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics/order-storage.html)
   * And some files on your local computer to upload.
 {: #gs-prereqs}

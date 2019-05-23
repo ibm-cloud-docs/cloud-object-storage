@@ -26,11 +26,11 @@ subcollection: cloud-object-storage
 # Ruby on Rails/Active Storage
 {: #ror-activestorage}
 
-[Rails](https://guides.rubyonrails.org/getting_started.html){:new_window} is an open-source, web application development framework that combines the Ruby programming language with HTML, CSS, and JavaScript.  It includes everything needed to create server-side web applications using the Model-View-Controller (MVC) pattern.  
+[Rails](https://guides.rubyonrails.org/getting_started.html){:new_window} is an open-source, web application development framework that combines the Ruby programming language with HTML, CSS, and JavaScript. It includes everything needed to create server-side web applications using the Model-View-Controller (MVC) pattern. 
 
-In Rails, the Model (business data and logic layer) of the MVC pattern is handled by [Active Record](https://guides.rubyonrails.org/active_record_basics.html){:new_window}.  It provides the [Object-Relational Mapping (ORM)](https://en.wikipedia.org/wiki/Object-relational_mapping){:new_window} framework that connects the business objects with persistent storage in the relational database management system.
+In Rails, the Model (business data and logic layer) of the MVC pattern is handled by [Active Record](https://guides.rubyonrails.org/active_record_basics.html){:new_window}. It provides the [Object-Relational Mapping (ORM)](https://en.wikipedia.org/wiki/Object-relational_mapping){:new_window} framework that connects the business objects with persistent storage in the relational database management system.
 
-[Active Storage](https://guides.rubyonrails.org/active_storage_overview.html){:new_window} is a built-in framework for attaching files from cloud storage services like {{site.data.keyword.cos_full}} to Active Record objects.  Amazon S3, Google Cloud Storage, and Microsoft Azure are also supported as well as local disk-based services.
+[Active Storage](https://guides.rubyonrails.org/active_storage_overview.html){:new_window} is a built-in framework for attaching files from cloud storage services like {{site.data.keyword.cos_full}} to Active Record objects. Amazon S3, Google Cloud Storage, and Microsoft Azure are also supported as well as local disk-based services.
 
 To get started with Active Storage, run the following commands from your application's home directory: 
 
@@ -39,9 +39,9 @@ bin/rails active_storage:install
 bin/rails db:migrate
 ```
 
-This will create the two required tables (`active_storage_blobs` and `active_storage_attachments`) in the application's database to manage Active Record file attachments.  
+This will create the two required tables (`active_storage_blobs` and `active_storage_attachments`) in the application's database to manage Active Record file attachments. 
 
-### Storage Configuration
+## Storage Configuration
 {: #ror-activestorage-config}
 
 Declare your {{site.data.keyword.cos_short}} service in `config/storage.yml`:
@@ -66,7 +66,7 @@ You can declare multiple service instances with different endpoints and buckets 
 {:tip}
 
 *Key Values*
-* `<bucket-region>` - Region that match your bucket (i.e. `us-south-standard`).  Full list available [here](/docs/services/cloud-object-storage/basics/classes.html#how-do-i-create-a-bucket-with-a-different-storage-class-).
+* `<bucket-region>` - Region that match your bucket (i.e. `us-south-standard`). Full list available [here](/docs/services/cloud-object-storage/basics/classes.html#how-do-i-create-a-bucket-with-a-different-storage-class-).
 * `<bucket-name>` - Name of your bucket
 * `<regional-endpoint>` - Endpoint to access your bucket (i.e. `https://s3.us-south.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net`)  Full list of endpoints available [here](/docs/services/cloud-object-storage/basics/endpoints.html#select-regions-and-endpoints).
 
@@ -78,7 +78,7 @@ aws_access_key_id = <access_key_id>
 aws_secret_access_key = <secret_access_key>
 ```
 
-### Rails Environment
+## Rails Environment
 {: #ror-activestorage-rails}
 
 Configure your environments to use your {{site.data.keyword.cos_short}} service by updating the following setting:
@@ -112,6 +112,6 @@ To enable Rails access to your bucket you must create a Cross-Origin Resource Sh
 </CORSConfiguration>
 ```
 
-This configuration will allow requests from `www.ibm.com` to execute `GET`, `PUT`, and `POST` requests to your bucket.  Adjust the `<AllowedOrigin>` entry to suit your application's needs.  
+This configuration will allow requests from `www.ibm.com` to execute `GET`, `PUT`, and `POST` requests to your bucket. Adjust the `<AllowedOrigin>` entry to suit your application's needs. 
 
-Allowing `x-amz-*` and `content-*` headers is also required in order for Rails to properly interact with your bucket.  More information about CORS is available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#create-a-cross-origin-resource-sharing-configuration-for-a-bucket).
+Allowing `x-amz-*` and `content-*` headers is also required in order for Rails to properly interact with your bucket. More information about CORS is available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#create-a-cross-origin-resource-sharing-configuration-for-a-bucket).

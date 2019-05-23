@@ -49,8 +49,8 @@ First, make sure that you have a bucket. If not, follow the [getting started tut
 4. Select **Access policies** from the navigation menu.
 5. Select the **Authorized IPs** tab.
 6. Click **Add IP addresses**, then choose **Add**.
-7. Add a list of IP addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing), for example `192.168.0.0/16, fe80:021b::0/64`. Addresses can follow either IPv4 or IPv6 standards.  Click **Add**.
-8. The firewall will not be enforced until the address is saved in the console.  Click **Save all** to enforce the firewall.
+7. Add a list of IP addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing), for example `192.168.0.0/16, fe80:021b::0/64`. Addresses can follow either IPv4 or IPv6 standards. Click **Add**.
+8. The firewall will not be enforced until the address is saved in the console. Click **Save all** to enforce the firewall.
 9. Now all objects in this bucket are only accessible from these IP addesses!
 
 ### Remove any IP address restrictions
@@ -58,17 +58,17 @@ First, make sure that you have a bucket. If not, follow the [getting started tut
 
 1. From the **Authorized IPs** tab, check the boxes next to any IP addresses or ranges to remove from the authorized list.
 2. Select **Delete**, and then confirm the dialog box by clicking **Delete** again.
-3. The updated list won't be enforced until the changes are saved in the console.  Click **Save all** to enforce the new rules.
+3. The updated list won't be enforced until the changes are saved in the console. Click **Save all** to enforce the new rules.
 4. Now all objects in this bucket are only accessible from these IP addesses!
 
-If there are no authorized IP addresses listed this means that normal IAM policies will apply to the bucket, with no restrictions on the user's IP address.  
+If there are no authorized IP addresses listed this means that normal IAM policies will apply to the bucket, with no restrictions on the user's IP address. 
 {: note}
 
 
 ## Set a firewall through an API
 {: #firewall-api}
 
-Firewalls are managed with the [COS Resource Configuration API](/apidocs/cos/cos-configuration). This new REST API is used for configuring buckets. 
+Firewalls are managed with the [COS Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration). This new REST API is used for configuring buckets. 
 
 Users with the `manager` role can view and edit the list of allowed IP addresses from any network in order to prevent accidental lockouts.
 {: tip}

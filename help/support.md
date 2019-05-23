@@ -30,8 +30,8 @@ If you have problems or questions when using {{site.data.keyword.cos_full}}, you
 
 When using the forums to ask a question, tag your question so that it is seen by the {{site.data.keyword.cloud}} Platform development teams.
 
-* If you have technical questions about {{site.data.keyword.cos_short}}, post your question on <a href="http://stackoverflow.com/search?q=object-storage+ibm-bluemix" target="_blank">Stack Overflow</a> and tag your question with "ibm" and "object-storage".
-* For questions about the service and getting started instructions, use the <a href="https://developer.ibm.com/answers/topics/objectstorage/?smartspace=bluemix" target="_blank">IBM developerWorks dW Answers</a> forum. Include the  "cloud object storage" tag.
+* If you have technical questions about {{site.data.keyword.cos_short}}, post your question on [Stack Overflow](https://stackoverflow.com/search?q=object-storage+ibm-bluemix) and tag your question with `ibm` and `object-storage`.
+* For questions about the service and getting started instructions, use the [IBM developerWorks dW Answers forum](https://developer.ibm.com/answers/topics/objectstorage/). Include the  `objectstorage` tag.
 
 See [Getting help](/docs/get-support/howtogetsupport.html) for more details about using the forums.
 

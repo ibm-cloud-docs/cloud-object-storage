@@ -27,7 +27,7 @@ subcollection: cloud-object-storage
 # Transfer files using CrossFTP
 {: #crossftp}
 
-[CrossFTP](http://www.crossftp.com/){:new_window} is a full-featured FTP client that supports S3-compatible cloud storage solutions including {{site.data.keyword.cos_full}}.  CrossFTP supports Mac OS X, Microsoft Windows, Linux and comes in Free, Pro, and Enterprise versions with features such as:
+[CrossFTP](http://www.crossftp.com/){:new_window} is a full-featured FTP client that supports S3-compatible cloud storage solutions including {{site.data.keyword.cos_full}}. CrossFTP supports Mac OS X, Microsoft Windows, Linux and comes in Free, Pro, and Enterprise versions with features such as:
 
 * Tabbed Interface
 * Password Encryption
@@ -46,8 +46,8 @@ subcollection: cloud-object-storage
 3. Under the *General* tab enter the following:
     * Set **Protocol** to `S3/HTTPS`
     * Set **Label** to a descriptive name of your choosing
-    * Set **Host** to the an {{site.data.keyword.cos_short}} endpoint (i.e. `s3.us.cloud-object-storage.appdomain.cloud`)
-        * *Ensure the endpoint region matches the intended target bucket*
+    * Set **Host** to the an {{site.data.keyword.cos_short}} endpoint (i.e. `s3-api.us-geo.objectstorage.softlayer.net`)
+        * *Ensure the endpoint region matches the intended target bucket. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).*
     * Leave **Port** as `443`
     * Set **Access Key** and **Secret** to HMAC credentials with the proper access rights to your target bucket
 4. Under the *S3* tab

@@ -178,6 +178,14 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>Sydney</td>
   </tr>
   <tr>
+    <td>Hong Kong</td>
+    <td>No</td>
+    <td>No</td>
+    <td>No</td>
+    <td>No</td>
+    <td>Sydney</td>
+  </tr>
+  <tr>
     <td>Melbourne, Australia</td>
     <td>Yes</td>
     <td>No</td>
@@ -195,7 +203,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
   </tr>
   <tr>
     <td>Milan, Italy</td>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>
@@ -219,7 +227,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
   </tr>
   <tr>
     <td>San Jose, USA</td>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
     <td>No</td>
     <td>No</td>

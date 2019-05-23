@@ -26,7 +26,7 @@ subcollection: cloud-object-storage
 ## List buckets
 {: #compatibility-api-list-buckets}
 
-A `GET` request sent to the endpoint root returns a list of buckets that belong to the specified service instance. 
+A `GET` request sent to the endpoint root returns a list of buckets that are associated with the specified service instance. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
 Header                    | Type   | Required? |  Description
 --------------------------|--------|---| -----------------------------
@@ -91,7 +91,7 @@ ibm-service-instance-id: {ibm-service-instance-id}
 **Syntax**
 
 ```bash
-GET https://{endpoint}?extended/
+GET https://{endpoint}/?extended
 ```
 
 **Example request**
@@ -145,9 +145,9 @@ ibm-service-instance-id: {ibm-service-instance-id}
 ## Create a bucket
 {: #compatibility-api-new-bucket}
 
-A `PUT` request sent to the endpoint root followed by a string will create a bucket. Bucket names must be globally unique and DNS-compliant; names between 3 and 63 characters long must be made of lowercase letters, numbers, and dashes. Bucket names must begin and end with a lowercase letter or number. Bucket names resembling IP addresses are not allowed. This operation doesn't make use of operation specific query parameters.
+A `PUT` request sent to the endpoint root followed by a string will create a bucket. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints). Bucket names must be globally unique and DNS-compliant; names between 3 and 63 characters long must be made of lowercase letters, numbers, and dashes. Bucket names must begin and end with a lowercase letter or number. Bucket names resembling IP addresses are not allowed. This operation doesn't make use of operation specific query parameters.
 
-Bucket names must be unique because all buckets in the public cloud share a global namespace. This allows for access to a bucket without needing to provide any service instance or account information.  It is also not possible to create a bucket with a name beginning with `cosv1-` or `account-` as these prefixes are reserved by the system.
+Bucket names must be unique because all buckets in the public cloud share a global namespace. This allows for access to a bucket without needing to provide any service instance or account information. It is also not possible to create a bucket with a name beginning with `cosv1-` or `account-` as these prefixes are reserved by the system.
 {:important}
 
 Header                                        | Type   | Description
@@ -194,7 +194,7 @@ Content-Length: 0
 ## Create a bucket with a different storage class
 {: #compatibility-api-storage-class}
 
-To create a bucket with a different storage class, send an XML block specifying a bucket configuration with a `LocationConstraint` of `{provisioning code}` in the body of a `PUT` request to a bucket endpoint.  Note that standard bucket [naming rules](#new-bucket) apply. This operation does not make use of operation specific query parameters.
+To create a bucket with a different storage class, send an XML block specifying a bucket configuration with a `LocationConstraint` of `{provisioning code}` in the body of a `PUT` request to a bucket endpoint. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints). Note that standard bucket [naming rules](#compatibility-api-new-bucket) apply. This operation does not make use of operation specific query parameters.
 
 Header                                        | Type   | Description
 ------------------------------------------------- | ------ | ----
@@ -213,7 +213,7 @@ PUT https://{bucket-name}.{endpoint} # virtual host style
 </CreateBucketConfiguration>
 ```
 
-A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes.html#locationconstraint).
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint).
 
 **Example request**
 
@@ -387,9 +387,9 @@ Name | Type | Description
 `prefix` | String | Constrains response to object names beginning with `prefix`.
 `delimiter` | String | Groups objects between the `prefix` and the `delimiter`.
 `encoding-type` | String | If unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.
-`max-keys` | String | Restricts the number of objects to display in the response.  Default and maximum is 1,000.
-`fetch-owner` | String | Version 2 of the API does not include the `Owner` information by default.  Set this parameter to `true` if `Owner` information is desired in the response.
-`continuation-token` | String | Specifies the next set of objects to be returned when your response is truncated (`IsTruncated` element returns `true`).<br/><br/>Your initial response will include the `NextContinuationToken` element.  Use this token in the next request as the value for `continuation-token`.
+`max-keys` | String | Restricts the number of objects to display in the response. Default and maximum is 1,000.
+`fetch-owner` | String | Version 2 of the API does not include the `Owner` information by default. Set this parameter to `true` if `Owner` information is desired in the response.
+`continuation-token` | String | Specifies the next set of objects to be returned when your response is truncated (`IsTruncated` element returns `true`).<br/><br/>Your initial response will include the `NextContinuationToken` element. Use this token in the next request as the value for `continuation-token`.
 `start-after` | String | Returns key names after a specific key object.<br/><br/>*This parameter is only valid in your initial request.*  If a `continuation-token` parameter is included in your request, this parameter is ignored.
 
 **Example request (simple with IAM)**
@@ -543,7 +543,7 @@ Content-Length: 604
 ### List objects in a given bucket (deprecated)
 {: #compatibility-api-list-objects}
 
-**Note:** *This API is included for backwards compatibility.*  See [Version 2](api-reference-buckets.html#compatibility-api-list-objects-v2) for the recommended method of retrieving objects in a bucket.
+**Note:** *This API is included for backwards compatibility.*  See [Version 2](#compatibility-api-list-objects-v2) for the recommended method of retrieving objects in a bucket.
 
 A `GET` request addressed to a bucket returns a list of objects, limited to 1,000 at a time and returned in non-lexographical order. The `StorageClass` value that is returned in the response is a default value as storage class operations are not implemented in COS. This operation does not make use of operation specific headers or payload elements.
 
@@ -562,7 +562,7 @@ Name | Type | Description
 `prefix` | String | Constrains response to object names beginning with `prefix`.
 `delimiter` | String | Groups objects between the `prefix` and the `delimiter`.
 `encoding-type` | String | If unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.
-`max-keys` | String | Restricts the number of objects to display in the response.  Default and maximum is 1,000.
+`max-keys` | String | Restricts the number of objects to display in the response. Default and maximum is 1,000.
 `marker` | String | Specifies the object from where the listing should begin, in UTF-8 binary order.
 
 **Example request**
@@ -638,7 +638,7 @@ Content-Length: 909
 
 ## Delete a bucket
 
-A `DELETE` issued to an empty bucket deletes the bucket. After deleting a bucket the name will be held in reserve by the system for 10 minutes, after which it will be released for re-use.  *Only empty buckets can be deleted.*
+A `DELETE` issued to an empty bucket deletes the bucket. After deleting a bucket the name will be held in reserve by the system for 10 minutes, after which it will be released for re-use. *Only empty buckets can be deleted.*
 
 **Syntax**
 
@@ -651,7 +651,7 @@ DELETE https://{bucket-name}.{endpoint} # virtual host style
 
 Name | Type | Description
 --- | ---- | ------------
-`aspera-ak-max-tries` | String | Specifies the number of times to attempt the delete operation.  Default value is 2.
+`aspera-ak-max-tries` | String | Specifies the number of times to attempt the delete operation. Default value is 2.
 
 
 **Example request**
@@ -698,7 +698,7 @@ Name | Type | Description
 `prefix` | String | Constrains response to object names beginning with `{prefix}`.
 `delimiter` | String | Groups objects between the `prefix` and the `delimiter`.
 `encoding-type` | String | If unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.
-`max-uploads` | integer | Restricts the number of objects to display in the response.  Default and maximum is 1,000.
+`max-uploads` | integer | Restricts the number of objects to display in the response. Default and maximum is 1,000.
 `key-marker` | String | Specifies from where the listing should begin.
 `upload-id-marker` | String | Ignored if `key-marker` is not specified, otherwise sets a point at which to begin listing parts above `upload-id-marker`.
 
@@ -945,7 +945,7 @@ Content-Length: 161
 ## Create a bucket lifecycle configuration
 {: #compatibility-api-create-bucket-lifecycle}
 
-A `PUT` operation uses the lifecycle query parameter to set lifecycle settings for the bucket.  A `Content-MD5` header is required as an integrity check for the payload.
+A `PUT` operation uses the lifecycle query parameter to set lifecycle settings for the bucket. A `Content-MD5` header is required as an integrity check for the payload.
 
 **Syntax**
 

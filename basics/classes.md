@@ -23,7 +23,7 @@ subcollection: cloud-object-storage
 # Use storage classes
 {: #classes}
 
-Not all data feeds active workloads.  Archival data may sit untouched for long periods of time.  For less active workloads, you can create buckets with different storage classes.  Objects stored in these buckets will incur charges on a different schedule than standard storage.
+Not all data feeds active workloads. Archival data may sit untouched for long periods of time. For less active workloads, you can create buckets with different storage classes. Objects stored in these buckets will incur charges on a different schedule than standard storage.
 
 ## What are the classes?
 {: #classes-about}
@@ -56,6 +56,7 @@ When creating buckets programmatically, it is necessary to specify a `LocationCo
 &emsp;&emsp;  **AP Australia:** `au-syd-standard` / `au-syd-vault` / `au-syd-cold` / `au-syd-flex` <br>
 &emsp;&emsp;  **Amsterdam:** `ams03-standard` / `ams03-vault` / `ams03-cold` / `ams03-flex` <br>
 &emsp;&emsp;  **Chennai:** `che01-standard` / `che01-vault` / `che01-cold` / `che01-flex` <br>
+&emsp;&emsp;  **Hong Kong:** `hkg02-standard` / `hkg02-vault` / `hkg02-cold` / `hkg02-flex` <br>
 &emsp;&emsp;  **Melbourne:** `mel01-standard` / `mel01-vault` / `mel01-cold` / `mel01-flex` <br>
 &emsp;&emsp;  **Mexico:** `mex01-standard` / `mex01-vault` / `mex01-cold` / `mex01-flex` <br>
 &emsp;&emsp;  **Milan:** `mil01-standard` / `mil01-vault` / `mil01-cold` / `mil01-flex` <br>
@@ -66,6 +67,8 @@ When creating buckets programmatically, it is necessary to specify a `LocationCo
 &emsp;&emsp;  **Seoul:** `seo01-standard` / `seo01-vault` / `seo01-cold` / `seo01-flex` <br>
 &emsp;&emsp;  **Toronto:** `tor01-standard` / `tor01-vault` / `tor01-cold` / `tor01-flex` <br>
 
+
+For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
 A request to create a Cold Vault bucket in the US Cross Region would look like:
 
@@ -78,4 +81,4 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)"
 ```
 {:codeblock}
 
-It is not possible to change the storage class of a bucket once the bucket is created.  If objects need to be reclassified, it is necessary to move the data to another bucket with the desired storage class.
+It is not possible to change the storage class of a bucket once the bucket is created. If objects need to be reclassified, it is necessary to move the data to another bucket with the desired storage class.

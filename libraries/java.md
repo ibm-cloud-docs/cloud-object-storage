@@ -28,14 +28,14 @@ subcollection: cloud-object-storage
 # Using Java
 {: #java}
 
-The {{site.data.keyword.cos_full}} SDK for Java is comprehensive, and has features and capabilities not described in this guide.  For detailed class and method documentation [see the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/). Source code can be found in the [GitHub repository](https://github.com/ibm/ibm-cos-sdk-java).
+The {{site.data.keyword.cos_full}} SDK for Java is comprehensive, and has features not described in this guide. For detailed class and method documentation [see the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/). Source code can be found in the [GitHub repository](https://github.com/ibm/ibm-cos-sdk-java).
 
 ## Getting the SDK
 {: #java-install}
 
 The easiest way to consume the {{site.data.keyword.cos_full_notm}} Java SDK is to use Maven to manage dependencies. If you aren't familiar with Maven, you get can get up and running using the [Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html) guide.
 
-Maven uses a file called `pom.xml` to specify the libraries (and their versions) needed for a Java project.  Here is an example `pom.xml` file for using the {{site.data.keyword.cos_full_notm}} Java SDK to connect to {{site.data.keyword.cos_short}}.
+Maven uses a file called `pom.xml` to specify the libraries (and their versions) needed for a Java project. Here is an example `pom.xml` file for using the {{site.data.keyword.cos_full_notm}} Java SDK to connect to {{site.data.keyword.cos_short}}.
 
 
 ```xml
@@ -95,7 +95,7 @@ The 2.0 release of the SDK introduces a namespacing change that allows an applic
 
 In the following example, a client `cos` is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
 
-After generating a [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`.  The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client will authenticate with a signature, otherwise the client will use the provided API key to authenticate using a bearer token.
+After generating a [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client will authenticate with a signature, otherwise the client will use the provided API key to authenticate using a bearer token.
 
 If migrating from AWS S3, you can also source credentials data from  `~/.aws/credentials` in the format:
 
@@ -112,17 +112,17 @@ If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_creden
 ## Code Examples
 {: #java-examples}
 
-Let's start with an complete example class that will run through some basic functionality, then explore the classes individually.  This `CosExample` class will list objects in an existing bucket, create a new bucket, and then list all buckets in the service instance. 
+Let's start with an complete example class that will run through some basic functionality, then explore the classes individually. This `CosExample` class will list objects in an existing bucket, create a new bucket, and then list all buckets in the service instance. 
 
 ### Gather required information
 {: #java-examples-prereqs}
 
-* `bucketName` and `newBucketName` are [unique and DNS-safe](docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#compatibility-api-new-bucket) strings. Because bucket names are unique across the entire system, these values will need to be changed if this example is run multiple times.  Note that names are reserved for 10-15 minutes after deletion.
+* `bucketName` and `newBucketName` are [unique and DNS-safe](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#compatibility-api-new-bucket) strings. Because bucket names are unique across the entire system, these values will need to be changed if this example is run multiple times. Note that names are reserved for 10-15 minutes after deletion.
 * `api_key` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html) as `apikey`.
 * `service_instance_id` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html) as `resource_instance_id`. 
-* `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol.  This is **not** the `endpoints` value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html).
-* `storageClass` is a [valid provisioning code](docs/services/cloud-object-storage/basics/classes.html#locationconstraint) that corresponds to the `endpoint` value.  This is then used as the S3 API `LocationConstraint` variable.
-* `location` should be set to the location portion of the `storageClass`.  For `us-south-standard`, this would be `us-south`.  This variable is used only for the calculation of [HMAC signatures](/docs/services/cloud-object-storage/hmac/hm.html), but is required for any client, including this example that uses an IAM API key.
+* `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol. This is **not** the `endpoints` value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+* `storageClass` is a [valid provisioning code](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint) that corresponds to the `endpoint` value. This is then used as the S3 API `LocationConstraint` variable.
+* `location` should be set to the location portion of the `storageClass`. For `us-south-standard`, this would be `us-south`. This variable is used only for the calculation of [HMAC signatures](/docs/services/cloud-object-storage?topic=cloud-object-storage-hmac#hmac), but is required for any client, including this example that uses an IAM API key.
 
 ```java
     package com.cos;
@@ -163,14 +163,14 @@ Let's start with an complete example class that will run through some basic func
             String service_instance_id = "<SERVICE_INSTANCE_ID"; // eg "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
             String endpoint_url = "https://s3.us-south.cloud-object-storage.appdomain.cloud"; // this could be any service endpoint
 
-            String storageClass = "us-south-standard"
+            String storageClass = "us-south-standard";
             String location = "us"; 
 
             System.out.println("Current time: " + new Timestamp(System.currentTimeMillis()).toString());
             _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
             
             listObjects(bucketName, _cosClient);
-            createBucket(newBucketName, _cosClient)
+            createBucket(newBucketName, _cosClient, storageClass);
             listBuckets(_cosClient);
         }
 
@@ -214,8 +214,9 @@ Let's start with an complete example class that will run through some basic func
         /**
          * @param bucketName
          * @param cosClient
+         * @param storageClass
          */
-        public static void createBucket(String bucketName, AmazonS3 cosClient)
+        public static void createBucket(String bucketName, AmazonS3 cosClient, String storageClass)
         {
             cosClient.createBucket(bucketName, storageClass);
         }
@@ -276,9 +277,9 @@ public static AmazonS3 createClient(String api_key, String service_instance_id, 
 ```
 
 *Key Values*
-* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window})
+* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
-* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](../getting-started-cli.html) or [IBM Cloud Dashboard](https://cloud.ibm.com/dashboard/apps){:new_window})
+* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](/docs/cli?topic=cloud-cli-ibmcloud-cli#ibmcloud-cli) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window})
 * `<location>` - default location for your cloud object storage (must match the region used for `<endpoint>`)
 
 *SDK References*
@@ -295,7 +296,7 @@ public static AmazonS3 createClient(String api_key, String service_instance_id, 
 ### Determining Endpoint
 {: #java-examples-endpoint}
 
-The methods below can be used to determine the service endpoint based on the bucket location, endpoint type (public or private), and specific region (optional).
+The methods below can be used to determine the service endpoint based on the bucket location, endpoint type (public or private), and specific region (optional). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
 ```java
 /**
@@ -363,7 +364,7 @@ public static void createBucket(String bucketName) {
 #### Create a bucket with a different storage class
 {: #java-examples-storage-class}
 
-A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/basics/classes#locationconstraint).
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes).
 
 ```java
 cos.createBucket("sample", "us-vault"); // the name of the bucket, and the storage class (LocationConstraint)
@@ -392,7 +393,7 @@ public static void createTextFile(String bucketName, String itemName, String fil
     System.out.printf("Item: %s created!\n", itemName);
 }
 ```
-Note that when adding custom metadata to an object, it is necessary to create an `ObjectMetadata` object using the SDK, and not to manually send a custom header containing `x-amz-meta-{key}`.  The latter can cause issues when authenticating using HMAC credentials.
+Note that when adding custom metadata to an object, it is necessary to create an `ObjectMetadata` object using the SDK, and not to manually send a custom header containing `x-amz-meta-{key}`. The latter can cause issues when authenticating using HMAC credentials.
 {: .tip}
 
 ### Upload object from a file
@@ -544,7 +545,7 @@ public static void getBuckets() {
 ### List items in a bucket (v2)
 {: #java-examples-list-objects-v2}
 
-The [AmazonS3](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html){:new_window} object contains an updated method to list the contents ([listObjectsV2](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){:new_window}).  This method allows you to limit the number of records returned and retrieve the records in batches.  This could be useful for paging your results within an application and improve performance.
+The [AmazonS3](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html){:new_window} object contains an updated method to list the contents ([listObjectsV2](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){:new_window}). This method allows you to limit the number of records returned and retrieve the records in batches. This could be useful for paging your results within an application and improve performance.
 
 ```java
 public static void getBucketContentsV2(String bucketName, int maxKeys) {
@@ -661,7 +662,7 @@ public static void deleteItem(String bucketName, String itemName) {
 ### Delete multiple items from a bucket
 {: #java-examples-delete-objects}
 
-The delete request can contain a maximum of 1000 keys that you want to delete.  While this is very useful in reducing the per-request overhead, be mindful when deleting a large number of keys.  Also take into account the sizes of the objects to ensure suitable performance.
+The delete request can contain a maximum of 1000 keys that you want to delete. While this is very useful in reducing the per-request overhead, be mindful when deleting a large number of keys. Also take into account the sizes of the objects to ensure suitable performance.
 {:tip}
 
 ```java
@@ -872,16 +873,16 @@ Key Protect can be added to a storage bucket to encrypt sensitive data at rest i
 
 The following items are necessary in order to create a bucket with Key-Protect enabled:
 
-* A Key Protect service [provisioned](/docs/services/keymgmt/keyprotect_provision.html#provision)
-* A Root key available (either [generated](/docs/services/keymgmt/keyprotect_create_root.html#create_root_keys) or [imported](/docs/services/keymgmt/keyprotect_import_root.html#import_root_keys))
+* A Key Protect service [provisioned](/docs/services/key-protect?topic=key-protect-provision#provision)
+* A Root key available (either [generated](/docs/services/key-protect?topic=key-protect-create-root-keys#create_root_keys) or [imported](/docs/services/key-protect?topic=key-protect-import-root-keys#import_root_keys))
 
 ### Retrieving the Root Key CRN
 {: #java-examples-kp-root}
 
-1. Retrieve the [instance ID](/docs/services/keymgmt/keyprotect_authentication.html#retrieve_instance_ID) for your Key Protect service
-2. Use the [Key Protect API](/docs/services/keymgmt/keyprotect_authentication.html#access-api) to retrieve all your [available keys](/docs/services/keymgmt/keyprotect_authentication.html#form_api_request)
-    * You can either use `curl` commands or an API REST Client such as [Postman](../api-reference/postman.html) to access the [Key Protect API](/docs/services/keymgmt/keyprotect_authentication.html#access-api).
-3. Retrieve the CRN of the root key you will use to enabled Key Protect on the your bucket.  The CRN will look similar to below:
+1. Retrieve the [instance ID](/docs/services/key-protect?topic=key-protect-retrieve-instance-ID#retrieve-instance-ID) for your Key Protect service
+2. Use the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
+    * You can either use `curl` commands or an API REST Client such as [Postman](/docs/services/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api).
+3. Retrieve the CRN of the root key you will use to enabled Key Protect on the your bucket. The CRN will look similar to below:
 
 `crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
 
@@ -1016,10 +1017,9 @@ You will need instances of the S3 Client and IAM Token Manager classes to initia
 ### Initializing the `AsperaTransferManager`
 {: #java-examples-aspera-init}
 
-Before initializing the `AsperaTransferManager`, make sure you've got working [`s3Client`](#init-config) and [`tokenManager`](#init-config) objects. 
+Before initializing the `AsperaTransferManager`, make sure you've got working [`s3Client`](#java-examples-config) and [`tokenManager`](#java-examples-config) objects. 
 
-
-There isn't a lot of benefit to using a single session of Aspera high-speed transfer unless you expect to see significant noise or packet loss in the network.  So we need to tell the `AsperaTransferManager` to use multiple sessions using the `AsperaConfig` class. This will split the transfer into the specified number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value. 
+There isn't a lot of benefit to using a single session of Aspera high-speed transfer unless you expect to see significant noise or packet loss in the network. So we need to tell the `AsperaTransferManager` to use multiple sessions using the `AsperaConfig` class. This will split the transfer into the specified number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value.
 
 The typical configuration for using multi-session should be:
 * 2 or 10 sessions
@@ -1036,13 +1036,13 @@ AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_K
     .build();
 ```
 
-For best performance in most scenarios, always make use of multiple sessions to minimize any overhead associated with instantiating an Aspera high-speed transfer.  **If your network capacity is at least 1 Gbps you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
+For best performance in most scenarios, always make use of multiple sessions to minimize any overhead associated with instantiating an Aspera high-speed transfer. **If your network capacity is at least 1 Gbps you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
 {:tip}
 
 *Key Values*
 * `API_KEY` - An API key for a user or service ID with Writer or Manager roles
 
-You will need to provide an IAM API Key for constructing an `AsperaTransferManager`.  [HMAC Credentials](/docs/services/cloud-object-storage/iam/service-credentials.html#iam-vs-hmac){:new_window} are **NOT** currently supported.  For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
+You will need to provide an IAM API Key for constructing an `AsperaTransferManager`. [HMAC Credentials](/docs/services/cloud-object-storage/iam/service-credentials.html#iam-vs-hmac){:new_window} are **NOT** currently supported. For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
 {:tip}
 
 ### File Upload
@@ -1124,7 +1124,7 @@ AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
 * `<absolute-path-to-directory>` - directory of the files to be uploaded to Object Storage.
-* `<virtual-directory-prefix>` - name of the directory prefix to be added to each file upon upload.  Use null or empty string to upload the files to the bucket root.
+* `<virtual-directory-prefix>` - name of the directory prefix to be added to each file upon upload. Use null or empty string to upload the files to the bucket root.
 
 ### Directory Download
 {: #java-examples-aspera-download-directory}
@@ -1152,7 +1152,7 @@ AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
 * `<absolute-path-to-directory>` - directory to save downloaded files from Object Storage.
-* `<virtual-directory-prefix>` - name of the directory prefix of each file to download.  Use null or empty string to download all files in the bucket.
+* `<virtual-directory-prefix>` - name of the directory prefix of each file to download. Use null or empty string to download all files in the bucket.
 
 ### Overriding Session Configuration on a Per Transfer Basis
 {: #java-examples-aspera-config}
@@ -1270,7 +1270,7 @@ The SDK provides the ability to manage the progress of file/directory transfers 
 * `resume()`
 * `cancel()`
 
-There are no side-effects from calling either of the methods outined above.  Proper clean up and housekeeping is handled by the SDK.
+There are no side-effects from calling either of the methods outined above. Proper clean up and housekeeping is handled by the SDK.
 {:tip}
 
 The following example shows a possible use for these methods:
@@ -1332,7 +1332,7 @@ Visit the [Oracle&reg; JDK documentation](https://docs.oracle.com/javase/10/vm/s
 
 **Issue:** `UnsatisfiedLinkError` on Linux
 
-**Cause:** System unable to load dependent libraries.  Errors such as the following may be seen in the application logs:
+**Cause:** System unable to load dependent libraries. Errors such as the following may be seen in the application logs:
 
 ```libfaspmanager2.so: libawt.so: cannot open shared object file: No such file or directory```
 
