@@ -76,6 +76,7 @@ The Aspera high-speed transfer SDK provides the ability to initiate high-speed t
 
 ### When to use Aspera High-Speed Transfer
 {: #aspera-guidance}
+
 The FASP protocol that Aspera high-speed transfer uses is not suited for all data transfers to and from COS. Specifically, any transfers making use of Aspera high-speed transfer should:
 
 1. Always make use of multiple sessions - at least two parallel sessions will best utilize Aspera high-speed transfers capabilities. See specific guidance for [Java](/docs/services/cloud-object-storage/libraries/java.html#aspera) and [Python](/docs/services/cloud-object-storage/libraries/python.html#aspera).

@@ -105,13 +105,13 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)/?cors"
  -H "Content-MD5: (md5-hash)"
  -H "Authorization: bearer (token)"
  -H "Content-Type: text/plain; charset=utf-8"
- -d \$'<CORSConfiguration>
-         <CORSRule>
-           <AllowedOrigin>(url)</AllowedOrigin>
-           <AllowedMethod>(request-type)</AllowedMethod>
-           <AllowedHeader>(url)</AllowedHeader>
-         </CORSRule>
-       </CORSConfiguration>
+ -d "<CORSConfiguration>
+      <CORSRule>
+        <AllowedOrigin>(url)</AllowedOrigin>
+        <AllowedMethod>(request-type)</AllowedMethod>
+        <AllowedHeader>(url)</AllowedHeader>
+      </CORSRule>
+     </CORSConfiguration>"
 ```
 {:codeblock}
 
@@ -246,7 +246,7 @@ curl -X "POST" "https://(endpoint)/(bucket-name)?delete"
  -H "Content-MD5: (md5-hash)"
  -H "Authorization: bearer (token)"
  -H "Content-Type: text/plain; charset=utf-8"
- -d \$'<?xml version="1.0" encoding="UTF-8"?>
+ -d "<?xml version="1.0" encoding="UTF-8"?>
          <Delete>
            <Object>
              <Key>(first-object)</Key>
@@ -254,7 +254,7 @@ curl -X "POST" "https://(endpoint)/(bucket-name)?delete"
            <Object>
              <Key>(second-object)</Key>
            </Object>
-         </Delete> '
+         </Delete>"
 ```
 {:codeblock}
 
@@ -291,7 +291,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)/(object-key)?partNumber=(sequent
 curl -X "POST" "https://(endpoint)/(bucket-name)/(object-key)?uploadId=(upload-id)"
  -H "Authorization: bearer (token)"
  -H "Content-Type: text/plain; charset=utf-8"
- -d \$'<CompleteMultipartUpload>
+ -d "<CompleteMultipartUpload>
          <Part>
            <PartNumber>1</PartNumber>
            <ETag>(etag)</ETag>
@@ -300,7 +300,7 @@ curl -X "POST" "https://(endpoint)/(bucket-name)/(object-key)?uploadId=(upload-i
            <PartNumber>2</PartNumber>
            <ETag>(etag)</ETag>
          </Part>
-       </CompleteMultipartUpload>
+       </CompleteMultipartUpload>"
 ```
 {:codeblock}
 
