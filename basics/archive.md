@@ -20,7 +20,10 @@ subcollection: cloud-object-storage
 {:tip: .tip}
 {:important: .important}
 {:note: .note}
-{:download: .download} 
+{:download: .download}
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'} 
 
 # Archive cold data
 {: #archive}
@@ -431,6 +434,8 @@ s3.putBucketLifecycleConfiguration(params, function(err, data) {
   else     console.log(data);           // successful response
 });
 ```
+{: codeblock}
+{: javascript}
 
 ### Retrieve a bucket lifecycle configuration
 {: #archive-node-retrieve}
@@ -444,6 +449,8 @@ s3.getBucketLifecycleConfiguration(params, function(err, data) {
   else     console.log(data);           // successful response
 });
 ```
+{: codeblock}
+{: javascript}
 
 ### Delete a bucket lifecycle configuration
 {: #archive-node-delete}
@@ -457,6 +464,8 @@ s3.deleteBucketLifecycle(params, function(err, data) {
   else     console.log(data);           // successful response
 });
 ```
+{: codeblock}
+{: javascript}
 
 ### Temporarily restore an archived object 
 {: #archive-node-restore}
@@ -478,6 +487,8 @@ var params = {
    else     console.log(data);           // successful response
 });
 ```
+{: codeblock}
+{: javascript}
 
 ### Get an object's headers
 {: #archive-node-head}
@@ -493,6 +504,8 @@ s3.headObject(params, function(err,data) {
     console.log(data);           // successful response
 });
 ```
+{: codeblock}
+{: javascript}
 
 ## Python Examples
 {: #archive-python}
@@ -522,6 +535,8 @@ response = client.put_bucket_lifecycle_configuration(
     }
 )
 ```
+{: codeblock}
+{: python}
 
 ### Retrieve a bucket lifecycle configuration
 {: #archive-python-retrieve}
@@ -529,13 +544,17 @@ response = client.put_bucket_lifecycle_configuration(
 ```py
 response = client.get_bucket_lifecycle_configuration(Bucket='string')
 ```
+{: codeblock}
+{: python}
 
 ### Delete a bucket lifecycle configuration
 {: #archive-python-delete}
 
-```python
+```py
 response = client.delete_bucket_lifecycle(Bucket='string')
 ```
+{: codeblock}
+{: python}
 
 ### Temporarily restore an archived object 
 {: #archive-python-restore}
@@ -552,6 +571,8 @@ response = client.restore_object(
     }
 )
 ```
+{: codeblock}
+{: python}
 
 ### Get an object's headers
 {: #archive-python-head}
@@ -562,6 +583,8 @@ response = client.head_object(
     Key='string'
 )
 ```
+{: codeblock}
+{: python}
 
 ## Java Examples 
 {: #archive-java}
@@ -573,6 +596,8 @@ response = client.head_object(
 public SetBucketLifecycleConfigurationRequest(String bucketName,
                                               BucketLifecycleConfiguration lifecycleConfiguration)
 ```
+{: codeblock}
+{: java}
 
 **Method Summary**
 
@@ -589,6 +614,8 @@ Method |  Description
 ```java
 public GetBucketLifecycleConfigurationRequest(String bucketName)
 ```
+{: codeblock}
+{: java}
 
 ### Delete a bucket lifecycle configuration
 {: #archive-java-put}
@@ -596,6 +623,8 @@ public GetBucketLifecycleConfigurationRequest(String bucketName)
 ```java
 public DeleteBucketLifecycleConfigurationRequest(String bucketName)
 ```
+{: codeblock}
+{: java}
 
 ### Temporarily restore an archived object 
 {: #archive-java-restore}
@@ -605,6 +634,8 @@ public RestoreObjectRequest(String bucketName,
                             String key,
                             int expirationInDays)
 ```
+{: codeblock}
+{: java}
 
 **Method Summary**
 
@@ -621,6 +652,8 @@ Method |  Description
 ```java
 public ObjectMetadata()
 ```
+{: codeblock}
+{: java}
 
 **Method Summary**
 
