@@ -1,4 +1,3 @@
-.idea
 outdated/
 not-yet/
 scratch/
@@ -11,3 +10,4 @@ scratch/
 .idea/* 
 node_modules
 node_modules/*
+
