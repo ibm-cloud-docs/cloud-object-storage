@@ -22,6 +22,7 @@ subcollection: cloud-object-storage
 {:javascript: .ph data-hd-programlang='javascript'} 
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
+{:S3cmd: .ph data-hd-programlang='S3cmd'}
 
 # Store very large objects
 {: #large-objects}
@@ -68,6 +69,8 @@ A `POST` issued to an object with the query parameter `upload` creates a new `Up
 POST https://{endpoint}/{bucket-name}/{object-name}?uploads= # path style
 POST https://{bucket-name}.{endpoint}/{object-name}?uploads= # virtual host style
 ```
+{: codeblock}
+{: http}
 
 **Example request**
 
@@ -76,6 +79,8 @@ POST /some-bucket/multipart-object-123?uploads= HTTP/1.1
 Authorization: Bearer {token}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: codeblock}
+{: http}
 
 **Example response**
 
@@ -89,6 +94,8 @@ X-Clv-S3-Version: 2.5
 Content-Type: application/xml
 Content-Length: 276
 ```
+{: codeblock}
+{: http}
 
 ```xml
 <InitiateMultipartUploadResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
@@ -97,6 +104,8 @@ Content-Length: 276
   <UploadId>0000015a-95e1-4326-654e-a1b57887784f</UploadId>
 </InitiateMultipartUploadResult>
 ```
+{: codeblock}
+{: http}
 
 ----
 
@@ -106,11 +115,14 @@ Content-Length: 276
 A `PUT` request issued to an object with query parameters `partNumber` and `uploadId` will upload one part of an object. The parts may be uploaded serially or in parallel, but must be numbered in order.
 
 **Syntax**
+{: http}
 
 ```bash
 PUT https://{endpoint}/{bucket-name}/{object-name}?partNumber={sequential-integer}&uploadId={uploadId}= # path style
 PUT https://{bucket-name}.{endpoint}/{object-name}?partNumber={sequential-integer}&uploadId={uploadId}= # virtual host style
 ```
+{: codeblock}
+{: http}
 
 **Example request**
 
@@ -121,6 +133,8 @@ Content-Type: application/pdf
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-Length: 13374550
 ```
+{: codeblock}
+{: http}
 
 **Example response**
 
@@ -134,6 +148,8 @@ X-Clv-S3-Version: 2.5
 ETag: "7417ca8d45a71b692168f0419c17fe2f"
 Content-Length: 0
 ```
+{: codeblock}
+{: http}
 
 ----
 
@@ -143,6 +159,7 @@ Content-Length: 0
 A `POST` request issued to an object with query parameter `uploadId` and the appropriate XML block in the body will complete a multipart upload.
 
 **Syntax**
+{: http}
 
 ```bash
 POST https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId}= # path style
@@ -157,8 +174,11 @@ POST https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # virtu
   </Part>
 </CompleteMultipartUpload>
 ```
+{: codeblock}
+{: http}
 
 **Example request**
+{: http}
 
 ```http
 POST /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
@@ -167,6 +187,8 @@ Content-Type: text/plain; charset=utf-8
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-Length: 257
 ```
+{: codeblock}
+{: http}
 
 ```xml
 <CompleteMultipartUpload>
@@ -180,8 +202,11 @@ Content-Length: 257
   </Part>
 </CompleteMultipartUpload>
 ```
+{: codeblock}
+{: http}
 
 **Example response**
+{: http}
 
 ```http
 HTTP/1.1 200 OK
@@ -194,6 +219,8 @@ ETag: "765ba3df36cf24e49f67fc6f689dfc6e-2"
 Content-Type: application/xml
 Content-Length: 364
 ```
+{: codeblock}
+{: http}
 
 ```xml
 <CompleteMultipartUploadResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
@@ -203,6 +230,8 @@ Content-Length: 364
   <ETag>"765ba3df36cf24e49f67fc6f689dfc6e-2"</ETag>
 </CompleteMultipartUploadResult>
 ```
+{: codeblock}
+{: http}
 
 ----
 
@@ -212,21 +241,28 @@ Content-Length: 364
 A `DELETE` request issued to an object with query parameter `uploadId` will delete all unfinished parts of a multipart upload.
 
 **Syntax**
+{: http}
 
 ```bash
 DELETE https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId}= # path style
 DELETE https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # virtual host style
 ```
+{: codeblock}
+{: http}
 
 **Example request**
+{: http}
 
 ```http
 DELETE /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
 Authorization: Bearer {token}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: codeblock}
+{: http}
 
 **Example response**
+{: http}
 
 ```http
 HTTP/1.1 204 No Content
@@ -236,6 +272,8 @@ Accept-Ranges: bytes
 Server: Cleversafe/3.9.1.114
 X-Clv-S3-Version: 2.5
 ```
+{: codeblock}
+{: http}
 
 ## Using S3cmd (CLI)
 {: #large-objects-s3cmd}
@@ -250,12 +288,16 @@ S3cmd requires Python 2.6 or newer and is compatible with Python 3. The easiest 
 ```
 pip install s3cmd
 ```
+{: codeblock}
+{: S3cmd}
 
 Once the package has been installed, grab the {{site.data.keyword.cos_full}} example configuration file [here](https://gist.githubusercontent.com/greyhoundforty/a4a9d80a942d22a8a7bf838f7abbcab2/raw/05ad584edee4370f4c252e4f747abb118d0075cb/example.s3cfg){:new_window} and update it with your Cloud Object Storage (S3) credentials:
 
 ```
 $ wget -O $HOME/.s3cfg https://gist.githubusercontent.com/greyhoundforty/676814921b8f4367fba7604e622d10f3/raw/422abaeb70f1c17cd5308745c0e446b047c123e0/s3cfg
 ```
+{: codeblock}
+{: S3cmd}
 
 The 4 lines that need to be updated are
 
@@ -275,6 +317,8 @@ $ s3cmd ls
 2017-02-03 21:23  s3://largebackup
 2017-02-07 17:44  s3://winbackup
 ```
+{: codeblock}
+{: S3cmd}
 
 The full list of options and commands along with basic usage information is available on the [s3tools](https://s3tools.org/usage){:new_window} site.
 
@@ -286,6 +330,8 @@ A `put` command will automatically execute a multi-part upload when attempting t
 ```
 s3cmd put FILE [FILE...] s3://BUCKET[/PREFIX]
 ```
+{: codeblock}
+{: S3cmd}
 
 The threshold is determined by the `--multipart-chunk-size-mb` option:
 
@@ -298,12 +344,16 @@ The threshold is determined by the `--multipart-chunk-size-mb` option:
     chunk size is 15MB, minimum allowed chunk size is 5MB,
     maximum is 5GB.
 ```
+{: codeblock}
+{: S3cmd}
 
 Example:
 
 ```
 s3cmd put bigfile.pdf s3://backuptest/bigfile.pdf --multipart-chunk-size-mb=5
 ```
+{: codeblock}
+{: S3cmd}
 
 Output:
 
@@ -317,6 +367,8 @@ upload: 'bigfile.pdf' -> 's3://backuptest/bigfile.pdf'  [part 3 of 4, 5MB] [1 of
 upload: 'bigfile.pdf' -> 's3://backuptest/bigfile.pdf'  [part 4 of 4, 4MB] [1 of 1]
  4973645 of 4973645   100% in    2s  1823.51 kB/s  done
  ```
+{: codeblock}
+{: S3cmd}
 
 ## Using the Java SDK
 {: #large-objects-java}
@@ -325,6 +377,8 @@ The Java SDK provides two ways to execute large object uploads:
 
 * [Multipart Uploads](/docs/services/cloud-object-storage/libraries/java.html#java-multipart-upload)
 * [TransferManager](/docs/services/cloud-object-storage/libraries/java.html#java-transfer-manager)
+{: codeblock}
+{: java}
 
 ## Using the Python SDK
 {: #large-objects-python}
@@ -333,6 +387,8 @@ The Python SDK provides two ways to execute large object uploads:
 
 * [Multipart Uploads](/docs/services/cloud-object-storage/libraries/python.html#python-multipart-upload)
 * [TransferManager](/docs/services/cloud-object-storage/libraries/python.html#python-transfer-manager)
+{: codeblock}
+{: python}
 
 ## Using the Node.js SDK
 {: #large-objects-node}
@@ -340,3 +396,5 @@ The Python SDK provides two ways to execute large object uploads:
 The Node.js SDK provides a single way to execute large object uploads:
 
 * [Multipart Uploads](/docs/services/cloud-object-storage/libraries/node.html#node-multipart-upload)
+{: codeblock}
+{: javascript}
