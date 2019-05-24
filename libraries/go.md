@@ -481,25 +481,23 @@ func main() {
 ```Go
 func main() {
 
-		conf := aws.NewConfig().
-			WithRegion("<REGION>").
-			WithEndpoint(serviceEndpoint).
-			WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(), authEndpoint, apiKey, serviceInstanceID)).
-			WithS3ForcePathStyle(true)
+	conf := aws.NewConfig().
+		WithRegion("<REGION>").
+		WithEndpoint(serviceEndpoint).
+		WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(), authEndpoint, apiKey, serviceInstanceID)).
+		WithS3ForcePathStyle(true)
 
-		// Create client
-		sess := session.Must(session.NewSession())
-		client := s3.New(sess, conf)
+	// Create client
+	sess := session.Must(session.NewSession())
+	client := s3.New(sess, conf)
 
+    i := 0
+    input := new(s3.ListBucketsExtendedInput).SetMaxKeys(1).SetMarker("<MARKER>").SetPrefix("<PREFIX>")
+	output, _ := client.ListBucketsExtended(input)
 
-		i := 0
-
-		input := new(s3.ListBucketsExtendedInput).SetMaxKeys(1).SetMarker("<MARKER>").SetPrefix("<PREFIX>")
-		output, _ := client.ListBucketsExtended(input)
-
-		for _, bucket := range output.Buckets {
-			fmt.Println(i, "\t\t", *bucket.Name, "\t\t", *bucket.LocationConstraint, "\t\t", *bucket.CreationDate)
-		}
-
+	for _, bucket := range output.Buckets {
+		fmt.Println(i, "\t\t", *bucket.Name, "\t\t", *bucket.LocationConstraint, "\t\t", *bucket.CreationDate)
 	}
+
+}
 ```
