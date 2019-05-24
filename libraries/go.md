@@ -384,6 +384,7 @@ Key Protect can be added to a storage bucket to manage encryption keys. All data
 
 ### Before You Begin
 {: #go-examples-kp-prereqs}
+
 The following items are necessary in order to create a bucket with Key-Protect enabled:
 
 * A Key Protect service [provisioned](/docs/services/key-protect?topic=key-protect-provision#provision)
