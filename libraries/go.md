@@ -479,6 +479,29 @@ func main() {
 ### Getting an extended listing
 {: #go-list-buckets-extended}
 
+
+```Go
+func main() {
+// Create client
+		sess := session.Must(session.NewSession())
+		client := s3.New(sess, conf)
+
+
+		input := new(s3.ListBucketsExtendedInput).SetMaxKeys(<MAX_KEYS>).SetMarker("<MARKER>").SetPrefix("<PREFIX>")
+		output, _ := client.ListBucketsExtended(input)
+
+		jsonBytes, _ := json.MarshalIndent(output, " ", " ")
+		fmt.Println(string(jsonBytes))
+}
+```
+*Key Values*
+* `<MAX_KEYS>` - Maximum number of buckets to retrieve in the request.
+* `<MARKER>` - The bucket name to start the listing (Skip until this bucket).
+* `<PREFIX` - Only include buckets whose name start with this prefix.
+
+### Getting an extended listing with pagination
+{: #go-list-buckets-extended-pagination}
+
 ```Go
 func main() {
 
