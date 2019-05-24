@@ -427,7 +427,7 @@ func main() {
 }
 ```
 *Key Values*
-* `<NEW_BUCKET_NAME>` - Maximum number of buckets to retrieve in the request.
+* `<NEW_BUCKET_NAME>` - The name of the new bucket.
 * `<ROOT-KEY-CRN>` - CRN of the Root Key that is obtained from the Key Protect service.
 * `<ALGORITHM>` - The encryption algorithm used for new objects added to the bucket (Default is AES256).
 
@@ -481,18 +481,12 @@ func main() {
 ```Go
 func main() {
 
-	conf := aws.NewConfig().
-		WithRegion("<REGION>").
-		WithEndpoint(serviceEndpoint).
-		WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(), authEndpoint, apiKey, serviceInstanceID)).
-		WithS3ForcePathStyle(true)
-
 	// Create client
 	sess := session.Must(session.NewSession())
 	client := s3.New(sess, conf)
 
     i := 0
-    input := new(s3.ListBucketsExtendedInput).SetMaxKeys(1).SetMarker("<MARKER>").SetPrefix("<PREFIX>")
+    input := new(s3.ListBucketsExtendedInput).SetMaxKeys(<MAX_KEYS>).SetMarker("<MARKER>").SetPrefix("<PREFIX>")
 	output, _ := client.ListBucketsExtended(input)
 
 	for _, bucket := range output.Buckets {
@@ -501,3 +495,7 @@ func main() {
 
 }
 ```
+*Key Values*
+* `<MAX_KEYS>` - Maximum number of buckets to retrieve in the request.
+* `<MARKER>` - The bucket name to start the listing (Skip until this bucket).
+* `<PREFIX` - Only include buckets whose name start with this prefix.
