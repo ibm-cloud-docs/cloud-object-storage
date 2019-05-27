@@ -67,10 +67,13 @@ The credentials can be found by creating a [Service Credential](/docs/services/c
 
 If migrating from AWS S3, you can also source credentials data from  `~/.aws/credentials` in the format:
 
+![environmentvariables](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/go-library-fig-1-env-vars.png)
+{: caption="Figure 1. Environment Variables" caption-side="top"}
 ```
 [default]
-aws_access_key_id = {API_KEY}
-aws_secret_access_key = {SERVICE_INSTANCE_ID}
+IBM_API_KEY_ID = {apikey}
+IBM_SERVICE_INSTANCE_ID = {resource_instance_id}
+IBM_AUTH_ENDPOINT = "https://iam.cloud.ibm.com/identity/token"
 ```
 
 ### Initializing configuration
