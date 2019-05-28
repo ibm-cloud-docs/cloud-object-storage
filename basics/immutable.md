@@ -119,7 +119,7 @@ Several new APIs have been introduced to the IBM COS SDKs to provide support for
 
 Note that all code examples assume the existence of a client object called `cos` that can call the different methods. For details on creating clients, see the specific SDK guides.
 
-All date values used to set retention periods are GMT.
+All date values used to set retention periods are GMT. A `Content-MD5` header is required to ensure data integrity, and is automatically sent when using an SDK.
 {:note}
 
 ### Add a retention policy on an existing bucket
