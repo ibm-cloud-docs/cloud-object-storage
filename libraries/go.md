@@ -33,7 +33,7 @@ The {{site.data.keyword.cos_full}} SDK for Go is comprehensive, and has features
 ## Getting the SDK
 {: #go-get-sdk}
 
-Use `go get` to retrieve the SDK to add it to your GOPATH workspace, or project's Go module dependencies. The SDK requires a minimum version of Go 1.9 and maximum version of Go 1.11. Future versions of Go will be supported once our quality control process has been completed.
+Use `go get` to retrieve the SDK to add it to your GOPATH workspace, or project's Go module dependencies. The SDK requires a minimum version of Go 1.10 and maximum version of Go 1.12. Future versions of Go will be supported once our quality control process has been completed.
 
 ```
 go get github.com/IBM/ibm-cos-sdk-go
