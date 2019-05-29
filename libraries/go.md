@@ -377,6 +377,61 @@ func main() {
 }
 ```
 
+## Using Key Protect
+{: #go-examples-kp}
+
+Key Protect can be added to a storage bucket to manage encryption keys. All data is encrypted in IBM COS, but Key Protect provides a service for generating, rotating, and controlling access to encryption keys using a centralized service.
+
+### Before You Begin
+{: #go-examples-kp-prereqs}
+
+The following items are necessary in order to create a bucket with Key-Protect enabled:
+
+* A Key Protect service [provisioned](/docs/services/key-protect?topic=key-protect-provision#provision)
+* A Root key available (either [generated](/docs/services/key-protect?topic=key-protect-create-root-keys#create_root_keys) or [imported](/docs/services/key-protect?topic=key-protect-import-root-keys#import_root_keys))
+
+### Retrieving the Root Key CRN
+{: #go-examples-kp-root}
+
+1. Retrieve the [instance ID](/docs/services/key-protect?topic=key-protect-retrieve-instance-ID#retrieve-instance-ID) for your Key Protect service
+2. Use the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
+    * You can either use `curl` commands or an API REST Client such as [Postman](/docs/services/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api).
+3. Retrieve the CRN of the root key you will use to enabled Key Protect on the your bucket. The CRN will look similar to below:
+
+`crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
+
+### Creating a bucket with Key Protect enabled
+{: #go-examples-kp-new-bucket}
+
+```Go
+func main() {
+
+    // Create client
+    sess := session.Must(session.NewSession())
+    client := s3.New(sess, conf)
+
+    // Bucket Names
+    newBucket := "<NEW_BUCKET_NAME>"
+        
+    fmt.Println("Creating new encrypted bucket:", newBucket)
+
+	input := &s3.CreateBucketInput{
+		Bucket: aws.String(newBucket),
+		IBMSSEKPCustomerRootKeyCrn: aws.String("<ROOT-KEY-CRN>"),
+		IBMSSEKPEncryptionAlgorithm:aws.String("<ALGORITHM>"),
+    }
+    client.CreateBucket(input)
+
+    // List Buckets
+    d, _ := client.ListBuckets(&s3.ListBucketsInput{})
+    fmt.Println(d)
+}
+```
+*Key Values*
+* `<NEW_BUCKET_NAME>` - The name of the new bucket.
+* `<ROOT-KEY-CRN>` - CRN of the Root Key that is obtained from the Key Protect service.
+* `<ALGORITHM>` - The encryption algorithm used for new objects added to the bucket (Default is AES256).
+
 
 ### Use the transfer manager
 {: #go-transfer}
@@ -420,3 +475,51 @@ func main() {
     fmt.Println(f)
 }
 ```
+
+### Getting an extended listing
+{: #go-list-buckets-extended}
+
+
+```Go
+func main() {
+// Create client
+		sess := session.Must(session.NewSession())
+		client := s3.New(sess, conf)
+
+
+		input := new(s3.ListBucketsExtendedInput).SetMaxKeys(<MAX_KEYS>).SetMarker("<MARKER>").SetPrefix("<PREFIX>")
+		output, _ := client.ListBucketsExtended(input)
+
+		jsonBytes, _ := json.MarshalIndent(output, " ", " ")
+		fmt.Println(string(jsonBytes))
+}
+```
+*Key Values*
+* `<MAX_KEYS>` - Maximum number of buckets to retrieve in the request.
+* `<MARKER>` - The bucket name to start the listing (Skip until this bucket).
+* `<PREFIX` - Only include buckets whose name start with this prefix.
+
+### Getting an extended listing with pagination
+{: #go-list-buckets-extended-pagination}
+
+```Go
+func main() {
+
+	// Create client
+	sess := session.Must(session.NewSession())
+	client := s3.New(sess, conf)
+
+    i := 0
+    input := new(s3.ListBucketsExtendedInput).SetMaxKeys(<MAX_KEYS>).SetMarker("<MARKER>").SetPrefix("<PREFIX>")
+	output, _ := client.ListBucketsExtended(input)
+
+	for _, bucket := range output.Buckets {
+		fmt.Println(i, "\t\t", *bucket.Name, "\t\t", *bucket.LocationConstraint, "\t\t", *bucket.CreationDate)
+	}
+
+}
+```
+*Key Values*
+* `<MAX_KEYS>` - Maximum number of buckets to retrieve in the request.
+* `<MARKER>` - The bucket name to start the listing (Skip until this bucket).
+* `<PREFIX` - Only include buckets whose name start with this prefix.
