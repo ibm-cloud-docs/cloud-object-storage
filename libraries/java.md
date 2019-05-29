@@ -1039,6 +1039,25 @@ AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_K
 For best performance in most scenarios, always make use of multiple sessions to minimize any overhead associated with instantiating an Aspera high-speed transfer. **If your network capacity is at least 1 Gbps you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
 {:tip}
 
+Alternatively, session management can be dynamically handled by the sdk if using a
+`AsperaTransferManagerConfig` configuration in conjunction with an `AsperaConfig` configuration that configures a target rate
+
+```java
+AsperaTransferManagerConfig transferConfig = new AsperaTransferManagerConfig()
+    .withMultiSession(true);
+
+AsperaConfig asperaConfig = new AsperaConfig()
+    .withTargetRateMbps(2500L)
+    .withMultiSessionThresholdMb(100);
+
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client)
+    .withTokenManager(tokenManager)
+    .withAsperaTransferManagerConfig(transferConfig)
+    .withAsperaConfig(asperaConfig)
+    .build();
+```
+In the above example, the sdk will spawn enough sessions to attempt to reach the target rate of 2500mbps.
+
 *Key Values*
 * `API_KEY` - An API key for a user or service ID with Writer or Manager roles
 
