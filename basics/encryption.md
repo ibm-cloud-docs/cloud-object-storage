@@ -122,4 +122,4 @@ To rotate the keys for your {{site.data.keyword.cos_short}} you will need to cre
     1. This step can be accomplished using a number of different methods:
         1. From the command-line using [CURL](/docs/services/cloud-object-storage/cli/curl.html) or [AWS CLI](/docs/services/cloud-object-storage/cli/aws-cli.html)
         2. Using the (API)[/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#copy-object]
-        3. Using the SDK with [Java](/docs/services/cloud-object-storage/libraries/java.html), [Python](/docs/services/cloud-object-storage/libraries/python.html), or [Node.js](/docs/services/cloud-object-storage/libraries/node.html)
+        3. Using the SDK with [Java](/docs/services/cloud-object-storage/libraries/java.html), [Python](/docs/services/cloud-object-storage/libraries/python.html), [Node.js](/docs/services/cloud-object-storage/libraries/node.html) or [Go](/docs/services/cloud-object-storage/libraries/go.html)
