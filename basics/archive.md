@@ -121,7 +121,7 @@ __Syntax__
 PUT https://{endpoint}/{bucket}?lifecycle # path style
 PUT https://{bucket}.{endpoint}?lifecycle # virtual host style
 ```
-{: caption="Example 1. Note the use of slashes and dots in the example of syntax." caption-side="bottom"}
+{: caption="Example 1. Note the use of slashes and dots in this example of syntax." caption-side="bottom"}
 
 ```xml
 <LifecycleConfiguration>
@@ -139,7 +139,7 @@ PUT https://{bucket}.{endpoint}?lifecycle # virtual host style
 </LifecycleConfiguration>
 ```
 {:codeblock: .codeblock}
-{: caption="Example 2. Using cURL to install Node Version Manager (nvm)." caption-side="bottom"}
+{: caption="Example 2. XML sample for creating an object lifecycle configuration." caption-side="bottom"}
 
 __Examples__
 
@@ -155,7 +155,7 @@ Content-MD5: M625BaNwd/OytcM7O5gIaQ==
 Content-Length: 305
 ```
 {:codeblock: .codeblock}
-{: caption="Example 3. Using cURL to install Node Version Manager (nvm)." caption-side="bottom"}
+{: caption="Example 3. Request header samples for creating an object lifecycle configuration." caption-side="bottom"}
 
 ```xml
 <LifecycleConfiguration>
@@ -173,7 +173,7 @@ Content-Length: 305
 </LifecycleConfiguration>
 ```
 {:codeblock: .codeblock}
-{: caption="Example 4. Using cURL to install Node Version Manager (nvm)." caption-side="bottom"}
+{: caption="Example 4. XML sample for PUT request body." caption-side="bottom"}
 _Sample Response_
 
 ```
@@ -181,7 +181,7 @@ HTTP/1.1 200 OK
 Date: Wed, 7 Feb 2018 17:51:00 GMT
 Connection: close
 ```
-{: caption="Example 5. Using cURL to install Node Version Manager (nvm)." caption-side="bottom"}
+{: caption="Example 5. Response headers." caption-side="bottom"}
 
 ---
 
@@ -202,7 +202,7 @@ __Syntax__
 GET https://{endpoint}/{bucket}?lifecycle # path style
 GET https://{bucket}.{endpoint}?lifecycle # virtual host style
 ```
-{: caption="Example 6. Using cURL to install Node Version Manager (nvm)." caption-side="bottom"}
+{: caption="Example 6. Variations in syntax for GET requests." caption-side="bottom"}
 
 __Examples__ 
 
@@ -214,7 +214,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 17:50:00 GMT
 Authorization: authorization string
 ```
-{: caption="Example 7. Using cURL to install Node Version Manager (nvm)." caption-side="bottom"}
+{: caption="Example 7. Sample request headers for retrieving configuration." caption-side="bottom"}
 
 _Sample Response_
 
@@ -223,13 +223,13 @@ HTTP/1.1 200 OK
 Date: Wed, 7 Feb 2018 17:51:00 GMT
 Connection: close
 ```
-{: caption="Example 8. Using cURL to install Node Version Manager (nvm)." caption-side="bottom"}
+{: caption="Example 8. Sample response headers from GET request." caption-side="bottom"}
 
 ```xml
 <LifecycleConfiguration>
     <Rule>
         <ID>my-archive-policy</ID>
-        </Filter>
+        <Filter />
         <Status>Enabled</status>
         <Transition>
             <Days>20</Days>
@@ -238,7 +238,7 @@ Connection: close
     </Rule>
 </LifecycleConfiguration>
 ```
-{: caption="Example 9. Using cURL to install Node Version Manager (nvm)." caption-side="bottom"}
+{: caption="Example 9. XML example for response body." caption-side="bottom"}
 
 ---
 
@@ -261,7 +261,7 @@ __Syntax__
 DELETE https://{endpoint}/{bucket}?lifecycle # path style
 DELETE https://{bucket}.{endpoint}?lifecycle # virtual host style
 ```
-{: caption="Example 10. Using cURL to install Node Version Manager (nvm)." caption-side="bottom"}
+{: caption="Example 10. Note the use of slashes and dots in the example of syntax." caption-side="bottom"}
 
 __Examples__
 
@@ -273,7 +273,8 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 18:50:00 GMT
 Authorization: authorization string
 ```
-{: caption="Example 11. Using cURL to install Node Version Manager (nvm)." caption-side="bottom"}
+{: caption="Example 11. Sample request headers for the DELETE HTTP verb." caption-side="bottom"}
+
 _Sample Response_
 
 ```
@@ -281,7 +282,7 @@ HTTP/1.1 204 No Content
 Date: Wed, 7 Feb 2018 18:51:00 GMT
 Connection: close
 ```
-{: caption="Example 12. Using cURL to install Node Version Manager (nvm)." caption-side="bottom"}
+{: caption="Example 12. Sample response from DELETE request." caption-side="bottom"}
 
 ---
 
@@ -321,7 +322,7 @@ __Syntax__
 POST https://{endpoint}/{bucket}/{object}?restore # path style
 POST https://{bucket}.{endpoint}/{object}?restore # virtual host style
 ```
-{: caption="Example 13. Using cURL to install Node Version Manager (nvm)." caption-side="bottom"}
+{: caption="Example 13. Note the use of slashes and dots in the example of syntax." caption-side="bottom"}
 
 ```xml
 <RestoreRequest>
@@ -332,7 +333,7 @@ POST https://{bucket}.{endpoint}/{object}?restore # virtual host style
 </RestoreRequest>
 ```
 {:codeblock: .codeblock}
-{: caption="Example 14. Using cURL to install Node Version Manager (nvm)." caption-side="bottom"}
+{: caption="Example 14. Model of XML for request body." caption-side="bottom"}
 __Examples__
 
 _Sample Request_
@@ -604,7 +605,7 @@ response = client.restore_object(
 ```
 {: codeblock}
 {: python}
-{: caption="Example 29. Restoring an archived object." caption-side="bottom"}
+{: caption="Example 29. Temporarily restoring an archived object." caption-side="bottom"}
 
 ### Get an object's headers
 {: #archive-python-head}
