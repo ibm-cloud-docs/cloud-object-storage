@@ -1023,12 +1023,12 @@ There isn't a lot of benefit to using a single session of Aspera high-speed tran
 
 The typical configuration for using multi-session should be:
 * 2 or 10 sessions
-* 60 MB threshold (*this is the recommended value for most applications*)
+* 100 MB threshold (*this is the recommended value for most applications*)
 
 ```java
 AsperaConfig asperaConfig = new AsperaConfig()
     .withMultiSession(2)
-    .withMultiSessionThresholdMb(60);
+    .withMultiSessionThresholdMb(100);
             
 AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client)
     .withTokenManager(tokenManager)
@@ -1177,7 +1177,7 @@ AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_K
 // and file threshold per session.
 AsperaConfig asperaConfig = new AsperaConfig().
 withMultiSession(10).
-withMultiSessionThresholdMb(60);
+withMultiSessionThresholdMb(100);
 
 // Upload test file and report progress
 Future<AsperaTransaction> asperaTransactionFuture  = asperaTransferMgr.upload(bucketName, itemName, inputFile, asperaConfig, null);

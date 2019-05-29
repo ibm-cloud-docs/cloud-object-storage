@@ -642,13 +642,13 @@ To get the highest throughput, split the transfer into a specified number of par
 
 The typical configuration for using multi-session should be:
 * 2 or 10 sessions
-* 60 MB threshold (*this is the recommended value for most applications*)
+* 100 MB threshold (*this is the recommended value for most applications*)
 
 ```python
 from ibm_s3transfer.aspera.manager import AsperaConfig
 # Configure 2 sessions for transfer
 ms_transfer_config = AsperaConfig(multi_session=2,
-                                  multi_session_threshold_mb=60)
+                                  multi_session_threshold_mb=100)
 
 # Create the Aspera Transfer Manager
 transfer_manager = AsperaTransferManager(client=client,
