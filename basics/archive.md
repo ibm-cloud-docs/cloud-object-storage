@@ -11,7 +11,7 @@ subcollection: cloud-object-storage
 ---
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
+{: codeblock}
 {:pre: .pre}
 {:screen: .screen}
 {:tsSymptoms: .tsSymptoms}
@@ -138,7 +138,7 @@ PUT https://{bucket}.{endpoint}?lifecycle # virtual host style
 	</Rule>
 </LifecycleConfiguration>
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 {: caption="Example 2. XML sample for creating an object lifecycle configuration." caption-side="bottom"}
 
 __Examples__
@@ -154,7 +154,7 @@ Content-Type: text/plain
 Content-MD5: M625BaNwd/OytcM7O5gIaQ==
 Content-Length: 305
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 {: caption="Example 3. Request header samples for creating an object lifecycle configuration." caption-side="bottom"}
 
 ```xml
@@ -172,7 +172,7 @@ Content-Length: 305
     </Rule>
 </LifecycleConfiguration>
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 {: caption="Example 4. XML sample for PUT request body." caption-side="bottom"}
 _Sample Response_
 
@@ -332,7 +332,7 @@ POST https://{bucket}.{endpoint}/{object}?restore # virtual host style
 	</GlacierJobParameter>
 </RestoreRequest>
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 {: caption="Example 14. Model of XML for request body." caption-side="bottom"}
 __Examples__
 
@@ -381,7 +381,7 @@ __Syntax__
 HEAD https://{endpoint}/{bucket-name}/{object-name} # path style
 HEAD https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 {: caption="Example 18. Variations in defining endpoints." caption-side="bottom"}
 
 __Response headers for archived objects__
