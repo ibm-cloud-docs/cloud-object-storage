@@ -11,7 +11,7 @@ subcollection: cloud-object-storage
 ---
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{: codeblock}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:screen: .screen}
 {:tsSymptoms: .tsSymptoms}
