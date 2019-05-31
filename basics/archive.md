@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-21"
+lastupdated: "2019-05-29"
 
 keywords: archive, glacier, tier, s3, compatibility, api
 
@@ -11,7 +11,7 @@ subcollection: cloud-object-storage
 ---
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
+{: codeblock}
 {:pre: .pre}
 {:screen: .screen}
 {:tsSymptoms: .tsSymptoms}
@@ -121,6 +121,7 @@ __Syntax__
 PUT https://{endpoint}/{bucket}?lifecycle # path style
 PUT https://{bucket}.{endpoint}?lifecycle # virtual host style
 ```
+{: caption="Example 1. Note the use of slashes and dots in this example of syntax." caption-side="bottom"}
 
 ```xml
 <LifecycleConfiguration>
@@ -137,6 +138,8 @@ PUT https://{bucket}.{endpoint}?lifecycle # virtual host style
 	</Rule>
 </LifecycleConfiguration>
 ```
+{: codeblock}
+{: caption="Example 2. XML sample for creating an object lifecycle configuration." caption-side="bottom"}
 
 __Examples__
 
@@ -151,6 +154,8 @@ Content-Type: text/plain
 Content-MD5: M625BaNwd/OytcM7O5gIaQ==
 Content-Length: 305
 ```
+{: codeblock}
+{: caption="Example 3. Request header samples for creating an object lifecycle configuration." caption-side="bottom"}
 
 ```xml
 <LifecycleConfiguration>
@@ -167,7 +172,8 @@ Content-Length: 305
     </Rule>
 </LifecycleConfiguration>
 ```
-
+{: codeblock}
+{: caption="Example 4. XML sample for PUT request body." caption-side="bottom"}
 _Sample Response_
 
 ```
@@ -175,6 +181,7 @@ HTTP/1.1 200 OK
 Date: Wed, 7 Feb 2018 17:51:00 GMT
 Connection: close
 ```
+{: caption="Example 5. Response headers." caption-side="bottom"}
 
 ---
 
@@ -195,6 +202,7 @@ __Syntax__
 GET https://{endpoint}/{bucket}?lifecycle # path style
 GET https://{bucket}.{endpoint}?lifecycle # virtual host style
 ```
+{: caption="Example 6. Variations in syntax for GET requests." caption-side="bottom"}
 
 __Examples__ 
 
@@ -206,6 +214,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 17:50:00 GMT
 Authorization: authorization string
 ```
+{: caption="Example 7. Sample request headers for retrieving configuration." caption-side="bottom"}
 
 _Sample Response_
 
@@ -214,12 +223,13 @@ HTTP/1.1 200 OK
 Date: Wed, 7 Feb 2018 17:51:00 GMT
 Connection: close
 ```
+{: caption="Example 8. Sample response headers from GET request." caption-side="bottom"}
 
 ```xml
 <LifecycleConfiguration>
     <Rule>
         <ID>my-archive-policy</ID>
-        </Filter>
+        <Filter />
         <Status>Enabled</status>
         <Transition>
             <Days>20</Days>
@@ -228,6 +238,7 @@ Connection: close
     </Rule>
 </LifecycleConfiguration>
 ```
+{: caption="Example 9. XML example for response body." caption-side="bottom"}
 
 ---
 
@@ -250,6 +261,7 @@ __Syntax__
 DELETE https://{endpoint}/{bucket}?lifecycle # path style
 DELETE https://{bucket}.{endpoint}?lifecycle # virtual host style
 ```
+{: caption="Example 10. Note the use of slashes and dots in the example of syntax." caption-side="bottom"}
 
 __Examples__
 
@@ -261,6 +273,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 18:50:00 GMT
 Authorization: authorization string
 ```
+{: caption="Example 11. Sample request headers for the DELETE HTTP verb." caption-side="bottom"}
 
 _Sample Response_
 
@@ -269,6 +282,8 @@ HTTP/1.1 204 No Content
 Date: Wed, 7 Feb 2018 18:51:00 GMT
 Connection: close
 ```
+{: caption="Example 12. Sample response from DELETE request." caption-side="bottom"}
+
 ---
 
 ### Temporarily restore an archived object 
@@ -307,6 +322,7 @@ __Syntax__
 POST https://{endpoint}/{bucket}/{object}?restore # path style
 POST https://{bucket}.{endpoint}/{object}?restore # virtual host style
 ```
+{: caption="Example 13. Note the use of slashes and dots in the example of syntax." caption-side="bottom"}
 
 ```xml
 <RestoreRequest>
@@ -316,7 +332,8 @@ POST https://{bucket}.{endpoint}/{object}?restore # virtual host style
 	</GlacierJobParameter>
 </RestoreRequest>
 ```
-
+{: codeblock}
+{: caption="Example 14. Model of XML for request body." caption-side="bottom"}
 __Examples__
 
 _Sample Request_
@@ -330,6 +347,7 @@ Content-Type: text/plain
 Content-MD5: rgRRGfd/OytcM7O5gIaQ==
 Content-Length: 305
 ```
+{: caption="Example 15. Sample request headers for object restoration." caption-side="bottom"}
 
 ```xml
 <RestoreRequest>
@@ -339,6 +357,7 @@ Content-Length: 305
 	</GlacierJobParameter>
 </RestoreRequest>
 ```
+{: caption="Example 16. Sample request body for object restoration." caption-side="bottom"}
 
 _Sample Response_
 
@@ -347,6 +366,7 @@ HTTP/1.1 202 Accepted
 Date: Wed, 7 Feb 2018 19:51:00 GMT
 Connection: close
 ```
+{: caption="Example 17. Response to restoring object (`HTTP 202`)." caption-side="bottom"}
 
 ---
 
@@ -361,6 +381,8 @@ __Syntax__
 HEAD https://{endpoint}/{bucket-name}/{object-name} # path style
 HEAD https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
+{: codeblock}
+{: caption="Example 18. Variations in defining endpoints." caption-side="bottom"}
 
 __Response headers for archived objects__
 
@@ -381,6 +403,7 @@ Authorization: {authorization-string}
 x-amz-date: 20160825T183244Z
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: caption="Example 19. Example showing request headers." caption-side="bottom"}
 
 _Sample response_
 
@@ -400,6 +423,7 @@ x-amz-restore: ongoing-request="false", expiry-date="Thu, 06 Dec 2018 18:28:38 G
 x-amz-storage-class: "GLACIER"
 x-ibm-restored-copy-storage-class: "Standard"
 ```
+{: caption="Example 20. Example showing response headers." caption-side="bottom"}
 
 ## Node.js Examples
 {: #archive-node}
@@ -436,6 +460,7 @@ s3.putBucketLifecycleConfiguration(params, function(err, data) {
 ```
 {: codeblock}
 {: javascript}
+{: caption="Example 21. Example showing creation of lifecycle configuration." caption-side="bottom"}
 
 ### Retrieve a bucket lifecycle configuration
 {: #archive-node-retrieve}
@@ -451,6 +476,7 @@ s3.getBucketLifecycleConfiguration(params, function(err, data) {
 ```
 {: codeblock}
 {: javascript}
+{: caption="Example 22. Example showing retrieval of lifecycle metadata." caption-side="bottom"}
 
 ### Delete a bucket lifecycle configuration
 {: #archive-node-delete}
@@ -466,6 +492,7 @@ s3.deleteBucketLifecycle(params, function(err, data) {
 ```
 {: codeblock}
 {: javascript}
+{: caption="Example 23. Example showing how to delete a bucket's lifecycle configuration." caption-side="bottom"}
 
 ### Temporarily restore an archived object 
 {: #archive-node-restore}
@@ -489,6 +516,7 @@ var params = {
 ```
 {: codeblock}
 {: javascript}
+{: caption="Example 24. Code used in restoring an archived object." caption-side="bottom"}
 
 ### Get an object's headers
 {: #archive-node-head}
@@ -506,6 +534,7 @@ s3.headObject(params, function(err,data) {
 ```
 {: codeblock}
 {: javascript}
+{: caption="Example 25. Example showing retrieval of object headers." caption-side="bottom"}
 
 ## Python Examples
 {: #archive-python}
@@ -537,6 +566,7 @@ response = client.put_bucket_lifecycle_configuration(
 ```
 {: codeblock}
 {: python}
+{: caption="Example 26. Method used in creating an object configuration." caption-side="bottom"}
 
 ### Retrieve a bucket lifecycle configuration
 {: #archive-python-retrieve}
@@ -546,6 +576,7 @@ response = client.get_bucket_lifecycle_configuration(Bucket='string')
 ```
 {: codeblock}
 {: python}
+{: caption="Example 27. Method used in retrieving an object configuration." caption-side="bottom"}
 
 ### Delete a bucket lifecycle configuration
 {: #archive-python-delete}
@@ -555,6 +586,7 @@ response = client.delete_bucket_lifecycle(Bucket='string')
 ```
 {: codeblock}
 {: python}
+{: caption="Example 28. Method used in deleting object configuration." caption-side="bottom"}
 
 ### Temporarily restore an archived object 
 {: #archive-python-restore}
@@ -573,6 +605,7 @@ response = client.restore_object(
 ```
 {: codeblock}
 {: python}
+{: caption="Example 29. Temporarily restoring an archived object." caption-side="bottom"}
 
 ### Get an object's headers
 {: #archive-python-head}
@@ -585,6 +618,7 @@ response = client.head_object(
 ```
 {: codeblock}
 {: python}
+{: caption="Example 30. Handling the response for object headers." caption-side="bottom"}
 
 ## Java Examples 
 {: #archive-java}
@@ -598,6 +632,7 @@ public SetBucketLifecycleConfigurationRequest(String bucketName,
 ```
 {: codeblock}
 {: java}
+{: caption="Example 31. Function used in setting a bucket lifecycle." caption-side="bottom"}
 
 **Method Summary**
 
@@ -616,6 +651,7 @@ public GetBucketLifecycleConfigurationRequest(String bucketName)
 ```
 {: codeblock}
 {: java}
+{: caption="Example 32. Function signature for obtaining object lifecycle configuration." caption-side="bottom"}
 
 ### Delete a bucket lifecycle configuration
 {: #archive-java-put}
@@ -625,6 +661,7 @@ public DeleteBucketLifecycleConfigurationRequest(String bucketName)
 ```
 {: codeblock}
 {: java}
+{: caption="Example 33. Function used in deleting object configuration." caption-side="bottom"}
 
 ### Temporarily restore an archived object 
 {: #archive-java-restore}
@@ -636,6 +673,7 @@ public RestoreObjectRequest(String bucketName,
 ```
 {: codeblock}
 {: java}
+{: caption="Example 34. Function signature for restoring an archived object." caption-side="bottom"}
 
 **Method Summary**
 
@@ -654,6 +692,7 @@ public ObjectMetadata()
 ```
 {: codeblock}
 {: java}
+{: caption="Example 35. Function used in obtaining object headers." caption-side="bottom"}
 
 **Method Summary**
 
@@ -663,3 +702,8 @@ Method |  Description
 `getRestoreExpirationTime()` | Returns the time at which an object that has been temporarily restored from ARCHIVE will expire, and will need to be restored again in order to be accessed.
 `getStorageClass() ` | Returns the original storage class of the bucket.
 `getIBMTransition()` | Return the transition storage class and time of transition.
+
+## Next Steps
+{: #archive-next-steps}
+
+In addition to {{site.data.keyword.cos_full_notm}}, {{site.data.keyword.cloud_notm}} currently provides several additional object storage offerings for different user needs, all of which are accessible through web-based portals and REST APIs. [Learn more.](https://console.bluemix.net/docs/services/ibm-cos/index.html)
