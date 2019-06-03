@@ -30,32 +30,38 @@ subcollection: cloud-object-storage
 # Delete stale data with expiration rules
 {: #expiry}
 
-You can set the lifecycle for objects using the web console, REST API, and 3rd party tools that are integrated with {{site.data.keyword.cos_full_notm}}. 
+An expiration rule deletes objects after a defined period. 
 
-{{site.data.keyword.cos_notm}} IAM Users must have the appropriate permission in order to add a lifecycle policy to a bucket. Currently, up to 1000 policies may be defined per bucket.
+You can set the lifecycle for objects by using the web console, REST API, and third-party tools that are integrated with {{site.data.keyword.cos_full_notm}}. 
 
-For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
-{:tip}
-
-When creating or modifying lifecycle configurations, consider the following:
-
-* A lifecycle configuration can be added to a new or existing bucket at any time.
-* An existing lifecycle configuration can be modified or disabled.
+* An expiration rule can be added to a new or existing bucket.
+* An existing expiration rule can be modified or disabled.
 * A newly added or modified lifecycle configuration applies to new objects uploaded and does not affect existing objects.
+* Adding or modifying lifecycle policies requires the `Writer` role. 
+* Up to 1000 rules can be defined per bucket.
+* Changes to rules might take up to 24 hours to take effect.
+
+## Using the console
+
+When creating a new bucket, check the **Add expiration rule** box. Next, click **Add rule** to create the new expiration rule. You can add up to five rules during bucket creation, and extra rules can be added later.
+
+For an existing bucket, select **Configuration** from the navigation menu and click **Add rule** under the _Expiration rule_ section.
+
+## Using the API and SDKs
+
+You can programmatically manage expiration rules by using the REST API or the IBM COS SDKs. Select the format for the examples by using the context switcher.
 
 ### Add an expiration rule to a bucket’s lifecycle configuration
 {: #expiry-api-create}
 
-This implementation of the `PUT` operation uses the `lifecycle` query parameter to set lifecycle settings for the bucket. This operation allows for a single lifecycle policy definition for a given bucket. The policy is defined as a rule consisting of the following parameters: `ID`, `Status`, and `Transition`.
+This implementation of the `PUT` operation uses the `lifecycle` query parameter to set lifecycle settings for the bucket. This operation allows for a single lifecycle policy definition for a bucket. The policy is defined as a set of rules consisting of the following parameters: `ID`, `Status`, `Filter`, and `Expiration`.
 {: http}
 
-An expiration rule deletes objects after a defined period of time. Changes to the lifecycle policy for a bucket are **only applied to new objects** written to that bucket.
-
-Cloud IAM users must have the `Writer` role to add a lifecycle policy to the bucket. Note how Example 2 differentiates between different styles of notating endpoints.
+Cloud IAM users must have the `Writer` role to add a lifecycle policy to the bucket. 
 
 Header                    | Type   | Description
 --------------------------|--------|----------------------------------------------------------------------------------------------------------------------
-`Content-MD5` | string | **Required**: The base64 encoded 128-bit MD5 hash of the payload, used as an integrity check to ensure the payload was not altered in transit.
+`Content-MD5` | String | **Required**: The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.
 {: http}
 
 The body of the request must contain an XML block with the following schema:
@@ -67,13 +73,13 @@ The body of the request must contain an XML block with the following schema:
 | `Rule`                   | Container            | `ID`, `Status`, `Filter`, `Expiration` | `LifecycleConfiguration` | Limit 1000.                                                                                  |
 | `ID`                     | String               | None                                   | `Rule`                   | Must consist of (`a-z,`A-Z0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-` |
 | `Filter`                 | String               | `Prefix`                               | `Rule`                   | Must contain a `Prefix` element                                                            |
-| `Prefix`                 | String               | None                                   | `Filter`                 | The rule applies to any objects with keys containing this prefix.                                                           |
-| `Expiration`             | `Container`          | `Days` | `Date`                        | `Rule`                   | Limit 1.                                                                                  |
-| `Days`                   | Non-negative integer | None                                   | `Transition`             | Must be a value greater than 0.                                                           |
-| `Date`                   | Date                 | None                                   | `Transistion`            | Must be in ISO 8601 Format and the date must be in the future.                            |
+| `Prefix`                 | String               | None                                   | `Filter`                 | The rule applies to any objects with keys that match this prefix.                                                           |
+| `Expiration`             | `Container`          | `Days | Date`                          | `Rule`                   | Limit 1.                                                                                  |
+| `Days`                   | Non-negative integer | None                                   | `Expiration`             | Must be a value greater than 0.                                                           |
+| `Date`                   | Date                 | None                                   | `Expiration`             | Must be in ISO 8601 Format and the date must be in the future.                            |
 {: http}
 
-The body of the request must contain an XML block with the schema addressed in the table (see Example 1).
+The body of the request must contain an XML block with the schema that is addressed in the table (see Example 1).
 {: http}
 
 ```xml
@@ -92,13 +98,10 @@ The body of the request must contain an XML block with the schema addressed in t
 {: caption="Example 1. XML sample from the body of the request." caption-side="bottom"}
 {: http}
 
-A successful response returns a `202` if the object is in the archived state and a `200` if the object is already in the restored state.  If the object is already in the restored state and a new request to restore the object is received, the `Days` element will update the expiration time of the restored object.
-{: http}
-
 **Syntax**
 {: http}
 
-```
+```yaml
 PUT https://{endpoint}/{bucket}?lifecycle # path style
 PUT https://{bucket}.{endpoint}?lifecycle # virtual host style
 ```
@@ -109,7 +112,7 @@ PUT https://{bucket}.{endpoint}?lifecycle # virtual host style
 **Example request**
 {: http}
 
-```
+```yaml
 PUT /images?lifecycle HTTP/1.1
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 17:50:00 GMT
