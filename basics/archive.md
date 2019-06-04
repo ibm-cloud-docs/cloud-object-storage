@@ -25,7 +25,7 @@ subcollection: cloud-object-storage
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'} 
 
-# Archive cold data
+# Archive cold data with transition rules
 {: #archive}
 
 {{site.data.keyword.cos_full}} Archive is a [low cost](
@@ -73,12 +73,12 @@ Archive policies are implemented using subset of the `PUT Bucket Lifecycle Confi
 
 Supported functionality includes:
 * Specifying either a date or the number of days in the future when objects transition to an archived state.
+* Setting [expiration rules](/docs/services/cloud-object-storage?topic=cloud-object-storage-expiry) for objects.
 
 Unsupported functionality includes:
-* Multiple lifecycle rules per bucket.
+* Multiple transition rules per bucket.
 * Filtering objects to archive using a prefix or object key.
 * Tiering between storage classes.
-* Setting expiration rules for objects.
 
 ## REST API Reference
 {: #archive-api}
@@ -100,7 +100,6 @@ Header                    | Type   | Description
 --------------------------|--------|----------------------------------------------------------------------------------------------------------------------
 `Content-MD5` | string | **Required**: The base64 encoded 128-bit MD5 hash of the payload, used as an integrity check to ensure the payload was not altered in transit.
 
-Payload
 The body of the request must contain an XML block with the following schema:
 
 | Element                  | Type                 | Children                               | Ancestor                 | Constraint                                                                                 |

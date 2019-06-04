@@ -42,8 +42,11 @@ Cloud Object Storage
         hmac/hmac-signature.md
         hmac/presigned-urls.md
     
-    basics/archive.md
-    basics/expiry.md
+    {: .topicgroup}
+    Manage a bucket's lifecycle configuration
+        basics/archive.md
+        basics/expiry.md
+    
     basics/aspera.md
     basics/immutable.md
     basics/classes.md
