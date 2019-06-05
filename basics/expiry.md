@@ -213,8 +213,52 @@ Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropri
 {: java}
 
 ```java
-public SetBucketLifecycleConfigurationRequest(String bucketName,
+package com.ibm.cloud;
+
+    import java.sql.Timestamp;
+    import java.util.List;
+
+    import com.ibm.cloud.objectstorage.ClientConfiguration;
+    import com.ibm.cloud.objectstorage.SDKGlobalConfiguration;
+    import com.ibm.cloud.objectstorage.auth.AWSCredentials;
+    import com.ibm.cloud.objectstorage.auth.AWSStaticCredentialsProvider;
+    import com.ibm.cloud.objectstorage.auth.EnvironmentVariableCredentialsProvider;
+    import com.ibm.cloud.objectstorage.auth.BasicAWSCredentials;
+    import com.ibm.cloud.objectstorage.client.builder.AwsClientBuilder.EndpointConfiguration;
+    import com.ibm.cloud.objectstorage.services.s3.AmazonS3;
+    import com.ibm.cloud.objectstorage.services.s3.AmazonS3ClientBuilder;
+    import com.ibm.cloud.objectstorage.services.s3.model.Bucket;
+    import com.ibm.cloud.objectstorage.services.s3.model.ListObjectsRequest;
+    import com.ibm.cloud.objectstorage.services.s3.model.ObjectListing;
+    import com.ibm.cloud.objectstorage.services.s3.model.S3ObjectSummary;
+    import com.ibm.cloud.objectstorage.oauth.BasicIBMOAuthCredentials;
+
+    public class App
+    {
+        private static AmazonS3 _cosClient;
+
+        /**
+         * @param args
+         */
+        public static void main(String[] args)
+        {
+            SDKGlobalConfiguration.IAM_ENDPOINT = "https://iam.cloud.ibm.com/identity/token";
+            String bucketName = "<sample-bucket-name>";
+            String api_key = "ZRZDoNoUseOLL7bRO8SAMPLEHPUzUL_-fsampleyYE";
+            String service_instance_id = "85SAMPLE-eDOb-4NOT-bUSE-86nnnb31eaxx"
+            String endpoint_url = "https://s3.us-south.cloud-object-storage.appdomain.cloud";
+            
+            String storageClass = "us-south";
+            String location = "us"; 
+ 
+            _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
+            
+            _cosClient.setBucketLifecycleConfigurationRequest(String bucketName,
                                               BucketLifecycleConfiguration lifecycleConfiguration)
+   
+        }
+        
+    }
 ```
 {: codeblock}
 {: java}
@@ -319,8 +363,51 @@ Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropri
 {: java}
 
 ```java
-public SetBucketLifecycleConfigurationRequest(String bucketName,
+package com.ibm.cloud;
+
+    import java.sql.Timestamp;
+    import java.util.List;
+
+    import com.ibm.cloud.objectstorage.ClientConfiguration;
+    import com.ibm.cloud.objectstorage.SDKGlobalConfiguration;
+    import com.ibm.cloud.objectstorage.auth.AWSCredentials;
+    import com.ibm.cloud.objectstorage.auth.AWSStaticCredentialsProvider;
+    import com.ibm.cloud.objectstorage.auth.EnvironmentVariableCredentialsProvider;
+    import com.ibm.cloud.objectstorage.auth.BasicAWSCredentials;
+    import com.ibm.cloud.objectstorage.client.builder.AwsClientBuilder.EndpointConfiguration;
+    import com.ibm.cloud.objectstorage.services.s3.AmazonS3;
+    import com.ibm.cloud.objectstorage.services.s3.AmazonS3ClientBuilder;
+    import com.ibm.cloud.objectstorage.services.s3.model.Bucket;
+    import com.ibm.cloud.objectstorage.services.s3.model.ListObjectsRequest;
+    import com.ibm.cloud.objectstorage.services.s3.model.ObjectListing;
+    import com.ibm.cloud.objectstorage.services.s3.model.S3ObjectSummary;
+    import com.ibm.cloud.objectstorage.oauth.BasicIBMOAuthCredentials;
+
+    public class App
+    {
+        private static AmazonS3 _cosClient;
+
+        /**
+         * @param args
+         */
+        public static void main(String[] args)
+        {
+            SDKGlobalConfiguration.IAM_ENDPOINT = "https://iam.cloud.ibm.com/identity/token";
+            String bucketName = "<sample-bucket-name>";
+            String api_key = "ZRZDoNoUseOLL7bRO8SAMPLEHPUzUL_-fsampleyYE";
+            String service_instance_id = "85SAMPLE-eDOb-4NOT-bUSE-86nnnb31eaxx"
+            String endpoint_url = "https://s3.us-south.cloud-object-storage.appdomain.cloud";
+            
+            String storageClass = "us-south";
+            String location = "us"; 
+ 
+            _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
+            
+            _cosClient.getBucketLifecycleConfigurationRequest(String bucketName,
                                               BucketLifecycleConfiguration lifecycleConfiguration)
+        }
+        
+    }
 ```
 {: codeblock}
 {: java}
@@ -425,8 +512,52 @@ Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropri
 {: java}
 
 ```java
-public deleteBucketLifecycleConfigurationRequest(String bucketName,
+package com.ibm.cloud;
+
+    import java.sql.Timestamp;
+    import java.util.List;
+
+    import com.ibm.cloud.objectstorage.ClientConfiguration;
+    import com.ibm.cloud.objectstorage.SDKGlobalConfiguration;
+    import com.ibm.cloud.objectstorage.auth.AWSCredentials;
+    import com.ibm.cloud.objectstorage.auth.AWSStaticCredentialsProvider;
+    import com.ibm.cloud.objectstorage.auth.EnvironmentVariableCredentialsProvider;
+    import com.ibm.cloud.objectstorage.auth.BasicAWSCredentials;
+    import com.ibm.cloud.objectstorage.client.builder.AwsClientBuilder.EndpointConfiguration;
+    import com.ibm.cloud.objectstorage.services.s3.AmazonS3;
+    import com.ibm.cloud.objectstorage.services.s3.AmazonS3ClientBuilder;
+    import com.ibm.cloud.objectstorage.services.s3.model.Bucket;
+    import com.ibm.cloud.objectstorage.services.s3.model.ListObjectsRequest;
+    import com.ibm.cloud.objectstorage.services.s3.model.ObjectListing;
+    import com.ibm.cloud.objectstorage.services.s3.model.S3ObjectSummary;
+    import com.ibm.cloud.objectstorage.oauth.BasicIBMOAuthCredentials;
+
+    public class App
+    {
+        private static AmazonS3 _cosClient;
+
+        /**
+         * @param args
+         */
+        public static void main(String[] args)
+        {
+            SDKGlobalConfiguration.IAM_ENDPOINT = "https://iam.cloud.ibm.com/identity/token";
+            String bucketName = "<sample-bucket-name>";
+            String api_key = "ZRZDoNoUseOLL7bRO8SAMPLEHPUzUL_-fsampleyYE";
+            String service_instance_id = "85SAMPLE-eDOb-4NOT-bUSE-86nnnb31eaxx"
+            String endpoint_url = "https://s3.us-south.cloud-object-storage.appdomain.cloud";
+            
+            String storageClass = "us-south";
+            String location = "us"; 
+ 
+            _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
+            
+            _cosClient.deleteBucketLifecycleConfigurationRequest(String bucketName,
                                               BucketLifecycleConfiguration lifecycleConfiguration)
+        }
+        
+    }
+
 ```
 {: codeblock}
 {: java}
