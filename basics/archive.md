@@ -21,6 +21,7 @@ subcollection: cloud-object-storage
 {:important: .important}
 {:note: .note}
 {:download: .download}
+{:http: .ph data-hd-programlang='http'} 
 {:javascript: .ph data-hd-programlang='javascript'} 
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'} 
@@ -81,10 +82,10 @@ Unsupported functionality includes:
 * Setting expiration rules for objects.
 
 ## REST API Reference
-{: #archive-api}
+{: #archive-api} {: http}
 
 ### Create a bucket lifecycle configuration
-{: #archive-api-create}
+{: #archive-api-create} {: http}
 
 This implementation of the `PUT` operation uses the `lifecycle` query parameter to set lifecycle settings for the bucket. This operation allows for a single lifecycle policy definition for a given bucket. The policy is defined as a rule consisting of the following parameters: `ID`, `Status`, and `Transition`.
 
@@ -114,13 +115,17 @@ The body of the request must contain an XML block with the following schema:
 | `Days`                   | Non-negative integer | None                                   | `Transition`             | Must be a value greater than 0.                                                           |
 | `Date`                   | Date                 | None                                   | `Transistion`            | Must be in ISO 8601 Format and the date must be in the future.                            |
 | `StorageClass`           | String               | None                                   | `Transition`             | **Must** be set to `GLACIER`.                                                             |
+{: http}
 
 __Syntax__
+{: http}
 
 ```
 PUT https://{endpoint}/{bucket}?lifecycle # path style
 PUT https://{bucket}.{endpoint}?lifecycle # virtual host style
 ```
+{: codeblock}
+{: http}
 
 ```xml
 <LifecycleConfiguration>
@@ -137,8 +142,11 @@ PUT https://{bucket}.{endpoint}?lifecycle # virtual host style
 	</Rule>
 </LifecycleConfiguration>
 ```
+{: codeblock}
+{: http}
 
 __Examples__
+{: http}
 
 _Sample Request_
 
@@ -151,6 +159,8 @@ Content-Type: text/plain
 Content-MD5: M625BaNwd/OytcM7O5gIaQ==
 Content-Length: 305
 ```
+{: codeblock}
+{: http}
 
 ```xml
 <LifecycleConfiguration>
@@ -167,6 +177,8 @@ Content-Length: 305
     </Rule>
 </LifecycleConfiguration>
 ```
+{: codeblock}
+{: http}
 
 _Sample Response_
 
@@ -175,11 +187,13 @@ HTTP/1.1 200 OK
 Date: Wed, 7 Feb 2018 17:51:00 GMT
 Connection: close
 ```
+{: codeblock}
+{: http}
 
 ---
 
 ### Retrieve a bucket lifecycle configuration
-{: #archive-api-retrieve}
+{: #archive-api-retrieve} {: http}
 
 This implementation of the `GET` operation uses the `lifecycle` query parameter to retrieve the lifecycle settings for the bucket. 
 
@@ -190,13 +204,17 @@ Classic Infrastructure Users must have at minimum `Read` permissions on the buck
 This operation does not make use of additional operation specific headers, query parameters, or payload.
 
 __Syntax__
+{: http}
 
 ```
 GET https://{endpoint}/{bucket}?lifecycle # path style
 GET https://{bucket}.{endpoint}?lifecycle # virtual host style
 ```
+{: codeblock}
+{: http}
 
 __Examples__ 
+{: http}
 
 _Sample Request_
 
@@ -206,6 +224,8 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 17:50:00 GMT
 Authorization: authorization string
 ```
+{: codeblock}
+{: http}
 
 _Sample Response_
 
@@ -214,6 +234,8 @@ HTTP/1.1 200 OK
 Date: Wed, 7 Feb 2018 17:51:00 GMT
 Connection: close
 ```
+{: codeblock}
+{: http}
 
 ```xml
 <LifecycleConfiguration>
@@ -228,11 +250,13 @@ Connection: close
     </Rule>
 </LifecycleConfiguration>
 ```
+{: codeblock}
+{: http}
 
 ---
 
 ### Delete a bucket lifecycle configuration
-{: #archive-api-delete}
+{: #archive-api-delete} {: http}
 
 This implementation of the `DELETE` operation uses the `lifecycle` query parameter to remove any lifecycle settings for the bucket. Transitions defined by the rules will no longer take place for new objects. 
 
@@ -245,13 +269,17 @@ Classic Infrastructure Users must have `Owner` permissions on the bucket to remo
 This operation does not make use of additional operation specific headers, query parameters, or payload.
 
 __Syntax__
+{: http}
 
 ```
 DELETE https://{endpoint}/{bucket}?lifecycle # path style
 DELETE https://{bucket}.{endpoint}?lifecycle # virtual host style
 ```
+{: codeblock}
+{: http}
 
 __Examples__
+{: http}
 
 _Sample Request_
 
@@ -261,6 +289,8 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 18:50:00 GMT
 Authorization: authorization string
 ```
+{: codeblock}
+{: http}
 
 _Sample Response_
 
@@ -269,10 +299,12 @@ HTTP/1.1 204 No Content
 Date: Wed, 7 Feb 2018 18:51:00 GMT
 Connection: close
 ```
+{: codeblock}
+{: http}
 ---
 
 ### Temporarily restore an archived object 
-{: #archive-api-restore}
+{: #archive-api-restore} {: http}
 
 This implementation of the `POST` operation uses the `restore` query parameter to request temporary restoration of an archived object. The user must first restore an archived object before downloading or modifying the object. When restoring an object, the user must specify a period after which the temporary copy of the object will be deleted. The object maintains the storage class of the bucket.
 
@@ -302,11 +334,14 @@ Element                  | Type      | Children                               | 
 A successful response returns a `202` if the object is in the archived state and a `200` if the object is already in the restored state.  If the object is already in the restored state and a new request to restore the object is received, the `Days` element will update the expiration time of the restored object.
 
 __Syntax__
+{: http}
 
 ```
 POST https://{endpoint}/{bucket}/{object}?restore # path style
 POST https://{bucket}.{endpoint}/{object}?restore # virtual host style
 ```
+{: codeblock}
+{: http}
 
 ```xml
 <RestoreRequest>
@@ -316,8 +351,11 @@ POST https://{bucket}.{endpoint}/{object}?restore # virtual host style
 	</GlacierJobParameter>
 </RestoreRequest>
 ```
+{: codeblock}
+{: http}
 
 __Examples__
+{: http}
 
 _Sample Request_
 
@@ -330,6 +368,8 @@ Content-Type: text/plain
 Content-MD5: rgRRGfd/OytcM7O5gIaQ==
 Content-Length: 305
 ```
+{: codeblock}
+{: http}
 
 ```xml
 <RestoreRequest>
@@ -339,6 +379,8 @@ Content-Length: 305
 	</GlacierJobParameter>
 </RestoreRequest>
 ```
+{: codeblock}
+{: http}
 
 _Sample Response_
 
@@ -347,22 +389,29 @@ HTTP/1.1 202 Accepted
 Date: Wed, 7 Feb 2018 19:51:00 GMT
 Connection: close
 ```
+{: codeblock}
+{: http}
 
 ---
 
 ### Get an object's headers
+{: http}
 {: #archive-api-head}
 
 A `HEAD` given a path to an object retrieves that object's headers. This operation does not make use of operation specific query parameters or payload elements.
 
 __Syntax__
+{: http}
 
 ```bash
 HEAD https://{endpoint}/{bucket-name}/{object-name} # path style
 HEAD https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
+{: codeblock}
+{: http}
 
 __Response headers for archived objects__
+{: http}
 
 Header | Type | Description
 --- | ---- | ------------
@@ -381,6 +430,8 @@ Authorization: {authorization-string}
 x-amz-date: 20160825T183244Z
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: codeblock}
+{: http}
 
 _Sample response_
 
@@ -400,12 +451,14 @@ x-amz-restore: ongoing-request="false", expiry-date="Thu, 06 Dec 2018 18:28:38 G
 x-amz-storage-class: "GLACIER"
 x-ibm-restored-copy-storage-class: "Standard"
 ```
+{: codeblock}
+{: http}
 
 ## Node.js Examples
-{: #archive-node}
+{: #archive-node} {: javascript}
 
 ### Create a bucket lifecycle configuration
-{: #archive-node-create}
+{: #archive-node-create} {: javascript}
 
 ```js
 var params = {
@@ -438,7 +491,7 @@ s3.putBucketLifecycleConfiguration(params, function(err, data) {
 {: javascript}
 
 ### Retrieve a bucket lifecycle configuration
-{: #archive-node-retrieve}
+{: #archive-node-retrieve} {: javascript}
 
 ```js
 var params = {
@@ -453,7 +506,7 @@ s3.getBucketLifecycleConfiguration(params, function(err, data) {
 {: javascript}
 
 ### Delete a bucket lifecycle configuration
-{: #archive-node-delete}
+{: #archive-node-delete} {: javascript}
 
 ```js
 var params = {
@@ -468,7 +521,7 @@ s3.deleteBucketLifecycle(params, function(err, data) {
 {: javascript}
 
 ### Temporarily restore an archived object 
-{: #archive-node-restore}
+{: #archive-node-restore} {: javascript}
 
 ```js
 var params = {
@@ -491,7 +544,7 @@ var params = {
 {: javascript}
 
 ### Get an object's headers
-{: #archive-node-head}
+{: #archive-node-head} {: javascript}
 
 ```js
 var params = {
@@ -508,10 +561,10 @@ s3.headObject(params, function(err,data) {
 {: javascript}
 
 ## Python Examples
-{: #archive-python}
+{: #archive-python} {: python}
 
 ### Create a bucket lifecycle configuration
-{: #archive-python-create}
+{: #archive-python-create} {: python}
 
 ```py
 response = client.put_bucket_lifecycle_configuration(
@@ -539,7 +592,7 @@ response = client.put_bucket_lifecycle_configuration(
 {: python}
 
 ### Retrieve a bucket lifecycle configuration
-{: #archive-python-retrieve}
+{: #archive-python-retrieve} {: python}
 
 ```py
 response = client.get_bucket_lifecycle_configuration(Bucket='string')
@@ -548,7 +601,7 @@ response = client.get_bucket_lifecycle_configuration(Bucket='string')
 {: python}
 
 ### Delete a bucket lifecycle configuration
-{: #archive-python-delete}
+{: #archive-python-delete} {: python}
 
 ```py
 response = client.delete_bucket_lifecycle(Bucket='string')
@@ -557,7 +610,7 @@ response = client.delete_bucket_lifecycle(Bucket='string')
 {: python}
 
 ### Temporarily restore an archived object 
-{: #archive-python-restore}
+{: #archive-python-restore} {: python}
 
 ```py
 response = client.restore_object(
@@ -575,7 +628,7 @@ response = client.restore_object(
 {: python}
 
 ### Get an object's headers
-{: #archive-python-head}
+{: #archive-python-head} {: python}
 
 ```py
 response = client.head_object(
@@ -587,10 +640,10 @@ response = client.head_object(
 {: python}
 
 ## Java Examples 
-{: #archive-java}
+{: #archive-java} {: java}
 
 ### Create a bucket lifecycle configuration
-{: #archive-java-create}
+{: #archive-java-create} {: java}
 
 ```java
 public SetBucketLifecycleConfigurationRequest(String bucketName,
@@ -609,7 +662,7 @@ Method |  Description
 `withBucketName(String bucketName)` | Sets the name of the bucket whose lifecycle configuration is being set, and returns this object so that additional method calls may be chained together.
 
 ### Retrieve a bucket lifecycle configuration
-{: #archive-java-get}
+{: #archive-java-get} {: java}
 
 ```java
 public GetBucketLifecycleConfigurationRequest(String bucketName)
@@ -618,7 +671,7 @@ public GetBucketLifecycleConfigurationRequest(String bucketName)
 {: java}
 
 ### Delete a bucket lifecycle configuration
-{: #archive-java-put}
+{: #archive-java-put} {: java}
 
 ```java
 public DeleteBucketLifecycleConfigurationRequest(String bucketName)
@@ -627,7 +680,7 @@ public DeleteBucketLifecycleConfigurationRequest(String bucketName)
 {: java}
 
 ### Temporarily restore an archived object 
-{: #archive-java-restore}
+{: #archive-java-restore} {: java}
 
 ```java
 public RestoreObjectRequest(String bucketName,
@@ -638,6 +691,7 @@ public RestoreObjectRequest(String bucketName,
 {: java}
 
 **Method Summary**
+{: java}
 
 Method |  Description
 --- | ---
@@ -647,7 +701,7 @@ Method |  Description
 `setExpirationInDays(int expirationInDays)` | Sets the time, in days, between when an object is uploaded to the bucket and when it expires.
 
 ### Get an object's headers
-{: #archive-java-head}
+{: #archive-java-head} {: java}
 
 ```java
 public ObjectMetadata()
@@ -656,6 +710,7 @@ public ObjectMetadata()
 {: java}
 
 **Method Summary**
+{: java}
 
 Method |  Description
 --- | ---
