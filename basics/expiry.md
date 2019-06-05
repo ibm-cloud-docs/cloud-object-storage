@@ -135,11 +135,10 @@ var params = {
         ID: 'STRING_VALUE',
         Filter: '', /* required */
         Prefix: '',
-        Expiration: [
-          {
-            Days: 123
-          },
-        ]
+        Expiration:
+        {
+          Days: 123
+        }
       },
     ]
   }
@@ -163,11 +162,10 @@ response = client.put_bucket_lifecycle_configuration(
                 'Status': 'Enabled',
                 'Filter': '',
                 'Prefix': '',
-                'Expiration': [
-                    {
-                        'Days': 123
-                    },
-                ]
+                'Expiration':
+                {
+                    'Days': 123
+                },
             },
         ]
     }
@@ -183,3 +181,10 @@ public SetBucketLifecycleConfigurationRequest(String bucketName,
 {: codeblock}
 {: java}
 {: caption="Example 4. Example showing creation of lifecycle configuration." caption-side="bottom"}
+
+### Examine a bucket’s lifecycle configuration, including expiration
+{: #expiry-api-view}
+
+### delete a bucket’s lifecycle configuration, including expiration
+{: #expiry-api-delete}
+
