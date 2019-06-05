@@ -20,10 +20,12 @@ Cloud Object Storage
     {: .navgroup id="howto"}
     basics/order-storage.md
     
+
     {: .topicgroup}
     Choose regions and connect services
         basics/endpoints.md
         basics/services.md    
+        [Connect from VPC](/vpc-on-classic/vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc)
         
     basics/upload.md
     
