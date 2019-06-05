@@ -44,7 +44,7 @@ Due to the complexity involved in managing and optimizing parallelized uploads, 
 Most tools, such as the AWS CLI or the IBM Cloud Console, as well as most compatible libraries and SDKs, will automatically transfer objects in multipart uploads.
 
 ## Using the API
-{: #large-objects-multipart-api}
+{: #large-objects-multipart-api} {: http}
 
 Incomplete multipart uploads do persist until the object is deleted or the multipart upload is aborted with `AbortIncompleteMultipartUpload`. If an incomplete multipart upload is not aborted, the partial upload continues to use resources. Interfaces should be designed with this point in mind, and clean up incomplete multipart uploads.
 {:tip}
@@ -59,11 +59,12 @@ For more information about endpoints, see [Endpoints and storage locations](/doc
 {:tip}
 
 ### Initiate a multipart upload
-{: #large-objects-multipart-api-initiate}
+{: #large-objects-multipart-api-initiate} {: http}
 
 A `POST` issued to an object with the query parameter `upload` creates a new `UploadId` value, which is then be referenced by each part of the object being uploaded.
 
 **Syntax**
+{: http}
 
 ```bash
 POST https://{endpoint}/{bucket-name}/{object-name}?uploads= # path style
@@ -73,6 +74,7 @@ POST https://{bucket-name}.{endpoint}/{object-name}?uploads= # virtual host styl
 {: http}
 
 **Example request**
+{: http}
 
 ```http
 POST /some-bucket/multipart-object-123?uploads= HTTP/1.1
@@ -83,6 +85,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 {: http}
 
 **Example response**
+{: http}
 
 ```http
 HTTP/1.1 200 OK
@@ -110,7 +113,7 @@ Content-Length: 276
 ----
 
 ### Upload a part
-{: #large-objects-multipart-api-upload-part}
+{: #large-objects-multipart-api-upload-part} {: http}
 
 A `PUT` request issued to an object with query parameters `partNumber` and `uploadId` will upload one part of an object. The parts may be uploaded serially or in parallel, but must be numbered in order.
 
@@ -125,6 +128,7 @@ PUT https://{bucket-name}.{endpoint}/{object-name}?partNumber={sequential-intege
 {: http}
 
 **Example request**
+{: http}
 
 ```http
 PUT /some-bucket/multipart-object-123?partNumber=1&uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
@@ -137,6 +141,7 @@ Content-Length: 13374550
 {: http}
 
 **Example response**
+{: http}
 
 ```http
 HTTP/1.1 200 OK
@@ -154,7 +159,7 @@ Content-Length: 0
 ----
 
 ### Complete a multipart upload
-{: #large-objects-multipart-api-complete}
+{: #large-objects-multipart-api-complete} {: http}
 
 A `POST` request issued to an object with query parameter `uploadId` and the appropriate XML block in the body will complete a multipart upload.
 
@@ -236,7 +241,7 @@ Content-Length: 364
 ----
 
 ### Abort incomplete multipart uploads
-{: #large-objects-multipart-api-abort}
+{: #large-objects-multipart-api-abort} {: http}
 
 A `DELETE` request issued to an object with query parameter `uploadId` will delete all unfinished parts of a multipart upload.
 
@@ -276,12 +281,12 @@ X-Clv-S3-Version: 2.5
 {: http}
 
 ## Using S3cmd (CLI)
-{: #large-objects-s3cmd}
+{: #large-objects-s3cmd} {: S3cmd}
 
 [S3cmd](https://s3tools.org/s3cmd){:new_window} is a free Linux and Mac command line tool and client for uploading, retrieving and managing data in cloud storage service providers that use the S3 protocol. It is designed for power users who are familiar with command line programs and is ideal for batch scripts and automated backup. S3cmd is written in Python. It's an open source project available under GNU Public License v2 (GPLv2) and is free for both commercial and private use.
 
 ### Installation and Configuration
-{: #large-objects-s3cmd-install}
+{: #large-objects-s3cmd-install} {: S3cmd}
 
 S3cmd requires Python 2.6 or newer and is compatible with Python 3. The easiest way to install S3cmd is with the Python Package Index (PyPi).
 
@@ -323,7 +328,7 @@ $ s3cmd ls
 The full list of options and commands along with basic usage information is available on the [s3tools](https://s3tools.org/usage){:new_window} site.
 
 ### Multipart uploads using S3cmd
-{: #large-objects-s3cmd-upload}
+{: #large-objects-s3cmd-upload} {: S3cmd}
 
 A `put` command will automatically execute a multi-part upload when attempting to upload a file larger than the specified threshold..
 
@@ -371,7 +376,7 @@ upload: 'bigfile.pdf' -> 's3://backuptest/bigfile.pdf'  [part 4 of 4, 4MB] [1 of
 {: S3cmd}
 
 ## Using the Java SDK
-{: #large-objects-java}
+{: #large-objects-java} {: java}
 
 The Java SDK provides two ways to execute large object uploads:
 
@@ -381,7 +386,7 @@ The Java SDK provides two ways to execute large object uploads:
 {: java}
 
 ## Using the Python SDK
-{: #large-objects-python}
+{: #large-objects-python} {: python}
 
 The Python SDK provides two ways to execute large object uploads:
 
@@ -391,7 +396,7 @@ The Python SDK provides two ways to execute large object uploads:
 {: python}
 
 ## Using the Node.js SDK
-{: #large-objects-node}
+{: #large-objects-node} {: javascript}
 
 The Node.js SDK provides a single way to execute large object uploads:
 
