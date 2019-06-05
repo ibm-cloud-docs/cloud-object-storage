@@ -653,6 +653,7 @@ public SetBucketLifecycleConfigurationRequest(String bucketName,
 {: java}
 
 **Method Summary**
+{: java}
 
 Method |  Description
 --- | ---
