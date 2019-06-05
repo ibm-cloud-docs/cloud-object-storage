@@ -126,18 +126,28 @@ Content-Length: 305
 {: http}
 
 ```js
+var aws = require('ibm-cos-sdk');
+var ep = new aws.Endpoint('s3.us-south.cloud-object-storage.appdomain.cloud');
+var config = {
+    endpoint: ep,
+    apiKeyId: 'ZRZDoNoUseOLL7bRO8SAMPLEHPUzUL_-fsampleyYE',
+    ibmAuthEndpoint: 'https://iam.cloud.ibm.com/identity/token',
+    serviceInstanceId: 'crn:v1:bluemix:public:cloud-object-storage:global:a/<CREDENTIAL_ID_AS_GENERATED>:<SERVICE_ID_AS_GENERATED>::',
+};
+var s3 = new aws.S3(config);
+var date = new Date('June 16, 2019 00:00:00');
+
 var params = {
   Bucket: 'STRING_VALUE', /* required */
   LifecycleConfiguration: {
     Rules: [ /* required */
       {
         Status: 'Enabled', /* required */
-        ID: 'STRING_VALUE',
-        Filter: '', /* required */
-        Prefix: '',
+        ID: 'OPTIONAL_STRING_VALUE',
+        Filter: {}, /* required */
         Expiration:
         {
-          Days: 123
+          Date: date
         }
       },
     ]
@@ -152,16 +162,30 @@ s3.putBucketLifecycleConfiguration(params, function(err, data) {
 {: codeblock}
 {: javascript}
 
-```py
-response = client.put_bucket_lifecycle_configuration(
+```python
+import sys
+import ibm_boto3
+from ibm_botocore.client import Config
+
+api_key = "ZRZDoNoUseOLL7bRO8SAMPLEHPUzUL_-fsampleyYE"
+service_instance_id = "85SAMPLE-eDOb-4NOT-bUSE-86nnnb31eaxx"
+auth_endpoint = "https://iam.cloud.ibm.com/identity/token"
+service_endpoint = "https://s3.us-south.cloud-object-storage.appdomain.cloud"
+
+cos = ibm_boto3.resource('s3',
+                         ibm_api_key_id=api_key,
+                         ibm_service_instance_id=service_instance_id,
+                         ibm_auth_endpoint=auth_endpoint,
+                         config=Config(signature_version='oauth'),
+                         endpoint_url=service_endpoint)
+
+response = cos.Bucket('<name-of-bucket>').put_bucket_lifecycle_configuration(
     Bucket='string',
     LifecycleConfiguration={
         'Rules': [
             {
-                'ID': 'string',
                 'Status': 'Enabled',
-                'Filter': '',
-                'Prefix': '',
+                'Filter': {},
                 'Expiration':
                 {
                     'Days': 123
@@ -170,6 +194,8 @@ response = client.put_bucket_lifecycle_configuration(
         ]
     }
 )
+
+print("Bucket lifecyle: {0}".format(response))
 ```
 {: codeblock}
 {: python}
@@ -180,7 +206,7 @@ public SetBucketLifecycleConfigurationRequest(String bucketName,
 ```
 {: codeblock}
 {: java}
-{: caption="Example 4. Example showing creation of lifecycle configuration." caption-side="bottom"}
+{: caption="Example 1. Code samples showing creation of lifecycle configuration." caption-side="bottom"}
 
 ### Examine a bucket’s lifecycle configuration, including expiration
 {: #expiry-api-view}
