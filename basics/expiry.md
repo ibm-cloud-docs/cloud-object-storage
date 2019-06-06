@@ -258,6 +258,28 @@ package com.ibm.cloud;
    
         }
         
+        /**
+         * @param bucketName
+         * @param clientNum
+         * @param api_key
+         * @param service_instance_id
+         * @param endpoint_url
+         * @param location
+         * @return AmazonS3
+         */
+        public static AmazonS3 createClient(String api_key, String service_instance_id, String endpoint_url, String location)
+        {
+            AWSCredentials credentials;
+            credentials = new BasicIBMOAuthCredentials(api_key, service_instance_id);
+
+            ClientConfiguration clientConfig = new ClientConfiguration().withRequestTimeout(5000);
+            clientConfig.setUseTcpKeepAlive(true);
+
+            AmazonS3 cosClient = AmazonS3ClientBuilder.standard().withCredentials(new EnvironmentVariableCredentialsProvider())
+                    .withEndpointConfiguration(new EndpointConfiguration(endpoint_url, location)).withPathStyleAccessEnabled(true)
+                    .withClientConfiguration(clientConfig).build();
+            return cosClient;
+        }
     }
 ```
 {: codeblock}
@@ -407,6 +429,29 @@ package com.ibm.cloud;
                                               BucketLifecycleConfiguration lifecycleConfiguration)
         }
         
+        /**
+         * @param bucketName
+         * @param clientNum
+         * @param api_key
+         * @param service_instance_id
+         * @param endpoint_url
+         * @param location
+         * @return AmazonS3
+         */
+        public static AmazonS3 createClient(String api_key, String service_instance_id, String endpoint_url, String location)
+        {
+            AWSCredentials credentials;
+            credentials = new BasicIBMOAuthCredentials(api_key, service_instance_id);
+
+            ClientConfiguration clientConfig = new ClientConfiguration().withRequestTimeout(5000);
+            clientConfig.setUseTcpKeepAlive(true);
+
+            AmazonS3 cosClient = AmazonS3ClientBuilder.standard().withCredentials(new EnvironmentVariableCredentialsProvider())
+                    .withEndpointConfiguration(new EndpointConfiguration(endpoint_url, location)).withPathStyleAccessEnabled(true)
+                    .withClientConfiguration(clientConfig).build();
+            return cosClient;
+        }
+        
     }
 ```
 {: codeblock}
@@ -554,6 +599,29 @@ package com.ibm.cloud;
             
             _cosClient.deleteBucketLifecycleConfigurationRequest(String bucketName,
                                               BucketLifecycleConfiguration lifecycleConfiguration)
+        }
+        
+        /**
+         * @param bucketName
+         * @param clientNum
+         * @param api_key
+         * @param service_instance_id
+         * @param endpoint_url
+         * @param location
+         * @return AmazonS3
+         */
+        public static AmazonS3 createClient(String api_key, String service_instance_id, String endpoint_url, String location)
+        {
+            AWSCredentials credentials;
+            credentials = new BasicIBMOAuthCredentials(api_key, service_instance_id);
+
+            ClientConfiguration clientConfig = new ClientConfiguration().withRequestTimeout(5000);
+            clientConfig.setUseTcpKeepAlive(true);
+
+            AmazonS3 cosClient = AmazonS3ClientBuilder.standard().withCredentials(new EnvironmentVariableCredentialsProvider())
+                    .withEndpointConfiguration(new EndpointConfiguration(endpoint_url, location)).withPathStyleAccessEnabled(true)
+                    .withClientConfiguration(clientConfig).build();
+            return cosClient;
         }
         
     }
