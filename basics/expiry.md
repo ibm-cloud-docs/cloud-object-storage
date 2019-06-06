@@ -87,7 +87,7 @@ The body of the request must contain an XML block with the schema that is addres
 	<Rule>
 		<ID>id1</ID>
 		<Filter />
-		<Status>Enabled</status>
+		<Status>Enabled</Status>
 		<Expiration>
 			<Days>60</Days>
 		</Expiration>
@@ -120,6 +120,17 @@ Authorization: authorization string
 Content-Type: text/plain
 Content-MD5: M625BaNwd/OytcM7O5gIaQ==
 Content-Length: 305
+
+<LifecycleConfiguration>
+	<Rule>
+		<ID>id1</ID>
+		<Filter />
+		<Status>Enabled</Status>
+		<Expiration>
+			<Days>60</Days>
+		</Expiration>
+	</Rule>
+</LifecycleConfiguration>
 ```
 {: codeblock}
 {: caption="Example 3. Request header samples for creating an object lifecycle configuration." caption-side="bottom"}
