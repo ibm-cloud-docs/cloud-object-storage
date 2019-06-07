@@ -217,17 +217,17 @@ package com.ibm.cloud;
 
     import java.sql.Timestamp;
     import java.util.List;
+    import java.util.Arrays;
 
     import com.ibm.cloud.objectstorage.ClientConfiguration;
     import com.ibm.cloud.objectstorage.SDKGlobalConfiguration;
     import com.ibm.cloud.objectstorage.auth.AWSCredentials;
     import com.ibm.cloud.objectstorage.auth.AWSStaticCredentialsProvider;
-    import com.ibm.cloud.objectstorage.auth.EnvironmentVariableCredentialsProvider;
-    import com.ibm.cloud.objectstorage.auth.BasicAWSCredentials;
     import com.ibm.cloud.objectstorage.client.builder.AwsClientBuilder.EndpointConfiguration;
     import com.ibm.cloud.objectstorage.services.s3.AmazonS3;
     import com.ibm.cloud.objectstorage.services.s3.AmazonS3ClientBuilder;
     import com.ibm.cloud.objectstorage.services.s3.model.Bucket;
+    import com.ibm.cloud.objectstorage.services.s3.model.BucketLifecycleConfiguration;
     import com.ibm.cloud.objectstorage.services.s3.model.ListObjectsRequest;
     import com.ibm.cloud.objectstorage.services.s3.model.ObjectListing;
     import com.ibm.cloud.objectstorage.services.s3.model.S3ObjectSummary;
@@ -253,9 +253,19 @@ package com.ibm.cloud;
  
             _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
             
-            _cosClient.setBucketLifecycleConfigurationRequest(String bucketName,
-                                              BucketLifecycleConfiguration lifecycleConfiguration)
-   
+            // Define a rule for exiring items in a bucket
+            int days_to_delete = 10;
+            BucketLifecycleConfiguration.Rule rule = new BucketLifecycleConfiguration.Rule()
+                    .withId("Delete rule")
+                    .withExpirationInDays(days_to_delete)
+                    .withStatus(BucketLifecycleConfiguration.ENABLED);
+            
+            // Add the rule to a new BucketLifecycleConfiguration.
+            BucketLifecycleConfiguration configuration = new BucketLifecycleConfiguration()
+                    .withRules(Arrays.asList(rule));
+            
+            // Use the client to set the LifecycleConfiguration on the bucket.
+            _cosClient.setBucketLifecycleConfiguration(bucketName, configuration);   
         }
         
         /**
@@ -275,7 +285,7 @@ package com.ibm.cloud;
             ClientConfiguration clientConfig = new ClientConfiguration().withRequestTimeout(5000);
             clientConfig.setUseTcpKeepAlive(true);
 
-            AmazonS3 cosClient = AmazonS3ClientBuilder.standard().withCredentials(new EnvironmentVariableCredentialsProvider())
+            AmazonS3 cosClient = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
                     .withEndpointConfiguration(new EndpointConfiguration(endpoint_url, location)).withPathStyleAccessEnabled(true)
                     .withClientConfiguration(clientConfig).build();
             return cosClient;
@@ -389,22 +399,22 @@ package com.ibm.cloud;
 
     import java.sql.Timestamp;
     import java.util.List;
+    import java.util.Arrays;
 
     import com.ibm.cloud.objectstorage.ClientConfiguration;
     import com.ibm.cloud.objectstorage.SDKGlobalConfiguration;
     import com.ibm.cloud.objectstorage.auth.AWSCredentials;
     import com.ibm.cloud.objectstorage.auth.AWSStaticCredentialsProvider;
-    import com.ibm.cloud.objectstorage.auth.EnvironmentVariableCredentialsProvider;
-    import com.ibm.cloud.objectstorage.auth.BasicAWSCredentials;
     import com.ibm.cloud.objectstorage.client.builder.AwsClientBuilder.EndpointConfiguration;
     import com.ibm.cloud.objectstorage.services.s3.AmazonS3;
     import com.ibm.cloud.objectstorage.services.s3.AmazonS3ClientBuilder;
     import com.ibm.cloud.objectstorage.services.s3.model.Bucket;
+    import com.ibm.cloud.objectstorage.services.s3.model.BucketLifecycleConfiguration;
     import com.ibm.cloud.objectstorage.services.s3.model.ListObjectsRequest;
     import com.ibm.cloud.objectstorage.services.s3.model.ObjectListing;
     import com.ibm.cloud.objectstorage.services.s3.model.S3ObjectSummary;
     import com.ibm.cloud.objectstorage.oauth.BasicIBMOAuthCredentials;
-
+    
     public class App
     {
         private static AmazonS3 _cosClient;
@@ -425,8 +435,10 @@ package com.ibm.cloud;
  
             _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
             
-            _cosClient.getBucketLifecycleConfigurationRequest(String bucketName,
-                                              BucketLifecycleConfiguration lifecycleConfiguration)
+            // Use the client to read the configuration
+            BucketLifecycleConfiguration config = _cosClient.getBucketLifecycleConfiguration(bucketName);
+            
+            System.out.println(config.toString());
         }
         
         /**
@@ -446,7 +458,7 @@ package com.ibm.cloud;
             ClientConfiguration clientConfig = new ClientConfiguration().withRequestTimeout(5000);
             clientConfig.setUseTcpKeepAlive(true);
 
-            AmazonS3 cosClient = AmazonS3ClientBuilder.standard().withCredentials(new EnvironmentVariableCredentialsProvider())
+            AmazonS3 cosClient = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
                     .withEndpointConfiguration(new EndpointConfiguration(endpoint_url, location)).withPathStyleAccessEnabled(true)
                     .withClientConfiguration(clientConfig).build();
             return cosClient;
@@ -561,22 +573,22 @@ package com.ibm.cloud;
 
     import java.sql.Timestamp;
     import java.util.List;
+    import java.util.Arrays;
 
     import com.ibm.cloud.objectstorage.ClientConfiguration;
     import com.ibm.cloud.objectstorage.SDKGlobalConfiguration;
     import com.ibm.cloud.objectstorage.auth.AWSCredentials;
     import com.ibm.cloud.objectstorage.auth.AWSStaticCredentialsProvider;
-    import com.ibm.cloud.objectstorage.auth.EnvironmentVariableCredentialsProvider;
-    import com.ibm.cloud.objectstorage.auth.BasicAWSCredentials;
     import com.ibm.cloud.objectstorage.client.builder.AwsClientBuilder.EndpointConfiguration;
     import com.ibm.cloud.objectstorage.services.s3.AmazonS3;
     import com.ibm.cloud.objectstorage.services.s3.AmazonS3ClientBuilder;
     import com.ibm.cloud.objectstorage.services.s3.model.Bucket;
+    import com.ibm.cloud.objectstorage.services.s3.model.BucketLifecycleConfiguration;
     import com.ibm.cloud.objectstorage.services.s3.model.ListObjectsRequest;
     import com.ibm.cloud.objectstorage.services.s3.model.ObjectListing;
     import com.ibm.cloud.objectstorage.services.s3.model.S3ObjectSummary;
     import com.ibm.cloud.objectstorage.oauth.BasicIBMOAuthCredentials;
-
+    
     public class App
     {
         private static AmazonS3 _cosClient;
@@ -597,8 +609,13 @@ package com.ibm.cloud;
  
             _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
             
-            _cosClient.deleteBucketLifecycleConfigurationRequest(String bucketName,
-                                              BucketLifecycleConfiguration lifecycleConfiguration)
+            // Delete the configuration.
+            _cosClient.deleteBucketLifecycleConfiguration(bucketName);
+            
+            // Verify that the configuration has been deleted by attempting to retrieve it.
+            config = _cosClient.getBucketLifecycleConfiguration(bucketName);
+            String s = (config == null) ? "Configuration has been deleted." : "Configuration still exists.";
+            System.out.println(s);
         }
         
         /**
@@ -618,7 +635,7 @@ package com.ibm.cloud;
             ClientConfiguration clientConfig = new ClientConfiguration().withRequestTimeout(5000);
             clientConfig.setUseTcpKeepAlive(true);
 
-            AmazonS3 cosClient = AmazonS3ClientBuilder.standard().withCredentials(new EnvironmentVariableCredentialsProvider())
+            AmazonS3 cosClient = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
                     .withEndpointConfiguration(new EndpointConfiguration(endpoint_url, location)).withPathStyleAccessEnabled(true)
                     .withClientConfiguration(clientConfig).build();
             return cosClient;
