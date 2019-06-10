@@ -70,6 +70,9 @@ You can programmatically manage expiration rules by using the REST API or the IB
 ### Add an expiration rule to a bucket’s lifecycle configuration
 {: #expiry-api-create}
 
+**CLI instructions for use over HTTP**
+{: http}
+
 This implementation of the `PUT` operation uses the `lifecycle` query parameter to set lifecycle settings for the bucket. This operation allows for a single lifecycle policy definition for a bucket. The policy is defined as a set of rules consisting of the following parameters: `ID`, `Status`, `Filter`, and `Expiration`.
  {: http}
  
@@ -153,6 +156,9 @@ Content-Length: 305
 {: caption="Example 3. Request header samples for creating an object lifecycle configuration." caption-side="bottom"}
 {: http}
 
+**Code sample for use with NodeJS COS SDK**
+{: javascript}
+
 Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. See Example 1 for how to create an expiration.
 {: javascript}
 
@@ -192,6 +198,9 @@ s3.putBucketLifecycleConfiguration(params, function(err, data) {
 ```
 {: codeblock}
 {: javascript}
+
+**Code sample for use with Python COS SDK**
+{: python}
 
 Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. See Example 1 for how to create an expiration.
 {: python}
@@ -233,6 +242,9 @@ print("Bucket lifecyle: {0}".format(response))
 ```
 {: codeblock}
 {: python}
+
+**Code sample for use with Java COS SDK**
+{: java}
 
 Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. See Example 1 for how to create an expiration.
 {: java}
