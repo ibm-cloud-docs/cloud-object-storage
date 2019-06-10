@@ -43,7 +43,17 @@ You can set the lifecycle for objects by using the web console, REST API, and th
 * The scope of each expiration rule can be limited by defining an optional prefix filter to apply to only a subset of objects with names that match the prefix.
 * An expiration rule without a prefix filter will apply to all objects in the bucket.
 * The expiration period for an object, specified in number(s) of days, is calculated from the time the object was created, and is rounded off to the next day's midnight UTC. For example, if you have an expiration rule for a bucket to expire a set of objects ten days after the creation date, an object that was created on 15 April 2019 05:10 UTC will expire on 26 April 2019 00:00 UTC. 
-* The expiration rules for each bucket are evaluated once every 24 hours. Any object that qualifies fdor expiration (based on theobjects' expiration) will be queued for deletion. The deletion of expired objects begins the following day and will typically take less than 24 hours. You will not be billed for any associated storage for objects once they are deleted.
+* The expiration rules for each bucket are evaluated once every 24 hours. Any object that qualifies for expiration (based on the objects' expiration date) will be queued for deletion. The deletion of expired objects begins the following day and will typically take less than 24 hours. You will not be billed for any associated storage for objects once they are deleted.
+
+## Attributes of Expiration Rules
+{: #expiry-rules-attributes}
+
+Each expiration rule has the following attributes:
+
+**ID**: Rule name
+**Expiration**: Time period for deletion of objects from the object creation date
+**Prefix**: An optional string that will be matched to the prefix of the object name in the bucket. A rule with a prefix will only apply to the objects that match.
+**Status**: A rule can either be enabled or disabled. A rule is active only when enabled. 
 
 ## Using the console
 {: #expiry-using-console}
