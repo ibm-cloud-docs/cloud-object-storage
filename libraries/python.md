@@ -649,7 +649,7 @@ ms_transfer_config = AsperaConfig(multi_session="all",
                                   target_rate_mbps=2500,
                                   multi_session_threshold_mb=100)
 ```
-In the above example, the sdk will spawn enough sessions to attempt to reach the target rate of 2500mbps.
+In the above example, the sdk will spawn enough sessions to attempt to reach the target rate of 2500 MBps.
 
 Alternatively, session management can be explicitly configured in the sdk. This is useful in cases where more precise control over network utilization is desired.
 
