@@ -40,6 +40,9 @@ You can set the lifecycle for objects by using the web console, REST API, and th
 * Adding or modifying lifecycle policies requires the `Writer` role. 
 * Up to 1000 rules can be defined per bucket.
 * Allow up to 24 hours for any changes in Expiration rules to take effect.
+* The scope of each expiration rule can be limited by defining an optional prefix filter to apply to only a subset of objects with names that match the prefix.
+* An expiration rule without a prefix filter will apply to all objects in the bucket.
+* The expiration period for an object, specified in number(s) of days, is calculated from the time the object was created, and is rounded off to the next day's midnight UTC. For example, if you have an expiration rule for a bucket to expire a set of objects ten days after the creation date, an object that was created on 15 April 2019 05:10 UTC will expire on 26 April 2019 00:00 UTC. 
 
 ## Using the console
 {: #expiry-using-console}
