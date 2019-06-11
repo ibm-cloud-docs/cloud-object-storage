@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-06-11"
 
 keywords: data, object storage, unstructured, cleversafe
 
@@ -81,7 +81,7 @@ Now you're going to bring in another user and allow them to act as an administra
 	`Figure 4: IAM select roles`
   5. {{site.data.keyword.cloud_notm}} uses Cloud Foundry as the underlying account management platform, so it's necessary to grant a minimal level of Cloud Foundry access in order for the user to access your organization in the first place.  Select an organization from the **Organization** menu, and then select "Auditor" from both the **Organizational roles** and **Space roles** menus.  Setting Cloud Foundry permissions allows the user to view services available to your organization, but not change them.
 
-## Give Developers access to a bucket.
+## Give developers access to a bucket.
 {: #gs-bucket-policy}
 
   1. Navigate to the **Manage** menu and follow the link at **Access(IAM)** > **Service IDs**.  Here you can create a _service ID_, which serves as an abstracted identity bound to the account. Service IDs can be assigned API keys and are used in situations where you don't want to tie a particular Developer's identity to a process or component of an application.
