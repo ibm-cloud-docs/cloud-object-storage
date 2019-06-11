@@ -117,7 +117,7 @@ Each Aspera high-speed transfer session spawns an individual `ascp` process that
 * Aspera Transfer Manager clients must be created using IAM API keys and not HMAC credentials.
 
 ### Getting the SDK using Java
-{: #aspera-sdk-java}
+{: #aspera-sdk-java} {: java}
 
 The best way to use {{site.data.keyword.cos_full_notm}} and Aspera high-speed transfer Java SDK is to use Maven to manage dependencies. If you aren't familiar with Maven, you get can get up and running using the [Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html){:new_window} guide.
 
@@ -146,19 +146,23 @@ Maven uses a file named `pom.xml` to specify the libraries (and their versions) 
     </dependencies>
 </project>
 ```
+{: codeblock}
+{: java}
 
 Examples of initiating Aspera high-speed transfers with Java are available in the [Using Aspera High-Speed Transfer](/docs/services/cloud-object-storage/libraries/java.html#aspera) section.
 
 {: java}
 
 ### Getting the SDK using Python
-{: #aspera-sdk-python}
+{: #aspera-sdk-python} {: python}
 
 The {{site.data.keyword.cos_full_notm}} and Aspera high-speed transfer Python SDKs are available from the Python Package Index (PyPI) software repository. 
 
 ```
 pip install cos-aspera
 ```
+{: codeblock}
+{: python}
 
 Examples of initiating Aspera transfers with Python are available in [Using Aspera High-Speed Transfer](/docs/services/cloud-object-storage/libraries/python.html#aspera) section.
 {: python}
