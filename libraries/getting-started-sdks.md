@@ -295,7 +295,7 @@ if __name__ == "__main__":
 'use strict';
 
 // Required libraries
-const AWS = require('ibm-cos-sdk');
+const ibm = require('ibm-cos-sdk');
 const fs = require('fs');
 const async = require('async');
 const uuidv1 = require('uuid/v1');
@@ -541,7 +541,7 @@ var config = {
     serviceInstanceId: COS_SERVICE_CRN,
 };
 
-var cos = new AWS.S3(config);
+var cos = new ibm.S3(config);
 
 // Main app
 function main() {
