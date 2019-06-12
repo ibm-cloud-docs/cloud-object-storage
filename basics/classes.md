@@ -24,6 +24,7 @@ subcollection: cloud-object-storage
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
 {:go: .ph data-hd-programlang='go'}
+{:curl: .ph data-hd-programlang='curl'}
 
 # Use storage classes
 {: #classes}
