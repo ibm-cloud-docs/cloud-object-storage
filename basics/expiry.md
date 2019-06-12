@@ -36,7 +36,7 @@ You can set the lifecycle for objects by using the web console, REST API, and th
 
 * An expiration rule can be added to a new or existing bucket.
 * An existing expiration rule can be modified or disabled.
-* A newly added or modified Expiration applies to all new and existing objects in the bucket.
+* A newly added or modified Expiration rule applies to all new and existing objects in the bucket.
 * Adding or modifying lifecycle policies requires the `Writer` role. 
 * Up to 1000 lifecycle rules (archive + expiration) can be defined per bucket.
 * Allow up to 24 hours for any changes in Expiration rules to take effect.
