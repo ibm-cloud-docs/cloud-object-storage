@@ -139,7 +139,7 @@ def create_bucket(bucket_name):
 {: codeblock}
 {: python}
 
-```Go
+```go
 func main() {
 
     // Create client
@@ -162,7 +162,7 @@ func main() {
 }
 ```
 {: codeblock}
-{: Go}
+{: go}
 
 
 ```
