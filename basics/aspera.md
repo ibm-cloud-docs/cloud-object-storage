@@ -94,8 +94,7 @@ The Aspera high-speed transfer SDK is closed-source and thus an optional depende
 The image below displays a high-level overview of the how the COS SDK interacts with the Aspera high-speed transfer library to provide functionality.
 
 <img src="https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/aspera-packaging.png" height="200px" />
-
-`Figure 1: COS/Aspera High-Speed Transfer SDK`
+{: caption="Figure 1: COS/Aspera High-Speed Transfer SDK." caption-side="bottom"} 
 
 ### Supported Platforms
 {: #aspera-sdk-platforms}
@@ -117,11 +116,14 @@ Each Aspera high-speed transfer session spawns an individual `ascp` process that
 * Aspera Transfer Manager clients must be created using IAM API keys and not HMAC credentials.
 
 ### Getting the SDK using Java
-{: #aspera-sdk-java} {: java}
+{: #aspera-sdk-java} 
+{: java}
 
 The best way to use {{site.data.keyword.cos_full_notm}} and Aspera high-speed transfer Java SDK is to use Maven to manage dependencies. If you aren't familiar with Maven, you get can get up and running using the [Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html){:new_window} guide.
+{: java}
 
 Maven uses a file named `pom.xml` to specify the libraries (and their versions) needed for a Java project. Below is an example `pom.xml` file for using the {{site.data.keyword.cos_full_notm}} and Aspera high-speed transfer Java SDK
+{: java}
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -150,13 +152,14 @@ Maven uses a file named `pom.xml` to specify the libraries (and their versions) 
 {: java}
 
 Examples of initiating Aspera high-speed transfers with Java are available in the [Using Aspera High-Speed Transfer](/docs/services/cloud-object-storage/libraries/java.html#aspera) section.
-
 {: java}
 
 ### Getting the SDK using Python
-{: #aspera-sdk-python} {: python}
+{: #aspera-sdk-python} 
+{: python}
 
 The {{site.data.keyword.cos_full_notm}} and Aspera high-speed transfer Python SDKs are available from the Python Package Index (PyPI) software repository. 
+{: python}
 
 ```
 pip install cos-aspera
