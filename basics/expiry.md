@@ -50,10 +50,10 @@ You can set the lifecycle for objects by using the web console, REST API, and th
 
 Each expiration rule has the following attributes:
 
-**ID**: Rule name
-**Expiration**: Time period for deletion of objects from the object creation date
-**Prefix**: An optional string that will be matched to the prefix of the object name in the bucket. A rule with a prefix will only apply to the objects that match.
-**Status**: A rule can either be enabled or disabled. A rule is active only when enabled. 
+* **ID**: Rule name
+* **Expiration**: Time period for deletion of objects from the object creation date
+* **Prefix**: An optional string that will be matched to the prefix of the object name in the bucket. A rule with a prefix will only apply to the objects that match.
+* **Status**: A rule can either be enabled or disabled. A rule is active only when enabled. 
 
 ## Using the console
 {: #expiry-using-console}
@@ -70,14 +70,15 @@ You can programmatically manage expiration rules by using the REST API or the IB
 ### Add an expiration rule to a bucket’s lifecycle configuration
 {: #expiry-api-create}
 
-**CLI instructions for use over HTTP**
+**REST API reference**
 {: http}
 
 This implementation of the `PUT` operation uses the `lifecycle` query parameter to set lifecycle settings for the bucket. This operation allows for a single lifecycle policy definition for a bucket. The policy is defined as a set of rules consisting of the following parameters: `ID`, `Status`, `Filter`, and `Expiration`.
- {: http}
- 
- {{site.data.keyword.cloud}} IAM users must have the `Writer` role to add a lifecycle policy to the bucket. 
 {: http}
+ 
+Cloud IAM users must have the `Writer` role to remove a lifecycle policy from a bucket.
+
+Classic Infrastructure Users must have `Owner` permissions on the bucket to remove a lifecycle policy from a bucket.
 
 Header                    | Type   | Description
 --------------------------|--------|----------------------------------------------------------------------------------------------------------------------
@@ -94,7 +95,7 @@ The body of the request must contain an XML block with the following schema:
 | `ID`                     | String               | None                                   | `Rule`                   | Must consist of (`a-z,`A-Z0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-` |
 | `Filter`                 | String               | `Prefix`                               | `Rule`                   | Must contain a `Prefix` element                                                            |
 | `Prefix`                 | String               | None                                   | `Filter`                 | The rule applies to any objects with keys that match this prefix.                                                           |
-| `Expiration`             | `Container`          | `Days | Date`                          | `Rule`                   | Limit 1.                                                                                  |
+| `Expiration`             | `Container`          | `Days` or `Date`                       | `Rule`                   | Limit 1.                                                                                  |
 | `Days`                   | Non-negative integer | None                                   | `Expiration`             | Must be a value greater than 0.                                                           |
 | `Date`                   | Date                 | None                                   | `Expiration`             | Must be in ISO 8601 Format and the date must be in the future.                            |
 {: http}
@@ -159,7 +160,7 @@ Content-Length: 305
 **Code sample for use with NodeJS COS SDK**
 {: javascript}
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. See Example 1 for how to create an expiration.
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
 {: javascript}
 
 ```js
@@ -202,7 +203,7 @@ s3.putBucketLifecycleConfiguration(params, function(err, data) {
 **Code sample for use with Python COS SDK**
 {: python}
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. See Example 1 for how to create an expiration.
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
 {: python}
 
 ```python
@@ -246,7 +247,7 @@ print("Bucket lifecyle: {0}".format(response))
 **Code sample for use with Java COS SDK**
 {: java}
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. See Example 1 for how to create an expiration.
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
 {: java}
 
 ```java
@@ -339,7 +340,9 @@ package com.ibm.cloud;
 This implementation of the `GET` operation uses the `lifecycle` query parameter to examine lifecycle settings for the bucket. An HTTP `404` response will be returned if no lifecycle configuration is present.
 {: http}
 
-{{site.data.keyword.cloud}} IAM Users must have GetLifecycleConfiguration permission in order to view a lifecycle policy on a bucket. {{site.data.keyword.cloud}} Service Level Users must have Owner Permission on the storage account in order to view a lifecycle policy on a bucket 
+Cloud IAM users must have the `Reader` role to remove a lifecycle policy from a bucket.
+
+Classic Infrastructure Users must have `Read` permissions on the bucket to remove a lifecycle policy from a bucket.
 
 Header                    | Type   | Description
 --------------------------|--------|----------------------------------------------------------------------------------------------------------------------
@@ -373,7 +376,7 @@ Content-Length: 305
 {: caption="Example 6. Request header samples for creating an object lifecycle configuration." caption-side="bottom"}
 {: http}
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. See Example 2 for how to view an expiration.
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration.
 {: javascript}
 
 ```js
@@ -399,8 +402,7 @@ s3.getBucketLifecycleConfiguration(params, function(err, data) {
 {: codeblock}
 {: javascript}
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. See Example 2 for how to view an expiration.
-{: python}
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration.
 
 ```python
 import sys
@@ -428,8 +430,7 @@ print("Bucket lifecyle: {0}".format(response))
 {: codeblock}
 {: python}
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. See Example 2 for how to view an expiration.
-{: java}
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
 
 ```java
 package com.ibm.cloud;
@@ -513,12 +514,9 @@ package com.ibm.cloud;
 This implementation of the `DELETE` operation uses the `lifecycle` query parameter to examine lifecycle settings for the bucket. All lifecycle rules associated with the bucket will be deleted.  Transitions defined by the rules will no longer take place for new objects.  However, existing transition rules will be maintained for objects that were already written to the bucket before the rules were deleted.  Expiration Rules will no longer exist. An HTTP `404` response will be returned if no lifecycle configuration is present.
 {: http}
 
-{{site.data.keyword.cloud}} IAM Users must have DeleteLifecycleConfiguration permission in order to view a lifecycle policy on a bucket. {{site.data.keyword.cloud}} Service Level Users must have the Owner Permission on the storage account in order to delete a lifecycle policy on a bucket. 
+Cloud IAM users must have the `Writer` role to remove a lifecycle policy from a bucket.
 
-Header                    | Type   | Description
---------------------------|--------|----------------------------------------------------------------------------------------------------------------------
-`Content-MD5` | String | **Required**: The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.
-{: http}
+Classic Infrastructure Users must have `Owner` permissions on the bucket to remove a lifecycle policy from a bucket.
 
 **Syntax**
 {: http}
@@ -540,14 +538,13 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 17:50:00 GMT
 Authorization: authorization string
 Content-Type: text/plain
-Content-MD5: M625BaNwd/OytcM7O5gIaQ==
 Content-Length: 305
 ```
 {: codeblock}
 {: caption="Example 8. Request header samples for creating an object lifecycle configuration." caption-side="bottom"}
 {: http}
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. See Example 3 for how to delete an expiration.
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
 {: javascript}
 
 ```js
@@ -573,8 +570,7 @@ s3.deleteBucketLifecycleConfiguration(params, function(err, data) {
 {: codeblock}
 {: javascript}
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. See Example 3 for how to delete an expiration.
-{: python}
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
 
 ```python
 import sys
@@ -602,7 +598,7 @@ print("Bucket lifecyle: {0}".format(response))
 {: codeblock}
 {: python}
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. See Example 3 for how to delete an expiration.
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
 {: java}
 
 ```java
@@ -688,7 +684,7 @@ package com.ibm.cloud;
 ## Next Steps
 {: #expiry-next-steps}
 
-Expiration is just one of many lifecycle concepts available for {{site.data.keyword.cos_full}}. 
+Expiration is just one of many lifecycle concepts available for {{site.data.keyword.cos_full_notm}}.
 Each of the concepts we've covered in this overview can be explored further at the 
 [{{site.data.keyword.cloud_notm}} Platform](https://cloud.ibm.com/).
 
