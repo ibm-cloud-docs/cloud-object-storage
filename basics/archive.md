@@ -93,7 +93,7 @@ This implementation of the `PUT` operation uses the `lifecycle` query parameter 
 
 The transition action enables future objects written to the bucket to an archived state after a defined period of time. Changes to the lifecycle policy for a bucket are **only applied to new objects** written to that bucket.
 
-Cloud IAM users must have the `Writer` role to add a lifecycle policy to the bucket.
+Cloud IAM users must have at a minimum the `Writer` role to add a lifecycle policy to the bucket.
 
 Classic Infrastructure Users must have Owner Permissions and be able to create buckets in the storage account to add a lifecycle policy to the bucket.
 
@@ -206,7 +206,7 @@ Connection: close
 
 This implementation of the `GET` operation uses the `lifecycle` query parameter to retrieve the lifecycle settings for the bucket. 
 
-Cloud IAM users must have at minimum the `Reader` role to retrieve a lifecycle for a bucket.
+Cloud IAM users must have at a minimum the `Reader` role to retrieve a lifecycle for a bucket.
 
 Classic Infrastructure Users must have at minimum `Read` permissions on the bucket to retrieve a lifecycle policy for a bucket.
 
@@ -275,7 +275,7 @@ This implementation of the `DELETE` operation uses the `lifecycle` query paramet
 
 **Note:** Existing transition rules will be maintained for objects that were already written to the bucket before the rules were deleted.
 
-Cloud IAM users must have the `Writer` role to remove a lifecycle policy from a bucket.
+Cloud IAM users must have at a minimum the `Writer` role to remove a lifecycle policy from a bucket.
 
 Classic Infrastructure Users must have `Owner` permissions on the bucket to remove a lifecycle policy from a bucket.
 
@@ -329,9 +329,9 @@ There can be a delay of up to 12 hours before the restored copy is available for
 
 To permanently restore the object, the user must copy the restored object to a bucket that does not have an active lifecycle configuration.
 
-Cloud IAM users must have at minimum the `Writer` role to restore an object.
+Cloud IAM users must have at a minimum the `Writer` role to restore an object.
 
-Classic Infrastructure users must have at minimum `Write` permissions on the bucket and `Read` permission on the object to restore it.
+Classic Infrastructure users must have at a minimum `Write` permissions on the bucket and `Read` permission on the object to restore it.
 
 This operation does not make use of additional operation specific query parameters.
 
