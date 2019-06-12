@@ -81,13 +81,15 @@ Unsupported functionality includes:
 * Filtering objects to archive using a prefix or object key.
 * Tiering between storage classes.
 
-## REST API Reference
-{: #archive-api} {: http}
+## Using the REST API and SDKs
+{: #archive-api} 
 
 ### Create a bucket lifecycle configuration
-{: #archive-api-create} {: http}
+{: #archive-api-create} 
+{: http}
 
 This implementation of the `PUT` operation uses the `lifecycle` query parameter to set lifecycle settings for the bucket. This operation allows for a single lifecycle policy definition for a given bucket. The policy is defined as a rule consisting of the following parameters: `ID`, `Status`, and `Transition`.
+{: http}
 
 The transition action enables future objects written to the bucket to an archived state after a defined period of time. Changes to the lifecycle policy for a bucket are **only applied to new objects** written to that bucket.
 
@@ -96,12 +98,15 @@ Cloud IAM users must have the `Writer` role to add a lifecycle policy to the buc
 Classic Infrastructure Users must have Owner Permissions and be able to create buckets in the storage account to add a lifecycle policy to the bucket.
 
 This operation does not make use of additional operation specific query parameters.
+{: http}
 
 Header                    | Type   | Description
 --------------------------|--------|----------------------------------------------------------------------------------------------------------------------
 `Content-MD5` | string | **Required**: The base64 encoded 128-bit MD5 hash of the payload, used as an integrity check to ensure the payload was not altered in transit.
+{: http}
 
 The body of the request must contain an XML block with the following schema:
+{: http}
 
 | Element                  | Type                 | Children                               | Ancestor                 | Constraint                                                                                 |
 |--------------------------|----------------------|----------------------------------------|--------------------------|--------------------------------------------------------------------------------------------|
@@ -475,11 +480,10 @@ x-ibm-restored-copy-storage-class: "Standard"
 {: http}
 {: caption="Example 20. Example showing response headers." caption-side="bottom"}
 
-## Node.js Examples
-{: #archive-node} {: javascript}
 
 ### Create a bucket lifecycle configuration
-{: #archive-node-create} {: javascript}
+{: #archive-node-create} 
+{: javascript}
 
 ```js
 var params = {
@@ -529,7 +533,8 @@ s3.getBucketLifecycleConfiguration(params, function(err, data) {
 {: caption="Example 22. Example showing retrieval of lifecycle metadata." caption-side="bottom"}
 
 ### Delete a bucket lifecycle configuration
-{: #archive-node-delete} {: javascript}
+{: #archive-node-delete} 
+{: javascript}
 
 ```js
 var params = {
@@ -545,7 +550,8 @@ s3.deleteBucketLifecycle(params, function(err, data) {
 {: caption="Example 23. Example showing how to delete a bucket's lifecycle configuration." caption-side="bottom"}
 
 ### Temporarily restore an archived object 
-{: #archive-node-restore} {: javascript}
+{: #archive-node-restore} 
+{: javascript}
 
 ```js
 var params = {
@@ -569,7 +575,8 @@ var params = {
 {: caption="Example 24. Code used in restoring an archived object." caption-side="bottom"}
 
 ### Get an object's headers
-{: #archive-node-head} {: javascript}
+{: #archive-node-head} 
+{: javascript}
 
 ```js
 var params = {
@@ -586,11 +593,10 @@ s3.headObject(params, function(err,data) {
 {: javascript}
 {: caption="Example 25. Example showing retrieval of object headers." caption-side="bottom"}
 
-## Python Examples
-{: #archive-python} {: python}
 
 ### Create a bucket lifecycle configuration
-{: #archive-python-create} {: python}
+{: #archive-python-create} 
+{: python}
 
 ```py
 response = client.put_bucket_lifecycle_configuration(
@@ -619,7 +625,8 @@ response = client.put_bucket_lifecycle_configuration(
 {: caption="Example 26. Method used in creating an object configuration." caption-side="bottom"}
 
 ### Retrieve a bucket lifecycle configuration
-{: #archive-python-retrieve} {: python}
+{: #archive-python-retrieve} 
+{: python}
 
 ```py
 response = client.get_bucket_lifecycle_configuration(Bucket='string')
@@ -629,7 +636,8 @@ response = client.get_bucket_lifecycle_configuration(Bucket='string')
 {: caption="Example 27. Method used in retrieving an object configuration." caption-side="bottom"}
 
 ### Delete a bucket lifecycle configuration
-{: #archive-python-delete} {: python}
+{: #archive-python-delete} 
+{: python}
 
 ```py
 response = client.delete_bucket_lifecycle(Bucket='string')
@@ -639,7 +647,8 @@ response = client.delete_bucket_lifecycle(Bucket='string')
 {: caption="Example 28. Method used in deleting object configuration." caption-side="bottom"}
 
 ### Temporarily restore an archived object 
-{: #archive-python-restore} {: python}
+{: #archive-python-restore} 
+{: python}
 
 ```py
 response = client.restore_object(
@@ -658,7 +667,8 @@ response = client.restore_object(
 {: caption="Example 29. Temporarily restoring an archived object." caption-side="bottom"}
 
 ### Get an object's headers
-{: #archive-python-head} {: python}
+{: #archive-python-head} 
+{: python}
 
 ```py
 response = client.head_object(
@@ -670,11 +680,10 @@ response = client.head_object(
 {: python}
 {: caption="Example 30. Handling the response for object headers." caption-side="bottom"}
 
-## Java Examples 
-{: #archive-java} {: java}
 
 ### Create a bucket lifecycle configuration
-{: #archive-java-create} {: java}
+{: #archive-java-create} 
+{: java}
 
 ```java
 public SetBucketLifecycleConfigurationRequest(String bucketName,
@@ -693,9 +702,11 @@ Method |  Description
 `getLifecycleConfiguration()` | Gets the new lifecycle configuration for the specified bucket.
 `setBucketName(String bucketName)` | Sets the name of the bucket whose lifecycle configuration is being set.
 `withBucketName(String bucketName)` | Sets the name of the bucket whose lifecycle configuration is being set, and returns this object so that additional method calls may be chained together.
+{: java}
 
 ### Retrieve a bucket lifecycle configuration
-{: #archive-java-get} {: java}
+{: #archive-java-get} 
+{: java}
 
 ```java
 public GetBucketLifecycleConfigurationRequest(String bucketName)
@@ -705,7 +716,8 @@ public GetBucketLifecycleConfigurationRequest(String bucketName)
 {: caption="Example 32. Function signature for obtaining object lifecycle configuration." caption-side="bottom"}
 
 ### Delete a bucket lifecycle configuration
-{: #archive-java-put} {: java}
+{: #archive-java-put} 
+{: java}
 
 ```java
 public DeleteBucketLifecycleConfigurationRequest(String bucketName)
@@ -715,7 +727,8 @@ public DeleteBucketLifecycleConfigurationRequest(String bucketName)
 {: caption="Example 33. Function used in deleting object configuration." caption-side="bottom"}
 
 ### Temporarily restore an archived object 
-{: #archive-java-restore} {: java}
+{: #archive-java-restore} 
+{: java}
 
 ```java
 public RestoreObjectRequest(String bucketName,
@@ -735,9 +748,11 @@ Method |  Description
 `getBucketName()` | Returns the name of the bucket containing the reference to the object to restore.
 `getExpirationInDays()` | Returns the time in days from an object's creation to its expiration.
 `setExpirationInDays(int expirationInDays)` | Sets the time, in days, between when an object is uploaded to the bucket and when it expires.
+{: java}
 
 ### Get an object's headers
-{: #archive-java-head} {: java}
+{: #archive-java-head} 
+{: java}
 
 ```java
 public ObjectMetadata()
@@ -755,6 +770,7 @@ Method |  Description
 `getRestoreExpirationTime()` | Returns the time at which an object that has been temporarily restored from ARCHIVE will expire, and will need to be restored again in order to be accessed.
 `getStorageClass() ` | Returns the original storage class of the bucket.
 `getIBMTransition()` | Return the transition storage class and time of transition.
+{: java}
 
 ## Next Steps
 {: #archive-next-steps}
