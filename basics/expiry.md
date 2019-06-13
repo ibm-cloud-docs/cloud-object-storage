@@ -45,7 +45,8 @@ You can set the lifecycle for objects by using the web console, REST API, and th
 * The expiration period for an object, specified in number(s) of days, is calculated from the time the object was created, and is rounded off to the next day's midnight UTC. For example, if you have an expiration rule for a bucket to expire a set of objects ten days after the creation date, an object that was created on 15 April 2019 05:10 UTC will expire on 26 April 2019 00:00 UTC. 
 * The expiration rules for each bucket are evaluated once every 24 hours. Any object that qualifies for expiration (based on the objects' expiration date) will be queued for deletion. The deletion of expired objects begins the following day and will typically take less than 24 hours. You will not be billed for any associated storage for objects once they are deleted.
 
-Buckets that are subject to an Immutable Object Storage retention policy will 
+Objects that are subject to a bucket's Immutable Object Storage retention policy will have any expiration actions deferred until the retention policy is no longer enforced. 
+{: important}
 
 ## Attributes of expiration rules
 {: #expiry-rules-attributes}
@@ -63,6 +64,66 @@ An optional string that will be matched to the prefix of the object name in the 
 
 ### Status
 A rule can either be enabled or disabled. A rule is active only when enabled.
+
+## Sample lifecycle configurations
+
+This configuration expires any new objects after 30 days.
+
+```xml
+<LifecycleConfiguration>
+	<Rule>
+		<ID>delete-after-30-days</ID>
+		<Filter />
+		<Status>Enabled</Status>
+		<Expiration>
+			<Days>30</Days>
+		</Expiration>
+	</Rule>
+</LifecycleConfiguration>
+```
+
+This configuration deletes any objects with the prefix `foo/` on June 1, 2020.
+
+```xml
+<LifecycleConfiguration>
+	<Rule>
+		<ID>delete-on-a-date</ID>
+    <Filter>
+      <Prefix>foo/</Prefix>
+    </Filter>
+		<Status>Enabled</Status>
+		<Expiration>
+			<Date>2020-06-01</Date>
+		</Expiration>
+	</Rule>
+</LifecycleConfiguration>
+```
+
+You can also combine transition and expiration rules.  This configuration archives any objects 90 days after creation, and deletes any objects with the prefix `foo/` after 180 days .
+
+```xml
+<LifecycleConfiguration>
+  <Rule>
+		<ID>archive-first</ID>
+		<Filter />
+		<Status>Enabled</Status>
+    <Transition>
+      <Days>90</Days>
+      <StorageClass>GLACIER</StorageClass>
+    </Transition>
+	</Rule>
+	<Rule>
+		<ID>then-delete</ID>
+    <Filter>
+      <Prefix>foo/</Prefix>
+    </Filter>
+		<Status>Enabled</Status>
+		<Expiration>
+			<Days>180</Days>
+		</Expiration>
+	</Rule>
+</LifecycleConfiguration>
+```
 
 ## Using the console
 {: #expiry-using-console}
