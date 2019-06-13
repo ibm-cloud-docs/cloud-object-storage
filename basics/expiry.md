@@ -45,15 +45,24 @@ You can set the lifecycle for objects by using the web console, REST API, and th
 * The expiration period for an object, specified in number(s) of days, is calculated from the time the object was created, and is rounded off to the next day's midnight UTC. For example, if you have an expiration rule for a bucket to expire a set of objects ten days after the creation date, an object that was created on 15 April 2019 05:10 UTC will expire on 26 April 2019 00:00 UTC. 
 * The expiration rules for each bucket are evaluated once every 24 hours. Any object that qualifies for expiration (based on the objects' expiration date) will be queued for deletion. The deletion of expired objects begins the following day and will typically take less than 24 hours. You will not be billed for any associated storage for objects once they are deleted.
 
-## Attributes of Expiration Rules
+Buckets that are subject to an Immutable Object Storage retention policy will 
+
+## Attributes of expiration rules
 {: #expiry-rules-attributes}
 
 Each expiration rule has the following attributes:
 
-* **ID**: Rule name
-* **Expiration**: Time period for deletion of objects from the object creation date
-* **Prefix**: An optional string that will be matched to the prefix of the object name in the bucket. A rule with a prefix will only apply to the objects that match.
-* **Status**: A rule can either be enabled or disabled. A rule is active only when enabled. 
+### ID
+A rule's ID must be unique within the bucket's lifecycle configuration.
+
+### Expiration
+The expiration block contains the details that govern the automatic deletion of objects. This could be a specific date in the future, or a period of time after new objects are written.
+
+### Prefix
+An optional string that will be matched to the prefix of the object name in the bucket. A rule with a prefix will only apply to the objects that match. You can use multiple rules for different expiration actions for different prefixes within the same bucket. For example, within the same lifecycle configuration, one rule could delete all objects that begin with `logs/` after 30 days, and a second rule could delete objects that begin with `video/` after 365 days.  
+
+### Status
+A rule can either be enabled or disabled. A rule is active only when enabled.
 
 ## Using the console
 {: #expiry-using-console}
