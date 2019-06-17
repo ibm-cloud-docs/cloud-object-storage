@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-06-14"
 
 keywords: storage classes, tiers, cost, buckets, location constraint, provisioning code, locationconstraint
 
@@ -19,6 +19,12 @@ subcollection: cloud-object-storage
 {:note: .note}
 {:download: .download} 
 {:table: .aria-labeledby="caption"}
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
+{:go: .ph data-hd-programlang='go'}
+{:curl: .ph data-hd-programlang='curl'}
 
 # Use storage classes
 {: #classes}
@@ -70,15 +76,102 @@ When creating buckets programmatically, it is necessary to specify a `LocationCo
 
 For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
-A request to create a Cold Vault bucket in the US Cross Region would look like:
+## Using the REST API, Libraries, and SDKs
+{: #classes-sdk}
+
+Several new APIs have been introduced to the IBM COS SDKs to provide support for applications working with retention policies. Select a language (curl, Java, Javascript, Go or Python) at the top of this page to view examples using the appropriate COS SDK. 
+
+Note that all code examples assume the existence of a client object called `cos` that can call the different methods. For details on creating clients, see the specific SDK guides.
+
+
+### Create a bucket with with a storage class
+
+```java
+public static void createBucket(String bucketName) {
+    System.out.printf("Creating new bucket: %s\n", bucketName);
+    _cos.createBucket(bucketName, "us-vault");
+    System.out.printf("Bucket: %s created!\n", bucketName);
+}
+```
+{: codeblock}
+{: java}
+
+
+```javascript
+function createBucket(bucketName) {
+    console.log(`Creating new bucket: ${bucketName}`);
+    return cos.createBucket({
+        Bucket: bucketName,
+        CreateBucketConfiguration: {
+          LocationConstraint: 'us-standard'
+        },        
+    }).promise()
+    .then((() => {
+        console.log(`Bucket: ${bucketName} created!`);
+    }))
+    .catch((e) => {
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+{: codeblock}
+{: javascript}
+
+
+```py
+def create_bucket(bucket_name):
+    print("Creating new bucket: {0}".format(bucket_name))
+    try:
+        cos.Bucket(bucket_name).create(
+            CreateBucketConfiguration={
+                "LocationConstraint":COS_BUCKET_LOCATION
+            }
+        )
+        print("Bucket: {0} created!".format(bucket_name))
+    except ClientError as be:
+        print("CLIENT ERROR: {0}\n".format(be))
+    except Exception as e:
+        print("Unable to create bucket: {0}".format(e))
+```
+{: codeblock}
+{: python}
+
+```go
+func main() {
+
+    // Create client
+    sess := session.Must(session.NewSession())
+    client := s3.New(sess, conf)
+
+    // Bucket Names
+    newBucket := "<NEW_BUCKET_NAME>"
+
+    input := &s3.CreateBucketInput{
+        Bucket: aws.String(newBucket),
+        CreateBucketConfiguration: &s3.CreateBucketConfiguration{
+            LocationConstraint: aws.String("us-cold"),
+        },
+    }
+    client.CreateBucket(input)
+
+    d, _ := client.ListBuckets(&s3.ListBucketsInput{})
+    fmt.Println(d)
+}
+```
+{: codeblock}
+{: go}
+
 
 ```
 curl -X "PUT" "https://(endpoint)/(bucket-name)"
  -H "Content-Type: text/plain; charset=utf-8"
  -H "Authorization: Bearer (token)"
  -H "ibm-service-instance-id: (resource-instance-id)"
- -d "<CreateBucketConfiguration><LocationConstraint>us-cold</LocationConstraint></CreateBucketConfiguration>"
+ -d "<CreateBucketConfiguration>
+       <LocationConstraint>(provisioning-code)</LocationConstraint>
+     </CreateBucketConfiguration>"
 ```
 {:codeblock}
+{: curl}
 
-It is not possible to change the storage class of a bucket once the bucket is created. If objects need to be reclassified, it is necessary to move the data to another bucket with the desired storage class.
+It is not possible to change the storage class of a bucket once the bucket is created. If objects need to be reclassified, it is necessary to move the data to another bucket with the desired storage class. 

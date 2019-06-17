@@ -56,7 +56,7 @@ If it is necessary to restrict access to a single bucket (or set of buckets) ens
 ### Using the UI
 {: #iam-policy-enforcement-console}
 
-  1. Navigate to the **Identity and Access** console from the **Manage** menu.
+  1. Navigate to the **Access IAM** console from the **Manage** menu.
   2. Select **Users** from the left navigation menu.
   3. Select a user to view their existing policies, and assign a new policy or edit an existing policy.
   3. Select the service instance, user, and desired role.
@@ -109,7 +109,7 @@ If you need to grant access to a bucket for an application or other non-human en
 ### Using the UI
 {: #iam-service-id-console}
 
-  1. Navigate to the **Identity and Access** console from the **Manage** menu.
+  1. Navigate to the **Access (IAM)** console from the **Manage** menu.
   2. Select **Service IDs** from the left navigation menu.
   3. Select a Service ID to view any existing policies, and assign a new policy or edit an existing policy.
   3. Select the service instance, service ID, and desired role.

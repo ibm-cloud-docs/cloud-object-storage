@@ -44,14 +44,14 @@ In this quickstart guide, you are provided a code example that demonstrates the 
 
 You need:
 
-* An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com/)
-* An [instance of {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics/order-storage.html)
-* An [IAM API key](/docs/services/cloud-object-storage/iam/overview.html) with Writer access to your {{site.data.keyword.cos_short}}
+* An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com/login)
+* An [instance of {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-provision)
+* An [IAM API key](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview) with Writer access to your {{site.data.keyword.cos_short}}
 
 ## Getting the SDK
 {: #sdk-gs-install}
 
-Specific instructions for downloading and installing the SDK is available in [Using Python.](/docs/services/cloud-object-storage/libraries/python.html#using-python){:new_window}{: python}[Using Node.js.](/docs/services/cloud-object-storage/libraries/node.html#installing-the-sdk){:new_window}{: javascript}[Using Java.](/docs/services/cloud-object-storage/libraries/java.html#using-java){:new_window}{: java}[Using Java.](/docs/services/cloud-object-storage/libraries/java.html#using-go){:new_window}{: go}
+Specific instructions for downloading and installing the SDK is available in [Using Python.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python){:new_window}{: python}[Using Node.js.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node){:new_window}{: javascript}[Using Java.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java){:new_window}{: java}[Using Go.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-go){:new_window}{: go}
 
 ## Code Example
 {: #sdk-gs-example}
@@ -230,7 +230,7 @@ def upload_large_file(bucket_name, item_name, file_path):
 # Constants for IBM COS values
 COS_ENDPOINT = "<endpoint>" # example: https://s3.us-south.cloud-object-storage.appdomain.cloud
 COS_API_KEY_ID = "<api-key>" # example: xxxd12V2QHXbjaM99G9tWyYDgF_0gYdlQ8aWALIQxXx4
-COS_AUTH_ENDPOINT = "https://iam.ng.bluemix.net/oidc/token"
+COS_AUTH_ENDPOINT = "https://iam.cloud.ibm.com/identity/token"
 COS_SERVICE_CRN = "<resource-instance-id>" # example: crn:v1:bluemix:public:cloud-object-storage:global:a/xx999cd94a0dda86fd8eff3191349999:9999b05b-x999-4917-xxxx-9d5b326a1111::
 COS_STORAGE_CLASS = "<storage-class>" # example: us-south-standard
 
@@ -295,7 +295,7 @@ if __name__ == "__main__":
 'use strict';
 
 // Required libraries
-const AWS = require('ibm-cos-sdk');
+const ibm = require('ibm-cos-sdk');
 const fs = require('fs');
 const async = require('async');
 const uuidv1 = require('uuid/v1');
@@ -529,7 +529,7 @@ function cancelMultiPartUpload(bucketName, itemName, uploadID) {
 // Constants for IBM COS values
 const COS_ENDPOINT = "<endpoint>";  // example: s3.us-south.cloud-object-storage.appdomain.cloud
 const COS_API_KEY_ID = "<api-key";  // example: xxxd12V2QHXbjaM99G9tWyYDgF_0gYdlQ8aWALIQxXx4
-const COS_AUTH_ENDPOINT = "https://iam.ng.bluemix.net/oidc/token";
+const COS_AUTH_ENDPOINT = "https://iam.cloud.ibm.com/identity/token";
 const COS_SERVICE_CRN = "<resource-instance-id>"; // example: crn:v1:bluemix:public:cloud-object-storage:global:a/xx999cd94a0dda86fd8eff3191349999:9999b05b-x999-4917-xxxx-9d5b326a1111::
 const COS_STORAGE_CLASS = "<storage-class>"; // example: us-south-standard
 
@@ -541,7 +541,7 @@ var config = {
     serviceInstanceId: COS_SERVICE_CRN,
 };
 
-var cos = new AWS.S3(config);
+var cos = new ibm.S3(config);
 
 // Main app
 function main() {

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-06-11"
 
 keywords: updates, releases, news
 
@@ -11,17 +11,9 @@ subcollection: cloud-object-storage
 ---
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:screen: .screen}
 {:tip: .tip}
 {:important: .important}
 {:note: .note}
-{:download: .download} 
-{:http: .ph data-hd-programlang='http'} 
-{:javascript: .ph data-hd-programlang='javascript'} 
-{:java: .ph data-hd-programlang='java'} 
-{:python: .ph data-hd-programlang='python'}
 
 # What's new
 {: #updates}
@@ -29,9 +21,14 @@ subcollection: cloud-object-storage
 ## Q2 2019
 {: #updates-2019-q2}
 
-### April 2019
+### June 2019
+Objects can be automatically deleted by [adding expiration rules to a bucket's lifecycle configuration](/docs/services/cloud-object-storage?topic=cloud-object-storage-expiry).
 
-Buckets can now be created in a Single Data Center configuration in Hong Kong. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics/endpoints.html).
+### May 2019
+Users can access and interact with object storage [using the IBM Cloud CLI](/docs/services/cloud-object-storage?topic=cloud-object-storage-ic-use-the-ibm-cli).
+
+### April 2019
+Buckets can now be created in a Single Data Center configuration in Hong Kong. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints).
 
 ## Q1 2019
 {: #updates-2019-q1}

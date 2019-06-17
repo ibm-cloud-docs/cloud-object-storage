@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="cloud-object-storage" audience="services" href="/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started" path="services/cloud-object-storage"}
+{: .toc subcollection="cloud-object-storage" category="storage" audience="services" href="/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started" path="services/cloud-object-storage"}
 Cloud Object Storage
 
     {: .navgroup id="learn"}
@@ -20,12 +20,12 @@ Cloud Object Storage
     {: .navgroup id="howto"}
     basics/order-storage.md
     
+
     {: .topicgroup}
     Choose regions and connect services
         basics/endpoints.md
         basics/services.md    
         [Connect from VPC](/vpc-on-classic/vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc)
-
         
     basics/upload.md
     
@@ -44,7 +44,11 @@ Cloud Object Storage
         hmac/hmac-signature.md
         hmac/presigned-urls.md
     
-    basics/archive.md
+    {: .topicgroup}
+    Manage a bucket's lifecycle configuration
+        basics/archive.md
+        basics/expiry.md
+    
     basics/aspera.md
     basics/immutable.md
     basics/classes.md
@@ -64,6 +68,7 @@ Cloud Object Storage
 
     {: .topicgroup}
     Libraries
+        libraries/overview-sdks.md
         libraries/getting-started-sdks.md
         libraries/java.md
         libraries/python.md
@@ -98,7 +103,8 @@ Cloud Object Storage
         [Read and write data to and from IBM COS in Rstudio](https://medium.com/ibm-data-science-experience/read-and-write-data-to-and-from-ibm-cloud-object-storage-in-rstudio-e9cf86e903ed)
         [File-like access to IBM COS using s3fs](https://medium.com/@ozeri/file-like-access-to-ibm-cloud-object-storage-using-s3fs-f5094ed42594)
         tutorials/migrate.md
-        [Connect to IBM COS using IBM Cloud Direct Link](../../infrastructure/direct-link/direct-link-to-cos.html)
+        tutorials/web-application.md
+        [Connect to IBM COS using IBM Cloud Direct Link](../../infrastructure/direct-link?topic=direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage)
 
     {: .topicgroup}
     Technical guides

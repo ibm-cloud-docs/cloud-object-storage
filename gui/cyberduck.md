@@ -73,7 +73,7 @@ Creating a bookmark in Mountain Duck is very similar to creating connections in 
         * *Ensure that the endpoint region matches the intended bucket. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).*
     * `Username`: enter the Access Key
     * Click **Connect**
-    * You are prompted for your  , which will then be saved in the keychain
+    * You are prompted for your Secret Key, which will then be saved in the keychain.
 
 Your buckets will now be available in Finder or Explorer. You can interact with {{site.data.keyword.cos_short}} like any other mounted file system.
 
