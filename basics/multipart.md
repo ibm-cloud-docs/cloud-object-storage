@@ -395,8 +395,8 @@ upload: 'bigfile.pdf' -> 's3://backuptest/bigfile.pdf'  [part 4 of 4, 4MB] [1 of
 The Java SDK provides two ways to run large object uploads:
 {: java}
 
-* [Multipart Uploads](/docs/services/cloud-object-storage/libraries/java.html#java-multipart-upload)
-* [TransferManager](/docs/services/cloud-object-storage/libraries/java.html#java-transfer-manager)
+* [Multipart Uploads](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java#java-examples-multipart-object)
+* [TransferManager](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java#java-examples-transfer-manager)
 {: codeblock}
 {: java}
 
@@ -407,8 +407,8 @@ The Java SDK provides two ways to run large object uploads:
 The Python SDK provides two ways to run large object uploads:
 {: python}
 
-* [Multipart Uploads](/docs/services/cloud-object-storage/libraries/python.html#python-multipart-upload)
-* [TransferManager](/docs/services/cloud-object-storage/libraries/python.html#python-transfer-manager)
+* [Multipart Uploads](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python#python-examples-multipart)
+* [TransferManager](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python#python-examples-multipart-transfer)
 {: codeblock}
 {: python}
 
@@ -419,6 +419,6 @@ The Python SDK provides two ways to run large object uploads:
 The Node.js SDK provides a single way to run large object uploads:
 {: javascript}
 
-* [Multipart Uploads](/docs/services/cloud-object-storage/libraries/node.html#node-multipart-upload)
+* [Multipart Uploads]([/docs/services/cloud-object-storage/libraries/node.html#node-multipart-upload](https://test.cloud.ibm.com/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node#node-examples-multipart))
 {: codeblock}
 {: javascript}
