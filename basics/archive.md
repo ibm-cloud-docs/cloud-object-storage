@@ -343,10 +343,10 @@ The body of the request must contain an XML block with the following schema:
 
 Element                  | Type      | Children                               | Ancestor                 | Constraint
 -------------------------|-----------|----------------------------------------|--------------------------|--------------------
-`RestoreRequest` | Container | `Days`, `GlacierJobParameter`    | None       | None
+`RestoreRequest` | Container | `Days`, `GlacierJobParameters`    | None       | None
 `Days`                   | Integer | None | `RestoreRequest` | Specified the lifetime of the temporarily restored object. The minimum number of days that a restored copy of the object can exist is 1. After the restore period has elapsed, temporary copy of the object will be removed.
-`GlacierJobParameter` | String | `Tier` | `RestoreRequest` | None
-`Tier` | String | None | `GlacierJobParameter` | **Must** be set to `Bulk`.
+`GlacierJobParameters` | String | `Tier` | `RestoreRequest` | None
+`Tier` | String | None | `GlacierJobParameters` | **Must** be set to `Bulk`.
 
 A successful response returns a `202` if the object is in the archived state and a `200` if the object is already in the restored state.  If the object is already in the restored state and a new request to restore the object is received, the `Days` element will update the expiration time of the restored object.
 
@@ -364,9 +364,9 @@ POST https://{bucket}.{endpoint}/{object}?restore # virtual host style
 ```xml
 <RestoreRequest>
 	<Days>{integer}</Days> 
-	<GlacierJobParameter>
+	<GlacierJobParameters>
 		<Tier>Bulk</Tier>
-	</GlacierJobParameter>
+	</GlacierJobParameters>
 </RestoreRequest>
 ```
 {: codeblock}
@@ -394,9 +394,9 @@ Content-Length: 305
 ```xml
 <RestoreRequest>
 	<Days>3</Days> 
-	<GlacierJobParameter>
+	<GlacierJobParameters>
 		<Tier>Bulk</Tier>
-	</GlacierJobParameter>
+	</GlacierJobParameters>
 </RestoreRequest>
 ```
 {: codeblock}
