@@ -79,7 +79,7 @@ This guide provides instructions for migrating data from a single Swift containe
         ```
         [SWIFT]
         type = swift
-        auth = https://identity.open.s3.us-south.cloud-object-storage.appdomain.cloud.com/v3
+        auth = https://identity.open.softlayer.com/v3
         user_id =
         key =
         region =
