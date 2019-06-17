@@ -27,7 +27,7 @@ subcollection: cloud-object-storage
 # Store very large objects
 {: #large-objects}
 
-{{site.data.keyword.cos_full}} can support single objects as large as 10TB when using multipart uploads. Large objects can also be uploaded [using the console with Aspera high-speed-transfer enabled](/docs/services/cloud-object-storage/basics/upload.html). Under most scenarios, Aspera high-speed transfer will result in significantly increased perfomance for transfering data, especially across long distances or under unstable network conditions.
+{{site.data.keyword.cos_full}} can support single objects as large as 10TB when using multipart uploads. Large objects can also be uploaded [using the console with Aspera high-speed-transfer enabled](/docs/services/cloud-object-storage?topic=cloud-object-storage-aspera). Under most scenarios, Aspera high-speed transfer will result in significantly increased perfomance for transfering data, especially across long distances or under unstable network conditions.
 
 ## Uploading objects in multiple parts
 {: #large-objects-multipart}
@@ -44,9 +44,10 @@ Due to the complexity involved in managing and optimizing parallelized uploads, 
 Most tools, such as the AWS CLI or the IBM Cloud Console, as well as most compatible libraries and SDKs, will automatically transfer objects in multipart uploads.
 
 ## Using the API
-{: #large-objects-multipart-api} {: http}
+{: #large-objects-multipart-api} 
+{: http}
 
-Incomplete multipart uploads do persist until the object is deleted or the multipart upload is aborted with `AbortIncompleteMultipartUpload`. If an incomplete multipart upload is not aborted, the partial upload continues to use resources. Interfaces should be designed with this point in mind, and clean up incomplete multipart uploads.
+Incomplete multipart uploads do persist until the object is deleted or the multipart upload is aborted. If an incomplete multipart upload is not aborted, the partial upload continues to use resources. Interfaces should be designed with this point in mind, and clean up incomplete multipart uploads.
 {:tip}
 
 There are three phases to uploading an object in multiple parts:
@@ -59,9 +60,11 @@ For more information about endpoints, see [Endpoints and storage locations](/doc
 {:tip}
 
 ### Initiate a multipart upload
-{: #large-objects-multipart-api-initiate} {: http}
+{: #large-objects-multipart-api-initiate} 
+{: http}
 
 A `POST` issued to an object with the query parameter `upload` creates a new `UploadId` value, which is then be referenced by each part of the object being uploaded.
+{: http}
 
 **Syntax**
 {: http}
@@ -113,9 +116,11 @@ Content-Length: 276
 ----
 
 ### Upload a part
-{: #large-objects-multipart-api-upload-part} {: http}
+{: #large-objects-multipart-api-upload-part} 
+{: http}
 
 A `PUT` request issued to an object with query parameters `partNumber` and `uploadId` will upload one part of an object. The parts may be uploaded serially or in parallel, but must be numbered in order.
+{: http}
 
 **Syntax**
 {: http}
@@ -156,12 +161,12 @@ Content-Length: 0
 {: codeblock}
 {: http}
 
-----
-
 ### Complete a multipart upload
-{: #large-objects-multipart-api-complete} {: http}
+{: #large-objects-multipart-api-complete} 
+{: http}
 
 A `POST` request issued to an object with query parameter `uploadId` and the appropriate XML block in the body will complete a multipart upload.
+{: http}
 
 **Syntax**
 {: http}
@@ -170,6 +175,7 @@ A `POST` request issued to an object with query parameter `uploadId` and the app
 POST https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId}= # path style
 POST https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # virtual host style
 ```
+{: http}
 
 ```xml
 <CompleteMultipartUpload>
@@ -238,13 +244,13 @@ Content-Length: 364
 {: codeblock}
 {: http}
 
-----
 
 ### Abort incomplete multipart uploads
-{: #large-objects-multipart-api-abort} {: http}
+{: #large-objects-multipart-api-abort} 
+{: http}
 
 A `DELETE` request issued to an object with query parameter `uploadId` will delete all unfinished parts of a multipart upload.
-
+{: http}
 **Syntax**
 {: http}
 
@@ -280,15 +286,15 @@ X-Clv-S3-Version: 2.5
 {: codeblock}
 {: http}
 
-## Using S3cmd (CLI)
-{: #large-objects-s3cmd} {: S3cmd}
+### Using S3cmd (CLI)
+{: #large-objects-s3cmd} 
+{: S3cmd}
 
 [S3cmd](https://s3tools.org/s3cmd){:new_window} is a free Linux and Mac command line tool and client for uploading, retrieving and managing data in cloud storage service providers that use the S3 protocol. It is designed for power users who are familiar with command line programs and is ideal for batch scripts and automated backup. S3cmd is written in Python. It's an open source project available under GNU Public License v2 (GPLv2) and is free for both commercial and private use.
-
-### Installation and Configuration
-{: #large-objects-s3cmd-install} {: S3cmd}
+{: S3cmd}
 
 S3cmd requires Python 2.6 or newer and is compatible with Python 3. The easiest way to install S3cmd is with the Python Package Index (PyPi).
+{: S3cmd}
 
 ```
 pip install s3cmd
@@ -297,6 +303,7 @@ pip install s3cmd
 {: S3cmd}
 
 Once the package has been installed, grab the {{site.data.keyword.cos_full}} example configuration file [here](https://gist.githubusercontent.com/greyhoundforty/a4a9d80a942d22a8a7bf838f7abbcab2/raw/05ad584edee4370f4c252e4f747abb118d0075cb/example.s3cfg){:new_window} and update it with your Cloud Object Storage (S3) credentials:
+{: S3cmd}
 
 ```
 $ wget -O $HOME/.s3cfg https://gist.githubusercontent.com/greyhoundforty/676814921b8f4367fba7604e622d10f3/raw/422abaeb70f1c17cd5308745c0e446b047c123e0/s3cfg
@@ -305,15 +312,18 @@ $ wget -O $HOME/.s3cfg https://gist.githubusercontent.com/greyhoundforty/6768149
 {: S3cmd}
 
 The 4 lines that need to be updated are
+{: S3cmd}
 
 * `access_key`
 * `secret_key`
 * `host_base`
 * `host_bucket`
-
+{: S3cmd}
 This is the same whether you use the example file or the one generated by running: `s3cmd --configure`.
+{: S3cmd}
 
 Once those lines have been updated with the COS details from the Customer portal you can test the connection by issuing the command `s3cmd ls` which will list all the buckets on the account.
+{: S3cmd}
 
 ```
 $ s3cmd ls 
@@ -326,11 +336,14 @@ $ s3cmd ls
 {: S3cmd}
 
 The full list of options and commands along with basic usage information is available on the [s3tools](https://s3tools.org/usage){:new_window} site.
+{: S3cmd}
 
 ### Multipart uploads using S3cmd
-{: #large-objects-s3cmd-upload} {: S3cmd}
+{: #large-objects-s3cmd-upload} 
+{: S3cmd}
 
 A `put` command will automatically execute a multi-part upload when attempting to upload a file larger than the specified threshold..
+{: S3cmd}
 
 ```
 s3cmd put FILE [FILE...] s3://BUCKET[/PREFIX]
@@ -339,6 +352,7 @@ s3cmd put FILE [FILE...] s3://BUCKET[/PREFIX]
 {: S3cmd}
 
 The threshold is determined by the `--multipart-chunk-size-mb` option:
+{: S3cmd}
 
 ```
 --multipart-chunk-size-mb=SIZE
@@ -353,6 +367,7 @@ The threshold is determined by the `--multipart-chunk-size-mb` option:
 {: S3cmd}
 
 Example:
+{: S3cmd}
 
 ```
 s3cmd put bigfile.pdf s3://backuptest/bigfile.pdf --multipart-chunk-size-mb=5
@@ -361,6 +376,7 @@ s3cmd put bigfile.pdf s3://backuptest/bigfile.pdf --multipart-chunk-size-mb=5
 {: S3cmd}
 
 Output:
+{: S3cmd}
 
 ```
 upload: 'bigfile.pdf' -> 's3://backuptest/bigfile.pdf'  [part 1 of 4, 5MB] [1 of 1]
@@ -375,30 +391,36 @@ upload: 'bigfile.pdf' -> 's3://backuptest/bigfile.pdf'  [part 4 of 4, 4MB] [1 of
 {: codeblock}
 {: S3cmd}
 
-## Using the Java SDK
-{: #large-objects-java} {: java}
+### Using the Java SDK
+{: #large-objects-java} 
+{: java}
 
 The Java SDK provides two ways to execute large object uploads:
+{: java}
 
 * [Multipart Uploads](/docs/services/cloud-object-storage/libraries/java.html#java-multipart-upload)
 * [TransferManager](/docs/services/cloud-object-storage/libraries/java.html#java-transfer-manager)
 {: codeblock}
 {: java}
 
-## Using the Python SDK
-{: #large-objects-python} {: python}
+### Using the Python SDK
+{: #large-objects-python} 
+{: python}
 
 The Python SDK provides two ways to execute large object uploads:
+{: python}
 
 * [Multipart Uploads](/docs/services/cloud-object-storage/libraries/python.html#python-multipart-upload)
 * [TransferManager](/docs/services/cloud-object-storage/libraries/python.html#python-transfer-manager)
 {: codeblock}
 {: python}
 
-## Using the Node.js SDK
-{: #large-objects-node} {: javascript}
+### Using the Node.js SDK
+{: #large-objects-node} 
+{: javascript}
 
 The Node.js SDK provides a single way to execute large object uploads:
+{: javascript}
 
 * [Multipart Uploads](/docs/services/cloud-object-storage/libraries/node.html#node-multipart-upload)
 {: codeblock}

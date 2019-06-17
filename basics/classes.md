@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-06-14"
 
 keywords: storage classes, tiers, cost, buckets, location constraint, provisioning code, locationconstraint
 
@@ -79,12 +79,9 @@ For more information about endpoints, see [Endpoints and storage locations](/doc
 ## Using the REST API, Libraries, and SDKs
 {: #classes-sdk}
 
-Several new APIs have been introduced to the IBM COS SDKs to provide support for applications working with retention policies. Select a language (HTTP, Java, Javascript, Go or Python) at the top of this page to view examples using the appropriate COS SDK. 
+Several new APIs have been introduced to the IBM COS SDKs to provide support for applications working with retention policies. Select a language (curl, Java, Javascript, Go or Python) at the top of this page to view examples using the appropriate COS SDK. 
 
 Note that all code examples assume the existence of a client object called `cos` that can call the different methods. For details on creating clients, see the specific SDK guides.
-
-All date values used to set retention periods are GMT.
-{:note}
 
 
 ### Create a bucket with with a storage class
