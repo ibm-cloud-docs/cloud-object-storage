@@ -24,24 +24,22 @@ subcollection: cloud-object-storage
 {:python: .ph data-hd-programlang='python'}
 {:S3cmd: .ph data-hd-programlang='S3cmd'}
 
-# Store very large objects
+# Store large objects
 {: #large-objects}
 
-{{site.data.keyword.cos_full}} can support single objects as large as 10TB when using multipart uploads. Large objects can also be uploaded [using the console with Aspera high-speed-transfer enabled](/docs/services/cloud-object-storage?topic=cloud-object-storage-aspera). Under most scenarios, Aspera high-speed transfer will result in significantly increased perfomance for transfering data, especially across long distances or under unstable network conditions.
+{{site.data.keyword.cos_full}} can support single objects as large as 10 TB when using multipart uploads. Large objects can also be uploaded [by using the console with Aspera high-speed-transfer enabled](/docs/services/cloud-object-storage?topic=cloud-object-storage-aspera). Under most scenarios, Aspera high-speed transfer results in significantly increased performance for transferring data, especially across long distances or under unstable network conditions.
 
 ## Uploading objects in multiple parts
 {: #large-objects-multipart}
 
-When working with larger objects, multipart upload operations are recommended to write objects into {{site.data.keyword.cos_short}}. An upload of a single object is performed as a set of parts and these parts can be uploaded independently in any order and in parallel. Upon upload completion, {{site.data.keyword.cos_short}} then presents all parts as a single object. This provides many benefits: network interruptions do not cause large uploads to fail, uploads can be paused and restarted over time, and objects can be uploaded as they are being created.
+Multipart upload operations are recommended to write larger objects into {{site.data.keyword.cos_short}}. An upload of a single object is performed as a set of parts and these parts can be uploaded independently in any order and in parallel. Upon upload completion, {{site.data.keyword.cos_short}} then presents all parts as a single object. This provides many benefits: network interruptions do not cause large uploads to fail, uploads can be paused and restarted over time, and objects can be uploaded as they are being created.
 
-Multipart uploads are only available for objects larger than 5MB. For objects smaller than 50GB, a part size of 20MB to 100MB is recommended for optimum performance. For larger objects, part size can be increased without significant performance impact. Multipart uploads are limited to no more than 10,000 parts of 5GB each up to a maximum object size of 10TB.
+Multipart uploads are only available for objects larger than 5 MB. For objects smaller than 50 GB, a part size of 20 MB to 100 MB is recommended for optimum performance. For larger objects, part size can be increased without significant performance impact. Multipart uploads are limited to no more than 10,000 parts of 5 GB each up to a maximum object size of 10 TB.
 
-Avoid using more than 500 parts when possible, this leads to inefficiencies in {{site.data.keyword.cos_short}}.
-{:tip}
 
-Due to the complexity involved in managing and optimizing parallelized uploads, many developers make use of libraries that provide multipart upload support.
+Due to the complexity involved in managing and optimizing parallelized uploads, many developers use libraries that provide multipart upload support.
 
-Most tools, such as the AWS CLI or the IBM Cloud Console, as well as most compatible libraries and SDKs, will automatically transfer objects in multipart uploads.
+Most tools, such as the CLIs or the IBM Cloud Console, as well as most compatible libraries and SDKs, will automatically transfer objects in multipart uploads.
 
 ## Using the REST API or SDKs
 {: #large-objects-multipart-api} 
@@ -118,7 +116,7 @@ Content-Length: 276
 {: #large-objects-multipart-api-upload-part} 
 {: http}
 
-A `PUT` request issued to an object with query parameters `partNumber` and `uploadId` will upload one part of an object. The parts may be uploaded serially or in parallel, but must be numbered in order.
+A `PUT` request that is issued to an object with query parameters `partNumber` and `uploadId` will upload one part of an object. The parts can be uploaded serially or in parallel, but must be numbered in order.
 {: http}
 
 **Syntax**
@@ -164,7 +162,7 @@ Content-Length: 0
 {: #large-objects-multipart-api-complete} 
 {: http}
 
-A `POST` request issued to an object with query parameter `uploadId` and the appropriate XML block in the body will complete a multipart upload.
+A `POST` request that is issued to an object with query parameter `uploadId` and the appropriate XML block in the body will complete a multipart upload.
 {: http}
 
 **Syntax**
@@ -248,7 +246,7 @@ Content-Length: 364
 {: #large-objects-multipart-api-abort} 
 {: http}
 
-A `DELETE` request issued to an object with query parameter `uploadId` will delete all unfinished parts of a multipart upload.
+A `DELETE` request issued to an object with query parameter `uploadId` deletes all unfinished parts of a multipart upload.
 {: http}
 **Syntax**
 {: http}
@@ -289,7 +287,7 @@ X-Clv-S3-Version: 2.5
 {: #large-objects-s3cmd} 
 {: S3cmd}
 
-[S3cmd](https://s3tools.org/s3cmd){:new_window} is a free Linux and Mac command line tool and client for uploading, retrieving and managing data in cloud storage service providers that use the S3 protocol. It is designed for power users who are familiar with command line programs and is ideal for batch scripts and automated backup. S3cmd is written in Python. It's an open source project available under GNU Public License v2 (GPLv2) and is free for both commercial and private use.
+[S3cmd](https://s3tools.org/s3cmd){:new_window} is a free Linux and Mac command-line tool and client for uploading, retrieving, and managing data in cloud storage service providers that use the S3 protocol. It is designed for power users who are familiar with command-line programs and is ideal for batch scripts and automated backup. S3cmd is written in Python. It's an open source project available under GNU Public License v2 (GPLv2) and is free for both commercial and private use.
 {: S3cmd}
 
 S3cmd requires Python 2.6 or newer and is compatible with Python 3. The easiest way to install S3cmd is with the Python Package Index (PyPi).
@@ -310,7 +308,7 @@ $ wget -O $HOME/.s3cfg https://gist.githubusercontent.com/greyhoundforty/6768149
 {: codeblock}
 {: S3cmd}
 
-The 4 lines that need to be updated are
+The four lines that need to be updated are
 {: S3cmd}
 
 * `access_key`
@@ -321,7 +319,7 @@ The 4 lines that need to be updated are
 This is the same whether you use the example file or the one generated by running: `s3cmd --configure`.
 {: S3cmd}
 
-Once those lines have been updated with the COS details from the Customer portal you can test the connection by issuing the command `s3cmd ls` which will list all the buckets on the account.
+Once those lines have been updated with the COS details from the Customer portal, you can test the connection by issuing the command `s3cmd ls`, which will list all the buckets on the account.
 {: S3cmd}
 
 ```
@@ -337,11 +335,11 @@ $ s3cmd ls
 The full list of options and commands along with basic usage information is available on the [s3tools](https://s3tools.org/usage){:new_window} site.
 {: S3cmd}
 
-### Multipart uploads using S3cmd
+### Multipart uploads with S3cmd
 {: #large-objects-s3cmd-upload} 
 {: S3cmd}
 
-A `put` command will automatically execute a multi-part upload when attempting to upload a file larger than the specified threshold..
+A `put` command will automatically run a multi-part upload when attempting to upload a file larger than the specified threshold..
 {: S3cmd}
 
 ```
@@ -394,7 +392,7 @@ upload: 'bigfile.pdf' -> 's3://backuptest/bigfile.pdf'  [part 4 of 4, 4MB] [1 of
 {: #large-objects-java} 
 {: java}
 
-The Java SDK provides two ways to execute large object uploads:
+The Java SDK provides two ways to run large object uploads:
 {: java}
 
 * [Multipart Uploads](/docs/services/cloud-object-storage/libraries/java.html#java-multipart-upload)
@@ -406,7 +404,7 @@ The Java SDK provides two ways to execute large object uploads:
 {: #large-objects-python} 
 {: python}
 
-The Python SDK provides two ways to execute large object uploads:
+The Python SDK provides two ways to run large object uploads:
 {: python}
 
 * [Multipart Uploads](/docs/services/cloud-object-storage/libraries/python.html#python-multipart-upload)
@@ -418,7 +416,7 @@ The Python SDK provides two ways to execute large object uploads:
 {: #large-objects-node} 
 {: javascript}
 
-The Node.js SDK provides a single way to execute large object uploads:
+The Node.js SDK provides a single way to run large object uploads:
 {: javascript}
 
 * [Multipart Uploads](/docs/services/cloud-object-storage/libraries/node.html#node-multipart-upload)
