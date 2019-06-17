@@ -43,9 +43,8 @@ Due to the complexity involved in managing and optimizing parallelized uploads, 
 
 Most tools, such as the AWS CLI or the IBM Cloud Console, as well as most compatible libraries and SDKs, will automatically transfer objects in multipart uploads.
 
-## Using the API
+## Using the REST API or SDKs
 {: #large-objects-multipart-api} 
-{: http}
 
 Incomplete multipart uploads do persist until the object is deleted or the multipart upload is aborted. If an incomplete multipart upload is not aborted, the partial upload continues to use resources. Interfaces should be designed with this point in mind, and clean up incomplete multipart uploads.
 {:tip}
