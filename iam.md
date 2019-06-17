@@ -62,5 +62,5 @@ The following table details actions that are mapped to service access roles. Ser
 {: caption="Table 3. IAM service access roles and actions" caption-side="top"}
 
 
-For information about assigning user roles in the UI, see [Managing IAM access](/docs/iam/mngiam.html#iammanidaccser).
+For information about assigning user roles in the UI, see [Managing IAM access](/docs/iam?topic=iam-iammanidaccser).
  
