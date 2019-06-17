@@ -93,7 +93,7 @@ This configuration deletes any objects with the prefix `foo/` on June 1, 2020.
     </Filter>
 		<Status>Enabled</Status>
 		<Expiration>
-			<Date>2020-06-01</Date>
+			<Date>2020-06-01T00:00:00.000Z</Date>
 		</Expiration>
 	</Rule>
 </LifecycleConfiguration>

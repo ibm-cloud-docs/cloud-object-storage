@@ -419,6 +419,6 @@ The Python SDK provides two ways to run large object uploads:
 The Node.js SDK provides a single way to run large object uploads:
 {: javascript}
 
-* [Multipart Uploads]([/docs/services/cloud-object-storage/libraries/node.html#node-multipart-upload](https://test.cloud.ibm.com/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node#node-examples-multipart))
+* [Multipart Uploads]([/docs/services/cloud-object-storage/libraries/node.html#node-multipart-upload](https://test.cloud.ibm.com/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node#node-examples-multipart)
 {: codeblock}
 {: javascript}
