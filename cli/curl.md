@@ -36,7 +36,7 @@ Using `curl` assumes a certain amount of familiarity with the command line and o
 ## Request an IAM Token
 {: #curl-iam}
 
-There are two ways to generate an IAM oauth token for authenticating requests: using a `curl` command with an API key (described below) or from the command line using [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-ibmcloud-cli). 
+There are two ways to generate an IAM oauth token for authenticating requests: using a `curl` command with an API key (described below) or from the command line using [IBM Cloud CLI](https://cloud.ibm.com/docs/services/cloud-monitoring?topic=cloud-monitoring-auth_iam). 
 
 ### Request an IAM token using an API key
 {: #curl-token}
