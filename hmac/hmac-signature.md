@@ -126,14 +126,14 @@ standardized_resource = bucket + '/' + object_key
 standardized_querystring = request_parameters
 standardized_headers = 'host:' + host + '\n' + 'x-amz-date:' + timestamp + '\n'
 signed_headers = 'host;x-amz-date'
-payload_hash = hashlib.sha256('').hexdigest()
+payload_hash = hashlib.sha256(''.encode('utf-8')).hexdigest()
 
 standardized_request = (http_method + '\n' +
                         standardized_resource + '\n' +
                         standardized_querystring + '\n' +
                         standardized_headers + '\n' +
                         signed_headers + '\n' +
-                        payload_hash)
+                        payload_hash).encode('utf-8')
 
 
 # assemble string-to-sign
@@ -164,13 +164,13 @@ headers = {'x-amz-date': timestamp, 'Authorization': v4auth_header}
 # the 'requests' package autmatically adds the required 'host' header
 request_url = endpoint + standardized_resource + standardized_querystring
 
-print '\nSending `%s` request to IBM COS -----------------------' % http_method
-print 'Request URL = ' + request_url
+print('\nSending `%s` request to IBM COS -----------------------' % http_method)
+print('Request URL = ' + request_url)
 request = requests.get(request_url, headers=headers)
 
-print '\nResponse from IBM COS ----------------------------------'
-print 'Response code: %d\n' % request.status_code
-print request.text
+print('\nResponse from IBM COS ----------------------------------')
+print('Response code: %d\n' % request.status_code)
+print(request.text)
 ```
 
 ### Java Example
