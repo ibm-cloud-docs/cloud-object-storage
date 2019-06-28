@@ -51,7 +51,7 @@ Using a `TransferManager` class, the SDK will handle all the necessary logic for
 ## Managed multipart downloads
 Using a `TransferManager` class, the SDK will handle all the necessary logic for downloading objects in multiple parts.
 ## Extended bucket listing
-This is an extension to the S3 API that provides the `LocationConstraint` for buckets when listing.  This is useful for finding a bucket, as the buckets in a service instance are all listed regardless of the endpoint used.
+This is an extension to the S3 API that Returns a list of buckets with provisioning codes (a combination of the bucket's location and storage class, returned as `LocationConstraint`) for buckets when listing.  This is useful for finding a bucket, as the buckets in a service instance are all listed regardless of the endpoint used.
 ## Version 2 object listing
 Version 2 listing allows for more powerful scoping of object listings.
 ## Key Protect
