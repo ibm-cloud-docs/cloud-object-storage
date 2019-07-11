@@ -93,7 +93,7 @@ The Aspera high-speed transfer SDK is closed-source and thus an optional depende
 
 The image below displays a high-level overview of the how the COS SDK interacts with the Aspera high-speed transfer library to provide functionality.
 
-<img src="https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/aspera-packaging.png" height="200px" />
+<img alt="COS/Aspera High-Speed Transfer SDK." src="https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/aspera-packaging.png" height="200px" />
 {: caption="Figure 1: COS/Aspera High-Speed Transfer SDK." caption-side="bottom"} 
 
 ### Supported Platforms
