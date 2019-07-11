@@ -43,7 +43,7 @@ It's not possible to fetch the size of a bucket with a single request. You'll ne
 
 **Can I migrate data from AWS S3 into {{site.data.keyword.cos_full_notm}}?**
 
-Yes, you can use your existing tools to read and write data into {{site.data.keyword.cos_full_notm}}. You will need to configure HMAC credentials allow your tools to authenticate. Not all S3-compatible tools are currently unsupported. For more details, see [Using HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html).
+Yes, you can use your existing tools to read and write data into {{site.data.keyword.cos_full_notm}}. You will need to configure HMAC credentials allow your tools to authenticate. Not all S3-compatible tools are currently unsupported. For more details, see [Using HMAC credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-hmac).
 
 
 ## Offering Questions
@@ -95,7 +95,7 @@ Yes, {{site.data.keyword.cos_short}} encrypts all data.
 
 **Does {{site.data.keyword.cos_short}} have FIPS 140-2 compliance for the encryption algorithms?**
 
-Yes, IBM COS Federal offering is approved for FedRAMP Moderate Security controls which require a validated FIPS configuration. IBM COS Federal is certified at FIPS 140-2 level 1. For more information on COS Federal Offering, please [contact us](https://www.ibm.com/cloud/government/federal) via our Federal site.
+Yes, IBM COS Federal offering is approved for FedRAMP Moderate Security controls which require a validated FIPS configuration. IBM COS Federal is certified at FIPS 140-2 level 1. For more information on COS Federal Offering, please [contact us](https://www.ibm.com/cloud/government) via our Federal site.
 
 **Will client-key encryption be supported?**
 
