@@ -1129,7 +1129,7 @@ declaring that the application has indeed: "uploaded file successfully" when tes
 {: caption="Figure 9. Success!" caption-side="top"}
 
 #### Image retrieval and display
-{: #tutorial-develop-image-display}
+{: #tutorial-image-display}
 
 Remember, back in app.js, the line of code `app.use('/gallery', galleryRouter);` 
 tells the express framework to use that router when the “/gallery” route is requested. 
@@ -1246,7 +1246,7 @@ the Deploy Stage in our Delivery Pipeline, as exemplified in the last figure, nu
 {: caption="Figure 12. CD Delivery Pipeline" caption-side="top"}
 
 ## Next Steps
-{: #tutorial-develop-image-display}
+{: #nextsteps}
 
 Congratulations! We have gone from beginning to end along this
 path to build a web application image gallery using the {{site.data.keyword.cloud_notm}} Platform. 

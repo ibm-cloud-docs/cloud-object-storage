@@ -26,7 +26,7 @@ First, ensure you have the [{{site.data.keyword.cloud}} Platform CLI](https://cl
 ## Provision an instance of {{site.data.keyword.cos_full_notm}}
 {: #gs-dev-provision}
 
-  1. First, make sure you have an API key. Get this from [IBM Cloud Identity and Access Management](https://cloud.ibm.com/iam#/apikeys).
+  1. First, make sure you have an API key. Get this from [IBM Cloud Identity and Access Management](https://cloud.ibm.com/iam/apikeys).
   2. Login to {{site.data.keyword.cloud_notm}} Platform using the CLI. It's also possible to store the API key in a file or set it as an environment variable.
 
 ```
@@ -41,19 +41,19 @@ ibmcloud resource service-instance-create <instance-name> cloud-object-storage <
 ```
 {:codeblock}
 
-The [Getting Started guide](/docs/services/cloud-object-storage/getting-started.html) walks through the basic steps of creating buckets and objects, as well as inviting users and creating policies. A list of basic 'curl' commands can be found [here](/docs/services/cloud-object-storage/cli/curl.html).
+The [Getting Started guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started) walks through the basic steps of creating buckets and objects, as well as inviting users and creating policies. A list of basic 'curl' commands can be found [here](/docs/services/cloud-object-storage/cli?topic=cloud-object-storage-curl).
 
-Learn more about using the the {{site.data.keyword.cloud_notm}} CLI to create applications, manage Kubernetes clusters, and more [in the documentation](/docs/cli/reference/ibmcloud/bx_cli.html).
+Learn more about using the the {{site.data.keyword.cloud_notm}} CLI to create applications, manage Kubernetes clusters, and more [in the documentation](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_cli).
 
 
 ## Using the API
 {: #gs-dev-api}
 
-For managing data stored in {{site.data.keyword.cos_short}}, you can use S3 API compatible tools like the [AWS CLI](/docs/services/cloud-object-storage/cli/aws-cli.html)with [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html) for compatibility. As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage. More information can be found in [the `curl` reference](/docs/services/cloud-object-storage/cli/curl.html), as well as [the API reference documentation](/docs/services/cloud-object-storage/api-reference/about-api.html).
+For managing data stored in {{site.data.keyword.cos_short}}, you can use S3 API compatible tools like the [AWS CLI](/docs/services/cloud-object-storage/cli?topic=cloud-object-storage-aws-cli)with [HMAC credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-hmac) for compatibility. As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage. More information can be found in [the `curl` reference](/docs/services/cloud-object-storage/cli?topic=cloud-object-storage-curl), as well as [the API reference documentation](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api).
 
 ## Using libraries and SDKs
 {: #gs-dev-sdk}
-There are IBM COS SDKs available for [Python](/docs/services/cloud-object-storage/libraries/python.html), [Java](/docs/services/cloud-object-storage/libraries/java.html), and [Node.js](/docs/services/cloud-object-storage/libraries/node.html). These are forked versions of the AWS S3 SDKs that have been modified to support [IAM token-based authentication](/docs/services/cloud-object-storage/iam/overview.html), as well as support for [Key Protect](/docs/services/cloud-object-storage/basics/encryption.html). 
+There are IBM COS SDKs available for [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python), [Java](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java), [Go](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-go), and [Node.js](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node). These are forked versions of the AWS S3 SDKs that have been modified to support [IAM token-based authentication](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview), as well as support for [Key Protect](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-encryption). 
 
 ## Building applications on IBM Cloud
 {: #gs-dev-apps}
@@ -61,15 +61,15 @@ There are IBM COS SDKs available for [Python](/docs/services/cloud-object-storag
 
 The [Cloud Native Computing Foundation](https://www.cncf.io) incubated and recently "graduated" the [Kubernetes](https://kubernetes.io) container orchestration framework, and it forms the foundation for the {{site.data.keyword.cloud}} Kubernetes Service. Developers who wish to use object storage for persistent storage in their Kubernetes applications can learn more at the following links:
 
- * [Choosing a storage solution](/docs/containers/cs_storage_planning.html#choose_storage_solution)
- * [Comparison table for persistent storage options](/docs/containers/cs_storage_planning.html#persistent_storage_overview)
- * [Main COS page](/docs/containers/cs_storage_cos.html)
- * [Installing COS](/docs/containers/cs_storage_cos.html#install_cos)
- * [Creating COS service instance](/docs/containers/cs_storage_cos.html#create_cos_service)
- * [Creating COS secret](/docs/containers/cs_storage_cos.html#create_cos_secret)
- * [Decide on the configuration](/docs/containers/cs_storage_cos.html#configure_cos)
- * [Provision COS](/docs/containers/cs_storage_cos.html#add_cos)
- * [Backup and restore info](/docs/containers/cs_storage_cos.html#backup_restore)
- * [Storage Class reference](/docs/containers/cs_storage_cos.html#storageclass_reference)
+ * [Choosing a storage solution](/docs/containers?topic=containers-storage_planning#choose_storage_solution)
+ * [Comparison table for persistent storage options](/docs/containers?topic=containers-storage_planning#persistent_storage_overview)
+ * [Main COS page](/docs/containers?topic=containers-object_storage)
+ * [Installing COS](/docs/containers?topic=containers-object_storage#install_cos)
+ * [Creating COS service instance](/docs/containers?topic=containers-object_storage#create_cos_service)
+ * [Creating COS secret](/docs/containers?topic=containers-object_storage#create_cos_secret)
+ * [Decide on the configuration](/docs/containers?topic=containers-object_storage#configure_cos)
+ * [Provision COS](/docs/containers?topic=containers-object_storage#add_cos)
+ * [Backup and restore info](/docs/containers?topic=containers-object_storage#backup_restore)
+ * [Storage Class reference](/docs/containers?topic=containers-object_storage#storageclass_reference)
 
 

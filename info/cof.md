@@ -32,13 +32,13 @@ subcollection: cloud-object-storage
 {: #cloud-foundry-ee}
 {{site.data.keyword.cfee_full}} is a platform for hosting apps and services in the cloud. You can instantiate multiple, isolated, enterprise-grade platforms on demand that is run within your own account and can be deployed on either shared or dedicated hardware. The platform makes it easy to scale apps as consumption grows, simplifying the runtime and infrastructure so that you can focus on development.
 
-Successful implementation of a Cloud Foundry platform requires [proper planning and design](/docs/cloud-foundry/design-structure.html#bpimplementation) for necessary resources and enterprise requirements. Learn more about [getting started](/docs/cloud-foundry/index.html#creating) with the Cloud Foundry Enterprise Environment as well as an introductory [tutorial](/docs/cloud-foundry/getting-started.html#getting-started).
+Successful implementation of a Cloud Foundry platform requires [proper planning and design](/docs/cloud-foundry?topic=cloud-foundry-bpimplementation#bpimplementation) for necessary resources and enterprise requirements. Learn more about [getting started](/docs/cloud-foundry?topic=cloud-foundry-about#creating) with the Cloud Foundry Enterprise Environment as well as an introductory [tutorial](/docs/cloud-foundry?topic=cloud-foundry-getting-started#getting-started).
 
 ### Regions
 {: #cloud-foundry-regions}
-[Regional endpoints](/docs/services/cloud-object-storage/basics/endpoints.html#select-regions-and-endpoints) are an important part of the IBM Cloud Environment. You can create applications and service instances in different regions with the same IBM Cloud infrastructure for application management and the same usage details view for billing. By choosing an IBM Cloud region that is geographically close to you or your customers, you can reduce data latency in your applications as well as minimize costs. Regions can also be selected address any security concerns or regulatory requirements. 
+[Regional endpoints](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints#select-regions-and-endpoints) are an important part of the IBM Cloud Environment. You can create applications and service instances in different regions with the same IBM Cloud infrastructure for application management and the same usage details view for billing. By choosing an IBM Cloud region that is geographically close to you or your customers, you can reduce data latency in your applications as well as minimize costs. Regions can also be selected address any security concerns or regulatory requirements. 
 
-With {{site.data.keyword.cos_full}} you can choose to disperse data across a single data center, an entire region, or even a combination of regions by [selecting the endpoint](/docs/services/cloud-object-storage/basics/endpoints.html#select-regions-and-endpoints) where your application sends API requests.
+With {{site.data.keyword.cos_full}} you can choose to disperse data across a single data center, an entire region, or even a combination of regions by [selecting the endpoint](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints#select-regions-and-endpoints) where your application sends API requests.
 
 ### Resource Connections and Aliases
 {: #cloud-foundry-aliases}
@@ -103,9 +103,9 @@ var cos = new AWS.S3(config);
 
 For more information on how to use the SDK to access {{site.data.keyword.cos_short}} with code examples visit:
 
-* [Using Java](/docs/services/cloud-object-storage/libraries/java.html#using-java)
-* [Using Python](/docs/services/cloud-object-storage/libraries/python.html#using-python)
-* [Using Node.js](/docs/services/cloud-object-storage/libraries/node.html#using-node-js)
+* [Using Java](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java#using-java)
+* [Using Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python#using-python)
+* [Using Node.js](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node#using-node-js)
 
 ## Creating Service Bindings 
 {: #cloud-foundry-bindings}
@@ -156,7 +156,7 @@ bx resource service-binding-create <service alias> <cf app name> <role>
 ### IBM Client Tools (CLI) with HMAC Credentials
 {: #cloud-foundry-hmac}
 
-Hash-based message authentication code (HMAC) is a mechanism for calculating a message authentication code created that uses a pair of access and secret keys. This technique can be used to verify the integrity and authenticity of a message. More information about using [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html#using-hmac-credentials) is available in the {{site.data.keyword.cos_short}} documentation.
+Hash-based message authentication code (HMAC) is a mechanism for calculating a message authentication code created that uses a pair of access and secret keys. This technique can be used to verify the integrity and authenticity of a message. More information about using [HMAC credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-hmac#using-hmac-credentials) is available in the {{site.data.keyword.cos_short}} documentation.
 
 1. Log in to with IBM Cloud CLI
 ```

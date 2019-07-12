@@ -32,7 +32,7 @@ Source code can be found at [GitHub](https://github.com/ibm/ibm-cos-sdk-python/)
 
 The `ibm_boto3` library provides complete access to the {{site.data.keyword.cos_full}} API. Endpoints, an API key, and the instance ID must be specified during creation of a service resource or low-level client as shown in the following basic examples.
 
-The service instance ID is also referred to as a _resource instance ID_. The value can be found by creating a [service credential](/docs/services/cloud-object-storage/iam/service-credentials.html), or through the CLI.
+The service instance ID is also referred to as a _resource instance ID_. The value can be found by creating a [service credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), or through the CLI.
 {:tip}
 
 Detailed documentation can be found at [here](https://ibm.github.io/ibm-cos-sdk-python/).
@@ -51,7 +51,7 @@ The 2.0 version of the SDK introduces a namespacing change that allows an applic
 
 To connect to COS, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
 
-After generating a [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client authenticates with a signature, otherwise the client uses the provided API key to authenticate by using a bearer token.
+After generating a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client authenticates with a signature, otherwise the client uses the provided API key to authenticate by using a bearer token.
 
 If migrating from AWS S3, you can also source credentials data from `~/.aws/credentials` in the format:
 
@@ -68,10 +68,10 @@ If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_creden
 
 The following variables appear in the examples:
 
-* `bucket_name` must be a [unique and DNS-safe](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#compatibility-api-new-bucket) string. Because bucket names are unique across the entire system, these values need to be changed if this example is run multiple times. Note that names are reserved for 10-15 minutes after deletion.
-* `ibm_api_key_id` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html) as `apikey`.
-* `ibm_service_instance_id` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html) as `resource_instance_id`. 
-* `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol. This value is **not** the `endpoints` value that is found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+* `bucket_name` must be a [unique and DNS-safe](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-new-bucket) string. Because bucket names are unique across the entire system, these values need to be changed if this example is run multiple times. Note that names are reserved for 10-15 minutes after deletion.
+* `ibm_api_key_id` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) as `apikey`.
+* `ibm_service_instance_id` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) as `resource_instance_id`. 
+* `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol. This value is **not** the `endpoints` value that is found in the [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `LocationConstraint` is a [valid provisioning code](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint) that corresponds to the `endpoint` value. 
 
 
@@ -106,7 +106,7 @@ cos = ibm_boto3.resource("s3",
 *Key Values*
 * `<endpoint>` - public endpoint for your cloud Object Storage with schema prefixed ('https://') (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
-* `<resource-instance-id>` - resource ID for your cloud Object Storage (available through [IBM Cloud CLI](/docs/cli?topic=cloud-cli-ibmcloud-cli#ibmcloud-cli) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window})
+* `<resource-instance-id>` - resource ID for your cloud Object Storage (available through [IBM Cloud CLI](/docs/cli?topic=cloud-cli-idt-cli) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window})
 * `<location>` - default location for your cloud Object Storage (must match the region that is used for `<endpoint>`)
 
 *SDK References*
@@ -635,7 +635,7 @@ cos = ibm_boto3.client("s3",
 transfer_manager = AsperaTransferManager(cos)
 ```
 
-You need to provide an IAM API Key for Aspera high-speed transfers. [HMAC Credentials](/docs/services/cloud-object-storage/iam/service-credentials.html#iam-vs-hmac){:new_window} are **NOT** currently supported. For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
+You need to provide an IAM API Key for Aspera high-speed transfers. [HMAC Credentials](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){:new_window} are **NOT** currently supported. For more information on IAM, [click here](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview#getting-started-with-iam).
 {:tip}
 
 To get the highest throughput, split the transfer into a specified number of parallel **sessions** that send chunks of data whose size is defined by a **threshold** value.

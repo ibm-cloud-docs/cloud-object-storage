@@ -43,7 +43,7 @@ There are four storage classes:
 
 For pricing details please see [the pricing table at ibm.com](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api).
 
-For information on how to create buckets with different storage classes, please see the [API reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#storage-class).
+For information on how to create buckets with different storage classes, please see the [API reference](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
 
 ## How do I create a bucket with a different storage class?
 {: #classes-locationconstraint}
