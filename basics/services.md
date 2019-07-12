@@ -27,11 +27,11 @@ subcollection: cloud-object-storage
 {: #service-availability}
 
 The table below describes the regions where the following services are supported
-* [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics/aspera.html)
-* [Key Protect](/docs/services/cloud-object-storage/basics/encryption.html#sse-kp)
-* [Archive Data](/docs/services/cloud-object-storage/basics/archive.html)
-* [Immutable Object Storage](/docs/services/cloud-object-storage/basics/immutable.html)
-* [Activity Tracker](/docs/services/cloud-object-storage/basics/at.html#at_events)
+* [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera)
+* [Key Protect](/docs/services/cloud-object-storage/basics/cloud-object-storage/basics?topic=cloud-object-storage-encryption#sse-kp)
+* [Archive Data](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-archive)
+* [Immutable Object Storage](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-immutable)
+* [Activity Tracker](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-at-events#at_events)
 
 
 Downloads using Aspera high-speed will incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).

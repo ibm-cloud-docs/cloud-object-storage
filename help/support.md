@@ -33,6 +33,6 @@ When using the forums to ask a question, tag your question so that it is seen by
 * If you have technical questions about {{site.data.keyword.cos_short}}, post your question on [Stack Overflow](https://stackoverflow.com/search?q=object-storage+ibm-bluemix) and tag your question with `ibm` and `object-storage`.
 * For questions about the service and getting started instructions, use the [IBM developerWorks dW Answers forum](https://developer.ibm.com/answers/topics/objectstorage/). Include the  `objectstorage` tag.
 
-See [Getting help](/docs/get-support/howtogetsupport.html) for more details about using the forums.
+See [Getting help](/docs/get-support?topic=get-support-getting-customer-support) for more details about using the forums.
 
-For information about opening an IBM support ticket, or about support levels and ticket severities, see [Contacting support](/docs/get-support/howtogetsupport.html).
+For information about opening an IBM support ticket, or about support levels and ticket severities, see [Contacting support](/docs/get-support?topic=get-support-getting-customer-support).
