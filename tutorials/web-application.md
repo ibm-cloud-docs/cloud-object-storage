@@ -83,14 +83,18 @@ and pressing enter (note, this assumes that your shell is BASH, and not an alter
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ```
-{:codeblock: .codeblock}{: caption="Example 1. Using cURL to install Node Version Manager (nvm)." caption-side="bottom"}
+{:codeblock: .codeblock}
+{: caption="Example 1. Using cURL to install Node Version Manager (nvm)" caption-side="bottom"}
+`Example 1. Using cURL to install Node Version Manager (nvm)`
    
 ...or Wget (just one is necessary, but not both; use whichever is available on your system):
 
 ```
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ```
-{:codeblock: .codeblock}{: caption="Example 2. Using Wget to install Node Version Manager (nvm)." caption-side="bottom"}
+{:codeblock: .codeblock}
+{: caption="Example 2. Using Wget to install Node Version Manager (nvm)" caption-side="bottom"}
+`Example 2. Using Wget to install Node Version Manager (nvm)`
 
 Or, for Windows, you can use [nvm for Windows](https://github.com/coreybutler/nvm-windows) with installers
 and source code at the link.
@@ -111,7 +115,9 @@ command line.
 ```bash
 nvm install v6.17.1
 ```
-{:codeblock: .codeblock}{: caption="Example 3. Using `nvm` to install a specific version of Node.js." caption-side="bottom"}
+{:codeblock: .codeblock}
+{: caption="Example 3. Using `nvm` to install a specific version of Node.js" caption-side="bottom"}
+`Example 3. Using nvm to install a specific version of Node.js`
 
 Whichever approach you use, once you have followed the instructions to install Node.js and npm (included with Node) 
 on your computer, as appropriate to the operating system and strategy you are using, congratulate yourself on a job well 
@@ -157,7 +163,9 @@ from the command line, as shown in Example 4.
 ```bash
 ibmcloud login
 ```
-{:codeblock: .codeblock}{: caption="Example 4. Command to login to the " caption-side="bottom"}
+{:codeblock: .codeblock}
+{: caption="Example 4. Command to login to the IBM Cloud Platfirm using CLI Developer Tools" caption-side="bottom"}
+`Example 4. Command to login to the IBM Cloud Platfirm using CLI Developer Tools`
 
 You may specify optional parameters if you want: your organization with option -o, and the space with option -s, or, 
 if you are using a federated account: --sso. When you login you may be asked to 
@@ -170,7 +178,9 @@ may be preferable for production use, but for now, use the code as shown, if app
 ```bash
 ibmcloud api cloud.ibm.com
 ```
-{:codeblock: .codeblock}{: caption="Example 5. Command to set the API endpoint for your account." caption-side="bottom"}
+{:codeblock: .codeblock}
+{: caption="Example 5. Command to set the API endpoint for your account." caption-side="bottom"}
+`Example 5. Command to set the API endpoint for your account`
 
 Target the Cloud Foundry (cf) aspect of {{site.data.keyword.cloud_notm}} Platform using the code shown in 
 Example 6, using the target command and the --cf option. The `cf` API is embedded within the CLI Developer Tools.
@@ -178,7 +188,9 @@ Example 6, using the target command and the --cf option. The `cf` API is embedde
 ```bash
 ibmcloud target --cf
 ```
-{:codeblock: .codeblock}{: caption="Example 6. Setting your options for using the Cloud Foundry API." caption-side="bottom"}
+{:codeblock: .codeblock}
+{: caption="Example 6. Setting your options for using the Cloud Foundry API." caption-side="bottom"}
+`Example 6. Setting your options for using the Cloud Foundry API`
 
 And now, the moment you've been working towards: creating a web application starts with the code shown in Example 7. The `dev` space
 is a default option for your organization, but you may wish to create others for isolating different efforts, keeping 'finance'
@@ -187,7 +199,9 @@ separate from 'development', for example.
 ```bash
 ibmcloud dev create
 ```
-{:codeblock: .codeblock}{: caption="Example 7. Command to x" caption-side="bottom"}
+{:codeblock: .codeblock}
+{: caption="Example 7. Command to create an app using IBM Cloud Developer Tools" caption-side="bottom"}
+`Example 7. Command to create an app using IBM Cloud Developer Tools`
 
 With that command, you will be asked a series of questions. You can go back at many points in the process, but if you feel
 you have become lost, or missed steps, please feel free to start over by deleting the directory, or creating another for
@@ -213,7 +227,7 @@ Select an application type:
 
 ```
 {: caption="Example 8. Output from the command `ibmcloud dev create` where you select option #2, for a Web App" caption-side="bottom"}
-
+`Example 8. Output from the command ibmcloud dev create where you select option #2, for a Web App`
 
 There are a number of options in Example 9 based on what are called "buildpacks," and please note the option for using 'Node'. Type '4' and press enter.
 
@@ -238,6 +252,7 @@ Select a language:
 
 ```
 {: caption="Example 9. Language options from `ibmcloud dev create` continued." caption-side="bottom"}
+`Example 9. Language options from ibmcloud dev create continued`
 
 After you have made your selection for the programming language and/or framework, the next selection shown in Example 10
 will have so many options, it may scroll past your desired service. As you can see in the example, we
@@ -300,6 +315,7 @@ WATSON
 
 ```
 {: caption="Example 10. Skeleton application options from `ibmcloud dev create`." caption-side="bottom"}
+`Example 10. Skeleton application options from ibmcloud dev create`
 
 Now that you have chosen the more straightforward options, the hardest option for developers everywhere is still required: naming your app. Please 
 follow the example shown in Example 11 and type 'webapplication', then press enter.
@@ -308,6 +324,7 @@ follow the example shown in Example 11 and type 'webapplication', then press ent
 ? Enter a name for your application> webapplication
 ```
 {: caption="Example 11. Name your application 'webapplication' using `ibmcloud dev create`." caption-side="bottom"}
+`Example 11. Name your application 'webapplication' using ibmcloud dev create`
 
 Later, you may add as many services, like datastores or compute functions, as needed or desired through the web console. However, as shown in Example 12, type 'n' for no when asked if you want to add services at this time.
 
@@ -318,6 +335,7 @@ Using the resource group Default (default) of your account
 
 ```
 {: caption="Example 12. Option to add services when using `ibmcloud dev create` continued." caption-side="bottom"}
+`Example 12. Option to add services when using ibmcloud dev create continued`
 
 Earlier, the advantages of developing with containers, instead of traditional server iron, or even virtual servers, 
 was mentioned regarding Docker. One way to manage containers is with orchestration software, like Kubernetes, which has 
@@ -340,6 +358,7 @@ options:
 
 ```
 {: caption="Example 13. Deployment options from `ibmcloud dev create`." caption-side="bottom"}
+`Example 13. Deployment options from ibmcloud dev create`
 
 As noted earlier, we will choose a region for our automated deployment CD toolchain, so select the same option as earlier, 
 '5' as shown in Example 14.
@@ -361,6 +380,7 @@ Select a region for your toolchain from the following options:
 
 ```
 {: caption="Example 14. Regions available as options in `ibmcloud dev create`." caption-side="bottom"}
+`Example 14. Regions available as options in ibmcloud dev create`
 
 At this point, generating a new application will remind us that the toolchain used
 to deploy your app later on will need some additional configuration, as shown in Example 15. As mentioned earlier,
@@ -378,6 +398,7 @@ application code.
 
 ```
 {: caption="Example 15. Note given re: SSH keys by the `ibmcloud dev create` command." caption-side="bottom"}
+`Example 15. Note given re: SSH keys by the ibmcloud dev create`
 
 Further prompts will confirm the application and toolchain name you defined earlier. Example 16 shows how you can alter the 
 host and toolchain names, if you wish. The hostname has to be unique for the domain used as the service endpoint of your application, but if there is no conflict, 
@@ -399,6 +420,7 @@ https://cloud.ibm.com/devops/toolchains/6ffb568a-e48f-4e27-aed0-00ca931dde66?env
 
 ```
 {: caption="Example 16. Confirming names for properties in `ibmcloud dev create`." caption-side="bottom"}
+`Example 16. Confirming names for properties in ibmcloud dev create`
 
 Should you copy and paste that link given at the end of the output you received as a result of using the `ibmcloud dev create` command, you will 
 be able to access your CD Toolchain. But, you can also access that from the console later, in case you missed capturing the link. 
@@ -421,6 +443,7 @@ current directory.
 
 ```
 {: caption="Example 17. Confirmation of actions generated by `ibmcloud dev create`." caption-side="bottom"}
+`Example 17. Confirmation of actions generated by ibmcloud dev create`
 
 That last statement from Example 17 means that if you view your current directory, a new subdirectory `webapplication` should
 now be visible. Inside the `webapplication` directory you will find a scaffold of your new Node.js application. However, while 
@@ -433,7 +456,9 @@ appropriate link to view result logs in your online portal for your {{site.data.
 ```bash
 ibmcloud dev build
 ```
-{: codeblock}{: caption="Example 18. {{site.data.keyword.cloud_notm}} Platform build command" caption-side="bottom"}
+{: codeblock}
+{: caption="Example 18. {{site.data.keyword.cloud_notm}} Platform build command" caption-side="bottom"}
+`Example 18. IBM Cloud Platform build command`
 
 In addition to building the app for delivery, building the app allows you to run the same code locally with the `run` command 
 (after you copy and paste or type the command from Example 19). When finished, copy and paste the provided URL into your
@@ -442,19 +467,23 @@ browser's address bar, typically, <http://localhost:3000>.
 ```bash
 ibmcloud dev run 
 ```
-{: codeblock}{: caption="Example 19. {{site.data.keyword.cloud_notm}} Platform CLI command to run your app" caption-side="bottom"}
+{: codeblock}
+{: caption="Example 19. {{site.data.keyword.cloud_notm}} Platform CLI command to run your app" caption-side="bottom"}
 
 Now that the app is created and defined, view your application to confirm it works. If you see the placeholder image as 
 shown in Figure 2, congratulations! You have created a new Node.js web application and are ready to deploy it to the cloud.
 
-![initialnodeapp](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-splash-graphic.png){: caption="Figure 2. New Node.js Application: Congratulations!" caption-side="top"}
+![initialnodeapp](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-splash-graphic.png)
+{: caption="Figure 2. New Node.js Application: Congratulations!" caption-side="top"}
 
 Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the deploy command (as shown in Example 20).
 
 ```bash
 ibmcloud dev deploy
 ```
-{: codeblock}{: caption="Example 20. {{site.data.keyword.cloud_notm}} Platform CLI command to upload and deploys" caption-side="bottom"}
+{: codeblock}
+{: caption="Example 20. {{site.data.keyword.cloud_notm}} Platform CLI command to upload and deploy your app" caption-side="bottom"}
+`Example 20. IBM Cloud Platform CLI command to upload and deploy your app`
 
 The URL again will be displayed as a result of running the command `ibmcloud dev deploy` based upon the regional endpoint
 and the hostname you specified earlier. If there are any issues, you may see links to the logs that are stored in your portal
@@ -486,7 +515,9 @@ Follow these steps:
 ```bash
 git clone https://git.ng.bluemix.net/Chris.Pitchford/temp-image-gallery-tutorial ./temp-web-application
 ```
-{: codeblock}{: caption="Example 21. Git clone command details" caption-side="bottom"}
+{: codeblock}
+{: caption="Example 21. Git clone command details" caption-side="bottom"}
+`Example 21. Git clone command details`
 
 2.  Run the app locally. Open a terminal application providing a CLI and change your working directory to
     the COS-WebGalleryStart directory. Please note the Node.js dependencies
@@ -496,14 +527,18 @@ git clone https://git.ng.bluemix.net/Chris.Pitchford/temp-image-gallery-tutorial
 ```bash
 npm install
 ```
-{: codeblock}{: caption="Example 22. Node Package Manager (npm) install" caption-side="bottom"}
+{: codeblock}
+{: caption="Example 22. Node Package Manager (npm) install" caption-side="bottom"}
+`Example 22. Node Package Manager (npm) install`
 
 3.  Run the app using the command shown in Example 23.
 
 ```bash
 npm start
 ```
-{: codeblock}{: caption="Example 23. Details on starting your app with npm" caption-side="bottom"}
+{: codeblock}
+{: caption="Example 23. Details on starting your app with npm" caption-side="bottom"}
+`Example 23. Details on starting your app with npm`
 
 Open a browser and view your app on the address and port that is output
 to the console, <http://localhost:3000>.
@@ -532,7 +567,9 @@ applications:
   disk_quota: 1024M
   random-route: true
 ```
-{: codeblock}{: caption="Example 24. Contents of `manifest.yml`" caption-side="bottom"}
+{: codeblock}
+{: caption="Example 24. Contents of `manifest.yml`" caption-side="bottom"}
+`Example 24. Contents of manifest.yml`
 
 **Tip**: Now is the point where you might need to set up SSH keys to interactively push code to your remote origin. If you set a 
     passphrase for your SSH key, you are required to enter this code each time you push your changes to the remote origin for 
@@ -561,7 +598,9 @@ to choose the same region you've been working with to this point, if you're aske
 ```bash
 ibmcloud login
 ```
-{: codeblock}{: caption="Example 25. CLI command for logging into the {{site.data.keyword.cloud_notm}} Platform" caption-side="bottom"}
+{: codeblock}
+{: caption="Example 25. CLI command for logging into the {{site.data.keyword.cloud_notm}} Platform" caption-side="bottom"}
+`Example 25. CLI command for logging into the IBM Cloud Platform`
 
 b.  Set the API Endpoint for your region by using the api command (as
         shown with optional placeholders in Example 6). if you do not know your regional
@@ -570,7 +609,9 @@ b.  Set the API Endpoint for your region by using the api command (as
 ```bash
 ibmcloud api cloud.ibm.com
 ```
-{: codeblock}{: caption="Example 26. {{site.data.keyword.cloud_notm}} Platform API endpoint" caption-side="bottom"}
+{: codeblock}
+{: caption="Example 26. {{site.data.keyword.cloud_notm}} Platform API endpoint" caption-side="bottom"}
+`Example 26. IBM Cloud Platform API endpoint`
 
 c.  Target the Cloud Foundry aspect of {{site.data.keyword.cloud_notm}} Platform using the code shown in 
 Example 27, using the target command and the --cf option.
@@ -579,14 +620,18 @@ Example 27, using the target command and the --cf option.
 ```bash
 ibmcloud target --cf
 ```
-{: codeblock}{: caption="Example 27. {{site.data.keyword.cloud_notm}} Platform CLI targeting Cloud Foundry" caption-side="bottom"}
+{: codeblock}
+{: caption="Example 27. {{site.data.keyword.cloud_notm}} Platform CLI targeting Cloud Foundry" caption-side="bottom"}
+`Example 27. IBM Cloud Platform CLI targeting Cloud Foundry`
 
 d.  Build the app for delivery that application with the build command (as in Example 28).
 
 ```bash
 ibmcloud dev build
 ```
-{: codeblock}{: caption="Example 28. {{site.data.keyword.cloud_notm}} Platform build command" caption-side="bottom"}
+{: codeblock}
+{: caption="Example 28. {{site.data.keyword.cloud_notm}} Platform build command" caption-side="bottom"}
+`Example 28. IBM Cloud Platform build command`
 
 g.  Let's go ahead and test the application locally. In addition to building the app for delivery, building the app allows you to run the same code locally with the run command (after you type the
     command from Example 29).
@@ -595,7 +640,9 @@ g.  Let's go ahead and test the application locally. In addition to building the
 ```bash
 ibmcloud dev run 
 ```
-{: codeblock}{: caption="Example 29. {{site.data.keyword.cloud_notm}} Platform CLI command to run your app" caption-side="bottom"}
+{: codeblock}
+{: caption="Example 29. {{site.data.keyword.cloud_notm}} Platform CLI command to run your app" caption-side="bottom"}
+`Example 29. IBM Cloud Platform CLI command to run your app`
 
 h.  Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the deploy command 
 (as shown in Example 30).
@@ -603,7 +650,9 @@ h.  Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the deploy 
 ```bash
 ibmcloud dev deploy
 ```
-{: codeblock}{: caption="Example 30. {{site.data.keyword.cloud_notm}} Platform CLI command to upload and deploys" caption-side="bottom"}
+{: codeblock}
+{: caption="Example 30. {{site.data.keyword.cloud_notm}} Platform CLI command to upload and deploys" caption-side="bottom"}
+`Example 30. IBM Cloud Platform CLI command to upload and deploys`
 
 The code in Example 31 shows the sequence of commands used in this example to build, test, and deploy the initial web application.
 
@@ -616,7 +665,9 @@ ibmcloud dev build
 ibmcloud dev run
 ibmcloud dev deploy
 ```
-{: codeblock}{: caption="Example 31. {{site.data.keyword.cloud_notm}} Platform CLI command list" caption-side="bottom"}
+{: codeblock}
+{: caption="Example 31. {{site.data.keyword.cloud_notm}} Platform CLI command list" caption-side="bottom"}
+`Example 31. IBM Cloud Platform CLI command list`
 
 If successful, {{site.data.keyword.cloud_notm}} Platform reports that the app was uploaded,
 successfully deployed, and started. If you are also logged in to the {{site.data.keyword.cloud_notm}} Platform
@@ -677,7 +728,9 @@ aws\_access\_key\_id = {access_key_id}
 
 aws\_secret\_access\_key = {secret_access_key}
 ```
-{: codeblock}{: caption="Example 32. Credentials as they are defined in your `~/.aws/credentials` file" caption-side="bottom"}
+{: codeblock}
+{: caption="Example 32. Credentials as they are defined in your `~/.aws/credentials` file" caption-side="bottom"}
+`Example 32. Credentials as they are defined in your ~/.aws/credentials file`
 
 2.  In the web page for the application you created using the CLI command on the {{site.data.keyword.cloud_notm}} Platform, 
     define your required credentials as environment variables per development best practices by
@@ -736,7 +789,7 @@ can perform the same actions: upload files to your {{site.data.keyword.cos_full_
 {: #tutorial-develop-app}
 
 In the `package.json` file, inside the
-scripts object, you see how "start" is defined (Example 334). This file
+scripts object, you see how "start" is defined (Example 33). This file
 is what {{site.data.keyword.cloud_notm}} Platform uses to tell node to run app.js each time the app
 starts. Also use it when testing the app locally. Take a look at the main application file, which is called app.js. This is the code that we have told Node.js to process first when you start your app with the `npm start` command (or nodemon). 
 
@@ -748,7 +801,10 @@ starts. Also use it when testing the app locally. Take a look at the main applic
     }
 }
 ```
-{: codeblock}{: javascript}{: caption="Example 34. Telling your app how to bootstrap your custom code" caption-side="bottom"}
+{: codeblock}
+{: javascript}
+{: caption="Example 33. Telling your app how to bootstrap your custom code" caption-side="bottom"}
+`Example 33. Telling your app how to bootstrap your custom code`
 
 Our app.js file begins with the code shown in Example 34.
 At first, the code uses node to load modules that are needed to get started.
@@ -771,7 +827,10 @@ app.listen(port, function() {
 });
 //...
 ```
-{: codeblock}{: javascript}{: caption="Example 34. Your Web Application has a humble, but powerful, start" caption-side="bottom"}
+{: codeblock}
+{: javascript}
+{: caption="Example 34. Your Web Application has a humble, but powerful, start" caption-side="bottom"}
+`Example 34. Your Web Application has a humble, but powerful, start`
 
 Let's see how Example 35 shows how to define a path and views. The first line of code tells the
 Express framework to use the public directory to serve our static files, which
@@ -799,7 +858,10 @@ app.get('/', function (req, res) {
 
 //...
 ```
-{: codeblock}{: javascript}{: caption="Example 35. Web app views and template locations" caption-side="bottom"}
+{: codeblock}
+{: javascript}
+{: caption="Example 35. Web app views and template locations" caption-side="bottom"}
+`Example 35. Web app views and template locations`
 
 The following figure shows what the index view template when rendered
 and sent to the browser. If you are using `nodemon` you may have noticed 
@@ -837,7 +899,9 @@ static styles.css file from our pubic/style sheets directory.
 <link rel="stylesheet" href="stylesheets/style.css">
 
 ```
-{: codeblock}{: caption="Example 36. HTML elements from head-inc.ejs" caption-side="bottom"}
+{: codeblock}
+{: caption="Example 36. HTML elements from head-inc.ejs" caption-side="bottom"}
+`Example 36. HTML elements from head-inc.ejs`
 
 The body of the index view contains our bootstrap
 styled navigation tabs (see Example 37), and our upload form in a basic layout provided by 
@@ -897,7 +961,9 @@ Consider these two specifications for our app:
 
 </html>
 ```
-{: codeblock}{: caption="Example 37. HTML elements from index.ejs" caption-side="bottom"}
+{: codeblock}
+{: caption="Example 37. HTML elements from index.ejs" caption-side="bottom"}
+`Example 37. HTML elements from index.ejs`
 
 Let's take a moment to return to `app.js` in Example 38. The example sets up Express
 routes to handle additional requests that will be made to our app. The
@@ -920,7 +986,10 @@ app.use('/', imageUploadRoutes);
 
 //...
 ```
-{: codeblock}{: javascript}{: caption="Example 38. Node Express router examples" caption-side="bottom"}
+{: codeblock}
+{: javascript}
+{: caption="Example 38. Node Express router examples" caption-side="bottom"}
+`Example 38. Node Express router examples`
 
 #### Image upload
 {: #tutorial-develop-image-upload}
@@ -973,7 +1042,10 @@ var router = function(title) {
 
 module.exports = router;
 ```
-{: codeblock}{: javascript}{: caption="Example 39. Node express router details" caption-side="bottom"}
+{: codeblock}
+{: javascript}
+{: caption="Example 39. Node express router details" caption-side="bottom"}
+`Example 39. Node express router details`
 
 In comparison, the code for the galleryRouter in Example 40 is a model of simplicity. We follow the same pattern
 that we did with imageUploadRouter and require galleryController on the first line of the function, then set up our route. The main difference is we
@@ -998,7 +1070,10 @@ var router = function(title) {
 module.exports = router;
 
 ```
-{: codeblock}{: javascript}{: caption="Example 40. Node express router details" caption-side="bottom"}
+{: codeblock}
+{: javascript}
+{: caption="Example 40. Node express router details" caption-side="bottom"}
+`Example 40. Node express router details`
 
 We next turn our attention to the controller for the gallery.
 
@@ -1061,7 +1136,10 @@ var galleryController = function(title) {
 
 module.exports = galleryController;
 ```
-{: codeblock}{: javascript}{: caption="Example 41. Node express controller details" caption-side="bottom"}
+{: codeblock}
+{: javascript}
+{: caption="Example 41. Node express controller details" caption-side="bottom"}
+`Example 41. Node express controller details`
 
 For local testing, a
 helpful task is to print the file object to the console, `console.log(file)`. 
@@ -1075,6 +1153,7 @@ encoding: '7bit',
 mimetype: 'image/jpeg' }
 ```
 {: caption="Example 42. Console display of debug object" caption-side="bottom"}
+`Example 42. Console display of debug object`
 
 While bragging is unseemly, Figure 9 shows the feedback from our callback 
 declaring that the application has indeed: "uploaded file successfully" when tested.
@@ -1130,7 +1209,10 @@ as the value to a property named `imageUrls`.
 
 //...
 ```
-{: codeblock}{: javascript}{: caption="Example 43. Partial contents of galleryController.js" caption-side="bottom"}
+{: codeblock}
+{: javascript}
+{: caption="Example 43. Partial contents of galleryController.js" caption-side="bottom"}
+`Example 43. Partial contents of galleryController.js`
 
 The last code example, number 44 in this tutorial, shows the body for the galleryView template with the code 
 needed to display the images. We get the imageUrls array from the res.render() 
@@ -1168,7 +1250,9 @@ is requested.
 
 </html>
 ```
-{: codeblock}{: caption="Example 44. Loop and output scriptlets used in the gallery template" caption-side="bottom"}
+{: codeblock}
+{: caption="Example 44. Loop and output scriptlets used in the gallery template" caption-side="bottom"}
+`Example 44. Loop and output scriptlets used in the gallery template`
 
 We test it locally from http://localhost:3000/gallery and see our image
 in Figure 10.
