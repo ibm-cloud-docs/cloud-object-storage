@@ -50,7 +50,7 @@ When creating or modifying an archive policy for a bucket, consider the followin
 To immediately archive new objects uploaded to a bucket, enter 0 days on the archive policy.
 {:tip}
 
-Archive is available in certain regions only. See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html) for more details.
+Archive is available in certain regions only. See [Integrated Services](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability) for more details.
 {:tip}
 
 ## Restore an archived object

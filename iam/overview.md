@@ -26,7 +26,7 @@ subcollection: cloud-object-storage
 # IAM overview
 {: #iam-overview}
 
-{{site.data.keyword.cloud}} Identity & Access Management enables you to securely authenticate users and control access to all cloud resources consistently in the {{site.data.keyword.cloud_notm}} Platform. See the [Getting started tutorial](/docs/iam/quickstart.html#getstarted) for more information.
+{{site.data.keyword.cloud}} Identity & Access Management enables you to securely authenticate users and control access to all cloud resources consistently in the {{site.data.keyword.cloud_notm}} Platform. See the [Getting started tutorial](/docs/iam?topic=iam-getstarted#getstarted) for more information.
 
 ## Identity management
 {: #iam-overview-identity}
@@ -35,7 +35,7 @@ Identity management includes the interaction of users, services, and resources. 
 
 The {{site.data.keyword.cloud_notm}} IAM Token Service allows you to create, update, delete and use API keys for users and services. Those API keys can be created either with API calls or the Identity & Access section of the {{site.data.keyword.cloud}} Platform Console. The same key can be used across multiple services. Each user can have multiple API keys to support key rotation scenarios, as well as scenarios using different keys for different purposes to limit the exposure of a single key.
 
-See [What is Cloud IAM?](/docs/iam/index.html#iamoverview) for more information.
+See [What is Cloud IAM?](/docs/iam?topic=iam-iamoverview#iamoverview) for more information.
 
 ### Users and API keys
 {: #iam-overview-user-api-keys}
@@ -66,4 +66,4 @@ IAM Access Control enables the assignment of policies per service or service ins
 
 While roles are a collection of actions, the actions that are mapped to these roles are service specific. Each service determines this role to action mapping during the onboarding process and this mapping is applicable to all users of the service. Roles and Access Policies are configured through the Policy Administration Point (PAP) and enforced through the Policy Enforcement Point (PEP) and Policy Decision Point (PDP).
 
-See [Best practices for organizing users, teams, applications](/docs/tutorials/users-teams-applications.html#best-practices-for-organizing-users-teams-applications) to learn more.
+See [Best practices for organizing users, teams, applications](/docs/tutorials?topic=solution-tutorials-users-teams-applications#best-practices-for-organizing-users-teams-applications) to learn more.

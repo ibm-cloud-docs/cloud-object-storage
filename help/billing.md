@@ -60,7 +60,7 @@ Deleting buckets or objects from the system does not incur a charge.
 ## Aspera transfers
 {: #billing-aspera}
 
-[Aspera high-speed transfer](/docs/services/cloud-object-storage/basics/aspera.html) incurs extra egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api).
+[Aspera high-speed transfer](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera) incurs extra egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api).
 
 ## Storage classes
 {: #billing-storage-classes}
@@ -76,4 +76,4 @@ There are four classes:
 
 For more information about pricing, see [the pricing table at ibm.com](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api).
 
-For more information about creating buckets with different storage classes, see the [API reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#storage-class).
+For more information about creating buckets with different storage classes, see the [API reference](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
