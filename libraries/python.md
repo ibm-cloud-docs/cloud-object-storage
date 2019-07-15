@@ -511,7 +511,7 @@ def get_bucket_contents_v2(bucket_name, max_keys):
             ibm_service_instance_id=COS_SERVICE_CRN,
             ibm_auth_endpoint=COS_AUTH_ENDPOINT,
             config=Config(signature_version="oauth"),
-            endpoint_url=COS_ENDPOINT
+            endpoint_url=COS_ENDPOINT)
 
         more_results = True
         next_token = ""

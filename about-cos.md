@@ -25,7 +25,6 @@ subcollection: cloud-object-storage
 
 
 # About {{site.data.keyword.cos_full_notm}}
-{: #about}
 {: #about-ibm-cloud-object-storage}
 
 Information stored with {{site.data.keyword.cos_full}} is encrypted and dispersed across multiple geographic locations, and accessed over HTTP using a REST API. This service makes use of the distributed storage technologies provided by the {{site.data.keyword.cos_full_notm}} System (formerly Cleversafe).
