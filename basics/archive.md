@@ -775,4 +775,4 @@ Method |  Description
 ## Next Steps
 {: #archive-next-steps}
 
-In addition to {{site.data.keyword.cos_full_notm}}, {{site.data.keyword.cloud_notm}} currently provides several additional object storage offerings for different user needs, all of which are accessible through web-based portals and REST APIs. [Learn more.](/docs/services/ibm-cos?topic=ibm-cos-object-storage-in-the-ibm-cloud)
+In addition to {{site.data.keyword.cos_full_notm}}, {{site.data.keyword.cloud_notm}} currently provides several additional object storage offerings for different user needs, all of which are accessible through web-based portals and REST APIs. [Learn more.](https://cloud.ibm.com/docs/services/ibm-cos?topic=ibm-cos-object-storage-in-the-ibm-cloud)
