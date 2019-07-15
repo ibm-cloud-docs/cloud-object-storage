@@ -35,7 +35,7 @@ Immutable Object Storage allows client(s) to preserve electronic records and mai
 
 The underlying feature capabilities can also be used by organizations that deal with financial records management, such as broker-dealer transactions, and may have need to retain the objects in a non-rewritable and non-erasable format. 
 
-Immutable Object Storage is available in certain regions only, See [Integrated Services](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability#service-availability) for details. It also requires a Standard pricing plan. See [pricing](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage) for details.
+Immutable Object Storage is available in certain regions only, See [Integrated Services](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability#service-availability) for details. It also requires a Standard pricing plan. See [pricing](https://www.ibm.com/cloud/object-storage) for details.
 {:note}
 
 It is not possible to use Aspera high-speed transfer with buckets with a retention policy.

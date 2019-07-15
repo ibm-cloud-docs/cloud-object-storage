@@ -34,7 +34,7 @@ The table below describes the regions where the following services are supported
 * [Activity Tracker](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-at-events#at_events)
 
 
-Downloads using Aspera high-speed will incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
+Downloads using Aspera high-speed will incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage).
 {:tip}
 
 ## Cross Region

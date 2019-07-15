@@ -67,7 +67,7 @@ Buckets can now be created in a Single Data Center configuration in Montréal, C
 ### October 2018
 {: #updates-2018-q4-oct}
 
-The [Java](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java) and [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python) SDKs now provide support for [transferring data using the Aspera FASP protocol](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera). Downloads using Aspera high-speed incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
+The [Java](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java) and [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python) SDKs now provide support for [transferring data using the Aspera FASP protocol](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera). Downloads using Aspera high-speed incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage).
 
 Buckets can now be created in a Single Data Center configuration in Seoul, South Korea. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
 
@@ -79,7 +79,7 @@ Buckets can now be created in a Single Data Center configuration in Seoul, South
 
 Users can [archive cold data](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-archive) by setting the proper parameters in a bucket lifecycle configuration policy, either using the console, REST API, or a language-specific SDK.
 
-The [Java](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java) and [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python) SDKs now provide support for [transferring data using the Aspera FASP protocol](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera). Downloads using Aspera high-speed incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
+The [Java](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java) and [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python) SDKs now provide support for [transferring data using the Aspera FASP protocol](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera). Downloads using Aspera high-speed incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage).
 
 ### August 2018
 {: #updates-2018-q3-aug}
@@ -91,7 +91,7 @@ Buckets can now be created in a Single Data Center configuration in Sao Paolo, B
 ### June 2018
 {: #updates-2018-q2-jun}
 
-Users who upload or download files or folders using the web-based console have the option to use [Aspera high-speed transfer](https://www.ibm.com/cloud/high-speed-data-transfer) for these operations via a browser plug-in. This allows for transfers of objects larger than 200MB using the console, and also allows for greater control and visibility of uploads and downloads. Additional information can be found in the [Uploading Data](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera) documentation. Downloads using Aspera high-speed incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
+Users who upload or download files or folders using the web-based console have the option to use [Aspera high-speed transfer](https://www.ibm.com/cloud/high-speed-data-transfer) for these operations via a browser plug-in. This allows for transfers of objects larger than 200MB using the console, and also allows for greater control and visibility of uploads and downloads. Additional information can be found in the [Uploading Data](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera) documentation. Downloads using Aspera high-speed incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage).
 
 
 Buckets can now be created in the EU Germany region. Data stored in these buckets is distributed across three availability zones in the EU Germany region. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) documentation.

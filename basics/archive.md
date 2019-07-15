@@ -29,8 +29,7 @@ subcollection: cloud-object-storage
 # Archive cold data with transition rules
 {: #archive}
 
-{{site.data.keyword.cos_full}} Archive is a [low cost](
-https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage) option for data that is rarely accessed. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option.
+{{site.data.keyword.cos_full}} Archive is a [low cost](https://www.ibm.com/cloud/object-storage) option for data that is rarely accessed. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option.
 {: shortdesc}
 
 You can archive objects using the web console, REST API, and 3rd party tools that are integrated with IBM Cloud Object Storage. 
@@ -776,4 +775,4 @@ Method |  Description
 ## Next Steps
 {: #archive-next-steps}
 
-In addition to {{site.data.keyword.cos_full_notm}}, {{site.data.keyword.cloud_notm}} currently provides several additional object storage offerings for different user needs, all of which are accessible through web-based portals and REST APIs. [Learn more.](https://console.bluemix.net/docs/services/ibm-cos/index.html)
+In addition to {{site.data.keyword.cos_full_notm}}, {{site.data.keyword.cloud_notm}} currently provides several additional object storage offerings for different user needs, all of which are accessible through web-based portals and REST APIs. [Learn more.](/docs/services/ibm-cos?topic=ibm-cos-object-storage-in-the-ibm-cloud)

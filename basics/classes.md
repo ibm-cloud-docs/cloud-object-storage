@@ -41,7 +41,7 @@ There are four storage classes:
 *  **Cold Vault**: Used for cold workloads where data is primarily archived (accessed every 90 days or less) - a larger  retrieval charge applies for reading data. The service includes a threshold for object size and storage period consistent with the intended use of this service: storing cold, inactive data.
 *  **Flex**: Used for dynamic workloads where access patterns are more difficult to predict. Depending on usage, if the lower costs of cooler storage combined with retrieval charges exceeds a cap value, then the storage charge increases and no any retrieval charges apply. If the data isn't accessed frequently, Flex storage can be more cost effective than Standard storage, and if cooler usage patterns become more active Flex storage is more cost effective than Vault or Cold Vault storage. No threshold object size or storage period applies to Flex buckets.
 
-For pricing details please see [the pricing table at ibm.com](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api).
+For pricing details please see [the pricing table at ibm.com](https://www.ibm.com/cloud/object-storage#s3api).
 
 For information on how to create buckets with different storage classes, please see the [API reference](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
 

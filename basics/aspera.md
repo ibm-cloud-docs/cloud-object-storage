@@ -64,7 +64,7 @@ Typically, using the IBM Cloud Object Storage web-based console is not the most 
 
 **Preferences:** You can set the default for uploads and/or downloads to High-speed.
 
-Downloads using Aspera high-speed transfer incur egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
+Downloads using Aspera high-speed transfer incur egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage).
 {:tip}
 
 **Advanced Preferences:** You can set bandwidth for uploads and downloads.

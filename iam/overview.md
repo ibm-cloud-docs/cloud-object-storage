@@ -40,7 +40,7 @@ See [What is Cloud IAM?](/docs/iam?topic=iam-iamoverview#iamoverview) for more i
 ### Users and API keys
 {: #iam-overview-user-api-keys}
 
-API keys can be created and used by Bluemix users for automation and scripting purposes as well as federated log in when using the CLI. API keys can be created in the Identity and access management UI or using the `ibmcloud` CLI.
+API keys can be created and used by {{site.data.keyword.cloud_notm}} users for automation and scripting purposes as well as federated log in when using the CLI. API keys can be created in the Identity and access management UI or using the `ibmcloud` CLI.
 
 ### Service IDs and API keys
 {: #iam-overview-service-id-api-key}
