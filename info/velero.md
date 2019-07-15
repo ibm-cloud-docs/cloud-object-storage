@@ -110,12 +110,12 @@ Configure [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/){:n
 
 1. Log in to the IBM Cloud Platform by using the CLI.<br/><br/>*For increased security, it's also possible to store the API key in a file or set it as an environment variable.*
     ```bash
-    bx login --apikey <value>
+    ibmcloud login --apikey <value>
     ```
     {: pre}
 2. Retrieve the cluster configuration 
     ```bash
-    bx cs cluster-config <cluster-name>
+    ibmcloud cs cluster-config <cluster-name>
     ```
     {: pre}
 3. Copy and paste the **export** command to set the KUBECONFIG environment variable

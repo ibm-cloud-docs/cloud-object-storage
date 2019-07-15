@@ -72,7 +72,7 @@ Note that leaving the **Resource Type** or **Resource** fields blank will create
 From a terminal run the following command:
 
 ```bash
-bx iam user-policy-create <user-name> \
+ibmcloud iam user-policy-create <user-name> \
       --roles <role> \
       --service-name cloud-object-storage \
       --service-instance <resource-instance-id>
@@ -85,14 +85,14 @@ bx iam user-policy-create <user-name> \
 To list existing policies:
 
 ```bash
-bx iam user-policies <user-name>
+ibmcloud iam user-policies <user-name>
 ```
 {:codeblock}
 
 To edit an existing policy:
 
 ```bash
-bx iam user-policy-update <user-name> <policy-id> \
+ibmcloud iam user-policy-update <user-name> <policy-id> \
       --roles <role> \
       --service-name cloud-object-storage \
       --service-instance <resource-instance-id>

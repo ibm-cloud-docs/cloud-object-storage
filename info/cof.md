@@ -135,22 +135,22 @@ The applications VCAP_SERVICES environment variable is automatically updated wit
 
 1. Log in to with IBM Cloud CLI
 ```
- bx login --apikey <your api key>
+ ibmcloud login --apikey <your api key>
 ```
 
 2. Target your Cloud Foundry environment
 ```
- bx target --cf
+ ibmcloud target --cf
 ```
 
 3. Create a service alias for your {{site.data.keyword.cos_short}}
 ```
-bx resource service-alias-create <service alias> --instance-name <cos instance name>
+ibmcloud resource service-alias-create <service alias> --instance-name <cos instance name>
 ```
 
 4. Create a service binding between your {{site.data.keyword.cos_short}} alias and your Cloud Foundry application and provide a role for your binding. Valid roles are:<br/><ul><li>Writer</li><li>Reader</li><li>Manager</li><li>Administrator</li><li>Operator</li><li>Viewer</li><li>Editor</li></ul>
 ```
-bx resource service-binding-create <service alias> <cf app name> <role>
+ibmcloud resource service-binding-create <service alias> <cf app name> <role>
 ```
 
 ### IBM Client Tools (CLI) with HMAC Credentials
@@ -160,22 +160,22 @@ Hash-based message authentication code (HMAC) is a mechanism for calculating a m
 
 1. Log in to with IBM Cloud CLI
 ```
- bx login --apikey <your api key>
+ ibmcloud login --apikey <your api key>
 ```
 
 2. Target your Cloud Foundry environment
 ```
- bx target --cf
+ ibmcloud target --cf
 ```
 
 3. Create a service alias for your {{site.data.keyword.cos_short}}
 ```
-bx resource service-alias-create <service alias> --instance-name <cos instance name>
+ibmcloud resource service-alias-create <service alias> --instance-name <cos instance name>
 ```
 
 4. Create a service binding between your {{site.data.keyword.cos_short}} alias and your Cloud Foundry application and provide a role for your binding.<br/><br/>* **Note:** An extra parameter* (`{"HMAC":true}`) *is necessary to create service credentials with HMAC enabled.*<br/><br/>Valid roles are:<br/><ul><li>Writer</li><li>Reader</li><li>Manager</li><li>Administrator</li><li>Operator</li><li>Viewer</li><li>Editor</li></ul>
 ```
-bx resource service-binding-create <service alias> <cf app name> <role> -p '{"HMAC":true}'
+ibmcloud resource service-binding-create <service alias> <cf app name> <role> -p '{"HMAC":true}'
 ```
 
 ### Binding to {{site.data.keyword.containershort_notm}}
@@ -197,22 +197,22 @@ You need the following information and substitute the key values in commands bel
 
 1. Create a service alias for your COS Instance<br/><br/>* **Note:** COS Instance can only have one service alias*
 ```
-bx resource service-alias-create <service alias> --instance-name <cos instance name>
+ibmcloud resource service-alias-create <service alias> --instance-name <cos instance name>
 ```
  
 1. Create a new service key with permissions to the COS service alias
 ```
-bx resource service-key-create <service credential name> <role> --alias-name <service alias> --parameters '{"HMAC":true}’
+ibmcloud resource service-key-create <service credential name> <role> --alias-name <service alias> --parameters '{"HMAC":true}’
 ```
 
 3. Bind the cluster service to COS
 ```
-bx cs cluster-service-bind --cluster <cluster name> --namespace default --service <service alias>
+ibmcloud cs cluster-service-bind --cluster <cluster name> --namespace default --service <service alias>
 ```
 
 4. Verify that COS service alias is bound to the cluster
 ```
-bx cs cluster-services --cluster <cluster name>
+ibmcloud cs cluster-services --cluster <cluster name>
 ```
 The output will look like this:
 ```
