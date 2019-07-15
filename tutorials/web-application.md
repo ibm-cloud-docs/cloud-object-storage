@@ -386,7 +386,7 @@ At this point, generating a new application will remind us that the toolchain us
 to deploy your app later on will need some additional configuration, as shown in Example 15. As mentioned earlier,
 uploading your public key to Github (at the CD Toolchain instance on the {{site.data.keyword.cloud_notm}} 
 Platform), will be required to deliver the deployed application using Github. Additional instructions can be found after you deploy
-your application and log in to the your IBM Cloud GitLab account at [README#generating-a-new-ssh-key-pair](https://git.ng.bluemix.net/help/ssh/README#generating-a-new-ssh-key-pair).
+your application and log in to the your IBM Cloud GitLab account at [README#generating-a-new-ssh-key-pair](https://us-south.git.cloud.ibm.com/help/ssh/README#generating-a-new-ssh-key-pair).
 
 ```
 
