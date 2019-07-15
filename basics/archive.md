@@ -202,7 +202,8 @@ Connection: close
 ---
 
 ### Retrieve a bucket lifecycle configuration
-{: #archive-api-retrieve} {: http}
+{: #archive-api-retrieve} 
+{: http}
 
 This implementation of the `GET` operation uses the `lifecycle` query parameter to retrieve the lifecycle settings for the bucket. 
 
