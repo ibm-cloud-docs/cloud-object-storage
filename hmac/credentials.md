@@ -30,7 +30,7 @@ The {{site.data.keyword.cos_full}} API is a REST-based API for reading and writi
 
 In addition to IAM token-based authentication, it is also possible to [authenticate using a signature](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-hmac-signature) created from a pair of access and secret keys. This is functionally identical to the AWS Signature Version 4, and HMAC keys provided by IBM COS should work with the majority of S3-compatible libraries and tools.
 
-Users can create a set of HMAC credentials when creating a [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html) by providing the configuration parameter `{"HMAC":true}` during credential creation. Here's an example showing how to use the {{site.data.keyword.cos_full}} CLI to create a service key with HMAC credentials using the **Writer** role (other roles may be available for your account and may be best suited for your needs). 
+Users can create a set of HMAC credentials when creating a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) by providing the configuration parameter `{"HMAC":true}` during credential creation. Here's an example showing how to use the {{site.data.keyword.cos_full}} CLI to create a service key with HMAC credentials using the **Writer** role (other roles may be available for your account and may be best suited for your needs). 
 
 ```
 ibmcloud resource service-key-create <key-name-without-spaces> Writer --instance-name "<instance name--use quotes if your instance name has spaces>" --parameters '{"HMAC":true}'

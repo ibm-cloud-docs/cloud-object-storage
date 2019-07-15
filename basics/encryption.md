@@ -69,7 +69,7 @@ You'll need:
 ### Create or add a key in {{site.data.keyword.keymanagementserviceshort}}
 {: #sse-kp-add-key}
 
-Navigate to your instance of {{site.data.keyword.keymanagementserviceshort}} and [generate or enter a key](/docs/services/key-protect/index.html#getting-started-with-key-protect).
+Navigate to your instance of {{site.data.keyword.keymanagementserviceshort}} and [generate or enter a key](/docs/services/key-protect?topic=key-protect-getting-started-tutorial).
 
 ### Grant service authorization
 {: #sse-kp}

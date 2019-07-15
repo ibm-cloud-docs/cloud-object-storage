@@ -134,7 +134,7 @@ free public personal account at the [Github](https://github.com/join)
 website; otherwise, feel free to log in with any other account you might have.
 
 Please note, there are important, step-by-step, instructions on how to generate and upload SSH keys to your 
-[Github profile](https://github.com/settings/keys) for secure access to Github from the command line. However, if
+[Github profile](https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) for secure access to Github from the command line. However, if
 you do that now, you will only be getting good practice, as you will have to repeat the steps
 for the instance of Github used for the {{site.data.keyword.cloud_notm}} Platform, which we will access later. Although 
 the steps for using SSH keys can be complicated, with practice, you, too, can be fluent with SSH on the CLI.

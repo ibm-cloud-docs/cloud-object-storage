@@ -79,7 +79,7 @@ Buckets can now be created in a Single Data Center configuration in Seoul, South
 
 Users can [archive cold data](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-archive) by setting the proper parameters in a bucket lifecycle configuration policy, either using the console, REST API, or a language-specific SDK.
 
-The [Java](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java) and [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python) SDKs now provide support for [transferring data using the Aspera FASP protocol](/docs/services/cloud-object-storage/basics/aspera.html). Downloads using Aspera high-speed incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
+The [Java](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java) and [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python) SDKs now provide support for [transferring data using the Aspera FASP protocol](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera). Downloads using Aspera high-speed incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage).
 
 ### August 2018
 {: #updates-2018-q3-aug}
