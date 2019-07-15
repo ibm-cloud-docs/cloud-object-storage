@@ -62,6 +62,6 @@ Pro Version also includes:
 Key points to remember when configuring Cloudberry products to work with {{site.data.keyword.cos_short}}:
 
 * Select `S3 Compatible` from the list of options
-* Only [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html#using-hmac-credentials) are currently supported
+* Only [HMAC credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-hmac#using-hmac-credentials) are currently supported
 * A separate connection is required for each bucket
 * Ensure the `Endpoint` specifed in the connection matches the region of the selected bucket (*backup will fail due to inaccessible destination*). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).

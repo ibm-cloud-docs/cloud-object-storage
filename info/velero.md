@@ -37,7 +37,7 @@ Velero consists of two parts:
 
 Before you begin, you need the following setup:
 
-* The [`IBM Cloud CLI`](/docs/cli){:new_window} installed
+* The [`IBM Cloud CLI`](/docs/cli?topic=cloud-cli-getting-started){:new_window} installed
 * The [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/){:new_window} command-line tool that is installed and configured to connect to your cluster
 * An {{site.data.keyword.cos_short}} instance
 * A {{site.data.keyword.cos_short}} bucket

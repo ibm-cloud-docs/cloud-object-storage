@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 {: #node-install}
 
 The preferred way to install the {{site.data.keyword.cos_full}} SDK for Node.js is to use the
-[`npm`](https://npmjs.org){:new_window} package manager for Node.js. Type the following command
+[`npm`](https://www.npmjs.com){:new_window} package manager for Node.js. Type the following command
 into a command line:
 
 ```sh
@@ -54,7 +54,7 @@ To run the SDK, you need **Node 4.x+**.
 
 To connect to COS, a client is created and configured by providing credential information (API Key, Service Instance ID, and IBM Authentication Endpoint). These values can also be automatically sourced from a credentials file or from environment variables.
 
-After generating a [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client authenticates with a signature, otherwise the client uses the provided API key to authenticate with a bearer token.
+After generating a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client authenticates with a signature, otherwise the client uses the provided API key to authenticate with a bearer token.
 
 The `default` section heading specifies a default profile and associated values for credentials. You can create more profiles in the same shared configuration file, each with its own credential information. The following example shows a configuration file with the default profile:
 ```
@@ -94,7 +94,7 @@ var cos = new AWS.S3(config);
 *Key Values*
 * `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `<api-key>` - API key generated when creating the service credentials (write access is required for creation and deletion examples)
-* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](/docs/cli?topic=cloud-cli-ibmcloud-cli#ibmcloud-cli) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window})
+* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](/docs/overview?topic=overview-crn) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window})
 
 ### Creating a bucket
 {: #node-examples-new-bucket}
@@ -474,7 +474,7 @@ function getLifecycleConfiguration(bucketName) {
 ### Create a lifecycle configuration 
 {: #node-examples-put-lifecycle}
 
-Detailed information about structuring the lifecycle configuration rules are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#create-bucket-lifecycle)
+Detailed information about structuring the lifecycle configuration rules are available in the [API Reference](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-new-bucket)
 
 ```javascript
 function createLifecycleConfiguration(bucketName) {
@@ -536,7 +536,7 @@ function deleteLifecycleConfiguration(bucketName) {
 ### Temporarily restore an object
 {: #node-examples-restore-object}
 
-Detailed information about the restore request parameters are available in the [API Reference](/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#restore-object)
+Detailed information about the restore request parameters are available in the [API Reference](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-object-operations#object-operations-archive-restore)
 
 ```javascript
 function restoreItem(bucketName, itemName) {

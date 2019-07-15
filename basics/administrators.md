@@ -22,7 +22,7 @@ subcollection: cloud-object-storage
 # For administrators
 {: #administrators}
 
-Storage and system administrators who need to configure object storage and manage access to data can take advantage of IBM Cloud Identity and Access Management (IAM) to manage users, create and rotate API keys, and grant roles to users and services. If you haven't already, go ahead and read through the [getting started tutorial](/docs/services/cloud-object-storage/getting-started.html) to familiarize yourself with the core concepts of buckets, objects, and users.
+Storage and system administrators who need to configure object storage and manage access to data can take advantage of IBM Cloud Identity and Access Management (IAM) to manage users, create and rotate API keys, and grant roles to users and services. If you haven't already, go ahead and read through the [getting started tutorial](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started) to familiarize yourself with the core concepts of buckets, objects, and users.
 
 ## Set up your storage
 {: #administrators-setup}
@@ -49,4 +49,4 @@ There is another concept, a _service credential_. A service credential is a coll
 
 So if you want to allow your development team to be able to use the console to view object storage instances and Kubernetes clusters, they would need `Viewer` roles on the object storage resources and `Administrator` roles on the Container Service. Note that the `Viewer` role only allows for the user to see that the instance exists, and to view existing credentials, **not** to view buckets and objects. When the service credentials were created, they were associated with a service ID. This service ID would need to have the  `Manager` or `Writer` role on the instance to be able to create and destroy buckets and objects.
 
-For more information on IAM roles and permissions, see [the IAM overview](/docs/services/cloud-object-storage/iam/overview.html).
+For more information on IAM roles and permissions, see [the IAM overview](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview).

@@ -26,7 +26,7 @@ subcollection: cloud-object-storage
 # Constructing an HMAC signature
 {: #hmac-signature}
 
-Each request that is made against IBM COS using [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html) instead of an [API key or bearer token](/docs/services/cloud-object-storage/iam/overview.html) must be authenticated that uses an implementation of the AWS Signature Version 4 `authorization` header. Using a signature provides identity verification and in-transit data integrity, and because each signature is tied to the timestamp of the request it is not possible to reuse authorization headers. The header is composed of four components: an algorithm declaration, credential information, signed headers, and the calculated signature:
+Each request that is made against IBM COS using [HMAC credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-hmac) instead of an [API key or bearer token](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview) must be authenticated that uses an implementation of the AWS Signature Version 4 `authorization` header. Using a signature provides identity verification and in-transit data integrity, and because each signature is tied to the timestamp of the request it is not possible to reuse authorization headers. The header is composed of four components: an algorithm declaration, credential information, signed headers, and the calculated signature:
 
 ```
 AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;{other-required-headers},Signature={signature}
@@ -126,14 +126,14 @@ standardized_resource = bucket + '/' + object_key
 standardized_querystring = request_parameters
 standardized_headers = 'host:' + host + '\n' + 'x-amz-date:' + timestamp + '\n'
 signed_headers = 'host;x-amz-date'
-payload_hash = hashlib.sha256('').hexdigest()
+payload_hash = hashlib.sha256(''.encode('utf-8')).hexdigest()
 
 standardized_request = (http_method + '\n' +
                         standardized_resource + '\n' +
                         standardized_querystring + '\n' +
                         standardized_headers + '\n' +
                         signed_headers + '\n' +
-                        payload_hash)
+                        payload_hash).encode('utf-8')
 
 
 # assemble string-to-sign
@@ -164,13 +164,13 @@ headers = {'x-amz-date': timestamp, 'Authorization': v4auth_header}
 # the 'requests' package autmatically adds the required 'host' header
 request_url = endpoint + standardized_resource + standardized_querystring
 
-print '\nSending `%s` request to IBM COS -----------------------' % http_method
-print 'Request URL = ' + request_url
+print('\nSending `%s` request to IBM COS -----------------------' % http_method)
+print('Request URL = ' + request_url)
 request = requests.get(request_url, headers=headers)
 
-print '\nResponse from IBM COS ----------------------------------'
-print 'Response code: %d\n' % request.status_code
-print request.text
+print('\nResponse from IBM COS ----------------------------------')
+print('Response code: %d\n' % request.status_code)
+print(request.text)
 ```
 
 ### Java Example

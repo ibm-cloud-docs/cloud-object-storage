@@ -25,7 +25,7 @@ Sometimes data is meant to be shared. Buckets might hold open data sets for acad
 ## Using the console to set public access
 {: #iam-public-access-console}
 
-First, make sure that you have a bucket. If not, follow the [getting started tutorial](/docs/services/cloud-object-storage/getting-started.html) to become familiar with the console.
+First, make sure that you have a bucket. If not, follow the [getting started tutorial](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started) to become familiar with the console.
 
 ### Enable public access
 {: #public-access-console-enable}
@@ -51,9 +51,9 @@ First, make sure that you have a bucket. If not, follow the [getting started tut
 ## Allowing public access on individual objects
 {: #public-access-object}
 
-To make an object publicly accessible through the REST API, an `x-amz-acl: public-read` header can be included in the request. Setting this header bypasses any [IAM policy](/docs/services/cloud-object-storage/iam/overview.html) checks and allow for unauthenticated `HEAD` and `GET` requests. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+To make an object publicly accessible through the REST API, an `x-amz-acl: public-read` header can be included in the request. Setting this header bypasses any [IAM policy](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview) checks and allow for unauthenticated `HEAD` and `GET` requests. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
-Additionally, [HMAC credentials](/docs/services/cloud-object-storage/hmac/hmac-signature.html) make it possible to allow [temporary public access that uses pre-signed URLs](/docs/services/cloud-object-storage/hmac/presigned-urls.html).
+Additionally, [HMAC credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-hmac-signature) make it possible to allow [temporary public access that uses pre-signed URLs](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-presign-url).
 
 ### Upload a public object
 {: #public-access-object-upload}
@@ -94,4 +94,4 @@ curl -X "PUT" "https://{endpoint}/{bucket-name}/{object-name}?acl" \
 ## Static websites
 {: #public-access-static-website}
 
-While {{site.data.keyword.cos_full_notm}} doesn't support automatic static website hosting, it's possible to manually configure a web server and use it to serve publically accessible content hosted in a bucket. For more information, see [this tutorial](https://www.ibm.com/blogs/bluemix/2017/03/static-websites-cloud-object-storage-cos/).
+While {{site.data.keyword.cos_full_notm}} doesn't support automatic static website hosting, it's possible to manually configure a web server and use it to serve publically accessible content hosted in a bucket. For more information, see [this tutorial](https://www.ibm.com/cloud/blog/static-websites-cloud-object-storage-cos).

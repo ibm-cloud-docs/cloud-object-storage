@@ -95,4 +95,4 @@ The following table lists the actions that generate an event:
 
 {{site.data.keyword.cloudaccesstrailshort}} events are available in the {{site.data.keyword.cloudaccesstrailshort}} **account domain**.
 
-Events are sent to the {{site.data.keyword.cloudaccesstrailshort}} region closest to the {{site.data.keyword.cos_full_notm}} bucket location that is shown on the [services supported page](/docs/services/cloud-object-storage/basics/services.html#integrated-service-availability).
+Events are sent to the {{site.data.keyword.cloudaccesstrailshort}} region closest to the {{site.data.keyword.cos_full_notm}} bucket location that is shown on the [services supported page](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability#integrated-service-availability).

@@ -33,7 +33,7 @@ Applications that expect to read and write to a NFS-style filesystem can use `s3
 
 * IBM Cloud account and an instance of {{site.data.keyword.cos_full}}
 * A Linux or OSX environment
-* Credentials (either an [IAM API key](/docs/services/cloud-object-storage/iam/overview.html) or [HMAC credentials](/docs/services/cloud-object-storage/hmac/credentials.html))
+* Credentials (either an [IAM API key](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview) or [HMAC credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-hmac))
 
 ## Installation
 {: #s3fs-install}
@@ -105,7 +105,7 @@ s3fs <bucket> <mountpoint> -o url=http{s}://<endpoint> –o passwd_file=<credent
 ```
 {:codeblock}
 
-The `<bucket>` is an exising bucket and the `<mountpoint>` is the local directory where you want to mount the bucket. The `<endpoint>` must correspond to the [bucket's location](/docs/services/cloud-object-storage/basics/endpoints.html). The `credentials_file` is the file created with the API key or HMAC credentials.
+The `<bucket>` is an exising bucket and the `<mountpoint>` is the local directory where you want to mount the bucket. The `<endpoint>` must correspond to the [bucket's location](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints). The `credentials_file` is the file created with the API key or HMAC credentials.
 
 Now, `ls <mountpoint>` will list the objects in that bucket as if they were local files (or in the case of object prefixes, as if they were nested directories).
 

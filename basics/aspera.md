@@ -34,13 +34,13 @@ Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP
 
 Aspera high-speed transfer is available in the {{site.data.keyword.cloud_notm}} [console](#aspera-console) and can also be used programatically using an [SDK](#aspera-sdk). 
 
-Aspera high-speed transfer is available in certain regions only. See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html) for more details.
+Aspera high-speed transfer is available in certain regions only. See [Integrated Services](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability) for more details.
 {:tip}
 
 ## Using the console
 {: #aspera-console}
 
-When you create a bucket in a [supported region](/docs/services/cloud-object-storage/basics/services.html), you have the option to select Aspera high-speed transfer to upload files or folders. Once you attempt to upload an object, you are prompted to install the Aspera Connect client.
+When you create a bucket in a [supported region](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability), you have the option to select Aspera high-speed transfer to upload files or folders. Once you attempt to upload an object, you are prompted to install the Aspera Connect client.
 
 ### Install Aspera Connect
 {: #aspera-install}
@@ -81,7 +81,7 @@ The Aspera high-speed transfer SDK provides the ability to initiate high-speed t
 
 The FASP protocol that Aspera high-speed transfer uses is not suited for all data transfers to and from COS. Specifically, any transfers making use of Aspera high-speed transfer should:
 
-1. Always make use of multiple sessions - at least two parallel sessions will best utilize Aspera high-speed transfers capabilities. See specific guidance for [Java](/docs/services/cloud-object-storage/libraries/java.html#aspera) and [Python](/docs/services/cloud-object-storage/libraries/python.html#aspera).
+1. Always make use of multiple sessions - at least two parallel sessions will best utilize Aspera high-speed transfers capabilities. See specific guidance for [Java](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java#java-examples-aspera) and [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python#python-examples-aspera).
 2. Aspera high-speed transfer is ideal for larger files, and any files or directories that contain a total amount of data less than 1 GB should instead transfer the object in multiple parts using the standard Transfer Manager classes. Aspera high-speed transfers require a longer time-to-first-byte than normal HTTP transfers. The instantiation of many Aspera Transfer Manager objects to manage the transfers of individual smaller files can result in subpar performance relative to basic HTTP requests, so it is best to instantiate a single client to upload a directory of smaller files instead.
 3. Aspera high-speed transfer was designed in part to improve performance in network environments with large amounts of packet loss, making the protocol performant over large distances and public wide area networks. Aspera high-speed transfer should not be used for transfers within a region or data center.
 
@@ -93,7 +93,7 @@ The Aspera high-speed transfer SDK is closed-source and thus an optional depende
 
 The image below displays a high-level overview of the how the COS SDK interacts with the Aspera high-speed transfer library to provide functionality.
 
-<img src="https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/aspera-packaging.png" height="200px" />
+<img alt="COS/Aspera High-Speed Transfer SDK." src="https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/aspera-packaging.png" height="200px" />
 {: caption="Figure 1: COS/Aspera High-Speed Transfer SDK." caption-side="bottom"} 
 
 ### Supported Platforms
@@ -151,7 +151,7 @@ Maven uses a file named `pom.xml` to specify the libraries (and their versions) 
 {: codeblock}
 {: java}
 
-Examples of initiating Aspera high-speed transfers with Java are available in the [Using Aspera High-Speed Transfer](/docs/services/cloud-object-storage/libraries/java.html#aspera) section.
+Examples of initiating Aspera high-speed transfers with Java are available in the [Using Aspera High-Speed Transfer](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java#java-examples-aspera) section.
 {: java}
 
 ### Getting the SDK using Python
@@ -167,5 +167,5 @@ pip install cos-aspera
 {: codeblock}
 {: python}
 
-Examples of initiating Aspera transfers with Python are available in [Using Aspera High-Speed Transfer](/docs/services/cloud-object-storage/libraries/python.html#aspera) section.
+Examples of initiating Aspera transfers with Python are available in [Using Aspera High-Speed Transfer](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python#python-examples-aspera) section.
 {: python}
