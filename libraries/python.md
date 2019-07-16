@@ -641,14 +641,27 @@ You need to provide an IAM API Key for Aspera high-speed transfers. [HMAC Creden
 To get the highest throughput, split the transfer into a specified number of parallel **sessions** that send chunks of data whose size is defined by a **threshold** value.
 
 The typical configuration for using multi-session should be:
+* 2500 MBps target rate
+* 100 MB threshold (*this is the recommended value for most applications*)
+
+```python
+ms_transfer_config = AsperaConfig(multi_session="all",
+                                  target_rate_mbps=2500,
+                                  multi_session_threshold_mb=100)
+```
+In the above example, the sdk will spawn enough sessions to attempt to reach the target rate of 2500 MBps.
+
+Alternatively, session management can be explicitly configured in the sdk. This is useful in cases where more precise control over network utilization is desired.
+
+The typical configuration for using explicit multi-session should be:
 * 2 or 10 sessions
-* 60 MB threshold (*this is the recommended value for most applications*)
+* 100 MB threshold (*this is the recommended value for most applications*)
 
 ```python
 from ibm_s3transfer.aspera.manager import AsperaConfig
 # Configure 2 sessions for transfer
 ms_transfer_config = AsperaConfig(multi_session=2,
-                                  multi_session_threshold_mb=60)
+                                  multi_session_threshold_mb=100)
 
 # Create the Aspera Transfer Manager
 transfer_manager = AsperaTransferManager(client=client,

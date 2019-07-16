@@ -1019,17 +1019,39 @@ You will need instances of the S3 Client and IAM Token Manager classes to initia
 
 Before initializing the `AsperaTransferManager`, make sure you've got working [`s3Client`](#java-examples-config) and [`tokenManager`](#java-examples-config) objects. 
 
-There isn't a lot of benefit to using a single session of Aspera high-speed transfer unless you expect to see significant noise or packet loss in the network. So we need to tell the `AsperaTransferManager` to use multiple sessions using the `AsperaConfig` class. This will split the transfer into the specified number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value.
+There isn't a lot of benefit to using a single session of Aspera high-speed transfer unless you expect to see significant noise or packet loss in the network. So we need to tell the `AsperaTransferManager` to use multiple sessions using the `AsperaConfig` class. This will split the transfer into a number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value.
 
 The typical configuration for using multi-session should be:
+* 2500 MBps target rate
+* 100 MB threshold (*this is the recommended value for most applications*)
+
+```java
+AsperaTransferManagerConfig transferConfig = new AsperaTransferManagerConfig()
+    .withMultiSession(true);
+
+AsperaConfig asperaConfig = new AsperaConfig()
+    .withTargetRateMbps(2500L)
+    .withMultiSessionThresholdMb(100);
+
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client)
+    .withTokenManager(tokenManager)
+    .withAsperaTransferManagerConfig(transferConfig)
+    .withAsperaConfig(asperaConfig)
+    .build();
+```
+In the above example, the sdk will spawn enough sessions to attempt to reach the target rate of 2500 MBps.
+
+Alternatively, session management can be explicitly configured in the sdk. This is useful in cases where more precise control over network utilization is desired.
+
+The typical configuration for using explicit multi-session should be:
 * 2 or 10 sessions
-* 60 MB threshold (*this is the recommended value for most applications*)
+* 100 MB threshold (*this is the recommended value for most applications*)
 
 ```java
 AsperaConfig asperaConfig = new AsperaConfig()
     .withMultiSession(2)
-    .withMultiSessionThresholdMb(60);
-            
+    .withMultiSessionThresholdMb(100);
+
 AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client)
     .withTokenManager(tokenManager)
     .withAsperaConfig(asperaConfig)
@@ -1177,7 +1199,7 @@ AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_K
 // and file threshold per session.
 AsperaConfig asperaConfig = new AsperaConfig().
 withMultiSession(10).
-withMultiSessionThresholdMb(60);
+withMultiSessionThresholdMb(100);
 
 // Upload test file and report progress
 Future<AsperaTransaction> asperaTransactionFuture  = asperaTransferMgr.upload(bucketName, itemName, inputFile, asperaConfig, null);
