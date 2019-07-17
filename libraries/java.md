@@ -1356,7 +1356,9 @@ Visit the [Oracle&reg; JDK documentation](https://docs.oracle.com/javase/10/vm/s
 
 **Cause:** System unable to load dependent libraries. Errors such as the following may be seen in the application logs:
 
-```libfaspmanager2.so: libawt.so: cannot open shared object file: No such file or directory```
+```
+libfaspmanager2.so: libawt.so: cannot open shared object file: No such file or directory
+```
 
 **Solution:** Set the following environment variable:
 
