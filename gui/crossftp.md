@@ -46,7 +46,7 @@ subcollection: cloud-object-storage
 3. Under the *General* tab enter the following:
     * Set **Protocol** to `S3/HTTPS`
     * Set **Label** to a descriptive name of your choosing
-    * Set **Host** to the an {{site.data.keyword.cos_short}} endpoint (i.e. `s3-api.us-geo.objectstorage.softlayer.net`)
+    * Set **Host** to the an {{site.data.keyword.cos_short}} endpoint (i.e. `s3.us.cloud-object-storage.appdomain.cloud`)
         * *Ensure the endpoint region matches the intended target bucket. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).*
     * Leave **Port** as `443`
     * Set **Access Key** and **Secret** to HMAC credentials with the proper access rights to your target bucket

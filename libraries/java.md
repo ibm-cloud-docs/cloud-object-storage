@@ -95,7 +95,7 @@ The 2.0 release of the SDK introduces a namespacing change that allows an applic
 
 In the following example, a client `cos` is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
 
-After generating a [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client will authenticate with a signature, otherwise the client will use the provided API key to authenticate using a bearer token.
+After generating a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client will authenticate with a signature, otherwise the client will use the provided API key to authenticate using a bearer token.
 
 If migrating from AWS S3, you can also source credentials data from  `~/.aws/credentials` in the format:
 
@@ -117,10 +117,10 @@ Let's start with an complete example class that will run through some basic func
 ### Gather required information
 {: #java-examples-prereqs}
 
-* `bucketName` and `newBucketName` are [unique and DNS-safe](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#compatibility-api-new-bucket) strings. Because bucket names are unique across the entire system, these values will need to be changed if this example is run multiple times. Note that names are reserved for 10-15 minutes after deletion.
-* `api_key` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html) as `apikey`.
-* `service_instance_id` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html) as `resource_instance_id`. 
-* `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol. This is **not** the `endpoints` value found in the [Service Credential](/docs/services/cloud-object-storage/iam/service-credentials.html). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+* `bucketName` and `newBucketName` are [unique and DNS-safe](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-new-bucket) strings. Because bucket names are unique across the entire system, these values will need to be changed if this example is run multiple times. Note that names are reserved for 10-15 minutes after deletion.
+* `api_key` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) as `apikey`.
+* `service_instance_id` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) as `resource_instance_id`. 
+* `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol. This is **not** the `endpoints` value found in the [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `storageClass` is a [valid provisioning code](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint) that corresponds to the `endpoint` value. This is then used as the S3 API `LocationConstraint` variable.
 * `location` should be set to the location portion of the `storageClass`. For `us-south-standard`, this would be `us-south`. This variable is used only for the calculation of [HMAC signatures](/docs/services/cloud-object-storage?topic=cloud-object-storage-hmac#hmac), but is required for any client, including this example that uses an IAM API key.
 
@@ -279,7 +279,7 @@ public static AmazonS3 createClient(String api_key, String service_instance_id, 
 *Key Values*
 * `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
-* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](/docs/cli?topic=cloud-cli-ibmcloud-cli#ibmcloud-cli) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window})
+* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](/docs//docs/cli?topic=cloud-cli-idt-cli) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window})
 * `<location>` - default location for your cloud object storage (must match the region used for `<endpoint>`)
 
 *SDK References*
@@ -1007,7 +1007,7 @@ String crn = result.getIBMSSEKPCUSTOMERROOTKEYCRN();
 ## Using Aspera High-Speed Transfer
 {: #java-examples-aspera}
 
-By installing the [Aspera high-speed transfer library](/docs/services/cloud-object-storage/basics/aspera.html#aspera-packaging) you can utilize high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license). 
+By installing the [Aspera high-speed transfer library](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera#aspera-packaging) you can utilize high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license). 
 
 Each Aspera high-speed transfer session spawns an individual `ascp` process that runs on the client machine to perform the transfer. Ensure that your computing environment can allow this process to run.
 {:tip}
@@ -1019,17 +1019,39 @@ You will need instances of the S3 Client and IAM Token Manager classes to initia
 
 Before initializing the `AsperaTransferManager`, make sure you've got working [`s3Client`](#java-examples-config) and [`tokenManager`](#java-examples-config) objects. 
 
-There isn't a lot of benefit to using a single session of Aspera high-speed transfer unless you expect to see significant noise or packet loss in the network. So we need to tell the `AsperaTransferManager` to use multiple sessions using the `AsperaConfig` class. This will split the transfer into the specified number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value.
+There isn't a lot of benefit to using a single session of Aspera high-speed transfer unless you expect to see significant noise or packet loss in the network. So we need to tell the `AsperaTransferManager` to use multiple sessions using the `AsperaConfig` class. This will split the transfer into a number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value.
 
 The typical configuration for using multi-session should be:
+* 2500 MBps target rate
+* 100 MB threshold (*this is the recommended value for most applications*)
+
+```java
+AsperaTransferManagerConfig transferConfig = new AsperaTransferManagerConfig()
+    .withMultiSession(true);
+
+AsperaConfig asperaConfig = new AsperaConfig()
+    .withTargetRateMbps(2500L)
+    .withMultiSessionThresholdMb(100);
+
+AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client)
+    .withTokenManager(tokenManager)
+    .withAsperaTransferManagerConfig(transferConfig)
+    .withAsperaConfig(asperaConfig)
+    .build();
+```
+In the above example, the sdk will spawn enough sessions to attempt to reach the target rate of 2500 MBps.
+
+Alternatively, session management can be explicitly configured in the sdk. This is useful in cases where more precise control over network utilization is desired.
+
+The typical configuration for using explicit multi-session should be:
 * 2 or 10 sessions
-* 60 MB threshold (*this is the recommended value for most applications*)
+* 100 MB threshold (*this is the recommended value for most applications*)
 
 ```java
 AsperaConfig asperaConfig = new AsperaConfig()
     .withMultiSession(2)
-    .withMultiSessionThresholdMb(60);
-            
+    .withMultiSessionThresholdMb(100);
+
 AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client)
     .withTokenManager(tokenManager)
     .withAsperaConfig(asperaConfig)
@@ -1042,7 +1064,7 @@ For best performance in most scenarios, always make use of multiple sessions to 
 *Key Values*
 * `API_KEY` - An API key for a user or service ID with Writer or Manager roles
 
-You will need to provide an IAM API Key for constructing an `AsperaTransferManager`. [HMAC Credentials](/docs/services/cloud-object-storage/iam/service-credentials.html#iam-vs-hmac){:new_window} are **NOT** currently supported. For more information on IAM, [click here](/docs/services/cloud-object-storage/iam/overview.html#getting-started-with-iam).
+You will need to provide an IAM API Key for constructing an `AsperaTransferManager`. [HMAC Credentials](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){:new_window} are **NOT** currently supported. For more information on IAM, [click here](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview#getting-started-with-iam).
 {:tip}
 
 ### File Upload
@@ -1177,7 +1199,7 @@ AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_K
 // and file threshold per session.
 AsperaConfig asperaConfig = new AsperaConfig().
 withMultiSession(10).
-withMultiSessionThresholdMb(60);
+withMultiSessionThresholdMb(100);
 
 // Upload test file and report progress
 Future<AsperaTransaction> asperaTransactionFuture  = asperaTransferMgr.upload(bucketName, itemName, inputFile, asperaConfig, null);
@@ -1334,7 +1356,9 @@ Visit the [Oracle&reg; JDK documentation](https://docs.oracle.com/javase/10/vm/s
 
 **Cause:** System unable to load dependent libraries. Errors such as the following may be seen in the application logs:
 
-```libfaspmanager2.so: libawt.so: cannot open shared object file: No such file or directory```
+```
+libfaspmanager2.so: libawt.so: cannot open shared object file: No such file or directory
+```
 
 **Solution:** Set the following environment variable:
 

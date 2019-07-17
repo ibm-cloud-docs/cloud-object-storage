@@ -38,7 +38,7 @@ When a firewall is set, the bucket is isolated from the rest of {{site.data.keyw
 ## Using the console to set a firewall
 {: #firewall-console}
 
-First, make sure that you have a bucket. If not, follow the [getting started tutorial](/docs/services/cloud-object-storage/getting-started.html) to become familiar with the console.
+First, make sure that you have a bucket. If not, follow the [getting started tutorial](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started) to become familiar with the console.
 
 ### Set a list of authorized IP addresses
 {: #firewall-console-enable}

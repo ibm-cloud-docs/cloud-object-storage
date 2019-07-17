@@ -21,7 +21,7 @@ Sending a REST API request or configuring a storage client requires setting a ta
 
 Most users should use one of the following endpoints for a given storage location. Private endpoints should be used from within the IBM cloud and do not incur data transfer charges. Public endpoints should be used from outside the IBM cloud and do incur transfer charges. If possible, it's recommended to use a private endpoint.
 
-As of December 2018, we have updated our endpoints. [Legacy endpoints](/docs/services/cloud-object-storage/info/advanced_endpoints.html) will continue to work until further notice. Please update your applications to use the new endpoints listed below.
+As of December 2018, we have updated our endpoints. [Legacy endpoints](/docs/services/cloud-object-storage/info?topic=cloud-object-storage-advanced-endpoints) will continue to work until further notice. Please update your applications to use the new endpoints listed here.
 {:note}
 
 ## Regional Endpoints
@@ -49,7 +49,7 @@ Buckets created at a regional endpoint distribute data across three data centers
           <code class="highlighter-rouge">s3.us-south.cloud-object-storage.appdomain.cloud</code>
         </p>
         <p>
-          <code class="highlighter-rouge">s3.private.us-south.cloud-object-storage.appdomain.cloud</span>
+          <code class="highlighter-rouge">s3.private.us-south.cloud-object-storage.appdomain.cloud</code>
         </p>
       </td>
     </tr>
@@ -65,7 +65,7 @@ Buckets created at a regional endpoint distribute data across three data centers
           <code class="highlighter-rouge">s3.us-east.cloud-object-storage.appdomain.cloud</code>
         </p>
         <p>
-          <code class="highlighter-rouge">s3.private.us-east.cloud-object-storage.appdomain.cloud</span>
+          <code class="highlighter-rouge">s3.private.us-east.cloud-object-storage.appdomain.cloud</code>
         </p>
       </td>
     </tr>
@@ -138,7 +138,7 @@ Buckets created at a regional endpoint distribute data across three data centers
 ## Cross Region Endpoints
 {: #endpoints-geo}
 
-Buckets created at a cross region endpoint distribute data across three regions. Any one of these regions can suffer an outage or even destruction without impacting availability. Requests are routed to the nearest region's data center using Border Gateway Protocol (BGP) routing. In the case of an outage, requests are automatically re-routed to an active region. Advanced users who wish to write their own failover logic may do so by sending requests to a [specific access point](/docs/services/cloud-object-storage/info/advanced_endpoints.html) and bypassing the BGP routing.
+Buckets created at a cross region endpoint distribute data across three regions. Any one of these regions can suffer an outage or even destruction without impacting availability. Requests are routed to the nearest region's data center using Border Gateway Protocol (BGP) routing. In the case of an outage, requests are automatically re-routed to an active region. Advanced users who wish to write their own failover logic may do so by sending requests to a [specific access point](/docs/services/cloud-object-storage/info?topic=cloud-object-storage-advanced-endpoints) and bypassing the BGP routing.
 
 <table>
   <thead>

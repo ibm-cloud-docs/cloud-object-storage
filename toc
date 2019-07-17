@@ -121,5 +121,5 @@ Cloud Object Storage
     help/faq.md
     help/support.md
     help/billing.md
-    [Pricing](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api)
+    [Pricing](https://www.ibm.com/cloud/object-storage#s3api)
     {: .navgroup-end}

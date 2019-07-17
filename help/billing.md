@@ -26,7 +26,7 @@ subcollection: cloud-object-storage
 # Billing
 {: #billing}
 
-Information on pricing can be found at [{{site.data.keyword.cloud}}](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api){:new_window}.
+Information on pricing can be found at [{{site.data.keyword.cloud}}](https://www.ibm.com/cloud/object-storage#s3api){:new_window}.
 
 ## Invoices
 {: #billing-invoices}
@@ -60,7 +60,7 @@ Deleting buckets or objects from the system does not incur a charge.
 ## Aspera transfers
 {: #billing-aspera}
 
-[Aspera high-speed transfer](/docs/services/cloud-object-storage/basics/aspera.html) incurs extra egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api).
+[Aspera high-speed transfer](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera) incurs extra egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage#s3api).
 
 ## Storage classes
 {: #billing-storage-classes}
@@ -74,6 +74,6 @@ There are four classes:
 *  **Cold Vault** is used for cold workloads where data is accessed every 90 days or less - a larger extra retrieval charge ($/GB) is applied each time data is read. The service includes a longer minimum threshold for object size and storage period consistent with the intended use of this service for cold, inactive data.
 *  **Flex** is used for dynamic workloads where access patterns are more difficult to predict. Depending on usage, if the costs of and retrieval charges exceeds a cap value, then retrieval charges are dropped and a new capacity charge is applied instead. If the data isn't accessed frequently, it is more cost effective than Standard storage, and if access usage patterns unexpectedly become more active it is more cost effective than Vault or Cold Vault storage. Flex doesn't require a minimum object size or storage period.
 
-For more information about pricing, see [the pricing table at ibm.com](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage#s3api).
+For more information about pricing, see [the pricing table at ibm.com](https://www.ibm.com/cloud/object-storage#s3api).
 
-For more information about creating buckets with different storage classes, see the [API reference](/docs/services/cloud-object-storage/api-reference/api-reference-buckets.html#storage-class).
+For more information about creating buckets with different storage classes, see the [API reference](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).

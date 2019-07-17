@@ -35,7 +35,7 @@ Immutable Object Storage allows client(s) to preserve electronic records and mai
 
 The underlying feature capabilities can also be used by organizations that deal with financial records management, such as broker-dealer transactions, and may have need to retain the objects in a non-rewritable and non-erasable format. 
 
-Immutable Object Storage is available in certain regions only, See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html#service-availability) for details. It also requires a Standard pricing plan. See [pricing](https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage) for details.
+Immutable Object Storage is available in certain regions only, See [Integrated Services](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability#service-availability) for details. It also requires a Standard pricing plan. See [pricing](https://www.ibm.com/cloud/object-storage) for details.
 {:note}
 
 It is not possible to use Aspera high-speed transfer with buckets with a retention policy.
@@ -62,7 +62,7 @@ If an object is stored in the bucket without specifying a custom retention perio
 
 Note: a maximum retention period of 1000 years can be specified for the objects.
 
-Note: In order to create a retention policy on a bucket, you will need Manager role. See [Bucket permissions](/docs/services/cloud-object-storage/iam/buckets.html#bucket-permissions) for more details.
+Note: In order to create a retention policy on a bucket, you will need Manager role. See [Bucket permissions](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions#bucket-permissions) for more details.
 
 ### Legal hold 
 {: #immutable-terminology-hold}
@@ -101,7 +101,7 @@ When using immutable object storage, it is the client(s) responsibility to check
   * [Financial Industry Regulatory Authority (FINRA) Rule 4511(c)](http://finra.complinet.com/en/display/display_main.html?rbid=2403&element_id=9957), and
   * [Commodity Futures Trading Commission (CFTC) Rule 1.31(c)-(d)](https://www.ecfr.gov/cgi-bin/text-idx?SID=2404f765a6f79e0b7fcf05b6844046cb&mc=true&node=se17.1.1_131&rgn=div8)
 
-To assist clients in making informed decisions, IBM engaged Cohasset Associates Inc. to conduct an independent assessment of IBM’s Immutable Object Storage capability. Please review Cohasset Associates Inc.’s [report](https://www-01.ibm.com/common/ssi/cgi-bin/ssialias?htmlfid=WUL12394USEN) which provides details on the assessment of the Immutable Object Storage capability of IBM Cloud Object Storage. 
+To assist clients in making informed decisions, IBM engaged Cohasset Associates Inc. to conduct an independent assessment of IBM’s Immutable Object Storage capability. Please review Cohasset Associates Inc.’s [report](https://www.ibm.com/downloads/cas/JBDNP0KV) which provides details on the assessment of the Immutable Object Storage capability of IBM Cloud Object Storage. 
 
 ### Audit of access and transactions
 {: #immutable-audit}
@@ -110,7 +110,7 @@ Access log data for Immutable Object Storage to review changes to retention para
 ## Using the console
 {: #immutable-console}
 
-Retention policies can be added to new or existing empty buckets, and cannot be removed. For a new bucket, ensure you are creating the bucket in a [supported region](/docs/services/cloud-object-storage/basics/services.html#service-availability), and then choose the **Add retention policy** option. For an existing bucket, ensure that it has no objects and then navigate to configuration settings and click the **Create policy** button below the bucket retention policy section. In either case, set a minimum, maximum, and default retention periods.
+Retention policies can be added to new or existing empty buckets, and cannot be removed. For a new bucket, ensure you are creating the bucket in a [supported region](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability#service-availability), and then choose the **Add retention policy** option. For an existing bucket, ensure that it has no objects and then navigate to configuration settings and click the **Create policy** button below the bucket retention policy section. In either case, set a minimum, maximum, and default retention periods.
 
 ## Using the REST API, Libraries, and SDKs
 {: #immutable-sdk}

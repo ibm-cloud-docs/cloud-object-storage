@@ -29,8 +29,7 @@ subcollection: cloud-object-storage
 # Archive cold data with transition rules
 {: #archive}
 
-{{site.data.keyword.cos_full}} Archive is a [low cost](
-https://www.ibm.com/cloud-computing/bluemix/pricing-object-storage) option for data that is rarely accessed. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option.
+{{site.data.keyword.cos_full}} Archive is a [low cost](https://www.ibm.com/cloud/object-storage) option for data that is rarely accessed. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option.
 {: shortdesc}
 
 You can archive objects using the web console, REST API, and 3rd party tools that are integrated with IBM Cloud Object Storage. 
@@ -50,7 +49,7 @@ When creating or modifying an archive policy for a bucket, consider the followin
 To immediately archive new objects uploaded to a bucket, enter 0 days on the archive policy.
 {:tip}
 
-Archive is available in certain regions only. See [Integrated Services](/docs/services/cloud-object-storage/basics/services.html) for more details.
+Archive is available in certain regions only. See [Integrated Services](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability) for more details.
 {:tip}
 
 ## Restore an archived object
@@ -202,7 +201,8 @@ Connection: close
 ---
 
 ### Retrieve a bucket lifecycle configuration
-{: #archive-api-retrieve} {: http}
+{: #archive-api-retrieve} 
+{: http}
 
 This implementation of the `GET` operation uses the `lifecycle` query parameter to retrieve the lifecycle settings for the bucket. 
 
@@ -775,4 +775,4 @@ Method |  Description
 ## Next Steps
 {: #archive-next-steps}
 
-In addition to {{site.data.keyword.cos_full_notm}}, {{site.data.keyword.cloud_notm}} currently provides several additional object storage offerings for different user needs, all of which are accessible through web-based portals and REST APIs. [Learn more.](https://console.bluemix.net/docs/services/ibm-cos/index.html)
+In addition to {{site.data.keyword.cos_full_notm}}, {{site.data.keyword.cloud_notm}} currently provides several additional object storage offerings for different user needs, all of which are accessible through web-based portals and REST APIs. [Learn more.](https://cloud.ibm.com/docs/services/ibm-cos?topic=ibm-cos-object-storage-in-the-ibm-cloud)

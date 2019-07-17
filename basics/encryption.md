@@ -22,7 +22,7 @@ subcollection: cloud-object-storage
 # Manage encryption
 {: #encryption}
 
-All objects stored in {{site.data.keyword.cos_full}} are encrypted by default using [randomly generated keys and an all-or-nothing-transform](/docs/services/cloud-object-storage/info/data-security-encryption.html). While this default encryption model provides at-rest security, some workloads need to be in possession of the encryption keys used. You can manage your keys manually by providing your own encryption keys when storing data (SSE-C), or you can create buckets that use IBM Key Protect (SSE-KP) to manage encryption keys.
+All objects stored in {{site.data.keyword.cos_full}} are encrypted by default using [randomly generated keys and an all-or-nothing-transform](/docs/services/cloud-object-storage/info?topic=cloud-object-storage-security). While this default encryption model provides at-rest security, some workloads need to be in possession of the encryption keys used. You can manage your keys manually by providing your own encryption keys when storing data (SSE-C), or you can create buckets that use IBM Key Protect (SSE-KP) to manage encryption keys.
 
 ## Server Side Encryption with Customer-Provided Keys (SSE-C)
 {: #encryption-sse-c}
@@ -50,7 +50,7 @@ You can choose to use {{site.data.keyword.keymanagementserviceshort}} to manage 
 
 When creating the bucket, you need to provide additional headers.
 
-For more information on {{site.data.keyword.keymanagementservicelong_notm}}, [see the documentation](/docs/services/key-protect/index.html#getting-started-with-key-protect).
+For more information on {{site.data.keyword.keymanagementservicelong_notm}}, [see the documentation](/docs/services/key-protect?topic=key-protect-getting-started-tutorial#getting-started-with-key-protect).
 
 ### Getting started with SSE-KP
 {: #sse-kp-gs}
@@ -69,7 +69,7 @@ You'll need:
 ### Create or add a key in {{site.data.keyword.keymanagementserviceshort}}
 {: #sse-kp-add-key}
 
-Navigate to your instance of {{site.data.keyword.keymanagementserviceshort}} and [generate or enter a key](/docs/services/key-protect/index.html#getting-started-with-key-protect).
+Navigate to your instance of {{site.data.keyword.keymanagementserviceshort}} and [generate or enter a key](/docs/services/key-protect?topic=key-protect-getting-started-tutorial).
 
 ### Grant service authorization
 {: #sse-kp}
@@ -120,6 +120,6 @@ To rotate the keys for your {{site.data.keyword.cos_short}} you will need to cre
 2. [Create a new bucket](#encryption-createbucket) and add the new Root Key
 3. Copy all the objects from your original bucket into the new bucket.
     1. This step can be accomplished using a number of different methods:
-        1. From the command-line using [CURL](/docs/services/cloud-object-storage/cli/curl.html) or [AWS CLI](/docs/services/cloud-object-storage/cli/aws-cli.html)
+        1. From the command-line using [CURL](/docs/services/cloud-object-storage/cli?topic=cloud-object-storage-curl) or [AWS CLI](/docs/services/cloud-object-storage/cli?topic=cloud-object-storage-aws-cli)
         2. Using the (API)[/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#copy-object]
-        3. Using the SDK with [Java](/docs/services/cloud-object-storage/libraries/java.html), [Python](/docs/services/cloud-object-storage/libraries/python.html), [Node.js](/docs/services/cloud-object-storage/libraries/node.html) or [Go](/docs/services/cloud-object-storage/libraries/go.html)
+        3. Using the SDK with [Java](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java), [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python), [Node.js](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node) or [Go](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-go)

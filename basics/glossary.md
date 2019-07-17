@@ -88,7 +88,7 @@ The IAM endpoint (`iam.cloud.ibm.com`) is used to fetch an access token in excha
 
 ## Service endpoints
 {: #terminology-service-endpoint}
-[Service endpoints](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints) (for example, `s3.us-south.objectstorage.softlayer.net`) are the base URLs where API requests that interact with data are sent.
+[Service endpoints](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints) (for example, `s3.us-south.cloud-object-storage.appdomain.cloud`) are the base URLs where API requests that interact with data are sent.
 
 ## {{site.data.keyword.cos_short}} bucket location
 {: #terminology-location}
