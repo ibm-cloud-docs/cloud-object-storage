@@ -111,7 +111,7 @@ Restore an object from archive
 * RequestData.requestId ties together the two events that are generated for restoring an object
 
 Copy an object from one bucket to another
-* ReauestData.requestId ties together the two events that are generated for copying an object
+* RequestData.requestId ties together the two events that are generated for copying an object
 
 
 <!-- {: caption="Table 3. {{site.data.keyword.cos_short}} actions that generate Data Events to the Activity Tracker" caption-side="top"} -->
