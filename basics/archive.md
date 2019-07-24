@@ -69,7 +69,7 @@ The archived object sub-states are:
 ## Limitations
 {: #archive-limitations}
 
-Archive policies are implemented using subset of the `PUT Bucket Lifecycle Configuration` S3 API operation. 
+Archive policies are implemented using subset of the `PUT Bucket Lifecycle Configuration` S3 API operation.
 
 Supported functionality includes:
 * Specifying either a date or the number of days in the future when objects transition to an archived state.
@@ -269,7 +269,8 @@ Connection: close
 ---
 
 ### Delete a bucket lifecycle configuration
-{: #archive-api-delete} {: http}
+{: #archive-api-delete} 
+{: http}
 
 This implementation of the `DELETE` operation uses the `lifecycle` query parameter to remove any lifecycle settings for the bucket. Transitions defined by the rules will no longer take place for new objects. 
 
@@ -308,6 +309,7 @@ Authorization: authorization string
 {: caption="Example 11. Sample request headers for the DELETE HTTP verb." caption-side="bottom"}
 
 _Sample Response_
+{: http}
 
 ```
 HTTP/1.1 204 No Content
@@ -321,7 +323,8 @@ Connection: close
 ---
 
 ### Temporarily restore an archived object 
-{: #archive-api-restore} {: http}
+{: #archive-api-restore}
+{: http}
 
 This implementation of the `POST` operation uses the `restore` query parameter to request temporary restoration of an archived object. The user must first restore an archived object before downloading or modifying the object. When restoring an object, the user must specify a period after which the temporary copy of the object will be deleted. The object maintains the storage class of the bucket.
 
@@ -338,6 +341,7 @@ This operation does not make use of additional operation specific query paramete
 Header                    | Type   | Description
 --------------------------|--------|----------------------------------------------------------------------------------------------------------------------
 `Content-MD5` | string | **Required**: The base64 encoded 128-bit MD5 hash of the payload, used as an integrity check to ensure the payload was not altered in transit.
+{: http}
 
 The body of the request must contain an XML block with the following schema:
 
@@ -377,6 +381,7 @@ __Examples__
 {: http}
 
 _Sample Request_
+{: http}
 
 ```
 POST /images/backup?restore HTTP/1.1
@@ -421,6 +426,7 @@ Connection: close
 {: #archive-api-head}
 
 A `HEAD` given a path to an object retrieves that object's headers. This operation does not make use of operation specific query parameters or payload elements.
+{: http}
 
 __Syntax__
 {: http}
@@ -444,9 +450,10 @@ Header | Type | Description
 `x-ibm-archive-transition-time` | date | Returns the date and time when the object is scheduled to transition to the archive tier.
 `x-ibm-transition` | string | Included if the object has transition metadata and returns the tier and original time of transition.
 `x-ibm-restored-copy-storage-class` | string | Included if an object is in the `RestoreInProgress` or `Restored` states and returns the storage class of the bucket.
-
+{: http}
 
 _Sample request_
+{: http}
 
 ```http
 HEAD /images/backup HTTP/1.1
@@ -459,6 +466,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 {: caption="Example 19. Example showing request headers." caption-side="bottom"}
 
 _Sample response_
+{: http}
 
 ```http
 HTTP/1.1 200 OK
@@ -517,7 +525,8 @@ s3.putBucketLifecycleConfiguration(params, function(err, data) {
 {: caption="Example 21. Example showing creation of lifecycle configuration." caption-side="bottom"}
 
 ### Retrieve a bucket lifecycle configuration
-{: #archive-node-retrieve}{: javascript}
+{: #archive-node-retrieve}
+{: javascript}
 
 ```js
 var params = {
@@ -533,7 +542,7 @@ s3.getBucketLifecycleConfiguration(params, function(err, data) {
 {: caption="Example 22. Example showing retrieval of lifecycle metadata." caption-side="bottom"}
 
 ### Delete a bucket lifecycle configuration
-{: #archive-node-delete} 
+{: #archive-node-delete}
 {: javascript}
 
 ```js
@@ -550,7 +559,7 @@ s3.deleteBucketLifecycle(params, function(err, data) {
 {: caption="Example 23. Example showing how to delete a bucket's lifecycle configuration." caption-side="bottom"}
 
 ### Temporarily restore an archived object 
-{: #archive-node-restore} 
+{: #archive-node-restore}
 {: javascript}
 
 ```js
@@ -575,7 +584,7 @@ var params = {
 {: caption="Example 24. Code used in restoring an archived object." caption-side="bottom"}
 
 ### Get an object's headers
-{: #archive-node-head} 
+{: #archive-node-head}
 {: javascript}
 
 ```js
