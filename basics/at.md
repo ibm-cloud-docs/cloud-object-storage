@@ -61,7 +61,6 @@ The following table lists the {{site.data.keyword.cos_short}} actions that gener
 | `cloud-object-storage.bucket-lifecycle.read`   | Get the bucket lifecycle configuration |
 | `cloud-object-storage.bucket-lifecycle.create`   | Create the bucket lifecycle configuration |
 | `cloud-object-storage.bucket-lifecycle.delete`   | Delete the bucket lifecycle configuration |
-| `cloud-object-storage.bucket-lifecycle.delete`   | Delete the bucket lifecycle configuration |
 | `cloud-object-storage.bucket-acl.read`   | Get the bucket ACL |
 | `cloud-object-storage.bucket-acl.create`   | Create the bucket ACL |
 | `cloud-object-storage.bucket-crn.read`   | Get the bucket CRN |
