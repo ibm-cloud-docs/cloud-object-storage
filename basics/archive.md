@@ -517,7 +517,7 @@ s3.putBucketLifecycleConfiguration(params, function(err, data) {
 {: caption="Example 21. Example showing creation of lifecycle configuration." caption-side="bottom"}
 
 ### Retrieve a bucket lifecycle configuration
-{: #archive-node-retrieve} {: javascript}
+{: #archive-node-retrieve}{: javascript}
 
 ```js
 var params = {
