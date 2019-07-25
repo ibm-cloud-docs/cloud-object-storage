@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-07-25"
 
 keywords: cloud services, integration, aspera, key protect, archive, worm
 
@@ -31,7 +31,7 @@ The table below describes the regions where the following services are supported
 * [Key Protect](/docs/services/cloud-object-storage/basics/cloud-object-storage/basics?topic=cloud-object-storage-encryption#sse-kp)
 * [Archive Data](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-archive)
 * [Immutable Object Storage](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-immutable)
-* [Activity Tracker](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-at-events#at_events)
+* [Activity Tracker](docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started)
 
 
 Downloads using Aspera high-speed will incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage).
@@ -57,7 +57,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>No</td>
     <td>No</td>
     <td>No</td>
-    <td>Sydney</td>
+    <td>jp-tok</td>
   </tr>
   <tr>
     <td>EU Cross Region</td>
@@ -65,7 +65,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>No</td>
     <td>No</td>
     <td>No</td>
-    <td>United Kingdom</td>
+    <td>eu-de</td>
   </tr>
   <tr>
     <td>US Cross Region</td>
@@ -73,7 +73,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>No</td>
     <td>No</td>
     <td>No</td>
-    <td>US South</td>
+    <td>us-south</td>
   </tr>
  </table>
 
@@ -101,7 +101,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
-    <td>Sydney</td>
+    <td>No</td>
    </tr>
    <tr>
     <td>AP Japan</td>
@@ -109,7 +109,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
-    <td>Sydney</td>
+    <td>jp-tok</td>
    </tr>
    <tr>
     <td>EU Great Britain</td>
@@ -117,7 +117,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
-    <td>United Kingdom</td>
+    <td>eu-gb</td>
    </tr>
    <tr>
     <td>EU Germany</td>
@@ -125,7 +125,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
-    <td>United Kingdom</td>
+    <td>eu-de</td>
    </tr>
    <tr>
     <td>US South</td>
@@ -133,7 +133,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
-    <td>US South</td>
+    <td>us-south</td>
    </tr>
    <tr>
     <td>US East</td>
@@ -141,7 +141,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
-    <td>US South</td>
+    <td>us-south</td>
    </tr>
 </table>
 
@@ -167,7 +167,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>No</td>
     <td>No</td>
     <td>No</td>
-    <td>United Kingdom</td>
+    <td>eu-de</td>
   </tr>
   <tr>
     <td>Chennai, India</td>
@@ -175,7 +175,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>No</td>
     <td>No</td>
     <td>No</td>
-    <td>Sydney</td>
+    <td>jp-tok</td>
   </tr>
   <tr>
     <td>Hong Kong</td>
@@ -183,7 +183,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>No</td>
     <td>No</td>
     <td>No</td>
-    <td>Sydney</td>
+    <td>jp-tok</td>
   </tr>
   <tr>
     <td>Melbourne, Australia</td>
@@ -191,7 +191,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>No</td>
     <td>No</td>
     <td>No</td>
-    <td>Sydney</td>
+    <td>No</td>
   </tr>
   <tr>
     <td>Mexico City, Mexico</td>
@@ -199,7 +199,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>No</td>
     <td>No</td>
     <td>No</td>
-    <td>US South</td>
+    <td>us-south</td>
   </tr>
   <tr>
     <td>Milan, Italy</td>
@@ -207,7 +207,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>No</td>
     <td>No</td>
     <td>No</td>
-    <td>United Kingdom</td>
+    <td>eu-de</td>
   </tr>
   <tr>
     <td>Montréal, Canada</td>
@@ -215,7 +215,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>No</td>
     <td>No</td>
     <td>No</td>
-    <td>US South</td>
+    <td>us-south</td>
   </tr>
   <tr>
     <td>Oslo, Norway</td>
@@ -223,7 +223,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>No</td>
     <td>No</td>
     <td>No</td>
-    <td>United Kingdom</td>
+    <td>eu-de</td>
   </tr>
   <tr>
     <td>San Jose, USA</td>
@@ -231,7 +231,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>No</td>
     <td>No</td>
     <td>No</td>
-    <td>US South</td>
+    <td>us-south</td>
   </tr>
   <tr>
     <td>São Paulo, Brazil</td>
@@ -239,7 +239,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>No</td>
     <td>No</td>
     <td>No</td>
-    <td>US South</td>
+    <td>us-south</td>
   </tr>
   <tr>
     <td>Seoul, South Korea</td>
@@ -247,7 +247,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>No</td>
     <td>No</td>
     <td>No</td>
-    <td>Sydney</td>
+    <td>jp-tok</td>
   </tr>
   <tr>
     <td>Toronto, Canada</td>
@@ -255,7 +255,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>No</td>
     <td>No</td>
     <td>No</td>
-    <td>US South</td>
+    <td>us-south</td>
   </tr>
 </table>
 
