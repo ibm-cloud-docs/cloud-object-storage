@@ -31,7 +31,7 @@ The table below describes the regions where the following services are supported
 * [Key Protect](/docs/services/cloud-object-storage/basics/cloud-object-storage/basics?topic=cloud-object-storage-encryption#sse-kp)
 * [Archive Data](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-archive)
 * [Immutable Object Storage](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-immutable)
-* [Activity Tracker](docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started)
+* [Activity Tracker](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started)
 
 
 Downloads using Aspera high-speed will incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage).
