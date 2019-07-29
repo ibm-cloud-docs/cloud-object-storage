@@ -167,7 +167,7 @@ The body of the request must contain an XML block with the following schema:
 | `Prefix`                 | String               | None                                   | `Filter`                 | The rule applies to any objects with keys that match this prefix.                                                           |
 | `Expiration`             | `Container`          | `Days` or `Date`                       | `Rule`                   | Limit 1.                                                                                  |
 | `Days`                   | Non-negative integer | None                                   | `Expiration`             | Must be a value greater than 0.                                                           |
-| `Date`                   | Date                 | None                                   | `Expiration`             | Must be in ISO 8601 Format and the date must be in the future.                            |
+| `Date`                   | Date                 | None                                   | `Expiration`             | Must be in ISO 8601 Format.                            |
 {: http}
 
 The body of the request must contain an XML block with the schema that is addressed in the table (see Example 1).

@@ -714,14 +714,6 @@ Method |  Description
 `getIBMTransition()` | Return the transition storage class and time of transition.
 {: java}
 
-
-
-
-
-
-
-
-
 ## Next Steps
 {: #archive-next-steps}
 
