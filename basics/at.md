@@ -65,13 +65,14 @@ The following table lists the {{site.data.keyword.cos_short}} actions that gener
 | `cloud-object-storage.bucket-acl.create`   | Create the bucket ACL |
 | `cloud-object-storage.bucket-crn.read`   | Get the bucket CRN |
 | `cloud-object-storage.bucket-location.read`   | Get the bucket location |
-| `cloud-object-storage.bucket-protection.create`   | Create the bucket protection |
+| `cloud-object-storage.bucket-retention.read`  | Get the bucket retention |
+| `cloud-object-storage.bucket-retention.create`   | Create the bucket retention |
 | Object events | |
 | `cloud-object-storage.object-acl.read`   | Get the object ACL |
 | `cloud-object-storage.object-acl.create` | Create the object ACL |
-| `cloud-object-storage.object-legal-hold.read`  | Get the object legal hold |
-| `cloud-object-storage.object-legal-hold.create`  | Create the object legal hold |
-| `cloud-object-storage.object-retention-extend.update`  | Extend the retention |
+| `cloud-object-storage.object-retention-legal-hold.list`  | List the legal holds on the object |
+| `cloud-object-storage.object-retention-legal-hold.create`  | Create the object legal hold |
+| `cloud-object-storage.object-retention.update`  | Extend the retention time |
 | `cloud-object-storage.object-expire.info`  | Get when the object will expire |
 
 
