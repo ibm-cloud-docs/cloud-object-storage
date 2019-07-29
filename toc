@@ -68,7 +68,6 @@ Cloud Object Storage
 
     {: .topicgroup}
     Libraries
-        libraries/overview-sdks.md
         libraries/getting-started-sdks.md
         libraries/java.md
         libraries/python.md
