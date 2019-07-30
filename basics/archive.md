@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-05-29"
+lastupdated: "2019-07-29"
 
 keywords: archive, glacier, tier, s3, compatibility, api
 
