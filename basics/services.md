@@ -253,7 +253,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
     <td>Toronto, Canada</td>
     <td>Yes</td>
     <td>No</td>
-    <td>No</td>
+    <td>Yes</td>
     <td>No</td>
     <td>US South</td>
   </tr>
