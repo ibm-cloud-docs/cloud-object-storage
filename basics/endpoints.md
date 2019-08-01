@@ -419,4 +419,5 @@ The Activity Tracker and Logging Service with LogDNA can archive to a bucket at 
 | OSL01 | Single Site | Oslo |
 | PAR01 | Single Site | Paris |
 | eu-geo | Cross Region | Amsterdam, Frankfurt, Milan |
-{: caption="Table 4. EU-managed Endpoints" caption-side="top"} 
+{: caption="Table 4. EU-managed Endpoints" caption-side="top"}
+ 
