@@ -76,8 +76,8 @@ Navigate to your instance of {{site.data.keyword.keymanagementserviceshort}} and
 Authorize {{site.data.keyword.keymanagementserviceshort}} for use with IBM COS:
 
 1. Open your {{site.data.keyword.cloud_notm}} dashboard.
-2. From the menu bar, click **Manage** &gt; **Account** &gt; **Users**.
-3. In the side navigation, click **Identity & Access** &gt; **Authorizations**.
+2. From the menu bar, click **Manage** &gt; **Access**.
+3. In the side navigation, click **Authorizations**.
 4. Click **Create authorization**.
 5. In the **Source service** menu, select **Cloud Object Storage**.
 6. In the **Source service instance** menu, select the service instance to authorize.
