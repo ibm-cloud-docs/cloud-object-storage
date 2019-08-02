@@ -25,7 +25,7 @@ subcollection: cloud-object-storage
 [Activity Tracker with LogDNA](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started) allows you to [audit the requests](/docs/services/cloud-object-storage?topic=cloud-object-storage-at-events) made against a bucket and the objects it contains.
 {: shortdesc}
 
-## Using the console to set a firewall
+## Using the console
 {: #at-console}
 
 First, make sure that you have a bucket. If not, follow the [getting started tutorial](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started) to become familiar with the console. 
