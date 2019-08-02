@@ -71,7 +71,7 @@ The following table lists the {{site.data.keyword.cos_short}} actions that gener
 | `cloud-object-storage.object-acl.read`   | Get the object ACL |
 | `cloud-object-storage.object-acl.create` | Create the object ACL |
 | `cloud-object-storage.object-retention-legal-hold.list`  | List the legal holds on the object |
-| `cloud-object-storage.object-retention-legal-hold.create`  | Create the object legal hold |
+| `cloud-object-storage.object-retention-legal-hold.update`  | Add or remove object legal hold |
 | `cloud-object-storage.object-retention.update`  | Extend the retention time |
 | `cloud-object-storage.object-expire.info`  | Get when the object will expire |
 
