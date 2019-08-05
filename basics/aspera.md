@@ -40,7 +40,7 @@ Aspera high-speed transfer is available in certain regions only. See [Integrated
 ## Using the console
 {: #aspera-console}
 
-When you create a bucket in a [supported region](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability), you have the option to select Aspera high-speed transfer to upload files or folders. Once you attempt to upload an object, you are prompted to install the Aspera Connect client.
+When you use the console to add objects to a bucket in a [supported region](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability), you are prompted with an option to install the Aspera Connect client. This browser plug-in allows you to use Aspera high-speed transfer to upload files or folders.
 
 ### Install Aspera Connect
 {: #aspera-install}
