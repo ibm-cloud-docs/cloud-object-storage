@@ -29,6 +29,7 @@ subcollection: cloud-object-storage
 The table below describes the regions where the following services are supported
 * [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera)
 * [Key Protect](/docs/services/cloud-object-storage/basics/cloud-object-storage/basics?topic=cloud-object-storage-encryption#sse-kp)
+* [Hyper Protect Crypto Services (HPCS)](/docs/services/cloud-object-storage?topic=cloud-object-storage-encryption)
 * [Archive Data](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-archive)
 * [Immutable Object Storage](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-immutable)
 * [Activity Tracker](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started)
@@ -40,43 +41,11 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
 ## Cross Region
 {: #service-availability-geo}
 
-<table>
-  <thead>
-    <tr>
-      <th>Region</th>
-      <th>Aspera</th>
-      <th>Key Protect</th>
-      <th>Archive Data</th>
-      <th>Immutable Object Storage</th>
-      <th>Activity Tracker</th>
-    </tr>
-  </thead>
-  <tr>
-    <td>AP Cross Region</td>
-    <td>Yes</td>
-    <td>No</td>
-    <td>No</td>
-    <td>No</td>
-    <td>jp-tok</td>
-  </tr>
-  <tr>
-    <td>EU Cross Region</td>
-    <td>Yes</td>
-    <td>No</td>
-    <td>No</td>
-    <td>No</td>
-    <td>eu-de</td>
-  </tr>
-  <tr>
-    <td>US Cross Region</td>
-    <td>Yes</td>
-    <td>No</td>
-    <td>No</td>
-    <td>No</td>
-    <td>us-south</td>
-  </tr>
- </table>
-
+| Region          | Aspera | Key Protect | HPCS | Archive Data | Immutable Object Storage | Activity Tracker |
+|-----------------|--------|-------------|------|--------------|--------------------------|------------------|
+| AP Cross Region | Yes    | No          | No   | No           | No                       | jp-tok           |
+| EU Cross Region | Yes    | No          | No   | No           | No                       | eu-de            |
+| US Cross Region | Yes    | No          | No   | No           | No                       | us-south         |
 
 
 
@@ -84,178 +53,28 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
 ## Regional
 {: #service-availability-region}
 
-<table>
-  <thead>
-    <tr>
-      <th>Region</th>
-      <th>Aspera</th>
-      <th>Key Protect</th>
-      <th>Archive Data</th>
-      <th>Immutable Object Storage</th>
-      <th>Activity Tracker</th>
-    </tr>
-  </thead>
-   <tr>
-    <td>AP Australia</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>No</td>
-   </tr>
-   <tr>
-    <td>AP Japan</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>jp-tok</td>
-   </tr>
-   <tr>
-    <td>EU Great Britain</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>eu-gb</td>
-   </tr>
-   <tr>
-    <td>EU Germany</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>eu-de</td>
-   </tr>
-   <tr>
-    <td>US South</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>us-south</td>
-   </tr>
-   <tr>
-    <td>US East</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>us-south</td>
-   </tr>
-</table>
-
-
-
+| Region           | Aspera | Key Protect | HPCS | Archive Data | Immutable Object Storage | Activity Tracker |
+|------------------|--------|-------------|------|--------------|--------------------------|------------------|
+| AP Australia     | Yes    | Yes         | Yes  | Yes          | Yes                      | No               |
+| AP Japan         | Yes    | Yes         | No   | Yes          | Yes                      | jp-tok           |
+| EU Great Britain | Yes    | Yes         | No   | Yes          | Yes                      | eu-gb            |
+| EU Germany       | Yes    | Yes         | No   | Yes          | Yes                      | eu-de            |
+| US South         | Yes    | Yes         | Yes  | Yes          | Yes                      | us-south         |
+| US East          | Yes    | Yes         | No   | Yes          | Yes                      | us-south         |
 ## Single Data Centers
 {: #service-availability-zone}
 
-<table>
-  <thead>
-    <tr>
-      <th>Region</th>
-      <th>Aspera</th>
-      <th>Key Protect</th>
-      <th>Archive Data</th>
-      <th>Immutable Object Storage</th>
-      <th>Activity Tracker</th>
-    </tr>
-  </thead>
-  <tr>
-    <td>Amsterdam, Netherlands</td>
-    <td>Yes</td>
-    <td>No</td>
-    <td>No</td>
-    <td>No</td>
-    <td>eu-de</td>
-  </tr>
-  <tr>
-    <td>Chennai, India</td>
-    <td>Yes</td>
-    <td>No</td>
-    <td>No</td>
-    <td>No</td>
-    <td>jp-tok</td>
-  </tr>
-  <tr>
-    <td>Hong Kong</td>
-    <td>Yes</td>
-    <td>No</td>
-    <td>No</td>
-    <td>No</td>
-    <td>jp-tok</td>
-  </tr>
-  <tr>
-    <td>Melbourne, Australia</td>
-    <td>Yes</td>
-    <td>No</td>
-    <td>No</td>
-    <td>No</td>
-    <td>No</td>
-  </tr>
-  <tr>
-    <td>Mexico City, Mexico</td>
-    <td>Yes</td>
-    <td>No</td>
-    <td>No</td>
-    <td>No</td>
-    <td>us-south</td>
-  </tr>
-  <tr>
-    <td>Milan, Italy</td>
-    <td>Yes</td>
-    <td>No</td>
-    <td>No</td>
-    <td>No</td>
-    <td>eu-de</td>
-  </tr>
-  <tr>
-    <td>Montréal, Canada</td>
-    <td>Yes</td>
-    <td>No</td>
-    <td>No</td>
-    <td>No</td>
-    <td>us-south</td>
-  </tr>
-  <tr>
-    <td>Oslo, Norway</td>
-    <td>Yes</td>
-    <td>No</td>
-    <td>No</td>
-    <td>No</td>
-    <td>eu-de</td>
-  </tr>
-  <tr>
-    <td>San Jose, USA</td>
-    <td>Yes</td>
-    <td>No</td>
-    <td>No</td>
-    <td>No</td>
-    <td>us-south</td>
-  </tr>
-  <tr>
-    <td>São Paulo, Brazil</td>
-    <td>Yes</td>
-    <td>No</td>
-    <td>No</td>
-    <td>No</td>
-    <td>us-south</td>
-  </tr>
-  <tr>
-    <td>Seoul, South Korea</td>
-    <td>Yes</td>
-    <td>No</td>
-    <td>No</td>
-    <td>No</td>
-    <td>jp-tok</td>
-  </tr>
-  <tr>
-    <td>Toronto, Canada</td>
-    <td>Yes</td>
-    <td>No</td>
-    <td>Yes</td>
-    <td>No</td>
-    <td>us-south</td>
-  </tr>
-</table>
-
+| Region                 | Aspera | Key Protect | HPCS | Archive Data | Immutable Object Storage | Activity Tracker |
+|------------------------|--------|-------------|------|--------------|--------------------------|------------------|
+| Amsterdam, Netherlands | Yes    | No          | No   | No           | No                       | eu-de            |
+| Chennai, India         | Yes    | No          | No   | No           | No                       | jp-tok           |
+| Hong Kong              | Yes    | No          | No   | No           | No                       | jp-tok           |
+| Melbourne, Australia   | Yes    | No          | No   | No           | No                       | No               |
+| Mexico City, Mexico    | Yes    | No          | No   | No           | No                       | us-south         |
+| Milan, Italy           | Yes    | No          | No   | No           | No                       | eu-de            |
+| Montréal, Canada       | Yes    | No          | No   | No           | No                       | us-south         |
+| Oslo, Norway           | Yes    | No          | No   | No           | No                       | eu-de            |
+| San Jose, USA          | Yes    | No          | No   | No           | No                       | us-south         |
+| São Paulo, Brazil      | Yes    | No          | No   | No           | No                       | us-south         |
+| Seoul, South Korea     | Yes    | No          | No   | No           | No                       | jp-tok           |
+| Toronto, Canada        | Yes    | No          | No   | Yes          | No                       | us-south         |
