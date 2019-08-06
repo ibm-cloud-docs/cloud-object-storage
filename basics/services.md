@@ -29,7 +29,7 @@ subcollection: cloud-object-storage
 The table below describes the regions where the following services are supported
 * [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera)
 * [Key Protect](/docs/services/cloud-object-storage/basics/cloud-object-storage/basics?topic=cloud-object-storage-encryption#sse-kp)
-* [Hyper Protect Crypto Services (HPCS)](/docs/services/cloud-object-storage?topic=cloud-object-storage-encryption)
+* [{{site.data.keyword.hscrypto}} ({{site.data.keyword.hscrypto}})](/docs/services/cloud-object-storage?topic=cloud-object-storage-encryption)
 * [Archive Data](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-archive)
 * [Immutable Object Storage](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-immutable)
 * [Activity Tracker](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started)
@@ -41,7 +41,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
 ## Cross Region
 {: #service-availability-geo}
 
-| Region          | Aspera | Key Protect | HPCS | Archive Data | Immutable Object Storage | Activity Tracker |
+| Region          | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker |
 |-----------------|--------|-------------|------|--------------|--------------------------|------------------|
 | AP Cross Region | Yes    | No          | No   | No           | No                       | jp-tok           |
 | EU Cross Region | Yes    | No          | No   | No           | No                       | eu-de            |
@@ -53,7 +53,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
 ## Regional
 {: #service-availability-region}
 
-| Region           | Aspera | Key Protect | HPCS | Archive Data | Immutable Object Storage | Activity Tracker |
+| Region           | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker |
 |------------------|--------|-------------|------|--------------|--------------------------|------------------|
 | AP Australia     | Yes    | Yes         | Yes  | Yes          | Yes                      | No               |
 | AP Japan         | Yes    | Yes         | No   | Yes          | Yes                      | jp-tok           |
@@ -64,7 +64,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
 ## Single Data Centers
 {: #service-availability-zone}
 
-| Region                 | Aspera | Key Protect | HPCS | Archive Data | Immutable Object Storage | Activity Tracker |
+| Region                 | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker |
 |------------------------|--------|-------------|------|--------------|--------------------------|------------------|
 | Amsterdam, Netherlands | Yes    | No          | No   | No           | No                       | eu-de            |
 | Chennai, India         | Yes    | No          | No   | No           | No                       | jp-tok           |
