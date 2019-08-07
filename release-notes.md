@@ -18,6 +18,15 @@ subcollection: cloud-object-storage
 # What's new
 {: #updates}
 
+## Q3 2019
+{: #updates-2019-q2}
+
+### August 2019
+[Bucket and object operations](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-at-events) can be logged using [Activity Tracker with LogDNA](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-at)
+
+### July 2019
+Users can [archive cold data](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-archive) in the Toronto Single Data Center .
+
 ## Q2 2019
 {: #updates-2019-q2}
 
