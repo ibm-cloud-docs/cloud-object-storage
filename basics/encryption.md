@@ -53,8 +53,9 @@ You can use [IBM Key Protect](https://test.cloud.ibm.com/docs/services/key-prote
 
 ### Before you begin
 Before you plan on using either Key Protect or {{site.data.keyword.hscrypto}} with Cloud Object Storage buckets, you need:
-•	an [IBM Cloud™ Platform account](http://cloud.ibm.com/)
-•	an [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage)
+
+- An [IBM Cloud™ Platform account](http://cloud.ibm.com/)
+- An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage)
 
 
 ### Getting started with SSE-KP
@@ -63,8 +64,9 @@ After you have made the decision to either use IBM Key Protect or {{site.data.ke
 
 ### Provisioning an instance of IBM Key Protect or {{site.data.keyword.hscrypto}}
 Refer to the service-specific product pages for instructions on how to provision and setup appropriate service instances.
-•	Getting started with [IBM Key Protect](https://cloud.ibm.com/docs/services/key-protect?topic=key-protect-getting-started-tutorial#getting-started-tutorial) 
-•	Getting started with [{{site.data.keyword.hscrypto}}](https://cloud.ibm.com/docs/services/hs-crypto?topic=hs-crypto-get-started)
+
+- Getting started with [IBM Key Protect](https://cloud.ibm.com/docs/services/key-protect?topic=key-protect-getting-started-tutorial#getting-started-tutorial) 
+- Getting started with [{{site.data.keyword.hscrypto}}](https://cloud.ibm.com/docs/services/hs-crypto?topic=hs-crypto-get-started)
 
 Once you have an instance of Key Protect or {{site.data.keyword.hscrypto}} in a region that you want to create a new bucket in, you need to create a root key and note the CRN of that key. The CRN is sent in a header during bucket creation.
 
