@@ -225,9 +225,9 @@ To get the unique ID of a request to a COS resource, check the field `requestDat
 ### Getting all events for a multipart upload operations
 {: #at-events-analyze-4}
 
-When you upload a large object by using *multipart upload operations*, each operation generates an event. In each event, the field `requestData.requestId` is set to the same value.
+When you upload a large object by using *multipart upload operations*, each operation generates an event. In each event, the field `requestData.uploadId` is set to the same value.
 
-To search for all events that are part of a multipart upload operation, you can search for a specific `requestData.requestId` value. 
+To search for all events that are part of a multipart upload operation, you can search for a specific `requestData.uploadId` value. 
 
 ### Getting all events that are generated for a restore request
 {: #at-events-analyze-5}
