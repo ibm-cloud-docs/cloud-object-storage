@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2018-05-25"
+  years: 2017, 2018, 2019
+lastupdated: "2019-07-25"
 
 ---
 {:new_window: target="_blank"}
@@ -13,6 +13,7 @@ lastupdated: "2018-05-25"
 {:tip: .tip}
 {:important: .important}
 {:note: .note}
+{:table: .aria-labeledby="caption"}
 
 # Endpoints and storage locations
 {: #endpoints}
@@ -38,6 +39,7 @@ Buckets created at a regional endpoint distribute data across three data centers
     </tr>
   </thead>
   <tbody>
+    <caption>Table 1: Regional Endpoints</caption>
     <tr>
       <td>US South</td>
       <td>
@@ -149,6 +151,7 @@ Buckets created at a cross region endpoint distribute data across three regions.
     </tr>
   </thead>
   <tbody>
+    <caption>Table 2: Cross Region Endpoints</caption>
     <tr>
       <td>US Cross Region</td>
       <td>
@@ -219,6 +222,7 @@ If a networking failure results in a partition where the data center is unable t
     </tr>
   </thead>
   <tbody>
+    <caption>Table 3: Single Data Center Endpoints</caption>
     <tr>
       <td>Amsterdam, Netherlands</td>
       <td>
@@ -401,3 +405,19 @@ If a networking failure results in a partition where the data center is unable t
 </table>
 {:.endpointtable}
 
+## EU Managed Endpoints
+{: #endpoints-eu-managed}
+
+The Activity Tracker and Logging Service with LogDNA can archive to a bucket at specific {{site.data.keyword.cos_full}} instances. Table 4 shows the EU-Managed locations of {{site.data.keyword.cos_full}} instances for archiving events from the Activity Tracker and Logging Service with LogDNA.
+
+| COS bucket location | Resiliency | City |
+|----|----|---
+| AMS03 | Single Site | Amsterdam |
+| eu-de | Regional | Frankfurt |
+| eu-gb | Regional | London |
+| MIL01 | Single Site | Milan |
+| OSL01 | Single Site | Oslo |
+| PAR01 | Single Site | Paris |
+| eu-geo | Cross Region | Amsterdam, Frankfurt, Milan |
+{: caption="Table 4. EU-managed Endpoints" caption-side="top"}
+ 

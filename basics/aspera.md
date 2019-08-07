@@ -40,7 +40,7 @@ Aspera high-speed transfer is available in certain regions only. See [Integrated
 ## Using the console
 {: #aspera-console}
 
-When you create a bucket in a [supported region](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability), you have the option to select Aspera high-speed transfer to upload files or folders. Once you attempt to upload an object, you are prompted to install the Aspera Connect client.
+When you use the console to add objects to a bucket in a [supported region](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability), you are prompted with an option to install the Aspera Connect client. This browser plug-in allows you to use Aspera high-speed transfer to upload files or folders.
 
 ### Install Aspera Connect
 {: #aspera-install}
@@ -115,9 +115,13 @@ Each Aspera high-speed transfer session spawns an individual `ascp` process that
 * Linux support is limited to Ubuntu (tested against the 18.04 LTS)
 * Aspera Transfer Manager clients must be created using IAM API keys and not HMAC credentials.
 
-### Getting the SDK using Java
+### Getting the SDK
 {: #aspera-sdk-java} 
 {: java}
+
+There is two SDKS, Java and Python, which can be revealed in the links at the top of the page.
+Return to the top by [clicking here]( /docs/services/cloud-object-storage?topic=cloud-object-storage-aspera).
+{:note}
 
 The best way to use {{site.data.keyword.cos_full_notm}} and Aspera high-speed transfer Java SDK is to use Maven to manage dependencies. If you aren't familiar with Maven, you get can get up and running using the [Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html){:new_window} guide.
 {: java}
@@ -154,9 +158,13 @@ Maven uses a file named `pom.xml` to specify the libraries (and their versions) 
 Examples of initiating Aspera high-speed transfers with Java are available in the [Using Aspera High-Speed Transfer](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java#java-examples-aspera) section.
 {: java}
 
-### Getting the SDK using Python
+### Getting the SDK
 {: #aspera-sdk-python} 
 {: python}
+
+There is two SDKS, Java and Python, which can be revealed in the links at the top of the page.
+Return to the top by [clicking here]( /docs/services/cloud-object-storage?topic=cloud-object-storage-aspera).
+{:note}
 
 The {{site.data.keyword.cos_full_notm}} and Aspera high-speed transfer Python SDKs are available from the Python Package Index (PyPI) software repository. 
 {: python}
@@ -168,4 +176,3 @@ pip install cos-aspera
 {: python}
 
 Examples of initiating Aspera transfers with Python are available in [Using Aspera High-Speed Transfer](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python#python-examples-aspera) section.
-{: python}
