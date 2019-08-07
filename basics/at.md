@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-08"
 
-keywords: activity tracker, event logging, observability
+keywords: IBM, activity tracker, LogDNA, event, object storage, COS API calls, monitor COS events
 
 subcollection: cloud-object-storage
 
@@ -21,78 +21,237 @@ subcollection: cloud-object-storage
 {:table: .aria-labeledby="caption"}
 
 
-# {{site.data.keyword.cloudaccesstrailshort}} events
+# Activity Tracker events
 {: #at-events}
 
-Use the {{site.data.keyword.cloudaccesstrailfull}} service to track how users and applications interact with {{site.data.keyword.cos_full}}.
+Use the {{site.data.keyword.at_full}} service to track how users and applications interact with {{site.data.keyword.cos_full_notm}} (COS).
 {: shortdesc}
 
-The {{site.data.keyword.cloudaccesstrailfull_notm}} service records user-initiated activities that change the state of a service in {{site.data.keyword.Bluemix_notm}}. For more information, see [Getting started with {{site.data.keyword.cloudaccesstrailshort}}](/docs/services/cloud-activity-tracker?topic=cloud-activity-tracker-getting-started).
+The {{site.data.keyword.at_full_notm}} service records user-initiated activities that change the state of a service in {{site.data.keyword.cloud_notm}}. 
+For more information, see [{{site.data.keyword.at_full_notm}}](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started).  
+
+By default, COS events that report on global actions such as creation of a bucket are collected automatically. You can monitor global actions through the Activity Tracker instance that is located in the Frankfurt location.
+
+In {{site.data.keyword.cos_full_notm}}, you can also monitor management events and COS data events. 
+* Collection of these events in your account is optional. 
+* You must configure each bucket to enable management events, or management and data events. Notice that you cannot enable data events only for a bucket. 
+* To monitor management events, you must configure a bucket and specify the Activity Tracker instance where those events will be collected and forwarded.
+* To monitor data events, you must select the option **Track data events**. 
+* Each action that a user performs on a COS resource has a unique ID that is included in the event in the `requestData.requestId` field.
 
 
 
-## List of events
-{: #at-events-list}
-
-The following table lists the actions that generate an event:
-
-<table>
-  <caption>Actions that generate events</caption>
-  <tr>
-    <th>Actions</th>
-	  <th>Description</th>
-  </tr>
-  <tr>
-    <td>`cloud-object-storage.bucket.info`</td>
-	  <td>An event is generated when a user requests bucket metadata and whether IBM Key Protect is enabled on the bucket.</td>
-  </tr>
-  <tr>
-    <td>`cloud-object-storage.bucket.create`</td>
-	  <td>An event is generated when a user creates a bucket.</td>
-  </tr>
-  <tr>
-    <td>`cloud-object-storage.bucket.read`</td>
-	  <td>An event is generated when a user requests the list of objects in a bucket.</td>
-  </tr>
-  <tr>
-    <td>`cloud-object-storage.bucket.update`</td>
-	  <td>An event is generated when a user updates a bucket, for example, when a user renames a bucket.</td>
-  </tr>
-  <tr>
-    <td>`cloud-object-storage.bucket.delete`</td>
-	  <td>An event is generated when a user deletes a bucket.</td>
-  </tr>
-  <tr>
-    <td>`cloud-object-storage.bucket-acl.create`</td>
-	  <td>An event is generated when a user sets the access control list on a bucket to `public-read` or `private`.</td>
-  </tr>
-  <tr>
-    <td>`cloud-object-storage.bucket-acl.read`</td>
-	  <td>An event is generated when a user reads the access control list on a bucket.</td>
-  </tr>
-  <tr>
-    <td>`cloud-object-storage.bucket-cors.create`</td>
-	  <td>An event is generated when a user creates a cross-origin resource sharing configuration for a bucket.</td>
-  </tr>
-  <tr>
-    <td>`cloud-object-storage.bucket-cors.read`</td>
-	  <td>An event is generated when a user requests if cross-origin resource sharing configuration is enabled on a bucket.</td>
-  </tr>
-  <tr>
-    <td>`cloud-object-storage.bucket-cors.update`</td>
-	  <td>An event is generated when a user modifies a cross-origin resource sharing configuration for a bucket.</td>
-  </tr>
-  <tr>
-    <td>`cloud-object-storage.bucket-cors.delete`</td>
-	  <td>An event is generated when a user deletes a cross-origin resource sharing configuration for a bucket.</td>
-  </tr>
-</table>
+You can use this service to investigate abnormal activity and critical actions, and to comply with regulatory audit requirements. In addition, you can be alerted about actions as they happen. The events that are collected comply with the Cloud Auditing Data Federation (CADF) standard.
 
 
 
-## Where to view the events
+## Global events
+{: #at-actions-global}
+
+The following table lists the COS actions that generate a global event. You can monitor this events through the Activity Tracker instance that is available in the Frankfurt location.
+
+| Action                                 | Description                 |
+| -------------------------------------- | --------------------------- |
+| `cloud-object-storage.bucket.list`     | List the buckets in the service instance |
+| `cloud-object-storage.bucket.create`   | Create a bucket in the service instance |
+| `cloud-object-storage.bucket.delete`   | Delete a bucket in the service instance |
+{: caption="Table 1. {{site.data.keyword.cos_short}} actions that generate global events" caption-side="top"}
+
+## Management events
+{: #at-actions-mngt}
+
+Management events are classified in the following categories:
+* Resource configuration events
+* Bucket events
+* Object events
+
+
+### Resource configuration events
+{: #at-actions-mngt-1}
+
+The following table lists the COS resource configuration events:
+
+| Action                                                 | Description                 |
+| ------------------------------------------------------ | --------------------------- |
+| `cloud-object-storage.resource-configuration.read`     | Read the resource configuration for the bucket |
+| `cloud-object-storage.resource-configuration.update`   | Update the resource configuration for the bucket |
+{: caption="Table 2. Resource Configuration events" caption-side="top"}
+
+### Bucket events
+{: #at-actions-mngt-2}
+
+The following table lists the COS bucket events:
+
+| Action                                                 | Description                 |
+| ------------------------------------------------------ | --------------------------- |
+| `cloud-object-storage.bucket-cors.info`                | Validate the CORS configuration |
+| `cloud-object-storage.bucket-cors.read`                | Get the CORS configuration |
+| `cloud-object-storage.bucket-cors.create`              | Create the CORS configuration |
+| `cloud-object-storage.bucket-cors.delete`              | Delete the CORS configuration |
+| `cloud-object-storage.bucket-lifecycle.read`           | Get the bucket lifecycle configuration |
+| `cloud-object-storage.bucket-lifecycle.create`         | Create the bucket lifecycle configuration |
+| `cloud-object-storage.bucket-lifecycle.delete`         | Delete the bucket lifecycle configuration |
+| `cloud-object-storage.bucket-acl.read`                 | Get the bucket ACL |
+| `cloud-object-storage.bucket-acl.create`               | Create the bucket ACL |
+| `cloud-object-storage.bucket-crn.read`                 | Get the bucket CRN |
+| `cloud-object-storage.bucket-location.read`            | Get the bucket location |
+| `cloud-object-storage.bucket-retention.read`           | Get the bucket retention |
+| `cloud-object-storage.bucket-retention.create`         | Create the bucket retention |
+{: caption="Table 3. Bucket events" caption-side="top"}
+
+
+### Object events
+{: #at-actions-mngt-3}
+
+The following table lists the COS object events:
+
+| Action                                                     | Description                 |
+| ---------------------------------------------------------- | --------------------------- |
+| `cloud-object-storage.object-acl.read`                     | Get the object ACL |
+| `cloud-object-storage.object-acl.create`                   | Create the object ACL |
+| `cloud-object-storage.object-retention-legal-hold.list`    | List the legal holds on the object |
+| `cloud-object-storage.object-retention-legal-hold.update`  | Add or remove object legal hold |
+| `cloud-object-storage.object-retention.update`             | Extend the retention time |
+| `cloud-object-storage.object-expire.info`                  | Get when the object will expire |
+{: caption="Table 4. Object events" caption-side="top"}
+
+## Data Events
+{: #at-actions-data}
+
+Data events are classified in the following categories:
+* Bucket access events
+* Object access events
+* Multipart events
+
+### Bucket access events
+{: #at-actions-data-1}
+
+The following table lists the COS bucket access events:
+
+| Action                                                 | Description                 |
+| ------------------------------------------------------ | --------------------------- |
+| `cloud-object-storage.object.list`                     | List the objects in the bucket |
+| `cloud-object-storage.bucket.info`                     | Get the metadata for the bucket |
+{: caption="Table 5. Bucket access events" caption-side="top"}
+
+
+### Object access events
+{: #at-actions-data-2}
+
+The following table lists the COS object access events:
+
+| Action                                                 | Description                 |
+| ------------------------------------------------------ | --------------------------- |
+| `cloud-object-storage.object.info`                     | Get the metadata for the object |
+| `cloud-object-storage.object.read`                     | Read the object |
+| `cloud-object-storage.object.write`                    | Write the object |
+| `cloud-object-storage.object.delete`                   | Delete the object |
+| `cloud-object-storage.objects.delete`                  | Delete multiple objects |
+| `cloud-object-storage.object-batch.delete`             | Delete an object in a batch |
+| `cloud-object-storage.object-copy.read`                | Read the source object to copy |
+| `cloud-object-storage.object-copy.write`               | Write the target object to copy |
+| `cloud-object-storage.object-restore.read`             | Read the source object to restore|
+| `cloud-object-storage.object-restore.write`            | Write the target object to restore |
+{: caption="Table 6. Object access events" caption-side="top"}
+
+
+### Multipart Events
+{: #at-actions-data-3}
+
+The following table lists the COS multipart events:
+
+| Action                                                 | Description                 |
+| ------------------------------------------------------ | --------------------------- |
+| `cloud-object-storage.bucket-multipart.list`           | List multipart uploads of objects in a bucket |
+| `cloud-object-storage.object-multipart.list`           | List parts of an object |
+| `cloud-object-storage.object-multipart.start`          | Initiate a multipart upload of an object |
+| `cloud-object-storage.object-multipart.create`         | Create a part of a multipart upload of an object |
+| `cloud-object-storage.object-multipart.complete`       | Complete a multipart upload of an object |
+| `cloud-object-storage.object-multipart.delete`         | Abort an imcomplete multipart upload of an object |
+{: caption="Table 7. Multipart events" caption-side="top"}
+
+
+## Viewing events
 {: #at-ui}
 
-{{site.data.keyword.cloudaccesstrailshort}} events are available in the {{site.data.keyword.cloudaccesstrailshort}} **account domain**.
+You can view the Activity Tracker events that are associated with your {{site.data.keyword.cos_short}} instance by using [{{site.data.keyword.at_full_notm}}](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started).
 
-Events are sent to the {{site.data.keyword.cloudaccesstrailshort}} region closest to the {{site.data.keyword.cos_full_notm}} bucket location that is shown on the [services supported page](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability#integrated-service-availability).
+You can only provision 1 instance of the {{site.data.keyword.at_full_notm}} service per location. 
+
+To view events, you must identify the location where events are collected and available for monitoring. Then, you must access the web UI of the {{site.data.keyword.at_full_notm}} instance in that location. For more information, see [Launching the web UI through the IBM Cloud UI](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-launch#launch_step2).
+
+### Global events
+{: #at-ui-global}
+
+{{site.data.keyword.cos_short}} global events are forwarded to the {{site.data.keyword.at_full_notm}} service instance that is located in Frankfurt.
+
+### Management events
+{: #at-ui-mngt}
+
+{{site.data.keyword.cos_short}} management events are forwarded to the {{site.data.keyword.at_full_notm}} instance that is associated with the bucket.
+
+To view events, you must access the web UI of the {{site.data.keyword.at_full_notm}} instance in the location that is associated with the bucket.
+
+### Data events
+{: #at-ui-data}
+
+{{site.data.keyword.cos_short}} data events are forwarded to the {{site.data.keyword.at_full_notm}} instance that is associated with the bucket.
+
+To view events, you must access the web UI of the {{site.data.keyword.at_full_notm}} instance in the location that is associated with the bucket.
+
+
+## Analyzing events
+{: #at-events-analyze}
+
+### Identifying the COS instance ID that generates the event
+{: #at-events-analyze-1}
+
+In the {{site.data.keyword.cloud_notm}}, you can have 1 or more COS instances. 
+
+To quickly identify the COS instance ID in your account that has generated an event, check the field `requestData.serviceInstanceId` that is set in the **requestData** field.
+
+### Identifying the bucket location
+{: #at-events-analyze-2}
+
+To quickly identify the bucket location, check the field `requestData.bucketLocation` that is set in the **requestData** field.
+
+### Getting the unique ID of a request
+{: #at-events-analyze-3}
+
+Each action that a user performs on a COS resource has a unique ID.
+
+To get the unique ID of a request to a COS resource, check the field `requestData.requestId` that is set in the **requestData** field.
+
+### Getting all events for a multipart upload operations
+{: #at-events-analyze-4}
+
+When you upload a large object by using *multipart upload operations*, each operation generates an event. In each event, the field `requestData.uploadId` is set to the same value.
+
+To search for all events that are part of a multipart upload operation, you can search for a specific `requestData.uploadId` value. 
+
+### Getting all events that are generated for a restore request
+{: #at-events-analyze-5}
+
+A request to restore an object from an archive generates multiple events in COS:
+1. A read action of the source object. This action generates an event with action **cloud-object-storage.object-restore.read**. 
+2. A write action of the object into a bucket. This action generates an event with action **cloud-object-storage.object-restore.write**.  
+
+You can use the `RequestData.requestId` field to identify the events that are generated when you restore an object.
+
+### Getting all events that are generated for copying an object from one bucket to another
+{: #at-events-analyze-6}
+
+A request to copy an object from one bucket to a different one generates multiple events in COS:
+1. A read action of the source object. This action generates an event with action **cloud-object-storage.object-copy.read**. 
+2. A write action of the object into the new bucket. This action generates an event with action **cloud-object-storage.object-copy.write**.   
+
+To collect and monitor all events that report on a copy action across buckets, consider configuring each bucket to collect and forward events to the same Activity Tracker instance in your account.
+* If one bucket is not enabled to collect management and data events, you will not receive the event that reports any copy action on that bucket.
+* If you configure different Activity Tracker instances for each bucket, you will have one event in 1 instance and the other event in a different instance.
+
+You can use the `RequestData.requestId` field to identify the events that are generated when you copy an object from one bucket to another.
+
+
+
+
+

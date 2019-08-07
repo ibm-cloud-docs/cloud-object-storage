@@ -25,12 +25,12 @@ subcollection: cloud-object-storage
 [Activity Tracker with LogDNA](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started) allows you to [audit the requests](/docs/services/cloud-object-storage?topic=cloud-object-storage-at-events) made against a bucket and the objects it contains.
 {: shortdesc}
 
-## Using the console to set a firewall
+## Using the console
 {: #at-console}
 
 First, make sure that you have a bucket. If not, follow the [getting started tutorial](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started) to become familiar with the console. 
 
-### Enable event logging
+### Enable activity tracking
 {: #at-console-enable}
 
 1. From the {{site.data.keyword.cloud_notm}} [console dashboard](https://cloud.ibm.com/), select **Storage** to view your resource list.
@@ -48,7 +48,7 @@ First, make sure that you have a bucket. If not, follow the [getting started tut
 It is possible to have all data collected in an instance of Activity Tracker with LogDNA be archived and written to a bucket.  For more information, [see the Activity Tracker documentation](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-archiving).
 
 
-## Set a firewall through an API
+## Using an API
 {: #at-api}
 
 Enabling activity tracking is managed with the [COS Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration). This new REST API is used for configuring buckets.

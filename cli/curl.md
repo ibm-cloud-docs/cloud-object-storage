@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-07"
 
 keywords: basics, upload, getting started, curl, cli
 
@@ -23,7 +23,7 @@ subcollection: cloud-object-storage
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
 
-# Using `curl`
+# Using `cURL`
 {: #curl}
 
 Here's a 'cheatsheet' of basic `curl` commands for the {{site.data.keyword.cos_full}} REST API. Additional detail can be found in the API reference for [buckets](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations) or [objects](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-object-operations).
@@ -36,12 +36,12 @@ Using `curl` assumes a certain amount of familiarity with the command line and o
 ## Request an IAM Token
 {: #curl-iam}
 
-There are two ways to generate an IAM oauth token for authenticating requests: using a `curl` command with an API key (described below) or from the command line using [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-ibmcloud-cli). 
+There are two ways to generate an IAM oauth token for authenticating requests: using a `curl` command with an API key (described below) or from the command line using [{{site.data.keyword.cloud}} CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-ibmcloud-cli). 
 
 ### Request an IAM token using an API key
 {: #curl-token}
 
-First ensure that you have an API key. Get this from [{{site.data.keyword.iamlong}}](https://cloud.ibm.com/iam/apikeys).
+First ensure that you have an API key. You can obtain one from [{{site.data.keyword.iamlong}}](https://cloud.ibm.com/iam/apikeys).
 
 ```
 curl -X "POST" "https://iam.cloud.ibm.com/identity/token" \
@@ -154,6 +154,17 @@ curl --head "https://(endpoint)/(bucket-name)/"
 ```
 {:codeblock}
 
+## Get bucket metadata
+{: #curl-bucket-metadata}
+
+Note the use of the config API endpoint is not the same as the endpoint for your bucket itself. Use of this command returns metadata for the specified bucket.
+ 
+```
+curl https://config.cloud-object-storage.cloud.ibm.com/v1/b/{my-bucket} \
+                        -H 'authorization: bearer <IAM_token>' 
+```
+{:codeblock}
+
 ## Delete a bucket
 {: #curl-delete-bucket}
 
@@ -218,6 +229,33 @@ curl "https://(endpoint)/(bucket-name)/(object-key)"
 ```
 curl "https://(endpoint)/(bucket-name)/(object-key)?acl"
  -H "Authorization: bearer (token)"
+```
+{:codeblock}
+
+## Enable a firewall
+{: #curl-enable-firewall}
+
+Note the use of the config API endpoint is not the same as the endpoint for your bucket itself. Use of this command enables a firewall for the specified bucket. No other {{site.data.keyword.cloud}} services can access the bucket when the firewall is active.
+ 
+```
+curl -X PATCH https://config.cloud-object-storage.cloud.ibm.com/v1/b/{my-bucket} \
+                        -H 'authorization: bearer $IAM_TOKEN' \
+                        -d '{"firewall": {"allowed_ip": ["10.142.175.0/22", "10.198.243.79"]}}'
+```
+{:codeblock}
+
+## Enable activity tracking
+{: #curl-enable-activity-tracking}
+
+Note the use of the config API endpoint is not the same as the endpoint for your bucket itself. Use of this command enables activity tracking for the specified bucket.
+ 
+```
+curl -X PATCH https://config.cloud-object-storage.cloud.ibm.com/v1/b/{my-bucket} \
+                        -H 'authorization: bearer <IAM_token>' \
+                        -d '{"activity_tracking": { \
+                                "activity_tracker_crn": at_crn, \
+                                "read_data_events": True, \
+                                "write_data_events": True}'
 ```
 {:codeblock}
 
