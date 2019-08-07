@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-07-25"
+lastupdated: "2019-08-07"
 
 keywords: cloud services, integration, aspera, key protect, archive, worm
 
@@ -43,9 +43,9 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
 
 | Region          | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker |
 |-----------------|--------|-------------|------|--------------|--------------------------|------------------|
-| AP Cross Region | Yes    | No          | No   | No           | No                       | jp-tok           |
-| EU Cross Region | Yes    | No          | No   | No           | No                       | eu-de            |
-| US Cross Region | Yes    | No          | No   | No           | No                       | us-south         |
+| AP Cross Region | Yes    | No          | No   | No           | No                       | Tokyo            |
+| EU Cross Region | Yes    | No          | No   | No           | No                       | Frankfurt        |
+| US Cross Region | Yes    | No          | No   | No           | No                       | Dallas           |
 
 
 
@@ -55,26 +55,26 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
 
 | Region           | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker |
 |------------------|--------|-------------|------|--------------|--------------------------|------------------|
-| AP Australia     | Yes    | Yes         | Yes  | Yes          | Yes                      | No               |
-| AP Japan         | Yes    | Yes         | No   | Yes          | Yes                      | jp-tok           |
-| EU Great Britain | Yes    | Yes         | No   | Yes          | Yes                      | eu-gb            |
-| EU Germany       | Yes    | Yes         | No   | Yes          | Yes                      | eu-de            |
-| US South         | Yes    | Yes         | Yes  | Yes          | Yes                      | us-south         |
-| US East          | Yes    | Yes         | No   | Yes          | Yes                      | us-south         |
+| AP Australia     | Yes    | Yes         | Yes  | Yes          | Yes                      | with COS API     |
+| AP Japan         | Yes    | Yes         | No   | Yes          | Yes                      | Tokyo            |
+| EU Great Britain | Yes    | Yes         | No   | Yes          | Yes                      | London           |
+| EU Germany       | Yes    | Yes         | No   | Yes          | Yes                      | Frankfurt        |
+| US South         | Yes    | Yes         | Yes  | Yes          | Yes                      | Dallas           |
+| US East          | Yes    | Yes         | No   | Yes          | Yes                      | Dallas           |
 ## Single Data Centers
 {: #service-availability-zone}
 
 | Region                 | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker |
 |------------------------|--------|-------------|------|--------------|--------------------------|------------------|
-| Amsterdam, Netherlands | Yes    | No          | No   | No           | No                       | eu-de            |
-| Chennai, India         | Yes    | No          | No   | No           | No                       | jp-tok           |
-| Hong Kong              | Yes    | No          | No   | No           | No                       | jp-tok           |
-| Melbourne, Australia   | Yes    | No          | No   | No           | No                       | No               |
-| Mexico City, Mexico    | Yes    | No          | No   | No           | No                       | us-south         |
-| Milan, Italy           | Yes    | No          | No   | No           | No                       | eu-de            |
-| Montréal, Canada       | Yes    | No          | No   | No           | No                       | us-south         |
-| Oslo, Norway           | Yes    | No          | No   | No           | No                       | eu-de            |
-| San Jose, USA          | Yes    | No          | No   | No           | No                       | us-south         |
-| São Paulo, Brazil      | Yes    | No          | No   | No           | No                       | us-south         |
-| Seoul, South Korea     | Yes    | No          | No   | No           | No                       | jp-tok           |
-| Toronto, Canada        | Yes    | No          | No   | Yes          | No                       | us-south         |
+| Amsterdam, Netherlands | Yes    | No          | No   | No           | No                       | Frankfurt        |
+| Chennai, India         | Yes    | No          | No   | No           | No                       | Tokyo            |
+| Hong Kong              | Yes    | No          | No   | No           | No                       | Tokyo            |
+| Melbourne, Australia   | Yes    | No          | No   | No           | No                       | with COS API     |
+| Mexico City, Mexico    | Yes    | No          | No   | No           | No                       | Dallas           |
+| Milan, Italy           | Yes    | No          | No   | No           | No                       | Frankfurt        |
+| Montréal, Canada       | Yes    | No          | No   | No           | No                       | Dallas           |
+| Oslo, Norway           | Yes    | No          | No   | No           | No                       | Frankfurt        |
+| San Jose, USA          | Yes    | No          | No   | No           | No                       | Dallas           |
+| São Paulo, Brazil      | Yes    | No          | No   | No           | No                       | Dallas           |
+| Seoul, South Korea     | Yes    | No          | No   | No           | No                       | Japan            |
+| Toronto, Canada        | Yes    | No          | No   | Yes          | No                       | Dallas           |
