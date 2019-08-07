@@ -111,7 +111,7 @@ You can choose to use Key Protect or {{site.data.keyword.hscrypto}} to manage en
 If bucket creation fails with a `400 Bad Request` error with the message `The Key CRN could not be found`, ensure that the CRN is correct and that the service authorization policy exists.
 {:tip} 
 
-In the **Buckets and objects** listing, the bucket now has a key icon under **Advanced**, indicating that the bucket has a Key Protect or {{site.data.keyword.hscrypto}} key enabled. To view the key details, click the menu at the right of the bucket and then click **View key**.
+In the **Buckets and objects** listing, the bucket now has a _View_ link under **Advanced**, indicating that the bucket has a Key Protect or {{site.data.keyword.hscrypto}} key enabled. To view the key details, click _View_.
 
 Note that the `Etag` value returned for objects encrypted using SSE-KP or {{site.data.keyword.hscrypto}} **will** be the actual MD5 hash of the original decrypted object.
 {:tip}
