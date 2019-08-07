@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-07"
 
 keywords: administration, billing, platform
 
@@ -77,3 +77,28 @@ There are four classes:
 For more information about pricing, see [the pricing table at ibm.com](https://www.ibm.com/cloud/object-storage#s3api).
 
 For more information about creating buckets with different storage classes, see the [API reference](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
+
+## Get bucket metadata
+{: #curl-bucket-metadata}
+
+In order to determine your current usage, you may wish to query a bucket to see `bytes_used` and `object_count`. Use of this command returns metadata containing that information for the specified bucket.
+ 
+```
+curl https://config.cloud-object-storage.cloud.ibm.com/v1/b/{my-bucket} \
+                        -H 'authorization: bearer <IAM_token>' 
+```
+{:codeblock}
+
+An example response should contain `bytes_used` and `object_count`. 
+```
+{
+  "name": "{my-bucket}",
+  "crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903:bucket:my-new-bucket",
+  "service_instance_id": "d6f04d83-6c4f-4a62-a165-696756d63903",
+  "service_instance_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a /3bf0d9003abfb5d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::",
+  "time_created": "2018-03-26T16:23:36.980Z",
+  "time_updated": "2018-10-17T19:29:10.117Z",
+  "object_count": 764265234,
+  "bytes_used": 28198745752445144
+}
+```
