@@ -248,21 +248,23 @@ Content-Length: 0
 
 ----
 
-## Create a new bucket with Key Protect managed encryption keys (SSE-KP)
+## Create a new bucket with Key Protect or {{site.data.keyword.hscrypto}} managed encryption keys (SSE-KP)
 {: #compatibility-api-key-protect}
 
-To create a bucket where the encryption keys are managed by Key Protect, it is necessary to have access to an active Key Protect service instance located in the same location as the new bucket. This operation does not make use of operation specific query parameters.
+To create a bucket where the encryption keys are managed by Key Protect or {{site.data.keyword.hscrypto}}, it is necessary to have access to an active Key Protect or {{site.data.keyword.hscrypto}} service instance located in the same location as the new bucket. This operation does not make use of operation specific query parameters.
 
-For more information on using Key Protect to manage your encryption keys, [see the documentation](/docs/services/key-protect?topic=key-protect-getting-started-tutorial).
+For more information on using Key Protect to manage your encryption keys, [see the documentation for Key Protect](/docs/services/key-protect?topic=key-protect-getting-started-tutorial).
 
-Note that Key Protect is **not** available in a Cross Region configuration and any SSE-KP buckets must be Regional.
+For more information on {{site.data.keyword.hscrypto}}, [see the documentation](/docs/services/hs-crypto?topic=hs-crypto-get-started).
+
+Note that managed encryption is **not** available in a Cross Region configuration and any SSE-KP buckets must be Regional.
 {:tip}
 
 Header                                        | Type   | Description
 ------------------------------------------------- | ------ | ----
 `ibm-service-instance-id`  | String  |  This header references the service instance where the bucket will be created and to which data usage will be billed.
 `ibm-sse-kp-encryption-algorithm` | String | This header is used to specify the algorithm and key size to use with the encryption key stored by using Key Protect. This value must be set to the string `AES256`.
-`ibm-sse-kp-customer-root-key-crn`  | String | This header is used to reference the specific root key used by Key Protect to encrypt this bucket. This value must be the full CRN of the root key.
+`ibm-sse-kp-customer-root-key-crn`  | String | This header is used to reference the specific root key used by Key Protect or {{site.data.keyword.hscrypto}} to encrypt this bucket. This value must be the full CRN of the root key.
 
 **Syntax**
 
