@@ -108,7 +108,7 @@ When your key exists in Key Protect or {{site.data.keyword.hscrypto}} and you au
 You can choose to use Key Protect or {{site.data.keyword.hscrypto}} to manage encryption for a bucket only at the time of creation. It isn't possible to change an existing bucket to use Key Protect or {{site.data.keyword.hscrypto}}.
 {:important}
 
-If bucket creation fails with a `400 Bad Request` error with the message `The Key CRN could not be found`, ensure that the CRN is correct and that the service authorization policy exists.
+If bucket creation fails with a `400 Bad Request` error with the message `The Key CRN could not be found`, ensure that the CRN is correct and that the service to service authorization policy exists.
 {:tip} 
 
 In the **Buckets and objects** listing, the bucket now has a _View_ link under **Advanced**, indicating that the bucket has a Key Protect or {{site.data.keyword.hscrypto}} key enabled. To view the key details, click _View_.
