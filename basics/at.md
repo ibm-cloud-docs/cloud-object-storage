@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-08-13"
+lastupdated: "2019-08-16"
 
 keywords: IBM, activity tracker, LogDNA, event, object storage, COS API calls, monitor COS events
 
@@ -52,7 +52,7 @@ The following table lists the COS actions that generate a global event. You can 
 
 | Action                                 | Description                 |
 | -------------------------------------- | --------------------------- |
-| `cloud-object-storage.bucket.list`     | List the buckets in the service instance |
+| `cloud-object-storage.instance.list`   | List the buckets in the service instance |
 | `cloud-object-storage.bucket.create`   | Create a bucket in the service instance |
 | `cloud-object-storage.bucket.delete`   | Delete a bucket in the service instance |
 {: caption="Table 1. {{site.data.keyword.cos_short}} actions that generate global events" caption-side="top"}
@@ -84,7 +84,6 @@ The following table lists the COS bucket events:
 
 | Action                                                 | Description                 |
 | ------------------------------------------------------ | --------------------------- |
-| `cloud-object-storage.bucket-cors.info`                | Validate the CORS configuration |
 | `cloud-object-storage.bucket-cors.read`                | Get the CORS configuration |
 | `cloud-object-storage.bucket-cors.create`              | Create the CORS configuration |
 | `cloud-object-storage.bucket-cors.delete`              | Delete the CORS configuration |
@@ -107,6 +106,7 @@ The following table lists the COS object events:
 
 | Action                                                     | Description                 |
 | ---------------------------------------------------------- | --------------------------- |
+| `cloud-object-storage.object-cors.info`                    | Validate the CORS configuration |
 | `cloud-object-storage.object-acl.read`                     | Get the object ACL |
 | `cloud-object-storage.object-acl.create`                   | Create the object ACL |
 | `cloud-object-storage.object-retention-legal-hold.list`    | List the legal holds on the object |
@@ -149,9 +149,9 @@ The following table lists the COS object access events:
 | `cloud-object-storage.objects.delete`                  | Delete multiple objects |
 | `cloud-object-storage.object-batch.delete`             | Delete an object in a batch |
 | `cloud-object-storage.object-copy.read`                | Read the source object to copy |
-| `cloud-object-storage.object-copy.create`              | Create the target object from the copy source |
+| `cloud-object-storage.object-copy.create`              | Create the target object from the copy |
 | `cloud-object-storage.object-restore.read`             | Read the source object to restore|
-| `cloud-object-storage.object-restore.create`           | Create the target object from the restore source |
+| `cloud-object-storage.object-restore.create`           | Create the target object from the restore |
 {: caption="Table 6. Object access events" caption-side="top"}
 
 
