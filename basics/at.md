@@ -106,7 +106,7 @@ The following table lists the COS object events:
 
 | Action                                                     | Description                 |
 | ---------------------------------------------------------- | --------------------------- |
-| `cloud-object-storage.object-cors.info`                    | Validate the CORS configuration |
+| `cloud-object-storage.object-cors.info`                    | Validate the object can be accessed |
 | `cloud-object-storage.object-acl.read`                     | Get the object ACL |
 | `cloud-object-storage.object-acl.create`                   | Create the object ACL |
 | `cloud-object-storage.object-retention-legal-hold.list`    | List the legal holds on the object |
