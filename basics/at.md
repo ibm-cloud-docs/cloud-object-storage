@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-08-08"
+lastupdated: "2019-08-13"
 
 keywords: IBM, activity tracker, LogDNA, event, object storage, COS API calls, monitor COS events
 
@@ -144,14 +144,14 @@ The following table lists the COS object access events:
 | ------------------------------------------------------ | --------------------------- |
 | `cloud-object-storage.object.info`                     | Get the metadata for the object |
 | `cloud-object-storage.object.read`                     | Read the object |
-| `cloud-object-storage.object.write`                    | Write the object |
+| `cloud-object-storage.object.create`                   | Create the object |
 | `cloud-object-storage.object.delete`                   | Delete the object |
 | `cloud-object-storage.objects.delete`                  | Delete multiple objects |
 | `cloud-object-storage.object-batch.delete`             | Delete an object in a batch |
 | `cloud-object-storage.object-copy.read`                | Read the source object to copy |
-| `cloud-object-storage.object-copy.write`               | Write the target object to copy |
+| `cloud-object-storage.object-copy.create`              | Create the target object from the copy source |
 | `cloud-object-storage.object-restore.read`             | Read the source object to restore|
-| `cloud-object-storage.object-restore.write`            | Write the target object to restore |
+| `cloud-object-storage.object-restore.create`           | Create the target object from the restore source |
 {: caption="Table 6. Object access events" caption-side="top"}
 
 
@@ -234,7 +234,7 @@ To search for all events that are part of a multipart upload operation, you can 
 
 A request to restore an object from an archive generates multiple events in COS:
 1. A read action of the source object. This action generates an event with action **cloud-object-storage.object-restore.read**. 
-2. A write action of the object into a bucket. This action generates an event with action **cloud-object-storage.object-restore.write**.  
+2. A create action of the object into a bucket. This action generates an event with action **cloud-object-storage.object-restore.create**.  
 
 You can use the `RequestData.requestId` field to identify the events that are generated when you restore an object.
 
@@ -243,7 +243,7 @@ You can use the `RequestData.requestId` field to identify the events that are ge
 
 A request to copy an object from one bucket to a different one generates multiple events in COS:
 1. A read action of the source object. This action generates an event with action **cloud-object-storage.object-copy.read**. 
-2. A write action of the object into the new bucket. This action generates an event with action **cloud-object-storage.object-copy.write**.   
+2. A create action of the object into the new bucket. This action generates an event with action **cloud-object-storage.object-copy.create**.   
 
 To collect and monitor all events that report on a copy action across buckets, consider configuring each bucket to collect and forward events to the same Activity Tracker instance in your account.
 * If one bucket is not enabled to collect management and data events, you will not receive the event that reports any copy action on that bucket.

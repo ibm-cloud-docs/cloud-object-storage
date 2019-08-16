@@ -92,7 +92,7 @@ b.	Value: Resource Instance ID for your cloud storage service.
 ## Using the sample collection
 {: #postman-collection}
 
-A Postman Collection is available for [download ![External link icon](../icons/launch-glyph.svg "External link icon")](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/ibm_cos_postman.json){: new_window} with configurable {{site.data.keyword.cos_full}} API request samples.
+A Postman Collection is available for [download ![External link icon](/docs-content/v1/content/icons/launch-glyph.svg)](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/ibm_cos_postman.json){: new_window} with configurable {{site.data.keyword.cos_full}} API request samples.
 
 ### Import the collection to Postman
 {: #postman-import-collection}
