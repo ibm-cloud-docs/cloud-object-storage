@@ -84,32 +84,32 @@ Navigate to your instance of {{site.data.keyword.hscrypto}} and [initialize the 
 ### Grant service authorization
 Authorize Key Protect or {{site.data.keyword.hscrypto}} for use with IBM COS:
 
-1.	Open your IBM Cloud dashboard.
-2.	From the menu bar, click **Manage > Access**.
-3.	In the side navigation, click **Authorizations**.
-4.	Click **Create authorization**.
-5.	In the **Source service** menu, select **Cloud Object Storage**.
-6.	In the **Source service instance** menu, select the service instance to authorize.
-7.	In the **Target service** menu, select **IBM Key Protect** or **{{site.data.keyword.hscrypto}}**.
-8.	In the **Target service instance** menu, select the service instance to authorize.
-9.	Enable the **Reader** role.
-10.	Click **Authorize**.
+1. Open your IBM Cloud dashboard.
+2. From the menu bar, click **Manage > Access**.
+3. In the side navigation, click **Authorizations**.
+4. Click **Create authorization**.
+5. In the **Source service** menu, select **Cloud Object Storage**.
+6. In the **Source service instance** menu, select the service instance to authorize.
+7. In the **Target service** menu, select **IBM Key Protect** or **{{site.data.keyword.hscrypto}}**.
+8. In the **Target service instance** menu, select the service instance to authorize.
+9. Enable the **Reader** role.
+10. Click **Authorize**.
 
 ### Create a bucket
 When your key exists in Key Protect or {{site.data.keyword.hscrypto}} and you authorized the service for use with IBM COS, associate the key with a new bucket:
 
-1.	Navigate to your instance of Object Storage.
-2.	Click **Create bucket**.
-3.	Enter a bucket name, select the **Regional** resiliency, and choose a location and storage class.
-4.	In Advanced Configuration, enable **Add Key Protect Key** or **Add Hyper Protect Crypto Service key**.
-5.	Select the associated service instance, key, and Key ID.
-6.	Click **Create**.
+1. Navigate to your instance of Object Storage.
+2. Click **Create bucket**.
+3. Enter a bucket name, select the **Regional** resiliency, and choose a location and storage class.
+4. In Advanced Configuration, enable **Add Key Protect Key** or **Add Hyper Protect Crypto Service key**.
+5. Select the associated service instance, key, and Key ID.
+6. Click **Create**.
 
 You can choose to use Key Protect or {{site.data.keyword.hscrypto}} to manage encryption for a bucket only at the time of creation. It isn't possible to change an existing bucket to use Key Protect or {{site.data.keyword.hscrypto}}.
 {:important}
 
 If bucket creation fails with a `400 Bad Request` error with the message `The Key CRN could not be found`, ensure that the CRN is correct and that the service to service authorization policy exists.
-{:tip} 
+{:tip}
 
 In the **Buckets and objects** listing, the bucket now has a _View_ link under **Advanced**, indicating that the bucket has a Key Protect or {{site.data.keyword.hscrypto}} key enabled. To view the key details, click _View_.
 

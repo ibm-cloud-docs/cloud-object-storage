@@ -45,18 +45,39 @@ IBM COS provides SDKs for Java, Python, NodeJS, and Go. These SDKs are based on 
 
 ## IAM API key support
 {: #sdk-about-iam}
-Allows for creating clients with an API key instead of an pair of Access/Secret keys.  Token management is handled automatically, and tokens are automatically refreshed during long-running operations.
+Allows for creating clients with an API key instead of an pair of Access/Secret keys.  
+Token management is handled automatically, and tokens are automatically refreshed during long-running operations.
+
 ## Managed multipart uploads
+{: #sdk-about-tmup}
 Using a `TransferManager` class, the SDK will handle all the necessary logic for uploading objects in multiple parts.
+
 ## Managed multipart downloads
+{: #sdk-about-tmdown}
 Using a `TransferManager` class, the SDK will handle all the necessary logic for downloading objects in multiple parts.
+
 ## Extended bucket listing
-This is an extension to the S3 API that Returns a list of buckets with provisioning codes (a combination of the bucket's location and storage class, returned as `LocationConstraint`) for buckets when listing.  This is useful for finding a bucket, as the buckets in a service instance are all listed regardless of the endpoint used.
+{: #sdk-about-extended-list}
+This is an extension to the S3 API that Returns a list of buckets with provisioning codes 
+(a combination of the bucket's location and storage class, returned as `LocationConstraint`) for buckets when listing.  
+This is useful for finding a bucket, as the buckets in a service instance are all listed regardless of the endpoint used.
+
 ## Version 2 object listing
+{: #sdk-about-v2-list}
 Version 2 listing allows for more powerful scoping of object listings.
+
 ## Key Protect
+{: #sdk-about-kp}
 Key Protect is an IBM Cloud service that manages encryption keys, and is an optional parameter during bucket creation.
-## SSE-C                      
-## Archive rules              
-## Retention policies         
+
+## SSE-C
+{: #sdk-about-sse-c}  
+
+## Archive rules
+{: #sdk-about-archive}  
+ 
+## Retention policies
+{: #sdk-about-retention}  
+
 ## Aspera high-speed transfer 
+{: #sdk-about-aspera}  
