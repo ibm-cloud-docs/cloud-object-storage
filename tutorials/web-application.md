@@ -503,21 +503,21 @@ template for your new web application.
 
 Follow these steps:
 
-1.  Clone the repo listed in Example 21. Download the template for your app on your local
-    development environment using Git. Rather than cloning the sample
-    app from {{site.data.keyword.cloud_notm}} Platform, use the command in Example 21 to clone the
+1.  Download the sample here: [download ![External link icon](/docs-content/v1/content/icons/launch-glyph.svg)](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/image-gallery-tutorial.zip){: new_window}. Download the template for your app to your local
+    development environment using your browser. Rather than cloning the sample
+    app from {{site.data.keyword.cloud_notm}} Platform, use the command in Example 21 to obtain the
     starter template for the {{site.data.keyword.cos_full_notm}} Web Gallery app. After cloning the
     repo you will find the starter app in the
     COS-WebGalleryStart directory. Open a Git CMD window and change to a
-    directory where you want to clone Github repo. Use the command shown
-    in the first example of this tutorial.
+    directory where you want to clone Github repo. Once there, use the command shown
+    in the first example of this tutorial to start adding your new files.
 
 ```bash
-git clone https://git.ng.bluemix.net/Chris.Pitchford/temp-image-gallery-tutorial ./temp-web-application
+curl https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/image-gallery-tutorial.zip -o image-gallery-tutorial.zip
 ```
 {: codeblock}
-{: caption="Example 21. Git clone command details" caption-side="bottom"}
-`Example 21. Git clone command details`
+{: caption="Example 21. cURL command details" caption-side="bottom"}
+`Example 21. cURL command details`
 
 2.  Run the app locally. Open a terminal application providing a CLI and change your working directory to
     the COS-WebGalleryStart directory. Please note the Node.js dependencies
