@@ -11,7 +11,7 @@ Cloud Object Storage
     {: .topicgroup}
     Getting started
         basics/administrators.md
-        basics/developers.md        
+        basics/developers.md
 
     basics/glossary.md
     release-notes.md
@@ -69,6 +69,7 @@ Cloud Object Storage
 
     {: .topicgroup}
     Libraries
+        libraries/overview-sdks.md
         libraries/getting-started-sdks.md
         libraries/java.md
         libraries/python.md
