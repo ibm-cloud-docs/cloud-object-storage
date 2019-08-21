@@ -27,7 +27,10 @@ subcollection: cloud-object-storage
 {: #web-application}
 
 From beginning to end, building a web application covers a lot of different concepts and is a great way to introduce
-yourself to the features of {{site.data.keyword.cos_full}}. This tutorial will show you how to build
+yourself to the features of {{site.data.keyword.cos_full}}.
+{:shortdesc: .shortdesc}
+
+This tutorial will show you how to build
 a simple image gallery on the {{site.data.keyword.cloud}} Platform, and how to bring together
 many different concepts and practices. Your application will use {{site.data.keyword.cos_full_notm}} as the 
 back-end server for a Node.js application that allows a user to upload and view JPEG image files.
