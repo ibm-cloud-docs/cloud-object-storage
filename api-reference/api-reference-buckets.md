@@ -364,7 +364,7 @@ X-Clv-S3-Version: 2.5
 x-amz-request-id: 0c2832e3-3c51-4ea6-96a3-cd8482aca08a
 Content-Length: 0
 ibm-sse-kp-enabled: True
-ibm-see-kp-crk-id: {customer-root-key-id}
+ibm-sse-kp-crk-id: {customer-root-key-id}
 ```
 
 ----
