@@ -58,7 +58,7 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
 | AP Australia     | Yes    | Yes         | Yes  | Yes          | Yes                      | with COS API     |
 | AP Japan         | Yes    | Yes         | No   | Yes          | Yes                      | Tokyo            |
 | EU Great Britain | Yes    | Yes         | No   | Yes          | Yes                      | London           |
-| EU Germany       | Yes    | Yes         | No   | Yes          | Yes                      | Frankfurt        |
+| EU Germany       | Yes    | Yes         | Yes   | Yes          | Yes                      | Frankfurt        |
 | US South         | Yes    | Yes         | Yes  | Yes          | Yes                      | Dallas           |
 | US East          | Yes    | Yes         | No   | Yes          | Yes                      | Dallas           |
 ## Single Data Centers
