@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-22"
 
-keywords: gui, desktop, crossftp
+keywords: gui, file transfer, crossftp
 
 subcollection: cloud-object-storage
 
@@ -27,7 +27,10 @@ subcollection: cloud-object-storage
 # Transfer files using CrossFTP
 {: #crossftp}
 
-[CrossFTP](http://www.crossftp.com/){:new_window} is a full-featured FTP client that supports S3-compatible cloud storage solutions including {{site.data.keyword.cos_full}}. CrossFTP supports Mac OS X, Microsoft Windows, Linux and comes in Free, Pro, and Enterprise versions with features such as:
+[CrossFTP](http://www.crossftp.com/){:new_window} is a full-featured FTP client that supports S3-compatible cloud storage solutions including {{site.data.keyword.cos_full}}. 
+{:shortdesc: .shortdesc}
+
+CrossFTP supports Mac OS X, Microsoft Windows, Linux and comes in Free, Pro, and Enterprise versions with features such as:
 
 * Tabbed Interface
 * Password Encryption
