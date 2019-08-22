@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2017-08-27"
+  years: 2017, 2018, 2019
+lastupdated: "2019-08-22"
 
 ---
 {:new_window: target="_blank"}
@@ -12,13 +12,15 @@ lastupdated: "2017-08-27"
 {:screen: .screen}
 {:tip: .tip}
 
-# Common Headers & Error Codes
+# Common headers & error codes
 {: #compatibility-common}
+
+Data trans
 
 ## Common Request Headers
 {: #compatibility-request-headers}
 
-The following table describes supported common request headers. {{site.data.keyword.cos_full}} ignores any common headers not listed below if sent in a request, although some requests may support other headers as defined in this documentation.
+The following table describes supported common request headers. {{site.data.keyword.cos_full}} ignores any common headers not listed below if sent as part of a request, although some requests may support additional headers as defined in this document.
 
 | Header                  | Note                                                                                                                               |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |

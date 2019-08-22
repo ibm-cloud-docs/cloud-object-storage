@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-05-22"
+lastupdated: "2019-08-22"
 
-keywords: tutorial, migrate, openstack swift
+keywords: migrate, openstack swift, object storage
 
 subcollection: cloud-object-storage
 
@@ -26,7 +26,11 @@ subcollection: cloud-object-storage
 # Migrating data from OpenStack Swift
 {: #migrate}
 
-Before {{site.data.keyword.cos_full_notm}} became available as an {{site.data.keyword.cloud_notm}} Platform service, projects that required an object store used [OpenStack Swift](https://docs.openstack.org/swift/latest/) or [OpenStack Swift (infrastructure)](/docs/infrastructure/objectstorage-swift?topic=objectstorage-swift-GettingStarted#getting-started-with-object-storage-openstack-swift). We recommend developers update their applications and migrate their data to {{site.data.keyword.cloud_notm}} to take advantage of the new access control and encryption benefits provided by IAM and Key Protect, as well as new features as they become available.
+We recommend developers update their applications and migrate their data to {{site.data.keyword.cos_full}} to take advantage of the new access control and encryption benefits provided by IAM and Key Protect, as well as new features as they become available.
+{: shortdesc}
+
+Before {{site.data.keyword.cloud_notm}} became available as an {{site.data.keyword.cloud_notm}} Platform service, projects that required an object store used [OpenStack Swift](https://docs.openstack.org/swift/latest/) or [OpenStack Swift (infrastructure)](/docs/infrastructure/objectstorage-swift?topic=objectstorage-swift-GettingStarted#getting-started-with-object-storage-openstack-swift). 
+
 
 The concept of a Swift 'container' is identical to a COS 'bucket'. COS limits service instances to 100 buckets and some Swift instances may have a larger number of containers. COS buckets can hold billions of objects and supports forward slashes (`/`) in object names for directory-like 'prefixes' when organizing data. COS supports IAM policies at the bucket and service instance levels.
 {:tip}

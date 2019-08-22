@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-08-01"
+lastupdated: "2019-08-22"
 
 keywords: events, activity, logging, api
 
