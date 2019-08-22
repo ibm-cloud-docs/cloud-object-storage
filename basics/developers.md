@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2018, 2019
 lastupdated: "2019-08-22"
 
-keywords: developer, getting started, cli
+keywords: developer, getting started, command line interface, cli
 
 subcollection: cloud-object-storage
 
@@ -19,8 +19,12 @@ subcollection: cloud-object-storage
 {:note: .note}
 {:download: .download} 
 
-# For developers
+# For developers of {{site.data.keyword.cos_full_notm}}
 {: #gs-dev}
+
+Getting started with 
+{:shortdesc: .shortdesc}
+
 First, ensure you have the [{{site.data.keyword.cloud}} Platform CLI](https://cloud.ibm.com/docs/cli/index.html) and [IBM Developer Tools](https://cloud.ibm.com/docs/cloudnative/idt/index.html) installed.
 
 ## Provision an instance of {{site.data.keyword.cos_full_notm}}

@@ -4,6 +4,10 @@ copyright:
   years: 2017, 2018, 2019
 lastupdated: "2019-08-22"
 
+keywords: object storage, reference, api
+
+subcollection: cloud-object-storage
+
 ---
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -11,11 +15,15 @@ lastupdated: "2019-08-22"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
 
 # Common headers & error codes
 {: #compatibility-common}
 
-Data trans
+Data transfers utilize numerous standard protocols in addition to having unique requirements. Keep up to date with the reference to common headers and some error codes.
+{:shortdesc: .shortdesc}
 
 ## Common Request Headers
 {: #compatibility-request-headers}
