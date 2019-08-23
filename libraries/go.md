@@ -28,10 +28,10 @@ subcollection: cloud-object-storage
 # Using Go
 {: #go}
 
-The {{site.data.keyword.cos_full}} SDK for Go provides features and capabilities to make the most of {{site.data.keyword.cos_notm}}.
+The {{site.data.keyword.cos_full}} SDK for Go provides features to make the most of {{site.data.keyword.cos_notm}}.
 {:shortdesc: .shortdesc}
 
-Of course, the {{site.data.keyword.cos_notm}} SDK for Go is very comprehensive, with many features and capabilities that exceed the scope and space of this guide. For detailed class and method documentation [see the Go Docs](https://ibm.github.io/ibm-cos-sdk-go/). Source code can be found in the [GitHub repository](https://github.com/IBM/ibm-cos-sdk-go).
+The {{site.data.keyword.cos_notm}} SDK for Go is comprehensive, with many features and capabilities that exceed the scope and space of this guide. For detailed class and method documentation [see the Go API documentation](https://ibm.github.io/ibm-cos-sdk-go/). Source code can be found in the [GitHub repository](https://github.com/IBM/ibm-cos-sdk-go).
 
 ## Getting the SDK
 {: #go-get-sdk}
@@ -68,9 +68,9 @@ To connect to {{site.data.keyword.cos_full_notm}}, a client is created and confi
 
 The credentials can be found by creating a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), or through the CLI.
 
-Figure 1 shows an example of how to define environment variables in an application runtime at the {{site.data.keyword.cos_full_notm}} portal. The required variables are `IBM_API_KEY_ID` containing your Service Credential 'apikey', `IBM_SERVICE_INSTANCE_ID` holding the 'resource_instance_id' also from your Service Credential, and an `IBM_AUTH_ENDPOINT` with a value appropriate to your account, like `https://iam.cloud.ibm.com/identity/token`. If using environment variables to define your application credentials, use `WithCredentials(ibmiam.NewEnvCredentials(aws.NewConfig())).` as appropriate, replacing the similar method used in the configuration example.
+Figure 1 shows an example of how to define environment variables in an application runtime at the {{site.data.keyword.cos_full_notm}} portal. The required variables are `IBM_API_KEY_ID` containing your Service Credential 'apikey', `IBM_SERVICE_INSTANCE_ID` holding the 'resource_instance_id' also from your Service Credential, and an `IBM_AUTH_ENDPOINT` with a value appropriate to your account, like `https://iam.cloud.ibm.com/identity/token`. If using environment variables to define your application credentials, use `WithCredentials(ibmiam.NewEnvCredentials(aws.NewConfig())).`, replacing the similar method used in the configuration example.
 
-![environmentvariables](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/go-library-fig-1-env-vars.png)
+![environment variables](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/go-library-fig-1-env-vars.png)
 {: caption="Figure 1. Environment Variables"}
 
 ### Initializing configuration
@@ -325,7 +325,7 @@ func main() {
 
 
 
-### Execute a manual multi-part upload
+### Run a manual multi-part upload
 {: #go-multipart}
 
 ```Go	
@@ -380,7 +380,7 @@ func main() {
 ## Using Key Protect
 {: #go-examples-kp}
 
-Key Protect can be added to a storage bucket to manage encryption keys. All data is encrypted in IBM COS, but Key Protect provides a service for generating, rotating, and controlling access to encryption keys using a centralized service.
+Key Protect can be added to a storage bucket to manage encryption keys. All data is encrypted in IBM COS, but Key Protect provides a service for generating, rotating, and controlling access to encryption keys by using a centralized service.
 
 ### Before You Begin
 {: #go-examples-kp-prereqs}
@@ -396,7 +396,7 @@ The following items are necessary in order to create a bucket with Key-Protect e
 1. Retrieve the [instance ID](/docs/services/key-protect?topic=key-protect-retrieve-instance-ID#retrieve-instance-ID) for your Key Protect service
 2. Use the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
     * You can either use `curl` commands or an API REST Client such as [Postman](/docs/services/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api).
-3. Retrieve the CRN of the root key you will use to enabled Key Protect on the your bucket. The CRN will look similar to below:
+3. Retrieve the CRN of the root key you use to enabled Key Protect on your bucket. The CRN looks similar to below:
 
 `crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
 
@@ -430,7 +430,7 @@ func main() {
 *Key Values*
 * `<NEW_BUCKET_NAME>` - The name of the new bucket.
 * `<ROOT-KEY-CRN>` - CRN of the Root Key that is obtained from the Key Protect service.
-* `<ALGORITHM>` - The encryption algorithm used for new objects added to the bucket (Default is AES256).
+* `<ALGORITHM>` - The encryption algorithm that is used for new objects added to the bucket (Default is AES256).
 
 
 ### Use the transfer manager
