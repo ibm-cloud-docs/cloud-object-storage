@@ -26,28 +26,28 @@ subcollection: cloud-object-storage
 # Constructing an HMAC signature
 {: #hmac-signature}
 
-Each request that is made against IBM COS using [HMAC credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-hmac) instead of an [API key or bearer token](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview) must be authenticated that uses an implementation of the AWS Signature Version 4 `authorization` header. Using a signature provides identity verification and in-transit data integrity, and because each signature is tied to the timestamp of the request it is not possible to reuse authorization headers. The header is composed of four components: an algorithm declaration, credential information, signed headers, and the calculated signature:
+Instead of token-based authorization, it's possible to use [HMAC credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-hmac). These credentials are used to create an authorization header analogous to AWS Signature Version 4. Calculating signatures provides identity verification and in-transit data integrity. Each signature is tied to the time stamp of the request, so you can't reuse authorization headers. The header is composed of four components: an algorithm declaration, credential information, signed headers, and the calculated signature.
 
 ```
 AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;{other-required-headers},Signature={signature}
 ```
 
-The date is provided in `YYYYMMDD` format, and the region should be correspond to the location of specified bucket, for example `us`, . The `host` and `x-amz-date` headers are always required, and depending on the request other headers may be required as well (e.g. `x-amz-content-sha256` in the case of requests with payloads). Due to the need to recalculate the signature for every individual request, many developers prefer to use a tool or SDK that will produce the authorization header automatically.
+The date is provided in `YYYYMMDD` format, and the region corresponds to the location of specified bucket, for example `us`. The `host` and `x-amz-date` headers are always required. Depending on the request other headers might be required as well (for example, `x-amz-content-sha256` in requests with payloads). It's necessary to recalculate the signature for every individual request, so many developers prefer to use a tool or SDK that produces the authorization header automatically.
 
 ## Creating an `authorization` header
 {: #hmac-auth-header}
 
-First we need to create a request in a standardized format.
+First, we need to create a request in a standardized format.
 
-1. Declare which HTTP method we are using (e.g. `PUT`)
-2. Define the resource we are accessing in a standardized fashion. This is the part of the address in between `http(s)://` and the query string. For requests at the account level (i.e. listing buckets) this is simply `/`.
-3. If there are any request parameters they must be standardized by being percent-encoded (e.g. spaces should be represented as `%20`) and alphabetized.
-4. Headers need to be standardized by removing whitespace, converting to lowercase, and adding a newline to each, then they must be sorted in ASCII order.
-5. After being listed in a standard format, they must be 'signed'. This is taking just the header names, not their values, and listing them in alphabetical order, separated by semicolons. `Host` and `x-amz-date` are required for all requests.
-6. If the request has a body, such as when uploading an object or creating a new ACL, the request body must be hashed using the SHA-256 algorithm and represented as base-16 encoded lowercase characters.
+1. Declare which HTTP method we are using (for example, `PUT`)
+2. Define the resource that we are accessing in a standardized fashion. This is the part of the address in between `http(s)://` and the query string. For requests at the account level (such as listing buckets) this is simply `/`.
+3. If there are any request parameters, they must be standardized by being percent-encoded (for example, spaces are be represented as `%20`) and alphabetized.
+4. Headers need to be standardized by removing white space, converting to lowercase, and adding a newline to each, then they must be sorted in ASCII order.
+5. After being listed in a standard format, they must be 'signed'. This is taking just the header names, not their values, and listing them in alphabetical order, which is separated by semicolons. `Host` and `x-amz-date` are required for all requests.
+6. If the request has a body, such as when uploading an object or creating a new ACL, the request body must be hashed by using the SHA-256 algorithm and represented as base-16 encoded lowercase characters.
 7. Combine the HTTP method, standardized resource, standardized parameters, standardized headers, signed headers, and hashed request body each separated by a newline to form a standardized request.
 
-Next we need to assemble a 'string-to-sign' which will be combined with the signature key to form the final signature. The string-to-sign takes the following form:
+Next, we need to assemble a 'string-to-sign' that is combined with the signature key to form the final signature. The string-to-sign takes the following form:
 
 ```
 AWS4-HMAC-SHA256
@@ -56,20 +56,20 @@ AWS4-HMAC-SHA256
 {hashed-standardized-request}
 ```
 
-1. The time must be current UTC and formatted according to the ISO 8601 specification (e.g. `20161128T152924Z`).
+1. The time must be current Coordinated Universal Time and formatted according to the ISO 8601 specification (for example, `20161128T152924Z`).
 2. The date is in `YYYYMMDD` format.
-3. The final line is the previously created standardized request hashed using the SHA-256 algorithm.
+3. The final line is the previously created standardized request hashed that uses the SHA-256 algorithm.
 
-Now we need to actually calculate the signature.
+Now we need to calculate the signature.
 
-1. First the signature key needs to be calculated from the account's secret access key, the current date, and the region and API type being used.
-2. The string `AWS4` is prepended to the secret access key, and then that new string is used as the key to hash the date.
-3. Then the resulting hash is used as the key to hash the region.
+1. First, the signature key needs to be calculated from the account's secret access key, the current date, and the region and API type being used.
+2. The string `AWS4` is added as a prefix to the secret access key, and then that new string is used as the key to hash the date.
+3. The resulting hash is used as the key to hash the region.
 4. The process continues with the new hash being used as the key to hash the API type.
-5. Finally the newest hash is used as the key to hash the string `aws4_request` creating the signature key.
+5. Finally, the newest hash is used as the key to hash the string `aws4_request` creating the signature key.
 6. The signature key is then used as the key to hash the string-to-sign generating the final signature.
 
-Now the only step remaining is actually assembling the `authorization` header as shown:
+Now the only step left is assembling the `authorization` header as shown:
 
 ```
 AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;{other-required-headers},Signature={signature}
@@ -96,7 +96,7 @@ secret_key = os.environ.get('COS_HMAC_SECRET_ACCESS_KEY')
 http_method = 'GET'
 host = 's3.us.cloud-object-storage.appdomain.cloud'
 region = 'us-standard'
-endpoint = 'http://s3.us.cloud-object-storage.appdomain.cloud'
+endpoint = 'https://s3.us.cloud-object-storage.appdomain.cloud'
 bucket = '' # add a '/' before the bucket name to list buckets
 object_key = ''
 request_parameters = ''
@@ -122,7 +122,7 @@ time = datetime.datetime.utcnow()
 timestamp = time.strftime('%Y%m%dT%H%M%SZ')
 datestamp = time.strftime('%Y%m%d')
 
-standardized_resource = bucket + '/' + object_key
+standardized_resource = '/' + bucket + '/' + object_key
 standardized_querystring = request_parameters
 standardized_headers = 'host:' + host + '\n' + 'x-amz-date:' + timestamp + '\n'
 signed_headers = 'host;x-amz-date'

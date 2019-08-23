@@ -37,6 +37,9 @@ Aspera high-speed transfer is available in the {{site.data.keyword.cloud_notm}} 
 Aspera high-speed transfer is available in certain regions only. See [Integrated Services](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability) for more details.
 {:tip}
 
+It is not possible to use Aspera high-speed transfer if the bucket has an Immutable Object Storage policy.
+{:important}
+
 ## Using the console
 {: #aspera-console}
 
