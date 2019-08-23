@@ -25,7 +25,7 @@ subcollection: cloud-object-storage
 The powerful tools of {{site.data.keyword.cos_full}} are available to a developer directly from the command line.
 {:shortdesc: .shortdesc}
 
-First, ensure you have the [{{site.data.keyword.cloud}} Platform CLI](https://cloud.ibm.com/docs/cli/index.html) and [IBM Developer Tools](https://cloud.ibm.com/docs/cloudnative/idt/index.html) installed.
+First, ensure that you have the [{{site.data.keyword.cloud}} Platform CLI](https://cloud.ibm.com/docs/cli/index.html) and [IBM Developer Tools](https://cloud.ibm.com/docs/cloudnative/idt/index.html) installed.
 
 ## Create an instance of {{site.data.keyword.cos_full_notm}}
 {: #gs-dev-provision}
@@ -63,7 +63,7 @@ IBM COS SDKs are available for [Python](/docs/services/cloud-object-storage/libr
 {: #gs-dev-apps}
 {{site.data.keyword.cloud}} provides flexibility to developers in choosing the right architectural and deployment options for a given application. Run your code on [bare metal](https://cloud.ibm.com/catalog/infrastructure/bare-metal), in [virtual machines](https://cloud.ibm.com/catalog/infrastructure/virtual-server-group), by using a [serverless framework](https://cloud.ibm.com/openwhisk), in [containers](https://cloud.ibm.com/kubernetes/catalog/cluster), or by using [Cloud Foundry](https://cloud.ibm.com/catalog/starters/sdk-for-nodejs). 
 
-The [Cloud Native Computing Foundation](https://www.cncf.io) fostered [Kubernetes](https://kubernetes.io) container orchestration framework, which forms the foundation for the {{site.data.keyword.cloud}} Kubernetes Service. Developers who want to use object storage for persistent storage in their Kubernetes applications can learn more at the following links:
+The [Cloud Native Computing Foundation](https://www.cncf.io) fostered [Kubernetes](https://kubernetes.io) container orchestration framework, which forms the foundation for the {{site.data.keyword.cloud}} Kubernetes Service. Developers who want to use Object Storage for persistent storage in their Kubernetes applications can learn more at the following links:
 
  * [Choosing a storage solution](/docs/containers?topic=containers-storage_planning#choose_storage_solution)
  * [Comparison table for persistent storage options](/docs/containers?topic=containers-storage_planning#persistent_storage_overview)
@@ -72,8 +72,8 @@ The [Cloud Native Computing Foundation](https://www.cncf.io) fostered [Kubernete
  * [Creating COS service instance](/docs/containers?topic=containers-object_storage#create_cos_service)
  * [Creating COS secret](/docs/containers?topic=containers-object_storage#create_cos_secret)
  * [Decide on the configuration](/docs/containers?topic=containers-object_storage#configure_cos)
- * [Provision COS](/docs/containers?topic=containers-object_storage#add_cos)
- * [Backup and restore information](/docs/containers?topic=containers-object_storage#backup_restore)
+ * [Create an instance of COS](/docs/containers?topic=containers-object_storage#add_cos)
+ * [Back up and restore information](/docs/containers?topic=containers-object_storage#backup_restore)
  * [Storage Class reference](/docs/containers?topic=containers-object_storage#storageclass_reference)
 
 

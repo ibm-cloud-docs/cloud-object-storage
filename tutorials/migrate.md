@@ -26,7 +26,7 @@ subcollection: cloud-object-storage
 # Migrating data from OpenStack Swift
 {: #migrate}
 
-We recommend developers update their applications and migrate their data to {{site.data.keyword.cos_full}} to take advantage of the new access control and encryption benefits provided by IAM and Key Protect, as well as new features as they become available.
+We recommend developers update their applications and migrate their data to {{site.data.keyword.cos_full}} to take advantage of the new access control and encryption benefits that are provided by IAM and Key Protect, as well as new features as they become available.
 {:shortdesc: .shortdesc}
 
 Before {{site.data.keyword.cloud_notm}} became available as an {{site.data.keyword.cloud_notm}} Platform service, projects that required an object store used [OpenStack Swift](https://docs.openstack.org/swift/latest/) or [OpenStack Swift (infrastructure)](/docs/infrastructure/objectstorage-swift?topic=objectstorage-swift-GettingStarted#getting-started-with-object-storage-openstack-swift). 
@@ -213,11 +213,11 @@ This guide provides instructions for migrating data from a single Swift containe
     ```
 
    Try to max out the CPU, memory, and network on the machine running `rclone` to get the fastest transfer time.
-   A few other parameter to consider for tuning `rclone`:
+   A few other parameters to consider for tuning `rclone`:
 
 Flag | Type | Description
 --- | --- | ---
-`--checkers` | `int` | Number of checkers to run in parallel (default 8). This is the number of checksum compare threads running. We recommend increasing this to 64 or more.
+`--checkers` | `int` | Number of checkers to run in parallel (default 8). This is the number of checksums compare threads running. We recommend increasing this to 64 or more.
 `--transfers` | `int` | Number of file transfers to run in parallel (default 4). This is the number of objects to transfer in parallel. We recommend increasing this to 64 or 128 or higher.
 `--fast-list` | None | Use recursive list if available. Uses more memory but fewer transactions. Use this option to improve performance, as it reduces the number of requests that are needed to copy an object.
 
