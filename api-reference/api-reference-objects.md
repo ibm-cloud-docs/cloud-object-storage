@@ -22,7 +22,7 @@ subcollection: cloud-object-storage
 # Object operations
 {: #object-operations}
 
-These operations read, write, and configure the objects contained within a bucket.
+These operations read, write, and configure the objects within a bucket.
 
 For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
 {:tip}
@@ -30,9 +30,9 @@ For more information about endpoints, see [Endpoints and storage locations](/doc
 ## Upload an object
 {: #object-operations-put}
 
-A `PUT` given a path to an object uploads the request body as an object. All objects uploaded in a single thread should be smaller than 500MB (objects [uploaded in multiple parts](/docs/services/cloud-object-storage?topic=cloud-object-storage-large-objects) can be as large as 10TB).
+A `PUT` given a path to an object uploads the request body as an object. All objects uploaded in a single thread should be smaller than 500 MB (objects that are [uploaded in multiple parts](/docs/services/cloud-object-storage?topic=cloud-object-storage-large-objects) can be as large as 10 TB).
 
-**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
+**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
 {:tip}
 
 **Syntax**
@@ -115,7 +115,7 @@ Content-Length: 0
 
 A `HEAD` given a path to an object retrieves that object's headers.
 
-Note that the `Etag` value returned for objects encrypted using SSE-KP will **not** be the MD5 hash of the original unencrypted object.
+Note that the `Etag` value returned for objects encrypted using SSE-KP **is** the MD5 hash of the original decrypted object.
 {:tip}
 
 **Syntax**
@@ -172,7 +172,7 @@ Content-Length: 11
 
 A `GET` given a path to an object downloads the object.
 
-Note that the `Etag` value returned for objects encrypted using SSE-C/SSE-KP will **not** be the MD5 hash of the original unencrypted object.
+The `Etag` value that is returned for objects encrypted using SSE-C/SSE-KP will **not** be the MD5 hash of the original decrypted object.
 {:tip}
 
 **Syntax**
@@ -187,7 +187,7 @@ GET https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 
 Header | Type | Description
 --- | ---- | ------------
-`range` | string | Returns the bytes of an object within the specified range.
+`range` | String | Returns the bytes of an object within the specified range.
 
 **Example request**
 
@@ -289,11 +289,11 @@ x-amz-request-id: 8ff4dc32-a6f0-447f-86cf-427b564d5855
 ## Deleting multiple objects
 {: #object-operations-multidelete}
 
-A `POST` given a path to an bucket and proper parameters will delete a specified set of objects. A `Content-MD5` header specifying the base64 encoded MD5 hash of the request body is required.
+A `POST` given a path to a bucket and proper parameters deletes a specified set of objects. A `Content-MD5` header that specifies the base64 encoded MD5 hash of the request body is required.
 
 The required `Content-MD5` header needs to be the binary representation of a base64 encoded MD5 hash.
 
-**Note:** If an object specified in the request is not found the result returns as deleted. 
+**Note:** When an object that is specified in the request is not found the result returns as deleted. 
 
 ### Optional Elements
 {: #object-operations-multidelete-options}
@@ -302,7 +302,7 @@ The required `Content-MD5` header needs to be the binary representation of a bas
 |---|---|---|
 |`Quiet`|Boolean|Enable quiet mode for the request.|
 
-The request can contain a maximum of 1000 keys that you want to delete. While this is very useful in reducing the per-request overhead, be mindful when deleting a large number of keys. Also take into account the sizes of the objects to ensure suitable performance.
+The request can contain a maximum of 1000 keys that you want to delete. While this is useful in reducing the number of requests, be mindful when deleting many keys. Also, take into account the sizes of the objects to ensure suitable performance.
 {:tip}
 
 ```
@@ -389,9 +389,9 @@ Content-Length: 207
 ## Copy an object
 {: #object-operations-copy}
 
-A `PUT` given a path to a new object creates a new copy of another object specified by the `x-amz-copy-source` header. Unless otherwise altered the metadata remains the same.
+A `PUT` given a path to a new object creates a new copy of another object that is specified by the `x-amz-copy-source` header. Unless otherwise altered the metadata remains the same.
 
-**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
+**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
 {:tip}
 
 
@@ -410,11 +410,11 @@ PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 
 Header | Type | Description
 --- | ---- | ------------
-`x-amz-metadata-directive` | string (`COPY` or `REPLACE`) | `REPLACE` will overwrite original metadata with new metadata that is provided.
-`x-amz-copy-source-if-match` | string (`ETag`)| Creates a copy if the specified `ETag` matches the source object.
-`x-amz-copy-source-if-none-match` | string (`ETag`)| Creates a copy if the specified `ETag` is different from the source object.
-`x-amz-copy-source-if-unmodified-since` | string (timestamp)| Creates a copy if the the source object has not been modified since the specified date. Date must be a valid HTTP date (e.g. `Wed, 30 Nov 2016 20:21:38 GMT`).
-`x-amz-copy-source-if-modified-since` | string (timestamp)| Creates a copy if the source object has been modified since the specified date. Date must be a valid HTTP date (e.g. `Wed, 30 Nov 2016 20:21:38 GMT`).
+`x-amz-metadata-directive` | string (`COPY` or `REPLACE`) | A `REPLACE` overwrites original metadata with new metadata that is provided.
+`x-amz-copy-source-if-match` | String (`ETag`)| Creates a copy if the specified `ETag` matches the source object.
+`x-amz-copy-source-if-none-match` | String (`ETag`)| Creates a copy if the specified `ETag` is different from the source object.
+`x-amz-copy-source-if-unmodified-since` | String (time stamp)| Creates a copy if the source object has not been modified since the specified date. Date must be a valid HTTP date (for example, `Wed, 30 Nov 2016 20:21:38 GMT`).
+`x-amz-copy-source-if-modified-since` | String (time stamp)| Creates a copy if the source object has been modified since the specified date. Date must be a valid HTTP date (for example, `Wed, 30 Nov 2016 20:21:38 GMT`).
 
 **Example request**
 
@@ -472,7 +472,7 @@ Content-Length: 240
 ## Check an object's CORS configuration
 {: #object-operations-options}
 
-An `OPTIONS` given a path to an object along with an origin and request type checks to see if that object is accessible from that origin using that request type. Unlike all other requests, an OPTIONS request does not require the `authorization` or `x-amx-date` headers.
+An `OPTIONS` given a path to an object along with an origin and request type checks to see whether that object is accessible from that origin by using that request type. Unlike all other requests, an OPTIONS request does not require the `authorization` or `x-amx-date` headers.
 
 **Syntax**
 
@@ -535,12 +535,9 @@ Content-Length: 0
 
 When working with larger objects, multipart upload operations are recommended to write objects into {{site.data.keyword.cos_full}}. An upload of a single object can be performed as a set of parts and these parts can be uploaded independently in any order and in parallel. Upon upload completion, {{site.data.keyword.cos_short}} then presents all parts as a single object. This provides many benefits: network interruptions do not cause large uploads to fail, uploads can be paused and restarted over time, and objects can be uploaded as they are being created.
 
-Multipart uploads are only available for objects larger than 5MB. For objects smaller than 50GB, a part size of 20MB to 100MB is recommended for optimum performance. For larger objects, part size can be increased without significant performance impact. Multipart uploads are limited to no more than 10,000 parts of 5GB each.
+Multipart uploads are only available for objects larger than 5 MB. For objects smaller than 50 GB, a part size of 20 MB to 100 MB is recommended for optimum performance. For larger objects, part size can be increased without significant performance impact. 
 
-Using more than 500 parts leads to inefficiencies in {{site.data.keyword.cos_short}} and should be avoided when possible.
-{:tip}
-
-Due to the additional complexity involved, it is recommended that developers make use of a library that provide multipart upload support.
+Due to the additional complexity involved, it is recommended that developers make use of a library that provides multipart upload support.
 
 Incomplete multipart uploads do persist until the object is deleted or the multipart upload is aborted with `AbortIncompleteMultipartUpload`. If an incomplete multipart upload is not aborted, the partial upload continues to use resources. Interfaces should be designed with this point in mind, and clean up incomplete multipart uploads.
 {:tip}
@@ -549,14 +546,14 @@ There are three phases to uploading an object in multiple parts:
 
 1. The upload is initiated and an `UploadId` is created.
 2. Individual parts are uploaded specifying their sequential part numbers and the `UploadId` for the object.
-3. When all parts are finished uploading, the upload is completed by sending a request with the `UploadId` and an XML block that lists each part number and it's respective `Etag` value.
+3. When all parts are finished uploading, the upload is completed by sending a request with the `UploadId` and an XML block that lists each part number and its respective `Etag` value.
 
 ## Initiate a multipart upload
 {: #object-operations-multipart-initiate}
 
 A `POST` issued to an object with the query parameter `upload` creates a new `UploadId` value, which is then be referenced by each part of the object being uploaded.
 
-**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
+**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
 {:tip}
 
 **Syntax**
@@ -616,9 +613,9 @@ Content-Length: 276
 ## Upload a part
 {: #object-operations-multipart-put-part}
 
-A `PUT` request issued to an object with query parameters `partNumber` and `uploadId` will upload one part of an object. The parts may be uploaded serially or in parallel, but must be numbered in order.
+A `PUT` request that is issued to an object with query parameters `partNumber` and `uploadId` will upload one part of an object. The parts can be uploaded serially or in parallel, but must be numbered in order.
 
-**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
+**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
 {:tip}
 
 **Syntax**
@@ -679,7 +676,7 @@ Content-Length: 0
 ## List parts
 {: #object-operations-multipart-list}
 
-A `GET` given a path to a multipart object with an active `UploadID` specified as a query parameter will return a list of all of the object's parts.
+A `GET` given a path to a multipart object with an active `UploadID` specified as a query parameter returns a list of all of the object's parts.
 
 
 **Syntax**
@@ -695,7 +692,7 @@ Parameter | Required?| Type | Description
 --- | ---- | ------------
 `uploadId` | Required | string | Upload ID returned when initializing a multipart upload.
 `max-parts` | Optional | string | Defaults to 1,000.
-`part-number​-marker` | Optional | string | Defines where the list of parts will begin.
+`part-number​-marker` | Optional | string | Defines where the list of parts begins.
 
 **Example request**
 
@@ -764,7 +761,7 @@ Content-Length: 743
 ## Complete a multipart upload
 {: #object-operations-multipart-complete}
 
-A `POST` request issued to an object with query parameter `uploadId` and the appropriate XML block in the body will complete a multipart upload.
+A `POST` request that is issued to an object with query parameter `uploadId` and the appropriate XML block in the body will complete a multipart upload.
 
 **Syntax**
 
@@ -853,7 +850,7 @@ Content-Length: 364
 ## Abort incomplete multipart uploads
 {: #object-operations-multipart-uploads}
 
-A `DELETE` request issued to an object with query parameter `uploadId` will delete all unfinished parts of a multipart upload.
+A `DELETE` request issued to an object with query parameter `uploadId` deletes all unfinished parts of a multipart upload.
 
 **Syntax**
 
@@ -900,13 +897,13 @@ X-Clv-S3-Version: 2.5
 ## Temporarily restore an archived object
 {: #object-operations-archive-restore}
 
-A `POST` request issued to an object with query parameter `restore` to request temporary restoration of an archived object. A `Content-MD5` header is required as an integrity check for the payload.
+A `POST` request that is issued to an object with query parameter `restore` to request temporary restoration of an archived object. A `Content-MD5` header is required as an integrity check for the payload.
 
-An archived object must be restored before downloading or modifying the object. The lifetime of the object must be specifed, after which the temporary copy of the object will be deleted.
+An archived object must be restored before downloading or modifying the object. The lifetime of the object must be specified after which the temporary copy of the object will be deleted.
 
-There can be a delay of up to 15 hours before the restored copy is available for access. A HEAD request can check if the restored copy is available.
+There can be a delay of up to 15 hours before the restored copy is available for access. A HEAD request can check whether the restored copy is available.
 
-To permanently restore the object, it must be copied to a bucket that does not have an active lifecycle configuration.
+To permanently restore the object, it must be copied to a bucket that doesn't have an active lifecycle configuration.
 
 **Syntax**
 
@@ -986,12 +983,12 @@ Server: Cleversafe/3.9.1.114
 X-Clv-S3-Version: 2.5
 ```
 
-## Updating Metadata
+## Updating metadata
 {: #object-operations-metadata}
 
 There are two ways to update the metadata on an existing object:
 * A `PUT` request with the new metadata and the original object contents
-* Executing a `COPY` request with the new metadata specifying the original object as the copy source
+* Running a `COPY` request with the new metadata specifying the original object as the copy source
 
 All metadata key must be prefixed with `x-amz-meta-`
 {: tip}
@@ -999,7 +996,7 @@ All metadata key must be prefixed with `x-amz-meta-`
 ### Using PUT to update metadata
 {: #object-operations-metadata-put}
 
-The `PUT` request requires a copy of existing object as the contents will be overwritten. {: important}
+The `PUT` request requires a copy of existing object as the contents are overwritten. {: important}
 
 **Syntax**
 
@@ -1044,7 +1041,7 @@ Content-Length: 0
 ### Using COPY to update metadata
 {: #object-operations-metadata-copy}
 
-For additional details about executing a `COPY` request, click [here](#object-operations-copy)
+For extra details about running a `COPY` request, click [here](#object-operations-copy)
 
 **Syntax**
 

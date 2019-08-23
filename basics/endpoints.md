@@ -20,15 +20,15 @@ lastupdated: "2019-07-25"
 
 Sending a REST API request or configuring a storage client requires setting a target endpoint or URL. Each storage location has its own set of URLs.
 
-Most users should use one of the following endpoints for a given storage location. Private endpoints should be used from within the IBM cloud and do not incur data transfer charges. Public endpoints should be used from outside the IBM cloud and do incur transfer charges. If possible, it's recommended to use a private endpoint.
+Private endpoints can be used from within the IBM Cloud and don't incur data transfer charges. Public endpoints can be used from outside the IBM Cloud and do incur transfer charges. If possible, it's best to use a private endpoint.
 
-As of December 2018, we have updated our endpoints. [Legacy endpoints](/docs/services/cloud-object-storage/info?topic=cloud-object-storage-advanced-endpoints) will continue to work until further notice. Please update your applications to use the new endpoints listed here.
+In December 2018, we updated our endpoints. [Legacy endpoints](/docs/services/cloud-object-storage/info?topic=cloud-object-storage-advanced-endpoints) continue to work until further notice. Update your applications to use the new endpoints listed here.
 {:note}
 
 ## Regional Endpoints
 {: #endpoints-region}
 
-Buckets created at a regional endpoint distribute data across three data centers spread across a metro area. Any one of these data centers can suffer an outage or even destruction without impacting availability.
+Buckets that are created at a regional endpoint distribute data across three data centers that are spread across a metro area. Any one of these data centers can suffer an outage or even destruction without impacting availability.
 
 <table>
   <thead>
@@ -39,7 +39,7 @@ Buckets created at a regional endpoint distribute data across three data centers
     </tr>
   </thead>
   <tbody>
-    <caption>Table 1: Regional Endpoints</caption>
+    <caption>Regional Endpoints</caption>
     <tr>
       <td>US South</td>
       <td>
@@ -135,12 +135,12 @@ Buckets created at a regional endpoint distribute data across three data centers
     </tr>
   </tbody>
 </table>
-{:.endpointtable}
+
 
 ## Cross Region Endpoints
 {: #endpoints-geo}
 
-Buckets created at a cross region endpoint distribute data across three regions. Any one of these regions can suffer an outage or even destruction without impacting availability. Requests are routed to the nearest region's data center using Border Gateway Protocol (BGP) routing. In the case of an outage, requests are automatically re-routed to an active region. Advanced users who wish to write their own failover logic may do so by sending requests to a [specific access point](/docs/services/cloud-object-storage/info?topic=cloud-object-storage-advanced-endpoints) and bypassing the BGP routing.
+Buckets that are created at a cross region endpoint distribute data across three regions. Any one of these regions can suffer an outage or even destruction without impacting availability. Requests are routed to the nearest region's data center by using Border Gateway Protocol (BGP) routing. In an outage, requests are automatically rerouted to an active region. Advanced users who want to write their own failover logic can do so by sending requests to a [specific access point](/docs/services/cloud-object-storage/info?topic=cloud-object-storage-advanced-endpoints) and bypassing the BGP routing.
 
 <table>
   <thead>
@@ -151,7 +151,7 @@ Buckets created at a cross region endpoint distribute data across three regions.
     </tr>
   </thead>
   <tbody>
-    <caption>Table 2: Cross Region Endpoints</caption>
+    <caption>Cross Region Endpoints</caption>
     <tr>
       <td>US Cross Region</td>
       <td>
@@ -201,16 +201,16 @@ Buckets created at a cross region endpoint distribute data across three regions.
     </tr>
   </tbody>
 </table>
-{:.endpointtable}
+
 
 
 
 ## Single Data Center Endpoints
 {: #endpoints-zone}
 
-Single data centers are not co-located with IBM Cloud services, such as IAM or Key Protect, and offer no resiliency in the event of an site outage or destruction. 
+Single data centers are not colocated with IBM Cloud services, such as IAM or Key Protect, and offer no resiliency in a site outage or destruction. 
 
-If a networking failure results in a partition where the data center is unable to reach a core IBM Cloud region to access IAM, authentication and authorization information is read from a cache that may become stale. This may result in a lack of enforcement of new or altered IAM policies for up to 24 hours.
+If a networking failure results in a partition where the data center is unable to access IAM, authentication and authorization information is read from a cache that might become stale. This cached data might result in a lack of enforcement of new or altered IAM policies for up to 24 hours.
 {:important}
 
 <table>
@@ -256,7 +256,7 @@ If a networking failure results in a partition where the data center is unable t
       </td>
     </tr>
     <tr>
-      <td>Hong Kong</td>
+      <td>Hong Kong S.A.R. of the PRC</td>
       <td>
         <p>Public</p>
         <p>Private</p>
@@ -343,7 +343,7 @@ If a networking failure results in a partition where the data center is unable t
       </td>
     </tr>
     <tr>
-      <td>San Jose, USA</td>
+      <td>San Jose, US</td>
       <td>Public</td>
       <td>
         <p>
@@ -403,21 +403,20 @@ If a networking failure results in a partition where the data center is unable t
     </tr>
   </tbody>
 </table>
-{:.endpointtable}
 
-## EU Managed Endpoints
+## EU-Managed Endpoints
 {: #endpoints-eu-managed}
 
-The Activity Tracker and Logging Service with LogDNA can archive to a bucket at specific {{site.data.keyword.cos_full}} instances. Table 4 shows the EU-Managed locations of {{site.data.keyword.cos_full}} instances for archiving events from the Activity Tracker and Logging Service with LogDNA.
+The Activity Tracker and Logging Service with LogDNA can archive to a bucket at specific {{site.data.keyword.cos_full}} instances. This table shows the EU-Managed locations of {{site.data.keyword.cos_full}} instances for archiving events.
 
 | COS bucket location | Resiliency | City |
 |----|----|---
-| AMS03 | Single Site | Amsterdam |
-| eu-de | Regional | Frankfurt |
-| eu-gb | Regional | London |
-| MIL01 | Single Site | Milan |
-| OSL01 | Single Site | Oslo |
-| PAR01 | Single Site | Paris |
-| eu-geo | Cross Region | Amsterdam, Frankfurt, Milan |
-{: caption="Table 4. EU-managed Endpoints"}
+| `AMS03` | Single Site | Amsterdam |
+| `eu-de` | Regional | Frankfurt |
+| `eu-gb` | Regional | London |
+| `MIL01` | Single Site | Milan |
+| `OSL01` | Single Site | Oslo |
+| `PAR01` | Single Site | Paris |
+| `eu-geo` | Cross Region | Amsterdam, Frankfurt, Milan |
+{: caption="EU-managed Endpoints"}
  
