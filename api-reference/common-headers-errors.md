@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2017-08-27"
+  years: 2017, 2018, 2019
+lastupdated: "2019-08-22"
+
+keywords: object storage, reference, api
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -11,14 +15,20 @@ lastupdated: "2017-08-27"
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
+{:note: .note}
+{:download: .download} 
 
-# Common Headers & Error Codes
+# Common headers & error codes
 {: #compatibility-common}
+
+Data transfers utilize numerous standard protocols in addition to having unique requirements. Keep up to date with the reference to common headers and some error codes.
+{:shortdesc: .shortdesc}
 
 ## Common Request Headers
 {: #compatibility-request-headers}
 
-The following table describes supported common request headers. {{site.data.keyword.cos_full}} ignores any common headers not listed below if sent in a request, although some requests may support other headers as defined in this documentation.
+The following table describes supported common request headers. {{site.data.keyword.cos_full}} ignores any common headers not listed below if sent as part of a request, although some requests may support additional headers as defined in this document.
 
 | Header                  | Note                                                                                                                               |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |

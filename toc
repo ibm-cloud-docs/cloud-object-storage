@@ -5,11 +5,12 @@
 Cloud Object Storage
 
     {: .navgroup id="learn"}
-    getting-started.md 
+    getting-started.md
     [About IBM Cloud Object Storage](https://www.ibm.com/cloud/object-storage)
 
+
     {: .topicgroup}
-    Getting started
+        Getting started
         basics/administrators.md
         basics/developers.md
 
@@ -24,7 +25,7 @@ Cloud Object Storage
     Choose regions and connect services
         basics/endpoints.md
         basics/services.md    
-        [Connect from VPC](/vpc-on-classic/vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc)
+        [Connect from VPC](/docs/vpc-on-classic?topic=vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc)
         
     basics/upload.md
     
@@ -47,7 +48,7 @@ Cloud Object Storage
     Manage a bucket's lifecycle configuration
         basics/archive.md
         basics/expiry.md
-    
+
     basics/aspera.md
     basics/immutable.md
     basics/classes.md
@@ -110,7 +111,7 @@ Cloud Object Storage
     Technical guides
         info/data-security-encryption.md
         info/developer-guidance.md
-        [Using Cloud Object Storage with Kubernetes](https://cloud.ibm.com/docs/containers/cs_storage_cos.html)
+        [Using Cloud Object Storage with Kubernetes](https://cloud.ibm.com/docs/containers?topic=containers-object_storage)
         info/cof.md
         info/activestorage.md
         info/velero.md
@@ -119,8 +120,8 @@ Cloud Object Storage
     {: .navgroup-end}
 
     {: .navgroup id="help"}
-    help/faq.md
-    help/support.md
-    help/billing.md
-    [Pricing](https://www.ibm.com/cloud/object-storage#s3api)
+        help/faq.md
+        help/support.md
+        help/billing.md
+        [Pricing](https://www.ibm.com/cloud/object-storage/pricing/)
     {: .navgroup-end}

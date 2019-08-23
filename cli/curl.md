@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-08-07"
+lastupdated: "2019-08-23"
 
-keywords: basics, upload, getting started, curl, cli
+keywords: cli, command line interface, object storage, curl
 
 subcollection: cloud-object-storage
 
@@ -26,7 +26,10 @@ subcollection: cloud-object-storage
 # Using `cURL`
 {: #curl}
 
-Here's a 'cheat sheet' of basic `curl` commands for the {{site.data.keyword.cos_full}} REST API. More detail can be found in the API reference for [buckets](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations) or [objects](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-object-operations).
+You can get the most out working with the command line in most environmenth with {{site.data.keyword.cos_full}} and `cURL`.  
+{:shortdesc: .shortdesc}
+
+Here's a 'cheat sheet' of basic `curl` commands for the {{site.data.keyword.cos_full}} REST API. Additional detail can be found in the API reference for [buckets](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations) or [objects](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-object-operations).
 
 Using `curl` assumes a certain amount of familiarity with the command line and Object Storage, and have the necessary information from a [service credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the [endpoints reference](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints), or the [console](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started). If any terms or variables are unfamiliar, they can be found in the [glossary](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-terminology).
 

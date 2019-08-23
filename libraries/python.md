@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-23"
 
-keywords: python, sdk
+keywords: object storage, python, sdk
 
 subcollection: cloud-object-storage
 
@@ -26,7 +26,10 @@ subcollection: cloud-object-storage
 # Using Python
 {: #python}
 
-Python support is provided through a fork of the `boto3` library. It can be installed from the Python Package Index through `pip install ibm-cos-sdk`.
+Python support is provided through a fork of the `boto3` library providing features and capabilities to make the most of {{site.data.keyword.cos_full}}. 
+{:shortdesc: .shortdesc}
+
+It can be installed from the Python Package Index through `pip install ibm-cos-sdk`.
 
 Source code can be found at [GitHub](https://github.com/ibm/ibm-cos-sdk-python/).
 

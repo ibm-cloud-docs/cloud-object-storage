@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-23"
 
-keywords: encryption, security
+keywords: encryption, security, object storage
 
 subcollection: cloud-object-storage
 
@@ -26,7 +26,10 @@ subcollection: cloud-object-storage
 # Data security and encryption
 {: #security}
 
-{{site.data.keyword.cos_full}} uses Information Dispersal Algorithms (IDAs) to “slice” data and distribute it across a network of data centers. Transmission and storage of data is inherently private and secure. No complete copy of the data resides in any single storage node, and only a subset of nodes needs to be available to fully retrieve the data on the network.
+{{site.data.keyword.cos_full}} uses an innovative approach for cost-effectively storing large volumes of unstructured data while ensuring security, availability and reliability. 
+{:shortdesc: .shortdesc}
+
+This is accomplished by using Information Dispersal Algorithms (IDAs) to separate data into unrecognizable “slices” that are distributed across a network of data centers, making transmission and storage of data inherently private and secure. No complete copy of the data resides in any single storage node, and only a subset of nodes needs to be available in order to fully retrieve the data on the network.
 
 All data in {{site.data.keyword.cos_full_notm}} is encrypted at rest. This technology individually encrypts each object by using per-object generated keys. These keys are secured and reliably stored by using the same Information Dispersal Algorithms that protect object data by using an All-or-Nothing Transform (AONT). Key data is impossible to recover, even if individual nodes or hard disks are compromised.
 

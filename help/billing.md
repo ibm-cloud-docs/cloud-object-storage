@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-08-07"
+lastupdated: "2019-08-23"
 
 keywords: administration, billing, platform
 
@@ -26,7 +26,8 @@ subcollection: cloud-object-storage
 # Billing
 {: #billing}
 
-Information on pricing can be found at [{{site.data.keyword.cloud}}](https://www.ibm.com/cloud/object-storage#s3api){:new_window}.
+Information on pricing can be found at [{{site.data.keyword.cloud}}](https://www.ibm.com/cloud/object-storage/pricing/){:new_window}.
+{:shortdesc: .shortdesc}
 
 ## Invoices
 {: #billing-invoices}

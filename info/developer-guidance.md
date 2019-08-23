@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2018, 2019
 lastupdated: "2019-03-19"
 
-keywords: developer, best practices
+keywords: developer, best practices, object storage
 
 subcollection: cloud-object-storage
 
@@ -25,6 +25,9 @@ subcollection: cloud-object-storage
 
 # Developer guidance
 {: #dev-guide}
+
+If you are seeking solutions for your development with {{site.data.keyword.cos_full}}, this collection of best practices is for you.
+{:shortdesc: .shortdesc}
 
 ## Tuning cipher settings
 {: #dev-guide-cipher}

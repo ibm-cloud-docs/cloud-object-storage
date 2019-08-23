@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-23"
 
-keywords: node, javascript, sdk
+keywords: object storage, node, javascript, sdk
 
 subcollection: cloud-object-storage
 
@@ -25,6 +25,9 @@ subcollection: cloud-object-storage
 
 # Using Node.js
 {: #node}
+
+The {{site.data.keyword.cos_full}} SDK for Node.js provides modern capabilities that make the most of {{site.data.keyword.cos_notm}}.
+{:shortdesc: .shortdesc}
 
 ## Installing the SDK
 {: #node-install}

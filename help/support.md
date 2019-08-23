@@ -26,7 +26,10 @@ subcollection: cloud-object-storage
 # Support
 {: #troubleshooting}
 
-If you have problems or questions when using {{site.data.keyword.cos_full}}, you can get help by searching for information or by asking questions through a forum. You can also open a support ticket.
+If you have problems or questions when using {{site.data.keyword.cos_full}}, you can get help starting right here. 
+{:shortdesc: .shortdesc}
+
+Whether by searching for information or by asking questions through a forum, you can find what you need&mdash;and if you don't&mdash;you can also open a support ticket.
 
 When using the forums to ask a question, tag your question so that it is seen by the {{site.data.keyword.cloud}} Platform development teams.
 
