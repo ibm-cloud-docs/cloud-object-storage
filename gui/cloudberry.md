@@ -27,12 +27,12 @@ subcollection: cloud-object-storage
 # Cloudberry Labs
 {: #cloudberry}
 
-## Cloudberry Backup
+## Cloudberry backup
 {: #cloudberry-backup}
 
-Cloudberry Backup is a flexible utility that allows users to back up some or all of a local filesystem to an S3 API compatible object storage system. Free and Professional versions are available for Windows, MacOS, and Linux and support a number of popular cloud storage services including {{site.data.keyword.cos_full}}. Cloudberry Backup can be downloaded from [cloudberrylab.com](https://www.cloudberrylab.com/).
+Cloudberry Backup is a flexible utility that allows users to back up a local file system to an object store. Both free and professional editions can be downloaded from [cloudberrylab.com](https://www.cloudberrylab.com/).
 
-Cloudberry Backup includes many useful features including:
+Cloudberry Backup includes many useful features:
 
 * Scheduling
 * Incremental & Block level backups
@@ -43,25 +43,24 @@ Cloudberry Backup includes many useful features including:
 ## Cloudberry Explorer
 {: #cloudberry-explorer}
 
-A new product from Cloudberry Labs offers a familiar, file management user interface for {{site.data.keyword.cos_short}}. [Cloudberry Explorer](https://www.cloudberrylab.com/explorer.aspx){:new_window} also comes in Free and Pro versions but is currently only available for Windows. Key features include:
+[Cloudberry Explorer](https://www.cloudberrylab.com/explorer.aspx){:new_window} is available for Windows. This simple file browser provides a set of basic features:
 
-* Folder/Bucket sync
+* Folder (bucket) sync
 * Command-line interface
 * ACL management
 * Capacity reports
 
-Pro Version also includes:
+The professional edition has a few more features:
 * Search 
-* Encryption/Compression
+* Encryption and compression
 * Resumable Upload
-* FTP/SFTP support
 
 ## Using Cloudberry with Object Storage
 {: #cloudberry-cos}
 
-Key points to remember when configuring Cloudberry products to work with {{site.data.keyword.cos_short}}:
+Key points to remember when you configure a Cloudberry product to work with {{site.data.keyword.cos_short}}:
 
 * Select `S3 Compatible` from the list of options
 * Only [HMAC credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-hmac#using-hmac-credentials) are currently supported
 * A separate connection is required for each bucket
-* Ensure the `Endpoint` specifed in the connection matches the region of the selected bucket (*backup will fail due to inaccessible destination*). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+* Ensure the `Endpoint` specified in the connection matches the region of the selected bucket (*backup fails because of an inaccessible destination*). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).

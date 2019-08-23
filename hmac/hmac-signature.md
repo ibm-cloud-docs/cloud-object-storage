@@ -96,7 +96,7 @@ secret_key = os.environ.get('COS_HMAC_SECRET_ACCESS_KEY')
 http_method = 'GET'
 host = 's3.us.cloud-object-storage.appdomain.cloud'
 region = 'us-standard'
-endpoint = 'http://s3.us.cloud-object-storage.appdomain.cloud'
+endpoint = 'https://s3.us.cloud-object-storage.appdomain.cloud'
 bucket = '' # add a '/' before the bucket name to list buckets
 object_key = ''
 request_parameters = ''
@@ -122,7 +122,7 @@ time = datetime.datetime.utcnow()
 timestamp = time.strftime('%Y%m%dT%H%M%SZ')
 datestamp = time.strftime('%Y%m%d')
 
-standardized_resource = bucket + '/' + object_key
+standardized_resource = '/' + bucket + '/' + object_key
 standardized_querystring = request_parameters
 standardized_headers = 'host:' + host + '\n' + 'x-amz-date:' + timestamp + '\n'
 signed_headers = 'host;x-amz-date'

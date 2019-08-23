@@ -27,27 +27,27 @@ The powerful tools of {{site.data.keyword.cos_full}} are available to a develope
 
 First, ensure you have the [{{site.data.keyword.cloud}} Platform CLI](https://cloud.ibm.com/docs/cli/index.html) and [IBM Developer Tools](https://cloud.ibm.com/docs/cloudnative/idt/index.html) installed.
 
-## Provision an instance of {{site.data.keyword.cos_full_notm}}
+## Create an instance of {{site.data.keyword.cos_full_notm}}
 {: #gs-dev-provision}
 
-  1. First, make sure you have an API key. Get this from [IBM Cloud Identity and Access Management](https://cloud.ibm.com/iam/apikeys).
-  2. Login to {{site.data.keyword.cloud_notm}} Platform using the CLI. It's also possible to store the API key in a file or set it as an environment variable.
+  1. First, make sure that you have an API key. Get it from [IBM Cloud Identity and Access Management](https://cloud.ibm.com/iam/apikeys).
+  2. Log in to {{site.data.keyword.cloud_notm}} Platform by using the CLI. It's also possible to store the API key in a file or set it as an environment variable.
 
 ```
 ibmcloud login --apikey <value>
 ```
-{:codeblock}
+{: codeblock}
 
-  3. Next, provision an instance of {{site.data.keyword.cos_full_notm}} specifying the name for the instance, the ID and the desired plan (lite or standard). This will get us the CRN. If you have an upgraded account, specify the `Standard` plan. Otherwise specify `Lite`.
+  3. Next, create an instance of {{site.data.keyword.cos_full_notm}} specifying the name for the instance, the ID, and the wanted plan (lite or standard). Now we have a CRN for the instance. If you have an upgraded account, specify the `Standard` plan. Otherwise, specify `Lite`.
 
 ```
 ibmcloud resource service-instance-create <instance-name> cloud-object-storage <plan> global
 ```
-{:codeblock}
+{: codeblock}
 
 The [Getting Started guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started) walks through the basic steps of creating buckets and objects, as well as inviting users and creating policies. A list of basic 'curl' commands can be found [here](/docs/services/cloud-object-storage/cli?topic=cloud-object-storage-curl).
 
-Learn more about using the the {{site.data.keyword.cloud_notm}} CLI to create applications, manage Kubernetes clusters, and more [in the documentation](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_cli).
+Learn more about using the {{site.data.keyword.cloud_notm}} CLI to create applications, manage Kubernetes clusters, and more [in the documentation](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_cli).
 
 
 ## Using the API
@@ -57,13 +57,13 @@ For managing data stored in {{site.data.keyword.cos_short}}, you can use S3 API 
 
 ## Using libraries and SDKs
 {: #gs-dev-sdk}
-There are IBM COS SDKs available for [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python), [Java](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java), [Go](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-go), and [Node.js](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node). These are forked versions of the AWS S3 SDKs that have been modified to support [IAM token-based authentication](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview), as well as support for [Key Protect](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-encryption). 
+IBM COS SDKs are available for [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python), [Java](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java), [Go](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-go), and [Node.js](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node). These libraries are forked and modified versions of the AWS S3 SDKs that support [IAM token-based authentication](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview), as well as support for [Key Protect](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-encryption). 
 
 ## Building applications on IBM Cloud
 {: #gs-dev-apps}
-{{site.data.keyword.cloud}} provides flexibility to developers in choosing the right architectural and deployment options for a given application. Run your code on [bare metal](https://cloud.ibm.com/catalog/infrastructure/bare-metal), in [virtual machines](https://cloud.ibm.com/catalog/infrastructure/virtual-server-group), using a [serverless framework](https://cloud.ibm.com/openwhisk), in [containers](https://cloud.ibm.com/kubernetes/catalog/cluster), or using [Cloud Foundry](https://cloud.ibm.com/catalog/starters/sdk-for-nodejs). 
+{{site.data.keyword.cloud}} provides flexibility to developers in choosing the right architectural and deployment options for a given application. Run your code on [bare metal](https://cloud.ibm.com/catalog/infrastructure/bare-metal), in [virtual machines](https://cloud.ibm.com/catalog/infrastructure/virtual-server-group), by using a [serverless framework](https://cloud.ibm.com/openwhisk), in [containers](https://cloud.ibm.com/kubernetes/catalog/cluster), or by using [Cloud Foundry](https://cloud.ibm.com/catalog/starters/sdk-for-nodejs). 
 
-The [Cloud Native Computing Foundation](https://www.cncf.io) incubated and recently "graduated" the [Kubernetes](https://kubernetes.io) container orchestration framework, and it forms the foundation for the {{site.data.keyword.cloud}} Kubernetes Service. Developers who wish to use object storage for persistent storage in their Kubernetes applications can learn more at the following links:
+The [Cloud Native Computing Foundation](https://www.cncf.io) fostered [Kubernetes](https://kubernetes.io) container orchestration framework, which forms the foundation for the {{site.data.keyword.cloud}} Kubernetes Service. Developers who want to use object storage for persistent storage in their Kubernetes applications can learn more at the following links:
 
  * [Choosing a storage solution](/docs/containers?topic=containers-storage_planning#choose_storage_solution)
  * [Comparison table for persistent storage options](/docs/containers?topic=containers-storage_planning#persistent_storage_overview)
@@ -73,7 +73,7 @@ The [Cloud Native Computing Foundation](https://www.cncf.io) incubated and recen
  * [Creating COS secret](/docs/containers?topic=containers-object_storage#create_cos_secret)
  * [Decide on the configuration](/docs/containers?topic=containers-object_storage#configure_cos)
  * [Provision COS](/docs/containers?topic=containers-object_storage#add_cos)
- * [Backup and restore info](/docs/containers?topic=containers-object_storage#backup_restore)
+ * [Backup and restore information](/docs/containers?topic=containers-object_storage#backup_restore)
  * [Storage Class reference](/docs/containers?topic=containers-object_storage#storageclass_reference)
 
 
