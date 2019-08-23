@@ -473,7 +473,7 @@ Agora que o app está criado e definido, visualize seu aplicativo para confirmar
 mostrado na Figura 2, parabéns! Você criou um novo aplicativo da web Node.js e está pronto para implementá-lo na nuvem.
 
 ![initialnodeapp](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-splash-graphic.png)
-{: caption="Figura 2. Novo aplicativo Node.js: parabéns!" caption-side="top"}
+{: caption="Figura 2. Novo aplicativo Node.js: parabéns!"}
 
 Implemente o app no {{site.data.keyword.cloud_notm}} Platform com o comando deploy (conforme mostrado no Exemplo 20).
 

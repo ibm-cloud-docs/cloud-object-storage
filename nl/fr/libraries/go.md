@@ -68,7 +68,7 @@ Vous pouvez trouver les données d'identification en créant des [données d'ide
 La figure 1 illustre un exemple de définition de variables d'environnement dans un contexte d'exécution d'application sur le portail {{site.data.keyword.cos_full_notm}}. Les variables requises sont `IBM_API_KEY_ID`, qui contient votre clé d'API ('apikey') de données d'identification de service, `IBM_SERVICE_INSTANCE_ID`, qui contient l'ID d'instance de ressource ('resource_instance_id') provenant également de vos données d'identification de service et `IBM_AUTH_ENDPOINT`, qui est dotée d'une valeur appropriée pour votre compte, par exemple, `https://iam.cloud.ibm.com/identity/token`. Si vous avez recours à des variables d'environnement pour définir vos données d'identification d'application, utilisez `WithCredentials(ibmiam.NewEnvCredentials(aws.NewConfig())).` si besoin, en remplaçant la méthode similaire utilisée dans l'exemple de configuration. 
 
 ![environmentvariables](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/go-library-fig-1-env-vars.png)
-{: caption="Figure 1. Variables d'environnement" caption-side="top"}
+{: caption="Figure 1. Variables d'environnement"}
 
 ### Initialisation de la configuration
 {: #go-init-config}

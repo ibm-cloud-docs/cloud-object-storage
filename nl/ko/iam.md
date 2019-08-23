@@ -48,7 +48,7 @@ subcollection: cloud-object-storage
 | Editor | 계정 관리 및 액세스 정책 지정을 제외한 모든 플랫폼 조치 수행 |<ul><li>COS 서비스 인스턴스 작성 및 삭제</li></ul> |
 | Operator | COS에서 사용되지 않음 |없음 |
 | Administrator | 액세스 정책을 다른 사용자에게 지정하는 것을 비롯하여, 이 역할이 지정된 리소스를 기반으로 모든 플랫폼 조치 수행 |<ul><li>사용자 정책 업데이트</li>가격 플랜 업데이트</ul>|
-{: caption="표 1. IAM 사용자 역할 및 조치" caption-side="top"}
+{: caption="표 1. IAM 사용자 역할 및 조치"}
 
 
 다음 표에는 서비스 액세스 역할에 맵핑된 조치가 자세히 설명되어 있습니다. 서비스 액세스 역할은 사용자가 {{site.data.keyword.cos_short}}에 액세스하고 {{site.data.keyword.cos_short}} API를 호출할 수 있게 해 줍니다. 
@@ -59,7 +59,7 @@ subcollection: cloud-object-storage
 | Reader              | Reader는 Content Reader 조치와 더불어 버킷 및/또는 오브젝트를 나열할 수도 있으나 이를 수정할 수는 없음 | <ul><li>버킷 나열</li><li>오브젝트 나열 및 다운로드</li></ul>                    |
 | Writer              | Writer는 Reader 조치와 더불어 버킷을 작성하고 오브젝트를 업로드할 수 있음 | <ul><li>새 버킷 및 오브젝트 작성</li><li>버킷 및 오브젝트 제거</li></ul> |
 | Manager             | Manager는 Writer 조치와 더불어 액세스 제어에 영향을 주는 권한 부여된 조치를 완료할 수 있음 | <ul><li>보존 정책 추가</li><li>버킷 방화벽 추가</li></ul>              |
-{: caption="표 3. IAM 서비스 액세스 역할 및 조치" caption-side="top"}
+{: caption="표 3. IAM 서비스 액세스 역할 및 조치"}
 
 
 UI에서 사용자 역할을 지정하는 데 대한 정보는 [IAM 액세스 관리](/docs/iam?topic=iam-iammanidaccser)를 참조하십시오. 

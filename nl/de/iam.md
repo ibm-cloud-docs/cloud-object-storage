@@ -49,7 +49,7 @@ Die folgende Tabelle zeigt im Detail, welche Aktionen den Rollen für das Plattf
 | Bearbeiter | Alle Plattformaktionen ausführen, außer Konten verwalten und Zugriffsrichtlinien zuweisen |<ul><li>COS-Serviceinstanzen erstellen und löschen</li></ul> |
 | Operator | Nicht von COS verwendet | Keine |
 | Administrator | Alle Plattformaktionen auf der Grundlage der Ressource durchführen, der diese Rolle zugewiesen wird, einschließlich Zuweisen von Zugriffsrichtlinien zu anderen Benutzern |<ul><li>Benutzerrichtlinien aktualisieren</li>Preistarife aktualisieren</ul>|
-{: caption="Tabelle 1. IAM-Benutzerrollen und -aktionen" caption-side="top"}
+{: caption="Tabelle 1. IAM-Benutzerrollen und -aktionen"}
 
 
 Die folgende Tabelle zeigt im Detail, welche Aktionen den Rollen für den Servicezugriff zugeordnet sind. Servicezugriffsrollen ermöglichen Benutzern den Zugriff auf {{site.data.keyword.cos_short}} und versetzen sie außerdem in die Lage, die {{site.data.keyword.cos_short}}-API aufzurufen.
@@ -60,7 +60,7 @@ Die folgende Tabelle zeigt im Detail, welche Aktionen den Rollen für den Servic
 | Leseberechtigter | Zusätzlich zu den Aktionen für Leseberechtigte des Inhalts (Content Reader) können Leseberechtigte Buckets und/oder Objekte auflisten, nicht aber ändern. | <ul><li>Buckets auflisten</li><li>Objekte auflisten und herunterladen</li></ul>                    |
 | Schreibberechtigter | Zusätzlich zu den Aktionen für Leseberechtigte können Schreibberechtigte Buckets erstellen und Objekte hochladen. | <ul><li>Neue Buckets und Objekte erstellen</li><li>Buckets und Objekte entfernen</li></ul> |
 | Manager             | Zusätzlich zu den Aktionen für Schreibberechtigte können Manager Aktionen ausführen, für die eine Berechtigung erforderlich ist und die sich auf die Zugriffssteuerung auswirken. | <ul><li>Aufbewahrungsrichtlinie hinzufügen </li><li>Bucket-Firewall hinzufügen</li></ul>              |
-{: caption="Tabelle 3. IAM-Servicebenutzerrollen und -aktionen" caption-side="top"}
+{: caption="Tabelle 3. IAM-Servicebenutzerrollen und -aktionen"}
 
 
 Informationen zum Zuweisen von Benutzerrollen in der Benutzerschnittstelle (UI) finden Sie in [Zugriff auf IAM verwalten](/docs/iam?topic=iam-iammanidaccser).

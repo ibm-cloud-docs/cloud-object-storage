@@ -48,7 +48,7 @@ La seguente tabella illustra le azioni che sono associate ai ruoli di gestione d
 | Editor | Esegui tutte le azioni della piattaforma tranne la gestione degli account e l'assegnazione delle politiche di accesso |<ul><li>Crea ed elimina le istanze del servizio COS</li></ul> |
 |Operator (Operatore)| Non utilizzato da COS | Nessuna |
 |Administrator (Amministratore)| Esegui tutte le azioni di piattaforma in base alla risorsa assegnata a questo ruolo, inclusa l'assegnazione di politiche di accesso ad altri utenti |<ul><li>Aggiorna le politiche utente</li>Aggiorna i piani di prezzo</ul>|
-{: caption="Tabella 1. Azioni e ruoli utente IAM" caption-side="top"}
+{: caption="Tabella 1. Azioni e ruoli utente IAM"}
 
 
 La seguente tabella illustra le azioni che sono associate ai ruoli di accesso al servizio. I ruoli di accesso al servizio consentono agli utenti di accedere a {{site.data.keyword.cos_short}} così come di richiamare l'API {{site.data.keyword.cos_short}}.
@@ -59,7 +59,7 @@ La seguente tabella illustra le azioni che sono associate ai ruoli di accesso al
 | Reader (Lettore)    | Oltre alle azioni consentite dal ruolo di Content Reader, il ruolo di Reader consente di elencare i bucket e/o gli oggetti ma non di modificarli. | <ul><li>Elenca i bucket</li><li> Elenca e scarica oggetti                                   </li></ul>                    |
 | Writer (Scrittore)      | Oltre alle azioni consentite dal ruolo Reader, il ruolo Writer consente di creare bucket e caricare oggetti. | <ul><li>Crea nuovi bucket e oggetti</li><li>Rimuovi bucket e oggetti</li></ul> |
 | Manager (Gestore)     |Oltre alle azioni consentite dal ruolo Writer, il ruolo Manager consente di completare azioni privilegiate che influenzano il controllo dell'accesso. | <ul><li>Aggiungi una politica di conservazione</li><li>Aggiungi un firewall del bucket</li></ul>              |
-{: caption="Tabella 3. Azioni e ruoli di accesso al servizio IAM" caption-side="top"}
+{: caption="Tabella 3. Azioni e ruoli di accesso al servizio IAM"}
 
 
 Per informazioni sull'assegnazione dei ruoli utente nell'IU, consulta [Gestione dell'accesso IAM](/docs/iam?topic=iam-iammanidaccser).

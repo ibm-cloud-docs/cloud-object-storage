@@ -388,7 +388,7 @@ ibmcloud dev run
 Da die App jetzt erstellt und definiert ist, überprüfen Sie die Anwendung, um sicherzustellen, dass sie funktioniert. Wenn das in Abbildung 2 dargestellte Platzhalterbild angezeigt wird, waren Sie erfolgreich. Sie haben eine neue Node.js-Webanwendung erstellt und sind bereit, sie in der Cloud bereitzustellen.
 
 ![initialnodeapp](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-splash-graphic.png)
-{: caption="Abbildung 2. Neue Node.js-Anwendung erfolgreich erstellt" caption-side="top"}
+{: caption="Abbildung 2. Neue Node.js-Anwendung erfolgreich erstellt"}
 
 Stellen Sie die App auf der {{site.data.keyword.cloud_notm}}-Plattform mit dem Befehl 'deploy' (wie in Beispiel 20 angegeben) bereit.
 

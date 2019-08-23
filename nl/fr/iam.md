@@ -49,7 +49,7 @@ Le tableau suivant détaille les actions mappées sur les rôles de gestion de p
 | Editeur | Exécuter toutes les actions de plateforme, à l'exception de la gestion des comptes et de l'affectation des règles d'accès |<ul><li>Création et suppression d'instances de service COS</li></ul> |
 | Opérateur | Non utilisé par COS |Néant |
 | Administrateur | Effectuer toutes les actions de plateforme en fonction de la ressource pour laquelle ce rôle est affecté, y compris l'affectation de règles d'accès à d'autres utilisateurs. |<ul><li>Mise à jour des règles utilisateur </li>Mise à jour des plans de tarification </ul>|
-{: caption="Tableau 1. Actions et rôles utilisateur IAM" caption-side="top"}
+{: caption="Tableau 1. Actions et rôles utilisateur IAM"}
 
 
 Le tableau suivant détaille les actions qui sont mappées aux rôles d'accès au service. Les rôles d'accès aux services permettent aux utilisateurs d'accéder à {{site.data.keyword.cos_short}} ainsi que d'appeler l'API {{site.data.keyword.cos_short}}. 
@@ -60,7 +60,7 @@ Le tableau suivant détaille les actions qui sont mappées aux rôles d'accès a
 | Lecteur              | En plus des actions du rôle Lecteur de contenu, les lecteurs peuvent répertorier des compartiments et/ou des objets, mais pas les modifier. | <ul><li>Création d'une liste de compartiments</li><li>Création d'une liste d'objets et téléchargement d'objets</li></ul>                    |
 | Auteur              | En plus des actions du rôle Lecteur, les auteurs peuvent créer des compartiments et envoyer par téléchargement des objets. | <ul><li>Création de compartiments et d'objets</li><li>Retrait de compartiments et d'objets</li></ul> |
 |Gestionnaire | En plus des actions du rôle Auteur, les gestionnaires peuvent effectuer des actions privilégiées qui affectent le contrôle d'accès. | <ul><li>Ajout d'une règle de conservation</li><li>Ajout d'un pare-feu de compartiment</li></ul>              |
-{: caption="Tableau 3. Rôles et actions d'accès au service IAM" caption-side="top"}
+{: caption="Tableau 3. Rôles et actions d'accès au service IAM"}
 
 
 Pour plus d'informations sur l'affectation de rôles utilisateur dans l'interface utilisateur, voir [Gestion de l'accès IAM](/docs/iam?topic=iam-iammanidaccser).
