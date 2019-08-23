@@ -26,22 +26,22 @@ subcollection: cloud-object-storage
 # Using `cURL`
 {: #curl}
 
-Here's a 'cheatsheet' of basic `curl` commands for the {{site.data.keyword.cos_full}} REST API. Additional detail can be found in the API reference for [buckets](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations) or [objects](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-object-operations).
+Here's a 'cheat sheet' of basic `curl` commands for the {{site.data.keyword.cos_full}} REST API. More detail can be found in the API reference for [buckets](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations) or [objects](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-object-operations).
 
-Using `curl` assumes a certain amount of familiarity with the command line and object storage, and have gotten the necessary information from a [service credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the [endpoints reference](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints), or the [console](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started). If any terms or variables are unfamiliar they can be found in the [glossary](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-terminology).
+Using `curl` assumes a certain amount of familiarity with the command line and Object Storage, and have the necessary information from a [service credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the [endpoints reference](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints), or the [console](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started). If any terms or variables are unfamiliar, they can be found in the [glossary](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-terminology).
 
-**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means.
+**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
 {:tip}
 
 ## Request an IAM Token
 {: #curl-iam}
 
-There are two ways to generate an IAM oauth token for authenticating requests: using a `curl` command with an API key (described below) or from the command line using [{{site.data.keyword.cloud}} CLI](/docs/cli?topic=cloud-cli-ibmcloud_commands_iam#ibmcloud_iam_oauth_tokens). 
+Two ways you can generate an IAM `oauth` token for authenticating requests are using a `curl` command with an API key (described later), or from the command line by using [{{site.data.keyword.cloud}} CLI](/docs/cli?topic=cloud-cli-ibmcloud_commands_iam#ibmcloud_iam_oauth_tokens). 
 
-### Request an IAM token using an API key
+### Request an IAM token by using an API key
 {: #curl-token}
 
-First ensure that you have an API key. You can obtain one from [{{site.data.keyword.iamlong}}](https://cloud.ibm.com/iam/apikeys).
+Ensure that you have an API key. You can get one from [{{site.data.keyword.iamlong}}](https://cloud.ibm.com/iam/apikeys).
 
 ```
 curl -X "POST" "https://iam.cloud.ibm.com/identity/token" \
@@ -53,12 +53,12 @@ curl -X "POST" "https://iam.cloud.ibm.com/identity/token" \
 ```
 {:codeblock}
 
-## Obtain your resource instance id
+## Get your resource instance ID
 {: #curl-instance-id}
 
-Some of the following commands require an `ibm-service-instance-id` parameter. To find this value, go to the **Service credentials** tab of your Object Storage instance in the cloud console. Create a new credential if needed, then use the *View credentials* drop-down to see the JSON format. Use the value of `resource_instance_id`. 
+Some of the following commands require an `ibm-service-instance-id` parameter. To find this value, go to the **Service credentials** tab of your Object Storage instance in the cloud console. Create a credential if needed, then use the *View credentials* menu to see the JSON format. Use the value of `resource_instance_id`. 
 
-For use with curl APIs you only need the UUID that starts after the last single colon and ends before the final double colon. For example, the id `crn:v1:bluemix:public:cloud-object-storage:global:a/81caa0254631ce5f9330ae427618f209:39d8d161-22c4-4b77-a856-f11db5130d7d::` can be abbreviated to `39d8d161-22c4-4b77-a856-f11db5130d7d`.
+For use with curl APIs, you need only the UUID that starts after the last single colon and ends before the final double colon. For example, the ID `crn:v1:bluemix:public:cloud-object-storage:global:a/81caa0254631ce5f9330ae427618f209:39d8d161-22c4-4b77-a856-f11db5130d7d::` can be abbreviated to `39d8d161-22c4-4b77-a856-f11db5130d7d`.
 {:tip}
 
 ## List buckets
@@ -95,7 +95,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)"
 ```
 {:codeblock}
 
-A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-classes#classes-locationconstraint).
+A list of valid codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-classes#classes-locationconstraint).
 
 ## Create a bucket CORS
 {: #curl-new-cors}
@@ -157,7 +157,7 @@ curl --head "https://(endpoint)/(bucket-name)/"
 ## Get bucket metadata
 {: #curl-bucket-metadata}
 
-Note the use of the config API endpoint is not the same as the endpoint for your bucket itself. Use of this command returns metadata for the specified bucket.
+Note the use of the config API endpoint isn't the same as the endpoint for your bucket itself. Use of this command returns metadata for the specified bucket.
  
 ```
 curl https://config.cloud-object-storage.cloud.ibm.com/v1/b/{my-bucket} \
@@ -204,7 +204,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)/(object-key)"
 ```
 {:codeblock}
 
-## Check CORS info
+## Check CORS information
 {: #curl-options-object}
 
 ```
@@ -235,7 +235,7 @@ curl "https://(endpoint)/(bucket-name)/(object-key)?acl"
 ## Enable a firewall
 {: #curl-enable-firewall}
 
-Note the use of the config API endpoint is not the same as the endpoint for your bucket itself. Use of this command enables a firewall for the specified bucket. No other {{site.data.keyword.cloud}} services can access the bucket when the firewall is active.
+Note the use of the config API endpoint isn't the same as the endpoint for your bucket itself. Use of this command enables a firewall for the specified bucket. No other {{site.data.keyword.cloud}} services can access the bucket when the firewall is active.
  
 ```
 curl -X PATCH https://config.cloud-object-storage.cloud.ibm.com/v1/b/{my-bucket} \
@@ -247,7 +247,7 @@ curl -X PATCH https://config.cloud-object-storage.cloud.ibm.com/v1/b/{my-bucket}
 ## Enable activity tracking
 {: #curl-enable-activity-tracking}
 
-Note the use of the config API endpoint is not the same as the endpoint for your bucket itself. Use of this command enables activity tracking for the specified bucket.
+Note the use of the config API endpoint isn't the same as the endpoint for your bucket itself. Use of this command enables activity tracking for the specified bucket.
  
 ```
 curl -X PATCH https://config.cloud-object-storage.cloud.ibm.com/v1/b/{my-bucket} \
@@ -277,7 +277,7 @@ curl -X "DELETE" "https://(endpoint)/(bucket-name)/(object-key)"
 ```
 {:codeblock}
 
-## Delete multiple objects
+## Delete many objects
 {: #curl-delete-objects}
 ```
 curl -X "POST" "https://(endpoint)/(bucket-name)?delete"
@@ -303,7 +303,7 @@ echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 ```
 {:codeblock}
 
-## Initiate a multipart upload
+## Start a multipart upload
 {: #curl-multipart-initiate}
 
 ```
@@ -351,7 +351,7 @@ curl "https://(endpoint)/(bucket-name)/?uploads"
 ```
 {:codeblock}
 
-## Abort incomplete multipart uploads
+## Stop incomplete multipart uploads
 {: #curl-multipart-abort}
 ```
 curl -X "DELETE" "https://(endpoint)/(bucket-name)/(object-key)?uploadId"

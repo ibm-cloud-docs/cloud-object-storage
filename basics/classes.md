@@ -29,49 +29,49 @@ subcollection: cloud-object-storage
 # Use storage classes
 {: #classes}
 
-Not all data feeds active workloads. Archival data may sit untouched for long periods of time. For less active workloads, you can create buckets with different storage classes. Objects stored in these buckets will incur charges on a different schedule than standard storage.
+Not all data feeds active workloads. Archival data might sit untouched for long periods of time. For less active workloads, you can create buckets with different storage classes. Objects that are stored in these buckets incur charges on a different schedule than standard storage.
 
 ## What are the classes?
 {: #classes-about}
 
-There are four storage classes:
+You can choose from four storage classes:
 
-*  **Standard**: Used for active workloads - there is no charge for data retrieved (besides the cost of the operational request itself and public outbound bandwidth).
-*  **Vault**: Used for cool workloads where data is not accessed frequently - a retrieval charge applies for reading data. The service includes a threshold for object size and storage period consistent with the intended use of this service for cooler, less-active data.
-*  **Cold Vault**: Used for cold workloads where data is primarily archived (accessed every 90 days or less) - a larger  retrieval charge applies for reading data. The service includes a threshold for object size and storage period consistent with the intended use of this service: storing cold, inactive data.
-*  **Flex**: Used for dynamic workloads where access patterns are more difficult to predict. Depending on usage, if the lower costs of cooler storage combined with retrieval charges exceeds a cap value, then the storage charge increases and no any retrieval charges apply. If the data isn't accessed frequently, Flex storage can be more cost effective than Standard storage, and if cooler usage patterns become more active Flex storage is more cost effective than Vault or Cold Vault storage. No threshold object size or storage period applies to Flex buckets.
+*  **Standard** is used for active workloads. No charge incurs for data that is retrieved (other than the cost of the operational request itself and public outbound bandwidth).
+*  **Vault** is used for cool workloads where data isn't accessed frequently, but a retrieval charge applies for reading data. The service includes a threshold for object size and storage period consistent with the intended use of this service for cooler, less-active data.
+*  **Cold Vault** is used for cold workloads where data is primarily archived (accessed every 90 days or less) - a larger retrieval charge applies for reading data. The service includes a threshold for object size and storage period consistent with the intended use of this service: storing cold, inactive data.
+*  **Flex** is used for dynamic workloads where access patterns are more difficult to predict. Depending on usage, if the lower cost of cooler storage that is combined with retrieval charges exceeds a cap value, then the storage charge increases and no any retrieval charges apply. If the data isn't accessed frequently, Flex storage can be more cost effective than Standard storage. If cooler usage patterns become more active, Flex storage is more cost effective than Vault or Cold Vault storage. No threshold object size or storage period applies to Flex buckets.
 
-For pricing details please see [the pricing table at ibm.com](https://www.ibm.com/cloud/object-storage#s3api).
+For more information, see [the pricing table at ibm.com](https://www.ibm.com/cloud/object-storage#s3api).
 
-For information on how to create buckets with different storage classes, please see the [API reference](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
+For more information about how to create buckets with different storage classes, see the [API reference](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
 
 ## How do I create a bucket with a different storage class?
 {: #classes-locationconstraint}
 
-When creating a bucket in the console, there is a drop-down menu that allows for storage class selection. 
+When creating a bucket in the console, there is a menu that allows for storage class selection. 
 
-When creating buckets programmatically, it is necessary to specify a `LocationConstraint` that corresponds with the endpoint used. Valid provisioning codes for `LocationConstraint` are: <br>
-&emsp;&emsp;  **US Geo:** `us-standard` / `us-vault` / `us-cold` / `us-flex` <br>
-&emsp;&emsp;  **US East:** `us-east-standard` / `us-east-vault`  / `us-east-cold` / `us-east-flex` <br>
-&emsp;&emsp;  **US South:** `us-south-standard` / `us-south-vault`  / `us-south-cold` / `us-south-flex` <br>
-&emsp;&emsp;  **EU Geo:** `eu-standard` / `eu-vault` / `eu-cold` / `eu-flex` <br>
-&emsp;&emsp;  **EU Great Britain:** `eu-gb-standard` / `eu-gb-vault` / `eu-gb-cold` / `eu-gb-flex` <br>
-&emsp;&emsp;  **EU Germany:** `eu-de-standard` / `eu-de-vault` / `eu-de-cold` / `eu-de-flex` <br>
-&emsp;&emsp;  **AP Geo:** `ap-standard` / `ap-vault` / `ap-cold` / `ap-flex` <br>
-&emsp;&emsp;  **AP Japan:** `jp-tok-standard` / `jp-tok-vault` / `jp-tok-cold` / `jp-tok-flex` <br>
-&emsp;&emsp;  **AP Australia:** `au-syd-standard` / `au-syd-vault` / `au-syd-cold` / `au-syd-flex` <br>
-&emsp;&emsp;  **Amsterdam:** `ams03-standard` / `ams03-vault` / `ams03-cold` / `ams03-flex` <br>
-&emsp;&emsp;  **Chennai:** `che01-standard` / `che01-vault` / `che01-cold` / `che01-flex` <br>
-&emsp;&emsp;  **Hong Kong:** `hkg02-standard` / `hkg02-vault` / `hkg02-cold` / `hkg02-flex` <br>
-&emsp;&emsp;  **Melbourne:** `mel01-standard` / `mel01-vault` / `mel01-cold` / `mel01-flex` <br>
-&emsp;&emsp;  **Mexico:** `mex01-standard` / `mex01-vault` / `mex01-cold` / `mex01-flex` <br>
-&emsp;&emsp;  **Milan:** `mil01-standard` / `mil01-vault` / `mil01-cold` / `mil01-flex` <br>
-&emsp;&emsp;  **Montréal:** `mon01-standard` / `mon01-vault` / `mon01-cold` / `mon01-flex` <br>
-&emsp;&emsp;  **Oslo:** `osl01-standard` / `osl01-vault` / `osl01-cold` / `osl01-flex` <br>
-&emsp;&emsp;  **San Jose:** `sjc04-standard` / `sjc04-vault` / `sjc04-cold` / `sjc04-flex` <br>
-&emsp;&emsp;  **São Paulo:** `sao01-standard` / `sao01-vault` / `sao01-cold` / `sao01-flex` <br>
-&emsp;&emsp;  **Seoul:** `seo01-standard` / `seo01-vault` / `seo01-cold` / `seo01-flex` <br>
-&emsp;&emsp;  **Toronto:** `tor01-standard` / `tor01-vault` / `tor01-cold` / `tor01-flex` <br>
+When creating buckets programmatically, it is necessary to specify a `LocationConstraint` that corresponds with the endpoint used. Valid provisioning codes for `LocationConstraint` are <br>
+&emsp;&emsp;  **US Geo** `us-standard` / `us-vault` / `us-cold` / `us-flex` <br>
+&emsp;&emsp;  **US East** `us-east-standard` / `us-east-vault`  / `us-east-cold` / `us-east-flex` <br>
+&emsp;&emsp;  **US South** `us-south-standard` / `us-south-vault`  / `us-south-cold` / `us-south-flex` <br>
+&emsp;&emsp;  **EU Geo** `eu-standard` / `eu-vault` / `eu-cold` / `eu-flex` <br>
+&emsp;&emsp;  **EU Great Britain** `eu-gb-standard` / `eu-gb-vault` / `eu-gb-cold` / `eu-gb-flex` <br>
+&emsp;&emsp;  **EU Germany** `eu-de-standard` / `eu-de-vault` / `eu-de-cold` / `eu-de-flex` <br>
+&emsp;&emsp;  **AP Geo** `ap-standard` / `ap-vault` / `ap-cold` / `ap-flex` <br>
+&emsp;&emsp;  **AP Japan** `jp-tok-standard` / `jp-tok-vault` / `jp-tok-cold` / `jp-tok-flex` <br>
+&emsp;&emsp;  **AP Australia** `au-syd-standard` / `au-syd-vault` / `au-syd-cold` / `au-syd-flex` <br>
+&emsp;&emsp;  **Amsterdam** `ams03-standard` / `ams03-vault` / `ams03-cold` / `ams03-flex` <br>
+&emsp;&emsp;  **Chennai** `che01-standard` / `che01-vault` / `che01-cold` / `che01-flex` <br>
+&emsp;&emsp;  **Hong Kong S.A.R. of the PRC** `hkg02-standard` / `hkg02-vault` / `hkg02-cold` / `hkg02-flex` <br>
+&emsp;&emsp;  **Melbourne** `mel01-standard` / `mel01-vault` / `mel01-cold` / `mel01-flex` <br>
+&emsp;&emsp;  **Mexico** `mex01-standard` / `mex01-vault` / `mex01-cold` / `mex01-flex` <br>
+&emsp;&emsp;  **Milan** `mil01-standard` / `mil01-vault` / `mil01-cold` / `mil01-flex` <br>
+&emsp;&emsp;  **Montréal** `mon01-standard` / `mon01-vault` / `mon01-cold` / `mon01-flex` <br>
+&emsp;&emsp;  **Oslo** `osl01-standard` / `osl01-vault` / `osl01-cold` / `osl01-flex` <br>
+&emsp;&emsp;  **San Jose** `sjc04-standard` / `sjc04-vault` / `sjc04-cold` / `sjc04-flex` <br>
+&emsp;&emsp;  **São Paulo** `sao01-standard` / `sao01-vault` / `sao01-cold` / `sao01-flex` <br>
+&emsp;&emsp;  **Seoul** `seo01-standard` / `seo01-vault` / `seo01-cold` / `seo01-flex` <br>
+&emsp;&emsp;  **Toronto** `tor01-standard` / `tor01-vault` / `tor01-cold` / `tor01-flex` <br>
 
 
 For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
@@ -79,12 +79,12 @@ For more information about endpoints, see [Endpoints and storage locations](/doc
 ## Using the REST API, Libraries, and SDKs
 {: #classes-sdk}
 
-Several new APIs have been introduced to the IBM COS SDKs to provide support for applications working with retention policies. Select a language (curl, Java, Javascript, Go or Python) at the top of this page to view examples using the appropriate COS SDK. 
+Several new APIs have been introduced to the IBM COS SDKs to provide support for applications working with retention policies. Select a language (curl, Java, JavaScript, Go, or Python) at the beginning of this page to view examples that use the appropriate COS SDK. 
 
-Note that all code examples assume the existence of a client object called `cos` that can call the different methods. For details on creating clients, see the specific SDK guides.
+ All code examples assume the existence of a client object that is called `cos` that can call the different methods. For details on creating clients, see the specific SDK guides.
 
 
-### Create a bucket with with a storage class
+### Create a bucket with a storage class
 
 ```java
 public static void createBucket(String bucketName) {
@@ -174,4 +174,4 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)"
 {:codeblock}
 {: curl}
 
-It is not possible to change the storage class of a bucket once the bucket is created. If objects need to be reclassified, it is necessary to move the data to another bucket with the desired storage class. 
+It isn't possible to change the storage class of a bucket once the bucket is created. If objects need to be reclassified, it's necessary to move the data to another bucket with the wanted storage class. 
