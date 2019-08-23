@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-22"
 
-keywords: faq, questions
+keywords: faq, frequently asked questions, object storage
 
 subcollection: cloud-object-storage
 
@@ -26,10 +26,13 @@ subcollection: cloud-object-storage
 # FAQ
 {: #faq}
 
+Frequently asked questions can produce helpful answers and insight into best practices for working with {{site.data.keyword.cos_full}}.
+{:shortdesc: .shortdesc}
+
 ## API Questions
 {: #faq-api}
 
-**Are {{site.data.keyword.cos_full}} bucket names case sensitive?**
+**Are {{site.data.keyword.cos_notm}} bucket names case sensitive?**
 
 Bucket names are required to be DNS addressable, and thus not case sensitive.
 

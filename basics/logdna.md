@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-08-01"
+lastupdated: "2019-08-22"
 
 keywords: events, activity, logging, api
 
@@ -23,7 +23,7 @@ subcollection: cloud-object-storage
 {: #at}
 
 [Activity Tracker with LogDNA](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started) allows you to [audit the requests](/docs/services/cloud-object-storage?topic=cloud-object-storage-at-events) made against a bucket and the objects it contains.
-{: shortdesc}
+{:shortdesc: .shortdesc}
 
 ## Using the console
 {: #at-console}

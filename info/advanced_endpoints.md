@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-23"
 
-keywords: endpoints, legacy, access points, manual failover
+keywords: object storage, endpoints, access points, manual failover
 
 subcollection: cloud-object-storage
 
@@ -25,6 +25,9 @@ subcollection: cloud-object-storage
 
 # Additional endpoint information
 {: #advanced-endpoints}
+
+When deciding how to configure your {{site.data.keyword.cos_full}} instance, consider how the endpoints reflect your needs for resiliency and access.
+{:shortdesc: .shortdesc}
 
 A bucket's resiliency is defined by the endpoint used to create it. _Cross Region_ resiliency will spread your data across several metropolitan areas, while _Regional_ resiliency will spread data across a single metropolitan area. _Single Data Center_ resiliency spreads data across multiple appliances within a single data center. Regional and Cross Region buckets can maintain availability during a site outage.
 

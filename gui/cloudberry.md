@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-23"
 
 keywords: gui, desktop, backup, cloudberry
 
@@ -26,6 +26,9 @@ subcollection: cloud-object-storage
 
 # Cloudberry Labs
 {: #cloudberry}
+
+Leverage {{site.data.keyword.cos_full}} to make the most of keeping your customer data protected.
+{:shortdesc: .shortdesc}
 
 ## Cloudberry backup
 {: #cloudberry-backup}
