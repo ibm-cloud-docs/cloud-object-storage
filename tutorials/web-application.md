@@ -29,7 +29,7 @@ subcollection: cloud-object-storage
 From beginning to end, building a web application covers many different concepts and is a great way to introduce
 yourself to the features of {{site.data.keyword.cos_full}}. This tutorial shows you how to build
 a simple image gallery on the {{site.data.keyword.cloud}} Platform, and how to bring together
-many different concepts and practices. Your application uses {{site.data.keyword.cos_full_notm}} for storage in a Node.js application that allows a user to upload and view JPEG image files.
+many different concepts and practices. 
 
 ## Before you begin
 {: #wa-prereqs}
@@ -63,7 +63,7 @@ The Developer Tools offer an extensible and repeatable approach to building and 
 
 [Docker](https://www.docker.com) is installed as part of the Developer Tools, and we need it. Its work
 takes place mostly in the background within routines that scaffold your new app. Docker must be running for the build 
-commands to work. Go ahead and create a Docker account online at [Dockerhub](https://hub.docker.com), run the Docker app, and sign in.
+commands to work. Go ahead and create a Docker account online at [Docker hub](https://hub.docker.com), run the Docker app, and sign in.
 
 ### Installing Node.js
 {: #tutorial-wa-install-node}
@@ -199,7 +199,7 @@ Select a language:
 ```
 
 After you make your selection for the programming language and/or framework, the next selection
-will have so many options, it might scroll past your desired service. As you can see in the example, we
+will have so many options, it might scroll past your wanted service. As you can see in the example, we
 wish to use a simple Node.js Web App with Express.js. Type '6' and press enter.
 
 ```
@@ -259,13 +259,13 @@ WATSON
 
 ```
 
-Now that you chose the more straightforward options, the hardest option for developers everywhere is still required: naming your app. Follow the example and type `webapplication`, then press enter.
+The hardest option for developers everywhere is still required: naming your app. Follow the example and type `webapplication`, then press enter.
 
 ```bash
 ? Enter a name for your application> webapplication
 ```
 
-Later, you can add as many services, like datastores or compute functions, as needed or desired through the web console. However, type 'n' for no when asked if you want to add services now.
+Later, you can add as many services, like data stores or compute functions, as needed or wanted through the web console. However, type 'n' for no when asked if you want to add services now.
 
 ```
 Using the resource group Default (default) of your account
@@ -312,7 +312,7 @@ Generating a new application reminds us that the toolchain used
 to deploy your app needs some additional configuration. As mentioned earlier,
 uploading your public key to GitHub (at the CD Toolchain instance on the {{site.data.keyword.cloud_notm}} 
 Platform), is required to deliver the deployed application by using GitHub. More instructions can be found after you deploy
-your application and log in to the your IBM Cloud GitLab account at [README#generating-a-new-ssh-key-pair](https://us-south.git.cloud.ibm.com/help/ssh/README#generating-a-new-ssh-key-pair).
+your application and log in to your IBM Cloud GitLab account at [readme file#generating-a-new-ssh-key-pair](https://us-south.git.cloud.ibm.com/help/ssh/README#generating-a-new-ssh-key-pair).
 
 ```
 Note: For successful connection to the DevOps toolchain, this machine 
@@ -322,7 +322,7 @@ application code.
 ```
 
 Further prompts confirm the application and toolchain name that you defined earlier. Example 16 shows how you can alter the 
-host and toolchain names, if you wish. The hostname has to be unique for the service endpoint of your application, but barring a conflict, 
+host and toolchain names, if you want. The hostname must be unique for the service endpoint of your application, but barring a conflict, 
 you can simply press return when asked for confirmation.
 
 ```
@@ -359,8 +359,8 @@ The app, webapplication, has been successfully saved into the
 current directory.
 ```
 
-That last statement means that if you view your current directory, a new subdirectory `webapplication` is now visible. This directory holds a scaffold of your new Node.js application. However, while the recipe might be present, the ingredients themselves are still wrapped up in a Docker image and have to be combined. Docker is running on your local machine as a consequence of installation,
-but if you need to restart it do so. If you build your new web application without Docker running it will fail, but that's not the only possible error. If you run into trouble, check the resulting error messages, which might have the 
+That last statement means that if you view your current directory, a new subdirectory `webapplication` is now visible. This directory holds a scaffold of your new Node.js application. However, while the recipe might be present, the ingredients themselves are still wrapped up in a Docker image and must be combined. Docker is running on your local machine as a consequence of installation,
+but if you need to restart it do so. If you build your new web application without Docker running it fails, but that's not the only possible error. If you run into trouble, check the resulting error messages, which might have the 
 appropriate link to view result logs in your online portal for your {{site.data.keyword.cloud_notm}} Platform account.
 
 ```bash
@@ -379,7 +379,7 @@ ibmcloud dev run
 Now that the app is created and defined, view your application to confirm it works. If you see the placeholder image as 
 shown in Figure 2, congratulations! You've created a new Node.js web application and are ready to deploy it to the cloud.
 
-![initialnodeapp](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-splash-graphic.png)
+![initial node app](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-splash-graphic.png)
 {: caption="Figure 2. New Node.js Application: Congratulations!"}
 
 Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the `deploy` command (as shown in Example 20).
@@ -400,7 +400,7 @@ Let's recall the prerequisites that you needed for developing a Node.js app on {
 already created your {{site.data.keyword.cloud_notm}} Platform account as well as installed the Developer Tools, which 
 installed Docker. Then, you installed Node.js. The last item listed as a prerequisite for this tutorial was Git, which we dive into now.  
 
-We're going to start the specifics of working on the image gallery in Node.js. For now, we use GitHub Desktop for this scenario, but you could also use the Git command-line client to complete the same tasks. To get started, let's clone a starter template for your new web application. 
+We're going to start the specifics of working on the image gallery in Node.js. For now, we use GitHub Desktop for this scenario, but you might also use the Git command-line client to complete the same tasks. To get started, let's clone a starter template for your new web application. 
 
 Follow these steps:
 
@@ -621,21 +621,21 @@ Next, over at the {{site.data.keyword.cos_short}} Portal for your service instan
 add a bucket to contain your images. This scenario uses the bucket that is named `web-images`.
 
 
-## Customizing a Node.js {{site.data.keyword.cos_full_notm}} Image Gallery Web Application
+## Customizing a Node.js {{site.data.keyword.cos_full_notm}} Image Gallery web Application
 {: #tutorial-develop}
 
 Because this example uses an MVC architecture, adjusting the directory
 structure within your project to reflect this architecture is a convenience as well as a best practice. 
 The directory structure has a views directory to contain the EJS view templates, a routes
-directory to contain the express routes, and a controllers directory as
+directory to contain the express routes, and a `controllers` directory as
 the place to put the controller logic. Place these items under a parent source
 directory named src (see Figure 7).
 
-![directory structure](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-017-soure-code.jpg){: caption="Figure 7. Source code structure for your app"}
+![Directory structure](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-017-soure-code.jpg){: caption="Figure 7. Source code structure for your app"}
 
-**Tip**: The repo that you cloned earlier contains a directory that is named
+**Tip**: The repo that you cloned earlier contain a directory that is named
 `COS-WebGalleryEnd`. Viewing the source code of the completed application in your preferred editor
-might be helpful as you follow the next steps. This will be the version
+might be helpful as you follow the next steps. This is the version
 of your `webapplication` that is committed and deployed to {{site.data.keyword.cloud_notm}} Platform
 when you complete this tutorial.
 
@@ -674,7 +674,7 @@ Our `app.js` file uses node to load modules that are needed to get started.
 The Express framework creates the app as a singleton simply called `app`. 
 The example ends (leaving out most of the code for now) telling the app
 to listen on the port that is assigned and an environment property, or 3000 by default. 
-When successfully launching at the start, it prints a message with the server URL to the console.
+When successfully starting at the start, it prints a message with the server URL to the console.
 
 ```javascript
 var express = require('express');
@@ -694,7 +694,7 @@ app.listen(port, function() {
 
 Let's see how to define a path and views. The first line of code tells the
 Express framework to use the public directory to serve our static files, which
-include any static images and style sheets we use. The lines that follow tell the
+include any static images and stylesheets we use. The lines that follow tell the
 app where to find the templates for our views in the
 `src/views` directory, and set our view engine to be EJS. In addition, the framework uses the body-parser middleware to expose incoming request
 data to the app as JSON. In the closing lines of the example, the express app responds to
@@ -924,22 +924,17 @@ Note how we set up the `multer` upload, which truncates some code we ignore for 
 require modules `ibm-cos-sdk`, `multer`, and `multer-s3`. The code shows how to
 configure an S3 object that points to an {{site.data.keyword.cos_short}} server endpoint. We are
 statically setting values such as the endpoint address, region, and
-bucket for simplicity, but they could easily be referenced from an
+bucket for simplicity, but they might easily be referenced from an
 environment variable or JSON configuration file.
 
 We define `upload` in the `imageUploadRouter` by creating a new
-`multer` instance with `storage` as its only property. This property tells
-`multer` where to send the file from our multipart/form-data. Since the {{site.data.keyword.cloud_notm}} Platform uses an implementation of the S3 API, we set storage to be an
-`s3-multer` object. This `s3-multer` object contains an `s3` property that we
-have assigned to our `s3` object earlier, and a bucket property that
-we have assigned the `myBucket` variable, which is assigned a
-value of “web-images”. The `s3-multer` object now has all the data
-necessary to connect and upload files to our {{site.data.keyword.cos_short}} bucket when it
-receives data from the upload form. The name or key of the uploaded
-object will be the original file name taken from the file object when it
-is stored in our {{site.data.keyword.cos_short}} “web-images” bucket 
+`multer` instance with `storage` as its only property. This property tells the
+`multer` where to send the file from our `multipart/form-data`. Since the {{site.data.keyword.cloud_notm}} Platform uses an implementation of the S3 API, we set storage to be an `s3-multer` object. This `s3-multer` object contains an `s3` property that is assigned to our `s3` object. There is also a `bucket` property that is assigned to the `myBucket` variable, which in turn is assigned a value of `web-images`. The `s3-multer` object now has all the data
+necessary to upload files to our {{site.data.keyword.cos_short}} bucket when it
+receives data from the upload form. The name (or key) of the uploaded
+object is the original file name. 
 
-Use a timestamp as part of the filename for maintaining filename uniqueness. 
+Use a time stamp as part of the file name for maintaining file name uniqueness. 
 {:tip}
 
 ```javascript
@@ -1015,7 +1010,7 @@ The code loops through the `bucketContents` searching for any object key ending 
 create a parameter to pass to the S3 `getSignedUrl` function. This
 function returns a signed URL for any object when we provide the
 object’s bucket name and key. In the callback function, we save each URL
-in an array, and pass it to the HTTP server response method `res.render` 
+in an array, and pass it to the HTTP Server response method `res.render` 
 as the value to a property named `imageUrls`.
 
 ```javascript
@@ -1048,10 +1043,8 @@ as the value to a property named `imageUrls`.
 ```
 {: codeblock}
 
-The last code example shows the body for the `galleryView` template with the code that is needed to display the images. We get the `imageUrls` array from the `res.render()` 
-method and iterate over a pair of nested `<div></div>` tags where 
-the image URL will make a `GET` request for the image when the `/gallery` route 
-is requested.
+The last code example shows the body of the `galleryView` template with the code that is needed to display our images. We get the `imageUrls` array from the `res.render()` 
+method and iterate over a pair of nested `<div>...</div>` tags. Each sends a `GET` request for the image when the `/gallery` route is requested.
 
 ```html
 <!DOCTYPE html>
@@ -1097,20 +1090,16 @@ to our local repo, and then push it to GitHub. Using GitHub Desktop, we
 click Changes (see Figure 11), type a summary of the changes in
 the Summary field, and then click Commit to Local-dev. 
 
-![commit updates](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-021-changes-in-git.jpg){: caption="Figure 11. Changes ready for commit in Git"}
+![Commit updates](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-021-changes-in-git.jpg){: caption="Figure 11. Changes ready for commit in Git"}
 
-When we click
-Sync, our commit is sent to the remote Local-dev branch that we
-published to GitHub, and this action starts the Build Stage followed by
-the Deploy Stage in our Delivery Pipeline, as exemplified in the last figure, number 12, in this tutorial. 
+When we click **sync**, our commit is sent to the remote `local-dev` branch. This action starts the Build and Deploy Stages in our Delivery Pipeline. 
 
 ![pipeline_triggled_aftersync](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-022-final-pipeline.jpg){: caption="Figure 12. CD Delivery Pipeline"}
 
 ## Next Steps
 {: #nextsteps}
 
-Congratulations! We have gone from beginning to end along this
-path to build a web application image gallery by using the {{site.data.keyword.cloud_notm}} Platform. 
+We went from beginning to end and built a basic web application image gallery by using the {{site.data.keyword.cloud_notm}} Platform. 
 Each of the concepts we've covered in this basic introduction can be explored further at the 
 [{{site.data.keyword.cloud_notm}} Platform](https://cloud.ibm.com/). 
 
