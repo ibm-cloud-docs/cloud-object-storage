@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2018, 2019
 lastupdated: "2019-03-19"
 
-keywords: ruby, activestorage, rails, aws
+keywords: object storage, ruby, activestorage, rails
 
 subcollection: cloud-object-storage
 
@@ -26,7 +26,10 @@ subcollection: cloud-object-storage
 # Ruby on Rails/Active Storage
 {: #ror-activestorage}
 
-[Rails](https://guides.rubyonrails.org/getting_started.html){:new_window} is an open-source, web application development framework that combines the Ruby programming language with HTML, CSS, and JavaScript. It includes everything needed to create server-side web applications using the Model-View-Controller (MVC) pattern. 
+[Rails](https://guides.rubyonrails.org/getting_started.html){:new_window} is an open-source, web application development framework.
+{:shortdesc: .shortdesc}
+ 
+ Combining the Ruby programming language with HTML, CSS, and JavaScript, Rails includes everything needed to create server-side web applications using the Model-View-Controller (MVC) pattern. 
 
 In Rails, the Model (business data and logic layer) of the MVC pattern is handled by [Active Record](https://guides.rubyonrails.org/active_record_basics.html){:new_window}. It provides the [Object-Relational Mapping (ORM)](https://en.wikipedia.org/wiki/Object-relational_mapping){:new_window} framework that connects the business objects with persistent storage in the relational database management system.
 

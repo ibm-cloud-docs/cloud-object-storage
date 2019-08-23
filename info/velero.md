@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2018, 2019
 lastupdated: "2019-03-19"
 
-keywords: heptio, kubernetes, backup
+keywords: velero, kubernetes, integration, object storage
 
 subcollection: cloud-object-storage
 
@@ -23,9 +23,10 @@ subcollection: cloud-object-storage
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
 
-# Velero Integration
+# Velero integration
 {: #velero}
-[Velero](https://github.com/heptio/velero){:new_window} (formerly Heptio Ark) is a toolset for backing up and restoring Kubernetes clusters by using the S3 API.
+[Velero](https://github.com/heptio/velero){:new_window} (formerly Heptio Ark) is a toolset for backing up and restoring Kubernetes clusters by using the {{site.data.keyword.cos_full}} API.
+{:shortdesc: .shortdesc}
 
 Velero consists of two parts:
 

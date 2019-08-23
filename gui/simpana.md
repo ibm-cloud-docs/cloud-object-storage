@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-23"
 
-keywords: gui, desktop, simpana
+keywords: gui, archive, simpana
 
 subcollection: cloud-object-storage
 
@@ -27,7 +27,8 @@ subcollection: cloud-object-storage
 # Use CommVault Simpana to archive data
 {: #commvault}
 
-CommVault Simpana integrates with the Archive tier of {{site.data.keyword.cos_full_notm}}. For more information about Simpana, see: [CommVault Simpana documentation](https://documentation.commvault.com/commvault/)
+CommVault Simpana integrates with the Archive tier of {{site.data.keyword.cos_full_notm}}. For more information about Simpana, see: [CommVault Simpana documentation](https://documentation.commvault.com/commvault/).
+{:shortdesc: .shortdesc}
 
 For more information about IBM COS Infrastructure Archive, see [How to: Archive Data](/docs/services/cloud-object-storage?topic=cloud-object-storage-archive).
 

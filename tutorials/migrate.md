@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-08-22"
+lastupdated: "2019-08-23"
 
 keywords: migrate, openstack swift, object storage
 

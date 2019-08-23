@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-23"
 
 keywords: gui, desktop, cyberduck
 
@@ -26,7 +26,10 @@ subcollection: cloud-object-storage
 # Transfer files with Cyberduck
 {: #cyberduck}
 
-Cyberduck is a popular, open source, and easy to use cloud Object Storage browser for Mac and Windows. Cyberduck is capable of calculating the correct authorization signatures that are needed to connect to IBM COS. Cyberduck can be downloaded from [cyberduck.io/](https://cyberduck.io/){: new_window}.
+Cyberduck is a popular, open source, and easy to use cloud Object Storage browser for Mac and Windows.
+{:shortdesc: .shortdesc}
+
+Cyberduck is capable of calculating the correct authorization signatures that are needed to connect to IBM COS. Cyberduck can be downloaded from [cyberduck.io/](https://cyberduck.io/){: new_window}.
 
 To use Cyberduck to create a connection to IBM COS and synchronize a folder of local files to a bucket, follow these steps:
 
