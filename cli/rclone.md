@@ -21,7 +21,7 @@ subcollection: cloud-object-storage
 # Using `rclone`
 {: #rclone}
 
-Getting the most out of {{site.data.keyword.cos_full}} whjen you have access to tools and solutions like `rclone` and the command line interface (cli).
+Getting the most out of {{site.data.keyword.cos_full}} when you have access to tools and solutions like `rclone` and the command-line interface (cli).
 {:shortdesc: .shortdesc}
 
 ## Install `rclone`
@@ -326,10 +326,10 @@ There are several related list commands
 
 The `sync` operation makes the source and destination identical, and modifies the destination only. Syncing doesn’t transfer unchanged files, testing by size and modification time or MD5SUM. Destination is updated to match source, including deleting files if necessary.
 
-Since this can cause data loss, test first with the `--dry-run` flag to see exactly what would be copied and deleted.
+Since this operation can cause data loss, test first with the `--dry-run` flag to see exactly what would be copied and deleted.
 {:important}
 
-Note that files in the destination won’t be deleted if there were any errors at any point.
+Files in the destination aren't deleted if there are errors at any point.
 
 The _contents_ of the directory are synced, not the directory itself. When `source:path` is a directory, it’s the contents of `source:path` that are copied, not the directory name and contents. For more information, see the extended explanation in the `copy` command.
 
@@ -339,17 +339,17 @@ If `dest:path` doesn’t exist, it is created and the `source:path` contents go 
 rclone sync source:path dest:path [flags]
 ```
 
-### Using `rclone` from multiple locations at the same time
+### Using `rclone` from multiple locations at the simultaneously
 {: #rclone-sync-multiple}
 
-You can use `rclone` from multiple places at the same time if you choose different subdirectory for the output:
+You can use `rclone` from multiple places simultaneously if you choose different subdirectory for the output:
 
 ```
 Server A> rclone sync /tmp/whatever remote:ServerA
 Server B> rclone sync /tmp/whatever remote:ServerB
 ```
 
-If you `sync` to the same directory than you should use `rclone copy`otherwise the two processes might delete each other's others files:
+If you `sync` to the same directory than you can use `rclone copy`, otherwise the two processes might delete each other's others files:
 
 ```sh
 Server A> rclone copy /tmp/whatever remote:Backup
@@ -408,7 +408,7 @@ Before scheduling a job, make sure that you have done your initial upload and it
 	* /RP – the password for the user.
 	* /SC – set to DAILY
 	* /TN – the name of the job. Call it backup
-	* /TR – the path to the backup.bat file you just created.
+	* /TR – the path to the backup.bat file you created.
 	* /ST – the time to start the task. This is in the 24-hour time format. 01:05:00 is 1:05 AM. 13:05:00 would be 1:05 PM.
 
 ```sh
@@ -418,7 +418,7 @@ schtasks /Create /RU username /RP "password" /SC DAILY /TN Backup /TR C:\path\to
 #### Mac and Linux
 {: #rclone-sync-nix}
 
-1. Create a text file called `backup.sh` somewhere on your computer, and paste the command that you used in the section [syncing a Directory](#rclone-sync-directory). It looks something like the following. Specify the full path to the rclone executable and don’t forget to save the file.
+1. Create a text file called `backup.sh` somewhere on your computer, and paste the command that you used in the section [syncing a Directory](#rclone-sync-directory). It looks something like the following. Specify the full path to the `rclone` executable and don’t forget to save the file.
 
 ```sh
 #!/bin/sh
@@ -437,7 +437,7 @@ chmod +x backup.sh
 sudo crontab -e
 ```
 
-4. Add an entry to the bottom of the crontabs file. Crontabs are straight forward: the first five fields represent in order minutes, hours, days, months, and weekdays. Using * denotes all. To make the `backup.sh` run at Daily at 1:05 AM, use something that looks like this:
+4. Add an entry to the bottom of the crontabs file. Crontabs are straight forward: the first five fields describe in order minutes, hours, days, months, and weekdays. Using * denotes all. To make the `backup.sh` run at Daily at 1:05 AM, use something that looks like this:
 
 ```sh
 5 1 * * * /full/path/to/backup.sh

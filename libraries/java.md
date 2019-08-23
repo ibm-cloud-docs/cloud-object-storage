@@ -28,17 +28,17 @@ subcollection: cloud-object-storage
 # Using Java
 {: #java}
 
-The {{site.data.keyword.cos_full}} SDK for Java provides features and capabilities to make the most of {{site.data.keyword.cos_notm}}.
+The {{site.data.keyword.cos_full}} SDK for Java provides features to make the most of {{site.data.keyword.cos_notm}}.
 {:shortdesc: .shortdesc}
 
-Of course, the {{site.data.keyword.cos_notm}} SDK for Java is very comprehensive, with many features and capabilities that exceed the scope and space of this guide.For detailed class and method documentation [see the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/). Source code can be found in the [GitHub repository](https://github.com/ibm/ibm-cos-sdk-java).
+The {{site.data.keyword.cos_notm}} SDK for Java is comprehensive, with many features and capabilities that exceed the scope and space of this guide. For detailed class and method documentation [see the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/). Source code can be found in the [GitHub repository](https://github.com/ibm/ibm-cos-sdk-java).
 
 ## Getting the SDK
 {: #java-install}
 
-The easiest way to consume the {{site.data.keyword.cos_full_notm}} Java SDK is to use Maven to manage dependencies. If you aren't familiar with Maven, you get can get up and running using the [Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html) guide.
+The easiest way to use the {{site.data.keyword.cos_full_notm}} Java SDK is to use Maven to manage dependencies. If you aren't familiar with Maven, you get can get up and running by using the [Maven in 5-Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html) guide.
 
-Maven uses a file called `pom.xml` to specify the libraries (and their versions) needed for a Java project. Here is an example `pom.xml` file for using the {{site.data.keyword.cos_full_notm}} Java SDK to connect to {{site.data.keyword.cos_short}}.
+Maven uses a file that is called `pom.xml` to specify the libraries (and their versions) needed for a Java project. Here is an example `pom.xml` file for using the {{site.data.keyword.cos_full_notm}} Java SDK to connect to {{site.data.keyword.cos_short}}.
 
 
 ```xml
@@ -89,7 +89,7 @@ Maven uses a file called `pom.xml` to specify the libraries (and their versions)
 
 The 2.0 release of the SDK introduces a namespacing change that allows an application to make use of the original AWS library to connect to AWS resources within the same application or environment. To migrate from 1.x to 2.0 some changes are necessary:
 
-1. Update using Maven by changing all  `ibm-cos-java-sdk` dependency version tags to  `2.0.0` in the pom.xml. Verify that there are no SDK module dependencies in the pom.xml with a version earlier than  `2.0.0`.
+1. Update by using Maven by changing all  `ibm-cos-java-sdk` dependency version tags to  `2.0.0` in the pom.xml. Verify that there are no SDK module dependencies in the pom.xml with a version earlier than  `2.0.0`.
 2. Update any import declarations from `amazonaws` to `ibm.cloud.objectstorage`.
 
 
@@ -98,7 +98,7 @@ The 2.0 release of the SDK introduces a namespacing change that allows an applic
 
 In the following example, a client `cos` is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
 
-After generating a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client will authenticate with a signature, otherwise the client will use the provided API key to authenticate using a bearer token.
+After generating a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client authenticates with a signature, otherwise the client uses the provided API key to authenticate by using a bearer token.
 
 If migrating from AWS S3, you can also source credentials data from  `~/.aws/credentials` in the format:
 
@@ -108,7 +108,7 @@ aws_access_key_id = {API_KEY}
 aws_secret_access_key = {SERVICE_INSTANCE_ID}
 ```
 
-If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` will take preference.
+If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` takes preference.
 
  For more details on client construction, [see the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/client/builder/AwsClientBuilder.html).
 
@@ -120,7 +120,7 @@ Let's start with an complete example class that will run through some basic func
 ### Gather required information
 {: #java-examples-prereqs}
 
-* `bucketName` and `newBucketName` are [unique and DNS-safe](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-new-bucket) strings. Because bucket names are unique across the entire system, these values will need to be changed if this example is run multiple times. Note that names are reserved for 10-15 minutes after deletion.
+* `bucketName` and `newBucketName` are [unique and DNS-safe](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-new-bucket) strings. Because bucket names are unique across the entire system, these values need to be changed if this example is run multiple times. Note that names are reserved for 10 - 15 minutes after deletion.
 * `api_key` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) as `apikey`.
 * `service_instance_id` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) as `resource_instance_id`. 
 * `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol. This is **not** the `endpoints` value found in the [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
@@ -278,10 +278,10 @@ public static AmazonS3 createClient(String api_key, String service_instance_id, 
 ```
 
 *Key Values*
-* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+* `<endpoint>` - public endpoint for your cloud Object Storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
-* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](/docs//docs/cli?topic=cloud-cli-idt-cli) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window})
-* `<location>` - default location for your cloud object storage (must match the region used for `<endpoint>`)
+* `<resource-instance-id>` - resource ID for your cloud Object Storage (available through [IBM Cloud CLI](/docs//docs/cli?topic=cloud-cli-idt-cli) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window})
+* `<location>` - default location for your cloud Object Storage (must match the region that is used for `<endpoint>`)
 
 *SDK References*
 * Classes
@@ -394,13 +394,13 @@ public static void createTextFile(String bucketName, String itemName, String fil
     System.out.printf("Item: %s created!\n", itemName);
 }
 ```
-Note that when adding custom metadata to an object, it is necessary to create an `ObjectMetadata` object using the SDK, and not to manually send a custom header containing `x-amz-meta-{key}`. The latter can cause issues when authenticating using HMAC credentials.
+Note that when adding custom metadata to an object, it is necessary to create an `ObjectMetadata` object by using the SDK, and not to manually send a custom header containing `x-amz-meta-{key}`. The latter can cause issues when authenticating by using HMAC credentials.
 {: .tip}
 
 ### Upload object from a file
 {: #java-examples-upload}
 
-This example assumes that the bucket `sample` already exists.
+This example assumes that the bucket `sample` exists.
 
 ```java
 cos.putObject(
@@ -410,10 +410,10 @@ cos.putObject(
 );
 ```
 
-### Upload object using a stream
+### Upload object by using a stream
 {: #java-examples-stream}
 
-This example assumes that the bucket `sample` already exists.
+This example assumes that the bucket `sample` exists.
 
 ```java
 String obj = "An example"; // the object to be stored
@@ -437,7 +437,7 @@ cos.putObject(
 ### Download object to a file
 {: #java-examples-download}
 
-This example assumes that the bucket `sample` already exists.
+This example assumes that the bucket `sample` exists.
 
 ```java
 GetObjectRequest request = new // create a new request to get an object
@@ -453,10 +453,10 @@ s3Client.getObject( // write the contents of the object
 ```
 
 
-### Download object using a stream
+### Download object by using a stream
 {: #java-examples-download-stream}
 
-This example assumes that the bucket `sample` already exists.
+This example assumes that the bucket `sample` exists.
 
 ```java
 S3Object returned = cos.getObject( // request the object by identifying
@@ -497,10 +497,10 @@ cos.copyObject( // copy the Object, passing…
     * [putObject](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#putObject-com.ibm.cloud.objectstorage.services.s3.model.PutObjectRequest-){:new_window}
 
 
-#### putObject Exception
+#### `putObject` Exception
 {: #java-examples-put-exception}
 
-The putObject method may throw the following exception even if the new object upload was successful
+The `putObject` method might throw the following exception even if the new object upload was successful
 ```
 Exception in thread "main" java.lang.NoClassDefFoundError: javax/xml/bind/JAXBException
 	at com.ibm.cloud.objectstorage.services.s3.AmazonS3Client.putObject(AmazonS3Client.java:1597)
@@ -546,7 +546,7 @@ public static void getBuckets() {
 ### List items in a bucket (v2)
 {: #java-examples-list-objects-v2}
 
-The [AmazonS3](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html){:new_window} object contains an updated method to list the contents ([listObjectsV2](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){:new_window}). This method allows you to limit the number of records returned and retrieve the records in batches. This could be useful for paging your results within an application and improve performance.
+The [AmazonS3](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html){:new_window} object contains an updated method to list the contents ([listObjectsV2](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){:new_window}). This method allows you to limit the number of records that are returned and retrieve the records in batches. This might be useful for paging your results within an application and improve performance.
 
 ```java
 public static void getBucketContentsV2(String bucketName, int maxKeys) {

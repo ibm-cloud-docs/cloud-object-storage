@@ -26,7 +26,7 @@ subcollection: cloud-object-storage
 # Integrated service availability
 {: #service-availability}
 
-The table below describes the regions where the following services are supported
+The table describes the regions where the following services are supported
 * [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera)
 * [Key Protect](/docs/services/cloud-object-storage/basics/cloud-object-storage/basics?topic=cloud-object-storage-encryption#sse-kp)
 * [{{site.data.keyword.hscrypto}} ({{site.data.keyword.hscrypto}})](/docs/services/cloud-object-storage?topic=cloud-object-storage-encryption)
@@ -35,7 +35,7 @@ The table below describes the regions where the following services are supported
 * [Activity Tracker](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started)
 
 
-Downloads using Aspera high-speed will incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage).
+Downloads that use Aspera high-speed transfer incur extra egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage).
 {:tip}
 
 ## Cross Region
@@ -64,17 +64,17 @@ Downloads using Aspera high-speed will incur additional egress charges. For more
 ## Single Data Centers
 {: #service-availability-zone}
 
-| Region                 | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker |
-|------------------------|--------|-------------|------|--------------|--------------------------|------------------|
-| Amsterdam, Netherlands | Yes    | No          | No   | No           | No                       | Frankfurt        |
-| Chennai, India         | Yes    | No          | No   | No           | No                       | Tokyo            |
-| Hong Kong              | Yes    | No          | No   | No           | No                       | Tokyo            |
-| Melbourne, Australia   | Yes    | No          | No   | No           | No                       | with COS API     |
-| Mexico City, Mexico    | Yes    | No          | No   | No           | No                       | Dallas           |
-| Milan, Italy           | Yes    | No          | No   | No           | No                       | Frankfurt        |
-| Montréal, Canada       | Yes    | No          | No   | No           | No                       | Dallas           |
-| Oslo, Norway           | Yes    | No          | No   | No           | No                       | Frankfurt        |
-| San Jose, USA          | Yes    | No          | No   | No           | No                       | Dallas           |
-| São Paulo, Brazil      | Yes    | No          | No   | No           | No                       | Dallas           |
-| Seoul, South Korea     | Yes    | No          | No   | No           | No                       | Japan            |
-| Toronto, Canada        | Yes    | No          | No   | Yes          | No                       | Dallas           |
+| Region                      | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker |
+|-----------------------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|
+| Amsterdam, Netherlands      | Yes    | No          | No                             | No           | No                       | Frankfurt        |
+| Chennai, India              | Yes    | No          | No                             | No           | No                       | Tokyo            |
+| Hong Kong S.A.R. of the PRC | Yes    | No          | No                             | No           | No                       | Tokyo            |
+| Melbourne, Australia        | Yes    | No          | No                             | No           | No                       | Tokyo     |
+| Mexico City, Mexico         | Yes    | No          | No                             | No           | No                       | Dallas           |
+| Milan, Italy                | Yes    | No          | No                             | No           | No                       | Frankfurt        |
+| Montréal, Canada            | Yes    | No          | No                             | No           | No                       | Dallas           |
+| Oslo, Norway                | Yes    | No          | No                             | No           | No                       | Frankfurt        |
+| San Jose, US                | Yes    | No          | No                             | No           | No                       | Dallas           |
+| São Paulo, Brazil           | Yes    | No          | No                             | No           | No                       | Dallas           |
+| Seoul, South Korea          | Yes    | No          | No                             | No           | No                       | Tokyo            |
+| Toronto, Canada             | Yes    | No          | No                             | Yes          | No                       | Dallas           |
