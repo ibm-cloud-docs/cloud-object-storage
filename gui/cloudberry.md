@@ -30,23 +30,21 @@ subcollection: cloud-object-storage
 ## Cloudberry backup
 {: #cloudberry-backup}
 
-Cloudberry Backup is a flexible utility that allows users to back up a local file system to an object store. Both free and professional editions can be downloaded from [cloudberrylab.com](https://www.cloudberrylab.com/).
+Cloudberry backup is a flexible utility that allows users to back up a local file system to an object store. Both free and professional editions can be downloaded from [cloudberrylab.com](https://www.cloudberrylab.com/).
 
-Cloudberry Backup includes many useful features:
+Cloudberry backup includes many useful features:
 
 * Scheduling
 * Incremental & Block level backups
-* Command-line interface
 * Email notifications
 * Compression (*Pro version only*)
 
 ## Cloudberry Explorer
 {: #cloudberry-explorer}
 
-[Cloudberry Explorer](https://www.cloudberrylab.com/explorer.aspx){:new_window} is available for Windows. This simple file browser provides a set of basic features:
+[Cloudberry Explorer](https://www.cloudberrylab.com/explorer.aspx){:new_window} is a simple file browser that provides a set of basic features:
 
 * Folder (bucket) sync
-* Command-line interface
 * ACL management
 * Capacity reports
 
@@ -64,3 +62,4 @@ Key points to remember when you configure a Cloudberry product to work with {{si
 * Only [HMAC credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-hmac#using-hmac-credentials) are currently supported
 * A separate connection is required for each bucket
 * Ensure the `Endpoint` specified in the connection matches the region of the selected bucket (*backup fails because of an inaccessible destination*). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+
