@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-23"
 
-keywords: basics, upload, getting started, ingest
+keywords: cli, command line interface, object storage, s3
 
 subcollection: cloud-object-storage
 
@@ -26,7 +26,10 @@ subcollection: cloud-object-storage
 # Use the AWS CLI
 {: #aws-cli}
 
-The official command line interface for AWS is compatible with the IBM COS S3 API. Written in Python, it can be installed from the Python Package Index via `pip install awscli`. By default, access keys are sourced from `~/.aws/credentials`, but can also be set as environment variables.
+The official command line interface for AWS is compatible with the {{site.data.keyword.cos_full}} S3 API. 
+{:shortdesc: .shortdesc}
+
+Written in Python, it can be installed from the Python Package Index via `pip install awscli`. By default, access keys are sourced from `~/.aws/credentials`, but can also be set as environment variables.
 
 These examples have been generated using version 1.14.2 of the CLI. To check the version installed, run `aws --version`.
 

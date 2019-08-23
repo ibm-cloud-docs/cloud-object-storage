@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-23"
 
 keywords: data migration, object storage, cli, rclone
 
@@ -20,6 +20,9 @@ subcollection: cloud-object-storage
 
 # Using `rclone`
 {: #rclone}
+
+Getting the most out of {{site.data.keyword.cos_full}} whjen you have access to tools and solutions like `rclone` and the command line interface (cli).
+{:shortdesc: .shortdesc}
 
 ## Install `rclone`
 {: #rclone-install}

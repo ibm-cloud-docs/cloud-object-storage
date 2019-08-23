@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-23"
 
 keywords: s3fs, open source, file system, gateway
 
@@ -26,7 +26,10 @@ subcollection: cloud-object-storage
 # Mount a bucket using `s3fs`
 {: #s3fs}
 
-Applications that expect to read and write to a NFS-style filesystem can use `s3fs`, which can mount a bucket as directory while preserving the native object format for files. This allows you to interact with your cloud storage using familiar shell commands, like `ls` for listing or `cp` to copy files, as well as providing access to legacy applications that rely on reading and writing from local files. For a more detailed overview, [visit the project's official README](https://github.com/s3fs-fuse/s3fs-fuse).
+Applications that expect to read and write to a NFS-style filesystem can use `s3fs`, which can mount a bucket as directory while preserving the native object format for files. 
+{:shortdesc: .shortdesc}
+
+This allows you to interact with your cloud storage using familiar shell commands, like `ls` for listing or `cp` to copy files, as well as providing access to legacy applications that rely on reading and writing from local files. For a more detailed overview, [visit the project's official README](https://github.com/s3fs-fuse/s3fs-fuse).
 
 ## Prerequisites
 {: #s3fs-prereqs}
