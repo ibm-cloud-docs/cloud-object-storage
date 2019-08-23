@@ -391,7 +391,7 @@ ibmcloud dev run
 Ahora que la app se ha creado y definido, visualice la aplicación para confirmar que funciona. Si ves la imagen de marcador de posición tal como se muestra en la Figura 2, ¡enhorabuena! Ha creado una nueva aplicación web Node.js y está lista para que se despliegue en la nube.
 
 ![initialnodeapp](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-splash-graphic.png)
-{: caption="Figura 2. Nueva aplicación Node.js: ¡Enhorabuena!" caption-side="top"}
+{: caption="Figura 2. Nueva aplicación Node.js: ¡Enhorabuena!"}
 
 Despliegue la app en {{site.data.keyword.cloud_notm}} Platform con el mandato deploy (tal como se muestra en el Ejemplo 20).
 

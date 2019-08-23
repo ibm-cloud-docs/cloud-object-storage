@@ -402,7 +402,7 @@ ibmcloud dev run
 Maintenant que l'application a été créée et définie, affichez-la pour vérifier qu'elle fonctionne. Si vous voyez l'image de marque de réservation comme illustrée dans la figure 2, vous avez réussi ! Vous avez créé une nouvelle application Web Node.js et vous êtes prêt à la déployer sur le cloud.
 
 ![initialnodeapp](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-splash-graphic.png)
-{: caption="Figure 2. Vous avez créé une nouvelle application Node.js. Félicitations !" caption-side="top"}
+{: caption="Figure 2. Vous avez créé une nouvelle application Node.js. Félicitations !"}
 
 Déployez l'application sur la plateforme {{site.data.keyword.cloud_notm}} à l'aide de la commande deploy (comme illustré dans l'exemple 20). 
 

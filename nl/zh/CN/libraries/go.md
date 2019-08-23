@@ -68,7 +68,7 @@ import (
 图 1 显示了如何在 {{site.data.keyword.cos_full_notm}} 门户网站中定义应用程序运行时中的环境变量的示例。必需的变量为 `IBM_API_KEY_ID`（包含服务凭证的“apikey”）、`IBM_SERVICE_INSTANCE_ID`（用于保存同样来自服务凭证的“resource_instance_id”）和 `IBM_AUTH_ENDPOINT`（值与帐户相对应，如 `https://iam.cloud.ibm.com/identity/token`）。如果使用环境变量来定义应用程序凭证，请视情形使用 `WithCredentials(ibmiam.NewEnvCredentials(aws.NewConfig())).`，并替换配置示例中使用的类似方法。
 
 ![环境变量](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/go-library-fig-1-env-vars.png)
-{: caption="图 1. 环境变量" caption-side="top"}
+{: caption="图 1. 环境变量"}
 
 ### 初始化配置
 {: #go-init-config}

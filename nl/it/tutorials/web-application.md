@@ -474,7 +474,7 @@ Ora che la tua applicazione è stata creata e definita, visualizzala per conferm
 nella figura 2, congratulazioni! Hai creato una nuova applicazione web Node.js e sei pronto per distribuirla al cloud.
 
 ![initialnodeapp](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-splash-graphic.png)
-{: caption="Figura 2. Nuova applicazione Node.js: congratulazioni!" caption-side="top"}
+{: caption="Figura 2. Nuova applicazione Node.js: congratulazioni!"}
 
 Distribuisci l'applicazione a {{site.data.keyword.cloud_notm}} Platform con il comando deploy (come mostrato nell'esempio 20).
 

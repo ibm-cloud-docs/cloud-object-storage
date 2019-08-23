@@ -55,7 +55,7 @@ The following table lists the COS actions that generate a global event. You can 
 | `cloud-object-storage.instance.list`   | List the buckets in the service instance |
 | `cloud-object-storage.bucket.create`   | Create a bucket in the service instance |
 | `cloud-object-storage.bucket.delete`   | Delete a bucket in the service instance |
-{: caption="Table 1. {{site.data.keyword.cos_short}} actions that generate global events" caption-side="top"}
+{: caption="Table 1. {{site.data.keyword.cos_short}} actions that generate global events"}
 
 ## Management events
 {: #at-actions-mngt}
@@ -75,7 +75,7 @@ The following table lists the COS resource configuration events:
 | ------------------------------------------------------ | --------------------------- |
 | `cloud-object-storage.resource-configuration.read`     | Read the resource configuration for the bucket |
 | `cloud-object-storage.resource-configuration.update`   | Update the resource configuration for the bucket |
-{: caption="Table 2. Resource Configuration events" caption-side="top"}
+{: caption="Table 2. Resource Configuration events"}
 
 ### Bucket events
 {: #at-actions-mngt-2}
@@ -96,7 +96,7 @@ The following table lists the COS bucket events:
 | `cloud-object-storage.bucket-location.read`            | Get the bucket location |
 | `cloud-object-storage.bucket-retention.read`           | Get the bucket retention |
 | `cloud-object-storage.bucket-retention.create`         | Create the bucket retention |
-{: caption="Table 3. Bucket events" caption-side="top"}
+{: caption="Table 3. Bucket events"}
 
 
 ### Object events
@@ -113,7 +113,7 @@ The following table lists the COS object events:
 | `cloud-object-storage.object-retention-legal-hold.update`  | Add or remove object legal hold |
 | `cloud-object-storage.object-retention.update`             | Extend the retention time |
 | `cloud-object-storage.object-expire.info`                  | Get when the object will expire |
-{: caption="Table 4. Object events" caption-side="top"}
+{: caption="Table 4. Object events"}
 
 ## Data Events
 {: #at-actions-data}
@@ -132,7 +132,7 @@ The following table lists the COS bucket access events:
 | ------------------------------------------------------ | --------------------------- |
 | `cloud-object-storage.object.list`                     | List the objects in the bucket |
 | `cloud-object-storage.bucket.info`                     | Get the metadata for the bucket |
-{: caption="Table 5. Bucket access events" caption-side="top"}
+{: caption="Table 5. Bucket access events"}
 
 
 ### Object access events
@@ -152,7 +152,7 @@ The following table lists the COS object access events:
 | `cloud-object-storage.object-copy.create`              | Create the target object from the copy |
 | `cloud-object-storage.object-restore.read`             | Read the source object to restore|
 | `cloud-object-storage.object-restore.create`           | Create the target object from the restore |
-{: caption="Table 6. Object access events" caption-side="top"}
+{: caption="Table 6. Object access events"}
 
 
 ### Multipart Events
@@ -168,7 +168,7 @@ The following table lists the COS multipart events:
 | `cloud-object-storage.object-multipart.create`         | Create a part of a multipart upload of an object |
 | `cloud-object-storage.object-multipart.complete`       | Complete a multipart upload of an object |
 | `cloud-object-storage.object-multipart.delete`         | Abort an imcomplete multipart upload of an object |
-{: caption="Table 7. Multipart events" caption-side="top"}
+{: caption="Table 7. Multipart events"}
 
 
 ## Viewing events

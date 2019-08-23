@@ -390,7 +390,7 @@ ibmcloud dev run
 これで、アプリが作成され、定義されました。アプリケーションを表示して、動作することを確認してください。 図 2 に示されているようなプレースホルダー・イメージが表示されていれば成功です。 新しい Node.js Web アプリケーションが作成され、クラウドにデプロイする準備ができました。
 
 ![initialnodeapp](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-splash-graphic.png)
-{: caption="図 2. 新しい Node.js アプリケーション: 完了" caption-side="top"}
+{: caption="図 2. 新しい Node.js アプリケーション: 完了"}
 
 アプリを (例 20 に示されているように) deploy コマンドで {{site.data.keyword.cloud_notm}} プラットフォームにデプロイします。
 

@@ -175,8 +175,6 @@ Let's start with an complete example class that will run through some basic func
         }
 
         /**
-         * @param bucketName
-         * @param clientNum
          * @param api_key
          * @param service_instance_id
          * @param endpoint_url

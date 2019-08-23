@@ -68,7 +68,7 @@ Die Berechtigungsnachweise können durch Erstellen eines [Serviceberechtigungsna
 In Abbildung 1 wird ein Beispiel für die Verwendungshinweise zum Definieren von Umgebungsvariablen in einer Anwendungslaufzeit im {{site.data.keyword.cos_full_notm}}-Portal dargestellt. Die erforderlichen Variablen sind `IBM_API_KEY_ID`, in der der Serviceberechtigungsnachweis 'apikey' enthalten ist,  die Variable `IBM_SERVICE_INSTANCE_ID`, in der 'resource_instance_id' ebenfalls aus dem Serviceberechtigungsnachweis enthalten ist, und die Variable `IBM_AUTH_ENDPOINT` mit einem Ihrem Konto entsprechenden Wert, zum Beispiel `https://iam.cloud.ibm.com/identity/token`. Falls Sie Umgebungsvariablen zum Definieren der Anwendungsberechtigungsnachweise verwenden, verwenden Sie `WithCredentials(ibmiam.NewEnvCredentials(aws.NewConfig())).` als geeigneten Wert; dadurch wird die ähnliche Methode ersetzt, die im Konfigurationsbeispiel verwendet wird.
 
 ![environmentvariables](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/go-library-fig-1-env-vars.png)
-{: caption="Abbildung 1. Umgebungsvariablen" caption-side="top"}
+{: caption="Abbildung 1. Umgebungsvariablen"}
 
 ### Konfiguration initialisieren
 {: #go-init-config}
