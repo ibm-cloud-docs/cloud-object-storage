@@ -1,8 +1,12 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2018-02-16"
+  years: 2017, 2018, 2019
+lastupdated: "2019-08-26"
+
+keywords: object storage, information, about
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -15,7 +19,10 @@ lastupdated: "2018-02-16"
 
 # About {{site.data.keyword.cos_full_notm}}
 
-Information stored with {{site.data.keyword.cos_full}} is encrypted and dispersed across multiple geographic locations, and accessed over HTTP using a REST API. This service makes use of the distributed storage technologies provided by the {{site.data.keyword.cos_full_notm}} System (formerly Cleversafe).
+Information stored with {{site.data.keyword.cos_full}} is encrypted and dispersed across multiple geographic locations, and accessed over popular protocols like HTTP using a modern RESTful API. 
+{:shortdesc: .shortdesc}
+
+This service makes use of the distributed storage technologies provided by the {{site.data.keyword.cos_full_notm}} System (formerly Cleversafe).
 
 {{site.data.keyword.cos_full_notm}} is available with three types of resiliency: Cross Region, Regional, and Single Data Center.  Cross Region provides higher durability and availability than using a single region at the cost of slightly higher latency, and is available today in the US, EU and AP. Regional service reverses those tradeoffs, and distributes objects across multiple availability zones within a single region, and is available in the US, EU and AP regions. If a given region or availability zone is unavailable, the object store continues to function without impediment.  Single Data Center distributes objects across multiple machines within the same physical location. Check [here](/docs/services/cloud-object-storage/basics/endpoints.html#select-regions-and-endpoints) for available regions.
 
