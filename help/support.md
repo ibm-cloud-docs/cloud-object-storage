@@ -26,13 +26,14 @@ subcollection: cloud-object-storage
 # Support
 {: #troubleshooting}
 
-If you have problems or questions when using {{site.data.keyword.cos_full}}, you can get help by searching for information or by asking questions through a forum. You can also open a support ticket.
+If you have problems or questions when you use {{site.data.keyword.cos_full}}, you can get help starting right here. 
+{:shortdesc: .shortdesc}
 
-When using the forums to ask a question, tag your question so that it is seen by the {{site.data.keyword.cloud}} Platform development teams.
+Whether by searching for information or by asking questions through a forum, you can find what you need. If you don't, you can also open a support ticket.
 
 * If you have technical questions about {{site.data.keyword.cos_short}}, post your question on [Stack Overflow](https://stackoverflow.com/search?q=object-storage+ibm-bluemix) and tag your question with `ibm` and `object-storage`.
-* For questions about the service and getting started instructions, use the [IBM developerWorks dW Answers forum](https://developer.ibm.com/answers/topics/objectstorage/). Include the  `objectstorage` tag.
+* For questions about the service and getting started instructions, use the [IBM IBM Developer dW Answers forum](https://developer.ibm.com/answers/topics/objectstorage/). Include the  `objectstorage` tag.
 
 See [Getting help](/docs/get-support?topic=get-support-getting-customer-support) for more details about using the forums.
 
-For information about opening an IBM support ticket, or about support levels and ticket severities, see [Contacting support](/docs/get-support?topic=get-support-getting-customer-support).
+For more information about opening an IBM support ticket, see [Contacting support](/docs/get-support?topic=get-support-getting-customer-support).

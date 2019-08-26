@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-23"
 
-keywords: cloud foundry, compute, stateless
+keywords: cloud foundry, compute, object storage
 
 subcollection: cloud-object-storage
 
@@ -23,10 +23,11 @@ subcollection: cloud-object-storage
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
 
-# Using Cloud Object Storage with Cloud Foundry Apps
+# Using Cloud Object Storage with Cloud Foundry applications
 {: #cloud-foundry}
 
 {{site.data.keyword.cos_full}} can be paired with {{site.data.keyword.cfee_full}} applications to provide highly available content by using regions and endpoints.
+{:shortdesc: .shortdesc}
 
 ## Cloud Foundry Enterprise Environment
 {: #cloud-foundry-ee}

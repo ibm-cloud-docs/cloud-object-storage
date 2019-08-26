@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-23"
 
-keywords: sdks, getting started
+keywords: object storage, sdk, guide
 
 subcollection: cloud-object-storage
 
@@ -27,6 +27,9 @@ subcollection: cloud-object-storage
 
 # Getting Started with the SDKs
 {: #sdk-gs}
+
+Getting started with the {{site.data.keyword.cos_full}} provides SDKs for Java, Python, NodeJS, and Go can help you to make the most of {{site.data.keyword.cos_notm}}.
+{:shortdesc: .shortdesc}
 
 In this quickstart guide, you are provided a code example that demonstrates the following operations:
 

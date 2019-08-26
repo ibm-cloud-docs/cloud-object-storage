@@ -68,7 +68,7 @@ import (
 그림 1은 {{site.data.keyword.cos_full_notm}} 포털에서 애플리케이션 런타임에 환경 변수를 정의하는 방법에 대한 예를 보여줍니다. 필수 변수는 서비스 인증 정보 'apikey'를 포함하는 `IBM_API_KEY_ID`, 마찬가지로 서비스 인증 정보의 'resource_instance_id'를 포함하는 `IBM_SERVICE_INSTANCE_ID`, 그리고 계정에 대해 적절한 값을 포함하는 `IBM_AUTH_ENDPOINT`(예: `https://iam.cloud.ibm.com/identity/token`)입니다. 환경 변수를 사용하여 애플리케이션 인증 정보를 정의하는 경우에는 `WithCredentials(ibmiam.NewEnvCredentials(aws.NewConfig())).`를 적절히 사용하여 구성 예에서 사용된 유사한 메소드를 대체하십시오. 
 
 ![환경 변수](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/go-library-fig-1-env-vars.png)
-{: caption="그림 1. 환경 변수" caption-side="top"}
+{: caption="그림 1. 환경 변수"}
 
 ### 구성 초기화
 {: #go-init-config}

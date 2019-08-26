@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-23"
 
-keywords: python, sdk
+keywords: object storage, python, sdk
 
 subcollection: cloud-object-storage
 
@@ -26,7 +26,10 @@ subcollection: cloud-object-storage
 # Using Python
 {: #python}
 
-Python support is provided through a fork of the `boto3` library. It can be installed from the Python Package Index through `pip install ibm-cos-sdk`.
+Python support is provided through a fork of the `boto3` library with features to make the most of {{site.data.keyword.cos_full}}. 
+{:shortdesc: .shortdesc}
+
+It can be installed from the Python Package Index through `pip install ibm-cos-sdk`.
 
 Source code can be found at [GitHub](https://github.com/ibm/ibm-cos-sdk-python/).
 
@@ -49,7 +52,7 @@ The 2.0 version of the SDK introduces a namespacing change that allows an applic
 ## Creating a client and sourcing credentials
 {: #python-credentials}
 
-To connect to COS, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
+To connect to COS, a client is created and configured using credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
 
 After generating a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client authenticates with a signature, otherwise the client uses the provided API key to authenticate by using a bearer token.
 
@@ -68,7 +71,7 @@ If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_creden
 
 The following variables appear in the examples:
 
-* `bucket_name` must be a [unique and DNS-safe](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-new-bucket) string. Because bucket names are unique across the entire system, these values need to be changed if this example is run multiple times. Note that names are reserved for 10-15 minutes after deletion.
+* `bucket_name` must be a [unique and DNS-safe](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-new-bucket) string. Because bucket names are unique across the entire system, these values need to be changed if this example is run multiple times. Note that names are reserved for 10 - 15 minutes after deletion.
 * `ibm_api_key_id` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) as `apikey`.
 * `ibm_service_instance_id` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) as `resource_instance_id`. 
 * `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol. This value is **not** the `endpoints` value that is found in the [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
@@ -181,10 +184,10 @@ def get_buckets():
 
 *SDK References*
 * Classes
-    * [Bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){:new_window}
-    * [ServiceResource](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#service-resource){:new_window}
+    * [`Bucket`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){:new_window}
+    * [`ServiceResource`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#service-resource){:new_window}
 * Collections
-    * [buckets](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.ServiceResource.buckets){:new_window}
+    * [`buckets`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.ServiceResource.buckets){:new_window}
 
 ### List items in a bucket
 {: #python-examples-list-objects}
@@ -204,10 +207,10 @@ def get_bucket_contents(bucket_name):
 
 *SDK References*
 * Classes
-    * [Bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){:new_window}
-    * [ObjectSummary](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#objectsummary){:new_window}
+    * [`Bucket`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){:new_window}
+    * [`ObjectSummary`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#objectsummary){:new_window}
 * Collections
-    * [objects](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.objects){:new_window}
+    * [`objects`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.objects){:new_window}
 
 ### Get file contents of particular item
 {: #python-examples-get-file-contents}
@@ -499,7 +502,7 @@ def upload_large_file(bucket_name, item_name, file_path):
 ### List items in a bucket (v2)
 {: #python-examples-list-objects-v2}
 
-The [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window} object contains an updated method to list the contents ([list_objects_v2](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){:new_window}). This method allows you to limit the number of records that are returned and retrieve the records in batches. This might be useful for paging your results within an application and improve performance.
+The [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window} object has an updated method to list the contents ([list_objects_v2](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){:new_window}). This method allows you to limit the number of records that are returned and retrieve the records in batches. This might be useful for paging your results within an application and improve performance.
 
 ```python
 def get_bucket_contents_v2(bucket_name, max_keys):
@@ -601,7 +604,7 @@ def create_bucket_kp(bucket_name):
 ## Using Aspera High-Speed Transfer
 {: #python-examples-aspera}
 
-By installing the [Aspera high-speed transfer library](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera#aspera-packaging), you can leverage high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license).
+By installing the [Aspera high-speed transfer library](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera#aspera-packaging), you can use high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license).
 
 Each Aspera session creates an individual `ascp` process that runs on the client machine to perform the transfer. Ensure that your computing environment can allow this process to run.
 {:tip}
@@ -610,7 +613,7 @@ Each Aspera session creates an individual `ascp` process that runs on the client
 ### Initializing the AsperaTransferManager
 {: #python-examples-aspera-init}
 
-Before initializing the `AsperaTransferManager`, make sure you have a working [`client`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window} (not a `resource` or `session`) object.
+Before initializing the `AsperaTransferManager`, make sure that you have a working [`client`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window} (not a `resource` or `session`) object.
 
 ```python
 import ibm_boto3
@@ -649,9 +652,9 @@ ms_transfer_config = AsperaConfig(multi_session="all",
                                   target_rate_mbps=2500,
                                   multi_session_threshold_mb=100)
 ```
-In the above example, the sdk will spawn enough sessions to attempt to reach the target rate of 2500 MBps.
+In the above example, the sdk spawns enough sessions to attempt to reach the target rate of 2500 MBps.
 
-Alternatively, session management can be explicitly configured in the sdk. This is useful in cases where more precise control over network utilization is desired.
+Session management can also be explicitly configured in the SDK. This is useful in cases where more precise control over network utilization is wanted.
 
 The typical configuration for using explicit multi-session should be:
 * 2 or 10 sessions
@@ -667,7 +670,7 @@ ms_transfer_config = AsperaConfig(multi_session=2,
 transfer_manager = AsperaTransferManager(client=client,
                                          transfer_config=ms_transfer_config)
 ```
-For best performance in most scenarios, always make use of multiple sessions to minimize any overhead associated with instantiating an Aspera high-speed transfer. **If your network capacity is at least 1 Gbps you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
+For best performance in most scenarios, always make use of multiple sessions to minimize any overhead that is associated with instantiating an Aspera high-speed transfer. **If your network capacity is at least 1 Gbps, you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
 {:tip}
 
 ### File Upload
@@ -737,8 +740,8 @@ with AsperaTransferManager(client) as transfer_manager:
 
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
-* `<absolute-path-to-directory>` - local directory that contains the files to be uploaded. Must have leading and trailing `/` (i.e. `/Users/testuser/Documents/Upload/`)
-* `<object prefix>` - name of the directory in the bucket to store the files. Must not have a leading slash `/` (i.e. `newuploads/`)
+* `<absolute-path-to-directory>` - local directory that contains the files to be uploaded. Must have leading and trailing `/` (that is, `/Users/testuser/Documents/Upload/`)
+* `<object prefix>` - name of the directory in the bucket to store the files. Must not have a leading slash `/` (that is, `newuploads/`)
 
 ### Directory Download
 {: #python-examples-aspera-directory-download}
@@ -762,7 +765,7 @@ with AsperaTransferManager(client) as transfer_manager:
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
 * `<absolute-path-to-directory>` - local directory to save the downloaded files. Must have leading and trailing slash `/` (i.e. `/Users/testuser/Downloads/`)
-* `<object prefix>` - name of the directory in the bucket to store the files. Must not have a leading slash `/` (i.e. `todownload/`)
+* `<object prefix>` - name of the directory in the bucket to store the files. Must not have a leading slash `/` (that is, `todownload/`)
 
 ### Using Subscribers
 {: #python-examples-aspera-subscribers}
@@ -774,7 +777,7 @@ Subscribers provide observability into transfers by attaching custom callback me
 There are three available subscribers for each phase:
 
 * `CallbackOnQueued()` - called when a new transfer has been added to the `AsperaTransferManager`
-* `CallbackOnProgress()` - called when a transfer has begun to transmit data (fired repeatedly while the transfer is in progress).
+* `CallbackOnProgress()` - called when a transfer has transmitted data (fired repeatedly while the transfer is in progress).
 * `CallbackOnDone()` - called once the transfer is completed
 
 ```python
@@ -819,8 +822,8 @@ future.result()
 
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
-* `<absolute-path-to-directory>` - local directory to save the downloaded files. Must have leading and trailing slash `/` (i.e. `/Users/testuser/Downloads/`)
-* `<object prefix>` - name of the directory in the bucket to store the files. Must not have a leading slash `/` (i.e. `todownload/`)
+* `<absolute-path-to-directory>` - local directory to save the downloaded files. Must have leading and trailing slash `/` (that is, `/Users/testuser/Downloads/`)
+* `<object prefix>` - name of the directory in the bucket to store the files. Must not have a leading slash `/` (that is, `todownload/`)
 
 The sample code above produces the following output:
 
@@ -843,7 +846,7 @@ The SDK provides the ability to manage the progress of file/directory transfers 
 * `resume()`
 * `cancel()`
 
-There are no side-effects from calling either of the methods outined above. Proper clean up and housekeeping is handled by the SDK.
+There are no side-effects from calling either of the methods outlined above. Proper clean up and housekeeping is handled by the SDK.
 {:tip}
 
 ```python
@@ -869,21 +872,21 @@ with AsperaTransferManager(client) as transfer_manager:
 
 ### Troubleshooting Aspera Issues
 {: #python-examples-aspera-ts}
-**Issue:** Developers using Python 2.7.15 on Windows 10 may experience failures when installing Aspera SDK.
+**Issue:** Developers by using Python 2.7.15 on Windows 10 may experience failures when installing Aspera SDK.
 
-**Cause:** If there are different versions of Python installed on your enviroment then you may encounter installation failures when you try to install the Aspera SDK. This can be caused by a missing DLL file(s) or wrong DLL in path.
+**Cause:** If there are different versions of Python installed on your enviroment, then you might encounter installation failures when you try to install the Aspera SDK. This can be caused by a missing DLL files or wrong DLL in path.
 
-**Solution:** The first step to resolving this issue would be to reinstall the Aspera libraries. There may have been a failure during the installation. As a result this could have effected the DLL files. If that does not resolve the issues then you will be required to update your version of Python. If you are unable to do this then you can use install [Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python){:new_window}. This will allow you to install the Aspeara SDK without any issues.
+**Solution:** The first step to resolving this issue would be to reinstall the Aspera libraries. There might have been a failure during the installation. As a result this might have affected the DLL files. If that does not resolve the issues, then you will be required to update your version of Python. If you are unable to do this, then you can use installation [Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python){:new_window}. This allows you to install the Aspera SDK without any issues.
 
-## Updating Metadata
+## Updating metadata
 {: #python-examples-metadata}
 There are two ways to update the metadata on an existing object:
 * A `PUT` request with the new metadata and the original object contents
-* Executing a `COPY` request with the new metadata specifying the original object as the copy source
+* Running a `COPY` request with the new metadata specifying the original object as the copy source
 
 ### Using PUT to update metadata
 {: #python-examples-metadata-put}
-**Note:** The `PUT` request overwrites the existing contents of the object so it must first be downloaded and re-uploaded with the new metdata
+**Note:** The `PUT` request overwrites the existing contents of the object so it must first be downloaded and reuploaded with the new metadata
 
 ```python
 def update_metadata_put(bucket_name, item_name, key, value):
@@ -938,7 +941,7 @@ def update_metadata_copy(bucket_name, item_name, key, value):
 ### Add a protection configuration to an existing bucket
 {: #python-examples-immutable-add}
 
-Objects written to a protected bucket cannot be deleted until the protection period has expired and all legal holds on the object are removed. The bucket's default retention value is given to an object unless an object specific value is provided when the object is created. Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object. 
+Objects written to a protected bucket cannot be deleted until the protection period has expired and all legal holds on the object are removed. The bucket's default retention value is given to an object unless an object-specific value is provided when the object is created. Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object. 
 
 The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are 0 days and 365243 days (1000 years) respectively. 
 
@@ -991,7 +994,7 @@ Objects in protected buckets that are no longer under retention (retention perio
 
 |Value	| Type	| Description |
 | --- | --- | --- | 
-|`Retention-Period` | Non-negative integer (seconds) | Retention period to store on the object in seconds. The object can be neither overwritten nor deleted until the amount of time specified in the retention period has elapsed. If this field and `Retention-Expiration-Date` are specified a `400`  error is returned. If neither is specified the bucket's `DefaultRetention` period will be used. Zero (`0`) is a legal value assuming the bucket's minimum retention period is also `0`. |
+|`Retention-Period` | Non-negative integer (seconds) | Retention period to store on the object in seconds. The object can be neither overwritten nor deleted until the amount of time that is specified in the retention period has elapsed. If this field and `Retention-Expiration-Date` are specified a `400`  error is returned. If neither is specified the bucket's `DefaultRetention` period will be used. Zero (`0`) is a legal value assuming the bucket's minimum retention period is also `0`. |
 | `Retention-expiration-date` | Date (ISO 8601 Format) | Date on which it will be legal to delete or modify the object. You can only specify this or the Retention-Period header. If both are specified a `400`  error will be returned. If neither is specified the bucket's DefaultRetention period will be used. |
 | `Retention-legal-hold-id` | string | A single legal hold to apply to the object. A legal hold is a Y character long string. The object cannot be overwritten or deleted until all legal holds associated with the object are removed. |
 
@@ -1067,10 +1070,10 @@ def upload_file_with_retention(bucket_name, object_name, path_to_file, retention
 The object can support 100 legal holds:
 
 *  A legal hold identifier is a string of maximum length 64 characters and a minimum length of 1 character. Valid characters are letters, numbers, `!`, `_`, `.`, `*`, `(`, `)`, `-` and `.
-* If the addition of the given legal hold exceeds 100 total legal holds on the object, the new legal hold will not be added, a `400` error will be returned.
-* If an identifier is too long it will not be added to the object and a `400` error is returned.
+* If the addition of the given legal hold exceeds 100 total legal holds on the object, the new legal hold will not be added, a `400` error is returned.
+* If an identifier is too long, it will not be added to the object and a `400` error is returned.
 * If an identifier contains invalid characters, it will not be added to the object and a `400` error is returned.
-* If an identifier is already in use on an object, the existing legal hold is not modified and the response indicates the identifier was already in use with a `409` error.
+* If an identifier is already in use on an object, the existing legal hold is not modified and the response indicates that the identifier was already in use with a `409` error.
 * If an object does not have retention period metadata, a `400` error is returned and adding or removing a legal hold is not allowed.
 
 
@@ -1114,7 +1117,7 @@ The retention expansion value is set in one of three ways:
 * new extension period in seconds (`Extend-Retention-From-Current-Time` or similar method)
 * new retention expiry date of the object (`New-Retention-Expiration-Date` or similar method)
 
-The current retention period stored in the object metadata is either increased by the given additional time or replaced with the new value, depending on the parameter that is set in the `extendRetention` request. In all cases, the extend retention parameter is checked against the current retention period and the extended parameter is only accepted if the updated retention period is greater than the current retention period.
+The current retention period that is stored in the object metadata is either increased by the given more time or replaced with the new value, depending on the parameter that is set in the `extendRetention` request. In all cases, the extend retention parameter is checked against the current retention period and the extended parameter is only accepted if the updated retention period is greater than the current retention period.
 
 Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
 
@@ -1148,7 +1151,7 @@ This operation returns:
 * Timestamp when legal hold was applied
 
 If there are no legal holds on the object, an empty `LegalHoldSet` is returned.
-If there is no retention period specified on the object, a `404` error is returned.
+If there is no retention period that is specified on the object, a `404` error is returned.
 
 
 ```py 

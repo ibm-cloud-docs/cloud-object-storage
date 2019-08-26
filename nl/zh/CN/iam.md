@@ -48,7 +48,7 @@ subcollection: cloud-object-storage
 |编辑者|执行除管理帐户和分配访问策略之外的其他所有平台操作|<ul><li>创建和删除 COS 服务实例</li></ul> |
 |操作员|COS 未使用|无|
 |管理员|基于分配给此角色的资源执行所有平台操作，包括向其他用户分配访问策略|<ul><li>更新用户策略</li>更新价格套餐</ul>|
-{: caption="表 1. IAM 用户角色和操作" caption-side="top"}
+{: caption="表 1. IAM 用户角色和操作"}
 
 
 下表详细描述了映射到服务访问角色的操作。通过服务访问角色，用户可以访问 {{site.data.keyword.cos_short}}，并且有能力调用 {{site.data.keyword.cos_short}} API。
@@ -59,7 +59,7 @@ subcollection: cloud-object-storage
 |读取者|除了可执行“内容读取者”操作外，“读取者”还可以列出存储区和/或对象，但不能对其进行修改。| <ul><li>列出存储区</li><li>列出和下载对象</li></ul>                    |
 |写入者|除了可执行“读取者”操作外，“写入者”还可以创建存储区和上传对象。| <ul><li>创建新的存储区和对象</li><li>除去存储区和对象</li></ul> |
 |管理者|除了可执行“写入者”操作外，“管理者”还可以完成影响访问控制的特权操作。| <ul><li>添加保留时间策略</li><li>添加存储区防火墙</li></ul>              |
-{: caption="表 3. IAM 服务访问角色和操作" caption-side="top"}
+{: caption="表 3. IAM 服务访问角色和操作"}
 
 
 有关在 UI 中分配用户角色的信息，请参阅[管理 IAM 访问权](/docs/iam?topic=iam-iammanidaccser)。

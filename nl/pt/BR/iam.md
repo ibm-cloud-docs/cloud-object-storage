@@ -48,7 +48,7 @@ A tabela a seguir detalha as ações que são mapeadas para funções de gerenci
 | Aplicativos | Execute todas as ações da plataforma, exceto gerenciar as contas e designar políticas de acesso |<ul><li>Criar e excluir instâncias de serviço do COS</li></ul> |
 | Operador | Não usado pelo COS | Nenhum |
 | Administrador | Executar todas as ações da plataforma com base no recurso para o qual essa função está sendo designada, incluindo a designação de políticas de acesso a outros usuários |<ul><li>Atualizar políticas de usuário</li>Atualizar planos de precificação</ul>|
-{: caption="Tabela 1. Funções e ações do usuário do IAM" caption-side="top"}
+{: caption="Tabela 1. Funções e ações do usuário do IAM"}
 
 
 A tabela a seguir detalha as ações que são mapeadas para as funções de acesso de serviço. As funções de acesso de serviço permitem que os usuários acessem o {{site.data.keyword.cos_short}}, bem como a capacidade de chamar a API do {{site.data.keyword.cos_short}}.
@@ -59,7 +59,7 @@ A tabela a seguir detalha as ações que são mapeadas para as funções de aces
 | Reader              | Além das ações do Leitor de conteúdo, os Leitores podem listar depósitos e/ou objetos, mas não os modificar. | <ul><li>Listar depósitos</li><li>Listar e fazer download de objetos</li></ul>                    |
 | Gravador              | Além das ações do Leitor, os Gravadores podem criar depósitos e fazer upload de objetos. | <ul><li>Criar novos depósitos e objetos</li><li>Remover depósitos e objetos</li></ul> |
 | Gerente             | Além das ações do Gravador, os Gerenciadores podem concluir as ações privilegiadas que afetam o controle de acesso. | <ul><li>Incluir uma política de retenção</li><li>Incluir um firewall do depósito</li></ul>              |
-{: caption="Tabela 3. Funções e ações de acesso do serviço IAM" caption-side="top"}
+{: caption="Tabela 3. Funções e ações de acesso do serviço IAM"}
 
 
 Para obter informações sobre como designar funções de usuário na IU, consulte [Gerenciando o acesso ao IAM](/docs/iam?topic=iam-iammanidaccser).

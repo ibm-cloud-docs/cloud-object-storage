@@ -48,7 +48,7 @@ En la tabla siguiente se detallan las acciones que se correlacionan con los role
 | Editor | Realizar todas las acciones de la plataforma, excepto gestionar las cuentas y asignar políticas de acceso |<ul><li>Crear y suprimir instancias de servicio de COS</li></ul> |
 | Operador | COS no lo utiliza | Ninguna |
 | Administrador | Realizar todas las acciones de plataforma basadas en el recurso al que se está asignando este rol, incluida la asignación de políticas de acceso a otros usuarios |<ul><li>Actualizar políticas de usuario</li>Actualizar planes de precios</ul>|
-{: caption="Tabla 1. Roles de usuario y acciones de IAM" caption-side="top"}
+{: caption="Tabla 1. Roles de usuario y acciones de IAM"}
 
 
 En la tabla siguiente se muestran acciones que se correlacionan con roles de acceso al servicio. Los roles de acceso al servicio permiten a los usuarios acceder a {{site.data.keyword.cos_short}}, así como la posibilidad de llamar a la API de {{site.data.keyword.cos_short}}.
@@ -59,7 +59,7 @@ En la tabla siguiente se muestran acciones que se correlacionan con roles de acc
 | Lector              | Además de las acciones del Lector de contenido, los lectores pueden obtener una lista de grupos y/u objetos, pero no modificarlos. | <ul><li>Obtención de una lista de grupos</li><li>Listar y descargar objetos</li></ul>                    |
 | Escritor              | Además de las acciones de Lector, los escritores pueden crear grupos y cargar objetos. | <ul><li>Crear nuevos grupos y objetos</li><li>Eliminar grupos y objetos</li></ul> |
 | Gestor             | Además de las acciones de Escritor, los gestores pueden realizar acciones con privilegios que afectan al control de accesos. | <ul><li>Añadir una política de retención</li><li>Añadir un cortafuegos de grupo</li></ul>              |
-{: caption="Tabla 3. Acciones y roles de acceso al servicio de IAM" caption-side="top"}
+{: caption="Tabla 3. Acciones y roles de acceso al servicio de IAM"}
 
 
 Para obtener información sobre la asignación de roles de usuario en la interfaz de usuario, consulte [Gestión del acceso de IAM](/docs/iam?topic=iam-iammanidaccser).

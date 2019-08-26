@@ -68,7 +68,7 @@ import (
 図 1 は、{{site.data.keyword.cos_full_notm}} ポータルでアプリケーション・ランタイムに環境変数を定義する方法の例を示しています。必要な変数は、サービス資格情報の「apikey」を含んでいる `IBM_API_KEY_ID`、同じくサービス資格情報の「resource_instance_id」を保持する `IBM_SERVICE_INSTANCE_ID`、およびご使用のアカウントに適した値 (例えば、`https://iam.cloud.ibm.com/identity/token`) が設定された `IBM_AUTH_ENDPOINT` です。環境変数を使用してアプリケーション資格情報を定義する場合は、`WithCredentials(ibmiam.NewEnvCredentials(aws.NewConfig())).` を、構成の例で使用されている類似メソッドを置き換えながら適宜使用してください。
 
 ![環境変数](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/go-library-fig-1-env-vars.png)
-{: caption="図 1. 環境変数" caption-side="top"}
+{: caption="図 1. 環境変数"}
 
 ### 構成の初期化
 {: #go-init-config}

@@ -475,7 +475,7 @@ ibmcloud dev run
 표시되는 경우에는 앱이 작동하는 것입니다. 이제 새 Node.js 웹 애플리케이션이 작성되어 클라우드에 배치할 준비가 되었습니다. 
 
 ![initialnodeapp](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-splash-graphic.png)
-{: caption="그림 2. 새 Node.js 애플리케이션 작성 완료" caption-side="top"}
+{: caption="그림 2. 새 Node.js 애플리케이션 작성 완료"}
 
 deploy 명령으로 앱을 {{site.data.keyword.cloud_notm}} 플랫폼에 배치하십시오(예 20에 표시되어 있는 바와 같이). 
 

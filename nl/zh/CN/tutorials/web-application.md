@@ -388,7 +388,7 @@ ibmcloud dev run
 既然已创建并定义了应用程序，接下来请查看应用程序以确认它是否工作正常。如果看到图 2 中显示的占位符图像，那么祝贺您！您已创建新的 Node.js Web 应用程序，并已准备好将其部署到云。
 
 ![initialnodeapp](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-splash-graphic.png)
-{: caption="图 2. 新的 Node.js 应用程序：祝贺您！" caption-side="top"}
+{: caption="图 2. 新的 Node.js 应用程序：祝贺您！"}
 
 使用 deploy 命令将应用程序部署到 {{site.data.keyword.cloud_notm}} Platform（如示例 20 所示）。
 

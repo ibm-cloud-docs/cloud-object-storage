@@ -48,7 +48,7 @@ subcollection: cloud-object-storage
 | 編輯者 | 執行所有平台動作，但管理帳戶以及指派存取原則除外 |<ul><li>建立及刪除 COS 服務實例</li></ul> |
 | 操作員 | COS 未使用 | 無 |
 |管理者| 根據獲指派此角色的資源來執行所有平台動作，包括將存取原則指派給其他使用者 |<ul><li>更新使用者原則</li>更新定價方案</ul>|
-{: caption="表 1. IAM 使用者角色和動作" caption-side="top"}
+{: caption="表 1. IAM 使用者角色和動作"}
 
 
 下表詳細描述了對映到服務存取角色的動作。服務存取角色可讓使用者存取 {{site.data.keyword.cos_short}} 並且能夠呼叫 {{site.data.keyword.cos_short}} API。
@@ -59,7 +59,7 @@ subcollection: cloud-object-storage
 | 讀者                | 除了「內容讀者」動作之外，「讀者」還可以列出儲存區及（或）物件，但不進行修改。| <ul><li>列出儲存區</li><li>列出及下載物件</li></ul>                    |
 | 撰寫者              | 除了「讀者」動作之外，「撰寫者」還可以建立儲存區以及上傳物件。| <ul><li>建立新的儲存區及物件</li><li>移除儲存區及物件</li></ul> |
 | 管理員              | 除了「撰寫者」動作之外，「管理員」還可以完成影響存取控制的特許動作。| <ul><li>新增保留原則</li><li>新增儲存區防火牆</li></ul>              |
-{: caption="表 3. IAM 服務存取角色及動作" caption-side="top"}
+{: caption="表 3. IAM 服務存取角色及動作"}
 
 
 如需在使用者介面中指派使用者角色的相關資訊，請參閱[管理 IAM 存取](/docs/iam?topic=iam-iammanidaccser)。

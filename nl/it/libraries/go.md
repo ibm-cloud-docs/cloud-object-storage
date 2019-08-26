@@ -68,7 +68,7 @@ Le credenziali possono essere trovate creando una [credenziale del servizio](/do
 La Figura 1 mostra un esempio di come definire le variabili di ambiente in un runtime dell'applicazione nel portale {{site.data.keyword.cos_full_notm}}. Le variabili obbligatorie sono `IBM_API_KEY_ID`, che contiene la tua credenziale del servizio 'apikey', `IBM_SERVICE_INSTANCE_ID`, che contiene il 'resource_instance_id' anche dalla tua credenziale del servizio, e `IBM_AUTH_ENDPOINT`, con un valore appropriato per il tuo account, come `https://iam.cloud.ibm.com/identity/token`. Se utilizzi le variabili di ambiente per definire le tue credenziali dell'applicazione, utilizza `WithCredentials(ibmiam.NewEnvCredentials(aws.NewConfig())).` come appropriato, sostituendo il metodo simile utilizzato nell'esempio di configurazione.
 
 ![environmentvariables](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/go-library-fig-1-env-vars.png)
-{: caption="Figura 1. Variabili di ambiente" caption-side="top"}
+{: caption="Figura 1. Variabili di ambiente"}
 
 ### Inizializzazione della configurazione
 {: #go-init-config}
