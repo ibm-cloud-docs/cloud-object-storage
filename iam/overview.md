@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-26"
 
 keywords: authorization, iam, basics
 
@@ -26,7 +26,10 @@ subcollection: cloud-object-storage
 # IAM overview
 {: #iam-overview}
 
-{{site.data.keyword.cloud}} Identity and Access Management service securely authenticates users and controls access to all resources consistently in the {{site.data.keyword.cloud_notm}} Platform. For more information, see the [Getting started tutorial](/docs/iam?topic=iam-getstarted#getstarted).
+{{site.data.keyword.cloud_full}} Identity and Access Management service securely authenticates users and controls access to all resources consistently in the {{site.data.keyword.cloud_notm}} Platform. 
+{:shortdesc: .shortdesc}
+
+For more information, see the [Getting started tutorial](/docs/iam?topic=iam-getstarted#getstarted).
 
 ## Identity  Management
 {: #iam-overview-identity}

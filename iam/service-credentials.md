@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-26"
 
 keywords: authorization, iam, basics, credentials
 
@@ -26,7 +26,10 @@ subcollection: cloud-object-storage
 # Service credentials
 {: #service-credentials}
 
-A service credential provides the necessary information to connect an application to {{site.data.keyword.cos_short}} packaged in a JSON document. Service credentials are always associated with a Service ID, and new Service IDs can be created along with a new credential. 
+A service credential provides the necessary information to connect an application to {{site.data.keyword.cos_short}} packaged in a JSON document. 
+{:shortdesc: .shortdesc}
+
+Service credentials are always associated with a Service ID, and new Service IDs can be created along with a new credential. 
 
 Use the following steps to create a service credential:
 1. Log in to the {{site.data.keyword.cloud_notm}} console and navigate to your instance of {{site.data.keyword.cos_short}}.
