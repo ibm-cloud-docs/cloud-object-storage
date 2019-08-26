@@ -7,7 +7,7 @@ Cloud Object Storage
     {: .navgroup id="learn"}
     getting-started.md
     about-cos.md
-    [Why IBM Cloud Object Storage](https://www.ibm.com/cloud/object-storage)
+    [Features overview](https://www.ibm.com/cloud/object-storage)
 
 
     {: .topicgroup}
