@@ -23,7 +23,7 @@ subcollection: cloud-object-storage
 {: #administrators}
 
 Storage and system administrators familiar with {{site.data.keyword.cos_full}} can easily and conveniently manage users, create and rotate API keys, and grant roles to users and services. 
-{:shortdesc: .shortdesc}
+{: shortdesc}
 
 If you haven't already, go ahead and read through the [getting started tutorial](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started) to familiarize yourself with the core concepts of buckets, objects, and users.
 

@@ -27,7 +27,7 @@ subcollection: cloud-object-storage
 {: #iam-overview}
 
 {{site.data.keyword.cloud_full}} Identity and Access Management service securely authenticates users and controls access to all resources consistently in the {{site.data.keyword.cloud_notm}} Platform. 
-{:shortdesc: .shortdesc}
+{: shortdesc}
 
 For more information, see the [Getting started tutorial](/docs/iam?topic=iam-getstarted#getstarted).
 

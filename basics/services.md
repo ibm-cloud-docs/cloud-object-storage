@@ -27,7 +27,7 @@ subcollection: cloud-object-storage
 {: #service-availability}
 
 The document describes the regions where services and the different kinds of availability that are supported.
-{:shortdesc: .shortdesc}
+{: shortdesc}
 
 For more information about the following services, be sure to check out the respective links:
 

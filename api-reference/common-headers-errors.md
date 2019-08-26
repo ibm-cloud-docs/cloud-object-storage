@@ -23,7 +23,7 @@ subcollection: cloud-object-storage
 {: #compatibility-common}
 
 Data transfers use many standard protocols and have unique requirements. Keep up-to-date with the reference to common headers and some error codes.
-{:shortdesc: .shortdesc}
+{: shortdesc}
 
 ## Common Request Headers
 {: #compatibility-request-headers}

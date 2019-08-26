@@ -27,7 +27,7 @@ subcollection: cloud-object-storage
 {: #cloud-foundry}
 
 {{site.data.keyword.cos_full}} can be paired with {{site.data.keyword.cfee_full}} applications to provide highly available content by using regions and endpoints.
-{:shortdesc: .shortdesc}
+{: shortdesc}
 
 ## Cloud Foundry Enterprise Environment
 {: #cloud-foundry-ee}

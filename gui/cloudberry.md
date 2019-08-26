@@ -28,7 +28,7 @@ subcollection: cloud-object-storage
 {: #cloudberry}
 
 Leverage {{site.data.keyword.cos_full}} to make the most of keeping your customer data protected.
-{:shortdesc: .shortdesc}
+{: shortdesc}
 
 ## Cloudberry backup
 {: #cloudberry-backup}

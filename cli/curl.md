@@ -27,7 +27,7 @@ subcollection: cloud-object-storage
 {: #curl}
 
 You can get the most out working with the command line in most environments with {{site.data.keyword.cos_full}} and `cURL`.  
-{:shortdesc: .shortdesc}
+{: shortdesc}
 
 Here's a 'cheat sheet' of basic `curl` commands for the {{site.data.keyword.cos_full}} REST API. More detail can be found in the API reference for [buckets](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations) or [objects](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-object-operations).
 
