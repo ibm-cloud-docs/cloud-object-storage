@@ -79,7 +79,7 @@ Now you're going to bring in another user and allow them to act as an administra
   4. The check box under **Select roles** determines the set of actions available to the user. Select the "Administrator" platform access role to allow the user grant other [users and service IDs](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview) access to the instance. Select the "Manager" service access role to allow the user to manage the {{site.data.keyword.cos_short}} instance as well as create and delete buckets and objects. These combinations of a _Subject_ (user), _Role_ (Manager), and _Resource_ ({{site.data.keyword.cos_short}} service instance) together form [IAM policies](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview#getting-started-with-iam). For more detailed guidance on roles and policies, [see the IAM documentation](/docs/iam?topic=iam-userroles).
 	<img alt="IAM roles" src="https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/console_iam_roles.png" max-height="400px" />
 	`Figure 4: IAM select roles`
-  5. {{site.data.keyword.cloud_notm}} uses Cloud Foundry as the underlying account management platform, so it's necessary to grant a minimal level of Cloud Foundry access in order for the user to access your organization in the first place.  Select an organization from the **Organization** menu, and then select "Auditor" from both the **Organizational roles** and **Space roles** menus.  Setting Cloud Foundry permissions allows the user to view services available to your organization, but not change them.
+
 
 ## Give developers access to a bucket.
 {: #gs-bucket-policy}
