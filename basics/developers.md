@@ -23,7 +23,7 @@ subcollection: cloud-object-storage
 {: #gs-dev}
 
 The powerful tools of {{site.data.keyword.cos_full}} are available to a developer directly from the command line.
-{: shortdesc}
+{: .shortdesc}
 
 First, ensure that you have the [{{site.data.keyword.cloud}} Platform CLI](https://cloud.ibm.com/docs/cli/index.html) and [IBM Developer Tools](https://cloud.ibm.com/docs/cloudnative/idt/index.html) installed.
 

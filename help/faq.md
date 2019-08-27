@@ -27,7 +27,7 @@ subcollection: cloud-object-storage
 {: #faq}
 
 Frequently asked questions can produce helpful answers and insight into best practices for working with {{site.data.keyword.cos_full}}.
-{: shortdesc}
+{: .shortdesc}
 
 ## API Questions
 {: #faq-api}

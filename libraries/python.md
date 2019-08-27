@@ -27,7 +27,7 @@ subcollection: cloud-object-storage
 {: #python}
 
 Python support is provided through a fork of the `boto3` library with features to make the most of {{site.data.keyword.cos_full}}. 
-{: shortdesc}
+{: .shortdesc}
 
 It can be installed from the Python Package Index through `pip install ibm-cos-sdk`.
 

@@ -120,8 +120,8 @@ Cloud Object Storage
     {: .navgroup-end}
 
     {: .navgroup id="help"}
-        help/faq.md
-        help/support.md
-        help/billing.md
-        [Pricing](https://www.ibm.com/cloud/object-storage/pricing/)
+    help/faq.md
+    help/support.md
+    help/billing.md
+    [Pricing](https://www.ibm.com/cloud/object-storage/pricing/)
     {: .navgroup-end}

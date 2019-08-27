@@ -27,7 +27,7 @@ subcollection: cloud-object-storage
 {: #aws-cli}
 
 The official command-line interface for AWS is compatible with the {{site.data.keyword.cos_full}} S3 API. 
-{: shortdesc}
+{: .shortdesc}
 
 Written in Python, it can be installed from the Python Package Index via `pip install awscli`. By default, access keys are sourced from `~/.aws/credentials`, but can also be set as environment variables.
 

@@ -27,7 +27,7 @@ subcollection: cloud-object-storage
 {: #security}
 
 {{site.data.keyword.cos_full}} uses an innovative approach for cost-effectively storing large volumes of unstructured data that ensures security, availability, and reliability. 
-{: shortdesc}
+{: .shortdesc}
 
 This level of security is accomplished by using Information Dispersal Algorithms (IDAs) to separate data into unrecognizable “slices”. The system distributes these slices across a network of data centers, making transmission and storage of data inherently private and secure. No complete copy of the data resides in any single storage node, and only a subset of nodes needs to be available in order to fully retrieve the data on the network.
 

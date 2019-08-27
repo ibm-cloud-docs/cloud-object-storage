@@ -21,7 +21,7 @@ subcollection: cloud-object-storage
 {: #ic-use-the-ibm-cli}
 
 The {{site.data.keyword.cloud}} Object Storage plug-in extends the {{site.data.keyword.cloud} command line interface (CLI) with an API wrapper for working with Object Storage resources.
-{: shortdesc}
+{: .shortdesc}
 
 ## Prerequisites
 {: #ic-prerequisites}

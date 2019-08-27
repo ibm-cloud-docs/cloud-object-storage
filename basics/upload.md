@@ -27,7 +27,7 @@ subcollection: cloud-object-storage
 {: #upload}
 
 After getting your storage organized into buckets, it's time to add some objects by uploading data. 
-{: shortdesc}
+{: .shortdesc}
 
 Depending on how you want to use your storage, there are different ways to get data into the system. A data scientist has a few large files that are used for analytics, a systems administrator needs to keep database backups synchronized with local files, and a developer is writing software that needs to read and write millions of files. Each of these scenarios is best served by different methods of data ingest.
 
