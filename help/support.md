@@ -27,7 +27,7 @@ subcollection: cloud-object-storage
 {: #troubleshooting}
 
 If you have problems or questions when you use {{site.data.keyword.cos_full}}, you can get help starting right here. 
-{:shortdesc: .shortdesc}
+{: .shortdesc}
 
 Whether by searching for information or by asking questions through a forum, you can find what you need. If you don't, you can also open a support ticket.
 

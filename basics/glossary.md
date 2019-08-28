@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-26"
 
-keywords: glossary, getting started, terms
+keywords: glossary, terminology, terms
 
 subcollection: cloud-object-storage
 
@@ -21,6 +21,9 @@ subcollection: cloud-object-storage
 
 # Key terms
 {: #terminology}
+
+Terminology for the operations and resources of {{site.data.keyword.cos_full}} helps you get to know {{site.data.keyword.cos_notm}}.
+{: .shortdesc}
 
 ## Service
 {: #terminology-service}

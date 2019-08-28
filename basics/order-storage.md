@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-08-26"
 
-keywords: getting started, console
+keywords: object storage, provision, console
 
 subcollection: cloud-object-storage
 
@@ -25,6 +25,8 @@ subcollection: cloud-object-storage
 
 # Provision storage
 {: #provision}
+
+Getting data into your instance of {{site.data.keyword.cos_full}} requires just a few steps before you provision your new storage.
 
 ## Creating a {{site.data.keyword.cloud_notm}} Platform account
 {: #provision-account}

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-08-07"
+lastupdated: "2019-08-26"
 
-keywords: cloud services, integration, aspera, key protect, archive, worm
+keywords: aspera, key protect, archive, worm
 
 subcollection: cloud-object-storage
 
@@ -26,7 +26,11 @@ subcollection: cloud-object-storage
 # Integrated service availability
 {: #service-availability}
 
-The table describes the regions where the following services are supported
+The document describes the regions where services and the different kinds of availability that are supported.
+{: .shortdesc}
+
+For more information about the following services, be sure to check out the respective links:
+
 * [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera)
 * [Key Protect](/docs/services/cloud-object-storage/basics/cloud-object-storage/basics?topic=cloud-object-storage-encryption#sse-kp)
 * [{{site.data.keyword.hscrypto}} ({{site.data.keyword.hscrypto}})](/docs/services/cloud-object-storage?topic=cloud-object-storage-encryption)

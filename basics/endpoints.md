@@ -2,7 +2,11 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-07-25"
+lastupdated: "2019-08-26"
+
+keywords: endpoint, location, object storage
+
+subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
@@ -19,6 +23,7 @@ lastupdated: "2019-07-25"
 {: #endpoints}
 
 Sending a REST API request or configuring a storage client requires setting a target endpoint or URL. Each storage location has its own set of URLs.
+{: .shortdesc}
 
 Private endpoints can be used from within the IBM Cloud and don't incur data transfer charges. Public endpoints can be used from outside the IBM Cloud and do incur transfer charges. If possible, it's best to use a private endpoint.
 

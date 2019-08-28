@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2018, 2019
 lastupdated: "2019-04-12"
 
-keywords: administrator, storage, iam, access
+keywords: administrator, object storage, access, iam
 
 subcollection: cloud-object-storage
 
@@ -22,7 +22,10 @@ subcollection: cloud-object-storage
 # For administrators
 {: #administrators}
 
-Storage and system administrators can manage users, create and rotate API keys, and grant roles to users and services. If you haven't already, go ahead and read through the [getting started tutorial](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started) to familiarize yourself with the core concepts of buckets, objects, and users.
+Storage and system administrators familiar with {{site.data.keyword.cos_full}} can easily and conveniently manage users, create and rotate API keys, and grant roles to users and services. 
+{: .shortdesc}
+
+If you haven't already, go ahead and read through the [getting started tutorial](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started) to familiarize yourself with the core concepts of buckets, objects, and users.
 
 ## Set up your storage
 {: #administrators-setup}

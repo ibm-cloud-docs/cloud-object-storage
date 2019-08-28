@@ -20,7 +20,7 @@ subcollection: cloud-object-storage
 {: #iam-public-access}
 
 Sometimes data is meant to be shared. Buckets might hold open data sets for academic and private research or image repositories that are used by web applications and content delivery networks. Make these buckets accessible using the **Public Access** group.
-{: shortdesc}
+{: .shortdesc}
 
 ## Using the console to set public access
 {: #iam-public-access-console}

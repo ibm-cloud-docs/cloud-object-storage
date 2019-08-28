@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-08-23"
+lastupdated: "2019-08-26"
 
 keywords: cli, command line interface, object storage
 
@@ -17,17 +17,17 @@ subcollection: cloud-object-storage
 {:tip: .tip}
 {:note: .note}
 
-# Use the {{site.data.keyword.cloud}} CLI
+# Use the {{site.data.keyword.cos_notm}} CLI
 {: #ic-use-the-ibm-cli}
 
-The {{site.data.keyword.cloud}} Object Storage plug-in extends the IBM Cloud command line interface (CLI) with an API wrapper for working with Object Storage resources.
-{:shortdesc: .shortdesc}
+The {{site.data.keyword.cloud}} Object Storage plug-in extends the {{site.data.keyword.cloud} command line interface (CLI) with an API wrapper for working with Object Storage resources.
+{: .shortdesc}
 
 ## Prerequisites
 {: #ic-prerequisites}
-* An [IBM Cloud](https://cloud.ibm.com/) account
-* An instance of [IBM Cloud Object Storage](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev#gs-dev-provision)
-* The [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-ibmcloud_cli)
+* An [{{site.data.keyword.cloud}}](https://cloud.ibm.com/) account
+* An instance of [{{site.data.keyword.cos_notm}}](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev#gs-dev-provision)
+* Download [{{site.data.keyword.cloud}} CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-ibmcloud_cli)
 
 
 ## Installation and configuration

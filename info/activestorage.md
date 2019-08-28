@@ -27,9 +27,9 @@ subcollection: cloud-object-storage
 {: #ror-activestorage}
 
 [Rails](https://guides.rubyonrails.org/getting_started.html){:new_window} is an open-source, web application development framework.
-{:shortdesc: .shortdesc}
- 
- Combining the Ruby programming language with HTML, CSS, and JavaScript, Rails includes everything needed to create server-side web applications using the Model-View-Controller (MVC) pattern. 
+{: .shortdesc}
+
+Combining the Ruby programming language with HTML, CSS, and JavaScript, Rails includes everything needed to create server-side web applications using the Model-View-Controller (MVC) pattern. 
 
 In Rails, the Model (business data and logic layer) of the MVC pattern is handled by [Active Record](https://guides.rubyonrails.org/active_record_basics.html){:new_window}.
 
