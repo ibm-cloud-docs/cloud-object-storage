@@ -22,7 +22,7 @@ subcollection: cloud-object-storage
 # Key terms
 {: #terminology}
 
-Terminology for the operations and resources of {{site.data.keyword.cos_full}} helps you get to know {{site.data.keyword.cos_notm}}.
+Terminology for the operations and resources of {{site.data.keyword.cos_full}} helps you get to know {{site.data.keyword.cos_full_notm}}.
 {: .shortdesc}
 
 ## Service

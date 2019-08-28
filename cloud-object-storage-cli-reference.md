@@ -9,15 +9,23 @@ keywords: cli, command line interface, object storage
 subcollection: cloud-object-storage
 
 ---
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:important: .important}
 {:note: .note}
+{:download: .download} 
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
+{:go: .ph data-hd-programlang='go'}
 
-# Use the {{site.data.keyword.cos_notm}} CLI
+# Use the IBM Cloud Object Storage CLI
 {: #ic-use-the-ibm-cli}
 
 The {{site.data.keyword.cloud}} Object Storage plug-in extends the {{site.data.keyword.cloud} command line interface (CLI) with an API wrapper for working with Object Storage resources.
@@ -26,7 +34,7 @@ The {{site.data.keyword.cloud}} Object Storage plug-in extends the {{site.data.k
 ## Prerequisites
 {: #ic-prerequisites}
 * An [{{site.data.keyword.cloud}}](https://cloud.ibm.com/) account
-* An instance of [{{site.data.keyword.cos_notm}}](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev#gs-dev-provision)
+* An instance of [{{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev#gs-dev-provision)
 * Download [{{site.data.keyword.cloud}} CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-ibmcloud_cli)
 
 
@@ -68,6 +76,24 @@ If you choose to use token authentication with your own API key, you don't need 
 {: note}
 
 At any time, to switch between HMAC and IAM authentication, you can type `ibmcloud cos config auth`. For more information about authentication and authorization in IBM Cloud, see the [Identity and Access Management documentation](/docs/iam?topic=iam-iamoverview).
+
+## Troubleshooting
+{: #ic-troubleshooting}
+
+If you are unable to connect using any COS CLI commands, and the error messages contradict your known configuration (e.g. for the given error you have a correctly configured endpoint):
+
+```
+FAILED
+MissingEndpoint: 'Endpoint' configuration is required for this service
+```
+{: .codeblock}
+ 
+It is recommended that you check the versions of Go libraries on your system to ensure that they meet the requirement to run the CLI - The requirements are documented at the [source repository](https://github.com/IBM/ibmcloud-cos-cli/blob/master/go.mod).
+
+You can either do the following:
+
+- Install the CLI source at their Go source path and then run `make build install` to update all the versions.  
+- Run `go get ./...` in their source path to ensure the libraries are up to date.
 
 ## Command index
 {: #ic-command-index}

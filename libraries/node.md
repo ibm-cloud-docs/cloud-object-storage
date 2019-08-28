@@ -26,7 +26,7 @@ subcollection: cloud-object-storage
 # Using Node.js
 {: #node}
 
-The {{site.data.keyword.cos_full}} SDK for Node.js provides modern capabilities that make the most of {{site.data.keyword.cos_notm}}.
+The {{site.data.keyword.cos_full}} SDK for Node.js provides modern capabilities that make the most of {{site.data.keyword.cos_full_notm}}.
 {: .shortdesc}
 
 ## Installing the SDK

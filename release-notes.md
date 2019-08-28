@@ -18,7 +18,7 @@ subcollection: cloud-object-storage
 # What's new
 {: #updates}
 
-News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_notm}}.
+News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: .shortdesc}
 
 ## Q2 2019

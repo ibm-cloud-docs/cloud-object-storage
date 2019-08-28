@@ -28,10 +28,10 @@ subcollection: cloud-object-storage
 # Using Go
 {: #go}
 
-The {{site.data.keyword.cos_full}} SDK for Go provides features to make the most of {{site.data.keyword.cos_notm}}.
+The {{site.data.keyword.cos_full}} SDK for Go provides features to make the most of {{site.data.keyword.cos_full_notm}}.
 {: .shortdesc}
 
-The {{site.data.keyword.cos_notm}} SDK for Go is comprehensive, with many features and capabilities that exceed the scope and space of this guide. For detailed class and method documentation [see the Go API documentation](https://ibm.github.io/ibm-cos-sdk-go/). Source code can be found in the [GitHub repository](https://github.com/IBM/ibm-cos-sdk-go).
+The {{site.data.keyword.cos_full_notm}} SDK for Go is comprehensive, with many features and capabilities that exceed the scope and space of this guide. For detailed class and method documentation [see the Go API documentation](https://ibm.github.io/ibm-cos-sdk-go/). Source code can be found in the [GitHub repository](https://github.com/IBM/ibm-cos-sdk-go).
 
 ## Getting the SDK
 {: #go-get-sdk}
@@ -42,7 +42,7 @@ Use `go get` to retrieve the SDK to add it to your GOPATH workspace, or project'
 go get github.com/IBM/ibm-cos-sdk-go
 ```
 
-To update the SDK use `go get -u` to retrieve the latest version of the SDK..
+To update the SDK use `go get -u` to retrieve the latest version of the SDK.
 
 ```
 go get -u github.com/IBM/ibm-cos-sdk-go
