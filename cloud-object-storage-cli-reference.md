@@ -26,7 +26,7 @@ The {{site.data.keyword.cloud}} Object Storage plug-in extends the {{site.data.k
 ## Prerequisites
 {: #ic-prerequisites}
 * An [{{site.data.keyword.cloud}}](https://cloud.ibm.com/) account
-* An instance of [{{site.data.keyword.cos_notm}}](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev#gs-dev-provision)
+* An instance of [{{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev#gs-dev-provision)
 * Download [{{site.data.keyword.cloud}} CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-ibmcloud_cli)
 
 

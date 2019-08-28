@@ -28,10 +28,10 @@ subcollection: cloud-object-storage
 # Using Java
 {: #java}
 
-The {{site.data.keyword.cos_full}} SDK for Java provides features to make the most of {{site.data.keyword.cos_notm}}.
+The {{site.data.keyword.cos_full}} SDK for Java provides features to make the most of {{site.data.keyword.cos_full_notm}}.
 {: .shortdesc}
 
-The {{site.data.keyword.cos_notm}} SDK for Java is comprehensive, with many features and capabilities that exceed the scope and space of this guide. For detailed class and method documentation [see the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/). Source code can be found in the [GitHub repository](https://github.com/ibm/ibm-cos-sdk-java).
+The {{site.data.keyword.cos_full_notm}} SDK for Java is comprehensive, with many features and capabilities that exceed the scope and space of this guide. For detailed class and method documentation [see the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/). Source code can be found in the [GitHub repository](https://github.com/ibm/ibm-cos-sdk-java).
 
 ## Getting the SDK
 {: #java-install}
