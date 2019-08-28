@@ -42,7 +42,7 @@ Use `go get` to retrieve the SDK to add it to your GOPATH workspace, or project'
 go get github.com/IBM/ibm-cos-sdk-go
 ```
 
-To update the SDK use `go get -u` to retrieve the latest version of the SDK..
+To update the SDK use `go get -u` to retrieve the latest version of the SDK.
 
 ```
 go get -u github.com/IBM/ibm-cos-sdk-go
