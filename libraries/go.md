@@ -527,15 +527,115 @@ func main() {
 ### Archive Tier Support
 {: #go-archive-tier-support}
 
-You can automatically archive objects after a specified length of time or after a specified date. Once archived, a temporary copy of an object can be restored for access as needed. The time to restore the temporary copy of the object(s) may take up to 15 hours.
+You can automatically archive objects after a specified length of time or after a specified date. Once archived, a temporary copy of an object can be restored for access as needed. Please note the time required to restore the temporary copy of the object(s) may take up to 15 hours. 
+
+To use the example provided, provide your own configuration&mdash;including replacing `<apikey>` and other bracketed `<...>` information&mdash;keeping in mind that using environment variables are more secure, and one should not put credentials in code that will be versioned.
 
 An archive policy is set at the bucket level by calling the `PutBucketLifecycleConfiguration` method on a client instance. A newly added or modified archive policy applies to new objects uploaded and does not affect existing objects. For more detail, see the [documentation](https://cloud.ibm.com/docs/services/cloud-object-storage?topic=cloud-object-storage-go).
 
 ```Go
+package main
+
+import (
+	"bytes"
+	"fmt"
+	"io"
+	"github.com/IBM/ibm-cos-sdk-go/aws"
+	"github.com/IBM/ibm-cos-sdk-go/aws/credentials/ibmiam"
+	"github.com/IBM/ibm-cos-sdk-go/aws/session"
+	"github.com/IBM/ibm-cos-sdk-go/service/s3"
+)
+
+const (
+	apiKey            = "<apikey>"
+	serviceInstanceID = "<instance-id>"
+	authEndpoint      = "https://iam.cloud.ibm.com/identity/token"
+	serviceEndpoint   = "<instance-endpoint>"
+)
+
 func main() {
 
+	conf := aws.NewConfig().
+		WithEndpoint(serviceEndpoint).
+		WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(),
+			authEndpoint, apiKey, serviceInstanceID)).
+		WithS3ForcePathStyle(true)
+
+	// Create Client
+	sess := session.Must(session.NewSession())
+	client := s3.New(sess, conf)
+	
+	// PUT BUCKET LIFECYCLE CONFIGURATION
+	// Replace <bucketname> with the name of the bucket
+	lInput := &s3.PutBucketLifecycleConfigurationInput{
+		Bucket: aws.String("<bucketname>"),
+		LifecycleConfiguration: &s3.LifecycleConfiguration{
+			Rules: []*s3.LifecycleRule{
+				{
+					Status: aws.String("Enabled"),
+					Filter: &s3.LifecycleRuleFilter{},
+					ID:     aws.String("id3"),
+					Transitions: []*s3.Transition{
+						{
+							Days:         aws.Int64(5),
+							StorageClass: aws.String("Glacier"),
+						},
+					},
+				},
+			},
+		},
+	}
+	l, e := client.PutBucketLifecycleConfiguration(lInput)
+	fmt.Println(l) // should print an empty bracket
+	fmt.Println(e) // should print <nil>
+	
+	// GET BUCKET LIFECYCLE CONFIGURATION
+	gInput := &s3.GetBucketLifecycleConfigurationInput{
+		Bucket: aws.String("<bucketname>"),
+	}
+	g, e := client.GetBucketLifecycleConfiguration(gInput)
+	fmt.Println(g)
+	fmt.Println(e) // see response for results
+
+    // RESTORE OBJECT
+    // Replace <archived-object> with the appropriate key
+    rInput := &s3.RestoreObjectInput{
+        Bucket: aws.String("<bucketname>"),
+        Key:    aws.String("<archived-object>"),
+        RestoreRequest: &s3.RestoreRequest{
+            Days: aws.Int64(100),
+            GlacierJobParameters: &s3.GlacierJobParameters{
+                Tier: aws.String("Bulk"),
+            },
+        },
+    }
+    r, e := client.RestoreObject(rInput)
+    fmt.Println(r)
+    fmt.Println(e)
+
 }
+
 ```
+{: .codeblock}
+
+The typical response is exemplified here.
+
+```
+ {
+   Rules: [{
+       Filter: {
+ 
+       },
+       ID: "id3",
+       Status: "Enabled",
+       Transitions: [{
+           Days: 5,
+           StorageClass: "GLACIER"
+         }]
+     }]
+ }
+```
+{: .codeblock}
 
 ### Immutable Object Storage
 {: #go-immutable-object-storage}
@@ -545,10 +645,97 @@ Users can configure buckets with an Immutable Object Storage policy to prevent o
 Note: Immutable Object Storage does not support Aspera transfers via the SDK to upload objects or directories at this stage.
 
 ```Go
+package main
+
+import (
+	"bytes"
+	"fmt"
+	"io"
+	"github.com/IBM/ibm-cos-sdk-go/aws"
+	"github.com/IBM/ibm-cos-sdk-go/aws/credentials/ibmiam"
+	"github.com/IBM/ibm-cos-sdk-go/aws/session"
+	"github.com/IBM/ibm-cos-sdk-go/service/s3"
+)
+
+const (
+	apiKey            = "<apikey>"
+	serviceInstanceID = "<instance-id>"
+	authEndpoint      = "https://iam.cloud.ibm.com/identity/token"
+	serviceEndpoint   = "<instance-endpoint>"
+)
+
 func main() {
 
+conf := aws.NewConfig().
+		WithEndpoint(serviceEndpoint).
+		WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(),
+			authEndpoint, apiKey, serviceInstanceID)).
+		WithS3ForcePathStyle(true)
+
+	// Create Client
+	sess := session.Must(session.NewSession())
+	client := s3.New(sess, conf)
+	
+	// Create a bucket
+	input := &s3.CreateBucketInput{
+		Bucket: aws.String("<bucketname>"),
+	}
+	d, e := client.CreateBucket(input)
+	fmt.Println(d) // should print an empty bracket
+	fmt.Println(e) // should print <nil>
+
+	// PUT BUCKET PROTECTION CONFIGURATION
+	pInput := &s3.PutBucketProtectionConfigurationInput{
+		Bucket: aws.String("<bucketname>"),
+		ProtectionConfiguration: &s3.ProtectionConfiguration{
+			DefaultRetention: &s3.BucketProtectionDefaultRetention{
+				Days: aws.Int64(100),
+			},
+			MaximumRetention: &s3.BucketProtectionMaximumRetention{
+				Days: aws.Int64(1000),
+			},
+			MinimumRetention: &s3.BucketProtectionMinimumRetention{
+				Days: aws.Int64(10),
+			},
+			Status: aws.String("Retention"),
+		},
+	}
+	p, e := client.PutBucketProtectionConfiguration(pInput)
+	fmt.Println(p)
+	fmt.Println(e) // see response for results
+
+	// GET BUCKET PROTECTION CONFIGURATION
+	gInput := &s3.GetBucketProtectionConfigurationInput{
+		Bucket: aws.String("<bucketname>"),
+	}
+	g, e := client.GetBucketProtectionConfiguration(gInput)
+	fmt.Println(g)
+	fmt.Println(e)
 }
+
+
 ```
+
+The typical response is exemplified here.
+
+```
+ {
+   ProtectionConfiguration: {
+     DefaultRetention: {
+       Days: 100
+     },
+     MaximumRetention: {
+       Days: 1000
+     },
+     MinimumRetention: {
+       Days: 10
+     },
+     Status: "COMPLIANCE"
+   }
+ }
+```
+{: .codeblock}
+
 ## Next Steps
 
-For even more detail, check out the [source code](https://github.com/IBM/ibm-cos-sdk-go), and keep "Going!"
+For even more detail, check out the [source code](https://github.com/IBM/ibm-cos-sdk-go).
