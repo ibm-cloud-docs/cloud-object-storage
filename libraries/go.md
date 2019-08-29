@@ -523,3 +523,32 @@ func main() {
 * `<MAX_KEYS>` - Maximum number of buckets to retrieve in the request.
 * `<MARKER>` - The bucket name to start the listing (Skip until this bucket).
 * `<PREFIX` - Only include buckets whose name start with this prefix.
+
+### Archive Tier Support
+{: #go-archive-tier-support}
+
+You can automatically archive objects after a specified length of time or after a specified date. Once archived, a temporary copy of an object can be restored for access as needed. The time to restore the temporary copy of the object(s) may take up to 15 hours.
+
+An archive policy is set at the bucket level by calling the `PutBucketLifecycleConfiguration` method on a client instance. A newly added or modified archive policy applies to new objects uploaded and does not affect existing objects. For more detail, see the [documentation](https://cloud.ibm.com/docs/services/cloud-object-storage?topic=cloud-object-storage-go).
+
+```Go
+func main() {
+
+}
+```
+
+### Immutable Object Storage
+{: #go-immutable-object-storage}
+
+Users can configure buckets with an Immutable Object Storage policy to prevent objects from being modified or deleted for a defined period of time. The retention period can be specified on a per-object basis, or objects can inherit a default retention period set on the bucket. It is also possible to set open-ended and permanent retention periods. Immutable Object Storage meets the rules set forth by the SEC governing record retention, and IBM Cloud administrators are unable to bypass these restrictions. 
+
+Note: Immutable Object Storage does not support Aspera transfers via the SDK to upload objects or directories at this stage.
+
+```Go
+func main() {
+
+}
+```
+## Next Steps
+
+For even more detail, check out the [source code](https://github.com/IBM/ibm-cos-sdk-go), and keep "Going!"
