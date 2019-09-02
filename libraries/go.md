@@ -534,32 +534,9 @@ To use the example provided, provide your own configuration&mdash;including repl
 An archive policy is set at the bucket level by calling the `PutBucketLifecycleConfiguration` method on a client instance. A newly added or modified archive policy applies to new objects uploaded and does not affect existing objects. For more detail, see the [documentation](https://cloud.ibm.com/docs/services/cloud-object-storage?topic=cloud-object-storage-go).
 
 ```Go
-package main
 
-import (
-	"bytes"
-	"fmt"
-	"io"
-	"github.com/IBM/ibm-cos-sdk-go/aws"
-	"github.com/IBM/ibm-cos-sdk-go/aws/credentials/ibmiam"
-	"github.com/IBM/ibm-cos-sdk-go/aws/session"
-	"github.com/IBM/ibm-cos-sdk-go/service/s3"
-)
-
-const (
-	apiKey            = "<apikey>"
-	serviceInstanceID = "<instance-id>"
-	authEndpoint      = "https://iam.cloud.ibm.com/identity/token"
-	serviceEndpoint   = "<instance-endpoint>"
-)
 
 func main() {
-
-	conf := aws.NewConfig().
-		WithEndpoint(serviceEndpoint).
-		WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(),
-			authEndpoint, apiKey, serviceInstanceID)).
-		WithS3ForcePathStyle(true)
 
 	// Create Client
 	sess := session.Must(session.NewSession())
@@ -645,32 +622,9 @@ Users can configure buckets with an Immutable Object Storage policy to prevent o
 Note: Immutable Object Storage does not support Aspera transfers via the SDK to upload objects or directories at this stage.
 
 ```Go
-package main
 
-import (
-	"bytes"
-	"fmt"
-	"io"
-	"github.com/IBM/ibm-cos-sdk-go/aws"
-	"github.com/IBM/ibm-cos-sdk-go/aws/credentials/ibmiam"
-	"github.com/IBM/ibm-cos-sdk-go/aws/session"
-	"github.com/IBM/ibm-cos-sdk-go/service/s3"
-)
-
-const (
-	apiKey            = "<apikey>"
-	serviceInstanceID = "<instance-id>"
-	authEndpoint      = "https://iam.cloud.ibm.com/identity/token"
-	serviceEndpoint   = "<instance-endpoint>"
-)
 
 func main() {
-
-conf := aws.NewConfig().
-		WithEndpoint(serviceEndpoint).
-		WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(),
-			authEndpoint, apiKey, serviceInstanceID)).
-		WithS3ForcePathStyle(true)
 
 	// Create Client
 	sess := session.Must(session.NewSession())
