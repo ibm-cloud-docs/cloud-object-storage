@@ -543,9 +543,9 @@ func main() {
 	client := s3.New(sess, conf)
 	
 	// PUT BUCKET LIFECYCLE CONFIGURATION
-	// Replace <bucketname> with the name of the bucket
+	// Replace <BUCKET_NAME> with the name of the bucket
 	lInput := &s3.PutBucketLifecycleConfigurationInput{
-		Bucket: aws.String("<bucketname>"),
+		Bucket: aws.String("<BUCKET_NAME>"),
 		LifecycleConfiguration: &s3.LifecycleConfiguration{
 			Rules: []*s3.LifecycleRule{
 				{
@@ -577,8 +577,8 @@ func main() {
     // RESTORE OBJECT
     // Replace <archived-object> with the appropriate key
     rInput := &s3.RestoreObjectInput{
-        Bucket: aws.String("<bucketname>"),
-        Key:    aws.String("<archived-object>"),
+        Bucket: aws.String("<BUCKET_NAME>"),
+        Key:    aws.String("<OBJECT_KEY>"),
         RestoreRequest: &s3.RestoreRequest{
             Days: aws.Int64(100),
             GlacierJobParameters: &s3.GlacierJobParameters{
@@ -632,7 +632,7 @@ func main() {
 	
 	// Create a bucket
 	input := &s3.CreateBucketInput{
-		Bucket: aws.String("<bucketname>"),
+		Bucket: aws.String("<BUCKET_NAME>"),
 	}
 	d, e := client.CreateBucket(input)
 	fmt.Println(d) // should print an empty bracket
@@ -640,7 +640,7 @@ func main() {
 
 	// PUT BUCKET PROTECTION CONFIGURATION
 	pInput := &s3.PutBucketProtectionConfigurationInput{
-		Bucket: aws.String("<bucketname>"),
+		Bucket: aws.String("<BUCKET_NAME>"),
 		ProtectionConfiguration: &s3.ProtectionConfiguration{
 			DefaultRetention: &s3.BucketProtectionDefaultRetention{
 				Days: aws.Int64(100),
@@ -660,7 +660,7 @@ func main() {
 
 	// GET BUCKET PROTECTION CONFIGURATION
 	gInput := &s3.GetBucketProtectionConfigurationInput{
-		Bucket: aws.String("<bucketname>"),
+		Bucket: aws.String("<BUCKET_NAME>"),
 	}
 	g, e := client.GetBucketProtectionConfiguration(gInput)
 	fmt.Println(g)
@@ -692,4 +692,4 @@ The typical response is exemplified here.
 
 ## Next Steps
 
-For even more detail, check out the [source code](https://github.com/IBM/ibm-cos-sdk-go).
+If you haven't already, please see the detailed class and method documentation available at the [Go API documentation](https://ibm.github.io/ibm-cos-sdk-go/).
