@@ -531,44 +531,20 @@ You can automatically archive objects after a specified length of time or after 
 
 To use the example provided, provide your own configuration&mdash;including replacing `<apikey>` and other bracketed `<...>` information&mdash;keeping in mind that using environment variables are more secure, and one should not put credentials in code that will be versioned.
 
-An archive policy is set at the bucket level by calling the `PutBucketLifecycleConfiguration` method on a client instance. A newly added or modified archive policy applies to new objects uploaded and does not affect existing objects. For more detail, see the [documentation](https://cloud.ibm.com/docs/services/cloud-object-storage?topic=cloud-object-storage-go).
+An archive policy is set at the bucket level by calling the `PutBucketLifecycleConfiguration` method on a client instance. A newly added or modified archive policy applies to new objects uploaded and does not affect existing objects.
 
 ```Go
-package main
-
-import (
-	"bytes"
-	"fmt"
-	"io"
-	"github.com/IBM/ibm-cos-sdk-go/aws"
-	"github.com/IBM/ibm-cos-sdk-go/aws/credentials/ibmiam"
-	"github.com/IBM/ibm-cos-sdk-go/aws/session"
-	"github.com/IBM/ibm-cos-sdk-go/service/s3"
-)
-
-const (
-	apiKey            = "<apikey>"
-	serviceInstanceID = "<instance-id>"
-	authEndpoint      = "https://iam.cloud.ibm.com/identity/token"
-	serviceEndpoint   = "<instance-endpoint>"
-)
 
 func main() {
-
-	conf := aws.NewConfig().
-		WithEndpoint(serviceEndpoint).
-		WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(),
-			authEndpoint, apiKey, serviceInstanceID)).
-		WithS3ForcePathStyle(true)
 
 	// Create Client
 	sess := session.Must(session.NewSession())
 	client := s3.New(sess, conf)
 	
 	// PUT BUCKET LIFECYCLE CONFIGURATION
-	// Replace <bucketname> with the name of the bucket
+	// Replace <BUCKET_NAME> with the name of the bucket
 	lInput := &s3.PutBucketLifecycleConfigurationInput{
-		Bucket: aws.String("<bucketname>"),
+		Bucket: aws.String("<BUCKET_NAME>"),
 		LifecycleConfiguration: &s3.LifecycleConfiguration{
 			Rules: []*s3.LifecycleRule{
 				{
@@ -598,10 +574,10 @@ func main() {
 	fmt.Println(e) // see response for results
 
     // RESTORE OBJECT
-    // Replace <archived-object> with the appropriate key
+    // Replace <OBJECT_KEY> with the appropriate key
     rInput := &s3.RestoreObjectInput{
-        Bucket: aws.String("<bucketname>"),
-        Key:    aws.String("<archived-object>"),
+        Bucket: aws.String("<BUCKET_NAME>"),
+        Key:    aws.String("<OBJECT_KEY>"),
         RestoreRequest: &s3.RestoreRequest{
             Days: aws.Int64(100),
             GlacierJobParameters: &s3.GlacierJobParameters{
@@ -645,32 +621,9 @@ Users can configure buckets with an Immutable Object Storage policy to prevent o
 Note: Immutable Object Storage does not support Aspera transfers via the SDK to upload objects or directories at this stage.
 
 ```Go
-package main
 
-import (
-	"bytes"
-	"fmt"
-	"io"
-	"github.com/IBM/ibm-cos-sdk-go/aws"
-	"github.com/IBM/ibm-cos-sdk-go/aws/credentials/ibmiam"
-	"github.com/IBM/ibm-cos-sdk-go/aws/session"
-	"github.com/IBM/ibm-cos-sdk-go/service/s3"
-)
-
-const (
-	apiKey            = "<apikey>"
-	serviceInstanceID = "<instance-id>"
-	authEndpoint      = "https://iam.cloud.ibm.com/identity/token"
-	serviceEndpoint   = "<instance-endpoint>"
-)
 
 func main() {
-
-conf := aws.NewConfig().
-		WithEndpoint(serviceEndpoint).
-		WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(),
-			authEndpoint, apiKey, serviceInstanceID)).
-		WithS3ForcePathStyle(true)
 
 	// Create Client
 	sess := session.Must(session.NewSession())
@@ -678,7 +631,7 @@ conf := aws.NewConfig().
 	
 	// Create a bucket
 	input := &s3.CreateBucketInput{
-		Bucket: aws.String("<bucketname>"),
+		Bucket: aws.String("<BUCKET_NAME>"),
 	}
 	d, e := client.CreateBucket(input)
 	fmt.Println(d) // should print an empty bracket
@@ -686,7 +639,7 @@ conf := aws.NewConfig().
 
 	// PUT BUCKET PROTECTION CONFIGURATION
 	pInput := &s3.PutBucketProtectionConfigurationInput{
-		Bucket: aws.String("<bucketname>"),
+		Bucket: aws.String("<BUCKET_NAME>"),
 		ProtectionConfiguration: &s3.ProtectionConfiguration{
 			DefaultRetention: &s3.BucketProtectionDefaultRetention{
 				Days: aws.Int64(100),
@@ -706,7 +659,7 @@ conf := aws.NewConfig().
 
 	// GET BUCKET PROTECTION CONFIGURATION
 	gInput := &s3.GetBucketProtectionConfigurationInput{
-		Bucket: aws.String("<bucketname>"),
+		Bucket: aws.String("<BUCKET_NAME>"),
 	}
 	g, e := client.GetBucketProtectionConfiguration(gInput)
 	fmt.Println(g)
@@ -738,4 +691,4 @@ The typical response is exemplified here.
 
 ## Next Steps
 
-For even more detail, check out the [source code](https://github.com/IBM/ibm-cos-sdk-go).
+If you haven't already, please see the detailed class and method documentation available at the [Go API documentation](https://ibm.github.io/ibm-cos-sdk-go/).
