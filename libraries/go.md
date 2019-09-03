@@ -531,10 +531,9 @@ You can automatically archive objects after a specified length of time or after 
 
 To use the example provided, provide your own configuration&mdash;including replacing `<apikey>` and other bracketed `<...>` information&mdash;keeping in mind that using environment variables are more secure, and one should not put credentials in code that will be versioned.
 
-An archive policy is set at the bucket level by calling the `PutBucketLifecycleConfiguration` method on a client instance. A newly added or modified archive policy applies to new objects uploaded and does not affect existing objects. For more detail, see the [documentation](https://cloud.ibm.com/docs/services/cloud-object-storage?topic=cloud-object-storage-go).
+An archive policy is set at the bucket level by calling the `PutBucketLifecycleConfiguration` method on a client instance. A newly added or modified archive policy applies to new objects uploaded and does not affect existing objects.
 
 ```Go
-
 
 func main() {
 
@@ -575,7 +574,7 @@ func main() {
 	fmt.Println(e) // see response for results
 
     // RESTORE OBJECT
-    // Replace <archived-object> with the appropriate key
+    // Replace <OBJECT_KEY> with the appropriate key
     rInput := &s3.RestoreObjectInput{
         Bucket: aws.String("<BUCKET_NAME>"),
         Key:    aws.String("<OBJECT_KEY>"),
