@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-09-04"
 
 keywords: big data, multipart, multiple parts, transfer
 
@@ -56,7 +56,7 @@ There are three phases to uploading an object in multiple parts:
 For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
 {:tip}
 
-### Initiate a multipart upload
+#### Initiate a multipart upload
 {: #large-objects-multipart-api-initiate} 
 {: http}
 
@@ -112,7 +112,7 @@ Content-Length: 276
 
 ----
 
-### Upload a part
+#### Upload a part
 {: #large-objects-multipart-api-upload-part} 
 {: http}
 
@@ -158,7 +158,7 @@ Content-Length: 0
 {: codeblock}
 {: http}
 
-### Complete a multipart upload
+#### Complete a multipart upload
 {: #large-objects-multipart-api-complete} 
 {: http}
 
@@ -242,12 +242,13 @@ Content-Length: 364
 {: http}
 
 
-### Abort incomplete multipart uploads
+#### Abort incomplete multipart uploads
 {: #large-objects-multipart-api-abort} 
 {: http}
 
 A `DELETE` request issued to an object with query parameter `uploadId` deletes all unfinished parts of a multipart upload.
 {: http}
+
 **Syntax**
 {: http}
 
@@ -283,7 +284,7 @@ X-Clv-S3-Version: 2.5
 {: codeblock}
 {: http}
 
-### Using S3cmd (CLI)
+#### Using S3cmd (CLI)
 {: #large-objects-s3cmd} 
 {: S3cmd}
 
@@ -335,7 +336,7 @@ $ s3cmd ls
 The full list of options and commands along with basic usage information is available on the [s3tools](https://s3tools.org/usage){:new_window} site.
 {: S3cmd}
 
-### Multipart uploads with S3cmd
+#### Multipart uploads with S3cmd
 {: #large-objects-s3cmd-upload} 
 {: S3cmd}
 
