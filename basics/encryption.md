@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-09-04"
 
 keywords: encryption, security, sse-c, key protect, {{site.data.keyword.hscrypto}}
 

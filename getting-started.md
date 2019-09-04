@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-09-04"
 
 keywords: data, object storage, unstructured, cleversafe
 
