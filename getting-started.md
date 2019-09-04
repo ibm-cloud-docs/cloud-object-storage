@@ -42,7 +42,7 @@ You need:
 The terms 'resource instance' and 'service instance' refer to the same concept, and can be used interchangeably.
 {: tip}
 
-  1. Follow **Create bucket** and choose a unique name. All buckets in all regions across the globe share a single namespace. Ensure that you have the [correct permissions](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions) to create a bucket.
+  1. Follow the steps to provision your instance in order to **Create a bucket**, choosing a unique name. All buckets in all regions across the globe share a single namespace. Ensure that you have the [correct permissions](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions) to create a bucket.
 
   **Note**: When you create buckets or add objects, be sure to avoid the use of Personally Identifiable Information (PII). PII is information that can identify any user (natural person) by name, location, or any other means.
   {: tip}
