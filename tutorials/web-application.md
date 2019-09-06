@@ -600,16 +600,16 @@ aws\_secret\_access\_key = {secret_access_key}
 ```
 {: codeblock}
 
-1.  In the web page for the application you created by using the CLI command on the {{site.data.keyword.cloud_notm}} Platform, 
+  1.  In the web page for the application you created by using the CLI command on the {{site.data.keyword.cloud_notm}} Platform, 
     define your required credentials as environment variables per development best practices by
     logging in to {{site.data.keyword.cloud_notm}} Platform, and under Cloud Foundry Apps, select your
     app, `webapplication`. From the tabs, click **Runtime**.
 
-2.  In the Runtime window, click Environment variables at the beginning of the
+  2.  In the Runtime window, click Environment variables at the beginning of the
     page and scroll to the User-defined section, which allows you to add
     the variables.
 
-3.  Add two variables: one with the value of your access_key_id, using `AWS_ACCESS_KEY_ID` as the name 
+  3.  Add two variables: one with the value of your access_key_id, using `AWS_ACCESS_KEY_ID` as the name 
     of the key, and another with the value of your secret access key, named `AWS_SECRET_ACCESS_KEY`. 
     These variables and their respective values are what the app uses to authenticate to the 
     {{site.data.keyword.cos_short}} instance when running on {{site.data.keyword.cloud_notm}} 
