@@ -25,7 +25,7 @@ Cloud Object Storage
     Choose regions and connect services
         basics/endpoints.md
         basics/services.md    
-        [Connect from VPC](/docs/vpc-on-classic?topic=vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc)
+        [Connect from VPC](https://cloud.ibm.com/docs/vpc-on-classic?topic=vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc)
         
     basics/upload.md
     
