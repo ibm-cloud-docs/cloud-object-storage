@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-09-04"
 
 keywords: encryption, security, sse-c, key protect, {{site.data.keyword.hscrypto}}
 
@@ -77,7 +77,7 @@ Note that the location in which the bucket is created must be the same location 
 Navigate to your instance of Key Protect and [generate or enter a root key](/docs/services/key-protect?topic=key-protect-getting-started-tutorial).
 
 
-### Create or add a key in {{site.data.keyword.hscrypto}}**
+### Create or add a key in {{site.data.keyword.hscrypto}}
 Navigate to your instance of {{site.data.keyword.hscrypto}} and [initialize the service instance](/docs/services/hs-crypto?topic=hs-crypto-initialize-hsm). Once a [master key](/docs/services/hs-crypto?topic=hs-crypto-initialize-hsm#step1-create-signature-keys) has been created, [generate or enter a root key](/docs/services/hs-crypto?topic=hs-crypto-create-root-keys).
 
 

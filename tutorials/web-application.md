@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-08-23"
+lastupdated: "2019-09-05"
 
 keywords: tutorial, web application, photo galleries
 
@@ -123,8 +123,7 @@ Enter a name and email (this is displayed publicly) for any
 commits to your repository. Once the application is linked to your account, you might be asked
 to verify the application connection through your GitHub account online.
 
-![github_desktop_setup](http://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-001-github-login.png)
-{: caption="Figure 1. GitHub Desktop Login window"}
+![github_desktop_setup](http://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-001-github-login.png){: caption="Figure 1. GitHub Desktop Login window"}
 
 ## Creating the Node.js starter app
 {: #tutorial-create-skeleton}
@@ -292,7 +291,7 @@ options:
 
 ```
 
-We choose a region for our automated deployment CD toolchain, so select the same option as earlier, 
+We must choose a region for our automated deployment CD toolchain. So, select the same option as earlier, 
 '5'.
 
 ```
@@ -381,8 +380,7 @@ ibmcloud dev run
 Now that the app is created and defined, view your application to confirm it works. If you see the placeholder image as 
 shown in Figure 2, congratulations! You've created a new Node.js web application and are ready to deploy it to the cloud.
 
-![initial node app](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-splash-graphic.png)
-{: caption="Figure 2. New Node.js Application: Congratulations!"}
+![initial node app](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-splash-graphic.png){: caption="Figure 2. New Node.js Application: Congratulations!"}
 
 Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the `deploy` command (as shown in Example 20).
 
@@ -541,13 +539,13 @@ ibmcloud dev deploy
 ```
 {: codeblock}
 
-When it finished, {{site.data.keyword.cloud_notm}} Platform reports that the app was uploaded,
+When the process finished, {{site.data.keyword.cloud_notm}} Platform will report that the app was uploaded,
 successfully deployed, and started. If you're also logged in to the {{site.data.keyword.cloud_notm}} Platform
 web console, you're notified there also of the status of your app. But, most importantly, you can verify that the app 
 was deployed by visiting the app URL reported by {{site.data.keyword.cloud_notm}} Platform with a browser, or from the web
 console by clicking View App button.
 
-1.  Test the app. The visible change from the default app template that
+Test the app. The visible change from the default app template that
     was deployed at creation to the starter app shown in the following
     proved that deploying the app to {{site.data.keyword.cloud_notm}} Platform was successful.
 
@@ -559,18 +557,18 @@ console by clicking View App button.
 Now, you need to create a branch for the local development environment
 to use for your {{site.data.keyword.cloud_notm}} Platform Delivery Pipeline Build Stage:
 
-1.  If using GitHub Desktop, click the branch icon; you're prompted to enter a name for the
+  1.  If using GitHub Desktop, click the branch icon; you're prompted to enter a name for the
     branch . This example uses `local-dev` as the name.
 
-![new_git_branch](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-014-dev-branch.jpg){: caption="Figure 4. Use GitHub Desktop to create a local dev branch"}
+  ![new_git_branch](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-014-dev-branch.jpg){: caption="Figure 4. Use GitHub Desktop to create a local dev branch"}
 
-1.  After you create the branch, GitHub compares the local files on the
+  1.  After you create the branch, GitHub compares the local files on the
     Local-dev branch with the files in the repository on the master
     branch and reports No local changes. You can now click Publish to
     add the branch you created on your local repo to your GitHub repo
     (as shown in Figure 5).
 
-![publish_branch](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-015-git-push.jpg){: caption="Figure 5. Publish your git branch to your repo's remote origin"}
+  ![publish_branch](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-015-git-push.jpg){: caption="Figure 5. Publish your git branch to your repo's remote origin"}
 
 Now that the Local-dev branch is published to the GitHub repo in your
 toolchain, the build stage of your {{site.data.keyword.cloud_notm}} Platform Delivery Pipeline will be
@@ -602,16 +600,16 @@ aws\_secret\_access\_key = {secret_access_key}
 ```
 {: codeblock}
 
-1.  In the web page for the application you created by using the CLI command on the {{site.data.keyword.cloud_notm}} Platform, 
+  1.  In the web page for the application you created by using the CLI command on the {{site.data.keyword.cloud_notm}} Platform, 
     define your required credentials as environment variables per development best practices by
     logging in to {{site.data.keyword.cloud_notm}} Platform, and under Cloud Foundry Apps, select your
     app, `webapplication`. From the tabs, click **Runtime**.
 
-2.  In the Runtime window, click Environment variables at the beginning of the
+  2.  In the Runtime window, click Environment variables at the beginning of the
     page and scroll to the User-defined section, which allows you to add
     the variables.
 
-3.  Add two variables: one with the value of your access_key_id, using `AWS_ACCESS_KEY_ID` as the name 
+  3.  Add two variables: one with the value of your access_key_id, using `AWS_ACCESS_KEY_ID` as the name 
     of the key, and another with the value of your secret access key, named `AWS_SECRET_ACCESS_KEY`. 
     These variables and their respective values are what the app uses to authenticate to the 
     {{site.data.keyword.cos_short}} instance when running on {{site.data.keyword.cloud_notm}} 
