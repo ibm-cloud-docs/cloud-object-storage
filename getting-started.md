@@ -39,8 +39,8 @@ You need:
 
   1. [Ordering {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-provision) creates a _service instance_. {{site.data.keyword.cos_full_notm}} is a multi-tenant system, and all instances of {{site.data.keyword.cos_short}} share physical infrastructure. You're automatically redirected to the service instance where you can start creating buckets. Your {{site.data.keyword.cos_short}} instances are listed under **Storage** in [the resource list](https://cloud.ibm.com/resources).
 
-The terms 'resource instance' and 'service instance' refer to the same concept, and can be used interchangeably.
-{: tip}
+  The terms 'resource instance' and 'service instance' refer to the same concept, and can be used interchangeably.
+  {: tip}
 
   1. Follow the steps to provision your instance in order to **Create a bucket**, choosing a unique name. All buckets in all regions across the globe share a single namespace. Ensure that you have the [correct permissions](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions) to create a bucket.
 
