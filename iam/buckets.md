@@ -83,7 +83,6 @@ ibmcloud iam user-policy-create <user-name> \
       --roles <role> \
       --service-name cloud-object-storage \
       --service-instance <resource-instance-id>
-      --region global \
       --resource-type bucket \
       --resource <bucket-name>
 ```
@@ -103,7 +102,6 @@ ibmcloud iam user-policy-update <user-name> <policy-id> \
       --roles <role> \
       --service-name cloud-object-storage \
       --service-instance <resource-instance-id>
-      --region global \
       --resource-type bucket \
       --resource <bucket-name>
 ```
@@ -136,7 +134,6 @@ ibmcloud iam service-policy-create <service-id-name> \
       --roles <role> \
       --service-name cloud-object-storage \
       --service-instance <resource-instance-id>
-      --region global \
       --resource-type bucket \
       --resource <bucket-name>
 ```
@@ -156,7 +153,6 @@ ibmcloud iam service-policy-update <service-id-name> <policy-id> \
       --roles <role> \
       --service-name cloud-object-storage \
       --service-instance <resource-instance-id>
-      --region global \
       --resource-type bucket \
       --resource <bucket-name>
 ```
