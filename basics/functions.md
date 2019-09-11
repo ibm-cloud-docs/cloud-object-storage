@@ -30,11 +30,11 @@ With [{{site.data.keyword.openwhisk}}](/docs/openwhisk), you can use your favori
 
 {{site.data.keyword.openwhisk}} is an event-driven compute platform (also referred to as Serverless computing). Actions (small bits of code) run in response to triggers (some category of event), and rules associate certain actions with certain triggers. Configure {{site.data.keyword.cos_full}} to be an event source, and anytime an object in a particular bucket is written or deleted an action is triggered. You can further tailor the changes feed to only corral events for objects which match a particular prefix or suffix. 
 
-1. You need to [allow Cloud Functions access to listen for changes that are made to your bucket.
+1. You need to [allow Cloud Functions access](/docs/openwhisk?topic=cloud-functions-pkg_obstorage#pkg_obstorage_ev) to listen for changes that are made to your bucket.
 2. Then, [create a trigger](/docs/openwhisk?topic=cloud-functions-pkg_obstorage#pkg_obstorage_ev_trig_ui) to respond to the changes feed.
 3. You can also use [the {{site.data.keyword.cos_full}} package](https://test.cloud.ibm.com/docs/openwhisk?topic=cloud-functions-pkg_obstorage#pkg_obstorage_actions) to bind credentials and easily script common tasks.
 
-For more information about using {{site.data.keyword.openwhisk}} with object storage, [see the documentation](/docs/openwhisk?topic=cloud-functions-pkg_obstorage).
+For more information about using {{site.data.keyword.openwhisk}} with object storage, [see the Functions documentation](/docs/openwhisk?topic=cloud-functions-pkg_obstorage).
 
 It isn't possible to use a [bucket with a firewall enabled](/docs/services/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall) as an event source for {{site.data.keyword.openwhisk}} actions.
 {: important}
