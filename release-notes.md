@@ -21,16 +21,30 @@ subcollection: cloud-object-storage
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: .shortdesc}
 
+## Q3 2019
+{: #updates-2019-q3}
+
+### September 2019
+Changes made to object storage data can be used an an [event source for Cloud Functions](/docs/services/cloud-object-storage?topic=cloud-object-storage-functions).
+
+### August 2019
+Data can be encrypted [using HPCS](/docs/services/cloud-object-storage?topic=cloud-object-storage-encryption).
+
+Object-level events can be tracked [using Activity Tracker with LogDNA](/docs/services/cloud-object-storage?topic=cloud-object-storage-at).
+
 ## Q2 2019
 {: #updates-2019-q2}
 
 ### June 2019
+{: #updates-2019-q2-jun}
 Objects can be automatically deleted by [adding expiration rules to a bucket's lifecycle configuration](/docs/services/cloud-object-storage?topic=cloud-object-storage-expiry).
 
 ### May 2019
+{: #updates-2019-q2-may}
 Users can access and interact with object storage [using the IBM Cloud CLI](/docs/services/cloud-object-storage?topic=cloud-object-storage-ic-use-the-ibm-cli).
 
 ### April 2019
+{: #updates-2019-q2-apr}
 Buckets can now be created in a Single Data Center configuration in Hong Kong. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints).
 
 ## Q1 2019
