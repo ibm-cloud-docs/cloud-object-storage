@@ -56,6 +56,7 @@ Cloud Object Storage
     basics/encryption.md
     basics/sql.md
     basics/logdna.md
+    basics/functions.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
