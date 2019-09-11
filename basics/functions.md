@@ -19,7 +19,7 @@ subcollection: cloud-object-storage
 {:note: .note}
 {:download: .download} 
 
-# Use {{site.data.keyword.openwhisk}}
+# Use IBM Cloud Functions
 {: #functions}
 
 With [{{site.data.keyword.openwhisk}}](/docs/openwhisk), you can use your favorite programming language to write lightweight code that runs app logic in a scalable way. You can run code on-demand with HTTP-based API requests from applications or run code in response to {{site.data.keyword.cloud_notm}} services and third-party events, like updates made to a bucket. The Function-as-a-Service (FaaS) programming platform is based on the open source project Apache OpenWhisk. {: shortdesc}
