@@ -37,18 +37,18 @@ This tutorial takes a new user through the first steps with the {{site.data.keyw
 ## Create some buckets to store your data
 {: #gs-create-buckets}
 
-1. [Ordering {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-provision) creates a _service instance_. {{site.data.keyword.cos_full_notm}} is a multi-tenant system, and all instances of {{site.data.keyword.cos_short}} share physical infrastructure. You're automatically redirected to the service instance where you can start creating buckets. Your {{site.data.keyword.cos_short}} instances are listed under **Storage** in [the resource list](https://cloud.ibm.com/resources).
+<ol type="1"><li>[Ordering {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-provision) creates a _service instance_. {{site.data.keyword.cos_full_notm}} is a multi-tenant system, and all instances of {{site.data.keyword.cos_short}} share physical infrastructure. You're automatically redirected to the service instance where you can start creating buckets. Your {{site.data.keyword.cos_short}} instances are listed under **Storage** in [the resource list](https://cloud.ibm.com/resources).</li></ol>
 
 The terms 'resource instance' and 'service instance' refer to the same concept, and can be used interchangeably.
 {: tip}
 
-1. Follow the steps to provision your instance in order to **Create a bucket**, choosing a unique name. All buckets in all regions across the globe share a single namespace. Ensure that you have the [correct permissions](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions) to create a bucket.
+<ol start="2"><li>Follow the steps to provision your instance in order to **Create a bucket**, choosing a unique name. All buckets in all regions across the globe share a single namespace. Ensure that you have the [correct permissions](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions) to create a bucket.</li></ol>
 
 **Note**: When you create buckets or add objects, be sure to avoid the use of Personally Identifiable Information (PII). PII is information that can identify any user (natural person) by name, location, or any other means.
 {: tip}
 
-1. Choose a wanted [level of _resiliency_](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) first, and then a _location_ where you would like your data to be physically stored. Resiliency refers to the scope and scale of the geographic area across which your data is distributed. _Cross Region_ resiliency spreads your data across several metropolitan areas, while _Regional_ resiliency spreads data across a single metropolitan area. A _Single Data Center_ distributes data across devices within a single site only.
-2. Choose the [bucket's _storage class_](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-classes), which is a reflection of how often you expect to read the stored data and determines billing details. Follow the **Create** link to create and access your new bucket.
+<ol start="3"><li>Choose a wanted [level of _resiliency_](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) first, and then a _location_ where you would like your data to be physically stored. Resiliency refers to the scope and scale of the geographic area across which your data is distributed. _Cross Region_ resiliency spreads your data across several metropolitan areas, while _Regional_ resiliency spreads data across a single metropolitan area. A _Single Data Center_ distributes data across devices within a single site only.</li>
+<li>Choose the [bucket's _storage class_](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-classes), which is a reflection of how often you expect to read the stored data and determines billing details. Follow the **Create** link to create and access your new bucket.</li></ol>
 
 Buckets are a way to organize your data, but they're not the sole way. Object names (often referred to as _object keys_) can use one or more forward slashes for a directory-like organizational system. You then use the portion of the object name before a delimiter to form an _object prefix_, which is used to list related objects in a single bucket through the API.
 {: tip}
