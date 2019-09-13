@@ -28,7 +28,7 @@ subcollection: cloud-object-storage
 # Getting Started with the SDKs
 {: #sdk-gs}
 
-Getting started with the {{site.data.keyword.cos_full}} provides SDKs for Java, Python, NodeJS, and Go can help you to make the most of {{site.data.keyword.cos_full_notm}}.
+{{site.data.keyword.cos_full}} provides SDKs for Java, Python, NodeJS, and Go which can help you to make the most of {{site.data.keyword.cos_short}}.
 {: .shortdesc}
 
 In this quickstart guide, you are provided a code example that demonstrates the following operations:

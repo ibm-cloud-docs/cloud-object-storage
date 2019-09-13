@@ -58,7 +58,7 @@ You can view your current Cloud Object Storage credentials by prompting `ibmclou
 ### IAM Authentication
 {: #ic-IAM-authentication}
 
-If you are using IAM authentication, then you then you must provide a CRN to use some of the commands. To set the CRN, you can type `ibmcloud cos config crn` and provide your CRN. To retrieve the CRN `ibmcloud resource service-instance <INSTANCE_NAME> --id`, replace <INSTANCE_NAME> with the unique alias that you assigned to your service instance.  The following truncated example shows the CLI output.
+If you are using IAM authentication, then you then you must provide a CRN to use some of the commands. To set the CRN, you can type `ibmcloud cos config crn` and provide your CRN. To retrieve the CRN you can type `ibmcloud resource service-instance <INSTANCE_NAME> --id`, replace <INSTANCE_NAME> with the unique alias that you assigned to your service instance.  The following truncated example shows the CLI output.
 
 ```
 crn:v1:bluemix:public:kms:us-south:a/f047b55a3362ac06afad8a3f2f5586ea:42454b3b-5b06-407b-a4b3-34d9ef323901:: 42454b3b-5b06-407b-a4b3-34d9ef323901
