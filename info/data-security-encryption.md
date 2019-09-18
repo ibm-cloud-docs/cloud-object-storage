@@ -23,7 +23,7 @@ subcollection: cloud-object-storage
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
 
-# Data security and encryption
+# Data security
 {: #security}
 
 {{site.data.keyword.cos_full}} uses an innovative approach for cost-effectively storing large volumes of unstructured data that ensures security, availability, and reliability. 

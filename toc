@@ -110,7 +110,6 @@ Cloud Object Storage
 
     {: .topicgroup}
     Technical guides
-        info/data-security-encryption.md
         info/developer-guidance.md
         [Using Cloud Object Storage with Kubernetes](https://cloud.ibm.com/docs/containers?topic=containers-object_storage)
         info/cof.md
@@ -118,6 +117,11 @@ Cloud Object Storage
         info/velero.md
         help/object-storage.md
         info/advanced_endpoints.md
+
+    {: .topicgroup}
+    Security and compliance
+        info/data-security-encryption.md
+        compliance.md
     {: .navgroup-end}
 
     {: .navgroup id="help"}
