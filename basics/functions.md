@@ -30,7 +30,7 @@ With [{{site.data.keyword.openwhisk}}](/docs/openwhisk), you can use your favori
 
 {{site.data.keyword.openwhisk}} is an event-driven compute platform (also referred to as Serverless computing). Actions (small bits of code) run in response to triggers (some category of event), and rules associate certain actions with certain triggers. Configure {{site.data.keyword.cos_full}} to be an event source, and anytime an object in a particular bucket is written or deleted an action is triggered. You can further tailor the changes feed to only corral events for objects which match a particular prefix or suffix. 
 
-1. You need to [allow Cloud Functions access](/docs/openwhisk?topic=cloud-functions-pkg_obstorage#pkg_obstorage_ev) to listen for changes that are made to your bucket.
+1. You need to [allow Cloud Functions access](/docs/openwhisk?topic=cloud-functions-pkg_obstorage#pkg_obstorage_ev) to listen for changes that are made to your bucket. This involves creating a [service-to-service authorization](/docs/iam?topic=iam-serviceauth), and uses the new [Notifications Manager](/docs/openwhisk?topic=cloud-functions-pkg_obstorage#pkg_obstorage_auth) IAM role.
 2. Then, [create a trigger](/docs/openwhisk?topic=cloud-functions-pkg_obstorage#pkg_obstorage_ev_trig_ui) to respond to the changes feed.
 3. You can also use [the {{site.data.keyword.cos_full}} package](https://test.cloud.ibm.com/docs/openwhisk?topic=cloud-functions-pkg_obstorage#pkg_obstorage_actions) to bind credentials and easily script common tasks.
 

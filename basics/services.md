@@ -45,11 +45,11 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 ## Cross Region
 {: #service-availability-geo}
 
-| Region          | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker |
-|-----------------|--------|-------------|------|--------------|--------------------------|------------------|
-| AP Cross Region | Yes    | No          | No   | No           | No                       | Tokyo            |
-| EU Cross Region | Yes    | No          | No   | No           | No                       | Frankfurt        |
-| US Cross Region | Yes    | No          | No   | No           | No                       | Dallas           |
+| Region          | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions |
+|-----------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|
+| AP Cross Region | Yes    | No          | No                             | No           | No                       | Tokyo            | No        |
+| EU Cross Region | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        |
+| US Cross Region | Yes    | No          | No                             | No           | No                       | Dallas           | No        |
 
 
 
@@ -57,28 +57,28 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 ## Regional
 {: #service-availability-region}
 
-| Region           | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker |
-|------------------|--------|-------------|------|--------------|--------------------------|------------------|
-| AP Australia     | Yes    | Yes         | Yes  | Yes          | Yes                      | with COS API     |
-| AP Japan         | Yes    | Yes         | No   | Yes          | Yes                      | Tokyo            |
-| EU Great Britain | Yes    | Yes         | No   | Yes          | Yes                      | London           |
-| EU Germany       | Yes    | Yes         | No   | Yes          | Yes                      | Frankfurt        |
-| US South         | Yes    | Yes         | Yes  | Yes          | Yes                      | Dallas           |
-| US East          | Yes    | Yes         | No   | Yes          | Yes                      | Dallas           |
+| Region           | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions |
+|------------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|
+| AP Australia     | Yes    | Yes         | Yes                            | Yes          | Yes                      | Tokyo            | No        |
+| AP Japan         | Yes    | Yes         | No                             | Yes          | Yes                      | Tokyo            | No       |
+| EU Great Britain | Yes    | Yes         | No                             | Yes          | Yes                      | London           | Yes       |
+| EU Germany       | Yes    | Yes         | No                             | Yes          | Yes                      | Frankfurt        | No       |
+| US South         | Yes    | Yes         | Yes                            | Yes          | Yes                      | Dallas           | Yes       |
+| US East          | Yes    | Yes         | No                             | Yes          | Yes                      | Dallas           | Yes       |
 ## Single Data Centers
 {: #service-availability-zone}
 
-| Region                      | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker |
-|-----------------------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|
-| Amsterdam, Netherlands      | Yes    | No          | No                             | No           | No                       | Frankfurt        |
-| Chennai, India              | Yes    | No          | No                             | No           | No                       | Tokyo            |
-| Hong Kong S.A.R. of the PRC | Yes    | No          | No                             | No           | No                       | Tokyo            |
-| Melbourne, Australia        | Yes    | No          | No                             | No           | No                       | Tokyo     |
-| Mexico City, Mexico         | Yes    | No          | No                             | No           | No                       | Dallas           |
-| Milan, Italy                | Yes    | No          | No                             | No           | No                       | Frankfurt        |
-| Montréal, Canada            | Yes    | No          | No                             | No           | No                       | Dallas           |
-| Oslo, Norway                | Yes    | No          | No                             | No           | No                       | Frankfurt        |
-| San Jose, US                | Yes    | No          | No                             | No           | No                       | Dallas           |
-| São Paulo, Brazil           | Yes    | No          | No                             | No           | No                       | Dallas           |
-| Seoul, South Korea          | Yes    | No          | No                             | No           | No                       | Tokyo            |
-| Toronto, Canada             | Yes    | No          | No                             | Yes          | No                       | Dallas           |
+| Region                      | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions |
+|-----------------------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|
+| Amsterdam, Netherlands      | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        |
+| Chennai, India              | Yes    | No          | No                             | No           | No                       | Tokyo            | No        |
+| Hong Kong S.A.R. of the PRC | Yes    | No          | No                             | No           | No                       | Tokyo            | No        |
+| Melbourne, Australia        | Yes    | No          | No                             | No           | No                       | Tokyo            | No        |
+| Mexico City, Mexico         | Yes    | No          | No                             | No           | No                       | Dallas           | No        |
+| Milan, Italy                | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        |
+| Montréal, Canada            | Yes    | No          | No                             | No           | No                       | Dallas           | No        |
+| Oslo, Norway                | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        |
+| San Jose, US                | Yes    | No          | No                             | No           | No                       | Dallas           | No        |
+| São Paulo, Brazil           | Yes    | No          | No                             | No           | No                       | Dallas           | No        |
+| Seoul, South Korea          | Yes    | No          | No                             | No           | No                       | Tokyo            | No        |
+| Toronto, Canada             | Yes    | No          | No                             | Yes          | No                       | Dallas           | No        |
