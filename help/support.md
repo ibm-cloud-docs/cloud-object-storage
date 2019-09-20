@@ -31,7 +31,7 @@ If you have problems or questions when you use {{site.data.keyword.cos_full}}, y
 
 Whether by searching for information or by asking questions through a forum, you can find what you need. If you don't, you can also open a support ticket.
 
-* If you have technical questions about {{site.data.keyword.cos_short}}, post your question on [Stack Overflow](https://stackoverflow.com/search?q=object-storage+ibm-bluemix) and tag your question with `ibm` and `object-storage`.
+* If you have technical questions about {{site.data.keyword.cos_short}}, post your question on [Stack Overflow](https://stackoverflow.com/search?q=object-storage+ibm) and tag your question with `ibm` and `object-storage`.
 * For questions about the service and getting started instructions, use the [IBM IBM Developer dW Answers forum](https://developer.ibm.com/answers/topics/objectstorage/). Include the  `objectstorage` tag.
 
 See [Getting help](/docs/get-support?topic=get-support-getting-customer-support) for more details about using the forums.

@@ -799,7 +799,7 @@ import (
 const (
 	apiKey            = "<api-key>" // example: xxxd12V2QHXbjaM99G9tWyYDgF_0gYdlQ8aWALIQxXx4
 	serviceInstanceID = "<resource-instance-id>" // example: crn:v1:bluemix:public:cloud-object-storage:global:a/xx999cd94a0dda86fd8eff3191349999:9999b05b-x999-4917-xxxx-9d5b326a1111::
-	authEndpoint      = "https://iam.bluemix.net/oidc/token"
+	authEndpoint      = "https://iam.cloud.ibm.com/identity/token"
 	serviceEndpoint   = "<endpoint>" // example: https://s3.us-south.cloud-object-storage.appdomain.cloud
 )
 

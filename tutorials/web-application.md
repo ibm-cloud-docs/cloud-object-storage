@@ -318,7 +318,7 @@ your application and log in to your IBM Cloud GitLab account at [readme file#gen
 ```
 Note: For successful connection to the DevOps toolchain, this machine 
 must be configured for SSH access to your IBM Cloud GitLab account at 
-https://git.ng.bluemix.net/profile/keys in order to download the 
+https://git.cloud.ibm.com/profile/keys in order to download the 
 application code.
 ```
 
@@ -347,7 +347,7 @@ online, and a directory with the sample code is created.
 
 ```
 Cloning repository 
-https://git.ng.bluemix.net/Organization.Name/webapplication...
+https://git.cloud.ibm.com/Organization.Name/webapplication...
 Cloning into 'webapplication'...
 remote: Counting objects: 60, done.
 remote: Compressing objects: 100% (54/54), done.
@@ -616,7 +616,7 @@ aws\_secret\_access\_key = {secret_access_key}
     Platform (see Figure 6). When you finish with the
     entries, click Save, and {{site.data.keyword.cloud_notm}} Platform will automatically restart the app for you.
 
-![bluemix_env_var](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-016-env-variables.jpg){: caption="Figure 6. Runtime Environment Variables defined for your app"}
+![ibm_cloud_env_var](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-016-env-variables.jpg){: caption="Figure 6. Runtime Environment Variables defined for your app"}
 
 Next, over at the {{site.data.keyword.cos_short}} Portal for your service instance, 
 add a bucket to contain your images. This scenario uses the bucket that is named `web-images`.

@@ -230,9 +230,6 @@ output should look like this:
 ```
 NAME                                   TYPE                                  DATA      AGE
 binding-sv-cos                         Opaque                                1         18d
-bluemix-default-secret                 kubernetes.io/dockerconfigjson        1         20d
-bluemix-default-secret-international   kubernetes.io/dockerconfigjson        1         20d
-bluemix-default-secret-regional        kubernetes.io/dockerconfigjson        1         20d
 default-token-8hncf                    kubernetes.io/service-account-token   3         20d
 ```
 
