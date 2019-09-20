@@ -6,7 +6,8 @@ Cloud Object Storage
 
     {: .navgroup id="learn"}
     getting-started.md
-    [About IBM Cloud Object Storage](https://www.ibm.com/cloud/object-storage)
+    about-cos.md
+    [Features overview](https://www.ibm.com/cloud/object-storage)
 
 
     {: .topicgroup}
@@ -25,7 +26,7 @@ Cloud Object Storage
     Choose regions and connect services
         basics/endpoints.md
         basics/services.md    
-        [Connect from VPC](https://cloud.ibm.com/docs/vpc-on-classic?topic=vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc)
+        [Connect from VPC](/vpc-on-classic/vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc)
         
     basics/upload.md
     
@@ -106,11 +107,10 @@ Cloud Object Storage
         [File-like access to IBM COS using s3fs](https://medium.com/@ozeri/file-like-access-to-ibm-cloud-object-storage-using-s3fs-f5094ed42594)
         tutorials/migrate.md
         tutorials/web-application.md
-        [Connect to IBM COS using IBM Cloud Direct Link](https://cloud.ibm.com/docs/infrastructure/direct-link?topic=direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage)
+        [Connect to IBM COS using IBM Cloud Direct Link](/direct-link/direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage)
 
     {: .topicgroup}
     Technical guides
-        info/data-security-encryption.md
         info/developer-guidance.md
         [Using Cloud Object Storage with Kubernetes](https://cloud.ibm.com/docs/containers?topic=containers-object_storage)
         info/cof.md
@@ -118,6 +118,11 @@ Cloud Object Storage
         info/velero.md
         help/object-storage.md
         info/advanced_endpoints.md
+
+    {: .topicgroup}
+    Security and compliance
+        info/data-security-encryption.md
+        compliance.md
     {: .navgroup-end}
 
     {: .navgroup id="help"}

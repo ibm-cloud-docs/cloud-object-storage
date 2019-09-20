@@ -571,10 +571,6 @@ The object can support 100 legal holds:
 The presence of a retention period header is required, otherwise a `400` error is returned.
 {: http}
 
-The user making adding or removing a legal hold must have `Manager` permissions for this bucket.
-
-A `Content-MD5` header is required. This operation does not make use of operation-specific payload elements.
-{: http}
 
 **Syntax**
 {: http}
