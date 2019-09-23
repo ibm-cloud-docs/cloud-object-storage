@@ -33,4 +33,4 @@ Developers use an {{site.data.keyword.cos_full_notm}} API to interact with their
 
 ## Other IBM object storage services
 
-In addition to {{site.data.keyword.cos_full_notm}}, {{site.data.keyword.cloud_notm}} currently provides several additional object storage offerings for different user needs, all of which are accessible through web-based portals and REST APIs.  [Learn more.](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started)
+In addition to {{site.data.keyword.cos_full_notm}}, {{site.data.keyword.cloud_notm}} currently provides several additional object storage offerings for different user needs, all of which are accessible through web-based portals and REST APIs. 
