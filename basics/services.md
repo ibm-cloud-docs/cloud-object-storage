@@ -59,12 +59,13 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 
 | Region           | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions |
 |------------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|
-| AP Australia     | Yes    | Yes         | Yes                            | Yes          | Yes                      | Tokyo            | No        |
+| AP Australia     | Yes    | Yes         | Yes                            | Yes          | Yes                      | Sydney           | No        |
 | AP Japan         | Yes    | Yes         | No                             | Yes          | Yes                      | Tokyo            | No       |
 | EU Great Britain | Yes    | Yes         | No                             | Yes          | Yes                      | London           | Yes       |
 | EU Germany       | Yes    | Yes         | No                             | Yes          | Yes                      | Frankfurt        | No       |
 | US South         | Yes    | Yes         | Yes                            | Yes          | Yes                      | Dallas           | Yes       |
 | US East          | Yes    | Yes         | No                             | Yes          | Yes                      | Dallas           | Yes       |
+
 ## Single Data Centers
 {: #service-availability-zone}
 
@@ -73,7 +74,7 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | Amsterdam, Netherlands      | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        |
 | Chennai, India              | Yes    | No          | No                             | No           | No                       | Tokyo            | No        |
 | Hong Kong S.A.R. of the PRC | Yes    | No          | No                             | No           | No                       | Tokyo            | No        |
-| Melbourne, Australia        | Yes    | No          | No                             | No           | No                       | Tokyo            | No        |
+| Melbourne, Australia        | Yes    | No          | No                             | No           | No                       | Melbourne        | No        |
 | Mexico City, Mexico         | Yes    | No          | No                             | No           | No                       | Dallas           | No        |
 | Milan, Italy                | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        |
 | Montréal, Canada            | Yes    | No          | No                             | No           | No                       | Dallas           | No        |
