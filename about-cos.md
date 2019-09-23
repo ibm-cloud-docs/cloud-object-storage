@@ -29,8 +29,3 @@ This service makes use of the distributed storage technologies provided by the {
 Developers use an {{site.data.keyword.cos_full_notm}} API to interact with their object storage. This documentation provides support to [get started](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started) with provisioning accounts, to create buckets, to upload objects, and to use a reference of common API interactions.
 
 
-
-
-## Other IBM object storage services
-
-In addition to {{site.data.keyword.cos_full_notm}}, {{site.data.keyword.cloud_notm}} currently provides several additional object storage offerings for different user needs, all of which are accessible through web-based portals and REST APIs. 
