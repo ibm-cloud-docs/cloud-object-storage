@@ -96,7 +96,7 @@ An example response should contain `bytes_used` and `object_count`.
   "name": "{my-bucket}",
   "crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903:bucket:my-new-bucket",
   "service_instance_id": "d6f04d83-6c4f-4a62-a165-696756d63903",
-  "service_instance_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a /3bf0d9003abfb5d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::",
+  "service_instance_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::",
   "time_created": "2018-03-26T16:23:36.980Z",
   "time_updated": "2018-10-17T19:29:10.117Z",
   "object_count": 764265234,
