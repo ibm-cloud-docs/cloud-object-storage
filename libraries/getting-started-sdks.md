@@ -533,7 +533,7 @@ function cancelMultiPartUpload(bucketName, itemName, uploadID) {
 const COS_ENDPOINT = "<endpoint>";  // example: s3.us-south.cloud-object-storage.appdomain.cloud
 const COS_API_KEY_ID = "<api-key";  // example: xxxd12V2QHXbjaM99G9tWyYDgF_0gYdlQ8aWALIQxXx4
 const COS_AUTH_ENDPOINT = "https://iam.cloud.ibm.com/identity/token";
-const COS_SERVICE_CRN = "<resource-instance-id>"; // example: crn:v1:bluemix:public:cloud-object-storage:global:a/xx999cd94a0dda86fd8eff3191349999:9999b05b-x999-4917-xxxx-9d5b326a1111::
+const COS_SERVICE_CRN = "<resource-instance-id>"; // example: crn:v1:bluemix:public:cloud-object-storage:global:a/<CREDENTIAL_ID_AS_GENERATED>:<SERVICE_ID_AS_GENERATED>::
 const COS_STORAGE_CLASS = "<storage-class>"; // example: us-south-standard
 
 // Init IBM COS library
