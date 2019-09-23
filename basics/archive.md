@@ -134,7 +134,7 @@ PUT https://{bucket}.{endpoint}?lifecycle # virtual host style
 <LifecycleConfiguration>
 	<Rule>
 		<ID>{string}</ID>
-		<Status>Enabled</status>
+		<Status>Enabled</Status>
 		<Filter>
 			<Prefix/>
 		</Filter>
@@ -174,7 +174,7 @@ Content-Length: 305
         <Filter>
 			<Prefix/>
 		</Filter>
-        <Status>Enabled</status>
+        <Status>Enabled</Status>
         <Transition>
             <Days>20</Days>
             <StorageClass>GLACIER</StorageClass>
@@ -328,7 +328,7 @@ Connection: close
     <Rule>
         <ID>my-archive-policy</ID>
         <Filter />
-        <Status>Enabled</status>
+        <Status>Enabled</Status>
         <Transition>
             <Days>20</Days>
             <StorageClass>GLACIER</StorageClass>
