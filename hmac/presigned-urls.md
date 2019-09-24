@@ -42,6 +42,9 @@ $ aws --endpoint-url=https://{endpoint} s3 presign s3://bucket-1/new-file --expi
 
 It is also possible to construct them programmatically. Here are examples for basic `GET` operations written in Python. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
+Unlike AWS S3, IBM COS does not enforce a maximum expiration time of 7 days (604800 seconds). While it is possible to create a presigned URL with a long expiration value, most use cases that require extended public access would be better served by [implementing a public access policy](/docs/cloud-object-storage/info?topic=cloud-object-storage-iam-public-access) on a bucket instead.
+{: tip}
+
 ## Create a presigned URL to download an object
 {: #presign-url-get}
 
