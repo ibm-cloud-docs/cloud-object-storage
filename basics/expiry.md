@@ -355,19 +355,20 @@ package com.ibm.cloud;
             String api_key = "ZRZDoNoUseOLL7bRO8SAMPLEHPUzUL_-fsampleyYE";
             String service_instance_id = "85SAMPLE-eDOb-4NOT-bUSE-86nnnb31eaxx"
             String endpoint_url = "https://s3.us-south.cloud-object-storage.appdomain.cloud";
-            
             String storageClass = "us-south";
             String location = "us"; 
  
             _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
             
-            // Define a rule for exiring items in a bucket
+            // Define a rule for expiring items in a bucket
             int days_to_delete = 10;
             BucketLifecycleConfiguration.Rule rule = new BucketLifecycleConfiguration.Rule()
                     .withId("Delete rule")
                     .withExpirationInDays(days_to_delete)
                     .withStatus(BucketLifecycleConfiguration.ENABLED);
-            
+                    
+                    rule.setFilter(new LifecycleFilter());
+
             // Add the rule to a new BucketLifecycleConfiguration.
             BucketLifecycleConfiguration configuration = new BucketLifecycleConfiguration()
                     .withRules(Arrays.asList(rule));
