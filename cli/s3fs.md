@@ -31,6 +31,9 @@ Applications that expect to read and write to a NFS-style filesystem can use `s3
 
 This allows you to interact with your cloud storage using familiar shell commands, like `ls` for listing or `cp` to copy files, as well as providing access to legacy applications that rely on reading and writing from local files. For a more detailed overview, [visit the project's official README](https://github.com/s3fs-fuse/s3fs-fuse).
 
+Looking for instructions for how to use {{site.data.keyword.cos_full}} in an {{site.data.keyword.containerlong_notm}} cluster? Go to the [{{site.data.keyword.containerlong_notm}} documentation](/docs/containers?topic=containers-object_storage) instead. 
+{: tip}
+
 ## Prerequisites
 {: #s3fs-prereqs}
 
