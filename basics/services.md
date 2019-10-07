@@ -60,9 +60,9 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | Region           | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions |
 |------------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|
 | AP Australia     | Yes    | Yes         | Yes                            | Yes          | Yes                      | Sydney           | No        |
-| AP Japan         | Yes    | Yes         | No                             | Yes          | Yes                      | Tokyo            | No       |
+| AP Japan         | Yes    | Yes         | No                             | Yes          | Yes                      | Tokyo            | Yes       |
 | EU Great Britain | Yes    | Yes         | No                             | Yes          | Yes                      | London           | Yes       |
-| EU Germany       | Yes    | Yes         | No                             | Yes          | Yes                      | Frankfurt        | No       |
+| EU Germany       | Yes    | Yes         | No                             | Yes          | Yes                      | Frankfurt        | Yes       |
 | US South         | Yes    | Yes         | Yes                            | Yes          | Yes                      | Dallas           | Yes       |
 | US East          | Yes    | Yes         | No                             | Yes          | Yes                      | Dallas           | Yes       |
 
