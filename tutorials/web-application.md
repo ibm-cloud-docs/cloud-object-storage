@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -404,7 +405,7 @@ We're going to start the specifics of working on the image gallery in Node.js. F
 
 Follow these steps:
 
-1.  Download the sample here: [download ![External link icon](/docs-content/v1/content/icons/launch-glyph.svg)](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/image-gallery-tutorial.zip){: new_window}. Download the template for your app to your local
+1.  Download the sample here: [download ![External link icon](/docs-content/v1/content/icons/launch-glyph.svg)](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/image-gallery-tutorial.zip){: external}. Download the template for your app to your local
     development environment using your browser. Rather than cloning the sample
     app from {{site.data.keyword.cloud_notm}} Platform, use the command in Example 21 to obtain the
     starter template for the {{site.data.keyword.cos_full_notm}} Web Gallery app. After cloning the
