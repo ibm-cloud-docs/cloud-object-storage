@@ -25,7 +25,7 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 {: #updates-2019-q3}
 
 ### September 2019
-Changes made to object storage data can be used an an [event source for Cloud Functions](/docs/services/cloud-object-storage?topic=cloud-object-storage-functions).
+Changes made to object storage data can be used as an [event source for Cloud Functions](/docs/services/cloud-object-storage?topic=cloud-object-storage-functions).
 
 ### August 2019
 Data can be encrypted [using HPCS](/docs/services/cloud-object-storage?topic=cloud-object-storage-encryption).
