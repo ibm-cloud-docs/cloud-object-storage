@@ -348,6 +348,18 @@ If a networking failure results in a partition where the data center is unable t
       </td>
     </tr>
     <tr>
+      <td>Paris, France</td>
+      <td>Public</td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.par01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.par01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
+    <tr>
       <td>San Jose, US</td>
       <td>Public</td>
       <td>
@@ -416,12 +428,12 @@ The Activity Tracker and Logging Service with LogDNA can archive to a bucket at 
 
 | COS bucket location | Resiliency | City |
 |----|----|---
-| `AMS03` | Single Site | Amsterdam |
+| `ams03` | Single Site | Amsterdam |
 | `eu-de` | Regional | Frankfurt |
 | `eu-gb` | Regional | London |
-| `MIL01` | Single Site | Milan |
-| `OSL01` | Single Site | Oslo |
-| `PAR01` | Single Site | Paris |
+| `mil01` | Single Site | Milan |
+| `osl01` | Single Site | Oslo |
+| `par01` | Single Site | Paris |
 | `eu-geo` | Cross Region | Amsterdam, Frankfurt, Milan |
 {: caption="EU-managed Endpoints"}
  
