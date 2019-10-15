@@ -74,11 +74,12 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | Amsterdam, Netherlands      | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        |
 | Chennai, India              | Yes    | No          | No                             | No           | No                       | Tokyo            | No        |
 | Hong Kong S.A.R. of the PRC | Yes    | No          | No                             | No           | No                       | Tokyo            | No        |
-| Melbourne, Australia        | Yes    | No          | No                             | No           | No                       | Sydney        | No        |
+| Melbourne, Australia        | Yes    | No          | No                             | No           | No                       | Sydney           | No        |
 | Mexico City, Mexico         | Yes    | No          | No                             | No           | No                       | Dallas           | No        |
 | Milan, Italy                | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        |
 | Montréal, Canada            | Yes    | No          | No                             | No           | No                       | Dallas           | No        |
 | Oslo, Norway                | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        |
+| Paris, France               | No     | No          | No                             | No           | No                       | Frankfurt        | No        |
 | San Jose, US                | Yes    | No          | No                             | No           | No                       | Dallas           | No        |
 | São Paulo, Brazil           | Yes    | No          | No                             | No           | No                       | Dallas           | No        |
 | Seoul, South Korea          | Yes    | No          | No                             | No           | No                       | Tokyo            | No        |
