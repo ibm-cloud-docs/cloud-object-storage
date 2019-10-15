@@ -67,8 +67,10 @@ To create a new bucket-level policy:
   6. Choose **Assign access to resources**.
   7. First, select **Cloud Object Storage** from the services menu.
   8. Then, select the appropriate service instance. Enter `bucket` in the **Resource type** field and the bucket name in the **Resource ID** field.
-  9. Select the wanted service access role.
-  10.  Click **Assign**
+  9. Select the wanted service access role. Selecting the lozenge with the number of actions show the actions available to the role, as exemplified for "Content Reader" in Figure 1.
+  10. Click **Assign** 
+
+![Role_information](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/console-iam-changes-role-cos.png){: caption="Figure 1. Example actions per Content Reader role"}
 
 Note that leaving the **Resource Type** or **Resource** fields blank will create an instance-level policy.
 {:tip}
