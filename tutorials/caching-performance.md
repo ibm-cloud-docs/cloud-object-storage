@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 The resiliency and availability of {{site.data.keyword.cos_full}} is well documented, so wouldn't it be great if you could increase the performance of your website's static assets by moving them closer to your customers, clients, or end-users? 
 {: shortdesc}
 
-In this quickstart, you will find step-by-step general instructions on how to integrate a {{site.data.keyword.cos_short}} instance with your a static web site. Of course, throughout the process, there will be numerous options beyond that which is covered here. At each step of your own process of integrating Cloud Internet Services, such as caching, you will want to investigate how all of the options work with your specific situation. And as with every learning process, mistakes are opportunities to learn. However, a mistake in a configuration can also render a resource, asset, or even whole collections inaccessible and offline.
+In this quickstart, you will find step-by-step general instructions on how to integrate a {{site.data.keyword.cos_short}} instance with a static web site. Of course, throughout the process, there will be numerous options beyond that which is covered here. At each step of your own process of integrating Cloud Internet Services, such as DNS or caching, you will want to investigate how all of the options work with your specific situation. And as with every learning process, mistakes are opportunities to learn. However, a mistake in a configuration can also render a resource, asset, or even whole collections inaccessible and offline.
 
 **Note**: When you configure services, any incorrect setting may materially affect the ultimate availability of your resources. In other words, you may lose data. The information provided here is a generalization, and therefore unsuitable to any specific purpose. Please use this for educational and experimental purposes, and not directly upon any mission-critical or production work.
 {: tip}
@@ -70,3 +70,25 @@ The first two prerequisites listed here are straightforward but having an extra 
 7. Figure 6 shows how you can manually enter each record of your new DNS configuration. Or, if you click the "Import" button shown, as suggested previously, your old DNS zone records will show up here for use in the next steps.
 
 8. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Next Steps
+{: #icsp-next-steps}
+
+Testing is suggested and encouraged. Writing a script that modifies a proxy to make requests and record the responses can also give you future suggestions for geo-routing, for example.  
