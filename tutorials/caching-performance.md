@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 The resiliency and availability of {{site.data.keyword.cos_full}} is well documented, so wouldn't it be great if you could increase the performance of your website's static assets by moving them closer to your customers, clients, or end-users? 
 {: shortdesc}
 
-In this overview, you will find step-by-step general instructions on how to integrate a {{site.data.keyword.cos_short}} instance with a static web site, serving up the static contents via [Cloudflare](https://www.cloudflare.com){: external}. Of course, throughout the process, there will be numerous options beyond that which is covered, but can be explored at your convenience right [here](https://www.ibm.com/cloud/cloudflare){: external}. 
+In this overview, you will find step-by-step general instructions on how to integrate a {{site.data.keyword.cos_short}} instance with a static web site, serving up the static contents via [Cloudflare](https://www.cloudflare.com){: external} as a Content Distribution Netork (CDN). Of course, throughout the process, there will be numerous options beyond that which can be covered, but can be explored at your convenience right [here](https://www.ibm.com/cloud/cloudflare){: external}. 
 
 At each step of your own process of integrating Cloud Internet Services, such as DNS or caching, you will want to investigate how all of the options work with your specific situation. And as with every learning process, mistakes are opportunities to learn. However, a mistake in a configuration can also render a resource, asset, or even whole collections inaccessible and offline.
 
@@ -47,7 +47,7 @@ You will need:
 * A static website addressable by a domain name on the Internet
 * The duplicate of all the static content from the website listed above in a bucket with suitable public read access.
 * The endpoint particular to your bucket's regional and resiliency settings
-* Access to your Domain Name Service settings, including the technical and other requirements, as well as the ability to change the settings.
+* Access to your Domain Name Service (DNS) settings, including the technical and other requirements, as well as the ability to change the settings.
 
 The first two prerequisites listed here are straightforward. However, having an extra website available with DNS management settings that you can experiment with, complete with all the static content for the website also available in a publicly accessible bucket, may not be an option. If you wish to get started building your own static website with {{site.data.keyword.cos_full_notm}}, you can follow this [tutorial](https://developer.ibm.com/tutorials/cl-deploy-a-hello-world-webpage-to-bluemix-app/){: external}.
 {: tip}
