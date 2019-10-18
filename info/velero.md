@@ -123,7 +123,7 @@ Configure [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/){:n
 
 4. Ensure `kubectl` is configure correctly by running:
     ```bash
-    kubectl cluster-config
+    kubectl cluster-info
     ```
     {: pre}
   
