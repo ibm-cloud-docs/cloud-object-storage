@@ -463,7 +463,7 @@ S3Object returned = cos.getObject( // request the object by identifying
     "sample", // the name of the bucket
     "serialized-object" // the name of the serialized object
 );
-S3ObjectInputStream s3Input = s3Response.getObjectContent(); // set the object stream
+S3ObjectInputStream s3Input = returned.getObjectContent(); // set the object stream
 ```
 
 ### Copy objects
