@@ -200,7 +200,7 @@ func main() {
             Bucket: aws.String(Bucket),
         }
 
-    l, e := client.ListObjectsV2(lnput)
+    l, e := client.ListObjectsV2(Input)
     fmt.Println(l)
     fmt.Println(e) // prints "<nil>"
 }
