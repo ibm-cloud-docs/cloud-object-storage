@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-08-23"
+lastupdated: "2019-10-22"
 
 keywords: object storage, node, javascript, sdk
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -32,15 +33,14 @@ The {{site.data.keyword.cos_full}} SDK for Node.js provides modern capabilities 
 ## Installing the SDK
 {: #node-install}
 
-The preferred way to install the {{site.data.keyword.cos_full}} SDK for Node.js is to use the
-[`npm`](https://www.npmjs.com){:new_window} package manager for Node.js. Type the following command
-into a command line:
+[Node.js](https://cloud.ibm.com/docs/node?topic=nodejs-getting-started){: external} is an excellent way to build [web applications](https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps){: external}, and customize your instance of {{site.data.keyword.cos_short}} for your end users. The preferred way to install the {{site.data.keyword.cos_short}} SDK for Node.js is to use the [`npm`](https://www.npmjs.com){: external} package manager for Node.js. Type the following command into a command line:
 
 ```sh
 npm install ibm-cos-sdk
 ```
+{:codeblock: .codeblock}
 
-Source code is hosted on [GitHub](https://github.com/IBM/ibm-cos-sdk-js){:new_window}.
+To download the SDK directly, the source code is hosted on [GitHub](https://github.com/IBM/ibm-cos-sdk-js){: external}.
 
 More detail on individual methods and classes can be found in [the API documentation for the SDK](https://ibm.github.io/ibm-cos-sdk-js/){:new_window}.
 
@@ -66,6 +66,7 @@ ibm_api_key_id = <DEFAULT_IBM_API_KEY>
 ibm_service_instance_id = <DEFAULT_IBM_SERVICE_INSTANCE_ID>
 ibm_auth_endpoint = <DEFAULT_IBM_AUTH_ENDPOINT>
 ```
+{:codeblock: .codeblock}
 
 If migrating from AWS S3, you can also source credentials data from  `~/.aws/credentials` in the format:
 
@@ -73,17 +74,20 @@ If migrating from AWS S3, you can also source credentials data from  `~/.aws/cre
 aws_access_key_id = <DEFAULT_ACCESS_KEY_ID>
 aws_secret_access_key = <DEFAULT_SECRET_ACCESS_KEY>
 ```
+{:codeblock: .codeblock}
 
 If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` takes preference.
 
 ## Code Examples
 {: #node-examples}
 
+Getting started with [Node.js](https://nodejs.org/en/about/){: external}&mdash;once it's installed&mdash;usually involves configuration and invocation, like in [this example from Nodejs.org](https://nodejs.org/en/docs/guides/getting-started-guide/){: external}. We'll follow a similar model
+
 ### Initializing configuration
 {: #node-examples-init}
 
 ```javascript
-const AWS = require('ibm-cos-sdk');
+const myCOS = require('ibm-cos-sdk');
 
 var config = {
     endpoint: '<endpoint>',
@@ -92,7 +96,7 @@ var config = {
     serviceInstanceId: '<resource-instance-id>',
 };
 
-var cos = new AWS.S3(config);
+var cosClient = new myCOS.S3(config);
 ```
 *Key Values*
 * `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
@@ -121,7 +125,8 @@ function createBucket(bucketName) {
     });
 }
 ```
-
+{:codeblock: .codeblock}
+{: javascript}
 
 *SDK References*
 * [createBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createBucket-property){:new_window}
@@ -145,6 +150,8 @@ function createTextFile(bucketName, itemName, fileText) {
     });
 }
 ```
+{:codeblock: .codeblock}
+{: javascript}
 
 *SDK References*
 * [putObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#putObject-property){:new_window}
@@ -169,6 +176,8 @@ function getBuckets() {
     });
 }
 ```
+{:codeblock: .codeblock}
+{: javascript}
 
 *SDK References*
 * [listBuckets](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#listBuckets-property){:new_window}
@@ -196,6 +205,8 @@ function getBucketContents(bucketName) {
     });
 }
 ```
+{:codeblock: .codeblock}
+{: javascript}
 
 *SDK References*
 * [listObjects](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#listObjects-property){:new_window}
@@ -220,6 +231,7 @@ function getItem(bucketName, itemName) {
     });
 }
 ```
+{:codeblock: .codeblock}
 
 *SDK References*
 * [getObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#getObject-property){:new_window}
@@ -242,6 +254,9 @@ function deleteItem(bucketName, itemName) {
     });
 }
 ```
+{:codeblock: .codeblock}
+{: javascript}
+
 *SDK References*
 * [deleteObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteObject-property){:new_window}
 
@@ -275,6 +290,8 @@ function deleteItems(bucketName) {
     });    
 }
 ```
+{:codeblock: .codeblock}
+{: javascript}
 
 *SDK References*
 * [deleteObjects](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteObjects-property){:new_window}
@@ -296,6 +313,8 @@ function deleteBucket(bucketName) {
     });
 }
 ```
+{:codeblock: .codeblock}
+{: javascript}
 
 *SDK References*
 * [deleteBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteBucket-property){:new_window}
@@ -385,6 +404,8 @@ function cancelMultiPartUpload(bucketName, itemName, uploadID) {
     });
 }
 ```
+{:codeblock: .codeblock}
+{: javascript}
 
 *SDK References*
 * [abortMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#abortMultipartUpload-property){:new_window}
@@ -435,6 +456,9 @@ function createBucketKP(bucketName) {
     .catch(logError);
 }
 ```
+{:codeblock: .codeblock}
+{: javascript}
+
 *Key Values*
 * `<bucket-location>` - Region or location for your bucket (Key Protect is only available in certain regions. Ensure your location matches the Key Protect service) A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes)..
 * `<algorithm>` - The encryption algorithm used for new objects added to the bucket (Default is AES256).
@@ -470,6 +494,8 @@ function getLifecycleConfiguration(bucketName) {
     });
 }
 ```
+{:codeblock: .codeblock}
+{: javascript}
 
 *SDK References*
 * [getBucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
@@ -508,6 +534,8 @@ function createLifecycleConfiguration(bucketName) {
     });
 }
 ```
+{:codeblock: .codeblock}
+{: javascript}
 
 *Key Values*
 * `<policy-id>` - Name of the lifecycle policy (must be unqiue)
@@ -532,6 +560,8 @@ function deleteLifecycleConfiguration(bucketName) {
     });
 }
 ```
+{:codeblock: .codeblock}
+{: javascript}
 
 *SDK References*
 * [deleteBucketLifecycle](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
@@ -563,6 +593,8 @@ function restoreItem(bucketName, itemName) {
     });
 }
 ```
+{:codeblock: .codeblock}
+{: javascript}
 
 *Key Values*
 * `<number-of-days>` - Number of days to keep the restored file
@@ -587,6 +619,8 @@ function getHEADItem(bucketName, itemName) {
     });
 }
 ```
+{:codeblock: .codeblock}
+{: javascript}
 
 *SDK References*
 * [headObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
@@ -634,6 +668,8 @@ function updateMetadataPut(bucketName, itemName, metaValue) {
     });
 }
 ```
+{:codeblock: .codeblock}
+{: javascript}
 
 ### Using COPY to update metadata
 {: #node-examples-metadata-copy}
@@ -665,6 +701,8 @@ function updateMetadataCopy(bucketName, itemName, metaValue) {
     });
 }
 ```
+{:codeblock: .codeblock}
+{: javascript}
 
 ## Using Immutable Object Storage
 {: #node-examples-immutable}
