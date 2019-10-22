@@ -41,3 +41,85 @@ You need:
   * Configured and operational use of {{site.data.keyword.cos_full}} SDKs for your choice of Java, Python, NodeJS, or Go.
 {: #dmop-prereqs}
 
+## Code Example
+{: #dmop-example}
+
+```javascript
+const myCOS = require('ibm-cos-sdk');
+
+var config = {
+    endpoint: 's3.us-geo.cloud-object-storage.appdomain.cloud',
+    apiKeyId: 'd-2-DO-NOT-USEevplExampleo_t3ZTCJO',
+    ibmAuthEndpoint: 'https://iam.cloud.ibm.com/identity/token',
+    serviceInstanceId: 'crn:v1:bluemix:public:cloud-object-storage:global:a/SAMPLE253abf6e65dca920c9d58126b:3f656f43-5c2a-941e-b128-DO-NOT-USE::',
+};
+
+var cosClient = new myCOS.S3(config);
+
+function logDone() {
+    console.log('COMPLETE!\n');
+}
+
+function logError(e) {
+    console.log(`ERROR: ${e.code} - ${e.message}\n`);
+}
+
+// Retrieve the list of contents from a bucket
+function getBucketContents(bucketName) {
+		var returnArr = new Array();
+		
+    console.log(`Retrieving bucket contents from: ${bucketName}\n`);
+    return cosClient.listObjects(
+        {Bucket: bucketName},
+    ).promise()
+    .then((data) => {
+        if (data != null && data.Contents != null) {
+            for (var i = 0; i < data.Contents.length; i++) {
+            		returnArr.push(data.Contents[i].Key);
+                var itemKey = data.Contents[i].Key;
+                var itemSize = data.Contents[i].Size;
+                console.log(`Item: ${itemKey} (${itemSize} bytes).\n`)
+            }
+            logDone();
+        }    
+    })
+    .catch(logError);
+    
+    return returnArr;
+}
+
+// Delete item
+function deleteItem(bucketName, itemName) {
+    console.log(`Deleting item: ${itemName}`);
+    return cosClient.deleteObject({
+        Bucket: bucketName,
+        Key: itemName
+    }).promise()
+    .then(() =>{
+        console.log(`Item: ${itemName} deleted!`);
+        
+    })
+    .catch(logError);
+}
+
+function main() {
+	try {
+        var BucketName = "<BUCKET_NAME>";
+        
+        var deleteArr = getBucketContents(BucketName);
+        var self = this;
+        if (deleteArr.length != 0) {
+            for (var i = 0; i < deleteArr.length; i++) {
+                self.deleteItem(BucketName, deleteArr[i]);
+            }
+        }
+    }
+    catch(ex) {
+        logError(ex);
+    }
+}
+
+main();
+```
+{: codeblock}
+{: javascript}

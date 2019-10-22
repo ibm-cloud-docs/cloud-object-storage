@@ -38,7 +38,7 @@ The {{site.data.keyword.cos_full}} SDK for Node.js provides modern capabilities 
 ```sh
 npm install ibm-cos-sdk
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 
 To download the SDK directly, the source code is hosted on [GitHub](https://github.com/IBM/ibm-cos-sdk-js){: external}.
 
@@ -66,7 +66,7 @@ ibm_api_key_id = <DEFAULT_IBM_API_KEY>
 ibm_service_instance_id = <DEFAULT_IBM_SERVICE_INSTANCE_ID>
 ibm_auth_endpoint = <DEFAULT_IBM_AUTH_ENDPOINT>
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 
 If migrating from AWS S3, you can also source credentials data from  `~/.aws/credentials` in the format:
 
@@ -74,7 +74,7 @@ If migrating from AWS S3, you can also source credentials data from  `~/.aws/cre
 aws_access_key_id = <DEFAULT_ACCESS_KEY_ID>
 aws_secret_access_key = <DEFAULT_SECRET_ACCESS_KEY>
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 
 If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` takes preference.
 
@@ -125,7 +125,7 @@ function createBucket(bucketName) {
     });
 }
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 {: javascript}
 
 *SDK References*
@@ -150,7 +150,7 @@ function createTextFile(bucketName, itemName, fileText) {
     });
 }
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 {: javascript}
 
 *SDK References*
@@ -176,7 +176,7 @@ function getBuckets() {
     });
 }
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 {: javascript}
 
 *SDK References*
@@ -205,7 +205,7 @@ function getBucketContents(bucketName) {
     });
 }
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 {: javascript}
 
 *SDK References*
@@ -231,7 +231,8 @@ function getItem(bucketName, itemName) {
     });
 }
 ```
-{:codeblock: .codeblock}
+{: codeblock}
+{: javascript}
 
 *SDK References*
 * [getObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#getObject-property){:new_window}
@@ -254,7 +255,7 @@ function deleteItem(bucketName, itemName) {
     });
 }
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 {: javascript}
 
 *SDK References*
@@ -290,7 +291,7 @@ function deleteItems(bucketName) {
     });    
 }
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 {: javascript}
 
 *SDK References*
@@ -313,7 +314,7 @@ function deleteBucket(bucketName) {
     });
 }
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 {: javascript}
 
 *SDK References*
@@ -404,7 +405,7 @@ function cancelMultiPartUpload(bucketName, itemName, uploadID) {
     });
 }
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 {: javascript}
 
 *SDK References*
@@ -456,7 +457,7 @@ function createBucketKP(bucketName) {
     .catch(logError);
 }
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 {: javascript}
 
 *Key Values*
@@ -494,7 +495,7 @@ function getLifecycleConfiguration(bucketName) {
     });
 }
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 {: javascript}
 
 *SDK References*
@@ -534,7 +535,7 @@ function createLifecycleConfiguration(bucketName) {
     });
 }
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 {: javascript}
 
 *Key Values*
@@ -560,7 +561,7 @@ function deleteLifecycleConfiguration(bucketName) {
     });
 }
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 {: javascript}
 
 *SDK References*
@@ -593,7 +594,7 @@ function restoreItem(bucketName, itemName) {
     });
 }
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 {: javascript}
 
 *Key Values*
@@ -619,7 +620,7 @@ function getHEADItem(bucketName, itemName) {
     });
 }
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 {: javascript}
 
 *SDK References*
@@ -668,7 +669,7 @@ function updateMetadataPut(bucketName, itemName, metaValue) {
     });
 }
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 {: javascript}
 
 ### Using COPY to update metadata
@@ -701,7 +702,7 @@ function updateMetadataCopy(bucketName, itemName, metaValue) {
     });
 }
 ```
-{:codeblock: .codeblock}
+{: codeblock}
 {: javascript}
 
 ## Using Immutable Object Storage
