@@ -162,7 +162,7 @@ Let's start with an complete example class that will run through some basic func
 
             String bucketName = "<BUCKET_NAME>";  // eg my-unique-bucket-name
             String newBucketName = "<NEW_BUCKET_NAME>"; // eg my-other-unique-bucket-name
-            String api_key = "<API_KEY>"; // eg "W00YiRnLW4a3fTjMB-oiB-2ySfTrFBIQQWanc--P3byk"
+            String api_key = "<API_KEY>"; // eg "W00YiRnLW4a3fTjMB-uiB-2ySfTrFBIQQWanc--P3byk"
             String service_instance_id = "<SERVICE_INSTANCE_ID"; // eg "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
             String endpoint_url = "https://s3.us-south.cloud-object-storage.appdomain.cloud"; // this could be any service endpoint
 
