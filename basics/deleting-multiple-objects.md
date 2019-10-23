@@ -123,3 +123,82 @@ main();
 ```
 {: codeblock}
 {: javascript}
+
+```python
+import ibm_boto3
+from ibm_botocore.client import Config, ClientError
+
+# Constants for IBM COS values
+COS_ENDPOINT = "<endpoint>" # Current list avaiable at https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints
+COS_API_KEY_ID = "<api-key>" # eg "W00YiRnLW4a3fTjMB-odB-2ySfTrFBIQQWanc--P3byk"
+COS_AUTH_ENDPOINT = "https://iam.cloud.ibm.com/identity/token"
+COS_RESOURCE_CRN = "<resource-instance-id>" # eg "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
+
+# Create resource
+cos = ibm_boto3.resource("s3",
+    ibm_api_key_id=COS_API_KEY_ID,
+    ibm_service_instance_id=COS_RESOURCE_CRN,
+    ibm_auth_endpoint=COS_AUTH_ENDPOINT,
+    config=Config(signature_version="oauth"),
+    endpoint_url=COS_ENDPOINT
+)
+
+def get_bucket_contents_v2(bucket_name, max_keys):
+    print("Retrieving bucket contents from: {0}".format(bucket_name))
+    returnArray = []
+    try:
+
+        more_results = True
+        next_token = ""
+
+        while (more_results):
+            response = cos.list_objects_v2(Bucket=bucket_name, MaxKeys=max_keys, ContinuationToken=next_token)
+            files = response["Contents"]
+            for file in files:
+                print("Item: {0} ({1} bytes).".format(file["Key"], file["Size"]))
+                returnArray.append(file["Key"])
+
+            if (response["IsTruncated"]):
+                next_token = response["NextContinuationToken"]
+                print("...More results in next batch!\n")
+            else:
+                more_results = False
+                next_token = ""
+
+        log_done()
+    except ClientError as be:
+        print("CLIENT ERROR: {0}\n".format(be))
+    except Exception as e:
+        print("Unable to retrieve bucket contents: {0}".format(e))
+    
+    return 
+
+def delete_item(bucket_name, item_name):
+    print("Deleting item: {0}".format(item_name))
+    try:
+        cos.Object(bucket_name, item_name).delete()
+        print("Item: {0} deleted!".format(item_name))
+    except ClientError as be:
+        print("CLIENT ERROR: {0}\n".format(be))
+    except Exception as e:
+        print("Unable to delete item: {0}".format(e))
+
+def main():
+    bucket = "<bucket_name>"
+    deleteListArray = get_bucket_contents_v2(bucket, 1000)
+    for item in deleteListArray:
+        delete_item(bucket_name, item_name)
+
+main()
+```
+{: codeblock}
+{: python}
+
+
+
+
+
+
+
+
+

@@ -12,6 +12,7 @@ subcollection: cloud-object-storage
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
@@ -63,6 +64,7 @@ If migrating from AWS S3, you can also source credentials data from `~/.aws/cred
 aws_access_key_id = {API_KEY}
 aws_secret_access_key = {SERVICE_INSTANCE_ID}
 ```
+{: codeblock}
 
 If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` takes preference.
 
@@ -106,6 +108,9 @@ cos = ibm_boto3.resource("s3",
     endpoint_url=COS_ENDPOINT
 )
 ```
+{: codeblock}
+{: python}
+
 *Key Values*
 * `<endpoint>` - public endpoint for your cloud Object Storage with schema prefixed ('https://') (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
@@ -136,6 +141,8 @@ def create_bucket(bucket_name):
     except Exception as e:
         print("Unable to create bucket: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
@@ -159,6 +166,8 @@ def create_text_file(bucket_name, item_name, file_text):
     except Exception as e:
         print("Unable to create text file: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
@@ -181,6 +190,8 @@ def get_buckets():
     except Exception as e:
         print("Unable to retrieve list buckets: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
@@ -204,6 +215,8 @@ def get_bucket_contents(bucket_name):
     except Exception as e:
         print("Unable to retrieve bucket contents: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
@@ -226,6 +239,8 @@ def get_item(bucket_name, item_name):
     except Exception as e:
         print("Unable to retrieve file contents: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
@@ -247,6 +262,8 @@ def delete_item(bucket_name, item_name):
     except Exception as e:
         print("Unable to delete item: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
@@ -285,6 +302,8 @@ def delete_items(bucket_name):
     except Exception as e:
         print("Unable to copy item: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
@@ -306,6 +325,8 @@ def delete_bucket(bucket_name):
     except Exception as e:
         print("Unable to delete bucket: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
@@ -351,6 +372,8 @@ def multi_part_upload(bucket_name, item_name, file_path):
     except Exception as e:
         print("Unable to complete multi-part upload: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
@@ -442,6 +465,8 @@ def multi_part_upload_manual(bucket_name, item_name, file_path):
     except Exception as e:
         print("Unable to complete multi-part upload: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
@@ -498,6 +523,8 @@ def upload_large_file(bucket_name, item_name, file_path):
     finally:
         transfer_mgr.shutdown()
 ```
+{: codeblock}
+{: python}
 
 ### List items in a bucket (v2)
 {: #python-examples-list-objects-v2}
@@ -538,6 +565,8 @@ def get_bucket_contents_v2(bucket_name, max_keys):
     except Exception as e:
         print("Unable to retrieve bucket contents: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
@@ -569,6 +598,7 @@ The following items are necessary in order to create a bucket with Key-Protect e
 
 ### Creating a bucket with key-protect enabled
 {: #python-examples-kp-new-bucket}
+
 ```python
 COS_KP_ALGORITHM = "<algorithm>"
 COS_KP_ROOTKEY_CRN = "<root-key-crn>"
@@ -590,6 +620,8 @@ def create_bucket_kp(bucket_name):
     except Exception as e:
         print("Unable to create encrypted bucket: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *Key Values*
 * `<algorithm>` - The encryption algorithm that is used for new objects added to the bucket (Default is AES256).
@@ -637,6 +669,8 @@ cos = ibm_boto3.client("s3",
 
 transfer_manager = AsperaTransferManager(cos)
 ```
+{: codeblock}
+{: python}
 
 You need to provide an IAM API Key for Aspera high-speed transfers. [HMAC Credentials](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){:new_window} are **NOT** currently supported. For more information on IAM, [click here](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview#getting-started-with-iam).
 {:tip}
@@ -652,6 +686,9 @@ ms_transfer_config = AsperaConfig(multi_session="all",
                                   target_rate_mbps=2500,
                                   multi_session_threshold_mb=100)
 ```
+{: codeblock}
+{: python}
+
 In the above example, the sdk spawns enough sessions to attempt to reach the target rate of 2500 MBps.
 
 Session management can also be explicitly configured in the SDK. This is useful in cases where more precise control over network utilization is wanted.
@@ -670,6 +707,9 @@ ms_transfer_config = AsperaConfig(multi_session=2,
 transfer_manager = AsperaTransferManager(client=client,
                                          transfer_config=ms_transfer_config)
 ```
+{: codeblock}
+{: python}
+
 For best performance in most scenarios, always make use of multiple sessions to minimize any overhead that is associated with instantiating an Aspera high-speed transfer. **If your network capacity is at least 1 Gbps, you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
 {:tip}
 
@@ -689,6 +729,8 @@ with AsperaTransferManager(client) as transfer_manager:
     # Wait for upload to complete
     future.result()
 ```
+{: codeblock}
+{: python}
 
 *Key Values*
 * `<bucket-name>` - name of the target bucket
@@ -712,6 +754,8 @@ with AsperaTransferManager(client) as transfer_manager:
     # Wait for download to complete
     future.result()
 ```
+{: codeblock}
+{: python}
 
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
@@ -737,6 +781,8 @@ with AsperaTransferManager(client) as transfer_manager:
     # Wait for upload to complete
     future.result()
 ```
+{: codeblock}
+{: python}
 
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
@@ -761,6 +807,8 @@ with AsperaTransferManager(client) as transfer_manager:
     # Wait for download to complete
     future.result()
 ```
+{: codeblock}
+{: python}
 
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
@@ -819,6 +867,8 @@ future = transfer_manager.download_directory(bucket_name, remote_directory, loca
 # Wait for download to complete
 future.result()
 ```
+{: codeblock}
+{: python}
 
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
@@ -869,6 +919,8 @@ with AsperaTransferManager(client) as transfer_manager:
     # cancel the transfer
     future.cancel()
 ```
+{: codeblock}
+{: python}
 
 ### Troubleshooting Aspera Issues
 {: #python-examples-aspera-ts}
@@ -908,6 +960,8 @@ def update_metadata_put(bucket_name, item_name, key, value):
     except Exception as e:
         log_error("Unable to update metadata: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 ### Using COPY to update metadata
 {: #python-examples-metadata-copy}
@@ -934,6 +988,8 @@ def update_metadata_copy(bucket_name, item_name, key, value):
     except Exception as e:
         log_error("Unable to update metadata: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 ## Using Immutable Object Storage
 {: #python-examples-immutable}
