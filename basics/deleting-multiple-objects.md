@@ -345,8 +345,8 @@ func main() {
     // Bucket Names
     Bucket := "<BUCKET_NAME>"
     Input := &s3.ListObjectsV2Input{
-    	            Bucket: aws.String(Bucket),
-    	        }
+            Bucket: aws.String(Bucket),
+        }
     
     res, _ := client.ListObjectsV2(Input)
 
