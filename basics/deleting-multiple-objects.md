@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-10-15"
+lastupdated: "2019-10-26"
 
-keywords: data, object storage, unstructured, cleversafe
+keywords: delete, multiple objects, code patterns
 
 subcollection: cloud-object-storage
 
@@ -22,13 +22,18 @@ subcollection: cloud-object-storage
 {:javascript: .ph data-hd-programlang='javascript'} 
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
+{:go: .ph data-hd-programlang='go'}
 
 
 # Code patterns for deleting multiple objects, 
 {: #deleting-multiple-objects-patterns}
 
-This overview of code patterns focuses on the steps that are needed to access a list of all items in a bucket for the purpose of deleting each one sequentially.
-{: .shortdesc}
+This overview of code patterns using SDKs for {{site.data.keyword.cos_full}} focuses on the steps that are needed to access a list of all items in a bucket for the purpose of deleting each one sequentially.
+{: shortdesc}
+
+The process of emptying a bucket is familiar to anyone who has to delete buckets in their instance of {{site.data.keyword.cos_short} because a bucket has to be empty to be deleted. There may be other reasons you may wish to delete items, but want to avoid deleting every object individually. This code pattern for the supported SDKs will allow you to define your configuration, create a client, and then connect with that client in order to get a list of all the items in an identified bucket for in order to delete them.
+
+It is a best practice to avoid putting credentials in scripts. This example is for testing and educational purposes, and your specific setup should be informed by best practices and [Developer Guidance](/docs/services/cloud-object-storage?topic=cloud-object-storage-dev-guide).{: tip}
 
 ## Before you begin
 {: #dmop-prereqs}
@@ -194,6 +199,169 @@ main()
 {: codeblock}
 {: python}
 
+```java
+package com.cos;
+    
+    import java.sql.Timestamp;
+    import java.util.List;
+
+    import com.ibm.cloud.objectstorage.ClientConfiguration;
+    import com.ibm.cloud.objectstorage.SDKGlobalConfiguration;
+    import com.ibm.cloud.objectstorage.auth.AWSCredentials;
+    import com.ibm.cloud.objectstorage.auth.AWSStaticCredentialsProvider;
+    import com.ibm.cloud.objectstorage.auth.BasicAWSCredentials;
+    import com.ibm.cloud.objectstorage.client.builder.AwsClientBuilder.EndpointConfiguration;
+    import com.ibm.cloud.objectstorage.services.s3.AmazonS3;
+    import com.ibm.cloud.objectstorage.services.s3.AmazonS3ClientBuilder;
+    import com.ibm.cloud.objectstorage.services.s3.model.Bucket;
+    import com.ibm.cloud.objectstorage.services.s3.model.ListObjectsRequest;
+    import com.ibm.cloud.objectstorage.services.s3.model.ObjectListing;
+    import com.ibm.cloud.objectstorage.services.s3.model.S3ObjectSummary;
+    import com.ibm.cloud.objectstorage.oauth.BasicIBMOAuthCredentials;
+
+    public class CosDeleteMultipleItems
+    {
+
+        private static AmazonS3 _cosClient;
+
+        /**
+         * @param args
+         */
+        public static void main(String[] args)
+        {
+
+            SDKGlobalConfiguration.IAM_ENDPOINT = "https://iam.cloud.ibm.com/identity/token";
+
+            String bucketName = "<BUCKET_NAME>";  // eg my-unique-bucket-name
+            String newBucketName = "<NEW_BUCKET_NAME>"; // eg my-other-unique-bucket-name
+            String api_key = "<API_KEY>"; // eg "W00YiRnLW4k3fTjMB-oiB-2ySfTrFBIQQWanc--P3byk"
+            String service_instance_id = "<SERVICE_INSTANCE_ID"; // eg "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
+            String endpoint_url = "https://s3.us-south.cloud-object-storage.appdomain.cloud"; // this could be any service endpoint
+
+            String storageClass = "us-south-standard";
+            String location = "us"; 
+
+            _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
+            
+            List<deletedItem.key> itemsForDeletion = getBucketContentsV2(bucketName, 1000);
+            
+            for(Int deletedItem: itemsForDeletion) {
+                deleteItem(bucketName, deletedItem.getKey());
+                System.out.printf("Deleted item: %s\n", deletedItem.getKey());
+            }
+        }
+
+        /**
+         * @param api_key
+         * @param service_instance_id
+         * @param endpoint_url
+         * @param location
+         * @return AmazonS3
+         */
+        public static AmazonS3 createClient(String api_key, String service_instance_id, String endpoint_url, String location)
+        {
+            AWSCredentials credentials;
+            credentials = new BasicIBMOAuthCredentials(api_key, service_instance_id);
+
+            ClientConfiguration clientConfig = new ClientConfiguration().withRequestTimeout(5000);
+            clientConfig.setUseTcpKeepAlive(true);
+
+            AmazonS3 cosClient = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
+                    .withEndpointConfiguration(new EndpointConfiguration(endpoint_url, location)).withPathStyleAccessEnabled(true)
+                    .withClientConfiguration(clientConfig).build();
+            return cosClient;
+        }
+
+        public static void getBucketContentsV2(String bucketName, int maxKeys) {
+            System.out.printf("Retrieving bucket contents (V2) from: %s\n", bucketName);
+        
+            boolean moreResults = true;
+            String nextToken = "";
+        
+            while (moreResults) {
+                ListObjectsV2Request request = new ListObjectsV2Request()
+                    .withBucketName(bucketName)
+                    .withMaxKeys(maxKeys)
+                    .withContinuationToken(nextToken);
+        
+                ListObjectsV2Result result = _cos.listObjectsV2(request);
+                for(S3ObjectSummary objectSummary : result.getObjectSummaries()) {
+                    System.out.printf("Item: %s (%s bytes)\n", objectSummary.getKey(), objectSummary.getSize());
+                }
+                
+                if (result.isTruncated()) {
+                    nextToken = result.getNextContinuationToken();
+                    System.out.println("...More results in next batch!\n");
+                }
+                else {
+                    nextToken = "";
+                    moreResults = false;
+                }
+            }
+            System.out.println("...No more results!");
+        }
+    
+        public static void deleteItem(String bucketName, String itemName) {
+            System.out.printf("Deleting item: %s\n", itemName);
+            _cos.deleteObject(bucketName, itemName);
+            System.out.printf("Item: %s deleted!\n", itemName);
+        }
+
+    }
+```
+{: codeblock}
+{: java}
+
+```go
+import (
+    "github.com/IBM/ibm-cos-sdk-go/aws/credentials/ibmiam"
+    "github.com/IBM/ibm-cos-sdk-go/aws"
+    "github.com/IBM/ibm-cos-sdk-go/aws/session"
+    "github.com/IBM/ibm-cos-sdk-go/service/s3"
+)
+
+// Constants for IBM COS values
+const (
+    apiKey            = "<API_KEY>"  // eg "0viPHOY7LbLNa9eLftrtHPpTjoGv6hbLD1QalRXikliJ"
+    serviceInstanceID = "<RESOURCE_INSTANCE_ID>" // "crn:v1:bluemix:public:cloud-object-storage:global:a/<CREDENTIAL_ID_AS_GENERATED>:<SERVICE_ID_AS_GENERATED>::"
+    authEndpoint      = "https://iam.cloud.ibm.com/identity/token"
+    serviceEndpoint   = "<SERVICE_ENDPOINT>" // eg "https://s3.us.cloud-object-storage.appdomain.cloud"
+    bucketLocation    = "<LOCATION>" // eg "us"
+)
+
+// Create config
+conf := aws.NewConfig().
+    WithRegion("us-standard").
+    WithEndpoint(serviceEndpoint).
+    WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(), authEndpoint, apiKey, serviceInstanceID)).
+    WithS3ForcePathStyle(true)
+
+func main() {
+
+    // Create client
+    sess := session.Must(session.NewSession())
+    client := s3.New(sess, conf)
+
+    // Bucket Names
+    Bucket := "<BUCKET_NAME>"
+    Input := &s3.ListObjectsV2Input{
+    	            Bucket: aws.String(Bucket),
+    	        }
+    
+    res, _ := client.ListObjectsV2(Input)
+
+    for _, item := range res.Contents {
+        input := &s3.DeleteObjectInput{
+                Bucket: aws.String(Bucket),
+                Key:    aws.String(*item.Key),
+            } 
+        d, _ := client.DeleteObject(input)
+        fmt.Println(d)
+    }
+}
+```
+{: codeblock}
+{: go}
 
 
 
