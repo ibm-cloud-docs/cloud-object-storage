@@ -79,7 +79,7 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | Milan, Italy                | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        |
 | Montréal, Canada            | Yes    | No          | No                             | No           | No                       | Dallas           | No        |
 | Oslo, Norway                | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        |
-| Paris, France               | No     | No          | No                             | No           | No                       | Frankfurt        | No        |
+| Paris, France               | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        |
 | San Jose, US                | Yes    | No          | No                             | No           | No                       | Dallas           | No        |
 | São Paulo, Brazil           | Yes    | No          | No                             | No           | No                       | Dallas           | No        |
 | Seoul, South Korea          | Yes    | No          | No                             | No           | No                       | Tokyo            | No        |
