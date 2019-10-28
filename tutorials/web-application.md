@@ -66,12 +66,12 @@ The Developer Tools offer an extensible and repeatable approach to building and 
 
 [Docker](https://www.docker.com) is installed as part of the Developer Tools, and we need it. Its work
 takes place mostly in the background within routines that scaffold your new app. Docker must be running for the build 
-commands to work. Go ahead and create a Docker account online at [Docker hub](https://hub.docker.com), run the Docker app, and sign in.
+commands to work. Go ahead and create a Docker account online at [Docker hub](https://hub.docker.com){: external}, run the Docker app, and sign in.
 
 ### Installing Node.js
 {: #tutorial-wa-install-node}
 
-The app that you build uses [Node.js](https://nodejs.org/) as the server-side engine to run the
+The app that you build uses [Node.js](https://nodejs.org/){: external} as the server-side engine to run the
 JavaScript code for this web application. To use the Node Package Manager (`npm`) to manage 
 your app's dependencies, you must install Node.js locally. Also, a local installation of Node
 simplifies testing, speeding up development. 
@@ -693,6 +693,7 @@ app.listen(port, function() {
 //...
 ```
 {: codeblock}
+{: javascript}
 
 Let's see how to define a path and views. The first line of code tells the
 Express framework to use the public directory to serve our static files, which
@@ -720,6 +721,7 @@ app.get('/', function (req, res) {
 //...
 ```
 {: codeblock}
+{: javascript}
 
 The following figure shows what the index view template when rendered
 and sent to the browser. If you are using ,`nodemon` you might have noticed 
@@ -841,6 +843,7 @@ app.use('/', imageUploadRoutes);
 //...
 ```
 {: codeblock}
+{: javascript}
 
 #### Image upload
 {: #tutorial-develop-image-upload}
@@ -894,6 +897,7 @@ var router = function(title) {
 module.exports = router;
 ```
 {: codeblock}
+{: javascript}
 
 In comparison, the code for the `galleryRouter` is a model of simplicity. We follow the same pattern
 that we did with `imageUploadRouter` and require `galleryController` on the first line of the function, then set up our route. The main difference is we
@@ -919,6 +923,7 @@ module.exports = router;
 
 ```
 {: codeblock}
+{: javascript}
 
 We next turn our attention to the controller for the gallery.
 
@@ -976,6 +981,7 @@ var galleryController = function(title) {
 module.exports = galleryController;
 ```
 {: codeblock}
+{: javascript}
 
 For local testing, a
 helpful task is to print the file object to the console, `console.log(file)`. 
@@ -1044,6 +1050,7 @@ as the value to a property named `imageUrls`.
 //...
 ```
 {: codeblock}
+{: javascript}
 
 The last code example shows the body of the `galleryView` template with the code that is needed to display our images. We get the `imageUrls` array from the `res.render()` 
 method and iterate over a pair of nested `<div>...</div>` tags. Each sends a `GET` request for the image when the `/gallery` route is requested.
