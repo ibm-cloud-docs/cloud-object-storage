@@ -105,7 +105,7 @@ For more information about endpoints, see [Endpoints and storage locations](/doc
 ### Creating a new bucket
 {: #go-new-bucket}
 
-A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes).
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes). Please note that the sample uses the appropriate location constraint for the Cold Vault storage based on the sample configuration. Your locations and configuration may vary. 
 
 ```Go
 func main() {
@@ -164,8 +164,8 @@ func main() {
     sess := session.Must(session.NewSession())
     client := s3.New(sess, conf)
 
-    // Variables
-    bucketName := "<NEW_BUCKET_NAME>"
+    // Variables and random content to sample, replace when appropriate 
+    bucketName := "<BUCKET_NAME>"
     key := "<OBJECT_KEY>"
     content := bytes.NewReader([]byte("<CONTENT>"))
 
@@ -175,7 +175,7 @@ func main() {
         Body:          content,
     }
 
-    // Call Function
+    // Call Function to upload (Put) an object 
     result, _ := client.PutObject(&input)
     fmt.Println(result)
 }
@@ -183,8 +183,8 @@ func main() {
 
 
 
-### List items in a bucket
-{: #go-list-objects}
+### List items in a bucket (List Objects V2)
+{: #go-list-objects-v2}
 
 ```Go
 func main() {
@@ -194,22 +194,40 @@ func main() {
     client := s3.New(sess, conf)
 
     // Bucket Name
-    bucket := "<BUCKET_NAME>"
+    Bucket := "<BUCKET_NAME>"
 
     // Call Function
-    resp, _ := client.ListObjects(&s3.ListObjectsInput{Bucket: aws.String(bucket)})
+    Input := &s3.ListObjectsV2Input{
+            Bucket: aws.String(Bucket),
+        }
 
-    for _, item := range resp.Contents {
-        fmt.Println("Name:         ", *item.Key)
-        fmt.Println("Last modified:", *item.LastModified)
-        fmt.Println("Size:         ", *item.Size)
-        fmt.Println("Storage class:", *item.StorageClass)
-        fmt.Println("")
-    }
-
-    fmt.Println("Found", len(resp.Contents), "items in bucket", bucket)
-    fmt.Println("")
+    l, e := client.ListObjectsV2(Input)
+    fmt.Println(l)
+    fmt.Println(e) // prints "<nil>"
 }
+
+// The response should be formatted like the following example:
+//{
+// 	Contents: [{
+// 		ETag: "\"dbDoNot53Use7d06378204e3sample9f\"",
+// 		Key: "file1.json",
+// 		LastModified: 2019-10-15 22:22:52.62 +0000 UTC,
+// 		Size: 1045,
+// 		StorageClass: "STANDARD"
+// 	  },{
+// 		ETag: "\"6e1DoNot63Usedefb440f72asamplec2\"",
+// 		Key: "file2.json",
+// 		LastModified: 2019-10-15 23:08:10.074 +0000 UTC,
+// 		Size: 1045,
+// 		StorageClass: "STANDARD"
+// 	  }],
+// 	Delimiter: "",
+// 	IsTruncated: false,
+// 	KeyCount: 2,
+// 	MaxKeys: 1000,
+// 	Name: "<BUCKET_NAME>",
+// 	Prefix: ""
+//}
 
 ```
 
@@ -228,13 +246,13 @@ func main() {
     key := "<OBJECT_KEY>"
 
     // users will need to create bucket, key (flat string name)
-    input := s3.GetObjectInput{
+    Input := s3.GetObjectInput{
         Bucket: aws.String(bucketName),
         Key:    aws.String(key),
     }
 
     // Call Function
-    res, _ := client.GetObject(&input)
+    res, _ := client.GetObject(&Input)
 
     body, _ := ioutil.ReadAll(res.Body)
     fmt.Println(body)
