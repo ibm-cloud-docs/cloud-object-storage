@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-08-23"
+lastupdated: "2019-10-29"
 
 keywords: object storage, python, sdk
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:external: target="_blank" .external}
@@ -32,14 +33,14 @@ Python support is provided through a fork of the `boto3` library with features t
 
 It can be installed from the Python Package Index through `pip install ibm-cos-sdk`.
 
-Source code can be found at [GitHub](https://github.com/ibm/ibm-cos-sdk-python/).
+Source code can be found at [GitHub](https://github.com/ibm/ibm-cos-sdk-python/){: external}.
 
 The `ibm_boto3` library provides complete access to the {{site.data.keyword.cos_full}} API. Endpoints, an API key, and the instance ID must be specified during creation of a service resource or low-level client as shown in the following basic examples.
 
 The service instance ID is also referred to as a _resource instance ID_. The value can be found by creating a [service credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), or through the CLI.
 {:tip}
 
-Detailed documentation can be found at [here](https://ibm.github.io/ibm-cos-sdk-python/).
+Detailed documentation can be found at [here](https://ibm.github.io/ibm-cos-sdk-python/){: external}.
 
 ## Upgrading from 1.x.x
 {: #python-migrate}

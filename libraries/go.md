@@ -11,6 +11,7 @@ subcollection: cloud-object-storage
 ---
 
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -31,7 +32,7 @@ subcollection: cloud-object-storage
 The {{site.data.keyword.cos_full}} SDK for Go provides features to make the most of {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
-The {{site.data.keyword.cos_full_notm}} SDK for Go is comprehensive, with many features and capabilities that exceed the scope and space of this guide. For detailed class and method documentation [see the Go API documentation](https://ibm.github.io/ibm-cos-sdk-go/). Source code can be found in the [GitHub repository](https://github.com/IBM/ibm-cos-sdk-go).
+The {{site.data.keyword.cos_full_notm}} SDK for Go is comprehensive, with many features and capabilities that exceed the scope and space of this guide. For detailed class and method documentation [see the Go API documentation](https://ibm.github.io/ibm-cos-sdk-go/){: external}. Source code can be found in the [GitHub repository](https://github.com/IBM/ibm-cos-sdk-go){: external}.
 
 ## Getting the SDK
 {: #go-get-sdk}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-10-26"
+lastupdated: "2019-10-29"
 
 keywords: delete, multiple objects, code patterns
 
@@ -48,6 +48,8 @@ You need:
 
 ## Code Example
 {: #dmop-example}
+
+Deleting an entire directory or The ability to delete one item at a time can be leveraged to same time and effort by collecting a list of all the items 
 
 ```javascript
 const myCOS = require('ibm-cos-sdk');
