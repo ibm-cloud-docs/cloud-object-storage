@@ -31,7 +31,7 @@ subcollection: cloud-object-storage
 This overview of code patterns using SDKs for {{site.data.keyword.cos_full}} focuses on the steps that are needed to access a list of all items in a bucket for the purpose of deleting each one sequentially.
 {: shortdesc}
 
-The process of emptying a bucket is familiar to anyone who has to delete buckets in their instance of {{site.data.keyword.cos_short} because a bucket has to be empty to be deleted. There may be other reasons you may wish to delete items, but want to avoid deleting every object individually. This code pattern for the supported SDKs will allow you to define your configuration, create a client, and then connect with that client in order to get a list of all the items in an identified bucket for in order to delete them.
+The process of emptying a bucket is familiar to anyone who has to delete buckets in their instance of {{site.data.keyword.cos_short}} because a bucket has to be empty to be deleted. There may be other reasons you may wish to delete items, but want to avoid deleting every object individually. This code pattern for the supported SDKs will allow you to define your configuration, create a client, and then connect with that client in order to get a list of all the items in an identified bucket for in order to delete them.
 
 It is a best practice to avoid putting credentials in scripts. This example is for testing and educational purposes, and your specific setup should be informed by best practices and [Developer Guidance](/docs/services/cloud-object-storage?topic=cloud-object-storage-dev-guide).{: tip}
 
@@ -49,7 +49,20 @@ You need:
 ## Code Example
 {: #dmop-example}
 
-Deleting an entire directory or The ability to delete one item at a time can be leveraged to same time and effort by collecting a list of all the items 
+Deleting an entire directory or removing all the contents of a bucket can be time consuming deleting each object, one at a time. The ability to delete one item at a time can be leveraged to save time and effort by collecting a list of all the items before deletion. 
+
+### Code Overview
+{: #dmop-example}
+
+The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.{: javascript} 
+
+The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.{: java} 
+
+The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.{: python} 
+
+The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.{: go} 
+
+When working with Command Line Instructions (CLI) and your For more information about configuring CLI clients, please check out the available information for [AWS](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli){: external} compatibility, [cURL](/docs/cli?topic=cloud-object-storage-curl){: external}, [Minio](/docs/cli?topic=cloud-object-storage-minio){: external}, [rClone](/docs/cli?topic=cloud-object-storage-rclone){: external}, and [s3fs](/docs/cli?topic=cloud-object-storage-s3fs){: external}.{: http}
 
 ```javascript
 const myCOS = require('ibm-cos-sdk');
