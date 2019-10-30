@@ -46,6 +46,17 @@ For this code pattern you will need:
   * Configured and operational use of {{site.data.keyword.cos_full}} SDKs for your choice of Java, Python, NodeJS, or Go; or, a configured and operational CLI client.
 {: #dmop-prereqs}
 
+## Using the Console
+{: #dmop-using-console}
+
+Before getting to the code examples, there is one way to empty a bucket via the GUI at the [{{site.data.keyword.cloud_notm}} console](https://cloud.ibm.com/){: external}, using an expiration rule on the bucket itself. For more information, please see the documentation on [deleting stale data with expiration rules](/docs/cloud-object-storage?topic=cloud-object-storage-expiry).
+
+After logging in to {{site.data.keyword.cos_short}}, choose your storage instance. Then, select your bucket from the list of your buckets. To set the rule to delete the items, select **Configuration** from the navigation menu and click **Add rule** under the *Expiration rule* section. Set the number of days to '1' to delete all the items after one day.
+
+![deleting_items](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/empty-bucket-rule-dialog.png){: caption="Figure 1. Add Expiration Rule"}
+
+The process for rule completion can take up to 24 hours, and is on a set schedule. Please take this into consideration when applying this technique.{: tip} 
+
 ## Code Example
 {: #dmop-example}
 
@@ -56,7 +67,7 @@ The topic itself points out the danger of deletion: data **will** be lost. Of co
 ### Overview
 {: #dmop-example}
 
-The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.{: javascript}The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.{: java}The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.{: python}The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.{: go}Sample instructions are provided for use once your CLI client has been configured and is operational.{: http}
+The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.{: javascript}The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.{: java}The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.{: python}The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.{: go}Sample instructions are provided for using a client application or command line once your CLI client has been configured and is operational.{: http}
 
 ```javascript
 const myCOS = require('ibm-cos-sdk');
@@ -406,6 +417,6 @@ aws s3 rm s3://{bucket-name} --recursive
 {: #dmop-next-steps}
 
 Leveraging new and existing capabilities of the tools covered in this overview can be explored further at the 
-[{{site.data.keyword.cloud_notm}} Platform](https://cloud.ibm.com/). 
+[{{site.data.keyword.cloud_notm}} Platform](https://cloud.ibm.com/){: external}. 
 
 
