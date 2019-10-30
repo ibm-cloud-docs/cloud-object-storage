@@ -1106,7 +1106,7 @@ When we click **sync**, our commit is sent to the remote `local-dev` branch. Thi
 ![pipeline_triggled_aftersync](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-022-final-pipeline.jpg){: caption="Figure 12. CD Delivery Pipeline"}
 
 ## Next Steps
-{: #nextsteps}
+{: #webapp-next-steps}
 
 We went from beginning to end and built a basic web application image gallery by using the {{site.data.keyword.cloud_notm}} Platform. 
 Each of the concepts we've covered in this basic introduction can be explored further at the 
