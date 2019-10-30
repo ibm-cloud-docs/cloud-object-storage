@@ -402,7 +402,9 @@ aws s3 rm s3://{bucket-name} --recursive
 {: codeblock}
 {: http}
 
-### Next Steps
+## Next Steps
+{: #dmop-next-steps}
+
 Leveraging new and existing capabilities of the tools covered in this overview can be explored further at the 
 [{{site.data.keyword.cloud_notm}} Platform](https://cloud.ibm.com/). 
 
