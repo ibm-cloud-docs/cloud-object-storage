@@ -88,6 +88,8 @@ Code examples were written by using **Python 2.7.15**
 ### Initializing configuration
 {: #python-examples-init}
 
+This example creates a `resource` instead of a `client` or `session` object. Note that some operations (such as Aspera high-speed transfer) require a `client` object.
+{:important}
   
 ```python
 import ibm_boto3
@@ -646,6 +648,7 @@ Each Aspera session creates an individual `ascp` process that runs on the client
 {: #python-examples-aspera-init}
 
 Before initializing the `AsperaTransferManager`, make sure that you have a working [`client`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window} (not a `resource` or `session`) object.
+{:important}
 
 ```python
 import ibm_boto3
