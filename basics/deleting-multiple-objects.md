@@ -71,18 +71,23 @@ The topic itself points out the danger of deletion: data **will** be lost. Of co
 {: #dmop-example}
 
 The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.
+{: tip}
 {: javascript}
 
 The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.
+{: tip}
 {: java}
 
 The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.
+{: tip}
 {: python}
 
 The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.
+{: tip}
 {: go}
 
 Sample instructions are provided for using a client application or command line once your CLI client has been configured and is operational.
+{: tip}
 {: http}
 
 ```javascript
