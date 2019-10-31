@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-04-12"
+lastupdated: "2019-10-31"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -21,6 +22,9 @@ subcollection: cloud-object-storage
 
 # Bucket operations
 {: #compatibility-api-bucket-operations}
+
+The modern capabilities of {{site.data.keyword.cos_full}} are conveniently available via a RESTful API. Operations and methods concerning buckets (where objects are stored) are documented here.
+{: shortdesc}
 
 
 ## List buckets
