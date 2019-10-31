@@ -33,12 +33,13 @@ This overview of code patterns using SDKs and other clients for {{site.data.keyw
 
 The process of emptying a bucket is familiar to anyone who has to delete buckets in their instance of {{site.data.keyword.cos_short}} because a bucket has to be empty to be deleted. There may be other reasons you may wish to delete items, but want to avoid deleting every object individually. This code pattern for the supported SDKs will allow you to define your configuration, create a client, and then connect with that client in order to get a list of all the items in an identified bucket for in order to delete them.
 
-It is a best practice to avoid putting credentials in scripts. This example is for testing and educational purposes, and your specific setup should be informed by best practices and [Developer Guidance](/docs/services/cloud-object-storage?topic=cloud-object-storage-dev-guide).{: tip}
+It is a best practice to avoid putting credentials in scripts. This example is for testing and educational purposes, and your specific setup should be informed by best practices and [Developer Guidance](/docs/services/cloud-object-storage?topic=cloud-object-storage-dev-guide).
+{: tip}
 
 ## Before you begin
 {: #dmop-prereqs}
 
-Specific instructions for downloading and installing SDKs are available for [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python){: external}, [Node.js](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node){: external}, [Java](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java){: external}, and [Go](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-go){: external}. Also, when working with Command Line Instructions (CLI) and your CLI clients, please check out the pertinent information related to {{site.data.keyword.cos_short}} regarding [AWS](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli){: external} compatibility, [Minio](/docs/cli?topic=cloud-object-storage-minio){: external}, and [rClone](/docs/cli?topic=cloud-object-storage-rclone){: external}.
+Specific instructions for downloading and installing SDKs are available for [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python){: external}, [Node.js](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node){: external}, [Java](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java){: external}, and [Go](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-go){: external}. Also, when working with Command Line Instructions (CLI) and your CLI clients, please check out the pertinent information related to {{site.data.keyword.cos_short}} regarding [AWS](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli){: external} compatibility, [Minio](/docs/services/cloud-object-storage?topic=cloud-object-storage-minio){: external}, and [rClone](/docs/services/cloud-object-storage?topic=cloud-object-storage-rclone){: external}.
 
 For this code pattern you will need:
   * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com)
@@ -55,19 +56,39 @@ After logging in to {{site.data.keyword.cos_short}}, choose your storage instanc
 
 ![deleting_items](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/empty-bucket-rule-dialog.png){: caption="Figure 1. Add Expiration Rule"}
 
-The process for rule completion can take up to 24 hours, and is on a set schedule. Please take this into consideration when applying this technique.{: tip} 
+The process for rule completion can take up to 24 hours, and is on a set schedule. Please take this into consideration when applying this technique.
+{: tip} 
 
 ## Code Example
 {: #dmop-example}
 
 Deleting an entire directory or removing all the contents of a bucket can be time consuming deleting each object, one at a time. The ability to delete one item at a time can be leveraged to save time and effort by collecting a list of all the items before deletion. 
 
-The topic itself points out the danger of deletion: data **will** be lost. Of course, when that is the goal, caution should be exercised that only the targeted deletions should occur. Check&mdash;and double-check&mdash;instances, bucket names, and any prefixes or paths that need to be specified.{: tip}
+The topic itself points out the danger of deletion: data **will** be lost. Of course, when that is the goal, caution should be exercised that only the targeted deletions should occur. Check&mdash;and double-check&mdash;instances, bucket names, and any prefixes or paths that need to be specified.
+{: tip}
 
 ### Overview
 {: #dmop-example}
 
-The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.{: javascript}The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.{: java}The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.{: python}The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.{: go}Sample instructions are provided for using a client application or command line once your CLI client has been configured and is operational.{: http}
+The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.
+{: tip}
+{: javascript}
+
+The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.
+{: tip}
+{: java}
+
+The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.
+{: tip}
+{: python}
+
+The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.
+{: tip}
+{: go}
+
+Sample instructions are provided for using a client application or command line once your CLI client has been configured and is operational.
+{: tip}
+{: http}
 
 ```javascript
 const myCOS = require('ibm-cos-sdk');
