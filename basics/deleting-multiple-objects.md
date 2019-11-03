@@ -181,7 +181,7 @@ cos = ibm_boto3.resource("s3",
     endpoint_url=COS_ENDPOINT
 )
 
-def get_bucket_contents_v2(bucket_name, max_keys):
+def get_bucket_contents(bucket_name, max_keys):
     print("Retrieving bucket contents from: {0}".format(bucket_name))
     returnArray = []
     try:
@@ -190,8 +190,8 @@ def get_bucket_contents_v2(bucket_name, max_keys):
         next_token = ""
 
         while (more_results):
-            response = cos.list_objects_v2(Bucket=bucket_name, MaxKeys=max_keys, ContinuationToken=next_token)
-            files = response["Contents"]
+            
+            files = cos.Bucket(bucket_name).objects.all()
             for file in files:
                 print("Item: {0} ({1} bytes).".format(file["Key"], file["Size"]))
                 returnArray.append(file["Key"])
@@ -209,7 +209,7 @@ def get_bucket_contents_v2(bucket_name, max_keys):
     except Exception as e:
         print("Unable to retrieve bucket contents: {0}".format(e))
     
-    return 
+    return returnArray
 
 def delete_item(bucket_name, item_name):
     print("Deleting item: {0}".format(item_name))
@@ -223,7 +223,7 @@ def delete_item(bucket_name, item_name):
 
 def main():
     bucket = "<bucket_name>"
-    deleteListArray = get_bucket_contents_v2(bucket, 1000)
+    deleteListArray = get_bucket_contents(bucket, 1000)
     for item in deleteListArray:
         delete_item(bucket_name, item_name)
 
