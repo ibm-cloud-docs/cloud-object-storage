@@ -110,9 +110,9 @@ function logError(e) {
     console.log(`ERROR: ${e.code} - ${e.message}\n`);
 }
 
-// Retrieve the list of contents from a bucket
-function getBucketContents(bucketName) {
-		var returnArr = new Array();
+// Retrieve the list of contents from a bucket for deletion
+function deleteContents(bucketName) {
+    var returnArr = new Array();
 		
     console.log(`Retrieving bucket contents from: ${bucketName}\n`);
     return cosClient.listObjects(
@@ -121,17 +121,16 @@ function getBucketContents(bucketName) {
     .then((data) => {
         if (data != null && data.Contents != null) {
             for (var i = 0; i < data.Contents.length; i++) {
-            		returnArr.push(data.Contents[i].Key);
+                returnArr.push(data.Contents[i].Key);
                 var itemKey = data.Contents[i].Key;
                 var itemSize = data.Contents[i].Size;
                 console.log(`Item: ${itemKey} (${itemSize} bytes).\n`)
             }
+            deleteItem(bucketName, itemName);
             logDone();
         }    
     })
     .catch(logError);
-    
-    return returnArr;
 }
 
 // Delete item
@@ -143,7 +142,6 @@ function deleteItem(bucketName, itemName) {
     }).promise()
     .then(() =>{
         console.log(`Item: ${itemName} deleted!`);
-        
     })
     .catch(logError);
 }
@@ -152,13 +150,7 @@ function main() {
 	try {
         var BucketName = "<BUCKET_NAME>";
         
-        var deleteArr = getBucketContents(BucketName);
-        var self = this;
-        if (deleteArr.length != 0) {
-            for (var i = 0; i < deleteArr.length; i++) {
-                self.deleteItem(BucketName, deleteArr[i]);
-            }
-        }
+        deleteContents(BucketName);
     }
     catch(ex) {
         logError(ex);
