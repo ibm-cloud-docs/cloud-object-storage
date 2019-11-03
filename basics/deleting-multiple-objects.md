@@ -234,6 +234,8 @@ package com.cos;
     import com.ibm.cloud.objectstorage.services.s3.AmazonS3ClientBuilder;
     import com.ibm.cloud.objectstorage.services.s3.model.Bucket;
     import com.ibm.cloud.objectstorage.services.s3.model.ListObjectsRequest;
+    import com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request;
+    import com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Result;
     import com.ibm.cloud.objectstorage.services.s3.model.ObjectListing;
     import com.ibm.cloud.objectstorage.services.s3.model.S3ObjectSummary;
     import com.ibm.cloud.objectstorage.oauth.BasicIBMOAuthCredentials;
@@ -303,7 +305,7 @@ package com.cos;
                     .withMaxKeys(maxKeys)
                     .withContinuationToken(nextToken);
         
-                ListObjectsV2Result result = _cos.listObjectsV2(request);
+                ListObjectsV2Result result = _cosClient.listObjectsV2(request);
                 for(S3ObjectSummary objectSummary : result.getObjectSummaries()) {
                     System.out.printf("Item: %s (%s bytes)\n", objectSummary.getKey(), objectSummary.getSize());
                 }
