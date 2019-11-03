@@ -185,25 +185,11 @@ def get_bucket_contents(bucket_name, max_keys):
     print("Retrieving bucket contents from: {0}".format(bucket_name))
     returnArray = []
     try:
+        files = cos.Bucket(bucket_name).objects.all()
+        for file in files:
+            print("Item: {0} ({1} bytes).".format(file["Key"], file["Size"]))
+            returnArray.append(file["Key"])
 
-        more_results = True
-        next_token = ""
-
-        while (more_results):
-            
-            files = cos.Bucket(bucket_name).objects.all()
-            for file in files:
-                print("Item: {0} ({1} bytes).".format(file["Key"], file["Size"]))
-                returnArray.append(file["Key"])
-
-            if (response["IsTruncated"]):
-                next_token = response["NextContinuationToken"]
-                print("...More results in next batch!\n")
-            else:
-                more_results = False
-                next_token = ""
-
-        log_done()
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
@@ -224,8 +210,8 @@ def delete_item(bucket_name, item_name):
 def main():
     bucket = "<bucket_name>"
     deleteListArray = get_bucket_contents(bucket, 1000)
-    for item in deleteListArray:
-        delete_item(bucket_name, item_name)
+    for item_name in deleteListArray:
+        delete_item(bucket, item_name)
 
 main()
 ```
