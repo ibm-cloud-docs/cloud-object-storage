@@ -293,7 +293,7 @@ package com.cos;
             return cosClient;
         }
 
-        public static void getBucketContentsV2(String bucketName, int maxKeys) {
+        public static List getBucketContentsV2(String bucketName, int maxKeys) {
             System.out.printf("Retrieving bucket contents (V2) from: %s\n", bucketName);
         
             boolean moreResults = true;
