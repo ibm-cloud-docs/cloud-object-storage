@@ -32,6 +32,9 @@ There are some rules around setting a firewall:
 * The {{site.data.keyword.cos_short}} Console can still access the bucket, provided the user's IP address is authorized.
 * Other {{site.data.keyword.cloud_notm}} services **are not authorized** to bypass the firewall. This limitation means that other services that rely on IAM policies for bucket access (such as Aspera, SQL Query, Security Advisor, Watson Studio, Cloud Functions, and others) will be unable to do so.
 
+In order to set up a firewall for a VPC, you'll need to create a subnet and specify the CIDR block in the firewall configuration.  For more information on creating VPC subnets, [see the documentation](/docs/vpc-on-classic-vsi?topic=vpc-on-classic-network-working-with-ip-address-ranges-address-prefixes-regions-and-subnets#ibm-cloud-vpc-and-subnets).
+{: tip}
+
 When a firewall is set, the bucket is isolated from the rest of {{site.data.keyword.cloud_notm}}. Consider how this may impact applications and workflows that depend on other services directly accessing a bucket before enabling the firewall.
 {: important}
 
