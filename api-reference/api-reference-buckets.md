@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-10-31"
+lastupdated: "2019-11-02"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -210,6 +210,13 @@ Header                                        | Type   | Description
 PUT https://{endpoint}/{bucket-name} # path style
 PUT https://{bucket-name}.{endpoint} # virtual host style
 ```
+
+The body of the request must contain an XML block with the following schema:
+
+|Element|Type|Children|Ancestor|Constraint|
+|---|---|---|---|---|
+|CreateBucketConfiguration | Container | LocationConstraint | - | - |
+|LocationConstraint| String | - | CreateBucketConfiguration | Valid location code |
 
 ```xml
 <CreateBucketConfiguration>

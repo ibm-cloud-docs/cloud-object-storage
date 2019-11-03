@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-10-31"
+lastupdated: "2019-11-02"
 
 keywords: rest, s3, compatibility, api, objects
 
@@ -307,6 +307,7 @@ The required `Content-MD5` header needs to be the binary representation of a bas
 The request can contain a maximum of 1000 keys that you want to delete. While this is useful in reducing the number of requests, be mindful when deleting many keys. Also, take into account the sizes of the objects to ensure suitable performance.
 {:tip}
 
+The following code shows one example of how to create the necessary representation of the header content:
 ```
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 ```
@@ -348,6 +349,14 @@ Content-Type: text/plain; charset=utf-8
 Content-MD5: xj/vf7lD7vbIe/bqHTaLvg==
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+
+The body of the request must contain an XML block with the following schema:
+
+|Element|Type|Children|Ancestor|Constraint|
+|---|---|---|---|---|
+|Delete | Container | Object | - | - |
+|Object| String | - | Delete | Valid key string |
+
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
