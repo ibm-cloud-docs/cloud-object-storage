@@ -562,7 +562,6 @@ def get_bucket_contents_v2(bucket_name, max_keys):
                 more_results = False
                 next_token = ""
 
-        log_done()
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
