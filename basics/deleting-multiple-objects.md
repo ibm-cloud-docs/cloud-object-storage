@@ -264,7 +264,7 @@ package com.cos;
 
             _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
             
-            List<deletedItem.key> itemsForDeletion = getBucketContentsV2(bucketName, 1000);
+            contentsForDeletion(bucketName, 1000);
             
             for(Int deletedItem: itemsForDeletion) {
                 deleteItem(bucketName, deletedItem.getKey());
@@ -293,7 +293,7 @@ package com.cos;
             return cosClient;
         }
 
-        public static List getBucketContentsV2(String bucketName, int maxKeys) {
+        public static List contentsForDeletion(String bucketName, int maxKeys) {
             System.out.printf("Retrieving bucket contents (V2) from: %s\n", bucketName);
         
             boolean moreResults = true;
@@ -308,6 +308,7 @@ package com.cos;
                 ListObjectsV2Result result = _cosClient.listObjectsV2(request);
                 for(S3ObjectSummary objectSummary : result.getObjectSummaries()) {
                     System.out.printf("Item: %s (%s bytes)\n", objectSummary.getKey(), objectSummary.getSize());
+                    deleteItem(bucketName, objectSummary.getKey());
                 }
                 
                 if (result.isTruncated()) {
