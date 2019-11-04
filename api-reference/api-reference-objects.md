@@ -288,7 +288,7 @@ x-amz-request-id: 8ff4dc32-a6f0-447f-86cf-427b564d5855
 
 ----
 
-## Deleting multiple objects
+## Delete multiple objects
 {: #object-operations-multidelete}
 
 A `POST` given a path to a bucket and proper parameters deletes a specified set of objects. A `Content-MD5` header that specifies the base64 encoded MD5 hash of the request body is required.
@@ -308,6 +308,7 @@ The request can contain a maximum of 1000 keys that you want to delete. While th
 {:tip}
 
 The following code shows one example of how to create the necessary representation of the header content:
+
 ```
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 ```
@@ -319,6 +320,14 @@ echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 POST https://{endpoint}/{bucket-name}?delete= # path style
 POST https://{bucket-name}.{endpoint}?delete= # virtual host style
 ```
+
+The body of the request must contain an XML block with the following schema:
+
+|Element|Type|Children|Ancestor|Constraint|
+|---|---|---|---|---|
+|Delete | Container | Object | - | - |
+|Object| Container | Key | Delete | - |
+|Key| String | - | Object | Valid key string |
 
 **Example request**
 
@@ -350,14 +359,6 @@ Content-MD5: xj/vf7lD7vbIe/bqHTaLvg==
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
-The body of the request must contain an XML block with the following schema:
-
-|Element|Type|Children|Ancestor|Constraint|
-|---|---|---|---|---|
-|Delete | Container | Object | - | - |
-|Object| String | - | Delete | Valid key string |
-
-
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Delete>
@@ -383,6 +384,7 @@ x-amz-request-id: a6232735-c3b7-4c13-a7b2-cd40c4728d51
 Content-Type: application/xml
 Content-Length: 207
 ```
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <DeleteResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
@@ -780,6 +782,15 @@ A `POST` request that is issued to an object with query parameter `uploadId` and
 POST https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId}= # path style
 POST https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # virtual host style
 ```
+
+The body of the request must contain an XML block with the following schema:
+
+|Element|Type|Children|Ancestor|Constraint|
+|---|---|---|---|---|
+|CompleteMultipartUpload | Container | Part | - | - |
+|Part| Container | PartNumber, ETag | Delete | - |
+|PartNumber| String | - | Object | Valid part number |
+|ETag| String | - | Object | Valid ETag value string |
 
 ```xml
 <CompleteMultipartUpload>
