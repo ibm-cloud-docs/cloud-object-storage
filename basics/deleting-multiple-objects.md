@@ -18,7 +18,6 @@ subcollection: cloud-object-storage
 {:important: .important}
 {:note: .note}
 {:download: .download}
-{:http: .ph data-hd-programlang='http'} 
 {:javascript: .ph data-hd-programlang='javascript'} 
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
@@ -63,6 +62,9 @@ The process for rule completion can take up to 24 hours, and is on a set schedul
 {: #dmop-cli-example}
 
 There are many tools available to help users make the most of {{site.data.keyword.cloud_notm}} and the following CLI clients offer simple ways of emptying buckets.
+
+Sample instructions are provided for using a client application or command line once your CLI client has been configured and is operational.
+{: tip}
 
 ### rClone example
 {: #dmop-rclone-example}
@@ -120,10 +122,6 @@ The code pattern in this exercise configures a client before creating one for th
 The code pattern in this exercise configures a client before creating one for the purpose of gathering a list of items for the purpose of deleting each object.
 {: tip}
 {: go}
-
-Sample instructions are provided for using a client application or command line once your CLI client has been configured and is operational.
-{: tip}
-{: http}
 
 ```javascript
 const myCOS = require('ibm-cos-sdk');
