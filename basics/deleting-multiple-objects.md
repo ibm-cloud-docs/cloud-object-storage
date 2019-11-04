@@ -50,17 +50,52 @@ For this code pattern you will need:
 ## Using the Console
 {: #dmop-using-console}
 
-Before getting to the code examples, there is one way to empty a bucket via the GUI at the [{{site.data.keyword.cloud_notm}} console](https://cloud.ibm.com/){: external}, using an expiration rule on the bucket itself. For more information, please see the documentation on [deleting stale data with expiration rules](/docs/cloud-object-storage?topic=cloud-object-storage-expiry).
+Before getting to the examples, there is one way to empty a bucket via the GUI at the [{{site.data.keyword.cloud_notm}} console](https://cloud.ibm.com/){: external}: using an expiration rule on the bucket itself. For more information, please see the documentation on [deleting stale data with expiration rules](/docs/cloud-object-storage?topic=cloud-object-storage-expiry).
 
 After logging in to {{site.data.keyword.cos_short}}, choose your storage instance. Then, select your bucket from the list of your buckets. To set the rule to delete the items, select **Configuration** from the navigation menu and click **Add rule** under the *Expiration rule* section. Set the number of days to '1' to delete all the items after one day.
 
-![deleting_items](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/empty-bucket-rule-dialog.png){: caption="Figure 1. Add Expiration Rule"}
+  ![deleting_items](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/empty-bucket-rule-dialog.png){: caption="Figure 1. Add Expiration Rule"}
 
 The process for rule completion can take up to 24 hours, and is on a set schedule. Please take this into consideration when applying this technique.
 {: tip} 
 
+## CLI Client Examples
+{: #dmop-cli-example}
+
+There are many tools available to help users make the most of {{site.data.keyword.cloud_notm}} and the following CLI clients offer simple ways of emptying buckets.
+
+### rClone example
+{: #dmop-rclone-example}
+
+The `rclone` tool is typically used to keep directories synchronized and for migrating data between storage platforms. You can learn more from the documentation on [using rclone](/docs/services/cloud-object-storage?topic=cloud-object-storage-rclone).
+
+```bash
+rclone purge {remote}:{path} [flags]
+```
+{: codeblock}
+
+### Minio example
+{: #dmop-minio-example}
+
+The open source Minio client allows you to use UNIX-like commands (`ls`, `cp`, `cat`, etc.) with {{site.data.keyword.cos_full}}. For more information, check out [using Minio](/docs/services/cloud-object-storage?topic=cloud-object-storage-minio).
+
+```bash
+mc rm --recursive --force {instance-alias}/{bucket-name}
+```
+{: codeblock}
+
+### AWS example
+{: #dmop-aws-example}
+
+The official command-line interface for AWS is compatible with the {{site.data.keyword.cos_full}} S3 API and you can find out more on how to [use the AWS CLI](/docs/services/cloud-object-storage?topic=cloud-object-storage-aws-cli).
+
+```bash
+aws s3 rm s3://{bucket-name} --recursive
+```
+{: codeblock}
+
 ## Code Example
-{: #dmop-example}
+{: #dmop-code-example}
 
 Deleting an entire directory or removing all the contents of a bucket can be time consuming deleting each object, one at a time. The ability to delete one item at a time can be leveraged to save time and effort by collecting a list of all the items before deletion. 
 
@@ -384,36 +419,6 @@ func main() {
 ```
 {: codeblock}
 {: go}
-
-#### rClone example
-{: #dmop-rclone-example}
-{: http}
-
-```bash
-rclone purge {remote}:{path} [flags]
-```
-{: codeblock}
-{: http}
-
-#### Minio example
-{: #dmop-minio-example}
-{: http}
-
-```bash
-mc rm --recursive --force {instance-alias}/{bucket-name}
-```
-{: codeblock}
-{: http}
-
-#### AWS example
-{: #dmop-aws-example}
-{: http}
-
-```bash
-aws s3 rm s3://{bucket-name} --recursive
-```
-{: codeblock}
-{: http}
 
 ## Next Steps
 {: #dmop-next-steps}
