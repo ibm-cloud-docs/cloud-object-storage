@@ -833,19 +833,30 @@ Content-Length: 123
 
 A `PUT` issued to a bucket with the proper parameters creates or replaces a cross-origin resource sharing (CORS) configuration for a bucket.
 
-The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash.
-
-```
-echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
-```
-{:codeblock}
-
 **Syntax**
 
 ```bash
 PUT https://{endpoint}/{bucket-name}?cors= # path style
 PUT https://{bucket-name}.{endpoint}?cors= # virtual host style
 ```
+
+**Payload Elements**
+
+The body of the request must contain an XML block with the following schema:
+
+|Element|Type|Children|Ancestor|Constraint|
+|---|---|---|---|---|
+|CORSConfiguration | Container | CORSRule | - | - |
+|CORSRule| Container | AllowedOrigin, AllowedMethod | Delete | - |
+|AllowedOrigin| String | - | CORSRule | Valid origin string |
+|AllowedMethod| String | - | CORSRule | Valid method string |
+
+The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. The following snippet shows one way to achieve the content for that particular header.
+
+```
+echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
+```
+{:codeblock}
 
 **Example request**
 
@@ -863,7 +874,7 @@ Content-Length: 237
 ```xml
 <CORSConfiguration>
   <CORSRule>
-    <AllowedOrigin>http:www.ibm.com</AllowedOrigin>
+    <AllowedOrigin>http://www.ibm.com</AllowedOrigin>
     <AllowedMethod>GET</AllowedMethod>
     <AllowedMethod>PUT</AllowedMethod>
     <AllowedMethod>POST</AllowedMethod>
@@ -998,6 +1009,13 @@ The body of the request must contain an XML block with the following schema:
     </Rule>
 </LifecycleConfiguration>
 ```
+
+The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. The following snippet shows one way to achieve the content for that particular header.
+
+```
+echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
+```
+{:codeblock}
 
 **Example request**
 
