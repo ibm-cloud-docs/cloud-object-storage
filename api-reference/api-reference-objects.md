@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-04-12"
+lastupdated: "2019-11-02"
 
 keywords: rest, s3, compatibility, api, objects
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -22,7 +23,8 @@ subcollection: cloud-object-storage
 # Object operations
 {: #object-operations}
 
-These operations read, write, and configure the objects within a bucket.
+The modern capabilities of {{site.data.keyword.cos_full}} are conveniently available via a RESTful API. Operations and methods for reading, writing, and configuring objects (stored within a bucket), are documented here.
+{: shortdesc}
 
 For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
 {:tip}
@@ -286,7 +288,7 @@ x-amz-request-id: 8ff4dc32-a6f0-447f-86cf-427b564d5855
 
 ----
 
-## Deleting multiple objects
+## Delete multiple objects
 {: #object-operations-multidelete}
 
 A `POST` given a path to a bucket and proper parameters deletes a specified set of objects. A `Content-MD5` header that specifies the base64 encoded MD5 hash of the request body is required.
@@ -305,6 +307,8 @@ The required `Content-MD5` header needs to be the binary representation of a bas
 The request can contain a maximum of 1000 keys that you want to delete. While this is useful in reducing the number of requests, be mindful when deleting many keys. Also, take into account the sizes of the objects to ensure suitable performance.
 {:tip}
 
+The following code shows one example of how to create the necessary representation of the header content:
+
 ```
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 ```
@@ -316,6 +320,14 @@ echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 POST https://{endpoint}/{bucket-name}?delete= # path style
 POST https://{bucket-name}.{endpoint}?delete= # virtual host style
 ```
+
+The body of the request must contain an XML block with the following schema:
+
+|Element|Type|Children|Ancestor|Constraint|
+|---|---|---|---|---|
+|Delete | Container | Object | - | - |
+|Object| Container | Key | Delete | - |
+|Key| String | - | Object | Valid key string |
 
 **Example request**
 
@@ -372,6 +384,7 @@ x-amz-request-id: a6232735-c3b7-4c13-a7b2-cd40c4728d51
 Content-Type: application/xml
 Content-Length: 207
 ```
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <DeleteResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
@@ -769,6 +782,15 @@ A `POST` request that is issued to an object with query parameter `uploadId` and
 POST https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId}= # path style
 POST https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # virtual host style
 ```
+
+The body of the request must contain an XML block with the following schema:
+
+|Element|Type|Children|Ancestor|Constraint|
+|---|---|---|---|---|
+|CompleteMultipartUpload | Container | Part | - | - |
+|Part| Container | PartNumber, ETag | Delete | - |
+|PartNumber| String | - | Object | Valid part number |
+|ETag| String | - | Object | Valid ETag value string |
 
 ```xml
 <CompleteMultipartUpload>

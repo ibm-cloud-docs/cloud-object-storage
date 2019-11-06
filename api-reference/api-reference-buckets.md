@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-04-12"
+lastupdated: "2019-11-02"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -21,6 +22,9 @@ subcollection: cloud-object-storage
 
 # Bucket operations
 {: #compatibility-api-bucket-operations}
+
+The modern capabilities of {{site.data.keyword.cos_full}} are conveniently available via a RESTful API. Operations and methods concerning buckets (where objects are stored) are documented here.
+{: shortdesc}
 
 
 ## List buckets
@@ -206,6 +210,13 @@ Header                                        | Type   | Description
 PUT https://{endpoint}/{bucket-name} # path style
 PUT https://{bucket-name}.{endpoint} # virtual host style
 ```
+
+The body of the request must contain an XML block with the following schema:
+
+|Element|Type|Children|Ancestor|Constraint|
+|---|---|---|---|---|
+|CreateBucketConfiguration | Container | LocationConstraint | - | - |
+|LocationConstraint| String | - | CreateBucketConfiguration | Valid location code |
 
 ```xml
 <CreateBucketConfiguration>
@@ -639,6 +650,7 @@ Content-Length: 909
 ----
 
 ## Delete a bucket
+{: #compatibility-api-delete-bucket}
 
 A `DELETE` issued to an empty bucket deletes the bucket. After deleting a bucket the name will be held in reserve by the system for 10 minutes, after which it will be released for re-use. *Only empty buckets can be deleted.*
 
@@ -683,6 +695,7 @@ If a non-empty bucket is requested for deletion, the server responds with `409 C
 ----
 
 ## List canceled/incomplete multipart uploads for a bucket
+{: #compatibility-api-list-canceled-multipart}
 
 A `GET` issued to a bucket with the proper parameters retrieves information about any canceled or incomplete multipart uploads for a bucket.
 
@@ -771,6 +784,7 @@ Content-Length: 374
 ----
 
 ## List any cross-origin resource sharing configuration for a bucket
+{: #compatibility-api-list-cors}
 
 A `GET` issued to a bucket with the proper parameters retrieves information about cross-origin resource sharing (CORS) configuration for a bucket.
 
@@ -819,15 +833,9 @@ Content-Length: 123
 ----
 
 ## Create a cross-origin resource sharing configuration for a bucket
+{: #compatibility-api-add-cors}
 
 A `PUT` issued to a bucket with the proper parameters creates or replaces a cross-origin resource sharing (CORS) configuration for a bucket.
-
-The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash.
-
-```
-echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
-```
-{:codeblock}
 
 **Syntax**
 
@@ -835,6 +843,24 @@ echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 PUT https://{endpoint}/{bucket-name}?cors= # path style
 PUT https://{bucket-name}.{endpoint}?cors= # virtual host style
 ```
+
+**Payload Elements**
+
+The body of the request must contain an XML block with the following schema:
+
+|Element|Type|Children|Ancestor|Constraint|
+|---|---|---|---|---|
+|CORSConfiguration | Container | CORSRule | - | - |
+|CORSRule| Container | AllowedOrigin, AllowedMethod | Delete | - |
+|AllowedOrigin| String | - | CORSRule | Valid origin string |
+|AllowedMethod| String | - | CORSRule | Valid method string |
+
+The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. The following snippet shows one way to achieve the content for that particular header.
+
+```
+echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
+```
+{:codeblock}
 
 **Example request**
 
@@ -852,7 +878,7 @@ Content-Length: 237
 ```xml
 <CORSConfiguration>
   <CORSRule>
-    <AllowedOrigin>http:www.ibm.com</AllowedOrigin>
+    <AllowedOrigin>http://www.ibm.com</AllowedOrigin>
     <AllowedMethod>GET</AllowedMethod>
     <AllowedMethod>PUT</AllowedMethod>
     <AllowedMethod>POST</AllowedMethod>
@@ -988,6 +1014,13 @@ The body of the request must contain an XML block with the following schema:
 </LifecycleConfiguration>
 ```
 
+The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. The following snippet shows one way to achieve the content for that particular header.
+
+```
+echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
+```
+{:codeblock}
+
 **Example request**
 
 ```http
@@ -999,6 +1032,7 @@ Content-Type: text/plain
 Content-MD5: M625BaNwd/OytcM7O5gIaQ== 
 Content-Length: 305
 ```
+{: codeblock}
 
 ```xml
 <LifecycleConfiguration>
@@ -1015,12 +1049,14 @@ Content-Length: 305
     </Rule>
 </LifecycleConfiguration>
 ```
+{: codeblock}
 
 The server responds with `200 OK`.
 
 ----
 
 ## Retrieve a bucket lifecycle configuration
+{: #compatibility-api-get-config}
 
 A `GET` operation uses the lifecycle query parameter to retrieve lifecycle settings for the bucket.
 
@@ -1060,7 +1096,77 @@ Authorization: {authorization-string}
 
 ----
 
+## Delete stale data with expiration rules
+{: #compatibility-api-expiry}
+
+Objects that are subject to a bucket's Immutable Object Storage retention policy will have any expiration actions deferred until the retention policy is no longer enforced. 
+{: note}
+
+For more about using lifecycle configuration to delete objects, check out the [documentation](/docs/cloud-object-storage?topic=cloud-object-storage-expiry).
+
+This implementation of the `PUT` operation uses the `lifecycle` query parameter to set lifecycle settings for the bucket. This operation allows for a single lifecycle policy definition for a bucket. The policy is defined as a set of rules consisting of the following parameters: `ID`, `Status`, `Filter`, and `Expiration`.
+
+|Header                    | Type   | Description|
+--------------------------|--------|----------------------------------------------------------------------------------------------------------------------
+`Content-MD5` | String | **Required**: The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.
+
+The following snippet shows one way to achieve the content for that particular header.
+
+```
+echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
+```
+{:codeblock}
+
+The body of the request must contain an XML block with the following schema:
+
+|Element|Type|Children|Ancestor|Constraint|
+|--------------------------|----------------------|----------------------------------------|--------------------------|--------------------------------------------------------------------------------------------|
+| `LifecycleConfiguration` | Container            | `Rule`                                 | None                     | Limit 1.                                                                                  |
+| `Rule`                   | Container            | `ID`, `Status`, `Filter`, `Expiration` | `LifecycleConfiguration` | Limit 1000.                                                                                  |
+| `ID`                     | String               | None                                   | `Rule`                   | Must consist of (`a-z,`A-Z0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-` |
+| `Filter`                 | String               | `Prefix`                               | `Rule`                   | Must contain a `Prefix` element                                                            |
+| `Prefix`                 | String               | None                                   | `Filter`                 | The rule applies to any objects with keys that match this prefix.                                                           |
+| `Expiration`             | `Container`          | `Days` or `Date`                       | `Rule`                   | Limit 1.                                                                                  |
+| `Days`                   | Non-negative integer | None                                   | `Expiration`             | Must be a value greater than 0.                                                           |
+| `Date`                   | Date                 | None                                   | `Expiration`             | Must be in ISO 8601 Format.                            |
+
+**Syntax**
+{: http}
+
+```yaml
+PUT https://{endpoint}/{bucket}?lifecycle # path style
+PUT https://{bucket}.{endpoint}?lifecycle # virtual host style
+```
+{: codeblock}
+
+**Example request**
+
+```yaml
+PUT /images?lifecycle HTTP/1.1
+Host: s3.us.cloud-object-storage.appdomain.cloud
+Date: Wed, 7 Feb 2018 17:50:00 GMT
+Authorization: authorization string
+Content-Type: text/plain
+Content-MD5: M625BaNwd/OytcM7O5gIaQ==
+Content-Length: 305
+
+<LifecycleConfiguration>
+	<Rule>
+		<ID>id1</ID>
+		<Filter />
+		<Status>Enabled</Status>
+		<Expiration>
+			<Days>60</Days>
+		</Expiration>
+	</Rule>
+</LifecycleConfiguration>
+```
+{: codeblock}
+
+----
+
 ## Delete the lifecycle configuration for a bucket
+{: #compatibility-api-delete-config}
 
 A `DELETE` issued to a bucket with the proper parameters removes any lifecycle configurations for a bucket.
 
@@ -1080,3 +1186,80 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
 The server responds with `204 No Content`.
+
+## Add a retention policy on an existing bucket
+{: #compatibility-api-add-retention-policy}
+
+Immutable Object Storage is available in certain regions only, see [Integrated Services](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability#service-availability) for details. The service also requires a Standard pricing plan. See [pricing](https://www.ibm.com/cloud/object-storage) for details.
+{:note}
+
+Find out more about Immutable Object Storage in the [documentation](/docs/cloud-object-storage?topic=cloud-object-storage-immutable). 
+
+The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are 0 days and 365243 days (1000 years) respectively. 
+
+This operation does not make use of extra query parameters. The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. The following snippet shows one way to achieve the content for that particular header.
+
+```
+echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
+```
+{:codeblock}
+
+**Syntax**
+
+```http
+PUT https://{endpoint}/{bucket-name}?protection= # path style
+PUT https://{bucket-name}.{endpoint}?protection= # virtual host style
+```
+{: codeblock}
+
+The body of the request must contain an XML block with the following schema:
+
+|Element|Type|Children|Ancestor|Constraint|
+|---|---|---|---|---|
+|ProtectionConfiguration | Container | Status, MinimumRetention, MaximumRetention, DefaultRetention | - | - |
+|Status| String | - | ProtectionConfiguration | Valid status string |
+|MinimumRetention| Integer | - | ProtectionConfiguration | Valid minimum retention integer |
+|MaximumRetention| Integer | - | ProtectionConfiguration | Valid maximum retention integer |
+|DefaultRetention| Integer | - | ProtectionConfiguration | Valid default retention integer |
+
+**Example request**
+
+```
+PUT /example-bucket?protection= HTTP/1.1
+Authorization: {authorization-string}
+x-amz-date: 20181011T190354Z
+x-amz-content-sha256: 2938f51643d63c864fdbea618fe71b13579570a86f39da2837c922bae68d72df
+Content-MD5: GQmpTNpruOyK6YrxHnpj7g==
+Content-Type: text/plain
+Host: 67.228.254.193
+Content-Length: 299
+<ProtectionConfiguration>
+  <Status>Retention</Status>
+  <MinimumRetention>
+    <Days>100</Days>
+  </MinimumRetention>
+  <MaximumRetention>
+    <Days>10000</Days>
+  </MaximumRetention>
+  <DefaultRetention>
+    <Days>2555</Days>
+  </DefaultRetention>
+</ProtectionConfiguration>
+```
+{: codeblock}
+
+
+**Example response**
+
+```
+HTTP/1.1 200 OK
+Date: Wed, 5 Oct 2018 15:39:38 GMT
+X-Clv-Request-Id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
+Accept-Ranges: bytes
+Server: Cleversafe/3.14.1 
+X-Clv-S3-Version: 2.5
+x-amz-request-id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
+Content-Length: 0
+```
+{: codeblock}
+
