@@ -42,7 +42,7 @@ Bucket names are required to be DNS addressable, and not case-sensitive.
 
 **How can I find out the total size of my bucket by using the API?**
 
-It's not possible to fetch the size of a bucket with a single request. You need to list the contents of a bucket and sum the size of each object.
+You can use the [Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration#returns-metadata-for-the-specified-bucket) to get the bytes used for a given bucket.
 
 **Can I migrate data from AWS S3 into {{site.data.keyword.cos_full_notm}}?**
 
@@ -54,7 +54,7 @@ Yes, you can use your existing tools to read and write data into {{site.data.key
 
 **Is there a 100-bucket limit to an account? What happens if we need more?**
 
-Yes, 100 is the current bucket limit. Generally, prefixes are a better way to group objects in a bucket, unless the data needs to be in a different region or storage class. For example, to group patient records, you would use one prefix per patient. If this is not a workable solution, contact customer support.
+Yes, 100 is the current bucket limit. Generally, prefixes are a better way to group objects in a bucket, unless the data needs to be in a different region or storage class. For example, to group patient records, you would use one prefix per patient. If this is not a workable solution and you require additional buckets, contact customer support.
 
 **If I want to store my data by using {{site.data.keyword.cos_full_notm}} Vault or Cold Vault, do I need to create another account?**
 
@@ -102,7 +102,7 @@ Yes, IBM COS Federal offering is approved for FedRAMP Moderate Security controls
 
 **Will client-key encryption be supported?**
 
-Yes, client-key encryption is supported by using SSE-C or Key Protect.
+Yes, client-key encryption is supported by using SSE-C, Key Protect, or HPCS.
 
 ## General questions
 {: #faq-general}
