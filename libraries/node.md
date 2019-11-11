@@ -42,7 +42,7 @@ npm install ibm-cos-sdk
 
 To download the SDK directly, the source code is hosted on [GitHub](https://github.com/IBM/ibm-cos-sdk-js){: external}.
 
-More detail on individual methods and classes can be found in [the API documentation for the SDK](https://ibm.github.io/ibm-cos-sdk-js/){:new_window}.
+More detail on individual methods and classes can be found in [the API documentation for the SDK](https://ibm.github.io/ibm-cos-sdk-js/){: external}.
 
 ## Getting Started
 {: #node-gs}
@@ -99,9 +99,9 @@ var config = {
 var cosClient = new myCOS.S3(config);
 ```
 *Key Values*
-* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){: external}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `<api-key>` - API key generated when creating the service credentials (write access is required for creation and deletion examples)
-* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](/docs/overview?topic=overview-crn) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window})
+* `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](/docs/overview?topic=overview-crn) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){: external})
 
 ### Creating a bucket
 {: #node-examples-new-bucket}
@@ -129,7 +129,7 @@ function createBucket(bucketName) {
 {: javascript}
 
 *SDK References*
-* [createBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createBucket-property){:new_window}
+* [createBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createBucket-property){: external}
 
 ### Creating a text object
 {: #node-examples-new-file}
@@ -154,7 +154,7 @@ function createTextFile(bucketName, itemName, fileText) {
 {: javascript}
 
 *SDK References*
-* [putObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#putObject-property){:new_window}
+* [putObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#putObject-property){: external}
 
 ### List buckets
 {: #node-examples-list-buckets}
@@ -180,7 +180,7 @@ function getBuckets() {
 {: javascript}
 
 *SDK References*
-* [listBuckets](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#listBuckets-property){:new_window}
+* [listBuckets](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#listBuckets-property){: external}
 
 ### List items in a bucket
 {: #node-examples-list-objects}
@@ -209,7 +209,7 @@ function getBucketContents(bucketName) {
 {: javascript}
 
 *SDK References*
-* [listObjects](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#listObjects-property){:new_window}
+* [listObjects](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#listObjects-property){: external}
 
 ### Get file contents of particular item
 {: #node-examples-get-contents}
@@ -235,7 +235,7 @@ function getItem(bucketName, itemName) {
 {: javascript}
 
 *SDK References*
-* [getObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#getObject-property){:new_window}
+* [getObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#getObject-property){: external}
 
 ### Delete an item from a bucket
 {: #node-examples-delete-object}
@@ -259,7 +259,7 @@ function deleteItem(bucketName, itemName) {
 {: javascript}
 
 *SDK References*
-* [deleteObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteObject-property){:new_window}
+* [deleteObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteObject-property){: external}
 
 ### Delete multiple items from a bucket
 {: #node-examples-multidelete}
@@ -295,7 +295,7 @@ function deleteItems(bucketName) {
 {: javascript}
 
 *SDK References*
-* [deleteObjects](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteObjects-property){:new_window}
+* [deleteObjects](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteObjects-property){: external}
 
 ### Delete a bucket
 {: #node-examples-delete-bucket}
@@ -318,7 +318,7 @@ function deleteBucket(bucketName) {
 {: javascript}
 
 *SDK References*
-* [deleteBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteBucket-property){:new_window}
+* [deleteBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteBucket-property){: external}
 
 
 ### Execute a multi-part upload
@@ -409,10 +409,10 @@ function cancelMultiPartUpload(bucketName, itemName, uploadID) {
 {: javascript}
 
 *SDK References*
-* [abortMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#abortMultipartUpload-property){:new_window}
-* [completeMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#completeMultipartUpload-property){:new_window}
-* [createMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createMultipartUpload-property){:new_window}
-* [uploadPart](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#uploadPart-property){:new_window}
+* [abortMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#abortMultipartUpload-property){: external}
+* [completeMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#completeMultipartUpload-property){: external}
+* [createMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createMultipartUpload-property){: external}
+* [uploadPart](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#uploadPart-property){: external}
 
 ## Using Key Protect
 {: #node-examples-kp}
@@ -466,7 +466,7 @@ function createBucketKP(bucketName) {
 * `<root-key-crn>` - CRN of the Root Key that is obtained from the Key Protect service.
 
 *SDK References*
-* [createBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createBucket-property){:new_window}
+* [createBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createBucket-property){: external}
 
 ## Using Archive Feature
 {: #node-examples-archive}
@@ -499,7 +499,7 @@ function getLifecycleConfiguration(bucketName) {
 {: javascript}
 
 *SDK References*
-* [getBucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
+* [getBucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){: external}
 
 ### Create a lifecycle configuration 
 {: #node-examples-put-lifecycle}
@@ -543,7 +543,7 @@ function createLifecycleConfiguration(bucketName) {
 * `<number-of-days>` - Number of days to keep the restored file
 
 *SDK References*
-* [putBucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
+* [putBucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){: external}
 
 ### Delete a bucket's lifecycle configuration
 {: #node-examples-delete-lifecycle}
@@ -565,7 +565,7 @@ function deleteLifecycleConfiguration(bucketName) {
 {: javascript}
 
 *SDK References*
-* [deleteBucketLifecycle](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
+* [deleteBucketLifecycle](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){: external}
 
 ### Temporarily restore an object
 {: #node-examples-restore-object}
@@ -601,7 +601,7 @@ function restoreItem(bucketName, itemName) {
 * `<number-of-days>` - Number of days to keep the restored file
 
 *SDK References*
-* [restoreObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
+* [restoreObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){: external}
 
 ### View HEAD information for an object
 {: #node-examples-lifecycle-head-object}
@@ -624,7 +624,7 @@ function getHEADItem(bucketName, itemName) {
 {: javascript}
 
 *SDK References*
-* [headObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){:new_window}
+* [headObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){: external}
 
 ## Updating Metadata
 {: #node-examples-metadata}

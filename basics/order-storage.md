@@ -34,7 +34,7 @@ Getting data into your instance of {{site.data.keyword.cos_full}} requires just 
 
 Before you create a new {{site.data.keyword.cos_full}} storage instance, it's necessary to create a customer account first.
 
-1. Go to [cloud.ibm.com](https://cloud.ibm.com/){: new_window} and click **Create a Free Account**.
+1. Go to [cloud.ibm.com](https://cloud.ibm.com/){: external} and click **Create a Free Account**.
 2. Complete the form with your email address, name, region, and phone number. Choose a password.
 3. Follow the link provided by the confirmation email, and follow the links to log in to the {{site.data.keyword.cloud}} Platform.
 4. Next, create a new object storage service instance!
@@ -42,7 +42,7 @@ Before you create a new {{site.data.keyword.cos_full}} storage instance, it's ne
 ## Creating a service instance
 {: #provision-instance}
 
-1. Log in to [the console](https://cloud.ibm.com/){: new_window}.
+1. Log in to [the console](https://cloud.ibm.com/){: external}.
 2. Navigate to the catalog, by clicking **Catalog** in the navigation bar.
 	<img alt="Provision storage Catalog" src="https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/console_provision_catalog.png" max-height="200px" />
 3. Look for the **Object Storage** tile in the storage section and select it.

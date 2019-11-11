@@ -28,7 +28,7 @@ subcollection: cloud-object-storage
 # Transfer files with CrossFTP
 {: #crossftp}
 
-[CrossFTP](http://www.crossftp.com/){:new_window} is a full-featured FTP client that supports S3-compatible cloud storage solutions including {{site.data.keyword.cos_full}}. 
+[CrossFTP](http://www.crossftp.com/){: external} is a full-featured FTP client that supports S3-compatible cloud storage solutions including {{site.data.keyword.cos_full}}. 
 {: .shortdesc}
 
 CrossFTP is available for most operating systems and provides a set of useful functions:

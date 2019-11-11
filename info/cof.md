@@ -185,7 +185,7 @@ ibmcloud resource service-binding-create <service alias> <cf app name> <role> -p
 
 Creating a service binding to {{site.data.keyword.containershort}} requires a slightly different procedure. 
 
-*For this section, you will also need to install [jq - a lightweight command-line JSON processor](https://stedolan.github.io/jq/){:new_window}.*
+*For this section, you will also need to install [jq - a lightweight command-line JSON processor](https://stedolan.github.io/jq/){: external}.*
 
 You need the following information and substitute the key values in commands below:
 
