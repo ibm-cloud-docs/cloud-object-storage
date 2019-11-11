@@ -54,7 +54,7 @@ You need:
 ## Getting the SDK
 {: #sdk-gs-install}
 
-Specific instructions for downloading and installing the SDK is available in [Using Python.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python){:new_window}{: python}[Using Node.js.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node){:new_window}{: javascript}[Using Java.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java){:new_window}{: java}[Using Go.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-go){:new_window}{: go}
+Specific instructions for downloading and installing the SDK is available in [Using Python.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python){: external}{: python}[Using Node.js.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node){: external}{: javascript}[Using Java.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java){: external}{: java}[Using Go.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-go){: external}{: go}
 
 ## Code Example
 {: #sdk-gs-example}
