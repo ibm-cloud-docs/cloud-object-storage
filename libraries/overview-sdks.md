@@ -2,15 +2,15 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-08-23"
+lastupdated: "2019-11-11"
 
 keywords: object storage, sdk, overview
 
 subcollection: cloud-object-storage
 
 ---
-
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
