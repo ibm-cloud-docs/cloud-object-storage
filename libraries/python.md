@@ -13,7 +13,6 @@ subcollection: cloud-object-storage
 {:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
-{:external: target="_blank" .external}
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}

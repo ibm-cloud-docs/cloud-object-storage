@@ -289,7 +289,7 @@ X-Clv-S3-Version: 2.5
 {: #large-objects-s3cmd} 
 {: S3cmd}
 
-[S3cmd](https://s3tools.org/s3cmd){:new_window} is a free Linux and Mac command-line tool and client for uploading, retrieving, and managing data in cloud storage service providers that use the S3 protocol. It is designed for power users who are familiar with command-line programs and is ideal for batch scripts and automated backup. S3cmd is written in Python. It's an open source project available under GNU Public License v2 (GPLv2) and is free for both commercial and private use.
+[S3cmd](https://s3tools.org/s3cmd){: external} is a free Linux and Mac command-line tool and client for uploading, retrieving, and managing data in cloud storage service providers that use the S3 protocol. It is designed for power users who are familiar with command-line programs and is ideal for batch scripts and automated backup. S3cmd is written in Python. It's an open source project available under GNU Public License v2 (GPLv2) and is free for both commercial and private use.
 {: S3cmd}
 
 S3cmd requires Python 2.6 or newer and is compatible with Python 3. The easiest way to install S3cmd is with the Python Package Index (PyPi).
@@ -301,7 +301,7 @@ pip install s3cmd
 {: codeblock}
 {: S3cmd}
 
-Once the package has been installed, grab the {{site.data.keyword.cos_full}} example configuration file [here](https://gist.githubusercontent.com/greyhoundforty/a4a9d80a942d22a8a7bf838f7abbcab2/raw/05ad584edee4370f4c252e4f747abb118d0075cb/example.s3cfg){:new_window} and update it with your Cloud Object Storage (S3) credentials:
+Once the package has been installed, grab the {{site.data.keyword.cos_full}} example configuration file [here](https://gist.githubusercontent.com/greyhoundforty/a4a9d80a942d22a8a7bf838f7abbcab2/raw/05ad584edee4370f4c252e4f747abb118d0075cb/example.s3cfg){: external} and update it with your Cloud Object Storage (S3) credentials:
 {: S3cmd}
 
 ```
@@ -334,7 +334,7 @@ $ s3cmd ls
 {: codeblock}
 {: S3cmd}
 
-The full list of options and commands along with basic usage information is available on the [s3tools](https://s3tools.org/usage){:new_window} site.
+The full list of options and commands along with basic usage information is available on the [s3tools](https://s3tools.org/usage){: external} site.
 {: S3cmd}
 
 #### Multipart uploads with S3cmd

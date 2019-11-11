@@ -19,7 +19,6 @@ subcollection: cloud-object-storage
 {:important: .important}
 {:note: .note}
 {:download: .download}
-{:external: target="_blank" .external} 
 
 
 # Using `Postman`
