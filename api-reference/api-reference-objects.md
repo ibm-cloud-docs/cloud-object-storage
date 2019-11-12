@@ -187,7 +187,8 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 {: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 GET /apiary/worker-bee HTTP/1.1
@@ -195,6 +196,7 @@ Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/
 x-amz-date: {timestamp}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: hmac}
 
 **Example response**
 
@@ -241,7 +243,8 @@ Host: s3-api.sjc-us-geo.objectstorage.s3.us-south.cloud-object-storage.appdomain
 ```
 {: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 DELETE /apiary/soldier-bee HTTP/1.1
@@ -249,6 +252,7 @@ Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/
 x-amz-date: {timestamp}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: hmac}
 
 **Example response**
 
@@ -317,7 +321,8 @@ Content-MD5: xj/vf7lD7vbIe/bqHTaLvg==
 ```
 {: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 POST /apiary?delete= HTTP/1.1
@@ -327,6 +332,7 @@ Content-Type: text/plain; charset=utf-8
 Content-MD5: xj/vf7lD7vbIe/bqHTaLvg==
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: hmac}
 
 **Example response**
 
@@ -399,7 +405,8 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 {: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 PUT /apiary/wild-bee HTTP/1.1
@@ -408,6 +415,7 @@ x-amz-date: {timestamp}
 x-amz-copy-source: /garden/bee
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: hmac}
 
 **Example response**
 
@@ -456,7 +464,8 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 {: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 OPTIONS /apiary/queen-bee HTTP/1.1
@@ -466,6 +475,7 @@ Access-Control-Request-Method: PUT
 Origin: http://ibm.com
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: hmac}
 
 **Example response**
 
@@ -530,7 +540,8 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 {: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 POST /some-bucket/multipart-object-123?uploads= HTTP/1.1
@@ -538,6 +549,7 @@ Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/
 x-amz-date: {timestamp}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: hmac}
 
 **Example response**
 
@@ -589,7 +601,8 @@ Content-Length: 13374550
 ```
 {: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 PUT /some-bucket/multipart-object-123?partNumber=1&uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
@@ -602,6 +615,7 @@ Content-Type: application/pdf
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-Length: 13374550
 ```
+{: hmac}
 
 **Example response**
 
@@ -649,7 +663,8 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 {: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 GET /farm/spaceship?uploadId=01000162-3f46-6ab8-4b5f-f7060b310f37 HTTP/1.1
@@ -657,6 +672,7 @@ Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/
 x-amz-date: {timestamp}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: hmac}
 
 **Example response**
 
@@ -740,7 +756,8 @@ Content-Length: 257
 ```
 {: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 POST /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
@@ -750,6 +767,7 @@ Content-Type: text/plain; charset=utf-8
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-Length: 257
 ```
+{: hmac}
 
 ```xml
 <CompleteMultipartUpload>
@@ -811,7 +829,8 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 {: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 DELETE /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
@@ -819,6 +838,7 @@ Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/
 x-amz-date: {timestamp}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: hmac}
 
 **Example response**
 
@@ -882,7 +902,8 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 {: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 POST /apiary/queenbee?restore HTTP/1.1
@@ -892,6 +913,7 @@ Content-MD5: rgRRGfd/OytcM7O5gIaQ==
 Content-Length: 305
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: hmac}
 
 ```xml
 <RestoreRequest>
