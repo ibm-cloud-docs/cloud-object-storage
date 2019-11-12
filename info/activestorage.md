@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-11-11"
 
 keywords: object storage, ruby, activestorage, rails
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -26,14 +27,14 @@ subcollection: cloud-object-storage
 # Ruby on Rails (Active Storage)
 {: #ror-activestorage}
 
-[Rails](https://guides.rubyonrails.org/getting_started.html){:new_window} is an open-source, web application development framework.
+[Rails](https://guides.rubyonrails.org/getting_started.html){: external} is an open-source, web application development framework.
 {: .shortdesc}
 
 Combining the Ruby programming language with HTML, CSS, and JavaScript, Rails includes everything needed to create server-side web applications using the Model-View-Controller (MVC) pattern. 
 
-In Rails, the Model (business data and logic layer) of the MVC pattern is handled by [Active Record](https://guides.rubyonrails.org/active_record_basics.html){:new_window}.
+In Rails, the Model (business data and logic layer) of the MVC pattern is handled by [Active Record](https://guides.rubyonrails.org/active_record_basics.html){: external}.
 
-[Active Storage](https://guides.rubyonrails.org/active_storage_overview.html){:new_window} is a built-in framework for attaching files from cloud storage services like {{site.data.keyword.cos_full}} to Active Record objects.
+[Active Storage](https://guides.rubyonrails.org/active_storage_overview.html){: external} is a built-in framework for attaching files from cloud storage services like {{site.data.keyword.cos_full}} to Active Record objects.
 
 To get started with Active Storage, run the following commands from your application's home directory: 
 
@@ -59,7 +60,7 @@ ibmcos:
   endpoint: <regional-endpoint>
 ```
 
-Add the [aws-sdk-s3](https://github.com/aws/aws-sdk-ruby){:new_window} gem to your Gemfile:
+Add the [aws-sdk-s3](https://github.com/aws/aws-sdk-ruby){: external} gem to your Gemfile:
 
 ```
 gem "aws-sdk-s3", require: false

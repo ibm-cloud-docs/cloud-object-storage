@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-08-23"
+lastupdated: "2019-11-11"
 
 keywords: cloud foundry, compute, object storage
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -184,7 +185,7 @@ ibmcloud resource service-binding-create <service alias> <cf app name> <role> -p
 
 Creating a service binding to {{site.data.keyword.containershort}} requires a slightly different procedure. 
 
-*For this section, you will also need to install [jq - a lightweight command-line JSON processor](https://stedolan.github.io/jq/){:new_window}.*
+*For this section, you will also need to install [jq - a lightweight command-line JSON processor](https://stedolan.github.io/jq/){: external}.*
 
 You need the following information and substitute the key values in commands below:
 

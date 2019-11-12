@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-10-09"
+lastupdated: "2019-11-11"
 
 keywords: rest, s3, compatibility, api, postman, client, object storage
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -18,7 +19,6 @@ subcollection: cloud-object-storage
 {:important: .important}
 {:note: .note}
 {:download: .download}
-{:external: target="_blank" .external} 
 
 
 # Using `Postman`

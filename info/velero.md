@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-11-11"
 
 keywords: velero, kubernetes, integration, object storage
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -25,7 +26,7 @@ subcollection: cloud-object-storage
 
 # Velero integration
 {: #velero}
-[Velero](https://github.com/heptio/velero){:new_window} (formerly Heptio Ark) is a toolset for backing up and restoring Kubernetes clusters by using the {{site.data.keyword.cos_full}} API.
+[Velero](https://github.com/heptio/velero){: external}(formerly Heptio Ark) is a toolset for backing up and restoring Kubernetes clusters by using the {{site.data.keyword.cos_full}} API.
 {: .shortdesc}
 
 Velero consists of two parts:
@@ -38,8 +39,8 @@ Velero consists of two parts:
 
 Before you begin, you need the following setup:
 
-* The [`IBM Cloud CLI`](/docs/cli?topic=cloud-cli-getting-started){:new_window} installed
-* The [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/){:new_window} command-line tool that is installed and configured to connect to your cluster
+* The [`IBM Cloud CLI`](/docs/cli?topic=cloud-cli-getting-started){: external} installed
+* The [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/){: external} command-line tool that is installed and configured to connect to your cluster
 * An {{site.data.keyword.cos_short}} instance
 * A {{site.data.keyword.cos_short}} bucket
 * HMAC credentials with Writer access to bucket
@@ -47,7 +48,7 @@ Before you begin, you need the following setup:
 ## Install Velero Client
 {: #velero-install}
 
-1. Download the most recent [version](https://github.com/heptio/velero/releases){:new_window} of Velero for your OS
+1. Download the most recent [version](https://github.com/heptio/velero/releases){: external} of Velero for your OS
 2. Extract the .tar file to a folder on your local system
 3. Verify you can run the `velero` binary:
 
@@ -107,7 +108,7 @@ Create a credentials file (`credentials-velero`) with the HMAC keys in your loca
 ### Configure kubectl
 {: #velero-config-kubectl}
 
-Configure [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/){:new_window} to connect to your cluster.
+Configure [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/){: external} to connect to your cluster.
 
 1. Log in to the IBM Cloud Platform by using the CLI.<br/><br/>*For increased security, it's also possible to store the API key in a file or set it as an environment variable.*
     ```bash
@@ -138,7 +139,7 @@ Configure [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/){:n
 ### Configure Velero Server and Cloud Storage
 {: #velero-config-storage}
 
-1. In the Velero folder, run the following to set up namespaces, RBAC, and other scaffolding<br/><br/>*The default namespace is `velero`. If you want to create a custom namespace, see the instructions at ['run in custom namespace'](https://heptio.github.io/velero/master/namespace.html){:new_window}*
+1. In the Velero folder, run the following to set up namespaces, RBAC, and other scaffolding<br/><br/>*The default namespace is `velero`. If you want to create a custom namespace, see the instructions at ['run in custom namespace'](https://heptio.github.io/velero/master/namespace.html){: external}*
     ```bash
     kubectl apply -f config/common/00-prereqs.yaml
     ```
@@ -176,7 +177,7 @@ Configure [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/){:n
    * `<YOUR_REGION>` - The [location constraint](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint) of your bucket (`us-standard`)
    * `<YOUR_URL_ACCESS_POINT>` - The regional endpoint URL (`https://s3.us.cloud-object-storage.appdomain.cloud`). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
-    *For more information, see [BackupStorageLocation](https://heptio.github.io/velero/master/api-types/backupstoragelocation.html#aws){:new_window} definition for additional information.*
+    *For more information, see [BackupStorageLocation](https://heptio.github.io/velero/master/api-types/backupstoragelocation.html#aws){: external} definition for additional information.*
 
 ### Start the Velero server
 {: #velero-config-server}
