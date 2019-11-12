@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-08-23"
+lastupdated: "2019-11-11"
 
 keywords: gui, file transfer, crossftp
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -27,7 +28,7 @@ subcollection: cloud-object-storage
 # Transfer files with CrossFTP
 {: #crossftp}
 
-[CrossFTP](http://www.crossftp.com/){:new_window} is a full-featured FTP client that supports S3-compatible cloud storage solutions including {{site.data.keyword.cos_full}}. 
+[CrossFTP](http://www.crossftp.com/){: external} is a full-featured FTP client that supports S3-compatible cloud storage solutions including {{site.data.keyword.cos_full}}. 
 {: .shortdesc}
 
 CrossFTP is available for most operating systems and provides a set of useful functions:

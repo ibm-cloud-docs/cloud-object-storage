@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-08-26"
+lastupdated: "2019-11-11"
 
 keywords: upload, getting started, basics, ingest
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}

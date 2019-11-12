@@ -27,7 +27,7 @@ subcollection: cloud-object-storage
 # Using Minio Client
 {: #minio}
 
-The open source [Minio Client](https://min.io/download#/linux){:new_window} could be your solution for using UNIX-like commands (`ls`, `cp`, `cat`, etc.) with {{site.data.keyword.cos_full}}.
+The open source [Minio Client](https://min.io/download#/linux){: external} could be your solution for using UNIX-like commands (`ls`, `cp`, `cat`, etc.) with {{site.data.keyword.cos_full}}.
 {: shortdesc}
 
 ## Installation

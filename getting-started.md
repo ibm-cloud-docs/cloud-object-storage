@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-10-15"
+lastupdated: "2019-11-11"
 
 keywords: data, object storage, unstructured, cleversafe
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:shortdesc: .shortdesc}
+{:external: target="_blank" .external}
 {:new_window: target="_blank"}
 {:codeblock: .codeblock}
 {:pre: .pre}
