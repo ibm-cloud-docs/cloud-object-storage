@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-11-02"
+lastupdated: "2019-11-12"
 
 keywords: rest, s3, compatibility, api, buckets
 
