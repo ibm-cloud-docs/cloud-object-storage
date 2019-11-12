@@ -18,7 +18,9 @@ subcollection: cloud-object-storage
 {:tip: .tip}
 {:important: .important}
 {:note: .note}
-{:download: .download} 
+{:download: .download}
+{:token: .ph data-hd-programlang='token'}
+{:hmac: .ph data-hd-programlang='hmac'}
 
 # Bucket operations
 {: #compatibility-api-bucket-operations}
