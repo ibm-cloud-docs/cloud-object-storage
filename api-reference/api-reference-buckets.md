@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-11-02"
+lastupdated: "2019-11-12"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -18,7 +18,9 @@ subcollection: cloud-object-storage
 {:tip: .tip}
 {:important: .important}
 {:note: .note}
-{:download: .download} 
+{:download: .download}
+{:token: .ph data-hd-programlang='token'}
+{:hmac: .ph data-hd-programlang='hmac'}
 
 # Bucket operations
 {: #compatibility-api-bucket-operations}
