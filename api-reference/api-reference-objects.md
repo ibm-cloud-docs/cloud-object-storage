@@ -995,7 +995,7 @@ Content-Length: 0
 ### Using COPY to update metadata
 {: #object-operations-metadata-copy}
 
-For extra details about running a `COPY` request, click [here](#object-operations-copy)
+The complete details about the `COPY` request are [here](#object-operations-copy).
 
 **Syntax**
 
@@ -1032,3 +1032,8 @@ x-amz-request-id: 9f0ca49a-ae13-4d2d-925b-117b157cf5c3
 ETag: "3ca744fa96cb95e92081708887f63de5"
 Content-Length: 0
 ```
+
+## Next Steps
+{: #api-ref-objects-next-steps}
+
+Learn more about the API reference on bucket operations at the [documentation](/docs/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations).

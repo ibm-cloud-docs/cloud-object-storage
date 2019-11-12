@@ -52,6 +52,7 @@ GET https://{endpoint}/
 ```
 
 **Example request**
+{: token}
 
 ```http
 GET / HTTP/1.1
@@ -60,6 +61,7 @@ Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ibm-service-instance-id: {ibm-service-instance-id}
 ```
+{: token}
 
 **Example response**
 
@@ -101,6 +103,7 @@ GET https://{endpoint}/?extended
 ```
 
 **Example request**
+{: token}
 
 ```http
 GET /?extended HTTP/1.1
@@ -109,6 +112,7 @@ Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ibm-service-instance-id: {ibm-service-instance-id}
 ```
+{: token}
 
 **Example response**
 
@@ -171,8 +175,10 @@ PUT https://{bucket-name}.{endpoint} # virtual host style
 ```
 
 **Example request**
+{: token}
 
 This is an example of creating a new bucket called 'images'.
+{: token}
 
 ```http
 PUT /images HTTP/1.1
@@ -181,6 +187,7 @@ Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ibm-service-instance-id: {ibm-service-instance-id}
 ```
+{: token}
 
 **Example response**
 
@@ -229,6 +236,7 @@ The body of the request must contain an XML block with the following schema:
 A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint).
 
 **Example request**
+{: token}
 
 This is an example of creating a new bucket called 'vault-images'.
 
@@ -240,6 +248,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 ibm-service-instance-id: {ibm-service-instance-id}
 Content-Length: 110
 ```
+{: token}
 
 ```xml
 <CreateBucketConfiguration>
@@ -287,6 +296,7 @@ PUT https://{bucket-name}.{endpoint} # virtual host style
 ```
 
 **Example request**
+{: token}
 
 This is an example of creating a new bucket called 'secure-files'.
 
@@ -299,6 +309,7 @@ ibm-service-instance-id: {ibm-service-instance-id}
 ibm-sse-kp-encryption-algorithm: "AES256"
 ibm-sse-kp-customer-root-key-crn: {customer-root-key-id}
 ```
+{: token}
 
 **Example response**
 
@@ -331,8 +342,10 @@ HEAD https://{bucket-name}.{endpoint} # virtual host style
 ```
 
 **Example request**
+{: token}
 
 This is an example of fetching the headers for the 'images' bucket.
+{: token}
 
 ```http
 HEAD /images HTTP/1.1
@@ -340,6 +353,7 @@ Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization:Bearer {token}
 ```
+{: token}
 
 **Example response**
 
@@ -355,8 +369,10 @@ Content-Length: 0
 ```
 
 **Example request**
+{: token}
 
 `HEAD` requests on buckets with Key Protect encryption will return extra headers.
+{: token}
 
 ```http
 HEAD /secure-files HTTP/1.1
@@ -364,6 +380,7 @@ Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization:Bearer {token}
 ```
+{: token}
 
 **Example response**
 
@@ -419,6 +436,7 @@ Authorization: Bearer {token}
 ```
 
 **Example response (simple)**
+{: token}
 
 ```http
 HTTP/1.1 200 OK
@@ -431,6 +449,7 @@ x-amz-request-id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
 Content-Type: application/xml
 Content-Length: 814
 ```
+{: token}
 
 ```xml
 <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
@@ -465,8 +484,10 @@ Content-Length: 814
 ```
 
 **Example request (max-keys parameter)**
+{: token}
 
 This request lists the objects inside the "apiary" bucket with a max key returned set to 1.
+{: token}
 
 ```http
 GET /apiary?list-type=2&max-keys=1 HTTP/1.1
@@ -474,6 +495,7 @@ Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization: Bearer {token}
 ```
+{: token}
 
 **Example response (Truncated Response)**
 
@@ -509,8 +531,10 @@ Content-Length: 598
 ```
 
 **Example request (continuation-token parameter)**
+{: token}
 
 This request lists the objects inside the "apiary" bucket with a continuation token specified.
+{: token}
 
 ```http
 GET /apiary?list-type=2&max-keys=1&continuation-token=1dPe45g5uuxjyASPegLq80sQsZKL5OB2by4Iz_7YGR5NjiOENBPZXqvKJN6_PgKGVzZYTlws7qqdWaMklzb8HX2iDxxl72ane3rUFQrvNMeIih49MZ4APUjrAuYI83KxSMmfKHGZyKallFkD5N6PwKg HTTP/1.1
@@ -518,6 +542,7 @@ Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization: Bearer {token}
 ```
+{: token}
 
 **Example response (Truncated Response, continuation-token parameter)**
 
@@ -581,8 +606,10 @@ Name | Type | Description
 `marker` | String | Specifies the object from where the listing should begin, in UTF-8 binary order.
 
 **Example request**
+{: token}
 
 This request lists the objects inside the "apiary" bucket.
+{: token}
 
 ```http
 GET /apiary HTTP/1.1
@@ -590,6 +617,7 @@ Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization: Bearer {token}
 ```
+{: token}
 
 **Example response**
 
@@ -671,12 +699,14 @@ Name | Type | Description
 
 
 **Example request**
+{: token}
 
 ```http
 DELETE /apiary HTTP/1.1
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization: Bearer {token}
 ```
+{: token}
 
 The server responds with `204 No Content`.
 
@@ -720,14 +750,17 @@ Name | Type | Description
 `upload-id-marker` | String | Ignored if `key-marker` is not specified, otherwise sets a point at which to begin listing parts above `upload-id-marker`.
 
 **Example request**
+{: token}
 
 This is an example of retrieving all current canceled and incomplete multipart uploads.
+{: token}
 
 ```http
 GET /apiary?uploads= HTTP/1.1
 Authorization: Bearer {token}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: token}
 
 **Example response** (no multipart uploads in progress)
 
@@ -798,14 +831,17 @@ GET https://{bucket-name}.{endpoint}?cors= # virtual host style
 ```
 
 **Example request**
+{: token}
 
 This is an example of listing a CORS configuration on the "apiary" bucket.
+{: token}
 
 ```http
 GET /apiary?cors= HTTP/1.1
 Authorization: Bearer {token}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: token}
 
 **Example response** 
 
@@ -827,7 +863,7 @@ Content-Length: 123
     <AllowedMethod>GET</AllowedMethod>
     <AllowedMethod>PUT</AllowedMethod>
     <AllowedMethod>POST</AllowedMethod>
-    <AllowedOrigin>http:www.ibm.com</AllowedOrigin>
+    <AllowedOrigin>http://www.ibm.com</AllowedOrigin>
   </CORSRule>
 </CORSConfiguration>
 ```
@@ -865,8 +901,10 @@ echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 {:codeblock}
 
 **Example request**
+{: token}
 
 This is an example of adding a CORS configuration that allows requests from `www.ibm.com` to issue `GET`, `PUT`, and `POST` requests to the bucket.
+{: token}
 
 ```http
 PUT /apiary?cors= HTTP/1.1
@@ -876,6 +914,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-MD5: M625BaNwd/OytcM7O5gIaQ==
 Content-Length: 237
 ```
+{: token}
 
 ```xml
 <CORSConfiguration>
@@ -916,14 +955,17 @@ DELETE https://{bucket-name}.{endpoint}?cors= # virtual host style
 ```
 
 **Example request**
+{: token}
 
 This is an example of deleting a CORS configuration for a bucket.
+{: token}
 
 ```http
 DELETE /apiary?cors= HTTP/1.1
 Authorization: Bearer {token}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: token}
 
 The server responds with `204 No Content`.
 
@@ -941,14 +983,17 @@ GET https://{bucket-name}.{endpoint}?location # virtual host style
 ```
 
 **Example request**
+{: token}
 
 This is an example of retrieving the location of the "apiary" bucket.
+{: token}
 
 ```http
 GET /apiary?location= HTTP/1.1
 Authorization: Bearer {token}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: token}
 
 **Example response**
 
@@ -1024,6 +1069,7 @@ echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 {:codeblock}
 
 **Example request**
+{: token}
 
 ```http
 PUT /apiary?lifecycle HTTP/1.1
@@ -1035,6 +1081,7 @@ Content-MD5: M625BaNwd/OytcM7O5gIaQ==
 Content-Length: 305
 ```
 {: codeblock}
+{: token}
 
 ```xml
 <LifecycleConfiguration>
@@ -1070,6 +1117,7 @@ GET https://{bucket-name}.{endpoint}?lifecycle # virtual host style
 ```
 
 **Example request**
+{: token}
 
 ```http
 GET /apiary?lifecycle HTTP/1.1
@@ -1077,6 +1125,7 @@ Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization: {authorization-string}
 ```
+{: token}
 
 **Example response**
 
@@ -1142,6 +1191,7 @@ PUT https://{bucket}.{endpoint}?lifecycle # virtual host style
 {: codeblock}
 
 **Example request**
+{: token}
 
 ```yaml
 PUT /images?lifecycle HTTP/1.1
@@ -1164,6 +1214,7 @@ Content-Length: 305
 </LifecycleConfiguration>
 ```
 {: codeblock}
+{: token}
 
 ----
 
@@ -1180,12 +1231,14 @@ DELETE https://{bucket-name}.{endpoint}?lifecycle # virtual host style
 ```
 
 **Example request**
+{: token}
 
 ```http
 DELETE /apiary?lifecycle HTTP/1.1
 Authorization: {authorization-string}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: token}
 
 The server responds with `204 No Content`.
 
@@ -1225,6 +1278,7 @@ The body of the request must contain an XML block with the following schema:
 |DefaultRetention| Integer | - | ProtectionConfiguration | Valid default retention integer |
 
 **Example request**
+{: token}
 
 ```
 PUT /example-bucket?protection= HTTP/1.1
@@ -1249,7 +1303,7 @@ Content-Length: 299
 </ProtectionConfiguration>
 ```
 {: codeblock}
-
+{: token}
 
 **Example response**
 
@@ -1265,3 +1319,7 @@ Content-Length: 0
 ```
 {: codeblock}
 
+## Next Steps
+{: #api-ref-buckets-next-steps}
+
+Learn more about the API reference on object operations at the [documentation](/docs/api-reference?topic=cloud-object-storage-object-operations).
