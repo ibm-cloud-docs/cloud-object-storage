@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-11-12"
+lastupdated: "2019-11-13"
 
 keywords: rest, s3, compatibility, api, objects
 
@@ -45,6 +45,7 @@ A `PUT` given a path to an object uploads the request body as an object. All obj
 PUT https://{endpoint}/{bucket-name}/{object-name} # path style
 PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
+{: codeblock}
 
 **Example request**
 {: token}
@@ -116,6 +117,7 @@ Note that the `Etag` value returned for objects encrypted using SSE-KP **is** th
 HEAD https://{endpoint}/{bucket-name}/{object-name} # path style
 HEAD https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
+{: codeblock}
 
 **Example request**
 {: token}
@@ -169,6 +171,7 @@ The `Etag` value that is returned for objects encrypted using SSE-C/SSE-KP will 
 GET https://{endpoint}/{bucket-name}/{object-name} # path style
 GET https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
+{: codeblock}
 
 ### Optional headers
 {: #object-operations-get-headers}
@@ -232,6 +235,7 @@ A `DELETE` given a path to an object deletes an object.
 DELETE https://{endpoint}/{bucket-name}/{object-name} # path style
 DELETE https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
+{: codeblock}
 
 **Example request**
 {: token}
@@ -300,6 +304,7 @@ echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 POST https://{endpoint}/{bucket-name}?delete= # path style
 POST https://{bucket-name}.{endpoint}?delete= # virtual host style
 ```
+{: codeblock}
 
 The body of the request must contain an XML block with the following schema:
 
@@ -380,6 +385,7 @@ A `PUT` given a path to a new object creates a new copy of another object that i
 PUT https://{endpoint}/{bucket-name}/{object-name} # path style
 PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
+{: codeblock}
 
 ### Optional headers
 {: #object-operations-copy-options}
@@ -452,6 +458,7 @@ An `OPTIONS` given a path to an object along with an origin and request type che
 OPTIONS https://{endpoint}/{bucket-name}/{object-name} # path style
 OPTIONS https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
+{: codeblock}
 
 **Example request**
 {: token}
@@ -529,6 +536,7 @@ A `POST` issued to an object with the query parameter `upload` creates a new `Up
 POST https://{endpoint}/{bucket-name}/{object-name}?uploads= # path style
 POST https://{bucket-name}.{endpoint}/{object-name}?uploads= # virtual host style
 ```
+{: codeblock}
 
 **Example request**
 {: token}
@@ -588,6 +596,7 @@ A `PUT` request that is issued to an object with query parameters `partNumber` a
 PUT https://{endpoint}/{bucket-name}/{object-name}?partNumber={sequential-integer}&uploadId={uploadId}= # path style
 PUT https://{bucket-name}.{endpoint}/{object-name}?partNumber={sequential-integer}&uploadId={uploadId}= # virtual host style
 ```
+{: codeblock}
 
 **Example request**
 {: token}
@@ -644,6 +653,7 @@ A `GET` given a path to a multipart object with an active `UploadID` specified a
 GET https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId} # path style
 GET https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId} # virtual host style
 ```
+{: codeblock}
 
 ### Query parameters
 {: #object-operations-multipart-list-params}
@@ -725,6 +735,7 @@ A `POST` request that is issued to an object with query parameter `uploadId` and
 POST https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId}= # path style
 POST https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # virtual host style
 ```
+{: codeblock}
 
 The body of the request must contain an XML block with the following schema:
 
@@ -818,6 +829,7 @@ A `DELETE` request issued to an object with query parameter `uploadId` deletes a
 DELETE https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId}= # path style
 DELETE https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # virtual host style
 ```
+{: codeblock}
 
 **Example request**
 {: token}
@@ -868,6 +880,7 @@ To permanently restore the object, it must be copied to a bucket that doesn't ha
 POST https://{endpoint}/{bucket-name}/{object-name}?restore # path style
 POST https://{bucket-name}.{endpoint}/{object-name}?restore # virtual host style
 ```
+{: codeblock}
 
 **Payload Elements**
 
@@ -956,6 +969,7 @@ The `PUT` request requires a copy of existing object as the contents are overwri
 PUT https://{endpoint}/{bucket-name}/{object-name} # path style
 PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
+{: codeblock}
 
 **Example request**
 {: token}
@@ -977,6 +991,28 @@ Content-Length: 533
 
 ```
 {: token}
+
+**Example request**
+{: hmac}
+
+```http
+PUT /apiary/queen-bee HTTP/1.1
+Authorization: Bearer {token}
+Content-Type: text/plain; charset=utf-8
+Content-MD5: M625BaNwd/OytcM7O5gIaQ==
+Host: s3.us.cloud-object-storage.appdomain.cloud
+x-amz-meta-key1: value1
+x-amz-meta-key2: value2
+
+Content-Length: 533
+
+ The 'queen' bee is developed from larvae selected by worker bees and fed a
+ substance referred to as 'royal jelly' to accelerate sexual maturity. After a
+ short while the 'queen' is the mother of nearly every bee in the hive, and
+ the colony will fight fiercely to protect her.
+
+```
+{: hmac}
 
 **Example response**
 
@@ -1003,6 +1039,7 @@ The complete details about the `COPY` request are [here](#object-operations-copy
 PUT https://{endpoint}/{bucket-name}/{object-name} # path style
 PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
+{: codeblock}
 
 **Example request**
 {: token}
@@ -1018,6 +1055,22 @@ x-amz-meta-key1: value1
 x-amz-meta-key2: value2
 ```
 {: token}
+
+**Example request**
+{: hmac}
+
+```http
+PUT /apiary/queen-bee HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+x-amz-copy-source: /apiary/queen-bee
+x-amz-metadata-directive: REPLACE
+x-amz-meta-key1: value1
+x-amz-meta-key2: value2
+```
+{: hmac}
 
 **Example response**
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-11-12"
+lastupdated: "2019-11-13"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -60,6 +60,7 @@ Extended listing isn't supported in the SDKs or CLI.
 ```bash
 GET https://{endpoint}/
 ```
+{: codeblock}
 
 **Example request**
 {: token}
@@ -123,6 +124,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 ```bash
 GET https://{endpoint}/?extended
 ```
+{: codeblock}
 
 **Example request**
 {: token}
@@ -348,10 +350,11 @@ Header                                        | Type   | Description
 
 **Syntax**
 
-```shell
+```yaml
 PUT https://{endpoint}/{bucket-name} # path style
 PUT https://{bucket-name}.{endpoint} # virtual host style
 ```
+{: codeblock}
 
 **Example request**
 {: token}
@@ -412,6 +415,7 @@ A `HEAD` issued to a bucket will return the headers for that bucket.
 HEAD https://{endpoint}/{bucket-name} # path style
 HEAD https://{bucket-name}.{endpoint} # virtual host style
 ```
+{: codeblock}
 
 **Example request**
 {: token}
@@ -506,6 +510,7 @@ A `GET` request addressed to a bucket returns a list of objects, limited to 1,00
 GET https://{endpoint}/{bucket-name}?list-type=2 # path style
 GET https://{bucket-name}.{endpoint}?list-type=2 # virtual host style
 ```
+{: codeblock}
 
 ### Optional query parameters
 {: #compatibility-api-list-objects-v2-params}
@@ -725,6 +730,7 @@ A `GET` request addressed to a bucket returns a list of objects, limited to 1,00
 GET https://{endpoint}/{bucket-name} # path style
 GET https://{bucket-name}.{endpoint} # virtual host style
 ```
+{: codeblock}
 
 ### Optional query parameters
 {: #compatibility-api-list-objects-params}
@@ -834,6 +840,7 @@ A `DELETE` issued to an empty bucket deletes the bucket. After deleting a bucket
 DELETE https://{endpoint}/{bucket-name} # path style
 DELETE https://{bucket-name}.{endpoint} # virtual host style
 ```
+{: codeblock}
 
 ### Optional headers
 
@@ -893,6 +900,7 @@ A `GET` issued to a bucket with the proper parameters retrieves information abou
 GET https://{endpoint}/{bucket-name}?uploads= # path style
 GET https://{bucket-name}.{endpoint}?uploads= # virtual host style
 ```
+{: codeblock}
 
 **Parameters**
 
@@ -997,6 +1005,7 @@ A `GET` issued to a bucket with the proper parameters retrieves information abou
 GET https://{endpoint}/{bucket-name}?cors= # path style
 GET https://{bucket-name}.{endpoint}?cors= # virtual host style
 ```
+{: codeblock}
 
 **Example request**
 {: token}
@@ -1061,6 +1070,7 @@ A `PUT` issued to a bucket with the proper parameters creates or replaces a cros
 PUT https://{endpoint}/{bucket-name}?cors= # path style
 PUT https://{bucket-name}.{endpoint}?cors= # virtual host style
 ```
+{: codeblock}
 
 **Payload Elements**
 
@@ -1147,6 +1157,7 @@ A `DELETE` issued to a bucket with the proper parameters creates or replaces a c
 DELETE https://{endpoint}/{bucket-name}?cors= # path style
 DELETE https://{bucket-name}.{endpoint}?cors= # virtual host style
 ```
+{: codeblock}
 
 **Example request**
 {: token}
@@ -1187,6 +1198,7 @@ A `GET` issued to a bucket with the proper parameter retrieves the location info
 GET https://{endpoint}/{bucket-name}?location # path style
 GET https://{bucket-name}.{endpoint}?location # virtual host style
 ```
+{: codeblock}
 
 **Example request**
 {: token}
@@ -1246,6 +1258,7 @@ A `PUT` operation uses the lifecycle query parameter to set lifecycle settings f
 PUT https://{endpoint}/{bucket-name}?lifecycle # path style
 PUT https://{bucket-name}.{endpoint}?lifecycle # virtual host style
 ```
+{: codeblock}
 
 **Payload Elements**
 
@@ -1347,6 +1360,7 @@ A `GET` operation uses the lifecycle query parameter to retrieve lifecycle setti
 GET https://{endpoint}/{bucket-name}?lifecycle # path style
 GET https://{bucket-name}.{endpoint}?lifecycle # virtual host style
 ```
+{: codeblock}
 
 **Example request**
 {: token}
@@ -1473,6 +1487,7 @@ A `DELETE` issued to a bucket with the proper parameters removes any lifecycle c
 DELETE https://{endpoint}/{bucket-name}?lifecycle # path style
 DELETE https://{bucket-name}.{endpoint}?lifecycle # virtual host style
 ```
+{: codeblock}
 
 **Example request**
 {: token}
@@ -1536,7 +1551,7 @@ The body of the request must contain an XML block with the following schema:
 **Example request**
 {: token}
 
-```
+```bash
 PUT /example-bucket?protection= HTTP/1.1
 Authorization: {authorization-string}
 x-amz-date: 20181011T190354Z
@@ -1558,7 +1573,6 @@ Content-Length: 299
   </DefaultRetention>
 </ProtectionConfiguration>
 ```
-{: codeblock}
 {: token}
 
 **Example response**
@@ -1573,7 +1587,6 @@ X-Clv-S3-Version: 2.5
 x-amz-request-id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
 Content-Length: 0
 ```
-{: codeblock}
 
 ## Next Steps
 {: #api-ref-buckets-next-steps}
