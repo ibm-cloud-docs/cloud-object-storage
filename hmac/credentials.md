@@ -34,7 +34,10 @@ Users can create a set of HMAC credentials as part of a [Service Credential](/do
 ```
 ibmcloud resource service-key-create <key-name-without-spaces> Writer --instance-name "<instance name--use quotes if your instance name has spaces>" --parameters '{"HMAC":true}'
 ```
-{:codeblock: .codeblock}
+{: codeblock}
+
+Note that `service-instance-id` or `--instance name` is not required for IaaS COS. For more, see the details at [service credentials](docs/services/cloud-object-storage?topic=cloud-object-storage-service-credentials).
+{: tip}
 
 If you want to store the results of the generated key, you can append ` > file.skey` to the end of the example. For the purposes of this instruction set, you need only find the `cos_hmac_keys` heading with child keys, `access_key_id`, and `secret_access_key`.
 
