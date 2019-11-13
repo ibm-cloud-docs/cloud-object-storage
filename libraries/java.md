@@ -435,6 +435,22 @@ cos.putObject(
 );
 ```
 
+Alternatively, you can use a `CipherInputStream` to more easily encrypt the data stream without needing to overload the existing `InputStream` object.
+
+```java
+public CipherInputStream encryptStream(InputStream inputStream) { 
+       // Generate key
+       KeyGenerator kgen = KeyGenerator.getInstance("AES");
+       kgen.init(128);
+       SecretKey aesKey = kgen.generateKey();
+       // Encrypt cipher
+       Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+       cipher.init(Cipher.ENCRYPT_MODE, aesKey);
+       CipherInputStream cis = new CipherInputStream(inputStream, cipher);
+       return cis;
+} 
+```
+
 ### Download object to a file
 {: #java-examples-download}
 
@@ -452,7 +468,6 @@ s3Client.getObject( // write the contents of the object
     new File("retrieved.txt") // to write to a new file
 );
 ```
-
 
 ### Download object by using a stream
 {: #java-examples-download-stream}
