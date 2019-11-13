@@ -73,23 +73,17 @@ ibm-service-instance-id: {ibm-service-instance-id}
 ```
 {: token}
 
-**Sample request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 GET / HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-GET /?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
+{: hmac}
 
 **Example response**
 
@@ -142,15 +136,17 @@ ibm-service-instance-id: {ibm-service-instance-id}
 ```
 {: token}
 
-**Sample request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 GET /?extended HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: hmac}
 
 **Example response**
 
@@ -227,23 +223,17 @@ ibm-service-instance-id: {ibm-service-instance-id}
 ```
 {: token}
 
-**Sample request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 PUT /images HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-PUT /images?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
+{: hmac}
 
 **Example response**
 
@@ -306,23 +296,17 @@ Content-Length: 110
 ```
 {: token}
 
-**Sample request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 PUT /vault-images HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-PUT /vault-images?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
+{: hmac}
 
 ```xml
 <CreateBucketConfiguration>
@@ -385,27 +369,19 @@ ibm-sse-kp-customer-root-key-crn: {customer-root-key-id}
 ```
 {: token}
 
-**Sample request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 PUT /secure-files HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ibm-sse-kp-encryption-algorithm: "AES256"
 ibm-sse-kp-customer-root-key-crn: {customer-root-key-id}
 ```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-PUT /secure-files?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-ibm-sse-kp-encryption-algorithm: "AES256"
-ibm-sse-kp-customer-root-key-crn: {customer-root-key-id}
-```
+{: hmac}
 
 **Example response**
 
@@ -451,23 +427,17 @@ Authorization:Bearer {token}
 ```
 {: token}
 
-**Sample request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 HEAD /images HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-HEAD /images?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
+{: hmac}
 
 **Example response**
 
@@ -496,23 +466,17 @@ Authorization:Bearer {token}
 ```
 {: token}
 
-**Sample request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 HEAD /secure-files HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-HEAD /secure-files?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
+{: hmac}
 
 **Example response**
 
@@ -568,23 +532,17 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization: Bearer {token}
 ```
 
-**Sample request (simple with HMAC Headers)**
+**Sample request (simple)**
+{: hmac}
 
 ```http
 GET /apiary?list-type=2 HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
-**Sample request (simple with HMAC Pre-signed URL)**
-
-```http
-GET /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&list-type=2&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
+{: hmac}
 
 **Example response (simple)**
 
@@ -647,24 +605,17 @@ Authorization: Bearer {token}
 ```
 {: token}
 
-**Sample request (max-keys with HMAC Headers)**
+**Sample request (max-keys parameter)**
+{: hmac}
 
 ```http
 GET /apiary?list-type=2&max-keys=1 HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
-**Sample request (max-keys with HMAC Pre-signed URL)**
-
-```http
-GET /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&list-type=2&max-keys=1&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
-
+{: hmac}
 
 **Example response (Truncated Response)**
 
@@ -713,15 +664,17 @@ Authorization: Bearer {token}
 ```
 {: token}
 
-**Sample request (continuation-token with HMAC Headers)**
+**Sample request (continuation-token parameter)**
+{: hmac}
 
 ```http
 GET /apiary?list-type=2&max-keys=1&continuation-token=1dPe45g5uuxjyASPegLq80sQsZKL5OB2by4Iz_7YGR5NjiOENBPZXqvKJN6_PgKGVzZYTlws7qqdWaMklzb8HX2iDxxl72ane3rUFQrvNMeIih49MZ4APUjrAuYI83KxSMmfKHGZyKallFkD5N6PwKg  HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: hmac}
 
 **Example response (Truncated Response, continuation-token parameter)**
 
@@ -798,23 +751,17 @@ Authorization: Bearer {token}
 ```
 {: token}
 
-**Sample request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 GET /apiary HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-GET /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&list-type=2&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
+{: hmac}
 
 **Example response**
 
@@ -905,23 +852,17 @@ Authorization: Bearer {token}
 ```
 {: token}
 
-**Sample request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 DELETE /apiary HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-DELETE /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&list-type=2&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
+{: hmac}
 
 The server responds with `204 No Content`.
 
@@ -977,23 +918,17 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 {: token}
 
-**Sample request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 GET /apiary?uploads= HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-GET /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&uploads=&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
+{: hmac}
 
 **Example response** (no multipart uploads in progress)
 
@@ -1076,23 +1011,17 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 {: token}
 
-**Sample request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 GET /apiary?cors= HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-GET /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&cors=&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
+{: hmac}
 
 **Example response** No CORS configuration set
 
@@ -1167,17 +1096,19 @@ Content-Length: 237
 ```
 {: token}
 
-**Sample request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 PUT /apiary?cors= HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-MD5: M625BaNwd/OytcM7O5gIaQ==
 Content-Length: 237
 ```
+{: hmac}
 
 ```xml
 <CORSConfiguration>
@@ -1230,15 +1161,17 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 {: token}
 
-**Sample request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 DELETE /apiary?cors= HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: hmac}
 
 The server responds with `204 No Content`.
 
@@ -1268,15 +1201,17 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 {: token}
 
-**Sample request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 GET /apiary?location= HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: hmac}
 
 **Example response**
 
@@ -1366,7 +1301,8 @@ Content-Length: 305
 {: codeblock}
 {: token}
 
-**Sample request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 PUT /apiary?lifecycle HTTP/1.1
@@ -1375,8 +1311,9 @@ x-amz-date: {timestamp}
 Content-Type: text/plain
 Content-MD5: M625BaNwd/OytcM7O5gIaQ== 
 Content-Length: 305
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: hmac}
 
 ```xml
 <LifecycleConfiguration>
@@ -1422,23 +1359,17 @@ Authorization: {authorization-string}
 ```
 {: token}
 
-**Sample request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 GET /apiary?lifecycle HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
-**Sample request (HMAC Pre-signed URL)**
-
-```http
-GET /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&lifecycle=&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
-```
+{: hmac}
 
 **Example Response**
 
@@ -1553,16 +1484,17 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 {: token}
 
-**Sample request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 DELETE /apiary?lifecycle HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
-Host: s3-api.us-geo.objectstorage.softlayer.net
+Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
+{: hmac}
 
 The server responds with `204 No Content`.
 
