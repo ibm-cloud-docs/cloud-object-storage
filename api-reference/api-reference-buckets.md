@@ -28,18 +28,22 @@ subcollection: cloud-object-storage
 The modern capabilities of {{site.data.keyword.cos_full}} are conveniently available via a RESTful API. Operations and methods concerning buckets (where objects are stored) are documented here.
 {: shortdesc}
 
-### HMAC authentication
+For more information about permissions and access, see [Bucket permissions](https://cloud.ibm.com/docs/iam?topic=cloud-object-storage-iam-bucket-permissions).
+{: tip}
+
+## A note regarding Access/Secret Key (HMAC) authentication
 {: #bucket-operations-hmac}
 
-When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [using HMAC credentials](/docs/hmac?topic=cloud-object-storage-hmac), you will need the following information when [constructing an HMAC signature](/docs/hmac?topic=cloud-object-storage-hmac-signature).
+When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [using HMAC credentials](/docs/hmac?topic=cloud-object-storage-hmac), you will need the information represented in Table 1 when [constructing an HMAC signature](/docs/hmac?topic=cloud-object-storage-hmac-signature).
 
 |Key|Value|Example|
 |---|---|---|
 |{access_key}|Access key assigned to your Service Credential|cf4965cebe074720a4929759f57e1214|
-|{datestamp}|The formatted date of your request (yyyymmdd)|20180613|
-|{location}|The location code for your endpoint|us-standard|
+|{date}|The formatted date of your request (yyyymmdd)|20180613|
+|{region}|The location code for your endpoint|us-standard|
 |{signature}|The hash created using the secret key, location, and date|ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e|
 |{timestamp}|The formatted date and time of your request|20180614T001804Z|
+{: caption="Table 1. HMAC signature components"}
 
 ## List buckets
 {: #compatibility-api-list-buckets}
@@ -81,7 +85,7 @@ ibm-service-instance-id: {ibm-service-instance-id}
 
 ```http
 GET / HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
@@ -145,7 +149,7 @@ ibm-service-instance-id: {ibm-service-instance-id}
 
 ```http
 GET /?extended HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
@@ -232,7 +236,7 @@ ibm-service-instance-id: {ibm-service-instance-id}
 
 ```http
 PUT /images HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
@@ -305,7 +309,7 @@ Content-Length: 110
 
 ```http
 PUT /vault-images HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
@@ -379,7 +383,7 @@ ibm-sse-kp-customer-root-key-crn: {customer-root-key-id}
 
 ```http
 PUT /secure-files HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
@@ -438,7 +442,7 @@ Authorization:Bearer {token}
 
 ```http
 HEAD /images HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
@@ -477,7 +481,7 @@ Authorization:Bearer {token}
 
 ```http
 HEAD /secure-files HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
@@ -544,7 +548,7 @@ Authorization: Bearer {token}
 
 ```http
 GET /apiary?list-type=2 HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
@@ -617,7 +621,7 @@ Authorization: Bearer {token}
 
 ```http
 GET /apiary?list-type=2&max-keys=1 HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
@@ -676,7 +680,7 @@ Authorization: Bearer {token}
 
 ```http
 GET /apiary?list-type=2&max-keys=1&continuation-token=1dPe45g5uuxjyASPegLq80sQsZKL5OB2by4Iz_7YGR5NjiOENBPZXqvKJN6_PgKGVzZYTlws7qqdWaMklzb8HX2iDxxl72ane3rUFQrvNMeIih49MZ4APUjrAuYI83KxSMmfKHGZyKallFkD5N6PwKg  HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
@@ -764,7 +768,7 @@ Authorization: Bearer {token}
 
 ```http
 GET /apiary HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
@@ -866,7 +870,7 @@ Authorization: Bearer {token}
 
 ```http
 DELETE /apiary HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
@@ -933,7 +937,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 
 ```http
 GET /apiary?uploads= HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
@@ -1027,7 +1031,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 
 ```http
 GET /apiary?cors= HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
@@ -1113,7 +1117,7 @@ Content-Length: 237
 
 ```http
 PUT /apiary?cors= HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
@@ -1179,7 +1183,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 
 ```http
 DELETE /apiary?cors= HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
@@ -1220,7 +1224,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 
 ```http
 GET /apiary?location= HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
@@ -1321,7 +1325,7 @@ Content-Length: 305
 
 ```http
 PUT /apiary?lifecycle HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Content-MD5: M625BaNwd/OytcM7O5gIaQ== 
@@ -1380,7 +1384,7 @@ Authorization: {authorization-string}
 
 ```http
 GET /apiary?lifecycle HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
@@ -1506,7 +1510,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 
 ```http
 DELETE /apiary?lifecycle HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud

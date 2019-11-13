@@ -28,8 +28,22 @@ subcollection: cloud-object-storage
 The modern capabilities of {{site.data.keyword.cos_full}} are conveniently available via a RESTful API. Operations and methods for reading, writing, and configuring objects (stored within a bucket), are documented here.
 {: shortdesc}
 
-For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
-{:tip}
+For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+{: tip}
+
+## A note regarding Access/Secret Key (HMAC) authentication
+{: #object-operations-hmac}
+
+When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [using HMAC credentials](/docs/hmac?topic=cloud-object-storage-hmac), you will need the information represented in Table 1 when [constructing an HMAC signature](/docs/hmac?topic=cloud-object-storage-hmac-signature).
+
+|Key|Value|Example|
+|---|---|---|
+|{access_key}|Access key assigned to your Service Credential|cf4965cebe074720a4929759f57e1214|
+|{date}|The formatted date of your request (yyyymmdd)|20180613|
+|{region}|The location code for your endpoint|us-standard|
+|{signature}|The hash created using the secret key, location, and date|ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e|
+|{timestamp}|The formatted date and time of your request|20180614T001804Z|
+{: caption="Table 1. HMAC signature components"}
 
 ## Upload an object
 {: #object-operations-put}
@@ -71,7 +85,7 @@ Content-Length: 533
 
 ```http
 PUT /apiary/queen-bee HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 x-amz-content-sha256: {payload_hash}
 Content-Type: text/plain; charset=utf-8
@@ -134,7 +148,7 @@ Host: s3-api.sjc-us-geo.objectstorage.s3.us-south.cloud-object-storage.appdomain
 
 ```http
 HEAD /apiary/soldier-bee HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
@@ -195,7 +209,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 
 ```http
 GET /apiary/worker-bee HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
@@ -252,7 +266,7 @@ Host: s3-api.sjc-us-geo.objectstorage.s3.us-south.cloud-object-storage.appdomain
 
 ```http
 DELETE /apiary/soldier-bee HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
@@ -331,7 +345,7 @@ Content-MD5: xj/vf7lD7vbIe/bqHTaLvg==
 
 ```http
 POST /apiary?delete= HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain; charset=utf-8
 Content-MD5: xj/vf7lD7vbIe/bqHTaLvg==
@@ -416,7 +430,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 
 ```http
 PUT /apiary/wild-bee HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 x-amz-copy-source: /garden/bee
 Host: s3.us.cloud-object-storage.appdomain.cloud
@@ -476,7 +490,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 
 ```http
 OPTIONS /apiary/queen-bee HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Access-Control-Request-Method: PUT
 Origin: http://ibm.com
@@ -553,7 +567,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 
 ```http
 POST /some-bucket/multipart-object-123?uploads= HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
@@ -615,7 +629,7 @@ Content-Length: 13374550
 
 ```http
 PUT /some-bucket/multipart-object-123?partNumber=1&uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 x-amz-content-sha256: STREAMING-AWS4-HMAC-SHA256-PAYLOAD
 Content-Encoding: aws-chunked
@@ -678,7 +692,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 
 ```http
 GET /farm/spaceship?uploadId=01000162-3f46-6ab8-4b5f-f7060b310f37 HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
@@ -772,7 +786,7 @@ Content-Length: 257
 
 ```http
 POST /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain; charset=utf-8
 Host: s3.us.cloud-object-storage.appdomain.cloud
@@ -846,7 +860,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 
 ```http
 DELETE /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
@@ -920,7 +934,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 
 ```http
 POST /apiary/queenbee?restore HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-MD5: rgRRGfd/OytcM7O5gIaQ== 
 Content-Length: 305
@@ -1061,7 +1075,7 @@ x-amz-meta-key2: value2
 
 ```http
 PUT /apiary/queen-bee HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
