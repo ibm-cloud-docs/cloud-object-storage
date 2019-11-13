@@ -28,8 +28,10 @@ subcollection: cloud-object-storage
 The modern capabilities of {{site.data.keyword.cos_full}} are conveniently available via a RESTful API. Operations and methods concerning buckets (where objects are stored) are documented here.
 {: shortdesc}
 
-### HMAC (Headers or Pre-signed URL)
-Adding headers to your request using the following values subtituted:
+### HMAC authentication
+{: #bucket-operations-hmac}
+
+When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [using HMAC credentials](/docs/hmac?topic=cloud-object-storage-hmac), you will need the following information when [constructing an HMAC signature](/docs/hmac?topic=cloud-object-storage-hmac-signature).
 
 |Key|Value|Example|
 |---|---|---|
