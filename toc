@@ -15,7 +15,6 @@ Cloud Object Storage
         basics/administrators.md
         basics/developers.md
 
-    basics/glossary.md
     release-notes.md
     {: .navgroup-end}
 
