@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018, 2019
-lastupdated: "2019-11-12"
+lastupdated: "2019-11-13"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -28,6 +28,22 @@ subcollection: cloud-object-storage
 The modern capabilities of {{site.data.keyword.cos_full}} are conveniently available via a RESTful API. Operations and methods concerning buckets (where objects are stored) are documented here.
 {: shortdesc}
 
+For more information about permissions and access, see [Bucket permissions](https://cloud.ibm.com/docs/iam?topic=cloud-object-storage-iam-bucket-permissions).
+{: tip}
+
+## A note regarding Access/Secret Key (HMAC) authentication
+{: #bucket-operations-hmac}
+
+When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [using HMAC credentials](/docs/hmac?topic=cloud-object-storage-hmac), you will need the information represented in Table 1 when [constructing an HMAC signature](/docs/hmac?topic=cloud-object-storage-hmac-signature).
+
+|Key|Value|Example|
+|---|---|---|
+|{access_key}|Access key assigned to your Service Credential|cf4965cebe074720a4929759f57e1214|
+|{date}|The formatted date of your request (yyyymmdd)|20180613|
+|{region}|The location code for your endpoint|us-standard|
+|{signature}|The hash created using the secret key, location, and date|ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e|
+|{timestamp}|The formatted date and time of your request|20180614T001804Z|
+{: caption="Table 1. HMAC signature components"}
 
 ## List buckets
 {: #compatibility-api-list-buckets}
@@ -50,8 +66,10 @@ Extended listing isn't supported in the SDKs or CLI.
 ```bash
 GET https://{endpoint}/
 ```
+{: codeblock}
 
 **Example request**
+{: token}
 
 ```http
 GET / HTTP/1.1
@@ -60,6 +78,19 @@ Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ibm-service-instance-id: {ibm-service-instance-id}
 ```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+GET / HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
 
 **Example response**
 
@@ -99,8 +130,10 @@ ibm-service-instance-id: {ibm-service-instance-id}
 ```bash
 GET https://{endpoint}/?extended
 ```
+{: codeblock}
 
 **Example request**
+{: token}
 
 ```http
 GET /?extended HTTP/1.1
@@ -109,6 +142,19 @@ Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ibm-service-instance-id: {ibm-service-instance-id}
 ```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+GET /?extended HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
 
 **Example response**
 
@@ -171,8 +217,10 @@ PUT https://{bucket-name}.{endpoint} # virtual host style
 ```
 
 **Example request**
+{: token}
 
 This is an example of creating a new bucket called 'images'.
+{: token}
 
 ```http
 PUT /images HTTP/1.1
@@ -181,6 +229,19 @@ Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ibm-service-instance-id: {ibm-service-instance-id}
 ```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+PUT /images HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
 
 **Example response**
 
@@ -229,6 +290,7 @@ The body of the request must contain an XML block with the following schema:
 A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint).
 
 **Example request**
+{: token}
 
 This is an example of creating a new bucket called 'vault-images'.
 
@@ -240,6 +302,19 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 ibm-service-instance-id: {ibm-service-instance-id}
 Content-Length: 110
 ```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+PUT /vault-images HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
 
 ```xml
 <CreateBucketConfiguration>
@@ -281,12 +356,14 @@ Header                                        | Type   | Description
 
 **Syntax**
 
-```shell
+```yaml
 PUT https://{endpoint}/{bucket-name} # path style
 PUT https://{bucket-name}.{endpoint} # virtual host style
 ```
+{: codeblock}
 
 **Example request**
+{: token}
 
 This is an example of creating a new bucket called 'secure-files'.
 
@@ -299,6 +376,21 @@ ibm-service-instance-id: {ibm-service-instance-id}
 ibm-sse-kp-encryption-algorithm: "AES256"
 ibm-sse-kp-customer-root-key-crn: {customer-root-key-id}
 ```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+PUT /secure-files HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+ibm-sse-kp-encryption-algorithm: "AES256"
+ibm-sse-kp-customer-root-key-crn: {customer-root-key-id}
+```
+{: hmac}
 
 **Example response**
 
@@ -329,10 +421,13 @@ A `HEAD` issued to a bucket will return the headers for that bucket.
 HEAD https://{endpoint}/{bucket-name} # path style
 HEAD https://{bucket-name}.{endpoint} # virtual host style
 ```
+{: codeblock}
 
 **Example request**
+{: token}
 
 This is an example of fetching the headers for the 'images' bucket.
+{: token}
 
 ```http
 HEAD /images HTTP/1.1
@@ -340,6 +435,19 @@ Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization:Bearer {token}
 ```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+HEAD /images HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
 
 **Example response**
 
@@ -355,8 +463,10 @@ Content-Length: 0
 ```
 
 **Example request**
+{: token}
 
 `HEAD` requests on buckets with Key Protect encryption will return extra headers.
+{: token}
 
 ```http
 HEAD /secure-files HTTP/1.1
@@ -364,6 +474,19 @@ Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization:Bearer {token}
 ```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+HEAD /secure-files HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
 
 **Example response**
 
@@ -393,9 +516,11 @@ A `GET` request addressed to a bucket returns a list of objects, limited to 1,00
 GET https://{endpoint}/{bucket-name}?list-type=2 # path style
 GET https://{bucket-name}.{endpoint}?list-type=2 # virtual host style
 ```
+{: codeblock}
 
 ### Optional query parameters
 {: #compatibility-api-list-objects-v2-params}
+
 Name | Type | Description
 --- | ---- | ------------
 `list-type` | String | Indicates version 2 of the API and the value must be 2.
@@ -407,7 +532,7 @@ Name | Type | Description
 `continuation-token` | String | Specifies the next set of objects to be returned when your response is truncated (`IsTruncated` element returns `true`).<br/><br/>Your initial response will include the `NextContinuationToken` element. Use this token in the next request as the value for `continuation-token`.
 `start-after` | String | Returns key names after a specific key object.<br/><br/>*This parameter is only valid in your initial request.*  If a `continuation-token` parameter is included in your request, this parameter is ignored.
 
-**Example request (simple with IAM)**
+**Example request (simple)**
 
 This request lists the objects inside the "apiary" bucket.
 
@@ -417,6 +542,18 @@ Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization: Bearer {token}
 ```
+
+**Sample request (simple)**
+{: hmac}
+
+```http
+GET /apiary?list-type=2 HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
 
 **Example response (simple)**
 
@@ -431,6 +568,7 @@ x-amz-request-id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
 Content-Type: application/xml
 Content-Length: 814
 ```
+{: token}
 
 ```xml
 <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
@@ -465,8 +603,10 @@ Content-Length: 814
 ```
 
 **Example request (max-keys parameter)**
+{: token}
 
 This request lists the objects inside the "apiary" bucket with a max key returned set to 1.
+{: token}
 
 ```http
 GET /apiary?list-type=2&max-keys=1 HTTP/1.1
@@ -474,6 +614,19 @@ Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization: Bearer {token}
 ```
+{: token}
+
+**Sample request (max-keys parameter)**
+{: hmac}
+
+```http
+GET /apiary?list-type=2&max-keys=1 HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
 
 **Example response (Truncated Response)**
 
@@ -509,8 +662,10 @@ Content-Length: 598
 ```
 
 **Example request (continuation-token parameter)**
+{: token}
 
 This request lists the objects inside the "apiary" bucket with a continuation token specified.
+{: token}
 
 ```http
 GET /apiary?list-type=2&max-keys=1&continuation-token=1dPe45g5uuxjyASPegLq80sQsZKL5OB2by4Iz_7YGR5NjiOENBPZXqvKJN6_PgKGVzZYTlws7qqdWaMklzb8HX2iDxxl72ane3rUFQrvNMeIih49MZ4APUjrAuYI83KxSMmfKHGZyKallFkD5N6PwKg HTTP/1.1
@@ -518,6 +673,19 @@ Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization: Bearer {token}
 ```
+{: token}
+
+**Sample request (continuation-token parameter)**
+{: hmac}
+
+```http
+GET /apiary?list-type=2&max-keys=1&continuation-token=1dPe45g5uuxjyASPegLq80sQsZKL5OB2by4Iz_7YGR5NjiOENBPZXqvKJN6_PgKGVzZYTlws7qqdWaMklzb8HX2iDxxl72ane3rUFQrvNMeIih49MZ4APUjrAuYI83KxSMmfKHGZyKallFkD5N6PwKg  HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
 
 **Example response (Truncated Response, continuation-token parameter)**
 
@@ -568,6 +736,7 @@ A `GET` request addressed to a bucket returns a list of objects, limited to 1,00
 GET https://{endpoint}/{bucket-name} # path style
 GET https://{bucket-name}.{endpoint} # virtual host style
 ```
+{: codeblock}
 
 ### Optional query parameters
 {: #compatibility-api-list-objects-params}
@@ -581,8 +750,10 @@ Name | Type | Description
 `marker` | String | Specifies the object from where the listing should begin, in UTF-8 binary order.
 
 **Example request**
+{: token}
 
 This request lists the objects inside the "apiary" bucket.
+{: token}
 
 ```http
 GET /apiary HTTP/1.1
@@ -590,6 +761,19 @@ Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization: Bearer {token}
 ```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+GET /apiary HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
 
 **Example response**
 
@@ -662,6 +846,7 @@ A `DELETE` issued to an empty bucket deletes the bucket. After deleting a bucket
 DELETE https://{endpoint}/{bucket-name} # path style
 DELETE https://{bucket-name}.{endpoint} # virtual host style
 ```
+{: codeblock}
 
 ### Optional headers
 
@@ -671,12 +856,26 @@ Name | Type | Description
 
 
 **Example request**
+{: token}
 
 ```http
 DELETE /apiary HTTP/1.1
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization: Bearer {token}
 ```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+DELETE /apiary HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
 
 The server responds with `204 No Content`.
 
@@ -707,6 +906,7 @@ A `GET` issued to a bucket with the proper parameters retrieves information abou
 GET https://{endpoint}/{bucket-name}?uploads= # path style
 GET https://{bucket-name}.{endpoint}?uploads= # virtual host style
 ```
+{: codeblock}
 
 **Parameters**
 
@@ -720,14 +920,29 @@ Name | Type | Description
 `upload-id-marker` | String | Ignored if `key-marker` is not specified, otherwise sets a point at which to begin listing parts above `upload-id-marker`.
 
 **Example request**
+{: token}
 
 This is an example of retrieving all current canceled and incomplete multipart uploads.
+{: token}
 
 ```http
 GET /apiary?uploads= HTTP/1.1
 Authorization: Bearer {token}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+GET /apiary?uploads= HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
 
 **Example response** (no multipart uploads in progress)
 
@@ -796,18 +1011,34 @@ A `GET` issued to a bucket with the proper parameters retrieves information abou
 GET https://{endpoint}/{bucket-name}?cors= # path style
 GET https://{bucket-name}.{endpoint}?cors= # virtual host style
 ```
+{: codeblock}
 
 **Example request**
+{: token}
 
 This is an example of listing a CORS configuration on the "apiary" bucket.
+{: token}
 
 ```http
 GET /apiary?cors= HTTP/1.1
 Authorization: Bearer {token}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: token}
 
-**Example response** 
+**Example request**
+{: hmac}
+
+```http
+GET /apiary?cors= HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
+
+**Example response** No CORS configuration set
 
 ```http
 HTTP/1.1 200 OK
@@ -827,7 +1058,7 @@ Content-Length: 123
     <AllowedMethod>GET</AllowedMethod>
     <AllowedMethod>PUT</AllowedMethod>
     <AllowedMethod>POST</AllowedMethod>
-    <AllowedOrigin>http:www.ibm.com</AllowedOrigin>
+    <AllowedOrigin>http://www.ibm.com</AllowedOrigin>
   </CORSRule>
 </CORSConfiguration>
 ```
@@ -845,6 +1076,7 @@ A `PUT` issued to a bucket with the proper parameters creates or replaces a cros
 PUT https://{endpoint}/{bucket-name}?cors= # path style
 PUT https://{bucket-name}.{endpoint}?cors= # virtual host style
 ```
+{: codeblock}
 
 **Payload Elements**
 
@@ -865,8 +1097,10 @@ echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 {:codeblock}
 
 **Example request**
+{: token}
 
 This is an example of adding a CORS configuration that allows requests from `www.ibm.com` to issue `GET`, `PUT`, and `POST` requests to the bucket.
+{: token}
 
 ```http
 PUT /apiary?cors= HTTP/1.1
@@ -876,6 +1110,21 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-MD5: M625BaNwd/OytcM7O5gIaQ==
 Content-Length: 237
 ```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+PUT /apiary?cors= HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+Content-MD5: M625BaNwd/OytcM7O5gIaQ==
+Content-Length: 237
+```
+{: hmac}
 
 ```xml
 <CORSConfiguration>
@@ -914,16 +1163,32 @@ A `DELETE` issued to a bucket with the proper parameters creates or replaces a c
 DELETE https://{endpoint}/{bucket-name}?cors= # path style
 DELETE https://{bucket-name}.{endpoint}?cors= # virtual host style
 ```
+{: codeblock}
 
 **Example request**
+{: token}
 
 This is an example of deleting a CORS configuration for a bucket.
+{: token}
 
 ```http
 DELETE /apiary?cors= HTTP/1.1
 Authorization: Bearer {token}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+DELETE /apiary?cors= HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
 
 The server responds with `204 No Content`.
 
@@ -939,16 +1204,32 @@ A `GET` issued to a bucket with the proper parameter retrieves the location info
 GET https://{endpoint}/{bucket-name}?location # path style
 GET https://{bucket-name}.{endpoint}?location # virtual host style
 ```
+{: codeblock}
 
 **Example request**
+{: token}
 
 This is an example of retrieving the location of the "apiary" bucket.
+{: token}
 
 ```http
 GET /apiary?location= HTTP/1.1
 Authorization: Bearer {token}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+GET /apiary?location= HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
 
 **Example response**
 
@@ -983,6 +1264,7 @@ A `PUT` operation uses the lifecycle query parameter to set lifecycle settings f
 PUT https://{endpoint}/{bucket-name}?lifecycle # path style
 PUT https://{bucket-name}.{endpoint}?lifecycle # virtual host style
 ```
+{: codeblock}
 
 **Payload Elements**
 
@@ -1024,6 +1306,7 @@ echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 {:codeblock}
 
 **Example request**
+{: token}
 
 ```http
 PUT /apiary?lifecycle HTTP/1.1
@@ -1035,6 +1318,21 @@ Content-MD5: M625BaNwd/OytcM7O5gIaQ==
 Content-Length: 305
 ```
 {: codeblock}
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+PUT /apiary?lifecycle HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Content-MD5: M625BaNwd/OytcM7O5gIaQ== 
+Content-Length: 305
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
 
 ```xml
 <LifecycleConfiguration>
@@ -1068,8 +1366,10 @@ A `GET` operation uses the lifecycle query parameter to retrieve lifecycle setti
 GET https://{endpoint}/{bucket-name}?lifecycle # path style
 GET https://{bucket-name}.{endpoint}?lifecycle # virtual host style
 ```
+{: codeblock}
 
 **Example request**
+{: token}
 
 ```http
 GET /apiary?lifecycle HTTP/1.1
@@ -1077,8 +1377,21 @@ Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization: {authorization-string}
 ```
+{: token}
 
-**Example response**
+**Example request**
+{: hmac}
+
+```http
+GET /apiary?lifecycle HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
+
+**Example Response**
 
 ```xml
 <LifecycleConfiguration>
@@ -1142,6 +1455,7 @@ PUT https://{bucket}.{endpoint}?lifecycle # virtual host style
 {: codeblock}
 
 **Example request**
+{: token}
 
 ```yaml
 PUT /images?lifecycle HTTP/1.1
@@ -1164,6 +1478,7 @@ Content-Length: 305
 </LifecycleConfiguration>
 ```
 {: codeblock}
+{: token}
 
 ----
 
@@ -1178,14 +1493,29 @@ A `DELETE` issued to a bucket with the proper parameters removes any lifecycle c
 DELETE https://{endpoint}/{bucket-name}?lifecycle # path style
 DELETE https://{bucket-name}.{endpoint}?lifecycle # virtual host style
 ```
+{: codeblock}
 
 **Example request**
+{: token}
 
 ```http
 DELETE /apiary?lifecycle HTTP/1.1
 Authorization: {authorization-string}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+DELETE /apiary?lifecycle HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
 
 The server responds with `204 No Content`.
 
@@ -1225,8 +1555,9 @@ The body of the request must contain an XML block with the following schema:
 |DefaultRetention| Integer | - | ProtectionConfiguration | Valid default retention integer |
 
 **Example request**
+{: token}
 
-```
+```bash
 PUT /example-bucket?protection= HTTP/1.1
 Authorization: {authorization-string}
 x-amz-date: 20181011T190354Z
@@ -1248,8 +1579,7 @@ Content-Length: 299
   </DefaultRetention>
 </ProtectionConfiguration>
 ```
-{: codeblock}
-
+{: token}
 
 **Example response**
 
@@ -1263,5 +1593,8 @@ X-Clv-S3-Version: 2.5
 x-amz-request-id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
 Content-Length: 0
 ```
-{: codeblock}
 
+## Next Steps
+{: #api-ref-buckets-next-steps}
+
+Learn more about the API reference on object operations at the [documentation](/docs/api-reference?topic=cloud-object-storage-object-operations).
