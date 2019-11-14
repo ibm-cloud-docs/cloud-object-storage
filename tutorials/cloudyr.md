@@ -106,6 +106,7 @@ get_object("s3://mybucket.myendpoint/example.csv", show_progress = TRUE)
 {: codeblock}
 
 ## Add data to your `R` project
+{: #cloudyr-add-data}
 
 As you can guess, the library discussed earlier has a `save_object()` method that can write directly to your bucket. While there are many ways to [load data](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Loading-data-from-other-R-packages){: external}, we can use [cloudSimplifieR](https://cran.r-project.org/package=cloudSimplifieR){: external} to work with an [open data set](https://developer.ibm.com/clouddataservices/category/open-data/){: external}.
 
