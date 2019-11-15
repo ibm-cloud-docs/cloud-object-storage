@@ -69,45 +69,6 @@ This guide provides instructions for migrating data from a single Swift containe
       curl https://rclone.org/install.sh | sudo bash
       ```
 
-## Configure `rclone` for OpenStack Swift
-{: #migrate-rclone}
-
-  1. Create an `rclone` config file in `~/.rclone.conf`.
-
-        ```
-        touch ~/.rclone.conf
-        ```
-
-  2. Create the Swift source by copying the following and pasting into `rclone.conf`.
-
-        ```
-        [SWIFT]
-        type = swift
-        auth = https://identity.open.softlayer.com/v3
-        user_id =
-        key =
-        region =
-        endpoint_type =
-        ```
-
-  3. Get OpenStack Swift credential
-    <br>a. Select your Swift instance in the [IBM Cloud console dashboard](https://cloud.ibm.com/).
-    <br>b. Click **Service Credentials** in the navigation pane.
-    <br>c. Click **New credential** to generate credential information. Click **Add**.
-    <br>d. View the credential that you created, and copy the JSON contents.
-
-  4. Complete the following fields:
-
-        ```
-        user_id = <userId>
-        key = <password>
-        region = dallas OR london            depending on container location
-        endpoint_type = public OR internal   internal is the private endpoint
-        ```
-
-  5. Skip to section Configure `rclone` for COS
-
-
 ## Configure `rclone` for OpenStack Swift (infrastructure)
 {: #migrate-config-swift}
 
