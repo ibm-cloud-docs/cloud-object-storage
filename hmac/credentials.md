@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2019
+lastupdated: "2019-11-14"
 
 keywords: authorization, aws, hmac, signature
 
@@ -34,10 +34,7 @@ Users can create a set of HMAC credentials as part of a [Service Credential](/do
 ```
 ibmcloud resource service-key-create <key-name-without-spaces> Writer --instance-name "<instance name--use quotes if your instance name has spaces>" --parameters '{"HMAC":true}'
 ```
-{: codeblock}
-
-Note that `service-instance-id` or `--instance name` is not required for IaaS COS. For more, see the details at [service credentials](docs/services/cloud-object-storage?topic=cloud-object-storage-service-credentials).
-{: tip}
+{: pre}
 
 If you want to store the results of the generated key, you can append ` > file.skey` to the end of the example. For the purposes of this instruction set, you need only find the `cos_hmac_keys` heading with child keys, `access_key_id`, and `secret_access_key`.
 
@@ -46,6 +43,7 @@ If you want to store the results of the generated key, you can append ` > file.s
         access_key_id:      7exampledonotusea6440da12685eee02
         secret_access_key:  8not8ed850cddbece407exampledonotuse43r2d2586
 ```
+{: screen}
 
 Of particular interest is the ability to set environment variables (the instructions for which are specific to the operating system involved). For instance, in Example 3, a `.bash_profile` script contains `COS_HMAC_ACCESS_KEY_ID` and `COS_HMAC_SECRET_ACCESS_KEY` that is exported upon starting a shell and used in development.
 
@@ -54,7 +52,7 @@ export COS_HMAC_ACCESS_KEY_ID="7exampledonotusea6440da12685eee02"
 export COS_HMAC_SECRET_ACCESS_KEY="8not8ed850cddbece407exampledonotuse43r2d2586"
 
 ```
-{:codeblock: .codeblock}
+{: pre}
 
 After the Service Credential is created, the HMAC Key is included in the `cos_hmac_keys` field. These HMAC keys are then associated with a [Service ID](/docs/iam?topic=iam-serviceids#serviceids) and can be used to access any resources or operations that are allowed by the Service ID's role. 
 
