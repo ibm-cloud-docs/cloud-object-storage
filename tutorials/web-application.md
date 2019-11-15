@@ -60,7 +60,7 @@ directory. Change your own reference directory to
 the new one you created. When created, your application has its own subdirectory with 
 the starter code and configuration that is needed to get up and running.
 
-Leaving the command line and returning to the browser, follow the instructions to install the [{{site.data.keyword.cloud_notm}} Platform developer tools](https://cloud.ibm.com/docs/cli?topic=cloud-cli-ibmcloud-cli) at the link. 
+Leaving the command line and returning to the browser, follow the instructions to install the [{{site.data.keyword.cloud_notm}} Platform developer tools](https://cloud.ibm.com/docs/cli?topic=cloud-cli-install-devtools-manually) at the link. 
 The Developer Tools offer an extensible and repeatable approach to building and deploying cloud applications.
 
 [Docker](https://www.docker.com) is installed as part of the Developer Tools, and we need it. Its work
