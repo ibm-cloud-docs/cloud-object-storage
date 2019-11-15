@@ -34,9 +34,8 @@ Data can now be [archived](/docs/cloud-object-storage?topic=cloud-object-storage
 
 [Immutable Object Storage](/docs/cloud-object-storage?topic=cloud-object-storage-immutable) is now available for buckets in US Cross Region (`us`).
 
-Buckets in Tokyo, Japan (`jp-tok`)and Frankfurt, Germany (`eu-de`) can now use [Aspera high-speed transfer](/docs/cloud-object-storage?topic=cloud-object-storage-aspera).
-
 Buckets can now be created in a Single Data Center configuration in Paris, France. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+
 
 
 ## Q3 2019
