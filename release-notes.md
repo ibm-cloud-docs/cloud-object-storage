@@ -22,13 +22,32 @@ subcollection: cloud-object-storage
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: .shortdesc}
 
+## Q4 2019
+{: #updates-2019-q4}
+
+### November 2019
+{: #updates-2019-q3-nov}
+
+Data can now be [archived](/docs/cloud-object-storage?topic=cloud-object-storage-archive) in buckets located in São Paulo, Brazil (`sao1`).
+
+### October 2019
+{: #updates-2019-q3-oct}
+
+[Immutable Object Storage](/docs/cloud-object-storage?topic=cloud-object-storage-immutable) is now available for buckets in US Cross Region (`us`).
+
+Buckets can now be created in a Single Data Center configuration in Paris, France. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+
+
+
 ## Q3 2019
 {: #updates-2019-q3}
 
 ### September 2019
+{: #updates-2019-q3-sep}
 Changes made to object storage data can be used as an [event source for Cloud Functions](/docs/services/cloud-object-storage?topic=cloud-object-storage-functions).
 
 ### August 2019
+{: #updates-2019-q3-aug}
 Data can be encrypted [using HPCS](/docs/services/cloud-object-storage?topic=cloud-object-storage-encryption).
 
 Object-level events can be tracked [using Activity Tracker with LogDNA](/docs/services/cloud-object-storage?topic=cloud-object-storage-at).
