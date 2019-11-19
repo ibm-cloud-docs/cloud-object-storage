@@ -1,7 +1,7 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
+  years: 2017, 2019
 lastupdated: "2019-11-11"
 
 keywords: object storage, reference, api
@@ -18,7 +18,9 @@ subcollection: cloud-object-storage
 {:tip: .tip}
 {:important: .important}
 {:note: .note}
-{:download: .download} 
+{:download: .download}
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Common headers and error codes
 {: #compatibility-common}

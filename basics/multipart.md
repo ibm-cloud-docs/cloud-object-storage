@@ -1,7 +1,7 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
+  years: 2017, 2019
 lastupdated: "2019-11-11"
 
 keywords: big data, multipart, multiple parts, transfer
@@ -24,6 +24,8 @@ subcollection: cloud-object-storage
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
 {:S3cmd: .ph data-hd-programlang='S3cmd'}
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Store large objects
 {: #large-objects}

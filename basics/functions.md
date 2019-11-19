@@ -19,6 +19,8 @@ subcollection: cloud-object-storage
 {:important: .important}
 {:note: .note}
 {:download: .download} 
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Use IBM Cloud Functions
 {: #functions}

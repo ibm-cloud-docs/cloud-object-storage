@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-10-22"
+  years: 2017, 2019
+lastupdated: "2019-11-19"
 
 keywords: object storage, node, javascript, sdk
 
@@ -23,6 +23,8 @@ subcollection: cloud-object-storage
 {:javascript: .ph data-hd-programlang='javascript'} 
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Using Node.js
 {: #node}

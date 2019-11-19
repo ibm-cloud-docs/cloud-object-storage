@@ -1,7 +1,7 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
+  years: 2017, 2019
 lastupdated: "2019-11-11"
 
 keywords: public, cdn, anonymous, files
@@ -16,6 +16,8 @@ subcollection: cloud-object-storage
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Allowing public access
 {: #iam-public-access}

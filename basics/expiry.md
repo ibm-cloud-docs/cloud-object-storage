@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-06-05"
+  years: 2017, 2019
+lastupdated: "2019-11-19"
 
 keywords: expiry, glacier, tier, s3, compatibility, api
 
@@ -25,7 +25,9 @@ subcollection: cloud-object-storage
 {:javascript: .ph data-hd-programlang='javascript'}
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'} 
-{:http: .ph data-hd-programlang='http'} 
+{:http: .ph data-hd-programlang='http'}
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Delete stale data with expiration rules
 {: #expiry}

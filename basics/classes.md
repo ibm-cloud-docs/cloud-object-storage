@@ -1,7 +1,7 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
+  years: 2017, 2019
 lastupdated: "2019-11-11"
 
 keywords: storage classes, tiers, cost, buckets, location constraint, provisioning code, locationconstraint
@@ -26,6 +26,8 @@ subcollection: cloud-object-storage
 {:python: .ph data-hd-programlang='python'}
 {:go: .ph data-hd-programlang='go'}
 {:curl: .ph data-hd-programlang='curl'}
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Use storage classes
 {: #classes}

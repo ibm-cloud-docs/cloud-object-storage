@@ -1,7 +1,7 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
+  years: 2017, 2019
 lastupdated: "2019-11-11"
 
 keywords: aspera, high speed, big data, packet loss
@@ -20,7 +20,9 @@ subcollection: cloud-object-storage
 {:note: .note}
 {:download: .download}
 {:java: .ph data-hd-programlang='java'} 
-{:python: .ph data-hd-programlang='python'} 
+{:python: .ph data-hd-programlang='python'}
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Use Aspera high-speed transfer
 {: #aspera}
