@@ -122,7 +122,7 @@ Each Aspera high-speed transfer session creates an individual `ascp` process tha
 ### Getting the SDK
 {: #aspera-sdk}
 
-Code for two {{site.data.keyword.cos_full_notm}} SDKS: Java and Python, can be revealed in the links at the [top of this page]( /docs/services/cloud-object-storage?topic=cloud-object-storage-aspera).
+Code for two {{site.data.keyword.cos_full_notm}} SDKS: Java and Python, can be revealed in the links in the [code switcher]( /docs/services/cloud-object-storage?topic=cloud-object-storage-aspera).
 
 The best way to use {{site.data.keyword.cos_full_notm}} and Aspera high-speed transfer Java SDK is to use Maven to manage dependencies. If you aren't familiar with Maven, you get can get up and running with the [Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html){: external} guide.
 {: java}
@@ -174,4 +174,4 @@ Examples of initiating Aspera transfers with Python are available in [Using Aspe
 ## Next Steps
 {: #aspera-next-steps}
 
-Please check [Integrated Services](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability) to see if Aspera high-speed transfer is available in appropriate regions for you.
+Next, you may wish to check [Integrated Services](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability) to see if Aspera high-speed transfer is available in appropriate regions for you.
