@@ -93,7 +93,7 @@ bucketlist()
 {: codeblock}
 
 ### Use library methods in your `R` project
-{: #cloudyr-s3-library}
+{: #cloudyr-s3-library-methods}
 
 You can learn a lot from working with sample packages. For example, the package for [Cosmic Microwave Background Data Analysis](https://github.com/frycast/rcosmo){: external} presents a conundrum. The binaries of the project for local compiling are small enough to work on one's personal machine, but working with the source data would be constrained due to the size of the data.
 
