@@ -1,7 +1,7 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
+  years: 2017, 2019
 lastupdated: "2019-11-11"
 
 keywords: developer, best practices, object storage
@@ -23,6 +23,8 @@ subcollection: cloud-object-storage
 {:javascript: .ph data-hd-programlang='javascript'} 
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Developer guidance
 {: #dev-guide}

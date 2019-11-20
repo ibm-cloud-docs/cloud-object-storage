@@ -1,7 +1,7 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
+  years: 2017, 2019
 lastupdated: "2019-11-13"
 
 keywords: rest, s3, compatibility, api, objects
@@ -21,6 +21,8 @@ subcollection: cloud-object-storage
 {:download: .download}
 {:token: .ph data-hd-programlang='token'}
 {:hmac: .ph data-hd-programlang='hmac'}
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Object operations
 {: #object-operations}

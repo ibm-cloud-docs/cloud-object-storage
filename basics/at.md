@@ -1,7 +1,7 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
+  years: 2017, 2019
 lastupdated: "2019-11-11"
 
 keywords: activity tracker, LogDNA, event, object storage, COS API calls, monitor COS events
@@ -20,7 +20,8 @@ subcollection: cloud-object-storage
 {:note: .note}
 {:download: .download} 
 {:table: .aria-labeledby="caption"}
-
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Activity Tracker events
 {: #at-events}

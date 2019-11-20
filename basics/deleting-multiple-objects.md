@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-10-30"
+  years: 2017, 2019
+lastupdated: "2019-11-19"
 
 keywords: empty bucket, delete, multiple
 
@@ -22,7 +22,8 @@ subcollection: cloud-object-storage
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
 {:go: .ph data-hd-programlang='go'}
-
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Empty a bucket 
 {: #deleting-multiple-objects-patterns}

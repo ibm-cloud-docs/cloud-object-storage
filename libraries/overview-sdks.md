@@ -1,7 +1,7 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
+  years: 2017, 2019
 lastupdated: "2019-11-11"
 
 keywords: object storage, sdk, overview
@@ -24,6 +24,8 @@ subcollection: cloud-object-storage
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
 {:go: .ph data-hd-programlang='go'}
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # About IBM COS SDKs
 {: #sdk-about}
