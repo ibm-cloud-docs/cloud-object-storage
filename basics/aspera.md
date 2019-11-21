@@ -99,7 +99,7 @@ The Aspera high-speed transfer SDK is closed-source and thus an optional depende
 {: #aspera-packaging}
 
 
-![COS/Aspera High-Speed Transfer SDK](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/aspera-packaging.png" height="200px"){: caption="Figure 1: COS/Aspera High-Speed Transfer SDK." caption-side="bottom"}
+![COS/Aspera High-Speed Transfer SDK](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/aspera-packaging.png){: caption="Figure 1: COS/Aspera High-Speed Transfer SDK." caption-side="bottom"}
 
 ### Supported Platforms
 {: #aspera-sdk-platforms}
