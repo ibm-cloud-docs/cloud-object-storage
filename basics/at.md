@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-11-11"
+lastupdated: "2019-11-22"
 
 keywords: activity tracker, LogDNA, event, object storage, COS API calls, monitor COS events
 
@@ -39,7 +39,7 @@ In {{site.data.keyword.cos_full_notm}}, you can also monitor management events a
 * You must configure each bucket to enable management events, or management and data events. Notice that you cannot enable data events only for a bucket. 
 * To monitor management events, you must configure a bucket and specify the Activity Tracker instance where those events will be collected and forwarded.
 * To monitor data events, you must select the option **Track data events**. 
-* Each action that a user performs on a COS resource has a unique ID that is included in the event in the `requestData.requestId` field.
+* Each action that a user performs on a COS resource has a unique ID that is included in the event in the `responseData.requestId` field.
 
 
 
@@ -210,26 +210,26 @@ To view events, you must access the web UI of the {{site.data.keyword.at_full_no
 
 In the {{site.data.keyword.cloud_notm}}, you can have 1 or more COS instances. 
 
-To quickly identify the COS instance ID in your account that has generated an event, check the field `requestData.serviceInstanceId` that is set in the **requestData** field.
+To quickly identify the COS instance ID in your account that has generated an event, check the field `responseData.serviceInstanceId` that is set in the **responseData** field.
 
 ### Identifying the bucket location
 {: #at-events-analyze-2}
 
-To quickly identify the bucket location, check the field `requestData.bucketLocation` that is set in the **requestData** field.
+To quickly identify the bucket location, check the field `responseData.bucketLocation` that is set in the **responseData** field.
 
 ### Getting the unique ID of a request
 {: #at-events-analyze-3}
 
 Each action that a user performs on a COS resource has a unique ID.
 
-To get the unique ID of a request to a COS resource, check the field `requestData.requestId` that is set in the **requestData** field.
+To get the unique ID of a request to a COS resource, check the field `responseData.requestId` that is set in the **responseData** field.
 
 ### Getting all events for a multipart upload operations
 {: #at-events-analyze-4}
 
-When you upload a large object by using *multipart upload operations*, each operation generates an event. In each event, the field `requestData.uploadId` is set to the same value.
+When you upload a large object by using *multipart upload operations*, each operation generates an event. In each event, the field `responseData.uploadId` is set to the same value.
 
-To search for all events that are part of a multipart upload operation, you can search for a specific `requestData.uploadId` value. 
+To search for all events that are part of a multipart upload operation, you can search for a specific `responseData.uploadId` value. 
 
 ### Getting all events that are generated for a restore request
 {: #at-events-analyze-5}
@@ -238,7 +238,7 @@ A request to restore an object from an archive generates multiple events in COS:
 1. A read action of the source object. This action generates an event with action **cloud-object-storage.object-restore.read**. 
 2. A create action of the object into a bucket. This action generates an event with action **cloud-object-storage.object-restore.create**.  
 
-You can use the `RequestData.requestId` field to identify the events that are generated when you restore an object.
+You can use the `responseData.requestId` field to identify the events that are generated when you restore an object.
 
 ### Getting all events that are generated for copying an object from one bucket to another
 {: #at-events-analyze-6}
@@ -251,7 +251,7 @@ To collect and monitor all events that report on a copy action across buckets, c
 * If one bucket is not enabled to collect management and data events, you will not receive the event that reports any copy action on that bucket.
 * If you configure different Activity Tracker instances for each bucket, you will have one event in 1 instance and the other event in a different instance.
 
-You can use the `RequestData.requestId` field to identify the events that are generated when you copy an object from one bucket to another.
+You can use the `responseData.requestId` field to identify the events that are generated when you copy an object from one bucket to another.
 
 
 
