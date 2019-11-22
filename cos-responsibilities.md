@@ -33,7 +33,7 @@ Learn about the management responsibilities and terms and conditions that you ha
 {: #responsibilities-operational}
 
 **IBM responsibilities**
-- Maintaining SLA’s as stated in {{site.data.keyword.cos_full_notm}} Service Description.
+- Maintaining SLAs as stated in {{site.data.keyword.cos_full_notm}} Service Description.
 - Ensure client gets appropriate notifications regarding availability and downtime of its resources.
 - Monitor service performance related metrics such as network, storage, and compute capacities.
 - Monitor and manage service health and availability.
