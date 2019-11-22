@@ -18,6 +18,7 @@ subcollection: cloud-object-storage
 {:tip: .tip}
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
+{:help: data-hd-content-type='help'}
 
 # Getting started tutorial
 {: #getting-started}
@@ -46,7 +47,7 @@ This tutorial takes a new user through the first steps with the {{site.data.keyw
 
 2. Follow the steps to provision your instance in order to **Create a bucket**, choosing a unique name. All buckets in all regions across the globe share a single namespace. Ensure that you have the [correct permissions](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions) to create a bucket.
 
-   **Note**: When you create buckets or add objects, be sure to avoid the use of Personally Identifiable Information (PII). PII is information that can identify any user (natural person) by name, location, or any other means.
+   When you create buckets or add objects, be sure to avoid the use of Personally Identifiable Information (PII). **Note:** PII is information that can identify any user (natural person) by name, location, or any other means.
    {: tip}
 
 3. Choose a wanted [level of _resiliency_](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) first, and then a _location_ where you would like your data to be physically stored. Resiliency refers to the scope and scale of the geographic area across which your data is distributed. _Cross Region_ resiliency spreads your data across several metropolitan areas, while _Regional_ resiliency spreads data across a single metropolitan area. A _Single Data Center_ distributes data across devices within a single site only.
@@ -76,8 +77,7 @@ Now you're going to bring in another user and allow them to act as an administra
   3. Now, three more fields appear: _Service instance_, _Resource Type_, and _Resource ID_. The first field defines which instance of {{site.data.keyword.cos_short}} the user can access. It can also be set to grant the same level of access to all instances of {{site.data.keyword.cos_short}}. We can leave the other fields blank for now.
 	![IAM invite users](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/console_iam_servicesdropdowns.png){: caption="Figure 3: IAM identifiers for services and resources"}
   4. The check box under **Select roles** determines the set of actions available to the user. Select the "Administrator" platform access role to allow the user grant other [users and service IDs](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview) access to the instance. Select the "Manager" service access role to allow the user to manage the {{site.data.keyword.cos_short}} instance as well as create and delete buckets and objects. These combinations of a _Subject_ (user), _Role_ (Manager), and _Resource_ ({{site.data.keyword.cos_short}} service instance) together form [IAM policies](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview#getting-started-with-iam). For more detailed guidance on roles and policies, [see the IAM documentation](/docs/iam?topic=iam-userroles).
-	<img alt="IAM roles" src="https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/console_iam_roles.png" max-height="400px" />
-	`Figure 4: IAM select roles`
+   ![IAM roles](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/console_iam_roles.png){: caption="Figure 4: IAM select roles"}
 
 
 ## Give developers access to a bucket.
