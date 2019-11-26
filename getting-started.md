@@ -52,7 +52,7 @@ This tutorial takes a new user through the first steps with the {{site.data.keyw
 
 1. First, choose the [level of _resiliency_](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) you want. Then, choose a _location_ where you would like your data to be physically stored. Resiliency refers to the scope and scale of the geographic area across which your data is distributed. _Cross Region_ resiliency spreads your data across several metropolitan areas, while _Regional_ resiliency spreads data across a single metropolitan area. A _Single Data Center_ distributes data across devices within a single site only.
 
-1. Choose the [bucket's _storage class_](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-classes), to accurately reflect how often you expect to read the stored data. This is important as it determines your billing details. Follow the **Create** link to create and access your new bucket.
+1. Choose the [bucket's _storage class_](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-classes) to accurately reflect how often you expect to read the stored data. This is important as it determines your billing details. Follow the **Create** link to create and access your new bucket.
 
 Buckets are a way to organize your data, but they're not the sole way. Object names (often referred to as _object keys_) can use one or more forward slashes for a directory-like organizational system. You then use the portion of the object name before a delimiter to form an _object prefix_, which is used to list related objects in a single bucket through the {{site.data.keyword.cos_short}} API.
 {: tip}
