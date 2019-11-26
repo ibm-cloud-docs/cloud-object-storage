@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-04-12"
+  years: 2017, 2019
+lastupdated: "2019-11-13"
 
 keywords: rest, s3, compatibility, api, objects
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -17,15 +18,34 @@ subcollection: cloud-object-storage
 {:tip: .tip}
 {:important: .important}
 {:note: .note}
-{:download: .download} 
+{:download: .download}
+{:token: .ph data-hd-programlang='token'}
+{:hmac: .ph data-hd-programlang='hmac'}
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Object operations
 {: #object-operations}
 
-These operations read, write, and configure the objects within a bucket.
+The modern capabilities of {{site.data.keyword.cos_full}} are conveniently available via a RESTful API. Operations and methods for reading, writing, and configuring objects (stored within a bucket), are documented here.
+{: shortdesc}
 
-For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
-{:tip}
+For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+{: tip}
+
+## A note regarding Access/Secret Key (HMAC) authentication
+{: #object-operations-hmac}
+
+When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [using HMAC credentials](/docs/hmac?topic=cloud-object-storage-hmac), you will need the information represented in Table 1 when [constructing an HMAC signature](/docs/hmac?topic=cloud-object-storage-hmac-signature).
+
+|Key|Value|Example|
+|---|---|---|
+|{access_key}|Access key assigned to your Service Credential|cf4965cebe074720a4929759f57e1214|
+|{date}|The formatted date of your request (yyyymmdd)|20180613|
+|{region}|The location code for your endpoint|us-standard|
+|{signature}|The hash created using the secret key, location, and date|ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e|
+|{timestamp}|The formatted date and time of your request|20180614T001804Z|
+{: caption="Table 1. HMAC signature components"}
 
 ## Upload an object
 {: #object-operations-put}
@@ -33,7 +53,7 @@ For more information about endpoints, see [Endpoints and storage locations](/doc
 A `PUT` given a path to an object uploads the request body as an object. All objects uploaded in a single thread should be smaller than 500 MB (objects that are [uploaded in multiple parts](/docs/services/cloud-object-storage?topic=cloud-object-storage-large-objects) can be as large as 10 TB).
 
 **Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
-{:tip}
+{: tip}
 
 **Syntax**
 
@@ -41,8 +61,10 @@ A `PUT` given a path to an object uploads the request body as an object. All obj
 PUT https://{endpoint}/{bucket-name}/{object-name} # path style
 PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
+{: codeblock}
 
 **Example request**
+{: token}
 
 ```http
 PUT /apiary/queen-bee HTTP/1.1
@@ -58,12 +80,14 @@ Content-Length: 533
  the colony will fight fiercely to protect her.
 
 ```
+{: token}
 
-**Example request (HMAC)**
+**Example request**
+{: hmac}
 
 ```http
 PUT /apiary/queen-bee HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 x-amz-content-sha256: {payload_hash}
 Content-Type: text/plain; charset=utf-8
@@ -77,22 +101,7 @@ Content-Length: 533
  the colony will fight fiercely to protect her.
 
 ```
-
-**Example request (HMAC Pre-signed URL)**
-
-```http
-PUT /apiary/queen-bee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain; charset=utf-8
-Host: s3.us.cloud-object-storage.appdomain.cloud
-
-Content-Length: 533
-
- The 'queen' bee is developed from larvae selected by worker bees and fed a
- substance referred to as 'royal jelly' to accelerate sexual maturity. After a
- short while the 'queen' is the mother of nearly every bee in the hive, and
- the colony will fight fiercely to protect her.
-
-```
+{: hmac}
 
 **Example response**
 
@@ -124,28 +133,25 @@ Note that the `Etag` value returned for objects encrypted using SSE-KP **is** th
 HEAD https://{endpoint}/{bucket-name}/{object-name} # path style
 HEAD https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
+{: codeblock}
 
 **Example request**
+{: token}
 
 ```http
 HEAD /apiary/soldier-bee HTTP/1.1
 Authorization: Bearer {token}
 Host: s3-api.sjc-us-geo.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net
 ```
+{: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 HEAD /apiary/soldier-bee HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
-Host: s3.us.cloud-object-storage.appdomain.cloud
-```
-
-**Example request (HMAC Pre-signed URL)**
-
-```http
-HEAD /apiary/soldier-bee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 
@@ -181,6 +187,7 @@ The `Etag` value that is returned for objects encrypted using SSE-C/SSE-KP will 
 GET https://{endpoint}/{bucket-name}/{object-name} # path style
 GET https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
+{: codeblock}
 
 ### Optional headers
 {: #object-operations-get-headers}
@@ -190,28 +197,25 @@ Header | Type | Description
 `range` | String | Returns the bytes of an object within the specified range.
 
 **Example request**
+{: token}
 
 ```http
 GET /apiary/worker-bee HTTP/1.1
 Authorization: Bearer {token}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 GET /apiary/worker-bee HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
-**Example request (HMAC Pre-signed URL)**
-
-```http
-GET /apiary/worker-bee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
-Host: s3.us.cloud-object-storage.appdomain.cloud
-```
+{: hmac}
 
 **Example response**
 
@@ -247,30 +251,28 @@ A `DELETE` given a path to an object deletes an object.
 DELETE https://{endpoint}/{bucket-name}/{object-name} # path style
 DELETE https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
+{: codeblock}
 
 **Example request**
+{: token}
 
 ```http
 DELETE /apiary/soldier-bee HTTP/1.1
 Authorization: Bearer {token}
 Host: s3-api.sjc-us-geo.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net
 ```
+{: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 DELETE /apiary/soldier-bee HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
-**Example request (HMAC Pre-signed URL)**
-
-```http
-DELETE /apiary/soldier-bee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
-Host: s3.us.cloud-object-storage.appdomain.cloud
-```
+{: hmac}
 
 **Example response**
 
@@ -286,7 +288,7 @@ x-amz-request-id: 8ff4dc32-a6f0-447f-86cf-427b564d5855
 
 ----
 
-## Deleting multiple objects
+## Delete multiple objects
 {: #object-operations-multidelete}
 
 A `POST` given a path to a bucket and proper parameters deletes a specified set of objects. A `Content-MD5` header that specifies the base64 encoded MD5 hash of the request body is required.
@@ -305,6 +307,8 @@ The required `Content-MD5` header needs to be the binary representation of a bas
 The request can contain a maximum of 1000 keys that you want to delete. While this is useful in reducing the number of requests, be mindful when deleting many keys. Also, take into account the sizes of the objects to ensure suitable performance.
 {:tip}
 
+The following code shows one example of how to create the necessary representation of the header content:
+
 ```
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 ```
@@ -316,8 +320,18 @@ echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 POST https://{endpoint}/{bucket-name}?delete= # path style
 POST https://{bucket-name}.{endpoint}?delete= # virtual host style
 ```
+{: codeblock}
+
+The body of the request must contain an XML block with the following schema:
+
+|Element|Type|Children|Ancestor|Constraint|
+|---|---|---|---|---|
+|Delete | Container | Object | - | - |
+|Object| Container | Key | Delete | - |
+|Key| String | - | Object | Valid key string |
 
 **Example request**
+{: token}
 
 ```http
 POST /apiary?delete= HTTP/1.1
@@ -326,38 +340,20 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-Type: text/plain; charset=utf-8
 Content-MD5: xj/vf7lD7vbIe/bqHTaLvg==
 ```
+{: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 POST /apiary?delete= HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain; charset=utf-8
 Content-MD5: xj/vf7lD7vbIe/bqHTaLvg==
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
-**Example request (HMAC Pre-signed URL)**
-
-```http
-POST /apiary?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&delete=&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain; charset=utf-8
-Content-MD5: xj/vf7lD7vbIe/bqHTaLvg==
-Host: s3.us.cloud-object-storage.appdomain.cloud
-```
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<Delete>
-    <Object>
-         <Key>surplus-bee</Key>
-    </Object>
-    <Object>
-         <Key>unnecessary-bee</Key>
-    </Object>
-</Delete>
-```
+{: hmac}
 
 **Example response**
 
@@ -372,6 +368,7 @@ x-amz-request-id: a6232735-c3b7-4c13-a7b2-cd40c4728d51
 Content-Type: application/xml
 Content-Length: 207
 ```
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <DeleteResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
@@ -404,6 +401,7 @@ A `PUT` given a path to a new object creates a new copy of another object that i
 PUT https://{endpoint}/{bucket-name}/{object-name} # path style
 PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
+{: codeblock}
 
 ### Optional headers
 {: #object-operations-copy-options}
@@ -417,6 +415,7 @@ Header | Type | Description
 `x-amz-copy-source-if-modified-since` | String (time stamp)| Creates a copy if the source object has been modified since the specified date. Date must be a valid HTTP date (for example, `Wed, 30 Nov 2016 20:21:38 GMT`).
 
 **Example request**
+{: token}
 
 This basic example takes the `bee` object from the `garden` bucket, and creates a copy in the `apiary` bucket with the new key `wild-bee`.
 
@@ -426,24 +425,19 @@ Authorization: Bearer {token}
 x-amz-copy-source: /garden/bee
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 PUT /apiary/wild-bee HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 x-amz-copy-source: /garden/bee
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
-**Example request (HMAC Pre-signed URL)**
-
-```http
-PUT /apiary/wild-bee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
-x-amz-copy-source: /garden/bee
-Host: s3.us.cloud-object-storage.appdomain.cloud
-```
+{: hmac}
 
 **Example response**
 
@@ -480,8 +474,10 @@ An `OPTIONS` given a path to an object along with an origin and request type che
 OPTIONS https://{endpoint}/{bucket-name}/{object-name} # path style
 OPTIONS https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
+{: codeblock}
 
 **Example request**
+{: token}
 
 ```http
 OPTIONS /apiary/queen-bee HTTP/1.1
@@ -489,26 +485,20 @@ Access-Control-Request-Method: PUT
 Origin: http://ibm.com
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 OPTIONS /apiary/queen-bee HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Access-Control-Request-Method: PUT
 Origin: http://ibm.com
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
-**Example request (HMAC Pre-signed URL)**
-
-```http
-OPTIONS /apiary/queen-bee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&x-amz-signature={signature} HTTP/1.1
-Access-Control-Request-Method: PUT
-Origin: http://ibm.com
-Host: s3.us.cloud-object-storage.appdomain.cloud
-```
+{: hmac}
 
 **Example response**
 
@@ -562,30 +552,28 @@ A `POST` issued to an object with the query parameter `upload` creates a new `Up
 POST https://{endpoint}/{bucket-name}/{object-name}?uploads= # path style
 POST https://{bucket-name}.{endpoint}/{object-name}?uploads= # virtual host style
 ```
+{: codeblock}
 
 **Example request**
+{: token}
 
 ```http
 POST /some-bucket/multipart-object-123?uploads= HTTP/1.1
 Authorization: Bearer {token}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 POST /some-bucket/multipart-object-123?uploads= HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
-**Example request (HMAC Pre-signed URL)**
-
-```http
-POST /some-bucket/multipart-object-123?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&uploads=&x-amz-signature={signature} HTTP/1.1
-Host: s3.us.cloud-object-storage.appdomain.cloud
-```
+{: hmac}
 
 **Example response**
 
@@ -624,8 +612,10 @@ A `PUT` request that is issued to an object with query parameters `partNumber` a
 PUT https://{endpoint}/{bucket-name}/{object-name}?partNumber={sequential-integer}&uploadId={uploadId}= # path style
 PUT https://{bucket-name}.{endpoint}/{object-name}?partNumber={sequential-integer}&uploadId={uploadId}= # virtual host style
 ```
+{: codeblock}
 
 **Example request**
+{: token}
 
 ```http
 PUT /some-bucket/multipart-object-123?partNumber=1&uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
@@ -634,12 +624,14 @@ Content-Type: application/pdf
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-Length: 13374550
 ```
+{: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 PUT /some-bucket/multipart-object-123?partNumber=1&uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 x-amz-content-sha256: STREAMING-AWS4-HMAC-SHA256-PAYLOAD
 Content-Encoding: aws-chunked
@@ -648,15 +640,7 @@ Content-Type: application/pdf
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-Length: 13374550
 ```
-
-**Example request (HMAC Pre-signed URL)**
-
-```http
-PUT /some-bucket/multipart-object-123?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&partNumber=1&uploadId=0000015a-df89-51d0-2790-dee1ac994053&x-amz-signature={signature} HTTP/1.1
-Content-Type: application/pdf
-Host: s3.us.cloud-object-storage.appdomain.cloud
-Content-Length: 13374550
-```
+{: hmac}
 
 **Example response**
 
@@ -685,6 +669,7 @@ A `GET` given a path to a multipart object with an active `UploadID` specified a
 GET https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId} # path style
 GET https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId} # virtual host style
 ```
+{: codeblock}
 
 ### Query parameters
 {: #object-operations-multipart-list-params}
@@ -695,28 +680,25 @@ Parameter | Required?| Type | Description
 `part-number​-marker` | Optional | string | Defines where the list of parts begins.
 
 **Example request**
+{: token}
 
 ```http
 GET /farm/spaceship?uploadId=01000162-3f46-6ab8-4b5f-f7060b310f37 HTTP/1.1
 Authorization: bearer {token}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 GET /farm/spaceship?uploadId=01000162-3f46-6ab8-4b5f-f7060b310f37 HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
-**Example request (HMAC Pre-signed URL)**
-
-```http
-GET /farm/spaceship?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&uploadId=01000162-3f46-6ab8-4b5f-f7060b310f37&x-amz-signature={signature} HTTP/1.1
-Host: s3.us.cloud-object-storage.appdomain.cloud
-```
+{: hmac}
 
 **Example response**
 
@@ -769,6 +751,16 @@ A `POST` request that is issued to an object with query parameter `uploadId` and
 POST https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId}= # path style
 POST https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # virtual host style
 ```
+{: codeblock}
+
+The body of the request must contain an XML block with the following schema:
+
+|Element|Type|Children|Ancestor|Constraint|
+|---|---|---|---|---|
+|CompleteMultipartUpload | Container | Part | - | - |
+|Part| Container | PartNumber, ETag | Delete | - |
+|PartNumber| String | - | Object | Valid part number |
+|ETag| String | - | Object | Valid ETag value string |
 
 ```xml
 <CompleteMultipartUpload>
@@ -780,6 +772,7 @@ POST https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # virtu
 ```
 
 **Example request**
+{: token}
 
 ```http
 POST /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
@@ -788,26 +781,20 @@ Content-Type: text/plain; charset=utf-8
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-Length: 257
 ```
+{: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 POST /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain; charset=utf-8
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-Length: 257
 ```
-
-**Example request (HMAC Pre-signed URL)**
-
-```http
-POST /some-bucket/multipart-object-123?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&uploadId=0000015a-df89-51d0-2790-dee1ac994053&x-amz-signature={signature} HTTP/1.1
-Content-Type: text/plain; charset=utf-8
-Host: s3.us.cloud-object-storage.appdomain.cloud
-Content-Length: 257
-```
+{: hmac}
 
 ```xml
 <CompleteMultipartUpload>
@@ -858,30 +845,28 @@ A `DELETE` request issued to an object with query parameter `uploadId` deletes a
 DELETE https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId}= # path style
 DELETE https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # virtual host style
 ```
+{: codeblock}
 
 **Example request**
+{: token}
 
 ```http
 DELETE /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
 Authorization: Bearer {token}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 DELETE /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac994053 HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
-**Example request (HMAC Pre-signed URL)**
-
-```http
-DELETE /some-bucket/multipart-object-123?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&uploadId=0000015a-df89-51d0-2790-dee1ac994053&x-amz-signature={signature} HTTP/1.1
-Host: s3.us.cloud-object-storage.appdomain.cloud
-```
+{: hmac}
 
 **Example response**
 
@@ -911,6 +896,7 @@ To permanently restore the object, it must be copied to a bucket that doesn't ha
 POST https://{endpoint}/{bucket-name}/{object-name}?restore # path style
 POST https://{bucket-name}.{endpoint}/{object-name}?restore # virtual host style
 ```
+{: codeblock}
 
 **Payload Elements**
 
@@ -933,6 +919,7 @@ The body of the request must contain an XML block with the following schema:
 ```
 
 **Example request**
+{: token}
 
 ```http
 POST /apiary/queenbee?restore HTTP/1.1
@@ -942,26 +929,20 @@ Content-MD5: rgRRGfd/OytcM7O5gIaQ==
 Content-Length: 305
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: token}
 
-**Example request (HMAC Headers)**
+**Example request**
+{: hmac}
 
 ```http
 POST /apiary/queenbee?restore HTTP/1.1
-Authorization: 'AWS4-HMAC-SHA256 Credential={access_key}/{datestamp}/{location}/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature={signature}'
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-MD5: rgRRGfd/OytcM7O5gIaQ== 
 Content-Length: 305
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
-
-**Example request (HMAC Pre-signed URL)**
-
-```http
-POST /apiary/queenbee?x-amz-algorithm=AWS4-HMAC-SHA256&x-amz-credential={access_key}%2F{datestamp}%2F{location}%2Fs3%2Faws4_request&x-amz-date={timestamp}&x-amz-expires=86400&x-zmz-signedheaders=host&restore&x-amz-signature={signature} HTTP/1.1
-Content-MD5: rgRRGfd/OytcM7O5gIaQ== 
-Content-Length: 305
-Host: s3.us.cloud-object-storage.appdomain.cloud
-```
+{: hmac}
 
 ```xml
 <RestoreRequest>
@@ -1004,8 +985,10 @@ The `PUT` request requires a copy of existing object as the contents are overwri
 PUT https://{endpoint}/{bucket-name}/{object-name} # path style
 PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
+{: codeblock}
 
 **Example request**
+{: token}
 
 ```http
 PUT /apiary/queen-bee HTTP/1.1
@@ -1023,6 +1006,29 @@ Content-Length: 533
  the colony will fight fiercely to protect her.
 
 ```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+PUT /apiary/queen-bee HTTP/1.1
+Authorization: Bearer {token}
+Content-Type: text/plain; charset=utf-8
+Content-MD5: M625BaNwd/OytcM7O5gIaQ==
+Host: s3.us.cloud-object-storage.appdomain.cloud
+x-amz-meta-key1: value1
+x-amz-meta-key2: value2
+
+Content-Length: 533
+
+ The 'queen' bee is developed from larvae selected by worker bees and fed a
+ substance referred to as 'royal jelly' to accelerate sexual maturity. After a
+ short while the 'queen' is the mother of nearly every bee in the hive, and
+ the colony will fight fiercely to protect her.
+
+```
+{: hmac}
 
 **Example response**
 
@@ -1041,7 +1047,7 @@ Content-Length: 0
 ### Using COPY to update metadata
 {: #object-operations-metadata-copy}
 
-For extra details about running a `COPY` request, click [here](#object-operations-copy)
+The complete details about the `COPY` request are [here](#object-operations-copy).
 
 **Syntax**
 
@@ -1049,8 +1055,10 @@ For extra details about running a `COPY` request, click [here](#object-operation
 PUT https://{endpoint}/{bucket-name}/{object-name} # path style
 PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
+{: codeblock}
 
 **Example request**
+{: token}
 
 ```http
 PUT /apiary/queen-bee HTTP/1.1
@@ -1062,6 +1070,23 @@ x-amz-metadata-directive: REPLACE
 x-amz-meta-key1: value1
 x-amz-meta-key2: value2
 ```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+PUT /apiary/queen-bee HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+x-amz-copy-source: /apiary/queen-bee
+x-amz-metadata-directive: REPLACE
+x-amz-meta-key1: value1
+x-amz-meta-key2: value2
+```
+{: hmac}
 
 **Example response**
 
@@ -1076,3 +1101,8 @@ x-amz-request-id: 9f0ca49a-ae13-4d2d-925b-117b157cf5c3
 ETag: "3ca744fa96cb95e92081708887f63de5"
 Content-Length: 0
 ```
+
+## Next Steps
+{: #api-ref-objects-next-steps}
+
+Learn more about the API reference on bucket operations at the [documentation](/docs/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations).

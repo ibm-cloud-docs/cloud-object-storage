@@ -1,16 +1,16 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-08-23"
+  years: 2017, 2019
+lastupdated: "2019-11-21"
 
 keywords: object storage, sdk, overview
 
 subcollection: cloud-object-storage
 
 ---
-
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -24,6 +24,8 @@ subcollection: cloud-object-storage
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
 {:go: .ph data-hd-programlang='go'}
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # About IBM COS SDKs
 {: #sdk-about}
@@ -37,14 +39,16 @@ These SDKs are based on the official AWS S3 API SDKs, but are modified to use IB
 |-----------------------------------------------------|---------------------------------------------------|---------------------------------------------------|---------------------------------------------------|---------------------------------------------------|---------------------------------------------------|
 | [IAM API key support](#sdk-about-iam)               | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |
 | [Managed multipart uploads](#sdk-about-tmup)        | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |
-| [Managed multipart downloads](#sdk-about-tmdown)    | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |                                                   |                                                   |
-| [Extended bucket listing](#sdk-about-extended-list) |                                                   |                                                   |                                                   |                                                   |                                                   |
-| [Version 2 object listing](#sdk-about-v2-list)      | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |                                                   |                                                   |
+| [Managed multipart downloads](#sdk-about-tmdown)    | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |                                                   |
+| [Extended bucket listing](#sdk-about-extended-list) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |                                                   |
+| [Version 2 object listing](#sdk-about-v2-list)      | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |                                                   |
 | [Key Protect](#sdk-about-kp)                        | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |
-| [SSE-C](#sdk-about-sse-c)                           | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |                                                   |                                                   |
-| [Archive rules](#sdk-about-archive)                 | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |                                                   |                                                   |
-| [Retention policies](#sdk-about-retention)          | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |                                                   |                                                   |
-| [Aspera high-speed transfer](#sdk-about-aspera)     | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |                                                   |                                                   |                                                   |
+| [SSE-C](#sdk-about-sse-c)                           | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |                                                   |
+| [Archive rules](#sdk-about-archive)                 | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |                                                   |
+| [Retention policies](#sdk-about-retention)          | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |                                                   |
+| [Aspera high-speed transfer](#sdk-about-aspera)     | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |                      &nbsp;                        |                             &nbsp;                      |                     &nbsp;                        |
+{: caption="Table 1. Features supported per SDK"}
+
 ## IAM API key support
 {: #sdk-about-iam}
 Allows for creating clients with an [API key](/docs/iam?topic=iam-iamoverview#iamoverview) instead of a [pair of Access and Secret](/docs/services/cloud-object-storage?topic=cloud-object-storage-hmac) keys.  

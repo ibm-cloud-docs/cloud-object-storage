@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-09-12"
+  years: 2017, 2019
+lastupdated: "2019-11-11"
 
 keywords: encryption, security, sse-c, key protect, {{site.data.keyword.hscrypto}}
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -17,7 +18,10 @@ subcollection: cloud-object-storage
 {:tip: .tip}
 {:important: .important}
 {:note: .note}
-{:download: .download} 
+{:download: .download}
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
+{:help: data-hd-content-type='help'}
 
 # Manage encryption
 {: #encryption}
@@ -123,6 +127,6 @@ It is also possible to use [the REST API](/docs/services/cloud-object-storage?to
 ### Rotating Keys
 {: #encryption-rotate}
 
-Key rotation is an important part of mitigating the risk of a data breach. Periodically changing keys reduces the potential data loss if the key is lost or compromised. The frequency of key rotations varies by organization and depends on a number of variables, such as the environment, the amount of encrypted data, classification of the data, and compliance laws. The [National Institute of Standards and Technology (NIST)](https://www.nist.gov/topics/cryptography){:new_window} provides definitions of appropriate key lengths and provides guidelines for how long keys should be used.
+Key rotation is an important part of mitigating the risk of a data breach. Periodically changing keys reduces the potential data loss if the key is lost or compromised. The frequency of key rotations varies by organization and depends on a number of variables, such as the environment, the amount of encrypted data, classification of the data, and compliance laws. The [National Institute of Standards and Technology (NIST)](https://www.nist.gov/topics/cryptography){: external} provides definitions of appropriate key lengths and provides guidelines for how long keys should be used.
 
 For more information, see the documentation for rotating keys in [Key Protect](/docs/services/key-protect?topic=key-protect-set-rotation-policy) or [{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-crypto-rotating-keys).

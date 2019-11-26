@@ -1,16 +1,16 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-08-23"
+  years: 2017, 2019
+lastupdated: "2019-11-11"
 
 keywords: object storage, sdk, guide
 
 subcollection: cloud-object-storage
 
 ---
-
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -24,6 +24,8 @@ subcollection: cloud-object-storage
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
 {:go: .ph data-hd-programlang='go'}
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Getting Started with the SDKs
 {: #sdk-gs}
@@ -54,7 +56,7 @@ You need:
 ## Getting the SDK
 {: #sdk-gs-install}
 
-Specific instructions for downloading and installing the SDK is available in [Using Python.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python){:new_window}{: python}[Using Node.js.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node){:new_window}{: javascript}[Using Java.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java){:new_window}{: java}[Using Go.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-go){:new_window}{: go}
+Specific instructions for downloading and installing the SDK is available in [Using Python.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python){: external}{: python}[Using Node.js.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node){: external}{: javascript}[Using Java.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java){: external}{: java}[Using Go.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-go){: external}{: go}
 
 ## Code Example
 {: #sdk-gs-example}

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-08-23"
+  years: 2017, 2019
+lastupdated: "2019-11-11"
 
 keywords: gui, desktop, backup, cloudberry
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -22,7 +23,8 @@ subcollection: cloud-object-storage
 {:javascript: .ph data-hd-programlang='javascript'} 
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
-
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Cloudberry Labs
 {: #cloudberry}
@@ -45,7 +47,7 @@ Cloudberry backup includes many useful features:
 ## Cloudberry Explorer
 {: #cloudberry-explorer}
 
-[Cloudberry Explorer](https://www.cloudberrylab.com/explorer.aspx){:new_window} is a simple file browser that provides a set of basic features:
+[Cloudberry Explorer](https://www.cloudberrylab.com/explorer.aspx){: external} is a simple file browser that provides a set of basic features:
 
 * Folder (bucket) sync
 * ACL management
