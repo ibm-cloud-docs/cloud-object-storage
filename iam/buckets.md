@@ -25,6 +25,7 @@ subcollection: cloud-object-storage
 {:python: .ph data-hd-programlang='python'}
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
+{:help: data-hd-content-type='help'}
 
 # Bucket permissions
 {: #iam-bucket-permissions}

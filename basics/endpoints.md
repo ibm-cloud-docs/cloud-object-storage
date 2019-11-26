@@ -21,6 +21,7 @@ subcollection: cloud-object-storage
 {:table: .aria-labeledby="caption"}
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
+{:help: data-hd-content-type='help'}
 
 # Endpoints and storage locations
 {: #endpoints}
@@ -47,7 +48,7 @@ Buckets that are created at a regional endpoint distribute data across three dat
     </tr>
   </thead>
   <tbody>
-    <caption>Regional Endpoints</caption>
+    <caption>Table 1: Regional Endpoints</caption>
     <tr>
       <td>US South</td>
       <td>
@@ -159,7 +160,7 @@ Buckets that are created at a cross region endpoint distribute data across three
     </tr>
   </thead>
   <tbody>
-    <caption>Cross Region Endpoints</caption>
+    <caption>Table 2: Cross Region Endpoints</caption>
     <tr>
       <td>US Cross Region</td>
       <td>
@@ -438,5 +439,5 @@ The Activity Tracker and Logging Service with LogDNA can archive to a bucket at 
 | `osl01` | Single Site | Oslo |
 | `par01` | Single Site | Paris |
 | `eu-geo` | Cross Region | Amsterdam, Frankfurt, Milan |
-{: caption="EU-managed Endpoints"}
+{: caption="Table 4: EU-managed Endpoints"}
  

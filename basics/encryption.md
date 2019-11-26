@@ -21,6 +21,7 @@ subcollection: cloud-object-storage
 {:download: .download}
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
+{:help: data-hd-content-type='help'}
 
 # Manage encryption
 {: #encryption}
