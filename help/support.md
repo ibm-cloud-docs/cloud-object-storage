@@ -79,7 +79,7 @@ Whether by searching for information or by asking questions through a forum, you
 {: #troubleshooting-cos-other-options}
 
 * If you have technical questions about {{site.data.keyword.cos_short}}, post your question on [Stack Overflow](https://stackoverflow.com/search?q=object-storage+ibm) and tag your question with `ibm` and `object-storage`.
-* For questions about the service and getting started instructions, use the [IBM IBM Developer dW Answers forum](https://developer.ibm.com/answers/topics/objectstorage/). Include the  `objectstorage` tag.
+* For questions about the service and getting started instructions, use the [IBM Developer dW Answers forum](https://developer.ibm.com/answers/topics/objectstorage/). Include the  `objectstorage` tag.
 
 ## Next Steps
 {: #troubleshooting-cos-next-steps}
