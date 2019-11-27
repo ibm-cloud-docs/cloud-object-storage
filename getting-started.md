@@ -96,4 +96,4 @@ Bringing in another user and allow them to act as an administrator for the insta
 ## Next steps
 {: #gs-next-steps}
 
-Now that you are familiar with your object storage via the web-based console, you might be interested in doing a similar workflow from the command line using  the `ibmcloud cos` command-line utility for creating the service instance and interacting with IAM, and `curl` for accessing COS directly. [Check out the API overview](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api) to get started.
+Now that you are familiar with your object storage via the web-based console, you might be interested in doing a similar workflow from the command line. Check out using the `ibmcloud cos` command-line utility to create a service instance and interacting with IAM. And you can further use `curl` for accessing COS directly. [Check out the API overview](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api) to get started.
