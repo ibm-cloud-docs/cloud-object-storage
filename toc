@@ -15,6 +15,9 @@ Cloud Object Storage
         basics/administrators.md
         basics/developers.md
 
+
+    cos-responsibilities.md
+    basics/glossary.md
     release-notes.md
     {: .navgroup-end}
 
@@ -45,7 +48,7 @@ Cloud Object Storage
         hmac/presigned-urls.md
     
     {: .topicgroup}
-    Manage a bucket's lifecycle configuration
+    Manage a bucket's lifecycle configurations
         basics/archive.md
         basics/expiry.md
 
