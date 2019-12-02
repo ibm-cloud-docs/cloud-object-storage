@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-08-23"
+  years: 2017, 2019
+lastupdated: "2019-11-19"
 
 keywords: cli, open source, minio
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -22,17 +23,19 @@ subcollection: cloud-object-storage
 {:javascript: .ph data-hd-programlang='javascript'} 
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Using Minio Client
 {: #minio}
 
-The open source [Minio Client](https://min.io/download#/linux){:new_window} could be your solution for using UNIX-like commands (`ls`, `cp`, `cat`, etc.) with {{site.data.keyword.cos_full}}.
-{: .shortdesc}
+The open source [Minio Client](https://min.io/download#/linux){: external} could be your solution for using UNIX-like commands (`ls`, `cp`, `cat`, etc.) with {{site.data.keyword.cos_full}}.
+{: shortdesc}
 
 ## Installation
 {: #minio-install}
 
-You can find installation instructions for each operating system is available in the [quickstart guide](https://docs.min.io/docs/minio-client-quickstart-guide.html){:new_window} on the Minio website.
+You can find installation instructions for each operating system is available in the [quickstart guide](https://docs.min.io/docs/minio-client-quickstart-guide.html){: external} on the Minio website.
 
 ## Configuration
 {: #minio-config}
@@ -57,7 +60,7 @@ mc config host add cos https://s3.us-south.cloud-object-storage.appdomain.cloud 
 ## Sample Commands
 {: #minio-commands}
 
-A complete list of commands and optional flags and parameters are documented in the [Minio Client Complete Guide](https://docs.min.io/docs/minio-client-complete-guide){:new_window}
+A complete list of commands and optional flags and parameters are documented in the [Minio Client Complete Guide](https://docs.min.io/docs/minio-client-complete-guide){: external}
 
 ### `mb` - Make a Bucket
 {: #minio-mb}
@@ -100,7 +103,7 @@ mc ls cos/testbucket1
 ### `find` - Search for Objects by Name
 {: #minio-find}
 
-A full list of search options is available in the [complete guide](https://docs.min.io/docs/minio-client-complete-guide#find){:new_window}
+A full list of search options is available in the [complete guide](https://docs.min.io/docs/minio-client-complete-guide#find){: external}
 {: tip}
 
 ```
@@ -134,7 +137,7 @@ mc cp cos/testbucket1/mynewfile1.txt cos/my_test_bucket/cp_from_minio.txt
 ### `rm` - Remove objects
 {: #minio-rm}
 
-*More removal options are available on the [complete guide](https://docs.min.io/docs/minio-client-complete-guide#rm){:new_window}*
+*More removal options are available on the [complete guide](https://docs.min.io/docs/minio-client-complete-guide#rm){: external}*
 
 ```
 mc rm cos/my_test_bucket/cp_from_minio.txt

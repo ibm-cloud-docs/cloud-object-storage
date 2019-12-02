@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-08-23"
+  years: 2017, 2019
+lastupdated: "2019-11-11"
 
 keywords: migrate, openstack swift, object storage
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -22,6 +23,8 @@ subcollection: cloud-object-storage
 {:javascript: .ph data-hd-programlang='javascript'}
 {:java: .ph data-hd-programlang='java'}
 {:python: .ph data-hd-programlang='python'}
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Migrating data from OpenStack Swift
 {: #migrate}
@@ -67,45 +70,6 @@ This guide provides instructions for migrating data from a single Swift containe
       ```
       curl https://rclone.org/install.sh | sudo bash
       ```
-
-## Configure `rclone` for OpenStack Swift
-{: #migrate-rclone}
-
-  1. Create an `rclone` config file in `~/.rclone.conf`.
-
-        ```
-        touch ~/.rclone.conf
-        ```
-
-  2. Create the Swift source by copying the following and pasting into `rclone.conf`.
-
-        ```
-        [SWIFT]
-        type = swift
-        auth = https://identity.open.softlayer.com/v3
-        user_id =
-        key =
-        region =
-        endpoint_type =
-        ```
-
-  3. Get OpenStack Swift credential
-    <br>a. Select your Swift instance in the [IBM Cloud console dashboard](https://cloud.ibm.com/).
-    <br>b. Click **Service Credentials** in the navigation pane.
-    <br>c. Click **New credential** to generate credential information. Click **Add**.
-    <br>d. View the credential that you created, and copy the JSON contents.
-
-  4. Complete the following fields:
-
-        ```
-        user_id = <userId>
-        key = <password>
-        region = dallas OR london            depending on container location
-        endpoint_type = public OR internal   internal is the private endpoint
-        ```
-
-  5. Skip to section Configure `rclone` for COS
-
 
 ## Configure `rclone` for OpenStack Swift (infrastructure)
 {: #migrate-config-swift}

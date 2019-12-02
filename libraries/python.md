@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-08-23"
+  years: 2017, 2019
+lastupdated: "2019-11-19"
 
 keywords: object storage, python, sdk
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -22,23 +23,25 @@ subcollection: cloud-object-storage
 {:javascript: .ph data-hd-programlang='javascript'} 
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Using Python
 {: #python}
 
 Python support is provided through a fork of the `boto3` library with features to make the most of {{site.data.keyword.cos_full}}. 
-{: .shortdesc}
+{: shortdesc}
 
 It can be installed from the Python Package Index through `pip install ibm-cos-sdk`.
 
-Source code can be found at [GitHub](https://github.com/ibm/ibm-cos-sdk-python/).
+Source code can be found at [GitHub](https://github.com/ibm/ibm-cos-sdk-python/){: external}.
 
 The `ibm_boto3` library provides complete access to the {{site.data.keyword.cos_full}} API. Endpoints, an API key, and the instance ID must be specified during creation of a service resource or low-level client as shown in the following basic examples.
 
 The service instance ID is also referred to as a _resource instance ID_. The value can be found by creating a [service credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), or through the CLI.
 {:tip}
 
-Detailed documentation can be found at [here](https://ibm.github.io/ibm-cos-sdk-python/).
+Detailed documentation can be found at [here](https://ibm.github.io/ibm-cos-sdk-python/){: external}.
 
 ## Upgrading from 1.x.x
 {: #python-migrate}
@@ -54,7 +57,7 @@ The 2.0 version of the SDK introduces a namespacing change that allows an applic
 
 To connect to COS, a client is created and configured using credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
 
-After generating a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client authenticates with a signature, otherwise the client uses the provided API key to authenticate by using a bearer token.
+After generating a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client authenticates with a signature, otherwise the client uses the provided API key to authenticate by using a bearer token (using an API key still requires the `config=Config(signature_version="oauth")` to be included duing client creation).
 
 If migrating from AWS S3, you can also source credentials data from `~/.aws/credentials` in the format:
 
@@ -63,6 +66,7 @@ If migrating from AWS S3, you can also source credentials data from `~/.aws/cred
 aws_access_key_id = {API_KEY}
 aws_secret_access_key = {SERVICE_INSTANCE_ID}
 ```
+{: codeblock}
 
 If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` takes preference.
 
@@ -86,6 +90,8 @@ Code examples were written by using **Python 2.7.15**
 ### Initializing configuration
 {: #python-examples-init}
 
+This example creates a `resource` instead of a `client` or `session` object. Note that some operations (such as Aspera high-speed transfer) require a `client` object.
+{:important}
   
 ```python
 import ibm_boto3
@@ -93,7 +99,7 @@ from ibm_botocore.client import Config, ClientError
 
 # Constants for IBM COS values
 COS_ENDPOINT = "<endpoint>" # Current list avaiable at https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints
-COS_API_KEY_ID = "<api-key>" # eg "W00YiRnLW4a3fTjHB-oiB-2ySfTrFBIQQWanc--P3byk"
+COS_API_KEY_ID = "<api-key>" # eg "W00YiRnLW4a3fTjMB-odB-2ySfTrFBIQQWanc--P3byk"
 COS_AUTH_ENDPOINT = "https://iam.cloud.ibm.com/identity/token"
 COS_RESOURCE_CRN = "<resource-instance-id>" # eg "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
 
@@ -106,14 +112,17 @@ cos = ibm_boto3.resource("s3",
     endpoint_url=COS_ENDPOINT
 )
 ```
+{: codeblock}
+{: python}
+
 *Key Values*
-* `<endpoint>` - public endpoint for your cloud Object Storage with schema prefixed ('https://') (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+* `<endpoint>` - public endpoint for your cloud Object Storage with schema prefixed ('https://') (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){: external}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
-* `<resource-instance-id>` - resource ID for your cloud Object Storage (available through [IBM Cloud CLI](/docs/cli?topic=cloud-cli-idt-cli) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){:new_window})
+* `<resource-instance-id>` - resource ID for your cloud Object Storage (available through [IBM Cloud CLI](/docs/cli?topic=cloud-cli-idt-cli) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){: external})
 * `<location>` - default location for your cloud Object Storage (must match the region that is used for `<endpoint>`)
 
 *SDK References*
-* [`ServiceResource`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#service-resource){:new_window}
+* [`ServiceResource`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#service-resource){: external}
 
 
 ### Creating a new bucket
@@ -136,12 +145,14 @@ def create_bucket(bucket_name):
     except Exception as e:
         print("Unable to create bucket: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
-  * [`Bucket`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){:new_window}
+  * [`Bucket`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){: external}
 * Methods
-    * [`create`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.create){:new_window}
+    * [`create`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.create){: external}
 
 ### Creating a new text file
 {: #python-examples-new-file}
@@ -159,12 +170,14 @@ def create_text_file(bucket_name, item_name, file_text):
     except Exception as e:
         print("Unable to create text file: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
-    * [`Object`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){:new_window}
+    * [`Object`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){: external}
 * Methods
-    * [`put`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.put){:new_window}
+    * [`put`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.put){: external}
 
 ### List available buckets
 {: #python-examples-list-buckets}
@@ -181,13 +194,15 @@ def get_buckets():
     except Exception as e:
         print("Unable to retrieve list buckets: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
-    * [`Bucket`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){:new_window}
-    * [`ServiceResource`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#service-resource){:new_window}
+    * [`Bucket`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){: external}
+    * [`ServiceResource`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#service-resource){: external}
 * Collections
-    * [`buckets`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.ServiceResource.buckets){:new_window}
+    * [`buckets`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.ServiceResource.buckets){: external}
 
 ### List items in a bucket
 {: #python-examples-list-objects}
@@ -204,13 +219,15 @@ def get_bucket_contents(bucket_name):
     except Exception as e:
         print("Unable to retrieve bucket contents: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
-    * [`Bucket`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){:new_window}
-    * [`ObjectSummary`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#objectsummary){:new_window}
+    * [`Bucket`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){: external}
+    * [`ObjectSummary`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#objectsummary){: external}
 * Collections
-    * [`objects`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.objects){:new_window}
+    * [`objects`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.objects){: external}
 
 ### Get file contents of particular item
 {: #python-examples-get-file-contents}
@@ -226,12 +243,14 @@ def get_item(bucket_name, item_name):
     except Exception as e:
         print("Unable to retrieve file contents: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
-    * [`Object`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){:new_window}
+    * [`Object`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){: external}
 * Methods
-    * [`get`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.get){:new_window}
+    * [`get`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.get){: external}
 
 ### Delete an item from a bucket
 {: #python-examples-delete-object}
@@ -247,12 +266,14 @@ def delete_item(bucket_name, item_name):
     except Exception as e:
         print("Unable to delete item: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
-    * [Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){:new_window}
+    * [Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){: external}
 * Methods
-    * [delete](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.delete){:new_window}
+    * [delete](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.delete){: external}
 
 ### Delete multiple items from a bucket
 {: #python-examples-delete-multiple-objects}
@@ -285,12 +306,14 @@ def delete_items(bucket_name):
     except Exception as e:
         print("Unable to copy item: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
-    * [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window}
+    * [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){: external}
 * Methods
-    * [delete_objects](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_objects){:new_window}
+    * [delete_objects](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_objects){: external}
 
 ### Delete a bucket
 {: #python-examples-delete-bucket}
@@ -306,12 +329,14 @@ def delete_bucket(bucket_name):
     except Exception as e:
         print("Unable to delete bucket: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
-    * [Bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){:new_window}
+    * [Bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){: external}
 * Methods
-    * [delete](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.delete){:new_window}
+    * [delete](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.delete){: external}
 
 ### Run a multi-part upload
 {: #python-examples-multipart}
@@ -319,7 +344,7 @@ def delete_bucket(bucket_name):
 #### Upload binary file (preferred method)
 {: #python-examples-multipart-binary}
 
-The [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.upload_fileobj){:new_window} method of the [S3.Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){:new_window} class automatically runs a multi-part upload when necessary. The [TransferConfig](https://ibm.github.io/ibm-cos-sdk-python/reference/customizations/s3.html#s3-transfers){:new_window} class is used to determine the threshold for using the multi-part upload.
+The [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.upload_fileobj){: external} method of the [S3.Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){: external} class automatically runs a multi-part upload when necessary. The [TransferConfig](https://ibm.github.io/ibm-cos-sdk-python/reference/customizations/s3.html#s3-transfers){: external} class is used to determine the threshold for using the multi-part upload.
 
 ```python
 def multi_part_upload(bucket_name, item_name, file_path):
@@ -351,18 +376,20 @@ def multi_part_upload(bucket_name, item_name, file_path):
     except Exception as e:
         print("Unable to complete multi-part upload: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
-    * [Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){:new_window}
-    * [TransferConfig](https://ibm.github.io/ibm-cos-sdk-python/reference/customizations/s3.html#s3-transfers){:new_window}
+    * [Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){: external}
+    * [TransferConfig](https://ibm.github.io/ibm-cos-sdk-python/reference/customizations/s3.html#s3-transfers){: external}
 * Methods
-    * [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.upload_fileobj){:new_window}
+    * [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.upload_fileobj){: external}
 
 #### Manually run a multi-part upload
 {: #python-examples-multipart-manual}
 
-If wanted, the [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window} class can be used to perform a multi-part upload. This can be useful if more control over the upload process is necessary.
+If wanted, the [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){: external} class can be used to perform a multi-part upload. This can be useful if more control over the upload process is necessary.
 
 ```python
 def multi_part_upload_manual(bucket_name, item_name, file_path):
@@ -442,15 +469,17 @@ def multi_part_upload_manual(bucket_name, item_name, file_path):
     except Exception as e:
         print("Unable to complete multi-part upload: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
-    * [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window}
+    * [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){: external}
 * Methods
-    * [abort_multipart_upload](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.abort_multipart_upload){:new_window}
-    * [complete_multipart_upload](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.complete_multipart_upload){:new_window}
-    * [create_multipart_upload](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.create_multipart_upload){:new_window}
-    * [upload_part](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.upload_part){:new_window}
+    * [abort_multipart_upload](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.abort_multipart_upload){: external}
+    * [complete_multipart_upload](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.complete_multipart_upload){: external}
+    * [create_multipart_upload](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.create_multipart_upload){: external}
+    * [upload_part](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.upload_part){: external}
 
 ### Large Object Upload by using TransferManager
 {: #python-examples-multipart-transfer}
@@ -498,11 +527,13 @@ def upload_large_file(bucket_name, item_name, file_path):
     finally:
         transfer_mgr.shutdown()
 ```
+{: codeblock}
+{: python}
 
 ### List items in a bucket (v2)
 {: #python-examples-list-objects-v2}
 
-The [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window} object has an updated method to list the contents ([list_objects_v2](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){:new_window}). This method allows you to limit the number of records that are returned and retrieve the records in batches. This might be useful for paging your results within an application and improve performance.
+The [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){: external} object has an updated method to list the contents ([list_objects_v2](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){: external}). This method allows you to limit the number of records that are returned and retrieve the records in batches. This might be useful for paging your results within an application and improve performance.
 
 ```python
 def get_bucket_contents_v2(bucket_name, max_keys):
@@ -532,18 +563,19 @@ def get_bucket_contents_v2(bucket_name, max_keys):
                 more_results = False
                 next_token = ""
 
-        log_done()
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
         print("Unable to retrieve bucket contents: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *SDK References*
 * Classes
-    * [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window}
+    * [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){: external}
 * Methods
-    * [list_objects_v2](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){:new_window}
+    * [list_objects_v2](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){: external}
 
 ## Using Key Protect
 {: #python-examples-kp}
@@ -569,6 +601,7 @@ The following items are necessary in order to create a bucket with Key-Protect e
 
 ### Creating a bucket with key-protect enabled
 {: #python-examples-kp-new-bucket}
+
 ```python
 COS_KP_ALGORITHM = "<algorithm>"
 COS_KP_ROOTKEY_CRN = "<root-key-crn>"
@@ -590,6 +623,8 @@ def create_bucket_kp(bucket_name):
     except Exception as e:
         print("Unable to create encrypted bucket: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 *Key Values*
 * `<algorithm>` - The encryption algorithm that is used for new objects added to the bucket (Default is AES256).
@@ -597,9 +632,9 @@ def create_bucket_kp(bucket_name):
 
 *SDK References*
 * Classes
-    * [Bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){:new_window}
+    * [Bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){: external}
 * Methods
-    * [create](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.create){:new_window}
+    * [create](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.create){: external}
 
 ## Using Aspera High-Speed Transfer
 {: #python-examples-aspera}
@@ -613,7 +648,8 @@ Each Aspera session creates an individual `ascp` process that runs on the client
 ### Initializing the AsperaTransferManager
 {: #python-examples-aspera-init}
 
-Before initializing the `AsperaTransferManager`, make sure that you have a working [`client`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){:new_window} (not a `resource` or `session`) object.
+Before initializing the `AsperaTransferManager`, make sure that you have a working [`client`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){: external} (not a `resource` or `session`) object.
+{:important}
 
 ```python
 import ibm_boto3
@@ -637,8 +673,10 @@ cos = ibm_boto3.client("s3",
 
 transfer_manager = AsperaTransferManager(cos)
 ```
+{: codeblock}
+{: python}
 
-You need to provide an IAM API Key for Aspera high-speed transfers. [HMAC Credentials](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){:new_window} are **NOT** currently supported. For more information on IAM, [click here](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview#getting-started-with-iam).
+You need to provide an IAM API Key for Aspera high-speed transfers. [HMAC Credentials](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){: external} are **NOT** currently supported. For more information on IAM, [click here](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview#getting-started-with-iam).
 {:tip}
 
 To get the highest throughput, split the transfer into a specified number of parallel **sessions** that send chunks of data whose size is defined by a **threshold** value.
@@ -652,6 +690,9 @@ ms_transfer_config = AsperaConfig(multi_session="all",
                                   target_rate_mbps=2500,
                                   multi_session_threshold_mb=100)
 ```
+{: codeblock}
+{: python}
+
 In the above example, the sdk spawns enough sessions to attempt to reach the target rate of 2500 MBps.
 
 Session management can also be explicitly configured in the SDK. This is useful in cases where more precise control over network utilization is wanted.
@@ -670,6 +711,9 @@ ms_transfer_config = AsperaConfig(multi_session=2,
 transfer_manager = AsperaTransferManager(client=client,
                                          transfer_config=ms_transfer_config)
 ```
+{: codeblock}
+{: python}
+
 For best performance in most scenarios, always make use of multiple sessions to minimize any overhead that is associated with instantiating an Aspera high-speed transfer. **If your network capacity is at least 1 Gbps, you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
 {:tip}
 
@@ -689,6 +733,8 @@ with AsperaTransferManager(client) as transfer_manager:
     # Wait for upload to complete
     future.result()
 ```
+{: codeblock}
+{: python}
 
 *Key Values*
 * `<bucket-name>` - name of the target bucket
@@ -712,6 +758,8 @@ with AsperaTransferManager(client) as transfer_manager:
     # Wait for download to complete
     future.result()
 ```
+{: codeblock}
+{: python}
 
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
@@ -737,6 +785,8 @@ with AsperaTransferManager(client) as transfer_manager:
     # Wait for upload to complete
     future.result()
 ```
+{: codeblock}
+{: python}
 
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
@@ -761,6 +811,8 @@ with AsperaTransferManager(client) as transfer_manager:
     # Wait for download to complete
     future.result()
 ```
+{: codeblock}
+{: python}
 
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
@@ -819,6 +871,8 @@ future = transfer_manager.download_directory(bucket_name, remote_directory, loca
 # Wait for download to complete
 future.result()
 ```
+{: codeblock}
+{: python}
 
 *Key Values*
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
@@ -869,6 +923,8 @@ with AsperaTransferManager(client) as transfer_manager:
     # cancel the transfer
     future.cancel()
 ```
+{: codeblock}
+{: python}
 
 ### Troubleshooting Aspera Issues
 {: #python-examples-aspera-ts}
@@ -876,7 +932,7 @@ with AsperaTransferManager(client) as transfer_manager:
 
 **Cause:** If there are different versions of Python installed on your enviroment, then you might encounter installation failures when you try to install the Aspera SDK. This can be caused by a missing DLL files or wrong DLL in path.
 
-**Solution:** The first step to resolving this issue would be to reinstall the Aspera libraries. There might have been a failure during the installation. As a result this might have affected the DLL files. If that does not resolve the issues, then you will be required to update your version of Python. If you are unable to do this, then you can use installation [Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python){:new_window}. This allows you to install the Aspera SDK without any issues.
+**Solution:** The first step to resolving this issue would be to reinstall the Aspera libraries. There might have been a failure during the installation. As a result this might have affected the DLL files. If that does not resolve the issues, then you will be required to update your version of Python. If you are unable to do this, then you can use installation [Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python){: external}. This allows you to install the Aspera SDK without any issues.
 
 ## Updating metadata
 {: #python-examples-metadata}
@@ -908,6 +964,8 @@ def update_metadata_put(bucket_name, item_name, key, value):
     except Exception as e:
         log_error("Unable to update metadata: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 ### Using COPY to update metadata
 {: #python-examples-metadata-copy}
@@ -934,6 +992,8 @@ def update_metadata_copy(bucket_name, item_name, key, value):
     except Exception as e:
         log_error("Unable to update metadata: {0}".format(e))
 ```
+{: codeblock}
+{: python}
 
 ## Using Immutable Object Storage
 {: #python-examples-immutable}

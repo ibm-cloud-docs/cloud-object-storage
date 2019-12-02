@@ -1,15 +1,16 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-08-16"
+  years: 2017, 2019
+lastupdated: "2019-11-11"
 
-keywords: IBM, activity tracker, LogDNA, event, object storage, COS API calls, monitor COS events
+keywords: activity tracker, LogDNA, event, object storage, COS API calls, monitor COS events
 
 subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -19,7 +20,8 @@ subcollection: cloud-object-storage
 {:note: .note}
 {:download: .download} 
 {:table: .aria-labeledby="caption"}
-
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Activity Tracker events
 {: #at-events}

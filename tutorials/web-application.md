@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-09-05"
+  years: 2017, 2019
+lastupdated: "2019-11-14"
 
 keywords: tutorial, web application, photo galleries
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -22,6 +23,8 @@ subcollection: cloud-object-storage
 {:javascript: .ph data-hd-programlang='javascript'} 
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Web application tutorial
 {: #web-application}
@@ -65,12 +68,12 @@ The Developer Tools offer an extensible and repeatable approach to building and 
 
 [Docker](https://www.docker.com) is installed as part of the Developer Tools, and we need it. Its work
 takes place mostly in the background within routines that scaffold your new app. Docker must be running for the build 
-commands to work. Go ahead and create a Docker account online at [Docker hub](https://hub.docker.com), run the Docker app, and sign in.
+commands to work. Go ahead and create a Docker account online at [Docker hub](https://hub.docker.com){: external}, run the Docker app, and sign in.
 
 ### Installing Node.js
 {: #tutorial-wa-install-node}
 
-The app that you build uses [Node.js](https://nodejs.org/) as the server-side engine to run the
+The app that you build uses [Node.js](https://nodejs.org/){: external} as the server-side engine to run the
 JavaScript code for this web application. To use the Node Package Manager (`npm`) to manage 
 your app's dependencies, you must install Node.js locally. Also, a local installation of Node
 simplifies testing, speeding up development. 
@@ -81,14 +84,14 @@ manager, like Node Version Manager, or `nvm`, to install Node. A version manager
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ```
-{:codeblock: .codeblock}
+{: pre}
 
 ...or `wget` (just one is necessary, but not both; use whichever is available on your system):
 
 ```
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ```
-{:codeblock: .codeblock}
+{: pre}
 
 Or, for Windows, you can use [nvm for Windows](https://github.com/coreybutler/nvm-windows) with installers
 and source code at the link.
@@ -98,7 +101,7 @@ Using `nvm`, install Node.
 ```bash
 nvm install v6.17.1
 ```
-{:codeblock: .codeblock}
+{: pre}
 
 Whichever approach you use after you install Node.js and `npm` (included with Node) 
 on your computer, congratulate yourself on a job well started!
@@ -134,7 +137,7 @@ from the command line, as shown in Example 4.
 ```bash
 ibmcloud login
 ```
-{:codeblock: .codeblock}
+{: pre}
 
 You can specify optional parameters, such as your organization with option `-o` and the space with option `-s`. If you're using a federated account use `--sso`. When you log in you might be asked to 
 choose a region. For this exercise, select `us-south` as the region, as that same option is used to build a CD Toolchain later in this tutorial.  
@@ -145,21 +148,21 @@ might be preferable for production use. For now, use the code as shown, if appro
 ```bash
 ibmcloud api cloud.ibm.com
 ```
-{:codeblock: .codeblock}
+{: pre}
 
 Target the Cloud Foundry (`cf`) aspect of {{site.data.keyword.cloud_notm}} Platform by using the `target` command and the `--cf` option. The `cf` API is embedded within the CLI Developer Tools.
 
 ```bash
 ibmcloud target --cf
 ```
-{:codeblock: .codeblock}
+{: pre}
 
 And now, time to create a web application. The `dev` space is a default option for your organization, but you might prefer to create others for isolating different efforts. For example, keeping 'finance' separate from 'development'.
 
 ```bash
 ibmcloud dev create
 ```
-{:codeblock: .codeblock}
+{: pre}
 
 With that command, you're asked a series of questions. You can go back at many points in the process, so if you feel lost you can start over by deleting the existing directory and creating a new directory. Even when you create your application on the command line, you'll still see the results in your {{site.data.keyword.cloud_notm}} console.
 
@@ -178,6 +181,7 @@ Select an application type:
 --------------------------------------------------------------------------------
 ? Enter selection number:> 2
 ```
+{: screen}
 
 A number of options are provided, but we want 'Node'. Type '4' and press enter.
 
@@ -198,6 +202,7 @@ Select a language:
 --------------------------------------------------------------------------------
 ? Enter selection number:> 4
 ```
+{: screen}
 
 After you make your selection for the programming language and/or framework, the next selection
 will have so many options, it might scroll past your wanted service. As you can see in the example, we
@@ -259,12 +264,14 @@ WATSON
 ? Enter selection number:> 6
 
 ```
+{: screen}
 
 The hardest option for developers everywhere is still required: naming your app. Follow the example and type `webapplication`, then press enter.
 
 ```bash
 ? Enter a name for your application> webapplication
 ```
+{: screen}
 
 Later, you can add as many services, like data stores or compute functions, as needed or wanted through the web console. However, type 'n' for no when asked if you want to add services now.
 
@@ -274,6 +281,8 @@ Using the resource group Default (default) of your account
 ? Do you want to select a service to add to this application? [Y/n]> n
 
 ```
+{: screen}
+
 One way to manage a containerized application is with orchestration software, like Kubernetes, which is a _de facto_ standard in development. But for this tutorial, we can let the Cloud Foundry service manage a single Docker container that holds the code, libraries, and configuration needed by your app.
 
 Type '1' and press enter to use 'IBM DevOps' for integrating CD within your project lifecycle.
@@ -290,6 +299,7 @@ options:
 ? Enter selection number:> 1
 
 ```
+{: screen}
 
 We must choose a region for our automated deployment CD toolchain. So, select the same option as earlier, 
 '5'.
@@ -308,6 +318,7 @@ Select a region for your toolchain from the following options:
 --------------------------------------------------------------------------------
 ? Enter selection number:> 5
 ```
+{: screen}
 
 Generating a new application reminds us that the toolchain used
 to deploy your app needs some additional configuration. As mentioned earlier,
@@ -321,6 +332,7 @@ must be configured for SSH access to your IBM Cloud GitLab account at
 https://git.cloud.ibm.com/profile/keys in order to download the 
 application code.
 ```
+{: screen}
 
 Further prompts confirm the application and toolchain name that you defined earlier. Example 16 shows how you can alter the 
 host and toolchain names, if you want. The hostname must be unique for the service endpoint of your application, but barring a conflict, 
@@ -340,6 +352,7 @@ DevOps toolchain created at
 https://cloud.ibm.com/devops/toolchains/6ffb568a-e48f-4e27-aed0-00ca931dde66?env_id=ibm:yp:us-south
 
 ```
+{: screen}
 
 If you copy and paste the link that is returned by the `ibmcloud dev create` command, you can also access your CD Toolchain. You can access that from the console later, in case you missed capturing the link. 
 Further information follows, as the process continues where application entries are created 
@@ -359,6 +372,7 @@ OK
 The app, webapplication, has been successfully saved into the 
 current directory.
 ```
+{: screen}
 
 That last statement means that if you view your current directory, a new subdirectory `webapplication` is now visible. This directory holds a scaffold of your new Node.js application. However, while the recipe might be present, the ingredients themselves are still wrapped up in a Docker image and must be combined. Docker is running on your local machine as a consequence of installation,
 but if you need to restart it do so. If you build your new web application without Docker running it fails, but that's not the only possible error. If you run into trouble, check the resulting error messages, which might have the 
@@ -367,7 +381,7 @@ appropriate link to view result logs in your online portal for your {{site.data.
 ```bash
 ibmcloud dev build
 ```
-{: codeblock}
+{: pre}
 
 Now that the app is built, you can run the code locally with the `run` command. When finished, copy and paste the provided URL into your
 browser's address bar, typically, <http://localhost:3000>.
@@ -375,7 +389,7 @@ browser's address bar, typically, <http://localhost:3000>.
 ```bash
 ibmcloud dev run 
 ```
-{: codeblock}
+{: pre}
 
 Now that the app is created and defined, view your application to confirm it works. If you see the placeholder image as 
 shown in Figure 2, congratulations! You've created a new Node.js web application and are ready to deploy it to the cloud.
@@ -387,7 +401,7 @@ Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the `deploy` co
 ```bash
 ibmcloud dev deploy
 ```
-{: codeblock}
+{: pre}
 
 The URL again is displayed by `ibmcloud dev deploy` based on the regional endpoint
 and the hostname you specified earlier. You can see links to the logs that are stored in your portal
@@ -404,7 +418,7 @@ We're going to start the specifics of working on the image gallery in Node.js. F
 
 Follow these steps:
 
-1.  Download the sample here: [download ![External link icon](/docs-content/v1/content/icons/launch-glyph.svg)](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/image-gallery-tutorial.zip){: new_window}. Download the template for your app to your local
+1.  Download the sample here: [download ![External link icon](/docs-content/v1/content/icons/launch-glyph.svg)](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/image-gallery-tutorial.zip){: external}. Download the template for your app to your local
     development environment using your browser. Rather than cloning the sample
     app from {{site.data.keyword.cloud_notm}} Platform, use the command in Example 21 to obtain the
     starter template for the {{site.data.keyword.cos_full_notm}} Web Gallery app. After cloning the
@@ -416,7 +430,7 @@ Follow these steps:
 ```bash
 curl https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/image-gallery-tutorial.zip -o image-gallery-tutorial.zip
 ```
-{: codeblock}
+{: pre}
 
 
 1.  Run the app locally. Open your terminal and change your working directory to the `COS-WebGalleryStart directory`. Note the Node.js dependencies that are listed in the package.json file. Download them into place by using the command shown next.
@@ -424,14 +438,14 @@ curl https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/image-gal
 ```bash
 npm install
 ```
-{: codeblock}
+{: pre}
 
 1.  Run the app by using the command shown.
 
 ```bash
 npm start
 ```
-{: codeblock}
+{: pre}
 
 Open a browser and view your app on the address and port that is output
 to the console, <http://localhost:3000>.
@@ -460,12 +474,12 @@ applications:
   disk_quota: 1024M
   random-route: true
 ```
-{: codeblock}
+{: screen}
 
 Now is the point where you might need to set up SSH keys to interactively push code to your remote origin. If you set a 
 passphrase for your SSH key, you're required to enter this code each time you push your changes to the remote origin for 
 your repository. 
-{:tip}
+{: tip}
 
 1.  Remove and replace the contents of your `webapplication` directory with the contents of the directory you modified, `COS-WebGalleryStart`.
     Using your finely tuned Git skills, add the files that were deleted and added to the repository with either the CLI or 
@@ -487,14 +501,14 @@ a. If you haven't already, or if you restarted or logged out, log in to {{site.d
 ```bash
 ibmcloud login
 ```
-{: codeblock}
+{: pre}
 
 b. Set the API Endpoint for your region by using the `api` command.
 
 ```bash
 ibmcloud api cloud.ibm.com
 ```
-{: codeblock}
+{: pre}
 
 c. Target the Cloud Foundry aspect of {{site.data.keyword.cloud_notm}} Platform by using the `target` command and the `--cf` option.
 
@@ -502,14 +516,14 @@ c. Target the Cloud Foundry aspect of {{site.data.keyword.cloud_notm}} Platform 
 ```bash
 ibmcloud target --cf
 ```
-{: codeblock}
+{: pre}
 
 d. Build the app for delivery that application with the build command (as in Example 28).
 
 ```bash
 ibmcloud dev build
 ```
-{: codeblock}
+{: pre}
 
 g. Let's go ahead and test the application locally. This allows you to run the same code locally with the `run` command.
 
@@ -517,14 +531,14 @@ g. Let's go ahead and test the application locally. This allows you to run the s
 ```bash
 ibmcloud dev run 
 ```
-{: codeblock}
+{: pre}
 
 h.  Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the `deploy` command.
 
 ```bash
 ibmcloud dev deploy
 ```
-{: codeblock}
+{: pre}
 
 The code shows the sequence of commands that are used in this example to build, test, and deploy the initial web application.
 
@@ -537,7 +551,7 @@ ibmcloud dev build
 ibmcloud dev run
 ibmcloud dev deploy
 ```
-{: codeblock}
+{: pre}
 
 When the process finished, {{site.data.keyword.cloud_notm}} Platform will report that the app was uploaded,
 successfully deployed, and started. If you're also logged in to the {{site.data.keyword.cloud_notm}} Platform
@@ -692,6 +706,7 @@ app.listen(port, function() {
 //...
 ```
 {: codeblock}
+{: javascript}
 
 Let's see how to define a path and views. The first line of code tells the
 Express framework to use the public directory to serve our static files, which
@@ -719,6 +734,7 @@ app.get('/', function (req, res) {
 //...
 ```
 {: codeblock}
+{: javascript}
 
 The following figure shows what the index view template when rendered
 and sent to the browser. If you are using ,`nodemon` you might have noticed 
@@ -840,6 +856,7 @@ app.use('/', imageUploadRoutes);
 //...
 ```
 {: codeblock}
+{: javascript}
 
 #### Image upload
 {: #tutorial-develop-image-upload}
@@ -893,6 +910,7 @@ var router = function(title) {
 module.exports = router;
 ```
 {: codeblock}
+{: javascript}
 
 In comparison, the code for the `galleryRouter` is a model of simplicity. We follow the same pattern
 that we did with `imageUploadRouter` and require `galleryController` on the first line of the function, then set up our route. The main difference is we
@@ -918,6 +936,7 @@ module.exports = router;
 
 ```
 {: codeblock}
+{: javascript}
 
 We next turn our attention to the controller for the gallery.
 
@@ -975,6 +994,7 @@ var galleryController = function(title) {
 module.exports = galleryController;
 ```
 {: codeblock}
+{: javascript}
 
 For local testing, a
 helpful task is to print the file object to the console, `console.log(file)`. 
@@ -1043,6 +1063,7 @@ as the value to a property named `imageUrls`.
 //...
 ```
 {: codeblock}
+{: javascript}
 
 The last code example shows the body of the `galleryView` template with the code that is needed to display our images. We get the `imageUrls` array from the `res.render()` 
 method and iterate over a pair of nested `<div>...</div>` tags. Each sends a `GET` request for the image when the `/gallery` route is requested.
@@ -1098,7 +1119,7 @@ When we click **sync**, our commit is sent to the remote `local-dev` branch. Thi
 ![pipeline_triggled_aftersync](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-022-final-pipeline.jpg){: caption="Figure 12. CD Delivery Pipeline"}
 
 ## Next Steps
-{: #nextsteps}
+{: #webapp-next-steps}
 
 We went from beginning to end and built a basic web application image gallery by using the {{site.data.keyword.cloud_notm}} Platform. 
 Each of the concepts we've covered in this basic introduction can be explored further at the 

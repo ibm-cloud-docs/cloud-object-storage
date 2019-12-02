@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-07-29"
+  years: 2017, 2019
+lastupdated: "2019-11-11"
 
 keywords: archive, glacier, tier, s3, compatibility, api
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -24,7 +25,9 @@ subcollection: cloud-object-storage
 {:http: .ph data-hd-programlang='http'} 
 {:javascript: .ph data-hd-programlang='javascript'} 
 {:java: .ph data-hd-programlang='java'} 
-{:python: .ph data-hd-programlang='python'} 
+{:python: .ph data-hd-programlang='python'}
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Archive cold data with transition rules
 {: #archive}

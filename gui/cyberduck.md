@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-08-23"
+  years: 2017, 2019
+lastupdated: "2019-11-11"
 
 keywords: gui, desktop, cyberduck
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -22,6 +23,8 @@ subcollection: cloud-object-storage
 {:javascript: .ph data-hd-programlang='javascript'} 
 {:java: .ph data-hd-programlang='java'} 
 {:python: .ph data-hd-programlang='python'}
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Transfer files with Cyberduck
 {: #cyberduck}
@@ -29,7 +32,7 @@ subcollection: cloud-object-storage
 Cyberduck is a popular, open source, and easy to use cloud Object Storage browser.
 {: .shortdesc}
 
-Cyberduck can calculated the authorization signatures that are needed to connect to IBM COS. Cyberduck can be downloaded from [cyberduck.io/](https://cyberduck.io/){: new_window}.
+Cyberduck can calculated the authorization signatures that are needed to connect to IBM COS. Cyberduck can be downloaded from [cyberduck.io/](https://cyberduck.io/){: external}.
 
 To use Cyberduck to create a connection to IBM COS and synchronize a folder of local files to a bucket, follow these steps:
 
@@ -83,9 +86,9 @@ Your buckets will now be available in Finder or Explorer. You can interact with 
 ## CLI
 {: #cyberduck-cli}
 
-Cyberduck also provides `duck`, a command-line interface (CLI) that runs in shell on Linux, Mac OS X, and Windows. Installation instructions are available on the `duck` [wiki page](https://trac.cyberduck.io/wiki/help/en/howto/cli#Installation){:new_window}.
+Cyberduck also provides `duck`, a command-line interface (CLI) that runs in shell on Linux, Mac OS X, and Windows. Installation instructions are available on the `duck` [wiki page](https://trac.cyberduck.io/wiki/help/en/howto/cli#Installation){: external}.
 
-In order to use `duck` with {{site.data.keyword.cos_full}}, a custom profile needs to be added to the [Application Support Directory](https://trac.cyberduck.io/wiki/help/en/howto/cli#Profiles){:new_window}. Detailed information about `duck` connection profiles is available on the [CLI help](https://trac.cyberduck.io/wiki/help/en/howto/profiles){: new_window}.
+In order to use `duck` with {{site.data.keyword.cos_full}}, a custom profile needs to be added to the [Application Support Directory](https://trac.cyberduck.io/wiki/help/en/howto/cli#Profiles){: external}. Detailed information about `duck` connection profiles is available on the [CLI help](https://trac.cyberduck.io/wiki/help/en/howto/profiles){: external}.
 
 Here is an example profile for a regional COS endpoint:
 
@@ -137,4 +140,4 @@ Login successful…
 ---	May 29, 2018 3:36:50 PM		newkptestfile.txt
 ```
 
-A full list of command-line options is available by entering `duck --help` in the shell is available in the [wiki site](https://trac.cyberduck.io/wiki/help/en/howto/cli#Usage){:new_window}
+A full list of command-line options is available by entering `duck --help` in the shell is available in the [wiki site](https://trac.cyberduck.io/wiki/help/en/howto/cli#Usage){: external}.

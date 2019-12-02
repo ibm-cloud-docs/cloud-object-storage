@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-09-04"
+  years: 2017, 2019
+lastupdated: "2019-11-19"
 
 keywords: data, object storage, unstructured, cleversafe
 
@@ -10,12 +10,14 @@ subcollection: cloud-object-storage
 
 ---
 {:shortdesc: .shortdesc}
+{:external: target="_blank" .external}
 {:new_window: target="_blank"}
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
-
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Getting started tutorial
 {: #getting-started}
@@ -37,22 +39,22 @@ This tutorial takes a new user through the first steps with the {{site.data.keyw
 ## Create some buckets to store your data
 {: #gs-create-buckets}
 
-<ol type="1"><li>[Ordering {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-provision) creates a _service instance_. {{site.data.keyword.cos_full_notm}} is a multi-tenant system, and all instances of {{site.data.keyword.cos_short}} share physical infrastructure. You're automatically redirected to the service instance where you can start creating buckets. Your {{site.data.keyword.cos_short}} instances are listed under **Storage** in [the resource list](https://cloud.ibm.com/resources).</li></ol>
+1. [Ordering {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-provision) creates a _service instance_. {{site.data.keyword.cos_full_notm}} is a multi-tenant system, and all instances of {{site.data.keyword.cos_short}} share physical infrastructure. You're automatically redirected to the service instance where you can start creating buckets. Your {{site.data.keyword.cos_short}} instances are listed under **Storage** in [the resource list](https://cloud.ibm.com/resources).
 
-The terms 'resource instance' and 'service instance' refer to the same concept, and can be used interchangeably.
-{: tip}
+   The terms 'resource instance' and 'service instance' refer to the same concept, and can be used interchangeably.
+   {: tip}
 
-<ol start="2"><li>Follow the steps to provision your instance in order to **Create a bucket**, choosing a unique name. All buckets in all regions across the globe share a single namespace. Ensure that you have the [correct permissions](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions) to create a bucket.</li></ol>
+2. Follow the steps to provision your instance in order to **Create a bucket**, choosing a unique name. All buckets in all regions across the globe share a single namespace. Ensure that you have the [correct permissions](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions) to create a bucket.
 
-**Note**: When you create buckets or add objects, be sure to avoid the use of Personally Identifiable Information (PII). PII is information that can identify any user (natural person) by name, location, or any other means.
-{: tip}
+   **Note**: When you create buckets or add objects, be sure to avoid the use of Personally Identifiable Information (PII). PII is information that can identify any user (natural person) by name, location, or any other means.
+   {: tip}
 
-<ol start="3"><li>Choose a wanted [level of _resiliency_](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) first, and then a _location_ where you would like your data to be physically stored. Resiliency refers to the scope and scale of the geographic area across which your data is distributed. _Cross Region_ resiliency spreads your data across several metropolitan areas, while _Regional_ resiliency spreads data across a single metropolitan area. A _Single Data Center_ distributes data across devices within a single site only.</li>
-<li>Choose the [bucket's _storage class_](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-classes), which is a reflection of how often you expect to read the stored data and determines billing details. Follow the **Create** link to create and access your new bucket.</li></ol>
+3. Choose a wanted [level of _resiliency_](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) first, and then a _location_ where you would like your data to be physically stored. Resiliency refers to the scope and scale of the geographic area across which your data is distributed. _Cross Region_ resiliency spreads your data across several metropolitan areas, while _Regional_ resiliency spreads data across a single metropolitan area. A _Single Data Center_ distributes data across devices within a single site only.
+
+4. Choose the [bucket's _storage class_](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-classes), which is a reflection of how often you expect to read the stored data and determines billing details. Follow the **Create** link to create and access your new bucket.
 
 Buckets are a way to organize your data, but they're not the sole way. Object names (often referred to as _object keys_) can use one or more forward slashes for a directory-like organizational system. You then use the portion of the object name before a delimiter to form an _object prefix_, which is used to list related objects in a single bucket through the API.
 {: tip}
-
 
 ## Add some objects to your buckets
 {: #gs-add-objects}
@@ -60,7 +62,7 @@ Buckets are a way to organize your data, but they're not the sole way. Object na
 Now go ahead and go to one of your buckets by selecting it from the list. Click **Add Objects**. New objects overwrite existing objects with the same names within the same bucket. When you use the console to upload objects the object name always matches the file name. There doesn't need to be any relationship between the file name and the object key if you're using the API to write data. Go ahead and add a handful of files to this bucket.
 
 Objects are limited to 200 MB when uploaded through the console unless you use the [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-upload) plug-in. Larger objects (up to 10 TB) can also be [split into parts and uploaded in parallel using the API](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-large-objects). Object keys can be up to 1024 characters in length, and it's best to avoid any characters that might be problematic in a web address. For example, `?`, `=`, `<`, and other special characters might cause unwanted behavior if not URL-encoded.
-{:tip}
+{: tip}
 
 ## Invite a user to your account to administer your buckets and data
 {: #gs-invite-user}

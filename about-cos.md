@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-09-17"
+  years: 2017, 2019
+lastupdated: "2019-11-11"
 
 keywords: object storage, information, about
 
@@ -10,12 +10,14 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
-
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # About {{site.data.keyword.cos_full_notm}}
 

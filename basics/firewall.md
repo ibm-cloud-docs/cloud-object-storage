@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018, 2019
-lastupdated: "2019-03-21"
+  years: 2017, 2019
+lastupdated: "2019-11-11"
 
 keywords: ip address, firewall, configuration, api
 
@@ -10,6 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:pre: .pre}
@@ -18,6 +19,8 @@ subcollection: cloud-object-storage
 {:important: .important}
 {:note: .note}
 {:download: .download} 
+{:faq: data-hd-content-type='faq'}
+{:support: data-reuse='support'}
 
 # Setting a firewall
 {: #setting-a-firewall}
@@ -31,6 +34,9 @@ There are some rules around setting a firewall:
 * A user with the `Manager` role on the bucket can view and edit the list of allowed IP addresses from any IP address to prevent accidental lockouts.
 * The {{site.data.keyword.cos_short}} Console can still access the bucket, provided the user's IP address is authorized.
 * Other {{site.data.keyword.cloud_notm}} services **are not authorized** to bypass the firewall. This limitation means that other services that rely on IAM policies for bucket access (such as Aspera, SQL Query, Security Advisor, Watson Studio, Cloud Functions, and others) will be unable to do so.
+
+In order to set up a firewall for a VPC, you'll need to create a subnet and specify the CIDR block in the firewall configuration.  For more information on creating VPC subnets, [see the documentation](/docs/vpc-on-classic-vsi?topic=vpc-on-classic-network-working-with-ip-address-ranges-address-prefixes-regions-and-subnets#ibm-cloud-vpc-and-subnets).
+{: tip}
 
 When a firewall is set, the bucket is isolated from the rest of {{site.data.keyword.cloud_notm}}. Consider how this may impact applications and workflows that depend on other services directly accessing a bucket before enabling the firewall.
 {: important}
