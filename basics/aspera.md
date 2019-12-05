@@ -98,7 +98,6 @@ The Aspera high-speed transfer SDK is closed-source and thus an optional depende
 #### COS/Aspera High-Speed Transfer Packaging
 {: #aspera-packaging}
 
-
 ![COS/Aspera High-Speed Transfer SDK](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/aspera-packaging.png){: caption="Figure 1: COS/Aspera High-Speed Transfer SDK." caption-side="bottom"}
 
 ### Supported Platforms
@@ -175,6 +174,9 @@ Examples of initiating Aspera transfers with Python are available in [Using Aspe
 
 ## Using Aspera high-speed transfer in a restricted network environment
 {: #aspera-restricted-network}
+
+By default, Aspera clients and servers are configured to use UDP port 33001 after the session is initiated over the same port as the secure `SSH` protocol. The firewall configuration must allow port UDP 33001 to reach the Aspera server. For more, please check out the [firewall considerations](https://www.ibm.com/support/pages/firewall-considerations){: external}.
+{: important}
 
 If your application is behind a firewall, it may not be able to make use of Aspera high-speed transfer without additional configuration. The Aspera Transfer Service (ATS) uses an additional endpoint other than the standard service endpoint used for connecting to object storage resources.  The ATS endpoint that must be accessible is determined by the storage location of the bucket and can be discovered using the REST API.
 
