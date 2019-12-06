@@ -27,13 +27,18 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 ## Q4 2019
 {: #updates-2019-q4}
 
+### December 2019
+{: #updates-2019-q4-dec}
+
+Buckets can now be created in a Single Data Center configuration in Singapore. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+
 ### November 2019
-{: #updates-2019-q3-nov}
+{: #updates-2019-q4-nov}
 
 Data can now be [archived](/docs/cloud-object-storage?topic=cloud-object-storage-archive) in buckets located in São Paulo, Brazil (`sao1`).
 
 ### October 2019
-{: #updates-2019-q3-oct}
+{: #updates-2019-q4-oct}
 
 [Immutable Object Storage](/docs/cloud-object-storage?topic=cloud-object-storage-immutable) is now available for buckets in US Cross Region (`us`).
 
