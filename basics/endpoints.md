@@ -405,6 +405,22 @@ If a networking failure results in a partition where the data center is unable t
         </p>
       </td>
     </tr>
+        <tr>
+      <td>Singapore</td>
+      <td>
+        <p>Public</p>
+        <p>Private
+        </p>
+      </td>
+      <td>
+        <p>
+          <code class="highlighter-rouge">s3.sng01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+        <p>
+          <code class="highlighter-rouge">s3.private.sng01.cloud-object-storage.appdomain.cloud</code>
+        </p>
+      </td>
+    </tr>
     <tr>
       <td>Toronto, Canada</td>
       <td>
