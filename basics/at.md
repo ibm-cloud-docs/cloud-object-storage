@@ -27,7 +27,7 @@ subcollection: cloud-object-storage
 {: #at-events}
 
 Use the {{site.data.keyword.at_full}} service to track how users and applications interact with {{site.data.keyword.cos_full_notm}} (COS).
-{: .shortdesc}
+{: shortdesc}
 
 The {{site.data.keyword.at_full_notm}} service records user-initiated activities that change the state of a service in {{site.data.keyword.cloud_notm}}. 
 For more information, see [{{site.data.keyword.at_full_notm}}](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started).  

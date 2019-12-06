@@ -22,7 +22,7 @@ subcollection: cloud-object-storage
 # About {{site.data.keyword.cos_full_notm}}
 
 Information stored with {{site.data.keyword.cos_full}} is encrypted and dispersed across multiple geographic locations, and accessed over popular protocols like HTTP using a modern RESTful API. 
-{: .shortdesc}
+{: shortdesc}
 
 This service makes use of the distributed storage technologies provided by the {{site.data.keyword.cos_full_notm}} System (formerly Cleversafe).
 
