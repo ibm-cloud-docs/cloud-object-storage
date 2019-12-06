@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-11-11"
+lastupdated: "2019-12-04"
 
 keywords: object storage, endpoints, access points, manual failover
 
@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 {: #advanced-endpoints}
 
 When deciding how to configure your {{site.data.keyword.cos_full}} instance, consider how the endpoints reflect your needs for resiliency and access.
-{: .shortdesc}
+{: shortdesc}
 
 A bucket's resiliency is defined by the endpoint used to create it. _Cross Region_ resiliency will spread your data across several metropolitan areas, while _Regional_ resiliency will spread data across a single metropolitan area. _Single Data Center_ resiliency spreads data across multiple appliances within a single data center. Regional and Cross Region buckets can maintain availability during a site outage.
 
@@ -43,7 +43,8 @@ Some workloads may benefit from using a Single Data Center endpoint. Data stored
 
 All requests must use SSL when using IAM, and the service will reject any plaintext requests.
 
-Types of endpoint:
+## Endpoint Types
+{ #advanced-endpoint-types}
 
 {{site.data.keyword.cloud}} services are connected to a three-tiered network, segmenting public, private, and management traffic.
 
@@ -53,5 +54,5 @@ Types of endpoint:
 
 Requests must be sent to the endpoint associated with a given bucket's location. If you aren't sure where a bucket is located, there is an [extension to the bucket listing API](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets-extended) that returns the location and storage class information for all buckets in a service instance.
 
-As of December 2018, we have updated our endpoints. Legacy endpoints will continue to work until further notice. Please update your applications to use the [new endpoints &lpar;JSON&rpar;![External link icon](../docs-content/v1/content/icons/launch-glyph.svg)](https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints).
+As of December 2018, we have updated our endpoints. Legacy endpoints will continue to work until further notice. Please update your applications to use the [new endpoints &lpar;JSON&rpar;](https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints){: external}.
 {:note}
