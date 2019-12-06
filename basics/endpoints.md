@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-12-04"
+lastupdated: "2019-12-06"
 
 keywords: endpoint, location, object storage
 
@@ -101,7 +101,7 @@ Buckets that are created at a cross region endpoint distribute data across three
 Single data centers are not colocated with IBM Cloud services, such as IAM or Key Protect, and offer no resiliency in a site outage or destruction. 
 
 If a networking failure results in a partition where the data center is unable to access IAM, authentication and authorization information is read from a cache that might become stale. This cached data might result in a lack of enforcement of new or altered IAM policies for up to 24 hours.
-{:important}
+{: important}
 
 | Region | Type | Endpoint |
 |-----|-----|-----|
@@ -111,7 +111,7 @@ If a networking failure results in a partition where the data center is unable t
 | Melbourne, Australia | Public | `s3.mel01.cloud-object-storage.appdomain.cloud` |
 | Mexico City, Mexico | Public | `s3.mex01.cloud-object-storage.appdomain.cloud` |
 | Milan, Italy | Public | `s3.mil01.cloud-object-storage.appdomain.cloud` |
-| Montr&egrave;al, Canada | Public | `s3.mon01.cloud-object-storage.appdomain.cloud
+| Montr&egrave;al, Canada | Public | `s3.mon01.cloud-object-storage.appdomain.cloud` |
 | Oslo, Norway | Public | `s3.osl01.cloud-object-storage.appdomain.cloud` |
 | Paris, France | Public | `s3.par01.cloud-object-storage.appdomain.cloud` |
 | San Jose, US | Public | `s3.sjc04.cloud-object-storage.appdomain.cloud` |
