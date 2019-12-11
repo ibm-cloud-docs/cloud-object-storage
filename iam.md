@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 {: #iam}
 
 Access to {{site.data.keyword.cos_full}} service instances for users in your account is controlled by {{site.data.keyword.cloud_notm}} Identity and Access Management (IAM).
-{: .shortdesc}
+{: shortdesc}
 
 ## Identity and Access Management roles and actions
 {: #iam-roles}

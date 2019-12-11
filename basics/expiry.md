@@ -32,7 +32,8 @@ subcollection: cloud-object-storage
 # Delete stale data with expiration rules
 {: #expiry}
 
-An expiration rule deletes objects after a defined period (from the object creation date). 
+An expiration rule deletes objects after a defined period (from the object creation date).
+{: shortdesc}
 
 You can set the lifecycle for objects by using the web console, REST API, and third-party tools that are integrated with {{site.data.keyword.cos_full_notm}}. 
 

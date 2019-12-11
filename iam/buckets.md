@@ -31,6 +31,7 @@ subcollection: cloud-object-storage
 {: #iam-bucket-permissions}
 
 Assign access roles for users and Service IDs against buckets, by using either the UI or the CLI to create policies.
+{: shortdesc}
 
 | Access role | Example actions                                             |
 |:------------|-------------------------------------------------------------|

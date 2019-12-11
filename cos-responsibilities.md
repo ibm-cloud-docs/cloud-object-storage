@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-11-22"
+lastupdated: "2019-12-06"
 
 keywords: cloud object storage, cos, object storage, responsibilities, incident, operations, change, security, regulation, disaster recovery, management
 
@@ -26,7 +26,7 @@ subcollection: cloud-object-storage
 # Your responsibilities when using {{site.data.keyword.cos_full_notm}}
 {: #responsibilities}
 
-Learn about the management responsibilities and terms and conditions that you have when you use {{site.data.keyword.cos_full_notm}}. For overall terms of use, see [Cloud Services terms](/docs/overview/terms-of-use?topic=overview-terms#terms).
+Learn about the management responsibilities and terms and conditions that you have when you use {{site.data.keyword.cos_full}}. For overall terms of use, see [Cloud Services terms](/docs/overview/terms-of-use?topic=overview-terms#terms).
 {: shortdesc}
 
 ## Operational responsibilities  

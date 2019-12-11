@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 {: #s3fs}
 
 Applications that expect to read and write to a NFS-style filesystem can use `s3fs`, which can mount a bucket as directory while preserving the native object format for files. 
-{: .shortdesc}
+{: shortdesc}
 
 This allows you to interact with your cloud storage using familiar shell commands, like `ls` for listing or `cp` to copy files, as well as providing access to legacy applications that rely on reading and writing from local files. For a more detailed overview, [visit the project's official README](https://github.com/s3fs-fuse/s3fs-fuse).
 

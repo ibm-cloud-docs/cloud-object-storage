@@ -30,6 +30,7 @@ subcollection: cloud-object-storage
 {: #provision}
 
 Getting data into your instance of {{site.data.keyword.cos_full}} requires just a few steps before you provision your new storage.
+{: shortdesc}
 
 ## Creating a {{site.data.keyword.cloud_notm}} Platform account
 {: #provision-account}
