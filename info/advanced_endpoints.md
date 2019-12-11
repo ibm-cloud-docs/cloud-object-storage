@@ -36,9 +36,6 @@ A bucket's resiliency is defined by the endpoint used to create it. _Cross Regio
 
 Compute workloads co-located with a Regional {{site.data.keyword.cos_short}} endpoint will see lower latency and better performance. For workloads not concentrated in a single geographic area, a Cross Region `geo` endpoint routes connections to the nearest regional data centers.
 
-When using a Cross Region endpoint, it is possible to direct inbound traffic to a specific access point while still distributing data across all three regions. When sending requests to an individual access point there is no automated failover if that region becomes unavailable. Applications that direct traffic to an access point instead of the `geo` endpoint **must** implement appropriate failover logic internally to achieve the availabity advantages of the cross-region storage.
-{:tip}
-
 Some workloads may benefit from using a Single Data Center endpoint. Data stored in a single site is still distributed across many physical storage appliances, but is contained to a single data center. This can improve performance for compute resources within the same site, but will not maintain availability in the case of a site outage. Single Data Center buckets do not provide automated replication or backup in the case of site destruction, so any applications using a single site should consider disaster recovery in their design.
 
 All requests must use SSL when using IAM, and the service will reject any plaintext requests.
@@ -56,3 +53,22 @@ Requests must be sent to the endpoint associated with a given bucket's location.
 
 As of December 2018, we have updated our endpoints. Legacy endpoints will continue to work until further notice. Please update your applications to use the [new endpoints &lpar;JSON&rpar;](https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints){: external}.
 {:note}
+
+## Using cross-region access points
+
+When using a Cross Region endpoint, it is possible to direct inbound traffic to a specific access point while still distributing data across all three regions. When sending requests to an individual access point **there is no automated failover if that region becomes unavailable**. Applications that direct traffic to an access point instead of the `geo` endpoint **must** implement appropriate failover logic internally to achieve the availabity advantages of the cross-region storage. 
+
+One reason for using an access point is to control where data ingress and egress occurs while still distributing the data across the widest possible area. Imagine an application running in the `us-south` region that wants to store data in a US cross-region bucket but wants to ensure that all read and write requests remain in the Dallas area:
+
+1. The application creates a client using the `https://s3.private.dal.us.cloud-object-storage.appdomain.cloud` endpoint.
+2. The {{site.data.keyword.cos_short}} service in Dallas suffers an outage.
+3. The application detects a persistent failure trying to use the access point.
+4. The application recognizes the need to fail over to a different access point, such as San Jose.
+5. The application creates a new client using the `https://s3.private.sjc.us.cloud-object-storage.appdomain.cloud` endpoint.
+6. Connectivity is resumed, and access can be re-routed to Dallas when service is restored.
+
+For contrast, imagine another application using the normal US cross-region endpoint:
+
+1. The application creates a client using the `https://s3.us.cloud-object-storage.appdomain.cloud` endpoint.
+1. The {{site.data.keyword.cos_short}} service in Dallas suffers an outage.
+2. All {{site.data.keyword.cos_short}} requests are automatically rerouted to San Jose or Washington until service is restored.
