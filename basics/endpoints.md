@@ -117,6 +117,7 @@ If a networking failure results in a partition where the data center is unable t
 | San Jose, US | Public | `s3.sjc04.cloud-object-storage.appdomain.cloud` |
 | S&atilde;o Paulo, Brazil | Public | `s3.sao01.cloud-object-storage.appdomain.cloud` |
 | Seoul, South Korea | Public | `s3.seo01.cloud-object-storage.appdomain.cloud` |
+| Singapore | Public | `s3.sng01.cloud-object-storage.appdomain.cloud` |
 | Toronto, Canada | Public | `s3.tor01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
@@ -138,6 +139,7 @@ If a networking failure results in a partition where the data center is unable t
 | San Jose, US | Private | `s3.private.sjc04.cloud-object-storage.appdomain.cloud` |
 | S&atilde;o Paulo, Brazil | Private | `s3.private.sao01.cloud-object-storage.appdomain.cloud` |
 | Seoul, South Korea | Private | `s3.private.seo01.cloud-object-storage.appdomain.cloud` |
+| Singapore | Private | `s3.private.sng01.cloud-object-storage.appdomain.cloud` |
 | Toronto, Canada | Private | `s3.private.tor01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
