@@ -49,7 +49,7 @@ First, make sure that you have an instance of {{site.data.keyword.cos_short}} an
 ## Using the console to set a firewall
 {: #firewall-console}
 
-From the {{site.data.keyword.cloud_notm}} [console dashboard](https://cloud.ibm.com/){: external}, you can set a firewall.
+From the {{site.data.keyword.cloud_notm}} [console dashboard](https://cloud.ibm.com/){: external}, you can restrict access to your content by setting a firewall.
 
 ### Set a list of authorized IP addresses
 {: #firewall-console-enable}
