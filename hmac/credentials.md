@@ -27,16 +27,35 @@ subcollection: cloud-object-storage
 {:support: data-reuse='support'}
 
 # Using HMAC credentials
-{: #hmac}
+{: #uhc-hmac-credentials-main}
+
+HMAC credentials consist of an Access Key and Secret Key paired for use with S3-compatible tools and libraries that require authentication.
+{: shortdesc}
+
+## HMAC credentials defined
+{: #uhc-hmac-credentials-defined}
 
 The {{site.data.keyword.cos_full}} API is a REST-based API for reading and writing objects. It uses {{site.data.keyword.iamlong}} for authentication and authorization, and supports a subset of the S3 API for easy migration of applications to {{site.data.keyword.cloud_notm}}.
 
-Users can create a set of HMAC credentials as part of a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) with the configuration parameter `{"HMAC":true}` during credential creation. You can also use the {{site.data.keyword.cos_full}} CLI. 
+### Create HMAC credentials in the console
+{: #uhc-create-hmac-credentials-console}
+
+Users can create a set of HMAC credentials as part of a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) with the configuration parameter `{"HMAC":true}` during credential creation in the console. 
+
+After the Service Credential is created, the HMAC Key is included in the `cos_hmac_keys` field. These HMAC keys are then associated with a [Service ID](/docs/iam?topic=iam-serviceids#serviceids) and can be used to access any resources or operations that are allowed by the Service ID's role. 
+
+### Create HMAC credentials using the CLI
+{: #uhc-create-hmac-credentials-console}
+
+You can also use the {{site.data.keyword.cos_full}} CLI to create your credentials. You must have the already installed the [{{site.data.keyword.cloud_notm}} Platform Command Line Instructions](/docs/cli?topic=cloud-cli-install-ibmcloud-cli) before you can use the example.
 
 ```
 ibmcloud resource service-key-create <key-name-without-spaces> Writer --instance-name "<instance name--use quotes if your instance name has spaces>" --parameters '{"HMAC":true}'
 ```
 {: pre}
+
+## An example of HMAC credentials
+{: #uhc-example-hmac-credentials}
 
 If you want to store the results of the generated key, you can append ` > file.skey` to the end of the example. For the purposes of this instruction set, you need only find the `cos_hmac_keys` heading with child keys, `access_key_id`, and `secret_access_key`.
 
@@ -47,7 +66,10 @@ If you want to store the results of the generated key, you can append ` > file.s
 ```
 {: screen}
 
-Of particular interest is the ability to set environment variables (the instructions for which are specific to the operating system involved). For instance, in Example 3, a `.bash_profile` script contains `COS_HMAC_ACCESS_KEY_ID` and `COS_HMAC_SECRET_ACCESS_KEY` that is exported upon starting a shell and used in development.
+### Setting HMAC credentials as environment variables
+{: #uhc-setting-hmac-credentials}
+
+Once you have created your credentials, you can set them as environment variables (the instructions for which are specific to the operating system involved). For instance, in Example 3, a `.bash_profile` script contains `COS_HMAC_ACCESS_KEY_ID` and `COS_HMAC_SECRET_ACCESS_KEY` that is exported upon starting a shell and used in development.
 
 ```
 export COS_HMAC_ACCESS_KEY_ID="7exampledonotusea6440da12685eee02"
@@ -56,7 +78,8 @@ export COS_HMAC_SECRET_ACCESS_KEY="8not8ed850cddbece407exampledonotuse43r2d2586"
 ```
 {: pre}
 
-After the Service Credential is created, the HMAC Key is included in the `cos_hmac_keys` field. These HMAC keys are then associated with a [Service ID](/docs/iam?topic=iam-serviceids#serviceids) and can be used to access any resources or operations that are allowed by the Service ID's role. 
+## Next steps
+{: #uhc-next-steps}
 
 Note that when using HMAC credentials to create signatures to use with direct [REST API](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api) calls that extra headers are required:
 1. All requests must have an `x-amz-date` header with the date in `%Y%m%dT%H%M%SZ` format.

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-11-14"
+lastupdated: "2019-12-06"
 
-keywords: tutorial, web application, photo galleries
+keywords: web application, node, gallery, tutorial
 
 subcollection: cloud-object-storage
 
@@ -63,7 +63,7 @@ directory. Change your own reference directory to
 the new one you created. When created, your application has its own subdirectory with 
 the starter code and configuration that is needed to get up and running.
 
-Leaving the command line and returning to the browser, follow the instructions to install the [{{site.data.keyword.cloud_notm}} Platform developer tools](https://cloud.ibm.com/docs/cli?topic=cloud-cli-install-devtools-manually) at the link. 
+Leaving the command line and returning to the browser, follow the instructions to install the [{{site.data.keyword.cloud_notm}} Platform developer tools](/docs/cli?topic=cloud-cli-install-devtools-manually) at the link. 
 The Developer Tools offer an extensible and repeatable approach to building and deploying cloud applications.
 
 [Docker](https://www.docker.com) is installed as part of the Developer Tools, and we need it. Its work
@@ -571,18 +571,18 @@ Test the app. The visible change from the default app template that
 Now, you need to create a branch for the local development environment
 to use for your {{site.data.keyword.cloud_notm}} Platform Delivery Pipeline Build Stage:
 
-  1.  If using GitHub Desktop, click the branch icon; you're prompted to enter a name for the
+1.  If using GitHub Desktop, click the branch icon; you're prompted to enter a name for the
     branch . This example uses `local-dev` as the name.
 
-  ![new_git_branch](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-014-dev-branch.jpg){: caption="Figure 4. Use GitHub Desktop to create a local dev branch"}
+   ![new_git_branch](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-014-dev-branch.jpg){: caption="Figure 4. Use GitHub Desktop to create a local dev branch"}
 
-  1.  After you create the branch, GitHub compares the local files on the
+1.  After you create the branch, GitHub compares the local files on the
     Local-dev branch with the files in the repository on the master
     branch and reports No local changes. You can now click Publish to
     add the branch you created on your local repo to your GitHub repo
     (as shown in Figure 5).
 
-  ![publish_branch](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-015-git-push.jpg){: caption="Figure 5. Publish your git branch to your repo's remote origin"}
+   ![publish_branch](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-015-git-push.jpg){: caption="Figure 5. Publish your git branch to your repo's remote origin"}
 
 Now that the Local-dev branch is published to the GitHub repo in your
 toolchain, the build stage of your {{site.data.keyword.cloud_notm}} Platform Delivery Pipeline will be

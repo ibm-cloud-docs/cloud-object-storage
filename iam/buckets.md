@@ -25,11 +25,13 @@ subcollection: cloud-object-storage
 {:python: .ph data-hd-programlang='python'}
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
+{:help: data-hd-content-type='help'}
 
 # Bucket permissions
 {: #iam-bucket-permissions}
 
 Assign access roles for users and Service IDs against buckets, by using either the UI or the CLI to create policies.
+{: shortdesc}
 
 | Access role | Example actions                                             |
 |:------------|-------------------------------------------------------------|

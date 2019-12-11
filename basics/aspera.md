@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2019
 
-lastupdated: "2019-11-20"
+lastupdated: "2019-12-06"
 
 keywords: aspera, high speed, big data, packet loss
 
@@ -28,7 +28,10 @@ subcollection: cloud-object-storage
 # Use Aspera high-speed transfer
 {: #aspera}
 
-Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP transfers to improve data transfer performance under most conditions, especially in networks with high latency and packet loss. Instead of the standard HTTP `PUT`, Aspera high-speed transfer uploads the object by using the [FASP protocol](https://asperasoft.com/technology/transport/fasp/). Using Aspera high-speed transfer for uploads and downloads offers the following benefits:
+Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP transfers to improve data transfer performance under most conditions, especially in networks with high latency and packet loss.
+{: shortdesc}
+ 
+Instead of the standard HTTP `PUT`, Aspera high-speed transfer uploads the object by using the [FASP protocol](https://asperasoft.com/technology/transport/fasp/). Using Aspera high-speed transfer for uploads and downloads offers the following benefits:
 
 - Faster transfer speeds
 - Transfer large object uploads over 200 MB in the console and 1 GB by using an SDK or library
@@ -98,8 +101,7 @@ The Aspera high-speed transfer SDK is closed-source and thus an optional depende
 #### COS/Aspera High-Speed Transfer Packaging
 {: #aspera-packaging}
 
-
-![COS/Aspera High-Speed Transfer SDK](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/aspera-packaging.png" height="200px"){: caption="Figure 1: COS/Aspera High-Speed Transfer SDK." caption-side="bottom"}
+![COS/Aspera High-Speed Transfer SDK](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/aspera-packaging.png){: caption="Figure 1: COS/Aspera High-Speed Transfer SDK." caption-side="bottom"}
 
 ### Supported Platforms
 {: #aspera-sdk-platforms}
@@ -109,6 +111,7 @@ The Aspera high-speed transfer SDK is closed-source and thus an optional depende
 | Ubuntu                 | 18.04 LTS | 64-Bit       | 6 and higher | 2.7, 3.6       |
 | Mac OS X               | 10.13     | 64-Bit       | 6 and higher | 2.7, 3.6       |
 | Microsoft&reg; Windows | 10        | 64-Bit       | 6 and higher | 2.7, 3.6       |
+{: caption="Table 1. Supported platforms for Aspera high-speed transfer"}
 
 Each Aspera high-speed transfer session creates an individual `ascp` process that runs on the client machine to perform the transfer. Ensure that your computing environment can allow this process to run.
 {:tip}
@@ -172,7 +175,58 @@ pip install cos-aspera
 Examples of initiating Aspera transfers with Python are available in [Using Aspera High-Speed Transfer](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python#python-examples-aspera) section.
 {: python}
 
+## Using Aspera high-speed transfer in a restricted network environment
+{: #aspera-restricted-network}
+
+Aspera clients and servers are configured by default to use UDP port 33001 after the session is initiated using the same port as the secure `SSH` protocol. Therefore, the firewall configuration must allow traffic on port UDP 33001 to reach the Aspera server. For more, check out the support page on [firewall considerations](https://www.ibm.com/support/pages/firewall-considerations){: external}.
+{: important}
+
+If your application is behind a firewall, it may not be able to make use of Aspera high-speed transfer without additional configuration. The Aspera Transfer Service (ATS) uses an additional endpoint other than the standard service endpoint used for connecting to object storage resources.  The ATS endpoint that must be accessible is determined by the storage location of the bucket and can be discovered using the REST API.
+
+For example, to find the correct ATS endpoint for a bucket called `my-bucket` in the `eu-de` region, you can send the following request:
+
+```
+  curl 'https://s3.eu-de.cloud-object-storage.appdomain.cloud/my-bucket?faspConnectionInfo=' \
+    -H 'Authorization: Bearer <IAMTOKEN>' 
+```
+{: codeblock}
+
+This will return something like the following XML block:
+
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FASPConnectionInfo xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+    <AccessKey>
+        <Id>REDACTED</Id>
+        <Secret>REDACTED</Secret>
+    </AccessKey>
+    <ATSEndpoint>https://ats-sl-fra.aspera.io:443</ATSEndpoint>
+</FASPConnectionInfo>
+```
+{: screen}
+
+The `ID` and `Secret` values are _not_ the same as HMAC credentials used to authenticate to Cloud Object Storage. These are used internally to communicate with ATS and can be ignored by users.
+{: note}
+
+In order to determine the IP addresses that correspond to the `ATSEndpoint` value, you can use the ATS API and find the matching value in the response.  For example, we can use the command line to find the IP addresses for `https://ats-sl-fra.aspera.io:443`:
+
+```sh
+curl https://ats.aspera.io/pub/v1/servers/softlayer | grep -B 4 -m 1 'https://ats-sl-fra.aspera.io:443'
+```
+{: codeblock}
+
+This will return the following snippet:
+
+```json
+  "public_ips" : [ "169.50.32.96/27", "158.177.83.160/27", "161.156.67.160/27", "149.81.66.32/27" ],
+  "region" : "fra-eu-geo",
+  "s3_authentication_endpoint" : "s3.private.eu.cloud-object-storage.appdomain.cloud",
+  "tcp_port" : 33001,
+  "transfer_setup_url" : "https://ats-sl-fra.aspera.io:443",
+```
+{: screen}
+
 ## Next Steps
 {: #aspera-next-steps}
 
-Next, you may wish to check [Integrated Services](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability) to see if Aspera high-speed transfer is available in appropriate regions for you.
+Next, you may wish to check [Integrated Services](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability) to see if Aspera high-speed transfer is available in regions suitable for you.

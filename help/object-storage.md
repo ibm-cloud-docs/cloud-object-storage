@@ -25,11 +25,19 @@ subcollection: cloud-object-storage
 {:python: .ph data-hd-programlang='python'}
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
+{:help: data-hd-content-type='help'}
 
 # About Object Storage
 {: #about-cos}
 
-Object Storage is a logical progression from block and file storage, and was invented to overcome a number of issues:
+{{site.data.keyword.cos_full}} is a logical progression from block and file storage, and was invented to overcome a number of issues.
+{: shortdesc}
+
+## What is Object Storage?
+{: #about-cos-defined}
+{: help}
+
+{{site.data.keyword.cos_short}} solves the following problems with block and/or file storage:
 
 *  Managing data at extreme scales by using conventional block and file systems was difficult. These technologies lead to data islands because of limitations on various levels of the data management hardware and software stack.
 
@@ -37,7 +45,11 @@ Object Storage is a logical progression from block and file storage, and was inv
 
 *  Security required a combination of technologies, complex security schemes, and significant human involvement.
 
-Object Storage uses a different approach to storing and referencing data:
+## What approach does {{site.data.keyword.cos_full_notm}} use?
+{: #about-cos-defined}
+{: help}
+
+{{site.data.keyword.cos_short}} uses a different approach to storing and referencing data:
 
 *  User and application data requires persistent storage. It can be text, binary formats, multimedia, or any other human- or machine-generated content.
 

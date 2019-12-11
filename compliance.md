@@ -2,9 +2,9 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-11-11"
+lastupdated: "2019-12-06"
 
-keywords: compliance
+keywords: compliance, object storage, gdpr
 
 subcollection: cloud-object-storage
 
@@ -29,7 +29,10 @@ subcollection: cloud-object-storage
 # Compliance
 {: #compliance}
 
-IBM Cloud Object Storage actively participates in several industry compliance programs. An updated list of our compliance certifications can always be obtained by referencing the [Data Processing and Protection Datasheet](https://www.ibm.com/software/reports/compatibility/clarity-reports/report/html/softwareReqsForProduct?deliverableId=89904B80AE1911E7A9EB066095601ABB) available from [IBM Software Product Compatibility Reports](https://www.ibm.com/software/reports/compatibility/clarity/softwareReqsForProduct.html).
+{{site.data.keyword.cos_full}} actively participates in several industry compliance programs. 
+{: shortdesc}
+
+An updated list of our compliance certifications can always be obtained by referencing the [Data Processing and Protection Datasheet](https://www.ibm.com/software/reports/compatibility/clarity-reports/report/html/softwareReqsForProduct?deliverableId=89904B80AE1911E7A9EB066095601ABB) available from [IBM Software Product Compatibility Reports](https://www.ibm.com/software/reports/compatibility/clarity/softwareReqsForProduct.html).
 
 Clients are responsible for ensuring their own compliance with any applicable laws and regulations and are solely responsible for obtaining advice of competent legal counsel as to the identification and interpretation of any relevant laws and regulations that may affect the clients’ business as well as any actions the clients may need to take to comply with such laws and regulations. IBM does not provide legal, accounting, or auditing advice or represent or warrant that its services or products will ensure that clients are in compliance with any law or regulation.
 {: note}
