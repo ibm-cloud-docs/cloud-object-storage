@@ -26,7 +26,7 @@ subcollection: cloud-object-storage
 {: #setting-a-firewall}
 
 IAM policies provide a way for administrators to limit access to individual buckets. What if certain data must be accessed from trusted networks only? A bucket firewall restricts all access to data unless the request originates from a list of allowed IP addresses.
-{: .shortdesc}
+{: shortdesc}
 
 There are some rules around setting a firewall:
 

@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 {: #dev-guide}
 
 If you're seeking solutions for your development with {{site.data.keyword.cos_full}}, this collection of best practices is for you.
-{: .shortdesc}
+{: shortdesc}
 
 ## Tuning cipher settings
 {: #dev-guide-cipher}

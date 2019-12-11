@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 {: #cyberduck}
 
 Cyberduck is a popular, open source, and easy to use cloud Object Storage browser.
-{: .shortdesc}
+{: shortdesc}
 
 Cyberduck can calculated the authorization signatures that are needed to connect to IBM COS. Cyberduck can be downloaded from [cyberduck.io/](https://cyberduck.io/){: external}.
 

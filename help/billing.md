@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 {: #billing}
 
 Information on pricing can be found at [{{site.data.keyword.cloud}}](https://www.ibm.com/cloud/object-storage/pricing/){: external}.
-{: .shortdesc}
+{: shortdesc}
 
 ## Invoices
 {: #billing-invoices}

@@ -26,7 +26,7 @@ subcollection: cloud-object-storage
 {: #at}
 
 [Activity Tracker with LogDNA](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started) allows you to [audit the requests](/docs/services/cloud-object-storage?topic=cloud-object-storage-at-events) made against a bucket and the objects it contains.
-{: .shortdesc}
+{: shortdesc}
 
 ## Using the console
 {: #at-console}
