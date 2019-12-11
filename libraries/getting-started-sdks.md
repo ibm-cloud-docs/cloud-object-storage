@@ -31,7 +31,7 @@ subcollection: cloud-object-storage
 {: #sdk-gs}
 
 {{site.data.keyword.cos_full}} provides SDKs for Java, Python, NodeJS, and Go which can help you to make the most of {{site.data.keyword.cos_short}}.
-{: .shortdesc}
+{: shortdesc}
 
 In this quickstart guide, you are provided a code example that demonstrates the following operations:
 

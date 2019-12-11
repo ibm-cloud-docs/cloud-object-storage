@@ -25,7 +25,7 @@ subcollection: cloud-object-storage
 {: #rclone}
 
 Getting the most out of {{site.data.keyword.cos_full}} when you have access to tools and solutions like `rclone` and the command-line interface (cli).
-{: .shortdesc}
+{: shortdesc}
 
 ## Install `rclone`
 {: #rclone-install}

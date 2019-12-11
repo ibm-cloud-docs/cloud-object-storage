@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 {: #service-availability}
 
 The document describes the regions where services and the different kinds of availability that are supported.
-{: .shortdesc}
+{: shortdesc}
 
 For more information about the following services, be sure to check out the respective links:
 
@@ -86,4 +86,5 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | San Jose, US                | Yes    | No          | No                             | No           | No                       | Dallas           | No        |
 | São Paulo, Brazil           | Yes    | No          | No                             | Yes          | No                       | Dallas           | No        |
 | Seoul, South Korea          | Yes    | No          | No                             | No           | No                       | Tokyo            | No        |
+| Singapore                   | No     | No          | No                             | No           | No                       | Tokyo            | No        |
 | Toronto, Canada             | Yes    | No          | No                             | Yes          | No                       | Dallas           | No        |
