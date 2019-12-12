@@ -55,6 +55,7 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 {:note}
 
 ## Using cross-region access points
+{ #advanced-endpoint-using-cre}
 
 When using a Cross Region endpoint, it is possible to direct inbound traffic to a specific access point while still distributing data across all three regions. When sending requests to an individual access point **there is no automated failover if that region becomes unavailable**. Applications that direct traffic to an access point instead of the `geo` endpoint **must** implement appropriate failover logic internally to achieve the availabity advantages of the cross-region storage. 
 
@@ -72,3 +73,4 @@ For contrast, imagine another application using the normal US cross-region endpo
 1. The application creates a client using the `https://s3.us.cloud-object-storage.appdomain.cloud` endpoint.
 1. The {{site.data.keyword.cos_short}} service in Dallas suffers an outage.
 2. All {{site.data.keyword.cos_short}} requests are automatically rerouted to San Jose or Washington until service is restored.
+
