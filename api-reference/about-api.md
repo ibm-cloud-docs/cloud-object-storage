@@ -25,7 +25,10 @@ subcollection: cloud-object-storage
 # About the {{site.data.keyword.cos_full_notm}} S3 API
 {: #compatibility-api}
 
-The {{site.data.keyword.cos_full}} API is a REST-based API for reading and writing objects. It uses {{site.data.keyword.iamlong}} for authentication and authorization, and supports a subset of the S3 API for easy migration of applications to {{site.data.keyword.cloud_notm}}.
+The {{site.data.keyword.cos_full}} API is a REST-based API for reading and writing objects. 
+{: shortdesc}
+
+It uses {{site.data.keyword.iamlong}} for authentication and authorization, and supports a subset of the S3 API for easy migration of applications to {{site.data.keyword.cloud_notm}}.
 
 This reference documentation is being continuously improved. If you have technical questions about using the API in your application, post them on [StackOverflow](https://stackoverflow.com/). Add both `ibm-cloud-platform` and `object-storage` tags and help improve this documentation thanks to your feedback.
 
