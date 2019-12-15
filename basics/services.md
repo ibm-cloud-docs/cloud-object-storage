@@ -88,3 +88,8 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | Singapore                   | No     | No          | No                             | No           | No                       | Tokyo            | No        |
 | Toronto, Canada             | Yes    | No          | No                             | Yes          | No                       | Dallas           | No        |
 {: caption="Table 3. Single Data Center service availability" caption-side="top"}
+
+## Next Steps
+{: #service-availability-next-steps}
+
+Learn more about availability and resilience when you review the different [endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints).
