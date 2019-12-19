@@ -24,3 +24,10 @@ subcollection: cloud-object-storage
 {:console: .ph data-hd-programlang='Console'}
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
+
+# Tracking {{site.data.keyword.cos_short}} events in {{site.data.keyword.at_full_notm}}
+{: #tracking-cos-events}
+
+
+## Next Steps
+{: #tracking-cos-events-next-steps}
