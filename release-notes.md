@@ -30,8 +30,6 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 ### December 2019
 {: #updates-2019-q4-dec}
 
-Buckets created in the Singapore sot
-
 Buckets can now be created in a Single Data Center configuration in Singapore. More information can be found in the [Select Regions and Endpoints](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
 
 ### November 2019
