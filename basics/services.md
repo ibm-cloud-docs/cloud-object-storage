@@ -85,7 +85,7 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | San Jose, US                | Yes    | No          | No                             | No           | No                       | Dallas           | No        |
 | São Paulo, Brazil           | Yes    | No          | No                             | Yes          | No                       | Dallas           | No        |
 | Seoul, South Korea          | Yes    | No          | No                             | No           | No                       | Tokyo            | No        |
-| Singapore                   | No     | No          | No                             | No           | No                       | Tokyo            | No        |
+| Singapore                   | Yes    | No          | No                             | No           | No                       | Tokyo            | No        |
 | Toronto, Canada             | Yes    | No          | No                             | Yes          | No                       | Dallas           | No        |
 {: caption="Table 3. Single Data Center service availability" caption-side="top"}
 
