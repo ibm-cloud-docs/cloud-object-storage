@@ -46,7 +46,7 @@ subcollection: cloud-object-storage
 *  Security required a combination of technologies, complex security schemes, and significant human involvement.
 
 ## What approach does {{site.data.keyword.cos_full_notm}} use?
-{: #about-cos-defined}
+{: #about-cos-approaches}
 {: help}
 
 {{site.data.keyword.cos_short}} uses a different approach to storing and referencing data:
