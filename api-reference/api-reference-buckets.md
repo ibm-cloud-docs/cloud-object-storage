@@ -840,7 +840,7 @@ Content-Length: 909
 ## Delete a bucket
 {: #compatibility-api-delete-bucket}
 
-A `DELETE` issued to an empty bucket deletes the bucket. After deleting a bucket the name will be held in reserve by the system for 10 minutes, after which it will be released for re-use. *Only empty buckets can be deleted.*
+A `DELETE` issued to an empty bucket deletes the bucket. After deleting a bucket the name will be held in reserve by the system for 7 days, after which it will be released for re-use. *Only empty buckets can be deleted.*
 
 **Syntax**
 
