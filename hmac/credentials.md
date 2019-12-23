@@ -61,8 +61,8 @@ If you want to store the results of the generated key, you can append ` > file.s
 
 ```
     cos_hmac_keys:
-        access_key_id:      7exampledonotusea6440da12685eee02
-        secret_access_key:  8not8ed850cddbece407exampledonotuse43r2d2586
+        access_key_id:      7xxxxxxxxxxxxxxa6440da12685eee02
+        secret_access_key:  8xxxxed850cddbece407xxxxxxxxxxxxxx43r2d2586
 ```
 {: screen}
 
@@ -72,8 +72,8 @@ If you want to store the results of the generated key, you can append ` > file.s
 Once you have created your credentials, you can set them as environment variables (the instructions for which are specific to the operating system involved). For instance, in Example 3, a `.bash_profile` script contains `COS_HMAC_ACCESS_KEY_ID` and `COS_HMAC_SECRET_ACCESS_KEY` that is exported upon starting a shell and used in development.
 
 ```
-export COS_HMAC_ACCESS_KEY_ID="7exampledonotusea6440da12685eee02"
-export COS_HMAC_SECRET_ACCESS_KEY="8not8ed850cddbece407exampledonotuse43r2d2586"
+export COS_HMAC_ACCESS_KEY_ID="7xxxxxxxxxxxxxxa6440da12685eee02"
+export COS_HMAC_SECRET_ACCESS_KEY="8xxxxed850cddbece407xxxxxxxxxxxxxx43r2d2586"
 
 ```
 {: pre}

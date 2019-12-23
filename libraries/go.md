@@ -210,13 +210,13 @@ func main() {
 // The response should be formatted like the following example:
 //{
 // 	Contents: [{
-// 		ETag: "\"dbDoNot53Use7d06378204e3sample9f\"",
+// 		ETag: "\"dbxxxxx53xxx7d06378204e3xxxxxx9f\"",
 // 		Key: "file1.json",
 // 		LastModified: 2019-10-15 22:22:52.62 +0000 UTC,
 // 		Size: 1045,
 // 		StorageClass: "STANDARD"
 // 	  },{
-// 		ETag: "\"6e1DoNot63Usedefb440f72asamplec2\"",
+// 		ETag: "\"6e1xxxxx63xxxdefb440f72axxxxxxc2\"",
 // 		Key: "file2.json",
 // 		LastModified: 2019-10-15 23:08:10.074 +0000 UTC,
 // 		Size: 1045,
