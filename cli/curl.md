@@ -161,7 +161,7 @@ curl --head "https://(endpoint)/(bucket-name)/"
 {:codeblock}
 
 ## Get bucket metadata
-{: #curl-bucket-metadata}
+{: #curl-get-bucket-metadata}
 
 Note the use of the config API endpoint isn't the same as the endpoint for your bucket itself. Use of this command returns metadata for the specified bucket.
  
