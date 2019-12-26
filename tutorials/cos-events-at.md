@@ -4,7 +4,7 @@ copyright:
   years: 2019
 lastupdated: "2019-12-27"
 
-keywords: activity tracker, object storage, event, tutorial
+keywords: activity, tracking, object storage, event, tutorial
 
 subcollection: cloud-object-storage
 
@@ -28,8 +28,15 @@ subcollection: cloud-object-storage
 # Tracking {{site.data.keyword.cos_short}} events in {{site.data.keyword.at_short}}
 {: #tracking-cos-events}
 
+There are many great options for tracking the activity involving your {{site.data.keyword.cos_full}} instance, especially when utilizing the benefits of {{site.data.keyword.at_full}}.
+
 ## What this tutorial will cover
 {: #tracking-cos-events-overview}
+
+This tutorial will provide an introduction to capturing information regarding the events of your {{site.data.keyword.cos_short}} instance using {{site.data.keyword.at_short}}. Of course both offer so many comprehensive feature sets that this introduction will cover only a fraction of what is available.
+
+Also, to find out what works for you beyond this tutorial, check out the tutorials listed for each service. With so many options, you are sure to find the specific configuration to work for your needs, beyond this brief introduction. 
+{: tip} 
 
 If you're not famiiiar with {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started).
 
@@ -71,6 +78,8 @@ Also, if you're not familiar with {{site.data.keyword.at_full}}, you may wish to
 {: #tracking-cos-events-next-steps}
 
 For more about {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started). Also, you can find out more regarding {{site.data.keyword.at_full}} at the [getting started with {{site.data.keyword.at_short}}](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started).
+
+With so many options, there is literally too much to cover that is beyond the scope of this tutorial. Here are some links to explore more of the ideas presented in this document.
 
 ### Viewing Events
 {: #tracking-cos-events-viewing}
