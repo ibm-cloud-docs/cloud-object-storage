@@ -29,7 +29,7 @@ subcollection: cloud-object-storage
 {: #tracking-cos-events}
 
 ## What this tutorial will show
-{: #tracking-cos-events}
+{: #tracking-cos-events-overview}
 
 
 ## Prerequisites
