@@ -25,12 +25,15 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Tracking {{site.data.keyword.cos_short}} events in {{site.data.keyword.at_full_notm}}
+# Tracking {{site.data.keyword.cos_short}} events in {{site.data.keyword.at_short}}
 {: #tracking-cos-events}
 
-## What this tutorial will show
+## What this tutorial will cover
 {: #tracking-cos-events-overview}
 
+If you're not famiiiar with {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started).
+
+Also, if you're not familiar with {{site.data.keyword.at_full}}, you may wish to check out how to [get started with {{site.data.keyword.at_short}}](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started).
 
 ## Prerequisites
 {: #tracking-cos-events-prereqs}
@@ -66,6 +69,8 @@ subcollection: cloud-object-storage
 
 ## Next Steps
 {: #tracking-cos-events-next-steps}
+
+For more about {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started). Also, you can find out more regarding {{site.data.keyword.at_full}} at the [getting started with {{site.data.keyword.at_short}}](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started).
 
 ### Viewing Events
 {: #tracking-cos-events-viewing}
