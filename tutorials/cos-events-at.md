@@ -35,7 +35,7 @@ There are many great options for tracking the activity involving your {{site.dat
 
 This tutorial will provide an introduction to capturing information regarding the events of your {{site.data.keyword.cos_short}} instance using {{site.data.keyword.at_short}}. Of course both offer so many comprehensive feature sets that this introduction will cover only a fraction of what is available.
 
-Also, to find out what works for you beyond this tutorial, check out the tutorials listed for each service. With so many options, you are sure to find the specific configuration to work for your needs, beyond this brief introduction. 
+Also, to find out what works for you beyond this tutorial, check out the offerings listed for each service. With so many options, you are sure to find the specific configuration to work for your needs, beyond this brief introduction. 
 {: tip} 
 
 If you're not famiiiar with {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started). Also, if you're not familiar with {{site.data.keyword.at_full}}, you may wish to check out how to [get started with {{site.data.keyword.at_short}}](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started).
