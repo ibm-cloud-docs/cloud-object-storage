@@ -77,19 +77,24 @@ If you're not famiiiar with {{site.data.keyword.cos_full}}, you can quickly get 
 
 For more about {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started). Also, you can find out more regarding {{site.data.keyword.at_full}} at the [getting started with {{site.data.keyword.at_short}}](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started).
 
-With so many options, there is literally too much to cover that is beyond the scope of this tutorial. Here are some links to explore more of the ideas presented in this document.
+With so many options, there is literally too much to cover beyond the scope of this tutorial. Here are only a few links to explore more of the ideas presented in this document to get you started on your own journey.
 
 ### Viewing Events
 {: #tracking-cos-events-viewing}
 
+With multiple options for viewing events in {{site.data.keyword.at_short}}, it may be helpful to review the [documentation](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-view_events).
 
 ### Configuring Alerts
 {: #tracking-cos-events-configuring-alerts}
 
+In {{site.data.keyword.at_short}} there are two kinds of alerts but many different ways to use them, as shown in the documentation for [configuring alerts](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-alerts).
 
 ### Exporting Events
 {: #tracking-cos-events-exporting}
 
+After generating information about each event, {{site.data.keyword.at_short}} also has the ability to [export the events](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-export) per your configuration.
 
 ### Archiving Events
 {: #tracking-cos-events-archiving}
+
+In this tutorial, events from {{site.data.keyword.cos_short}} were viewed in {{site.data.keyword.at_short}} as log entries. Reversing the relationship between them, you can also [archive {{site.data.keyword.at_short}} events in {{site.data.keyword.cos_full_notm}}](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-archiving).
