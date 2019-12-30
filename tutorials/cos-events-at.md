@@ -53,7 +53,7 @@ If you are already managing instances of {{site.data.keyword.cos_short}} or {{si
 
 In part, this tutorial will show how to use the UI interface, or [Console](https://cloud.ibm.com/){: external} to create instances of services and manage them. This is the easiest path to take for working with {{site.data.keyword.cloud}} but it is also powerful and reponsive. 
 
-As long as you can [login](https://cloud.ibm.com/login){: external} you should be ready to start!
+As long as you can [login](https://cloud.ibm.com/login){: external} you should be ready to start! At the context switcher above the main heading, choose "Console" to see the examples you will be working with.
 
 ### What to know before using the {{site.data.keyword.cloud_notm}} CLI
 {: #tracking-cos-events-prereqs-cli}
@@ -67,6 +67,8 @@ ibmcloud dev help
 ```
 {: codeblock}
 {: cli}
+
+If you can't see the above example with instructions, At the context switcher above the main heading, choose "CLI" to see the examples you will be working with.
 
 ## Creating your instance of {{site.data.keyword.at_full_notm}}
 {: #tracking-cos-events-create-at}
