@@ -45,8 +45,15 @@ If you're not famiiiar with {{site.data.keyword.cos_full}}, you can quickly get 
 
 For this tutorial, you need:
   * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com){: external}
+  * Some files on your local computer for uploading
 
 If you are already managing instances of {{site.data.keyword.cos_short}} or {{site.data.keyword.at_short}}, you do not need to create more. However, as this tutorial will modify and configure the instances we are working with, make sure that any accounts or services are not being used in a production environment.
+
+When you create buckets or add objects, be sure to avoid the use of Personally Identifiable Information (PII)
+
+PII is information that can identify any user (natural person) by name, location, or any other means.
+{: note}
+
 
 ### What to know before using the {{site.data.keyword.cos_short}} Console
 {: #tracking-cos-events-prereqs-console}
