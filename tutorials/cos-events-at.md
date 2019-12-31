@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-12-27"
+lastupdated: "2019-12-31"
 
 keywords: activity, tracking, object storage, event, tutorial
 
@@ -75,7 +75,7 @@ ibmcloud dev help
 {: codeblock}
 {: cli}
 
-If you can't see the above example with instructions, choose "CLI" in the context switcher above the main heading to see the examples you will be working with.
+If you can't see the example with instructions on how to run the `help` command in your terminal, choose "CLI" in the context switcher above the main heading to see the examples you will be working with.
 
 ## Creating your instance of {{site.data.keyword.at_full_notm}}
 {: #tracking-cos-events-create-at}
