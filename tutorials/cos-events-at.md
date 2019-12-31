@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-12-27"
+lastupdated: "2019-12-31"
 
 keywords: activity, tracking, object storage, event, tutorial
 
@@ -45,15 +45,22 @@ If you're not famiiiar with {{site.data.keyword.cos_full}}, you can quickly get 
 
 For this tutorial, you need:
   * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com){: external}
+  * Some files on your local computer for uploading
 
 If you are already managing instances of {{site.data.keyword.cos_short}} or {{site.data.keyword.at_short}}, you do not need to create more. However, as this tutorial will modify and configure the instances we are working with, make sure that any accounts or services are not being used in a production environment.
+
+When you create buckets or add objects, be sure to avoid the use of Personally Identifiable Information (PII)
+
+PII is information that can identify any user (natural person) by name, location, or any other means.
+{: note}
+
 
 ### What to know before using the {{site.data.keyword.cos_short}} Console
 {: #tracking-cos-events-prereqs-console}
 
 In part, this tutorial will show how to use the UI interface, or [Console](https://cloud.ibm.com/){: external} to create instances of services and manage them. This is the easiest path to take for working with {{site.data.keyword.cloud}} but it is also powerful and reponsive. 
 
-As long as you can [login](https://cloud.ibm.com/login){: external} you should be ready to start!
+As long as you can [login](https://cloud.ibm.com/login){: external} you should be ready to start! At the context switcher above the main heading, choose "Console" to see the examples you will be working with.
 
 ### What to know before using the {{site.data.keyword.cloud_notm}} CLI
 {: #tracking-cos-events-prereqs-cli}
@@ -67,6 +74,9 @@ ibmcloud dev help
 ```
 {: codeblock}
 {: cli}
+
+If you can't see the example with instructions on how to run the `help` command in your terminal, choose "CLI" in the context switcher above the main heading to see the examples you will be working with.
+{: tip}
 
 ## Creating your instance of {{site.data.keyword.at_full_notm}}
 {: #tracking-cos-events-create-at}
