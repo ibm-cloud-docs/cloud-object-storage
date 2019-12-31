@@ -76,6 +76,7 @@ ibmcloud dev help
 {: cli}
 
 If you can't see the example with instructions on how to run the `help` command in your terminal, choose "CLI" in the context switcher above the main heading to see the examples you will be working with.
+{: tip}
 
 ## Creating your instance of {{site.data.keyword.at_full_notm}}
 {: #tracking-cos-events-create-at}
