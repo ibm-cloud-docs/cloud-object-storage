@@ -75,7 +75,7 @@ ibmcloud dev help
 {: codeblock}
 {: cli}
 
-If you can't see the above example with instructions, At the context switcher above the main heading, choose "CLI" to see the examples you will be working with.
+If you can't see the above example with instructions, choose "CLI" in the context switcher above the main heading to see the examples you will be working with.
 
 ## Creating your instance of {{site.data.keyword.at_full_notm}}
 {: #tracking-cos-events-create-at}
