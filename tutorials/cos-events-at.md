@@ -58,7 +58,7 @@ PII is information that can identify any user (natural person) by name, location
 ### What to know before using the {{site.data.keyword.cloud_notm}} Console
 {: #tracking-cos-events-prereqs-console}
 
-In part, this tutorial will show how to use the UI interface, or [Console](https://cloud.ibm.com/){: external} to create instances of services and manage them. This is the easiest path to take for working with {{site.data.keyword.cloud}} but it is also powerful and reponsive. 
+In part, this tutorial will show how to use the UI interface, or [Console](https://cloud.ibm.com/){: external} to create instances of services and manage them. This is the easiest path to take for working with {{site.data.keyword.cloud}} but it is also powerful and responsive. 
 
 As long as you can [login](https://cloud.ibm.com/login){: external} you should be ready to start! At the context switcher above the main heading, choose "Console" to see the examples you will be working with.
 
