@@ -979,7 +979,7 @@ String KPEnabled = listing.getIBMSSEKPEnabled();
 String crkId = listing.getIBMSSEKPCrkId();
 ```
 
-The additonal headers have been defined within the `Headers` class:
+The additional headers have been defined within the `Headers` class:
 
 ```java
 Headers.java
@@ -1311,7 +1311,7 @@ The SDK provides the ability to manage the progress of file/directory transfers 
 * `resume()`
 * `cancel()`
 
-There are no side-effects from calling either of the methods outined above. Proper clean up and housekeeping is handled by the SDK.
+There are no side-effects from calling either of the methods outlined above. Proper clean up and housekeeping is handled by the SDK.
 {:tip}
 
 The following example shows a possible use for these methods:
