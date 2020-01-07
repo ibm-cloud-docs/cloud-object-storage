@@ -38,7 +38,7 @@ This tutorial will provide an introduction to capturing information regarding th
 Also, to find out what works for you beyond this tutorial, check out the offerings listed for each service. With so many options, you are sure to find the specific configuration to work for your needs, beyond this brief introduction. 
 {: tip} 
 
-If you're not famiiiar with {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started). Also, if you're not familiar with {{site.data.keyword.at_full}}, you may wish to check out how to [get started with {{site.data.keyword.at_short}}](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started).
+If you're not familiar with {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started). Also, if you're not familiar with {{site.data.keyword.at_full}}, you may wish to check out how to [get started with {{site.data.keyword.at_short}}](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started).
 
 ## Prerequisites
 {: #tracking-cos-events-prereqs}
@@ -55,17 +55,17 @@ PII is information that can identify any user (natural person) by name, location
 {: note}
 
 
-### What to know before using the {{site.data.keyword.cos_short}} Console
+### What to know before using the {{site.data.keyword.cloud_notm}} Console
 {: #tracking-cos-events-prereqs-console}
 
-In part, this tutorial will show how to use the UI interface, or [Console](https://cloud.ibm.com/){: external} to create instances of services and manage them. This is the easiest path to take for working with {{site.data.keyword.cloud}} but it is also powerful and reponsive. 
+In part, this tutorial will show how to use the UI interface, or [Console](https://cloud.ibm.com/){: external} to create instances of services and manage them. This is the easiest path to take for working with {{site.data.keyword.cloud}} but it is also powerful and responsive. 
 
 As long as you can [login](https://cloud.ibm.com/login){: external} you should be ready to start! At the context switcher above the main heading, choose "Console" to see the examples you will be working with.
 
 ### What to know before using the {{site.data.keyword.cloud_notm}} CLI
 {: #tracking-cos-events-prereqs-cli}
 
-In addition to detalining the UI at the Console, this tutorial will also show how to use the Command Line Interface, or CLI. Those who are so interested are encouraged to read the [Developer guidance](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev) or study the [API](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api) for {{site.data.keyword.cos_short}}.
+In addition to detailing the UI at the Console, this tutorial will also show how to use the Command Line Interface, or CLI. Those who are so interested are encouraged to read the [Developer guidance](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev) or study the [API](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api) for {{site.data.keyword.cos_short}}.
 
 As long as you're familiar with how to [get started](/docs/cli?topic=cloud-cli-getting-started) using the CLI tools, you should be ready for this tutorial. Before you start, you can verify that the CLI and {{site.data.keyword.dev_cli_short}} were installed successfully, run the `help` command in your terminal or other CLI interface.
 

@@ -77,7 +77,7 @@ Today changing of storage class requires manually moving or copying the data fro
 
 **Does data consistency in {{site.data.keyword.cos_short}} come with a performance impact?**
 
-Consistency with any distributed system comes with a cost, but the efficiency of the {{site.data.keyword.cos_full_notm}} dispersed storage system is higher, and overhead is lower compared to systems with multiple synchronous copies.
+Consistency with any distributed system comes with a cost, as the efficiency of the {{site.data.keyword.cos_full_notm}} dispersed storage system is not trivial, but lower compared to systems with multiple synchronous copies.
 
 **Aren't there performance implications if my application needs to manipulate large objects?**
 
@@ -91,7 +91,7 @@ For performance optimization, objects can be uploaded and downloaded in multiple
 
 Yes. Data at rest is encrypted with automatic provider side Advanced Encryption Standard (AES) 256-bit encryption and Secure Hash Algorithm (SHA)-256 hash. Data in motion is secured by using built-in carrier grade Transport Layer Security/Secure Sockets Layer (TLS/SSL) or SNMPv3 with AES encryption.
 
-**What is the typical encryption overhead if a customer wants to encrypt their data?**
+**Is there additional encryption processing if a customer wants to encrypt their data?**
 
 Server-side encryption is always on for customer data. Compared to the hashing required in S3 authentication and the erasure coding, encryption is not a significant part of the processing cost of COS.
 
