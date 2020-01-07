@@ -63,7 +63,7 @@ From the {{site.data.keyword.cloud_notm}} [console dashboard](https://cloud.ibm.
 1. Specifiy a list of IP addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing){: external}, for example `192.168.0.0/16, fe80:021b::0/64`. Addresses can follow either IPv4 or IPv6 standards.
 1. Click **Add**.
 1. The firewall will not be enforced until the address is saved in the console. Click **Save all** to enforce the firewall.
-1. Note that all objects in this bucket are only accessible from those IP addesses.
+1. Note that all objects in this bucket are only accessible from those IP addresses.
 
 ### Remove any IP address restrictions
 {: #firewalls-console-disable}
@@ -71,7 +71,7 @@ From the {{site.data.keyword.cloud_notm}} [console dashboard](https://cloud.ibm.
 1. From the **Authorized IPs** tab, check the boxes next to any IP addresses or ranges to remove from the authorized list.
 2. Select **Delete**, and then confirm the dialog box by clicking **Delete** again.
 3. The updated list won't be enforced until the changes are saved in the console. Click **Save all** to enforce the new rules.
-4. Now all objects in this bucket are only accessible from these IP addesses!
+4. Now all objects in this bucket are only accessible from these IP addresses!
 
 If there are no authorized IP addresses listed this means that normal IAM policies will apply to the bucket, with no restrictions on the user's IP address. 
 {: note}
