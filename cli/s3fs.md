@@ -114,7 +114,7 @@ s3fs <bucket> <mountpoint> -o url=http{s}://<endpoint> –o passwd_file=<credent
 ```
 {:codeblock}
 
-The `<bucket>` is an exising bucket and the `<mountpoint>` is the local directory where you want to mount the bucket. The `<endpoint>` must correspond to the [bucket's location](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints). The `credentials_file` is the file created with the API key or HMAC credentials.
+The `<bucket>` in the example refers to an existing bucket and the `<mountpoint>` is the local path where you want to mount the bucket. The `<endpoint>` must correspond to the [bucket's location](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints). The `credentials_file` is the file created with the API key or HMAC credentials.
 
 Now, `ls <mountpoint>` will list the objects in that bucket as if they were local files (or in the case of object prefixes, as if they were nested directories).
 
