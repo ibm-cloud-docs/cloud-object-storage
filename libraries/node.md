@@ -638,8 +638,8 @@ There are two ways to update the metadata on an existing object:
 ### Using PUT to update metadata
 {: #node-examples-metadata-put}
 
-**Note:** The `PUT` request overwrites the existing contents of the object so it must first be downloaded and re-uploaded with the new metdata
-
+The `PUT` request overwrites the existing contents of the object so it must first be downloaded and re-uploaded with the new metadata.
+{: note}
 
 ```javascript
 function updateMetadataPut(bucketName, itemName, metaValue) {

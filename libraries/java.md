@@ -1458,7 +1458,8 @@ There are two ways to update the metadata on an existing object:
 ### Using PUT to update metadata
 {: #java-examples-metadata-put}
 
-**Note:** The `PUT` request overwrites the existing contents of the object so it must first be downloaded and re-uploaded with the new metdata
+The `PUT` request overwrites the existing contents of the object so it must first be downloaded and re-uploaded with the new metadata.
+{: note}
 
 ```java
 public static void updateMetadataPut(String bucketName, String itemName, String key, String value) throws IOException {
