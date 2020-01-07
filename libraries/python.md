@@ -930,7 +930,7 @@ with AsperaTransferManager(client) as transfer_manager:
 {: #python-examples-aspera-ts}
 **Issue:** Developers by using Python 2.7.15 on Windows 10 may experience failures when installing Aspera SDK.
 
-**Cause:** If there are different versions of Python installed on your enviroment, then you might encounter installation failures when you try to install the Aspera SDK. This can be caused by a missing DLL files or wrong DLL in path.
+**Cause:** If there are different versions of Python installed on your environment, then you might encounter installation failures when you try to install the Aspera SDK. This can be caused by a missing DLL files or wrong DLL in path.
 
 **Solution:** The first step to resolving this issue would be to reinstall the Aspera libraries. There might have been a failure during the installation. As a result this might have affected the DLL files. If that does not resolve the issues, then you will be required to update your version of Python. If you are unable to do this, then you can use installation [Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python){: external}. This allows you to install the Aspera SDK without any issues.
 
