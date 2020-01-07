@@ -249,7 +249,7 @@ location_constraint>1
   9. Specify an ACL. Only `public-read` and `private` are supported. 
 
 ```
-Canned ACL used when creating buckets and/or storing objects in S3.
+Canned ACL used when creating buckets or storing objects in S3.
 Choose a number from below, or type in your own value
    1 "private"
    2 "public-read"
