@@ -60,7 +60,7 @@ From the {{site.data.keyword.cloud_notm}} [console dashboard](https://cloud.ibm.
 1. Select **Access policies** from the navigation menu.
 1. Select the **Authorized IPs** tab.
 1. Click **Add IP addresses**, then choose **Add**.
-1. Specifiy a list of IP addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing){: external}, for example `192.168.0.0/16, fe80:021b::0/64`. Addresses can follow either IPv4 or IPv6 standards.
+1. Specify a list of IP addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing){: external}, for example `192.168.0.0/16, fe80:021b::0/64`. Addresses can follow either IPv4 or IPv6 standards.
 1. Click **Add**.
 1. The firewall will not be enforced until the address is saved in the console. Click **Save all** to enforce the firewall.
 1. Note that all objects in this bucket are only accessible from those IP addresses.
