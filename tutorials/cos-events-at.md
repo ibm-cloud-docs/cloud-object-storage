@@ -65,7 +65,7 @@ As long as you can [login](https://cloud.ibm.com/login){: external} you should b
 ### What to know before using the {{site.data.keyword.cloud_notm}} CLI
 {: #tracking-cos-events-prereqs-cli}
 
-In addition to detalining the UI at the Console, this tutorial will also show how to use the Command Line Interface, or CLI. Those who are so interested are encouraged to read the [Developer guidance](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev) or study the [API](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api) for {{site.data.keyword.cos_short}}.
+In addition to detailing the UI at the Console, this tutorial will also show how to use the Command Line Interface, or CLI. Those who are so interested are encouraged to read the [Developer guidance](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev) or study the [API](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api) for {{site.data.keyword.cos_short}}.
 
 As long as you're familiar with how to [get started](/docs/cli?topic=cloud-cli-getting-started) using the CLI tools, you should be ready for this tutorial. Before you start, you can verify that the CLI and {{site.data.keyword.dev_cli_short}} were installed successfully, run the `help` command in your terminal or other CLI interface.
 
