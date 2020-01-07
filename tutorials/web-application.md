@@ -391,10 +391,9 @@ ibmcloud dev run
 ```
 {: pre}
 
-Now that the app is created and defined, view your application to confirm it works. If you see the placeholder image as 
-shown in Figure 2, congratulations! You've created a new Node.js web application and are ready to deploy it to the cloud.
+Now that the app is created and defined, view your application to confirm it works. If you see the placeholder image as shown in Figure 2, well done! You've created a new Node.js web application and are ready to deploy it to the cloud.
 
-![initial node app](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-splash-graphic.png){: caption="Figure 2. New Node.js Application: Congratulations!"}
+![initial node app](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-splash-graphic.png){: caption="Figure 2. New Node.js Application!"}
 
 Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the `deploy` command (as shown in Example 20).
 
@@ -563,7 +562,7 @@ Test the app. The visible change from the default app template that
     was deployed at creation to the starter app shown in the following
     proved that deploying the app to {{site.data.keyword.cloud_notm}} Platform was successful.
 
-![verify_push](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-007-congrats.jpg){: caption="Figure 3. Results of viewing your deployed app. Congratulations!"}
+![verify_push](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-007-congrats.jpg){: caption="Figure 3. Results of viewing your deployed app."}
 
 ### Create a Git branch
 {: #tutorial-create-branch}
