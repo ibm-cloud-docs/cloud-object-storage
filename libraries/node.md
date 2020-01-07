@@ -266,7 +266,7 @@ function deleteItem(bucketName, itemName) {
 ### Delete multiple items from a bucket
 {: #node-examples-multidelete}
 
-The delete request can contain a maximum of 1000 keys that you want to delete. While deleting objects in batches is very useful in reducing the per-request overhead, be mindful when deleting many keys that the request may take some time to complete. Also, take into account the sizes of the objects to ensure suitable performance.
+The delete request can contain a maximum of 1000 keys that you want to delete. While deleting objects in batches is very useful in reducing the per-request performance hit, be mindful when deleting many keys that the request may take some time to complete. Also, take into account the sizes of the objects to ensure suitable performance.
 {:tip}
 
 ```javascript

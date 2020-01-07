@@ -681,7 +681,7 @@ public static void deleteItem(String bucketName, String itemName) {
 ### Delete multiple items from a bucket
 {: #java-examples-delete-objects}
 
-The delete request can contain a maximum of 1000 keys that you want to delete. While this is very useful in reducing the per-request overhead, be mindful when deleting a large number of keys. Also take into account the sizes of the objects to ensure suitable performance.
+The delete request can contain a maximum of 1000 keys that you want to delete. While this is very useful in reducing the per-request performance hit, be mindful when deleting a large number of keys. Also take into account the sizes of the objects to ensure suitable performance.
 {:tip}
 
 ```java
@@ -1077,7 +1077,7 @@ AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_K
     .build();
 ```
 
-For best performance in most scenarios, always make use of multiple sessions to minimize any overhead associated with instantiating an Aspera high-speed transfer. **If your network capacity is at least 1 Gbps you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
+For best performance in most scenarios, always make use of multiple sessions to minimize any processing associated with instantiating an Aspera high-speed transfer. **If your network capacity is at least 1 Gbps you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
 {:tip}
 
 *Key Values*

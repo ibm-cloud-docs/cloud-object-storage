@@ -278,7 +278,7 @@ def delete_item(bucket_name, item_name):
 ### Delete multiple items from a bucket
 {: #python-examples-delete-multiple-objects}
 
-The delete request can contain a maximum of 1000 keys that you want to delete. While this is useful in reducing the per-request overhead, be mindful when deleting many keys. Also, take into account the sizes of the objects to ensure suitable performance.
+The delete request can contain a maximum of 1000 keys that you want to delete. While this is useful in reducing the per-request performance hit, be mindful when deleting many keys. Also, take into account the sizes of the objects to ensure suitable performance.
 {:tip}
 
 ```python
@@ -714,7 +714,7 @@ transfer_manager = AsperaTransferManager(client=client,
 {: codeblock}
 {: python}
 
-For best performance in most scenarios, always make use of multiple sessions to minimize any overhead that is associated with instantiating an Aspera high-speed transfer. **If your network capacity is at least 1 Gbps, you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
+For best performance in most scenarios, always make use of multiple sessions to minimize any processing that is associated with instantiating an Aspera high-speed transfer. **If your network capacity is at least 1 Gbps, you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
 {:tip}
 
 ### File Upload
