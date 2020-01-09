@@ -29,15 +29,15 @@ subcollection: cloud-object-storage
 # Using cloudyr for data science
 {: #cloudyr-data-science}
 
-When using the [`R` programming language](https://www.r-project.org/about.html){: external} for your projects, get the most out of the features for supporting data science from {{site.data.keyword.cos_full}} by using [cloudyr](https://cloudyr.github.io){: external}.
+When you use the [`R` programming language](https://www.r-project.org/about.html){: external} for your projects, get the most out of the features for supporting data science from {{site.data.keyword.cos_full}} by using [cloudyr](https://cloudyr.github.io){: external}.
 {: shortdesc}
 
-This tutorial will show you how to integrate data from the {{site.data.keyword.cloud}} Platform within your `R` project. Your project will use {{site.data.keyword.cos_full_notm}} for storage with S3-compatible connectivity in your project.
+This tutorial shows you how to integrate data from the {{site.data.keyword.cloud}} Platform within your `R` project. Your project will use {{site.data.keyword.cos_full_notm}} for storage with S3-compatible connectivity in your project.
 
 ## Before you begin
 {: #cloudyr-prereqs}
 
-We need to make sure that we have the prerequisites we will need:
+We need to make sure that we have the prerequisites before continuing:
 
   - {{site.data.keyword.cloud_notm}} Platform account
   - An instance of {{site.data.keyword.cos_full_notm}}
@@ -47,7 +47,7 @@ We need to make sure that we have the prerequisites we will need:
 ### Create HMAC credentials
 {: #cloudyr-hmac}
 
-Before we begin, we may need to create a set of [HMAC credentials](/docs/hmac?topic=cloud-object-storage-hmac) as part of a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) by using the configuration parameter `{"HMAC":true}` when creating credentials. For example, use the {{site.data.keyword.cos_full_notm}} CLI as shown here. 
+Before we begin, we might need to create a set of [HMAC credentials](/docs/hmac?topic=cloud-object-storage-hmac) as part of a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) by using the configuration parameter `{"HMAC":true}` when we create credentials. For example, use the {{site.data.keyword.cos_full_notm}} CLI as shown here. 
   
 ```bash
 ibmcloud resource service-key-create <key-name-without-spaces> Writer --instance-name "<instance name--use quotes if your instance name has spaces>" --parameters '{"HMAC":true}'
