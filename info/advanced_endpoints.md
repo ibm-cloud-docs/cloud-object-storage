@@ -44,7 +44,7 @@ Some workloads may benefit from using a Single Data Center endpoint. Data stored
 All requests must use SSL when using IAM, and the service will reject any plaintext requests.
 
 ## Endpoint Types
-{ #advanced-endpoint-types}
+{: #advanced-endpoint-types}
 
 {{site.data.keyword.cloud}} services are connected to a three-tiered network, segmenting public, private, and management traffic.
 
