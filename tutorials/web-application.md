@@ -204,7 +204,7 @@ Select a language:
 ```
 {: screen}
 
-After you make your selection for the programming language and/or framework, the next selection
+After you make your selection for the programming language and framework, the next selection
 will have so many options, it might scroll past your wanted service. As you can see in the example, we
 wish to use a simple Node.js Web App with Express.js. Type '6' and press enter.
 

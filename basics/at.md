@@ -169,7 +169,7 @@ The following table lists the COS multipart events:
 | `cloud-object-storage.object-multipart.start`          | Initiate a multipart upload of an object |
 | `cloud-object-storage.object-multipart.create`         | Create a part of a multipart upload of an object |
 | `cloud-object-storage.object-multipart.complete`       | Complete a multipart upload of an object |
-| `cloud-object-storage.object-multipart.delete`         | Abort an imcomplete multipart upload of an object |
+| `cloud-object-storage.object-multipart.delete`         | Abort an incomplete multipart upload of an object |
 {: caption="Table 7. Multipart events"}
 
 

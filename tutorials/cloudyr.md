@@ -58,8 +58,8 @@ To store the results of the generated key, append the text, ` > cos_credentials`
   
 ```
       cos_hmac_keys:
-          access_key_id:      7exampledonotusea6440da12685eee02
-          secret_access_key:  8not8ed850cddbece407exampledonotuse43r2d2586
+          access_key_id:      7xxxxxxxxxxxxxxa6440da12685eee02
+          secret_access_key:  8xxxx8ed850cddbece407xxxxxxxxxxxxxx43r2d2586
 ```
 {: screen}
 

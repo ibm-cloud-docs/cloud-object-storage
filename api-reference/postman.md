@@ -32,7 +32,7 @@ More detail can be found in the API reference for [buckets](/docs/services/cloud
 
 Using `Postman` assumes a certain amount of familiarity with {{site.data.keyword.cos_short}} and the necessary information from a [service credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) or the [console](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started). If any terms or variables are unfamiliar, they can be found in the [glossary](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-terminology).
 
-Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
+Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
 {:tip}
 
 ## REST API client overview

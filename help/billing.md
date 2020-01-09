@@ -83,7 +83,7 @@ For more information about pricing, see [the pricing table at ibm.com](https://w
 For more information about creating buckets with different storage classes, see the [API reference](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
 
 ## Get bucket metadata
-{: #curl-bucket-metadata}
+{: #billing-get-bucket-metadata}
 
 In order to determine your current usage, you may wish to query a bucket to see `bytes_used` and `object_count`. Use of this command returns metadata containing that information for the specified bucket.
  

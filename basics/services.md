@@ -43,7 +43,7 @@ For more information about the following services, be sure to check out the resp
 
 
 Downloads that use Aspera high-speed transfer incur extra egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage).
-{:tip}
+{: tip}
 
 ## Cross Region
 {: #service-availability-geo}
@@ -53,9 +53,7 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | AP Cross Region | Yes    | No          | No                             | No           | No                       | Tokyo            | No        |
 | EU Cross Region | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        |
 | US Cross Region | Yes    | No          | No                             | No           | Yes                      | Dallas           | No        |
-
-
-
+{: caption="Table 1. Cross Region service availability" caption-side="top"}
 
 ## Regional
 {: #service-availability-region}
@@ -68,6 +66,7 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | EU Germany       | Yes    | Yes         | No                             | Yes          | Yes                      | Frankfurt        | Yes       |
 | US South         | Yes    | Yes         | Yes                            | Yes          | Yes                      | Dallas           | Yes       |
 | US East          | Yes    | Yes         | No                             | Yes          | Yes                      | Dallas           | Yes       |
+{: caption="Table 2. Regional service availability" caption-side="top"}
 
 ## Single Data Centers
 {: #service-availability-zone}
@@ -86,5 +85,11 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | San Jose, US                | Yes    | No          | No                             | No           | No                       | Dallas           | No        |
 | São Paulo, Brazil           | Yes    | No          | No                             | Yes          | No                       | Dallas           | No        |
 | Seoul, South Korea          | Yes    | No          | No                             | No           | No                       | Tokyo            | No        |
-| Singapore                   | No     | No          | No                             | No           | No                       | Tokyo            | No        |
+| Singapore                   | Yes    | No          | No                             | No           | No                       | Tokyo            | No        |
 | Toronto, Canada             | Yes    | No          | No                             | Yes          | No                       | Dallas           | No        |
+{: caption="Table 3. Single Data Center service availability" caption-side="top"}
+
+## Next Steps
+{: #service-availability-next-steps}
+
+Learn more about availability and resilience when you review the different [endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints).
