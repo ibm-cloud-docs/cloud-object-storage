@@ -35,7 +35,7 @@ The {{site.data.keyword.cos_full}} SDK for Node.js provides modern capabilities 
 ## Installing the SDK
 {: #node-install}
 
-[Node.js](https://cloud.ibm.com/docs/node?topic=nodejs-getting-started){: external} is an excellent way to build [web applications](https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps){: external}, and customize your instance of {{site.data.keyword.cos_short}} for your end users. The preferred way to install the {{site.data.keyword.cos_short}} SDK for Node.js is to use the [`npm`](https://www.npmjs.com){: external} package manager for Node.js. Type the following command into a command line:
+[Node.js](https://cloud.ibm.com/docs/node?topic=nodejs-getting-started){: external} is an excellent way to build [web applications](https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps){: external}, and customize your instance of {{site.data.keyword.cos_short}} for your users. The preferred way to install the {{site.data.keyword.cos_short}} SDK for Node.js is to use the [`npm`](https://www.npmjs.com){: external} package manager for Node.js. Type the following command into a command line:
 
 ```sh
 npm install ibm-cos-sdk
@@ -83,7 +83,7 @@ If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_creden
 ## Code Examples
 {: #node-examples}
 
-Getting started with [Node.js](https://nodejs.org/en/about/){: external}&mdash;once it's installed&mdash;usually involves configuration and invocation, like in [this example from Nodejs.org](https://nodejs.org/en/docs/guides/getting-started-guide/){: external}. We'll follow a similar model
+Getting started with [Node.js](https://nodejs.org/en/about/){: external}&mdash;once it's installed&mdash;usually involves configuration and invocation, like in [this example from Nodejs.org](https://nodejs.org/en/docs/guides/getting-started-guide/){: external}. We'll follow a similar model.
 
 ### Initializing configuration
 {: #node-examples-init}
@@ -323,7 +323,7 @@ function deleteBucket(bucketName) {
 * [deleteBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteBucket-property){: external}
 
 
-### Execute a multi-part upload
+### Run a multi-part upload
 {: #node-examples-multipart}
 
 ```javascript
@@ -431,10 +431,10 @@ The following items are necessary in order to create a bucket with Key-Protect e
 ### Retrieving the Root Key CRN
 {: #node-examples-kp-root}
 
-1. Retrieve the [instance ID](/docs/services/key-protect?topic=key-protect-retrieve-instance-ID#retrieve-instance-ID) for your Key Protect service
-2. Use the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
+1. Retrieve the [instance ID](/docs/services/key-protect?topic=key-protect-retrieve-instance-ID#retrieve-instance-ID) for your Key Protect service.
+2. Use the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect).
     * You can either use `curl` commands or an API REST Client such as [Postman](/docs/services/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api).
-3. Retrieve the CRN of the root key you will use to enabled Key Protect on the your bucket. The CRN will look similar to below:
+3. Retrieve the CRN of the root key you use to enabled Key Protect on your bucket. The CRN will look similar to below:
 
 `crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
 
@@ -463,7 +463,7 @@ function createBucketKP(bucketName) {
 {: javascript}
 
 *Key Values*
-* `<bucket-location>` - Region or location for your bucket (Key Protect is only available in certain regions. Ensure your location matches the Key Protect service) A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes)..
+* `<bucket-location>` - Region or location for your bucket (Key Protect is only available in certain regions. Ensure your location matches the Key Protect service) A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes).
 * `<algorithm>` - The encryption algorithm used for new objects added to the bucket (Default is AES256).
 * `<root-key-crn>` - CRN of the Root Key that is obtained from the Key Protect service.
 
@@ -473,7 +473,7 @@ function createBucketKP(bucketName) {
 ## Using Archive Feature
 {: #node-examples-archive}
 
-Archive Tier allows users to archive stale data and reduce their storage costs. Archival policies (also known as *Lifecycle Configurations*) are created for buckets and applies to any objects added to the bucket after the policy is created.
+Archive Tier allows users to archive stale data and reduce their storage costs. Archival policies (also known as *Lifecycle Configurations*) are created for buckets and apply to any objects added to the bucket after the policy is created.
 
 ### View a bucket's lifecycle configuration
 {: #node-examples-get-lifecycle}
@@ -506,7 +506,7 @@ function getLifecycleConfiguration(bucketName) {
 ### Create a lifecycle configuration 
 {: #node-examples-put-lifecycle}
 
-Detailed information about structuring the lifecycle configuration rules are available in the [API Reference](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-new-bucket)
+Detailed information about structuring the lifecycle configuration rules is available in the [API Reference](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-new-bucket).
 
 ```javascript
 function createLifecycleConfiguration(bucketName) {
@@ -541,8 +541,8 @@ function createLifecycleConfiguration(bucketName) {
 {: javascript}
 
 *Key Values*
-* `<policy-id>` - Name of the lifecycle policy (must be unique)
-* `<number-of-days>` - Number of days to keep the restored file
+* `<policy-id>` - Name of the lifecycle policy (must be unique).
+* `<number-of-days>` - Number of days to keep the restored file.
 
 *SDK References*
 * [putBucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){: external}
@@ -572,7 +572,7 @@ function deleteLifecycleConfiguration(bucketName) {
 ### Temporarily restore an object
 {: #node-examples-restore-object}
 
-Detailed information about the restore request parameters are available in the [API Reference](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-object-operations#object-operations-archive-restore)
+Detailed information about the restore request parameters are available in the [API Reference](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-object-operations#object-operations-archive-restore).
 
 ```javascript
 function restoreItem(bucketName, itemName) {
@@ -600,7 +600,7 @@ function restoreItem(bucketName, itemName) {
 {: javascript}
 
 *Key Values*
-* `<number-of-days>` - Number of days to keep the restored file
+* `<number-of-days>` - Number of days to keep the restored file.
 
 *SDK References*
 * [restoreObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){: external}
@@ -628,12 +628,12 @@ function getHEADItem(bucketName, itemName) {
 *SDK References*
 * [headObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){: external}
 
-## Updating Metadata
+## Updating metadata
 {: #node-examples-metadata}
 
 There are two ways to update the metadata on an existing object:
 * A `PUT` request with the new metadata and the original object contents
-* Executing a `COPY` request with the new metadata specifying the original object as the copy source
+* Running a `COPY` request with the new metadata specifying the original object as the copy source
 
 ### Using PUT to update metadata
 {: #node-examples-metadata-put}
