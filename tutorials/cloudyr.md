@@ -63,7 +63,7 @@ To store the results of the generated key, append the text, ` > cos_credentials`
 ```
 {: screen}
 
-While it is best practices to set credentials in environment variables, you can also set your credentials inside your local copy of your `R` script itself. Environment variables can alternatively be set before starting `R` using an `Renviron.site` or `.Renviron` file, used to set environment variables in `R` during startup
+While it is best practices to set credentials in environment variables, you can also set your credentials inside your local copy of your `R` script itself. Environment variables can alternatively be set before starting `R` using an `Renviron.site` or `.Renviron` file, used to set environment variables in `R` during startup.
 
 You will need to set the actual values for the `access_key_id` and `secret_access_key` in your code along with the {{site.data.keyword.cos_full_notm}} [endpoint](/docs/basics?topic=cloud-object-storage-endpoints) for your instance.
 {: note}
