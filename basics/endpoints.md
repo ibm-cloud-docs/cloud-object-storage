@@ -29,10 +29,9 @@ subcollection: cloud-object-storage
 Sending a REST API request or configuring a storage client requires setting a target endpoint or URL. Each storage location has its own set of URLs.
 {: shortdesc}
 
-Private endpoints can be used from within the IBM Cloud and don't incur data transfer charges. Public endpoints can be used from outside the IBM Cloud and do incur transfer charges. If possible, it's best to use a private endpoint.
+Private endpoints can be used from within the {{site.data.keyword.cloud_notm}} and don't incur data transfer charges. Public endpoints can be used from outside the {{site.data.keyword.cloud_notm}} and do incur transfer charges. If possible, it's best to use a private endpoint.
 
-In December 2018, we updated our endpoints. [Legacy endpoints](/docs/services/cloud-object-storage/info?topic=cloud-object-storage-advanced-endpoints) continue to work until further notice. Update your applications to use the new endpoints listed here.
-{:note}
+Direct endpoints are used by workloads running in an {{site.data.keyword.cloud_notm}} [Virtual Private Cloud](/docs/vpc?topic=vpc-about-vpc).
 
 ## Regional Endpoints
 {: #endpoints-region}
