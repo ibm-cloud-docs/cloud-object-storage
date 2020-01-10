@@ -816,10 +816,10 @@ function copyProtectedObject(sourceBucketName, sourceObjectName, destinationBuck
 
 The object can support 100 legal holds:
 
-*  A legal hold identifier is a string of maximum length 64 characters and a minimum length of 1 character. Valid characters are letters, numbers, `!`, `_`, `.`, `*`, `(`, `)`, `-` and `.
-* If the addition of the given legal hold exceeds 100 total legal holds on the object, the new legal hold will not be added, a `400` error is returned.
-* If an identifier is too long it will not be added to the object and a `400` error is returned.
-* If an identifier contains invalid characters, it will not be added to the object and a `400` error is returned.
+*  A legal hold identifier is a string of maximum length 64 characters and a minimum length of one character. Valid characters are letters, numbers, `!`, `_`, `.`, `*`, `(`, `)`, `-` and `.
+* If the addition of the given legal hold exceeds 100 total legal holds on the object, then the new legal holdis not added. Instead, a `400` error is returned.
+* If an identifier is too long, it is not added to the object and a `400` error is returned.
+* If an identifier contains invalid characters, it is not added to the object and a `400` error is returned.
 * If an identifier is already in use on an object, the existing legal hold is not modified and the response indicates the identifier was already in use with a `409` error.
 * If an object does not have retention period metadata, a `400` error is returned and adding or removing a legal hold is not allowed.
 
@@ -870,7 +870,7 @@ The retention expansion value is set in one of three ways:
 * New extension period in seconds (`Extend-Retention-From-Current-Time` or similar method)
 * New retention expiry date of the object (`New-Retention-Expiration-Date` or similar method)
 
-The current retention period stored in the object metadata is either increased by the given additional time or replaced with the new value, depending on the parameter that is set in the `extendRetention` request. In all cases, the extend retention parameter is checked against the current retention period and the extended parameter is only accepted if the updated retention period is greater than the current retention period.
+The current retention period stored in the object metadata is either increased by the given additional time or replaced with the new value, depending on the parameter that is set in the `extendRetention` request. In all cases, the extend retention parameter is checked against the current retention period. Please note that the extended parameter is only accepted if the updated retention period is greater than the current retention period.
 
 Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
 
@@ -896,7 +896,7 @@ function extendRetentionPeriodOnObject(bucketName, objectName, additionalSeconds
 ### List legal holds on a protected object
 {: #node-examples-immutable-list-holds}
 
-This operation returns:
+This operation returns the following metadata:
 
 * Object creation date
 * Object retention period in seconds
@@ -905,8 +905,7 @@ This operation returns:
 * Legal hold identifier
 * Timestamp when legal hold applied
 
-If there are no legal holds on the object, an empty `LegalHoldSet` is returned.
-If there is no retention period specified on the object, a `404` error is returned.
+If there are no legal holds on the object, an empty `LegalHoldSet` is returned. If no retention period is specified on the object, a `404` error is returned.
 
 
 ```js
@@ -926,3 +925,8 @@ function listLegalHoldsOnObject(bucketName, objectName) {
 ```
 {: codeblock}
 {: javascript}
+
+## Next steps
+{: #node-examples-next-steps}
+
+The modern capabilities and features of Node.js are a perfect match for the {{site.data.keyword.cos_full_notm}}. 
