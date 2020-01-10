@@ -61,8 +61,8 @@ The following table details actions that are mapped to service access roles. Ser
 
 | Service access role | Description of actions                                                                                                                                       | Example actions                                                                     |
 |:--------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------|
-| Content Reader      | Download objects, but not list objects or buckets | <ul><li>Download objects</li></ul> |
-| Reader              | In addition to Content Reader actions, Readers can list buckets and/or objects but not modify them. | <ul><li>List buckets</li><li>List and download objects</li></ul>                    |
+| Content Reader      | Download and list objects, read object metadata (headers), but not list buckets. | <ul><li>Download and list objects</li></ul> |
+| Reader              | In addition to Content Reader actions, Readers can list buckets and read bucket metadata, but not make modifications. | <ul><li>List buckets</li></ul>                    |
 | Writer              | In addition to Reader actions, Writers can create buckets and upload objects. | <ul><li>Create new buckets and objects</li><li>Remove buckets and objects</li></ul> |
 | Manager             | In addition to Writer actions, Managers can complete privileged actions that affect access control. | <ul><li>Add a retention policy</li><li>Add a bucket firewall</li></ul>              |
 {: caption="Table 3. IAM service access roles and actions"}
