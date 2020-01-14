@@ -37,8 +37,9 @@ Assign access roles for users and Service IDs against buckets, by using either t
 |:------------|-------------------------------------------------------------|
 | Manager     | Make objects public, create, and destroy buckets and objects |
 | Writer      | Create and destroy buckets and objects                      |
-| Reader      | List and download objects                                   |
-| ContentReader      | Download objects                                   |
+| Reader      | List buckets, list objects, and download objects.                                |
+| ContentReader      | List and download objects                                   |
+
 
 ## Granting access to a user
 {: #iam-user-access}
