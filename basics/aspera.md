@@ -127,7 +127,7 @@ Each Aspera high-speed transfer session creates an individual `ascp` process tha
 * Aspera Transfer Manager clients must be created that use IAM API keys and not HMAC credentials.
 
 ### Getting the SDK
-{: #aspera-sdk}
+{: #aspera-sdk-getting}
 
 Code for two {{site.data.keyword.cos_full_notm}} SDKS: Java and Python, can be revealed in the links in the [code switcher]( /docs/services/cloud-object-storage?topic=cloud-object-storage-aspera).
 
