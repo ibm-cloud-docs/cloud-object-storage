@@ -77,10 +77,39 @@ There are four classes:
 *  **Vault** is used for cool workloads where data is accessed less than once a month - an extra retrieval charge ($/GB) is applied each time data is read. The service includes a minimum threshold for object size and storage period consistent with the intended use of this service for cooler, less-active data.
 *  **Cold Vault** is used for cold workloads where data is accessed every 90 days or less - a larger extra retrieval charge ($/GB) is applied each time data is read. The service includes a longer minimum threshold for object size and storage period consistent with the intended use of this service for cold, inactive data.
 *  **Flex** is used for dynamic workloads where access patterns are more difficult to predict. Depending on usage, if the costs of and retrieval charges exceeds a cap value, then retrieval charges are dropped and a new capacity charge is applied instead. If the data isn't accessed frequently, it is more cost effective than Standard storage, and if access usage patterns unexpectedly become more active it is more cost effective than Vault or Cold Vault storage. Flex doesn't require a minimum object size or storage period.
+*  **Smart Tier** automatically classifies data into "hot", "cool", and "cold" tiers based on monthly usage patterns. All data in the bucket is then billed at the lowest applicable rate.  There are no threshold object sizes or storage periods, and there are no retrieval fees. 
 
 For more information about pricing, see [the pricing table at ibm.com](https://www.ibm.com/cloud/object-storage#s3api).
 
 For more information about creating buckets with different storage classes, see the [API reference](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
+
+### Smart Tier pricing details
+
+Based on monthly averages, data in a Smart Tier bucket is classified into one of three tiers based on the following variables:
+
+| Variable | Description |
+| `storage` | Total volume of data stored in GB |
+| `retrievals` | Total volume of data retrieved in GB |
+| `requests` | Sum of the number of Class A (write) requests plus 1/10 of the number of Class B (read) requests | 
+
+Data is classified **hot** if the total `requests > 1000 x (storage - retrievals)`.
+Data is classified **cold** if the total `requests < (storage - retrievals)`.
+Data is classified **cool** if neither of the above equations are true.
+
+For example, let's imagine a bucket in the `us-south` region with an access pattern that changes from month to month. The bucket stores 1 TB of data, but some objects are very large and others are very small.
+
+1. In the first month, there is a lot of activity but mostly with smaller objects. In total, there are 4 million requests and 100 GB is retrieved. This month the bucket is classified as **hot**.
+2. In the second month activity slows down, but the focus is on larger objects. This month there are only 4 thousand requests but 200 GB is retrieved. Now the bucket is classified as **cool**.
+3. In the third month activity slows to a near stop.  There are only 400 requests and 10 GB is retrieved. This month the bucket is classified as **cold**.
+
+Let's see how the costs might compare to the other storage classes.
+
+| Month | `storage` | `requests` | `retrieval` | Classification | Standard | Vault | Cold Vault | Smart Tier | 
+| 1 | 1,000 GB | 4,000,000 | 100 GB | Hot | $41 | $53 | $111 | **$41** |
+| 2 | 1,000 GB | 4,000 | 200 GB | Cool | $21 | $14 | $16 | **$12** |
+| 3 | 1,000 GB | 400 | 10 GB | Cold | $21 | $12 | $7 | **$8** |
+
+Note that in situations where data is very cold, it is possible to get a lower rate with a Cold Vault bucket, although unexpected spikes in access could accrue significant costs.  In this scenario, if the data doesn't require on-demand access, it might be better to archive the objects instead.  
 
 ## Get bucket metadata
 {: #billing-get-bucket-metadata}
