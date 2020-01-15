@@ -68,6 +68,10 @@ One reason for using an access point is to control where data ingress and egress
 5. The application creates a new client using the `https://s3.private.sjc.us.cloud-object-storage.appdomain.cloud` endpoint.
 6. Connectivity is resumed, and access can be re-routed to Dallas when service is restored.
 
+When sending requests to an individual access point there is no automated failover if that region becomes unavailable.
+{: note
+}
+
 For contrast, imagine another application using the normal US cross-region endpoint:
 
 1. The application creates a client using the `https://s3.us.cloud-object-storage.appdomain.cloud` endpoint.
