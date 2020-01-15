@@ -681,7 +681,7 @@ public static void deleteItem(String bucketName, String itemName) {
 ### Delete multiple items from a bucket
 {: #java-examples-delete-objects}
 
-The delete request can contain a maximum of 1000 keys that you want to delete. While this is very useful in reducing the per-request overhead, be mindful when deleting a large number of keys. Also take into account the sizes of the objects to ensure suitable performance.
+The delete request can contain a maximum of 1000 keys that you want to delete. While this is very useful in reducing the per-request performance hit, be mindful when deleting a large number of keys. Also take into account the sizes of the objects to ensure suitable performance.
 {:tip}
 
 ```java
@@ -979,7 +979,7 @@ String KPEnabled = listing.getIBMSSEKPEnabled();
 String crkId = listing.getIBMSSEKPCrkId();
 ```
 
-The additonal headers have been defined within the `Headers` class:
+The additional headers have been defined within the `Headers` class:
 
 ```java
 Headers.java
@@ -1077,7 +1077,7 @@ AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_K
     .build();
 ```
 
-For best performance in most scenarios, always make use of multiple sessions to minimize any overhead associated with instantiating an Aspera high-speed transfer. **If your network capacity is at least 1 Gbps you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
+For best performance in most scenarios, always make use of multiple sessions to minimize any processing associated with instantiating an Aspera high-speed transfer. **If your network capacity is at least 1 Gbps you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
 {:tip}
 
 *Key Values*
@@ -1311,7 +1311,7 @@ The SDK provides the ability to manage the progress of file/directory transfers 
 * `resume()`
 * `cancel()`
 
-There are no side-effects from calling either of the methods outined above. Proper clean up and housekeeping is handled by the SDK.
+There are no side-effects from calling either of the methods outlined above. Proper clean up and housekeeping is handled by the SDK.
 {:tip}
 
 The following example shows a possible use for these methods:
@@ -1458,7 +1458,8 @@ There are two ways to update the metadata on an existing object:
 ### Using PUT to update metadata
 {: #java-examples-metadata-put}
 
-**Note:** The `PUT` request overwrites the existing contents of the object so it must first be downloaded and re-uploaded with the new metdata
+The `PUT` request overwrites the existing contents of the object so it must first be downloaded and re-uploaded with the new metadata.
+{: note}
 
 ```java
 public static void updateMetadataPut(String bucketName, String itemName, String key, String value) throws IOException {
@@ -1528,7 +1529,7 @@ This implementation of the `PUT` operation uses the `protection` query parameter
 
 Objects written to a protected bucket cannot be deleted until the protection period has expired and all legal holds on the object are removed. The bucket's default retention value is given to an object unless an object specific value is provided when the object is created. Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object. 
 
-The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are 0 days and 365243 days (1000 years) respectively. 
+The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are a minimum of 0 days and a maximum of 365243 days (1000 years). 
 
 ```java
 public static void addProtectionConfigurationToBucket(String bucketName) {
