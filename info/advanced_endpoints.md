@@ -55,7 +55,7 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 {:note}
 
 ## Using cross-region access points
-{ #advanced-endpoint-using-cre}
+{: #advanced-endpoint-using-cre}
 
 When using a Cross Region endpoint, it is possible to direct inbound traffic to a specific access point while still distributing data across all three regions. When sending requests to an individual access point **there is no automated failover if that region becomes unavailable**. Applications that direct traffic to an access point instead of the `geo` endpoint **must** implement appropriate failover logic internally to achieve the availabity advantages of the cross-region storage. 
 
