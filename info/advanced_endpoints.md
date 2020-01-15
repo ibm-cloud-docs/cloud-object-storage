@@ -69,8 +69,7 @@ One reason for using an access point is to control where data ingress and egress
 6. Connectivity is resumed, and access can be re-routed to Dallas when service is restored.
 
 When sending requests to an individual access point there is no automated failover if that region becomes unavailable.
-{: note
-}
+{: note}
 
 For contrast, imagine another application using the normal US cross-region endpoint:
 
