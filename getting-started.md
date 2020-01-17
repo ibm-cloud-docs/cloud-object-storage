@@ -15,10 +15,14 @@ subcollection: cloud-object-storage
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:screen: .screen}
+{:important: .important}
 {:tip: .tip}
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 {:help: data-hd-content-type='help'}
+
+Warning: This topic contains draft content about unreleased functionality and is being reviewed for accuracy.
+{: important}
 
 # Getting started tutorial
 {: #getting-started}
