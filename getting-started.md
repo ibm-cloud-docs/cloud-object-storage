@@ -21,9 +21,6 @@ subcollection: cloud-object-storage
 {:support: data-reuse='support'}
 {:help: data-hd-content-type='help'}
 
-Warning: This topic contains draft content about unreleased functionality and is being reviewed for accuracy.
-{: important}
-
 # Getting started tutorial
 {: #getting-started}
 
