@@ -55,7 +55,7 @@ As of December 2018, we have updated our endpoints. Legacy endpoints will contin
 {:note}
 
 ## Using cross-region access points
-{ #advanced-endpoint-using-cre}
+{: #advanced-endpoint-using-cre}
 
 When using a Cross Region endpoint, it is possible to direct inbound traffic to a specific access point while still distributing data across all three regions. When sending requests to an individual access point **there is no automated failover if that region becomes unavailable**. Applications that direct traffic to an access point instead of the `geo` endpoint **must** implement appropriate failover logic internally to achieve the availabity advantages of the cross-region storage. 
 
@@ -67,6 +67,9 @@ One reason for using an access point is to control where data ingress and egress
 4. The application recognizes the need to fail over to a different access point, such as San Jose.
 5. The application creates a new client using the `https://s3.private.sjc.us.cloud-object-storage.appdomain.cloud` endpoint.
 6. Connectivity is resumed, and access can be re-routed to Dallas when service is restored.
+
+When sending requests to an individual access point there is no automated failover if that region becomes unavailable.
+{: note}
 
 For contrast, imagine another application using the normal US cross-region endpoint:
 
