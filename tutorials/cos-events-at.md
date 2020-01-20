@@ -25,6 +25,9 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
+Warning! This topic contains draft content about unreleased functionality and is being reviewed for accuracy.
+{: important}
+
 # Tracking {{site.data.keyword.cos_short}} events in {{site.data.keyword.at_short}}
 {: #tracking-cos-events}
 
