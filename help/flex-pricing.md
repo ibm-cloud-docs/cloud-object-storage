@@ -29,3 +29,23 @@ subcollection: cloud-object-storage
 # Flex storage class pricing
 {: #flex-pricing}
 
+
+| Storage used  | US South | US East | EU United Kingdom | EU Germany | AP Australia | AP Japan |
+|---------------|----------|---------|-------------------|------------|--------------|----------|
+| 0 - 499.99 TB | $0.0090  | $0.0090 | $0.0096           | $0.0099    | $0.0108      | $0.0102  |
+| 500+ TB       | $0.0090  | $0.0090 | $0.0096           | $0.0099    | $0.0108      | $0.0102  |
+{: class="simple-tab-table"}
+{: caption="Table 1. Storage Capacity (GB/month)" caption-side="top"}
+{: #storage1}
+{: tab-title="Regional"}
+{: tab-group="storage-capacity"}
+
+| Storage used  | US Cross Region | EU Cross Region | AP Cross Region |
+|---------------|-----------------|-----------------|-----------------|
+| 0 - 499.99 TB | $0.0140 |	$0.0148 |	$0.0158        |
+| 500+ TB       | $0.0140 |	$0.0148 |	$0.0158        |
+{: class="simple-tab-table"}
+{: caption="Table 1. Storage Capacity (GB/month)" caption-side="top"}
+{: #storage2}
+{: tab-title="Cross Region"}
+{: tab-group="storage-capacity"}
