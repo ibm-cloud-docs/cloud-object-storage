@@ -29,10 +29,9 @@ subcollection: cloud-object-storage
 Sending a REST API request or configuring a storage client requires setting a target endpoint or URL. Each storage location has its own set of URLs.
 {: shortdesc}
 
-Private endpoints can be used from within the IBM Cloud and don't incur data transfer charges. Public endpoints can be used from outside the IBM Cloud and do incur transfer charges. If possible, it's best to use a private endpoint.
+Private endpoints can be used from within the {{site.data.keyword.cloud_notm}} and don't incur data transfer charges. Public endpoints can be used from outside the {{site.data.keyword.cloud_notm}} and do incur transfer charges. If possible, it's best to use a private endpoint.
 
-In December 2018, we updated our endpoints. [Legacy endpoints](/docs/services/cloud-object-storage/info?topic=cloud-object-storage-advanced-endpoints) continue to work until further notice. Update your applications to use the new endpoints listed here.
-{:note}
+Direct endpoints are used by workloads running in an {{site.data.keyword.cloud_notm}} [Virtual Private Cloud](/docs/vpc?topic=vpc-about-vpc).
 
 ## Regional Endpoints
 {: #endpoints-region}
@@ -67,6 +66,20 @@ Buckets that are created at a regional endpoint distribute data across three dat
 {: tab-title="Private"}
 {: tab-group="Regional-endpoints"}
 
+| Region | Type | Endpoint |
+|-----|-----|-----|
+| US South | Direct | `s3.direct.us-south.cloud-object-storage.appdomain.cloud` |
+| US East | Direct | `s3.direct.us-east.cloud-object-storage.appdomain.cloud` |
+| EU United Kingdom | Direct | `s3.direct.eu-gb.cloud-object-storage.appdomain.cloud` |
+| EU Germany | Direct | `s3.direct.eu-de.cloud-object-storage.appdomain.cloud` |
+| AP Australia | Direct | `s3.direct.au-syd.cloud-object-storage.appdomain.cloud` |
+| AP Japan | Direct | `s3.direct.jp-tok.cloud-object-storage.appdomain.cloud` |
+{: class="simple-tab-table"}
+{: caption="Table 1. Regional Endpoints" caption-side="top"}
+{: #regionalendpointtable3}
+{: tab-title="Direct"}
+{: tab-group="Regional-endpoints"}
+
 
 ## Cross Region Endpoints
 {: #endpoints-geo}
@@ -93,6 +106,17 @@ Buckets that are created at a cross region endpoint distribute data across three
 {: caption="Table 2. Cross Region Endpoints" caption-side="top"}
 {: #crossregionalendpointtable2}
 {: tab-title="Private"}
+{: tab-group="Cross-regional-endpoints"}
+
+| Region | Type | Endpoint |
+|-----|-----|-----|
+| US Cross Region | Direct | `s3.direct.us.cloud-object-storage.appdomain.cloud` |
+| EU Cross Region | Direct | `s3.direct.eu.cloud-object-storage.appdomain.cloud` |
+| AP Cross Region | Direct | `s3.direct.ap.cloud-object-storage.appdomain.cloud` |
+{: class="simple-tab-table"}
+{: caption="Table 2. Cross Region Endpoints" caption-side="top"}
+{: #crossregionalendpointtable3}
+{: tab-title="Direct"}
 {: tab-group="Cross-regional-endpoints"}
 
 ## Single Data Center Endpoints
@@ -145,6 +169,28 @@ If a networking failure results in a partition where the data center is unable t
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
 {: #sdcendpointtable2}
 {: tab-title="Private"}
+{: tab-group="single-datacenter-endpoints"}
+
+| Region | Type | Endpoint |
+|-----|-----|-----|
+| Amsterdam, Netherlands | Direct | `s3.direct.ams03.cloud-object-storage.appdomain.cloud` |
+| Chennai, India | Direct | `s3.direct.che01.cloud-object-storage.appdomain.cloud` |
+| Hong Kong S.A.R. of the PRC | Direct | `s3.direct.hkg02.cloud-object-storage.appdomain.cloud` |
+| Melbourne, Australia | Direct | `s3.direct.mel01.cloud-object-storage.appdomain.cloud` |
+| Mexico City, Mexico | Direct | `s3.direct.mex01.cloud-object-storage.appdomain.cloud` |
+| Milan, Italy | Direct | `s3.direct.mil01.cloud-object-storage.appdomain.cloud` |
+| Montr&egrave;al, Canada | Direct | `s3.direct.mon01.cloud-object-storage.appdomain.cloud` |
+| Oslo, Norway | Direct | `s3.direct.osl01.cloud-object-storage.appdomain.cloud` |
+| Paris, France | Direct | `s3.direct.par01.cloud-object-storage.appdomain.cloud` |
+| San Jose, US | Direct | `s3.direct.sjc04.cloud-object-storage.appdomain.cloud` |
+| S&atilde;o Paulo, Brazil | Direct | `s3.direct.sao01.cloud-object-storage.appdomain.cloud` |
+| Seoul, South Korea | Direct | `s3.direct.seo01.cloud-object-storage.appdomain.cloud` |
+| Singapore | Direct | `s3.direct.sng01.cloud-object-storage.appdomain.cloud` |
+| Toronto, Canada | Direct | `s3.direct.tor01.cloud-object-storage.appdomain.cloud` |
+{: class="simple-tab-table"}
+{: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
+{: #sdcendpointtable3}
+{: tab-title="Direct"}
 {: tab-group="single-datacenter-endpoints"}
 
 ## EU-Managed Endpoints
