@@ -52,8 +52,8 @@ For this tutorial, you need:
 * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com){: external}
 * To complete the steps to manage access to the service, your user ID needs **administrator platform permissions** to manage the {{site.data.keyword.at_full_notm}} service. You may have to contact a account administrator. The account owner can grant another user access to the account for the purposes of managing user access, and managing account resources. [Learn more](/docs/iam?topic=iam-userroles).
 
-   When you create buckets or add objects, be sure to avoid the use of Personally Identifiable Information (PII). PII is information that can identify any user (natural person) by name, location, or any other means.
-   {: note}
+When you create buckets or add objects, be sure to avoid the use of Personally Identifiable Information (PII). PII is information that can identify any user (natural person) by name, location, or any other means.
+{: note}
 
 ### What to know before using the {{site.data.keyword.cloud_notm}} Console
 {: #tracking-cos-events-prereqs-console}
@@ -75,7 +75,7 @@ ibmcloud dev help
 {: codeblock}
 {: cli}
 
-If you can't see the example with instructions on how to run the `help` command in your terminal, choose "CLI" in the context switcher above the main heading to see the examples you will be working with.
+If you can't see the example with instructions on how to run the `help` command in your terminal, choose "CLI" in the context switcher near the main heading to see the examples you will be working with.
 {: tip}
 
 ## Creating your instance of {{site.data.keyword.at_full_notm}}
@@ -86,6 +86,65 @@ From the [catalog](https://cloud.ibm.com/catalog){: external}, choose the servic
 
 Selecting the tile for {{site.data.keyword.at_full_notm}} in the catalog will take you to the creation interface in the console. The first choice is to "Select a region" by choosing the appropriate city for your instance. For example, if you are working in the `us-south` region, then `Dallas` is the appropriate choice for your instance.
 {: console}
+
+Log in to the region in the IBM Cloud where you want to provision the instance. Run the following command: `ibmcloud login`.
+{: cli}
+
+To get started with an instance of {{site.data.keyword.at_full_notm}} through the command line, you must provision an instance, and then create credentials for that instance.
+{: cli}
+
+Set the resource group where you want to provision the instance. Run the following command: [`ibmcloud target`](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_cli#ibmcloud_target). By default, the `default` resource group is set.
+{: cli}
+
+Run the [`ibmcloud resource service-instance-create`](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_resource#ibmcloud_resource_service_instance_create) command:
+{: cli}
+
+```
+ibmcloud resource service-instance-create NAME logdna SERVICE_PLAN_NAME LOCATION
+```
+{: codeblock}
+{: cli}
+
+Replace the values as appropriate according to the information in Table 1.
+{: cli}  
+
+| Attribute | Value |
+| --- | --- |
+| NAME | Replace with a name of your choice for the instance. |
+| *logdna* | The literal reference of the {{site.data.keyword.la_full_notm}} service. |
+| SERVICE_PLAN_NAME | Type of plan; valid values are *lite*, *7-days*, *14-days*, *30-days*. |
+| LOCATION | The region where the LogDNA instance is created. To get the latest list of available locations, check out the [locations](/docs/services/Log-Analysis-with-LogDNA?topic=LogDNA-regions). |
+{: caption="Table 1. CLI attributes and values" caption-side="top"}
+{: cli}
+
+For example, to provision an instance with the 7 days retention plan, run the following command:
+{: cli}
+
+```
+ibmcloud resource service-instance-create logdna-instance-01 logdna 7-day us-south
+```
+{: codeblock}
+{: cli}
+
+The results will display upon completion, and should appear as shown.
+{: cli}
+
+```bash
+Creating service instance TestLogDNA in resource group Default of account IBM as xxxx.xxxx@ibm.com...
+OK
+Service instance TestLogDNA was created.
+                 
+Name:         TestLogDNA   
+ID:           crn:v1:bluemix:public:logdna:us-south:a/xxxxxxxxxxxxxxxxxxxxxxxx:3exxx14-7xxx-xxx3-9xxc-fxxxxc9b4xx::   
+GUID:         3exxx14-7xxx-xxx3-9xxc-fxxxxc9b4xx   
+Location:     us-south   
+State:        active   
+Type:         service_instance   
+Sub Type:        
+Created at:   2020-01-24T17:34:48Z   
+Updated at:   2020-01-24T17:34:48Z
+```
+{: cli}
 
 ## Creating your instance of {{site.data.keyword.cos_full_notm}}
 {: #tracking-cos-events-create-cos}
