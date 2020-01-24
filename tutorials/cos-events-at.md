@@ -46,24 +46,21 @@ If you're not familiar with {{site.data.keyword.cos_full}}, you can quickly get 
 ## Prerequisites
 {: #tracking-cos-events-prereqs}
 
-For this tutorial, you need:
-  * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com){: external}
-  * Some files on your local computer for uploading
-
 If you are already managing instances of {{site.data.keyword.cos_short}} or {{site.data.keyword.at_short}}, you do not need to create more. However, as this tutorial will modify and configure the instances we are working with, make sure that any accounts or services are not being used in a production environment.
 
-When you create buckets or add objects, be sure to avoid the use of Personally Identifiable Information (PII)
+For this tutorial, you need:
+* An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com){: external}
+* To complete the steps to manage access to the service, your user ID needs **administrator platform permissions** to manage the {{site.data.keyword.at_full_notm}} service. You may have to contact a account administrator. The account owner can grant another user access to the account for the purposes of managing user access, and managing account resources. [Learn more](/docs/iam?topic=iam-userroles).
 
-PII is information that can identify any user (natural person) by name, location, or any other means.
-{: note}
-
+   When you create buckets or add objects, be sure to avoid the use of Personally Identifiable Information (PII). PII is information that can identify any user (natural person) by name, location, or any other means.
+   {: note}
 
 ### What to know before using the {{site.data.keyword.cloud_notm}} Console
 {: #tracking-cos-events-prereqs-console}
 
 In part, this tutorial will show how to use the UI interface, or [Console](https://cloud.ibm.com/){: external} to create instances of services and manage them. This is the easiest path to take for working with {{site.data.keyword.cloud}} but it is also powerful and responsive. 
 
-As long as you can [login](https://cloud.ibm.com/login){: external} you should be ready to start! At the context switcher above the main heading, choose "Console" to see the examples you will be working with.
+As long as you can [login](https://cloud.ibm.com/login){: external} you should be ready to begin. At the context switcher above the main heading, choose "Console" to see the examples you will be working with.
 
 ### What to know before using the {{site.data.keyword.cloud_notm}} CLI
 {: #tracking-cos-events-prereqs-cli}
