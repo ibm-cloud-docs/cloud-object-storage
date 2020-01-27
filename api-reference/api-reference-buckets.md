@@ -1599,4 +1599,4 @@ Content-Length: 0
 ## Next Steps
 {: #api-ref-buckets-next-steps}
 
-Learn more about the API reference on object operations at the [documentation](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations).
+Learn more about object operations at the [documentation](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations).
