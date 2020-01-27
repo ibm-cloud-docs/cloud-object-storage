@@ -49,7 +49,7 @@ For available certificates, please refer to listings titled “IBM Cloud Service
 ## System and Organization Controls (SOC)
 {: #compliance-soc}
 
-IBM Cloud Object Storage is certified for SOC 1 Type 1 and SOC 2 Type 1. 
+IBM Cloud Object Storage is certified for SOC 1 Type 2 and SOC 2 Type 2. 
 
 ## Payment Card Industry (PCI) data security standards
 {: #compliance-pci}
