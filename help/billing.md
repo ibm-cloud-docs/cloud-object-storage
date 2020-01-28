@@ -105,7 +105,7 @@ For example, let's imagine a bucket in the `us-south` region with an access patt
 Let's see how the costs might compare to the other storage classes.
 
 | Month | `storage` | `requests` | `retrieval` | Classification | Standard | Vault | Cold Vault | Smart Tier | 
-| --- | --- | --- | --- | --- | --- | --- | --- | -| 
+| --- | --- | --- | --- | --- | --- | --- | --- | 
 | 1 | 1,000 GB | 4,000,000 | 100 GB | Hot | $41 | $53 | $111 | **$41** |
 | 2 | 1,000 GB | 4,000 | 200 GB | Cool | $21 | $14 | $16 | **$12** |
 | 3 | 1,000 GB | 400 | 10 GB | Cold | $21 | $12 | $7 | **$8** |
