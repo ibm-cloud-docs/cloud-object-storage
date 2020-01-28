@@ -42,10 +42,21 @@ subcollection: cloud-object-storage
 
 | Storage used  | US Cross Region | EU Cross Region | AP Cross Region |
 |---------------|-----------------|-----------------|-----------------|
-| 0 - 499.99 TB | $0.0140 |	$0.0148 |	$0.0158        |
-| 500+ TB       | $0.0140 |	$0.0148 |	$0.0158        |
+| 0 - 499.99 TB | $0.0140         | $0.0148         | $0.0158         |
+| 500+ TB       | $0.0140         | $0.0148         | $0.0158         |
 {: class="simple-tab-table"}
 {: caption="Table 1. Storage Capacity (GB/month)" caption-side="top"}
 {: #storage2}
 {: tab-title="Cross Region"}
 {: tab-group="storage-capacity"}
+
+| Storage used  | Amsterdam, Netherlands | Chennai, India | Hong Kong S.A.R. of the PRC | Melbourne, Australia | Mexico City, Mexico | Milan, Italy | Montr&egrave;al, Canada | Oslo, Norway | Paris, France | San Jose, US | S&atilde;o Paulo, Brazil | Seoul, South Korea | Singapore | Toronto, Canada |
+|---------------|------------------------|----------------|-----------------------------|----------------------|---------------------|--------------|-------------------------|--------------|---------------|--------------|--------------------------|--------------------|-----------|-----------------|
+| 0 - 499.99 TB | $0.01                  | $0.01          | $0.01                       | $0.01                | $0.01               | $0.01        | $0.01                   | $0.01        | $0.01         | $0.01        | $0.01                    | $0.01              | $0.01     | $0.01           |
+| 500+ TB       | $0.01                  | $0.01          | $0.01                       | $0.01                | $0.01               | $0.01        | $0.01                   | $0.01        | $0.01         | $0.01        | $0.01                    | $0.01              | $0.01     | $0.01           |
+{: class="simple-tab-table"}
+{: caption="Table 1. Storage Capacity (GB/month)" caption-side="top"}
+{: #storage3}
+{: tab-title="Single Data Center "}
+{: tab-group="storage-capacity"}
+
