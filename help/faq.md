@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2020
+lastupdated: "2020-01-28"
 
 keywords: faq, frequently asked questions, object storage
 
@@ -39,9 +39,9 @@ Frequently asked questions can produce helpful answers and insight into best pra
 
 Bucket names are required to be DNS addressable, and not case-sensitive.
 
-**What is the maximum number of characters that can be used in an Object name?**
+**What is the maximum number of characters that can be used in a key, or Object name?**
 
-1024
+Keys have a 1024-character limit.
 
 **How can I find out the total size of my bucket by using the API?**
 
