@@ -88,6 +88,7 @@ For more information about creating buckets with different storage classes, see 
 Based on monthly averages, data in a Smart Tier bucket is classified into one of three tiers based on the following variables:
 
 | Variable | Description |
+| --- | --- |
 | `storage` | Total volume of data stored in GB |
 | `retrievals` | Total volume of data retrieved in GB |
 | `requests` | Sum of the number of Class A (write) requests plus 1/10 of the number of Class B (read) requests | 
