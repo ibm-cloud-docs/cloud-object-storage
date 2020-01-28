@@ -130,8 +130,10 @@ Cloud Object Storage
     {: .navgroup id="help"}
     help/faq.md
     help/support.md
-    help/billing.md
-    help/flex-pricing.md
-    [Pricing](https://www.ibm.com/cloud/object-storage/pricing/)
-    help/flex-pricing.md
+
+    {: .topicgroup}
+    Billing and pricing
+        help/billing.md
+        [Pricing](https://www.ibm.com/cloud/object-storage/pricing/)
+        help/flex-pricing.md
     {: .navgroup-end}
