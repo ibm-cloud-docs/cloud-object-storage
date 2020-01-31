@@ -132,7 +132,7 @@ The following table lists the COS bucket access events:
 
 | Action                                                 | Description                 |
 | ------------------------------------------------------ | --------------------------- |
-| `cloud-object-storage.object.list`                     | List the objects in the bucket |
+| `cloud-object-storage.bucket.list`                     | List the objects in the bucket |
 | `cloud-object-storage.bucket.info`                     | Get the metadata for the bucket |
 {: caption="Table 5. Bucket access events"}
 
