@@ -32,8 +32,8 @@ subcollection: cloud-object-storage
 
 | Storage used  | US South | US East | EU United Kingdom | EU Germany | AP Australia | AP Japan |
 |---------------|----------|---------|-------------------|------------|--------------|----------|
-| 0 - 499.99 TB | $0.0090  | $0.0090 | $0.0096           | $0.0099    | $0.0108      | $0.0102  |
-| 500+ TB       | $0.0090  | $0.0090 | $0.0096           | $0.0099    | $0.0108      | $0.0102  |
+| 0 - 499.99 TB | $0.009   | $0.009  | $0.0096           | $0.0099    | $0.0108      | $0.0102  |
+| 500+ TB       | $0.009   | $0.009  | $0.0096           | $0.0099    | $0.0108      | $0.0102  |
 {: class="simple-tab-table"}
 {: caption="Table 1. Storage Capacity (GB/month)" caption-side="top"}
 {: #storage1}
@@ -42,8 +42,8 @@ subcollection: cloud-object-storage
 
 | Storage used  | US Cross Region | EU Cross Region | AP Cross Region |
 |---------------|-----------------|-----------------|-----------------|
-| 0 - 499.99 TB | $0.0140         | $0.0148         | $0.0158         |
-| 500+ TB       | $0.0140         | $0.0148         | $0.0158         |
+| 0 - 499.99 TB | $0.014          | $0.0148         | $0.0158         |
+| 500+ TB       | $0.014          | $0.0148         | $0.0158         |
 {: class="simple-tab-table"}
 {: caption="Table 1. Storage Capacity (GB/month)" caption-side="top"}
 {: #storage2}
@@ -52,20 +52,20 @@ subcollection: cloud-object-storage
 
 | Storage used  | Amsterdam, Netherlands | Chennai, India | Hong Kong S.A.R. of the PRC | Melbourne, Australia | Mexico City, Mexico | Milan, Italy | Montr&egrave;al, Canada | Oslo, Norway | Paris, France | San Jose, US | S&atilde;o Paulo, Brazil | Seoul, South Korea | Singapore | Toronto, Canada |
 |---------------|------------------------|----------------|-----------------------------|----------------------|---------------------|--------------|-------------------------|--------------|---------------|--------------|--------------------------|--------------------|-----------|-----------------|
-| 0 - 499.99 TB | $0.01                  | $0.01          | $0.01                       | $0.01                | $0.01               | $0.01        | $0.01                   | $0.01        | $0.01         | $0.01        | $0.01                    | $0.01              | $0.01     | $0.01           |
-| 500+ TB       | $0.01                  | $0.01          | $0.01                       | $0.01                | $0.01               | $0.01        | $0.01                   | $0.01        | $0.01         | $0.01        | $0.01                    | $0.01              | $0.01     | $0.01           |
+| 0 - 499.99 TB | $0.0093                | $0.0108        | $0.0102                     | $0.0108              | $0.0096             | $0.0099      | $0.0093                 | $0.0096      | $0.0099       | $0.009       | $0.0108                  | $0.0099            | $0.0102   | $0.0093         |
+| 500+ TB       | $0.0093                | $0.0108        | $0.0102                     | $0.0108              | $0.0096             | $0.0099      | $0.0093                 | $0.0096      | $0.0099       | $0.009       | $0.0108                  | $0.0099            | $0.0102   | $0.0093         |
 {: class="simple-tab-table"}
 {: caption="Table 1. Storage Capacity (GB/month)" caption-side="top"}
 {: #storage3}
 {: tab-title="Single Data Center "}
 {: tab-group="storage-capacity"}
 
-| Bandwidth used      | US South | US East | EU United Kingdom | EU Germany | AP Australia | AP Japan |
-|---------------------|----------|---------|-------------------|------------|--------------|----------|
-| 0 - 50 TB           | $0.0090  | $0.0090 | $0.0096           | $0.0099    | $0.0108      | $0.0102  |
-| Next 100 TB         | $0.0090  | $0.0090 | $0.0096           | $0.0099    | $0.0108      | $0.0102  |
-| Next 350 TB         | $0.0090  | $0.0090 | $0.0096           | $0.0099    | $0.0108      | $0.0102  |
-| Greater than 500 TB | $0.0090  | $0.0090 | $0.0096           | $0.0099    | $0.0108      | $0.0102  |
+| Bandwidth used      | US South   | US East    | EU United Kingdom | EU Germany | AP Australia | AP Japan   |
+|---------------------|------------|------------|-------------------|------------|--------------|------------|
+| 0 - 50 TB           | $0.09      | $0.09      | $0.09             | $0.09      | $0.14        | $0.14      |
+| Next 100 TB         | $0.07      | $0.07      | $0.07             | $0.07      | $0.11        | $0.11      |
+| Next 350 TB         | $0.05      | $0.05      | $0.05             | $0.05      | $0.08        | $0.08      |
+| Greater than 500 TB | Contact us | Contact us | Contact us        | Contact us | Contact us   | Contact us |
 
 {: class="simple-tab-table"}
 {: caption="Table 2. Public outbound bandwidth (GB/month)" caption-side="top"}
@@ -75,22 +75,22 @@ subcollection: cloud-object-storage
 
 | Bandwidth used      | US Cross Region | EU Cross Region | AP Cross Region |
 |---------------------|-----------------|-----------------|-----------------|
-| 0 - 50 TB           | $0.0140         | $0.0148         | $0.0158         |
-| Next 100 TB         | $0.0140         | $0.0148         | $0.0158         |
-| Next 350 TB         | $0.0140         | $0.0148         | $0.0158         |
-| Greater than 500 TB | $0.0140         | $0.0148         | $0.0158         |
+| 0 - 50 TB           | $0.09           | $0.09           | $0.14           |
+| Next 100 TB         | $0.07           | $0.07           | $0.11           |
+| Next 350 TB         | $0.05           | $0.05           | $0.08           |
+| Greater than 500 TB | Contact us      | Contact us      | Contact us      |
 {: class="simple-tab-table"}
 {: caption="Table 2. Public outbound bandwidth (GB/month)" caption-side="top"}
 {: #bandwidth2}
 {: tab-title="Cross Region"}
 {: tab-group="public-outbound-bandwidth"}
 
-| Bandwidth used      | Amsterdam, Netherlands | Chennai, India | Hong Kong S.A.R. of the PRC | Melbourne, Australia | Mexico City, Mexico | Milan, Italy | Montr&egrave;al, Canada | Oslo, Norway | Paris, France | San Jose, US | S&atilde;o Paulo, Brazil | Seoul, South Korea | Singapore | Toronto, Canada |
-|---------------------|------------------------|----------------|-----------------------------|----------------------|---------------------|--------------|-------------------------|--------------|---------------|--------------|--------------------------|--------------------|-----------|-----------------|
-| 0 - 50 TB           | $0.01                  | $0.01          | $0.01                       | $0.01                | $0.01               | $0.01        | $0.01                   | $0.01        | $0.01         | $0.01        | $0.01                    | $0.01              | $0.01     | $0.01           |
-| Next 100 TB         | $0.01                  | $0.01          | $0.01                       | $0.01                | $0.01               | $0.01        | $0.01                   | $0.01        | $0.01         | $0.01        | $0.01                    | $0.01              | $0.01     | $0.01           |
-| Next 350 TB         | $0.01                  | $0.01          | $0.01                       | $0.01                | $0.01               | $0.01        | $0.01                   | $0.01        | $0.01         | $0.01        | $0.01                    | $0.01              | $0.01     | $0.01           |
-| Greater than 500 TB | $0.01                  | $0.01          | $0.01                       | $0.01                | $0.01               | $0.01        | $0.01                   | $0.01        | $0.01         | $0.01        | $0.01                    | $0.01              | $0.01     | $0.01           |
+| Bandwidth used      | Amsterdam, Netherlands | Chennai, India | Hong Kong S.A.R. of the PRC | Melbourne, Australia | Mexico City, Mexico | Milan, Italy | Montr&egrave;al, Canada | Oslo, Norway | Paris, France | San Jose, US | S&atilde;o Paulo, Brazil | Seoul, South Korea | Singapore  | Toronto, Canada |
+|---------------------|------------------------|----------------|-----------------------------|----------------------|---------------------|--------------|-------------------------|--------------|---------------|--------------|--------------------------|--------------------|------------|-----------------|
+| 0 - 50 TB           | $0.09                  | $0.18          | $0.14                       | $0.14                | $0.18               | $0.12        | $0.09                   | $0.14        | $0.12         | $0.09        | $0.18                    | $0.12              | $0.12      | $0.09           |
+| Next 100 TB         | $0.07                  | $0.14          | $0.11                       | $0.11                | $0.14               | $0.09        | $0.07                   | $0.11        | $0.09         | $0.07        | $0.14                    | $0.09              | $0.09      | $0.07           |
+| Next 350 TB         | $0.05                  | $0.10          | $0.08                       | $0.08                | $0.10               | $0.07        | $0.05                   | $0.08        | $0.07         | $0.05        | $0.10                    | $0.07              | $0.07      | $0.05           |
+| Greater than 500 TB | Contact us             | Contact us     | Contact us                  | Contact us           | Contact us          | Contact us   | Contact us              | Contact us   | Contact us    | Contact us   | Contact us               | Contact us         | Contact us | Contact us      |
 {: class="simple-tab-table"}
 {: caption="Table 2. Public outbound bandwidth (GB/month)" caption-side="top"}
 {: #bandwidth3}
@@ -99,10 +99,10 @@ subcollection: cloud-object-storage
 
 | Request type                                  | US South  | US East   | EU United Kingdom | EU Germany | AP Australia | AP Japan  |
 |-----------------------------------------------|-----------|-----------|-------------------|------------|--------------|-----------|
-| Class A: PUT, COPY, POST and LIST (per 1,000) | $0.0090   | $0.0090   | $0.0096           | $0.0099    | $0.0108      | $0.0102   |
-| Class B: GET and all others (per 10,000)      | $0.0090   | $0.0090   | $0.0096           | $0.0099    | $0.0108      | $0.0102   |
+| Class A: PUT, COPY, POST and LIST (per 1,000) | $0.01     | $0.01     | $0.01             | $0.01      | $0.01        | $0.01     |
+| Class B: GET and all others (per 10,000)      | $0.01     | $0.01     | $0.01             | $0.01      | $0.01        | $0.01     |
 | Delete requests                               | No charge | No charge | No charge         | No charge  | No charge    | No charge |
-| Data retrieval (per GB)                       | $0.0090   | $0.0090   | $0.0096           | $0.0099    | $0.0108      | $0.0102   |
+| Data retrieval (per GB)                       | $0.029    | $0.029    | $0.029            | $0.029     | $0.029       | $0.029    |
 {: class="simple-tab-table"}
 {: caption="Table 3. Operational Requests" caption-side="top"}
 {: #requests1}
@@ -111,10 +111,10 @@ subcollection: cloud-object-storage
 
 | Request type                                  | US Cross Region | EU Cross Region | AP Cross Region |
 |-----------------------------------------------|-----------------|-----------------|-----------------|
-| Class A: PUT, COPY, POST and LIST (per 1,000) | $0.0140         | $0.0148         | $0.0158         |
-| Class B: GET and all others (per 10,000)      | $0.0140         | $0.0148         | $0.0158         |
+| Class A: PUT, COPY, POST and LIST (per 1,000) | $0.01           | $0.01           | $0.01           |
+| Class B: GET and all others (per 10,000)      | $0.01           | $0.01           | $0.01           |
 | Delete requests                               | No charge       | No charge       | No charge       |
-| Data retrieval (per GB)                       | $0.0140         | $0.0148         | $0.0158         |
+| Data retrieval (per GB)                       | $0.029          | $0.029          | $0.029          |
 {: class="simple-tab-table"}
 {: caption="Table 3. Operational Requests" caption-side="top"}`
 {: #requests2}
@@ -124,40 +124,35 @@ subcollection: cloud-object-storage
 |-----------------------------------------------|------------------------|----------------|-----------------------------|----------------------|---------------------|--------------|-------------------------|--------------|---------------|--------------|--------------------------|--------------------|-----------|-----------------|
 | Class A: PUT, COPY, POST and LIST (per 1,000) | $0.01                  | $0.01          | $0.01                       | $0.01                | $0.01               | $0.01        | $0.01                   | $0.01        | $0.01         | $0.01        | $0.01                    | $0.01              | $0.01     | $0.01           |
 | Class B: GET and all others (per 10,000)      | $0.01                  | $0.01          | $0.01                       | $0.01                | $0.01               | $0.01        | $0.01                   | $0.01        | $0.01         | $0.01        | $0.01                    | $0.01              | $0.01     | $0.01           |
-| Data retrieval (per GB)                       | $0.01                  | $0.01          | $0.01                       | $0.01                | $0.01               | $0.01        | $0.01                   | $0.01        | $0.01         | $0.01        | $0.01                    | $0.01              | $0.01     | $0.01           |
 | Delete requests                               | No charge              | No charge      | No charge                   | No charge            | No charge           | No charge    | No charge               | No charge    | No charge     | No charge    | No charge                | No charge          | No charge | No charge       |
+| Data retrieval (per GB)                       | $0.029                 | $0.029         | $0.029                      | $0.029               | $0.029              | $0.029       | $0.029                  | $0.029       | $0.029        | $0.029       | $0.029                   | $0.029             | $0.029    | $0.029          |
 {: class="simple-tab-table"}
 {: caption="Table 3. Operational Requests" caption-side="top"}
 {: #requests3}
 {: tab-title="Single Data Center "}
 {: tab-group="operational-requests"}
 
-| Flex cap                                 | US South  | US East   | EU United Kingdom | EU Germany | AP Australia | AP Japan  |
-|-----------------------------------------------|-----------|-----------|-------------------|------------|--------------|-----------|
-| Total GB stored and retrieved | $0.0090   | $0.0090   | $0.0096           | $0.0099    | $0.0108      | $0.0102   |
+| Flex cap                      | US South | US East | EU United Kingdom | EU Germany | AP Australia | AP Japan |
+|-------------------------------|----------|---------|-------------------|------------|--------------|----------|
+| Total GB stored and retrieved | $0.029  | $0.029 | $0.0096           | $0.0296   | $0.0108      | $0.0102  |
 {: class="simple-tab-table"}
 {: caption="Table 4. Flex charge model for combined (storage capacity and data retrieval) is calculated using the lowest value of (A) storage capacity charge + data retrieval charge, or (B) capacity x Flex cap charge." caption-side="top"}
 {: #cap1}
 {: tab-title="Regional"}
 {: tab-group="flex-cap"}
 
-| Request type                                  | US Cross Region | EU Cross Region | AP Cross Region |
-|-----------------------------------------------|-----------------|-----------------|-----------------|
-| Class A: PUT, COPY, POST and LIST (per 1,000) | $0.0140         | $0.0148         | $0.0158         |
-| Class B: GET and all others (per 10,000)      | $0.0140         | $0.0148         | $0.0158         |
-| Delete requests                               | No charge       | No charge       | No charge       |
-| Data retrieval (per GB)                       | $0.0140         | $0.0148         | $0.0158         |
+| Request type                  | US Cross Region | EU Cross Region | AP Cross Region |
+|-------------------------------|-----------------|-----------------|-----------------|
+| Total GB stored and retrieved | $0.0090         | $0.0090         | $0.0096         |
 {: class="simple-tab-table"}
 {: caption="Table 4. Flex charge model for combined (storage capacity and data retrieval) is calculated using the lowest value of (A) storage capacity charge + data retrieval charge, or (B) capacity x Flex cap charge." caption-side="top"}
 {: #cap2}
 {: tab-title="Cross Region"}
 {: tab-group="flex-cap"}
-| Request type                                  | Amsterdam, Netherlands | Chennai, India | Hong Kong S.A.R. of the PRC | Melbourne, Australia | Mexico City, Mexico | Milan, Italy | Montr&egrave;al, Canada | Oslo, Norway | Paris, France | San Jose, US | S&atilde;o Paulo, Brazil | Seoul, South Korea | Singapore | Toronto, Canada |
-|-----------------------------------------------|------------------------|----------------|-----------------------------|----------------------|---------------------|--------------|-------------------------|--------------|---------------|--------------|--------------------------|--------------------|-----------|-----------------|
-| Class A: PUT, COPY, POST and LIST (per 1,000) | $0.01                  | $0.01          | $0.01                       | $0.01                | $0.01               | $0.01        | $0.01                   | $0.01        | $0.01         | $0.01        | $0.01                    | $0.01              | $0.01     | $0.01           |
-| Class B: GET and all others (per 10,000)      | $0.01                  | $0.01          | $0.01                       | $0.01                | $0.01               | $0.01        | $0.01                   | $0.01        | $0.01         | $0.01        | $0.01                    | $0.01              | $0.01     | $0.01           |
-| Data retrieval (per GB)                       | $0.01                  | $0.01          | $0.01                       | $0.01                | $0.01               | $0.01        | $0.01                   | $0.01        | $0.01         | $0.01        | $0.01                    | $0.01              | $0.01     | $0.01           |
-| Delete requests                               | No charge              | No charge      | No charge                   | No charge            | No charge           | No charge    | No charge               | No charge    | No charge     | No charge    | No charge                | No charge          | No charge | No charge       |
+
+| Request type                  | Amsterdam, Netherlands | Chennai, India | Hong Kong S.A.R. of the PRC | Melbourne, Australia | Mexico City, Mexico | Milan, Italy | Montr&egrave;al, Canada | Oslo, Norway | Paris, France | San Jose, US | S&atilde;o Paulo, Brazil | Seoul, South Korea | Singapore | Toronto, Canada |
+|-------------------------------|------------------------|----------------|-----------------------------|----------------------|---------------------|--------------|-------------------------|--------------|---------------|--------------|--------------------------|--------------------|-----------|-----------------|
+| Total GB stored and retrieved | $0.0090                | $0.0090        | $0.0096                     | $0.0099              | $0.0108             | $0.0102      | $0.0090                 | $0.0090      | $0.0096       | $0.0099      | $0.0108                  | $0.0102            | $0.0099   | $0.0108         |
 {: class="simple-tab-table"}
 {: caption="Table 4. Flex charge model for combined (storage capacity and data retrieval) is calculated using the lowest value of (A) storage capacity charge + data retrieval charge, or (B) capacity x Flex cap charge." caption-side="top"}
 {: #cap3}
@@ -165,7 +160,7 @@ subcollection: cloud-object-storage
 {: tab-group="flex-cap"}
 
 
-| Aspera HST egress     | US South | US East | EU United Kingdom | EU Germany | AP Australia | AP Japan |
+| Aspera HST egress   | US South | US East | EU United Kingdom | EU Germany | AP Australia | AP Japan |
 |---------------------|----------|---------|-------------------|------------|--------------|----------|
 | 0 - 50 TB           | $0.0090  | $0.0090 | $0.0096           | $0.0099    | $0.0108      | $0.0102  |
 | Next 100 TB         | $0.0090  | $0.0090 | $0.0096           | $0.0099    | $0.0108      | $0.0102  |
@@ -177,7 +172,7 @@ subcollection: cloud-object-storage
 {: tab-title="Regional"}
 {: tab-group="aspera-outbound-bandwidth"}
 
-| Aspera HST egress       | US Cross Region | EU Cross Region | AP Cross Region |
+| Aspera HST egress   | US Cross Region | EU Cross Region | AP Cross Region |
 |---------------------|-----------------|-----------------|-----------------|
 | 0 - 50 TB           | $0.0140         | $0.0148         | $0.0158         |
 | Next 100 TB         | $0.0140         | $0.0148         | $0.0158         |
@@ -189,7 +184,7 @@ subcollection: cloud-object-storage
 {: tab-title="Cross Region"}
 {: tab-group="aspera-outbound-bandwidth"}
 
-| Aspera HST egress      | Amsterdam, Netherlands | Chennai, India | Hong Kong S.A.R. of the PRC | Melbourne, Australia | Mexico City, Mexico | Milan, Italy | Montr&egrave;al, Canada | Oslo, Norway | Paris, France | San Jose, US | S&atilde;o Paulo, Brazil | Seoul, South Korea | Singapore | Toronto, Canada |
+| Aspera HST egress   | Amsterdam, Netherlands | Chennai, India | Hong Kong S.A.R. of the PRC | Melbourne, Australia | Mexico City, Mexico | Milan, Italy | Montr&egrave;al, Canada | Oslo, Norway | Paris, France | San Jose, US | S&atilde;o Paulo, Brazil | Seoul, South Korea | Singapore | Toronto, Canada |
 |---------------------|------------------------|----------------|-----------------------------|----------------------|---------------------|--------------|-------------------------|--------------|---------------|--------------|--------------------------|--------------------|-----------|-----------------|
 | 0 - 50 TB           | $0.01                  | $0.01          | $0.01                       | $0.01                | $0.01               | $0.01        | $0.01                   | $0.01        | $0.01         | $0.01        | $0.01                    | $0.01              | $0.01     | $0.01           |
 | Next 100 TB         | $0.01                  | $0.01          | $0.01                       | $0.01                | $0.01               | $0.01        | $0.01                   | $0.01        | $0.01         | $0.01        | $0.01                    | $0.01              | $0.01     | $0.01           |
