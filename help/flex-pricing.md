@@ -119,6 +119,7 @@ subcollection: cloud-object-storage
 {: #requests2}
 {: tab-title="Cross Region"}
 {: tab-group="operational-requests"}
+
 | Request type                                  | Amsterdam, Netherlands | Chennai, India | Hong Kong S.A.R. of the PRC | Melbourne, Australia | Mexico City, Mexico | Milan, Italy | Montr&egrave;al, Canada | Oslo, Norway | Paris, France | San Jose, US | S&atilde;o Paulo, Brazil | Seoul, South Korea | Singapore | Toronto, Canada |
 |-----------------------------------------------|------------------------|----------------|-----------------------------|----------------------|---------------------|--------------|-------------------------|--------------|---------------|--------------|--------------------------|--------------------|-----------|-----------------|
 | Class A: PUT, COPY, POST and LIST (per 1,000) | $0.01                  | $0.01          | $0.01                       | $0.01                | $0.01               | $0.01        | $0.01                   | $0.01        | $0.01         | $0.01        | $0.01                    | $0.01              | $0.01     | $0.01           |
