@@ -66,7 +66,6 @@ subcollection: cloud-object-storage
 | Next 100 TB         | $0.07      | $0.07      | $0.07             | $0.07      | $0.11        | $0.11      |
 | Next 350 TB         | $0.05      | $0.05      | $0.05             | $0.05      | $0.08        | $0.08      |
 | Greater than 500 TB | Contact us | Contact us | Contact us        | Contact us | Contact us   | Contact us |
-
 {: class="simple-tab-table"}
 {: caption="Table 2. Public outbound bandwidth (GB/month)" caption-side="top"}
 {: #bandwidth1}
