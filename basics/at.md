@@ -181,15 +181,12 @@ You can only provision 1 instance of the {{site.data.keyword.at_full_notm}} serv
 
 To view events, you must identify the location where events are collected and available for monitoring. Then, you must access the web UI of the {{site.data.keyword.at_full_notm}} instance in that location. For more information, see [Launching the web UI through the IBM Cloud UI](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-launch#launch_step2).
 
-### Global events
-{: #at-ui-global}
-
-{{site.data.keyword.cos_short}} global events are forwarded to the {{site.data.keyword.at_full_notm}} service instance that is located in Frankfurt.
-
 ### Management events
 {: #at-ui-mngt}
 
-{{site.data.keyword.cos_short}} management events are forwarded to the {{site.data.keyword.at_full_notm}} instance that is associated with the bucket.
+{{site.data.keyword.cos_short}} global events are forwarded to the {{site.data.keyword.at_full_notm}} service instance that is located in Frankfurt.
+
+All other {{site.data.keyword.cos_short}} management events are forwarded to the {{site.data.keyword.at_full_notm}} instance that is associated with the bucket.
 
 To view events, you must access the web UI of the {{site.data.keyword.at_full_notm}} instance in the location that is associated with the bucket.
 
