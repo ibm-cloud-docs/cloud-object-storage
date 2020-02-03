@@ -57,7 +57,7 @@ subcollection: cloud-object-storage
 {: class="simple-tab-table"}
 {: caption="Table 1. Storage Capacity (GB/month)" caption-side="top"}
 {: #storage3}
-{: tab-title="Single Data Center "}
+{: tab-title="Single Data Center"}
 {: tab-group="storage-capacity"}
 
 | Bandwidth used      | US South   | US East    | EU United Kingdom | EU Germany | AP Australia | AP Japan   |
@@ -93,7 +93,7 @@ subcollection: cloud-object-storage
 {: class="simple-tab-table"}
 {: caption="Table 2. Public outbound bandwidth (GB/month)" caption-side="top"}
 {: #bandwidth3}
-{: tab-title="Single Data Center "}
+{: tab-title="Single Data Center"}
 {: tab-group="public-outbound-bandwidth"}
 
 | Request type                                  | US South  | US East   | EU United Kingdom | EU Germany | AP Australia | AP Japan  |
@@ -115,7 +115,7 @@ subcollection: cloud-object-storage
 | Delete requests                               | No charge       | No charge       | No charge       |
 | Data retrieval (per GB)                       | $0.029          | $0.029          | $0.029          |
 {: class="simple-tab-table"}
-{: caption="Table 3. Operational Requests" caption-side="top"}`
+{: caption="Table 3. Operational Requests" caption-side="top"}
 {: #requests2}
 {: tab-title="Cross Region"}
 {: tab-group="operational-requests"}
@@ -129,7 +129,7 @@ subcollection: cloud-object-storage
 {: class="simple-tab-table"}
 {: caption="Table 3. Operational Requests" caption-side="top"}
 {: #requests3}
-{: tab-title="Single Data Center "}
+{: tab-title="Single Data Center"}
 {: tab-group="operational-requests"}
 
 | Flex cap                      | US South | US East | EU United Kingdom | EU Germany | AP Australia | AP Japan |
@@ -156,9 +156,8 @@ subcollection: cloud-object-storage
 {: class="simple-tab-table"}
 {: caption="Table 4. Flex charge model for combined (storage capacity and data retrieval) is calculated using the lowest value of (A) storage capacity charge + data retrieval charge, or (B) capacity x Flex cap charge." caption-side="top"}
 {: #cap3}
-{: tab-title="Single Data Center "}
+{: tab-title="Single Data Center"}
 {: tab-group="flex-cap"}
-
 
 | Aspera HST egress   | US South   | US East    | EU United Kingdom | EU Germany | AP Australia | AP Japan   |
 |---------------------|------------|------------|-------------------|------------|--------------|------------|
@@ -167,7 +166,7 @@ subcollection: cloud-object-storage
 | Next 350 TB         | $0.04      | $0.04      | $0.04             | $0.04      | $0.05        | $0.04      |
 | Greater than 500 TB | Contact us | Contact us | Contact us        | Contact us | Contact us   | Contact us |
 {: class="simple-tab-table"}
-{: caption="Table 5. Aspera High-Speed Tranfer outbound bandwidth (GB/month)" caption-side="top"}
+{: caption="Table 5. Aspera High-Speed Transfer outbound bandwidth (GB/month)" caption-side="top"}
 {: #aspera1}
 {: tab-title="Regional"}
 {: tab-group="aspera-outbound-bandwidth"}
@@ -179,7 +178,7 @@ subcollection: cloud-object-storage
 | Next 350 TB         | $0.04           | $0.04           | $0.04           |
 | Greater than 500 TB | Contact us      | Contact us      | Contact us      |
 {: class="simple-tab-table"}
-{: caption="Table 5. Aspera High-Speed Tranfer outbound bandwidth (GB/month)" caption-side="top"}
+{: caption="Table 5. Aspera High-Speed Transfer outbound bandwidth (GB/month)" caption-side="top"}
 {: #aspera2}
 {: tab-title="Cross Region"}
 {: tab-group="aspera-outbound-bandwidth"}
@@ -191,7 +190,8 @@ subcollection: cloud-object-storage
 | Next 350 TB         | $0.04                  | $0.04          | $0.05                       | $0.04                | $0.04               | $0.05        | $0.04                   | $0.04        | $0.05         | $0.05        | $0.04                    | $0.04              | $0.05      | $0.04           |
 | Greater than 500 TB | Contact us             | Contact us     | Contact us                  | Contact us           | Contact us          | Contact us   | Contact us              | Contact us   | Contact us    | Contact us   | Contact us               | Contact us         | Contact us | Contact us      |
 {: class="simple-tab-table"}
-{: caption="Table 5. Aspera High-Speed Tranfer outbound bandwidth (GB/month)" caption-side="top"}
+{: caption="Table 5. Aspera High-Speed Transfer outbound bandwidth (GB/month)" caption-side="top"}
 {: #aspera3}
-{: tab-title="Single Data Center "}
+{: tab-title="Single Data Center"}
 {: tab-group="aspera-outbound-bandwidth"}
+
