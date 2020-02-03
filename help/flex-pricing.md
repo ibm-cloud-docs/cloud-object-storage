@@ -133,7 +133,7 @@ subcollection: cloud-object-storage
 
 | Flex cap                      | US South | US East | EU United Kingdom | EU Germany | AP Australia | AP Japan |
 |-------------------------------|----------|---------|-------------------|------------|--------------|----------|
-| Total GB stored and retrieved | $0.029  | $0.029 | $0.0096           | $0.0296   | $0.0108      | $0.0102  |
+| Total GB stored and retrieved | $0.029  | $0.029 | $0.0296           | $0.0299   | $0.0308      | $0.0302 |
 {: class="simple-tab-table"}
 {: caption="Table 4. Flex charge model for combined (storage capacity and data retrieval) is calculated using the lowest value of (A) storage capacity charge + data retrieval charge, or (B) capacity x Flex cap charge." caption-side="top"}
 {: #cap1}
@@ -142,7 +142,7 @@ subcollection: cloud-object-storage
 
 | Request type                  | US Cross Region | EU Cross Region | AP Cross Region |
 |-------------------------------|-----------------|-----------------|-----------------|
-| Total GB stored and retrieved | $0.0090         | $0.0090         | $0.0096         |
+| Total GB stored and retrieved | $0.034         | $0.0348         | $0.0358         |
 {: class="simple-tab-table"}
 {: caption="Table 4. Flex charge model for combined (storage capacity and data retrieval) is calculated using the lowest value of (A) storage capacity charge + data retrieval charge, or (B) capacity x Flex cap charge." caption-side="top"}
 {: #cap2}
@@ -151,7 +151,7 @@ subcollection: cloud-object-storage
 
 | Request type                  | Amsterdam, Netherlands | Chennai, India | Hong Kong S.A.R. of the PRC | Melbourne, Australia | Mexico City, Mexico | Milan, Italy | Montr&egrave;al, Canada | Oslo, Norway | Paris, France | San Jose, US | S&atilde;o Paulo, Brazil | Seoul, South Korea | Singapore | Toronto, Canada |
 |-------------------------------|------------------------|----------------|-----------------------------|----------------------|---------------------|--------------|-------------------------|--------------|---------------|--------------|--------------------------|--------------------|-----------|-----------------|
-| Total GB stored and retrieved | $0.0090                | $0.0090        | $0.0096                     | $0.0099              | $0.0108             | $0.0102      | $0.0090                 | $0.0090      | $0.0096       | $0.0099      | $0.0108                  | $0.0102            | $0.0099   | $0.0108         |
+| Total GB stored and retrieved | $0.0293                | $0.0308        | $0.0302                     | $0.0308              | $0.0296             | $0.0102      | $0.0299                 | $0.0296      | $0.0299       | $0.0290      | $0.0308                  | $0.0308            | $0.0302   | $0.0293         |
 {: class="simple-tab-table"}
 {: caption="Table 4. Flex charge model for combined (storage capacity and data retrieval) is calculated using the lowest value of (A) storage capacity charge + data retrieval charge, or (B) capacity x Flex cap charge." caption-side="top"}
 {: #cap3}
@@ -159,12 +159,12 @@ subcollection: cloud-object-storage
 {: tab-group="flex-cap"}
 
 
-| Aspera HST egress   | US South | US East | EU United Kingdom | EU Germany | AP Australia | AP Japan |
-|---------------------|----------|---------|-------------------|------------|--------------|----------|
-| 0 - 50 TB           | $0.0090  | $0.0090 | $0.0096           | $0.0099    | $0.0108      | $0.0102  |
-| Next 100 TB         | $0.0090  | $0.0090 | $0.0096           | $0.0099    | $0.0108      | $0.0102  |
-| Next 350 TB         | $0.0090  | $0.0090 | $0.0096           | $0.0099    | $0.0108      | $0.0102  |
-| Greater than 500 TB | $0.0090  | $0.0090 | $0.0096           | $0.0099    | $0.0108      | $0.0102  |
+| Aspera HST egress   | US South   | US East    | EU United Kingdom | EU Germany | AP Australia | AP Japan   |
+|---------------------|------------|------------|-------------------|------------|--------------|------------|
+| 0 - 50 TB           | $0.08      | $0.08      | $0.08             | $0.08      | $0.08        | $0.08      |
+| Next 100 TB         | $0.06      | $0.06      | $0.06             | $0.06      | $0.06        | $0.06      |
+| Next 350 TB         | $0.04      | $0.04      | $0.04             | $0.04      | $0.05        | $0.04      |
+| Greater than 500 TB | Contact us | Contact us | Contact us        | Contact us | Contact us   | Contact us |
 {: class="simple-tab-table"}
 {: caption="Table 5. Aspera High-Speed Tranfer outbound bandwidth (GB/month)" caption-side="top"}
 {: #aspera1}
@@ -173,22 +173,22 @@ subcollection: cloud-object-storage
 
 | Aspera HST egress   | US Cross Region | EU Cross Region | AP Cross Region |
 |---------------------|-----------------|-----------------|-----------------|
-| 0 - 50 TB           | $0.0140         | $0.0148         | $0.0158         |
-| Next 100 TB         | $0.0140         | $0.0148         | $0.0158         |
-| Next 350 TB         | $0.0140         | $0.0148         | $0.0158         |
-| Greater than 500 TB | $0.0140         | $0.0148         | $0.0158         |
+| 0 - 50 TB           | $0.08           | $0.08           | $0.08           |
+| Next 100 TB         | $0.06           | $0.06           | $0.06           |
+| Next 350 TB         | $0.04           | $0.04           | $0.04           |
+| Greater than 500 TB | Contact us      | Contact us      | Contact us      |
 {: class="simple-tab-table"}
 {: caption="Table 5. Aspera High-Speed Tranfer outbound bandwidth (GB/month)" caption-side="top"}
 {: #aspera2}
 {: tab-title="Cross Region"}
 {: tab-group="aspera-outbound-bandwidth"}
 
-| Aspera HST egress   | Amsterdam, Netherlands | Chennai, India | Hong Kong S.A.R. of the PRC | Melbourne, Australia | Mexico City, Mexico | Milan, Italy | Montr&egrave;al, Canada | Oslo, Norway | Paris, France | San Jose, US | S&atilde;o Paulo, Brazil | Seoul, South Korea | Singapore | Toronto, Canada |
-|---------------------|------------------------|----------------|-----------------------------|----------------------|---------------------|--------------|-------------------------|--------------|---------------|--------------|--------------------------|--------------------|-----------|-----------------|
-| 0 - 50 TB           | $0.01                  | $0.01          | $0.01                       | $0.01                | $0.01               | $0.01        | $0.01                   | $0.01        | $0.01         | $0.01        | $0.01                    | $0.01              | $0.01     | $0.01           |
-| Next 100 TB         | $0.01                  | $0.01          | $0.01                       | $0.01                | $0.01               | $0.01        | $0.01                   | $0.01        | $0.01         | $0.01        | $0.01                    | $0.01              | $0.01     | $0.01           |
-| Next 350 TB         | $0.01                  | $0.01          | $0.01                       | $0.01                | $0.01               | $0.01        | $0.01                   | $0.01        | $0.01         | $0.01        | $0.01                    | $0.01              | $0.01     | $0.01           |
-| Greater than 500 TB | $0.01                  | $0.01          | $0.01                       | $0.01                | $0.01               | $0.01        | $0.01                   | $0.01        | $0.01         | $0.01        | $0.01                    | $0.01              | $0.01     | $0.01           |
+| Aspera HST egress   | Amsterdam, Netherlands | Chennai, India | Hong Kong S.A.R. of the PRC | Melbourne, Australia | Mexico City, Mexico | Milan, Italy | Montr&egrave;al, Canada | Oslo, Norway | Paris, France | San Jose, US | S&atilde;o Paulo, Brazil | Seoul, South Korea | Singapore  | Toronto, Canada |
+|---------------------|------------------------|----------------|-----------------------------|----------------------|---------------------|--------------|-------------------------|--------------|---------------|--------------|--------------------------|--------------------|------------|-----------------|
+| 0 - 50 TB           | $0.08                  | $0.08          | $0.08                       | $0.08                | $0.08               | $0.08        | $0.08                   | $0.08        | $0.08         | $0.08        | $0.08                    | $0.08              | $0.08      | $0.08           |
+| Next 100 TB         | $0.06                  | $0.06          | $0.06                       | $0.06                | $0.06               | $0.06        | $0.06                   | $0.06        | $0.06         | $0.06        | $0.06                    | $0.06              | $0.06      | $0.06           |
+| Next 350 TB         | $0.04                  | $0.04          | $0.05                       | $0.04                | $0.04               | $0.05        | $0.04                   | $0.04        | $0.05         | $0.05        | $0.04                    | $0.04              | $0.05      | $0.04           |
+| Greater than 500 TB | Contact us             | Contact us     | Contact us                  | Contact us           | Contact us          | Contact us   | Contact us              | Contact us   | Contact us    | Contact us   | Contact us               | Contact us         | Contact us | Contact us      |
 {: class="simple-tab-table"}
 {: caption="Table 5. Aspera High-Speed Tranfer outbound bandwidth (GB/month)" caption-side="top"}
 {: #aspera3}
