@@ -46,8 +46,16 @@ In {{site.data.keyword.cos_full_notm}}, you can also monitor management events a
 You can use this service to investigate abnormal activity and critical actions, and to comply with regulatory audit requirements. In addition, you can be alerted about actions as they happen. The events that are collected comply with the Cloud Auditing Data Federation (CADF) standard.
 
 
+## Management events
+{: #at-actions-mngt}
 
-## Global events
+Management events are classified in the following categories:
+* Global events
+* Resource configuration events
+* Bucket events
+* Object events
+
+### Global events
 {: #at-actions-global}
 
 The following table lists the COS actions that generate a global event. You can monitor this events through the Activity Tracker instance that is available in the Frankfurt location.
@@ -58,15 +66,6 @@ The following table lists the COS actions that generate a global event. You can 
 | `cloud-object-storage.bucket.create`   | Create a bucket in the service instance |
 | `cloud-object-storage.bucket.delete`   | Delete a bucket in the service instance |
 {: caption="Table 1. {{site.data.keyword.cos_short}} actions that generate global events"}
-
-## Management events
-{: #at-actions-mngt}
-
-Management events are classified in the following categories:
-* Resource configuration events
-* Bucket events
-* Object events
-
 
 ### Resource configuration events
 {: #at-actions-mngt-1}
