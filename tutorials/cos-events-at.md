@@ -51,6 +51,9 @@ If you are already managing instances of {{site.data.keyword.cos_short}} or {{si
 For this tutorial, you need:
 * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com){: external}
 * To complete the steps to manage access to the service, your user ID needs **administrator platform permissions** to manage the {{site.data.keyword.at_full_notm}} service. You may have to contact a account administrator. The account owner can grant another user access to the account for the purposes of managing user access, and managing account resources. [Learn more](/docs/iam?topic=iam-userroles).
+* Your user ID needs to be configured with the **platform editor role** (at the very least) to create the {{site.data.keyword.cos_short}} instance and the **service access writer role** to create the manipulate buckets.
+* Installation of both the [IBM Cloud CLI](https://cloud.ibm.com/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli){: external} and [COS plugin](https://cloud.ibm.com/docs/cloud-object-storage-cli-plugin?topic=cloud-object-storage-cli-ic-cos-cli){: external}.
+{: cli}
 
 When you create buckets or add objects, be sure to avoid the use of Personally Identifiable Information (PII). PII is information that can identify any user (natural person) by name, location, or any other means.
 {: note}
