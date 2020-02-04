@@ -1105,4 +1105,4 @@ Content-Length: 0
 ## Next Steps
 {: #api-ref-objects-next-steps}
 
-Learn more about bucket operations at the [documentation](/docs/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations).
+Learn more about bucket operations at the [documentation](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations).
