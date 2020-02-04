@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019
-lastupdated: "2019-12-06"
+  years: 2019, 2020
+lastupdated: "2020-01-28"
 
 keywords: compliance, object storage, gdpr
 
@@ -49,7 +49,7 @@ For available certificates, please refer to listings titled “IBM Cloud Service
 ## System and Organization Controls (SOC)
 {: #compliance-soc}
 
-IBM Cloud Object Storage is certified for SOC 1 Type 1 and SOC 2 Type 1. 
+IBM Cloud Object Storage is certified for SOC 1 Type 2 and SOC 2 Type 2. 
 
 ## Payment Card Industry (PCI) data security standards
 {: #compliance-pci}

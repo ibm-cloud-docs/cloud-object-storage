@@ -127,22 +127,22 @@ Single data centers are not colocated with IBM Cloud services, such as IAM or Ke
 If a networking failure results in a partition where the data center is unable to access IAM, authentication and authorization information is read from a cache that might become stale. This cached data might result in a lack of enforcement of new or altered IAM policies for up to 24 hours.
 {: important}
 
-| Region | Type | Endpoint |
-|-----|-----|-----|
-| Amsterdam, Netherlands | Public | `s3.ams03.cloud-object-storage.appdomain.cloud` |
-| Chennai, India | Public | `s3.che01.cloud-object-storage.appdomain.cloud` |
+| Region                      | Type   | Endpoint                                        |
+|-----------------------------|--------|-------------------------------------------------|
+| Amsterdam, Netherlands      | Public | `s3.ams03.cloud-object-storage.appdomain.cloud` |
+| Chennai, India              | Public | `s3.che01.cloud-object-storage.appdomain.cloud` |
 | Hong Kong S.A.R. of the PRC | Public | `s3.hkg02.cloud-object-storage.appdomain.cloud` |
-| Melbourne, Australia | Public | `s3.mel01.cloud-object-storage.appdomain.cloud` |
-| Mexico City, Mexico | Public | `s3.mex01.cloud-object-storage.appdomain.cloud` |
-| Milan, Italy | Public | `s3.mil01.cloud-object-storage.appdomain.cloud` |
-| Montr&egrave;al, Canada | Public | `s3.mon01.cloud-object-storage.appdomain.cloud` |
-| Oslo, Norway | Public | `s3.osl01.cloud-object-storage.appdomain.cloud` |
-| Paris, France | Public | `s3.par01.cloud-object-storage.appdomain.cloud` |
-| San Jose, US | Public | `s3.sjc04.cloud-object-storage.appdomain.cloud` |
-| S&atilde;o Paulo, Brazil | Public | `s3.sao01.cloud-object-storage.appdomain.cloud` |
-| Seoul, South Korea | Public | `s3.seo01.cloud-object-storage.appdomain.cloud` |
-| Singapore | Public | `s3.sng01.cloud-object-storage.appdomain.cloud` |
-| Toronto, Canada | Public | `s3.tor01.cloud-object-storage.appdomain.cloud` |
+| Melbourne, Australia        | Public | `s3.mel01.cloud-object-storage.appdomain.cloud` |
+| Mexico City, Mexico         | Public | `s3.mex01.cloud-object-storage.appdomain.cloud` |
+| Milan, Italy                | Public | `s3.mil01.cloud-object-storage.appdomain.cloud` |
+| Montr&egrave;al, Canada     | Public | `s3.mon01.cloud-object-storage.appdomain.cloud` |
+| Oslo, Norway                | Public | `s3.osl01.cloud-object-storage.appdomain.cloud` |
+| Paris, France               | Public | `s3.par01.cloud-object-storage.appdomain.cloud` |
+| San Jose, US                | Public | `s3.sjc04.cloud-object-storage.appdomain.cloud` |
+| S&atilde;o Paulo, Brazil    | Public | `s3.sao01.cloud-object-storage.appdomain.cloud` |
+| Seoul, South Korea          | Public | `s3.seo01.cloud-object-storage.appdomain.cloud` |
+| Singapore                   | Public | `s3.sng01.cloud-object-storage.appdomain.cloud` |
+| Toronto, Canada             | Public | `s3.tor01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
 {: #sdcendpointtable1}

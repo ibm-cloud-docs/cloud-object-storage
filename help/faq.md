@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2020
+lastupdated: "2020-01-28"
 
 keywords: faq, frequently asked questions, object storage
 
@@ -39,9 +39,9 @@ Frequently asked questions can produce helpful answers and insight into best pra
 
 Bucket names are required to be DNS addressable, and not case-sensitive.
 
-**What is the maximum number of characters that can be used in an Object name?**
+**What is the maximum number of characters that can be used in a key, or Object name?**
 
-1024
+Keys have a 1024-character limit.
 
 **How can I find out the total size of my bucket by using the API?**
 
@@ -65,7 +65,7 @@ No, storage classes (and regions as well) are defined at the bucket level. Simpl
 
 **When I create a bucket by using the API, how do I set the storage class?**
 
-The storage class (for example, `us-flex`) is assigned to the `LocationConstraint` configuration variable for that bucket. This is because of a key difference between the way AWS S3 and {{site.data.keyword.cos_full_notm}} handle storage classes. {{site.data.keyword.cos_short}} sets storage classes at the bucket level, while AWS S3 assigns a storage class to an individual object. A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes).
+The storage class (for example, `us-smart`) is assigned to the `LocationConstraint` configuration variable for that bucket. This is because of a key difference between the way AWS S3 and {{site.data.keyword.cos_full_notm}} handle storage classes. {{site.data.keyword.cos_short}} sets storage classes at the bucket level, while AWS S3 assigns a storage class to an individual object. A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes).
 
 **Can the storage class of a bucket be changed? For example, if you have production data in 'standard', can we easily switch it to 'vault' for billing purposes if we are not using it frequently?**
 
