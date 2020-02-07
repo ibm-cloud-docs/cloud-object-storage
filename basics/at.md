@@ -46,8 +46,16 @@ In {{site.data.keyword.cos_full_notm}}, you can also monitor management events a
 You can use this service to investigate abnormal activity and critical actions, and to comply with regulatory audit requirements. In addition, you can be alerted about actions as they happen. The events that are collected comply with the Cloud Auditing Data Federation (CADF) standard.
 
 
+## Management events
+{: #at-actions-mngt}
 
-## Global events
+Management events are classified in the following categories:
+* Global events
+* Resource configuration events
+* Bucket events
+* Object events
+
+### Global events
 {: #at-actions-global}
 
 The following table lists the COS actions that generate a global event. You can monitor this events through the Activity Tracker instance that is available in the Frankfurt location.
@@ -58,15 +66,6 @@ The following table lists the COS actions that generate a global event. You can 
 | `cloud-object-storage.bucket.create`   | Create a bucket in the service instance |
 | `cloud-object-storage.bucket.delete`   | Delete a bucket in the service instance |
 {: caption="Table 1. {{site.data.keyword.cos_short}} actions that generate global events"}
-
-## Management events
-{: #at-actions-mngt}
-
-Management events are classified in the following categories:
-* Resource configuration events
-* Bucket events
-* Object events
-
 
 ### Resource configuration events
 {: #at-actions-mngt-1}
@@ -182,15 +181,12 @@ You can only provision 1 instance of the {{site.data.keyword.at_full_notm}} serv
 
 To view events, you must identify the location where events are collected and available for monitoring. Then, you must access the web UI of the {{site.data.keyword.at_full_notm}} instance in that location. For more information, see [Launching the web UI through the IBM Cloud UI](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-launch#launch_step2).
 
-### Global events
-{: #at-ui-global}
-
-{{site.data.keyword.cos_short}} global events are forwarded to the {{site.data.keyword.at_full_notm}} service instance that is located in Frankfurt.
-
 ### Management events
 {: #at-ui-mngt}
 
-{{site.data.keyword.cos_short}} management events are forwarded to the {{site.data.keyword.at_full_notm}} instance that is associated with the bucket.
+{{site.data.keyword.cos_short}} global events are forwarded to the {{site.data.keyword.at_full_notm}} service instance that is located in Frankfurt.
+
+All other {{site.data.keyword.cos_short}} management events are forwarded to the {{site.data.keyword.at_full_notm}} instance that is associated with the bucket.
 
 To view events, you must access the web UI of the {{site.data.keyword.at_full_notm}} instance in the location that is associated with the bucket.
 
