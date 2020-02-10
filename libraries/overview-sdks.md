@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-01-31"
+lastupdated: "2020-02-10"
 
 keywords: object storage, sdk, overview
 
