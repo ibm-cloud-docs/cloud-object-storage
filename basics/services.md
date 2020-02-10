@@ -1,8 +1,9 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2020
+
+lastupdated: "2020-02-10"
 
 keywords: aspera, key protect, archive, worm
 

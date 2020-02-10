@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-12-11"
+  years: 2017, 2020
+lastupdated: "2019-02-10"
 
 keywords: updates, releases, news, object storage
 
