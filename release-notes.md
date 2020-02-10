@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2020
+lastupdated: "2019-02-10"
 
 keywords: updates, releases, news, object storage
 
@@ -23,6 +23,11 @@ subcollection: cloud-object-storage
 
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
+
+## Q1 2020
+{: #updates-2020-q1}
+
+Check back soon for more information.
 
 ## Q4 2019
 {: #updates-2019-q4}

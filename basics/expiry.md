@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-19"
+  years: 2017, 2020
+lastupdated: "2020-02-10"
 
 keywords: expiry, glacier, tier, s3, compatibility, api
 
@@ -149,9 +149,9 @@ You can programmatically manage expiration rules by using the REST API or the IB
 This implementation of the `PUT` operation uses the `lifecycle` query parameter to set lifecycle settings for the bucket. This operation allows for a single lifecycle policy definition for a bucket. The policy is defined as a set of rules consisting of the following parameters: `ID`, `Status`, `Filter`, and `Expiration`.
 {: http}
  
-Cloud IAM users must have the `Writer` role to remove a lifecycle policy from a bucket.
+Cloud IAM users must have the `Writer` role to add a lifecycle policy from a bucket.
 
-Classic Infrastructure Users must have `Owner` permissions on the bucket to remove a lifecycle policy from a bucket.
+Classic Infrastructure Users must have `Owner` permissions on the bucket to add a lifecycle policy from a bucket.
 
 Header                    | Type   | Description
 --------------------------|--------|----------------------------------------------------------------------------------------------------------------------
@@ -414,9 +414,9 @@ package com.ibm.cloud;
 This implementation of the `GET` operation uses the `lifecycle` query parameter to examine lifecycle settings for the bucket. An HTTP `404` response will be returned if no lifecycle configuration is present.
 {: http}
 
-Cloud IAM users must have the `Reader` role to remove a lifecycle policy from a bucket.
+Cloud IAM users must have the `Reader` role to examine a lifecycle policy from a bucket.
 
-Classic Infrastructure Users must have `Read` permissions on the bucket to remove a lifecycle policy from a bucket.
+Classic Infrastructure Users must have `Read` permissions on the bucket to examine a lifecycle policy from a bucket.
 
 Header                    | Type   | Description
 --------------------------|--------|----------------------------------------------------------------------------------------------------------------------
