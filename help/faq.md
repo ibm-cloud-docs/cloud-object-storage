@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2020
+lastupdated: "2020-02-10"
 
 keywords: faq, frequently asked questions, object storage
 
@@ -39,9 +39,9 @@ Frequently asked questions can produce helpful answers and insight into best pra
 
 Bucket names are required to be DNS addressable, and not case-sensitive.
 
-**What is the maximum number of characters that can be used in an Object name?**
+**What is the maximum number of characters that can be used in a key, or Object name?**
 
-1024
+Keys have a 1024-character limit.
 
 **How can I find out the total size of my bucket by using the API?**
 
@@ -65,7 +65,7 @@ No, storage classes (and regions as well) are defined at the bucket level. Simpl
 
 **When I create a bucket by using the API, how do I set the storage class?**
 
-The storage class (for example, `us-flex`) is assigned to the `LocationConstraint` configuration variable for that bucket. This is because of a key difference between the way AWS S3 and {{site.data.keyword.cos_full_notm}} handle storage classes. {{site.data.keyword.cos_short}} sets storage classes at the bucket level, while AWS S3 assigns a storage class to an individual object. A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes).
+The storage class (for example, `us-smart`) is assigned to the `LocationConstraint` configuration variable for that bucket. This is because of a key difference between the way AWS S3 and {{site.data.keyword.cos_full_notm}} handle storage classes. {{site.data.keyword.cos_short}} sets storage classes at the bucket level, while AWS S3 assigns a storage class to an individual object. A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes).
 
 **Can the storage class of a bucket be changed? For example, if you have production data in 'standard', can we easily switch it to 'vault' for billing purposes if we are not using it frequently?**
 
@@ -77,7 +77,7 @@ Today changing of storage class requires manually moving or copying the data fro
 
 **Does data consistency in {{site.data.keyword.cos_short}} come with a performance impact?**
 
-Consistency with any distributed system comes with a cost, but the efficiency of the {{site.data.keyword.cos_full_notm}} dispersed storage system is higher, and overhead is lower compared to systems with multiple synchronous copies.
+Consistency with any distributed system comes with a cost, as the efficiency of the {{site.data.keyword.cos_full_notm}} dispersed storage system is not trivial, but lower compared to systems with multiple synchronous copies.
 
 **Aren't there performance implications if my application needs to manipulate large objects?**
 
@@ -91,7 +91,7 @@ For performance optimization, objects can be uploaded and downloaded in multiple
 
 Yes. Data at rest is encrypted with automatic provider side Advanced Encryption Standard (AES) 256-bit encryption and Secure Hash Algorithm (SHA)-256 hash. Data in motion is secured by using built-in carrier grade Transport Layer Security/Secure Sockets Layer (TLS/SSL) or SNMPv3 with AES encryption.
 
-**What is the typical encryption overhead if a customer wants to encrypt their data?**
+**Is there additional encryption processing if a customer wants to encrypt their data?**
 
 Server-side encryption is always on for customer data. Compared to the hashing required in S3 authentication and the erasure coding, encryption is not a significant part of the processing cost of COS.
 

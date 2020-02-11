@@ -1,8 +1,9 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2020
+
+lastupdated: "2020-02-10"
 
 keywords: aspera, key protect, archive, worm
 
@@ -43,7 +44,7 @@ For more information about the following services, be sure to check out the resp
 
 
 Downloads that use Aspera high-speed transfer incur extra egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage).
-{:tip}
+{: tip}
 
 ## Cross Region
 {: #service-availability-geo}

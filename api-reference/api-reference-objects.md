@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-13"
+  years: 2017, 2020
+lastupdated: "2020-02-10"
 
 keywords: rest, s3, compatibility, api, objects
 
@@ -52,7 +52,7 @@ When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [usi
 
 A `PUT` given a path to an object uploads the request body as an object. All objects uploaded in a single thread should be smaller than 500 MB (objects that are [uploaded in multiple parts](/docs/services/cloud-object-storage?topic=cloud-object-storage-large-objects) can be as large as 10 TB).
 
-**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
+**Note**: Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
 {: tip}
 
 **Syntax**
@@ -388,7 +388,7 @@ Content-Length: 207
 
 A `PUT` given a path to a new object creates a new copy of another object that is specified by the `x-amz-copy-source` header. Unless otherwise altered the metadata remains the same.
 
-**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
+**Note**: Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
 {:tip}
 
 
@@ -543,7 +543,7 @@ There are three phases to uploading an object in multiple parts:
 
 A `POST` issued to an object with the query parameter `upload` creates a new `UploadId` value, which is then be referenced by each part of the object being uploaded.
 
-**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
+**Note**: Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
 {:tip}
 
 **Syntax**
@@ -603,7 +603,7 @@ Content-Length: 276
 
 A `PUT` request that is issued to an object with query parameters `partNumber` and `uploadId` will upload one part of an object. The parts can be uploaded serially or in parallel, but must be numbered in order.
 
-**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
+**Note**: Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
 {:tip}
 
 **Syntax**
@@ -1105,4 +1105,4 @@ Content-Length: 0
 ## Next Steps
 {: #api-ref-objects-next-steps}
 
-Learn more about the API reference on bucket operations at the [documentation](/docs/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations).
+Learn more about bucket operations at the [documentation](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations).

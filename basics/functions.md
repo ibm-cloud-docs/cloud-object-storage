@@ -1,8 +1,9 @@
 ---
 
 copyright:
-  years: 2019
-lastupdated: "2019-11-11"
+  years: 2019, 2020
+
+lastupdated: "2020-02-10"
 
 keywords: events, serverless, whisk
 
@@ -35,7 +36,7 @@ With [{{site.data.keyword.openwhisk}}](/docs/openwhisk), you can use your favori
 
 1. You need to [allow Cloud Functions access](/docs/openwhisk?topic=cloud-functions-pkg_obstorage#pkg_obstorage_ev) to listen for changes that are made to your bucket. This involves creating a [service-to-service authorization](/docs/iam?topic=iam-serviceauth), and uses the new [Notifications Manager](/docs/openwhisk?topic=cloud-functions-pkg_obstorage#pkg_obstorage_auth) IAM role.
 2. Then, [create a trigger](/docs/openwhisk?topic=cloud-functions-pkg_obstorage#pkg_obstorage_ev_trig_ui) to respond to the changes feed.
-3. You can also use [the {{site.data.keyword.cos_full}} package](https://test.cloud.ibm.com/docs/openwhisk?topic=cloud-functions-pkg_obstorage#pkg_obstorage_actions) to bind credentials and easily script common tasks.
+3. You can also use [the {{site.data.keyword.cos_full}} package](/docs/openwhisk?topic=cloud-functions-pkg_obstorage#pkg_obstorage_actions) to bind credentials and easily script common tasks.
 
 For more information about using {{site.data.keyword.openwhisk}} with object storage, [see the Functions documentation](/docs/openwhisk?topic=cloud-functions-pkg_obstorage).
 
