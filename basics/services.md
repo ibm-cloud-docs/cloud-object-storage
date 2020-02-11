@@ -68,7 +68,7 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | EU Great Britain | Yes    | Yes         | No                             | Yes          | Yes                      | London           | Yes       | Yes        |
 | EU Germany       | Yes    | Yes         | No                             | Yes          | Yes                      | Frankfurt        | Yes       | Yes        |
 | US South         | Yes    | Yes         | Yes                            | Yes          | Yes                      | Dallas           | Yes       | Yes        |
-| US East          | Yes    | Yes         | No                             | Yes          | Yes                      | Dallas           | Yes       | Yes        |
+| US East          | Yes    | Yes         | No                             | Yes          | Yes                      | Washington DC           | Yes       | Yes        |
 
 ## Single Data Centers
 {: #service-availability-zone}
