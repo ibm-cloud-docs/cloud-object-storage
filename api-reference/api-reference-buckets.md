@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-13"
+  years: 2017, 2020
+lastupdated: "2020-02-10"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -208,7 +208,7 @@ Header                                        | Type   | Description
 ------------------------------------------------- | ------ | ----
 `ibm-service-instance-id`  | String  |  This header references the service instance where the bucket will be created and to which data usage will be billed.
 
-**Note**: Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means in the name of the bucket or object.
+**Note**: Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means in the name of the bucket or object.
 {:tip}
 
 **Syntax**
@@ -840,7 +840,7 @@ Content-Length: 909
 ## Delete a bucket
 {: #compatibility-api-delete-bucket}
 
-A `DELETE` issued to an empty bucket deletes the bucket. After deleting a bucket the name will be held in reserve by the system for 10 minutes, after which it will be released for re-use. *Only empty buckets can be deleted.*
+A `DELETE` issued to an empty bucket deletes the bucket. After deleting a bucket the name will be held in reserve by the system for 7 days, after which it will be released for re-use. *Only empty buckets can be deleted.*
 
 **Syntax**
 
@@ -1529,7 +1529,7 @@ Immutable Object Storage is available in certain regions only, see [Integrated S
 
 Find out more about Immutable Object Storage in the [documentation](/docs/cloud-object-storage?topic=cloud-object-storage-immutable). 
 
-The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are 0 days and 365243 days (1000 years) respectively. 
+The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are a minimum of 0 days and a maximum of 365243 days (1000 years). 
 
 This operation does not make use of extra query parameters. The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. The following snippet shows one way to achieve the content for that particular header.
 
@@ -1599,4 +1599,4 @@ Content-Length: 0
 ## Next Steps
 {: #api-ref-buckets-next-steps}
 
-Learn more about the API reference on object operations at the [documentation](/docs/api-reference?topic=cloud-object-storage-object-operations).
+Learn more about object operations at the [documentation](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations).
