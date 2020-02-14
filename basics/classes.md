@@ -57,7 +57,7 @@ For more information about how to create buckets with different storage classes,
 When creating a bucket in the console, there is a menu that allows for storage class selection. 
 
 When creating buckets programmatically, it is necessary to specify a `LocationConstraint` that corresponds with the endpoint used. Valid provisioning codes for `LocationConstraint` are <br>
-&emsp;&emsp;  **US Geo** `us-standard` / `us-vault` / `us-cold` / `us-flex`  <br>
+&emsp;&emsp;  **US Geo** `us-standard` / `us-vault` / `us-cold` / `us-flex` / `us-smart` <br>
 &emsp;&emsp;  **US East** `us-east-standard` / `us-east-vault`  / `us-east-cold` / `us-east-flex` / `us-east-smart` <br>
 &emsp;&emsp;  **US South** `us-south-standard` / `us-south-vault`  / `us-south-cold` / `us-south-flex` / `us-south-smart` <br>
 &emsp;&emsp;  **EU Geo** `eu-standard` / `eu-vault` / `eu-cold` / `eu-flex`  <br>
