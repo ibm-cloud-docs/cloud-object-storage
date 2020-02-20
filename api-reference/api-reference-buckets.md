@@ -50,7 +50,7 @@ When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [usi
 ## List buckets
 {: #compatibility-api-list-buckets}
 
-A `GET` request sent to the endpoint root returns a list of buckets that are associated with the specified service instance. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+A `GET` request sent to the endpoint root returns a list of buckets that are associated with the specified service instance. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
 Header                    | Type   | Required? |  Description
 --------------------------|--------|---| -----------------------------
@@ -199,7 +199,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 ## Create a bucket
 {: #compatibility-api-new-bucket}
 
-A `PUT` request sent to the endpoint root followed by a string will create a bucket. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints). Bucket names must be globally unique and DNS-compliant; names between 3 and 63 characters long must be made of lowercase letters, numbers, and dashes. Bucket names must begin and end with a lowercase letter or number. Bucket names resembling IP addresses are not allowed. This operation doesn't make use of operation specific query parameters.
+A `PUT` request sent to the endpoint root followed by a string will create a bucket. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints). Bucket names must be globally unique and DNS-compliant; names between 3 and 63 characters long must be made of lowercase letters, numbers, and dashes. Bucket names must begin and end with a lowercase letter or number. Bucket names resembling IP addresses are not allowed. This operation doesn't make use of operation specific query parameters.
 
 Bucket names must be unique because all buckets in the public cloud share a global namespace. This allows for access to a bucket without needing to provide any service instance or account information. It is also not possible to create a bucket with a name beginning with `cosv1-` or `account-` as these prefixes are reserved by the system.
 {:important}
@@ -263,7 +263,7 @@ Content-Length: 0
 ## Create a bucket with a different storage class
 {: #compatibility-api-storage-class}
 
-To create a bucket with a different storage class, send an XML block specifying a bucket configuration with a `LocationConstraint` of `{provisioning code}` in the body of a `PUT` request to a bucket endpoint. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints). Note that standard bucket [naming rules](#compatibility-api-new-bucket) apply. This operation does not make use of operation specific query parameters.
+To create a bucket with a different storage class, send an XML block specifying a bucket configuration with a `LocationConstraint` of `{provisioning code}` in the body of a `PUT` request to a bucket endpoint. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints). Note that standard bucket [naming rules](#compatibility-api-new-bucket) apply. This operation does not make use of operation specific query parameters.
 
 Header                                        | Type   | Description
 ------------------------------------------------- | ------ | ----
@@ -289,7 +289,7 @@ The body of the request must contain an XML block with the following schema:
 </CreateBucketConfiguration>
 ```
 
-A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint).
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint).
 
 **Example request**
 {: token}
@@ -343,9 +343,9 @@ Content-Length: 0
 
 To create a bucket where the encryption keys are managed by Key Protect or {{site.data.keyword.hscrypto}}, it is necessary to have access to an active Key Protect or {{site.data.keyword.hscrypto}} service instance located in the same location as the new bucket. This operation does not make use of operation specific query parameters.
 
-For more information on using Key Protect to manage your encryption keys, [see the documentation for Key Protect](/docs/services/key-protect?topic=key-protect-getting-started-tutorial).
+For more information on using Key Protect to manage your encryption keys, [see the documentation for Key Protect](/docs/key-protect?topic=key-protect-getting-started-tutorial).
 
-For more information on {{site.data.keyword.hscrypto}}, [see the documentation](/docs/services/hs-crypto?topic=hs-crypto-get-started).
+For more information on {{site.data.keyword.hscrypto}}, [see the documentation](/docs/hs-crypto?topic=hs-crypto-get-started).
 
 Note that managed encryption is **not** available in a Cross Region configuration and any SSE-KP buckets must be Regional.
 {:tip}
@@ -1526,7 +1526,7 @@ The server responds with `204 No Content`.
 ## Add a retention policy on an existing bucket
 {: #compatibility-api-add-retention-policy}
 
-Immutable Object Storage is available in certain regions only, see [Integrated Services](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability#service-availability) for details. The service also requires a Standard pricing plan. See [pricing](https://www.ibm.com/cloud/object-storage) for details.
+Immutable Object Storage is available in certain regions only, see [Integrated Services](/docs/cloud-object-storage/basics?topic=cloud-object-storage-service-availability#service-availability) for details. The service also requires a Standard pricing plan. See [pricing](https://www.ibm.com/cloud/object-storage) for details.
 {:note}
 
 Find out more about Immutable Object Storage in the [documentation](/docs/cloud-object-storage?topic=cloud-object-storage-immutable). 

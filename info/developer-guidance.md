@@ -77,9 +77,9 @@ The basic concept behind the object listing method involves setting the maximum 
 ### Using Java
 {: #dev-guide-pagination-java}
 
-The {{site.data.keyword.cos_full}} SDK for Java provides the [`listObjectsV2`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){: external} method that allows for returning the object listing in the wanted size. There is a complete code example available [here](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java#list-objects-v2).
+The {{site.data.keyword.cos_full}} SDK for Java provides the [`listObjectsV2`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){: external} method that allows for returning the object listing in the wanted size. There is a complete code example available [here](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java#list-objects-v2).
 
 ### Using Python
 {: #dev-guide-pagination-python}
 
-The {{site.data.keyword.cos_full}} SDK for Python provides the [`list_objects_v2`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){: external} method that allows for returning the object listing in the wanted size. There is a complete code example available [here](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python#list-objects-v2).
+The {{site.data.keyword.cos_full}} SDK for Python provides the [`list_objects_v2`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){: external} method that allows for returning the object listing in the wanted size. There is a complete code example available [here](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python#list-objects-v2).

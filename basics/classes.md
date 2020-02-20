@@ -49,7 +49,7 @@ You can choose from five storage classes:
 
 For more information, see [the pricing table at ibm.com](https://www.ibm.com/cloud/object-storage#s3api).
 
-For more information about how to create buckets with different storage classes, see the [API reference](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
+For more information about how to create buckets with different storage classes, see the [API reference](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
 
 ## How do I create a bucket with a different storage class?
 {: #classes-locationconstraint}
@@ -82,7 +82,7 @@ When creating buckets programmatically, it is necessary to specify a `LocationCo
 &emsp;&emsp;  **Toronto** `tor01-standard` / `tor01-vault` / `tor01-cold` / `tor01-flex`  <br>
 
 
-For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
 ## Using the REST API, Libraries, and SDKs
 {: #classes-sdk}

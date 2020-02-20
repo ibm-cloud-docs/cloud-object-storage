@@ -35,12 +35,12 @@ The document describes the regions where services and the different kinds of ava
 
 For more information about the following services, be sure to check out the respective links:
 
-* [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera)
-* [Key Protect](/docs/services/cloud-object-storage/basics/cloud-object-storage/basics?topic=cloud-object-storage-encryption#sse-kp)
-* [{{site.data.keyword.hscrypto}} ({{site.data.keyword.hscrypto}})](/docs/services/cloud-object-storage?topic=cloud-object-storage-encryption)
-* [Archive Data](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-archive)
-* [Immutable Object Storage](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-immutable)
-* [Activity Tracker](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started)
+* [Aspera high-speed transfer](/docs/cloud-object-storage/basics?topic=cloud-object-storage-aspera)
+* [Key Protect](/docs/cloud-object-storage/basics/cloud-object-storage/basics?topic=cloud-object-storage-encryption#sse-kp)
+* [{{site.data.keyword.hscrypto}} ({{site.data.keyword.hscrypto}})](/docs/cloud-object-storage?topic=cloud-object-storage-encryption)
+* [Archive Data](/docs/cloud-object-storage/basics?topic=cloud-object-storage-archive)
+* [Immutable Object Storage](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable)
+* [Activity Tracker](/docs/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started)
 
 
 Downloads that use Aspera high-speed transfer incur extra egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage).

@@ -25,13 +25,13 @@ subcollection: cloud-object-storage
 # Track events using Activity Tracker with LogDNA
 {: #at}
 
-[Activity Tracker with LogDNA](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started) allows you to [audit the requests](/docs/services/cloud-object-storage?topic=cloud-object-storage-at-events) made against a bucket and the objects it contains.
+[Activity Tracker with LogDNA](/docs/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started) allows you to [audit the requests](/docs/cloud-object-storage?topic=cloud-object-storage-at-events) made against a bucket and the objects it contains.
 {: shortdesc}
 
 ## Using the console
 {: #at-console}
 
-First, make sure that you have a bucket. If not, follow the [getting started tutorial](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started) to become familiar with the console. 
+First, make sure that you have a bucket. If not, follow the [getting started tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started) to become familiar with the console. 
 
 ### Enable activity tracking
 {: #at-console-enable}
@@ -43,12 +43,12 @@ First, make sure that you have a bucket. If not, follow the [getting started tut
 5. Navigate to the **Activity Tracker** tab.
 6. Click **Create**.
 7. If you already have an instance of Activity Tracker with LogDNA, you can select it here.  If not, select the appropriate configuration, and click **Create**.
-8. After a few minutes, any activity will be [visible in the web UI](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-launch).
+8. After a few minutes, any activity will be [visible in the web UI](/docs/Activity-Tracker-with-LogDNA?topic=logdnaat-launch).
 
 ### Archive events to object storage.
 {: #at-archive}
 
-It is possible to have all data collected in an instance of Activity Tracker with LogDNA be archived and written to a bucket.  For more information, [see the Activity Tracker documentation](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-archiving).
+It is possible to have all data collected in an instance of Activity Tracker with LogDNA be archived and written to a bucket.  For more information, [see the Activity Tracker documentation](/docs/Activity-Tracker-with-LogDNA?topic=logdnaat-archiving).
 
 
 ## Using an API

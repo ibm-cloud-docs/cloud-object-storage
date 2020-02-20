@@ -593,7 +593,7 @@ Deploying the app from the CLI is not necessary, as the deployment has been inte
 
 You need to configure {{site.data.keyword.cos_short}} credentials for your web application, as well as a 'bucket'
 where it will store and retrieve images. The API key that you will create will need {{site.data.keyword.cos_short}} HMAC credentials, as defined by your 
-[Service Credentials](https://cloud.ibm.com/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-service-credentials). 
+[Service Credentials](https://cloud.ibm.com/docs/cloud-object-storage/hmac?topic=cloud-object-storage-service-credentials). 
 You might recognize the terms `access_key_id` and `secret_access_key` as you might have an AWS account, and use 
 a credentials file that already has `aws_access_key_id` and `aws_secret_access_key` entries. 
 

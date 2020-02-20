@@ -40,5 +40,5 @@ With [{{site.data.keyword.openwhisk}}](/docs/openwhisk), you can use your favori
 
 For more information about using {{site.data.keyword.openwhisk}} with object storage, [see the Functions documentation](/docs/openwhisk?topic=cloud-functions-pkg_obstorage).
 
-It isn't possible to use a [bucket with a firewall enabled](/docs/services/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall) as an event source for {{site.data.keyword.openwhisk}} actions.
+It isn't possible to use a [bucket with a firewall enabled](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall) as an event source for {{site.data.keyword.openwhisk}} actions.
 {: important}

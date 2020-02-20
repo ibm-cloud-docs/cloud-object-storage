@@ -176,8 +176,8 @@ Configure [`kubectl`](https://kubernetes.io/docs/reference/kubectl/overview/){: 
 
 3. Specify the following values in `config/ibm/05-ark-backupstoragelocation.yaml`:
    * `<YOUR_BUCKET>` - Name of the bucket for storing backup files
-   * `<YOUR_REGION>` - The [location constraint](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint) of your bucket (`us-standard`)
-   * `<YOUR_URL_ACCESS_POINT>` - The regional endpoint URL (`https://s3.us.cloud-object-storage.appdomain.cloud`). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+   * `<YOUR_REGION>` - The [location constraint](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint) of your bucket (`us-standard`)
+   * `<YOUR_URL_ACCESS_POINT>` - The regional endpoint URL (`https://s3.us.cloud-object-storage.appdomain.cloud`). For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
     *For more information, see [BackupStorageLocation](https://heptio.github.io/velero/master/api-types/backupstoragelocation.html#aws){: external} definition for additional information.*
 

@@ -47,7 +47,7 @@ mc config host add <ALIAS> <COS-ENDPOINT> <ACCESS-KEY> <SECRET-KEY>
 ```
 
 * `<ALIAS>` - short name for referencing {{site.data.keyword.cos_short}} in commands
-* `<COS-ENDPOINT` - endpoint for your {{site.data.keyword.cos_short}} instance. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+* `<COS-ENDPOINT` - endpoint for your {{site.data.keyword.cos_short}} instance. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `<ACCESS-KEY>` - access key that is assigned to your Service Credential
 * `<SECRET-KEY>` - secret key that is assigned to your Service Credential
 
@@ -72,7 +72,7 @@ mc mb cos/my_test_bucket
 ### `ls` - List Buckets
 {: #minio-ls}
 
-Though all your available buckets are listed, not all objects might be accessible depending on the specified [endpoint's](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints) region.
+Though all your available buckets are listed, not all objects might be accessible depending on the specified [endpoint's](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints) region.
 {: tip}
 
 ```
@@ -125,7 +125,7 @@ mc head cos/testbucket1/mynewfile1.txt
 ### `cp` - Copy objects
 {: #minio-cp}
 
-This command copies an object between two locations. These locations can be different hosts (such as different [endpoints](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints) or storage services) or local file system locations (such as `~/foo/filename.pdf`).
+This command copies an object between two locations. These locations can be different hosts (such as different [endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints) or storage services) or local file system locations (such as `~/foo/filename.pdf`).
 ```
 mc cp cos/testbucket1/mynewfile1.txt cos/my_test_bucket/cp_from_minio.txt
 ```

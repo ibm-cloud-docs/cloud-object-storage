@@ -33,11 +33,11 @@ By default, all objects that are stored in {{site.data.keyword.cos_full_notm}} a
 
 With {{site.data.keyword.cos_short}} you also have a choice to use our integration capabilities with {{site.data.keyword.cloud}} Key Management Services like {{site.data.keyword.keymanagementservicelong}} and {{site.data.keyword.hscrypto}}. Depending on the security requirements, you can decide whether to use IBM Key Protect or IBM {{site.data.keyword.hscrypto}} for your IBM Cloud Object Storage buckets.
 
-[{{site.data.keyword.keymanagementservicefull}}](/docs/services/key-protect?topic=key-protect-about) helps you provision encrypted keys for apps across {{site.data.keyword.cloud}} services. As you manage the lifecycle of your keys, you can benefit from knowing that your keys are secured by FIPS 140-2 Level 3 certified cloud-based hardware security modules (HSMs) that protect against the theft of information.
+[{{site.data.keyword.keymanagementservicefull}}](/docs/key-protect?topic=key-protect-about) helps you provision encrypted keys for apps across {{site.data.keyword.cloud}} services. As you manage the lifecycle of your keys, you can benefit from knowing that your keys are secured by FIPS 140-2 Level 3 certified cloud-based hardware security modules (HSMs) that protect against the theft of information.
 
-[{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-crypto-overview) is a single-tenant, dedicated HSM that is controlled by you. The service is built on FIPS 140-2 Level 4-certified hardware, the highest offered by any cloud provider in the industry.
+[{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-overview) is a single-tenant, dedicated HSM that is controlled by you. The service is built on FIPS 140-2 Level 4-certified hardware, the highest offered by any cloud provider in the industry.
 
-Refer to product documentation on [{{site.data.keyword.keymanagementservicefull}}](/docs/services/key-protect?topic=key-protect-about) and [{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-crypto-overview) for a detailed overview of the two services.
+Refer to product documentation on [{{site.data.keyword.keymanagementservicefull}}](/docs/key-protect?topic=key-protect-about) and [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-overview) for a detailed overview of the two services.
 
 
 ## Server-Side Encryption with Customer-Provided Keys (SSE-C)
@@ -56,7 +56,7 @@ Header | Type | Description
 ## Server-Side Encryption with {{site.data.keyword.keymanagementservicelong_notm}} or {{site.data.keyword.hscrypto}} (SSE-KP)
 {: #encryption-kp}
 
-You can use [IBM Key Protect](/docs/services/key-protect?topic=key-protect-about) or [{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-crypto-overview) to create, add, and manage keys, which you can then associate with your instance of IBM® Cloud Object Storage to encrypt buckets.
+You can use [IBM Key Protect](/docs/key-protect?topic=key-protect-about) or [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-overview) to create, add, and manage keys, which you can then associate with your instance of IBM® Cloud Object Storage to encrypt buckets.
 
 ### Before you begin
 Before you plan on using either Key Protect or {{site.data.keyword.hscrypto}} with Cloud Object Storage buckets, you need:
@@ -72,8 +72,8 @@ After you have made the decision to either use IBM Key Protect or {{site.data.ke
 ### Provisioning an instance of IBM Key Protect or {{site.data.keyword.hscrypto}}
 Refer to the service-specific product pages for instructions on how to provision and setup appropriate service instances.
 
-- Getting started with [IBM Key Protect](/docs/services/key-protect?topic=key-protect-getting-started-tutorial#getting-started-tutorial) 
-- Getting started with [{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-crypto-get-started)
+- Getting started with [IBM Key Protect](/docs/key-protect?topic=key-protect-getting-started-tutorial#getting-started-tutorial) 
+- Getting started with [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-get-started)
 
 Once you have an instance of Key Protect or {{site.data.keyword.hscrypto}} in a region that you want to create a new bucket in, you need to create a root key and note the CRN of that key. The CRN is sent in a header during bucket creation.
 
@@ -81,11 +81,11 @@ Note that the location in which the bucket is created must be the same location 
 {:important}
 
 ### Create or add a key in Key Protect
-Navigate to your instance of Key Protect and [generate or enter a root key](/docs/services/key-protect?topic=key-protect-getting-started-tutorial).
+Navigate to your instance of Key Protect and [generate or enter a root key](/docs/key-protect?topic=key-protect-getting-started-tutorial).
 
 
 ### Create or add a key in {{site.data.keyword.hscrypto}}
-Navigate to your instance of {{site.data.keyword.hscrypto}} and [initialize the service instance](/docs/services/hs-crypto?topic=hs-crypto-initialize-hsm). Once a [master key](/docs/services/hs-crypto?topic=hs-crypto-initialize-hsm#step1-create-signature-keys) has been created, [generate or enter a root key](/docs/services/hs-crypto?topic=hs-crypto-create-root-keys).
+Navigate to your instance of {{site.data.keyword.hscrypto}} and [initialize the service instance](/docs/hs-crypto?topic=hs-crypto-initialize-hsm). Once a [master key](/docs/hs-crypto?topic=hs-crypto-initialize-hsm#step1-create-signature-keys) has been created, [generate or enter a root key](/docs/hs-crypto?topic=hs-crypto-create-root-keys).
 
 
 ### Grant service authorization
@@ -123,7 +123,7 @@ In the **Buckets and objects** listing, the bucket now has a _View_ link under *
 Note that the `Etag` value returned for objects encrypted using SSE-KP or {{site.data.keyword.hscrypto}} **will** be the actual MD5 hash of the original decrypted object.
 {:tip}
 
-It is also possible to use [the REST API](/docs/services/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-key-protect) or SDKs ([Go](/docs/services/cloud-object-storage?topic=cloud-object-storage-go#go-examples-kp), [Java](/docs/services/cloud-object-storage?topic=cloud-object-storage-java#java-examples-kp-bucket), [Node.js](/docs/services/cloud-object-storage?topic=cloud-object-storage-node#node-examples-kp), [Python](/docs/services/cloud-object-storage?topic=cloud-object-storage-python#python-examples-kp))
+It is also possible to use [the REST API](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-key-protect) or SDKs ([Go](/docs/cloud-object-storage?topic=cloud-object-storage-go#go-examples-kp), [Java](/docs/cloud-object-storage?topic=cloud-object-storage-java#java-examples-kp-bucket), [Node.js](/docs/cloud-object-storage?topic=cloud-object-storage-node#node-examples-kp), [Python](/docs/cloud-object-storage?topic=cloud-object-storage-python#python-examples-kp))
 
 
 
@@ -132,4 +132,4 @@ It is also possible to use [the REST API](/docs/services/cloud-object-storage?to
 
 Key rotation is an important part of mitigating the risk of a data breach. Periodically changing keys reduces the potential data loss if the key is lost or compromised. The frequency of key rotations varies by organization and depends on a number of variables, such as the environment, the amount of encrypted data, classification of the data, and compliance laws. The [National Institute of Standards and Technology (NIST)](https://www.nist.gov/topics/cryptography){: external} provides definitions of appropriate key lengths and provides guidelines for how long keys should be used.
 
-For more information, see the documentation for rotating keys in [Key Protect](/docs/services/key-protect?topic=key-protect-set-rotation-policy) or [{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-crypto-rotating-keys).
+For more information, see the documentation for rotating keys in [Key Protect](/docs/key-protect?topic=key-protect-set-rotation-policy) or [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-rotating-keys).

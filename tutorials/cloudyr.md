@@ -47,7 +47,7 @@ We need to make sure that we have the prerequisites before continuing:
 ### Create HMAC credentials
 {: #cloudyr-hmac}
 
-Before we begin, we might need to create a set of [HMAC credentials](/docs/hmac?topic=cloud-object-storage-hmac) as part of a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) by using the configuration parameter `{"HMAC":true}` when we create credentials. For example, use the {{site.data.keyword.cos_full_notm}} CLI as shown here. 
+Before we begin, we might need to create a set of [HMAC credentials](/docs/hmac?topic=cloud-object-storage-hmac) as part of a [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) by using the configuration parameter `{"HMAC":true}` when we create credentials. For example, use the {{site.data.keyword.cos_full_notm}} CLI as shown here. 
   
 ```bash
 ibmcloud resource service-key-create <key-name-without-spaces> Writer --instance-name "<instance name--use quotes if your instance name has spaces>" --parameters '{"HMAC":true}'
