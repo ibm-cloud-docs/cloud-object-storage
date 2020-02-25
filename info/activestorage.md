@@ -72,9 +72,9 @@ You can declare any number of service instances with different endpoints and buc
 {:tip}
 
 *Key Values*
-* `<bucket-region>` - Region that matches your bucket (that is, `us-south-standard`). Full list available [here](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-classes#classes-locationconstraint).
+* `<bucket-region>` - Region that matches your bucket (that is, `us-south-standard`). Full list available [here](/docs/cloud-object-storage/basics?topic=cloud-object-storage-classes#classes-locationconstraint).
 * `<bucket-name>` - Name of your bucket
-* `<regional-endpoint>` - Endpoint to access your bucket (such as `https://s3.us-south.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net`). A full list of endpoints available [here](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+* `<regional-endpoint>` - Endpoint to access your bucket (such as `https://s3.us-south.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net`). A full list of endpoints available [here](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
 
 The statement `<%= Rails.application.credentials.dig(:aws, :access_key_id|secret_access_key) %>` instructs Rails to pull the access key and secret key from the credentials data that is stored at `~/.aws/credentials` in the format:
 
@@ -120,4 +120,4 @@ To enable Rails access to your bucket, you must create a Cross-Origin Resource S
 
 This configuration allows requests from `www.ibm.com` to run `GET`, `PUT`, and `POST` requests to your bucket. Adjust the `<AllowedOrigin>` entry to suit your application's needs. 
 
-Allowing `x-amz-*` and `content-*` headers is also required in order for Rails to properly interact with your bucket. More information about CORS is available in the [API Reference](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#create-a-cross-origin-resource-sharing-configuration-for-a-bucket).
+Allowing `x-amz-*` and `content-*` headers is also required in order for Rails to properly interact with your bucket. More information about CORS is available in the [API Reference](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#create-a-cross-origin-resource-sharing-configuration-for-a-bucket).

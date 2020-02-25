@@ -32,7 +32,7 @@ subcollection: cloud-object-storage
 Presigned URLs create a temporary link that can be used to share an object publicly, or to [provide a temporary target for sending a PUT request](https://medium.com/codait/keeping-your-secrets-between-cloud-object-storage-and-your-browser-part-1-68f4b83bbd38) without needing to provide authentication information.
 {: shortdesc}
 
-The easiest way to create presigned URLs is using the [AWS CLI](/docs/services/cloud-object-storage/cli?topic=cloud-object-storage-aws-cli):
+The easiest way to create presigned URLs is using the [AWS CLI](/docs/cloud-object-storage/cli?topic=cloud-object-storage-aws-cli):
 
 ```bash
 $ aws --endpoint-url=https://{endpoint} s3 presign s3://bucket-1/new-file
@@ -44,7 +44,7 @@ It is also possible to set an expiration time for the URL in seconds (default is
 $ aws --endpoint-url=https://{endpoint} s3 presign s3://bucket-1/new-file --expires-in 600
 ```
 
-It is also possible to construct them programmatically. Here are examples for basic `GET` operations written in Python. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+It is also possible to construct them programmatically. Here are examples for basic `GET` operations written in Python. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
 Unlike AWS S3, IBM COS does not enforce a maximum expiration time of 7 days (604800 seconds). While it is possible to create a presigned URL with a long expiration value, most use cases that require extended public access would be better served by [implementing a public access policy](/docs/cloud-object-storage/info?topic=cloud-object-storage-iam-public-access) on a bucket instead.
 {: tip}

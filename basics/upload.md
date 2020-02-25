@@ -37,7 +37,7 @@ Depending on how you want to use your storage, there are different ways to get d
 ## Using the console
 {: #upload-console}
 
-Typically, using the web-based console is not the most common way to use {{site.data.keyword.cos_short}}. Objects are limited to 200 MB and the file name and key are identical. Multiple objects can be uploaded at the same time, and if the browser allows for multiple threads each object will be uploaded by using multiple parts in parallel. Support for larger object sizes and improved performance (depending on network factors) is provided by [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera).
+Typically, using the web-based console is not the most common way to use {{site.data.keyword.cos_short}}. Objects are limited to 200 MB and the file name and key are identical. Multiple objects can be uploaded at the same time, and if the browser allows for multiple threads each object will be uploaded by using multiple parts in parallel. Support for larger object sizes and improved performance (depending on network factors) is provided by [Aspera high-speed transfer](/docs/cloud-object-storage/basics?topic=cloud-object-storage-aspera).
 
 ## Using a compatible tool
 {: #upload-tool}
@@ -49,4 +49,4 @@ Some examples include file explorers like [Cyberduck](https://cyberduck.io/) or 
 ## Using the API
 {: #upload-api}
 
-Most programmatic applications of Object Storage use an SDK (such as [Java](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java), [node.js](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node), or [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python)) or the [Cloud Object Storage API](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api). Typically objects are uploaded in [multiple parts](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-large-objects), with part size and number of parts configured by a Transfer Manager class.
+Most programmatic applications of Object Storage use an SDK (such as [Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java), [node.js](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-node), or [Python](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python)) or the [Cloud Object Storage API](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api). Typically objects are uploaded in [multiple parts](/docs/cloud-object-storage/basics?topic=cloud-object-storage-large-objects), with part size and number of parts configured by a Transfer Manager class.

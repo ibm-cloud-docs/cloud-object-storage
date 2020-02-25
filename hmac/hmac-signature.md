@@ -29,7 +29,7 @@ subcollection: cloud-object-storage
 # Constructing an HMAC signature
 {: #hmac-signature}
 
-Instead of token-based authorization, it's possible to use [HMAC credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-hmac). 
+Instead of token-based authorization, it's possible to use [HMAC credentials](/docs/cloud-object-storage/hmac?topic=cloud-object-storage-hmac). 
 {: shortdesc}
 
 These credentials are used to create an authorization header analogous to AWS Signature Version 4. Calculating signatures provides identity verification and in-transit data integrity. Each signature is tied to the time stamp of the request, so you can't reuse authorization headers. The header is composed of four components: an algorithm declaration, credential information, signed headers, and the calculated signature.
@@ -479,4 +479,4 @@ request.end();
 ## Next steps
 {: #hmac-sig-next-steps}
 
-You can review the documentation for credentials as part of a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials). For an overview on authentication, check out the [{{site.data.keyword.cloud_notm}} Identity and Access Management service](/docs/cloud-object-storage?topic=cloud-object-storage-iam-overview).
+You can review the documentation for credentials as part of a [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials). For an overview on authentication, check out the [{{site.data.keyword.cloud_notm}} Identity and Access Management service](/docs/cloud-object-storage?topic=cloud-object-storage-iam-overview).

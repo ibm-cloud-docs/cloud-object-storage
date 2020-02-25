@@ -36,7 +36,7 @@ This level of security is accomplished by using Information Dispersal Algorithms
 
 All data in {{site.data.keyword.cos_full_notm}} is encrypted at rest. This technology individually encrypts each object by using per-object generated keys. These keys are secured and reliably stored by using the same Information Dispersal Algorithms that protect object data by using an All-or-Nothing Transform (AONT). Key data is impossible to recover, even if individual nodes or hard disks are compromised.
 
-If it's necessary for a user to control encryption keys, root keys can be provided on a [per-object basis that uses SSE-C](/docs/services/cloud-object-storage?topic=cloud-object-storage-encryption#encryption-sse-c), or a [per-bucket basis that uses SSE-KP](/docs/services/cloud-object-storage?topic=cloud-object-storage-encryption#encryption-kp).
+If it's necessary for a user to control encryption keys, root keys can be provided on a [per-object basis that uses SSE-C](/docs/cloud-object-storage?topic=cloud-object-storage-encryption#encryption-sse-c), or a [per-bucket basis that uses SSE-KP](/docs/cloud-object-storage?topic=cloud-object-storage-encryption#encryption-kp).
 
 Storage can be accessed over HTTPS, and internally storage devices communicate with each other using TLS.
 

@@ -33,17 +33,17 @@ This overview of code patterns using SDKs and other clients for {{site.data.keyw
 
 The process of emptying a bucket is familiar to anyone who has to delete buckets in their instance of {{site.data.keyword.cos_short}} because a bucket has to be empty to be deleted. There may be other reasons you may wish to delete items, but want to avoid deleting every object individually. This code pattern for the supported SDKs will allow you to define your configuration, create a client, and then connect with that client in order to get a list of all the items in an identified bucket for in order to delete them.
 
-It is a best practice to avoid putting credentials in scripts. This example is for testing and educational purposes, and your specific setup should be informed by best practices and [Developer Guidance](/docs/services/cloud-object-storage?topic=cloud-object-storage-dev-guide).
+It is a best practice to avoid putting credentials in scripts. This example is for testing and educational purposes, and your specific setup should be informed by best practices and [Developer Guidance](/docs/cloud-object-storage?topic=cloud-object-storage-dev-guide).
 {: tip}
 
 ## Before you begin
 {: #dmop-prereqs}
 
-Specific instructions for downloading and installing SDKs are available for [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python){: external}, [Node.js](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node){: external}, [Java](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java){: external}, and [Go](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-go){: external}. Also, when working with Command Line Instructions (CLI) and your CLI clients, please check out the pertinent information related to {{site.data.keyword.cos_short}} regarding [AWS](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli){: external} compatibility, [Minio](/docs/services/cloud-object-storage?topic=cloud-object-storage-minio){: external}, and [rClone](/docs/services/cloud-object-storage?topic=cloud-object-storage-rclone){: external}.
+Specific instructions for downloading and installing SDKs are available for [Python](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python){: external}, [Node.js](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-node){: external}, [Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java){: external}, and [Go](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-go){: external}. Also, when working with Command Line Instructions (CLI) and your CLI clients, please check out the pertinent information related to {{site.data.keyword.cos_short}} regarding [AWS](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli){: external} compatibility, [Minio](/docs/cloud-object-storage?topic=cloud-object-storage-minio){: external}, and [rClone](/docs/cloud-object-storage?topic=cloud-object-storage-rclone){: external}.
 
 For this code pattern you will need:
   * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com)
-  * An [instance of {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-provision)
+  * An [instance of {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage/basics?topic=cloud-object-storage-provision)
   * Configured and operational use of {{site.data.keyword.cos_full}} SDKs for your choice of Java, Python, NodeJS, or Go; or, a configured and operational CLI client.
 {: #dmop-prereqs}
 
@@ -70,7 +70,7 @@ Sample instructions are provided for using a client application or command line 
 ### rClone example
 {: #dmop-rclone-example}
 
-The `rclone` tool is typically used to keep directories synchronized and for migrating data between storage platforms. You can learn more from the documentation on [using rclone](/docs/services/cloud-object-storage?topic=cloud-object-storage-rclone).
+The `rclone` tool is typically used to keep directories synchronized and for migrating data between storage platforms. You can learn more from the documentation on [using rclone](/docs/cloud-object-storage?topic=cloud-object-storage-rclone).
 
 ```bash
 rclone purge {remote}:{path} [flags]
@@ -80,7 +80,7 @@ rclone purge {remote}:{path} [flags]
 ### Minio example
 {: #dmop-minio-example}
 
-The open source Minio client allows you to use UNIX-like commands (`ls`, `cp`, `cat`, etc.) with {{site.data.keyword.cos_full}}. For more information, check out [using Minio](/docs/services/cloud-object-storage?topic=cloud-object-storage-minio).
+The open source Minio client allows you to use UNIX-like commands (`ls`, `cp`, `cat`, etc.) with {{site.data.keyword.cos_full}}. For more information, check out [using Minio](/docs/cloud-object-storage?topic=cloud-object-storage-minio).
 
 ```bash
 mc rm --recursive --force {instance-alias}/{bucket-name}
@@ -90,7 +90,7 @@ mc rm --recursive --force {instance-alias}/{bucket-name}
 ### AWS example
 {: #dmop-aws-example}
 
-The official command-line interface for AWS is compatible with the {{site.data.keyword.cos_full}} S3 API and you can find out more on how to [use the AWS CLI](/docs/services/cloud-object-storage?topic=cloud-object-storage-aws-cli).
+The official command-line interface for AWS is compatible with the {{site.data.keyword.cos_full}} S3 API and you can find out more on how to [use the AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli).
 
 ```bash
 aws s3 rm s3://{bucket-name} --recursive

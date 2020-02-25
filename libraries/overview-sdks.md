@@ -51,7 +51,7 @@ These SDKs are based on the official AWS S3 API SDKs, but are modified to use IB
 
 ## IAM API key support
 {: #sdk-about-iam}
-Allows for creating clients with an [API key](/docs/iam?topic=iam-iamoverview#iamoverview) instead of a [pair of Access and Secret](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-uhc-hmac-credentials-main) keys.  
+Allows for creating clients with an [API key](/docs/iam?topic=iam-iamoverview#iamoverview) instead of a [pair of Access and Secret](/docs/cloud-object-storage/hmac?topic=cloud-object-storage-uhc-hmac-credentials-main) keys.  
 Token management is handled automatically, and tokens are automatically refreshed during long-running operations.
 
 ## Managed multipart uploads
@@ -73,7 +73,7 @@ Version 2 listing allows for more powerful scoping of object listings.
 
 ## Key Protect
 {: #sdk-about-kp}
-[{{site.data.keyword.keymanagementservicefull}}](https://test.cloud.ibm.com/docs/services/key-protect?topic=key-protect-about) helps you create encrypted keys for apps across {{site.data.keyword.cloud}} services. Keys are secured by FIPS 140-2 Level 3 cloud-based hardware security modules (HSMs) that protect against the theft of information. [{{site.data.keyword.hscrypto}}](https://test.cloud.ibm.com/docs/services/hs-crypto?topic=hs-crypto-overview) is a single-tenant, dedicated HSM that is controlled by you. The service is built on FIPS 140-2 Level 4 hardware, the highest offered by any cloud provider in the industry.
+[{{site.data.keyword.keymanagementservicefull}}](https://test.cloud.ibm.com/docs/key-protect?topic=key-protect-about) helps you create encrypted keys for apps across {{site.data.keyword.cloud}} services. Keys are secured by FIPS 140-2 Level 3 cloud-based hardware security modules (HSMs) that protect against the theft of information. [{{site.data.keyword.hscrypto}}](https://test.cloud.ibm.com/docs/hs-crypto?topic=hs-crypto-overview) is a single-tenant, dedicated HSM that is controlled by you. The service is built on FIPS 140-2 Level 4 hardware, the highest offered by any cloud provider in the industry.
 
 ## SSE-C
 {: #sdk-about-sse-c}  
