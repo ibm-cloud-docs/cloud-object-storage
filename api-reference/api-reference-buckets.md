@@ -36,7 +36,7 @@ For more information about permissions and access, see [Bucket permissions](http
 ## A note regarding Access/Secret Key (HMAC) authentication
 {: #bucket-operations-hmac}
 
-When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [using HMAC credentials](/docs/hmac?topic=cloud-object-storage-uhc-hmac-credentials-main), you will need the information represented in Table 1 when [constructing an HMAC signature](/docs/cloud-object-storage?topic=cloud-object-storage-hmac-signature).
+When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [using HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main), you will need the information represented in Table 1 when [constructing an HMAC signature](/docs/cloud-object-storage?topic=cloud-object-storage-hmac-signature).
 
 |Key|Value|Example|
 |---|---|---|
