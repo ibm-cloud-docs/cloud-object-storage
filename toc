@@ -68,6 +68,7 @@ Cloud Object Storage
         api-reference/common-headers-errors.md
         api-reference/api-reference-buckets.md
         api-reference/api-reference-objects.md
+        [Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration)
         api-reference/postman.md
 
     {: .topicgroup}
