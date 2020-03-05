@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2020
 lastupdated: "2020-02-10"
 
-keywords: data, object storage, unstructured, cleversafe
+keywords: data, cloud object storage, unstructured, cleversafe, blob storage, object storage
 
 subcollection: cloud-object-storage
 
@@ -21,10 +21,10 @@ subcollection: cloud-object-storage
 {:support: data-reuse='support'}
 {:help: data-hd-content-type='help'}
 
-# Getting started tutorial
+# Getting started with {{site.data.keyword.cos_full_notm}}
 {: #getting-started}
 
-This getting started tutorial walks through the steps that are needed to create buckets, upload objects, and set up access policies to allow other users to work with your data.
+This getting started tutorial walks through the steps that are needed to use {{site.data.keyword.cos_full_notm}} to create buckets, upload objects, and set up access policies to allow other users to work with your data.
 {: shortdesc}
 
 ## Before you begin
