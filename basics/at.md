@@ -107,13 +107,13 @@ The following table lists the COS object events:
 
 | Action                                                     | Description                 |
 | ---------------------------------------------------------- | --------------------------- |
-| `cloud-object-storage.object-cors.info`                    | Validate the CORS configuration |
+| `cloud-object-storage.object-cors.read`                    | Get the CORS configuration |
 | `cloud-object-storage.object-acl.read`                     | Get the object ACL |
 | `cloud-object-storage.object-acl.create`                   | Create the object ACL |
 | `cloud-object-storage.object-retention-legal-hold.list`    | List the legal holds on the object |
 | `cloud-object-storage.object-retention-legal-hold.update`  | Add or remove object legal hold |
 | `cloud-object-storage.object-retention.update`             | Extend the retention time |
-| `cloud-object-storage.object-expire.info`                  | Get when the object will expire |
+| `cloud-object-storage.object-expire.read`                  | Get when the object will expire |
 {: caption="Table 4. Object events"}
 
 ## Data Events
@@ -132,7 +132,7 @@ The following table lists the COS bucket access events:
 | Action                                                 | Description                 |
 | ------------------------------------------------------ | --------------------------- |
 | `cloud-object-storage.bucket.list`                     | List the objects in the bucket |
-| `cloud-object-storage.bucket.info`                     | Get the metadata for the bucket |
+| `cloud-object-storage.bucket.read`                     | Get the metadata for the bucket |
 {: caption="Table 5. Bucket access events"}
 
 
@@ -143,7 +143,7 @@ The following table lists the COS object access events:
 
 | Action                                                 | Description                 |
 | ------------------------------------------------------ | --------------------------- |
-| `cloud-object-storage.object.info`                     | Get the metadata for the object |
+| `cloud-object-storage.object.read`                     | Get the metadata for the object |
 | `cloud-object-storage.object.read`                     | Read the object |
 | `cloud-object-storage.object.create`                   | Create the object |
 | `cloud-object-storage.object.delete`                   | Delete the object |
