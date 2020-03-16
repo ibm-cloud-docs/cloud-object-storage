@@ -583,8 +583,8 @@ The presence of a retention period header is required, otherwise a `400` error i
 {: http}
 
 ```
-POST https://{endpoint}/{bucket-name}?legalHold # path style
-POST https://{bucket-name}.{endpoint}?legalHold= # virtual host style
+POST https://{endpoint}/{bucket-name}/{object-name}?legalHold # path style
+POST https://{bucket-name}.{endpoint}/{object-name}?legalHold= # virtual host style
 ```
 {: http}
 
