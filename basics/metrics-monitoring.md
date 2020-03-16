@@ -22,6 +22,11 @@ subcollection: cloud-object-storage
 {:table: .aria-labeledby="caption"}
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
+{:http: .ph data-hd-programlang='http'} 
+{:javascript: .ph data-hd-programlang='javascript'} 
+{:java: .ph data-hd-programlang='java'} 
+{:python: .ph data-hd-programlang='python'}
+{:go: .ph data-hd-programlang='go'}
 
 # Using {{site.data.keyword.mon_full_notm}} with {{site.data.keyword.cos_full_notm}}
 {: #mm-cos-integration}
@@ -45,10 +50,15 @@ According to the [documentation](/docs/Monitoring-with-Sysdig?topic=Sysdig-metri
 ## Before you begin
 {: #mm-cos-before-starting}
 
-### Instantiating and Provisioning 
+### Instantiating and Provisioning {{site.data.keyword.cos_full_notm}}
+{: #mm-cos-instantiation}
+
+
 
 ## Manage User Access
 {: #mm-cos-manage-users}
+
+
 
 ## Provisioning an instance of {{site.data.keyword.mon_short}}
 {: #mm-cos-provisioning}
