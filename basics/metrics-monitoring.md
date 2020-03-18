@@ -77,11 +77,16 @@ According to the [documentation](/docs/Monitoring-with-Sysdig?topic=Sysdig-metri
 ## Connect {{site.data.keyword.cos_short}} to {{site.data.keyword.mon_short}}
 {: #mm-cos-connection}
 
+
 ### Configure a bucket using the console
 {: #mm-cos-connection-console}
 
+
+
 ### Configure a bucket using Resource Config API
 {: #mm-cos-connection-api}
+
+
 
 ## Next Steps
 {: #mm-cos-next-steps}
