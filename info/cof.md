@@ -26,7 +26,7 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Using Cloud Object Storage with Cloud Foundry applications
+# Using {{site.data.keyword.cos_full_notm}} with {{site.data.keyword.cfee_full_notm}} applications
 {: #cloud-foundry}
 
 {{site.data.keyword.cos_full}} can be paired with {{site.data.keyword.cfee_full}} applications to provide highly available content by using regions and endpoints.
@@ -160,7 +160,7 @@ ibmcloud resource service-binding-create <service alias> <cf app name> <role>
 ### IBM Client Tools (CLI) with HMAC Credentials
 {: #cloud-foundry-hmac}
 
-Hash-based message authentication code (HMAC) is a mechanism for calculating a message authentication code created that uses a pair of access and secret keys. This technique can be used to verify the integrity and authenticity of a message. More information about using [HMAC credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-hmac#using-hmac-credentials) is available in the {{site.data.keyword.cos_short}} documentation.
+Hash-based message authentication code (HMAC) is a mechanism for calculating a message authentication code created that uses a pair of access and secret keys. This technique can be used to verify the integrity and authenticity of a message. More information about using [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main#using-hmac-credentials) is available in the {{site.data.keyword.cos_short}} documentation.
 
 1. Log in to with IBM Cloud CLI
 ```

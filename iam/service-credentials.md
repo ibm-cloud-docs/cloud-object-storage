@@ -246,4 +246,4 @@ In general IAM API Keys are the preferred method of authentication for {{site.da
 
 For more information about IAM visit - [Getting started with IAM](/docs/cloud-object-storage?topic=cloud-object-storage-iam)
 
-For more information about HMAC visit - [Using HMAC Credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-hmac)
+For more information about HMAC visit - [Using HMAC Credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main)
