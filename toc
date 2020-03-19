@@ -11,7 +11,7 @@ Cloud Object Storage
 
 
     {: .topicgroup}
-        Getting started
+    Getting organized
         basics/administrators.md
         basics/developers.md
 
@@ -107,6 +107,7 @@ Cloud Object Storage
         [Build, deploy and scale real-world solutions on IBM Cloud.](https://cloud.ibm.com/docs/tutorials/index.html#tutorials)
         [File-like access to IBM COS using s3fs](https://medium.com/@ozeri/file-like-access-to-ibm-cloud-object-storage-using-s3fs-f5094ed42594)
         tutorials/migrate.md
+        tutorials/web-application.md
         tutorials/web-application.md
         tutorials/cloudyr.md
         [Connect to IBM COS using IBM Cloud Direct Link](/direct-link/direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage)
