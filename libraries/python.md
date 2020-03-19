@@ -676,7 +676,7 @@ transfer_manager = AsperaTransferManager(cos)
 {: codeblock}
 {: python}
 
-You need to provide an IAM API Key for Aspera high-speed transfers. [HMAC Credentials](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){: external} are **NOT** currently supported. For more information on IAM, [click here](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview#getting-started-with-iam).
+You need to provide an IAM API Key for Aspera high-speed transfers. [HMAC Credentials](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){: external} are **NOT** currently supported. For more information on IAM, [click here](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview).
 {:tip}
 
 To get the highest throughput, split the transfer into a specified number of parallel **sessions** that send chunks of data whose size is defined by a **threshold** value.
