@@ -1083,7 +1083,7 @@ For best performance in most scenarios, always make use of multiple sessions to 
 *Key Values*
 * `API_KEY` - An API key for a user or service ID with Writer or Manager roles
 
-You will need to provide an IAM API Key for constructing an `AsperaTransferManager`. [HMAC Credentials](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){: external} are **NOT** currently supported. For more information on IAM, [click here](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview#getting-started-with-iam).
+You will need to provide an IAM API Key for constructing an `AsperaTransferManager`. [HMAC Credentials](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){: external} are **NOT** currently supported. For more information on IAM, [click here](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview).
 {:tip}
 
 ### File Upload
