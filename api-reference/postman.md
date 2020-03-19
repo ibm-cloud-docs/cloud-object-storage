@@ -27,7 +27,7 @@ subcollection: cloud-object-storage
 
 Here's a basic `Postman` setup for the {{site.data.keyword.cos_full}} REST API. More detail can be found in the API reference for [buckets](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations) or [objects](/docs/services/cloud-object-storage?topic=cloud-object-storage-object-operations).
 
-Using `Postman` assumes a certain amount of familiarity with Object Storage and the necessary information from a [service credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) or the [console](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started). If any terms or variables are unfamiliar, they can be found in the [glossary](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-terminology).
+Using `Postman` assumes a certain amount of familiarity with Object Storage and the necessary information from a [service credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) or the [console](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started). If any terms or variables are unfamiliar, they can be found in the [FAQ](/docs/cloud-object-storage?topic=cloud-object-storage-faq).
 
 Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
 {:tip}
@@ -40,8 +40,8 @@ Interacting with a REST API isn't as simple as using a standard internet browser
 ## Prerequisites
 {: #postman-prereqs}
 * IBM Cloud account
-* [Cloud Storage resource created](https://cloud.ibm.com/catalog/) (lite plan works fine)
-* [IBM Cloud CLI installed and configured](https://cloud.ibm.com/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-ic-use-the-ibm-cli)
+* [Cloud Storage resource created](https://cloud.ibm.com/catalog/){: external} (lite plan works fine)
+* [IBM Cloud CLI installed and configured](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-ic-use-the-ibm-cli)
 * [Service Instance ID for your Cloud Storage](/docs/services/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials)
 * [IAM (Identity and Access Management) Token](/docs/services/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials) 
 * [Endpoint for your COS bucket](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints)
@@ -106,7 +106,7 @@ A Postman Collection is available for [download](https://s3.us.cloud-object-stor
 5. Click the three dots to the right of the collection to expand the menu and click **Edit**
 6. Edit the variables to match your Cloud Storage environment
     * `bucket` - Enter the name for the new bucket you want to create (bucket names must be unique across Cloud Storage).
-    * `serviceid` - Enter the CRN of your Cloud Storage service. Instructions to obtain your CRN are available [here](/docs/overview?topic=overview-crn).
+    * `serviceid` - Enter the CRN of your Cloud Storage service. Instructions to obtain your CRN are available [here](/docs/resources?topic=resources-crn#service-instance-crn).
     * `iamtoken` - Enter the OAUTH token for your Cloud Storage service. Instructions to obtain your OAUTH token are available [here](/docs/services/key-protect?topic=key-protect-retrieve-access-token).
     * `endpoint` - Enter the regional endpoint for your Cloud Storage service. Obtain the available endpoints from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources/){: external}
         * *Ensure that your selected endpoint matches your key protect service to ensure that the samples run correctly*

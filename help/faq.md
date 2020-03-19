@@ -49,7 +49,7 @@ You can use the [Resource Configuration API](https://cloud.ibm.com/apidocs/cos/c
 
 **Can I migrate data from AWS S3 into {{site.data.keyword.cos_full_notm}}?**
 
-Yes, you can use your existing tools to read and write data into {{site.data.keyword.cos_full_notm}}. You need to configure HMAC credentials allow your tools to authenticate. Not all S3-compatible tools are currently unsupported. For more details, see [Using HMAC credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-hmac).
+Yes, you can use your existing tools to read and write data into {{site.data.keyword.cos_full_notm}}. You need to configure HMAC credentials allow your tools to authenticate. Not all S3-compatible tools are currently unsupported. For more details, see [Using HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main).
 
 
 ## Offering Questions

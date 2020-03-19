@@ -26,7 +26,7 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Using Cloud Object Storage with Cloud Foundry applications
+# Using {{site.data.keyword.cos_full_notm}} with {{site.data.keyword.cfee_full_notm}} applications
 {: #cloud-foundry}
 
 {{site.data.keyword.cos_full}} can be paired with {{site.data.keyword.cfee_full}} applications to provide highly available content by using regions and endpoints.
@@ -36,7 +36,7 @@ subcollection: cloud-object-storage
 {: #cloud-foundry-ee}
 {{site.data.keyword.cfee_full}} is a platform for hosting apps and services in the cloud. You can instantiate multiple, isolated, enterprise-grade platforms on demand that is run within your own account and can be deployed on either shared or dedicated hardware. The platform makes it easy to scale apps as consumption grows, simplifying the runtime and infrastructure so that you can focus on development.
 
-Successful implementation of a Cloud Foundry platform requires [proper planning and design](/docs/cloud-foundry?topic=cloud-foundry-bpimplementation#bpimplementation) for necessary resources and enterprise requirements. Learn more about [getting started](/docs/cloud-foundry?topic=cloud-foundry-about#creating) with the Cloud Foundry Enterprise Environment as well as an introductory [tutorial](/docs/cloud-foundry?topic=cloud-foundry-getting-started#getting-started).
+Successful implementation of a Cloud Foundry platform requires [proper planning and design](/docs/cloud-foundry?topic=cloud-foundry-bpimplementation#bpimplementation) for necessary resources and enterprise requirements. Learn more about [getting started](/docs/cloud-foundry?topic=cloud-foundry-what-is-cloud-foundry) with the Cloud Foundry Enterprise Environment as well as an introductory [tutorial](/docs/cloud-foundry?topic=cloud-foundry-getting-started).
 
 ### Regions
 {: #cloud-foundry-regions}
@@ -160,7 +160,7 @@ ibmcloud resource service-binding-create <service alias> <cf app name> <role>
 ### IBM Client Tools (CLI) with HMAC Credentials
 {: #cloud-foundry-hmac}
 
-Hash-based message authentication code (HMAC) is a mechanism for calculating a message authentication code created that uses a pair of access and secret keys. This technique can be used to verify the integrity and authenticity of a message. More information about using [HMAC credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-hmac#using-hmac-credentials) is available in the {{site.data.keyword.cos_short}} documentation.
+Hash-based message authentication code (HMAC) is a mechanism for calculating a message authentication code created that uses a pair of access and secret keys. This technique can be used to verify the integrity and authenticity of a message. More information about using [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main#using-hmac-credentials) is available in the {{site.data.keyword.cos_short}} documentation.
 
 1. Log in to with IBM Cloud CLI
 ```

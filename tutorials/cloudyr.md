@@ -47,7 +47,7 @@ We need to make sure that we have the prerequisites we will need:
 ### Create HMAC credentials
 {: #cloudyr-hmac}
 
-Before we begin, we may need to create a set of [HMAC credentials](/docs/hmac?topic=cloud-object-storage-hmac) as part of a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) by using the configuration parameter `{"HMAC":true}` when creating credentials. For example, use the {{site.data.keyword.cos_full_notm}} CLI as shown here. 
+Before we begin, we may need to create a set of [HMAC credentials](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-uhc-hmac-credentials-main) as part of a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) by using the configuration parameter `{"HMAC":true}` when creating credentials. For example, use the {{site.data.keyword.cos_full_notm}} CLI as shown here. 
   
 ```bash
 ibmcloud resource service-key-create <key-name-without-spaces> Writer --instance-name "<instance name--use quotes if your instance name has spaces>" --parameters '{"HMAC":true}'
@@ -65,7 +65,7 @@ To store the results of the generated key, append the text, ` > cos_credentials`
 
 While it is best practices to set credentials in environment variables, you can also set your credentials inside your local copy of your `R` script itself. Environment variables can alternatively be set before starting `R` using an `Renviron.site` or `.Renviron` file, used to set environment variables in `R` during startup
 
-You will need to set the actual values for the `access_key_id` and `secret_access_key` in your code along with the {{site.data.keyword.cos_full_notm}} [endpoint](/docs/basics?topic=cloud-object-storage-endpoints) for your instance.
+You will need to set the actual values for the `access_key_id` and `secret_access_key` in your code along with the {{site.data.keyword.cos_full_notm}} [endpoint](/docs/cloud-object-storage/iam?topic=cloud-object-storage-endpoints) for your instance.
 {: note}
 
 ## Add credentials to your `R` project

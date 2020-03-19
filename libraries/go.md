@@ -408,7 +408,7 @@ Key Protect can be added to a storage bucket to manage encryption keys. All data
 The following items are necessary in order to create a bucket with Key-Protect enabled:
 
 * A Key Protect service [provisioned](/docs/services/key-protect?topic=key-protect-provision#provision)
-* A Root key available (either [generated](/docs/services/key-protect?topic=key-protect-create-root-keys#create_root_keys) or [imported](/docs/services/key-protect?topic=key-protect-import-root-keys#import_root_keys))
+* A Root key available (either [generated](/docs/services/key-protect?topic=key-protect-create-root-keys) or [imported](/docs/services/key-protect?topic=key-protect-import-root-keys))
 
 ### Retrieving the Root Key CRN
 {: #go-examples-kp-root}

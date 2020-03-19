@@ -56,7 +56,7 @@ Learn more about using the {{site.data.keyword.cloud_notm}} CLI to create applic
 ## Using the API
 {: #gs-dev-api}
 
-For managing data stored in {{site.data.keyword.cos_short}}, you can use S3 API compatible tools like the [AWS CLI](/docs/services/cloud-object-storage/cli?topic=cloud-object-storage-aws-cli)with [HMAC credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-hmac) for compatibility. As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage. More information can be found in [the `curl` reference](/docs/services/cloud-object-storage/cli?topic=cloud-object-storage-curl), as well as [the API reference documentation](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api).
+For managing data stored in {{site.data.keyword.cos_short}}, you can use S3 API compatible tools like the [AWS CLI](/docs/services/cloud-object-storage/cli?topic=cloud-object-storage-aws-cli)with [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) for compatibility. As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage. More information can be found in [the `curl` reference](/docs/services/cloud-object-storage/cli?topic=cloud-object-storage-curl), as well as [the API reference documentation](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api).
 
 ## Using libraries and SDKs
 {: #gs-dev-sdk}
@@ -76,7 +76,7 @@ The [Cloud Native Computing Foundation](https://www.cncf.io) fostered [Kubernete
  * [Creating COS secret](/docs/containers?topic=containers-object_storage#create_cos_secret)
  * [Decide on the configuration](/docs/containers?topic=containers-object_storage#configure_cos)
  * [Create an instance of COS](/docs/containers?topic=containers-object_storage#add_cos)
- * [Back up and restore information](/docs/containers?topic=containers-object_storage#backup_restore)
- * [Storage Class reference](/docs/containers?topic=containers-object_storage#storageclass_reference)
+ * [Back up and restore information](/docs/containers?topic=containers-object_storage#cos_backup_restore)
+ * [Storage Class reference](/docs/containers?topic=containers-object_storage#configure_cos)
 
 
