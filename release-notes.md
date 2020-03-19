@@ -73,7 +73,7 @@ Objects can be automatically deleted by [adding expiration rules to a bucket's l
 
 ### May 2019
 {: #updates-2019-q2-may}
-Users can access and interact with object storage [using the IBM Cloud CLI](/docs/services/cloud-object-storage?topic=cloud-object-storage-ic-use-the-ibm-cli).
+Users can access and interact with object storage [using the IBM Cloud CLI](/docs/cloud-object-storage?topic=cloud-object-storage-cli-ic-cos-cli).
 
 ### April 2019
 {: #updates-2019-q2-apr}
