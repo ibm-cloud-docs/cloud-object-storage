@@ -36,7 +36,7 @@ subcollection: cloud-object-storage
 {: #cloud-foundry-ee}
 {{site.data.keyword.cfee_full}} is a platform for hosting apps and services in the cloud. You can instantiate multiple, isolated, enterprise-grade platforms on demand that is run within your own account and can be deployed on either shared or dedicated hardware. The platform makes it easy to scale apps as consumption grows, simplifying the runtime and infrastructure so that you can focus on development.
 
-Successful implementation of a Cloud Foundry platform requires [proper planning and design](/docs/cloud-foundry?topic=cloud-foundry-bpimplementation#bpimplementation) for necessary resources and enterprise requirements. Learn more about [getting started](/docs/cloud-foundry?topic=cloud-foundry-about#creating) with the Cloud Foundry Enterprise Environment as well as an introductory [tutorial](/docs/cloud-foundry?topic=cloud-foundry-getting-started#getting-started).
+Successful implementation of a Cloud Foundry platform requires [proper planning and design](/docs/cloud-foundry?topic=cloud-foundry-bpimplementation#bpimplementation) for necessary resources and enterprise requirements. Learn more about [getting started](/docs/cloud-foundry?topic=cloud-foundry-what-is-cloud-foundry) with the Cloud Foundry Enterprise Environment as well as an introductory [tutorial](/docs/cloud-foundry?topic=cloud-foundry-getting-started).
 
 ### Regions
 {: #cloud-foundry-regions}
