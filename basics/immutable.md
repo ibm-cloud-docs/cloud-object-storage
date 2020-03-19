@@ -70,7 +70,7 @@ If an object is stored in the bucket without specifying a custom retention perio
 A maximum retention period of 1000 years can be specified for the objects.
 {:tip}
 
-To create a retention policy on a bucket, you need Manager role. See [Bucket permissions](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions#bucket-permissions) for more details.
+To create a retention policy on a bucket, you need Manager role. See [Bucket permissions](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions) for more details.
 {:important}
 
 ### Legal hold 
