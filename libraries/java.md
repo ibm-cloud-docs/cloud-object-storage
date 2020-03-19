@@ -128,7 +128,7 @@ Let's start with an complete example class that will run through some basic func
 * `service_instance_id` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) as `resource_instance_id`. 
 * `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol. This is **not** the `endpoints` value found in the [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `storageClass` is a [valid provisioning code](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint) that corresponds to the `endpoint` value. This is then used as the S3 API `LocationConstraint` variable.
-* `location` should be set to the location portion of the `storageClass`. For `us-south-standard`, this would be `us-south`. This variable is used only for the calculation of [HMAC signatures](/docs/services/cloud-object-storage?topic=cloud-object-storage-hmac#hmac), but is required for any client, including this example that uses an IAM API key.
+* `location` should be set to the location portion of the `storageClass`. For `us-south-standard`, this would be `us-south`. This variable is used only for the calculation of [HMAC signatures](//docs/cloud-object-storage?topic=cloud-object-storage-hmac-signature), but is required for any client, including this example that uses an IAM API key.
 
 ```java
     package com.cos;
