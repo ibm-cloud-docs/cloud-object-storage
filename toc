@@ -108,7 +108,6 @@ Cloud Object Storage
         [File-like access to IBM COS using s3fs](https://medium.com/@ozeri/file-like-access-to-ibm-cloud-object-storage-using-s3fs-f5094ed42594)
         tutorials/migrate.md
         tutorials/web-application.md
-        tutorials/cos-events-at.md
         tutorials/cloudyr.md
         [Connect to IBM COS using IBM Cloud Direct Link](/direct-link/direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage)
 
