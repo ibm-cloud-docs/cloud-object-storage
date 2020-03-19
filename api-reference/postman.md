@@ -106,7 +106,7 @@ A Postman Collection is available for [download](https://s3.us.cloud-object-stor
 5. Click the three dots to the right of the collection to expand the menu and click **Edit**
 6. Edit the variables to match your Cloud Storage environment
     * `bucket` - Enter the name for the new bucket you want to create (bucket names must be unique across Cloud Storage).
-    * `serviceid` - Enter the CRN of your Cloud Storage service. Instructions to obtain your CRN are available [here](/docs/overview?topic=overview-crn).
+    * `serviceid` - Enter the CRN of your Cloud Storage service. Instructions to obtain your CRN are available [here](/docs/resources?topic=resources-crn#service-instance-crn).
     * `iamtoken` - Enter the OAUTH token for your Cloud Storage service. Instructions to obtain your OAUTH token are available [here](/docs/services/key-protect?topic=key-protect-retrieve-access-token).
     * `endpoint` - Enter the regional endpoint for your Cloud Storage service. Obtain the available endpoints from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources/){: external}
         * *Ensure that your selected endpoint matches your key protect service to ensure that the samples run correctly*
