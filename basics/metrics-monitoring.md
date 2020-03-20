@@ -53,7 +53,7 @@ Before you provision an instance of {{site.data.keyword.mon_full_notm}}, conside
    * The account owner can create, view, and delete an instance of a service in the {{site.data.keyword.cloud_notm}}. This user can also grant permissions to other users to work with the {{site.data.keyword.mon_full_notm}} service.
    * Other {{site.data.keyword.cloud_notm}} users with `administrator` or `editor` permissions can manage the {{site.data.keyword.mon_full_notm}} service in the {{site.data.keyword.cloud_notm}}. These users must also have platform permissions to create resources within the context of the resource group where they plan to provision the instance.
 
-In this guide, we will examine using both the {{site.data.keyword.cloud_notm}} Console as well as the {{dev_cli_notm}} (CLI) to integrate {{site.data.keyword.mon_short}} in your {{site.data.keyword.cos_short}} instance. For more information about {{dev_cli_notm}}, check out the [documentation](/docs/cli?topic=cloud-cli-getting-started).
+In this guide, we will examine using both the {{site.data.keyword.cloud_notm}} Console as well as the IBM Cloud Developer Tools (CLI) to integrate {{site.data.keyword.mon_short}} in your {{site.data.keyword.cos_short}} instance. For more information about IBM Cloud Developer Tools, check out the [documentation](/docs/cli?topic=cloud-cli-getting-started).
 
 Using either set of instructions, Console or CLI, you will be able to get started using this guide. If the instructions that you seek do not appear in this guide, click on the appropriate item using the context switcher. 
 
@@ -79,7 +79,7 @@ From the [catalog](https://cloud.ibm.com/login){: external} choose {{site.data.k
 ![Instance creation](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-instance-creation.png){: caption="Figure 1. Configuring monitoring when creating a bucket"}
 {: console}
 
-After you [login](/docs/cli?topic=cloud-cli-ibmcloud_cli#ibmcloud_login) using {{dev_cli_notm}} and target both the region and resource group for your account, create a new resource using the command as shown.
+After you [login](/docs/cli?topic=cloud-cli-ibmcloud_cli#ibmcloud_login) using IBM Cloud Developer Tools and target both the region and resource group for your account, create a new resource using the command as shown.
 {: cli}
 
 ```bash
