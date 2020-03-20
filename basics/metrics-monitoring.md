@@ -168,7 +168,7 @@ In the code sample, replace the placeholders with the appropriate values.
 
 When you have created your instance of {{site.data.keyword.mon_short}}, click on the "View Sysdig" button in the "View dashboard" column, as shown in Figure 4.
 
-![Dashboard configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-instance-management.png){: caption="Figure 4. Launching {{site.data.keyword.mon_short}} instances"}
+![Launching instances](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-instance-management.png){: caption="Figure 4. Launching {{site.data.keyword.mon_short}} instances"}
 
 When you launch your first dashboard, you have the option to install {{site.data.keyword.mon_short}} agents in various operating systems, devices, and containers. However, we will skip that for this guide. Select "Next" from the bottom of the welcome screen in Figure 5, then click on "Skip" in order to bypass the [installation process](/docs/Monitoring-with-Sysdig?topic=Sysdig-config_agent).
 
@@ -181,6 +181,12 @@ This guide has skipped right past the installation of agents that is typical of 
 
 ![Dashboard configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-pre-built-reports.png){: caption="Figure 6. Choose a bre-built report"}
 
+### View your data in {{site.data.keyword.mon_short}}
+{: #mm-cos-connection-view-data}
+
+Once you've configured your dashboard, you can view your data.
+
+![Dashboard configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-results-samples.png){: caption="Figure 7. View sample data"}
 
 ## Next Steps
 {: #mm-cos-next-steps}
