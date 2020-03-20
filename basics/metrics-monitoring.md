@@ -53,14 +53,14 @@ Before you provision an instance of {{site.data.keyword.mon_full_notm}}, conside
    * The account owner can create, view, and delete an instance of a service in the {{site.data.keyword.cloud_notm}}. This user can also grant permissions to other users to work with the {{site.data.keyword.mon_full_notm}} service.
    * Other {{site.data.keyword.cloud_notm}} users with `administrator` or `editor` permissions can manage the {{site.data.keyword.mon_full_notm}} service in the {{site.data.keyword.cloud_notm}}. These users must also have platform permissions to create resources within the context of the resource group where they plan to provision the instance.
 
-In this guide, we will examine using both the {{site.data.keyword.cloud_notm}} Console as well as the {{dev_cli_notm}} (CLI) to integrate {{site.data.keyword.mon_short}} in your {{site.data.keyword.cos_short}} instance. For more information about {{dev_cli_notm}}, check out the [documentation](/docs/cli?topic=cloud-cli-getting-started).
+In this guide, we will examine using both the {{site.data.keyword.cloud_notm}} Console as well as the IBM Cloud Developer Tools (CLI) to integrate {{site.data.keyword.mon_short}} in your {{site.data.keyword.cos_short}} instance. For more information about IBM Cloud Developer Tools, check out the [documentation](/docs/cli?topic=cloud-cli-getting-started).
 
 Using either set of instructions, Console or CLI, you will be able to get started using this guide. If the instructions that you seek do not appear in this guide, click on the appropriate item using the context switcher. 
 
 ### Instantiating and Provisioning {{site.data.keyword.cos_full_notm}}
 {: #mm-cos-instantiation}
 
-If you have not already done so, [set up and provision](/docs/cloud-object-storage?topic=cloud-object-storage-provision) your instance of {{site.data.keyword.cos_short}}. If you already have an instance of {{}} to work with, verify you have either the `manager` or `writer` [role](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions) to work with this guide.
+If you have not already done so, [set up and provision](/docs/cloud-object-storage?topic=cloud-object-storage-provision) your instance of {{site.data.keyword.cos_short}}. If you already have an instance of {{site.data.keyword.mon_short}} to work with, verify you have either the `manager` or `writer` [role](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions) to work with this guide.
 
 ## Manage User Access
 {: #mm-cos-manage-users}
@@ -79,7 +79,7 @@ From the [catalog](https://cloud.ibm.com/login){: external} choose {{site.data.k
 ![Instance creation](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-instance-creation.png){: caption="Figure 1. Configuring monitoring when creating a bucket"}
 {: console}
 
-After you [login](/docs/cli?topic=cloud-cli-ibmcloud_cli#ibmcloud_login) using {{dev_cli_notm}} and target both the region and resource group for your account, create a new resource using the command as shown.
+After you [login](/docs/cli?topic=cloud-cli-ibmcloud_cli#ibmcloud_login) using IBM Cloud Developer Tools and target both the region and resource group for your account, create a new resource using the command as shown.
 {: cli}
 
 ```bash
@@ -93,10 +93,10 @@ In the code sample, replace the placeholders with the appropriate values.
 
 | Value	| Description | Sample |
 | --- | --- | --- |
-| <INSTANCE_NAME> | The name of your new instance | `MySysDig` |
-| <SERVICE_NAME> | The name of the service | `sysdig-monitor` |
-| <SERVICE_PLAN_NAME> | The name of the plan | `Lite` |
-| <LOCATION> | The region of your buckets | `us-east` |
+| &lt;INSTANCE_NAME&gt; | The name of your new instance | `MySysDig` |
+| &lt;SERVICE_NAME&gt; | The name of the service | `sysdig-monitor` |
+| &lt;SERVICE_PLAN_NAME&gt; | The name of the plan | `Lite` |
+| &lt;LOCATION&gt; | The region of your buckets | `us-east` |
 {: cli}
 
 ## Connect {{site.data.keyword.cos_short}} to {{site.data.keyword.mon_short}}
@@ -168,7 +168,7 @@ In the code sample, replace the placeholders with the appropriate values.
 
 When you have created your instance of {{site.data.keyword.mon_short}}, click on the "View Sysdig" button in the "View dashboard" column, as shown in Figure 4.
 
-![Dashboard configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-instance-management.png){: caption="Figure 4. Launching {{site.data.keyword.mon_short}} instances"}
+![Launching instances](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-instance-management.png){: caption="Figure 4. Launching {{site.data.keyword.mon_short}} instances"}
 
 When you launch your first dashboard, you have the option to install {{site.data.keyword.mon_short}} agents in various operating systems, devices, and containers. However, we will skip that for this guide. Select "Next" from the bottom of the welcome screen in Figure 5, then click on "Skip" in order to bypass the [installation process](/docs/Monitoring-with-Sysdig?topic=Sysdig-config_agent).
 
@@ -177,10 +177,18 @@ When you launch your first dashboard, you have the option to install {{site.data
 ### Choose a pre-built dashboard for {{site.data.keyword.mon_short}}
 {: #mm-cos-connection-dashboard}
 
-![Dashboard configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-pre-built-reports.png){: caption="Figure 7d. Choose a bre-built report"}
+This guide has skipped right past the installation of agents that is typical of most monitoring configurations. In addition, you can also skip the manual creation of building a dashboard by using a pre-built solution. As shown in Figure 6, you can choose how to present your data using one of the options given.
 
+![Dashboard configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-pre-built-reports.png){: caption="Figure 6. Choose a bre-built report"}
+
+### View your data in {{site.data.keyword.mon_short}}
+{: #mm-cos-connection-view-data}
+
+Once you've configured your dashboard, you can view your data.
+
+![Dashboard configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-results-samples.png){: caption="Figure 7. View sample data"}
 
 ## Next Steps
 {: #mm-cos-next-steps}
 
-You will want to manage the data the {{}} instance is collecting for you. From management to setting alerts, you can [get started](/docs/Monitoring-with-Sysdig?topic=Sysdig-getting-started) monitoring your data quickly and efficiently.
+You will want to manage the data the {{site.data.keyword.mon_short}} instance is collecting for you. From management to setting alerts, you can [get started](/docs/Monitoring-with-Sysdig?topic=Sysdig-getting-started) monitoring your data quickly and efficiently.
