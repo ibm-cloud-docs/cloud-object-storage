@@ -177,7 +177,9 @@ When you launch your first dashboard, you have the option to install {{site.data
 ### Choose a pre-built dashboard for {{site.data.keyword.mon_short}}
 {: #mm-cos-connection-dashboard}
 
-![Dashboard configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-pre-built-reports.png){: caption="Figure 7d. Choose a bre-built report"}
+This guide has skipped right past the installation of agents that is typical of most monitoring configurations. In addition, you can also skip the manual creation of building a dashboard by using a pre-built solution. As shown in Figure 6, you can choose how to present your data using one of the options given.
+
+![Dashboard configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-pre-built-reports.png){: caption="Figure 6. Choose a bre-built report"}
 
 
 ## Next Steps
