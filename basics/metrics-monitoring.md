@@ -60,7 +60,7 @@ Using either set of instructions, Console or CLI, you will be able to get starte
 ### Instantiating and Provisioning {{site.data.keyword.cos_full_notm}}
 {: #mm-cos-instantiation}
 
-If you have not already done so, [set up and provision](/docs/cloud-object-storage?topic=cloud-object-storage-provision) your instance of {{site.data.keyword.cos_short}}. If you already have an instance of {{}} to work with, verify you have either the `manager` or `writer` [role](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions) to work with this guide.
+If you have not already done so, [set up and provision](/docs/cloud-object-storage?topic=cloud-object-storage-provision) your instance of {{site.data.keyword.cos_short}}. If you already have an instance of {{site.data.keyword.mon_short}} to work with, verify you have either the `manager` or `writer` [role](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions) to work with this guide.
 
 ## Manage User Access
 {: #mm-cos-manage-users}
@@ -183,4 +183,4 @@ When you launch your first dashboard, you have the option to install {{site.data
 ## Next Steps
 {: #mm-cos-next-steps}
 
-You will want to manage the data the {{}} instance is collecting for you. From management to setting alerts, you can [get started](/docs/Monitoring-with-Sysdig?topic=Sysdig-getting-started) monitoring your data quickly and efficiently.
+You will want to manage the data the {{site.data.keyword.mon_short}} instance is collecting for you. From management to setting alerts, you can [get started](/docs/Monitoring-with-Sysdig?topic=Sysdig-getting-started) monitoring your data quickly and efficiently.
