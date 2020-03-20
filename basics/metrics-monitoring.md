@@ -93,10 +93,10 @@ In the code sample, replace the placeholders with the appropriate values.
 
 | Value	| Description | Sample |
 | --- | --- | --- |
-| <INSTANCE_NAME> | The name of your new instance | `MySysDig` |
-| <SERVICE_NAME> | The name of the service | `sysdig-monitor` |
-| <SERVICE_PLAN_NAME> | The name of the plan | `Lite` |
-| <LOCATION> | The region of your buckets | `us-east` |
+| &lt;INSTANCE_NAME&gt; | The name of your new instance | `MySysDig` |
+| &lt;SERVICE_NAME&gt; | The name of the service | `sysdig-monitor` |
+| &lt;SERVICE_PLAN_NAME&gt; | The name of the plan | `Lite` |
+| &lt;LOCATION&gt; | The region of your buckets | `us-east` |
 {: cli}
 
 ## Connect {{site.data.keyword.cos_short}} to {{site.data.keyword.mon_short}}
