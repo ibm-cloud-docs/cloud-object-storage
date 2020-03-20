@@ -722,8 +722,8 @@ Objects in protected buckets that are no longer under retention (retention perio
 {: http}
 
 ```
-POST https://{endpoint}/{bucket-name}?extendRetention= # path style
-POST https://{bucket-name}.{endpoint}?extendRetention= # virtual host style
+POST https://{endpoint}/{bucket-name}/{object-name}?extendRetention= # path style
+POST https://{bucket-name}.{endpoint}/{object-name}?extendRetention= # virtual host style
 ```
 {: codeblock}
 {: http}
@@ -826,8 +826,8 @@ If there is no retention period that is specified on the object, a `404` error i
 {: http}
 
 ```
-GET https://{endpoint}/{bucket-name}?legalHold= # path style
-GET https://{bucket-name}.{endpoint}?legalHold= # virtual host style
+GET https://{endpoint}/{bucket-name}/{object-name}?legalHold= # path style
+GET https://{bucket-name}.{endpoint}/{object-name}?legalHold= # virtual host style
 ```
 {: http}
 
