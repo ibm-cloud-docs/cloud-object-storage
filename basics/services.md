@@ -36,7 +36,7 @@ The document describes the regions where services and the different kinds of ava
 For more information about the following services, be sure to check out the respective links:
 
 * [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera)
-* [Key Protect](/docs/services/cloud-object-storage/basics/cloud-object-storage/basics?topic=cloud-object-storage-encryption#sse-kp)
+* [Key Protect](docs/services/cloud-object-storage/iam?topic=cloud-object-storage-encryption#encryption-kp)
 * [{{site.data.keyword.hscrypto}} ({{site.data.keyword.hscrypto}})](/docs/services/cloud-object-storage?topic=cloud-object-storage-encryption)
 * [Archive Data](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-archive)
 * [Immutable Object Storage](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-immutable)
