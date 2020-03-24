@@ -98,6 +98,14 @@ In the code sample, replace the placeholders with the appropriate values.
 | &lt;LOCATION&gt; | The region of your buckets | `us-east` |
 {: cli}
 
+## Configure Platform Metrics on {{site.data.keyword.mon_short}}
+
+```bash
+ibmcloud resource service-instance-update <INSTANCE_NAME> -p '{"default_receiver": true}'
+```
+{: codeblock}
+{: cli}
+
 ## Connect {{site.data.keyword.cos_short}} to {{site.data.keyword.mon_short}}
 {: #mm-cos-connection}
 
