@@ -60,8 +60,6 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | US Cross Region | Yes    | No          | No                             | No           | Yes                      | Dallas           | No        | Yes        | Dallas |
 
 
-
-
 ## Regional
 {: #service-availability-region}
 

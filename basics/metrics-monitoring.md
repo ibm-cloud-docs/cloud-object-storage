@@ -38,7 +38,7 @@ This is pre-release documentation reflecting validation in progress. Please eval
 ## Features
 {: #mm-cos-features}
 
- {{site.data.keyword.mon_full_notm}} is a third-party, cloud-native, and container-aware management system. Documentation from [{{site.data.keyword.mon_short}}](/docs/Monitoring-with-Sysdig?topic=Sysdig-monitoring#monitoring_dashboards) can guide you in how to use the comprehensive dashboards. Full [platform integration](/docs/Monitoring-with-Sysdig?topic=Sysdig-platform_metrics_enabling) is also available, but in this guide we will focus on how to measure activity on individual buckets in your instance of {{site.data.keyword.cos_full_notm}}.
+ {{site.data.keyword.mon_full_notm}} is a third-party and cloud-native management system. Documentation from [{{site.data.keyword.mon_short}}](/docs/Monitoring-with-Sysdig?topic=Sysdig-monitoring#monitoring_dashboards) can guide you in how to use the comprehensive dashboards. In this guide we will focus on how to measure activity on individual buckets in your instance of {{site.data.keyword.cos_full_notm}}.
 
 ### Working with Metrics
 {: #mm-cos-metrics}
