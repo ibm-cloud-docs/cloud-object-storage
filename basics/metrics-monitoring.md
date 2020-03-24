@@ -188,6 +188,68 @@ Once you've configured your dashboard, you can view your data.
 
 ![Dashboard configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-results-samples.png){: caption="Figure 7. View sample data"}
 
+## Cloud Object Storage metrics details
+{: mm-cos-metrics}
+
+| Metric Name |
+|-----------|
+| [IBM COS Bucket object count](#mm-cos-ibm_cos_bucket_object_count) | 
+| [IBM COS Bucket size](#mm-cos-ibm_cos_bucket_used_bytes) | 
+{: caption="Table 1: Metrics Available" caption-side="top"}
+
+### IBM COS Bucket object count
+{: #mm-cos-ibm_cos_bucket_object_count}
+
+Number of objects in the bucket
+
+| Metadata | Description |
+|----------|-------------|
+| `Metric Name` | `ibm_cos_bucket_object_count`|
+| `Metric Type` | `gauge` |
+| `Value Type`  | `none` |
+| `Segment By` | `Service instance, IBM COS Bucket storage class` |
+{: caption="Table 2: IBM COS Bucket object count metric metadata" caption-side="top"}
+
+### IBM COS Bucket size
+{: #mm-cos-ibm_cos_bucket_used_bytes}
+
+Bucket Size in bytes
+
+| Metadata | Description |
+|----------|-------------|
+| `Metric Name` | `ibm_cos_bucket_used_bytes`|
+| `Metric Type` | `gauge` |
+| `Value Type`  | `byte` |
+| `Segment By` | `Service instance, IBM COS Bucket storage class` |
+{: caption="Table 3: IBM COS Bucket size metric metadata" caption-side="top"}
+
+## Attributes for Segmentation
+{: mm-cos-attributes}
+
+### Global Attributes
+{: mm-cos-global-attributes}
+
+The following attributes are available for segmenting all of the metrics listed above
+
+| Attribute | Attribute Name | Attribute Description |
+|-----------|----------------|-----------------------|
+| `Cloud Type` | `ibm_ctype` | public, dedicated or local |
+| `Location` | `ibm_location` | The location of the monitored resource - this may be a Cross Region, Regional, or Single Site bucket |
+| `Resource` | `ibm_resource` | COS bucket name |
+| `Resource Type` | `ibm_resource_type` | COS bucket |
+| `Scope` | `ibm_scope` | The scope is the account associated with this metric |
+| `Service name` | `ibm_service_name` | cloud-object-storage |
+
+### Additional Attributes
+{: mm-cos-additional-attributes}
+
+The following attributes are available for segmenting one or more attributes as described in the reference above.  Please see the individual metrics for segmentation options.
+
+| Attribute | Attribute Name | Attribute Description |
+|-----------|----------------|-----------------------|
+| `IBM COS Bucket storage class` | `ibm_cos_bucket_storage_class` | Storage class of the bucket |
+| `Service instance` | `ibm_service_instance` | The service instance segment identifies the guid of the instance the metric is associated with |
+
 ## Next Steps
 {: #mm-cos-next-steps}
 
