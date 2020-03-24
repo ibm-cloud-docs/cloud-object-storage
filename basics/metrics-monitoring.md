@@ -76,8 +76,7 @@ There are many ways to manage access to your {{site.data.keyword.cos_short}} ins
 From the [catalog](https://cloud.ibm.com/login){: external} choose {{site.data.keyword.mon_full_notm}} from the available services. When selected, you will be taken to the configuration shown in Figure 1.
 {: console}
 
-![Instance creation](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-instance-creation.png){: caption="Figure 1. Configuring monitoring when creating a bucket"}
-{: console}
+![Instance creation](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-instance-creation.png){: caption="Figure 1. Configuring monitoring when creating a bucket"}{: console}
 
 After you [login](/docs/cli?topic=cloud-cli-ibmcloud_cli#ibmcloud_login) using IBM Cloud Developer Tools and target both the region and resource group for your account, create a new resource using the command as shown.
 {: cli}
@@ -105,16 +104,21 @@ In the code sample, replace the placeholders with the appropriate values.
 Most of the work you will do with {{site.data.keyword.mon_short}} will be in specific dashboards to be discussed later. But first, there are a couple of ways in which you can get started.
 
 Complete the following steps to get an IAM token:
+{: cli}
 
 1. From a terminal, log in to the {{site.data.keyword.cloud_notm}}.
+{: cli}
 2. Run the following command to get a token:
+{: cli}
 
     ```
     ibmcloud iam oauth-tokens
     ```
     {: codeblock}
+    {: cli}
 
 Keep the token handy for later if you are using the Dev Tools CLI.
+{: cli}
 
 ### Configure a bucket for metrics
 {: #mm-cos-connection-console}
@@ -130,8 +134,7 @@ When creating a bucket, you can configure your {{site.data.keyword.mon_short}} i
 You can also configure an existing bucket to use the {{site.data.keyword.mon_short}} instance by selecting `configuration` in the console.
 {: console}
 
-![Bucket modification](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-UI-bucket-modification.png){: caption="Figure 3. Configuring monitoring when modifying a bucket's configuration"}
-{: console}
+![Bucket modification](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-UI-bucket-modification.png){: caption="Figure 3. Configuring monitoring when modifying a bucket's configuration"}{: console}
 
 Note that in each case the `region` for your new instance of {{site.data.keyword.mon_short}} is automatically tied to the region of the bucket. 
 {: important}
@@ -191,11 +194,7 @@ Once you've configured your dashboard, you can view your data.
 ## Cloud Object Storage metrics details
 {: mm-cos-metrics}
 
-| Metric Name |
-|-----------|
-| [IBM COS Bucket object count](#mm-cos-ibm_cos_bucket_object_count) | 
-| [IBM COS Bucket size](#mm-cos-ibm_cos_bucket_used_bytes) | 
-{: caption="Table 1: Metrics Available" caption-side="top"}
+You can measure the number of objects in your bucket as well as its size, by using the following metrics.
 
 ### IBM COS Bucket object count
 {: #mm-cos-ibm_cos_bucket_object_count}
