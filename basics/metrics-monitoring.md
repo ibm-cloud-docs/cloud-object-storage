@@ -105,16 +105,21 @@ In the code sample, replace the placeholders with the appropriate values.
 Most of the work you will do with {{site.data.keyword.mon_short}} will be in specific dashboards to be discussed later. But first, there are a couple of ways in which you can get started.
 
 Complete the following steps to get an IAM token:
+{: cli}
 
 1. From a terminal, log in to the {{site.data.keyword.cloud_notm}}.
+{: cli}
 2. Run the following command to get a token:
+{: cli}
 
     ```
     ibmcloud iam oauth-tokens
     ```
     {: codeblock}
+    {: cli}
 
 Keep the token handy for later if you are using the Dev Tools CLI.
+{: cli}
 
 ### Configure a bucket for metrics
 {: #mm-cos-connection-console}
