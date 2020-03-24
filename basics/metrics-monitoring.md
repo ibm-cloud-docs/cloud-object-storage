@@ -172,27 +172,23 @@ When you have created your instance of {{site.data.keyword.mon_short}}, click on
 
 ![Launching instances](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-instance-management.png){: caption="Figure 1. Launching {{site.data.keyword.mon_short}} instances"}
 
-When you launch your first dashboard, you have the option to install {{site.data.keyword.mon_short}} agents in various operating systems, devices, and containers. However, we will skip that for this guide. Select "Next" from the bottom of the welcome screen in Figure 5, then click on "Skip" in order to bypass the [installation process](/docs/Monitoring-with-Sysdig?topic=Sysdig-config_agent).
-
-![Agent configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-instance-onboarding.png){: caption="Figure 2. Skip installing {{site.data.keyword.mon_short}} agents"}
-
 ### Choose a pre-built dashboard for {{site.data.keyword.mon_short}}
 {: #mm-cos-connection-dashboard}
 
-This guide has skipped right past the installation of agents that is typical of most monitoring configurations. In addition, you can also skip the manual creation of building a dashboard by using a pre-built solution. As shown in Figure 6, you can choose how to present your data using one of the options given.
+This guide has skipped right past the installation of agents that is typical of most monitoring configurations. In addition, you can also skip the manual creation of building a dashboard by using a pre-built solution. As shown in Figure 2, you can choose how to present your data using one of the options given.
 
-![Dashboard configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-pre-built-reports.png){: caption="Figure 3. Choose a bre-built report"}
+![Dashboard configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-pre-built-reports.png){: caption="Figure 2. Choose a bre-built report"}
 
 ### View your data in {{site.data.keyword.mon_short}}
 {: #mm-cos-connection-view-data}
 
-Once you've configured your dashboard, you can view your data.
+Once you've configured your dashboard, you can view your data. Figures 3-5 show different views of your usage. 
 
-![View bucket metrics](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-metrics.jpg){: caption="Figure 4. View sample data showing space used and number of objects"}
+![View bucket metrics](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-metrics.jpg){: caption="Figure 3. View sample data showing space used and number of objects"}
 
-![View metrics by location](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-metrics-2.jpg){: caption="Figure 5. View space used by location"}
+![View metrics by location](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-metrics-2.jpg){: caption="Figure 4. View space used by location"}
 
-![View metrics by storage class](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-metrics-3.jpg){: caption="Figure 6. View used space by storage class"}
+![View metrics by storage class](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-metrics-3.jpg){: caption="Figure 5. View used space by storage class"}
 
 ## Cloud Object Storage metrics details
 {: mm-cos-metrics}
