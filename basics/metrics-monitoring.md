@@ -188,7 +188,11 @@ This guide has skipped right past the installation of agents that is typical of 
 
 Once you've configured your dashboard, you can view your data.
 
-![Dashboard configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-metrics.jpg){: caption="Figure 7. View sample data"}
+![View bucket metrics](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-metrics.jpg){: caption="Figure 7. View sample data showing space used and number of objects"}
+
+![View more metrics](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-metrics-2.jpg){: caption="Figure 8. View space used by location"}
+
+![View more metrics](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-metrics-3.jpg){: caption="Figure 9. View used space by storage class"}
 
 ## Cloud Object Storage metrics details
 {: mm-cos-metrics}
