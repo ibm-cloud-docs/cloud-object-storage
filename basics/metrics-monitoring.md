@@ -128,13 +128,12 @@ In this guide, we want to measure the number and size of objects in our buckets.
 When creating a bucket, you can configure your {{site.data.keyword.mon_short}} instance at the same time.
 {: console}
 
-![Bucket creation](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-UI-bucket-creation.png){: caption="Figure 2. Configuring monitoring when creating a bucket"}
-{: console}
+![Bucket creation](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-UI-bucket-creation.png){: console}{: caption="Figure 2. Configuring monitoring when creating a bucket"}
 
 You can also configure an existing bucket to use the {{site.data.keyword.mon_short}} instance by selecting `configuration` in the console.
 {: console}
 
-![Bucket modification](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-UI-bucket-modification.png){: caption="Figure 3. Configuring monitoring when modifying a bucket's configuration"}{: console}
+![Bucket modification](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-UI-bucket-modification.png){: console}{: caption="Figure 3. Configuring monitoring when modifying a bucket's configuration"}
 
 Note that in each case the `region` for your new instance of {{site.data.keyword.mon_short}} is automatically tied to the region of the bucket. 
 {: important}
