@@ -65,7 +65,7 @@ If you have not already done so, [set up and provision](/docs/cloud-object-stora
 ## Manage User Access
 {: #mm-cos-manage-users}
 
-There are many ways to manage access to your {{site.data.keyword.cos_short}} instance, including creating [service credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials). 
+There are many ways to manage access to your {{site.data.keyword.cos_short}} instance, but for this guide we'll focus on how to access the dashboard you are going to create. 
 
 **Users in an account [must be assigned a platform role](/docs/Monitoring-with-Sysdig?topic=Sysdig-iam) in order to manage instances as well as launching the Sysdig UI from the {{site.data.keyword.cloud_notm}} console. In addition, users must have a service role that defines the permissions to work with {{site.data.keyword.mon_full_notm}}.** 
 {: important}
@@ -76,7 +76,7 @@ There are many ways to manage access to your {{site.data.keyword.cos_short}} ins
 From the [catalog](https://cloud.ibm.com/login){: external} choose {{site.data.keyword.mon_full_notm}} from the available services. When selected, you will be taken to the configuration shown in Figure 1.
 {: console}
 
-![Instance creation](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-instance-creation.png){: caption="Figure 1. Configuring monitoring when creating a bucket"}{: console}
+![Instance creation](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-instance-creation.png){: console}
 
 After you [login](/docs/cli?topic=cloud-cli-ibmcloud_cli#ibmcloud_login) using IBM Cloud Developer Tools and target both the region and resource group for your account, create a new resource using the command as shown.
 {: cli}
@@ -128,12 +128,12 @@ In this guide, we want to measure the number and size of objects in our buckets.
 When creating a bucket, you can configure your {{site.data.keyword.mon_short}} instance at the same time.
 {: console}
 
-![Bucket creation](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-UI-bucket-creation.png){: console}{: caption="Figure 2. Configuring monitoring when creating a bucket"}
+![Bucket creation](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-UI-bucket-creation.png){: console}
 
 You can also configure an existing bucket to use the {{site.data.keyword.mon_short}} instance by selecting `configuration` in the console.
 {: console}
 
-![Bucket modification](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-UI-bucket-modification.png){: console}{: caption="Figure 3. Configuring monitoring when modifying a bucket's configuration"}
+![Bucket modification](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-UI-bucket-modification.png){: console}
 
 Note that in each case the `region` for your new instance of {{site.data.keyword.mon_short}} is automatically tied to the region of the bucket. 
 {: important}
@@ -170,29 +170,29 @@ In the code sample, replace the placeholders with the appropriate values.
 
 When you have created your instance of {{site.data.keyword.mon_short}}, click on the "View Sysdig" button in the "View dashboard" column, as shown in Figure 4.
 
-![Launching instances](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-instance-management.png){: caption="Figure 4. Launching {{site.data.keyword.mon_short}} instances"}
+![Launching instances](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-instance-management.png){: caption="Figure 1. Launching {{site.data.keyword.mon_short}} instances"}
 
 When you launch your first dashboard, you have the option to install {{site.data.keyword.mon_short}} agents in various operating systems, devices, and containers. However, we will skip that for this guide. Select "Next" from the bottom of the welcome screen in Figure 5, then click on "Skip" in order to bypass the [installation process](/docs/Monitoring-with-Sysdig?topic=Sysdig-config_agent).
 
-![Agent configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-instance-onboarding.png){: caption="Figure 5. Skip installing {{site.data.keyword.mon_short}} agents"}
+![Agent configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-instance-onboarding.png){: caption="Figure 2. Skip installing {{site.data.keyword.mon_short}} agents"}
 
 ### Choose a pre-built dashboard for {{site.data.keyword.mon_short}}
 {: #mm-cos-connection-dashboard}
 
 This guide has skipped right past the installation of agents that is typical of most monitoring configurations. In addition, you can also skip the manual creation of building a dashboard by using a pre-built solution. As shown in Figure 6, you can choose how to present your data using one of the options given.
 
-![Dashboard configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-pre-built-reports.png){: caption="Figure 6. Choose a bre-built report"}
+![Dashboard configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-pre-built-reports.png){: caption="Figure 3. Choose a bre-built report"}
 
 ### View your data in {{site.data.keyword.mon_short}}
 {: #mm-cos-connection-view-data}
 
 Once you've configured your dashboard, you can view your data.
 
-![View bucket metrics](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-metrics.jpg){: caption="Figure 7. View sample data showing space used and number of objects"}
+![View bucket metrics](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-metrics.jpg){: caption="Figure 4. View sample data showing space used and number of objects"}
 
-![View metrics by location](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-metrics-2.jpg){: caption="Figure 8. View space used by location"}
+![View metrics by location](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-metrics-2.jpg){: caption="Figure 5. View space used by location"}
 
-![View metrics by storage class](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-metrics-3.jpg){: caption="Figure 9. View used space by storage class"}
+![View metrics by storage class](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-metrics-3.jpg){: caption="Figure 6. View used space by storage class"}
 
 ## Cloud Object Storage metrics details
 {: mm-cos-metrics}
