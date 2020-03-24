@@ -37,13 +37,13 @@ For more information about the following services, be sure to check out the resp
 
 * [Aspera high-speed transfer](/docs/cloud-object-storage/basics?topic=cloud-object-storage-aspera)
 * [Key Protect](/docs/cloud-object-storage/basics/cloud-object-storage/basics?topic=cloud-object-storage-encryption#sse-kp)
-* [{{site.data.keyword.hscrypto}} ({{site.data.keyword.hscrypto}})](/docs/cloud-object-storage?topic=cloud-object-storage-encryption)
+* [{{site.data.keyword.hscrypto}} (SSE-KP)](/docs/cloud-object-storage?topic=cloud-object-storage-encryption)
 * [Archive Data](/docs/cloud-object-storage/basics?topic=cloud-object-storage-archive)
 * [Immutable Object Storage](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable)
-* [Activity Tracker](/docs/cloud-object-storage?topic=cloud-object-storage-at)
-* [Functions] (/docs/cloud-object-storage?topic=cloud-object-storage-functions)
-* [Smart Tier] (/docs/cloud-object-storage?topic=cloud-object-storage-billing#smart-tier-pricing-details)
-* [Monitoring] (/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration)
+* [Activity Tracker](/docs/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started)
+* [Functions](/docs/cloud-object-storage?topic=cloud-object-storage-functions)
+* [Smart Tier](/docs/cloud-object-storage?topic=cloud-object-storage-billing#smart-tier-pricing-details)
+* [Monitoring](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration)
 
 
 
@@ -58,8 +58,6 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | AP Cross Region | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | No         | Tokyo |
 | EU Cross Region | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | No         | Frankfurt |
 | US Cross Region | Yes    | No          | No                             | No           | Yes                      | Dallas           | No        | Yes        | Dallas |
-
-
 
 
 ## Regional
@@ -93,3 +91,8 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | Seoul, South Korea          | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | No        | Tokyo |
 | Singapore                   | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | No        | Tokyo |
 | Toronto, Canada             | Yes    | No          | No                             | Yes          | No                       | Dallas           | No        | No        | Dallas |
+
+## More information
+{: #service-availability-more-info}
+
+Learn more about how locations are represented by [endpoints](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints) for users of {{site.data.keyword.cos_full_notm}}.
