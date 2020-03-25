@@ -73,7 +73,7 @@ There are many ways to manage access to your {{site.data.keyword.cos_short}} ins
 ## Provisioning an instance of {{site.data.keyword.mon_short}}
 {: #mm-cos-provisioning}
 
-From the [catalog](https://cloud.ibm.com/login){: external} choose {{site.data.keyword.mon_full_notm}} from the available services. When selected, you will be taken to the configuration shown in Figure 1.
+From the [catalog](https://cloud.ibm.com/login){: external} choose {{site.data.keyword.mon_full_notm}} from the available services. When selected, you will be taken to the configuration shown in Figure 1.  At the bottom of the screen under "IBM platform metrics:" select Enable before creating the instance.
 {: console}
 
 ![Instance creation](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-instance-creation.png){: console}
@@ -98,7 +98,8 @@ In the code sample, replace the placeholders with the appropriate values.
 | &lt;LOCATION&gt; | The region of your buckets | `us-east` |
 {: cli}
 
-## Configure Platform Metrics on {{site.data.keyword.mon_short}}
+### Configure Platform Metrics on {{site.data.keyword.mon_short}}
+{: cli}
 
 ```bash
 ibmcloud resource service-instance-update <INSTANCE_NAME> -p '{"default_receiver": true}'
