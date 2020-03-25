@@ -216,7 +216,7 @@ You can measure the number of objects in your bucket as well as its size, by usi
 ### IBM COS Bucket object count
 {: #mm-cos-ibm_cos_bucket_object_count}
 
-Number of objects in the bucket
+Number of objects in the bucket enumerates your contents.
 
 | Metadata | Description |
 |----------|-------------|
@@ -229,7 +229,7 @@ Number of objects in the bucket
 ### IBM COS Bucket size
 {: #mm-cos-ibm_cos_bucket_used_bytes}
 
-Bucket Size in bytes
+Bucket Size in bytes shows the usage of the bucket.
 
 | Metadata | Description |
 |----------|-------------|
