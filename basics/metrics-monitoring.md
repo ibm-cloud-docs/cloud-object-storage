@@ -261,6 +261,7 @@ The following attributes are available for segmenting all of the metrics listed 
 | `Resource Type` | `ibm_resource_type` | COS bucket |
 | `Scope` | `ibm_scope` | The scope is the account associated with this metric. |
 | `Service name` | `ibm_service_name` | cloud-object-storage |
+{: caption="Table 4: IBM global attributes" caption-side="top"}
 
 ### Additional Attributes
 {: mm-cos-additional-attributes}
@@ -271,6 +272,7 @@ The following attributes are available for segmenting one or more attributes as 
 |-----------|----------------|-----------------------|
 | `IBM COS Bucket storage class` | `ibm_cos_bucket_storage_class` | Storage class of the bucket |
 | `Service instance` | `ibm_service_instance` | The service instance segment identifies the guid of the instance the metric is associated with. |
+{: caption="Table 5: COS specific attributes" caption-side="top"}
 
 ## Next Steps
 {: #mm-cos-next-steps}
