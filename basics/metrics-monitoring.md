@@ -32,9 +32,6 @@ subcollection: cloud-object-storage
 Use the {{site.data.keyword.mon_full}} service to monitor your {{site.data.keyword.cos_full}} (COS) data in the {{site.data.keyword.cloud_notm}}. The results of the activity can be measured for compliance and other analysis through the web dashboard UI. 
 {: shortdesc}
 
-This is pre-release documentation reflecting validation in progress. Please evaluate accordingly.
-{: important}
-
 ## Features
 {: #mm-cos-features}
 
