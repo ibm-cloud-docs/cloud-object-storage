@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2020
 
-lastupdated: "2020-02-10"
+lastupdated: "2020-03-25"
 
 keywords: aspera, key protect, archive, worm
 
@@ -35,12 +35,16 @@ The document describes the regions where services and the different kinds of ava
 
 For more information about the following services, be sure to check out the respective links:
 
-* [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera)
-* [Key Protect](docs/services/cloud-object-storage/iam?topic=cloud-object-storage-encryption#encryption-kp)
-* [{{site.data.keyword.hscrypto}} ({{site.data.keyword.hscrypto}})](/docs/services/cloud-object-storage?topic=cloud-object-storage-encryption)
-* [Archive Data](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-archive)
-* [Immutable Object Storage](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-immutable)
-* [Activity Tracker](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started)
+* [Aspera high-speed transfer](/docs/cloud-object-storage/basics?topic=cloud-object-storage-aspera)
+* [Key Protect](/docs/cloud-object-storage/basics/cloud-object-storage/basics?topic=cloud-object-storage-encryption#sse-kp)
+* [{{site.data.keyword.hscrypto}} (SSE-KP)](/docs/cloud-object-storage?topic=cloud-object-storage-encryption)
+* [Archive Data](/docs/cloud-object-storage/basics?topic=cloud-object-storage-archive)
+* [Immutable Object Storage](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable)
+* [Activity Tracker](/docs/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started)
+* [Functions](/docs/cloud-object-storage?topic=cloud-object-storage-functions)
+* [Smart Tier](/docs/cloud-object-storage?topic=cloud-object-storage-billing#smart-tier-pricing-details)
+* [Monitoring](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration)
+
 
 
 Downloads that use Aspera high-speed transfer incur extra egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage).
@@ -49,43 +53,46 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 ## Cross Region
 {: #service-availability-geo}
 
-| Region          | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier |
-|-----------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|
-| AP Cross Region | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | Yes        |
-| EU Cross Region | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        |
-| US Cross Region | Yes    | No          | No                             | No           | Yes                      | Dallas           | No        | Yes        |
-
-
+| Region          | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
+|-----------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
+| AP Cross Region | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | No         | Tokyo |
+| EU Cross Region | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | No         | Frankfurt |
+| US Cross Region | Yes    | No          | No                             | No           | Yes                      | Dallas           | No        | Yes        | Dallas |
 
 
 ## Regional
 {: #service-availability-region}
 
-| Region           | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier |
-|------------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|
-| AP Australia     | Yes    | Yes         | Yes                            | Yes          | Yes                      | Sydney           | No        | Yes        |
-| AP Japan         | Yes    | Yes         | No                             | Yes          | Yes                      | Tokyo            | Yes       | Yes        |
-| EU Great Britain | Yes    | Yes         | No                             | Yes          | Yes                      | London           | Yes       | Yes        |
-| EU Germany       | Yes    | Yes         | No                             | Yes          | Yes                      | Frankfurt        | Yes       | Yes        |
-| US South         | Yes    | Yes         | Yes                            | Yes          | Yes                      | Dallas           | Yes       | Yes        |
-| US East          | Yes    | Yes         | No                             | Yes          | Yes                      | Washington DC           | Yes       | Yes        |
+| Region           | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
+|------------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
+| AP Australia     | Yes    | Yes         | Yes                            | Yes          | Yes                      | Sydney           | No        | Yes        | Sydney |
+| AP Japan         | Yes    | Yes         | No                             | Yes          | Yes                      | Tokyo            | Yes       | Yes        | Tokyo |
+| EU Great Britain | Yes    | Yes         | No                             | Yes          | Yes                      | London           | Yes       | Yes        | London |
+| EU Germany       | Yes    | Yes         | No                             | Yes          | Yes                      | Frankfurt        | Yes       | Yes        | Frankfurt |
+| US South         | Yes    | Yes         | Yes                            | Yes          | Yes                      | Dallas           | Yes       | Yes        | Dallas |
+| US East          | Yes    | Yes         | No                             | Yes          | Yes                      | Washington DC           | Yes       | Yes        | Washington DC |
 
 ## Single Data Centers
 {: #service-availability-zone}
 
-| Region                      | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier |
-|-----------------------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|-----------|
-| Amsterdam, Netherlands      | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | No        |
-| Chennai, India              | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | No        |
-| Hong Kong S.A.R. of the PRC | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | No        |
-| Melbourne, Australia        | Yes    | No          | No                             | No           | No                       | Sydney           | No        | No        |
-| Mexico City, Mexico         | Yes    | No          | No                             | No           | No                       | Dallas           | No        | No        |
-| Milan, Italy                | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | No        |
-| Montréal, Canada            | Yes    | No          | No                             | No           | No                       | Dallas           | No        | No        |
-| Oslo, Norway                | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | No        |
-| Paris, France               | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | No        |
-| San Jose, US                | Yes    | No          | No                             | No           | No                       | Dallas           | No        | No        |
-| São Paulo, Brazil           | Yes    | No          | No                             | Yes          | No                       | Dallas           | No        | No        |
-| Seoul, South Korea          | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | No        |
-| Singapore                   | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | No        |
-| Toronto, Canada             | Yes    | No          | No                             | Yes          | No                       | Dallas           | No        | No        |
+| Region                      | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
+|-----------------------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|-----------|-----------|
+| Amsterdam, Netherlands      | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | No        | Frankfurt |
+| Chennai, India              | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | No        | Tokyo |
+| Hong Kong S.A.R. of the PRC | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | No        | Tokyo |
+| Melbourne, Australia        | Yes    | No          | No                             | No           | No                       | Sydney           | No        | No        | Sydney |
+| Mexico City, Mexico         | Yes    | No          | No                             | No           | No                       | Dallas           | No        | No        | Dallas |
+| Milan, Italy                | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | No        | Frankfurt |
+| Montréal, Canada            | Yes    | No          | No                             | No           | No                       | Dallas           | No        | No        | Dallas |
+| Oslo, Norway                | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | No        | Frankfurt |
+| Paris, France               | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | No        | Frankfurt |
+| San Jose, US                | Yes    | No          | No                             | No           | No                       | Dallas           | No        | No        | Dallas |
+| São Paulo, Brazil           | Yes    | No          | No                             | Yes          | No                       | Dallas           | No        | No        | Dallas |
+| Seoul, South Korea          | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | No        | Tokyo |
+| Singapore                   | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | No        | Tokyo |
+| Toronto, Canada             | Yes    | No          | No                             | Yes          | No                       | Dallas           | No        | No        | Dallas |
+
+## More information
+{: #service-availability-more-info}
+
+Learn more about how locations are represented by [endpoints](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints) for users of {{site.data.keyword.cos_full_notm}}.
