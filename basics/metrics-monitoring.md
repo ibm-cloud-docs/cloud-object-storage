@@ -131,6 +131,10 @@ Keep the token handy for later if you are using the Dev Tools CLI.
 
 In this guide, we want to measure the number and size of objects in our buckets.
 
+Metrics are only sent to {{site.data.keyword.mon_short}} every 24 hours.  
+Any alert thresholds exceeded on metrics will not trigger until the next time the metrics are sent to {{site.data.keyword.mon_short}}
+{: important}
+
 When creating a bucket, you can configure your {{site.data.keyword.mon_short}} instance at the same time.
 {: console}
 
@@ -145,17 +149,18 @@ Note that in each case the `region` for your new instance of {{site.data.keyword
 {: important}
 {: console}
 
-Note that if the {{site.data.keyword.mon_short}} instance is created by the COS, Platform metrics must be set on the {{site.data.keyword.mon_short}} instance.
+Note that if the {{site.data.keyword.mon_short}} instance is created by COS, Platform metrics must be set on the {{site.data.keyword.mon_short}} instance.
 {: important}
 {: console}
 
 To set Platform metrics on the instance:
+{: console}
    1. Go to https://cloud.ibm.com/observe/monitoring
    2. Click on "Configure platform metrics"
    3. Select the region where the {{site.data.keyword.mon_short}} instance was created
    4. Click Configure
    5. Now the {{site.data.keyword.mon_short}} instance is set for Platform metrics
-{: console}
+   {: console}
 
 We will use cURL to connect to the Resource Configuration API and modify our bucket's configuration.
 {: cli}
