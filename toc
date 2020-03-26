@@ -17,6 +17,12 @@ Cloud Object Storage
 
     cos-responsibilities.md
     release-notes.md
+
+    Performance optimization
+        performance/topology.mq
+        performance/encryption-integrity.md
+        performance/data-io.md
+        performance/bottlenecks.md
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
