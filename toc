@@ -20,7 +20,7 @@ Cloud Object Storage
 
     {: .topicgroup}
     Performance optimization
-        performance/topology.mq
+        performance/topology.md
         performance/encryption-integrity.md
         performance/data-io.md
         performance/bottlenecks.md
@@ -28,7 +28,6 @@ Cloud Object Storage
 
     {: .navgroup id="howto"}
     basics/order-storage.md
-    basics/metrics-monitoring.md
 
     {: .topicgroup}
     Choose regions and connect services
@@ -66,6 +65,7 @@ Cloud Object Storage
     basics/encryption.md
     basics/sql.md
     basics/logdna.md
+    basics/metrics-monitoring.md
     basics/functions.md
     {: .navgroup-end}
 
