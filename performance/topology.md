@@ -35,8 +35,42 @@ There are many ways to connect to {{site.data.keyword.cos_full}} and the choice 
 ## Physical distance
 {: #performance-topology-distance}
 
+When an application makes a request to COS, it needs to cross some amount of physical distance.  As this distance increases, the latency of the request will also increase. In order to lessen the latency imposed by physical distance, it is optimal to co-locate compute resources and object storage where possible. If your application is running in the IBM Cloud in the `us-south` region, then in order to optimize performance it would be best to read and write data to a bucket also located in the `us-south` region. 
+
+Workloads that require accessing data in far reaching places might benefit from using IBM Aspera, especially if there is significant packet loss.  More information about using IBM Aspera High-Speed Transfer and COS can be found in the Aspera guide.
+
+Applications with global reach will benefit from using a Content Delivery Network to cache assets stored in COS in locations closer to their end users.  The original files can continue to live in `us-south`, but copies can be cached in various locations around the world where users are originating requests.  
+
 ## Resilience requirements
 {: #performance-topology-resilience}
 
+Some workloads might require the additional levels of resiliency that comes with writing data to Cross Region buckets, while others might rely on the increased marginal performance found in a Single Data Center bucket.  Each application needs to strike a balance between higher availability and faster performance.  
+
+When using a Cross Region endpoint, it is possible to direct inbound traffic to a specific access point while still distributing data across all three regions. When sending requests to an individual access point **there is no automated failover if that region becomes unavailable**. Applications that direct traffic to an access point instead of the `geo` endpoint **must** implement appropriate failover logic internally to achieve the availabity advantages of the cross-region storage. 
+
+One reason for using an access point is to control where data ingress and egress occurs while still distributing the data across the widest possible area. Imagine an application running in the `us-south` region that wants to store data in a US cross-region bucket but wants to ensure that all read and write requests remain in the Dallas area:
+
+1. The application creates a client using the `https://s3.private.dal.us.cloud-object-storage.appdomain.cloud` endpoint.
+2. The {{site.data.keyword.cos_short}} service in Dallas suffers an outage.
+3. The application detects a persistent failure trying to use the access point.
+4. The application recognizes the need to fail over to a different access point, such as San Jose.
+5. The application creates a new client using the `https://s3.private.sjc.us.cloud-object-storage.appdomain.cloud` endpoint.
+6. Connectivity is resumed, and access can be re-routed to Dallas when service is restored.
+
+When sending requests to an individual access point there is no automated failover if that region becomes unavailable.
+{: note}
+
+For contrast, imagine another application using the normal US cross-region endpoint:
+
+1. The application creates a client using the `https://s3.us.cloud-object-storage.appdomain.cloud` endpoint.
+1. The {{site.data.keyword.cos_short}} service in Dallas suffers an outage.
+2. All {{site.data.keyword.cos_short}} requests are automatically rerouted to San Jose or Washington until service is restored.
+
 ## Network type
 {: #performance-topology-network}
+
+Traffic directed to COS can come from one of three networks: Public, Private, or Direct. The network that is targeted is defined by the COS service endpoint used to access a bucket. While a bucket is created in a single location (be that Cross Region, Regional, or Single Site) it is still possible to access that same bucket via any of the three network types described.
+
+Public traffic traverses the public Internet until it reaches an IBM Cloud load balancer, that then directs traffic into the COS distributed storage network. Private traffic originates within the IBM Cloud and never touches the public Internet.  Direct traffic originates in a Virtual Private Cloud that could contain both local datacenters and IRM Cloud resources. This allows users to connect directly to the Private IBM Cloud network from a user's data center without touching the public Internet. 
+
+Because the Private network eliminates any variances, congestion, or vulnerabilities found in the Public Internet, it is recommended that all workloads use the Private network whenever possible.
