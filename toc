@@ -18,6 +18,7 @@ Cloud Object Storage
     cos-responsibilities.md
     release-notes.md
 
+    {: .topicgroup}
     Performance optimization
         performance/topology.mq
         performance/encryption-integrity.md
