@@ -35,11 +35,17 @@ Object size can have significant impacts on {{site.data.keyword.cos_full}} perfo
 ## Concurrency and latency
 {: #performance-io-concurrency}
 
+For large objects greater than 200mb in size, Aspera is a good option but not for smaller than 200mb objects. 
+
+When uploading data to COS multipart uploads are a great way to break up transfers into many parallel transactions. 
+
 ## Throttling batch deletes
 {: #performance-io-batch}
 
 ## Consistency impacts
 {: #performance-io-consistency}
+
+when writing the same object over and over in a short amount of time perhaps you might consider a different storage type as this will cause contention.
 
 ## Existence checks
 {: #performance-io-head}
