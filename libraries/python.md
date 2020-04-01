@@ -90,9 +90,9 @@ Code examples are tested on supported release versions of Python.
 ### Initializing configuration
 {: #python-examples-init}
 
-This example creates a `resource` object. Note that some operations (such as Aspera high-speed transfer) require a `client` object. 
+This example creates a `resource` object. A resource provides an object-oriented interface to COS. This allows for a higher level of abstraction than the low-level calls provided by a client object. 
 
-While using a session is best suited for re-using credentials, where clients act as wrappers around the API and a single endpoint. Resource objects are configurable to be expanded beyond a single endpoint, and like client objects can also inherit from a session. 
+Note that some operations (such as Aspera high-speed transfer) require a `client` object.
 {:important}
   
 ```python
@@ -116,7 +116,7 @@ cos = ibm_boto3.resource("s3",
 {: codeblock}
 {: python}
 
-This example creates a `client` object. Note that most operations can be accomplished with a client. Also, note that only one of the possible objects, `client`, `resource`, or `session` is required.  
+A client provides a low-level interface to the COS S3 API. This allows for processing HTTP responses directly, rather than making use of abstracted methods and attributes provided by a resource to access the information contained in headers or XML response payloads.  
 
 ```python
 
