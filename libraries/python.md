@@ -90,7 +90,7 @@ Code examples were written by using **Python 2.7.15**.
 ### Initializing configuration
 {: #python-examples-init}
 
-This example creates a `resource` instead of a `client` or `session` object. Note that some operations (such as Aspera high-speed transfer) require a `client` object.
+This example creates a `resource` instead of a `client` or `session` object. Note that some operations (such as Aspera high-speed transfer) require a `client` object. Session approaches are suitable to re-use credentials, allowing clients, wrappers around API and a single endpoint, and resources to be inherit from the session. 
 {:important}
   
 ```python
