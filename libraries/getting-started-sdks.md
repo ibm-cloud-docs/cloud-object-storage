@@ -979,7 +979,7 @@ func exitErrorf(msg string, args ...interface{}) {
 	os.Exit(1)
 ```
 {: codeblock}
-{: Go}
+{: go}
 
 ## Running the Code Example
 {: #sdk-gs-run}
@@ -1007,7 +1007,7 @@ java javaexamplecode
 go run go_example.go
 ```
 {: codeblock}
-{: Go}
+{: go}
 
 ## Output from the Code Example
 {: #sdk-gs-output}

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-19"
+  years: 2017, 2020
+lastupdated: "2020-04-02"
 
 keywords: object storage, python, sdk
 
@@ -85,12 +85,14 @@ The following variables appear in the examples:
 ## Code Examples
 {: #python-examples}
 
-Code examples were written by using **Python 2.7.15**
+Code examples are tested on supported release versions of Python. 
 
 ### Initializing configuration
 {: #python-examples-init}
 
-This example creates a `resource` instead of a `client` or `session` object. Note that some operations (such as Aspera high-speed transfer) require a `client` object.
+This example creates a `resource` object. A resource provides an object-oriented interface to COS. This allows for a higher level of abstraction than the low-level calls provided by a client object. 
+
+Note that some operations (such as Aspera high-speed transfer) require a `client` object.
 {:important}
   
 ```python
@@ -100,8 +102,7 @@ from ibm_botocore.client import Config, ClientError
 # Constants for IBM COS values
 COS_ENDPOINT = "<endpoint>" # Current list avaiable at https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints
 COS_API_KEY_ID = "<api-key>" # eg "W00YixxxxxxxxxxMB-odB-2ySfTrFBIQQWanc--P3byk"
-COS_AUTH_ENDPOINT = "https://iam.cloud.ibm.com/identity/token"
-COS_RESOURCE_CRN = "<resource-instance-id>" # eg "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003xxxxxxxxxx1c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
+COS_INSTANCE_CRN = "<service-instance-id>" # eg "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003xxxxxxxxxx1c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
 
 # Create resource
 cos = ibm_boto3.resource("s3",
@@ -115,10 +116,30 @@ cos = ibm_boto3.resource("s3",
 {: codeblock}
 {: python}
 
+A client provides a low-level interface to the COS S3 API. This allows for processing HTTP responses directly, rather than making use of abstracted methods and attributes provided by a resource to access the information contained in headers or XML response payloads.  
+
+```python
+
+import ibm_boto3
+from ibm_botocore.client import Config, ClientError
+
+# Constants for IBM COS values
+COS_ENDPOINT = "<endpoint>" # Current list avaiable at https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints
+COS_API_KEY_ID = "<api-key>" # eg "W00YixxxxxxxxxxMB-odB-2ySfTrFBIQQWanc--P3byk"
+COS_INSTANCE_CRN = "<service-instance-id>" # eg "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003xxxxxxxxxx1c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
+
+# Create client 
+cos = ibm_boto3.client("s3",
+    ibm_api_key_id=COS_API_KEY_ID,
+    ibm_service_instance_id=COS_SERVICE_CRN,
+    config=Config(signature_version="oauth"),
+    endpoint_url=COS_ENDPOINT
+)
+```
 *Key Values*
 * `<endpoint>` - public endpoint for your cloud Object Storage with schema prefixed ('https://') (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){: external}). For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
-* `<resource-instance-id>` - resource ID for your cloud Object Storage (available through [IBM Cloud CLI](/docs/cli?topic=cloud-cli-idt-cli) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){: external})
+* `<service-instance-id>` - resource ID for your cloud Object Storage (available through [IBM Cloud CLI](/docs/cli?topic=cloud-cli-idt-cli) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){: external})
 * `<location>` - default location for your cloud Object Storage (must match the region that is used for `<endpoint>`)
 
 *SDK References*
@@ -256,15 +277,14 @@ def get_item(bucket_name, item_name):
 {: #python-examples-delete-object}
 
 ```python
-def delete_item(bucket_name, item_name):
-    print("Deleting item: {0}".format(item_name))
+def delete_item(bucket_name, object_name):
     try:
-        cos.Object(bucket_name, item_name).delete()
-        print("Item: {0} deleted!".format(item_name))
+        cos.delete_object(Bucket=bucket_name, Key=object_name)
+        print("Item: {0} deleted!\n".format(object_name))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
-        print("Unable to delete item: {0}".format(e))
+        print("Unable to delete object: {0}".format(e))
 ```
 {: codeblock}
 {: python}
@@ -294,7 +314,7 @@ def delete_items(bucket_name):
             ]
         }
 
-        response = cos_cli.delete_objects(
+        response = cos.delete_objects(
             Bucket=bucket_name,
             Delete=delete_request
         )
@@ -413,8 +433,8 @@ def multi_part_upload_manual(bucket_name, item_name, file_path):
 
         upload_id = mp["UploadId"]
 
-        # min 5MB part size
-        part_size = 1024 * 1024 * 5
+        # min 20MB part size
+        part_size = 1024 * 1024 * 20
         file_size = os.stat(file_path).st_size
         part_count = int(math.ceil(file_size / float(part_size)))
         data_packs = []
