@@ -1007,7 +1007,7 @@ java javaexamplecode
 go run go_example.go
 ```
 {: codeblock}
-{: Go}
+{: go}
 
 ## Output from the Code Example
 {: #sdk-gs-output}

@@ -85,12 +85,14 @@ The following variables appear in the examples:
 ## Code Examples
 {: #python-examples}
 
-Code examples were written by using **Python 2.7.15**.
+Code examples are tested on supported release versions of Python. 
 
 ### Initializing configuration
 {: #python-examples-init}
 
-This example creates a `resource` instead of a `client` or `session` object. Note that some operations (such as Aspera high-speed transfer) require a `client` object. Session approaches are suitable to re-use credentials, allowing clients, wrappers around API and a single endpoint, and resources to be inherit from the session. 
+This example creates a `resource` object. Note that some operations (such as Aspera high-speed transfer) require a `client` object. 
+
+While using a session is best suited for re-using credentials, allowing clients to act as wrappers around the API and a single endpoint. Resources are configurable to be expanded beyond a single client, can also inherit from a session. 
 {:important}
   
 ```python
@@ -114,6 +116,8 @@ cosresource = ibm_boto3.resource("s3",
 ```
 {: codeblock}
 {: python}
+
+This example creates a `resource` object. Note that some operations (such as Aspera high-speed transfer) require a `client` object. 
 
 ```python
 cos = ibm_boto3.client('s3',
