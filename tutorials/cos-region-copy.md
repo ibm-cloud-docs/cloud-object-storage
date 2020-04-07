@@ -157,7 +157,7 @@ Note: If you are using the same COS instance for the source and destination, the
     rclone --dry-run copy COS_SOURCE:source-test COS_DESTINATION:destination-test
     ```
 
-1. Check that the files you want to migrate appear in the command output. If everything looks good, remove the `--dry-run` flag and add `-v` flag to copy the data. Using the optional `--checksum` flag avoids updating any files that have the same MD5 hash and object size in both locations.
+2. Check that the files you want to migrate appear in the command output. If everything looks good, remove the `--dry-run` flag and add `-v` flag to copy the data. Using the optional `--checksum` flag avoids updating any files that have the same MD5 hash and object size in both locations.
 
     ```
     rclone -v copy --checksum COS_SOURCE:source-test COS_DESTINATION:destination-test
@@ -170,7 +170,7 @@ Flag | Type | Description
 --- | --- | ---
 `--checkers` | `int` | Number of checkers to run in parallel (default 8). This is the number of checksums compare threads running. We recommend increasing this to 64 or more.
 `--transfers` | `int` | This is the number of objects to transfer in parallel (default 4). We recommend increasing this to 64 or 128 or higher when transferring a large number of small files.
-```--multi-thread-streams` | `int` | Download large files (> 250M) in multiple parts in parallel. This will improve the download time of large files (default 4).
+`--multi-thread-streams` | `int` | Download large files (> 250M) in multiple parts in parallel. This will improve the download time of large files (default 4).
 `--s3-upload-concurrency` | `int` | The number of parts of large files (> 200M) to upload in parallel. This will improve the upload time of large files (default 4).
 
 Different combinations of these values will impact CPU, memory, and transfer times for the objects in your bucket.
@@ -180,4 +180,4 @@ Migrating data using `rclone copy` copies but does not delete the source data.
 {:tip}
 
 
-2. Repeat for any other buckets that require migration/copy/backup.
+3. Repeat for any other buckets that require migration/copy/backup.
