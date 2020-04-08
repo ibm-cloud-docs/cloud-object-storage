@@ -26,8 +26,12 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Moving data between buckets
+# Move data between buckets
 {: #region-copy}
+
+This is draft content and subject to change.
+{: note}
+
 At times it may become necessary to move or backup your data to a different {{site.data.keyword.cos_full}} region. One approach to moving or replicating data across object storage regions is to use a 'sync' or 'clone' tool, such as [the open-source `rclone` command-line utility](https://rclone.org/docs/). This utility syncs a file tree between two locations, including cloud storage. When `rclone` writes data to COS, it uses the COS/S3 API to segment large objects and uploads the parts in parallel according to sizes and thresholds set as configuration parameters.
 
 This guide provides instructions for moving or copying data from one COS bucket to another COS bucket in the same or in a different region. These steps need to be repeated for all buckets that you want to copy. After the data is migrated you can verify the integrity of the transfer by using `rclone check`, which will compare MD5 checksums and produce a list of any objects where they don't match. Additionally, you can keep buckets in sync by running `rclone sync` regularly.
