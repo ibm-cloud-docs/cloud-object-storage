@@ -27,7 +27,7 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 ## Q1 2020
 {: #updates-2020-q1}
 
-Check back soon for more information.
+Buckets can now be created in a new [Smart Tier storage class](/docs/cloud-object-storage?topic=cloud-object-storage-billing#smart-tier-pricing-details) that optimizes costs based on usage patterns. 
 
 ## Q4 2019
 {: #updates-2019-q4}
@@ -73,7 +73,7 @@ Objects can be automatically deleted by [adding expiration rules to a bucket's l
 
 ### May 2019
 {: #updates-2019-q2-may}
-Users can access and interact with object storage [using the IBM Cloud CLI](/docs/cloud-object-storage?topic=cloud-object-storage-ic-use-the-ibm-cli).
+Users can access and interact with object storage [using the IBM Cloud CLI](/docs/cloud-object-storage?topic=cloud-object-storage-cli-ic-cos-cli).
 
 ### April 2019
 {: #updates-2019-q2-apr}
