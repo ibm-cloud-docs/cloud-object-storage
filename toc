@@ -58,6 +58,7 @@ Cloud Object Storage
         basics/archive.md
         basics/expiry.md
 
+    tutorials/cos-region-copy.md
     basics/aspera.md
     basics/immutable.md
     basics/classes.md
