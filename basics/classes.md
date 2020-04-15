@@ -41,7 +41,7 @@ Not all data feeds active workloads. Archival data might sit untouched for long 
 
 You can choose from five storage classes:
 
-*  **Smart Tier** can be used for any workload, especially dynamic workloads where access patterns are unknown or difficult to predict.  Smart Tier provides a simplified pricing structure and automatic cost optimization by classifying the data into "hot", "cool", and "cold" tiers based on monthly usage patterns. All data in the bucket is then billed at the lowest applicable rate.  There are no threshold object sizes or storage periods, and there are no retrieval fees. For a detailed explanation of how it works, see the [billing topic](/docs/cloud-object-storage?topic=cloud-object-storage-billing#billing-smart-tier).
+*  **Smart Tier** can be used for any workload, especially dynamic workloads where access patterns are unknown or difficult to predict.  Smart Tier provides a simplified pricing structure and automatic cost optimization by classifying the data into "hot", "cool", and "cold" tiers based on monthly usage patterns. All data in the bucket is then billed at the lowest applicable rate.  There are no threshold object sizes or storage periods, and there are no retrieval fees. For a detailed explanation of how it works, see the [billing topic](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-billing#billing-storage-classes).
 *  **Standard** is used for active workloads, with no charge for data retrieved (other than the cost of the operational request itself).
 *  **Vault** is used for cool workloads where data is accessed less than once a month - an extra retrieval charge ($/GB) is applied each time data is read. The service includes a minimum threshold for object size and storage period consistent with the intended use of this service for cooler, less-active data.
 *  **Cold Vault** is used for cold workloads where data is accessed every 90 days or less - a larger extra retrieval charge ($/GB) is applied each time data is read. The service includes a longer minimum threshold for object size and storage period consistent with the intended use of this service for cold, inactive data.
@@ -60,10 +60,10 @@ When creating buckets programmatically, it is necessary to specify a `LocationCo
 &emsp;&emsp;  **US Geo** `us-standard` / `us-vault` / `us-cold` / `us-flex` / `us-smart` <br>
 &emsp;&emsp;  **US East** `us-east-standard` / `us-east-vault`  / `us-east-cold` / `us-east-flex` / `us-east-smart` <br>
 &emsp;&emsp;  **US South** `us-south-standard` / `us-south-vault`  / `us-south-cold` / `us-south-flex` / `us-south-smart` <br>
-&emsp;&emsp;  **EU Geo** `eu-standard` / `eu-vault` / `eu-cold` / `eu-flex`  <br>
+&emsp;&emsp;  **EU Geo** `eu-standard` / `eu-vault` / `eu-cold` / `eu-flex` / `eu-smart` <br>
 &emsp;&emsp;  **EU Great Britain** `eu-gb-standard` / `eu-gb-vault` / `eu-gb-cold` / `eu-gb-flex` / `eu-gb-smart` <br>
 &emsp;&emsp;  **EU Germany** `eu-de-standard` / `eu-de-vault` / `eu-de-cold` / `eu-de-flex` / `eu-de-smart` <br>
-&emsp;&emsp;  **AP Geo** `ap-standard` / `ap-vault` / `ap-cold` / `ap-flex`  <br>
+&emsp;&emsp;  **AP Geo** `ap-standard` / `ap-vault` / `ap-cold` / `ap-flex` / `ap-smart` <br>
 &emsp;&emsp;  **AP Japan** `jp-tok-standard` / `jp-tok-vault` / `jp-tok-cold` / `jp-tok-flex` / `jp-tok-smart`<br>
 &emsp;&emsp;  **AP Australia** `au-syd-standard` / `au-syd-vault` / `au-syd-cold` / `au-syd-flex` / `au-syd-smart` <br>
 &emsp;&emsp;  **Amsterdam** `ams03-standard` / `ams03-vault` / `ams03-cold` / `ams03-flex`  <br>

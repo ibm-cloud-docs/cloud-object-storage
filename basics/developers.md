@@ -76,7 +76,7 @@ The [Cloud Native Computing Foundation](https://www.cncf.io) fostered [Kubernete
  * [Creating COS secret](/docs/containers?topic=containers-object_storage#create_cos_secret)
  * [Decide on the configuration](/docs/containers?topic=containers-object_storage#configure_cos)
  * [Create an instance of COS](/docs/containers?topic=containers-object_storage#add_cos)
- * [Back up and restore information](/docs/containers?topic=containers-object_storage#backup_restore)
- * [Storage Class reference](/docs/containers?topic=containers-object_storage#storageclass_reference)
+ * [Back up and restore information](/docs/containers?topic=containers-object_storage#cos_backup_restore)
+ * [Storage Class reference](/docs/containers?topic=containers-object_storage#configure_cos)
 
 

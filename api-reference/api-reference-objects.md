@@ -36,7 +36,7 @@ For more information about endpoints, see [Endpoints and storage locations](/doc
 ## A note regarding Access/Secret Key (HMAC) authentication
 {: #object-operations-hmac}
 
-When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [using HMAC credentials](/docs/hmac?topic=cloud-object-storage-hmac), you will need the information represented in Table 1 when [constructing an HMAC signature](/docs/hmac?topic=cloud-object-storage-hmac-signature).
+When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [using HMAC credentials](/docs/cloud-object-storage/iam?topic=cloud-object-storage-uhc-hmac-credentials-main), you will need the information represented in Table 1 when [constructing an HMAC signature](/docs/cloud-object-storage/iam?topic=cloud-object-storage-hmac-signature).
 
 |Key|Value|Example|
 |---|---|---|

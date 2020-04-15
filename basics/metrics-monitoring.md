@@ -35,7 +35,7 @@ Use the {{site.data.keyword.mon_full}} service to monitor your {{site.data.keywo
 ## Features
 {: #mm-cos-features}
 
- {{site.data.keyword.mon_full_notm}} is a third-party and cloud-native management system. Documentation from [{{site.data.keyword.mon_short}}](/docs/Monitoring-with-Sysdig?topic=Sysdig-monitoring#monitoring_dashboards) can guide you in how to use the comprehensive dashboards. In this guide we will focus on how to measure activity on individual buckets in your instance of {{site.data.keyword.cos_full_notm}}.
+{{site.data.keyword.mon_full_notm}} is a third-party and cloud-native management system. Documentation from [{{site.data.keyword.mon_short}}](/docs/Monitoring-with-Sysdig?topic=Sysdig-monitoring#monitoring_dashboards) can guide you in how to use the comprehensive dashboards. In this guide we will focus on how to measure activity on individual buckets in your instance of {{site.data.keyword.cos_full_notm}}.
 
 ### Working with Metrics
 {: #mm-cos-metrics}
@@ -131,8 +131,7 @@ Keep the token handy for later if you are using the Dev Tools CLI.
 
 In this guide, we want to measure the number and size of objects in our buckets.
 
-Metrics are only sent to {{site.data.keyword.mon_short}} every 24 hours.  
-Any alert thresholds exceeded on metrics will not trigger until the next time the metrics are sent to {{site.data.keyword.mon_short}}
+Metrics are only sent to {{site.data.keyword.mon_short}} every 24 hours. Any alert thresholds exceeded on metrics will not trigger until the next time the metrics are sent to {{site.data.keyword.mon_short}}.
 {: important}
 
 When creating a bucket, you can configure your {{site.data.keyword.mon_short}} instance at the same time.
@@ -155,11 +154,11 @@ Note that if the {{site.data.keyword.mon_short}} instance is created by COS, Pla
 
 To set Platform metrics on the instance:
 {: console}
-   1. Go to https://cloud.ibm.com/observe/monitoring
-   2. Click on "Configure platform metrics"
-   3. Select the region where the {{site.data.keyword.mon_short}} instance was created
-   4. Click Configure
-   5. Now the {{site.data.keyword.mon_short}} instance is set for Platform metrics
+   1. Go to your [dashboard](https://cloud.ibm.com/observe/monitoring).
+   2. Click on "Configure platform metrics."
+   3. Select the region where the {{site.data.keyword.mon_short}} instance was created.
+   4. Click "Configure."
+   5. Your {{site.data.keyword.mon_short}} instance is now set for Platform metrics.
    {: console}
 
 We will use cURL to connect to the Resource Configuration API and modify our bucket's configuration.
@@ -247,7 +246,7 @@ Bucket Size in bytes shows the usage of the bucket.
 ## Attributes for Segmentation
 {: mm-cos-attributes}
 
-You can filter your results by attributes.
+You can filter your results by attributes. In this guide, we'll look at some general examples as well as those specific to {{site.data.keyword.cos_full_notm}}.
 
 ### Global Attributes
 {: mm-cos-global-attributes}
@@ -257,11 +256,12 @@ The following attributes are available for segmenting all of the metrics listed 
 | Attribute | Attribute Name | Attribute Description |
 |-----------|----------------|-----------------------|
 | `Cloud Type` | `ibm_ctype` | public, dedicated or local |
-| `Location` | `ibm_location` | The location of the monitored resource - this may be a Cross Region, Regional, or Single Site bucket |
+| `Location` | `ibm_location` | The location of the monitored resource. This may be a Cross Region, Regional, or Single Site bucket. |
 | `Resource` | `ibm_resource` | COS bucket name |
 | `Resource Type` | `ibm_resource_type` | COS bucket |
-| `Scope` | `ibm_scope` | The scope is the account associated with this metric |
+| `Scope` | `ibm_scope` | The scope is the account associated with this metric. |
 | `Service name` | `ibm_service_name` | cloud-object-storage |
+{: caption="Table 4: IBM global attributes" caption-side="top"}
 
 ### Additional Attributes
 {: mm-cos-additional-attributes}
@@ -271,7 +271,8 @@ The following attributes are available for segmenting one or more attributes as 
 | Attribute | Attribute Name | Attribute Description |
 |-----------|----------------|-----------------------|
 | `IBM COS Bucket storage class` | `ibm_cos_bucket_storage_class` | Storage class of the bucket |
-| `Service instance` | `ibm_service_instance` | The service instance segment identifies the guid of the instance the metric is associated with |
+| `Service instance` | `ibm_service_instance` | The service instance segment identifies the guid of the instance the metric is associated with. |
+{: caption="Table 5: COS specific attributes" caption-side="top"}
 
 ## Next Steps
 {: #mm-cos-next-steps}
