@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-04-07"
+lastupdated: "2020-04-13"
 
 keywords: migrate, cos, object storage, rclone, copy, sync
 
@@ -42,76 +42,78 @@ This guide provides instructions for copying data from one COS bucket to another
 You have the option of using your existing instance of {{site.data.keyword.cos_full_notm}} or creating a new instance. If you want to reuse your existing instance, skip to step #2.
 
   1. Create an instance of {{site.data.keyword.cos_full_notm}} from the [catalog](https://cloud.ibm.com/catalog/services/cloud-object-storage).
-  2. Create any buckets that you need to store your transferred data. Read through the [getting started guide](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started) to familiarize yourself with key concepts such as [endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) and [storage classes](/docs/cloud-object-storage/basics?topic=cloud-object-storage-classes).
-  3. If you are using any of the COS features such as expiration, archive, key protect, etc. be sure to configure appropriately. The process described here will not copy any bucket configurations or object metadata.
+  1. Create any buckets that you need to store your transferred data. Read through the [getting started guide](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started) to familiarize yourself with key concepts such as [endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) and [storage classes](/docs/cloud-object-storage/basics?topic=cloud-object-storage-classes).
+  1. If you are using any of the COS features such as expiration, archive, key protect, etc. be sure to configure appropriately. The process described here will not copy any bucket configurations or object metadata.
 
 
 ## Set up a compute resource to run the migration tool
 {: #migrate-compute}
   1. Choose a Linux/macOS/BSD machine or an IBM Cloud Infrastructure Bare Metal or Virtual Server with the best proximity to your data. The following Server configuration is recommended:  32 GB RAM, 2-4 core processor, and private network speed of 1000 Mbps.  
-  2. If you are running the migration on an IBM Cloud Infrastructure Bare Metal or Virtual Server use the **private** COS endpoints to avoid network egress charges.
-  3. Otherwise, use the **public** COS endpoints.
-  4. Install `rclone` from [either a package manager or precompiled binary](https://rclone.org/install/).
+  1. If you are running the migration on an IBM Cloud Infrastructure Bare Metal or Virtual Server use the **private** COS endpoints to avoid network egress charges.
+  1. Otherwise, use the **public** COS endpoints.
+  1. Install `rclone` from [either a package manager or precompiled binary](https://rclone.org/install/).
 
       ```
       curl https://rclone.org/install.sh | sudo bash
       ```
 
-      ## Configure `rclone` for COS source data
-      {: #migrate-config-cos}
+## Configure `rclone` for COS source data
+{: #migrate-config-cos}
 
-      ### Get COS credential
-      {: #migrate-config-cos-credential}
+  ### Get COS credential
+  {: #migrate-config-cos-credential}
 
-        + Select your COS instance in the IBM Cloud console.
-        + Click **Service Credentials** in the navigation pane.
-        + Click **New credential** to generate credential information.
-        + In **Inline Configuration Parameters** add `{"HMAC":true}`. Click **Add**.
-        + View the credential that you created, and copy the JSON contents.
+  + Select your COS instance in the IBM Cloud console.
+  + Click **Service Credentials** in the navigation pane.
+  + Click **New credential** to generate credential information.
+  + In **Inline Configuration Parameters** add `{"HMAC":true}`. Click **Add**.
+  + View the credential that you created, and copy the JSON contents.
 
-      ### Get COS endpoint
-      {: #migrate-config-cos-endpoint}
+  ### Get COS endpoint
+  {: #migrate-config-cos-endpoint}
 
-        + Click **Buckets** in the navigation pane.
-        + Click the migration destination bucket.
-        + Click **Configuration** in the navigation pane.
-        + Scroll down to the **Endpoints** section and choose the endpoint based on where you are running the migration tool.
-        + Create the COS destination by copying the following and pasting into `rclone.conf`.
+  + Click **Buckets** in the navigation pane.
+  + Click the migration destination bucket.
+  + Click **Configuration** in the navigation pane.
+  + Scroll down to the **Endpoints** section and choose the endpoint based on where you are running the migration tool.
+  + Create the COS destination by copying the following and pasting into `rclone.conf`.
+      ```
+      [COS_SOURCE]
+      type = s3
+      access_key_id =
+      secret_access_key =
+      endpoint =
+      ```
 
-          ```
-          [COS_SOURCE]
-          type = s3
-          access_key_id =
-          secret_access_key =
-          endpoint =
-          ```
-          Use `[COS_DESTINATION]` if configuring the destination.
-        + Using the COS credential and endpoint, complete the following fields:
+    Use `[COS_DESTINATION]` if configuring the destination.
 
-          ```
-          access_key_id = <access_key_id>
-          secret_access_key = <secret_access_key>
-          endpoint = <bucket endpoint>       
-          ```
+  + Using the COS credential and endpoint, complete the following fields:
+
+      ```
+      access_key_id = <access_key_id>
+      secret_access_key = <secret_access_key>
+      endpoint = <bucket endpoint>
+      ```
+
 ## Configure `rclone` for COS destination data
 {: #migrate-config-cos}
-Repeat the previous steps for the destination buckets.
+  Repeat the previous steps for the destination buckets.
 
-## Verify that the source and destination are properly configured
-    {: #migrate-verify}
+## Verify that the source and destination are properly configured {: #migrate-verify}
 
-    + List the buckets associated with the source to verify `rclone` is properly configured.
+  + List the buckets associated with the source to verify `rclone` is properly configured.
 
-        ```
-        rclone lsd COS_SOURCE:
-        ```
+    ```
+    rclone lsd COS_SOURCE:
+    ```
 
-    + List the buckets associated with the destination to verify `rclone` is properly configured.
+  + List the buckets associated with the destination to verify `rclone` is properly configured.
 
-        ```
-        rclone lsd COS_DESTINATION:
-        ```
-Note: If you are using the same COS instance for the source and destination, the bucket listings will match.
+    ```
+    rclone lsd COS_DESTINATION:
+    ```
+
+  Note: If you are using the same COS instance for the source and destination, the bucket listings will match.
 
 
 ## Run `rclone`
