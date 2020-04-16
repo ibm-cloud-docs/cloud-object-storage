@@ -65,7 +65,7 @@ To store the results of the generated key, append the text, ` > cos_credentials`
 
 While it is best practices to set credentials in environment variables, you can also set your credentials inside your local copy of your `R` script itself. Environment variables can alternatively be set before you start `R` using an `Renviron.site` or `.Renviron` file, used to set environment variables in `R` during startup.
 
-Ensure you set the actual values for the `access_key_id` and `secret_access_key` in your code along with the {{site.data.keyword.cos_full_notm}} [endpoint](/docs/basics?topic=cloud-object-storage-endpoints) for your instance.
+You will need to set the actual values for the `access_key_id` and `secret_access_key` in your code along with the {{site.data.keyword.cos_full_notm}} [endpoint](/docs/cloud-object-storage/iam?topic=cloud-object-storage-endpoints) for your instance.
 {: note}
 
 ## Add credentials to your `R` project
@@ -103,7 +103,7 @@ In addition to PUT, HEAD, and other compatible API commands, we can GET objects 
  
 ```R
 # return object using 'S3 URI' syntax, with progress bar
-get_object("s3://mybucket.myendpoint/example.csv", show_progress = TRUE)
+get_object("s3://mybucketname-only/example.csv", show_progress = TRUE)
 ```
 {: codeblock}
 
@@ -114,7 +114,7 @@ As you can guess, the library discussed earlier has a `save_object()` method tha
 
 ```R
 library(cloudSimplifieR)
-d <- as.data.frame(csvToDataframe("s3://myendpoint/mybucket/example.csv"))
+d <- as.data.frame(csvToDataframe("s3://mybucket/example.csv"))
 plot(d)
 ```
 {: codeblock}

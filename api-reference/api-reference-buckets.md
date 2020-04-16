@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 The modern capabilities of {{site.data.keyword.cos_full}} are conveniently available via a RESTful API. Operations and methods concerning buckets (where objects are stored) are documented here.
 {: shortdesc}
 
-For more information about permissions and access, see [Bucket permissions](https://cloud.ibm.com/docs/iam?topic=cloud-object-storage-iam-bucket-permissions).
+For more information about permissions and access, see [Bucket permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions).
 {: tip}
 
 ## A note regarding Access/Secret Key (HMAC) authentication

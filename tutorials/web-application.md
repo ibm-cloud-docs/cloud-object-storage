@@ -489,7 +489,8 @@ your repository.
 
 In essence, we've recoded our application, so let's repeat the build process. But this time we use the new Image Gallery code. 
 
-###Deploy the app to {{site.data.keyword.cloud_notm}} Platform.### 
+### Deploy the app to {{site.data.keyword.cloud_notm}} Platform.
+{: #wb-app-deploy} 
 
 To get the starter app with your changes
     to {{site.data.keyword.cloud_notm}} Platform, deploy it using the Developer Tools by repeating the same steps that we performed 

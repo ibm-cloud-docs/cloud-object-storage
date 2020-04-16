@@ -98,10 +98,10 @@ Direct endpoints can be accessed using the domains referenced in Table 1. Choose
 
 | Location | Type | Endpoint |
 |-----|-----|-----|
-| US Cross Region | Direct | `s3.direct.us.cloud-object-storage.test.appdomain.cloud` |
-| Dallas | Direct | `s3.direct.dal.us.cloud-object-storage.test.appdomain.cloud` |
-| Washington | Direct | `s3.direct.wdc.us.cloud-object-storage.test.appdomain.cloud` |
-| San Jose | Direct | `s3.direct.sjc.us.cloud-object-storage.test.appdomain.cloud` |
+| US Cross Region | Direct | `s3.direct.us.cloud-object-storage.appdomain.cloud` |
+| Dallas | Direct | `s3.direct.dal.us.cloud-object-storage.appdomain.cloud` |
+| Washington | Direct | `s3.direct.wdc.us.cloud-object-storage.appdomain.cloud` |
+| San Jose | Direct | `s3.direct.sjc.us.cloud-object-storage.appdomain.cloud` |
 | EU Cross Region | Direct | `s3.direct.eu.cloud-object-storage.appdomain.cloud` |
 | Amsterdam | Direct | `s3.direct.ams.eu.cloud-object-storage.appdomain.cloud` |
 | Frankfurt | Direct | `s3.direct.fra.eu.cloud-object-storage.appdomain.cloud` |
