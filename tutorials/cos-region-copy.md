@@ -48,7 +48,7 @@ You have the option of using your existing instance of {{site.data.keyword.cos_f
 
 ## Set up a compute resource to run the migration tool
 {: #migrate-compute}
-  1. Choose a Linux/macOS/BSD machine or an IBM Cloud Infrastructure Bare Metal or Virtual Server with the best proximity to your data. The following Server configuration is recommended:  32 GB RAM, 2-4 core processor, and private network speed of 1000 Mbps.  
+  1. Choose a Linux/macOS/BSD machine or an IBM Cloud Infrastructure Bare Metal or Virtual Server with the best proximity to your data. Selecting a data center in the same region as the destination bucket is generally the best choice (e.g. if moving data from mel01 to au-syd, use a VM or Bare Metal in au-syd). The following Server configuration is recommended:  32 GB RAM, 2-4 core processor, and private network speed of 1000 Mbps.
   1. If you are running the migration on an IBM Cloud Infrastructure Bare Metal or Virtual Server use the **private** COS endpoints to avoid network egress charges.
   1. Otherwise, use the **public** COS endpoints.
   1. Install `rclone` from [either a package manager or precompiled binary](https://rclone.org/install/).
