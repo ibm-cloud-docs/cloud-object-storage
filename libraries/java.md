@@ -126,10 +126,6 @@ Let's start with an complete example class that will run through some basic func
 
     public class CosExample
     {
-
-        /**
-         * @param args
-         */
         public static void main(String[] args)
         {
 
@@ -152,13 +148,6 @@ Let's start with an complete example class that will run through some basic func
             listBuckets(cosClient);
         }
 
-        /**
-         * @param apiKey
-         * @param serviceInstanceId
-         * @param endpointUrl
-         * @param location
-         * @return AmazonS3
-         */
         public static AmazonS3 createClient(String apiKey, String serviceInstanceId, String endpointUrl, String location)
         {
             AWSCredentials credentials;
@@ -173,10 +162,6 @@ Let's start with an complete example class that will run through some basic func
             return cosClient;
         }
 
-        /**
-         * @param bucketName
-         * @param cosClient
-         */
         public static void listObjects(String bucketName, AmazonS3 cosClient)
         {
             System.out.println("Listing objects in bucket " + bucketName);
@@ -187,19 +172,11 @@ Let's start with an complete example class that will run through some basic func
             System.out.println();
         }
 
-        /**
-         * @param bucketName
-         * @param cosClient
-         * @param storageClass
-         */
         public static void createBucket(String bucketName, AmazonS3 cosClient, String storageClass)
         {
             cosClient.createBucket(bucketName, storageClass);
         }
 
-        /**
-         * @param cosClient
-         */
         public static void listBuckets(AmazonS3 cosClient)
         {
             System.out.println("Listing buckets");
@@ -209,7 +186,6 @@ Let's start with an complete example class that will run through some basic func
             }
             System.out.println();
         }
-
     }
 
 ```
