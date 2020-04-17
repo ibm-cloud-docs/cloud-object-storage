@@ -114,7 +114,6 @@ Let's start with an complete example class that will run through some basic func
     import com.ibm.cloud.objectstorage.SDKGlobalConfiguration;
     import com.ibm.cloud.objectstorage.auth.AWSCredentials;
     import com.ibm.cloud.objectstorage.auth.AWSStaticCredentialsProvider;
-    import com.ibm.cloud.objectstorage.auth.BasicAWSCredentials;
     import com.ibm.cloud.objectstorage.client.builder.AwsClientBuilder.EndpointConfiguration;
     import com.ibm.cloud.objectstorage.services.s3.AmazonS3;
     import com.ibm.cloud.objectstorage.services.s3.AmazonS3ClientBuilder;
