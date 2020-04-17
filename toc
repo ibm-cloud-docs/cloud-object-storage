@@ -9,7 +9,6 @@ Cloud Object Storage
     about-cos.md
     [Features overview](https://www.ibm.com/cloud/object-storage)
 
-
     {: .topicgroup}
     Getting organized
         basics/administrators.md
