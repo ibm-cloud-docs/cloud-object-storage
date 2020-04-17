@@ -111,7 +111,6 @@ Let's start with an complete example class that will run through some basic func
     import java.util.List;
 
     import com.ibm.cloud.objectstorage.ClientConfiguration;
-    import com.ibm.cloud.objectstorage.SDKGlobalConfiguration;
     import com.ibm.cloud.objectstorage.auth.AWSCredentials;
     import com.ibm.cloud.objectstorage.auth.AWSStaticCredentialsProvider;
     import com.ibm.cloud.objectstorage.client.builder.AwsClientBuilder.EndpointConfiguration;
@@ -127,9 +126,6 @@ Let's start with an complete example class that will run through some basic func
     {
         public static void main(String[] args)
         {
-
-            SDKGlobalConfiguration.IAM_ENDPOINT = "https://iam.cloud.ibm.com/identity/token";
-
             String bucketName = "<BUCKET_NAME>";  // eg my-unique-bucket-name
             String newBucketName = "<NEW_BUCKET_NAME>"; // eg my-other-unique-bucket-name
             String apiKey = "<API_KEY>"; // eg "W00YiRnLW4k3fTjMB-oiB-2ySfTrFBIQQWanc--P3byk"
