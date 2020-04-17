@@ -49,40 +49,14 @@ Maven uses a file that is called `pom.xml` to specify the libraries (and their v
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.cos</groupId>
     <artifactId>docs</artifactId>
-    <packaging>jar</packaging>
-    <version>2.0-SNAPSHOT</version>
-    <name>docs</name>
-    <url>http://maven.apache.org</url>
+    <version>1.0.0-SNAPSHOT</version>
     <dependencies>
         <dependency>
             <groupId>com.ibm.cos</groupId>
             <artifactId>ibm-cos-java-sdk</artifactId>
             <version>2.1.0</version>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.8.2</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-shade-plugin</artifactId>
-        <version>2.4.3</version>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
 </project>
 ```
 {:codeblock}
