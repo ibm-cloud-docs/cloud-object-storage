@@ -145,16 +145,18 @@ Let's start with an complete example class that will run through some basic func
 
         public static AmazonS3 createClient(String apiKey, String serviceInstanceId, String endpointUrl, String location)
         {
-            AWSCredentials credentials;
-            credentials = new BasicIBMOAuthCredentials(apiKey, serviceInstanceId);
+            AWSCredentials credentials = new BasicIBMOAuthCredentials(apiKey, serviceInstanceId);
+            ClientConfiguration clientConfig = new ClientConfiguration()
+                    .withRequestTimeout(5000)
+                    .withTcpKeepAlive(true);
 
-            ClientConfiguration clientConfig = new ClientConfiguration().withRequestTimeout(5000);
-            clientConfig.setUseTcpKeepAlive(true);
-
-            AmazonS3 cosClient = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
-                    .withEndpointConfiguration(new EndpointConfiguration(endpointUrl, location)).withPathStyleAccessEnabled(true)
-                    .withClientConfiguration(clientConfig).build();
-            return cosClient;
+            return AmazonS3ClientBuilder
+                    .standard()
+                    .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                    .withEndpointConfiguration(new EndpointConfiguration(endpointUrl, location))
+                    .withPathStyleAccessEnabled(true)
+                    .withClientConfiguration(clientConfig)
+                    .build();
         }
 
         public static void listObjects(String bucketName, AmazonS3 cosClient)
