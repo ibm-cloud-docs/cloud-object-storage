@@ -138,8 +138,8 @@ Let's start with an complete example class that will run through some basic func
             System.out.println("Current time: " + new Timestamp(System.currentTimeMillis()).toString());
             AmazonS3 cosClient = createClient(apiKey, serviceInstanceId, endpointUrl, location);
             
-            listObjects(bucketName, cosClient);
-            createBucket(newBucketName, cosClient, storageClass);
+            listObjects(cosClient, bucketName);
+            createBucket(cosClient, newBucketName, storageClass);
             listBuckets(cosClient);
         }
 
@@ -159,7 +159,7 @@ Let's start with an complete example class that will run through some basic func
                     .build();
         }
 
-        public static void listObjects(String bucketName, AmazonS3 cosClient)
+        public static void listObjects(AmazonS3 cosClient, String bucketName)
         {
             System.out.println("Listing objects in bucket " + bucketName);
             ObjectListing objectListing = cosClient.listObjects(new ListObjectsRequest().withBucketName(bucketName));
@@ -169,7 +169,7 @@ Let's start with an complete example class that will run through some basic func
             System.out.println();
         }
 
-        public static void createBucket(String bucketName, AmazonS3 cosClient, String storageClass)
+        public static void createBucket(AmazonS3 cosClient, String bucketName, String storageClass)
         {
             cosClient.createBucket(bucketName, storageClass);
         }
