@@ -2,9 +2,9 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-04-13"
+lastupdated: "2020-04-17"
 
-keywords: migrate, cos, object storage, rclone, copy, sync
+keywords: cos, object storage, copy, 
 
 subcollection: cloud-object-storage
 
@@ -29,15 +29,12 @@ subcollection: cloud-object-storage
 # Move data between buckets
 {: #region-copy}
 
-This is draft content and subject to change.
-{: note}
+At times it may become necessary to move or backup your data to a different {{site.data.keyword.cos_full}} region. One approach to moving or replicating data across object storage regions is to use a 'sync' or 'clone' tool, such as [the open-source `rclone` command-line utility](https://rclone.org/docs/) {: external}. This utility syncs a file tree between two locations, including cloud object storage. When `rclone` writes data to COS, it uses the COS/S3 API to segment large objects and uploads the parts in parallel according to sizes and thresholds set as configuration parameters.
 
-At times it may become necessary to move or backup your data to a different {{site.data.keyword.cos_full}} region. One approach to moving or replicating data across object storage regions is to use a 'sync' or 'clone' tool, such as [the open-source `rclone` command-line utility](https://rclone.org/docs/). This utility syncs a file tree between two locations, including cloud object storage. When `rclone` writes data to COS, it uses the COS/S3 API to segment large objects and uploads the parts in parallel according to sizes and thresholds set as configuration parameters.
+This guide provides instructions for copying data from one COS bucket to another COS bucket within the same region or to a second COS bucket in a different COS region. These steps need to be repeated for all of the data that you want to copy from each bucket. After the data is migrated you can verify the integrity of the transfer by using `rclone check`, which will produce a list of any objects that don't match either file size or checksum. Additionally, you can keep buckets in sync by regularly running `rclone sync` from your available sources to your chosen destinations.
 
-This guide provides instructions for copying data from one COS bucket to another COS bucket in the same or in a different region to a second COS bucket. These steps need to be repeated for all buckets that you want to copy. After the data is migrated you can verify the integrity of the transfer by using `rclone check`, which will produce a list of any objects that don't match. Additionally, you can keep buckets in sync by running `rclone sync` regularly.
-
-## Create an additional {{site.data.keyword.cos_full_notm}} bucket
-{: #migrate-setup}
+## Create a destination {{site.data.keyword.cos_full_notm}} bucket
+{: #region-copy-setup-destination}
 
 You have the option of using your existing instance of {{site.data.keyword.cos_full_notm}} or creating a new instance. If you want to reuse your existing instance, skip to step #2.
 
@@ -47,105 +44,116 @@ You have the option of using your existing instance of {{site.data.keyword.cos_f
 
 
 ## Set up a compute resource to run the migration tool
-{: #migrate-compute}
-  1. Choose a Linux/macOS/BSD machine or an IBM Cloud Infrastructure Bare Metal or Virtual Server with the best proximity to your data. Selecting a data center in the same region as the destination bucket is generally the best choice (e.g. if moving data from mel01 to au-syd, use a VM or Bare Metal in au-syd). The following Server configuration is recommended:  32 GB RAM, 2-4 core processor, and private network speed of 1000 Mbps.
-  1. If you are running the migration on an IBM Cloud Infrastructure Bare Metal or Virtual Server use the **private** COS endpoints to avoid network egress charges.
-  1. Otherwise, use the **public** COS endpoints.
-  1. Install `rclone` from [either a package manager or precompiled binary](https://rclone.org/install/).
+{: #region-copy-compute}
 
-      ```
-      curl https://rclone.org/install.sh | sudo bash
-      ```
+1. Choose a Linux/macOS/BSD machine or an IBM Cloud Infrastructure Bare Metal or Virtual Server with the best proximity to your data. Selecting a data center in the same region as the destination bucket is generally the best choice (e.g. if moving data from mel01 to au-syd, use a VM or Bare Metal in au-syd). The following Server configuration is recommended:  32 GB RAM, 2-4 core processor, and private network speed of 1000 Mbps.
+1. If you are running the migration on an IBM Cloud Infrastructure Bare Metal or Virtual Server use the **private** COS endpoints to avoid network egress charges.
+1. Otherwise, use the **public** COS endpoints.
+1. Install `rclone` from [either a package manager or precompiled binary](https://rclone.org/install/){: external}.
+
+```bash
+curl https://rclone.org/install.sh | sudo bash
+```
+{: codeblock}
 
 ## Configure `rclone` for COS source data
-{: #migrate-config-cos}
+{: #region-copy-config-cos}
 
-  ### Get COS credential
-  {: #migrate-config-cos-credential}
+Create 'profiles' for your source and destination of the migration in `rclone`.
 
-  + Select your COS instance in the IBM Cloud console.
-  + Click **Service Credentials** in the navigation pane.
-  + Click **New credential** to generate credential information.
-  + In **Inline Configuration Parameters** add `{"HMAC":true}`. Click **Add**.
-  + View the credential that you created, and copy the JSON contents.
+### If needed, obtain COS credentials
+{: #region-copy-config-cos-credential}
 
-  ### Get COS endpoint
-  {: #migrate-config-cos-endpoint}
+1. Select your COS instance in the IBM Cloud console.
+1. Click **Service Credentials** in the navigation pane.
+1. Click **New credential** to generate credential information.
+1. In **Inline Configuration Parameters** add `{"HMAC":true}`. Click **Add**.
+1. View the credential that you created, and copy the JSON contents.
 
-  + Click **Buckets** in the navigation pane.
-  + Click the migration destination bucket.
-  + Click **Configuration** in the navigation pane.
-  + Scroll down to the **Endpoints** section and choose the endpoint based on where you are running the migration tool.
-  + Create the COS destination by copying the following and pasting into `rclone.conf`.
-      ```
-      [COS_SOURCE]
-      type = s3
-      access_key_id =
-      secret_access_key =
-      endpoint =
-      ```
+### Get COS endpoint
+{: #region-copy-config-cos-endpoint}
 
-    Use `[COS_DESTINATION]` if configuring the destination.
+1. Click **Buckets** in the navigation pane.
+1. Click the migration destination bucket.
+1. Click **Configuration** in the navigation pane.
+1. Scroll down to the **Endpoints** section and choose the endpoint based on where you are running the migration tool.
+1. Create the COS destination by copying the following and pasting into `rclone.conf`.
+  
+```bash
+[COS_SOURCE]
+type = s3
+provider = IBMCOS
+env_auth = false
+access_key_id =
+secret_access_key =
+endpoint =
+```
+{: codeblock}
 
-  + Using the COS credential and endpoint, complete the following fields:
+Use `[COS_DESTINATION]` as the name of the profile you need to create to configur the destination. Repeat the steps above,
 
-      ```
-      access_key_id = <access_key_id>
-      secret_access_key = <secret_access_key>
-      endpoint = <bucket endpoint>
-      ```
+Using your credentials and desired endpoint, complete the following fields:
+
+```bash
+access_key_id = <access_key_id>
+secret_access_key = <secret_access_key>
+endpoint = <bucket endpoint>
+```
+{: codeblock}
 
 ## Configure `rclone` for COS destination data
-{: #migrate-config-cos}
+{: #region-copy-config-cos}
   Repeat the previous steps for the destination buckets.
 
-## Verify that the source and destination are properly configured {: #migrate-verify}
+## Verify that the source and destination are properly configured
+{: #region-copy-verify}
 
-  + List the buckets associated with the source to verify `rclone` is properly configured.
++ List the buckets associated with the source to verify `rclone` is properly configured.
 
-    ```
-    rclone lsd COS_SOURCE:
-    ```
+```bash
+rclone lsd COS_SOURCE:
+```
+{: codeblock}
 
-  + List the buckets associated with the destination to verify `rclone` is properly configured.
++ List the buckets associated with the destination to verify `rclone` is properly configured.
 
-    ```
-    rclone lsd COS_DESTINATION:
-    ```
+```bash
+rclone lsd COS_DESTINATION:
+```
+{: codeblock}
 
-  Note: If you are using the same COS instance for the source and destination, the bucket listings will match.
-
+Note: If you are using the same COS instance for the source and destination, the bucket listings will match.
 
 ## Run `rclone`
-{: #migrate-run}
+{: #region-copy-run}
 
-1. Do a dry run (no data copied) of `rclone` to test the copy of the objects in your source bucket (for example, `source-test`) to target bucket (for example, `destination-test`).
+1. Test your configuration with a dry run (where no data is copied) of `rclone` to test the copy of the objects in your source bucket (for example, `source-test`) to target bucket (for example, `destination-test`).
 
-    ```
-    rclone --dry-run copy COS_SOURCE:source-test COS_DESTINATION:destination-test
-    ```
+   ```bash
+   rclone --dry-run copy COS_SOURCE:source-test COS_DESTINATION:destination-test
+   ```
+   {: codeblock}
 
 2. Check that the files you want to migrate appear in the command output. If everything looks good, remove the `--dry-run` flag and, optionally add `-v` and/or `-P` flag to copy the data and track progress. Using the optional `--checksum` flag avoids updating any files that have the same MD5 hash and object size in both locations.
 
-    ```
-    rclone -v -P copy --checksum COS_SOURCE:source-test COS_DESTINATION:destination-test
-    ```
+   ```bash
+   rclone -v -P copy --checksum COS_SOURCE:source-test COS_DESTINATION:destination-test
+   ```
+   {: codeblock}
 
-   Try to max out the CPU, memory, and network on the machine running `rclone` to get the fastest transfer time.
-   A few other parameters to consider for tuning `rclone`:
+Try to max out the CPU, memory, and network on the machine running `rclone` to get the fastest transfer time.
 
-Flag | Type | Description
---- | --- | ---
-`--checkers` | `int` | Number of checkers to run in parallel (default 8). This is the number of checksums compare threads running. We recommend increasing this to 64 or more.
-`--transfers` | `int` | This is the number of objects to transfer in parallel (default 4). We recommend increasing this to 64 or 128 or higher when transferring a large number of small files.
-`--multi-thread-streams` | `int` | Download large files (> 250M) in multiple parts in parallel. This will improve the download time of large files (default 4).
-`--s3-upload-concurrency` | `int` | The number of parts of large files (> 200M) to upload in parallel. This will improve the upload time of large files (default 4).
+There are other parameters to consider when tuning `rclone`. Different combinations of these values will impact CPU, memory, and transfer times for the objects in your bucket.
 
-Different combinations of these values will impact CPU, memory, and transfer times for the objects in your bucket.
+| Flag | Type | Description |
+| --- | --- | --- |
+| `--checkers` | `int` | Number of checkers to run in parallel (default 8). This is the number of checksums compare threads running. We recommend increasing this to 64 or more. |
+| `--transfers` | `int` | This is the number of objects to transfer in parallel (default 4). We recommend increasing this to 64 or 128 or higher when transferring a large number of small files. |
+| `--multi-thread-streams` | `int` | Download large files (> 250M) in multiple parts in parallel. This will improve the download time of large files (default 4). |
+| `--s3-upload-concurrency` | `int` | The number of parts of large files (> 200M) to upload in parallel. This will improve the upload time of large files (default 4). |
+{: caption="Table 1. Rclone options" caption-side="top"}
 
-
-Migrating data using `rclone copy` copies but does not delete the source data.
+Migrating data using `rclone copy` only copies but does not delete the source data.
 {:tip}
 
-
-The copy process should be repeated for any other buckets that require migration/copy/backup.
+The copy process should be repeated for all other source buckets that require migration/copy/backup.
