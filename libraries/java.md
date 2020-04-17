@@ -106,8 +106,8 @@ Let's start with an complete example class that will run through some basic func
 
 ```java
     package com.cos;
-    
-    import java.sql.Timestamp;
+
+    import java.time.LocalDateTime;
     import java.util.List;
 
     import com.ibm.cloud.objectstorage.ClientConfiguration;
@@ -135,7 +135,7 @@ Let's start with an complete example class that will run through some basic func
             String storageClass = "us-south-standard";
             String location = "us"; 
 
-            System.out.println("Current time: " + new Timestamp(System.currentTimeMillis()).toString());
+            System.out.println("Current time: " + LocalDateTime.now());
             AmazonS3 cosClient = createClient(apiKey, serviceInstanceId, endpointUrl, location);
             
             listObjects(cosClient, bucketName);
