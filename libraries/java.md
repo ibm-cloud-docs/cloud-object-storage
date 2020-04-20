@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2020
+lastupdated: "2019-04-20"
 
 keywords: object storage, java, sdk
 
@@ -49,40 +49,14 @@ Maven uses a file that is called `pom.xml` to specify the libraries (and their v
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.cos</groupId>
     <artifactId>docs</artifactId>
-    <packaging>jar</packaging>
-    <version>2.0-SNAPSHOT</version>
-    <name>docs</name>
-    <url>http://maven.apache.org</url>
+    <version>1.0.0-SNAPSHOT</version>
     <dependencies>
         <dependency>
             <groupId>com.ibm.cos</groupId>
             <artifactId>ibm-cos-java-sdk</artifactId>
             <version>2.1.0</version>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.8.2</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-shade-plugin</artifactId>
-        <version>2.4.3</version>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
 </project>
 ```
 {:codeblock}
@@ -124,23 +98,21 @@ Let's start with an complete example class that will run through some basic func
 {: #java-examples-prereqs}
 
 * `bucketName` and `newBucketName` are [unique and DNS-safe](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-new-bucket) strings. Because bucket names are unique across the entire system, these values need to be changed if this example is run multiple times. Note that names are reserved for 10 - 15 minutes after deletion.
-* `api_key` is the value found in the [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) as `apikey`.
-* `service_instance_id` is the value found in the [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) as `resource_instance_id`. 
-* `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol. This is **not** the `endpoints` value found in the [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials). For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+* `apiKey` is the value found in the [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) as `apikey`.
+* `serviceInstanceId` is the value found in the [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) as `resource_instance_id`.
+* `endpointUrl` is a service endpoint URL, inclusive of the `https://` protocol. This is **not** the `endpoints` value found in the [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials). For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `storageClass` is a [valid provisioning code](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint) that corresponds to the `endpoint` value. This is then used as the S3 API `LocationConstraint` variable.
-* `location` should be set to the location portion of the `storageClass`. For `us-south-standard`, this would be `us-south`. This variable is used only for the calculation of [HMAC signatures](/docs/cloud-object-storage?topic=cloud-object-storage-hmac#hmac), but is required for any client, including this example that uses an IAM API key.
+* `location` should be set to the location portion of the `storageClass`. For `us-south-standard`, this would be `us-south`. This variable is used only for the calculation of [HMAC signatures](/docs/cloud-object-storage?topic=cloud-object-storage-hmac-signature), but is required for any client, including this example that uses an IAM API key.
 
 ```java
     package com.cos;
-    
-    import java.sql.Timestamp;
+
+    import java.time.LocalDateTime;
     import java.util.List;
 
     import com.ibm.cloud.objectstorage.ClientConfiguration;
-    import com.ibm.cloud.objectstorage.SDKGlobalConfiguration;
     import com.ibm.cloud.objectstorage.auth.AWSCredentials;
     import com.ibm.cloud.objectstorage.auth.AWSStaticCredentialsProvider;
-    import com.ibm.cloud.objectstorage.auth.BasicAWSCredentials;
     import com.ibm.cloud.objectstorage.client.builder.AwsClientBuilder.EndpointConfiguration;
     import com.ibm.cloud.objectstorage.services.s3.AmazonS3;
     import com.ibm.cloud.objectstorage.services.s3.AmazonS3ClientBuilder;
@@ -152,60 +124,42 @@ Let's start with an complete example class that will run through some basic func
 
     public class CosExample
     {
-
-        private static AmazonS3 _cosClient;
-
-        /**
-         * @param args
-         */
         public static void main(String[] args)
         {
-
-            SDKGlobalConfiguration.IAM_ENDPOINT = "https://iam.cloud.ibm.com/identity/token";
-
             String bucketName = "<BUCKET_NAME>";  // eg my-unique-bucket-name
             String newBucketName = "<NEW_BUCKET_NAME>"; // eg my-other-unique-bucket-name
-            String api_key = "<API_KEY>"; // eg "W00YiRnLW4k3fTjMB-oiB-2ySfTrFBIQQWanc--P3byk"
-            String service_instance_id = "<SERVICE_INSTANCE_ID"; // eg "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
-            String endpoint_url = "https://s3.us-south.cloud-object-storage.appdomain.cloud"; // this could be any service endpoint
+            String apiKey = "<API_KEY>"; // eg "W00YiRnLW4k3fTjMB-oiB-2ySfTrFBIQQWanc--P3byk"
+            String serviceInstanceId = "<SERVICE_INSTANCE_ID"; // eg "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
+            String endpointUrl = "https://s3.us-south.cloud-object-storage.appdomain.cloud"; // this could be any service endpoint
 
             String storageClass = "us-south-standard";
             String location = "us"; 
 
-            System.out.println("Current time: " + new Timestamp(System.currentTimeMillis()).toString());
-            _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
+            System.out.println("Current time: " + LocalDateTime.now());
+            AmazonS3 cosClient = createClient(apiKey, serviceInstanceId, endpointUrl, location);
             
-            listObjects(bucketName, _cosClient);
-            createBucket(newBucketName, _cosClient, storageClass);
-            listBuckets(_cosClient);
+            listObjects(cosClient, bucketName);
+            createBucket(cosClient, newBucketName, storageClass);
+            listBuckets(cosClient);
         }
 
-        /**
-         * @param api_key
-         * @param service_instance_id
-         * @param endpoint_url
-         * @param location
-         * @return AmazonS3
-         */
-        public static AmazonS3 createClient(String api_key, String service_instance_id, String endpoint_url, String location)
+        public static AmazonS3 createClient(String apiKey, String serviceInstanceId, String endpointUrl, String location)
         {
-            AWSCredentials credentials;
-            credentials = new BasicIBMOAuthCredentials(api_key, service_instance_id);
+            AWSCredentials credentials = new BasicIBMOAuthCredentials(apiKey, serviceInstanceId);
+            ClientConfiguration clientConfig = new ClientConfiguration()
+                    .withRequestTimeout(5000)
+                    .withTcpKeepAlive(true);
 
-            ClientConfiguration clientConfig = new ClientConfiguration().withRequestTimeout(5000);
-            clientConfig.setUseTcpKeepAlive(true);
-
-            AmazonS3 cosClient = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
-                    .withEndpointConfiguration(new EndpointConfiguration(endpoint_url, location)).withPathStyleAccessEnabled(true)
-                    .withClientConfiguration(clientConfig).build();
-            return cosClient;
+            return AmazonS3ClientBuilder
+                    .standard()
+                    .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                    .withEndpointConfiguration(new EndpointConfiguration(endpointUrl, location))
+                    .withPathStyleAccessEnabled(true)
+                    .withClientConfiguration(clientConfig)
+                    .build();
         }
 
-        /**
-         * @param bucketName
-         * @param cosClient
-         */
-        public static void listObjects(String bucketName, AmazonS3 cosClient)
+        public static void listObjects(AmazonS3 cosClient, String bucketName)
         {
             System.out.println("Listing objects in bucket " + bucketName);
             ObjectListing objectListing = cosClient.listObjects(new ListObjectsRequest().withBucketName(bucketName));
@@ -215,29 +169,20 @@ Let's start with an complete example class that will run through some basic func
             System.out.println();
         }
 
-        /**
-         * @param bucketName
-         * @param cosClient
-         * @param storageClass
-         */
-        public static void createBucket(String bucketName, AmazonS3 cosClient, String storageClass)
+        public static void createBucket(AmazonS3 cosClient, String bucketName, String storageClass)
         {
             cosClient.createBucket(bucketName, storageClass);
         }
 
-        /**
-         * @param cosClient
-         */
         public static void listBuckets(AmazonS3 cosClient)
         {
             System.out.println("Listing buckets");
-            final List<Bucket> bucketList = _cosClient.listBuckets();
+            final List<Bucket> bucketList = cosClient.listBuckets();
             for (final Bucket bucket : bucketList) {
                 System.out.println(bucket.getName());
             }
             System.out.println();
         }
-
     }
 
 ```
