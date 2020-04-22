@@ -39,7 +39,7 @@ The {{site.data.keyword.cos_full_notm}} SDK for Java is comprehensive, with many
 ## Getting the SDK
 {: #java-install}
 
-The easiest way to use the {{site.data.keyword.cos_full_notm}} Java SDK is to use Maven to manage dependencies. If you aren't familiar with Maven, you get can get up and running by using the [Maven in 5-Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html) guide.
+The easiest way to use the {{site.data.keyword.cos_full_notm}} Java SDK is to use Maven to manage dependencies. If you aren't familiar with Maven, you can get up and running by using the [Maven in 5-Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html) guide.
 
 Maven uses a file that is called `pom.xml` to specify the libraries (and their versions) needed for a Java project. Here is an example `pom.xml` file for using the {{site.data.keyword.cos_full_notm}} Java SDK to connect to {{site.data.keyword.cos_short}}.
 
