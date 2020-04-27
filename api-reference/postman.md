@@ -41,7 +41,7 @@ Interacting with a REST API isn't as simple as using a standard internet browser
 {: #postman-prereqs}
 * IBM Cloud account
 * [Cloud Storage resource created](https://cloud.ibm.com/catalog/){: external} (lite plan works fine)
-* [IBM Cloud CLI installed and configured](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-ic-use-the-ibm-cli)
+* [IBM Cloud COS CLI installed and configured](/docs/cloud-object-storage?topic=cloud-object-storage-cli-ic-cos-cli)
 * [Service Instance ID for your Cloud Storage](/docs/services/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials)
 * [IAM (Identity and Access Management) Token](/docs/services/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials) 
 * [Endpoint for your COS bucket](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints)
