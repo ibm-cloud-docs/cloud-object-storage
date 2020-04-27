@@ -53,12 +53,19 @@ Before you create a new {{site.data.keyword.cos_full}} storage instance, it's ne
 4. Give the service instance a name and choose either the lite or standard plan.
 5. Click **Create** and you're automatically redirected to your new instance.
 
+It is also possible to create an instance using the [{{site.data.keyword.cloud}} Platform CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started):
+
+```
+ibmcloud resource service-instance-create <instance-name> cloud-object-storage <plan> global
+```
+{: codeblock}
+
 ## Deleting a service instance
 {: delete-instance}
 
 When a service instance is deleted, the data is not deleted immediately.  Instead, it is scheduled for reclamation a week after the user requests deletion, after which the data is irreversibly destroyed, and the bucket names will be made available.  
 
-It is possible to check the status of a reclamation, as well as force or cancel a scheduled reclamation using the [Resource Controller API](/apidocs/resource-controller/resource-controller#get-a-list-of-all-reclamations).
+It is possible to check the status of a reclamation, as well as force or cancel a scheduled reclamation using the [Resource Controller API](/apidocs/resource-controller/resource-controller#get-a-list-of-all-reclamations) or [the {{site.data.keyword.cloud}} Platform CLI](/docs/cli?topic=cloud-cli-ibmcloud_commands_resource#ibmcloud_resource_reclamations).
 
 It is not possible to delete a Service Instance if there is a bucket with an active Immutable Object Storage policy or legal hold on any objects.  The policy will need to expire before the data can be deleted. It isn't possible to delete a Service Instance if there is a permanent retention policy in place.
 {:important}
