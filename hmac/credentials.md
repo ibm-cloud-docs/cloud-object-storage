@@ -45,7 +45,7 @@ Users can create a set of HMAC credentials as part of a [Service Credential](/do
 After the Service Credential is created, the HMAC Key is included in the `cos_hmac_keys` field. These HMAC keys are then associated with a [Service ID](/docs/iam?topic=iam-serviceids#serviceids) and can be used to access any resources or operations that are allowed by the Service ID's role. 
 
 ### Create HMAC credentials using the CLI
-{: #uhc-create-hmac-credentials-console}
+{: #uhc-create-hmac-credentials-cli}
 
 You can also use the {{site.data.keyword.cos_full}} CLI to create your credentials. You must have the already installed the [{{site.data.keyword.cloud_notm}} Platform Command Line Instructions](/docs/cli?topic=cloud-cli-install-ibmcloud-cli) before you can use the example.
 
