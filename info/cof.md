@@ -40,9 +40,9 @@ Successful implementation of a Cloud Foundry platform requires [proper planning 
 
 ### Regions
 {: #cloud-foundry-regions}
-[Regional endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints#select-regions-and-endpoints) are an important part of the IBM Cloud Environment. You can create applications and service instances in different regions with the same IBM Cloud infrastructure for application management and the same usage details view for billing. By choosing an IBM Cloud region that is geographically close to you or your customers, you can reduce data latency in your applications as well as minimize costs. Regions can also be selected address any security concerns or regulatory requirements. 
+[Regional endpoints](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-endpoints#endpoints-region) are an important part of the IBM Cloud Environment. You can create applications and service instances in different regions with the same IBM Cloud infrastructure for application management and the same usage details view for billing. By choosing an IBM Cloud region that is geographically close to you or your customers, you can reduce data latency in your applications as well as minimize costs. Regions can also be selected address any security concerns or regulatory requirements. 
 
-With {{site.data.keyword.cos_full}} you can choose to disperse data across a single data center, an entire region, or even a combination of regions by [selecting the endpoint](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints#select-regions-and-endpoints) where your application sends API requests.
+With {{site.data.keyword.cos_full}} you can choose to disperse data across a single data center, an entire region, or even a combination of regions by [selecting the endpoint](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) where your application sends API requests.
 
 ### Resource Connections and Aliases
 {: #cloud-foundry-aliases}
@@ -107,9 +107,9 @@ var cos = new AWS.S3(config);
 
 For more information on how to use the SDK to access {{site.data.keyword.cos_short}} with code examples visit:
 
-* [Using Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java#using-java)
-* [Using Python](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python#using-python)
-* [Using Node.js](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-node#using-node-js)
+* [Using Java](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-java)
+* [Using Python](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-python)
+* [Using Node.js](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-node)
 
 ## Creating Service Bindings 
 {: #cloud-foundry-bindings}
@@ -160,7 +160,7 @@ ibmcloud resource service-binding-create <service alias> <cf app name> <role>
 ### IBM Client Tools (CLI) with HMAC Credentials
 {: #cloud-foundry-hmac}
 
-Hash-based message authentication code (HMAC) is a mechanism for calculating a message authentication code created that uses a pair of access and secret keys. This technique can be used to verify the integrity and authenticity of a message. More information about using [HMAC credentials](/docs/cloud-object-storage/hmac?topic=cloud-object-storage-hmac#using-hmac-credentials) is available in the {{site.data.keyword.cos_short}} documentation.
+Hash-based message authentication code (HMAC) is a mechanism for calculating a message authentication code created that uses a pair of access and secret keys. This technique can be used to verify the integrity and authenticity of a message. More information about using [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) is available in the {{site.data.keyword.cos_short}} documentation.
 
 1. Log in to with IBM Cloud CLI
 ```

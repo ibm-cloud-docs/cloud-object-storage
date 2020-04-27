@@ -25,14 +25,11 @@ subcollection: cloud-object-storage
 # Using `Postman`
 {: #postman}
 
-This documentation provides a basic `Postman` setup for the {{site.data.keyword.cos_full}} REST API. 
-{: shortdesc}
+Here's a basic `Postman` setup for the {{site.data.keyword.cos_full}} REST API. More detail can be found in the API reference for [buckets](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations) or [objects](/docs/services/cloud-object-storage?topic=cloud-object-storage-object-operations).
 
 Using `Postman` assumes a certain amount of familiarity with Object Storage and the necessary information from a [service credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) or the [console](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started). If any terms or variables are unfamiliar, they can be found in the [FAQ](/docs/cloud-object-storage?topic=cloud-object-storage-faq).
 
-Using `Postman` assumes a certain amount of familiarity with {{site.data.keyword.cos_short}} and the necessary information from a [service credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) or the [console](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started). If any terms or variables are unfamiliar, they can be found in the [glossary](/docs/cloud-object-storage/basics?topic=cloud-object-storage-terminology).
-
-Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
+Personally Identifiable Information (PII): When creating buckets and/or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
 {:tip}
 
 ## REST API client overview
@@ -44,7 +41,7 @@ Interacting with a REST API isn't as simple as using a standard internet browser
 {: #postman-prereqs}
 * IBM Cloud account
 * [Cloud Storage resource created](https://cloud.ibm.com/catalog/){: external} (lite plan works fine)
-* [IBM Cloud CLI installed and configured](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-ic-use-the-ibm-cli)
+* [IBM Cloud COS CLI installed and configured](/docs/cloud-object-storage?topic=cloud-object-storage-cli-ic-cos-cli)
 * [Service Instance ID for your Cloud Storage](/docs/services/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials)
 * [IAM (Identity and Access Management) Token](/docs/services/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials) 
 * [Endpoint for your COS bucket](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints)
