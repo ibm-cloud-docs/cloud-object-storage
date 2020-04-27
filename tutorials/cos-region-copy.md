@@ -102,7 +102,7 @@ endpoint = <bucket endpoint>
 {: codeblock}
 
 ## Configure `rclone` for COS destination data
-{: #region-copy-config-cos}
+{: #region-copy-config-cos-destination}
   Repeat the previous steps for the destination buckets.
 
 ## Verify that the source and destination are properly configured

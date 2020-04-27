@@ -37,7 +37,7 @@ subcollection: cloud-object-storage
 {: #about-cos-defined}
 {: help}
 
-{{site.data.keyword.cos_short}} solves the following problems with block and file storage:
+{{site.data.keyword.cos_short}} solves the following problems with block and/or file storage:
 
 *  Managing data at extreme scales by using conventional block and file systems was difficult. These technologies lead to data islands because of limitations on various levels of the data management hardware and software stack.
 
@@ -46,7 +46,7 @@ subcollection: cloud-object-storage
 *  Security required a combination of technologies, complex security schemes, and significant human involvement.
 
 ## What approach does {{site.data.keyword.cos_full_notm}} use?
-{: #about-cos-approaches}
+{: #about-cos-approach}
 {: help}
 
 {{site.data.keyword.cos_short}} uses a different approach to storing and referencing data:
