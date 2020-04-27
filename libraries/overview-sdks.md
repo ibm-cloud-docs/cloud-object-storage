@@ -89,4 +89,4 @@ Immutable Object Storage maintains data integrity in a WORM (Write-Once-Read-Man
 
 ## Aspera high-speed transfer 
 {: #sdk-about-aspera}  
-Aspera high-speed transfer improves data transfer performance under most conditions, especially in networks with high latency or packet loss. Instead of the standard HTTP `PUT`, Aspera high-speed transfer uploads the object by using the [FASP protocol](https://asperasoft.com/technology/transport/fasp/).
+Aspera high-speed transfer improves data transfer performance under most conditions, especially in networks with high latency or packet loss. Instead of the standard HTTP `PUT`, Aspera high-speed transfer uploads the object by using the [FASP protocol](https://www.ibm.com/products/aspera/technology){: external}.
