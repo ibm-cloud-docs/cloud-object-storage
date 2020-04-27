@@ -132,4 +132,4 @@ It is also possible to use [the REST API](/docs/services/cloud-object-storage?to
 
 Key rotation is an important part of mitigating the risk of a data breach. Periodically changing keys reduces the potential data loss if the key is lost or compromised. The frequency of key rotations varies by organization and depends on a number of variables, such as the environment, the amount of encrypted data, classification of the data, and compliance laws. The [National Institute of Standards and Technology (NIST)](https://www.nist.gov/topics/cryptography){: external} provides definitions of appropriate key lengths and provides guidelines for how long keys should be used.
 
-For more information, see the documentation for rotating keys in [Key Protect](/docs/services/key-protect?topic=key-protect-set-rotation-policy) or [{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-crypto-rotating-keys).
+For more information, see the documentation for rotating keys in [Key Protect](/docs/key-protect?topic=key-protect-set-rotation-policy) or [{{site.data.keyword.hscrypto}}](/docs/key-protect?topic=key-protect-rotate-keys).
