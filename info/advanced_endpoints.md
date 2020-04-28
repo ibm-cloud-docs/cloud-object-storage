@@ -8,6 +8,7 @@ keywords: object storage, endpoints, access points, manual failover
 
 subcollection: cloud-object-storage
 
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
