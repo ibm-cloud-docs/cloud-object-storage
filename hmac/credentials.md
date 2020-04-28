@@ -41,7 +41,7 @@ The {{site.data.keyword.cos_full}} API is a REST-based API for reading and writi
 ### Create HMAC credentials in the console
 {: #uhc-create-hmac-credentials-console}
 
-Users can create a set of HMAC credentials as part of a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) with the use of the advanced configuration parameter `{"HMAC":true}` during credential creation in the console. Figure 1 shows the option for setting the HMAC parameter by choosing "Advanced Options."
+Users can create a set of HMAC credentials as part of a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) with the use of the advanced configuration parameter `{"HMAC":true}` during credential creation in the console. Figure 1 shows the option for setting the HMAC parameter by choosing "Advanced options."
 
 ![advanced options](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/hmac-options.jpg){: caption="Figure 1. HMAC setting from advanced options"}
 
