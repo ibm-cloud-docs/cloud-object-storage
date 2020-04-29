@@ -24,6 +24,11 @@ subcollection: cloud-object-storage
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
+## Q2 2020
+{: #updates-2020-q1}
+
+Public Access can now be granted to a new `ObjectReader` role that allows anonymous access to reading objects, but without permissions to list the contents of a bucket. 
+
 ## Q1 2020
 {: #updates-2020-q1}
 
