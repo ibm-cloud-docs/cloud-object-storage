@@ -8,6 +8,7 @@ keywords: data, cloud object storage, unstructured, cleversafe, blob storage, ob
 
 subcollection: cloud-object-storage
 
+
 ---
 {:shortdesc: .shortdesc}
 {:external: target="_blank" .external}

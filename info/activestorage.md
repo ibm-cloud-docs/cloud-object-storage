@@ -8,6 +8,7 @@ keywords: object storage, ruby, activestorage, rails
 
 subcollection: cloud-object-storage
 
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}

@@ -8,6 +8,7 @@ keywords: empty bucket, delete, multiple
 
 subcollection: cloud-object-storage
 
+
 ---
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}

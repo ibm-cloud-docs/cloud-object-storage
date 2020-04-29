@@ -8,6 +8,7 @@ keywords: r, tutorial, cloudyr, data science
 
 subcollection: cloud-object-storage
 
+
 ---
 
 {:external: target="_blank" .external}
@@ -103,7 +104,7 @@ In addition to PUT, HEAD, and other compatible API commands, we can GET objects 
  
 ```R
 # return object using 'S3 URI' syntax, with progress bar
-get_object("s3://mybucket.myendpoint/example.csv", show_progress = TRUE)
+get_object("s3://mybucketname-only/example.csv", show_progress = TRUE)
 ```
 {: codeblock}
 
@@ -114,7 +115,7 @@ As you can guess, the library discussed earlier has a `save_object()` method tha
 
 ```R
 library(cloudSimplifieR)
-d <- as.data.frame(csvToDataframe("s3://myendpoint/mybucket/example.csv"))
+d <- as.data.frame(csvToDataframe("s3://mybucket/example.csv"))
 plot(d)
 ```
 {: codeblock}

@@ -8,6 +8,7 @@ keywords: about, basics
 
 subcollection: cloud-object-storage
 
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
@@ -37,7 +38,7 @@ subcollection: cloud-object-storage
 {: #about-cos-defined}
 {: help}
 
-{{site.data.keyword.cos_short}} solves the following problems with block and file storage:
+{{site.data.keyword.cos_short}} solves the following problems with block and/or file storage:
 
 *  Managing data at extreme scales by using conventional block and file systems was difficult. These technologies lead to data islands because of limitations on various levels of the data management hardware and software stack.
 

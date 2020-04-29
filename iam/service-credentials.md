@@ -1,12 +1,13 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2020
+lastupdated: "2020-04-28"
 
 keywords: authorization, iam, basics, credentials
 
 subcollection: cloud-object-storage
+
 
 ---
 {:new_window: target="_blank"}
@@ -37,9 +38,10 @@ Service credentials are always associated with a Service ID, and new Service IDs
 Use the following steps to create a service credential:
 1. Log in to the {{site.data.keyword.cloud_notm}} console and navigate to your instance of {{site.data.keyword.cos_short}}.
 2. In the side navigation, click **Service Credentials**. 
-3. Click **New credential** and provide the necessary information.
-  If you want to generate HMAC credentials, click 'Include HMAC Credential' check box
-  
+3. Click **New credential** and provide the necessary information. If you want to generate HMAC credentials, click on `Advanced Options` to reveal the 'Include HMAC Credential' option. Verify the option is selected before continuing. Figure 1 shows the option for setting the HMAC parameter by choosing "Advanced options."
+   
+   ![advanced options](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/hmac-options.jpg){: caption="Figure 1. HMAC setting from advanced options"}
+   
 4. Click **Add** to generate service credential.
 
 The credential has the following values:

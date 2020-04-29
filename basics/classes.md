@@ -9,6 +9,7 @@ keywords: storage classes, tiers, cost, buckets, location constraint, provisioni
 
 subcollection: cloud-object-storage
 
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
