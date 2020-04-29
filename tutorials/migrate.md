@@ -32,9 +32,6 @@ subcollection: cloud-object-storage
 Migrating your data is a complex and daunting task, but don't let it stop you from making the right decision. Using the right tools will make moving from Amazon&trade; to {{site.data.keyword.cos_full}} more secure, globally accessible, and completed with confidence.
 {: shortdesc}
 
-The high-speed data transfer option from the integrated [IBM Aspera&reg; service](/docs/cloud-object-storage?topic=cloud-object-storage-aspera) makes it easy to transfer data to {{site.data.keyword.cos_full_notm}}.
-{: tip}
-
 ## Before you begin
 {: migrate-preparation}
 

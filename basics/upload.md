@@ -49,4 +49,41 @@ Some examples include file explorers like [Cyberduck](https://cyberduck.io/) or 
 ## Using the API
 {: #upload-api}
 
-Most programmatic applications of Object Storage use an SDK (such as [Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java), [node.js](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-node), or [Python](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python)) or the [Cloud Object Storage API](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api). Typically objects are uploaded in [multiple parts](/docs/cloud-object-storage/basics?topic=cloud-object-storage-large-objects), with part size and number of parts configured by a Transfer Manager class.
+Most programmatic applications of Object Storage use an SDK (such as [Java](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java), [node.js](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node), or [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python)) or the [Cloud Object Storage API](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api). Typically objects are uploaded in [multiple parts](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-large-objects), with part size and number of parts configured by a Transfer Manager class.
+
+## Conditional requests
+{: #upload-conditional}
+
+When making a request to read or write data, it is possible to set conditions on that request to avoid unnecessary operations. This is accomplished using the following pre-conditional HTTP headers: `If-Match`, `If-None-Match`, `If-Modified-Since`, and `If-Unmodified-Since`.
+
+It is generally preferable to use `If-Match` because the granularity of the `Last-Modified` value is only in seconds, and may not be sufficient to avoid race conditions in some applications.
+{:note}
+
+### Using `If-Match`
+{: #upload-if-match}
+
+On an object PUT, HEAD, or GET request, [the `If-Match` header](https://tools.ietf.org/html/rfc7232#section-3.1) will check to see if a provided Etag (MD5 hash of the object content) matches the provided Etag value. If this value matches, the operation will proceed. If the match fails, the system will return a `412 Precondition Failed` error.
+
+>If-Match is most often used with state-changing methods (e.g., POST, PUT, DELETE) to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource (i.e., to prevent the "lost update" problem).
+
+### Using `If-None-Match`
+{: #upload-if-none-match}
+
+On an object PUT, HEAD, or GET request, [the `If-None-Match` header](https://tools.ietf.org/html/rfc7232#section-3.2) will check to see if a provided Etag (MD5 hash of the object content) matches the provided Etag value. If this value does not match, the operation will proceed. If the match succeeds, the system will return a `412 Precondition Failed` error on a PUT and a `304 Not Modified` on GET or HEAD.
+
+>If-None-Match is primarily used in conditional GET requests to enable efficient updates of cached information with a minimum amount of transaction overhead.  When a client desires to update one or more stored responses that have entity-tags, the client SHOULD generate an If-None-Match header field containing a list of those entity-tags when making a GET request; this allows recipient servers to send a 304 (Not Modified) response to indicate when one of those stored responses matches the selected representation.
+
+### Using `If-Modified-Since`
+{: #upload-if-modified-since}
+
+On an object HEAD or GET request, [the `If-Modified-Since` header](https://tools.ietf.org/html/rfc7232#section-3.3) will check to see if the object's `Last-Modified` value (for example `Sat, 14 March 2020 19:43:31 GMT`) is newer than a provided value. If the object has been modified, the operation will proceed. If the object has not been modified, the system will return a `304 Not Modified`.
+
+>If-Modified-Since is typically used for two distinct purposes: 1) to allow efficient updates of a cached representation that does not have an entity-tag and 2) to limit the scope of a web traversal to resources that have recently changed.
+
+### Using `If-Unmodified-Since`
+{: #upload-if-unmodified-since}
+
+On an object PUT, HEAD, or GET request, [the `If-Unodified-Since` header](https://tools.ietf.org/html/rfc7232#section-3.3) will check to see if the object's `Last-Modified` value (for example `Sat, 14 March 2020 19:43:31 GMT`) is equal to or earlier than a provided value. If the object has not been modified, the operation will proceed. If the `Last-Modified` value is more recent, the system will return a `412 Precondition Failed` error on a PUT and a `304 Not Modified` on GET or HEAD.
+
+>   If-Unmodified-Since is most often used with state-changing methods (e.g., POST, PUT, DELETE) to prevent accidental overwrites when multiple user agents might be acting in parallel on a resource that does not supply entity-tags with its representations (i.e., to prevent the "lost update" problem).  It can also be used with safe methods to abort a request if the selected representation does not match one already stored (or partially stored) from a prior request.
+

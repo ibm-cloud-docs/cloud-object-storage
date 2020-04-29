@@ -160,7 +160,7 @@ ibmcloud resource service-binding-create <service alias> <cf app name> <role>
 ### IBM Client Tools (CLI) with HMAC Credentials
 {: #cloud-foundry-hmac}
 
-Hash-based message authentication code (HMAC) is a mechanism for calculating a message authentication code created that uses a pair of access and secret keys. This technique can be used to verify the integrity and authenticity of a message. More information about using [HMAC credentials](/docs/cloud-object-storage/hmac?topic=cloud-object-storage-hmac#using-hmac-credentials) is available in the {{site.data.keyword.cos_short}} documentation.
+Hash-based message authentication code (HMAC) is a mechanism for calculating a message authentication code created that uses a pair of access and secret keys. This technique can be used to verify the integrity and authenticity of a message. More information about using [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) is available in the {{site.data.keyword.cos_short}} documentation.
 
 1. Log in to with IBM Cloud CLI
 ```
