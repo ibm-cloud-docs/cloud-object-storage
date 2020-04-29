@@ -384,7 +384,7 @@ ibmcloud dev build
 {: pre}
 
 Now that the app is built, you can run the code locally with the `run` command. When finished, copy and paste the provided URL into your
-browser's address bar, typically, <http://localhost:3000>.
+browser's address bar, typically, `http://localhost:3000`.
 
 ```bash
 ibmcloud dev run 
@@ -448,7 +448,7 @@ npm start
 {: pre}
 
 Open a browser and view your app on the address and port that is output
-to the console, <http://localhost:3000>.
+to the console, `http://localhost:3000`.
 
 To restart the app locally, kill the node process (Ctrl+C) to
 stop it, and use `npm start` again. Using `nodemon` instead restarts the app when
@@ -1101,7 +1101,8 @@ method and iterate over a pair of nested `<div>...</div>` tags. Each sends a `GE
 ```
 {: codeblock}
 
-We test it locally from http://localhost:3000/gallery and see our image.
+We test it locally from `http://localhost:3000/gallery`
+ and see our image.
 
 ![localtest2](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-020-image-display.jpg){: caption="Figure 10. Images uploaded to the bucket are on display"}
 
