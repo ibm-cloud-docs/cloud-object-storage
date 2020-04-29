@@ -711,5 +711,6 @@ The typical response is exemplified here.
 {: .codeblock}
 
 ## Next Steps
+{: go-next-steps}
 
 If you haven't already, please see the detailed class and method documentation available at the [Go API documentation](https://ibm.github.io/ibm-cos-sdk-go/).
