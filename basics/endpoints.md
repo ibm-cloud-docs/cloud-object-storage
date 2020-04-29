@@ -214,3 +214,7 @@ The Activity Tracker and Logging Service with LogDNA can archive to a bucket at 
 | `eu-geo`                                        | Cross Region | Amsterdam, Frankfurt, Milan |
 {: caption="Table 4. EU-managed Endpoints" caption-side="top"}
  
+## Decommissioned locations
+{: #endpoints-decom}
+
+Over time, it may be necessary for locations to transform from a Single Data Center to a Regional configuration, or for a location to be decommissioned entirely. These situations will require users to migrate data from one bucket to another. Please consult this [guide for migrating a bucket using Rclone](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-region-copy).
