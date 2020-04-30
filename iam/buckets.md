@@ -34,13 +34,13 @@ subcollection: cloud-object-storage
 Assign access roles for users and Service IDs against buckets, by using either the UI or the CLI to create policies.
 {: shortdesc}
 
-| Access role | Example actions                                             |
-|:------------|-------------------------------------------------------------|
-| Manager     | Make objects public, create, and destroy buckets and objects |
-| Writer      | Create and destroy buckets and objects                      |
-| Reader      | List buckets, list objects, and download objects.                                |
-| ContentReader      | List and download objects                                   |
-
+| Access role    | Example actions                                              |
+|:---------------|--------------------------------------------------------------|
+| Manager        | Make objects public, create, and destroy buckets and objects |
+| Writer         | Create and destroy buckets and objects                       |
+| Reader         | List buckets, list objects, and download objects.            |
+| Content Reader | List and download objects                                    |
+| Object Reader  | Download objects                                             |
 
 ## Granting access to a user
 {: #iam-user-access}
