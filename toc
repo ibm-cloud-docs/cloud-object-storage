@@ -34,7 +34,8 @@ Cloud Object Storage
         basics/endpoints.md
         basics/services.md    
         [Connect from VPC](/vpc-on-classic/vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc)
-        
+    
+    basics/closures.md
     basics/upload.md
 
     {: .topicgroup}
