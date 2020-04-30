@@ -26,7 +26,7 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Provision storage
+# Provision and manage storage
 {: #provision}
 
 Getting data into your instance of {{site.data.keyword.cos_full}} requires just a few steps before you provision your new storage.
