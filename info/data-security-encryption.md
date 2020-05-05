@@ -44,7 +44,14 @@ Storage can be accessed over HTTPS, and internally storage devices communicate w
 ## Data deletion
 {: #security-deletion}
 
-When data is deleted, various mechanisms exist which prevent recovery or reconstruction of the deleted objects. Deletion of an object undergoes various stages. First, the object is marked with metadata indicating the object as deleted. Then, the content regions are removed, and the erasure on the drives themselves is completed. Eventually, the blocks are overwritten with new data. Depending on whether one compromised the data center or has possession of the physical disks, the time an object takes becomes unrecoverable depends on the phase of the delete operation. When the metadata object is updated, clients external from the data center network can no longer read the object. When most of slices are erased, it is not possible to access the object.
+COS data is erasure coded and distributed to multiple individual storage devices in multiple data centers. When data is deleted, various mechanisms exist which prevent recovery or reconstruction of the deleted objects. Deletion of an object undergoes various stages. First, the metadata is marked to indicate the object is deleted, then, the data is removed. Eventually, deleted metadata is overwritten by a process of compaction and the deleted data blocks are overwritten with new data in the course of normal operations. As soon as the metadata is marked deleted, it is not possible to read an object remotely. IBM's provider-managed encryption and erasure coding prevents data (both before and after deletion) from being accessible from within individual data centers.
+
+Cross regional and regional resiliency buckets distribute information across multiple data centers.  For single site resiliency, data is dispersed to the same number of storage devices but they are all located in the same data center.
+{: note}
+
+Data can be made more secure by using one of several available methods to protect the encryption keys including SSE-C, Key Protect or Hyper Protect Crypto Services. Please visit the [manage encryption](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-encryption) topic to learn more about the encryption methods. 
+
+
 
 ## Tenant isolation
 {: #security-isolation}
