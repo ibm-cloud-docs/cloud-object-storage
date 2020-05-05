@@ -20,3 +20,5 @@ assignees: ''
 
 
 **When is the feature expected to be generally available?**
+
+**Is this intended for limited access for a specific customer?**
