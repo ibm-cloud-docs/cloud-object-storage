@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2020
+lastupdated: "2020-05-11"
 
-keywords: object storage, provision, console
+keywords: provision, create, service
 
 subcollection: cloud-object-storage
 
@@ -35,7 +35,7 @@ Getting data into your instance of {{site.data.keyword.cos_full}} requires just 
 ## Creating a {{site.data.keyword.cloud_notm}} Platform account
 {: #provision-account}
 
-Before you create a new {{site.data.keyword.cos_full}} storage instance, it's necessary to create a customer account first.
+Before you create a new {{site.data.keyword.cos_full_notm}} storage instance, it's necessary to create a customer account first.
 
 1. Go to [cloud.ibm.com](https://cloud.ibm.com/){: external} and click **Create a Free Account**.
 2. Complete the form with your email address, name, region, and phone number. Choose a password.
@@ -46,12 +46,13 @@ Before you create a new {{site.data.keyword.cos_full}} storage instance, it's ne
 {: #provision-instance}
 
 1. Log in to [the console](https://cloud.ibm.com/){: external}.
-2. Navigate to the catalog, by clicking **Catalog** in the navigation bar.
-	<img alt="Provision storage Catalog" src="https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/console_provision_catalog.png" max-height="200px" />
-3. Look for the **Object Storage** tile in the storage section and select it.
+1. Navigate to the catalog, by clicking **Catalog** in the navigation bar.
+   ![COS Catalog](){: caption="Figure 1. Create an {{site.data.keyword.cloud_notm}} account"}
+   
+1. Look for the **Object Storage** tile in the storage section and select it.
 	<img alt="Provision storage Object Storage" src="https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/console_provision_os.png" max-height="200px" />
-4. Give the service instance a name and choose either the lite or standard plan.
-5. Click **Create** and you're automatically redirected to your new instance.
+1. Give the service instance a name and choose either the lite or standard plan.
+1. Click **Create** and you're automatically redirected to your new instance.
 
 It is also possible to manage resources using the [{{site.data.keyword.cloud}} Platform CLI](/docs/resources?topic=resources-manage_resource):
 
@@ -70,5 +71,5 @@ It is possible to check the status of a reclamation, as well as force or cancel 
 It is not possible to delete a Service Instance if there is a bucket with an active Immutable Object Storage policy or legal hold on any objects.  The policy will need to expire before the data can be deleted. It isn't possible to delete a Service Instance if there is a permanent retention policy in place. 
 {: important}
 
-Currently, the reclamation can be scheduled for COS standard plan instances only.
+Currently, the reclamation can be scheduled for {{site.data.keyword.cloud}} standard plan instances only.
 {: note}
