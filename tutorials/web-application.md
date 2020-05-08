@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-02-10"
+lastupdated: "2020-05-14"
 
 keywords: web application, node, gallery, tutorial
 
@@ -30,8 +30,7 @@ subcollection: cloud-object-storage
 # Web application tutorial
 {: #web-application}
 
-From beginning to end, building a web application covers a lot of different concepts and is a great way to introduce
-yourself to the features of {{site.data.keyword.cos_full}}.
+From beginning to end, building a web application covers a lot of different concepts and is a great way to introduce yourself to the features of {{site.data.keyword.cos_full}}.
 {: shortdesc}
 
 This tutorial will show you how to build a simple image gallery on the {{site.data.keyword.cloud}} Platform, and how to bring together
