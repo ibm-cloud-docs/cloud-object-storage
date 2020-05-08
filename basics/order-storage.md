@@ -47,16 +47,19 @@ Before you create a new {{site.data.keyword.cos_full_notm}} storage instance, it
 
 1. Log in to [the console](https://cloud.ibm.com/){: external}.
 1. Navigate to the catalog, by clicking **Catalog** in the navigation bar.
-   ![COS Catalog](){: caption="Figure 1. Create an {{site.data.keyword.cloud_notm}} account"}
+
+   ![COS Catalog](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/catalog.jpg){: caption="Figure 1. Create an {{site.data.keyword.cloud_notm}} instance"}
    
 1. Look for the **Object Storage** tile in the storage section and select it.
-	<img alt="Provision storage Object Storage" src="https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/console_provision_os.png" max-height="200px" />
+
+   ![github_desktop_setup](http://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/object-storage-card.jpg){: caption="Figure 2. Select {{site.data.keyword.cloud_notm}}"}
+
 1. Give the service instance a name and choose either the lite or standard plan.
 1. Click **Create** and you're automatically redirected to your new instance.
 
 It is also possible to manage resources using the [{{site.data.keyword.cloud}} Platform CLI](/docs/resources?topic=resources-manage_resource):
 
-```
+```bash
 ibmcloud resource service-instance-create <instance-name> cloud-object-storage <plan> global
 ```
 {: codeblock}
