@@ -2,12 +2,11 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-02-10"
+lastupdated: "2020-05-14"
 
 keywords: web application, node, gallery, tutorial
 
 subcollection: cloud-object-storage
-
 
 ---
 {:new_window: target="_blank"}
@@ -30,72 +29,56 @@ subcollection: cloud-object-storage
 # Web application tutorial
 {: #web-application}
 
-From beginning to end, building a web application covers a lot of different concepts and is a great way to introduce
-yourself to the features of {{site.data.keyword.cos_full}}.
+From beginning to end, building a web application covers a lot of different concepts and is a great way to introduce yourself to the features of {{site.data.keyword.cos_full}}.
 {: shortdesc}
 
-This tutorial will show you how to build a simple image gallery on the {{site.data.keyword.cloud}} Platform, and how to bring together
-many different concepts and practices. Your application uses {{site.data.keyword.cos_full_notm}} for storage in a Node.js application that allows a user to upload and view JPEG image files.
+This tutorial will show you how to build a simple image gallery on the {{site.data.keyword.cloud}} Platform, and how to bring together many different concepts and practices. Your application uses {{site.data.keyword.cos_full_notm}} for storage in a Node.js application that allows a user to upload and view JPEG image files.
 
 ## Before you begin
 {: #wa-prereqs}
 
 We need to make sure that we have our prerequisites:
 
-  - {{site.data.keyword.cloud_notm}} Platform account
-  - Docker, as part of the {{site.data.keyword.cloud_notm}} Developer Tools
-  - Node.js 
-  - Git (both desktop and command line)
+- {{site.data.keyword.cloud_notm}} Platform account
+- Docker, as part of the {{site.data.keyword.cloud_notm}} Developer Tools
+- Node.js 
+- Git (both desktop and command line)
+
+Let's start by opening a tool familiar to experienced developers, and a new best friend to those just getting started: the command line. For many, the graphic user interface (GUI) relegated your computer's command-line interface to second-class status. But now, it's time to bring it back (although the GUI isn't going away anytime soon, especially when we need to browse the web to download instructions for the command-line toolset). 
+
+Open a shell and create a directory. Change your own reference directory to the new one you created. When created, your application has its own subdirectory with the starter code and configuration that is needed to get up and running.
+
+Leave the command line and return to your browser so you can follow the instructions to install the [{{site.data.keyword.cloud_notm}} Platform developer tools](/docs/cli?topic=cloud-cli-install-devtools-manually) at the link. The Developer Tools offer an extensible and repeatable approach to building and deploying cloud applications. 
 
 ### Installing Docker
 {: #tutorial-wa-install-docker}
 
-Using containers, like Docker, speeds up development and eases testing and supports 
-automated deployment. A container is a lightweight structure that doesn't need an operating 
-system, just your code and configuration for everything from dependencies to settings.
+Using containers, like Docker, speeds up development and eases testing and supports automated deployment. A container is a lightweight structure that doesn't need an operating system, just your code and configuration for everything from dependencies to settings.
 
-Let's start by opening a tool familiar to experienced developers, and a new best friend to those just getting
-started: the command line. For many, the graphic user interface (GUI) was invented relegated your computer's 
-command-line interface to second-class status. But now, it's time to bring it back (although the GUI
-isn't going away anytime soon, especially when we need to browse the web to download our new command-line toolset). 
-
-Open a shell and create a 
-directory. Change your own reference directory to 
-the new one you created. When created, your application has its own subdirectory with 
-the starter code and configuration that is needed to get up and running.
-
-Leaving the command line and returning to the browser, follow the instructions to install the [{{site.data.keyword.cloud_notm}} Platform developer tools](/docs/cli?topic=cloud-cli-install-devtools-manually) at the link. 
-The Developer Tools offer an extensible and repeatable approach to building and deploying cloud applications.
-
-[Docker](https://www.docker.com) is installed as part of the Developer Tools, and we need it. Its work
+[Docker](https://www.docker.com){: external} is installed as part of the Developer Tools, and we need it. Its work
 takes place mostly in the background within routines that scaffold your new app. Docker must be running for the build 
 commands to work. Go ahead and create a Docker account online at [Docker hub](https://hub.docker.com){: external}, run the Docker app, and sign in.
 
 ### Installing Node.js
 {: #tutorial-wa-install-node}
 
-The app that you build uses [Node.js](https://nodejs.org/){: external} as the server-side engine to run the
-JavaScript code for this web application. To use the Node Package Manager (`npm`) to manage 
-your app's dependencies, you must install Node.js locally. Also, a local installation of Node
-simplifies testing, speeding up development. 
+The app that you build uses [Node.JS](https://nodejs.org/){: external} as the server-side engine to run the JavaScript code for this web application. To use the Node Package Manager (`npm`) to manage  your app's dependencies, you must install Node locally. Also, a local installation of Node simplifies testing, speeding up development. 
 
-Before you start, you might consider a version
-manager, like Node Version Manager, or `nvm`, to install Node. A version manager reduces the complexity of managing different versions of Node.js.
+Before you start, you might consider a version manager, like Node Version Manager, or `nvm`, to install Node. A version manager reduces the complexity of managing different versions of Node.js.
 
-```
+```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ```
 {: pre}
 
 ...or `wget` (just one is necessary, but not both; use whichever is available on your system):
 
-```
+```bash
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ```
 {: pre}
 
-Or, for Windows, you can use [nvm for Windows](https://github.com/coreybutler/nvm-windows) with installers
-and source code at the link.
+Or, for Windows, you can use [nvm for Windows](https://github.com/coreybutler/nvm-windows){: external} with installers and source code at the link.
 
 Using `nvm`, install Node.
 
@@ -114,8 +97,7 @@ You're probably already familiar with Git, as it's the most widely used
 source code versioning system. 
 We use Git later when we create a Continuous Deployment (CD) Toolchain in the {{site.data.keyword.cloud_notm}} Platform for
 continuous delivery and deployment. If you don't have a GitHub account, create a
-free public personal account at the [GitHub](https://github.com/join)
-website; otherwise, feel free to log in with any other account you might have.
+free public personal account at the [GitHub](https://github.com/join) website; otherwise, feel free to log in with any other account you might have.
 
 We need to generate and upload SSH keys to your 
 [GitHub profile](https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) for secure access to GitHub from the command line. However, doing that now provides good practice, as you repeat the steps
@@ -132,16 +114,21 @@ to verify the application connection through your GitHub account online.
 ## Creating the Node.js starter app
 {: #tutorial-create-skeleton}
 
-To start developing your application locally, begin by logging in to the {{site.data.keyword.cloud_notm}} Platform directly
-from the command line, as shown in Example 4. 
+To start developing your application locally, begin by logging in to the {{site.data.keyword.cloud_notm}} Platform directly from the command line, as shown in the example. You can specify optional parameters, such as your organization with option `-o` and the space with option `-s`. If you're using a federated account use `--sso`. 
 
 ```bash
 ibmcloud login
 ```
+{: pre} 
+
+After logging in, when you are asked if you want to install any extensions, you may see an announcement regarding the Cloud Foundry plugin. Type the command as shown in order to download and install the CLI extension used in this tutorial. 
+
+```bash
+ibmcloud cf install
+```
 {: pre}
 
-You can specify optional parameters, such as your organization with option `-o` and the space with option `-s`. If you're using a federated account use `--sso`. When you log in you might be asked to 
-choose a region. For this exercise, select `us-south` as the region, as that same option is used to build a CD Toolchain later in this tutorial.  
+When you log in you might be asked to choose a region. For this exercise, select `us-south` as the region, as that same option is used to build a CD Toolchain later in this tutorial.  
 
 Next, set the endpoint (if it isn't set already). Other endpoints are possible, and 
 might be preferable for production use. For now, use the code as shown, if appropriate for your account.
@@ -151,7 +138,7 @@ ibmcloud api cloud.ibm.com
 ```
 {: pre}
 
-Target the Cloud Foundry (`cf`) aspect of {{site.data.keyword.cloud_notm}} Platform by using the `target` command and the `--cf` option. The `cf` API is embedded within the CLI Developer Tools.
+Target the Cloud Foundry (`cf`) aspect of {{site.data.keyword.cloud_notm}} Platform by using the `target` command and the `--cf` option. The `cf` API is no longer embedded within the CLI Developer Tools and will have to be downloaded separately.
 
 ```bash
 ibmcloud target --cf
@@ -170,111 +157,91 @@ With that command, you're asked a series of questions. You can go back at many p
 Note the option for creating a 'Web App'. That's the one you want.
 
 ```
-                                        
---------------------------------------------------------------------------------
+===============================================================================
 Select an application type:
---------------------------------------------------------------------------------
- 1. Blank App
- 2. Backend Service / Web App
- 3. Mobile App
---------------------------------------------------------------------------------
+
+ 1. Backend Service / Web App
+ 2. Mobile App
+-------------------------
  0. Exit
---------------------------------------------------------------------------------
-? Enter selection number:> 2
+
+===============================================================================
+? Enter selection number:> 1
 ```
 {: screen}
 
 A number of options are provided, but we want 'Node'. Type '4' and press enter.
 
 ```
---------------------------------------------------------------------------------
+===============================================================================
 Select a language:
---------------------------------------------------------------------------------
+
  1. Go
  2. Java - MicroProfile / Java EE
  3. Java - Spring
  4. Node
  5. Python - Django
  6. Python - Flask
- 7. Scala
- 8. Swift
---------------------------------------------------------------------------------
+ 7. Swift
+-------------------------
  0. Return to the previous selection
---------------------------------------------------------------------------------
+
+===============================================================================
 ? Enter selection number:> 4
 ```
 {: screen}
 
-After you make your selection for the programming language and framework, the next selection
-will have so many options, it might scroll past your wanted service. As you can see in the example, we
-wish to use a simple Node.js Web App with Express.js. Type '6' and press enter.
+After you make your selection for the programming language and framework, the next selection will have so many options, it might scroll past your wanted service. As you can see in the example, we wish to use a simple Node.js Web App with Express.js. Type '3' and press enter.
 
 ```
-? Select a Starter Kit:
+===============================================================================
+Select a Starter Kit:
 
---------------------------------------------------------------------------------
 APPSERVICE
---------------------------------------------------------------------------------
- 1. MEAN Stack: MongoDb, Express.js, Angular, Node.js - A starter 
-    project for setting up a mongodb, express, angular and node application
- 2. MERN Stack: MongoDb, Express.js, React, Node.js - A starter 
-    project for setting up a mongodb, express, react and node application
- 3. Node.js BFF Example with Express.js - A starter for building 
-    backend-for-frontend APIs in Node.js, using the Express.js framework.
- 4. Node.js Example Serverless App - A starter providing a set of 
-    Cloud Functions and API for a serverless backend that uses Cloudant NoSQL 
-    database.
- 5. Node.js Microservice with Express.js - A starter for building a 
-    microservice backend in Node.js, using the Express.js framework.
- 6. Node.js Web App with Express.js - A starter that provides a basic 
-    web serving application in Node.js, using the Express.js framework.
- 7. Node.js Web App with Express.js and React - A starter that 
-    provides a rich React frontend delivered from a Node.js application, 
-    including key web development tools Gulp, SaaS, and Webpack, using the 
-    Express.js framework.
+-------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------
-FINANCE
---------------------------------------------------------------------------------
- 8. Wealth Management Chatbot - A chatbot that allows the user to 
-    query the status of their investments and evaluate the impact of different 
-    market scenarios on their investment portfolio. It can easily be extended 
-    in several ways.
+ 1. Node-RED - A starter to run the Node-RED open-source project on 
+    IBM Cloud.
 
---------------------------------------------------------------------------------
+ 2. Node.js + Cloudant - A web application with Node.js and Cloudant
+
+ 3. Node.js Express App - Start building your next Node.js Express 
+    app on IBM Cloud.
+
+
 WATSON
---------------------------------------------------------------------------------
- 9. Watson Assistant Basic - Simple application that demonstrates the 
-    Watson Assistant service in a chat interface simulating banking tasks.
-10. Watson Natural Language Understanding Basic - Collection of APIs 
-    that can analyze text to help you understand its concepts, entities, 
-    keywords, sentiment, and can create a custom model for some APIs to get 
-    specific results that are tailored to your domain.
-11. Watson News Intelligence - This starter kit demonstrates how to 
-    query news content to understand what people are saying or feeling about 
-    important topics.
-12. Watson Speech to Text Basic - Basic sample of Speech to Text 
-    service to convert speech in multiple languages into text.
-13. Watson Text to Speech Basic - Basic sample of how to use Text to 
-    Speech for streaming, low latency, synthesis of audio from text.
-14. Watson Visual Recognition Basic - Use deep learning algorithms to 
-    analyze images that can give you insights into your visual content.
---------------------------------------------------------------------------------
- 0. Return to the previous selection
---------------------------------------------------------------------------------
-? Enter selection number:> 6
+-------------------------------------------------------------------------------
 
+ 4. Natural Language Understanding Node.js App - Use Watson Natural 
+    Language Understanding to analyze text to help you understand its 
+    concepts, entities, keywords, sentiment, and more.
+
+ 5. Speech to Text Node.js App - React app using the Watson Speech to 
+    Text service to transform voice audio into written text.
+
+ 6. Text to Speech Node.js App - React app using the Watson Text to 
+    Speech service to transform text into audio.
+
+ 7. Visual Recognition Node.js App - React app using the Watson 
+    Visual Recognition service to analyze images for scenes, objects, text, 
+    and other subjects.
+
+-------------------------
+ 0. Return to the previous selection
+
+===============================================================================
+? Enter selection number:> 3
 ```
 {: screen}
 
 The hardest option for developers everywhere is still required: naming your app. Follow the example and type `webapplication`, then press enter.
 
-```bash
+```
 ? Enter a name for your application> webapplication
 ```
 {: screen}
 
-Later, you can add as many services, like data stores or compute functions, as needed or wanted through the web console. However, type 'n' for no when asked if you want to add services now.
+Later, you can add as many services, like data stores or compute functions, as needed or wanted through the web console. However, type 'n' for no when asked if you want to add services now. Also, if you haven't already set a resource group, you may be prompted at this time. You may skip this by typing 'n' at this prompt.
 
 ```
 Using the resource group Default (default) of your account
@@ -289,16 +256,17 @@ One way to manage a containerized application is with orchestration software, li
 Type '1' and press enter to use 'IBM DevOps' for integrating CD within your project lifecycle.
  
 ```
-
---------------------------------------------------------------------------------
+===============================================================================
 Select from the following DevOps toolchain and target runtime environment 
 options:
- 1. IBM DevOps, deploy to Cloud Foundry buildpacks
- 2. IBM DevOps, deploy to Kubernetes containers
- 3. No DevOps, with manual deployment
---------------------------------------------------------------------------------
-? Enter selection number:> 1
 
+ 1. IBM DevOps, deploy to Knative-based Kubernetes containers
+ 2. IBM DevOps, deploy to Helm-based Kubernetes containers
+ 3. IBM DevOps, deploy to Cloud Foundry buildpacks
+ 4. No DevOps, with manual deployment
+
+===============================================================================
+? Enter selection number:> 3
 ```
 {: screen}
 
@@ -335,17 +303,17 @@ application code.
 ```
 {: screen}
 
-Further prompts confirm the application and toolchain name that you defined earlier. Example 16 shows how you can alter the 
+Further prompts confirm the application and toolchain name that you defined earlier. The example shows how you can alter the 
 host and toolchain names, if you want. The hostname must be unique for the service endpoint of your application, but barring a conflict, 
 you can simply press return when asked for confirmation.
 
 ```
 The DevOps toolchain for this app will be: webapplication
-? Press [Return] to accept this, or enter a new value now>
+? Press [Enter] to accept this, or enter a new value now>
 
 
 The hostname for this app will be: webapplication
-? Press [Return] to accept this, or enter a new value now>
+? Press [Enter] to accept this, or enter a new value now>
 
 The app webapplication has been created in IBM Cloud.
 
@@ -396,7 +364,7 @@ Now that the app is created and defined, view your application to confirm it wor
 
 ![initial node app](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-splash-graphic.png){: caption="Figure 2. New Node.js Application!"}
 
-Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the `deploy` command (as shown in Example 20).
+Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the `deploy` command (as shown in the example).
 
 ```bash
 ibmcloud dev deploy
@@ -420,7 +388,7 @@ Follow these steps:
 
 1.  Download the sample here: [download ![External link icon](/docs-content/v1/content/icons/launch-glyph.svg)](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/image-gallery-tutorial.zip){: external}. Download the template for your app to your local
     development environment using your browser. Rather than cloning the sample
-    app from {{site.data.keyword.cloud_notm}} Platform, use the command in Example 21 to obtain the
+    app from {{site.data.keyword.cloud_notm}} Platform, use the command in the example to obtain the
     starter template for the {{site.data.keyword.cos_full_notm}} Web Gallery app. After cloning the
     repo you will find the starter app in the
     COS-WebGalleryStart directory. Open a Git CMD window and change to a
@@ -459,7 +427,7 @@ directory by using: `nodemon`, to start your app.
 
 1.  Get ready to prepare the app for deployment! Update the application name property
     value in the `manifest.yml` file from COS-WebGallery, to the name you
-    entered for your app on {{site.data.keyword.cloud_notm}} Platform and the other information as shown in Example 24, 
+    entered for your app on {{site.data.keyword.cloud_notm}} Platform and the other information as shown in the example, 
     if necessary. The application `manifest.yml` looks like the following example. You can customize the `package.json` file that is located in the app root directory for your app with the name
     of your app and your name as the author.
 
@@ -519,7 +487,7 @@ ibmcloud target --cf
 ```
 {: pre}
 
-d. Build the app for delivery that application with the build command (as in Example 28).
+d. Build the app for delivery that application with the build command (as in the example).
 
 ```bash
 ibmcloud dev build
@@ -603,7 +571,7 @@ After you have completed creating an API key, downloaded, and then copied the HM
 
 1.  On the local development environment, place the credentials in the
     Windows path `%USERPROFILE%\\.aws\\credentials` (for Mac/Linux users, the credentials should 
-    go into `~/.aws/credentials)`. Example 32 shows the contents of a
+    go into `~/.aws/credentials)`. The example shows the contents of a
     typical credentials file.
 
 ```bash
@@ -984,7 +952,7 @@ var galleryController = function(title) {
         })
     });
     
-    var getGalleryImages = function (req, res) { ... };
+    var getGalleryImages = function (req, res) { /* ... shown below ... */ };
 
     return {
         getGalleryImages: getGalleryImages,
