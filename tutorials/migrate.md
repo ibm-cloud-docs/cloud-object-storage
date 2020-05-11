@@ -1,12 +1,13 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2020
+lastupdated: "2020-04-16"
 
-keywords: migrate, openstack swift, object storage
+keywords: migrate, amazon, aws
 
 subcollection: cloud-object-storage
+
 
 ---
 {:new_window: target="_blank"}
@@ -26,168 +27,144 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Migrating data from OpenStack Swift
+# Migrating from AWS
 {: #migrate}
 
-We recommend developers update their applications and migrate their data to {{site.data.keyword.cos_full}} to take advantage of the new access control and encryption benefits that are provided by IAM and Key Protect, as well as new features as they become available.
+Migrating your data is a complex and daunting task, but don't let it stop you from making the right decision. Using the right tools will make moving from Amazon&trade; to {{site.data.keyword.cos_full}} more secure, globally accessible, and completed with confidence.
 {: shortdesc}
 
-Before {{site.data.keyword.cloud_notm}} became available as an {{site.data.keyword.cloud_notm}} Platform service, projects that required an object store used [OpenStack Swift](https://docs.openstack.org/swift/latest/). 
+## Before you begin
+{: migrate-preparation}
 
-The concept of a Swift 'container' is the same as a COS 'bucket'. COS limits service instances to 100 buckets and some Swift instances might have a larger number of containers. COS buckets can hold billions of objects and supports forward slashes (`/`) in object names for directory-like 'prefixes' to organize data. COS supports IAM policies at the bucket and service instance levels.
-{:tip}
+Determine your goals and process for your migration before starting your migration. You may also consider training and partnerships to be beneficial. Your planning and assessment stage will consider many possibilities, including security and technical capabilities.
 
-One approach to migrating data across object storage services is to use a 'sync' or 'clone' tool, such as [the open source `rclone` command-line utility](https://rclone.org/docs/). This utility syncs a file tree between two locations, including cloud storage. When `rclone` writes data to COS, it uses the COS/S3 API to segment large objects and upload the parts in parallel according to sizes and thresholds set as configuration parameters.
+Documentation for any project will help keep you keep track of your resources as well as your goals. After assessing your existing projects, you may benefit by updating them to use {{site.data.keyword.cos_full_notm}} libraries like those for ([Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java), [Python](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python), [Node.js](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-node)). If you're interested in programmer interfaces, the [REST API](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api) will provide an in-depth look at operations and configurations.
 
-Differences exist between COS and Swift that must be considered as part of data migration.
-
-  - COS doesn't yet support versioning. Workflows that depend on versioning must instead handle them as part of their application logic upon migration into COS.
-  - COS supports object-level metadata, but this information isn't preserved by `rclone` during migration. Custom metadata can be set on objects in COS by setting an `x-amz-meta-{key}: {value}` header, but we suggest that object-level metadata is backed up to a database before using `rclone`. Custom metadata can be applied to existing objects by [copying the object onto itself](https://cloud.ibm.com/docs/services/cloud-object-storage/api-reference/api-reference-objects.html#copy-object) - the system recognizes overwrites of the same object data and updates metadata only. You **can** set `rclone` to preserve time stamps.
-  - COS uses IAM policies for service instance and bucket-level access control. [Objects can be made publicly available](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-public-access) by setting a `public-read` ACL, which eliminates the need for an authorization header.
-  - [Multipart uploads](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-large-objects) for large objects are handled differently in the COS/S3 API relative to the Swift API.
-  - COS allows for familiar optional HTTP headers such as `Cache-Control`, `Content-Encoding`, `Content-MD5`, and `Content-Type`.
-
-This guide provides instructions for migrating data from a single Swift container to a single COS bucket. These steps need to be repeated for all containers that you want to migrate, and then your application logic will need to be updated to use the new API. After the data is migrated you can verify the integrity of the transfer by using `rclone check`, which will compare MD5 checksums and produce a list of any objects where they don't match.
-
-
-## Set up {{site.data.keyword.cos_full_notm}}
+## Provision and configure {{site.data.keyword.cos_full_notm}}
 {: #migrate-setup}
 
-  1. Create an instance of {{site.data.keyword.cos_full_notm}} from the [catalog](https://cloud.ibm.com/catalog/services/cloud-object-storage).
-  2. Create any buckets that you need to store your transferred data. Read through the [getting started guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started) to familiarize yourself with key concepts such as [endpoints](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) and [storage classes](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-classes).
-  3. Because the syntax of the Swift API is significantly different from the COS/S3 API, it might be necessary to refactor your application. Libraries are available in ([Java](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java), [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python), [Node.js](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node)) or the [REST API](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api).
+  1. If you haven't already, create an instance of {{site.data.keyword.cos_full_notm}} from the [Console](https://cloud.ibm.com/catalog/services/cloud-object-storage){: external}.
+  2. Create any buckets that you anticipate will be needed to store your transferred data. If you haven't already, read through the [getting started guide](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started) to familiarize yourself with key concepts such as [endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) and [storage classes](/docs/cloud-object-storage/basics?topic=cloud-object-storage-classes).
+  3. While {{site.data.keyword.cos_short}} is compatible with the S3 API, it may be necessary to create new [Service credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), or bring your own keys for your projects. In this guide, we will use [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) similar to the format of AWS credentials.
+  4. Managing [encryption](/docs/cloud-object-storage?topic=cloud-object-storage-encryption) provides insights into security. Refer to product documentation on [{{site.data.keyword.keymanagementservicefull}}](/docs/key-protect?topic=key-protect-about) and [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-overview) for more information.
 
-## Set up a compute resource to run the migration tool
-{: #migrate-compute}
-  1. Choose a Linux/macOS/BSD machine or an IBM Cloud Infrastructure Bare Metal or Virtual Server
-     with the best proximity to your data.
-     The following Server configuration is recommended:  32 GB RAM, 2-4 core processor, and private network speed of 1000 Mbps.  
-  2. If you are running the migration on an IBM Cloud Infrastructure Bare Metal or Virtual Server
-     use the **private** Swift and COS endpoints.
-  3. Otherwise, use the **public** Swift and COS endpoints.
-  4. Install `rclone` from [either a package manager or precompiled binary](https://rclone.org/install/).
+## Determine your solution
+{: migrate-options}
 
-      ```
-      curl https://rclone.org/install.sh | sudo bash
-      ```
+Sometimes, an [example](https://developer.ibm.com/tutorials/how-to-easily-port-your-app-storage-to-cloud-object-storage/){: external} of a simple migration can illustrate how to convert from AWS concepts to the configuration options available to users of {{site.data.keyword.cos_full_notm}}. But whatever your goals, Once you have provisioned and set your target, it is time to choose a process. 
 
-## Configure `rclone` for OpenStack Swift (infrastructure)
-{: #migrate-config-swift}
+There are many ways to achieve the goal of migrating your AWS data. Integrated solutions provide comprehensive guides to migration, as shown in the [{{site.data.keyword.icp4i_full_notm}}](https://www.ibm.com/cloud/cloud-pak-for-integration/high-speed-data-transfer1){: external}. In addition to full-featured migration services, you may also want to investigate third party migration tools as part of your investigation. But don't forget that there are many CLI and GUI tools readily available for use as part of your migration.
 
-  1. Create an `rclone` config file in `~/.rclone.conf`.
+* [COS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-cli-ic-cos-cli) can be used for many operations. For example, you may wish to use the CLI to configure your {{site.data.keyword.cos_full_notm}} instances, and to create and configure buckets.
+* [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) can be used to list your current bucket's contents to prepare for migrating from AWS, among other operations: 
 
-        ```
-        touch ~/.rclone.conf
-        ```
+```bash
+aws s3 ls --recursive s3://<BUCKET_NAME> --summarize > bucket-contents-source.txt
+```
 
-  2. Create the Swift source by copying the following and pasting into `rclone.conf`.
+* [`rclone`](/docs/cloud-object-storage?topic=cloud-object-storage-rclone) has many uses, and we'll look at it specifically, next.
 
-        ```
-        [SWIFT]
-        type = swift
-        user =
-        key =
-        auth =
-        ```
+### Migrate your data
+{: migrate-data}
 
-  3. Get OpenStack Swift (infrastructure) credential
-    <br>a. Select your Swift account in the IBM Cloud infrastructure customer portal.
-    <br>b. Click the data center of the migration source container.
-    <br>c. Click **View Credentials**.
-    <br>d. Copy the necessary information.
-      <br>&nbsp;&nbsp;&nbsp;**User name**
-      <br>&nbsp;&nbsp;&nbsp;**API Key**
-      <br>&nbsp;&nbsp;&nbsp;**Authentication Endpoint** based on where you are running the migration tool
+Based on the process and tools you've chosen, you will want to choose a strategy for migrating your data. We can take a look at a simplified process using the command line and the Go-based `rclone` executable as an example. 
 
-  4. Using the OpenStack Swift (infrastructure) credential, complete the following fields:
+1. Install `rclone` from [either a package manager or precompiled binary](https://rclone.org/install/){: external}. There are more configuration options available with explanations at the {{site.data.keyword.cos_full_notm}} [documentation](/docs/cloud-object-storage?topic=cloud-object-storage-rclone).
+   
+   ```bash
+   curl https://rclone.org/install.sh | sudo bash
+   ```
+   {: codeblock}
 
-        ```
-        user = <Username>
-        key = <API Key (Password)>
-        auth = <public or private endpoint address>
-        ```
+#### Configure `rclone` with your AWS credentials
 
-## Configure `rclone` for COS
-{: #migrate-config-cos}
+You may start by creating 'profiles' for your source and destination of the migration in `rclone`. A profile contains the configuration and credentials needed for working with your date. You will be migrating from AWS, so you will need those credentials to continue. Also, you will create a profile for your destination credentials specifically for {{site.data.keyword.cos_full_notm}}.
 
-### Get COS credential
-{: #migrate-config-cos-credential}
+1. There are many options to configuring `rclone` and following the `rclone config` wizard is one way you can create profiles. You can create an `rclone` config file in `~/.rclone.conf` by using the command as shown. Please use the root path of your home directory if the path shown isn't available.
 
-  1. Select your COS instance in the IBM Cloud console.
-  2. Click **Service Credentials** in the navigation pane.
-  3. Click **New credential** to generate credential information.
-  4. In **Inline Configuration Parameters** add `{"HMAC":true}`. Click **Add**.
-  5. View the credential that you created, and copy the JSON contents.
+   ```bash
+   touch ~/.config/rclone/rclone.conf
+   ```
+   {: codeblock}
 
-### Get COS endpoint
-{: #migrate-config-cos-endpoint}
+1. Create the AWS configuration settings by copying the following and pasting into `rclone.conf` using an appropriate editor.
 
-  1. Click **Buckets** in the navigation pane.
-  2. Click the migration target bucket.
-  3. Click **Configuration** in the navigation pane.
-  4. Scroll down to the **Endpoints** section and choose the endpoint based on where you are running the migration tool.
+   ```bash
+   [AWS]
+   type = s3
+   provider = AWS
+   env_auth = false
+   access_key_id = 
+   secret_access_key = 
+   region = 
+   ```
+   {: codeblock}
 
-  5. Create the COS target by copying the following and pasting into `rclone.conf`.
+1. Paste your AWS `access_key_id` and `secret_access_key` as obtained per instructions [here](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html){: external} into the appropriate fields of your configuration as shown.
 
+#### Configure `rclone` with your COS credentials
+
+To complement the credentials of the source, we look at configuring the destination profile next.
+
+1. Create the COS configuration settings by copying the following and pasting into `rclone.conf` using an appropriate editor.
+
+   ```bash
+   [COS]
+   type = s3
+   provider = IBMCOS
+   env_auth = false
+   region = 
+   access_key_id = 
+   secret_access_key = 
+   endpoint = 
+
+   ```
+   {: codeblock}
+
+1. Paste your [HMAC](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) `access_key_id` and `secret_access_key` into the appropriate fields of your configuration as shown in the first step. As noted in the beginning of the guide, you will want to enter the appropriate values for your instance regarding your [region and endpoint](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+
+#### Verify your configurations 
+
+1. List the buckets from your source to verify `rclone` is properly configured for retrieval.
+
+    ```bash
+    rclone lsd AWS:
     ```
-    [COS]
-    type = s3
-    access_key_id =
-    secret_access_key =
-    endpoint =
-    ```
+   {: codeblock}
 
-  6. Using the COS credential and endpoint, complete the following fields:
+2. List the COS bucket for your destination you created to verify `rclone` is properly configured for storage.
 
-    ```
-    access_key_id = <access_key_id>
-    secret_access_key = <secret_access_key>
-    endpoint = <bucket endpoint>       
-    ```
-
-## Verify that the migration source and target are properly configured
-{: #migrate-verify}
-
-1. List the Swift container to verify `rclone` is properly configured.
-
-    ```
-    rclone lsd SWIFT:
-    ```
-
-2. List the COS bucket to verify `rclone` is properly configured.
-
-    ```
+    ```bash
     rclone lsd COS:
     ```
+   {: codeblock}
 
-## Run `rclone`
-{: #migrate-run}
+### Use `rclone` to migrate from AWS
+{: #migrate-aws-run}
 
 1. Do a dry run (no data copied) of `rclone` to sync the objects in your source
    Swift container (for example, `swift-test`) to target COS bucket (for example, `cos-test`).
 
-    ```
-    rclone --dry-run copy SWIFT:swift-test COS:cos-test
-    ```
+   ```bash
+   rclone --dry-run copy AWS:bucket-to-be-migrated COS:new-bucket
+   ```
+   {: codeblock}
 
-1. Check that the files you want to migrate appear in the command output. If everything looks good, remove the `--dry-run` flag and add `-v` flag to copy the data. Using the optional `--checksum` flag avoids updating any files that have the same MD5 hash and object size in both locations.
+1. Check that the files you want to migrate appear after running the command. If everything looks as you expect, remove the `--dry-run` flag and add a `-v` flag to show a verbose output while the data is being copied. Using the optional `--checksum` flag avoids updating any files that have the same MD5 hash and object size in both locations.
 
-    ```
-    rclone -v copy --checksum SWIFT:swift-test COS:cos-test
-    ```
+   ```bash
+   rclone -v copy --checksum AWS:bucket-to-be-migrated COS:new-bucket
+   ```
+   {: codeblock}
 
-   Try to max out the CPU, memory, and network on the machine running `rclone` to get the fastest transfer time.
-   A few other parameters to consider for tuning `rclone`:
+As you work the migration of your data using the process you've outlines, you will want to validate and verify the results.
 
-Flag | Type | Description
---- | --- | ---
-`--checkers` | `int` | Number of checkers to run in parallel (default 8). This is the number of checksums compare threads running. We recommend increasing this to 64 or more.
-`--transfers` | `int` | Number of file transfers to run in parallel (default 4). This is the number of objects to transfer in parallel. We recommend increasing this to 64 or 128 or higher.
-`--fast-list` | None | Use recursive list if available. Uses more memory but fewer transactions. Use this option to improve performance, as it reduces the number of requests that are needed to copy an object.
+### Validating your migration from AWS
+{: migrate-testing}
 
-Migrating data using `rclone` copies but does not delete the source data.
-{:tip}
+Integrated query-in-place dashboards allows you to see analytics based directly on your data. Using [{{site.data.keyword.mon_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration), you can follow up your migration using pre-built charts.
 
+## Next Steps
+{: migrate-next-steps}
 
-3. Repeat for any other containers that require migration.
-4. Once all your data is copied, and you have verified that your application can access the data in COS, then delete your Swift service instance.
+Get started by visiting the [catalog](https://cloud.ibm.com){: external}, and creating the resources to begin your journey from AWS to {{site.data.keyword.cos_full_notm}} with confidence and efficiency. 
