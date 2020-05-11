@@ -952,7 +952,7 @@ var galleryController = function(title) {
         })
     });
     
-    var getGalleryImages = function (req, res) { ... };
+    var getGalleryImages = function (req, res) { /* ... shown below ... */ };
 
     return {
         getGalleryImages: getGalleryImages,
