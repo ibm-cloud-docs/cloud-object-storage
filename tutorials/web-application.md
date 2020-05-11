@@ -364,7 +364,7 @@ Now that the app is created and defined, view your application to confirm it wor
 
 ![initial node app](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-002-splash-graphic.png){: caption="Figure 2. New Node.js Application!"}
 
-Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the `deploy` command (as shown in Example 20).
+Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the `deploy` command (as shown in the example).
 
 ```bash
 ibmcloud dev deploy
@@ -388,7 +388,7 @@ Follow these steps:
 
 1.  Download the sample here: [download ![External link icon](/docs-content/v1/content/icons/launch-glyph.svg)](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/image-gallery-tutorial.zip){: external}. Download the template for your app to your local
     development environment using your browser. Rather than cloning the sample
-    app from {{site.data.keyword.cloud_notm}} Platform, use the command in Example 21 to obtain the
+    app from {{site.data.keyword.cloud_notm}} Platform, use the command in the example to obtain the
     starter template for the {{site.data.keyword.cos_full_notm}} Web Gallery app. After cloning the
     repo you will find the starter app in the
     COS-WebGalleryStart directory. Open a Git CMD window and change to a
@@ -427,7 +427,7 @@ directory by using: `nodemon`, to start your app.
 
 1.  Get ready to prepare the app for deployment! Update the application name property
     value in the `manifest.yml` file from COS-WebGallery, to the name you
-    entered for your app on {{site.data.keyword.cloud_notm}} Platform and the other information as shown in Example 24, 
+    entered for your app on {{site.data.keyword.cloud_notm}} Platform and the other information as shown in the example, 
     if necessary. The application `manifest.yml` looks like the following example. You can customize the `package.json` file that is located in the app root directory for your app with the name
     of your app and your name as the author.
 
@@ -487,7 +487,7 @@ ibmcloud target --cf
 ```
 {: pre}
 
-d. Build the app for delivery that application with the build command (as in Example 28).
+d. Build the app for delivery that application with the build command (as in the example).
 
 ```bash
 ibmcloud dev build
@@ -571,7 +571,7 @@ After you have completed creating an API key, downloaded, and then copied the HM
 
 1.  On the local development environment, place the credentials in the
     Windows path `%USERPROFILE%\\.aws\\credentials` (for Mac/Linux users, the credentials should 
-    go into `~/.aws/credentials)`. Example 32 shows the contents of a
+    go into `~/.aws/credentials)`. The example shows the contents of a
     typical credentials file.
 
 ```bash
