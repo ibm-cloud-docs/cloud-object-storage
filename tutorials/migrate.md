@@ -143,14 +143,14 @@ To complement the credentials of the source, we look at configuring the destinat
 {: #migrate-aws-run}
 
 1. Do a dry run (no data copied) of `rclone` to sync the objects in your source
-   bucket (for example, `content-to-be-migrated`) to target COS bucket (for example, `new-bucket`).
+   bucket (for example, `content-to-be-migrated`) to the target COS bucket (for example, `new-bucket`).
 
    ```bash
    rclone --dry-run copy AWS:content-to-be-migrated COS:new-bucket
    ```
    {: codeblock}
 
-1. Check that the files you want to migrate appear after running the command. If everything looks as you expect, remove the `--dry-run` flag and add a `-v` flag to show a verbose output while the data is being copied. Using the optional `--checksum` flag avoids updating any files that have the same MD5 hash and object size in both locations.
+1. Check that the files you want to migrate appear after running the command. If everything looks as you expect, remove the `--dry-run` flag and add a `-v` flag to show a verbose output while the data is copied. Using the optional `--checksum` flag avoids updating any files that have the same MD5 hash and object size in both locations.
 
    ```bash
    rclone -v copy --checksum AWS:content-to-be-migrated COS:new-bucket
