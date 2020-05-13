@@ -8,7 +8,6 @@ keywords: s3fs, open source, file system, gateway
 
 subcollection: cloud-object-storage
 
-
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
@@ -27,7 +26,7 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Mount a bucket using `s3fs`
+# Mounting a bucket using `s3fs`
 {: #s3fs}
 
 Applications that expect to read and write to a NFS-style filesystem can use `s3fs`, which can mount a bucket as directory while preserving the native object format for files. 

@@ -8,7 +8,6 @@ keywords: authorization, aws, hmac, signature, presign
 
 subcollection: cloud-object-storage
 
-
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
@@ -27,7 +26,7 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Create a presigned URL
+# Creating a presigned URL
 {: #presign-url}
 
 Presigned URLs create a temporary link that can be used to share an object publicly, or to [provide a temporary target for sending a PUT request](https://medium.com/codait/keeping-your-secrets-between-cloud-object-storage-and-your-browser-part-1-68f4b83bbd38) without needing to provide authentication information.
