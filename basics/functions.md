@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-02-10"
+lastupdated: "2020-05-14"
 
 keywords: events, serverless, whisk
 
