@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Delete stale data with expiration rules
+# Deleting stale data with expiration rules
 {: #expiry}
 
 An expiration rule deletes objects after a defined period (from the object creation date).

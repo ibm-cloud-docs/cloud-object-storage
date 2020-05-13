@@ -27,7 +27,7 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Use the AWS CLI
+# Using the AWS CLI
 {: #aws-cli}
 
 The official command-line interface for AWS is compatible with the {{site.data.keyword.cos_full}} S3 API. 
