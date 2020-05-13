@@ -28,7 +28,7 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Store large objects
+# Storing large objects
 {: #large-objects}
 
 {{site.data.keyword.cos_full}} can support single objects as large as 10 TB when using multipart uploads. 

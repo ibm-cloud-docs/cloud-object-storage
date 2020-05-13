@@ -2,13 +2,11 @@
 
 copyright:
   years: 2017, 2020
-
-lastupdated: "2019-12-06"
+lastupdated: "2020-05-14"
 
 keywords: aspera, high speed, big data, packet loss
 
 subcollection: cloud-object-storage
-
 
 ---
 {:new_window: target="_blank"}
@@ -26,13 +24,13 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Use Aspera high-speed transfer
+# Using Aspera high-speed transfer
 {: #aspera}
 
 Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP transfers to improve data transfer performance under most conditions, especially in networks with high latency and packet loss.
 {: shortdesc}
  
-Instead of the standard HTTP `PUT`, Aspera high-speed transfer uploads the object by using the [FASP protocol](https://www.ibm.com/products/aspera/technology){: external}. Using Aspera high-speed transfer for uploads and downloads offers the following benefits:
+Instead of the standard HTTP `PUT` operation, Aspera high-speed transfer uploads the object by using the [FASP protocol](https://www.ibm.com/products/aspera/technology){: external}. Using Aspera high-speed transfer for uploads and downloads offers the following benefits:
 
 - Faster transfer speeds
 - Transfer large object uploads over 200 MB in the console and 1 GB by using an SDK or library
@@ -45,7 +43,7 @@ Aspera high-speed transfer is available in the {{site.data.keyword.cloud_notm}} 
 Aspera high-speed transfer is available in certain regions only. See [Integrated Services](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability) for more details.
 {:tip}
 
-It isn't possible to use Aspera high-speed transfer if the bucket has an Immutable Object Storage policy.
+It isn't possible to use Aspera high-speed transfer if a targeted bucket has an [Immutable Object Storage](/docs/cloud-object-storage?topic=cloud-object-storage-immutable) policy.
 {:important}
 
 ## Using the console
@@ -88,7 +86,7 @@ Downloads that use Aspera high-speed transfer incur egress charges. For more inf
 ## Using Libraries and SDKs
 {: #aspera-sdk}
 
-Aspera high-speed transfer supports Java and Python.
+Aspera high-speed transfer supports using the Java and Python [SDKs](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs).
 
 ### When to use Aspera High-Speed Transfer
 {: #aspera-guidance}
@@ -193,7 +191,7 @@ For example, to find the correct ATS endpoint for a bucket called `my-bucket` in
   curl 'https://s3.eu-de.cloud-object-storage.appdomain.cloud/my-bucket?faspConnectionInfo=' \
     -H 'Authorization: Bearer <IAMTOKEN>' 
 ```
-{: codeblock}
+{: pre}
 
 This will return something like the following XML block:
 
@@ -233,4 +231,4 @@ This will return the following snippet:
 ## Next Steps
 {: #aspera-next-steps}
 
-Next, you may wish to check [Integrated Services](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability) to see if Aspera high-speed transfer is available in regions suitable for you.
+Next, check the [Integrated Services](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability) to see if Aspera high-speed transfer is available in regions suitable for you.

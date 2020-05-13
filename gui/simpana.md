@@ -27,7 +27,7 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Use CommVault Simpana to archive data
+# Using CommVault Simpana to archive data
 {: #commvault}
 
 CommVault Simpana integrates with the Archive tier of {{site.data.keyword.cos_full_notm}}. For more information about Simpana, see: [CommVault Simpana documentation](https://documentation.commvault.com/commvault/).

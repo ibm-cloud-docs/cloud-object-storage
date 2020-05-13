@@ -300,13 +300,20 @@ GET https://{bucket-name}.{endpoint}?protection= # virtual host style
 **Example request**
 {: http}
 
-```xml
+```
 GET /example-bucket?protection= HTTP/1.1
 Authorization: {authorization-string}
 x-amz-date: 20181011T190354Z
 Content-Type: text/plain
 Host: 67.228.254.193
-Example response
+```
+{: screen}
+{: http}
+
+**Example response**
+{: http}
+
+```
 HTTP/1.1 200 OK
 Date: Wed, 5 Oct 2018 15:39:38 GMT
 X-Clv-Request-Id: 7afca6d8-e209-4519-8f2c-1af3f1540b42

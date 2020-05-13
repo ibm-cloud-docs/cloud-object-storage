@@ -27,7 +27,7 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Use SQL Query
+# Using SQL Query
 {: #sql-query}
 
 IBM Cloud SQL Query is a fully-managed service that lets you run SQL queries (that is, `SELECT` statements) to analyze, transform, or clean up rectangular data.
