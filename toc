@@ -69,6 +69,7 @@ Cloud Object Storage
     basics/logdna.md
     basics/metrics-monitoring.md
     basics/functions.md
+    basics/ftp.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
