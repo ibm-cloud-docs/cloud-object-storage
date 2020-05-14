@@ -32,6 +32,12 @@ subcollection: cloud-object-storage
 The File Transfer Protocol, (FTP) is a popular way to transfer files, but how does it compare to {{site.data.keyword.cos_full}}?
 {: shortdesc}
 
+{{site.data.keyword.cos_full_notm}} stores encrypted and dispersed data across multiple geographic locations. The information is accessible over popular protocols like HTTPS using a modern RESTful API. FTP, by contrast, requires both a client and a server application and uses an insecure protocol by default. {{site.data.keyword.cos_short}} does all the work of the server FTP daemon (`ftpd`) and offers more options for security and validation than can be obtained from `ftpd` or similar services.
+
+
+
+
+
 Cyberduck works behind the scenes but can provide full operational visibility in connecting to {{site.data.keyword.cos_full_notm}}. Cyberduck can be downloaded from [cyberduck.io/](https://cyberduck.io/){: external}.
 
 Using Cyberduck to create a connection to {{site.data.keyword.cos_short}} and synchronize a folder of local files to a bucket, follow these steps:
@@ -68,84 +74,3 @@ Using Cyberduck to create a connection to {{site.data.keyword.cos_short}} and sy
 
  8. Another window opens to show active and historical transfer requests. After the synchronization request is complete, the main window will perform a list operation on the bucket to show the updated content in the bucket.
 
-## Mountain Duck
-{: #mountain-duck}
-
-Mountain Duck builds upon Cyberduck to allow you to mount cloud Object Storage as a disk in Finder on Mac or Explorer on Windows. Trial versions are available but a registration key is required for continued use.
-
-Creating a bookmark in Mountain Duck is similar to creating connections in Cyberduck:
-
-1. Download, install, and start Mountain Duck
-2. Create a New Bookmark
-3. From the drop-down menu select `Amazon S3` and enter the following information:
-   * `Server`: enter the appropriate endpoint where the bucket has been configured.
-     
-   Ensure that the endpoint region matches the intended bucket. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).{: important}
-   
-   * `Username`: enter the Access Key
-   * Click **Connect**
-   * You're prompted for your Secret Key, which will then be saved in the keychain.
-
-Your buckets will now be available in Finder or Explorer. You can interact with {{site.data.keyword.cos_short}} like any other mounted file system.
-
-## CLI
-{: #cyberduck-cli}
-
-Cyberduck also provides `duck`, a command-line interface (CLI) that runs in shell on Linux, Mac OS X, and Windows. Installation instructions are available on the `duck` [wiki page](https://trac.cyberduck.io/wiki/help/en/howto/cli#Installation){: external}.
-
-In order to use `duck` with {{site.data.keyword.cos_full}}, a custom profile needs to be added to the [Application Support Directory](https://trac.cyberduck.io/wiki/help/en/howto/cli#Profiles){: external}. Detailed information about `duck` connection profiles is available on the [CLI help](https://trac.cyberduck.io/wiki/help/en/howto/profiles){: external}.
-
-Here is an example profile for a regional COS endpoint:
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-    <dict>
-        <key>Protocol</key>
-        <string>s3</string>
-        <key>Vendor</key>
-        <string>cos</string>
-        <key>Scheme</key>
-        <string>https</string>
-	    <key>Default Hostname</key>
-	    <string>s3.us-south.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net</string>
-        <key>Description</key>
-        <string>IBM COS</string>
-        <key>Default Port</key>
-        <string>443</string>
-        <key>Hostname Configurable</key>
-        <true/>
-        <key>Port Configurable</key>
-        <true/>
-        <key>Username Configurable</key>
-        <true/>
-    </dict>
-</plist>
-```
-{: codeblock}
-
-For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
-
-Adding this profile to `duck` allows you to access {{site.data.keyword.cos_short}} using a command similar to below:
-
-```bash
-duck --nokeychain --longlist cos://<bucket-name> --username <access-key> --password <secret-access-key>
-```
-{: pre}
-
-*Key Values*
-* `<bucket-name>` - name of the COS bucket (*ensure that bucket and endpoint regions are consistent*)
-* `<access-key>` - HMAC access key
-* `<secret-access-key>` - HMAC secret key
-
-```
-Login successful…
----	May 31, 2018 1:48:16 AM		mynewfile1.txt
----	May 31, 2018 1:49:26 AM		mynewfile12.txt
----	Aug 10, 2018 9:49:08 AM		newbigfile.pdf
----	May 29, 2018 3:36:50 PM		newkptestfile.txt
-```
-{: screen}
-
-A full list of command-line options is available by entering `duck --help` in the shell is available in the [wiki site](https://trac.cyberduck.io/wiki/help/en/howto/cli#Usage){: external}.
