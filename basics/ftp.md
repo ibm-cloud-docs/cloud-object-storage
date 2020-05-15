@@ -87,4 +87,4 @@ Technically speaking, there are more differences than similarities between FTP a
 ## Next Steps
 {: #compare-ftp-next-steps}
 
-Can FTP provide an [API]() or [libraries]()? Learn more about what is available for [developers]().)
+Can FTP provide an [API](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api) or [libraries](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-about)? We think not! Learn more about what is available for [developers](/docs/cloud-object-storage?topic=cloud-object-storage-gs-dev) of {{site.data.keyword.cos_full_notm}}.
