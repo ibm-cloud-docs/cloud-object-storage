@@ -42,7 +42,7 @@ If you've used FTP in the past, you have either worked from the command line or 
 
 Cyberduck provides full operational visibility in connecting to {{site.data.keyword.cos_full_notm}}. Cyberduck is downloaded from [cyberduck.io/](https://cyberduck.io/){: external}. Once you have it installed, you can configure it to connect to your instance of {{site.data.keyword.cos_short}}.
 
-Use Cyberduck to create a connection to {{site.data.keyword.cos_full_notm}}. Then, synchronize a folder of local files to a bucket. After you have [configured]() {{site.data.keyword.cos_short}} and obtained your [credentials](), follow these steps: 
+Use Cyberduck to create a connection to {{site.data.keyword.cos_full_notm}}. Then, synchronize a folder of local files to a bucket. After you complete [getting started](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started) {{site.data.keyword.cos_short}} and obtained your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), follow these steps: 
 
 1. Download, install, and start Cyberduck.
 1. When the application opens, you can create a connection to {{site.data.keyword.cos_short}}. Click **Open Connection** to configure the connection.
@@ -82,8 +82,9 @@ Use Cyberduck to create a connection to {{site.data.keyword.cos_full_notm}}. The
 ## How {{site.data.keyword.cos_short}} is different from FTP
 {: #compare-ftp-differences}
 
-
+Technically speaking, there are more differences than similarities between FTP and {{site.data.keyword.cos_short}}. Starting from the convenience of not having to run a server application like `ftpd` and continuing through the security of using a secure protocol like HTTPS, the list of differences is lengthy and significant. 
 
 ## Next Steps
 {: #compare-ftp-next-steps}
 
+Can FTP provide an [API]() or [libraries]()? Learn more about what is available for [developers]().)
