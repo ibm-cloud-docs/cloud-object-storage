@@ -2,12 +2,11 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-02-10"
+lastupdated: "2020-05-26"
 
-keywords: data, cloud object storage, unstructured, cleversafe, blob storage, object storage
+keywords: IBM cloud object storage, cloud object storage, object storage, storage
 
 subcollection: cloud-object-storage
-
 
 ---
 {:shortdesc: .shortdesc}
@@ -23,19 +22,18 @@ subcollection: cloud-object-storage
 {:help: data-hd-content-type='help'}
 
 # Getting started with {{site.data.keyword.cos_full_notm}}
-{: #getting-started}
+{: #getting-started-cloud-object-storage}
 
-This getting started tutorial walks through the steps that are needed to use {{site.data.keyword.cos_full_notm}} to create buckets, upload objects, and set up access policies to allow other users to work with your data.
+{{site.data.keyword.cos_full}} stores encrypted and dispersed data across multiple geographic locations. This getting started tutorial walks through the steps that are needed to use {{site.data.keyword.cos_full_notm}} to create buckets, upload objects, and set up access policies to allow other users to work with your data.
 {: shortdesc}
 
 ## Before you begin
-{: #gs-prereqs}
+{: #gs-prereqs-cloud-object-storage}
 
-You need:
+You need the following to get started with {{site.data.keyword.cos_full_notm}}:
   * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com)
   * An [instance of {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage/basics?topic=cloud-object-storage-provision)
-  * And some files on your local computer to upload.
-{: #gs-prereqs}
+  * And some files on your local computer to upload to {{site.data.keyword.cos_short}}.
 
 This tutorial takes a new user through the first steps with the {{site.data.keyword.cloud_notm}} Platform console. Developers who want to get started with the API, see the [Developer's Guide](/docs/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev) or [API overview](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api).
 
