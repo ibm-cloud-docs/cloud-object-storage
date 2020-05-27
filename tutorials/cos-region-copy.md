@@ -41,15 +41,15 @@ You have the option of using your existing instance of {{site.data.keyword.cos_f
 
   1. Create an instance of {{site.data.keyword.cos_full_notm}} from the [catalog](https://cloud.ibm.com/catalog/services/cloud-object-storage).
   1. Create any buckets that you need to store your transferred data. Read through the [getting started guide](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started) to familiarize yourself with key concepts such as [endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) and [storage classes](/docs/cloud-object-storage/basics?topic=cloud-object-storage-classes).
-  1. **The rclone tool will not copy any bucket configurations or object metadata**.  If you are using any of the {{site.data.keyword.cos_short}} features such as expiration, archive, key protect, etc. be sure to configure them appropriately before migrating your data.  Feature configuration and access policies documentation can be viewed at the IBM Cloud portal pages listed below:
- * [IBM Cloud Identity and Access Management - IAM] (https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-iam)
- * [Activity Tracker] (https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-at)
- * [SysDig Monitoring] (https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration)
- * [Object Expiry] (https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-expiry)
- * [Cloud Object Storage Firewall] (https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall)
- * [Content Delivery Network - CDN] (https://cloud.ibm.com/docs/cis?topic=cis-resolve-override-cos)
- * [Archive] (https://cloud.ibm.com/docs/cloud-object-storage-infrastructure?topic=cloud-object-storage-infrastructure-archiving-data)
- * [KeyProtect] (https://cloud.ibm.com/docs/key-protect?topic=key-protect-integrate-cos)
+  1. **The rclone utility will not copy any bucket configurations or object metadata**.  Therefore, if you are using any of the {{site.data.keyword.cos_short}} features such as expiration, archive, key protect, etc. be sure to configure them appropriately before migrating your data.  Feature configuration and access policies documentation can be viewed at the IBM Cloud portal pages listed below:
+ * [IBM Cloud Identity and Access Management - IAM](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-iam)
+ * [Activity Tracker](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-at)
+ * [SysDig Monitoring](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration)
+ * [Object Expiry](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-expiry)
+ * [Cloud Object Storage Firewall](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall)
+ * [Content Delivery Network - CDN](https://cloud.ibm.com/docs/cis?topic=cis-resolve-override-cos)
+ * [Archive](https://cloud.ibm.com/docs/cloud-object-storage-infrastructure?topic=cloud-object-storage-infrastructure-archiving-data)
+ * [KeyProtect](https://cloud.ibm.com/docs/key-protect?topic=key-protect-integrate-cos)
 
 ## Set up a compute resource to run the migration tool
 {: #region-copy-compute}
