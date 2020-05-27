@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-04-17"
+lastupdated: "2020-05-26"
 
 keywords: cos, object storage, copy, 
 
@@ -41,15 +41,22 @@ You have the option of using your existing instance of {{site.data.keyword.cos_f
 
   1. Create an instance of {{site.data.keyword.cos_full_notm}} from the [catalog](https://cloud.ibm.com/catalog/services/cloud-object-storage).
   1. Create any buckets that you need to store your transferred data. Read through the [getting started guide](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started) to familiarize yourself with key concepts such as [endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) and [storage classes](/docs/cloud-object-storage/basics?topic=cloud-object-storage-classes).
-  1. If you are using any of the {{site.data.keyword.cos_short}} features such as expiration, archive, key protect, etc. be sure to configure appropriately. The process described here will not copy any bucket configurations or object metadata.
-
+  1. **The rclone tool will not copy any bucket configurations or object metadata**.  If you are using any of the {{site.data.keyword.cos_short}} features such as expiration, archive, key protect, etc. be sure to configure them appropriately before migrating your data.  Feature configuration and access policies documentation can be viewed at the IBM Cloud portal pages listed below:
+ * [IBM Cloud Identity and Access Management - IAM] (https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-iam)
+ * [Activity Tracker] (https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-at)
+ * [SysDig Monitoring] (https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration)
+ * [Object Expiry] (https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-expiry)
+ * [Cloud Object Storage Firewall] (https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall)
+ * [Content Delivery Network - CDN] (https://cloud.ibm.com/docs/cis?topic=cis-resolve-override-cos)
+ * [Archive] (https://cloud.ibm.com/docs/cloud-object-storage-infrastructure?topic=cloud-object-storage-infrastructure-archiving-data)
+ * [KeyProtect] (https://cloud.ibm.com/docs/key-protect?topic=key-protect-integrate-cos)
 
 ## Set up a compute resource to run the migration tool
 {: #region-copy-compute}
 
 1. Choose a Linux&trade;/macOS&trade;/BSD&trade; machine or an IBM Cloud Infrastructure Bare Metal or Virtual Server with the best proximity to your data. Selecting a data center in the same region as the destination bucket is generally the best choice (e.g. if moving data from mel01 to au-syd, use a VM or Bare Metal in au-syd). The recommended Server configuration is: 32 GB RAM, 2-4 core processor, and private network speed of 1000 Mbps.
 1. If you are running the migration on an IBM Cloud Infrastructure Bare Metal or Virtual Server use the **private** COS endpoints to avoid network egress charges.
-1. Otherwise, use the **public** COS endpoints.
+1. Otherwise, use the **public** or **direct** COS endpoints.
 1. Install `rclone` from [either a package manager or precompiled binary](https://rclone.org/install/){: external}.
 
 ```bash
