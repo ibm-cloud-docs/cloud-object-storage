@@ -73,6 +73,7 @@ To avoid any disruption to your service, please complete the following steps bef
 6. To avoid being double billed for data in your old and new buckets, [empty your old buckets](/docs/basics?topic=cloud-object-storage-deleting-multiple-objects-patterns) and delete them. 
 
 
-We're here to help! Please email us at talk-to-cos@wwpdl.vnet.ibm.com, if you have any questions.
+
+We're here to help! Please email us at talk-to-cos@wwpdl.vnet.ibm.com, if you have any questions or need assistance.
 
 
