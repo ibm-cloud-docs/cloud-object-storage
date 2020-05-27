@@ -58,10 +58,10 @@ To identify your impacted resources, take advantage of special offers, or learn 
 ## Migrating your resources
 {: #migrating-your-resources}
  
-To avoid any disruption to your service, please complete the following steps before 30 November 2020: 
+To avoid any disruption to your service, please complete the following steps **before 30 November 2020**: 
 
 1. Identify your buckets in the data centers that are set to close. [Extended listing](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets-extended) can be used for this purpose, as it will return 'LocationConstraint' values that indicate the location in addition to the storage class of a bucket. For more information, contact the Client Success team [Live chat](https://www.ibm.com/cloud/data-centers/?focusArea=WCP%20-%20Pooled%20CSM&contactmodule){: external}. 
-2. [Create your IBM Cloud Object Storage service](https://cloud.ibm.com/catalog/services/cloud-object-storage)
+2. Create an instance of IBM Cloud Object Storage from the [catalog](https://cloud.ibm.com/catalog/services/cloud-object-storage)
 3. [Create your new destination buckets](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets) in a different IBM Cloud data center. Available data centers can be found here: [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints).
 4. Once you've created your destination bucket you will need to configure your feature access policies prior to migrating your data.  Feature configuration and access policies documentation can be viewed at the IBM Cloud portal pages listed below:
  * [IBM Cloud Identity and Access Management - IAM](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-iam)
