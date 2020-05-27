@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-04-22"
+lastupdated: "2020-05-28"
 
 keywords: authorization, iam, basics
 
@@ -62,6 +62,7 @@ The following table details actions that are mapped to service access roles. Ser
 
 | Service access role | Description of actions                                                                                                | Example actions                                                                     |
 |:--------------------|:----------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------|
+| Object Writer       | Upload and overwrite objects (including uploading objects in multiple parts).                                         | <ul><li>Upload objects</li></ul>                                                  |
 | Object Reader       | Download objects, read object metadata (headers), but not list objects or buckets.                                    | <ul><li>Download objects</li></ul>                                                  |
 | Content Reader      | Download and list objects, read object metadata (headers), but not list buckets.                                      | <ul><li>Download and list objects</li></ul>                                         |
 | Reader              | In addition to Content Reader actions, Readers can list buckets and read bucket metadata, but not make modifications. | <ul><li>List buckets</li></ul>                                                      |
