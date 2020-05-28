@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-05-26"
+lastupdated: "2020-05-27"
 
 keywords: decommission, migrate
 
@@ -61,17 +61,8 @@ To identify your impacted resources, take advantage of special offers, or learn 
 To avoid any disruption to your service, please complete the following steps **before 30 November 2020**: 
 
 1. Identify your buckets in the data centers that are set to close. [Extended listing](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets-extended) can be used for this purpose, as it will return 'LocationConstraint' values that indicate the location in addition to the storage class of a bucket. For more information, contact the Client Success team [Live chat](https://www.ibm.com/cloud/data-centers/?focusArea=WCP%20-%20Pooled%20CSM&contactmodule){: external}. 
-2. Create an instance of IBM Cloud Object Storage from the [catalog](https://cloud.ibm.com/catalog/services/cloud-object-storage)
-3. [Create your new destination buckets](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets) in a different IBM Cloud data center. Available data centers can be found here: [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints).
-4. Once you've created your destination bucket you will need to configure your feature access policies prior to migrating your data.  Feature configuration and access policies documentation can be viewed at the IBM Cloud portal pages listed below:
- * [IBM Cloud Identity and Access Management - IAM](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-iam)
- * [Activity Tracker](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-at)
- * [SysDig Monitoring](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration)
- * [Object Expiry](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-expiry)
- * [Cloud Object Storage Firewall](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall)
- * [Content Delivery Network - CDN](https://cloud.ibm.com/docs/cis?topic=cis-resolve-override-cos)
-5. Migrate your data to the new destination bucket [using Rclone](https://cloud.ibm.com/docs/services/cloud-object-storage?topic=cloud-object-storage-region-copy).
-6. To avoid being double billed for data in your old and new buckets, [empty your old buckets](/docs/basics?topic=cloud-object-storage-deleting-multiple-objects-patterns) and delete them. 
+2. Migrate your data to the new destination bucket [using Rclone](https://cloud.ibm.com/docs/services/cloud-object-storage?topic=cloud-object-storage-region-copy).
+3. To avoid being double billed for data in your old and new buckets, [empty your old buckets](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-deleting-multiple-objects-patterns) and delete them. 
 
 
 
