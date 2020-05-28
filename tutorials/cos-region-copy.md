@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-05-26"
+lastupdated: "2020-05-28"
 
 keywords: cos, object storage, copy, 
 
@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 # Moving data between buckets
 {: #region-copy}
 
-At some point it will become necessary to move or backup your data to a different {{site.data.keyword.cos_full}} region. One approach to moving or replicating data across object storage regions is to use a 'sync' or 'clone' tool, such as [the open-source `rclone` command-line utility](https://rclone.org/docs/) {: external}. This utility syncs a file tree between two locations, including cloud object storage. When `rclone` writes data to COS, it uses the COS/S3 API to segment large objects and uploads the parts in parallel according to sizes and thresholds set as configuration parameters.
+At some point it will become necessary to move or backup your data to a different {{site.data.keyword.cos_full}} region. One approach to moving or replicating data across object storage regions is to use a 'sync' or 'clone' tool, such as [the open-source `rclone` command-line utility](https://rclone.org/docs/){: external}. This utility syncs a file tree between two locations, including cloud object storage. When `rclone` writes data to COS, it uses the COS/S3 API to segment large objects and uploads the parts in parallel according to sizes and thresholds set as configuration parameters.
 
 This guide provides instructions for copying data from one {{site.data.keyword.cos_full_notm}} bucket to another COS bucket within the same region or to a second {{site.data.keyword.cos_short}} bucket in a different {{site.data.keyword.cos_short}} region. These steps need to be repeated for all the data that you want to copy from each bucket. After the data is migrated you can verify the integrity of the transfer by using `rclone check`, which will produce a list of any objects that don't match either file size or checksum. Additionally, you can keep buckets in sync by regularly running `rclone sync` from your available sources to your chosen destinations.
 
@@ -41,7 +41,9 @@ You have the option of using your existing instance of {{site.data.keyword.cos_f
 
   1. Create an instance of {{site.data.keyword.cos_full_notm}} from the [catalog](https://cloud.ibm.com/catalog/services/cloud-object-storage).
   1. Create any buckets that you need to store your transferred data. Read through the [getting started guide](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started) to familiarize yourself with key concepts such as [endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) and [storage classes](/docs/cloud-object-storage/basics?topic=cloud-object-storage-classes).
-  1. **The rclone utility will not copy any bucket configurations or object metadata**.  Therefore, if you are using any of the {{site.data.keyword.cos_short}} features such as expiration, archive, key protect, etc. be sure to configure them appropriately before migrating your data.  Please review the [feature matrix]https://cloud.ibm.com/docs/services/cloud-object-storage?topic=cloud-object-storage-service-availability to determine which features are supported at your destination.  Feature configuration and access policies documentation can be viewed at the IBM Cloud portal pages listed below:
+  1. **The rclone utility will not copy any bucket configurations or object metadata**.  Therefore, if you are using any of the {{site.data.keyword.cos_short}} features such as expiration, archive, key protect, etc. be sure to configure them appropriately before migrating your data. To view which features are supported at your COS destination, please refer to the [feature matrix](https://cloud.ibm.com/docs/services/cloud-object-storage?topic=cloud-object-storage-service-availability).  
+  
+  Feature configuration and access policies documentation can be viewed at the IBM Cloud portal pages listed below:
  * [IBM Cloud Identity and Access Management - IAM](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-iam)
  * [Activity Tracker](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-at)
  * [SysDig Monitoring](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration)
