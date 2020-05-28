@@ -78,7 +78,9 @@ Create 'profiles' for your source and destination of the migration in `rclone`.
 1. Select your COS instance in the IBM Cloud console.
 1. Click **Service Credentials** in the navigation pane.
 1. Click **New credential** to generate credential information.
-1. In **Inline Configuration Parameters** add `{"HMAC":true}`. Click **Add**.
+1. Select **Advanced** options.
+1. Turn HMAC credentials to **On**.
+1. Click **Add**.
 1. View the credential that you created, and copy the JSON contents.
 
 ### Get COS endpoint
@@ -101,7 +103,7 @@ endpoint =
 ```
 {: codeblock}
 
-Use `[COS_DESTINATION]` as the name of the profile you need to create to configur the destination. Repeat the steps above,
+Use `[COS_DESTINATION]` as the name of the profile you need to create to configure the destination. Repeat the steps above,
 
 Using your credentials and desired endpoint, complete the following fields:
 
