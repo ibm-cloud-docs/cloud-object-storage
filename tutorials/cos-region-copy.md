@@ -50,6 +50,8 @@ You have the option of using your existing instance of {{site.data.keyword.cos_f
  * [Content Delivery Network - CDN](https://cloud.ibm.com/docs/cis?topic=cis-resolve-override-cos)
  * [Archive](https://cloud.ibm.com/docs/cloud-object-storage-infrastructure?topic=cloud-object-storage-infrastructure-archiving-data)
  * [KeyProtect](https://cloud.ibm.com/docs/key-protect?topic=key-protect-integrate-cos)
+ * [IBM Cloud Functions](https://cloud.ibm.com/docs/openwhisk?topic=openwhisk-pkg_obstorage)
+
 
 ## Set up a compute resource to run the migration tool
 {: #region-copy-compute}
