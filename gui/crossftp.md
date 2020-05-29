@@ -8,6 +8,7 @@ keywords: gui, file transfer, crossftp
 
 subcollection: cloud-object-storage
 
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
@@ -26,7 +27,7 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Transfer files with CrossFTP
+# Transferring files with CrossFTP
 {: #crossftp}
 
 [CrossFTP](http://www.crossftp.com/){: external} is a full-featured FTP client that supports S3-compatible cloud storage solutions including {{site.data.keyword.cos_full}}. 
@@ -52,7 +53,7 @@ CrossFTP is available for most operating systems and provides a set of useful fu
     * Set **Protocol** to `S3/HTTPS`
     * Set **Label** to a descriptive name of your choosing
     * Set **Host** to an {{site.data.keyword.cos_short}} endpoint (such as `https://s3.us.cloud-object-storage.appdomain.cloud`)
-        * *Ensure that the endpoint region matches the intended target bucket. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).*
+        * *Ensure that the endpoint region matches the intended target bucket. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).*
     * Leave **Port** as `443`
     * Set **Access Key** and **Secret** to HMAC credentials with the proper access roles for your target bucket
 4. Under the *S3* tab

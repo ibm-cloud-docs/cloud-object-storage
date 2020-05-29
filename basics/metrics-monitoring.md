@@ -8,6 +8,7 @@ keywords: Object Storage, SysDig, monitoring, integration
 
 subcollection: cloud-object-storage
 
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
@@ -93,9 +94,6 @@ In the code sample, replace the placeholders with the appropriate values.
 | &lt;SERVICE_NAME&gt; | The name of the service | `sysdig-monitor` |
 | &lt;SERVICE_PLAN_NAME&gt; | The name of the plan | `Lite` |
 | &lt;LOCATION&gt; | The region of your buckets | `us-east` |
-{: cli}
-
-### Configure Platform Metrics on {{site.data.keyword.mon_short}}
 {: cli}
 
 ```bash

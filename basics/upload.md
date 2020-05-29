@@ -8,6 +8,7 @@ keywords: upload, getting started, basics, ingest
 
 subcollection: cloud-object-storage
 
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
@@ -40,7 +41,7 @@ Some applications may wish to restrict a user or Service ID to only uploading da
 ## Using the console
 {: #upload-console}
 
-Typically, using the web-based console is not the most common way to use {{site.data.keyword.cos_short}}. Objects are limited to 200 MB and the file name and key are identical. Multiple objects can be uploaded at the same time, and if the browser allows for multiple threads each object will be uploaded by using multiple parts in parallel. Support for larger object sizes and improved performance (depending on network factors) is provided by [Aspera high-speed transfer](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera).
+Typically, using the web-based console is not the most common way to use {{site.data.keyword.cos_short}}. Objects are limited to 200 MB and the file name and key are identical. Multiple objects can be uploaded at the same time, and if the browser allows for multiple threads each object will be uploaded by using multiple parts in parallel. Support for larger object sizes and improved performance (depending on network factors) is provided by [Aspera high-speed transfer](/docs/cloud-object-storage/basics?topic=cloud-object-storage-aspera).
 
 ## Using a compatible tool
 {: #upload-tool}

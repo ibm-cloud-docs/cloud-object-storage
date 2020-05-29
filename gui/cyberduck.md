@@ -33,7 +33,7 @@ subcollection: cloud-object-storage
 Cyberduck is a popular, open source, and easy-to-use graphical interface for {{site.data.keyword.cos_full}}.
 {: shortdesc}
 
-Cyberduck works behind the scenes but can provide full operational visibility in connecting to {{site.data.keyword.cos_full_notm}}. Cyberduck can be downloaded from [cyberduck.io/](https://cyberduck.io/){: external}.
+Cyberduck provides full operational visibility in connecting to {{site.data.keyword.cos_full_notm}}. Cyberduck is downloaded from [cyberduck.io/](https://cyberduck.io/){: external}.
 
 Using Cyberduck to create a connection to {{site.data.keyword.cos_short}} and synchronize a folder of local files to a bucket, follow these steps:
 

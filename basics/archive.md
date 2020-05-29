@@ -8,6 +8,7 @@ keywords: archive, glacier, tier, s3, compatibility, api
 
 subcollection: cloud-object-storage
 
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
@@ -29,7 +30,7 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Archive cold data with transition rules
+# Archiving cold data with transition rules
 {: #archive}
 
 {{site.data.keyword.cos_full}} Archive is a [low cost](https://www.ibm.com/cloud/object-storage) option for data that is rarely accessed. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option.
@@ -37,7 +38,7 @@ subcollection: cloud-object-storage
 
 You can archive objects using the web console, REST API, and 3rd party tools that are integrated with IBM Cloud Object Storage. 
 
-For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
+For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
 {:tip}
 
 ## Add or manage an archive policy on a bucket
@@ -52,7 +53,7 @@ When creating or modifying an archive policy for a bucket, consider the followin
 To immediately archive new objects uploaded to a bucket, enter 0 days on the archive policy.
 {:tip}
 
-Archive is available in certain regions only. See [Integrated Services](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability) for more details.
+Archive is available in certain regions only. See [Integrated Services](/docs/cloud-object-storage/basics?topic=cloud-object-storage-service-availability) for more details.
 {:tip}
 
 ## Restore an archived object
@@ -76,7 +77,7 @@ Archive policies are implemented using subset of the `PUT Bucket Lifecycle Confi
 
 Supported functionality includes:
 * Specifying either a date or the number of days in the future when objects transition to an archived state.
-* Setting [expiration rules](/docs/services/cloud-object-storage?topic=cloud-object-storage-expiry) for objects.
+* Setting [expiration rules](/docs/cloud-object-storage?topic=cloud-object-storage-expiry) for objects.
 
 Unsupported functionality includes:
 * Multiple transition rules per bucket.
@@ -720,4 +721,4 @@ Method |  Description
 ## Next Steps
 {: #archive-next-steps}
 
-In addition to {{site.data.keyword.cos_full_notm}}, {{site.data.keyword.cloud_notm}} currently provides several additional object storage offerings for different user needs, all of which are accessible through web-based portals and REST APIs. [Learn more.](https://cloud.ibm.com/docs/services/ibm-cos?topic=ibm-cos-object-storage-in-the-ibm-cloud)
+In addition to {{site.data.keyword.cos_full_notm}}, {{site.data.keyword.cloud_notm}} currently provides several additional object storage offerings for different user needs, all of which are accessible through web-based portals and REST APIs. [Learn more.](https://cloud.ibm.com/docs/ibm-cos?topic=ibm-cos-object-storage-in-the-ibm-cloud)

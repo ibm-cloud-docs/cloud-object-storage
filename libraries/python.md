@@ -1,12 +1,13 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-19"
+  years: 2017, 2020
+lastupdated: "2020-04-02"
 
 keywords: object storage, python, sdk
 
 subcollection: cloud-object-storage
+
 
 ---
 {:new_window: target="_blank"}
@@ -38,7 +39,7 @@ Source code can be found at [GitHub](https://github.com/ibm/ibm-cos-sdk-python/)
 
 The `ibm_boto3` library provides complete access to the {{site.data.keyword.cos_full}} API. Endpoints, an API key, and the instance ID must be specified during creation of a service resource or low-level client as shown in the following basic examples.
 
-The service instance ID is also referred to as a _resource instance ID_. The value can be found by creating a [service credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), or through the CLI.
+The service instance ID is also referred to as a _resource instance ID_. The value can be found by creating a [service credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), or through the CLI.
 {:tip}
 
 Detailed documentation can be found at [here](https://ibm.github.io/ibm-cos-sdk-python/){: external}.
@@ -57,7 +58,7 @@ The 2.0 version of the SDK introduces a namespacing change that allows an applic
 
 To connect to COS, a client is created and configured using credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
 
-After generating a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client authenticates with a signature, otherwise the client uses the provided API key to authenticate by using a bearer token (using an API key still requires the `config=Config(signature_version="oauth")` to be included duing client creation).
+After generating a [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client authenticates with a signature, otherwise the client uses the provided API key to authenticate by using a bearer token (using an API key still requires the `config=Config(signature_version="oauth")` to be included during client creation).
 
 If migrating from AWS S3, you can also source credentials data from `~/.aws/credentials` in the format:
 
@@ -75,22 +76,24 @@ If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_creden
 
 The following variables appear in the examples:
 
-* `bucket_name` must be a [unique and DNS-safe](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-new-bucket) string. Because bucket names are unique across the entire system, these values need to be changed if this example is run multiple times. Note that names are reserved for 10 - 15 minutes after deletion.
-* `ibm_api_key_id` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) as `apikey`.
-* `ibm_service_instance_id` is the value found in the [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) as `resource_instance_id`. 
-* `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol. This value is **not** the `endpoints` value that is found in the [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
-* `LocationConstraint` is a [valid provisioning code](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint) that corresponds to the `endpoint` value. 
+* `bucket_name` must be a [unique and DNS-safe](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-new-bucket) string. Because bucket names are unique across the entire system, these values need to be changed if this example is run multiple times. Note that names are reserved for 10 - 15 minutes after deletion.
+* `ibm_api_key_id` is the value found in the [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) as `apikey`.
+* `ibm_service_instance_id` is the value found in the [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) as `resource_instance_id`. 
+* `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol. This value is **not** the `endpoints` value that is found in the [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials). For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+* `LocationConstraint` is a [valid provisioning code](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint) that corresponds to the `endpoint` value. 
 
 
 ## Code Examples
 {: #python-examples}
 
-Code examples were written by using **Python 2.7.15**
+Code examples are tested on supported release versions of Python. 
 
 ### Initializing configuration
 {: #python-examples-init}
 
-This example creates a `resource` instead of a `client` or `session` object. Note that some operations (such as Aspera high-speed transfer) require a `client` object.
+This example creates a `resource` object. A resource provides an object-oriented interface to COS. This allows for a higher level of abstraction than the low-level calls provided by a client object. 
+
+Note that some operations (such as Aspera high-speed transfer) require a `client` object.
 {:important}
   
 ```python
@@ -99,9 +102,8 @@ from ibm_botocore.client import Config, ClientError
 
 # Constants for IBM COS values
 COS_ENDPOINT = "<endpoint>" # Current list avaiable at https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints
-COS_API_KEY_ID = "<api-key>" # eg "W00YiRnLW4a3fTjMB-odB-2ySfTrFBIQQWanc--P3byk"
-COS_AUTH_ENDPOINT = "https://iam.cloud.ibm.com/identity/token"
-COS_RESOURCE_CRN = "<resource-instance-id>" # eg "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
+COS_API_KEY_ID = "<api-key>" # eg "W00YixxxxxxxxxxMB-odB-2ySfTrFBIQQWanc--P3byk"
+COS_INSTANCE_CRN = "<service-instance-id>" # eg "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003xxxxxxxxxx1c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
 
 # Create resource
 cos = ibm_boto3.resource("s3",
@@ -115,10 +117,30 @@ cos = ibm_boto3.resource("s3",
 {: codeblock}
 {: python}
 
+A client provides a low-level interface to the COS S3 API. This allows for processing HTTP responses directly, rather than making use of abstracted methods and attributes provided by a resource to access the information contained in headers or XML response payloads.  
+
+```python
+
+import ibm_boto3
+from ibm_botocore.client import Config, ClientError
+
+# Constants for IBM COS values
+COS_ENDPOINT = "<endpoint>" # Current list avaiable at https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints
+COS_API_KEY_ID = "<api-key>" # eg "W00YixxxxxxxxxxMB-odB-2ySfTrFBIQQWanc--P3byk"
+COS_INSTANCE_CRN = "<service-instance-id>" # eg "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003xxxxxxxxxx1c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
+
+# Create client 
+cos = ibm_boto3.client("s3",
+    ibm_api_key_id=COS_API_KEY_ID,
+    ibm_service_instance_id=COS_SERVICE_CRN,
+    config=Config(signature_version="oauth"),
+    endpoint_url=COS_ENDPOINT
+)
+```
 *Key Values*
-* `<endpoint>` - public endpoint for your cloud Object Storage with schema prefixed ('https://') (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){: external}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+* `<endpoint>` - public endpoint for your cloud Object Storage with schema prefixed ('https://') (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){: external}). For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
-* `<resource-instance-id>` - resource ID for your cloud Object Storage (available through [IBM Cloud CLI](/docs/cli?topic=cloud-cli-idt-cli) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){: external})
+* `<service-instance-id>` - resource ID for your cloud Object Storage (available through [IBM Cloud CLI](/docs/cli?topic=cloud-cli-idt-cli) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){: external})
 * `<location>` - default location for your cloud Object Storage (must match the region that is used for `<endpoint>`)
 
 *SDK References*
@@ -128,7 +150,7 @@ cos = ibm_boto3.resource("s3",
 ### Creating a new bucket
 {: #python-examples-new-bucket}
 
-A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes).
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes).
 
 ```python
 def create_bucket(bucket_name):
@@ -256,15 +278,14 @@ def get_item(bucket_name, item_name):
 {: #python-examples-delete-object}
 
 ```python
-def delete_item(bucket_name, item_name):
-    print("Deleting item: {0}".format(item_name))
+def delete_item(bucket_name, object_name):
     try:
-        cos.Object(bucket_name, item_name).delete()
-        print("Item: {0} deleted!".format(item_name))
+        cos.delete_object(Bucket=bucket_name, Key=object_name)
+        print("Item: {0} deleted!\n".format(object_name))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
-        print("Unable to delete item: {0}".format(e))
+        print("Unable to delete object: {0}".format(e))
 ```
 {: codeblock}
 {: python}
@@ -278,7 +299,7 @@ def delete_item(bucket_name, item_name):
 ### Delete multiple items from a bucket
 {: #python-examples-delete-multiple-objects}
 
-The delete request can contain a maximum of 1000 keys that you want to delete. While this is useful in reducing the per-request overhead, be mindful when deleting many keys. Also, take into account the sizes of the objects to ensure suitable performance.
+The delete request can contain a maximum of 1000 keys that you want to delete. While this is useful in reducing the per-request performance hit, be mindful when deleting many keys. Also, take into account the sizes of the objects to ensure suitable performance.
 {:tip}
 
 ```python
@@ -294,7 +315,7 @@ def delete_items(bucket_name):
             ]
         }
 
-        response = cos_cli.delete_objects(
+        response = cos.delete_objects(
             Bucket=bucket_name,
             Delete=delete_request
         )
@@ -413,8 +434,8 @@ def multi_part_upload_manual(bucket_name, item_name, file_path):
 
         upload_id = mp["UploadId"]
 
-        # min 5MB part size
-        part_size = 1024 * 1024 * 5
+        # min 20MB part size
+        part_size = 1024 * 1024 * 20
         file_size = os.stat(file_path).st_size
         part_count = int(math.ceil(file_size / float(part_size)))
         data_packs = []
@@ -586,15 +607,15 @@ Key Protect can be added to a storage bucket to encrypt sensitive data at rest i
 
 The following items are necessary in order to create a bucket with Key-Protect enabled:
 
-* A Key Protect service [provisioned](/docs/services/key-protect?topic=key-protect-provision)
-* A Root key available (either [generated](/docs/services/key-protect?topic=key-protect-create-root-keys) or [imported](/docs/services/key-protect?topic=key-protect-import-root-keys))
+* A Key Protect service [provisioned](/docs/key-protect?topic=key-protect-provision)
+* A Root key available (either [generated](/docs/key-protect?topic=key-protect-create-root-keys#create_root_keys) or [imported](/docs/key-protect?topic=key-protect-import-root-keys#import_root_keys))
 
 ### Retrieving the Root Key CRN
 {: #python-examples-kp-root}
 
-1. Retrieve the [instance ID](/docs/services/key-protect?topic=key-protect-retrieve-instance-ID#retrieve-instance-ID) for your Key Protect service
-2. Use the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
-    * You can either use `curl` commands or an API REST Client such as [Postman](/docs/services/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api).
+1. Retrieve the [instance ID](/docs/key-protect?topic=key-protect-retrieve-instance-ID#retrieve-instance-ID) for your Key Protect service
+2. Use the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api#set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
+    * You can either use `curl` commands or an API REST Client such as [Postman](/docs/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api#set-up-api).
 3. Retrieve the CRN of the root key you use to enabled Key Protect on your bucket. The CRN looks similar to below:
 
 `crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
@@ -639,7 +660,7 @@ def create_bucket_kp(bucket_name):
 ## Using Aspera High-Speed Transfer
 {: #python-examples-aspera}
 
-By installing the [Aspera high-speed transfer library](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera#aspera-packaging), you can use high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license).
+By installing the [Aspera high-speed transfer library](/docs/cloud-object-storage/basics?topic=cloud-object-storage-aspera#aspera-packaging), you can use high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license).
 
 Each Aspera session creates an individual `ascp` process that runs on the client machine to perform the transfer. Ensure that your computing environment can allow this process to run.
 {:tip}
@@ -676,7 +697,7 @@ transfer_manager = AsperaTransferManager(cos)
 {: codeblock}
 {: python}
 
-You need to provide an IAM API Key for Aspera high-speed transfers. [HMAC Credentials](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){: external} are **NOT** currently supported. For more information on IAM, [click here](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview).
+You need to provide an IAM API Key for Aspera high-speed transfers. [HMAC Credentials](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){: external} are **NOT** currently supported. For more information on IAM, [click here](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview#getting-started-with-iam).
 {:tip}
 
 To get the highest throughput, split the transfer into a specified number of parallel **sessions** that send chunks of data whose size is defined by a **threshold** value.
@@ -714,7 +735,7 @@ transfer_manager = AsperaTransferManager(client=client,
 {: codeblock}
 {: python}
 
-For best performance in most scenarios, always make use of multiple sessions to minimize any overhead that is associated with instantiating an Aspera high-speed transfer. **If your network capacity is at least 1 Gbps, you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
+For best performance in most scenarios, always make use of multiple sessions to minimize any processing that is associated with instantiating an Aspera high-speed transfer. **If your network capacity is at least 1 Gbps, you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
 {:tip}
 
 ### File Upload
@@ -930,7 +951,7 @@ with AsperaTransferManager(client) as transfer_manager:
 {: #python-examples-aspera-ts}
 **Issue:** Developers by using Python 2.7.15 on Windows 10 may experience failures when installing Aspera SDK.
 
-**Cause:** If there are different versions of Python installed on your enviroment, then you might encounter installation failures when you try to install the Aspera SDK. This can be caused by a missing DLL files or wrong DLL in path.
+**Cause:** If there are different versions of Python installed on your environment, then you might encounter installation failures when you try to install the Aspera SDK. This can be caused by a missing DLL files or wrong DLL in path.
 
 **Solution:** The first step to resolving this issue would be to reinstall the Aspera libraries. There might have been a failure during the installation. As a result this might have affected the DLL files. If that does not resolve the issues, then you will be required to update your version of Python. If you are unable to do this, then you can use installation [Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python){: external}. This allows you to install the Aspera SDK without any issues.
 
@@ -1003,7 +1024,7 @@ def update_metadata_copy(bucket_name, item_name, key, value):
 
 Objects written to a protected bucket cannot be deleted until the protection period has expired and all legal holds on the object are removed. The bucket's default retention value is given to an object unless an object-specific value is provided when the object is created. Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object. 
 
-The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are 0 days and 365243 days (1000 years) respectively. 
+The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are a minimum of 0 days and a maximum of 365243 days (1000 years). 
 
 ```py
 def add_protection_configuration_to_bucket(bucket_name):

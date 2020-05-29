@@ -1,12 +1,13 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2020
+lastupdated: "2020-02-10"
 
 keywords: object storage, sdk, guide
 
 subcollection: cloud-object-storage
+
 
 ---
 {:new_window: target="_blank"}
@@ -50,13 +51,13 @@ In this quickstart guide, you are provided a code example that demonstrates the 
 You need:
 
 * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com/login)
-* An [instance of {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-provision)
-* An [IAM API key](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview) with Writer access to your {{site.data.keyword.cos_short}}
+* An [instance of {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage/basics?topic=cloud-object-storage-provision)
+* An [IAM API key](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview) with Writer access to your {{site.data.keyword.cos_short}}
 
 ## Getting the SDK
 {: #sdk-gs-install}
 
-Specific instructions for downloading and installing the SDK is available in [Using Python.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python){: external}{: python}[Using Node.js.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node){: external}{: javascript}[Using Java.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java){: external}{: java}[Using Go.](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-go){: external}{: go}
+Specific instructions for downloading and installing the SDK is available in [Using Python.](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python){: external}{: python}[Using Node.js.](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-node){: external}{: javascript}[Using Java.](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java){: external}{: java}[Using Go.](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-go){: external}{: go}
 
 ## Code Example
 {: #sdk-gs-example}
@@ -72,7 +73,7 @@ To complete the code example, you need to replace the following values:
 |`<resource-instance-id>`|Unique ID for the Service Instance|`crn:v1:bluemix:public:cloud-object-storage:global:a/xx999cd94a0dda86fd8eff3191349999:9999b05b-x999-4917-xxxx-9d5b326a1111::`|
 |`<storage-class>`|Storage class for a new bucket|`us-south-standard`|
 
-For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
 ```python
 import os
@@ -979,7 +980,7 @@ func exitErrorf(msg string, args ...interface{}) {
 	os.Exit(1)
 ```
 {: codeblock}
-{: Go}
+{: go}
 
 ## Running the Code Example
 {: #sdk-gs-run}
@@ -1007,7 +1008,7 @@ java javaexamplecode
 go run go_example.go
 ```
 {: codeblock}
-{: Go}
+{: go}
 
 ## Output from the Code Example
 {: #sdk-gs-output}

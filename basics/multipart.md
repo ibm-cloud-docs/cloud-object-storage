@@ -8,6 +8,7 @@ keywords: big data, multipart, multiple parts, transfer
 
 subcollection: cloud-object-storage
 
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
@@ -27,13 +28,13 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Store large objects
+# Storing large objects
 {: #large-objects}
 
 {{site.data.keyword.cos_full}} can support single objects as large as 10 TB when using multipart uploads. 
 {: shortdesc}
 
-Large objects can also be uploaded [by using the console with Aspera high-speed-transfer enabled](/docs/services/cloud-object-storage?topic=cloud-object-storage-aspera). Under most scenarios, Aspera high-speed transfer results in significantly increased performance for transferring data, especially across long distances or under unstable network conditions.
+Large objects can also be uploaded [by using the console with Aspera high-speed-transfer enabled](/docs/cloud-object-storage?topic=cloud-object-storage-aspera). Under most scenarios, Aspera high-speed transfer results in significantly increased performance for transferring data, especially across long distances or under unstable network conditions.
 
 ## Uploading objects in multiple parts
 {: #large-objects-multipart}
@@ -59,7 +60,7 @@ There are three phases to uploading an object in multiple parts:
 2. Individual parts are uploaded specifying their sequential part numbers and the `UploadId` for the object.
 3. When all parts are finished uploading, the upload is completed by sending a request with the `UploadId` and an XML block that lists each part number and it's respective `Etag` value.
 
-For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
+For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
 {:tip}
 
 #### Initiate a multipart upload
@@ -402,8 +403,8 @@ upload: 'bigfile.pdf' -> 's3://backuptest/bigfile.pdf'  [part 4 of 4, 4MB] [1 of
 The Java SDK provides two ways to run large object uploads:
 {: java}
 
-* [Multipart Uploads](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java#java-examples-multipart-object)
-* [TransferManager](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java#java-examples-transfer-manager)
+* [Multipart Uploads](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java#java-examples-multipart-object)
+* [TransferManager](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java#java-examples-transfer-manager)
 {: codeblock}
 {: java}
 
@@ -414,8 +415,8 @@ The Java SDK provides two ways to run large object uploads:
 The Python SDK provides two ways to run large object uploads:
 {: python}
 
-* [Multipart Uploads](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python#python-examples-multipart)
-* [TransferManager](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python#python-examples-multipart-transfer)
+* [Multipart Uploads](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python#python-examples-multipart)
+* [TransferManager](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python#python-examples-multipart-transfer)
 {: codeblock}
 {: python}
 
@@ -426,6 +427,6 @@ The Python SDK provides two ways to run large object uploads:
 The Node.js SDK provides a single way to run large object uploads:
 {: javascript}
 
-* [Multipart Uploads](https://cloud.ibm.com/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-node#node-examples-multipart)
+* [Multipart Uploads](/docs/cloud-object-storage/iam?topic=cloud-object-storage-node#node-examples-multipart)
 {: codeblock}
 {: javascript}

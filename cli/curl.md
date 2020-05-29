@@ -8,6 +8,7 @@ keywords: cli, command line interface, object storage, curl
 
 subcollection: cloud-object-storage
 
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
@@ -32,9 +33,9 @@ subcollection: cloud-object-storage
 You can get the most out working with the command line in most environments with {{site.data.keyword.cos_full}} and `cURL`.  
 {: shortdesc}
 
-Here's a 'cheat sheet' of basic `curl` commands for the {{site.data.keyword.cos_full}} REST API. More detail can be found in the API reference for [buckets](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations) or [objects](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-object-operations).
+Here's a 'cheat sheet' of basic `curl` commands for the {{site.data.keyword.cos_full}} REST API. More detail can be found in the API reference for [buckets](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations) or [objects](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-object-operations).
 
-Using `curl` assumes a certain amount of familiarity with the command line and Object Storage, and have the necessary information from a [service credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the [endpoints reference](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints), or the [console](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started). If any terms or variables are unfamiliar, they can be found in the [glossary](/docs/overview?topic=overview-glossary).
+Using `curl` assumes a certain amount of familiarity with the command line and Object Storage, and have the necessary information from a [service credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the [endpoints reference](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints), or the [console](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started). If any terms or variables are unfamiliar, they can be found in the [glossary](/docs/cloud-object-storage/basics?topic=cloud-object-storage-terminology).
 
 **Note**: Personally Identifiable Information (PII): When you create buckets or adding objects, ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
 {:tip}
@@ -50,7 +51,7 @@ Two ways you can generate an IAM `oauth` token for authenticating requests are u
 Ensure that you have an API key. You can get one from [{{site.data.keyword.iamlong}}](https://cloud.ibm.com/iam/apikeys).
 
 ```
-curl -X "POST" "https://iam.cloud.ibm.com/identity/token" \
+curl -X "POST" "https://iam.cloud.ibm.com/oidc/token" \
      -H 'Accept: application/json' \
      -H 'Content-Type: application/x-www-form-urlencoded' \
      --data-urlencode "apikey={api-key}" \
@@ -101,7 +102,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)"
 ```
 {:codeblock}
 
-A list of valid codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-classes#classes-locationconstraint).
+A list of valid codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/cloud-object-storage/iam?topic=cloud-object-storage-classes#classes-locationconstraint).
 
 ## Create a bucket CORS
 {: #curl-new-cors}
@@ -161,7 +162,7 @@ curl --head "https://(endpoint)/(bucket-name)/"
 {:codeblock}
 
 ## Get bucket metadata
-{: #curl-bucket-metadata}
+{: #curl-get-bucket-metadata}
 
 Note the use of the config API endpoint isn't the same as the endpoint for your bucket itself. Use of this command returns metadata for the specified bucket.
  

@@ -8,6 +8,7 @@ keywords: encryption, security, object storage
 
 subcollection: cloud-object-storage
 
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
@@ -36,7 +37,7 @@ This level of security is accomplished by using Information Dispersal Algorithms
 
 All data in {{site.data.keyword.cos_full_notm}} is encrypted at rest. This technology individually encrypts each object by using per-object generated keys. These keys are secured and reliably stored by using the same Information Dispersal Algorithms that protect object data by using an All-or-Nothing Transform (AONT). Key data is impossible to recover, even if individual nodes or hard disks are compromised.
 
-If it's necessary for a user to control encryption keys, root keys can be provided on a [per-object basis that uses SSE-C](/docs/services/cloud-object-storage?topic=cloud-object-storage-encryption#encryption-sse-c), or a [per-bucket basis that uses SSE-KP](/docs/services/cloud-object-storage?topic=cloud-object-storage-encryption#encryption-kp).
+If it's necessary for a user to control encryption keys, root keys can be provided on a [per-object basis that uses SSE-C](/docs/cloud-object-storage?topic=cloud-object-storage-encryption#encryption-sse-c), or a [per-bucket basis that uses SSE-KP](/docs/cloud-object-storage?topic=cloud-object-storage-encryption#encryption-kp).
 
 Storage can be accessed over HTTPS, and internally storage devices communicate with each other using TLS.
 
@@ -49,9 +50,7 @@ Storage can be accessed over HTTPS, and internally storage devices communicate w
 Cross regional and regional resiliency buckets distribute information across multiple data centers.  For single site resiliency, data is dispersed to the same number of storage devices but they are all located in the same data center.
 {: note}
 
-Data can be made more secure by using one of several available methods to protect the encryption keys including SSE-C, Key Protect or Hyper Protect Crypto Services. Please visit the [manage encryption](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-encryption) topic to learn more about the encryption methods. 
-
-
+Data can be made more secure by using one of several available methods to protect the encryption keys including SSE-C, Key Protect or Hyper Protect Crypto Services. Please visit the [manage encryption](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-encryption) topic to learn more about the encryption methods.
 
 ## Tenant isolation
 {: #security-isolation}
