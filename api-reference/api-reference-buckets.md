@@ -1574,7 +1574,7 @@ Host: 67.228.254.193
 Content-Length: 299
 
 &lt;ProtectionConfiguration&gt;
-  &lt;Status>Retention&lt;/Status&gt;
+  &lt;Status&gt;Retention&lt;/Status&gt;
   &lt;MinimumRetention&gt;
     &lt;Days&gt;100&lt;/Days&gt;
   &lt;/MinimumRetention&gt;
