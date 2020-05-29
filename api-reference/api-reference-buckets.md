@@ -1586,7 +1586,7 @@ Content-Length: 299
   </DefaultRetention>
 </ProtectionConfiguration>
 ```
-{: pre}
+{: screen}
 {: token}
 
 **Example response**
