@@ -9,6 +9,7 @@ keywords: endpoint, location, object storage
 
 subcollection: cloud-object-storage
 
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
@@ -88,7 +89,7 @@ Buckets that are created at a regional endpoint distribute data across three dat
 ## Cross Region Endpoints
 {: #endpoints-geo}
 
-Buckets that are created at a cross region endpoint distribute data across three regions. Any one of these regions can suffer an outage or even destruction without impacting availability. Requests are routed to the nearest region's data center by using Border Gateway Protocol (BGP) routing. In an outage, requests are automatically rerouted to an active region. Advanced users who want to write their own failover logic can do so by sending requests to a [specific access point](/docs/services/cloud-object-storage/info?topic=cloud-object-storage-advanced-endpoints) and bypassing the BGP routing.
+Buckets that are created at a cross region endpoint distribute data across three regions. Any one of these regions can suffer an outage or even destruction without impacting availability. Requests are routed to the nearest region's data center by using Border Gateway Protocol (BGP) routing. In an outage, requests are automatically rerouted to an active region. Advanced users who want to write their own failover logic can do so by sending requests to a [specific access point](/docs/cloud-object-storage/info?topic=cloud-object-storage-advanced-endpoints) and bypassing the BGP routing.
 
 | Region | Type | Endpoint |
 |-----|-----|-----|
@@ -213,3 +214,7 @@ The Activity Tracker and Logging Service with LogDNA can archive to a bucket at 
 | `eu-geo`                                        | Cross Region | Amsterdam, Frankfurt, Milan |
 {: caption="Table 4. EU-managed Endpoints" caption-side="top"}
  
+## Decommissioned locations
+{: #endpoints-decom}
+
+Over time, it may be necessary for locations to transform from a Single Data Center to a Regional configuration, or for a location to be decommissioned entirely. These situations will require users to migrate data from one bucket to another. Please consult this [guide for migrating a bucket using Rclone](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-region-copy).

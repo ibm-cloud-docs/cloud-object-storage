@@ -7,8 +7,7 @@ Cloud Object Storage
     {: .navgroup id="learn"}
     getting-started.md
     about-cos.md
-    [Features overview](https://www.ibm.com/cloud/object-storage)
-
+    [Feature overview](https://www.ibm.com/cloud/object-storage)
 
     {: .topicgroup}
     Getting organized
@@ -21,14 +20,14 @@ Cloud Object Storage
 
     {: .navgroup id="howto"}
     basics/order-storage.md
-    basics/metrics-monitoring.md
 
     {: .topicgroup}
     Choose regions and connect services
         basics/endpoints.md
         basics/services.md    
         [Connect from VPC](/vpc-on-classic/vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc)
-        
+    
+    basics/closures.md
     basics/upload.md
 
     {: .topicgroup}
@@ -51,6 +50,7 @@ Cloud Object Storage
         basics/archive.md
         basics/expiry.md
 
+    tutorials/cos-region-copy.md
     basics/aspera.md
     basics/immutable.md
     basics/classes.md
@@ -59,7 +59,9 @@ Cloud Object Storage
     basics/encryption.md
     basics/sql.md
     basics/logdna.md
+    basics/metrics-monitoring.md
     basics/functions.md
+    basics/ftp.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
@@ -119,7 +121,7 @@ Cloud Object Storage
         [Using Cloud Object Storage with Kubernetes](https://cloud.ibm.com/docs/containers?topic=containers-object_storage)
         info/cof.md
         info/activestorage.md
-        [Use Velero for Kubernetes Backups](https://velero.io/docs/v1.3.1/contributions/ibm-config/)
+        [Use Velero for Kubernetes Backups](https://velero.io/docs/v1.3.2/contributions/ibm-config/)
         help/object-storage.md
         info/advanced_endpoints.md
 

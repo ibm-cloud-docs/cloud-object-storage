@@ -8,6 +8,7 @@ keywords: rest, s3, compatibility, api, objects
 
 subcollection: cloud-object-storage
 
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
@@ -30,7 +31,7 @@ subcollection: cloud-object-storage
 The modern capabilities of {{site.data.keyword.cos_full}} are conveniently available via a RESTful API. Operations and methods for reading, writing, and configuring objects (stored within a bucket), are documented here.
 {: shortdesc}
 
-For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 {: tip}
 
 ## A note regarding Access/Secret Key (HMAC) authentication
@@ -50,7 +51,7 @@ When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [usi
 ## Upload an object
 {: #object-operations-put}
 
-A `PUT` given a path to an object uploads the request body as an object. All objects uploaded in a single thread should be smaller than 500 MB (objects that are [uploaded in multiple parts](/docs/services/cloud-object-storage?topic=cloud-object-storage-large-objects) can be as large as 10 TB).
+A `PUT` given a path to an object uploads the request body as an object. All objects uploaded in a single thread should be smaller than 500 MB (objects that are [uploaded in multiple parts](/docs/cloud-object-storage?topic=cloud-object-storage-large-objects) can be as large as 10 TB).
 
 **Note**: Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
 {: tip}

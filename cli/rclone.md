@@ -8,6 +8,7 @@ keywords: data migration, object storage, cli, rclone
 
 subcollection: cloud-object-storage
 
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
@@ -206,7 +207,7 @@ AWS Secret Access Key (password) - leave blank for anonymous access or runtime c
 	secret_access_key> <>
 ```
 
-  7. Specify the endpoint for IBM COS. For Public IBM COS, choose from the provided options. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+  7. Specify the endpoint for IBM COS. For Public IBM COS, choose from the provided options. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
 ```
 Endpoint for IBM COS S3 API.
@@ -227,7 +228,7 @@ Endpoint for IBM COS S3 API.
 	endpoint>1
 ```
 
-  8. Specify an IBM COS Location Constraint. The location constraint must match the endpoint. For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+  8. Specify an IBM COS Location Constraint. The location constraint must match the endpoint. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
 ```
  1 / US Cross Region Standard
@@ -249,7 +250,7 @@ location_constraint>1
   9. Specify an ACL. Only `public-read` and `private` are supported. 
 
 ```
-Canned ACL used when creating buckets and/or storing objects in S3.
+Canned ACL used when creating buckets or storing objects in S3.
 Choose a number from below, or type in your own value
    1 "private"
    2 "public-read"

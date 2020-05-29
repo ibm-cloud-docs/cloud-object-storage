@@ -8,6 +8,7 @@ keywords: cloud services, integration, sql, query, analytics
 
 subcollection: cloud-object-storage
 
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
@@ -26,7 +27,7 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Use SQL Query
+# Using SQL Query
 {: #sql-query}
 
 IBM Cloud SQL Query is a fully-managed service that lets you run SQL queries (that is, `SELECT` statements) to analyze, transform, or clean up rectangular data.
@@ -40,4 +41,4 @@ Input data is read from ORC, CSV, JSON, or Parquet files located in one or more 
 You can retrieve a SQL queryable URL for objects for a selected individual object (Object SQL URL) or for all objects currently displayed with an active prefix filter (Filtered SQL URL). You can use this URL inside the SQL statement as the table name.
 {: tip}
 
-For more information on using SQL Query see the [SQL Query documentation](/docs/services/sql-query?topic=sql-query-overview) and [Analyzing Data with IBM Cloud SQL Query](https://medium.com/codait/analyzing-data-with-ibm-cloud-sql-query-bc53566a59f5?linkId=49971053).
+For more information on using SQL Query see the [SQL Query documentation](/docs/sql-query?topic=sql-query-overview) and [Analyzing Data with IBM Cloud SQL Query](https://medium.com/codait/analyzing-data-with-ibm-cloud-sql-query-bc53566a59f5?linkId=49971053).

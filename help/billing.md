@@ -8,6 +8,7 @@ keywords: administration, billing, platform
 
 subcollection: cloud-object-storage
 
+
 ---
 {:external: target="_blank" .external}
 {:new_window: target="_blank"}
@@ -64,7 +65,7 @@ Deleting buckets or objects from the system does not incur a charge.
 ## Aspera transfers
 {: #billing-aspera}
 
-[Aspera high-speed transfer](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-aspera) incurs extra egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage#s3api).
+[Aspera high-speed transfer](/docs/cloud-object-storage/basics?topic=cloud-object-storage-aspera) incurs extra egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage#s3api).
 
 ## Storage classes
 {: #billing-storage-classes}

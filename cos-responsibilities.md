@@ -8,6 +8,7 @@ keywords: cloud object storage, cos, object storage, responsibilities, incident,
 
 subcollection: cloud-object-storage
 
+
 ---
 
 {:new_window: target="_blank"}

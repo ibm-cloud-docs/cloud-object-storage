@@ -8,6 +8,7 @@ keywords: encryption, security, sse-c, key protect, {{site.data.keyword.hscrypto
 
 subcollection: cloud-object-storage
 
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
@@ -23,7 +24,7 @@ subcollection: cloud-object-storage
 {:support: data-reuse='support'}
 {:help: data-hd-content-type='help'}
 
-# Manage encryption
+# Managing encryption
 {: #encryption}
 
 {{site.data.keyword.cos_full}} provides several options to encrypt your data. 

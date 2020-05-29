@@ -8,6 +8,7 @@ keywords: developer, getting started, command line interface, cli
 
 subcollection: cloud-object-storage
 
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
@@ -41,14 +42,17 @@ ibmcloud login --apikey <value>
 ```
 {: codeblock}
 
-  3. Next, create an instance of {{site.data.keyword.cos_full_notm}} specifying the name for the instance, the ID, and the wanted plan (lite or standard). Now we have a CRN for the instance. If you have an upgraded account, specify the `Standard` plan. Otherwise, specify `Lite`.
+  3. Next, create an instance of {{site.data.keyword.cos_full_notm}} specifying the name for the instance, the ID, and the wanted plan (`lite` or `standard`). Now we have a CRN for the instance. If you have an upgraded account, specify the `standard` plan. Otherwise, specify `lite`.
 
 ```
 ibmcloud resource service-instance-create <instance-name> cloud-object-storage <plan> global
 ```
 {: codeblock}
 
-The [Getting Started guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started) walks through the basic steps of creating buckets and objects, as well as inviting users and creating policies. A list of basic 'curl' commands can be found [here](/docs/services/cloud-object-storage/cli?topic=cloud-object-storage-curl).
+Some users may encounter the error `No resource group targeted` when trying to create a new instance. This indicates that the default resource group is not available and that a resource group must be explicitly set. A list of available resource groups can be found using `ibmcloud resource groups` and the target can be set with `ibmcloud target -g <resource-group>`.
+{: tip}
+
+The [Getting Started guide](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started) walks through the basic steps of creating buckets and objects, as well as inviting users and creating policies. A list of basic 'curl' commands can be found [here](/docs/cloud-object-storage/cli?topic=cloud-object-storage-curl).
 
 Learn more about using the {{site.data.keyword.cloud_notm}} CLI to create applications, manage Kubernetes clusters, and more [in the documentation](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_cli).
 
@@ -56,11 +60,11 @@ Learn more about using the {{site.data.keyword.cloud_notm}} CLI to create applic
 ## Using the API
 {: #gs-dev-api}
 
-For managing data stored in {{site.data.keyword.cos_short}}, you can use S3 API compatible tools like the [AWS CLI](/docs/services/cloud-object-storage/cli?topic=cloud-object-storage-aws-cli)with [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) for compatibility. As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage. More information can be found in [the `curl` reference](/docs/services/cloud-object-storage/cli?topic=cloud-object-storage-curl), as well as [the API reference documentation](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api).
+For managing data stored in {{site.data.keyword.cos_short}}, you can use S3 API compatible tools like the [AWS CLI](/docs/cloud-object-storage/cli?topic=cloud-object-storage-aws-cli)with [HMAC credentials](/docs/cloud-object-storage/hmac?topic=cloud-object-storage-hmac) for compatibility. As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage. More information can be found in [the `curl` reference](/docs/cloud-object-storage/cli?topic=cloud-object-storage-curl), as well as [the API reference documentation](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api).
 
 ## Using libraries and SDKs
 {: #gs-dev-sdk}
-IBM COS SDKs are available for [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python), [Java](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java), [Go](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-go), and [Node.js](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node). These libraries are forked and modified versions of the AWS S3 SDKs that support [IAM token-based authentication](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview), as well as support for [Key Protect](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-encryption). 
+IBM COS SDKs are available for [Python](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python), [Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java), [Go](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-go), and [Node.js](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-node). These libraries are forked and modified versions of the AWS S3 SDKs that support [IAM token-based authentication](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview), as well as support for [Key Protect](/docs/cloud-object-storage/basics?topic=cloud-object-storage-encryption). 
 
 ## Building applications on IBM Cloud
 {: #gs-dev-apps}

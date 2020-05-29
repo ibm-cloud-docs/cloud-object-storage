@@ -8,6 +8,7 @@ keywords: ip address, firewall, configuration, api
 
 subcollection: cloud-object-storage
 
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
@@ -41,7 +42,7 @@ It isn't possible to use a bucket with a firewall enabled in a VPC environment. 
 ## Before you begin
 {: #firewall-precursors}
 
-First, make sure that you have an instance of {{site.data.keyword.cos_short}} and have provisioned at least one bucket. If not, follow the [getting started tutorial](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started) to obtain the prerequisites and become familiar with the console.
+First, make sure that you have an instance of {{site.data.keyword.cos_short}} and have provisioned at least one bucket. If not, follow the [getting started tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started) to obtain the prerequisites and become familiar with the console.
 
 ## Using the console to set a firewall
 {: #firewall-console}
@@ -85,4 +86,4 @@ Users with the `manager` role can view and edit the list of allowed IP addresses
 ## Next steps
 {: #firewall-next-steps}
 
-See more information [for developers](/docs/services/cloud-object-storage?topic=cloud-object-storage-gs-dev) to learn about other powerful tools and options.
+See more information [for developers](/docs/cloud-object-storage?topic=cloud-object-storage-gs-dev) to learn about other powerful tools and options.

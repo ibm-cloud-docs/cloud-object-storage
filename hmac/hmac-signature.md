@@ -8,6 +8,7 @@ keywords: authorization, aws, hmac, signature, create
 
 subcollection: cloud-object-storage
 
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
@@ -475,3 +476,8 @@ var request = https.request(options, function (response) {
 
 request.end();
 ```
+
+## Next steps
+{: #hmac-sig-next-steps}
+
+You can review the documentation for credentials as part of a [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials). For an overview on authentication, check out the [{{site.data.keyword.cloud_notm}} Identity and Access Management service](/docs/cloud-object-storage?topic=cloud-object-storage-iam-overview).

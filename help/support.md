@@ -8,6 +8,7 @@ keywords: troubleshooting, support
 
 subcollection: cloud-object-storage
 
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
@@ -47,10 +48,10 @@ Whether by searching for information or by asking questions through a forum, you
 {: #troubleshooting-cos-encryption}
 {: support}
 
-1. Go to the {{site.data.keyword.cos_full_notm}} documentation for [managing encryption](/docs/services/cloud-object-storage?topic=cloud-object-storage-encryption) to research the encryption topic.
-1. Choose between [{{site.data.keyword.keymanagementservicefull}}](/docs/services/key-protect?topic=key-protect-about) and [{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-crypto-overview) for your encryption needs.
+1. Go to the {{site.data.keyword.cos_full_notm}} documentation for [managing encryption](/docs/cloud-object-storage?topic=cloud-object-storage-encryption) to research the encryption topic.
+1. Choose between [{{site.data.keyword.keymanagementservicefull}}](/docs/key-protect?topic=key-protect-about) and [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-overview) for your encryption needs.
 1. Remember that customer-provided keys are enforced on objects.
-1. Use [IBM Key Protect](/docs/services/key-protect?topic=key-protect-about) or [{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-crypto-overview) to create, add, and manage keys, which you can then associate with your instance of {{site.data.keyword.cos_full_notm}}.
+1. Use [IBM Key Protect](/docs/key-protect?topic=key-protect-about) or [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-overview) to create, add, and manage keys, which you can then associate with your instance of {{site.data.keyword.cos_full_notm}}.
 1. Grant service authorization
      1. Open your IBM Cloud dashboard.
      1. From the menu bar, click **Manage > Access**.

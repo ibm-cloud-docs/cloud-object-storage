@@ -8,6 +8,7 @@ keywords: gui, desktop, backup, cloudberry
 
 subcollection: cloud-object-storage
 
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
@@ -66,5 +67,5 @@ Key points to remember when you configure a Cloudberry product to work with {{si
 * Select `S3 Compatible` from the list of options
 * Only [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) are currently supported
 * A separate connection is required for each bucket
-* Ensure the `Endpoint` specified in the connection matches the region of the selected bucket (*backup fails because of an inaccessible destination*). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+* Ensure the `Endpoint` specified in the connection matches the region of the selected bucket (*backup fails because of an inaccessible destination*). For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
