@@ -1573,18 +1573,18 @@ Content-Type: text/plain
 Host: 67.228.254.193
 Content-Length: 299
 
-<ProtectionConfiguration>
-  <Status>Retention</Status>
-  <MinimumRetention>
-    <Days>100</Days>
-  </MinimumRetention>
-  <MaximumRetention>
-    <Days>10000</Days>
-  </MaximumRetention>
-  <DefaultRetention>
-    <Days>2555</Days>
-  </DefaultRetention>
-</ProtectionConfiguration>
+&lt;ProtectionConfiguration&gt;
+  &lt;Status&gt;Retention&lt;/Status&gt;
+  &lt;MinimumRetention&gt;
+    &lt;Days&gt;100&lt;/Days&gt;
+  &lt;/MinimumRetention&gt;
+  &lt;MaximumRetention&gt;
+    &lt;Days&gt;10000&lt;/Days&gt;
+  &lt;/MaximumRetention&gt;
+  &lt;DefaultRetention&gt;
+    &lt;Days&gt;2555&lt;/Days&gt;
+  &lt;/DefaultRetention&gt;
+&lt;/ProtectionConfiguration&gt;
 ```
 {: screen}
 {: token}
