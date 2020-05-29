@@ -29,7 +29,9 @@ subcollection: cloud-object-storage
 # Quick Facts for {{site.data.keyword.cos_full_notm}}
 {: #quick-facts}
 
-Finding what you need shouldn't be a chore. Here are some links to 
+Finding what you need shouldn't be a chore. Here are some links to help you get to select points of interest in {{site.data.keyword.cos_full}}.
 {: shortdesc}
 
-The information you store with {{site.data.keyword.cos_full}} is encrypted and dispersed across multiple geographic locations. Your data is accessed over popular protocols like HTTPS using a modern RESTful API.
+The information you store with {{site.data.keyword.cos_full_notm}} is encrypted and dispersed across multiple geographic locations. Your data is accessed over popular protocols like HTTPS using a modern RESTful API.
+
+For your first steps at {{site.data.keyword.cos_full_notm}}, you will need to [order storage]().
