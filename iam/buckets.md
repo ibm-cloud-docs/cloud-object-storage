@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-02-10"
+lastupdated: "2020-05-28"
 
 keywords: access control, iam, basics, buckets
 
@@ -41,6 +41,7 @@ Assign access roles for users and Service IDs against buckets, by using either t
 | Reader         | List buckets, list objects, and download objects.            |
 | Content Reader | List and download objects                                    |
 | Object Reader  | Download objects                                             |
+| Object Writer  | Upload objects                                               |
 
 ## Granting access to a user
 {: #iam-user-access}

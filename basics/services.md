@@ -56,42 +56,42 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 
 | Region          | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
 |-----------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
-| AP Cross Region | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo |
-| EU Cross Region | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt |
-| US Cross Region | Yes    | No          | No                             | No           | Yes                      | Dallas           | No        | Yes        | Dallas |
+| AP Cross Region | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
+| EU Cross Region | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
+| US Cross Region | Yes    | No          | No                             | No           | Yes                      | Dallas           | No        | Yes        | Dallas     |
 
 
 ## Regional
 {: #service-availability-region}
 
-| Region           | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
-|------------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
-| AP Australia     | Yes    | Yes         | Yes                            | Yes          | Yes                      | Sydney           | No        | Yes        | Sydney |
-| AP Japan         | Yes    | Yes         | No                             | Yes          | Yes                      | Tokyo            | Yes       | Yes        | Tokyo |
-| EU Great Britain | Yes    | Yes         | No                             | Yes          | Yes                      | London           | Yes       | Yes        | London |
-| EU Germany       | Yes    | Yes         | No                             | Yes          | Yes                      | Frankfurt        | Yes       | Yes        | Frankfurt |
-| US South         | Yes    | Yes         | Yes                            | Yes          | Yes                      | Dallas           | Yes       | Yes        | Dallas |
-| US East          | Yes    | Yes         | No                             | Yes          | Yes                      | Washington DC           | Yes       | Yes        | Washington DC |
+| Region           | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring    |
+|------------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|---------------|
+| AP Australia     | Yes    | Yes         | Yes                            | Yes          | Yes                      | Sydney           | No        | Yes        | Sydney        |
+| AP Japan         | Yes    | Yes         | No                             | Yes          | Yes                      | Tokyo            | Yes       | Yes        | Tokyo         |
+| EU Great Britain | Yes    | Yes         | No                             | Yes          | Yes                      | London           | Yes       | Yes        | London        |
+| EU Germany       | Yes    | Yes         | Yes                            | Yes          | Yes                      | Frankfurt        | Yes       | Yes        | Frankfurt     |
+| US South         | Yes    | Yes         | Yes                            | Yes          | Yes                      | Dallas           | Yes       | Yes        | Dallas        |
+| US East          | Yes    | Yes         | No                             | Yes          | Yes                      | Washington DC    | Yes       | Yes        | Washington DC |
 
 ## Single Data Centers
 {: #service-availability-zone}
 
 | Region                      | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
-|-----------------------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|-----------|-----------|
-| Amsterdam, Netherlands      | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | Yes       | Frankfurt |
-| Chennai, India              | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | Yes       | Tokyo |
-| Hong Kong S.A.R. of the PRC | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | Yes       | Tokyo |
-| Melbourne, Australia        | Yes    | No          | No                             | No           | No                       | Sydney           | No        | Yes       | Sydney |
-| Mexico City, Mexico         | Yes    | No          | No                             | No           | No                       | Dallas           | No        | Yes       | Dallas |
-| Milan, Italy                | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | Yes       | Frankfurt |
-| Montréal, Canada            | Yes    | No          | No                             | No           | No                       | Dallas           | No        | Yes       | Dallas |
-| Oslo, Norway                | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | Yes       | Frankfurt |
-| Paris, France               | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | Yes       | Frankfurt |
-| San Jose, US                | Yes    | No          | No                             | No           | No                       | Dallas           | No        | Yes       | Dallas |
-| São Paulo, Brazil           | Yes    | No          | No                             | Yes          | No                       | Dallas           | No        | Yes       | Dallas |
-| Seoul, South Korea          | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | Yes       | Tokyo |
-| Singapore                   | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | Yes       | Tokyo |
-| Toronto, Canada             | Yes    | No          | No                             | Yes          | No                       | Dallas           | No        | Yes       | Dallas |
+|-----------------------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
+| Amsterdam, Netherlands      | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
+| Chennai, India              | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
+| Hong Kong S.A.R. of the PRC | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
+| Melbourne, Australia        | Yes    | No          | No                             | No           | No                       | Sydney           | No        | Yes        | Sydney     |
+| Mexico City, Mexico         | Yes    | No          | No                             | No           | No                       | Dallas           | No        | Yes        | Dallas     |
+| Milan, Italy                | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
+| Montréal, Canada            | Yes    | No          | No                             | No           | No                       | Dallas           | No        | Yes        | Dallas     |
+| Oslo, Norway                | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
+| Paris, France               | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
+| San Jose, US                | Yes    | No          | No                             | No           | No                       | Dallas           | No        | Yes        | Dallas     |
+| São Paulo, Brazil           | Yes    | No          | No                             | Yes          | No                       | Dallas           | No        | Yes        | Dallas     |
+| Seoul, South Korea          | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
+| Singapore                   | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
+| Toronto, Canada             | Yes    | No          | No                             | Yes          | No                       | Dallas           | No        | Yes        | Dallas     |
 
 ## More information
 {: #service-availability-more-info}
