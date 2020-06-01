@@ -28,7 +28,6 @@ Cloud Object Storage
 
     {: .navgroup id="howto"}
     basics/order-storage.md
-    basics/metrics-monitoring.md
 
     {: .topicgroup}
     Choose regions and connect services

@@ -143,7 +143,7 @@ To complement the credentials of the source, we look at configuring the destinat
 {: #migrate-aws-run}
 
 1. Do a dry run (no data copied) of `rclone` to sync the objects in your source
-   Swift container (for example, `swift-test`) to target COS bucket (for example, `cos-test`).
+   bucket (for example, `content-to-be-migrated`) to the target COS bucket (for example, `new-bucket`).
 
    ```bash
    rclone --dry-run copy AWS:bucket-to-be-migrated COS:new-bucket
