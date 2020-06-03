@@ -33,7 +33,7 @@ This service makes use of the distributed storage technologies provided by the {
 Developers use an {{site.data.keyword.cos_full_notm}} API to interact with their object storage. Of course, the [console](https://cloud.ibm.com/){: external} provides a user interface for many operations as well. 
 
 ## Next Steps
-{: #about-cloud-object-storage-next-steps}
+{: #about-cos-next-steps}
 
 Documentation on the best way to [get started](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started) provides support to provision accounts, to create buckets, to upload objects, and to use a reference of common operations through API interactions.
 
