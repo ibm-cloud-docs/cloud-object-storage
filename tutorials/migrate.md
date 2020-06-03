@@ -65,7 +65,7 @@ aws s3 ls --recursive s3://<BUCKET_NAME> --summarize > bucket-contents-source.tx
 * [`rclone`](/docs/cloud-object-storage?topic=cloud-object-storage-rclone) has many uses, and we'll look at it specifically, next.
 
 ### Migrate your data
-{: migrate-data}
+{: migrate-data-strategy}
 
 Based on the process and tools you've chosen, you will want to choose a strategy for migrating your data. We can take a look at a simplified process using the command line and the Go-based `rclone` executable as an example. 
 
@@ -77,6 +77,7 @@ Based on the process and tools you've chosen, you will want to choose a strategy
    {: codeblock}
 
 #### Configure `rclone` with your AWS credentials
+{: #migrate-aws-cred-config}
 
 You may start by creating 'profiles' for your source and destination of the migration in `rclone`. A profile contains the configuration and credentials needed for working with your date. You will be migrating from AWS, so you will need those credentials to continue. Also, you will create a profile for your destination credentials specifically for {{site.data.keyword.cos_full_notm}}.
 
@@ -103,6 +104,7 @@ You may start by creating 'profiles' for your source and destination of the migr
 1. Paste your AWS `access_key_id` and `secret_access_key` as obtained per instructions [here](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html){: external} into the appropriate fields of your configuration as shown.
 
 #### Configure `rclone` with your COS credentials
+{: #migrate-cos-credential-config}
 
 To complement the credentials of the source, we look at configuring the destination profile next.
 
@@ -124,6 +126,7 @@ To complement the credentials of the source, we look at configuring the destinat
 1. Paste your [HMAC](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) `access_key_id` and `secret_access_key` into the appropriate fields of your configuration as shown in the first step. As noted in the beginning of the guide, you will want to enter the appropriate values for your instance regarding your [region and endpoint](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
 
 #### Verify your configurations 
+{: #migrate-verify-config}
 
 1. List the buckets from your source to verify `rclone` is properly configured for retrieval.
 
@@ -160,11 +163,11 @@ To complement the credentials of the source, we look at configuring the destinat
 As you work the migration of your data using the process you've outlines, you will want to validate and verify the results.
 
 ### Validating your migration from AWS
-{: migrate-testing}
+{: #migrate-testing}
 
 Integrated query-in-place dashboards allows you to see analytics based directly on your data. Using [{{site.data.keyword.mon_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration), you can follow up your migration using pre-built charts.
 
 ## Next Steps
-{: migrate-next-steps}
+{: #migrate-next-steps}
 
 Get started by visiting the [catalog](https://cloud.ibm.com){: external}, and creating the resources to begin your journey from AWS to {{site.data.keyword.cos_full_notm}} with confidence and efficiency. 
