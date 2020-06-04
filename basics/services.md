@@ -81,7 +81,6 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | Amsterdam, Netherlands      | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
 | Chennai, India              | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
 | Hong Kong S.A.R. of the PRC | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
-| Melbourne, Australia        | Yes    | No          | No                             | No           | No                       | Sydney           | No        | Yes        | Sydney     |
 | Mexico City, Mexico         | Yes    | No          | No                             | No           | No                       | Dallas           | No        | Yes        | Dallas     |
 | Milan, Italy                | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
 | Montréal, Canada            | Yes    | No          | No                             | No           | No                       | Dallas           | No        | Yes        | Dallas     |
