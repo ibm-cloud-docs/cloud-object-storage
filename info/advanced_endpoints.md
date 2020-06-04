@@ -122,7 +122,6 @@ Direct endpoints can be accessed using the domains referenced in Table 1. Choose
 | Amsterdam, Netherlands | Direct | `s3.direct.ams03.cloud-object-storage.appdomain.cloud` |
 | Chennai, India | Direct | `s3.direct.che01.cloud-object-storage.appdomain.cloud` |
 | Hong Kong S.A.R. of the PRC | Direct | `s3.direct.hkg02.cloud-object-storage.appdomain.cloud` |
-| Melbourne, Australia | Direct | `s3.direct.mel01.cloud-object-storage.appdomain.cloud` |
 | Mexico City, Mexico | Direct | `s3.direct.mex01.cloud-object-storage.appdomain.cloud` |
 | Milan, Italy | Direct | `s3.direct.mil01.cloud-object-storage.appdomain.cloud` |
 | Montr&egrave;al, Canada | Direct | `s3.direct.mon01.cloud-object-storage.appdomain.cloud` |
