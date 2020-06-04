@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-28"
+lastupdated: "2020-06-04"
 
 keywords: object storage, endpoints, access points, manual failover
 
