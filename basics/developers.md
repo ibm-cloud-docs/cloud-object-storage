@@ -52,7 +52,7 @@ ibmcloud resource service-instance-create <instance-name> cloud-object-storage <
 Some users may encounter the error `No resource group targeted` when trying to create a new instance. This indicates that the default resource group is not available and that a resource group must be explicitly set. A list of available resource groups can be found using `ibmcloud resource groups` and the target can be set with `ibmcloud target -g <resource-group>`.
 {: tip}
 
-The [Getting Started guide](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started) walks through the basic steps of creating buckets and objects, as well as inviting users and creating policies. A list of basic 'curl' commands can be found [here](/docs/cloud-object-storage/cli?topic=cloud-object-storage-curl).
+The [Getting Started guide](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) walks through the basic steps of creating buckets and objects, as well as inviting users and creating policies. A list of basic 'curl' commands can be found [here](/docs/cloud-object-storage/cli?topic=cloud-object-storage-curl).
 
 Learn more about using the {{site.data.keyword.cloud_notm}} CLI to create applications, manage Kubernetes clusters, and more [in the documentation](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_cli).
 

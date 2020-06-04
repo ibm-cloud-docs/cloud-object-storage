@@ -32,7 +32,7 @@ subcollection: cloud-object-storage
 ## Using the console
 {: #at-console}
 
-First, make sure that you have a bucket. If not, follow the [getting started tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started) to become familiar with the console. 
+First, make sure that you have a bucket. If not, follow the [getting started tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) to become familiar with the console. 
 
 ### Enable activity tracking
 {: #at-console-enable}

@@ -35,6 +35,6 @@ Developers use an {{site.data.keyword.cos_full_notm}} API to interact with their
 ## Next Steps
 {: #about-cloud-object-storage-next-steps}
 
-Documentation on the best way to [get started](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started) provides support to provision accounts, to create buckets, to upload objects, and to use a reference of common operations through API interactions.
+Documentation on the best way to [get started](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) provides support to provision accounts, to create buckets, to upload objects, and to use a reference of common operations through API interactions.
 
 
