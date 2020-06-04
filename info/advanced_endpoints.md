@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-12-04"
+  years: 2017, 2020
+lastupdated: "2020-05-28"
 
 keywords: object storage, endpoints, access points, manual failover
 
@@ -48,7 +48,7 @@ All requests must use SSL when using IAM, and the service will reject any plaint
 
 * **Private endpoints** are available for requests originating from Kubernetes clusters, bare metal servers, virtual servers, and other cloud storage services. Private endpoints provide better performance and do not incur charges for any outgoing or incoming bandwidth even if the traffic is cross regions or across data centers. **Whenever possible, it is best to use a private endpoint.**
 * **Public endpoints** can accept requests from anywhere and charges are assessed on outgoing bandwidth. Incoming bandwidth is free. Public endpoints should be used for access not originating from an {{site.data.keyword.cloud_notm}} cloud computing resource. 
-* **Direct endpoints** can accept requests from within the VPC and charges are assessed on outgoing bandwidth. Incoming bandwidth is free. Use direct endpoints to connect from a VPC to Cloud Object Storage. Directions for connecting to {{site.data.keyword.cos_full_notm}} from VPC are available [here](https://cloud.ibm.com/docs/vpc-on-classic?topic=vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc).
+* **Direct endpoints** are used in Bring-Your-Own-IP scenarios, generally for requests originating from resources within VPCs. Like Private endpoints, Direct endpoints provide better performance over Public endpoints and do not incur charges for any outgoing or incoming bandwidth even if the traffic is cross regions or across data centers. Directions for connecting to {{site.data.keyword.cos_full_notm}} from VPC are available [here](/docs/vpc-on-classic?topic=vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc).
 
 Requests must be sent to the endpoint associated with a given bucket's location. If you aren't sure where a bucket is located, there is an [extension to the bucket listing API](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets-extended) that returns the location and storage class information for all buckets in a service instance.
 
@@ -122,6 +122,7 @@ Direct endpoints can be accessed using the domains referenced in Table 1. Choose
 | Amsterdam, Netherlands | Direct | `s3.direct.ams03.cloud-object-storage.appdomain.cloud` |
 | Chennai, India | Direct | `s3.direct.che01.cloud-object-storage.appdomain.cloud` |
 | Hong Kong S.A.R. of the PRC | Direct | `s3.direct.hkg02.cloud-object-storage.appdomain.cloud` |
+| Melbourne, Australia | Direct | `s3.direct.mel01.cloud-object-storage.appdomain.cloud` |
 | Mexico City, Mexico | Direct | `s3.direct.mex01.cloud-object-storage.appdomain.cloud` |
 | Milan, Italy | Direct | `s3.direct.mil01.cloud-object-storage.appdomain.cloud` |
 | Montr&egrave;al, Canada | Direct | `s3.direct.mon01.cloud-object-storage.appdomain.cloud` |
