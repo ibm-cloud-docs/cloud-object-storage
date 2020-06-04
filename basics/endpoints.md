@@ -137,7 +137,6 @@ If a networking failure results in a partition where the data center is unable t
 | Amsterdam, Netherlands      | Public | `s3.ams03.cloud-object-storage.appdomain.cloud` |
 | Chennai, India              | Public | `s3.che01.cloud-object-storage.appdomain.cloud` |
 | Hong Kong S.A.R. of the PRC | Public | `s3.hkg02.cloud-object-storage.appdomain.cloud` |
-| Melbourne, Australia        | Public | `s3.mel01.cloud-object-storage.appdomain.cloud` |
 | Mexico City, Mexico         | Public | `s3.mex01.cloud-object-storage.appdomain.cloud` |
 | Milan, Italy                | Public | `s3.mil01.cloud-object-storage.appdomain.cloud` |
 | Montr&egrave;al, Canada     | Public | `s3.mon01.cloud-object-storage.appdomain.cloud` |
@@ -159,7 +158,6 @@ If a networking failure results in a partition where the data center is unable t
 | Amsterdam, Netherlands      | Private | `s3.private.ams03.cloud-object-storage.appdomain.cloud` |
 | Chennai, India              | Private | `s3.private.che01.cloud-object-storage.appdomain.cloud` |
 | Hong Kong S.A.R. of the PRC | Private | `s3.private.hkg02.cloud-object-storage.appdomain.cloud` |
-| Melbourne, Australia        | Private | `s3.private.mel01.cloud-object-storage.appdomain.cloud` |
 | Mexico City, Mexico         | Private | `s3.private.mex01.cloud-object-storage.appdomain.cloud` |
 | Milan, Italy                | Private | `s3.private.mil01.cloud-object-storage.appdomain.cloud` |
 | Montr&egrave;al, Canada     | Private | `s3.private.mon01.cloud-object-storage.appdomain.cloud` |
@@ -181,7 +179,6 @@ If a networking failure results in a partition where the data center is unable t
 | Amsterdam, Netherlands      | Direct | `s3.direct.ams03.cloud-object-storage.appdomain.cloud` |
 | Chennai, India              | Direct | `s3.direct.che01.cloud-object-storage.appdomain.cloud` |
 | Hong Kong S.A.R. of the PRC | Direct | `s3.direct.hkg02.cloud-object-storage.appdomain.cloud` |
-| Melbourne, Australia        | Direct | `s3.direct.mel01.cloud-object-storage.appdomain.cloud` |
 | Mexico City, Mexico         | Direct | `s3.direct.mex01.cloud-object-storage.appdomain.cloud` |
 | Milan, Italy                | Direct | `s3.direct.mil01.cloud-object-storage.appdomain.cloud` |
 | Montr&egrave;al, Canada     | Direct | `s3.direct.mon01.cloud-object-storage.appdomain.cloud` |
@@ -218,3 +215,10 @@ The Activity Tracker and Logging Service with LogDNA can archive to a bucket at 
 {: #endpoints-decom}
 
 Over time, it may be necessary for locations to transform from a Single Data Center to a Regional configuration, or for a location to be decommissioned entirely. These situations will require users to migrate data from one bucket to another. Please consult this [guide for migrating a bucket using Rclone](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-region-copy).
+
+| Region               | Type    | Endpoint                                                |
+|----------------------|---------|---------------------------------------------------------|
+| Melbourne, Australia | Public  | `s3.mel01.cloud-object-storage.appdomain.cloud`         |
+| Melbourne, Australia | Private | `s3.private.mel01.cloud-object-storage.appdomain.cloud` |
+| Melbourne, Australia | Direct  | `s3.direct.mel01.cloud-object-storage.appdomain.cloud`  |
+{: caption="Table 5. Decommissioned Endpoints" caption-side="top"}
