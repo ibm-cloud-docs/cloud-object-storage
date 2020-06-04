@@ -3,12 +3,11 @@
 copyright:
   years: 2017, 2020
 
-lastupdated: "2020-02-10"
+lastupdated: "2020-06-04"
 
 keywords: endpoint, location, object storage
 
 subcollection: cloud-object-storage
-
 
 ---
 {:new_window: target="_blank"}
