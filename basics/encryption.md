@@ -143,5 +143,5 @@ When a Key Protect root key is deleted it generates the [Activity Tracker manage
 Key rotation does not generate a bucket management event.
 {:note}
 
-Only buckets created after June 8th, 2020 will be able to generate this event.
+Only buckets created after February 26th, 2020 will be able to generate this event.
 {: important}
