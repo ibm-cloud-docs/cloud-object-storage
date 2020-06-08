@@ -140,7 +140,7 @@ Cryptographic erasure (or crypto-shredding) is a method of rendering encrypted d
 
 When a Key Protect root key is deleted it generates the [Activity Tracker management event(/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global)] `cloud-object-storage.bucket-key-state.update` in addition to the `kms.secrets.delete` event logged by Key Protect. In the event of a server-side failure to delete the key, that failure is not logged unless it does not succeed within four hours.
 
-Rotating, suspending, or enabling keys does not generate a bucket management event at this time.
+Rotating, suspending, or resuming (enabling) keys does not generate a bucket management event at this time.
 {:note}
 
 Only buckets created after February 26th, 2020 will be able to generate this event.
