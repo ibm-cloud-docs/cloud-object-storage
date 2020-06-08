@@ -61,11 +61,11 @@ Management events are classified in the following categories:
 
 The following table lists the COS actions that generate a global event. You can monitor this events through the Activity Tracker instance that is available in the Frankfurt location.
 
-| Action                                 | Description                 |
-| -------------------------------------- | --------------------------- |
-| `cloud-object-storage.instance.list`   | List the buckets in the service instance |
-| `cloud-object-storage.bucket.create`   | Create a bucket in the service instance |
-| `cloud-object-storage.bucket.delete`   | Delete a bucket in the service instance |
+| Action                                         | Description                               |
+|------------------------------------------------|-------------------------------------------|
+| `cloud-object-storage.instance.list`           | List the buckets in the service instance  |
+| `cloud-object-storage.bucket.create`           | Create a bucket in the service instance   |
+| `cloud-object-storage.bucket.delete`           | Delete a bucket in the service instance   |
 | `cloud-object-storage.bucket-key-state.update` | Delete a Key Protect root encryption key. |
 {: caption="Table 1. {{site.data.keyword.cos_short}} actions that generate global events"}
 
