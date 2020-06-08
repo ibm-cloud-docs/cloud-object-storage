@@ -44,7 +44,7 @@ First, make sure that you have a bucket. If not, follow the [getting started tut
 5. Navigate to the **Activity Tracker** tab.
 6. Click **Create**.
 7. If you already have an instance of Activity Tracker with LogDNA, you can select it here.  If not, select the appropriate configuration, and click **Create**.
-8. After a few minutes, any activity will be [visible in the web UI](/docs/Activity-Tracker-with-LogDNA?topic=logdnaat-launch).
+8. After a few minutes, any activity will be [visible in the web UI](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-launch).
 
 ### Archive events to object storage.
 {: #at-archive}
