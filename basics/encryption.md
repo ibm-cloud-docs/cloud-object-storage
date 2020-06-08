@@ -126,6 +126,8 @@ Note that the `Etag` value returned for objects encrypted using SSE-KP or {{site
 
 It is also possible to use [the REST API](/docs/services/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-key-protect) or SDKs ([Go](/docs/services/cloud-object-storage?topic=cloud-object-storage-go#go-examples-kp), [Java](/docs/services/cloud-object-storage?topic=cloud-object-storage-java#java-examples-kp-bucket), [Node.js](/docs/services/cloud-object-storage?topic=cloud-object-storage-node#node-examples-kp), [Python](/docs/services/cloud-object-storage?topic=cloud-object-storage-python#python-examples-kp))
 
+
+
 ### Rotating Keys
 {: #encryption-rotate}
 
