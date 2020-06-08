@@ -138,7 +138,7 @@ For more information, see the documentation for rotating keys in [Key Protect](/
 
 Cryptographic erasure (or crypto-shredding) is a method of rendering encrypted data  unreadable by [deleting the encryption keys](/docs/key-protect?topic=key-protect-security-and-compliance#data-deletion) rather than the data itself. When a root key is deleted in Key Protect it will affect all objects in any buckets created using that root key, effectively "shredding" the data. This process is not instantaneous, but occurs within a few minutes after the key is deleted.
 
-When a Key Protect root key is deleted it generates the [Activity Tracker management event(/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global)] `cloud-object-storage.bucket-key-state.update` in addition to the `kms.secrets.delete` event logged by Key Protect. In the event of a server-side failure to delete the key, that failure is not logged unless it does not succeed within four hours.
+When a Key Protect root key is deleted and an associated object storage bucket is crypto-shredded, an [Activity Tracker management event(/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global)] (`cloud-object-storage.bucket-key-state.update`) is generated in addition to the `kms.secrets.delete` event logged by Key Protect. In the event of a server-side failure to delete the key, that failure is not logged unless it does not succeed within four hours.
 
 Rotating, suspending, or resuming (enabling) keys does not generate a bucket management event at this time.
 {:note}
