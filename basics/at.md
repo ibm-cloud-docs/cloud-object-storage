@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-02-10"
+lastupdated: "2020-06-08"
 
 keywords: activity tracker, LogDNA, event, object storage, COS API calls, monitor COS events
 
@@ -66,6 +66,7 @@ The following table lists the COS actions that generate a global event. You can 
 | `cloud-object-storage.instance.list`   | List the buckets in the service instance |
 | `cloud-object-storage.bucket.create`   | Create a bucket in the service instance |
 | `cloud-object-storage.bucket.delete`   | Delete a bucket in the service instance |
+| `cloud-object-storage.bucket-key-state.update` | Delete a Key Protect root encyption key. |
 {: caption="Table 1. {{site.data.keyword.cos_short}} actions that generate global events"}
 
 ### Resource configuration events

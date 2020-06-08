@@ -126,11 +126,22 @@ Note that the `Etag` value returned for objects encrypted using SSE-KP or {{site
 
 It is also possible to use [the REST API](/docs/services/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-key-protect) or SDKs ([Go](/docs/services/cloud-object-storage?topic=cloud-object-storage-go#go-examples-kp), [Java](/docs/services/cloud-object-storage?topic=cloud-object-storage-java#java-examples-kp-bucket), [Node.js](/docs/services/cloud-object-storage?topic=cloud-object-storage-node#node-examples-kp), [Python](/docs/services/cloud-object-storage?topic=cloud-object-storage-python#python-examples-kp))
 
-
-
 ### Rotating Keys
 {: #encryption-rotate}
 
 Key rotation is an important part of mitigating the risk of a data breach. Periodically changing keys reduces the potential data loss if the key is lost or compromised. The frequency of key rotations varies by organization and depends on a number of variables, such as the environment, the amount of encrypted data, classification of the data, and compliance laws. The [National Institute of Standards and Technology (NIST)](https://www.nist.gov/topics/cryptography){: external} provides definitions of appropriate key lengths and provides guidelines for how long keys should be used.
 
 For more information, see the documentation for rotating keys in [Key Protect](/docs/key-protect?topic=key-protect-set-rotation-policy) or [{{site.data.keyword.hscrypto}}](/docs/key-protect?topic=key-protect-rotate-keys).
+
+### Cryptographic erasure
+{: encryption-cryptoerasure}
+
+Cryptographic erasure (or crypto-shredding) is a method of rendering encrypted data permanently unreadable by [deleting the encryption keys](/docs/key-protect?topic=key-protect-security-and-compliance#data-deletion) rather than the data itself. When a root key is deleted in Key Protect it will affect all objects in any buckets created using that root key, **permanently and irreversibly** "shredding" the data. 
+
+When a Key Protect root key is deleted it generates the [Activity Tracker management event(/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global)] `cloud-object-storage.bucket-key-state.update` in addition to the `kms.secrets.delete` event. In the event of a server-side failure to delete the key, that failure is not logged unless it does not succeed within four hours.
+
+Key rotation does not generate a bucket management event.
+{:note}
+
+Only buckets created after June 8th, 2020 will be able to generate this event.
+{: important}
