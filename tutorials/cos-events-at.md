@@ -42,7 +42,7 @@ This tutorial will provide an introduction to capturing information regarding th
 Also, to find out what works for you beyond this tutorial, check out the offerings listed for each service. With so many options, you are sure to find the specific configuration to work for your needs, beyond this brief introduction. 
 {: tip} 
 
-If you're not familiar with {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). Also, if you're not familiar with {{site.data.keyword.at_full}}, you may wish to check out how to [get started with {{site.data.keyword.at_short}}](/docs/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started).
+If you're not familiar with {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). Also, if you're not familiar with {{site.data.keyword.at_full}}, you may wish to check out how to [get started with {{site.data.keyword.at_short}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started).
 
 ## Prerequisites
 {: #tracking-cos-events-prereqs}
@@ -253,7 +253,7 @@ crn:v1:staging:public:logdna:us-south:a/943494a618ed4e978e68b918d1aeec4c:c1ee8d0
 ## Next Steps
 {: #tracking-cos-events-next-steps}
 
-For more about {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). Also, you can find out more regarding {{site.data.keyword.at_full}} at the [getting started with {{site.data.keyword.at_short}}](/docs/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started).
+For more about {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). Also, you can find out more regarding {{site.data.keyword.at_full}} at the [getting started with {{site.data.keyword.at_short}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started).
 
 With so many options, there is literally too much to cover beyond the scope of this tutorial. Here are only a few links to explore more of the ideas presented in this document to get you started on your own journey.
 
