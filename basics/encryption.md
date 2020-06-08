@@ -143,5 +143,5 @@ When a Key Protect root key is deleted and an associated object storage bucket i
 Rotating, suspending, or resuming (enabling) keys does not generate a bucket management event at this time.
 {:note}
 
-Only buckets created after February 26th, 2020 will be able to generate this event.
+This event will not be generated for buckets created prior to February 26th, 2020 at this time.
 {: important}
