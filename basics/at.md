@@ -66,7 +66,7 @@ The following table lists the COS actions that generate a global event. You can 
 | `cloud-object-storage.instance.list`           | List the buckets in the service instance  |
 | `cloud-object-storage.bucket.create`           | Create a bucket in the service instance   |
 | `cloud-object-storage.bucket.delete`           | Delete a bucket in the service instance   |
-| `cloud-object-storage.bucket-key-state.update` | Delete a Key Protect root encryption key. |
+| `cloud-object-storage.bucket-key-state.update` | Delete a Key Protect root encryption key |
 {: caption="Table 1. {{site.data.keyword.cos_short}} actions that generate global events"}
 
 ### Resource configuration events
