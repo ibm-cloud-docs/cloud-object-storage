@@ -60,7 +60,7 @@ Learn more about using the {{site.data.keyword.cloud_notm}} CLI to create applic
 ## Using the API
 {: #gs-dev-api}
 
-For managing data stored in {{site.data.keyword.cos_short}}, you can use S3 API compatible tools like the [AWS CLI](/docs/cloud-object-storage/cli?topic=cloud-object-storage-aws-cli)with [HMAC credentials](/docs/cloud-object-storage/hmac?topic=cloud-object-storage-hmac) for compatibility. As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage. More information can be found in [the `curl` reference](/docs/cloud-object-storage/cli?topic=cloud-object-storage-curl), as well as [the API reference documentation](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api).
+For managing data stored in {{site.data.keyword.cos_short}}, you can use S3 API compatible tools like the [AWS CLI](/docs/cloud-object-storage/cli?topic=cloud-object-storage-aws-cli)with [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) for compatibility. As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage. More information can be found in [the `curl` reference](/docs/cloud-object-storage/cli?topic=cloud-object-storage-curl), as well as [the API reference documentation](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api).
 
 ## Using libraries and SDKs
 {: #gs-dev-sdk}
