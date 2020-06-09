@@ -143,7 +143,7 @@ Cryptographic erasure (or crypto-shredding) is a method of rendering encrypted d
 Although objects in a crypto-shredded bucket can not be read, and new object can not be written, existing objects will continue to consume storage until they are deleted by a user.
 {: tip}
 
-When a Key Protect root key is deleted and an associated object storage bucket is crypto-shredded, an [Activity Tracker management event](/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global) `cloud-object-storage.bucket-key-state.update`) is generated in addition to the `kms.secrets.delete` event logged by Key Protect. In the event of a server-side failure to delete the key, that failure is not logged unless it does not succeed within four hours.
+When a Key Protect root key is deleted and an associated object storage bucket is crypto-shredded, an [Activity Tracker management event](/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global) (`cloud-object-storage.bucket-key-state.update`) is generated in addition to the `kms.secrets.delete` event logged by Key Protect. In the event of a server-side failure to delete the key, that failure is not logged unless it does not succeed within four hours.
 
 Rotating, suspending, or resuming (enabling) keys does not generate a bucket management event at this time.
 {:note}
