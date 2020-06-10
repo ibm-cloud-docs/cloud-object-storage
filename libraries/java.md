@@ -228,7 +228,7 @@ public static AmazonS3 createClient(String api_key, String service_instance_id, 
 *Key Values*
 * `<endpoint>` - public endpoint for your cloud Object Storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){: external}). For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
-* `<resource-instance-id>` - resource ID for your cloud Object Storage (available through [IBM Cloud CLI](/docs//docs/cli?topic=cloud-cli-idt-cli) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){: external})
+* `<resource-instance-id>` - resource ID for your cloud Object Storage (available through [IBM Cloud CLI](/docs/cli?topic=cloud-cli-idt-cli) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){: external})
 * `<location>` - default location for your cloud Object Storage (must match the region that is used for `<endpoint>`)
 
 *SDK References*
@@ -837,15 +837,15 @@ Key Protect can be added to a storage bucket to encrypt sensitive data at rest i
 
 The following items are necessary in order to create a bucket with Key-Protect enabled:
 
-* A Key Protect service [provisioned](/docs/key-protect?topic=key-protect-provision#provision)
-* A Root key available (either [generated](/docs/key-protect?topic=key-protect-create-root-keys#create_root_keys) or [imported](/docs/key-protect?topic=key-protect-import-root-keys#import_root_keys))
+* A Key Protect service [provisioned](/docs/key-protect?topic=key-protect-provision)
+* A Root key available (either [generated](/docs/key-protect?topic=key-protect-create-root-keys) or [imported](/docs/key-protect?topic=key-protect-import-root-keys))
 
 ### Retrieving the Root Key CRN
 {: #java-examples-kp-root}
 
-1. Retrieve the [instance ID](/docs/key-protect?topic=key-protect-retrieve-instance-ID#retrieve-instance-ID) for your Key Protect service
-2. Use the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api#set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
-    * You can either use `curl` commands or an API REST Client such as [Postman](/docs/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api#set-up-api).
+1. Retrieve the [instance ID](/docs/key-protect?topic=key-protect-retrieve-instance-ID) for your Key Protect service
+2. Use the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
+    * You can either use `curl` commands or an API REST Client such as [Postman](/docs/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api).
 3. Retrieve the CRN of the root key you will use to enabled Key Protect on the your bucket. The CRN will look similar to below:
 
 `crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
@@ -1028,7 +1028,7 @@ For best performance in most scenarios, always make use of multiple sessions to 
 *Key Values*
 * `API_KEY` - An API key for a user or service ID with Writer or Manager roles
 
-You will need to provide an IAM API Key for constructing an `AsperaTransferManager`. [HMAC Credentials](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){: external} are **NOT** currently supported. For more information on IAM, [click here](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview#getting-started-with-iam).
+You will need to provide an IAM API Key for constructing an `AsperaTransferManager`. [HMAC Credentials](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){: external} are **NOT** currently supported. For more information on IAM, [click here](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview).
 {:tip}
 
 ### File Upload
