@@ -754,7 +754,7 @@ function getProtectionConfigurationOnBucket(bucketName) {
     .then((data) => {
         console.log(`Configuration on bucket ${bucketName}:`);
         console.log(data);
-    }
+    })
     .catch((e) => {
         console.log(`ERROR: ${e.code} - ${e.message}\n`);
     });
