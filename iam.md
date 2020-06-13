@@ -42,7 +42,7 @@ Policies enable access to be granted at different levels. Some of the options in
 
 * Access across all instances of the service in your account
 * Access to an individual service instance in your account
-* Access to a specific resource within an instance
+* Access to a specific bucket within an instance (see [Bucket permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions))
 * Access to all IAM-enabled services in your account
 
 After you define the scope of the access policy, you assign a role. Review the following tables which outline what actions each role allows within the {{site.data.keyword.cos_short}} service.

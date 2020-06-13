@@ -42,7 +42,7 @@ Looking for instructions for how to use {{site.data.keyword.cos_full}} in an {{s
 
 * IBM Cloud account and an instance of {{site.data.keyword.cos_full}}
 * A Linux or OSX environment
-* Credentials (either an [IAM API key](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview) or [HMAC credentials](/docs/cloud-object-storage/hmac?topic=cloud-object-storage-hmac))
+* Credentials (either an [IAM API key](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview) or [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main))
 
 ## Installation
 {: #s3fs-install}

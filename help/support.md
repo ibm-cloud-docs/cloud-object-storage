@@ -40,9 +40,20 @@ Whether by searching for information or by asking questions through a forum, you
 {: #troubleshooting-cos-endpoint}
 {: support}
 
-1. Go to the {{site.data.keyword.cos_full_notm}} documentation for [endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started) to research the desired levels of resiliency for your data and appropriate location.
+1. Go to the {{site.data.keyword.cos_full_notm}} documentation for [endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) to research the desired levels of resiliency for your data and appropriate location.
 1. Follow the steps to provision your instance in order to create a bucket, choosing a unique name. All buckets in all regions across the globe share a single namespace.
 1. Choose your desired level of resiliency, then a location where you would like your data to be physically stored. Resiliency refers to the scope and scale of the geographic area across which your data is distributed. Cross Region resiliency spreads your data across several metropolitan areas, while Regional resiliency spreads data across a single metropolitan area. A Single Data Center distributes data across devices within a single site only.
+
+## How do I find a bucket’s location and endpoint?
+{: #troubleshooting-cos-find}
+
+You can view the bucket location in the IBM Cloud console with these steps:
+1. From the IBM Cloud console, select **Storage** to view your resource list. 
+1. Next, select the service instance with your bucket from within the **Storage** category. This takes you to the Object Storage Console. 
+1. Choose the bucket for which you want to see location and endpoints.
+1. Select **Configuration** from the navigation menu to view the page with Location and Endpoints data.
+
+Or you can list bucket information with a GET request that includes the “extended” parameter as shown in [Getting an extended listing](/docs/cloud-object-storage/basics?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets-extended).
 
 ## How do I encrypt my data?
 {: #troubleshooting-cos-encryption}
@@ -74,6 +85,22 @@ Whether by searching for information or by asking questions through a forum, you
 1. To add the new user you first need to leave the current {{site.data.keyword.cos_short}} interface and head for the IAM console. Go to the **Manage** menu and follow the link at **Access (IAM)** > **Users**. Click **Service Credentials**.
 1. Click **New credential** and provide the necessary information. If you want to generate HMAC credentials, click the 'Include HMAC Credential' check box. Select the "Manager" service access role to allow the user to manage the bucket that you will select next.
 1. Click **Add** to generate service credential.
+
+## How do I resolve a 404 error when using the command line?
+{: #troubleshooting-cos-error404}
+
+You can view a bucket or object in the IBM Cloud console but the following error occurs when you use a command line interface to access that same bucket:
+* Cloud CLI error: “The specified bucket was not found in your IBM Cloud account. This may be because you provided the wrong region. Provide the bucket's correct region and try again.”
+* AWS CLI error: “An error occurred (NoSuchBucket) when calling the ListObjectsV2 operation: The specified bucket does not exist.”
+
+The bucket’s location must correspond to the endpoint used by the CLI. This error occurs when the bucket or object cannot be found at the default endpoint for the CLI. 
+
+To avoid the error, make sure the bucket location matches the endpoint used by the CLI.  For the parameters to set a region or endpoint, refer to the documentation for [Cloud Object Storage CLI](/docs/cloud-object-storage?topic=cloud-object-storage-cli-plugin-ic-cos-cli) or [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli).
+
+## How do I copy or move files to another bucket in a different location?
+{: #troubleshooting-cos-move}
+
+Refer to [Move data between buckets](/docs/cloud-object-storage?topic=cloud-object-storage-region-copy) for an example of how to use the rclone command line utility for copying data. If you use other 'sync' or 'clone' tools, be aware that you might need to implement a script to move files to a bucket in a different location because multiple endpoints are not allowed in a command.
 
 
 ## Other support options

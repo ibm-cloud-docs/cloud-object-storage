@@ -42,7 +42,7 @@ It isn't possible to use a bucket with a firewall enabled in a VPC environment. 
 ## Before you begin
 {: #firewall-precursors}
 
-First, make sure that you have an instance of {{site.data.keyword.cos_short}} and have provisioned at least one bucket. If not, follow the [getting started tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started) to obtain the prerequisites and become familiar with the console.
+First, make sure that you have an instance of {{site.data.keyword.cos_short}} and have provisioned at least one bucket. If not, follow the [getting started tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) to obtain the prerequisites and become familiar with the console.
 
 ## Using the console to set a firewall
 {: #firewall-console}
