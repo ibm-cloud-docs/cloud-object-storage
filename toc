@@ -18,12 +18,6 @@ Cloud Object Storage
     quick-facts.md
     release-notes.md
 
-    {: .topicgroup}
-    Performance optimization
-        performance/topology.md
-        performance/encryption-integrity.md
-        performance/data-io.md
-        performance/bottlenecks.md
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
