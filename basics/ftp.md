@@ -42,7 +42,7 @@ If you've used FTP in the past, you have either worked from the command line or 
 
 Cyberduck provides full operational visibility in connecting to {{site.data.keyword.cos_full_notm}}. Cyberduck is downloaded from [cyberduck.io/](https://cyberduck.io/){: external}. Once you have it installed, you can configure it to connect to your instance of {{site.data.keyword.cos_short}}.
 
-Use Cyberduck to create a connection to {{site.data.keyword.cos_full_notm}}. Then, synchronize a folder of local files to a bucket. After you complete [getting started](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started) {{site.data.keyword.cos_short}} and obtained your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), follow these steps: 
+Use Cyberduck to create a connection to {{site.data.keyword.cos_full_notm}}. Then, synchronize a folder of local files to a bucket. After you complete [getting started](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) {{site.data.keyword.cos_short}} and obtained your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), follow these steps: 
 
 1. Download, install, and start Cyberduck.
 1. When the application opens, you can create a connection to {{site.data.keyword.cos_short}}. Click **Open Connection** to configure the connection.

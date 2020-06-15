@@ -608,14 +608,14 @@ Key Protect can be added to a storage bucket to encrypt sensitive data at rest i
 The following items are necessary in order to create a bucket with Key-Protect enabled:
 
 * A Key Protect service [provisioned](/docs/key-protect?topic=key-protect-provision)
-* A Root key available (either [generated](/docs/key-protect?topic=key-protect-create-root-keys#create_root_keys) or [imported](/docs/key-protect?topic=key-protect-import-root-keys#import_root_keys))
+* A Root key available (either [generated](/docs/key-protect?topic=key-protect-create-root-keys) or [imported](/docs/key-protect?topic=key-protect-import-root-keys))
 
 ### Retrieving the Root Key CRN
 {: #python-examples-kp-root}
 
-1. Retrieve the [instance ID](/docs/key-protect?topic=key-protect-retrieve-instance-ID#retrieve-instance-ID) for your Key Protect service
-2. Use the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api#set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
-    * You can either use `curl` commands or an API REST Client such as [Postman](/docs/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api#set-up-api).
+1. Retrieve the [instance ID](/docs/key-protect?topic=key-protect-retrieve-instance-ID) for your Key Protect service
+2. Use the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
+    * You can either use `curl` commands or an API REST Client such as [Postman](/docs/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](docs/key-protect?topic=key-protect-set-up-api).
 3. Retrieve the CRN of the root key you use to enabled Key Protect on your bucket. The CRN looks similar to below:
 
 `crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
@@ -697,7 +697,7 @@ transfer_manager = AsperaTransferManager(cos)
 {: codeblock}
 {: python}
 
-You need to provide an IAM API Key for Aspera high-speed transfers. [HMAC Credentials](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){: external} are **NOT** currently supported. For more information on IAM, [click here](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview#getting-started-with-iam).
+You need to provide an IAM API Key for Aspera high-speed transfers. [HMAC Credentials](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){: external} are **NOT** currently supported. For more information on IAM, [click here](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview).
 {:tip}
 
 To get the highest throughput, split the transfer into a specified number of parallel **sessions** that send chunks of data whose size is defined by a **threshold** value.

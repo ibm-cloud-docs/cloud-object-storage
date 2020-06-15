@@ -32,7 +32,7 @@ There are two IAM roles that can be used for public access to a bucket: `Content
 ## Using the console to set public access
 {: #iam-public-access-console}
 
-First, make sure that you have a bucket. If not, follow the [getting started tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started) to become familiar with the console.
+First, make sure that you have a bucket. If not, follow the [getting started tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) to become familiar with the console.
 
 ### Enable public access
 {: #public-access-console-enable}

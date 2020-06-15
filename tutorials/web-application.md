@@ -48,7 +48,7 @@ Let's start by opening a tool familiar to experienced developers, and a new best
 
 Open a shell and create a directory. Change your own reference directory to the new one you created. When created, your application has its own subdirectory with the starter code and configuration that is needed to get up and running.
 
-Leave the command line and return to your browser so you can follow the instructions to install the [{{site.data.keyword.cloud_notm}} Platform developer tools](/docs/cli?topic=cloud-cli-install-devtools-manually) at the link. The Developer Tools offer an extensible and repeatable approach to building and deploying cloud applications. 
+Leave the command line and return to your browser so you can follow the instructions to install the [{{site.data.keyword.cloud_notm}} Platform developer tools](/docs/cli?topic=cli-install-devtools-manually) at the link. The Developer Tools offer an extensible and repeatable approach to building and deploying cloud applications. 
 
 ### Installing Docker
 {: #tutorial-wa-install-docker}
