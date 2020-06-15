@@ -238,18 +238,6 @@ crn:v1:staging:public:logdna:us-south:a/943494a618ed4e978e68b918d1aeec4c:c1ee8d0
 ```
 {: cli}
 
-## Observability
-{: #tracking-cos-events-observability}
-
-
-### Testing
-{: #tracking-cos-events-testing}
-
-
-### Further Operations
-{: #tracking-cos-events-operations}
-
-
 ## Next Steps
 {: #tracking-cos-events-next-steps}
 
