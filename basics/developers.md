@@ -54,7 +54,7 @@ Some users may encounter the error `No resource group targeted` when trying to c
 
 The [Getting Started guide](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) walks through the basic steps of creating buckets and objects, as well as inviting users and creating policies. A list of basic 'curl' commands can be found [here](/docs/cloud-object-storage/cli?topic=cloud-object-storage-curl).
 
-Learn more about using the {{site.data.keyword.cloud_notm}} CLI to create applications, manage Kubernetes clusters, and more [in the documentation](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_cli).
+Learn more about using the {{site.data.keyword.cloud_notm}} CLI to create applications, manage Kubernetes clusters, and more [in the documentation](/docs/cli?topic=cli-ibmcloud_cli).
 
 
 ## Using the API
