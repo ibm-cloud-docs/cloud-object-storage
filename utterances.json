@@ -1,0 +1,375 @@
+{
+    "faq-name-case": [
+        "cloud object storage bucket names not case-sensitive",
+        "cloud object storage bucket name convention rule",
+		"case-sensitivity in cloud object storage",
+		"Does case matter for COS containers",
+        "are bucket names case sensitive",
+        "can bucket name be all upper case",
+        "can bucket name be all lower case"
+    ],
+    "faq-max-key": [
+        "maximum number of characters of a cloud object storage key or object name",
+        "max number of chars for a cloud object storage key",
+		"the object name character limit",
+        "maximum number of characters for cloud object storage name",
+		"max character limit for object storage object",
+        "how many characters in a COS key",
+        "how many chars can a key have in COS"
+    ],
+    "faq-bucket-size": [
+        "find total size of cloud object storage bucket using API",
+        "find size of cloud object storage bucket",
+        "how many bytes in my bucket",
+		"determine the total size of a bucket",
+		"space usage of my COS bucket",
+        "API to find the sizze of bucket",
+        "find how big the COS bucket is"
+    ],
+    "faq-migrate": [
+        "migrate data from AWS S3 into Cloud Object Storage",
+        "read and write data from AWS into Cloud Object Storage",
+        "migrate data from AWS into Cloud Object Storage",
+        "move data from AWS to COS",
+		"move from AWS to IBM COS",
+		"transfer data from AWS to IBM object storage",
+        "migrating information out of AWS and into COS"
+    ],
+    "faq-aws-sdk": [
+        "manipulate Cloud Object Storage using AWS S3 SDKs",
+        "AWS SDK cannot use apikey to access IBM Cloud Object Storage",
+        "difference COS SDKs vs AWS S3 SDK",
+        "AWS SDK cannot recognize cloud object storage region or endpoint by region",
+        "aws sdk error message with 'amazonaws.com' when access cloud object storage",
+        "COS SDKs based on the AWS S3 API SDKs",
+        "use AWS S3 SDKs with COS"
+    ],
+    "faq-bucket-limit": [
+        "maxmum of cloud object storage buckets in an account",
+        "max number of buckets allowed",
+        "how many buckets can I have in one account",
+        "what is the current bucket limit",
+		"increase the bucket limit for object storage",
+		"raising the number of buckets in COS",
+		"the container limit of Object Storage",
+        "the bucket limit for an account"
+    ],
+    "faq-store-data": [
+        "store my data using IBM Cloud Object Storage in one account",
+        "store my COS data in one account",
+        "store my data using IBM Cloud Object Storage ",
+        "store my data in Cloud Object Storage Vault or Cold Vault",
+		"order a new account to get a different storage class in COS",
+		"get a new account to get a new storage class for object storage",
+        "storing data in Cloud Object Storage Vault or Cold Vault",
+        "store my COS data using vault"
+    ],
+    "faq-bucket-class": [
+        "how do I set the storage class of a bucket",
+        "change the variable of a newly created bucket",
+        "set the bucket storage class",
+		"rrror configuring class on COS objects",
+        "setting the bucket's storage class",
+		"fail to set storage class on object storage container",
+        "add the storage class of a bucket"
+    ],
+    "faq-change-class": [
+        "the storage class of a bucket be changed",
+        "update the storage class of a bucket",
+        "change COS storage class of a bucket",
+        "updating the storage class of a bucket",
+		"Change a COS container's storage class",
+		"modify an object storage container to a different class",
+        "change the storage class of a bucket"
+    ],
+    "faq-change-loc": [
+        "change cloud object storage bucket location",
+        "switch cloud object storage bucket location",
+        "change the bucket location",
+        "cloud object storage location constraint for a bucket",
+        "where can find cloud object storage location constraints",
+        "update cloud object storage bucket location",
+        "updating bucket location",
+		"move a bucket to another datacenter",
+		"change the location of a COS container",
+        "cloud object storage location change"
+    ],
+    "faq-authenticate": [
+        "cloud object storage authentication type apikey",
+        "cloud object storage authentication type HMAC credentials",
+        "how to obtain COS HMAC credentials",
+        "COS authentication type HMAC credentials",
+		"login credentials for object storage",
+        "obtain cloud object storage HMAC credentials",
+		"object storage authentication methods",
+		"how to login to COS",
+        "Access Key and Secret Key pair in COS",
+        "use Access Key and Secret Key to access cloud object storage",
+        "obtain the HMAC credentials for COS",
+        "obtain an OAuth token for COS"
+    ],
+    "faq-cors": [
+        "diference between CORS and firewall settings in Cloud Object Storage",
+        "cloud object storage firewall whitelist",
+        "firewall whitelist for COS",
+		"How does CORS work",
+		"CORS the same as a object storage container firewall",
+        "difference between firewall and CORS setting in Cloud Object Storage",
+        "cross-origin resource sharing and a bucket firewall differ",
+        "cloud object storage bucket authorized IPs",
+        "cloud object storage bucket configuration with cross-origin resource sharing CORS"
+    ],
+    "faq-lite-storage": [
+        "more than one Cloud Object Storage Lite plan service instance in an account",
+        "You can have only one instance of a Lite plan per service for cloud object storage",
+        "multiple Cloud Object Storage Lite plan service instances",
+        "portal error message with 'You can have only one instance of a Lite plan per service' cloud object storage COS",
+        "error message with BXCOS10012E cloud object storage",
+		"limit to the number of Lite plan COS",
+		"error when creating object storage Lite plan",
+		"unable to create a COS",
+        "ibmcloud CLI error message with RC-InstanceCountExceeded COS",
+        "error message with 409 cloud object storage COS"
+    ],
+    "faq-lite-exceed": [
+        "cloud object storage Lite plan service instance is still serve when it exceeds max usage",
+        "cloud object storage lite plan exeeds max usage",
+        "cloud object storage multiple lite plans",
+        "lite plan exceeded max usage for COS",
+		"COS Lite plan usage limit is exceeded",
+		"get object storage Lite plan overage",
+        "cloud object storage service is locked",
+        "ibmcloud CLI resource service-instance state is inactive",
+        "cloud object storage service has been suspended"
+    ],
+    "faq-consistency": [
+        "data consistency in Object Storage have a performance impact",
+        "data consistency impact performance in Object Storage",
+        "worse performance with data consistency in COS",
+        "data consistency in COS impact performance ",
+		"does data consistency affect performance",
+        "performance impact for COS with data consistency"
+    ],
+    "faq-large": [
+        "improve cloud object storage upload performance with large files",
+        "improve cloud object storage upload performance with large files",
+        "can cloud object storage support multi parts upload to improve performance",
+		"optimize large object performance",
+        "cloud object storage support ranged read to improve download performance",
+        "improve performance uploading large file in COS"
+    ],
+    "faq-encrypt-basics": [
+        "Object Storage provide encryption at rest and in motion",
+        "COS providing encryption at rest and in motion",
+        "COS can encrypt in motion and also at rest",
+		"How is COS data encrypted",
+		"kind of encryption does Object Storage use",
+        "encryption in object storage at rest",
+        "encryption in cloud object storage in motion"
+    ],
+    "faq-encrypt-add": [
+        "additional encryption processing if I want to encrypt data",
+        "processing cost for encryption processing in COS",
+        "performance impact for COS encryption",
+		"effect on performance for object storage encryption",
+        "processing cost in object storage for encryption ",
+        "encryption processing to encrypt data in COS"
+    ],
+    "faq-encrypt-all": [
+        "Object Storage encrypt all data",
+        "all data encrypted in COS",
+		"objects encrypted in COS",
+        "everything encrypted in object storage",
+        "all automatically encrypted in COS",
+        "does COS encrypt all data"
+    ],
+    "faq-encrypt-fips": [
+        "FIPS 140-2 compliance for the encryption algorithms in COS",
+        "does COS have FIPS configuration",
+        "what is COS Federal offering",
+        "does COS Federal offering include encryption",
+		"COS compliant with federal encryption",
+		"Object Storage FIPS 140-2 compliant",
+        "FIPS compliance in COS"
+    ],
+    "faq-encrypt-client": [
+        "client-key encryption by cloud object storage",
+        "client key encryption supported in cloud object storage",
+        "COS include client key encryption ",
+		"bring-your-own keys supported on COS",
+		"byo keys are supported on object storage",
+		"client encryption keys supported in COS",
+        "offer client key encryption in object storage",
+        "client-key encryption included in cloud object storage"
+    ],
+    "faq-expired": [
+        "destruct expired cloud object storage data",
+        "destroy expired COS data",
+        "destroy expired COS data securely",
+		"data deletion procedures for COS",
+        "cloud object storage data erase method mechanism",
+        "prevent recovery or reconstruct COS data",
+        "erase deleted object storage object",
+		"how are objects deleted in COS",
+        "secure deleted or expired cloud object storage data"
+    ],
+    "faq-single": [
+        "many objects can fit in a bucket",
+        "many objects can fit in a single bucket",
+        "the max number of COS objects in a single bucket",
+		"Is there an object limit for object storage",
+		"maximum objects in a single bucket",
+        "how many COS objects can I have in a bucket",
+        "max amount of objects in a bucket"
+    ],
+    "faq-nest": [
+        "nest cloud object storage buckets inside one another",
+        "nest  buckets inside one another in COS",
+        "nest buckets inside each another",
+		"put a container inside another container for COS",
+		"make a directory tree in COS",
+		"Store buckets in other buckets",
+        "nesting buckets inside each other for COS",
+        "can buckets be nested"
+    ],
+    "faq-ab": [
+        "difference between 'Class A' and 'Class B' requests in cloud object storage",
+        "Class A and Class B requests in COS",
+        "Class A' and 'Class B' requests in cloud object storage differences",
+        "What are Class A requests in object storage",
+        "What are Class B requests for COS"
+    ],
+    "faq-metadata": [
+        "best practices to structure COS data",
+        "how to structure data in Object Storage ",
+        "use a directory structure in cloud object storage",
+		"locate a specific object in object storage",
+		"prefix to find objects in object storage",
+        "easily structure data in Object Storage ",
+        "directory structure changes in COS"
+    ],
+    "faq-immediate": [
+        "confirm that Object Storage is 'immediately consistent or 8eventually consistent",
+        "is COS immediately consistent",
+        "is object storage eventually consistent",
+        "does COS include immediately consistent and eventually consistent",
+		"What kind of data consistency does COS have",
+		"consistent is the data after uploading an object",
+        "immediately consistent or eventually consistent in COS"
+    ],
+    "faq-partition": [
+        "Object Storage partition the data automatically ",
+        "does Object Storage support a ranged GET on the object",
+        "read the partitions in parallel in COS",
+        "COS partitioning the data automatically",
+		"object Storage support ranged read",
+		"object storage paralellize read requests",
+		"COS support paralellized reads",
+        "does data can partitioned automatically in COS"
+    ],
+    "faq-cos-backup": [
+        "restore Cloud Object Storage data from specfic backup",
+        "does cloud object storage provide backup data",
+        "overwrite an existing bucket",
+        "restore cloud object storage data if deleted by mistake",
+		"Object Storage a backup service",
+		"restore deleted objects in COS",
+        "lost cloud object storage data by mistake",
+        "lost cloud object storage data can I restore it"
+    ],
+    "faq-cos-web": [
+        "web browser display content of files stored in Cloud Object Storage",
+        "display content of files stored in Cloud Object Storage in web",
+        "browsers display web content in Cloud Object Storage files",
+        "COS support automatic static website hosting",
+		"host a web site on Object Storage",
+		"object storage serve as a web server",
+		"website be hosted on COS",
+        "automatic static website hosting supported bu object storage",
+        "creating static web site using COS"
+    ],
+    "faq-archive": [
+        "set an archive policy on an existing bucket",
+        "to manage an archive policy on a bucket",
+        "add an archive policy to a COS bucket",
+        "add new archive policy to cloud object storage bucket",
+        "archiving COS data",
+		"Archive policy didn't work on COS",
+		"arcuving policy not work on object storage",
+        "new archive policy to existing COS data",
+        "apply new archive policy to existing cloud object storage data"
+    ],
+    "faq-unzip": [
+        "can cloud object storage zip format data",
+        "unzip a file after I upload it to COS",
+        "upload multiple files cloud object storage using zip",
+		"Object Storage support compression",
+		"decompress in COS",
+		"compress data in object storage",
+        "use zip to format COS data",
+        "reduce cloud object storage upload time using zip"
+    ],
+    "faq-reuse-name": [
+        "reuse a deleted bucket name",
+        "reusing a bucket name just deleted",
+        "when can I reuse a bucket name",
+        "error in COS Container container-name exists",
+		"Error creating new container in COS",
+		"reuse old container names in COS",
+        "cannot create a cloud object storage bucket that is already deleted",
+        "error in COS Container container-name exists",
+        "error BucketAlreadyExists in COS",
+        "BucketAlreadyExists error in cloud object storage"
+    ],
+    "troubleshooting-cos-endpoint": [
+        "How do I select an endpoint in COS",
+        "want to select an endpoint location for COS",
+        "selecting an endpoint for cloud object storage",
+        "sselect an object storage endpoint",
+		"endpoint selection in object storage",
+        "COS endpoint location selection"
+    ],
+    "troubleshooting-cos-find": [
+        "find a buckets location and endpoint",
+        "find a buckets location",
+        "finding a COS bucket endpoint",
+		"looking for a bucket location",
+        "view the bucket location",
+        "list bucket information",
+        "list buckets information in COS"
+    ],
+    "troubleshooting-cos-encryption": [
+        "how to encrypt my COS data",
+        "manage data encryption in object storage",
+        "encrypting cloud object storage data",
+        "how to encrypt my object storage data",
+		"how to do data encryption in COS",
+        "to do data encryption in COS"
+    ],
+    "troubleshooting-cos-access-iam": [
+        "restrict access to a single bucket using IAM",
+        "restiction of access to a bucket with IAM",
+        "restrict access using IAM to a bucket",
+		"stop access to a bucket",
+        "restricting access to a single bucket",
+        "restrict access to a bucket"
+    ],
+    "troubleshooting-cos-error404": [
+        "resolve a 404 error when using the command line in COS",
+        "get a 404 error when using CLI for COS",
+        "getting a 404 error in CLI for object storage",
+		"404 error in cloud object storage",
+        "error The specified bucket was not found in your IBM Cloud account. ",
+        "An error occurred (NoSuchBucket) when calling the ListObjectsV2 operation in COS",
+        "get NoSuchBucket error in COS"
+    ],
+    "troubleshooting-cos-move": [
+        "move files to another bucket in a different location",
+        "Move data between buckets",
+		"moving data from one bucket to another",
+        "move files to a bucket in a different location",
+        "can cloud object storage tools use multiple bucket locations",
+        "copy data into another bucket in a different location",
+        "rclone migrate cloud object storage data between buckets in different locations"
+    ]
+}
