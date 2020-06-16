@@ -48,4 +48,4 @@ While there are many tools for working with {{site.data.keyword.cos_full_notm}} 
 ## Next Steps
 {: #quick-facts-next-steps}
 
-For more information on how to begin, check out how to [get started](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage-cloud-object-storage) with {{site.data.keyword.cos_full_notm}}.
+For more information on how to begin, check out how to [get started](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) with {{site.data.keyword.cos_full_notm}}.
