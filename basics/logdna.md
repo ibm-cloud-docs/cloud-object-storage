@@ -49,7 +49,7 @@ First, make sure that you have a bucket. If not, follow the [getting started tut
 ### Archive events to object storage.
 {: #at-archive}
 
-It is possible to have all data collected in an instance of Activity Tracker with LogDNA be archived and written to a bucket.  For more information, [see the Activity Tracker documentation](/docs/Activity-Tracker-with-LogDNA?topic=logdnaat-archiving).
+It is possible to have all data collected in an instance of Activity Tracker with LogDNA be archived and written to a bucket.  For more information, [see the Activity Tracker documentation](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-archiving).
 
 
 ## Using an API
