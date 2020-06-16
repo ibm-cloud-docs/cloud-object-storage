@@ -36,12 +36,12 @@ Use the {{site.data.keyword.mon_full}} service to monitor your {{site.data.keywo
 ## Features
 {: #mm-cos-features}
 
-{{site.data.keyword.mon_full_notm}} is a third-party and cloud-native management system. Documentation from [{{site.data.keyword.mon_short}}](/docs/Monitoring-with-Sysdig?topic=Sysdig-monitoring#monitoring_dashboards) can guide you in how to use the comprehensive dashboards. In this guide we will focus on how to measure activity on individual buckets in your instance of {{site.data.keyword.cos_full_notm}}.
+{{site.data.keyword.mon_full_notm}} is a third-party and cloud-native management system. Documentation from [{{site.data.keyword.mon_short}}](/docs/Monitoring-with-Sysdig?topic=Monitoring-with-Sysdig-monitoring#monitoring_dashboards) can guide you in how to use the comprehensive dashboards. In this guide we will focus on how to measure activity on individual buckets in your instance of {{site.data.keyword.cos_full_notm}}.
 
 ### Working with Metrics
 {: #mm-cos-metrics}
 
-According to the [{{site.data.keyword.mon_short}} documentation](/docs/Monitoring-with-Sysdig?topic=Sysdig-metrics), "A metric is a quantitative measure that has one or more labels to define its characteristics." When you configure your buckets to forward data to a {{site.data.keyword.mon_short}} instance, that data is automatically collected and available for analysis through the web UI.
+According to the [{{site.data.keyword.mon_short}} documentation](/docs/Monitoring-with-Sysdig?topic=Monitoring-with-Sysdig-metrics), "A metric is a quantitative measure that has one or more labels to define its characteristics." When you configure your buckets to forward data to a {{site.data.keyword.mon_short}} instance, that data is automatically collected and available for analysis through the web UI.
 
 ## Before you begin
 {: #mm-cos-before-starting}
@@ -65,7 +65,7 @@ If you have not already done so, [set up and provision](/docs/cloud-object-stora
 
 There are many ways to manage access to your {{site.data.keyword.cos_short}} instance, but for this guide we'll focus on how to access the dashboard you are going to create. 
 
-**Users in an account [must be assigned a platform role](/docs/Monitoring-with-Sysdig?topic=Sysdig-iam) in order to manage instances as well as launching the Sysdig UI from the {{site.data.keyword.cloud_notm}} console. In addition, users must have a service role that defines the permissions to work with {{site.data.keyword.mon_full_notm}}.** 
+**Users in an account [must be assigned a platform role](/docs/Monitoring-with-Sysdig?topic=Monitoring-with-Sysdig-iam) in order to manage instances as well as launching the Sysdig UI from the {{site.data.keyword.cloud_notm}} console. In addition, users must have a service role that defines the permissions to work with {{site.data.keyword.mon_full_notm}}.** 
 {: important}
 
 ## Provisioning an instance of {{site.data.keyword.mon_short}}
@@ -275,4 +275,4 @@ The following attributes are available for segmenting one or more attributes as 
 ## Next Steps
 {: #mm-cos-next-steps}
 
-You will want to manage the data the {{site.data.keyword.mon_short}} instance is collecting for you. From management to setting alerts, you can [get started](/docs/Monitoring-with-Sysdig?topic=Sysdig-getting-started) monitoring your data quickly and efficiently.
+You will want to manage the data the {{site.data.keyword.mon_short}} instance is collecting for you. From management to setting alerts, you can [get started](/docs/Monitoring-with-Sysdig?topic=Monitoring-with-Sysdig-getting-started) monitoring your data quickly and efficiently.
