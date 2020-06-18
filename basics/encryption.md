@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2018, 2020
+lastupdated: "2020-06-19"
 
 keywords: encryption, security, sse-c, key protect, {{site.data.keyword.hscrypto}}
 
