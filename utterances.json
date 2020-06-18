@@ -113,7 +113,7 @@
         "Cloud Object Storage firewall whitelist",
         "firewall whitelist for COS",
 		"How does CORS work",
-		"CORS the same as a object storage container firewall",
+		"CORS the same as an object storage container firewall",
         "difference between firewall and CORS setting in Cloud Object Storage",
         "cross-origin resource sharing and a bucket firewall differ",
         "Cloud Object Storage bucket authorized IPs",
@@ -133,7 +133,7 @@
     ],
     "faq-lite-exceed": [
         "is Cloud Object Storage Lite plan service instance still in service when it exceeds max usage",
-        "Cloud Object Storage Lite plan exeeds max usage",
+        "Cloud Object Storage Lite plan exceeds max usage",
         "Cloud Object Storage multiple Lite plans",
         "Lite plan exceeded max usage for COS",
 		"COS Lite plan usage limit is exceeded",
@@ -268,7 +268,7 @@
         "does data can partitioned automatically in COS"
     ],
     "faq-cos-backup": [
-        "restore Cloud Object Storage data from specfic backup",
+        "restore Cloud Object Storage data from specific backup",
         "does Cloud Object Storage provide backup data",
         "overwrite an existing bucket",
         "restore Cloud Object Storage data if deleted by mistake",
@@ -285,7 +285,7 @@
 		"host a web site on Object Storage",
 		"object storage serve as a web server",
 		"website hosted on COS",
-        "automatic static website hosting supported bu object storage",
+        "automatic static website hosting supported by object storage",
         "creating static web site using COS"
     ],
     "faq-archive": [
@@ -325,7 +325,7 @@
         "How do I select an endpoint in COS",
         "want to select an endpoint location for COS",
         "selecting an endpoint for Cloud Object Storage",
-        "sselect an object storage endpoint",
+        "select an object storage endpoint",
 		"endpoint selection in object storage",
         "COS endpoint location selection"
     ],
