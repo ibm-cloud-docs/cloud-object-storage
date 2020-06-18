@@ -50,7 +50,7 @@ After the Service Credential is created, the HMAC Key is included in the `cos_hm
 ### Create HMAC credentials using the CLI
 {: #uhc-create-hmac-credentials-cli}
 
-You can also use the {{site.data.keyword.cos_full}} CLI to create your credentials. You must have the already installed the [{{site.data.keyword.cloud_notm}} Platform Command Line Instructions](/docs/cli?topic=cloud-cli-install-ibmcloud-cli) before you can use the example.
+You can also use the {{site.data.keyword.cos_full}} CLI to create your credentials. You must have the already installed the [{{site.data.keyword.cloud_notm}} Platform Command Line Instructions](/docs/cli?topic=cli-install-ibmcloud-cli) before you can use the example.
 
 ```
 ibmcloud resource service-key-create <key-name-without-spaces> Writer --instance-name "<instance name--use quotes if your instance name has spaces>" --parameters '{"HMAC":true}'
@@ -89,5 +89,5 @@ Note that when using HMAC credentials to create signatures to use with direct [R
 2. Any request that has a payload (object uploads, deleting several objects, etc.) must provide a `x-amz-content-sha256` header with an SHA256 hash of the payload contents.
 3. ACLs (other than `public-read`) are unsupported.
 
-Not all S3-compatible tools are currently supported. Some tools attempt to set ACLs other than `public-read` on bucket creation. Bucket creation through these tools fail. If a `PUT bucket` request fails with an unsupported ACL error, first use the console as shown in the [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage-cloud-object-storage) to create the bucket, then configure the tool to read and write objects to that bucket. Tools that set ACLs on object writes are not currently supported.
+Not all S3-compatible tools are currently supported. Some tools attempt to set ACLs other than `public-read` on bucket creation. Bucket creation through these tools fail. If a `PUT bucket` request fails with an unsupported ACL error, first use the console as shown in the [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) to create the bucket, then configure the tool to read and write objects to that bucket. Tools that set ACLs on object writes are not currently supported.
 {:tip}
