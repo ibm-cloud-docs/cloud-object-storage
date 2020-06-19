@@ -392,8 +392,10 @@ A `PUT` given a path to a new object creates a new copy of another object that i
 **Note**: Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
 {:tip}
 
-
 **Note**: Copying an item from a *Key Protect*-enabled bucket to a destination bucket in another region is restricted and will result in a `500 - Internal Error`.
+{:tip}
+
+**Note**: Copying objects (even across locations) does not incur the public outbound bandwidth charges. All data remains inside the COS internal network.
 {:tip}
 
 **Syntax**

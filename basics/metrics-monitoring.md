@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-03-25"
+lastupdated: "2020-06-19"
 
 keywords: Object Storage, SysDig, monitoring, integration
 
