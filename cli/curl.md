@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2020
+lastupdated: "2020-06-16"
 
 keywords: cli, command line interface, object storage, curl
 
@@ -35,7 +35,7 @@ You can get the most out working with the command line in most environments with
 
 Here's a 'cheat sheet' of basic `curl` commands for the {{site.data.keyword.cos_full}} REST API. More detail can be found in the API reference for [buckets](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations) or [objects](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-object-operations).
 
-Using `curl` assumes a certain amount of familiarity with the command line and Object Storage, and have the necessary information from a [service credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the [endpoints reference](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints), or the [console](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). If any terms or variables are unfamiliar, they can be found in the [glossary](/docs/cloud-object-storage/basics?topic=cloud-object-storage-terminology).
+Using `curl` assumes a certain amount of familiarity with the command line and Object Storage, and have the necessary information from a [service credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the [endpoints reference](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints), or the [console](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). If any terms or variables are unfamiliar, they can be found in the [glossary](/docs/overview?topic=overview-glossary).
 
 **Note**: Personally Identifiable Information (PII): When you create buckets or adding objects, ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
 {:tip}
@@ -43,7 +43,7 @@ Using `curl` assumes a certain amount of familiarity with the command line and O
 ## Request an IAM Token
 {: #curl-iam}
 
-Two ways you can generate an IAM `oauth` token for authenticating requests are using a `curl` command with an API key (described later), or from the command line by using [{{site.data.keyword.cloud}} CLI](/docs/cli?topic=cloud-cli-ibmcloud_commands_iam#ibmcloud_iam_oauth_tokens). 
+Two ways you can generate an IAM `oauth` token for authenticating requests are using a `curl` command with an API key (described later), or from the command line by using [{{site.data.keyword.cloud}} CLI](/docs/cli?topic=cli-ibmcloud_commands_iam#ibmcloud_iam_oauth_tokens). 
 
 ### Request an IAM token by using an API key
 {: #curl-token}

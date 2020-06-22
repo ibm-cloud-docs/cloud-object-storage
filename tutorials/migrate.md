@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-04-16"
+lastupdated: "2020-06-19"
 
 keywords: migrate, amazon, aws
 
@@ -55,7 +55,7 @@ Sometimes, an [example](https://developer.ibm.com/tutorials/how-to-easily-port-y
 
 There are many ways to achieve the goal of migrating your AWS data. Integrated solutions provide comprehensive guides to migration, as shown in the [{{site.data.keyword.icp4i_full_notm}}](https://www.ibm.com/cloud/cloud-pak-for-integration/high-speed-data-transfer1){: external}. In addition to full-featured migration services, you may also want to investigate third party migration tools as part of your investigation. But don't forget that there are many CLI and GUI tools readily available for use as part of your migration.
 
-* [COS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-cli-plugin-ic-cos-cli`) can be used for many operations. For example, you may wish to use the CLI to configure your {{site.data.keyword.cos_full_notm}} instances, and to create and configure buckets.
+* [COS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-cli-plugin-ic-cos-cli) can be used for many operations. For example, you may wish to use the CLI to configure your {{site.data.keyword.cos_full_notm}} instances, and to create and configure buckets.
 * [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) can be used to list your current bucket's contents to prepare for migrating from AWS, among other operations: 
 
 ```bash

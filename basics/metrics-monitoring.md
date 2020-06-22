@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-03-25"
+lastupdated: "2020-06-19"
 
 keywords: Object Storage, SysDig, monitoring, integration
 
@@ -36,12 +36,12 @@ Use the {{site.data.keyword.mon_full}} service to monitor your {{site.data.keywo
 ## Features
 {: #mm-cos-features}
 
-{{site.data.keyword.mon_full_notm}} is a third-party and cloud-native management system. Documentation from [{{site.data.keyword.mon_short}}](/docs/Monitoring-with-Sysdig?topic=Sysdig-monitoring#monitoring_dashboards) can guide you in how to use the comprehensive dashboards. In this guide we will focus on how to measure activity on individual buckets in your instance of {{site.data.keyword.cos_full_notm}}.
+{{site.data.keyword.mon_full_notm}} is a third-party and cloud-native management system. Documentation from [{{site.data.keyword.mon_short}}](/docs/Monitoring-with-Sysdig?topic=Monitoring-with-Sysdig-monitoring#monitoring_dashboards) can guide you in how to use the comprehensive dashboards. In this guide we will focus on how to measure activity on individual buckets in your instance of {{site.data.keyword.cos_full_notm}}.
 
 ### Working with Metrics
 {: #mm-cos-metrics}
 
-According to the [{{site.data.keyword.mon_short}} documentation](/docs/Monitoring-with-Sysdig?topic=Sysdig-metrics), "A metric is a quantitative measure that has one or more labels to define its characteristics." When you configure your buckets to forward data to a {{site.data.keyword.mon_short}} instance, that data is automatically collected and available for analysis through the web UI.
+According to the [{{site.data.keyword.mon_short}} documentation](/docs/Monitoring-with-Sysdig?topic=Monitoring-with-Sysdig-metrics), "A metric is a quantitative measure that has one or more labels to define its characteristics." When you configure your buckets to forward data to a {{site.data.keyword.mon_short}} instance, that data is automatically collected and available for analysis through the web UI.
 
 ## Before you begin
 {: #mm-cos-before-starting}
@@ -51,7 +51,7 @@ Before you provision an instance of {{site.data.keyword.mon_full_notm}}, conside
    * The account owner can create, view, and delete an instance of a service in the {{site.data.keyword.cloud_notm}}. This user can also grant permissions to other users to work with the {{site.data.keyword.mon_full_notm}} service.
    * Other {{site.data.keyword.cloud_notm}} users with `administrator` or `editor` permissions can manage the {{site.data.keyword.mon_full_notm}} service in the {{site.data.keyword.cloud_notm}}. These users must also have platform permissions to create resources within the context of the resource group where they plan to provision the instance.
 
-In this guide, we will examine using both the {{site.data.keyword.cloud_notm}} Console as well as the IBM Cloud Developer Tools (CLI) to integrate {{site.data.keyword.mon_short}} in your {{site.data.keyword.cos_short}} instance. For more information about IBM Cloud Developer Tools, check out the [documentation](/docs/cli?topic=cloud-cli-getting-started).
+In this guide, we will examine using both the {{site.data.keyword.cloud_notm}} Console as well as the IBM Cloud Developer Tools (CLI) to integrate {{site.data.keyword.mon_short}} in your {{site.data.keyword.cos_short}} instance. For more information about IBM Cloud Developer Tools, check out the [documentation](/docs/cli?topic=cli-getting-started).
 
 Using either set of instructions, Console or CLI, you will be able to get started using this guide. If the instructions that you seek do not appear in this guide, click on the appropriate item using the context switcher. 
 
@@ -65,7 +65,7 @@ If you have not already done so, [set up and provision](/docs/cloud-object-stora
 
 There are many ways to manage access to your {{site.data.keyword.cos_short}} instance, but for this guide we'll focus on how to access the dashboard you are going to create. 
 
-**Users in an account [must be assigned a platform role](/docs/Monitoring-with-Sysdig?topic=Sysdig-iam) in order to manage instances as well as launching the Sysdig UI from the {{site.data.keyword.cloud_notm}} console. In addition, users must have a service role that defines the permissions to work with {{site.data.keyword.mon_full_notm}}.** 
+**Users in an account [must be assigned a platform role](/docs/Monitoring-with-Sysdig?topic=Monitoring-with-Sysdig-iam) in order to manage instances as well as launching the Sysdig UI from the {{site.data.keyword.cloud_notm}} console. In addition, users must have a service role that defines the permissions to work with {{site.data.keyword.mon_full_notm}}.** 
 {: important}
 
 ## Provisioning an instance of {{site.data.keyword.mon_short}}
@@ -76,7 +76,7 @@ From the [catalog](https://cloud.ibm.com/login){: external} choose {{site.data.k
 
 ![Instance creation](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-instance-creation.png){: console}
 
-After you [login](/docs/cli?topic=cloud-cli-ibmcloud_cli#ibmcloud_login) using IBM Cloud Developer Tools and target both the region and resource group for your account, create a new resource using the command as shown.
+After you [login](/docs/cli?topic=cli-ibmcloud_cli#ibmcloud_login) using IBM Cloud Developer Tools and target both the region and resource group for your account, create a new resource using the command as shown.
 {: cli}
 
 ```bash
@@ -275,4 +275,4 @@ The following attributes are available for segmenting one or more attributes as 
 ## Next Steps
 {: #mm-cos-next-steps}
 
-You will want to manage the data the {{site.data.keyword.mon_short}} instance is collecting for you. From management to setting alerts, you can [get started](/docs/Monitoring-with-Sysdig?topic=Sysdig-getting-started) monitoring your data quickly and efficiently.
+You will want to manage the data the {{site.data.keyword.mon_short}} instance is collecting for you. From management to setting alerts, you can [get started](/docs/Monitoring-with-Sysdig?topic=Monitoring-with-Sysdig-getting-started) monitoring your data quickly and efficiently.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2019-04-20"
+lastupdated: "2020-06-19"
 
 keywords: object storage, java, sdk
 

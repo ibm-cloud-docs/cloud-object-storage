@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019
-lastupdated: "2019-12-31"
+  years: 2019, 2020
+lastupdated: "2020-06-19"
 
 keywords: activity, tracking, object storage, event, tutorial
 
@@ -117,7 +117,7 @@ Replace the values as appropriate according to the information in Table 1.
 | <instance-name> | Replace with a name of your choice for the instance. |
 | *logdna* | The literal reference of the {{site.data.keyword.la_full_notm}} service. |
 | <service-plan-name> | Type of plan; valid values are *lite*, *7-days*, *14-days*, *30-days*. |
-| <location> | The region where the LogDNA instance is created. To get the latest list of available locations, check out the [locations](/docs/Log-Analysis-with-LogDNA?topic=LogDNA-regions). |
+| <location> | The region where the LogDNA instance is created. To get the latest list of available locations, check out the [locations](/docs/Log-Analysis-with-LogDNA?topic=Log-Analysis-with-LogDNA-regions). |
 {: caption="Table 1. CLI attributes and values relevant to {{site.data.keyword.at_short}}" caption-side="top"}
 {: cli}
 

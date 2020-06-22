@@ -546,7 +546,7 @@ to use for your {{site.data.keyword.cloud_notm}} Platform Delivery Pipeline Buil
    ![new_git_branch](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-014-dev-branch.jpg){: caption="Figure 4. Use GitHub Desktop to create a local dev branch"}
 
 1.  After you create the branch, GitHub compares the local files on the
-    Local-dev branch with the files in the repository on the master
+    Local-dev branch with the files in the repository on the default
     branch and reports No local changes. You can now click Publish to
     add the branch you created on your local repo to your GitHub repo
     (as shown in Figure 5).

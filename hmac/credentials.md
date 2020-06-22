@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-04-28"
+lastupdated: "2020-06-19"
 
 keywords: authorization, aws, hmac, signature
 
@@ -50,7 +50,7 @@ After the Service Credential is created, the HMAC Key is included in the `cos_hm
 ### Create HMAC credentials using the CLI
 {: #uhc-create-hmac-credentials-cli}
 
-You can also use the {{site.data.keyword.cos_full}} CLI to create your credentials. You must have the already installed the [{{site.data.keyword.cloud_notm}} Platform Command Line Instructions](/docs/cli?topic=cloud-cli-install-ibmcloud-cli) before you can use the example.
+You can also use the {{site.data.keyword.cos_full}} CLI to create your credentials. You must have the already installed the [{{site.data.keyword.cloud_notm}} Platform Command Line Instructions](/docs/cli?topic=cli-install-ibmcloud-cli) before you can use the example.
 
 ```
 ibmcloud resource service-key-create <key-name-without-spaces> Writer --instance-name "<instance name--use quotes if your instance name has spaces>" --parameters '{"HMAC":true}'
