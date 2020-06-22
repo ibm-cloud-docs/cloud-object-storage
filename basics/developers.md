@@ -54,7 +54,7 @@ Some users may encounter the error `No resource group targeted` when trying to c
 
 The [Getting Started guide](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) walks through the basic steps of creating buckets and objects, as well as inviting users and creating policies. A list of basic 'curl' commands can be found [here](/docs/cloud-object-storage/cli?topic=cloud-object-storage-curl).
 
-Learn more about using the {{site.data.keyword.cloud_notm}} CLI to create applications, manage Kubernetes clusters, and more [in the documentation](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_cli).
+Learn more about using the {{site.data.keyword.cloud_notm}} CLI to create applications, manage Kubernetes clusters, and more [in the documentation](/docs/cli?topic=cli-ibmcloud_cli).
 
 
 ## Using the API
@@ -64,7 +64,7 @@ For managing data stored in {{site.data.keyword.cos_short}}, you can use S3 API 
 
 ## Using libraries and SDKs
 {: #gs-dev-sdk}
-IBM COS SDKs are available for [Python](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python), [Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java), [Go](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-go), and [Node.js](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-node). These libraries are forked and modified versions of the AWS S3 SDKs that support [IAM token-based authentication](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview), as well as support for [Key Protect](/docs/cloud-object-storage/basics?topic=cloud-object-storage-encryption). 
+IBM COS SDKs are available for [Python](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python), [Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java), [Go](/docs/cloud-object-storage?topic=cloud-object-storage-using-go), and [Node.js](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-node). These libraries are forked and modified versions of the AWS S3 SDKs that support [IAM token-based authentication](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview), as well as support for [Key Protect](/docs/cloud-object-storage/basics?topic=cloud-object-storage-encryption). 
 
 ## Building applications on IBM Cloud
 {: #gs-dev-apps}
