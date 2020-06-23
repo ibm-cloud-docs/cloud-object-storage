@@ -221,7 +221,7 @@ A feature to unzip or decompress files is not part of the service.  For large da
 ### Can I create a bucket, in the same or different region, with a deleted bucket’s name?
 {: #faq-reuse-name}
 
-You cannot immediately reuse a deleted bucket name. A deleted bucket is scheduled for reclamation after 7 days. After that 7-day period, the bucket name is made available for reuse.  This 7-day buffer allows for a user to restore a deleted bucket if needed.
+If you delete an empty bucket directly with the API, then the name becomes available for re-use within 10 to 15 minutes.  If you delete an instance without deleting the bucket, then you cannot immediately reuse the bucket name.  These bucket names are held in reserve for 7 days.  After that 7-day period, the bucket name is made available for reuse.  This 7-day buffer allows for a user to restore a deleted bucket if needed.
 
 
 
