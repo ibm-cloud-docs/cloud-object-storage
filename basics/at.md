@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-08"
+lastupdated: "2020-07-01"
 
 keywords: activity tracker, LogDNA, event, object storage, COS API calls, monitor COS events
 
@@ -145,7 +145,7 @@ The following table lists the COS object access events:
 
 | Action                                                 | Description                 |
 | ------------------------------------------------------ | --------------------------- |
-| `cloud-object-storage.object.read`                     | Get the metadata for the object |
+| `cloud-object-storage.object-metadata.read`            | Get the metadata for the object |
 | `cloud-object-storage.object.read`                     | Read the object |
 | `cloud-object-storage.object.create`                   | Create the object |
 | `cloud-object-storage.object.delete`                   | Delete the object |
