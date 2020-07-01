@@ -133,7 +133,7 @@ Let's start with an complete example class that will run through some basic func
             String endpointUrl = "https://s3.us-south.cloud-object-storage.appdomain.cloud"; // this could be any service endpoint
 
             String storageClass = "us-south-standard";
-            String location = "us"; 
+            String location = "us"; // not an endpoint, but used in a custom function below to obtain the correct URL
 
             System.out.println("Current time: " + LocalDateTime.now());
             AmazonS3 cosClient = createClient(apiKey, serviceInstanceId, endpointUrl, location);
