@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019
-lastupdated: "2019-12-31"
+  years: 2019, 2020
+lastupdated: "2020-06-19"
 
 keywords: activity, tracking, object storage, event, tutorial
 
@@ -42,7 +42,7 @@ This tutorial will provide an introduction to capturing information regarding th
 Also, to find out what works for you beyond this tutorial, check out the offerings listed for each service. With so many options, you are sure to find the specific configuration to work for your needs, beyond this brief introduction. 
 {: tip} 
 
-If you're not familiar with {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started). Also, if you're not familiar with {{site.data.keyword.at_full}}, you may wish to check out how to [get started with {{site.data.keyword.at_short}}](/docs/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started).
+If you're not familiar with {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). Also, if you're not familiar with {{site.data.keyword.at_full}}, you may wish to check out how to [get started with {{site.data.keyword.at_short}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started).
 
 ## Prerequisites
 {: #tracking-cos-events-prereqs}
@@ -53,7 +53,7 @@ For this tutorial, you need:
 * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com){: external}
 * To complete the steps to manage access to the service, your user ID needs **administrator platform permissions** to manage the {{site.data.keyword.at_full_notm}} service. You may have to contact a account administrator. The account owner can grant another user access to the account for the purposes of managing user access, and managing account resources. [Learn more](/docs/iam?topic=iam-userroles).
 * Your user ID needs to be configured with the **platform editor role** (at the very least) to create the {{site.data.keyword.cos_short}} instance and the **service access writer role** to create the manipulate buckets.
-* Installation of both the [IBM Cloud CLI](https://cloud.ibm.com/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli){: external} and [COS plugin](https://cloud.ibm.com/docs/cloud-object-storage-cli-plugin?topic=cloud-object-storage-cli-ic-cos-cli){: external}.
+* Installation of both the [IBM Cloud CLI](/docs/cli?topic=cli-install-ibmcloud-cli) and [COS plugin](/docs/cloud-object-storage-cli-plugin?topic=cloud-object-storage-cli-plugin-ic-cos-cli).
 {: cli}
 
 When you create buckets or add objects, be sure to avoid the use of Personally Identifiable Information (PII). PII is information that can identify any user (natural person) by name, location, or any other means.
@@ -71,7 +71,7 @@ As long as you can [login](https://cloud.ibm.com/login){: external} you should b
 
 In addition to detailing the UI at the Console, this tutorial will also show how to use the Command Line Interface, or CLI. Those who are so interested are encouraged to read the [Developer guidance](/docs/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev) or study the [API](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api) for {{site.data.keyword.cos_short}}.
 
-Once you've comfortable with how to [get started](/docs/cli?topic=cloud-cli-getting-started) using the CLI tools, you should be ready for the next step. Before you start this tutorial, install the [{{site.data.keyword.cos_short}} plugin](/docs/cloud-object-storage?topic=cloud-object-storage-ic-use-the-ibm-cli#ic-installation). Next, you can verify that the CLI and {{site.data.keyword.dev_cli_short}} were installed successfully, run the `help` command in your terminal or other CLI interface.
+Once you've comfortable with how to [get started](/docs/cli?topic=cli-getting-started) using the CLI tools, you should be ready for the next step. Before you start this tutorial, install the [{{site.data.keyword.cos_short}} plugin](/docs/cloud-object-storage?topic=cloud-object-storage-cli-plugin-ic-cos-cli#ic-installation). Next, you can verify that the CLI and {{site.data.keyword.dev_cli_short}} were installed successfully, run the `help` command in your terminal or other CLI interface.
 
 ```
 ibmcloud cos help
@@ -97,10 +97,10 @@ Log in to the region in the IBM Cloud where you want to provision the instance. 
 To get started with an instance of {{site.data.keyword.at_full_notm}} through the command line, you must provision an instance, and then create credentials for that instance.
 {: cli}
 
-Set the resource group where you want to provision the instance. Run the following command: [`ibmcloud target`](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_cli#ibmcloud_target). By default, the `default` resource group is set.
+Set the resource group where you want to provision the instance. Run the following command: [`ibmcloud target`](/docs/cli?topic=cli-ibmcloud_cli#ibmcloud_target). By default, the `default` resource group is set.
 {: cli}
 
-Run the [`ibmcloud resource service-instance-create`](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_resource#ibmcloud_resource_service_instance_create) command:
+Run the [`ibmcloud resource service-instance-create`](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_service_instance_create) command:
 {: cli}
 
 ```
@@ -117,7 +117,7 @@ Replace the values as appropriate according to the information in Table 1.
 | <instance-name> | Replace with a name of your choice for the instance. |
 | *logdna* | The literal reference of the {{site.data.keyword.la_full_notm}} service. |
 | <service-plan-name> | Type of plan; valid values are *lite*, *7-days*, *14-days*, *30-days*. |
-| <location> | The region where the LogDNA instance is created. To get the latest list of available locations, check out the [locations](/docs/Log-Analysis-with-LogDNA?topic=LogDNA-regions). |
+| <location> | The region where the LogDNA instance is created. To get the latest list of available locations, check out the [locations](/docs/Log-Analysis-with-LogDNA?topic=Log-Analysis-with-LogDNA-regions). |
 {: caption="Table 1. CLI attributes and values relevant to {{site.data.keyword.at_short}}" caption-side="top"}
 {: cli}
 
@@ -202,7 +202,7 @@ Updated at:   2020-01-24T20:34:35Z
 ## Configuration and connection of services
 {: #tracking-cos-events-services-configuration}
 
-In your account [resource list](), you should see your {{site.data.keyword.at_full_notm}} instance listed in the `Services` category. Selecting your newly created service by clicking on the name you chose should take you to a list of your Activity Tracker instances. There, you can choose `Manage access` from the operation drop-down menu on the side of the entry where you will define authorization levels and access at {{site.data.keyword.iamlong}}. 
+In your account [resource list](https://cloud.ibm.com/resources), you should see your {{site.data.keyword.at_full_notm}} instance listed in the `Services` category. Selecting your newly created service by clicking on the name you chose should take you to a list of your Activity Tracker instances. There, you can choose `Manage access` from the operation drop-down menu on the side of the entry where you will define authorization levels and access at {{site.data.keyword.iamlong}}. 
 {: console}
 
 To begin the configuration of the new instances you created, we need to retrieve an identifier called a Cloud Resource Name ([CRN](/docs/resources?topic=resources-crn)). Start by determining the identifier for the service instance in {{site.data.keyword.cos_short}}.
@@ -238,29 +238,17 @@ crn:v1:staging:public:logdna:us-south:a/943494a618ed4e978e68b918d1aeec4c:c1ee8d0
 ```
 {: cli}
 
-## Observability
-{: #tracking-cos-events-observability}
-
-
-### Testing
-{: #tracking-cos-events-testing}
-
-
-### Further Operations
-{: #tracking-cos-events-operations}
-
-
 ## Next Steps
 {: #tracking-cos-events-next-steps}
 
-For more about {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started). Also, you can find out more regarding {{site.data.keyword.at_full}} at the [getting started with {{site.data.keyword.at_short}}](/docs/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started).
+For more about {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). Also, you can find out more regarding {{site.data.keyword.at_full}} at the [getting started with {{site.data.keyword.at_short}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started).
 
 With so many options, there is literally too much to cover beyond the scope of this tutorial. Here are only a few links to explore more of the ideas presented in this document to get you started on your own journey.
 
 ### Viewing Events
 {: #tracking-cos-events-viewing}
 
-With multiple options for viewing events in {{site.data.keyword.at_short}}, it may be helpful to review the [documentation](/docs/Activity-Tracker-with-LogDNA?topic=logdnaat-view_events).
+With multiple options for viewing events in {{site.data.keyword.at_short}}, it may be helpful to review the [documentation](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-view_events).
 
 ### Configuring Alerts
 {: #tracking-cos-events-configuring-alerts}
@@ -270,9 +258,9 @@ In {{site.data.keyword.at_short}} there are two kinds of alerts but many differe
 ### Exporting Events
 {: #tracking-cos-events-exporting}
 
-After generating information about each event, {{site.data.keyword.at_short}} also has the ability to [export the events](/docs/Activity-Tracker-with-LogDNA?topic=logdnaat-export) per your configuration.
+After generating information about each event, {{site.data.keyword.at_short}} also has the ability to [export the events](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-export) per your configuration.
 
 ### Archiving Events
 {: #tracking-cos-events-archiving}
 
-In this tutorial, events from {{site.data.keyword.cos_short}} were viewed in {{site.data.keyword.at_short}} as log entries. Reversing the relationship between them, you can also [archive {{site.data.keyword.at_short}} events in {{site.data.keyword.cos_full_notm}}](/docs/Activity-Tracker-with-LogDNA?topic=logdnaat-archiving).
+In this tutorial, events from {{site.data.keyword.cos_short}} were viewed in {{site.data.keyword.at_short}} as log entries. Reversing the relationship between them, you can also [archive {{site.data.keyword.at_short}} events in {{site.data.keyword.cos_full_notm}}](https://cloud.ibm.com/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-archiving).

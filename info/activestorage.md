@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2020
+lastupdated: "2020-06-19"
 
 keywords: object storage, ruby, activestorage, rails
 
@@ -121,4 +121,4 @@ To enable Rails access to your bucket, you must create a Cross-Origin Resource S
 
 This configuration allows requests from `www.ibm.com` to run `GET`, `PUT`, and `POST` requests to your bucket. Adjust the `<AllowedOrigin>` entry to suit your application's needs. 
 
-Allowing `x-amz-*` and `content-*` headers is also required in order for Rails to properly interact with your bucket. More information about CORS is available in the [API Reference](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#create-a-cross-origin-resource-sharing-configuration-for-a-bucket).
+Allowing `x-amz-*` and `content-*` headers is also required in order for Rails to properly interact with your bucket. More information about CORS is available in the [API Reference](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-add-cors).

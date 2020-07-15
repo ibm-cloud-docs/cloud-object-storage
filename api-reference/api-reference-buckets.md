@@ -1482,7 +1482,7 @@ Content-Length: 305
 	</Rule>
 </LifecycleConfiguration>
 ```
-{: codeblock}
+{: pre}
 {: token}
 
 ----
@@ -1555,14 +1555,15 @@ The body of the request must contain an XML block with the following schema:
 |---|---|---|---|---|
 |ProtectionConfiguration | Container | Status, MinimumRetention, MaximumRetention, DefaultRetention | - | - |
 |Status| String | - | ProtectionConfiguration | Valid status string |
-|MinimumRetention| Integer | - | ProtectionConfiguration | Valid minimum retention integer |
-|MaximumRetention| Integer | - | ProtectionConfiguration | Valid maximum retention integer |
-|DefaultRetention| Integer | - | ProtectionConfiguration | Valid default retention integer |
+|MinimumRetention| Container | Days | ProtectionConfiguration | - |
+|MaximumRetention| Container | Days | ProtectionConfiguration | - |
+|DefaultRetention| Container | Days | ProtectionConfiguration | - |
+| Days | Integer | - | MinimumRetention, MaximumRetention, DefaultRetention | Valid retention integer |
 
 **Example request**
 {: token}
 
-```bash
+```yaml
 PUT /example-bucket?protection= HTTP/1.1
 Authorization: {authorization-string}
 x-amz-date: 20181011T190354Z
@@ -1571,6 +1572,7 @@ Content-MD5: GQmpTNpruOyK6YrxHnpj7g==
 Content-Type: text/plain
 Host: 67.228.254.193
 Content-Length: 299
+
 <ProtectionConfiguration>
   <Status>Retention</Status>
   <MinimumRetention>
@@ -1584,6 +1586,7 @@ Content-Length: 299
   </DefaultRetention>
 </ProtectionConfiguration>
 ```
+{: screen}
 {: token}
 
 **Example response**

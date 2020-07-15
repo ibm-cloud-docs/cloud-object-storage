@@ -26,7 +26,8 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 {: shortdesc}
 
 ## Q2 2020
-{: #updates-2020-q1}
+{: #updates-2020-q2}
+
 Users and Service IDs can now be granted a new `ObjectWriter` role that allows access to writing objects, but without permissions to download objects or to list the contents of a bucket. 
 
 Public Access can now be granted to a new `ObjectReader` role that allows anonymous access to reading objects, but without permissions to list the contents of a bucket. 
@@ -80,7 +81,7 @@ Objects can be automatically deleted by [adding expiration rules to a bucket's l
 
 ### May 2019
 {: #updates-2019-q2-may}
-Users can access and interact with object storage [using the IBM Cloud CLI](/docs/cloud-object-storage?topic=cloud-object-storage-cli-ic-cos-cli).
+Users can access and interact with object storage [using the IBM Cloud CLI](/docs/cloud-object-storage?topic=cloud-object-storage-cli-plugin-ic-cos-cli).
 
 ### April 2019
 {: #updates-2019-q2-apr}

@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2020
+lastupdated: "2020-05-28"
 
-keywords: object storage, information, about
+keywords: about, object storage, overview
 
 subcollection: cloud-object-storage
 
@@ -23,7 +23,7 @@ subcollection: cloud-object-storage
 # About {{site.data.keyword.cos_full_notm}}
 {: #about-cloud-object-storage}
 
-Information stored with {{site.data.keyword.cos_full}} is encrypted and dispersed across multiple geographic locations, and accessed over popular protocols like HTTP using a modern RESTful API. 
+Information stored with {{site.data.keyword.cos_full}} is encrypted and dispersed across multiple geographic locations, and accessed over popular protocols like HTTPS using a modern RESTful API. 
 {: shortdesc}
 
 This service makes use of the distributed storage technologies provided by the {{site.data.keyword.cos_full_notm}} System (formerly Cleversafe).
@@ -33,8 +33,8 @@ This service makes use of the distributed storage technologies provided by the {
 Developers use an {{site.data.keyword.cos_full_notm}} API to interact with their object storage. Of course, the [console](https://cloud.ibm.com/){: external} provides a user interface for many operations as well. 
 
 ## Next Steps
-{: #about-cloud-object-storage-next-steps}
+{: #about-cos-next-steps}
 
-Documentation on the best way to [get started](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started) provides support to provision accounts, to create buckets, to upload objects, and to use a reference of common operations through API interactions.
+Documentation on the best way to [get started](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) provides support to provision accounts, to create buckets, to upload objects, and to use a reference of common operations through API interactions.
 
 

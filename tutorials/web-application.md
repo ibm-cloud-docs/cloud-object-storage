@@ -48,7 +48,7 @@ Let's start by opening a tool familiar to experienced developers, and a new best
 
 Open a shell and create a directory. Change your own reference directory to the new one you created. When created, your application has its own subdirectory with the starter code and configuration that is needed to get up and running.
 
-Leave the command line and return to your browser so you can follow the instructions to install the [{{site.data.keyword.cloud_notm}} Platform developer tools](/docs/cli?topic=cloud-cli-install-devtools-manually) at the link. The Developer Tools offer an extensible and repeatable approach to building and deploying cloud applications. 
+Leave the command line and return to your browser so you can follow the instructions to install the [{{site.data.keyword.cloud_notm}} Platform developer tools](/docs/cli?topic=cli-install-devtools-manually) at the link. The Developer Tools offer an extensible and repeatable approach to building and deploying cloud applications. 
 
 ### Installing Docker
 {: #tutorial-wa-install-docker}
@@ -546,7 +546,7 @@ to use for your {{site.data.keyword.cloud_notm}} Platform Delivery Pipeline Buil
    ![new_git_branch](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-014-dev-branch.jpg){: caption="Figure 4. Use GitHub Desktop to create a local dev branch"}
 
 1.  After you create the branch, GitHub compares the local files on the
-    Local-dev branch with the files in the repository on the master
+    Local-dev branch with the files in the repository on the default
     branch and reports No local changes. You can now click Publish to
     add the branch you created on your local repo to your GitHub repo
     (as shown in Figure 5).

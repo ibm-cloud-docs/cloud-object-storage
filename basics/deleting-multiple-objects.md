@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2019-05-14"
+lastupdated: "2020-06-19"
 
 keywords: empty bucket, delete, multiple
 
@@ -39,7 +39,7 @@ It is a best practice to avoid putting credentials in scripts. This example is f
 ## Before you begin
 {: #dmop-prereqs}
 
-Specific instructions for downloading and installing SDKs are available for [Python](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python), [Node.js](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-node), [Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java), and [Go](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-go). Also, when working with Command Line Instructions (CLI) and your CLI clients, please check out the pertinent information related to {{site.data.keyword.cos_short}} regarding [AWS](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) compatibility, [Minio](/docs/cloud-object-storage?topic=cloud-object-storage-minio), and [rClone](/docs/cloud-object-storage?topic=cloud-object-storage-rclone).
+Specific instructions for downloading and installing SDKs are available for [Python](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python), [Node.js](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-node), [Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java), and [Go](/docs/cloud-object-storage?topic=cloud-object-storage-using-go). Also, when working with Command Line Instructions (CLI) and your CLI clients, please check out the pertinent information related to {{site.data.keyword.cos_short}} regarding [AWS](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) compatibility, [Minio](/docs/cloud-object-storage?topic=cloud-object-storage-minio), and [rClone](/docs/cloud-object-storage?topic=cloud-object-storage-rclone).
 
 For this code pattern you will need:
   * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com)

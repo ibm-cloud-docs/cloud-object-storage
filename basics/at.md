@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-02-10"
+lastupdated: "2020-07-01"
 
 keywords: activity tracker, LogDNA, event, object storage, COS API calls, monitor COS events
 
@@ -31,7 +31,7 @@ Use the {{site.data.keyword.at_full}} service to track how users and application
 {: shortdesc}
 
 The {{site.data.keyword.at_full_notm}} service records user-initiated activities that change the state of a service in {{site.data.keyword.cloud_notm}}. 
-For more information, see [{{site.data.keyword.at_full_notm}}](/docs/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started).  
+For more information, see [{{site.data.keyword.at_full_notm}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started).  
 
 By default, COS events that report on global actions such as creation of a bucket are collected automatically. You can monitor global actions through the Activity Tracker instance that is located in the Frankfurt location.
 
@@ -61,11 +61,12 @@ Management events are classified in the following categories:
 
 The following table lists the COS actions that generate a global event. You can monitor this events through the Activity Tracker instance that is available in the Frankfurt location.
 
-| Action                                 | Description                 |
-| -------------------------------------- | --------------------------- |
-| `cloud-object-storage.instance.list`   | List the buckets in the service instance |
-| `cloud-object-storage.bucket.create`   | Create a bucket in the service instance |
-| `cloud-object-storage.bucket.delete`   | Delete a bucket in the service instance |
+| Action                                         | Description                               |
+|------------------------------------------------|-------------------------------------------|
+| `cloud-object-storage.instance.list`           | List the buckets in the service instance  |
+| `cloud-object-storage.bucket.create`           | Create a bucket in the service instance   |
+| `cloud-object-storage.bucket.delete`           | Delete a bucket in the service instance   |
+| `cloud-object-storage.bucket-key-state.update` | Delete a Key Protect root encryption key |
 {: caption="Table 1. {{site.data.keyword.cos_short}} actions that generate global events"}
 
 ### Resource configuration events
@@ -133,7 +134,7 @@ The following table lists the COS bucket access events:
 | Action                                                 | Description                 |
 | ------------------------------------------------------ | --------------------------- |
 | `cloud-object-storage.bucket.list`                     | List the objects in the bucket |
-| `cloud-object-storage.bucket.read`                     | Get the metadata for the bucket |
+| `cloud-object-storage.bucket-metadata.read`            | Get the metadata for the bucket |
 {: caption="Table 5. Bucket access events"}
 
 
@@ -144,7 +145,7 @@ The following table lists the COS object access events:
 
 | Action                                                 | Description                 |
 | ------------------------------------------------------ | --------------------------- |
-| `cloud-object-storage.object.read`                     | Get the metadata for the object |
+| `cloud-object-storage.object-metadata.read`            | Get the metadata for the object |
 | `cloud-object-storage.object.read`                     | Read the object |
 | `cloud-object-storage.object.create`                   | Create the object |
 | `cloud-object-storage.object.delete`                   | Delete the object |
@@ -176,11 +177,11 @@ The following table lists the COS multipart events:
 ## Viewing events
 {: #at-ui}
 
-You can view the Activity Tracker events that are associated with your {{site.data.keyword.cos_short}} instance by using [{{site.data.keyword.at_full_notm}}](/docs/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started).
+You can view the Activity Tracker events that are associated with your {{site.data.keyword.cos_short}} instance by using [{{site.data.keyword.at_full_notm}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started).
 
 You can only provision 1 instance of the {{site.data.keyword.at_full_notm}} service per location. 
 
-To view events, you must identify the location where events are collected and available for monitoring. Then, you must access the web UI of the {{site.data.keyword.at_full_notm}} instance in that location. For more information, see [Launching the web UI through the IBM Cloud UI](/docs/Activity-Tracker-with-LogDNA?topic=logdnaat-launch#launch_step2).
+To view events, you must identify the location where events are collected and available for monitoring. Then, you must access the web UI of the {{site.data.keyword.at_full_notm}} instance in that location. For more information, see [Launching the web UI through the IBM Cloud UI](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-launch#launch_step2).
 
 ### Management events
 {: #at-ui-mngt}

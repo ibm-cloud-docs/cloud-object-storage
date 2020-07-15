@@ -29,7 +29,7 @@ subcollection: cloud-object-storage
 {:support: data-reuse='support'}
 
 # Using Go
-{: #go}
+{: #using-go}
 
 The {{site.data.keyword.cos_full}} SDK for Go provides features to make the most of {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
@@ -41,15 +41,17 @@ The {{site.data.keyword.cos_full_notm}} SDK for Go is comprehensive, with many f
 
 Use `go get` to retrieve the SDK to add it to your GOPATH workspace, or project's Go module dependencies. The SDK requires a minimum version of Go 1.10 and maximum version of Go 1.12. Future versions of Go will be supported once our quality control process has been completed.
 
-```
+```bash
 go get github.com/IBM/ibm-cos-sdk-go
 ```
+{: pre}
 
 To update the SDK use `go get -u` to retrieve the latest version of the SDK.
 
-```
+```bash
 go get -u github.com/IBM/ibm-cos-sdk-go
 ```
+{: pre}
 
 ### Import packages
 {: #go-import-packages}
@@ -63,6 +65,7 @@ import (
     "github.com/IBM/ibm-cos-sdk-go/service/s3"
 )
 ```
+{: codeblock}
 
 ## Creating a client and sourcing credentials
 {: #go-client-credentials}
@@ -99,6 +102,8 @@ conf := aws.NewConfig().
     WithS3ForcePathStyle(true)
 
 ```
+{: codeblock}
+
 For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
 ## Code Examples
@@ -137,6 +142,7 @@ func main() {
     fmt.Println(d)
 }
 ```
+{: codeblock}
 
 ### List available buckets
 {: #go-list-buckets}
@@ -154,7 +160,7 @@ func main() {
 }
 
 ```
-
+{: codeblock}
 
 ### Upload an object to a bucket
 {: #go-put-object}
@@ -182,8 +188,7 @@ func main() {
     fmt.Println(result)
 }
 ```
-
-
+{: codeblock}
 
 ### List items in a bucket (List Objects V2)
 {: #go-list-objects-v2}
@@ -232,6 +237,7 @@ func main() {
 //}
 
 ```
+{: codeblock}
 
 ### Get an object's contents
 {: #go-get-object}
@@ -261,6 +267,7 @@ func main() {
 }
 
 ```
+{: codeblock}
 
 ### Delete an object from a bucket
 {: #go-delete-object}
@@ -284,7 +291,7 @@ func main() {
     fmt.Println(d)
 }
 ```
-
+{: codeblock}
 
 ### Delete multiple objects from a bucket
 {: #go-multidelete}
@@ -321,6 +328,7 @@ func main() {
     fmt.Println(d)
 }
 ```
+{: codeblock}
 
 
 ### Delete a bucket
@@ -343,8 +351,7 @@ func main() {
     fmt.Println(d)
 }
 ```
-
-
+{: codeblock}
 
 ### Run a manual multi-part upload
 {: #go-multipart}
@@ -397,6 +404,7 @@ func main() {
     fmt.Println(d)
 }
 ```
+{: codeblock}
 
 ## Using Key Protect
 {: #go-examples-kp}
@@ -408,15 +416,15 @@ Key Protect can be added to a storage bucket to manage encryption keys. All data
 
 The following items are necessary in order to create a bucket with Key-Protect enabled:
 
-* A Key Protect service [provisioned](/docs/key-protect?topic=key-protect-provision#provision)
-* A Root key available (either [generated](/docs/key-protect?topic=key-protect-create-root-keys#create_root_keys) or [imported](/docs/key-protect?topic=key-protect-import-root-keys#import_root_keys))
+* A Key Protect service [provisioned](/docs/key-protect?topic=key-protect-provision)
+* A Root key available (either [generated](/docs/key-protect?topic=key-protect-create-root-keys) or [imported](/docs/key-protect?topic=key-protect-import-root-keys))
 
 ### Retrieving the Root Key CRN
 {: #go-examples-kp-root}
 
-1. Retrieve the [instance ID](/docs/key-protect?topic=key-protect-retrieve-instance-ID#retrieve-instance-ID) for your Key Protect service
-2. Use the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api#set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
-    * You can either use `curl` commands or an API REST Client such as [Postman](/docs/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api#set-up-api).
+1. Retrieve the [instance ID](/docs/key-protect?topic=key-protect-retrieve-instance-ID) for your Key Protect service
+2. Use the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
+    * You can either use `curl` commands or an API REST Client such as [Postman](/docs/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api).
 3. Retrieve the CRN of the root key you use to enabled Key Protect on your bucket. The CRN looks similar to below:
 
 `crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
@@ -448,6 +456,8 @@ func main() {
     fmt.Println(d)
 }
 ```
+{: codeblock}
+
 *Key Values*
 * `<NEW_BUCKET_NAME>` - The name of the new bucket.
 * `<ROOT-KEY-CRN>` - CRN of the Root Key that is obtained from the Key Protect service.
@@ -496,6 +506,7 @@ func main() {
     fmt.Println(f)
 }
 ```
+{: codeblock}
 
 ### Getting an extended listing
 {: #go-list-buckets-extended}
@@ -515,6 +526,8 @@ func main() {
 		fmt.Println(string(jsonBytes))
 }
 ```
+{: codeblock}
+
 *Key Values*
 * `<MAX_KEYS>` - Maximum number of buckets to retrieve in the request.
 * `<MARKER>` - The bucket name to start the listing (Skip until this bucket).
@@ -540,6 +553,8 @@ func main() {
 
 }
 ```
+{: codeblock}
+
 *Key Values*
 * `<MAX_KEYS>` - Maximum number of buckets to retrieve in the request.
 * `<MARKER>` - The bucket name to start the listing (Skip until this bucket).
@@ -613,7 +628,7 @@ func main() {
 }
 
 ```
-{: .codeblock}
+{: codeblock}
 
 The typical response is exemplified here.
 
@@ -632,7 +647,7 @@ The typical response is exemplified here.
      }]
  }
 ```
-{: .codeblock}
+{: codeblock}
 
 ### Immutable Object Storage
 {: #go-immutable-object-storage}
@@ -711,6 +726,6 @@ The typical response is exemplified here.
 {: .codeblock}
 
 ## Next Steps
-{: go-next-steps}
+{: #go-next-steps}
 
 If you haven't already, please see the detailed class and method documentation available at the [Go API documentation](https://ibm.github.io/ibm-cos-sdk-go/).

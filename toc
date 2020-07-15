@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="cloud-object-storage" category="storage" audience="services" href="/docs/cloud-object-storage?topic=cloud-object-storage-getting-started" path="cloud-object-storage"}
+{: .toc subcollection="cloud-object-storage" category="storage" audience="services" href="/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage" path="cloud-object-storage"}
 Cloud Object Storage
 
     {: .navgroup id="learn"}
@@ -15,7 +15,9 @@ Cloud Object Storage
         basics/developers.md
 
     cos-responsibilities.md
+    quick-facts.md
     release-notes.md
+
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
@@ -24,6 +26,7 @@ Cloud Object Storage
     {: .topicgroup}
     Choose regions and connect services
         basics/endpoints.md
+        info/advanced_endpoints.md
         basics/services.md    
         [Connect from VPC](/vpc-on-classic/vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc)
     
@@ -109,7 +112,6 @@ Cloud Object Storage
         [Detach Cloudant Attachments to IBM COS](https://medium.com/ibm-watson-data-lab/detaching-cloudant-attachments-to-object-storage-with-serverless-functions-99b8c3c77925)
         [Build, deploy and scale real-world solutions on IBM Cloud.](https://cloud.ibm.com/docs/tutorials/index.html#tutorials)
         [File-like access to IBM COS using s3fs](https://medium.com/@ozeri/file-like-access-to-ibm-cloud-object-storage-using-s3fs-f5094ed42594)
-        tutorials/cos-region-copy.md
         tutorials/migrate.md
         tutorials/web-application.md
         tutorials/cloudyr.md
@@ -123,12 +125,12 @@ Cloud Object Storage
         info/activestorage.md
         [Use Velero for Kubernetes Backups](https://velero.io/docs/v1.3.2/contributions/ibm-config/)
         help/object-storage.md
-        info/advanced_endpoints.md
 
     {: .topicgroup}
     Security and compliance
         info/data-security-encryption.md
         compliance.md
+        eu.md
     {: .navgroup-end}
 
     {: .navgroup id="help"}

@@ -36,7 +36,7 @@ The {{site.data.keyword.cos_full}} SDK for Node.js provides modern capabilities 
 ## Installing the SDK
 {: #node-install}
 
-[Node.js](https://cloud.ibm.com/docs/node?topic=nodejs-getting-started){: external} is an excellent way to build [web applications](https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps){: external}, and customize your instance of {{site.data.keyword.cos_short}} for your end users. The preferred way to install the {{site.data.keyword.cos_short}} SDK for Node.js is to use the [`npm`](https://www.npmjs.com){: external} package manager for Node.js. Type the following command into a command line:
+[Node.js](/docs/node?topic=node-getting-started) is an excellent way to build [web applications](/docs/solution-tutorials?topic=solution-tutorials-mean-stack), and customize your instance of {{site.data.keyword.cos_short}} for your end users. The preferred way to install the {{site.data.keyword.cos_short}} SDK for Node.js is to use the [`npm`](https://www.npmjs.com){: external} package manager for Node.js. Type the following command into a command line:
 
 ```sh
 npm install ibm-cos-sdk
@@ -754,7 +754,7 @@ function getProtectionConfigurationOnBucket(bucketName) {
     .then((data) => {
         console.log(`Configuration on bucket ${bucketName}:`);
         console.log(data);
-    }
+    })
     .catch((e) => {
         console.log(`ERROR: ${e.code} - ${e.message}\n`);
     });
