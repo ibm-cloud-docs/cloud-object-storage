@@ -119,7 +119,7 @@ The body of the request must contain an XML block with the following schema:
 | `Transition`             | `Container`          | `Days`, `StorageClass`                 | `Rule`                   | Limit 1.                                                                                  |
 | `Days`                   | Non-negative integer | None                                   | `Transition`             | Must be a value greater than 0.                                                           |
 | `Date`                   | Date                 | None                                   | `Transistion`            | Must be in ISO 8601 Format and the date must be in the future.                            |
-| `StorageClass`           | String               | None                                   | `Transition`             | **Must** be set to `GLACIER`.                                                             |
+| `StorageClass`           | String               | None                                   | `Transition`             | `GLACIER` or `ACCELERATED`                                                             |
 {: http}
 
 __Syntax__
@@ -142,7 +142,7 @@ PUT https://{bucket}.{endpoint}?lifecycle # virtual host style
 		</Filter>
 		<Transition>
 			<Days>{integer}</Days>
-			<StorageClass>GLACIER</StorageClass>
+			<StorageClass>{StorageClass}</StorageClass>
 		</Transition>
 	</Rule>
 </LifecycleConfiguration>
@@ -161,7 +161,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 17:50:00 GMT
 Authorization: authorization string
 Content-Type: text/plain
-Content-MD5: M625BaNwd/OytcM7O5gIaQ==
+Content-MD5: 1B2M2Y8AsgTpgAmY7PhCfg==
 Content-Length: 305
 ```
 {: codeblock}
@@ -177,7 +177,7 @@ Content-Length: 305
         <Status>Enabled</Status>
         <Transition>
             <Days>20</Days>
-            <StorageClass>GLACIER</StorageClass>
+            <StorageClass>ACCELERATED</StorageClass>
         </Transition>
     </Rule>
 </LifecycleConfiguration>
@@ -209,7 +209,7 @@ var params = {
           {
             Date: DATE, /* required if Days not specified */
             Days: 0, /* required if Date not specified */
-            StorageClass: 'GLACIER' /* required */
+            StorageClass: 'STRING_VALUE' /* required */
           },
         ]
       },
@@ -495,7 +495,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 19:50:00 GMT
 Authorization: {authorization string}
 Content-Type: text/plain
-Content-MD5: rgRRGfd/OytcM7O5gIaQ==
+Content-MD5: 1B2M2Y8AsgTpgAmY7PhCfg==
 Content-Length: 305
 ```
 {: codeblock}
