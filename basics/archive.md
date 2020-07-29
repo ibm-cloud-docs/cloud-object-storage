@@ -32,7 +32,7 @@ subcollection: cloud-object-storage
 # Archiving and accessing cold data 
 {: #archive}
 
-{{site.data.keyword.cos_full}} Archive is a [low cost](https://www.ibm.com/cloud/object-storage) option for data that is rarely accessed. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option. With the new "Accelerated archive" feature you can quickly access dormant data with restore times in less than two hours.
+{{site.data.keyword.cos_full}} Archive is a [low cost](https://www.ibm.com/cloud/object-storage) option for data that is rarely accessed. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option. With the new "Accelerated archive" feature you can quickly access dormant data with restoration occurring in less than two hours.
 {: shortdesc}
 
 You can archive objects using the web console, REST API, and 3rd party tools that are integrated with IBM Cloud Object Storage. 
