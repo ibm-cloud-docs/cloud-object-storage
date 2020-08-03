@@ -73,4 +73,4 @@ IAM Access Control enables the assignment of policies per service or service ins
 
 While roles are a collection of actions, the actions that are mapped to these roles are service specific. Each service determines this role to action mapping during the onboarding process and this mapping effects all users of the service. Roles and access policies are configured through the Policy Administration Point (PAP) and enforced through the Policy Enforcement Point (PEP) and Policy Decision Point (PDP).
 
-See [Best practices for organizing users, teams, applications](/docs/tutorials?topic=solution-tutorials-users-teams-applications) to learn more.
+See [Best practices for organizing users, teams, applications](/docs/solution-tutorials?topic=solution-tutorials-users-teams-applications) to learn more.
