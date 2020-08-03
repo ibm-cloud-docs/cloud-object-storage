@@ -33,7 +33,7 @@ subcollection: cloud-object-storage
 {{site.data.keyword.cloud_notm}} Identity and Access Management service securely authenticates users and controls access to all resources consistently in the {{site.data.keyword.cloud_notm}} Platform. 
 {: shortdesc}
 
-For more information, see the [Getting started tutorial](/docs/iam?topic=iam-getstarted#getstarted).
+For more information, see the [Getting started tutorial](/docs/account?topic=account-getstarted#getstarted).
 
 ## Identity  Management
 {: #iam-overview-identity}
@@ -42,7 +42,7 @@ Identity  Management includes the interaction of users, services, and resources.
 
 The {{site.data.keyword.cloud_notm}} IAM Token Service is used to create, update, delete, and use API keys for users and services. Those API keys are created either with API calls or the Identity & Access section of the {{site.data.keyword.cloud}} Platform Console. The same key can be used across services. Each user has any number of API keys to support key rotation scenarios, as well as scenarios by using different keys for different purposes to limit the exposure of a single key.
 
-For more information, see [the IAM documentation](/docs/iam?topic=iam-iamoverview#iamoverview).
+For more information, see [the IAM documentation](/docs/account?topic=account-iamoverview#iamoverview).
 
 ### Users and API keys
 {: #iam-overview-user-api-keys}
