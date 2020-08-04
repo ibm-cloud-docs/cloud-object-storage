@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-11-11"
+lastupdated: "2020-08-10"
 
 keywords: archive, accelerated, access, glacier
 
