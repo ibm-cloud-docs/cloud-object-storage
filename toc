@@ -17,7 +17,6 @@ Cloud Object Storage
     cos-responsibilities.md
     quick-facts.md
     release-notes.md
-
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
