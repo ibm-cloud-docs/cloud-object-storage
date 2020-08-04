@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-26"
+lastupdated: "2020-08-10"
 
 keywords: IBM cloud object storage, cloud object storage, object storage, storage
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-11-11"
+lastupdated: "2020-08-10"
 
 keywords: archive, accelerated, access, glacier
 
@@ -121,7 +121,7 @@ The body of the request must contain an XML block with the following schema:
 | `Filter`                 | String               | `Prefix`                               | `Rule`                   | Must contain a `Prefix` element                                                            |
 | `Prefix`                 | String               | None                                   | `Filter`                 | **Must** be set to `<Prefix/>`.                                                           |
 | `Transition`             | `Container`          | `Days`, `StorageClass`                 | `Rule`                   | Limit 1.                                                                                  |
-| `Days`                   | Non-negative integer | None                                   | `Transition`             | Must be a value greater than 0.                                                           |
+| `Days`                   | Non-negative integer | None                                   | `Transition`             | Must be a value equal to or greater than 0.                                                           |
 | `Date`                   | Date                 | None                                   | `Transistion`            | Must be in ISO 8601 Format and the date must be in the future.                            |
 | `StorageClass`           | String               | None                                   | `Transition`             | `GLACIER` or `ACCELERATED`                                                             |
 {: http}
