@@ -49,6 +49,10 @@ When creating or modifying an archive policy for a bucket, consider the followin
 * An existing archive policy can be modified or disabled. 
 * A newly added or modified archive policy applies to new objects uploaded and does not affect existing objects.
 
+Create a bucket in the console after you've logged in, and you can configure your archive policy using the fields shown in Figure 1.
+
+![Create an archive policy](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/bucket-create-ui-archive-rule.jpg){: caption="Figure 1. Create an archive policy"}
+
 To immediately archive new objects uploaded to a bucket, enter 0 days on the archive policy.
 {:tip}
 
