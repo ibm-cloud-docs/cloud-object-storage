@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2020
+lastupdated: "2020-08-10"
 
-keywords: authorization, aws, hmac, signature, create
+keywords: authorization, hmac, signature, create
 
 subcollection: cloud-object-storage
 
