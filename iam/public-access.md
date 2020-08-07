@@ -1,7 +1,7 @@
 ---
 
 copyright:
-  years: 2017, 2019
+  years: 2017, 2020
 lastupdated: "2020-04-22"
 
 keywords: public, cdn, anonymous, files
