@@ -39,13 +39,13 @@ For more information about permissions and access, see [Bucket permissions](/doc
 
 When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [using HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main), you will need the information represented in Table 1 when [constructing an HMAC signature](/docs/cloud-object-storage?topic=cloud-object-storage-hmac-signature).
 
-|Key|Value|Example|
-|---|---|---|
-|{access_key}|Access key assigned to your Service Credential|cf4965cebe074720a4929759f57e1214|
-|{date}|The formatted date of your request (yyyymmdd)|20180613|
-|{region}|The location code for your endpoint|us-standard|
-|{signature}|The hash created using the secret key, location, and date|ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e|
-|{timestamp}|The formatted date and time of your request|20180614T001804Z|
+| Key          | Value                                                     | Example                                                          |
+|--------------|-----------------------------------------------------------|------------------------------------------------------------------|
+| {access_key} | Access key assigned to your Service Credential            | cf4965cebe074720a4929759f57e1214                                 |
+| {date}       | The formatted date of your request (yyyymmdd)             | 20180613                                                         |
+| {region}     | The location code for your endpoint                       | us-standard                                                      |
+| {signature}  | The hash created using the secret key, location, and date | ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e |
+| {timestamp}  | The formatted date and time of your request               | 20180614T001804Z                                                 |
 {: caption="Table 1. HMAC signature components"}
 
 ## List buckets
@@ -53,13 +53,14 @@ When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [usi
 
 A `GET` request sent to the endpoint root returns a list of buckets that are associated with the specified service instance. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
-Header                    | Type   | Required? |  Description
---------------------------|--------|---| -----------------------------
-`ibm-service-instance-id` | String | Yes | List buckets that were created in this service instance.
+Header                    | Type    | Required?   | Description
+--------------------------|---------|-------------|---------------------------------------------------------
+`ibm-service-instance-id` | String  | Yes         | List buckets that were created in this service instance.
 
-Query Parameter                    | Value   | Required? |  Description
---------------------------|--------|---| -----------------------------------------------------------
-`extended` | None | No | Provides `LocationConstraint` metadata in the listing.
+
+Query Parameter           | Value   | Required?   | Description
+----------------          | ------- | ----------- | -------------------------------------------------------
+`extended`      | None  | No        | Provides `LocationConstraint` metadata in the listing.
 
 Extended listing isn't supported in the SDKs or CLI.
 {:note}
@@ -205,9 +206,9 @@ A `PUT` request sent to the endpoint root followed by a string will create a buc
 Bucket names must be unique because all buckets in the public cloud share a global namespace. This allows for access to a bucket without needing to provide any service instance or account information. It is also not possible to create a bucket with a name beginning with `cosv1-` or `account-` as these prefixes are reserved by the system.
 {:important}
 
-Header                                        | Type   | Description
-------------------------------------------------- | ------ | ----
-`ibm-service-instance-id`  | String  |  This header references the service instance where the bucket will be created and to which data usage will be billed.
+Header                    | Type   | Required?   | Description
+--------------------------|--------|-------------|---------------------------------------------------------------------------------------------------------------------
+`ibm-service-instance-id` | String | Yes         | This header references the service instance where the bucket will be created and to which data usage will be billed.
 
 **Note**: Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means in the name of the bucket or object.
 {:tip}
@@ -266,9 +267,9 @@ Content-Length: 0
 
 To create a bucket with a different storage class, send an XML block specifying a bucket configuration with a `LocationConstraint` of `{provisioning code}` in the body of a `PUT` request to a bucket endpoint. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints). Note that standard bucket [naming rules](#compatibility-api-new-bucket) apply. This operation does not make use of operation specific query parameters.
 
-Header                                        | Type   | Description
-------------------------------------------------- | ------ | ----
-`ibm-service-instance-id`  | String  |  This header references the service instance where the bucket will be created and to which data usage will be billed.
+Header                    | Type   | Description
+--------------------------|--------|---------------------------------------------------------------------------------------------------------------------
+`ibm-service-instance-id` | String | This header references the service instance where the bucket will be created and to which data usage will be billed.
 
 **Syntax**
 
@@ -279,10 +280,10 @@ PUT https://{bucket-name}.{endpoint} # virtual host style
 
 The body of the request must contain an XML block with the following schema:
 
-|Element|Type|Children|Ancestor|Constraint|
-|---|---|---|---|---|
-|CreateBucketConfiguration | Container | LocationConstraint | - | - |
-|LocationConstraint| String | - | CreateBucketConfiguration | Valid location code |
+| Element                   | Type      | Children           | Ancestor                  | Constraint          |
+|---------------------------|-----------|--------------------|---------------------------|---------------------|
+| CreateBucketConfiguration | Container | LocationConstraint | -                         | -                   |
+| LocationConstraint        | String    | -                  | CreateBucketConfiguration | Valid location code |
 
 ```xml
 <CreateBucketConfiguration>
@@ -351,11 +352,11 @@ For more information on {{site.data.keyword.hscrypto}}, [see the documentation](
 Note that managed encryption is **not** available in a Cross Region configuration and any SSE-KP buckets must be Regional.
 {:tip}
 
-Header                                        | Type   | Description
-------------------------------------------------- | ------ | ----
-`ibm-service-instance-id`  | String  |  This header references the service instance where the bucket will be created and to which data usage will be billed.
-`ibm-sse-kp-encryption-algorithm` | String | This header is used to specify the algorithm and key size to use with the encryption key stored by using Key Protect. This value must be set to the string `AES256`.
-`ibm-sse-kp-customer-root-key-crn`  | String | This header is used to reference the specific root key used by Key Protect or {{site.data.keyword.hscrypto}} to encrypt this bucket. This value must be the full CRN of the root key.
+Header                             | Type   | Description
+-----------------------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+`ibm-service-instance-id`          | String | This header references the service instance where the bucket will be created and to which data usage will be billed.
+`ibm-sse-kp-encryption-algorithm`  | String | This header is used to specify the algorithm and key size to use with the encryption key stored by using Key Protect. This value must be set to the string `AES256`.
+`ibm-sse-kp-customer-root-key-crn` | String | This header is used to reference the specific root key used by Key Protect or {{site.data.keyword.hscrypto}} to encrypt this bucket. This value must be the full CRN of the root key.
 
 **Syntax**
 
@@ -524,16 +525,16 @@ GET https://{bucket-name}.{endpoint}?list-type=2 # virtual host style
 ### Optional query parameters
 {: #compatibility-api-list-objects-v2-params}
 
-Name | Type | Description
---- | ---- | ------------
-`list-type` | String | Indicates version 2 of the API and the value must be 2.
-`prefix` | String | Constrains response to object names beginning with `prefix`.
-`delimiter` | String | Groups objects between the `prefix` and the `delimiter`.
-`encoding-type` | String | If unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.
-`max-keys` | String | Restricts the number of objects to display in the response. Default and maximum is 1,000.
-`fetch-owner` | String | Version 2 of the API does not include the `Owner` information by default. Set this parameter to `true` if `Owner` information is desired in the response.
+Name                 | Type   | Description
+---------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+`list-type`          | String | Indicates version 2 of the API and the value must be 2.
+`prefix`             | String | Constrains response to object names beginning with `prefix`.
+`delimiter`          | String | Groups objects between the `prefix` and the `delimiter`.
+`encoding-type`      | String | If unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.
+`max-keys`           | String | Restricts the number of objects to display in the response. Default and maximum is 1,000.
+`fetch-owner`        | String | Version 2 of the API does not include the `Owner` information by default. Set this parameter to `true` if `Owner` information is desired in the response.
 `continuation-token` | String | Specifies the next set of objects to be returned when your response is truncated (`IsTruncated` element returns `true`).<br/><br/>Your initial response will include the `NextContinuationToken` element. Use this token in the next request as the value for `continuation-token`.
-`start-after` | String | Returns key names after a specific key object.<br/><br/>*This parameter is only valid in your initial request.*  If a `continuation-token` parameter is included in your request, this parameter is ignored.
+`start-after`        | String | Returns key names after a specific key object.<br/><br/>*This parameter is only valid in your initial request.*  If a `continuation-token` parameter is included in your request, this parameter is ignored.
 
 **Example request (simple)**
 
@@ -744,13 +745,13 @@ GET https://{bucket-name}.{endpoint} # virtual host style
 ### Optional query parameters
 {: #compatibility-api-list-objects-params}
 
-Name | Type | Description
---- | ---- | ------------
-`prefix` | String | Constrains response to object names beginning with `prefix`.
-`delimiter` | String | Groups objects between the `prefix` and the `delimiter`.
+Name            | Type   | Description
+----------------|--------|----------------------------------------------------------------------------------------------------------------------------------------------------
+`prefix`        | String | Constrains response to object names beginning with `prefix`.
+`delimiter`     | String | Groups objects between the `prefix` and the `delimiter`.
 `encoding-type` | String | If unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.
-`max-keys` | String | Restricts the number of objects to display in the response. Default and maximum is 1,000.
-`marker` | String | Specifies the object from where the listing should begin, in UTF-8 binary order.
+`max-keys`      | String | Restricts the number of objects to display in the response. Default and maximum is 1,000.
+`marker`        | String | Specifies the object from where the listing should begin, in UTF-8 binary order.
 
 **Example request**
 {: token}
@@ -855,8 +856,8 @@ DELETE https://{bucket-name}.{endpoint} # virtual host style
 
 ### Optional headers
 
-Name | Type | Description
---- | ---- | ------------
+Name                  | Type   | Description
+----------------------|--------|-----------------------------------------------------------------------------------
 `aspera-ak-max-tries` | String | Specifies the number of times to attempt the delete operation. Default value is 2.
 
 
@@ -915,14 +916,14 @@ GET https://{bucket-name}.{endpoint}?uploads= # virtual host style
 
 **Parameters**
 
-Name | Type | Description
---- | ---- | ------------
-`prefix` | String | Constrains response to object names beginning with `{prefix}`.
-`delimiter` | String | Groups objects between the `prefix` and the `delimiter`.
-`encoding-type` | String | If unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.
-`max-uploads` | integer | Restricts the number of objects to display in the response. Default and maximum is 1,000.
-`key-marker` | String | Specifies from where the listing should begin.
-`upload-id-marker` | String | Ignored if `key-marker` is not specified, otherwise sets a point at which to begin listing parts above `upload-id-marker`.
+Name               | Type    | Description
+-------------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------
+`prefix`           | String  | Constrains response to object names beginning with `{prefix}`.
+`delimiter`        | String  | Groups objects between the `prefix` and the `delimiter`.
+`encoding-type`    | String  | If unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.
+`max-uploads`      | integer | Restricts the number of objects to display in the response. Default and maximum is 1,000.
+`key-marker`       | String  | Specifies from where the listing should begin.
+`upload-id-marker` | String  | Ignored if `key-marker` is not specified, otherwise sets a point at which to begin listing parts above `upload-id-marker`.
 
 **Example request**
 {: token}
@@ -1087,12 +1088,12 @@ PUT https://{bucket-name}.{endpoint}?cors= # virtual host style
 
 The body of the request must contain an XML block with the following schema:
 
-|Element|Type|Children|Ancestor|Constraint|
-|---|---|---|---|---|
-|CORSConfiguration | Container | CORSRule | - | - |
-|CORSRule| Container | AllowedOrigin, AllowedMethod | Delete | - |
-|AllowedOrigin| String | - | CORSRule | Valid origin string |
-|AllowedMethod| String | - | CORSRule | Valid method string |
+| Element           | Type      | Children                     | Ancestor | Constraint          |
+|-------------------|-----------|------------------------------|----------|---------------------|
+| CORSConfiguration | Container | CORSRule                     | -        | -                   |
+| CORSRule          | Container | AllowedOrigin, AllowedMethod | Delete   | -                   |
+| AllowedOrigin     | String    | -                            | CORSRule | Valid origin string |
+| AllowedMethod     | String    | -                            | CORSRule | Valid method string |
 
 The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. The following snippet shows one way to achieve the content for that particular header.
 
@@ -1275,10 +1276,10 @@ PUT https://{bucket-name}.{endpoint}?lifecycle # virtual host style
 
 The body of the request must contain an XML block with the following schema:
 
-|Element|Type|Children|Ancestor|Constraint|
-|---|---|---|---|---|
-|LifecycleConfiguration|Container|Rule|None|Limit 1|
-|Rule|Container|ID, Status, Filter, Transition|LifecycleConfiguration|Limit 1|
+| Element                | Type      | Children                       | Ancestor               | Constraint |
+|------------------------|-----------|--------------------------------|------------------------|------------|
+| LifecycleConfiguration | Container | Rule                           | None                   | Limit 1    |
+| Rule                   | Container | ID, Status, Filter, Transition | LifecycleConfiguration | Limit 1    |
 |ID|String|None|Rule|**Must** consist of `(a-z,A- Z0-9)` and the following symbols:`` !`_ .*'()- ``|
 |Filter|String|Prefix|Rule|**Must** contain a `Prefix` element.|
 |Prefix|String|None|Filter|**Must** be set to `<Prefix/>`.|
@@ -1439,10 +1440,10 @@ echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 
 The body of the request must contain an XML block with the following schema:
 
-|Element|Type|Children|Ancestor|Constraint|
-|--------------------------|----------------------|----------------------------------------|--------------------------|--------------------------------------------------------------------------------------------|
-| `LifecycleConfiguration` | Container            | `Rule`                                 | None                     | Limit 1.                                                                                  |
-| `Rule`                   | Container            | `ID`, `Status`, `Filter`, `Expiration` | `LifecycleConfiguration` | Limit 1000.                                                                                  |
+| Element                  | Type      | Children                               | Ancestor                 | Constraint  |
+|--------------------------|-----------|----------------------------------------|--------------------------|-------------|
+| `LifecycleConfiguration` | Container | `Rule`                                 | None                     | Limit 1.    |
+| `Rule`                   | Container | `ID`, `Status`, `Filter`, `Expiration` | `LifecycleConfiguration` | Limit 1000. |
 | `ID`                     | String               | None                                   | `Rule`                   | Must consist of (`a-z,`A-Z0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-` |
 | `Filter`                 | String               | `Prefix`                               | `Rule`                   | Must contain a `Prefix` element                                                            |
 | `Prefix`                 | String               | None                                   | `Filter`                 | The rule applies to any objects with keys that match this prefix.                                                           |
@@ -1551,14 +1552,14 @@ PUT https://{bucket-name}.{endpoint}?protection= # virtual host style
 
 The body of the request must contain an XML block with the following schema:
 
-|Element|Type|Children|Ancestor|Constraint|
-|---|---|---|---|---|
-|ProtectionConfiguration | Container | Status, MinimumRetention, MaximumRetention, DefaultRetention | - | - |
-|Status| String | - | ProtectionConfiguration | Valid status string |
-|MinimumRetention| Container | Days | ProtectionConfiguration | - |
-|MaximumRetention| Container | Days | ProtectionConfiguration | - |
-|DefaultRetention| Container | Days | ProtectionConfiguration | - |
-| Days | Integer | - | MinimumRetention, MaximumRetention, DefaultRetention | Valid retention integer |
+| Element                 | Type      | Children                                                     | Ancestor                                             | Constraint              |
+|-------------------------|-----------|--------------------------------------------------------------|------------------------------------------------------|-------------------------|
+| ProtectionConfiguration | Container | Status, MinimumRetention, MaximumRetention, DefaultRetention | -                                                    | -                       |
+| Status                  | String    | -                                                            | ProtectionConfiguration                              | Valid status string     |
+| MinimumRetention        | Container | Days                                                         | ProtectionConfiguration                              | -                       |
+| MaximumRetention        | Container | Days                                                         | ProtectionConfiguration                              | -                       |
+| DefaultRetention        | Container | Days                                                         | ProtectionConfiguration                              | -                       |
+| Days                    | Integer   | -                                                            | MinimumRetention, MaximumRetention, DefaultRetention | Valid retention integer |
 
 **Example request**
 {: token}
