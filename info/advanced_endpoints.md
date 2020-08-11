@@ -92,15 +92,15 @@ For contrast, imagine another application using the normal US cross-region endpo
 
 | Region               | Type              | Endpoint                                                 |
 |----------------------|-------------------|----------------------------------------------------------|
-| US: Dallas           | Direct (Tethered) | `s3.private.us.dal.cloud-object-storage.appdomain.cloud` |
-| US: San Jose         | Direct (Tethered) | `s3.private.us.sjc.cloud-object-storage.appdomain.cloud` |
-| US: Washington, D.C. | Direct (Tethered) | `s3.private.us.wdc.cloud-object-storage.appdomain.cloud` |
-| EU: Amsterdam        | Direct (Tethered) | `s3.private.eu.ams.cloud-object-storage.appdomain.cloud` |
-| EU: Frankfurt        | Direct (Tethered) | `s3.private.eu.fra.cloud-object-storage.appdomain.cloud` |
-| EU: Milan            | Direct (Tethered) | `s3.private.eu.mil.cloud-object-storage.appdomain.cloud` |
-| AP: Tokyo            | Direct (Tethered) | `s3.private.ap.tok.cloud-object-storage.appdomain.cloud` |
-| AP: Seoul            | Direct (Tethered) | `s3.private.ap.seo.cloud-object-storage.appdomain.cloud` |
-| AP: Hong Kong        | Direct (Tethered) | `s3.private.ap.hkg.cloud-object-storage.appdomain.cloud` |
+| US: Dallas           | Direct (Tethered) | `s3.direct.us.dal.cloud-object-storage.appdomain.cloud` |
+| US: San Jose         | Direct (Tethered) | `s3.direct.us.sjc.cloud-object-storage.appdomain.cloud` |
+| US: Washington, D.C. | Direct (Tethered) | `s3.direct.us.wdc.cloud-object-storage.appdomain.cloud` |
+| EU: Amsterdam        | Direct (Tethered) | `s3.direct.eu.ams.cloud-object-storage.appdomain.cloud` |
+| EU: Frankfurt        | Direct (Tethered) | `s3.direct.eu.fra.cloud-object-storage.appdomain.cloud` |
+| EU: Milan            | Direct (Tethered) | `s3.direct.eu.mil.cloud-object-storage.appdomain.cloud` |
+| AP: Tokyo            | Direct (Tethered) | `s3.direct.ap.tok.cloud-object-storage.appdomain.cloud` |
+| AP: Seoul            | Direct (Tethered) | `s3.direct.ap.seo.cloud-object-storage.appdomain.cloud` |
+| AP: Hong Kong        | Direct (Tethered) | `s3.direct.ap.hkg.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 2. Cross Region Endpoints" caption-side="top"}
 {: #tether3}
