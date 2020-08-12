@@ -88,7 +88,7 @@ Downloads that use Aspera high-speed transfer incur egress charges. For more inf
 
 Aspera high-speed transfer supports using the Java and Python [SDKs](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs).
 
-Aspera is not compatible with popular Python version managers, such as Anaconda and `Pyenv`. Please install a compatible base version of Python as an unmanaged, plain installation before installing Aspera.
+The Aspera SDK for Python is only available for Python 3.6. Install this base version of Python as an unmanaged, plain installation before installing Aspera. Also, the Aspera SDK for Python is incompatible with popular Python version managers, such as Anaconda and `Pyenv`.
 {: important}
 
 ### When to use Aspera High-Speed Transfer
@@ -106,7 +106,7 @@ The Aspera high-speed transfer SDK is closed-source and thus an optional depende
 #### COS/Aspera High-Speed Transfer Packaging
 {: #aspera-packaging}
 
-![COS/Aspera High-Speed Transfer SDK](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/aspera-packaging.png){: caption="Figure 1: COS/Aspera High-Speed Transfer SDK." caption-side="bottom"}
+![COS/Aspera High-Speed Transfer SDK](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/aspera-packaging.png){: caption="Figure 1. COS/Aspera High-Speed Transfer SDK" caption-side="bottom"}
 
 ### Supported Platforms
 {: #aspera-sdk-platforms}
