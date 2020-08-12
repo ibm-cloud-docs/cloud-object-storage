@@ -88,6 +88,9 @@ The following variables appear in the examples:
 
 Code examples are tested on supported release versions of Python. 
 
+In your code, you must remove the angled brackets or any other excess characters that are provided here as illustration.
+{: note} 
+
 ### Initializing configuration
 {: #python-examples-init}
 

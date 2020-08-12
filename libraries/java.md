@@ -92,6 +92,9 @@ If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_creden
 ## Code Examples
 {: #java-examples}
 
+In your code, you must remove the angled brackets or any other excess characters that are provided here as illustration.
+{: note} 
+
 Let's start with an complete example class that will run through some basic functionality, then explore the classes individually. This `CosExample` class will list objects in an existing bucket, create a new bucket, and then list all buckets in the service instance. 
 
 ### Gather required information

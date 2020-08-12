@@ -84,6 +84,9 @@ If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_creden
 ## Code Examples
 {: #node-examples}
 
+In your code, you must remove the angled brackets or any other excess characters that are provided here as illustration.
+{: note} 
+
 Getting started with [Node.js](https://nodejs.org/en/about/){: external}&mdash;once it's installed&mdash;usually involves configuration and invocation, like in [this example from Nodejs.org](https://nodejs.org/en/docs/guides/getting-started-guide/){: external}. We'll follow a similar model
 
 ### Initializing configuration

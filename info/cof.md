@@ -138,6 +138,9 @@ The applications VCAP_SERVICES environment variable is automatically updated wit
 ### IBM Client Tools (CLI)
 {: #cloud-foundry-bindings-cli}
 
+In your code, you must remove the angled brackets or any other excess characters that are provided here as illustration.
+{: note} 
+
 1. Log in to {{site.data.keyword.cloud_notm}} Platform by using the CLI
 ```
  ibmcloud login --apikey <your api key>
