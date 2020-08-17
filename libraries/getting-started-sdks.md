@@ -64,6 +64,9 @@ Specific instructions for downloading and installing the SDK is available in [Us
 
 The code examples below provide introductory examples of running the basic operations with {{site.data.keyword.cos_short}}. For simplicity, the code example can be run multiple times as it uses Universally Unique Identifiers (UUIDs) for bucket/item names to prevent potential conflicts.
 
+In your code, you must remove the angled brackets or any other excess characters that are provided here as illustration.
+{: note} 
+
 To complete the code example, you need to replace the following values:
 
 |Value|Description|Example|
