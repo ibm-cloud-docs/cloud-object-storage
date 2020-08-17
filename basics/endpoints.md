@@ -225,6 +225,18 @@ The Activity Tracker and Logging Service with LogDNA can archive to a bucket at 
 | `eu-geo`                                        | Cross Region | Amsterdam, Frankfurt, Milan |
 {: caption="Table 4. EU-managed Endpoints" caption-side="top"}
  
+
+## Resource Configuration Endpoints
+{: #endpoints-rc}
+
+Requests made using the Resource Configuration API are sent to a global endpoint, regardless of the bucket's location.  
+
+| Type    | Endpoint                                               |
+|---------|--------------------------------------------------------|
+| Public  | `config.cloud-object-storage.cloud.ibm.com/v1`         |
+| Private | `config.private.cloud-object-storage.cloud.ibm.com/v1` |
+| Direct  | `config.direct.cloud-object-storage.cloud.ibm.com/v1`  |
+
 ## Decommissioned locations
 {: #endpoints-decom}
 
