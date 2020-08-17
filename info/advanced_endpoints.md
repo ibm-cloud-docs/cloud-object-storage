@@ -33,7 +33,7 @@ subcollection: cloud-object-storage
 When deciding how to configure your {{site.data.keyword.cos_full}} instance, consider how the endpoints reflect your needs for resiliency and access.
 {: shortdesc}
 
-When accessing a Cross Region bucket, it is possible to direct inbound traffic to a tethered endpoint while still distributing data across all three regions. When sending requests to a tethered endpoint **there is no automated failover if that region becomes unavailable**. Applications that direct traffic to a tethered endpoint instead of the `geo` endpoint **must** implement appropriate failover logic internally to achieve the availability advantages of the cross region storage. 
+When you use a Cross Region bucket, it is possible to direct your accesses to a tethered endpoint associated with a specific Cross Region metropolitan area, rather than connecting to the nearest available Cross Region metropolitan area.  In contrast to the `geo` endpoint, when you send requests to a tethered end point **there is no automated failover if that region becomes unavailable**. Applications that direct traffic to a tethered endpoint **must** implement appropriate failover logic internally to achieve the availability advantages of the Cross Region storage. 
 
 One reason for using a tethered endpoint is to control where data ingress and egress occurs while still distributing the data across the widest possible area. Imagine an application running in the `us-south` region that wants to store data in a US cross-region bucket but wants to ensure that all read and write requests remain in the Dallas area:
 
@@ -92,15 +92,15 @@ For contrast, imagine another application using the normal US cross-region endpo
 
 | Region               | Type              | Endpoint                                                 |
 |----------------------|-------------------|----------------------------------------------------------|
-| US: Dallas           | Direct (Tethered) | `s3.private.us.dal.cloud-object-storage.appdomain.cloud` |
-| US: San Jose         | Direct (Tethered) | `s3.private.us.sjc.cloud-object-storage.appdomain.cloud` |
-| US: Washington, D.C. | Direct (Tethered) | `s3.private.us.wdc.cloud-object-storage.appdomain.cloud` |
-| EU: Amsterdam        | Direct (Tethered) | `s3.private.eu.ams.cloud-object-storage.appdomain.cloud` |
-| EU: Frankfurt        | Direct (Tethered) | `s3.private.eu.fra.cloud-object-storage.appdomain.cloud` |
-| EU: Milan            | Direct (Tethered) | `s3.private.eu.mil.cloud-object-storage.appdomain.cloud` |
-| AP: Tokyo            | Direct (Tethered) | `s3.private.ap.tok.cloud-object-storage.appdomain.cloud` |
-| AP: Seoul            | Direct (Tethered) | `s3.private.ap.seo.cloud-object-storage.appdomain.cloud` |
-| AP: Hong Kong        | Direct (Tethered) | `s3.private.ap.hkg.cloud-object-storage.appdomain.cloud` |
+| US: Dallas           | Direct (Tethered) | `s3.direct.us.dal.cloud-object-storage.appdomain.cloud` |
+| US: San Jose         | Direct (Tethered) | `s3.direct.us.sjc.cloud-object-storage.appdomain.cloud` |
+| US: Washington, D.C. | Direct (Tethered) | `s3.direct.us.wdc.cloud-object-storage.appdomain.cloud` |
+| EU: Amsterdam        | Direct (Tethered) | `s3.direct.eu.ams.cloud-object-storage.appdomain.cloud` |
+| EU: Frankfurt        | Direct (Tethered) | `s3.direct.eu.fra.cloud-object-storage.appdomain.cloud` |
+| EU: Milan            | Direct (Tethered) | `s3.direct.eu.mil.cloud-object-storage.appdomain.cloud` |
+| AP: Tokyo            | Direct (Tethered) | `s3.direct.ap.tok.cloud-object-storage.appdomain.cloud` |
+| AP: Seoul            | Direct (Tethered) | `s3.direct.ap.seo.cloud-object-storage.appdomain.cloud` |
+| AP: Hong Kong        | Direct (Tethered) | `s3.direct.ap.hkg.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 2. Cross Region Endpoints" caption-side="top"}
 {: #tether3}
