@@ -1,13 +1,12 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2020
+lastupdated: "2020-08-10"
 
-keywords: archive, glacier, tier, s3, compatibility, api
+keywords: archive, accelerated, access, glacier
 
 subcollection: cloud-object-storage
-
 
 ---
 {:new_window: target="_blank"}
@@ -30,10 +29,10 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Archiving cold data with transition rules
+# Archiving and accessing cold data 
 {: #archive}
 
-{{site.data.keyword.cos_full}} Archive is a [low cost](https://www.ibm.com/cloud/object-storage) option for data that is rarely accessed. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option.
+{{site.data.keyword.cos_full}} Archive is a [low cost](https://www.ibm.com/cloud/object-storage) option for data that is rarely accessed. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option. With the new "Accelerated archive" feature you can quickly access dormant data with restoration occurring in less than two hours.
 {: shortdesc}
 
 You can archive objects using the web console, REST API, and 3rd party tools that are integrated with IBM Cloud Object Storage. 
@@ -50,6 +49,10 @@ When creating or modifying an archive policy for a bucket, consider the followin
 * An existing archive policy can be modified or disabled. 
 * A newly added or modified archive policy applies to new objects uploaded and does not affect existing objects.
 
+Create a bucket in the console after you've logged in, and you can configure your archive policy using the fields shown in Figure 1.
+
+![Create an archive policy](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/bucket-create-ui-archive-rule.jpg){: caption="Figure 1. Create an archive policy"}
+
 To immediately archive new objects uploaded to a bucket, enter 0 days on the archive policy.
 {:tip}
 
@@ -61,7 +64,7 @@ Archive is available in certain regions only. See [Integrated Services](/docs/cl
 
 In order to access an archived object, you must restore it to the original storage tier. When restoring an object, you can specify the number of days you want the object to be available. At the end of the specified period, the restored copy is deleted. 
 
-The restoration process can take up to 12 hours.
+The restoration process can take up to 12 hours. When choosing the "Accelerated archive" option, restoring dormant data takes place within two hours.
 {:tip}
 
 The archived object sub-states are:
@@ -118,9 +121,9 @@ The body of the request must contain an XML block with the following schema:
 | `Filter`                 | String               | `Prefix`                               | `Rule`                   | Must contain a `Prefix` element                                                            |
 | `Prefix`                 | String               | None                                   | `Filter`                 | **Must** be set to `<Prefix/>`.                                                           |
 | `Transition`             | `Container`          | `Days`, `StorageClass`                 | `Rule`                   | Limit 1.                                                                                  |
-| `Days`                   | Non-negative integer | None                                   | `Transition`             | Must be a value greater than 0.                                                           |
+| `Days`                   | Non-negative integer | None                                   | `Transition`             | Must be a value equal to or greater than 0.                                                           |
 | `Date`                   | Date                 | None                                   | `Transistion`            | Must be in ISO 8601 Format and the date must be in the future.                            |
-| `StorageClass`           | String               | None                                   | `Transition`             | **Must** be set to `GLACIER`.                                                             |
+| `StorageClass`           | String               | None                                   | `Transition`             | `GLACIER` or `ACCELERATED`                                                             |
 {: http}
 
 __Syntax__
@@ -132,7 +135,6 @@ PUT https://{bucket}.{endpoint}?lifecycle # virtual host style
 ```
 {: codeblock}
 {: http}
-{: caption="Example 1. Note the use of slashes and dots in this example of syntax." caption-side="bottom"}
 
 ```xml
 <LifecycleConfiguration>
@@ -144,14 +146,13 @@ PUT https://{bucket}.{endpoint}?lifecycle # virtual host style
 		</Filter>
 		<Transition>
 			<Days>{integer}</Days>
-			<StorageClass>GLACIER</StorageClass>
+			<StorageClass>{StorageClass}</StorageClass>
 		</Transition>
 	</Rule>
 </LifecycleConfiguration>
 ```
 {: codeblock}
 {: http}
-{: caption="Example 2. XML sample for creating an object lifecycle configuration." caption-side="bottom"}
 
 __Examples__
 {: http}
@@ -164,12 +165,11 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 17:50:00 GMT
 Authorization: authorization string
 Content-Type: text/plain
-Content-MD5: M625BaNwd/OytcM7O5gIaQ==
+Content-MD5: 1B2M2Y8AsgTpgAmY7PhCfg==
 Content-Length: 305
 ```
 {: codeblock}
 {: http}
-{: caption="Example 3. Request header samples for creating an object lifecycle configuration." caption-side="bottom"}
 
 ```xml
 <LifecycleConfiguration>
@@ -181,14 +181,13 @@ Content-Length: 305
         <Status>Enabled</Status>
         <Transition>
             <Days>20</Days>
-            <StorageClass>GLACIER</StorageClass>
+            <StorageClass>ACCELERATED</StorageClass>
         </Transition>
     </Rule>
 </LifecycleConfiguration>
 ```
 {: codeblock}
 {: http}
-{: caption="Example 4. XML sample for PUT request body." caption-side="bottom"}
 
 _Sample Response_
 
@@ -199,7 +198,6 @@ Connection: close
 ```
 {: codeblock}
 {: http}
-{: caption="Example 5. Response headers." caption-side="bottom"}
 
 ```js
 var params = {
@@ -215,7 +213,7 @@ var params = {
           {
             Date: DATE, /* required if Days not specified */
             Days: 0, /* required if Date not specified */
-            StorageClass: 'GLACIER' /* required */
+            StorageClass: 'STRING_VALUE' /* required */
           },
         ]
       },
@@ -230,7 +228,6 @@ s3.putBucketLifecycleConfiguration(params, function(err, data) {
 ```
 {: codeblock}
 {: javascript}
-{: caption="Example 21. Example showing creation of lifecycle configuration." caption-side="bottom"}
 
 ```py
 response = client.put_bucket_lifecycle_configuration(
@@ -256,7 +253,6 @@ response = client.put_bucket_lifecycle_configuration(
 ```
 {: codeblock}
 {: python}
-{: caption="Example 26. Method used in creating an object configuration." caption-side="bottom"}
 
 ```java
 public SetBucketLifecycleConfigurationRequest(String bucketName,
@@ -264,7 +260,6 @@ public SetBucketLifecycleConfigurationRequest(String bucketName,
 ```
 {: codeblock}
 {: java}
-{: caption="Example 31. Function used in setting a bucket lifecycle." caption-side="bottom"}
 
 **Method Summary**
 {: java}
@@ -299,7 +294,6 @@ GET https://{bucket}.{endpoint}?lifecycle # virtual host style
 ```
 {: codeblock}
 {: http}
-{: caption="Example 6. Variations in syntax for GET requests." caption-side="bottom"}
 
 __Examples__ 
 {: http}
@@ -314,7 +308,6 @@ Authorization: authorization string
 ```
 {: codeblock}
 {: http}
-{: caption="Example 7. Sample request headers for retrieving configuration." caption-side="bottom"}
 
 _Sample Response_
 
@@ -325,7 +318,6 @@ Connection: close
 ```
 {: codeblock}
 {: http}
-{: caption="Example 8. Sample response headers from GET request." caption-side="bottom"}
 
 ```xml
 <LifecycleConfiguration>
@@ -342,7 +334,6 @@ Connection: close
 ```
 {: codeblock}
 {: http}
-{: caption="Example 9. XML example for response body." caption-side="bottom"}
 
 ```js
 var params = {
@@ -355,21 +346,18 @@ s3.getBucketLifecycleConfiguration(params, function(err, data) {
 ```
 {: codeblock}
 {: javascript}
-{: caption="Example 22. Example showing retrieval of lifecycle metadata." caption-side="bottom"}
 
 ```py
 response = client.get_bucket_lifecycle_configuration(Bucket='string')
 ```
 {: codeblock}
 {: python}
-{: caption="Example 27. Method used in retrieving an object configuration." caption-side="bottom"}
 
 ```java
 public GetBucketLifecycleConfigurationRequest(String bucketName)
 ```
 {: codeblock}
 {: java}
-{: caption="Example 32. Function signature for obtaining object lifecycle configuration." caption-side="bottom"}
 
 ---
 
@@ -395,7 +383,6 @@ DELETE https://{bucket}.{endpoint}?lifecycle # virtual host style
 ```
 {: codeblock}
 {: http}
-{: caption="Example 10. Note the use of slashes and dots in the example of syntax." caption-side="bottom"}
 
 __Examples__
 {: http}
@@ -410,7 +397,6 @@ Authorization: authorization string
 ```
 {: codeblock}
 {: http}
-{: caption="Example 11. Sample request headers for the DELETE HTTP verb." caption-side="bottom"}
 
 _Sample Response_
 {: http}
@@ -422,7 +408,6 @@ Connection: close
 ```
 {: codeblock}
 {: http}
-{: caption="Example 12. Sample response from DELETE request." caption-side="bottom"}
 
 ```js
 var params = {
@@ -435,21 +420,18 @@ s3.deleteBucketLifecycle(params, function(err, data) {
 ```
 {: codeblock}
 {: javascript}
-{: caption="Example 23. Example showing how to delete a bucket's lifecycle configuration." caption-side="bottom"}
 
 ```py
 response = client.delete_bucket_lifecycle(Bucket='string')
 ```
 {: codeblock}
 {: python}
-{: caption="Example 28. Method used in deleting object configuration." caption-side="bottom"}
 
 ```java
 public DeleteBucketLifecycleConfigurationRequest(String bucketName)
 ```
 {: codeblock}
 {: java}
-{: caption="Example 33. Function used in deleting object configuration." caption-side="bottom"}
 
 ---
 
@@ -493,7 +475,6 @@ POST https://{bucket}.{endpoint}/{object}?restore # virtual host style
 ```
 {: codeblock}
 {: http}
-{: caption="Example 13. Note the use of slashes and dots in the example of syntax." caption-side="bottom"}
 
 ```xml
 <RestoreRequest>
@@ -505,7 +486,6 @@ POST https://{bucket}.{endpoint}/{object}?restore # virtual host style
 ```
 {: codeblock}
 {: http}
-{: caption="Example 14. Model of XML for request body." caption-side="bottom"}
 
 __Examples__
 {: http}
@@ -519,12 +499,11 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 19:50:00 GMT
 Authorization: {authorization string}
 Content-Type: text/plain
-Content-MD5: rgRRGfd/OytcM7O5gIaQ==
+Content-MD5: 1B2M2Y8AsgTpgAmY7PhCfg==
 Content-Length: 305
 ```
 {: codeblock}
 {: http}
-{: caption="Example 15. Sample request headers for object restoration." caption-side="bottom"}
 
 ```xml
 <RestoreRequest>
@@ -536,7 +515,6 @@ Content-Length: 305
 ```
 {: codeblock}
 {: http}
-{: caption="Example 16. Sample request body for object restoration." caption-side="bottom"}
 
 _Sample Response_
 
@@ -547,7 +525,6 @@ Connection: close
 ```
 {: codeblock}
 {: http}
-{: caption="Example 17. Response to restoring object (`HTTP 202`)." caption-side="bottom"}
 
 ```js
 var params = {
@@ -568,7 +545,6 @@ var params = {
 ```
 {: codeblock}
 {: javascript}
-{: caption="Example 24. Code used in restoring an archived object." caption-side="bottom"}
 
 ```py
 response = client.restore_object(
@@ -584,7 +560,6 @@ response = client.restore_object(
 ```
 {: codeblock}
 {: python}
-{: caption="Example 29. Temporarily restoring an archived object." caption-side="bottom"}
 
 ```java
 public RestoreObjectRequest(String bucketName,
@@ -593,7 +568,6 @@ public RestoreObjectRequest(String bucketName,
 ```
 {: codeblock}
 {: java}
-{: caption="Example 34. Function signature for restoring an archived object." caption-side="bottom"}
 
 **Method Summary**
 {: java}
@@ -623,7 +597,6 @@ HEAD https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
 {: codeblock}
 {: http}
-{: caption="Example 18. Variations in defining endpoints." caption-side="bottom"}
 
 
 __Response headers for archived objects__
@@ -649,7 +622,6 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 {: codeblock}
 {: http}
-{: caption="Example 19. Example showing request headers." caption-side="bottom"}
 
 _Sample response_
 {: http}
@@ -672,7 +644,6 @@ x-ibm-restored-copy-storage-class: "Standard"
 ```
 {: codeblock}
 {: http}
-{: caption="Example 20. Example showing response headers." caption-side="bottom"}
 
 ```py
 response = client.head_object(
@@ -682,7 +653,6 @@ response = client.head_object(
 ```
 {: codeblock}
 {: python}
-{: caption="Example 30. Handling the response for object headers." caption-side="bottom"}
 
 ```js
 var params = {
@@ -697,15 +667,12 @@ s3.headObject(params, function(err,data) {
 ```
 {: codeblock}
 {: javascript}
-{: caption="Example 25. Example showing retrieval of object headers." caption-side="bottom"}
-
 
 ```java
 public ObjectMetadata()
 ```
 {: codeblock}
 {: java}
-{: caption="Example 35. Function used in obtaining object headers." caption-side="bottom"}
 
 **Method Summary**
 {: java}
@@ -721,4 +688,4 @@ Method |  Description
 ## Next Steps
 {: #archive-next-steps}
 
-In addition to cold storage, {{site.data.keyword.cloud_notm}} currently provides several additional object storage classes for different user needs, all of which are accessible through web-based portals and REST APIs. Learn more about all [storage classes](/docs/cloud-object-storage?topic=cloud-object-storage-classes) available at {{site.data.keyword.cos_full_notm}}.
+In addition to cold storage, {{site.data.keyword.cloud_notm}} currently provides several additional object storage classes for different user needs, all of which are accessible through web-based portals and RESTful APIs. Learn more about all [storage classes](/docs/cloud-object-storage?topic=cloud-object-storage-classes) available at {{site.data.keyword.cos_full_notm}}.

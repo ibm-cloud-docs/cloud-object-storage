@@ -94,7 +94,7 @@ Changing the location requires you to create a new bucket in the desired locatio
 {: #faq-authenticate}
 
 You can use an OAuth 2 token or an HMAC key for authentication. The HMAC key can be used for S3-compatible tools such as rclone, Cyberduck, and so on.
-* Instructions to obtain an OAuth token are available in [Generating an IBM Cloud IAM token by using an API key](/docs/iam?topic=iam-iamtoken_from_apikey).
+* Instructions to obtain an OAuth token are available in [Generating an IBM Cloud IAM token by using an API key](/docs/account?topic=account-iamtoken_from_apikey).
 * Instructions to obtain the HMAC credentials are in Using [HMAC Credentials](/docs/cloud-object-storage/hmac?topic=cloud-object-storage-uhc-hmac-credentials-main).
 
 See also [API Key vs HMAC](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac).
@@ -221,7 +221,7 @@ A feature to unzip or decompress files is not part of the service.  For large da
 ### Can I create a bucket, in the same or different region, with a deleted bucket’s name?
 {: #faq-reuse-name}
 
-You cannot immediately reuse a deleted bucket name. A deleted bucket is scheduled for reclamation after 7 days. After that 7-day period, the bucket name is made available for reuse.  This 7-day buffer allows for a user to restore a deleted bucket if needed.
+If you delete an empty bucket directly with the API, then the name of the bucket becomes available to use within 10 to 15 minutes. However, if you delete an instance without deleting the bucket then you cannot immediately reuse the bucket name. If you delete an instance, bucket names are held in reserve for seven (7) days. After seven days, any bucket names from the deleted instance are made available for reuse. 
 
 
 

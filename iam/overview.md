@@ -33,7 +33,7 @@ subcollection: cloud-object-storage
 {{site.data.keyword.cloud_notm}} Identity and Access Management service securely authenticates users and controls access to all resources consistently in the {{site.data.keyword.cloud_notm}} Platform. 
 {: shortdesc}
 
-For more information, see the [Getting started tutorial](/docs/iam?topic=iam-getstarted#getstarted).
+For more information, see the [Getting started tutorial](/docs/account?topic=account-getstarted#getstarted).
 
 ## Identity  Management
 {: #iam-overview-identity}
@@ -42,7 +42,7 @@ Identity  Management includes the interaction of users, services, and resources.
 
 The {{site.data.keyword.cloud_notm}} IAM Token Service is used to create, update, delete, and use API keys for users and services. Those API keys are created either with API calls or the Identity & Access section of the {{site.data.keyword.cloud}} Platform Console. The same key can be used across services. Each user has any number of API keys to support key rotation scenarios, as well as scenarios by using different keys for different purposes to limit the exposure of a single key.
 
-For more information, see [the IAM documentation](/docs/iam?topic=iam-iamoverview#iamoverview).
+For more information, see [the IAM documentation](/docs/account?topic=account-iamoverview#iamoverview).
 
 ### Users and API keys
 {: #iam-overview-user-api-keys}
@@ -73,4 +73,4 @@ IAM Access Control enables the assignment of policies per service or service ins
 
 While roles are a collection of actions, the actions that are mapped to these roles are service specific. Each service determines this role to action mapping during the onboarding process and this mapping effects all users of the service. Roles and access policies are configured through the Policy Administration Point (PAP) and enforced through the Policy Enforcement Point (PEP) and Policy Decision Point (PDP).
 
-See [Best practices for organizing users, teams, applications](/docs/tutorials?topic=solution-tutorials-users-teams-applications) to learn more.
+See [Best practices for organizing users, teams, applications](/docs/solution-tutorials?topic=solution-tutorials-users-teams-applications) to learn more.
