@@ -87,6 +87,9 @@ Unsupported functionality includes:
 * Filtering objects to archive using a prefix or object key.
 * Tiering between storage classes.
 
+Classic Infrastructure (non-IAM) users are unable to set the transition storage class to `ACCELERATED`.
+{: note} 
+
 ## Using the REST API and SDKs
 {: #archive-api} 
 
@@ -462,7 +465,7 @@ Element                  | Type      | Children                               | 
 `RestoreRequest` | Container | `Days`, `GlacierJobParameters`    | None       | None
 `Days`                   | Integer | None | `RestoreRequest` | Specified the lifetime of the temporarily restored object. The minimum number of days that a restored copy of the object can exist is 1. After the restore period has elapsed, temporary copy of the object will be removed.
 `GlacierJobParameters` | String | `Tier` | `RestoreRequest` | None
-`Tier` | String | None | `GlacierJobParameters` | **Must** be set to `Bulk`.
+`Tier` | String | None | `GlacierJobParameters` |**Must** be set to `Bulk` if the transition storage class for the bucket's lifecycle policy was set to `GLACIER`, and **must** be set to `Accelerated` if the transition storage class was set to `ACCELERATED`.
 
 A successful response returns a `202` if the object is in the archived state and a `200` if the object is already in the restored state.  If the object is already in the restored state and a new request to restore the object is received, the `Days` element will update the expiration time of the restored object.
 
@@ -534,7 +537,7 @@ var params = {
   RestoreRequest: {
    Days: 1, /* days until copy expires */
    GlacierJobParameters: {
-     Tier: Bulk /* required */
+     Tier: 'STRING_VALUE' /* required */
    },
   }
  };
@@ -553,7 +556,7 @@ response = client.restore_object(
     RestoreRequest={
         'Days': 123,
         'GlacierJobParameters': {
-            'Tier': 'Bulk'
+            'Tier': 'string'
         },
     }
 )
@@ -605,7 +608,7 @@ __Response headers for archived objects__
 Header | Type | Description
 --- | ---- | ------------
 `x-amz-restore` | string | Included if the object has been restored or if a restoration is in progress. If the object has been restored, the expiry date for the temporary copy is also returned.
-`x-amz-storage-class` | string | Returns `GLACIER` if archived or temporarily restored.
+`x-amz-storage-class` | string | Returns `GLACIER` or `ACCELERATED` if archived or temporarily restored.
 `x-ibm-archive-transition-time` | date | Returns the date and time when the object is scheduled to transition to the archive tier.
 `x-ibm-transition` | string | Included if the object has transition metadata and returns the tier and original time of transition.
 `x-ibm-restored-copy-storage-class` | string | Included if an object is in the `RestoreInProgress` or `Restored` states and returns the storage class of the bucket.
