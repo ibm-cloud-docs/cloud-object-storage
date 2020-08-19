@@ -221,7 +221,9 @@ A feature to unzip or decompress files is not part of the service.  For large da
 ### Can I create a bucket, in the same or different region, with a deleted bucket’s name?
 {: #faq-reuse-name}
 
-If you delete an empty bucket directly with the API, then the name of the bucket becomes available to use within 10 to 15 minutes. However, if you delete an instance without deleting the bucket then you cannot immediately reuse the bucket name. If you delete an instance, bucket names are held in reserve for seven (7) days. After seven days, any bucket names from the deleted instance are made available for reuse. 
+A bucket name can be reused as soon as 15 minutes after the contents of the bucket have been deleted and then the bucket has been deleted.
+
+If the user does not first empty the bucket, then delete the bucket, and instead just [schedules the {{site.data.keyword.cos_short}} service instance for deletion](/docs/cloud-object-storage?topic=cloud-object-storage-provision#deleting-a-service-instance), the bucket name will be held in reserve for seven (7) days until the account reclamation process is completed.
 
 
 
