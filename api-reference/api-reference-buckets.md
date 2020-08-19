@@ -53,13 +53,13 @@ When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [usi
 
 A `GET` request sent to the endpoint root returns a list of buckets that are associated with the specified service instance. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
-Header                    | Type    | Required?   | Description
---------------------------|---------|-------------|---------------------------------------------------------
-`ibm-service-instance-id` | String  | Yes         | List buckets that were created in this service instance.
+Header                    | Type   | Required? | Description
+--------------------------|--------|-----------|---------------------------------------------------------
+`ibm-service-instance-id` | String | Yes       | List buckets that were created in this service instance.
 
 
-Query Parameter           | Value   | Required?   | Description
-----------------          | ------- | ----------- | -------------------------------------------------------
+Query Parameter | Value | Required? | Description
+----------------|-------|-----------|-------------------------------------------------------
 `extended`      | None  | No        | Provides `LocationConstraint` metadata in the listing.
 
 Extended listing isn't supported in the SDKs or CLI.
@@ -206,9 +206,9 @@ A `PUT` request sent to the endpoint root followed by a string will create a buc
 Bucket names must be unique because all buckets in the public cloud share a global namespace. This allows for access to a bucket without needing to provide any service instance or account information. It is also not possible to create a bucket with a name beginning with `cosv1-` or `account-` as these prefixes are reserved by the system.
 {:important}
 
-Header                    | Type   | Required?   | Description
---------------------------|--------|-------------|---------------------------------------------------------------------------------------------------------------------
-`ibm-service-instance-id` | String | Yes         | This header references the service instance where the bucket will be created and to which data usage will be billed.
+Header                    | Type   | Required? | Description
+--------------------------|--------|-----------|---------------------------------------------------------------------------------------------------------------------
+`ibm-service-instance-id` | String | Yes       | This header references the service instance where the bucket will be created and to which data usage will be billed.
 
 **Note**: Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means in the name of the bucket or object.
 {:tip}
@@ -1262,7 +1262,7 @@ Content-Length: 161
 ## Create a bucket lifecycle configuration
 {: #compatibility-api-create-bucket-lifecycle}
 
-A `PUT` operation uses the lifecycle query parameter to set lifecycle settings for the bucket. A `Content-MD5` header is required as an integrity check for the payload.
+A `PUT` operation uses the lifecycle query parameter to set lifecycle settings for the bucket. A `Content-MD5` header is required as an integrity check for the payload. 
 
 **Syntax**
 
@@ -1276,17 +1276,20 @@ PUT https://{bucket-name}.{endpoint}?lifecycle # virtual host style
 
 The body of the request must contain an XML block with the following schema:
 
-| Element                | Type      | Children                       | Ancestor               | Constraint |
-|------------------------|-----------|--------------------------------|------------------------|------------|
-| LifecycleConfiguration | Container | Rule                           | None                   | Limit 1    |
-| Rule                   | Container | ID, Status, Filter, Transition | LifecycleConfiguration | Limit 1    |
-|ID|String|None|Rule|**Must** consist of `(a-z,A- Z0-9)` and the following symbols:`` !`_ .*'()- ``|
-|Filter|String|Prefix|Rule|**Must** contain a `Prefix` element.|
-|Prefix|String|None|Filter|**Must** be set to `<Prefix/>`.|
-|Transition|Container|Days, StorageClass|Rule|Limit 1.|
-|Days|Non-negative integer|None|Transition|**Must** be a value greater than 0.|
-|Date|Date|None|Transition|**Must** be in ISO 8601 Format and the date must be in the future.|
-|StorageClass|String|None|Transition|**Must** be set to GLACIER.|
+Element                | Type                 | Children                       | Ancestor               | Constraint
+-----------------------|----------------------|--------------------------------|------------------------|-------------------------------------------------------------------------------
+LifecycleConfiguration | Container            | Rule                           | None                   | Limit 1
+Rule                   | Container            | ID, Status, Filter, Transition | LifecycleConfiguration | Limit 1
+ID                     | String               | None                           | Rule                   | **Must** consist of `(a-z,A- Z0-9)` and the following symbols:`` !`_ .*'()- ``
+Filter                 | String               | Prefix                         | Rule                   | **Must** contain a `Prefix` element.
+Prefix                 | String               | None                           | Filter                 | **Must** be set to `<Prefix/>`.
+Transition             | Container            | Days, StorageClass             | Rule                   | Limit 1 transition rule, and 1000 rules in total.
+Days                   | Non-negative integer | None                           | Transition             | **Must** be a value equal to or greater than 0.
+Date                   | Date                 | None                           | Transition             | **Must** be in ISO 8601 Format and the date must be in the future.
+StorageClass           | String               | None                           | Transition             | **Must** be set to `GLACIER` or `ACCELERATED`.
+
+COS IaaS (non-IAM) accounts are unable to set the transition storage class to `ACCELERATED`.
+{: note} 
 
 ```xml
 <LifecycleConfiguration>

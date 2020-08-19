@@ -87,6 +87,9 @@ Unsupported functionality includes:
 * Filtering objects to archive using a prefix or object key.
 * Tiering between storage classes.
 
+Classic Infrastructure (non-IAM) users are unable to set the transition storage class to `ACCELERATED`.
+{: note} 
+
 ## Using the REST API and SDKs
 {: #archive-api} 
 
@@ -113,17 +116,17 @@ Header                    | Type   | Description
 The body of the request must contain an XML block with the following schema:
 {: http}
 
-| Element                  | Type                 | Children                               | Ancestor                 | Constraint                                                                                 |
-|--------------------------|----------------------|----------------------------------------|--------------------------|--------------------------------------------------------------------------------------------|
-| `LifecycleConfiguration` | Container            | `Rule`                                 | None                     | Limit 1.                                                                                  |
-| `Rule`                   | Container            | `ID`, `Status`, `Filter`, `Transition` | `LifecycleConfiguration` | Limit 1.                                                                                  |
-| `ID`                     | String               | None                                   | `Rule`                   | Must consist of (`a-z,`A-Z0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-` |
-| `Filter`                 | String               | `Prefix`                               | `Rule`                   | Must contain a `Prefix` element                                                            |
-| `Prefix`                 | String               | None                                   | `Filter`                 | **Must** be set to `<Prefix/>`.                                                           |
-| `Transition`             | `Container`          | `Days`, `StorageClass`                 | `Rule`                   | Limit 1.                                                                                  |
-| `Days`                   | Non-negative integer | None                                   | `Transition`             | Must be a value equal to or greater than 0.                                                           |
-| `Date`                   | Date                 | None                                   | `Transistion`            | Must be in ISO 8601 Format and the date must be in the future.                            |
-| `StorageClass`           | String               | None                                   | `Transition`             | `GLACIER` or `ACCELERATED`                                                             |
+Element                  | Type                 | Children                               | Ancestor                 | Constraint
+-------------------------|----------------------|----------------------------------------|--------------------------|-------------------------------------------------------------------------------------------
+`LifecycleConfiguration` | Container            | `Rule`                                 | None                     | Limit 1.
+`Rule`                   | Container            | `ID`, `Status`, `Filter`, `Transition` | `LifecycleConfiguration` | Limit 1.
+`ID`                     | String               | None                                   | `Rule`                   | Must consist of (`a-z,`A-Z0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-`
+`Filter`                 | String               | `Prefix`                               | `Rule`                   | Must contain a `Prefix` element
+`Prefix`                 | String               | None                                   | `Filter`                 | **Must** be set to `<Prefix/>`.
+`Transition`             | `Container`          | `Days`, `StorageClass`                 | `Rule`                   | Limit 1 transition rule, and a maximum of 1000 total rules.
+`Days`                   | Non-negative integer | None                                   | `Transition`             | Must be a value equal to or greater than 0.
+`Date`                   | Date                 | None                                   | `Transistion`            | Must be in ISO 8601 Format and the date must be in the future.
+`StorageClass`           | String               | None                                   | `Transition`             | `GLACIER` or `ACCELERATED`
 {: http}
 
 __Syntax__
@@ -457,12 +460,12 @@ Header                    | Type   | Description
 
 The body of the request must contain an XML block with the following schema:
 
-Element                  | Type      | Children                               | Ancestor                 | Constraint
--------------------------|-----------|----------------------------------------|--------------------------|--------------------
-`RestoreRequest` | Container | `Days`, `GlacierJobParameters`    | None       | None
-`Days`                   | Integer | None | `RestoreRequest` | Specified the lifetime of the temporarily restored object. The minimum number of days that a restored copy of the object can exist is 1. After the restore period has elapsed, temporary copy of the object will be removed.
-`GlacierJobParameters` | String | `Tier` | `RestoreRequest` | None
-`Tier` | String | None | `GlacierJobParameters` | **Must** be set to `Bulk`.
+Element                | Type      | Children                       | Ancestor               | Constraint
+-----------------------|-----------|--------------------------------|------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+`RestoreRequest`       | Container | `Days`, `GlacierJobParameters` | None                   | None
+`Days`                 | Integer   | None                           | `RestoreRequest`       | Specified the lifetime of the temporarily restored object. The minimum number of days that a restored copy of the object can exist is 1. After the restore period has elapsed, temporary copy of the object will be removed.
+`GlacierJobParameters` | String    | `Tier`                         | `RestoreRequest`       | None
+`Tier`                 | String    | None                           | `GlacierJobParameters` | Optional, and if left blank will default to the value associated with the storage tier of the policy that was in place when the object was written. If this value is not left blank, it **must** be set to `Bulk` if the transition storage class for the bucket's lifecycle policy was set to `GLACIER`, and **must** be set to `Accelerated` if the transition storage class was set to `ACCELERATED`.
 
 A successful response returns a `202` if the object is in the archived state and a `200` if the object is already in the restored state.  If the object is already in the restored state and a new request to restore the object is received, the `Days` element will update the expiration time of the restored object.
 
@@ -534,7 +537,7 @@ var params = {
   RestoreRequest: {
    Days: 1, /* days until copy expires */
    GlacierJobParameters: {
-     Tier: Bulk /* required */
+     Tier: 'STRING_VALUE' /* required */
    },
   }
  };
@@ -553,7 +556,7 @@ response = client.restore_object(
     RestoreRequest={
         'Days': 123,
         'GlacierJobParameters': {
-            'Tier': 'Bulk'
+            'Tier': 'string'
         },
     }
 )
@@ -572,11 +575,11 @@ public RestoreObjectRequest(String bucketName,
 **Method Summary**
 {: java}
 
-Method |  Description
---- | ---
-`clone()` | Creates a shallow clone of this object for all fields except the handler context.
-`getBucketName()` | Returns the name of the bucket containing the reference to the object to restore.
-`getExpirationInDays()` | Returns the time in days from an object's creation to its expiration.
+Method                                      | Description
+--------------------------------------------|----------------------------------------------------------------------------------------------
+`clone()`                                   | Creates a shallow clone of this object for all fields except the handler context.
+`getBucketName()`                           | Returns the name of the bucket containing the reference to the object to restore.
+`getExpirationInDays()`                     | Returns the time in days from an object's creation to its expiration.
 `setExpirationInDays(int expirationInDays)` | Sets the time, in days, between when an object is uploaded to the bucket and when it expires.
 {: java}
 
@@ -605,7 +608,7 @@ __Response headers for archived objects__
 Header | Type | Description
 --- | ---- | ------------
 `x-amz-restore` | string | Included if the object has been restored or if a restoration is in progress. If the object has been restored, the expiry date for the temporary copy is also returned.
-`x-amz-storage-class` | string | Returns `GLACIER` if archived or temporarily restored.
+`x-amz-storage-class` | string | Returns `GLACIER` or `ACCELERATED` if archived or temporarily restored.
 `x-ibm-archive-transition-time` | date | Returns the date and time when the object is scheduled to transition to the archive tier.
 `x-ibm-transition` | string | Included if the object has transition metadata and returns the tier and original time of transition.
 `x-ibm-restored-copy-storage-class` | string | Included if an object is in the `RestoreInProgress` or `Restored` states and returns the storage class of the bucket.
