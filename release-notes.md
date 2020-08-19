@@ -28,7 +28,7 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 ## Q3 2020
 {: #updates-2020-q3}
 
-Data can now be [archived](/docs/cloud-object-storage?topic=cloud-object-storage-archive) using an Accelerated class that allows restoration of archived objects in under two hours.
+Data can now be [archived](/docs/cloud-object-storage?topic=cloud-object-storage-archive) using an Accelerated class that allows restoration of archived objects in under two hours for an [additional cost](https://www.ibm.com/cloud/object-storage/pricing).
 
 ## Q2 2020
 {: #updates-2020-q2}

@@ -910,7 +910,7 @@ Element              | Type      | Children                   | Ancestor        
 RestoreRequest       | Container | Days, GlacierJobParameters | None                 | None
 Days                 | Integer   | None                       | RestoreRequest       | Specified the lifetime of the temporarily restored object. The minimum number of days that a restored copy of the object can exist is 1. After the restore period has elapsed, temporary copy of the object will be removed.
 GlacierJobParameters | String    | Tier                       | RestoreRequest       | None
-Tier                 | String    | None                       | GlacierJobParameters | **Must** be set to `Bulk` if the transition storage class for the bucket's lifecycle policy was set to `GLACIER`, and **must** be set to `Accelerated` if the transition storage class was set to `ACCELERATED`.
+Tier                 | String    | None                       | GlacierJobParameters | Optional, and if left blank will default to the value associated with the storage tier of the policy that was in place when the object was written. If this value is not left blank, it **must** be set to `Bulk` if the transition storage class for the bucket's lifecycle policy was set to `GLACIER`, and **must** be set to `Accelerated` if the transition storage class was set to `ACCELERATED`.
 
 ```xml
 <RestoreRequest>

@@ -70,7 +70,7 @@ The following table describes response headers for archived objects
 | Header           | Note                                                |
 |------------------|-----------------------------------------------------|
 |`x-amz-restore`|Included if the object has been restored or if a restoration is in progress.|
-|`x-amz-storage-class`|Returns `GLACIER` if archived or temporarily restored.|
+|`x-amz-storage-class`|Returns `GLACIER` or `ACCELERATED` if archived or temporarily restored.|
 |`x-ibm-archive-transition-time`|Returns the date and time when the object is scheduled to transition to the archive tier.|
 |`x-ibm-transition`|Included if the object has transition metadata and returns the tier and original time of transition.|
 |`x-ibm-restored-copy-storage-class`|Included if an object is in the `RestoreInProgress` or `Restored` states and returns the storage class of the bucket.|
