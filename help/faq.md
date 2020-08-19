@@ -218,12 +218,12 @@ The policy applies to the new objects uploaded but does not affect existing obje
 
 A feature to unzip or decompress files is not part of the service.  For large data transfer, consider using Aspera high-speed transfer, multi-part uploads, or threads to manage multi-part uploads.  See [Store large objects](/docs/cloud-object-storage?topic=cloud-object-storage-large-objects).
 
-### Can I create a bucket, in the same or different region, with a deleted bucket’s name?
+### Can I create a bucket, in the same or different region, with a deleted bucket name?
 {: #faq-reuse-name}
 
-A bucket name can be reused as soon as 15 minutes after the contents of the bucket have been deleted and then the bucket has been deleted.
+A bucket name can be reused as soon as 15 minutes after the contents of the bucket have been deleted and then the bucket has been deleted.  At this point, the objects and bucket are irrevocably deleted and **can not** be restored.
 
-If the user does not first empty the bucket, then delete the bucket, and instead just [schedules the {{site.data.keyword.cos_short}} service instance for deletion](/docs/cloud-object-storage?topic=cloud-object-storage-provision#deleting-a-service-instance), the bucket name will be held in reserve for seven (7) days until the account reclamation process is completed.
+If the user does not first empty and then delete the bucket, and instead [deletes or schedules the {{site.data.keyword.cos_short}} service instance for deletion](/docs/cloud-object-storage?topic=cloud-object-storage-provision#deleting-a-service-instance), the bucket names will be held in reserve for seven (7) days until the account reclamation process is completed. Until the reclamation process is complete it remains possible to restore the instance, along with the buckets and objects.  After reclamation is complete, all buckets and objects will be irrevocably deleted and **can not** be restored, although the bucket names will be made available for new buckets to reuse.
 
 
 
