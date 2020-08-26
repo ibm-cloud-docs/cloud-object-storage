@@ -62,9 +62,6 @@ Query Parameter | Value | Required? | Description
 ----------------|-------|-----------|-------------------------------------------------------
 `extended`      | None  | No        | Provides `LocationConstraint` metadata in the listing.
 
-Extended listing isn't supported in the SDKs or CLI.
-{:note}
-
 **Syntax**
 
 ```bash
