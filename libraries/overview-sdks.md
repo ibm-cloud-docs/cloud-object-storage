@@ -52,7 +52,7 @@ These SDKs are based on the official AWS S3 API SDKs, but are modified to use IB
 
 ## IAM API key support
 {: #sdk-about-iam}
-Allows for creating clients with an [API key](/docs/iam?topic=iam-iamoverview#iamoverview) instead of a [pair of Access and Secret](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-uhc-hmac-credentials-main) keys.  
+Allows for creating clients with an [API key](/docs/account?topic=account-iamoverview#iamoverview) instead of a [pair of Access and Secret](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-uhc-hmac-credentials-main) keys.  
 Token management is handled automatically, and tokens are automatically refreshed during long-running operations.
 
 ## Managed multipart uploads

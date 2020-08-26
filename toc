@@ -17,7 +17,6 @@ Cloud Object Storage
     cos-responsibilities.md
     quick-facts.md
     release-notes.md
-
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
@@ -27,8 +26,9 @@ Cloud Object Storage
     Choose regions and connect services
         basics/endpoints.md
         info/advanced_endpoints.md
-        basics/services.md    
-        [Connect from VPC](/vpc-on-classic/vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc)
+        basics/services.md
+        [Connect from VPC](vpc/vpc-connecting-vpc-cos)
+        [Connect from VPC (Classic)](/vpc-on-classic/vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc)
     
     basics/closures.md
     basics/upload.md
@@ -115,6 +115,7 @@ Cloud Object Storage
         tutorials/migrate.md
         tutorials/web-application.md
         tutorials/cloudyr.md
+        [Connect to resources using a CDN](/CDN/CDN-configure-ibm-cloud-object-storage-for-cdn)
         [Connect to IBM COS using IBM Cloud Direct Link](/direct-link/direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage)
 
     {: .topicgroup}

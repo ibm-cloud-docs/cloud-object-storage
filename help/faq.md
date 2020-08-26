@@ -94,7 +94,7 @@ Changing the location requires you to create a new bucket in the desired locatio
 {: #faq-authenticate}
 
 You can use an OAuth 2 token or an HMAC key for authentication. The HMAC key can be used for S3-compatible tools such as rclone, Cyberduck, and so on.
-* Instructions to obtain an OAuth token are available in [Generating an IBM Cloud IAM token by using an API key](/docs/iam?topic=iam-iamtoken_from_apikey).
+* Instructions to obtain an OAuth token are available in [Generating an IBM Cloud IAM token by using an API key](/docs/account?topic=account-iamtoken_from_apikey).
 * Instructions to obtain the HMAC credentials are in Using [HMAC Credentials](/docs/cloud-object-storage/hmac?topic=cloud-object-storage-uhc-hmac-credentials-main).
 
 See also [API Key vs HMAC](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac).
@@ -218,10 +218,12 @@ The policy applies to the new objects uploaded but does not affect existing obje
 
 A feature to unzip or decompress files is not part of the service.  For large data transfer, consider using Aspera high-speed transfer, multi-part uploads, or threads to manage multi-part uploads.  See [Store large objects](/docs/cloud-object-storage?topic=cloud-object-storage-large-objects).
 
-### Can I create a bucket, in the same or different region, with a deleted bucket’s name?
+### Can I create a bucket, in the same or different region, with a deleted bucket name?
 {: #faq-reuse-name}
 
-You cannot immediately reuse a deleted bucket name. A deleted bucket is scheduled for reclamation after 7 days. After that 7-day period, the bucket name is made available for reuse.  This 7-day buffer allows for a user to restore a deleted bucket if needed.
+A bucket name can be reused as soon as 15 minutes after the contents of the bucket have been deleted and then the bucket has been deleted.  At this point, the objects and bucket are irrevocably deleted and **can not** be restored.
+
+If the user does not first empty and then delete the bucket, and instead [deletes or schedules the {{site.data.keyword.cos_short}} service instance for deletion](/docs/cloud-object-storage?topic=cloud-object-storage-provision#deleting-a-service-instance), the bucket names will be held in reserve for a [default period of seven (7) days until the account reclamation process](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_reclamations) is completed. Until the reclamation process is complete it remains possible to restore the instance, along with the buckets and objects.  After reclamation is complete, all buckets and objects will be irrevocably deleted and **can not** be restored, although the bucket names will be made available for new buckets to reuse.
 
 
 
