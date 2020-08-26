@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2020
+lastupdated: "2020-08-10"
 
 keywords: cloud foundry, compute, object storage
 
@@ -138,7 +138,10 @@ The applications VCAP_SERVICES environment variable is automatically updated wit
 ### IBM Client Tools (CLI)
 {: #cloud-foundry-bindings-cli}
 
-1. Log in to with IBM Cloud CLI
+In your code, you must remove the angled brackets or any other excess characters that are provided here as illustration.
+{: note} 
+
+1. Log in to {{site.data.keyword.cloud_notm}} Platform by using the CLI
 ```
  ibmcloud login --apikey <your api key>
 ```
@@ -163,7 +166,7 @@ ibmcloud resource service-binding-create <service alias> <cf app name> <role>
 
 Hash-based message authentication code (HMAC) is a mechanism for calculating a message authentication code created that uses a pair of access and secret keys. This technique can be used to verify the integrity and authenticity of a message. More information about using [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) is available in the {{site.data.keyword.cos_short}} documentation.
 
-1. Log in to with IBM Cloud CLI
+1. Log in to {{site.data.keyword.cloud_notm}} Platform by using the CLI
 ```
  ibmcloud login --apikey <your api key>
 ```

@@ -88,12 +88,15 @@ The following variables appear in the examples:
 
 Code examples are tested on supported release versions of Python. 
 
+In your code, you must remove the angled brackets or any other excess characters that are provided here as illustration.
+{: note} 
+
 ### Initializing configuration
 {: #python-examples-init}
 
 This example creates a `resource` object. A resource provides an object-oriented interface to COS. This allows for a higher level of abstraction than the low-level calls provided by a client object. 
 
-Note that some operations (such as Aspera high-speed transfer) require a `client` object.
+Note that some operations (such as Aspera high-speed transfer) require a `client` object. Aspera itself requires Python version 3.6.
 {:important}
   
 ```python
@@ -949,11 +952,11 @@ with AsperaTransferManager(client) as transfer_manager:
 
 ### Troubleshooting Aspera Issues
 {: #python-examples-aspera-ts}
-**Issue:** Developers by using Python 2.7.15 on Windows 10 may experience failures when installing Aspera SDK.
+**Issue:** Developers using any version of Python besides 3.6 may experience failures when installing or using Aspera SDK.
 
 **Cause:** If there are different versions of Python installed on your environment, then you might encounter installation failures when you try to install the Aspera SDK. This can be caused by a missing DLL files or wrong DLL in path.
 
-**Solution:** The first step to resolving this issue would be to reinstall the Aspera libraries. There might have been a failure during the installation. As a result this might have affected the DLL files. If that does not resolve the issues, then you will be required to update your version of Python. If you are unable to do this, then you can use installation [Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python){: external}. This allows you to install the Aspera SDK without any issues.
+**Solution:** The first step to resolving this issue would be to reinstall the Aspera libraries. There might have been a failure during the installation. As a result this might have affected the DLL files. If that does not resolve the issues, then you will be required to update your version of Python. If you are unable to do this, then you can use installation [Intel® Distribution for Python*](https://software.intel.com/en-us/distribution-for-python){: external}. This should allow you to install the Aspera SDK on Python 3.6.x without any issues.
 
 ## Updating metadata
 {: #python-examples-metadata}

@@ -57,7 +57,7 @@ Before you create a new {{site.data.keyword.cos_full_notm}} storage instance, it
 1. Give the service instance a name and choose either the lite or standard plan.
 1. Click **Create** and you're automatically redirected to your new instance.
 
-It is also possible to manage resources using the [{{site.data.keyword.cloud}} Platform CLI](/docs/resources?topic=resources-manage_resource):
+It is also possible to manage resources using the [{{site.data.keyword.cloud}} Platform CLI](/docs/account?topic=account-manage_resource):
 
 ```bash
 ibmcloud resource service-instance-create <instance-name> cloud-object-storage <plan> global
@@ -67,7 +67,7 @@ ibmcloud resource service-instance-create <instance-name> cloud-object-storage <
 ## Deleting a service instance
 {: delete-instance}
 
-When a service instance is deleted, the data is not deleted immediately.  Instead, it is scheduled for reclamation (by default this is set to take 7 days), after which the data is irreversibly destroyed, and the bucket names will be made available for reuse. It is also possible to [restore a deleted resource](/docs/resources?topic=resources-manage_resource#restore-resource) that has not yet been reclaimed.
+When a service instance is deleted, the data is not deleted immediately.  Instead, it is scheduled for reclamation (by default this is set to take 7 days), after which the data is irreversibly destroyed, and the bucket names will be made available for reuse. It is also possible to [restore a deleted resource](/docs/account?topic=account-manage_resource#restore-resource) that has not yet been reclaimed.
 
 It is possible to check the status of a reclamation, as well as force or cancel a scheduled reclamation using the [the {{site.data.keyword.cloud}} Platform CLI](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_reclamations).
 

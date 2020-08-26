@@ -44,6 +44,11 @@ Whether by searching for information or by asking questions through a forum, you
 1. Follow the steps to provision your instance in order to create a bucket, choosing a unique name. All buckets in all regions across the globe share a single namespace.
 1. Choose your desired level of resiliency, then a location where you would like your data to be physically stored. Resiliency refers to the scope and scale of the geographic area across which your data is distributed. Cross Region resiliency spreads your data across several metropolitan areas, while Regional resiliency spreads data across a single metropolitan area. A Single Data Center distributes data across devices within a single site only.
 
+## How do I find a bucket’s name?
+{: #troubleshooting-cos-name}
+
+To find a bucket’s name, go to the IBM Cloud console, select **Storage**, and then select the name of your Object Storage instance from within the **Storage** category. The Object Storage Console opens with a list of buckets, their names, locations, and other details. This name is the one you can use when prompted for a bucket name value by another service.
+
 ## How do I find a bucket’s location and endpoint?
 {: #troubleshooting-cos-find}
 

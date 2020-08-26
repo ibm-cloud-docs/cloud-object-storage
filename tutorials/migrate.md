@@ -160,7 +160,7 @@ To complement the credentials of the source, we look at configuring the destinat
    ```
    {: codeblock}
 
-As you work the migration of your data using the process you've outlines, you will want to validate and verify the results.
+As you perform the migration of your data using the process you've outlined, you will want to validate and verify the results.
 
 ### Validating your migration from AWS
 {: #migrate-testing}

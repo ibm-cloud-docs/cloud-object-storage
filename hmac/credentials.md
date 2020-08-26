@@ -45,7 +45,7 @@ Users can create a set of HMAC credentials as part of a [Service Credential](/do
 
 ![advanced options](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/hmac-credential-dialog.jpg){: caption="Figure 1. HMAC setting from advanced options"}
 
-After the Service Credential is created, the HMAC Key is included in the `cos_hmac_keys` field. These HMAC keys are then associated with a [Service ID](/docs/iam?topic=iam-serviceids#serviceids) and can be used to access any resources or operations that are allowed by the Service ID's role. 
+After the Service Credential is created, the HMAC Key is included in the `cos_hmac_keys` field. These HMAC keys are then associated with a [Service ID](/docs/account?topic=account-serviceids#serviceids) and can be used to access any resources or operations that are allowed by the Service ID's role. 
 
 ### Create HMAC credentials using the CLI
 {: #uhc-create-hmac-credentials-cli}
