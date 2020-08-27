@@ -32,7 +32,7 @@ subcollection: cloud-object-storage
 # Archiving and accessing cold data 
 {: #archive}
 
-{{site.data.keyword.cos_full}} Archive is a [low cost](https://www.ibm.com/cloud/object-storage) option for data that is rarely accessed. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option. With the new "Accelerated archive" feature you can quickly access dormant data with restoration occurring in less than two hours.
+{{site.data.keyword.cos_full}} "Archive" and "Accelerated Archive" are [low cost](https://www.ibm.com/cloud/object-storage) options for data that is rarely accessed. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option. With the new "Accelerated Archive" feature you can quickly access dormant data with restoration occurring in less than two hours.
 {: shortdesc}
 
 You can archive objects using the web console, REST API, and 3rd party tools that are integrated with IBM Cloud Object Storage. 
@@ -51,7 +51,7 @@ When creating or modifying an archive policy for a bucket, consider the followin
 
 Create a bucket in the console after you've logged in, and you can configure your archive policy using the fields shown in Figure 1.
 
-![Create an archive policy](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/bucket-create-ui-archive-rule.jpg){: caption="Figure 1. Create an archive policy"}
+![Create an archive policy](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/bucket-create-ui-archive-rule.png){: caption="Figure 1. Create an archive policy"}
 
 To immediately archive new objects uploaded to a bucket, enter 0 days on the archive policy.
 {:tip}
@@ -64,7 +64,7 @@ Archive is available in certain regions only. See [Integrated Services](/docs/cl
 
 In order to access an archived object, you must restore it to the original storage tier. When restoring an object, you can specify the number of days you want the object to be available. At the end of the specified period, the restored copy is deleted. 
 
-The restoration process can take up to 12 hours. When choosing the "Accelerated archive" option, restoring dormant data takes place within two hours.
+The restoration process for "Accelerated Archive" takes up to 2 hours, while the restoration process for Archive takes up to 12 hours.
 {:tip}
 
 The archived object sub-states are:
