@@ -14,6 +14,12 @@ Cloud Object Storage
         basics/administrators.md
         basics/developers.md
 
+    {: .topicgroup}
+    Optimizing performance
+        performance/topology.md
+        performance/data-io.md
+        performance/bottlenecks.md
+
     cos-responsibilities.md
     quick-facts.md
     release-notes.md
