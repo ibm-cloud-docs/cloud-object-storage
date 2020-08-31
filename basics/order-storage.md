@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-11"
+lastupdated: "2020-08-31"
 
 keywords: provision, create, service
 
@@ -67,7 +67,7 @@ ibmcloud resource service-instance-create <instance-name> cloud-object-storage <
 ## Deleting a service instance
 {: delete-instance}
 
-When a service instance is deleted, the data is not deleted immediately.  Instead, it is scheduled for reclamation (by default this is set to take 7 days), after which the data is irreversibly destroyed, and the bucket names will be made available for reuse. It is also possible to [restore a deleted resource](/docs/account?topic=account-manage_resource#restore-resource) that has not yet been reclaimed.
+When a service instance is deleted, the data is not deleted immediately.  Instead, it is scheduled for reclamation (by default this is set to take 7 days), after which the data is irreversibly destroyed, and the bucket names will be made available for reuse. It is also possible to [restore a deleted resource](/docs/account?topic=account-resource-reclamation#restore-resource) that has not yet been reclaimed.
 
 It is possible to check the status of a reclamation, as well as force or cancel a scheduled reclamation using the [the {{site.data.keyword.cloud}} Platform CLI](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_reclamations).
 
