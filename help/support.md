@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-22"
+  years: 2017, 2020
+lastupdated: "2020-08-31"
 
-keywords: troubleshooting, support
+keywords: troubleshooting, support, questions
 
 subcollection: cloud-object-storage
 
