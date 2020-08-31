@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-28"
+lastupdated: "2020-08-31"
 
 keywords: authorization, iam, basics
 
@@ -33,7 +33,7 @@ subcollection: cloud-object-storage
 Access to {{site.data.keyword.cos_full}} service instances for users in your account is controlled by {{site.data.keyword.cloud_notm}} Identity and Access Management (IAM).
 {: shortdesc}
 
-## Identity and Access Management roles and actions
+## Identity and Access Management roles
 {: #iam-roles}
 
 Every user that accesses the {{site.data.keyword.cos_full}} service in your account must be assigned an access policy with an IAM user role defined. That policy determines what actions the user can perform within the context of the service or instance you select. The allowable actions are customized and defined by the {{site.data.keyword.cloud_notm}} service as operations that are allowed to be performed on the service. The actions are then mapped to IAM user roles.
@@ -73,3 +73,68 @@ The following table details actions that are mapped to service access roles. Ser
 
 For information about assigning user roles in the UI, see [Managing IAM access](/docs/account?topic=account-assign-access-resources).
  
+## Identity and Access Management actions
+{: #iam-actions}
+
+| Action                                      | Description                                                    |
+|---------------------------------------------|----------------------------------------------------------------|
+| `account.get_account_buckets`               | List all buckets in a service instance.                        |
+| `bucket.put_bucket`                         | Create a bucket.                                               |
+| `bucket.post_bucket`                        | Internal use only - unsupported for users.                     |
+| `bucket.delete_bucket`                      | Delete a bucket.                                               |
+| `bucket.get`                                | List all the objects in a bucket.                              |
+| `bucket.list_crk_id`                        | List the IDs of encryption root keys associated with a bucket. |
+| `bucket.head`                               | View bucket metadata.                                          |
+| `bucket.get_versions`                       | Unsupported operation - used for S3 API compatibility only.    |
+| `bucket.get_uploads`                        | List all active multipart uploads for a bucket.                |
+| `bucket.put_quota`                          | Unsupported operation - used for S3 API compatibility only.    |
+| `bucket.get_acl`                            | Read a bucket ACL [deprecated].                                |
+| `bucket.put_acl`                            | Create a bucket ACL [deprecated].                              |
+| `bucket.get_cors`                           | Read CORS rules.                                               |
+| `bucket.put_cors`                           | Add CORS rules to a bucket.                                    |
+| `bucket.delete_cors`                        | Delete CORS rules.                                             |
+| `bucket.get_versioning`                     | Unsupported operation - used for S3 API compatibility only.    |
+| `bucket.put_versioning`                     | Unsupported operation - used for S3 API compatibility only.    |
+| `bucket.get_fasp_connection_info`           | View Aspera FASP connection information.                       |
+| `account.delete_fasp_connection_info`       | Delete Aspera FASP connection information.                     |
+| `bucket.get_location`                       | View the location and storage class of a bucket.               |
+| `bucket.get_lifecycle`                      | Read a bucket lifecycle policy.                                |
+| `bucket.put_lifecycle`                      | Create a bucket lifecycle policy.                              |
+| `bucket.get_activity_tracking`              | Read activity tracking configuration.                          |
+| `bucket.put_activity_tracking`              | Add activity tracking configuration.                           |
+| `bucket.get_metrics_monitoring`             | Read metrics monitoring configuration.                         |
+| `bucket.put_metrics_monitoring`             | Add metrics monitoring configuration.                          |
+| `bucket.put_protection`                     | Add Immutable Object Storage policy.                           |
+| `bucket.get_protection`                     | Read Immutable Object Storage policy.                          |
+| `bucket.put_firewall`                       | Add a firewall configuration.                                  |
+| `bucket.get_firewall`                       | Read a firewall configuration.                                 |
+| `bucket.list_bucket_crn`                    | View a bucket CRN.                                             |
+| `bucket.get_notifications`                  | Internal use only - unsupported for users.                     |
+| `bucket.put_notifications`                  | Internal use only - unsupported for users.                     |
+| `object.get`                                | View and download objects.                                     |
+| `object.head`                               | Read an object's metadata.                                     |
+| `object.get_version`                        | Unsupported operation - used for S3 API compatibility only.    |
+| `object.head_version`                       | Unsupported operation - used for S3 API compatibility only.    |
+| `object.put`                                | Write and upload objects.                                      |
+| `object.post`                               | Upload an object using HTML forms [deprecated].                |
+| `object.post_md`                            | Update object metadata using HTML forms [deprecated].          |
+| `object.post_initiate_upload`               | Initiate multipart uploads.                                    |
+| `object.put_part`                           | Upload an object part.                                         |
+| `object.copy_part`                          | Copy (write) an object part.                                   |
+| `object.copy_part_get`                      | Copy (read) an object part.                                    |
+| `object.post_complete_upload`               | Complete a multipart upload.                                   |
+| `object.copy`                               | Copy (write) an object from one bucket to another.             |
+| `object.copy_get`                           | Copy (read) an object from one bucket to another.              |
+| `object.get_acl`                            | Read object ACL [deprecated].                                  |
+| `object.put_acl`                            | Write object ACL [deprecated].                                 |
+| `object.put_acl_version`                    | Unsupported operation - used for S3 API compatibility only.    |
+| `object.delete`                             | Delete an object.                                              |
+| `object.delete_version`                     | Unsupported operation - used for S3 API compatibility only.    |
+| `object.get_uploads`                        | List parts of an object.                                       |
+| `object.delete_upload`                      | Abort a multipart upload.                                      |
+| `object.restore`                            | Temporarily restore an archived object.                        |
+| `object.post_multi_delete`                  | Delete multiple objects.                                       |
+| `object.post_legal_hold`                    | Add a legal hold to an object.                                 |
+| `object.get_legal_hold`                     | View any legal holds on an object.                             |
+| `object.post_extend_retention`              | Extend a retention policy.                                     |
+| `provide_ibm_client_originating_ip_address` | Internal use only - unsupported for users.                     |
