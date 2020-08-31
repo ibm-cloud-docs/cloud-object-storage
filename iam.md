@@ -78,63 +78,64 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 
 | Action                                      | Description                                                    |
 |---------------------------------------------|----------------------------------------------------------------|
-| `account.get_account_buckets`               | List all buckets in a service instance.                        |
-| `bucket.put_bucket`                         | Create a bucket.                                               |
-| `bucket.post_bucket`                        | Internal use only - unsupported for users.                     |
-| `bucket.delete_bucket`                      | Delete a bucket.                                               |
-| `bucket.get`                                | List all the objects in a bucket.                              |
-| `bucket.list_crk_id`                        | List the IDs of encryption root keys associated with a bucket. |
-| `bucket.head`                               | View bucket metadata.                                          |
-| `bucket.get_versions`                       | Unsupported operation - used for S3 API compatibility only.    |
-| `bucket.get_uploads`                        | List all active multipart uploads for a bucket.                |
-| `bucket.put_quota`                          | Unsupported operation - used for S3 API compatibility only.    |
-| `bucket.get_acl`                            | Read a bucket ACL [deprecated].                                |
-| `bucket.put_acl`                            | Create a bucket ACL [deprecated].                              |
-| `bucket.get_cors`                           | Read CORS rules.                                               |
-| `bucket.put_cors`                           | Add CORS rules to a bucket.                                    |
-| `bucket.delete_cors`                        | Delete CORS rules.                                             |
-| `bucket.get_versioning`                     | Unsupported operation - used for S3 API compatibility only.    |
-| `bucket.put_versioning`                     | Unsupported operation - used for S3 API compatibility only.    |
-| `bucket.get_fasp_connection_info`           | View Aspera FASP connection information.                       |
-| `account.delete_fasp_connection_info`       | Delete Aspera FASP connection information.                     |
-| `bucket.get_location`                       | View the location and storage class of a bucket.               |
-| `bucket.get_lifecycle`                      | Read a bucket lifecycle policy.                                |
-| `bucket.put_lifecycle`                      | Create a bucket lifecycle policy.                              |
-| `bucket.get_activity_tracking`              | Read activity tracking configuration.                          |
-| `bucket.put_activity_tracking`              | Add activity tracking configuration.                           |
-| `bucket.get_metrics_monitoring`             | Read metrics monitoring configuration.                         |
-| `bucket.put_metrics_monitoring`             | Add metrics monitoring configuration.                          |
-| `bucket.put_protection`                     | Add Immutable Object Storage policy.                           |
-| `bucket.get_protection`                     | Read Immutable Object Storage policy.                          |
-| `bucket.put_firewall`                       | Add a firewall configuration.                                  |
-| `bucket.get_firewall`                       | Read a firewall configuration.                                 |
-| `bucket.list_bucket_crn`                    | View a bucket CRN.                                             |
-| `bucket.get_notifications`                  | Internal use only - unsupported for users.                     |
-| `bucket.put_notifications`                  | Internal use only - unsupported for users.                     |
-| `object.get`                                | View and download objects.                                     |
-| `object.head`                               | Read an object's metadata.                                     |
-| `object.get_version`                        | Unsupported operation - used for S3 API compatibility only.    |
-| `object.head_version`                       | Unsupported operation - used for S3 API compatibility only.    |
-| `object.put`                                | Write and upload objects.                                      |
-| `object.post`                               | Upload an object using HTML forms [deprecated].                |
-| `object.post_md`                            | Update object metadata using HTML forms [deprecated].          |
-| `object.post_initiate_upload`               | Initiate multipart uploads.                                    |
-| `object.put_part`                           | Upload an object part.                                         |
-| `object.copy_part`                          | Copy (write) an object part.                                   |
-| `object.copy_part_get`                      | Copy (read) an object part.                                    |
-| `object.post_complete_upload`               | Complete a multipart upload.                                   |
-| `object.copy`                               | Copy (write) an object from one bucket to another.             |
-| `object.copy_get`                           | Copy (read) an object from one bucket to another.              |
-| `object.get_acl`                            | Read object ACL [deprecated].                                  |
-| `object.put_acl`                            | Write object ACL [deprecated].                                 |
-| `object.put_acl_version`                    | Unsupported operation - used for S3 API compatibility only.    |
-| `object.delete`                             | Delete an object.                                              |
-| `object.delete_version`                     | Unsupported operation - used for S3 API compatibility only.    |
-| `object.get_uploads`                        | List parts of an object.                                       |
-| `object.delete_upload`                      | Abort a multipart upload.                                      |
-| `object.restore`                            | Temporarily restore an archived object.                        |
-| `object.post_multi_delete`                  | Delete multiple objects.                                       |
-| `object.post_legal_hold`                    | Add a legal hold to an object.                                 |
-| `object.get_legal_hold`                     | View any legal holds on an object.                             |
-| `object.post_extend_retention`              | Extend a retention policy.                                     |
-| `provide_ibm_client_originating_ip_address` | Internal use only - unsupported for users.                     |
+| `cloud-object-storage.account.get_account_buckets`               | List all buckets in a service instance.                        |
+| `cloud-object-storage.bucket.put_bucket`                         | Create a bucket.                                               |
+| `cloud-object-storage.bucket.post_bucket`                        | Internal use only - unsupported for users.                     |
+| `cloud-object-storage.bucket.delete_bucket`                      | Delete a bucket.                                               |
+| `cloud-object-storage.bucket.get`                                | List all the objects in a bucket.                              |
+| `cloud-object-storage.bucket.list_crk_id`                        | List the IDs of encryption root keys associated with a bucket. |
+| `cloud-object-storage.bucket.head`                               | View bucket metadata.                                          |
+| `cloud-object-storage.bucket.get_versions`                       | Unsupported operation - used for S3 API compatibility only.    |
+| `cloud-object-storage.bucket.get_uploads`                        | List all active multipart uploads for a bucket.                |
+| `cloud-object-storage.bucket.put_quota`                          | Unsupported operation - used for S3 API compatibility only.    |
+| `cloud-object-storage.bucket.get_acl`                            | Read a bucket ACL [deprecated].                                |
+| `cloud-object-storage.bucket.put_acl`                            | Create a bucket ACL [deprecated].                              |
+| `cloud-object-storage.bucket.get_cors`                           | Read CORS rules.                                               |
+| `cloud-object-storage.bucket.put_cors`                           | Add CORS rules to a bucket.                                    |
+| `cloud-object-storage.bucket.delete_cors`                        | Delete CORS rules.                                             |
+| `cloud-object-storage.bucket.get_versioning`                     | Unsupported operation - used for S3 API compatibility only.    |
+| `cloud-object-storage.bucket.put_versioning`                     | Unsupported operation - used for S3 API compatibility only.    |
+| `cloud-object-storage.bucket.get_fasp_connection_info`           | View Aspera FASP connection information.                       |
+| `cloud-object-storage.account.delete_fasp_connection_info`       | Delete Aspera FASP connection information.                     |
+| `cloud-object-storage.bucket.get_location`                       | View the location and storage class of a bucket.               |
+| `cloud-object-storage.bucket.get_lifecycle`                      | Read a bucket lifecycle policy.                                |
+| `cloud-object-storage.bucket.put_lifecycle`                      | Create a bucket lifecycle policy.                              |
+| `cloud-object-storage.bucket.get_activity_tracking`              | Read activity tracking configuration.                          |
+| `cloud-object-storage.bucket.put_activity_tracking`              | Add activity tracking configuration.                           |
+| `cloud-object-storage.bucket.get_metrics_monitoring`             | Read metrics monitoring configuration.                         |
+| `cloud-object-storage.bucket.put_metrics_monitoring`             | Add metrics monitoring configuration.                          |
+| `cloud-object-storage.bucket.put_protection`                     | Add Immutable Object Storage policy.                           |
+| `cloud-object-storage.bucket.get_protection`                     | Read Immutable Object Storage policy.                          |
+| `cloud-object-storage.bucket.put_firewall`                       | Add a firewall configuration.                                  |
+| `cloud-object-storage.bucket.get_firewall`                       | Read a firewall configuration.                                 |
+| `cloud-object-storage.bucket.list_bucket_crn`                    | View a bucket CRN.                                             |
+| `cloud-object-storage.bucket.get_notifications`                  | Internal use only - unsupported for users.                     |
+| `cloud-object-storage.bucket.put_notifications`                  | Internal use only - unsupported for users.                     |
+| `cloud-object-storage.object.get`                                | View and download objects.                                     |
+| `cloud-object-storage.object.head`                               | Read an object's metadata.                                     |
+| `cloud-object-storage.object.get_version`                        | Unsupported operation - used for S3 API compatibility only.    |
+| `cloud-object-storage.object.head_version`                       | Unsupported operation - used for S3 API compatibility only.    |
+| `cloud-object-storage.object.put`                                | Write and upload objects.                                      |
+| `cloud-object-storage.object.post`                               | Upload an object using HTML forms [deprecated].                |
+| `cloud-object-storage.object.post_md`                            | Update object metadata using HTML forms [deprecated].          |
+| `cloud-object-storage.object.post_initiate_upload`               | Initiate multipart uploads.                                    |
+| `cloud-object-storage.object.put_part`                           | Upload an object part.                                         |
+| `cloud-object-storage.object.copy_part`                          | Copy (write) an object part.                                   |
+| `cloud-object-storage.object.copy_part_get`                      | Copy (read) an object part.                                    |
+| `cloud-object-storage.object.post_complete_upload`               | Complete a multipart upload.                                   |
+| `cloud-object-storage.object.copy`                               | Copy (write) an object from one bucket to another.             |
+| `cloud-object-storage.object.copy_get`                           | Copy (read) an object from one bucket to another.              |
+| `cloud-object-storage.object.get_acl`                            | Read object ACL [deprecated].                                  |
+| `cloud-object-storage.object.put_acl`                            | Write object ACL [deprecated].                                 |
+| `cloud-object-storage.object.put_acl_version`                    | Unsupported operation - used for S3 API compatibility only.    |
+| `cloud-object-storage.object.delete`                             | Delete an object.                                              |
+| `cloud-object-storage.object.delete_version`                     | Unsupported operation - used for S3 API compatibility only.    |
+| `cloud-object-storage.object.get_uploads`                        | List parts of an object.                                       |
+| `cloud-object-storage.object.delete_upload`                      | Abort a multipart upload.                                      |
+| `cloud-object-storage.object.restore`                            | Temporarily restore an archived object.                        |
+| `cloud-object-storage.object.post_multi_delete`                  | Delete multiple objects.                                       |
+| `cloud-object-storage.object.post_legal_hold`                    | Add a legal hold to an object.                                 |
+| `cloud-object-storage.object.get_legal_hold`                     | View any legal holds on an object.                             |
+| `cloud-object-storage.object.post_extend_retention`              | Extend a retention policy.                                     |
+| `cloud-object-storage.provide_ibm_client_originating_ip_address` | Internal use only - unsupported for users.                     |
+{: caption="Table 4. Granular IAM action descriptions"}
