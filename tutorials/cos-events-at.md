@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-19"
+lastupdated: "2020-08-31"
 
 keywords: activity, tracking, object storage, event, tutorial
 
@@ -253,7 +253,7 @@ With multiple options for viewing events in {{site.data.keyword.at_short}}, it m
 ### Configuring Alerts
 {: #tracking-cos-events-configuring-alerts}
 
-In {{site.data.keyword.at_short}} there are two kinds of alerts but many different ways to use them, as shown in the documentation for [configuring alerts](/docs/Activity-Tracker-with-LogDNA?topic=logdnaat-alerts).
+In {{site.data.keyword.at_short}} there are two kinds of alerts but many different ways to use them, as shown in the documentation for [configuring alerts](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-alerts).
 
 ### Exporting Events
 {: #tracking-cos-events-exporting}

@@ -51,7 +51,7 @@ Documentation for any project will help keep you keep track of your resources as
 ## Determine your solution
 {: migrate-options}
 
-Sometimes, an [example](https://developer.ibm.com/tutorials/how-to-easily-port-your-app-storage-to-cloud-object-storage/){: external} of a simple migration can illustrate how to convert from AWS concepts to the configuration options available to users of {{site.data.keyword.cos_full_notm}}. But whatever your goals, Once you have provisioned and set your target, it is time to choose a process. 
+It is true that a massively complex [migration](https://www.ibm.com/cloud/mass-data-migration){: external} requires a complete service to plan and implement migrating your data to {{site.data.keyword.cos_full_notm}}. But whatever the size of your data, your goals and timetable take precedence. Once you have provisioned and set your target, it is time to choose a process to achieve your goals on your time. 
 
 There are many ways to achieve the goal of migrating your AWS data. Integrated solutions provide comprehensive guides to migration, as shown in the [{{site.data.keyword.icp4i_full_notm}}](https://www.ibm.com/cloud/cloud-pak-for-integration/high-speed-data-transfer1){: external}. In addition to full-featured migration services, you may also want to investigate third party migration tools as part of your investigation. But don't forget that there are many CLI and GUI tools readily available for use as part of your migration.
 
