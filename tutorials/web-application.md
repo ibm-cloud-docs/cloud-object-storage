@@ -56,12 +56,12 @@ From beginning to end, building a web application covers a lot of different conc
 
 The scenario for this tutorial involves many moving parts:
 
-1. A web server to host the web application
-1. Use of the command line
-1. A storage instance for the images in the gallery
-1. A version control system integrated into continuous delivery
-1. Client-side application bindings in both scripts and markup
-1. Images to upload and display
+- A web server to host the web application
+- Use of the command line
+- A storage instance for the images in the gallery
+- A version control system integrated into continuous delivery
+- Client-side application bindings in both scripts and markup
+- Images to upload and display
 
 And if you are looking for all that in one package, this tutorial will provide a complete, start-to-finish, example for you. However, this instruction can only temporarily set aside principles of security and secure code. Web applications actually put into production require proper security, or they won't be suitable for possible visitors.
 
