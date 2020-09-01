@@ -9,8 +9,11 @@ keywords: web application, node, gallery, tutorial
 subcollection: cloud-object-storage
 
 content-type: tutorial
+
 services: cloud-object-storage, cloud-foundry-public
+
 account-plan: lite
+
 completion-time: 1h
 
 ---
@@ -39,6 +42,9 @@ completion-time: 1h
 
 # Web application tutorial
 {: #web-application}
+{: toc-content-type="tutorial"}
+{: toc-services="cloud-object-storage, cloud-foundry-public"}
+{: toc-completion-time="20m"}
 
 This tutorial shows you how to build a simple image gallery using {{site.data.keyword.cos_full}}, bringing together many different concepts and practices key to web development.
 {: shortdesc}
@@ -586,9 +592,7 @@ a credentials file that already has `aws_access_key_id` and `aws_secret_access_k
 After you have completed creating an API key, downloaded, and then copied the HMAC credentials, complete the following steps:
 
 1.  On the local development environment, place the credentials in the
-    Windows path `%USERPROFILE%\\.aws\\credentials` (for Mac/Linux users, the credentials should 
-    go into `~/.aws/credentials)`. The example shows the contents of a
-    typical credentials file.
+    Windows path `%USERPROFILE%\\.aws\\credentials` (for Mac/Linux users, the credentials should go into `~/.aws/credentials)`. The example shows the contents of a  typical credentials file.
 
    ```bash
    \[default\]
