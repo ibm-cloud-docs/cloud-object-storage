@@ -8,6 +8,11 @@ keywords: web application, node, gallery, tutorial
 
 subcollection: cloud-object-storage
 
+content-type: tutorial
+services: cloud-object-storage, cloud-foundry-public
+account-plan: lite
+completion-time: 1h
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
