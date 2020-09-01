@@ -402,7 +402,7 @@ We're going to start the specifics of working on the image gallery in Node.js. F
 
 Follow this process:
 
-1.  Download the sample here: [download ![External link icon](/docs-content/v1/content/icons/launch-glyph.svg)](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/image-gallery-tutorial.zip){: external}. Download the template for your app to your local
+1.  Download the sample here: [download](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/image-gallery-tutorial.zip){: external}. Download the template for your app to your local
     development environment using your browser. Rather than cloning the sample
     app from {{site.data.keyword.cloud_notm}} Platform, use the command in the example to obtain the
     starter template for the {{site.data.keyword.cos_full_notm}} Web Gallery app. After cloning the
