@@ -9,8 +9,11 @@ keywords: web application, node, gallery, tutorial
 subcollection: cloud-object-storage
 
 content-type: tutorial
+
 services: cloud-object-storage, cloud-foundry-public
+
 account-plan: lite
+
 completion-time: 1h
 
 ---
@@ -39,6 +42,9 @@ completion-time: 1h
 
 # Web application tutorial
 {: #web-application}
+{: toc-content-type="tutorial"}
+{: toc-services="cloud-object-storage, cloud-foundry-public"}
+{: toc-completion-time="20m"}
 
 This tutorial shows you how to build a simple image gallery using {{site.data.keyword.cos_full}}, bringing together many different concepts and practices key to web development.
 {: shortdesc}
