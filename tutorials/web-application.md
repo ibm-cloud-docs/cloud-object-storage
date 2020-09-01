@@ -806,14 +806,9 @@ We next turn our attention to the controller for the gallery.
 
 Note how we set up the `multer` upload, which truncates some code we ignore for now. We require modules `ibm-cos-sdk`, `multer`, and `multer-s3`. The code shows how to configure an S3 object that points to an {{site.data.keyword.cos_short}} server endpoint. We are statically setting values such as the endpoint address, region, and bucket for simplicity, but they might easily be referenced from an environment variable or JSON configuration file.
 
-We define `upload` in the `imageUploadRouter` by creating a new
-`multer` instance with `storage` as its only property. This property tells the
-`multer` where to send the file from our `multipart/form-data`. Since the {{site.data.keyword.cloud_notm}} Platform uses an implementation of the S3 API, we set storage to be an `s3-multer` object. This `s3-multer` object contains an `s3` property that is assigned to our `s3` object. There is also a `bucket` property that is assigned to the `myBucket` variable, which in turn is assigned a value of `web-images`. The `s3-multer` object now has all the data
-necessary to upload files to our {{site.data.keyword.cos_short}} bucket when it
-receives data from the upload form. The name (or key) of the uploaded
-object is the original file name. 
+We define `upload` in the `imageUploadRouter` by creating a new `multer` instance with `storage` as its only property. This property tells the `multer` where to send the file from our `multipart/form-data`. Since the {{site.data.keyword.cloud_notm}} Platform uses an implementation of the S3 API, we set storage to be an `s3-multer` object. This `s3-multer` object contains an `s3` property that is assigned to our `s3` object. There is also a `bucket` property that is assigned to the `myBucket` variable, which in turn is assigned a value of `web-images`. The `s3-multer` object now has all the data necessary to upload files to our {{site.data.keyword.cos_short}} bucket when it receives data from the upload form. The name (or key) of the uploaded object is the original file name.
 
-Use a time stamp as part of the file name for maintaining file name uniqueness. 
+Use a time stamp as part of the file name to maintain file name uniqueness. 
 {:tip}
 
 ```javascript
@@ -855,10 +850,7 @@ module.exports = galleryController;
 {: codeblock}
 {: javascript}
 
-For local testing, a
-helpful task is to print the file object to the console, `console.log(file)`. 
-We perform a local test of the upload form and show the output from the
-console log of the file.
+For local testing, a helpful task is to print the file object to the console, `console.log(file)`. We perform a local test of the upload form and show the output from the console log of the file.
 
 ```
 { fieldname: 'img-file',
@@ -867,31 +859,16 @@ encoding: '7bit',
 mimetype: 'image/jpeg' }
 ```
 
-While bragging is unseemly, the feedback from our callback 
-declares the application has "uploaded file successfully" when tested.
+The feedback from our callback declares the application has "uploaded file successfully" when tested.
 
 ![localtest1](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-019-success.jpg){: caption="Figure 9. Success!"}
 
 #### Image retrieval and display
 {: #tutorial-image-display}
 
-Remember, back in `app.js`, the line of code `app.use('/gallery', galleryRouter);` 
-tells the express framework to use that router when the `/gallery` route is requested. 
-That router, if you recall, uses `galleryController.js` , we define the
-`getGalleryImages` function, the signature of which we have seen previously. Using the same `s3`
-object that we set up for our image upload function, we call the function that is named 
-`listObjectsV2`. This function returns the index data defining each of the
-objects in our bucket. To display images within HTML, we need an image URL for each
-JPEG image in our `web-images` bucket to display in our view template. The
-closure with the data object returned by `listObjectsV2` contains metadata 
-about each object in our bucket. 
+Remember back in `app.js`, the line of code `app.use('/gallery', galleryRouter);` tells the express framework to use that router when the `/gallery` route is requested. That router, if you recall, uses `galleryController.js` , we define the `getGalleryImages` function, the signature of which we have seen previously. Using the same `s3` object that we set up for our image upload function, we call the function that is named `listObjectsV2`. This function returns the index data defining each of the objects in our bucket. To display images within HTML, we need an image URL for each JPEG image in our `web-images` bucket to display in our view template. The closure with the data object returned by `listObjectsV2` contains metadata about each object in our bucket. 
 
-The code loops through the `bucketContents` searching for any object key ending in ".jpg," and
-create a parameter to pass to the S3 `getSignedUrl` function. This
-function returns a signed URL for any object when we provide the
-object’s bucket name and key. In the callback function, we save each URL
-in an array, and pass it to the HTTP Server response method `res.render` 
-as the value to a property named `imageUrls`.
+The code loops through the `bucketContents` searching for any object key ending in ".jpg," and create a parameter to pass to the S3 `getSignedUrl` function. This function returns a signed URL for any object when we provide the object’s bucket name and key. In the callback function, we save each URL in an array, and pass it to the HTTP Server response method `res.render` as the value to a property named `imageUrls`.
 
 ```javascript
 //...
@@ -924,8 +901,7 @@ as the value to a property named `imageUrls`.
 {: codeblock}
 {: javascript}
 
-The last code example shows the body of the `galleryView` template with the code that is needed to display our images. We get the `imageUrls` array from the `res.render()` 
-method and iterate over a pair of nested `<div>...</div>` tags. Each sends a `GET` request for the image when the `/gallery` route is requested.
+The last code example shows the body of the `galleryView` template with the code that is needed to display our images. We get the `imageUrls` array from the `res.render()` method and iterate over a pair of nested `<div>...</div>` tags. Each sends a `GET` request for the image when the `/gallery` route is requested.
 
 ```html
 <!DOCTYPE html>
@@ -959,18 +935,14 @@ method and iterate over a pair of nested `<div>...</div>` tags. Each sends a `GE
 ```
 {: codeblock}
 
-We test it locally from `http://localhost:3000/gallery`
- and see our image.
+We test the app locally from `http://localhost:3000/gallery` and see our image.
 
 ![localtest2](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-020-image-display.jpg){: caption="Figure 10. Images uploaded to the bucket are on display"}
 
 ### Committing to Git
 {: #tutorial-develop-commit}
 
-Now that the basic features of the app are working, we commit our code
-to our local repo, and then push it to GitHub. Using GitHub Desktop, we
-click Changes (see Figure 11), type a summary of the changes in
-the Summary field, and then click Commit to Local-dev. 
+Now that the basic features of the app are working, we commit our code to our local repo, and then push it to GitHub. Using GitHub Desktop, we click Changes (see Figure 11), type a summary of the changes in the Summary field, and then click Commit to Local-dev. 
 
 ![Commit updates](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/web-app-tutorial-021-changes-in-git.jpg){: caption="Figure 11. Changes ready for commit in Git"}
 
@@ -981,8 +953,6 @@ When we click **sync**, our commit is sent to the remote `local-dev` branch. Thi
 ## Next Steps
 {: #webapp-next-steps}
 
-We went from beginning to end and built a basic web application image gallery by using the {{site.data.keyword.cloud_notm}} Platform. 
-Each of the concepts we've covered in this basic introduction can be explored further at the 
-[{{site.data.keyword.cos_full}}](https://www.ibm.com/cloud/object-storage){: external}. 
+We went from beginning to end and built a basic web application image gallery by using the {{site.data.keyword.cloud_notm}} Platform. Each of the concepts we've covered in this basic introduction can be explored further at the [{{site.data.keyword.cos_full}}](https://www.ibm.com/cloud/object-storage){: external}. 
 
 Good luck!
