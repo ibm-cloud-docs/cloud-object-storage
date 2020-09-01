@@ -2,11 +2,16 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-14"
+lastupdated: "2020-09-04"
 
 keywords: web application, node, gallery, tutorial
 
 subcollection: cloud-object-storage
+
+content-type: tutorial
+services: cloud-object-storage, cloud-foundry-public
+account-plan: lite
+completion-time: 1h
 
 ---
 {:new_window: target="_blank"}
@@ -25,24 +30,33 @@ subcollection: cloud-object-storage
 {:python: .ph data-hd-programlang='python'}
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
+{:step: data-tutorial-type='step'}
+{:hide-dashboard: .hide-dashboard}
+{:apikey: `data-credential-placeholder`='apikey'}
+{:url: data-credential-placeholder='url'}
+{:username: data-credential-placeholder='username'}
+{:password: data-credential-placeholder='password'}
 
 # Web application tutorial
 {: #web-application}
 
-From beginning to end, building a web application covers a lot of different concepts and is a great way to introduce yourself to the features of {{site.data.keyword.cos_full}}.
+This tutorial shows you how to build a simple image gallery using {{site.data.keyword.cos_full}}, bringing together many different concepts and practices key to web development.
 {: shortdesc}
 
-This tutorial will show you how to build a simple image gallery on the {{site.data.keyword.cloud}} Platform, and how to bring together many different concepts and practices. Your application uses {{site.data.keyword.cos_full_notm}} for storage in a Node.js application that allows a user to upload and view JPEG image files.
+ From beginning to end, building a web application covers a lot of different concepts and is a great way to introduce yourself to the features of {{site.data.keyword.cos_full_notm}}. Your application uses {{site.data.keyword.cos_full_notm}} for storage in a Node.js application that allows a user to upload and view JPEG image files.
 
 ## Before you begin
 {: #wa-prereqs}
 
-We need to make sure that we have our prerequisites:
+Ensure that you have what you need to start:
 
-- {{site.data.keyword.cloud_notm}} Platform account
+- {: hide-dashboard} An account for the {{site.data.keyword.cloud_notm}} Platform 
 - Docker, as part of the {{site.data.keyword.cloud_notm}} Developer Tools
 - Node.js 
 - Git (both desktop and command line)
+
+### Using the Command Line
+{: #tutorial-wa-command-line}
 
 Let's start by opening a tool familiar to experienced developers, and a new best friend to those just getting started: the command line. For many, the graphic user interface (GUI) relegated your computer's command-line interface to second-class status. But now, it's time to bring it back (although the GUI isn't going away anytime soon, especially when we need to browse the web to download instructions for the command-line toolset). 
 
@@ -113,6 +127,7 @@ to verify the application connection through your GitHub account online.
 
 ## Creating the Node.js starter app
 {: #tutorial-create-skeleton}
+{: step}
 
 To start developing your application locally, begin by logging in to the {{site.data.keyword.cloud_notm}} Platform directly from the command line, as shown in the example. You can specify optional parameters, such as your organization with option `-o` and the space with option `-s`. If you're using a federated account use `--sso`. 
 
@@ -377,6 +392,7 @@ at the {{site.data.keyword.cloud_notm}} Platform. Go ahead and visit your new we
 
 ## Creating the Web Gallery app
 {: #tutorial-create-app}
+{: step}
 
 Let's recall the prerequisites that you needed for developing a Node.js app on {{site.data.keyword.cloud_notm}} Platform. You 
 already created your {{site.data.keyword.cloud_notm}} Platform account as well as installed the Developer Tools, which 
@@ -384,7 +400,7 @@ installed Docker. Then, you installed Node.js. The last item listed as a prerequ
 
 We're going to start the specifics of working on the image gallery in Node.js. For now, we use GitHub Desktop for this scenario, but you might also use the Git command-line client to complete the same tasks. To get started, let's clone a starter template for your new web application. 
 
-Follow these steps:
+Follow this process:
 
 1.  Download the sample here: [download ![External link icon](/docs-content/v1/content/icons/launch-glyph.svg)](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/image-gallery-tutorial.zip){: external}. Download the template for your app to your local
     development environment using your browser. Rather than cloning the sample
@@ -605,8 +621,9 @@ Next, over at the {{site.data.keyword.cos_short}} Portal for your service instan
 add a bucket to contain your images. This scenario uses the bucket that is named `web-images`.
 
 
-## Customizing a Node.js {{site.data.keyword.cos_full_notm}} Image Gallery web Application
+## Customize your Node.js {{site.data.keyword.cos_full_notm}} Image Gallery web Application
 {: #tutorial-develop}
+{: step}
 
 Because this example uses an MVC architecture, adjusting the directory
 structure within your project to reflect this architecture is a convenience as well as a best practice. 
