@@ -44,7 +44,7 @@ completion-time: 1h
 {: #web-application}
 {: toc-content-type="tutorial"}
 {: toc-services="cloud-object-storage, cloud-foundry-public"}
-{: toc-completion-time="20m"}
+{: toc-completion-time="1h"}
 
 This tutorial shows you how to build a simple image gallery using {{site.data.keyword.cos_full}}, bringing together many different concepts and practices key to web development.
 {: shortdesc}
