@@ -592,9 +592,7 @@ a credentials file that already has `aws_access_key_id` and `aws_secret_access_k
 After you have completed creating an API key, downloaded, and then copied the HMAC credentials, complete the following steps:
 
 1.  On the local development environment, place the credentials in the
-    Windows path `%USERPROFILE%\\.aws\\credentials` (for Mac/Linux users, the credentials should 
-    go into `~/.aws/credentials)`. The example shows the contents of a
-    typical credentials file.
+    Windows path `%USERPROFILE%\\.aws\\credentials` (for Mac/Linux users, the credentials should go into `~/.aws/credentials)`. The example shows the contents of a  typical credentials file.
 
    ```bash
    \[default\]
