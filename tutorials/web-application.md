@@ -953,6 +953,6 @@ When we click **sync**, our commit is sent to the remote `local-dev` branch. Thi
 ## Next Steps
 {: #webapp-next-steps}
 
-We went from beginning to end and built a basic web application image gallery by using the {{site.data.keyword.cloud_notm}} Platform. Each of the concepts we've covered in this basic introduction can be explored further at the [{{site.data.keyword.cos_full}}](https://www.ibm.com/cloud/object-storage){: external}. 
+We went from beginning to end and built a basic web application image gallery by using the {{site.data.keyword.cloud_notm}} Platform. Each of the concepts we've covered in this basic introduction can be explored further at [{{site.data.keyword.cos_full_notm}}](https://www.ibm.com/cloud/object-storage){: external}. 
 
 Good luck!
