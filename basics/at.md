@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-07-01"
+lastupdated: "2020-09-09"
 
 keywords: activity tracker, LogDNA, event, object storage, COS API calls, monitor COS events
 
@@ -93,8 +93,8 @@ The following table lists the COS bucket events:
 | `cloud-object-storage.bucket-lifecycle.read`           | Get the bucket lifecycle configuration |
 | `cloud-object-storage.bucket-lifecycle.create`         | Create the bucket lifecycle configuration |
 | `cloud-object-storage.bucket-lifecycle.delete`         | Delete the bucket lifecycle configuration |
-| `cloud-object-storage.bucket-acl.read`                 | Get the bucket ACL |
-| `cloud-object-storage.bucket-acl.create`               | Create the bucket ACL |
+| `cloud-object-storage.bucket-acl.read`                 | Get the bucket [ACL](#x2012793){: term} |
+| `cloud-object-storage.bucket-acl.create`               | Create the bucket [ACL](#x2012793){: term} |
 | `cloud-object-storage.bucket-crn.read`                 | Get the bucket CRN |
 | `cloud-object-storage.bucket-location.read`            | Get the bucket location |
 | `cloud-object-storage.bucket-retention.read`           | Get the bucket retention |
