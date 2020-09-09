@@ -117,6 +117,6 @@ Refer to [Move data between buckets](/docs/cloud-object-storage?topic=cloud-obje
 ## Next Steps
 {: #troubleshooting-cos-next-steps}
 
-See [Getting help](/docs/get-support?topic=get-support-getting-customer-support) for more details about using the forums.
+See [Getting help](/docs/get-support?topic=get-support-using-avatar) for more details about using the forums.
 
 For more information about opening an IBM support ticket, see [Contacting support](/docs/get-support?topic=get-support-getting-customer-support).
