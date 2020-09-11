@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2020
 
-lastupdated: "2020-09-11"
+lastupdated: "2020-09-14"
 
 keywords: endpoint, location, object storage
 
@@ -242,3 +242,4 @@ If a networking failure results in a partition where the data center is unable t
 {: #sdcendpointtable3}
 {: tab-title="Direct"}
 {: tab-group="single-datacenter-endpoints"}
+
