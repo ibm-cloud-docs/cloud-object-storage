@@ -112,11 +112,11 @@ Refer to [Move data between buckets](/docs/cloud-object-storage?topic=cloud-obje
 {: #troubleshooting-cos-other-options}
 
 * If you have technical questions about {{site.data.keyword.cos_short}}, post your question on [Stack Overflow](https://stackoverflow.com/search?q=object-storage+ibm) and tag your question with `ibm` and `object-storage`.
-* For questions about the service and getting started instructions, use the [IBM Developer dW Answers forum](https://developer.ibm.com/answers/topics/objectstorage/). Include the  `objectstorage` tag.
+* For questions about the service and getting started instructions, use the [IBM Developer dW Answers forum](https://developer.ibm.com/answers/topics/objectstorage/){: external}. Include the  `objectstorage` tag.
 
 ## Next Steps
 {: #troubleshooting-cos-next-steps}
 
-See [Getting help](/docs/get-support?topic=get-support-using-avatar) for more details about using the forums.
+See [Getting help](https://www.ibm.com/cloud/support){: external} for more details about using support services.
 
-For more information about opening an IBM support ticket, see [Contacting support](/docs/get-support?topic=get-support-getting-customer-support).
+For more information about asking questions, see [Contacting support](https://cloud.ibm.com/docs/get-support?topic=get-support-using-avatar#asking-a-question).
