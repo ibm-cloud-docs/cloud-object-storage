@@ -55,12 +55,12 @@ It isn't possible to use Aspera high-speed transfer with buckets with a retentio
 ### Retention period
 {: #immutable-terminology-period}
 
-The duration of time an object must be stored in the COS bucket.
+The duration of time an object must be stored in the {{site.data.keyword.cos_full_notm}} bucket.
 
 ### Retention policy
 {: #immutable-terminology-policy}
 
-A retention policy is enabled at the COS bucket level. Minimum, maximum and default retention period are defined by this policy and apply to all objects in the bucket.
+A retention policy is enabled at the {{site.data.keyword.cos_full_notm}} bucket level. Minimum, maximum and default retention period are defined by this policy and apply to all objects in the bucket.
 
 Minimum retention period is the minimum duration of time an object must be kept unmodified in the bucket.
 
@@ -96,7 +96,7 @@ Immutable Object Storage allows users to set indefinite retention on the object 
 ### Permanent retention
 {: #immutable-terminology-permanent}
 
-Permanent retention can only be enabled at a COS bucket level with retention policy enabled and users are able to select the permanent retention period option during object uploads. Once enabled, this process can't be reversed and objects uploaded that use a permanent retention period **cannot be deleted**. It's the responsibility of the users to validate at their end if there's a legitimate need to **permanently** store objects by using COS buckets with a retention policy. 
+Permanent retention can only be enabled at a {{site.data.keyword.cos_full_notm}} bucket level with retention policy enabled and users are able to select the permanent retention period option during object uploads. Once enabled, this process can't be reversed and objects uploaded that use a permanent retention period **cannot be deleted**. It's the responsibility of the users to validate at their end if there's a legitimate need to **permanently** store objects by using {{site.data.keyword.cos_short}} buckets with a retention policy. 
 
 
 When using Immutable Object Storage, you are responsible for ensuring that your IBM Cloud Account is kept in good standing per IBM Cloud policies and guidelines for as long as the data is subject to a retention policy. Refer to IBM Cloud Service terms for more information.
@@ -125,7 +125,7 @@ Retention policies can be added to new or existing empty buckets, and cannot be 
 ## Using the REST API, Libraries, and SDKs
 {: #immutable-sdk}
 
-Several new APIs have been introduced to the IBM COS SDKs to provide support for applications working with retention policies. Select a language (HTTP, Java, JavaScript, or Python) at the beginning of this page to view examples that use the appropriate COS SDK. 
+Several new APIs have been introduced to the {{site.data.keyword.cos_full_notm}} SDKs to provide support for applications working with retention policies. Select a language (HTTP, Java, JavaScript, or Python) at the beginning of this page to view examples that use the appropriate {{site.data.keyword.cos_short}} SDK. 
 
 All code examples assume the existence of a client object that is called `cos` that can call the different methods. For details on creating clients, see the specific SDK guides.
 
