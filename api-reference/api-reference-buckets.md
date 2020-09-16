@@ -1285,7 +1285,7 @@ Days                   | Non-negative integer | None                           |
 Date                   | Date                 | None                           | Transition             | **Must** be in ISO 8601 Format and the date must be in the future.
 StorageClass           | String               | None                           | Transition             | **Must** be set to `GLACIER` or `ACCELERATED`.
 
-COS IaaS (non-IAM) accounts are unable to set the transition storage class to `ACCELERATED`.
+{{site.data.keyword.cos_full_notm}} IaaS (non-IAM) accounts are unable to set the transition storage class to `ACCELERATED`.
 {: note} 
 
 ```xml
