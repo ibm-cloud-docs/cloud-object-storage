@@ -48,7 +48,7 @@ Before you create a new {{site.data.keyword.cos_full_notm}} storage instance, it
 1. Log in to [the console](https://cloud.ibm.com/){: external}.
 1. Navigate to the catalog, by clicking **Catalog** in the navigation bar.
 
-   ![COS Catalog](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/catalog.jpg){: caption="Figure 1. Create an {{site.data.keyword.cloud_notm}} instance"}
+   ![IBM Cloud Catalog](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/catalog.jpg){: caption="Figure 1. Create an {{site.data.keyword.cloud_notm}} instance"}
    
 1. Look for the **Object Storage** tile in the storage section and select it.
 
