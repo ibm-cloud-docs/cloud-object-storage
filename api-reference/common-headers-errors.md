@@ -46,7 +46,7 @@ The following table describes supported common request headers. {{site.data.keyw
 ### Custom metadata
 {: #compatibility-headers-metadata}
 
-A benefit of using Object Storage is the ability to add custom metadata by sending key-value pairs as headers. These headers take the form of `x-amz-meta-{KEY}`. Note that unlike AWS S3, IBM COS combines multiple headers with the same metadata key into a comma-separated list of values.
+A benefit of using Object Storage is the ability to add custom metadata by sending key-value pairs as headers. These headers take the form of `x-amz-meta-{KEY}`. Note that unlike AWS S3, {{site.data.keyword.cos_full_notm}} combines multiple headers with the same metadata key into a comma-separated list of values.
 
 ## Common Response Headers
 {: #compatibility-response-headers}
