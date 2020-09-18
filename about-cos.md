@@ -26,11 +26,16 @@ subcollection: cloud-object-storage
 Information stored with {{site.data.keyword.cos_full}} is encrypted and dispersed across multiple geographic locations, and accessed over popular protocols like HTTPS using a modern RESTful API. 
 {: shortdesc}
 
+## Detailed Overview
+{: #detailed-overview-about-cos}
+
 This service makes use of the distributed storage technologies provided by the {{site.data.keyword.cos_full_notm}} System (formerly Cleversafe).
 
 {{site.data.keyword.cos_full_notm}} is available with three types of resiliency: Cross Region, Regional, and Single Data Center.  Cross Region provides higher durability and availability than using a single region at the cost of slightly higher latency, and is available today in the US, EU and AP. Regional service reverses those tradeoffs, and distributes objects across multiple availability zones within a single region, and is available in the US, EU and AP regions. If a given region or availability zone is unavailable, the object store continues to function without impediment.  Single Data Center distributes objects across multiple machines within the same physical location. Check [here](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) for available regions.
 
 Developers use an {{site.data.keyword.cos_full_notm}} API to interact with their object storage. Of course, the [console](https://cloud.ibm.com/){: external} provides a user interface for many operations as well. 
+
+Users of {{site.data.keyword.cos_full_notm}} refer to their binary data, such as files, images, media, archives, or even entire databases as objects. Objects are stored in a bucket, the container for their unstructured data. Buckets contain both inherent and user-defined metadata. Finally, objects are defined by a globally unique combination of the bucket name and the object key, or name.
 
 ## Next Steps
 {: #about-cos-next-steps}
