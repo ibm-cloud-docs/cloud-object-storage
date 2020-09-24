@@ -101,4 +101,4 @@ curl -X "PUT" "https://{endpoint}/{bucket-name}/{object-name}?acl" \
 ## Static websites
 {: #public-access-static-website}
 
-While {{site.data.keyword.cos_full_notm}} doesn't support automatic static website hosting, it's possible to manually configure a web server and use it to serve publicly accessible content hosted in a bucket. For more information, see [this tutorial](https://www.ibm.com/cloud/blog/static-websites-cloud-object-storage-cos).
+While {{site.data.keyword.cos_full_notm}} doesn't support automatic static website hosting, it's possible to manually configure a web server and use it to serve publicly accessible content hosted in a bucket. For more information, see [this tutorial](/docs/cloud-object-storage?topic=static-websites-options).
