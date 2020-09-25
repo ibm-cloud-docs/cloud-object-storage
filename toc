@@ -34,7 +34,7 @@ Cloud Object Storage
         info/advanced_endpoints.md
         info/endpoint-remap.md
         basics/services.md
-        [Connect from VPC](/docs/vpc?topic=vpc-connecting-vpc-cos)
+        [Connect from VPC](/vpc?topic=vpc-connecting-vpc-cos)
         [Connect from VPC (Classic)](/vpc-on-classic/vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc)
     
     basics/closures.md
