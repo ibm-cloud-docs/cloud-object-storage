@@ -4,7 +4,7 @@ copyright:
   years: 2020
 lastupdated: "2020-09-28"
 
-keywords: static website, object storage, hekyll 
+keywords: static website, object storage, options 
 
 subcollection: cloud-object-storage
 
@@ -30,18 +30,20 @@ subcollection: cloud-object-storage
 # Building Static Websites with {{site.data.keyword.cos_full_notm}}
 {: #static-websites-options}
 
-There are many possible paths to take when building static websites with {{site.data.keyword.cos_full}}. The ability to serve static content over the web demonstrates one capability of the many possibilities of {{site.data.keyword.cos_short}}.
+There are many possible paths to take when building static websites with {{site.data.keyword.cos_full}}. The ability to serve static content over the web demonstrates one capability of using {{site.data.keyword.cos_short}}.
 {: shortdesc}
 
 This material represents work in progress and should not be considered final.
 {: important}
 
-Modern web development requires modern tools and secure infrastructure. Static websites represent the latest developments in high-availability, SEO, and security. While covering every available option is beyond the scope of this hands-on overview, the ease of serving static content on {{site.data.keyword.cos_full}} may still cover a lot of material.
+Modern web development requires modern tools and secure infrastructure. Static websites represent the latest developments in high-availability, SEO, and security. While covering every available option is beyond the scope of this hands-on overview, the ease of serving static content on {{site.data.keyword.cos_full_notm}} allows for many possible strategies.
 
 ## Before you start
 {: #static-websites-options-before-you-start}
 
-Research Jekyll, Hugo, Hexo, Wintersmith, and Gatsby.
+Static websites concentrate on the content your users desire: information and media. By removing the administration of webservers like Apache or Nginx, management of your website focuses on the assets directly, from generation to deployment.
+
+There are too many possible options for generating static websites to be covered here. However, an excellent overview of open source generators can be found on the web at [StaticGen](https://www.staticgen.com){: external}. 
 
 ## Next steps
 {: #static-websites-options-next-steps}
