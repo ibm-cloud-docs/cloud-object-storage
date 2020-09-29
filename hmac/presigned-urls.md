@@ -29,7 +29,7 @@ subcollection: cloud-object-storage
 # Creating a presigned URL
 {: #presign-url}
 
-Presigned URLs in {{site.data.keyword.cos_full}} create temporary links that can be used to share an object without requiring specific user credentials for sharing.
+Presigned URLs in {{site.data.keyword.cos_full}} create temporary links that can be used to share an object without requiring additional user credentials when accessed.
 {: shortdesc}
 
 Of course, one can also [provide a temporary target for sending a PUT request](https://medium.com/codait/keeping-your-secrets-between-cloud-object-storage-and-your-browser-part-1-68f4b83bbd38) also without needing to provide any more information for authentication. The easiest way to create presigned URLs is using the [AWS CLI](/docs/cloud-object-storage/cli?topic=cloud-object-storage-aws-cli). But first, you may need to run `aws configure` in order to set your Access Key ID and Secret Access Key from your own [HMAC-enabled service credential](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main). When you have completed configuring your CLI, use the following example as a template and replace the endpoint and name of your bucket with the appropriate information:
