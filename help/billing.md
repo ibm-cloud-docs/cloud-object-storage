@@ -65,7 +65,7 @@ Deleting buckets or objects from the system does not incur a charge.
 ## Aspera transfers
 {: #billing-aspera}
 
-[Aspera high-speed transfer](/docs/cloud-object-storage/basics?topic=cloud-object-storage-aspera) incurs extra egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage#s3api).
+[Aspera high-speed transfer](/docs/cloud-object-storage/basics?topic=cloud-object-storage-aspera) incurs extra egress charges. For more information, see the [pricing page](https://cloud.ibm.com/objectstorage/create#pricing){: external}.
 
 ## Storage classes
 {: #billing-storage-classes}
@@ -80,7 +80,7 @@ There are five classes:
 *  **Cold Vault** is used for cold workloads where data is accessed every 90 days or less - a larger extra retrieval charge ($/GB) is applied each time data is read. The service includes a longer minimum threshold for object size and storage period consistent with the intended use of this service for cold, inactive data.
 *  **Flex** is being replaced by Smart Tier for dynamic workloads. Existing users can reference pricing information [here](/docs/cloud-object-storage?topic=cloud-object-storage-flex-pricing).
 
-For more information about pricing, see [the pricing table at ibm.com](https://www.ibm.com/cloud/object-storage#s3api).
+For more information about pricing, see [the pricing table at ibm.com](https://cloud.ibm.com/objectstorage/create#pricing){: external}.
 
 For more information about creating buckets with different storage classes, see the [API reference](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
 
