@@ -148,6 +148,6 @@ Cloud Object Storage
     {: .topicgroup}
     Billing and pricing
         help/billing.md
-        [Pricing](https://www.ibm.com/cloud/object-storage/pricing/)
+        [Pricing](https://cloud.ibm.com/objectstorage/create#pricing)
         help/flex-pricing.md
     {: .navgroup-end}
