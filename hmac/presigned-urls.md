@@ -29,13 +29,13 @@ subcollection: cloud-object-storage
 # Creating a presigned URL
 {: #presign-url}
 
-Presigned URLs create a temporary link that can be used to share an object publicly, or to [provide a temporary target for sending a PUT request](https://medium.com/codait/keeping-your-secrets-between-cloud-object-storage-and-your-browser-part-1-68f4b83bbd38) without needing to provide authentication information.
+Presigned URLs in {{site.data.keyword.cos_full}} create temporary links that can be used to share an object without requiring specific user credentials for sharing.
 {: shortdesc}
 
-The easiest way to create presigned URLs is using the [AWS CLI](/docs/cloud-object-storage/cli?topic=cloud-object-storage-aws-cli):
+Of course, one can also [provide a temporary target for sending a PUT request](https://medium.com/codait/keeping-your-secrets-between-cloud-object-storage-and-your-browser-part-1-68f4b83bbd38) also without needing to provide any more information for authentication. The easiest way to create presigned URLs is using the [AWS CLI](/docs/cloud-object-storage/cli?topic=cloud-object-storage-aws-cli):
 
 ```bash
-$ aws --endpoint-url=https://{endpoint} s3 presign s3://bucket-1/new-file
+$ aws --endpoint-url=https://{endpoint} s3 presign s3://{bucket-name}/{new-file-key}
 ```
 
 It is also possible to set an expiration time for the URL in seconds (default is 3600):
