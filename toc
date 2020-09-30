@@ -32,6 +32,7 @@ Cloud Object Storage
     Choose regions and connect services
         basics/endpoints.md
         info/advanced_endpoints.md
+        info/endpoint-remap.md
         basics/services.md
         [Connect from VPC](https://cloud.ibm.com/docs/vpc/vpc-connecting-vpc-cos)
         [Connect from VPC (Classic)](/vpc-on-classic/vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc)
@@ -109,12 +110,12 @@ Cloud Object Storage
         gui/crossftp.md
 
     basics/at.md
-
+    iam-at.md
+    
     {: .topicgroup}
     Tutorials
         [Get started with Watson Studio](https://developer.ibm.com/clouddataservices/docs/cos/get-started/)
         [Upload files using IBM Cloud Functions](https://medium.com/codait/keeping-your-secrets-between-cloud-object-storage-and-your-browser-part-1-68f4b83bbd38)
-        [Serve static content using NGINX](https://www.ibm.com/cloud/blog/static-websites-cloud-object-storage-cos)
         [Detach Cloudant Attachments to IBM COS](https://medium.com/ibm-watson-data-lab/detaching-cloudant-attachments-to-object-storage-with-serverless-functions-99b8c3c77925)
         [Build, deploy and scale real-world solutions on IBM Cloud.](https://cloud.ibm.com/docs/tutorials/index.html#tutorials)
         [File-like access to IBM COS using s3fs](https://medium.com/@ozeri/file-like-access-to-ibm-cloud-object-storage-using-s3fs-f5094ed42594)
