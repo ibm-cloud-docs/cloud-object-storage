@@ -68,3 +68,4 @@ API for reading and writing objects: [COS Compatibility S3 API](https://cloud.ib
 | Initiate a multipart upload                         | `POST {endpoint}/{bucket}/{key}?uploads`                                    | `cloud-object-storage.object.post_initiate_upload`                                  | `cloud-object-storage.object-multipart.start`    |
 | Upload a part                                       | `PUT {endpoint}/{bucket}/{key}?uploadId={uploadId}&partNumber={partNumber}` | `cloud-object-storage.object.put_part`                                              | `cloud-object-storage.object-multipart.create`   |
 | Complete a multipart upload                         | `POST {endpoint}/{bucket}/{key}?uploadID={uploadId}`                        | `cloud-object-storage.object.post_initiate_upload`                                  | `cloud-object-storage.object-multipart.complete` |
+{: caption="S3 API actions" caption-side="top"}
