@@ -4,9 +4,9 @@ copyright:
   years: 2018, 2020
 lastupdated: "2020-09-30"
 ​
-keywords: IBM Cloud, observability
+keywords: actions, api
 ​
-subcollection: observability
+subcollection: cloud-object-storage
 ​
 ---
 ​
