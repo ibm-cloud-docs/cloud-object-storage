@@ -25,13 +25,13 @@ subcollection: cloud-object-storage
 # IAM and Activity Tracker actions by API
 {: #at-iam}
 
-List of IAM actions and Activity Tracker actions by API method.
+List of {{site.data.keyword.cloud_notm}} IAM and {{site.data.keyword.at_full}} actions by API method.
 {: shortdesc}
 
 ## Resource Configuration API
 {: #at-iam-config}
 
-API for configuring IBM Cloud Object Storage buckets: [COS Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration#introduction)
+API for configuring {{site.data.keyword.cos_full}} buckets: [COS Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration#introduction)
 *  Endpoint URL: `https://config.cloud-object-storage.cloud.ibm.com/v1`
 
 | Action                                    | Method                                | IAM Action                                                                                                                                                        | Activity Tracker action                              |
