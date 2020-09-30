@@ -110,7 +110,8 @@ Cloud Object Storage
         gui/crossftp.md
 
     basics/at.md
-
+    iam-at.md
+    
     {: .topicgroup}
     Tutorials
         [Get started with Watson Studio](https://developer.ibm.com/clouddataservices/docs/cos/get-started/)
