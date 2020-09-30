@@ -2,12 +2,11 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-09-28"
+lastupdated: "2020-09-30"
 
 keywords: static website, object storage, options 
 
 subcollection: cloud-object-storage
-
 
 ---
 {:new_window: target="_blank"}
@@ -43,7 +42,14 @@ Modern web development requires modern tools and secure infrastructure. Static w
 
 Static websites concentrate on the content your users desire: information and media. By removing the administration of webservers like Apache or Nginx, management of your website focuses on the assets directly, from generation to deployment.
 
-There are too many possible options for generating static websites to be covered here. However, an excellent overview of open source generators can be found on the web at [StaticGen](https://www.staticgen.com){: external}. 
+There are simply too many possible options for generating static websites to be covered here. However, an excellent overview of open source generators can be found on the web at [StaticGen](https://www.staticgen.com){: external}.
+
+## {{site.data.keyword.cloud_notm}} Content Delivery Networks
+{: #static-websites-options-cdn}
+
+Static websites are meant to be fast and secure. Serving up static content is easy with the right tools.
+
+The process for serving static content can be covered from start to finish with [this tutorial](/docs/solution-tutorials?topic=solution-tutorials-static-files-cdn). Using the above solution as a template, others have contributed their [expertise](https://jamesthom.as/2019/07/hosting-static-websites-on-ibm-cloud/){: external}, and [enthusiasm](https://bakingclouds.com/hosting-a-static-website-on-ibm-cos/){: external}.
 
 ## Next steps
 {: #static-websites-options-next-steps}
