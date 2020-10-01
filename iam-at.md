@@ -25,19 +25,19 @@ subcollection: cloud-object-storage
 # IAM and Activity Tracker actions by API
 {: #at-iam}
 
-List of IAM actions and Activity Tracker actions by API method.
+List of {{site.data.keyword.cloud_notm}} IAM and {{site.data.keyword.at_full}} actions by API method.
 {: shortdesc}
 
 ## Resource Configuration API
 {: #at-iam-config}
 
-API for configuring IBM Cloud Object Storage buckets: [COS Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration#introduction)
+API for configuring {{site.data.keyword.cos_full}} buckets: [COS Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration#introduction)
 *  Endpoint URL: `https://config.cloud-object-storage.cloud.ibm.com/v1`
 
 | Action                                    | Method                                | IAM Action                                                                                                                                                        | Activity Tracker action                              |
 |-------------------------------------------|---------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
-| Returns metadata for the specified bucket | `GET {endpoint}/{version}/b/{bucket}`   | `cloud-object-storage.bucket.list_bucket_crn`, </br> `cloud-object-storage.bucket.get_firewall`, </br> `cloud-object-storage.bucket.get_activity_tracking`, </br> `cloud-object-storage.bucket.get_metrics_monitoring` | `cloud-object-storage.resource-configuration.read`   |
-| Make changes to a bucket's configuration  | `PATCH {endpoint}/{version}/b/{bucket}` | `cloud-object-storage.bucket.put_firewall`, </br> `cloud-object-storage.bucket.put_activity_tracking`, </br> `cloud-object-storage.bucket.put_metrics_monitoring` | `cloud-object-storage.resource-configuration.update` |
+| Returns metadata for the specified bucket | `GET {endpoint}/b/{bucket}`   | `cloud-object-storage.bucket.list_bucket_crn`, </br> `cloud-object-storage.bucket.get_firewall`, </br> `cloud-object-storage.bucket.get_activity_tracking`, </br> `cloud-object-storage.bucket.get_metrics_monitoring` | `cloud-object-storage.resource-configuration.read`   |
+| Make changes to a bucket's configuration  | `PATCH {endpoint}/b/{bucket}` | `cloud-object-storage.bucket.put_firewall`, </br> `cloud-object-storage.bucket.put_activity_tracking`, </br> `cloud-object-storage.bucket.put_metrics_monitoring` | `cloud-object-storage.resource-configuration.update` |
 {: caption="RC API actions" caption-side="top"}
 
 ## S3 API
@@ -62,8 +62,10 @@ API for reading and writing objects: [COS Compatibility S3 API](https://cloud.ib
 | Delete a CORS configuration                         | `DELETE {endpoint}/{bucket}?cors`                                           | `cloud-object-storage.bucket.delete_cors`                                           | `cloud-object-storage.bucket-cors.delete`        |
 | Add/edit a bucket's lifecycle configuration         | `PUT {endpoint}/{bucket}?lifecycle`                                         | `cloud-object-storage.bucket.put_lifecycle`                                         | `cloud-object-storage.bucket-lifecycle.create`   |
 | Read a bucket's lifecycle configuration             | `GET {endpoint}/{bucket}?lifecycle`                                         | `cloud-object-storage.bucket.get_lifecycle`                                         | `cloud-object-storage.bucket-lifecycle.read`     |
+| Delete a bucket's lifecycle configuration           | `DELETE {endpoint}/{bucket}?lifecycle`                                      | `cloud-object-storage.bucket.put_lifecycle`                                         | `cloud-object-storage.bucket-lifecycle.delete`   |
 | Add/edit/remove a bucket's Immutable Storage policy | `PUT {endpoint}/{bucket}?protection`                                        | `cloud-object-storage.bucket.put_protection`                                        | `cloud-object-storage.bucket-retention.create`   |
 | Read a bucket's Immutable Storage policy            | `GET {endpoint}/{bucket}?protection`                                        | `cloud-object-storage.bucket.get_protection`                                        | `cloud-object-storage.bucket-retention.read`     |
 | Initiate a multipart upload                         | `POST {endpoint}/{bucket}/{key}?uploads`                                    | `cloud-object-storage.object.post_initiate_upload`                                  | `cloud-object-storage.object-multipart.start`    |
 | Upload a part                                       | `PUT {endpoint}/{bucket}/{key}?uploadId={uploadId}&partNumber={partNumber}` | `cloud-object-storage.object.put_part`                                              | `cloud-object-storage.object-multipart.create`   |
 | Complete a multipart upload                         | `POST {endpoint}/{bucket}/{key}?uploadID={uploadId}`                        | `cloud-object-storage.object.post_initiate_upload`                                  | `cloud-object-storage.object-multipart.complete` |
+{: caption="S3 API actions" caption-side="top"}
