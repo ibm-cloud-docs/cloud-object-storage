@@ -41,25 +41,3 @@ With {{site.data.keyword.cos_short}} you also have a choice to use our integrati
 Refer to product documentation on [{{site.data.keyword.keymanagementservicefull}}](/docs/services/key-protect?topic=key-protect-about) and [{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-crypto-overview) for a detailed overview of the two services.
 
 
-## Rotating Keys
-{: #encryption-rotate}
-
-Key rotation is an important part of mitigating the risk of a data breach. Periodically changing keys reduces the potential data loss if the key is lost or compromised. The frequency of key rotations varies by organization and depends on a number of variables, such as the environment, the amount of encrypted data, classification of the data, and compliance laws. The [National Institute of Standards and Technology (NIST)](https://www.nist.gov/topics/cryptography){: external} provides definitions of appropriate key lengths and provides guidelines for how long keys should be used.
-
-For more information, see the documentation for rotating keys in [Key Protect](/docs/key-protect?topic=key-protect-set-rotation-policy) or [{{site.data.keyword.hscrypto}}](/docs/key-protect?topic=key-protect-rotate-keys).
-
-## Cryptographic erasure
-{: encryption-cryptoerasure}
-
-Cryptographic erasure (or crypto-shredding) is a method of rendering encrypted data  unreadable by [deleting the encryption keys](/docs/key-protect?topic=key-protect-security-and-compliance#data-deletion) rather than the data itself. When a [root key is deleted in Key Protect](/docs/key-protect?topic=key-protect-delete-keys), it will affect all objects in any buckets created using that root key, effectively "shredding" the data and preventing any further reading or writing to the buckets. This process is not instantaneous, but occurs within a few minutes after the key is deleted.
-
-Although objects in a crypto-shredded bucket can not be read, and new object can not be written, existing objects will continue to consume storage until they are deleted by a user.
-{: tip}
-
-When a Key Protect root key is deleted and an associated object storage bucket is crypto-shredded, an [Activity Tracker management event](/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global) (`cloud-object-storage.bucket-key-state.update`) is generated in addition to the `kms.secrets.delete` event logged by Key Protect. In the event of a server-side failure to delete the key, that failure is not logged unless it does not succeed within four hours.
-
-Rotating, suspending, or resuming (enabling) keys does not generate a bucket management event at this time.
-{:note}
-
-This event will not be generated for buckets created prior to February 26th, 2020 at this time.
-{: important}
