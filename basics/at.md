@@ -66,8 +66,20 @@ The following table lists the COS actions that generate a global event. You can 
 | `cloud-object-storage.instance.list`           | List the buckets in the service instance  |
 | `cloud-object-storage.bucket.create`           | Create a bucket in the service instance   |
 | `cloud-object-storage.bucket.delete`           | Delete a bucket in the service instance   |
-| `cloud-object-storage.bucket-key-state.update` | Delete a Key Protect root encryption key |
+| `cloud-object-storage.bucket-key-state.update` | Updating a Key Protect root encryption key |
 {: caption="Table 1. {{site.data.keyword.cos_short}} actions that generate global events"}
+
+
+For `cloud-object-storage.bucket-key-state.update` events, the following fields include extra information:
+
+- The `requestData.eventType` field includes the type of lifecyle event that occured, such as deletion, rotation, etc.
+- The `requestData.requestedKeyState` field includes the the requested state of the key (enabled or disabled).
+- The `requestData.requestKeyVersion` field includes the requested version of the key.
+- The `requestData.bucketLocation` field includes the location of the bucket that uses the key.
+
+- The `responseData.eventID` field includes the unique identifier associated with the key lifecycle event.
+- The `responseData.adopterKeyState` field includes the current state the key (enabled or disabled).
+- The `responseData.adopterKeyVersion` field includes the current version of the key.
 
 ### Resource configuration events
 {: #at-actions-mngt-1}
