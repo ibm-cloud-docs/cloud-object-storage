@@ -73,7 +73,6 @@ Cloud Object Storage
         encryption/sse-c.md
         encryption/kp.md
         encryption/hpcs.md
-    basics/encryption.md
     basics/sql.md
     basics/logdna.md
     basics/metrics-monitoring.md
