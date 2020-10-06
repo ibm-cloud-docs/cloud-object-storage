@@ -63,7 +63,8 @@ Authorize Key Protect for use with IBM COS:
 5. In the **Source service** menu, select **Cloud Object Storage**.
 6. In the **Source service instance** menu, select the service instance to authorize.
 7. In the **Target service** menu, select **IBM Key Protect**.
-8. In the **Target service instance** menu, select the service instance to authorize.
+  ![Grant service authorization](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/kp-grant-auth.png){: caption="Figure 1: Grant service authorization for Key Protect."}
+8. In the **Target service instance** menu, select the service instance to authorize. The additional fields may be left blank.
 9. Enable the **Reader** role.
 10. Click **Authorize**.
 
@@ -76,7 +77,10 @@ When your key exists in Key Protect and you authorized the service for use with 
 3. Click **Custom bucket**.
 3. Enter a bucket name, select the **Regional** resiliency, and choose a location and storage class.
 4. In Advanced Configuration, under **Key management services** enable **Add Key Protect Key**.
-5. Select the associated service instance and key.
+  ![Add KP](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/kp-add.png){: caption="Figure 2: Add Key Protect to a new bucket."}
+5. Select the associated service instance and key, and click **Associate key**.
+  ![Add KP](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/kp-associate-key.png){: caption="Figure 3: Choose a root key."}
+5. Verify the information is correct.
 6. Click **Create**.
 
 You can choose to use Key Protect to manage encryption for a bucket only at the time of creation. It isn't possible to change an existing bucket to use Key Protect.
