@@ -76,7 +76,7 @@ When your key exists in Key Protect and you authorized the service for use with 
 2. Click **Create bucket**.
 3. Click **Custom bucket**.
 3. Enter a bucket name, select the **Regional** resiliency, and choose a location and storage class.
-4. In Advanced Configuration, under **Key management services** enable **Add Key Protect Key**.
+4. In Advanced Configuration, under **Key management services** click on **Add**.
   ![Add KP](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/kp-add.png){: caption="Figure 2: Add Key Protect to a new bucket."}
 5. Select the associated service instance and key, and click **Associate key**.
   ![Add KP](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/kp-associate-key.png){: caption="Figure 3: Choose a root key."}
@@ -109,7 +109,15 @@ Key rotation is an important part of mitigating the risk of a data breach. Perio
 
 For more information, see the documentation for rotating keys in [Key Protect](/docs/key-protect?topic=key-protect-set-rotation-policy).
 
-### Cryptographic erasure
+### Disabling and re-enabling keys
+{: #kp-disable}
+
+As an admin, you might need to [temporarily disable a root key](/docs/key-protect?topic=key-protect-disable-keys) if you suspect a possible security exposure, compromise, or breach with your data. When you disable a root key, you suspend its encrypt and decrypt operations. After confirming that a security risk is no longer active, you can restore access to your data by enabling the disabled root key.
+
+If a key is disabled, and then re-enabled quickly, requests made to that bucket may be rejected for up to an hour before cached key information is refreshed.  
+{:note}
+
+### Deleting keys and cryptographic erasure
 {: kp-cryptoerasure}
 
 Cryptographic erasure (or crypto-shredding) is a method of rendering encrypted data  unreadable by [deleting the encryption keys](/docs/key-protect?topic=key-protect-security-and-compliance#data-deletion) rather than the data itself. When a [root key is deleted in Key Protect](/docs/key-protect?topic=key-protect-delete-keys), it will affect all objects in any buckets created using that root key, effectively "shredding" the data and preventing any further reading or writing to the buckets. This process is not instantaneous, but occurs within approximatedly 90 seconds after the key is deleted.
@@ -117,14 +125,12 @@ Cryptographic erasure (or crypto-shredding) is a method of rendering encrypted d
 Although objects in a crypto-shredded bucket can not be read, and new object can not be written, existing objects will continue to consume storage until they are deleted by a user.
 {: tip}
 
+As an admin, you might need to [restore a root key that you imported](/docs/key-protect?topic=key-protect-restore-keys) to Key Protect so that you can access data that the key previously protected. When you restore a key, you move the key from the Destroyed to the Active key state, and you restore access to any data that was previously encrypted with the key.
+
 If a key that was originally uploaded by a user is deleted, and then restored using different key material, it **will result in a loss of data**. It is recommended to keep n-5 keys archived somewhere in order to ensure that the correct key material is available for restoration.
 {: important}
 
-If a key is disabled, and then re-enabled quickly, requests made to that bucket may be rejected for up to an hour before cached key information is refreshed.  
-{:note}
 
-Key lifecycle events will not be generated for buckets created prior to February 26th, 2020 at this time.
-{: important}
 
 ## Activity Tracking
 {: kp-at}
@@ -134,5 +140,9 @@ When a Key Protect root keys are deleted, rotated, suspended, enabled, or restor
 In the event of a server-side failure in a lifecycle action on a key, that failure is not logged by Key Protect unless it does not succeed within four hours.
 {:note}
 
-The `cloud-object-storage.bucket-key-state.update` actions are triggered by events taking place in Key Protect, and require that the bucket is registered with the Key Protect service.  This registration happens automatically when a bucket is created with a Key Protect root key. However, if a key is altered in some fashion, buckets will not know about this change until some data operation is performed, such as reading or writing an object, at which point the object storage service will check with Key Protect. In other words, if keys have been rotated or updated to a new version, it is important that all buckets **are registered with the same version of the key**.  After keys are rotated, it is critical that all buckets recieve some sort of data operation (such as a `HEAD object`) to update and refresh the key information.
+The `cloud-object-storage.bucket-key-state.update` actions are triggered by events taking place in Key Protect, and require that the bucket is registered with the Key Protect service.  This registration happens automatically when a bucket is created with a Key Protect root key. However, if a key is altered in some fashion, buckets will not know about this change until some data operation is performed, such as reading or writing an object, at which point the object storage service will check with Key Protect. In other words, if keys have been rotated or updated to a new version, it is important that all buckets **are registered with the same version of the key**.  After keys are rotated, it is critical that all buckets recieve some sort of data operation (such as a [`HEAD object`](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations#object-operations-head)) to update and refresh the key information.
 
+Key lifecycle events will not be generated for buckets created prior to February 26th, 2020 at this time.
+{: important}
+
+For more information on Activity Tracker events for object storage, [see the reference topic](/docs/cloud-object-storage?topic=cloud-object-storage-at-events).
