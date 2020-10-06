@@ -20,27 +20,30 @@ subcollection: cloud-object-storage
 {:note: .note}
 {:download: .download}
 {:http: .ph data-hd-programlang='http'}
+{:aws: .ph data-hd-programlang='aws'}
+{:go: .ph data-hd-programlang='go'}
 {:javascript: .ph data-hd-programlang='javascript'}
 {:java: .ph data-hd-programlang='java'}
 {:python: .ph data-hd-programlang='python'}
+{:console: .ph data-hd-programlang='Console'}
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
 # Building a Static Website
 {: #static-website}
 
-There are many possible paths to take when building static websites with {{site.data.keyword.cos_full}}. The ability to serve static content over the web demonstrates one capability of using {{site.data.keyword.cos_short}}.
+Building websites with {{site.data.keyword.cos_full}} serves static content for public access giving users flexibility, ease of delivery, and high availability.
 {: shortdesc}
 
 This material represents work in progress and should not be considered final.
 {: important}
 
-Modern web development requires modern tools and secure infrastructure. Static websites represent the latest developments in high-availability, SEO, and security. While covering every available option is beyond the scope of this hands-on overview, the ease of serving static content on {{site.data.keyword.cos_full_notm}} allows for many possible strategies.
+Hosting a static website on {{site.data.keyword.cos_full}} starts with configuring a bucket for website hosting. Upload your website content to the bucket and then set an index document and a custom error document.
 
 ## Before you start
 {: #static-website-before-you-start}
 
-Static websites concentrate on the content your users desire: information and media. By removing the administration of webservers like Apache or Nginx, management of your website focuses on the assets directly, from generation to deployment.
+Creating a bucket for a static website will require public access. However, 
 
 ## Next steps
 {: #static-website-next-steps}
