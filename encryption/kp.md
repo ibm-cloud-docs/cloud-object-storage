@@ -30,12 +30,12 @@ You can use [IBM Key Protect](/docs/services/key-protect?topic=key-protect-about
 
 ## Before you begin
 {: #kp-begin}
-Before you plan on using either Key Protect with Cloud Object Storage buckets, you need:
+Before you plan on using Key Protect with Cloud Object Storage buckets, you need:
 
 - An [IBM Cloud™ Platform account](http://cloud.ibm.com/)
 - An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage)
 
-You will need to ensure that a service instance is created by using the [IBM Cloud catalog](https://cloud.ibm.com/catalog) and appropriate permissions are granted. This section outlines step-by-step instructions to help you get started. 
+You will also need to ensure that a service instance is created by using the [IBM Cloud catalog](https://cloud.ibm.com/catalog) and appropriate permissions are granted. This section outlines step-by-step instructions to help you get started. 
 
 ## Provisioning an instance of IBM Key Protect
 {: #kp-provision}
@@ -43,7 +43,7 @@ Refer to the service-specific product pages for instructions on how to provision
 
 - Getting started with [IBM Key Protect](/docs/services/key-protect?topic=key-protect-getting-started-tutorial#getting-started-tutorial) 
 
-Once you have an instance of Key Protect in a region that you want to create a new bucket in, you need to create a root key and note the CRN of that key. The CRN is sent in a header during bucket creation.
+Once you have an instance of Key Protect in a region that you want to create a new bucket in, you need to create a root key and note the CRN ([Cloud Resource Name](/docs/account?topic=account-crn)) of that key. The CRN is sent in a header during bucket creation.
 
 Note that the location in which the bucket is created must be the same location where the instance of Key Protect is operating.
 {:important}
@@ -52,7 +52,7 @@ Note that the location in which the bucket is created must be the same location 
 {: #kp-create}
 Navigate to your instance of Key Protect and [generate or enter a root key](/docs/services/key-protect?topic=key-protect-getting-started-tutorial).
 
-### Grant service authorization
+## Grant service authorization
 {: #kp-sa}
 Authorize Key Protect for use with IBM COS:
 
@@ -73,9 +73,10 @@ When your key exists in Key Protect and you authorized the service for use with 
 
 1. Navigate to your instance of Object Storage.
 2. Click **Create bucket**.
+3. Click **Custom bucket**.
 3. Enter a bucket name, select the **Regional** resiliency, and choose a location and storage class.
-4. In Advanced Configuration, enable **Add Key Protect Key**.
-5. Select the associated service instance, key, and Key ID.
+4. In Advanced Configuration, under **Key management services** enable **Add Key Protect Key**.
+5. Select the associated service instance and key.
 6. Click **Create**.
 
 You can choose to use Key Protect to manage encryption for a bucket only at the time of creation. It isn't possible to change an existing bucket to use Key Protect.
@@ -84,7 +85,7 @@ You can choose to use Key Protect to manage encryption for a bucket only at the 
 If bucket creation fails with a `400 Bad Request` error with the message `The Key CRN could not be found`, ensure that the CRN is correct and that the service to service authorization policy exists.
 {:tip}
 
-In the **Buckets and objects** listing, the bucket now has a _View_ link under **Advanced**, indicating that the bucket has a Key Protect key enabled. To view the key details, click _View_.
+In the **Buckets** listing, the bucket has a _View_ link under **Attributes** where you can verify that the bucket has a Key Protect key enabled.
 
 Note that the `Etag` value returned for objects encrypted using SSE-KP **will** be the actual MD5 hash of the original decrypted object.
 {:tip}
@@ -95,12 +96,14 @@ It is also possible to use [the REST API](/docs/cloud-object-storage?topic=cloud
 ## Key lifecycle management 
 {: #kp-lifecycle}
 
+Key Protect offers various ways to manage the lifecycle of encryption keys.  For more details, see [the Key Protect documentation](/docs/key-protect?topic=key-protect-key-states).
+
 ### Rotating Keys
 {: #kp-rotate}
 
 Key rotation is an important part of mitigating the risk of a data breach. Periodically changing keys reduces the potential data loss if the key is lost or compromised. The frequency of key rotations varies by organization and depends on a number of variables, such as the environment, the amount of encrypted data, classification of the data, and compliance laws. The [National Institute of Standards and Technology (NIST)](https://www.nist.gov/topics/cryptography){: external} provides definitions of appropriate key lengths and provides guidelines for how long keys should be used.
 
-For more information, see the documentation for rotating keys in [Key Protect](/docs/key-protect?topic=key-protect-set-rotation-policy) or [{{site.data.keyword.hscrypto}}](/docs/key-protect?topic=key-protect-rotate-keys).
+For more information, see the documentation for rotating keys in [Key Protect](/docs/key-protect?topic=key-protect-set-rotation-policy).
 
 ### Cryptographic erasure
 {: kp-cryptoerasure}
