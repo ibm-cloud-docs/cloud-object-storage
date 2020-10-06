@@ -32,11 +32,13 @@ SSE-C is enforced on objects. Requests to read or write objects or their metadat
 Any request that uses SSE-C headers must be sent by using SSL. The `ETag` values in response headers are *not* the MD5 hash of the object, but a randomly generated 32-byte hexadecimal string.
 
 A typical [PUT object](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations#object-operations-put) request can make use of the following headers:
-Header | Type | Description
---- | ---- | ------------
-`x-amz-server-side-encryption-customer-algorithm` | String | This header is used to specify the algorithm and key size to use with the encryption key stored in `x-amz-server-side-encryption-customer-key` header. This value must be set to the string `AES256`.
-`x-amz-server-side-encryption-customer-key` | String | This header is used to transport the base 64 encoded byte string representation of the AES 256 key used in the server-side encryption process.
-`x-amz-server-side-encryption-customer-key-MD5` | String | This header is used to transport the base64-encoded 128-bit MD5 digest of the encryption key according to RFC 1321. The object store uses this value to validate the key passes in the `x-amz-server-side-encryption-customer-key` has not been corrupted during transport and encoding process. The digest must be calculated on the key BEFORE the key is base 64 encoded.
+
+| Header                                            | Type   | Description                                                                                                                                                                                                                                                                                                                                                                  |
+|---------------------------------------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `x-amz-server-side-encryption-customer-algorithm` | String | This header is used to specify the algorithm and key size to use with the encryption key stored in `x-amz-server-side-encryption-customer-key` header. This value must be set to the string `AES256`.                                                                                                                                                                        |
+| `x-amz-server-side-encryption-customer-key`       | String | This header is used to transport the base 64 encoded byte string representation of the AES 256 key used in the server-side encryption process.                                                                                                                                                                                                                               |
+| `x-amz-server-side-encryption-customer-key-MD5`   | String | This header is used to transport the base64-encoded 128-bit MD5 digest of the encryption key according to RFC 1321. The object store uses this value to validate the key passes in the `x-amz-server-side-encryption-customer-key` has not been corrupted during transport and encoding process. The digest must be calculated on the key BEFORE the key is base 64 encoded. |
+
 
 A [cURL command](/docs/cloud-object-storage?topic=cloud-object-storage-curl) might look like the following:
 
@@ -48,3 +50,4 @@ curl -v -T $FILE https://$ENDPOINT/$BUCKET  \
    -H "x-amz-server-side-encryption-customer-key:$ENCRYPTION_KEY" \
    -H "x-amz-server-side-encryption-customer-key-MD5:$MD5_KEY_HASH"
 ```
+{:codeblock}
