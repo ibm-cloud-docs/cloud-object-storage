@@ -8,7 +8,6 @@ keywords: encryption, security, sse-c, key protect
 
 subcollection: cloud-object-storage
 
-
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
@@ -92,14 +91,18 @@ Note that the `Etag` value returned for objects encrypted using SSE-KP **will** 
 
 It is also possible to use [the REST API](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-key-protect) or SDKs ([Go](/docs/cloud-object-storage?topic=cloud-object-storage-using-go#go-examples-kp), [Java](/docs/cloud-object-storage?topic=cloud-object-storage-java#java-examples-kp), [Node.js](/docs/cloud-object-storage?topic=cloud-object-storage-node#node-examples-kp), or [Python](/docs/cloud-object-storage?topic=cloud-object-storage-python#python-examples-kp)).
 
-## Rotating Keys
+
+## Key lifecycle management 
+{: #kp-lifecycle}
+
+### Rotating Keys
 {: #kp-rotate}
 
 Key rotation is an important part of mitigating the risk of a data breach. Periodically changing keys reduces the potential data loss if the key is lost or compromised. The frequency of key rotations varies by organization and depends on a number of variables, such as the environment, the amount of encrypted data, classification of the data, and compliance laws. The [National Institute of Standards and Technology (NIST)](https://www.nist.gov/topics/cryptography){: external} provides definitions of appropriate key lengths and provides guidelines for how long keys should be used.
 
 For more information, see the documentation for rotating keys in [Key Protect](/docs/key-protect?topic=key-protect-set-rotation-policy) or [{{site.data.keyword.hscrypto}}](/docs/key-protect?topic=key-protect-rotate-keys).
 
-## Cryptographic erasure
+### Cryptographic erasure
 {: kp-cryptoerasure}
 
 Cryptographic erasure (or crypto-shredding) is a method of rendering encrypted data  unreadable by [deleting the encryption keys](/docs/key-protect?topic=key-protect-security-and-compliance#data-deletion) rather than the data itself. When a [root key is deleted in Key Protect](/docs/key-protect?topic=key-protect-delete-keys), it will affect all objects in any buckets created using that root key, effectively "shredding" the data and preventing any further reading or writing to the buckets. This process is not instantaneous, but occurs within approximatedly 90 seconds after the key is deleted.
@@ -107,21 +110,22 @@ Cryptographic erasure (or crypto-shredding) is a method of rendering encrypted d
 Although objects in a crypto-shredded bucket can not be read, and new object can not be written, existing objects will continue to consume storage until they are deleted by a user.
 {: tip}
 
-## Activity Tracking
-{: kp-at}
-
-When a Key Protect root keys are deleted, rotated, suspended, enabled, or restored, an [Activity Tracker management event](/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global) (`cloud-object-storage.bucket-key-state.update`) is generated in addition to any events logged by Key Protect. 
-
-In the event of a server-side failure to delete a key, that failure is not logged unless it does not succeed within four hours.
-{:note}
-
-If a key is deleted, and then restored using different key material, it **will result in a loss of data**. It is recommended to keep n-5 keys archived somewhere in order to ensure that the correct key material is available for restoration.
+If a key that was originally uploaded by a user is deleted, and then restored using different key material, it **will result in a loss of data**. It is recommended to keep n-5 keys archived somewhere in order to ensure that the correct key material is available for restoration.
 {: important}
 
 If a key is disabled, and then re-enabled quickly, requests made to that bucket may be rejected for up to an hour before cached key information is refreshed.  
 {:note}
 
-This event will not be generated for buckets created prior to February 26th, 2020 at this time.
+Key lifecycle events will not be generated for buckets created prior to February 26th, 2020 at this time.
 {: important}
 
-The `cloud-object-storage.bucket-key-state.update` actions are triggered by events taking place in Key Protect, and require that the bucket is registered with the Key Protect service.  This registration happens automatically when a bucket is created with a Key Protect root key. However, if a key is altered in some fashion, the bucket will not know about this change until some data operation is performed, such as reading or writing an object, at which point the object storage service will check with Key Protect. In other words, if keys have been rotated or updated to a new version, it is important that all buckets **are registered with the same version of the key**.  After keys are rotated, it is critical that all buckets recieve some sort of data operation (such as a `HEAD object`) to update and refresh the key information.
+## Activity Tracking
+{: kp-at}
+
+When a Key Protect root keys are deleted, rotated, suspended, enabled, or restored, an [Activity Tracker management event](/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global) (`cloud-object-storage.bucket-key-state.update`) is generated in addition to any events logged by Key Protect. 
+
+In the event of a server-side failure in a lifecycle action on a key, that failure is not logged by Key Protect unless it does not succeed within four hours.
+{:note}
+
+The `cloud-object-storage.bucket-key-state.update` actions are triggered by events taking place in Key Protect, and require that the bucket is registered with the Key Protect service.  This registration happens automatically when a bucket is created with a Key Protect root key. However, if a key is altered in some fashion, buckets will not know about this change until some data operation is performed, such as reading or writing an object, at which point the object storage service will check with Key Protect. In other words, if keys have been rotated or updated to a new version, it is important that all buckets **are registered with the same version of the key**.  After keys are rotated, it is critical that all buckets recieve some sort of data operation (such as a `HEAD object`) to update and refresh the key information.
+
