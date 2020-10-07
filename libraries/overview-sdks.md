@@ -74,7 +74,7 @@ Version 2 listing allows for more powerful scoping of object listings.
 
 ## Key Protect
 {: #sdk-about-kp}
-[{{site.data.keyword.keymanagementservicefull}}](https://test.cloud.ibm.com/docs/services/key-protect?topic=key-protect-about) helps you create encrypted keys for apps across {{site.data.keyword.cloud}} services. Keys are secured by FIPS 140-2 Level 3 cloud-based hardware security modules (HSMs) that protect against the theft of information. [{{site.data.keyword.hscrypto}}](https://test.cloud.ibm.com/docs/services/hs-crypto?topic=hs-crypto-overview) is a single-tenant, dedicated HSM that is controlled by you. The service is built on FIPS 140-2 Level 4 hardware, the highest offered by any cloud provider in the industry.
+[{{site.data.keyword.keymanagementservicefull}}](/docs/services/key-protect?topic=key-protect-about) helps you create encrypted keys for apps across {{site.data.keyword.cloud}} services. Keys are secured by FIPS 140-2 Level 3 cloud-based hardware security modules (HSMs) that protect against the theft of information. [{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-crypto-overview) is a single-tenant, dedicated HSM that is controlled by you. The service is built on FIPS 140-2 Level 4 hardware, the highest offered by any cloud provider in the industry.
 
 ## SSE-C
 {: #sdk-about-sse-c}  
