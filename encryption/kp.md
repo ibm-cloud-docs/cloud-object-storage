@@ -125,12 +125,13 @@ Cryptographic erasure (or crypto-shredding) is a method of rendering encrypted d
 Although objects in a crypto-shredded bucket can not be read, and new object can not be written, existing objects will continue to consume storage until they are deleted by a user.
 {: tip}
 
+### Restoring a deleted key 
+{: kp-restore}
+
 As an admin, you might need to [restore a root key that you imported](/docs/key-protect?topic=key-protect-restore-keys) to Key Protect so that you can access data that the key previously protected. When you restore a key, you move the key from the Destroyed to the Active key state, and you restore access to any data that was previously encrypted with the key.
 
 If a key that was originally uploaded by a user is deleted, and then restored using different key material, it **will result in a loss of data**. It is recommended to keep n-5 keys archived somewhere in order to ensure that the correct key material is available for restoration.
 {: important}
-
-
 
 ## Activity Tracking
 {: kp-at}
