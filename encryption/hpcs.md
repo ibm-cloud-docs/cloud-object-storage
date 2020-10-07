@@ -74,9 +74,11 @@ When your key exists in {{site.data.keyword.hscrypto}} and you authorized the se
 
 1. Navigate to your instance of Object Storage.
 2. Click **Create bucket**.
+3. Click **Custom bucket**.
 3. Enter a bucket name, select the **Regional** resiliency, and choose a location and storage class.
-4. In Advanced Configuration, enable **Add Hyper Protect Crypto Service key**.
-5. Select the associated service instance, key, and Key ID.
+4. In Advanced Configuration, under **Key management services** click on **Add**.
+5. Select the associated service instance and key, and click **Associate key**.
+5. Verify the information is correct.
 6. Click **Create**.
 
 You can choose to use {{site.data.keyword.hscrypto}} to manage encryption for a bucket only at the time of creation. It isn't possible to change an existing bucket to use {{site.data.keyword.hscrypto}}.
