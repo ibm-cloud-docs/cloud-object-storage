@@ -76,7 +76,7 @@ When your key exists in {{site.data.keyword.hscrypto}} and you authorized the se
 2. Click **Create bucket**.
 3. Click **Custom bucket**.
 3. Enter a bucket name, select the **Regional** resiliency, and choose a location and storage class.
-4. In Advanced Configuration, under **Key management services** click on **Add**.
+4. In Advanced Configuration, under **Key management services** click on **Add** in the **{{site.data.keyword.hscrypto}}** section.
 5. Select the associated service instance and key, and click **Associate key**.
 5. Verify the information is correct.
 6. Click **Create**.
