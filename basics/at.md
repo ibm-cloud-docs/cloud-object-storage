@@ -72,14 +72,16 @@ The following table lists the COS actions that generate a global event. You can 
 
 For `cloud-object-storage.bucket-key-state.update` events, the following fields include extra information:
 
-- The `requestData.eventType` field includes the type of lifecyle event that occured, such as deletion, rotation, etc.
-- The `requestData.requestedKeyState` field includes the the requested state of the key (enabled or disabled).
-- The `requestData.requestKeyVersion` field includes the requested version of the key.
-- The `requestData.bucketLocation` field includes the location of the bucket that uses the key.
-
-- The `responseData.eventID` field includes the unique identifier associated with the key lifecycle event.
-- The `responseData.adopterKeyState` field includes the current state the key (enabled or disabled).
-- The `responseData.adopterKeyVersion` field includes the current version of the key.
+| Field                            | Description                                                               |
+|----------------------------------|---------------------------------------------------------------------------|
+| `requestData.eventType`          | The type of lifecyle event that occured, such as deletion, rotation, etc. |
+| `requestData.requestedKeyState`  | The the requested state of the key (enabled or disabled).                 |
+| `requestData.requestKeyVersion`  | The requested version of the key.                                         |
+| `requestData.bucketLocation`     | The location of the bucket that uses the key.                             |
+| `responseData.eventID`           | The unique identifier associated with the key lifecycle event.            |
+| `responseData.adopterKeyState`   | The current state the key (enabled or disabled).                          |
+| `responseData.adopterKeyVersion` | The current version of the key.                                           |
+{: caption="Table 1a. Additional fields for `bucket-key-state.update` events "}
 
 ### Resource configuration events
 {: #at-actions-mngt-1}
