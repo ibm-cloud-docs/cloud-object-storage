@@ -112,7 +112,7 @@ For more information, see the documentation for rotating keys in [Key Protect](/
 ### Disabling and re-enabling keys
 {: #kp-disable}
 
-As an admin, you might need to [temporarily disable a root key](/docs/key-protect?topic=key-protect-disable-keys) if you suspect a possible security exposure, compromise, or breach with your data. When you disable a root key, you suspend its encrypt and decrypt operations. After confirming that a security risk is no longer active, you can restore access to your data by enabling the disabled root key.
+As an admin, you might need to [temporarily disable a root key](/docs/key-protect?topic=key-protect-disable-keys) if you suspect a possible security exposure, compromise, or breach with your data. When you disable a root key, you suspend its encrypt and decrypt operations. After confirming that a security risk is no longer active, you can reestablish access to your data by enabling the disabled root key.
 
 If a key is disabled, and then re-enabled quickly, requests made to that bucket may be rejected for up to an hour before cached key information is refreshed.  
 {:note}
@@ -128,7 +128,7 @@ Although objects in a crypto-shredded bucket can not be read, and new object can
 ### Restoring a deleted key 
 {: kp-restore}
 
-As an admin, you might need to [restore a root key that you imported](/docs/key-protect?topic=key-protect-restore-keys) to Key Protect so that you can access data that the key previously protected. When you restore a key, you move the key from the Destroyed to the Active key state, and you restore access to any data that was previously encrypted with the key.
+As an admin, you might need to [restore a root key that you imported](/docs/key-protect?topic=key-protect-restore-keys) to Key Protect so that you can access data that the key previously protected. When you restore a key, you move the key from the Destroyed to the Active key state, and you restore access to any data that was previously encrypted with the key. This must occur within 30 days of deleting a key.
 
 If a key that was originally uploaded by a user is deleted, and then restored using different key material, it **will result in a loss of data**. It is recommended to keep n-5 keys archived somewhere in order to ensure that the correct key material is available for restoration.
 {: important}
@@ -138,12 +138,12 @@ If a key that was originally uploaded by a user is deleted, and then restored us
 
 When a Key Protect root keys are deleted, rotated, suspended, enabled, or restored, an [Activity Tracker management event](/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global) (`cloud-object-storage.bucket-key-state.update`) is generated in addition to any events logged by Key Protect. 
 
-In the event of a server-side failure in a lifecycle action on a key, that failure is not logged by Key Protect unless it does not succeed within four hours.
+In the event of a server-side failure in a lifecycle action on a key, that failure is not logged by COS.  If Key Protect does not receive a success from COS for the event handling within four hours of the event being sent, Key Protect will log a failure.
 {:note}
 
-The `cloud-object-storage.bucket-key-state.update` actions are triggered by events taking place in Key Protect, and require that the bucket is registered with the Key Protect service.  This registration happens automatically when a bucket is created with a Key Protect root key. However, if a key is altered in some fashion, buckets will not know about this change until some data operation is performed, such as reading or writing an object, at which point the object storage service will check with Key Protect. In other words, if keys have been rotated or updated to a new version, it is important that all buckets **are registered with the same version of the key**.  After keys are rotated, it is critical that all buckets recieve some sort of data operation (such as a [`HEAD object`](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations#object-operations-head)) to update and refresh the key information.
+The `cloud-object-storage.bucket-key-state.update` actions are triggered by events taking place in Key Protect, and require that the bucket is registered with the Key Protect service.  This registration happens automatically when a bucket is created with a Key Protect root key.
 
-Key lifecycle events will not be generated for buckets created prior to February 26th, 2020 at this time.
+Key lifecycle events will not be generated for buckets created prior to February 26th, 2020 at this time. If a key is altered in some fashion, buckets will not know about this change until some data operation is performed, such as reading or writing an object, at which point the object storage service will check with Key Protect. In other words, if keys have been rotated or updated to a new version, it is important that all buckets are registered with the same version of the key. After keys are rotated, it is critical that all buckets recieve some sort of data operation (such as a HEAD object) to update and refresh the key information.
 {: important}
 
 For more information on Activity Tracker events for object storage, [see the reference topic](/docs/cloud-object-storage?topic=cloud-object-storage-at-events).
