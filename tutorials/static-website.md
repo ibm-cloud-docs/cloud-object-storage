@@ -21,7 +21,6 @@ subcollection: cloud-object-storage
 {:download: .download}
 {:http: .ph data-hd-programlang='http'}
 {:aws: .ph data-hd-programlang='aws'}
-{:go: .ph data-hd-programlang='go'}
 {:javascript: .ph data-hd-programlang='javascript'}
 {:java: .ph data-hd-programlang='java'}
 {:python: .ph data-hd-programlang='python'}
