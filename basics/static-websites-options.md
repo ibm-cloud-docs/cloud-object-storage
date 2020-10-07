@@ -27,7 +27,7 @@ subcollection: cloud-object-storage
 {:support: data-reuse='support'}
 
 # Options for Static Websites with {{site.data.keyword.cos_full_notm}}
-{: #static-websites-options}
+{: #static-website-options}
 
 There are many possible paths to take when building static websites with {{site.data.keyword.cos_full}}. The ability to serve static content over the web demonstrates one capability of using {{site.data.keyword.cos_short}}.
 {: shortdesc}

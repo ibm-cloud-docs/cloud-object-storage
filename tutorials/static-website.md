@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 {:support: data-reuse='support'}
 
 # Building a Static Website
-{: #static-website}
+{: #static-website-tutorial}
 
 Building websites with {{site.data.keyword.cos_full}} serves static content for public access giving users flexibility, ease of delivery, and high availability.
 {: shortdesc}
@@ -43,7 +43,7 @@ Hosting a static website on {{site.data.keyword.cos_full}} starts with configuri
 ## Before you start
 {: #static-website-before-you-start}
 
-Creating a bucket for a static website will require public access. However, 
+Creating a bucket for a static website will require public access. However, using the ContentReader will prevent the listing of 
 
 ## Next steps
 {: #static-website-next-steps}
