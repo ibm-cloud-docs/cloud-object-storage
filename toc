@@ -34,14 +34,14 @@ Cloud Object Storage
         info/advanced_endpoints.md
         info/endpoint-remap.md
         basics/services.md
-        [Connect from VPC](https://cloud.ibm.com/docs/vpc/vpc-connecting-vpc-cos)
+        [Connect from VPC](/vpc/vpc-connecting-vpc-cos)
         [Connect from VPC (Classic)](/vpc-on-classic/vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc)
     
     basics/closures.md
     basics/upload.md
 
     {: .topicgroup}
-    Manage access
+    Managing access
         iam.md
         iam/overview.md
         iam/service-credentials.md
@@ -50,13 +50,13 @@ Cloud Object Storage
         basics/firewall.md
 
     {: .topicgroup}
-    Use Access/Secret Key (HMAC) authentication
+    Using Access/Secret Key (HMAC) authentication
         hmac/credentials.md
         hmac/hmac-signature.md
         hmac/presigned-urls.md
     
     {: .topicgroup}
-    Manage a bucket's lifecycle configurations
+    Managing a bucket's lifecycle configurations
         basics/archive.md
         basics/expiry.md
 
@@ -66,7 +66,13 @@ Cloud Object Storage
     basics/classes.md
     basics/multipart.md
     basics/deleting-multiple-objects.md
-    basics/encryption.md
+    
+    {: .topicgroup}
+    Managing encryption
+        encryption/overview.md
+        encryption/sse-c.md
+        encryption/kp.md
+        encryption/hpcs.md
     basics/sql.md
     basics/logdna.md
     basics/metrics-monitoring.md
@@ -116,6 +122,7 @@ Cloud Object Storage
     Tutorials
         [Get started with Watson Studio](https://developer.ibm.com/clouddataservices/docs/cos/get-started/)
         [Upload files using IBM Cloud Functions](https://medium.com/codait/keeping-your-secrets-between-cloud-object-storage-and-your-browser-part-1-68f4b83bbd38)
+        tutorials/static-websites-options.md
         [Detach Cloudant Attachments to IBM COS](https://medium.com/ibm-watson-data-lab/detaching-cloudant-attachments-to-object-storage-with-serverless-functions-99b8c3c77925)
         [Build, deploy and scale real-world solutions on IBM Cloud.](https://cloud.ibm.com/docs/tutorials/index.html#tutorials)
         [File-like access to IBM COS using s3fs](https://medium.com/@ozeri/file-like-access-to-ibm-cloud-object-storage-using-s3fs-f5094ed42594)
