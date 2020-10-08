@@ -20,7 +20,7 @@ subcollection: cloud-object-storage
 {:note: .note}
 {:download: .download}
 {:http: .ph data-hd-programlang='http'}
-{:aws: .ph data-hd-programlang='aws'}
+{:aws: .ph data-hd-programlang='aws cli'}
 {:javascript: .ph data-hd-programlang='javascript'}
 {:java: .ph data-hd-programlang='java'}
 {:python: .ph data-hd-programlang='python'}
