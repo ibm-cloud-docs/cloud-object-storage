@@ -2,9 +2,9 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-09-30"
+lastupdated: "2020-10-08"
 
-keywords: static website, object storage, options 
+keywords: static website, object storage, cdn 
 
 subcollection: cloud-object-storage
 
@@ -35,14 +35,12 @@ There are many possible paths to take when building static websites with {{site.
 This material represents work in progress and should not be considered final.
 {: important}
 
-Modern web development requires modern tools and secure infrastructure. Static websites represent the latest developments in high-availability, SEO, and security. While covering every available option is beyond the scope of this hands-on overview, the ease of serving static content on {{site.data.keyword.cos_full_notm}} allows for many possible strategies.
+Modern web development requires modern tools and secure infrastructure. Static websites represent the latest developments in high-availability, SEO improvement, and increased security. While covering every available option is beyond the scope of this hands-on overview, the ease of serving static content on {{site.data.keyword.cos_full_notm}} allows for many possible strategies.
 
 ## Before you start
 {: #static-websites-options-before-you-start}
 
-Static websites concentrate on the content your users desire: information and media. By removing the administration of webservers like Apache or Nginx, management of your website focuses on the assets directly, from generation to deployment.
-
-There are simply too many possible options for generating static websites to be covered here. However, an excellent overview of open source generators can be found on the web at [StaticGen](https://www.staticgen.com){: external}.
+Static websites focus on the content your users desire: information and media. By removing the administration of webservers like Apache or Nginx, management of your website focuses directly on content, from generation to deployment. An excellent overview of open source generators can be found on the web at [StaticGen](https://www.staticgen.com){: external}.
 
 ## {{site.data.keyword.cloud_notm}} Content Delivery Networks
 {: #static-websites-options-cdn}
