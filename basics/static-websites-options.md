@@ -32,9 +32,6 @@ subcollection: cloud-object-storage
 There are many possible paths to take when building static websites with {{site.data.keyword.cos_full}}. The ability to serve static content over the web demonstrates one capability of using {{site.data.keyword.cos_short}}.
 {: shortdesc}
 
-This material represents work in progress and should not be considered final.
-{: important}
-
 Modern web development requires modern tools and secure infrastructure. Static websites represent the latest developments in high-availability, SEO improvement, and increased security. While covering every available option is beyond the scope of this hands-on overview, the ease of serving static content on {{site.data.keyword.cos_full_notm}} allows for many possible strategies.
 
 ## Before you start
