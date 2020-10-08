@@ -64,6 +64,7 @@ Cloud Object Storage
     basics/aspera.md
     basics/immutable.md
     basics/classes.md
+    basics/static-websites-options.md
     basics/multipart.md
     basics/deleting-multiple-objects.md
     
@@ -128,7 +129,6 @@ Cloud Object Storage
         tutorials/migrate.md
         tutorials/web-application.md
         tutorials/cloudyr.md
-        [Connect to resources using a CDN](/CDN/CDN-configure-ibm-cloud-object-storage-for-cdn)
         [Connect to IBM COS using IBM Cloud Direct Link](/direct-link/direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage)
 
     {: .topicgroup}
