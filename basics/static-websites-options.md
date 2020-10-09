@@ -47,14 +47,14 @@ Static content differs substantially from dynamic web content. Learn more at the
 ## Compatibility
 {: #static-websites-options-compatibility}
 
-Creating static website hosting in {{site.data.keyword.cos_full_notm}} can be done using the [API](), as well as libraries for [Java](), [Python](), and [NodeJS](). In addition, S3 compatibility means that the [AWS CLI]() can also be used
+Creating static website hosting in {{site.data.keyword.cos_full_notm}} can be accomplished with [cURL](), as well as libraries for [Java](), [Python](), and [NodeJS](). In addition, S3 compatibility means that the [AWS CLI]() can also be used to define static website functionality from the command line.
 
 ## {{site.data.keyword.cloud_notm}} Content Delivery Networks
 {: #static-websites-options-cdn}
 
-Static websites are meant to be fast and secure. Serving up static content is easy with the right tools that deliver the content to your customers.
+Static websites are meant to be fast and secure. Serving up static content is easy with the right tools that deliver the content to your customers. Many deployment tools have built-in support for CDN support.
 
-The process for serving static content can be covered from start to finish with [this tutorial](https://www.ibm.com/cloud/cdn). Using the above solution as a template, others have also contributed their [expertise](https://jamesthom.as/2019/07/hosting-static-websites-on-ibm-cloud/){: external}, and [enthusiasm](https://bakingclouds.com/hosting-a-static-website-on-ibm-cos/){: external}.
+The process for delivering static content through dedicated networks starts with this [overview of CDN options](https://www.ibm.com/cloud/cdn). Using the above solution as a template, others have also contributed their [expertise](https://jamesthom.as/2019/07/hosting-static-websites-on-ibm-cloud/){: external}, and [enthusiasm](https://bakingclouds.com/hosting-a-static-website-on-ibm-cos/){: external}.
 
 ## Next steps
 {: #static-websites-options-next-steps}
