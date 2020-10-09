@@ -29,7 +29,7 @@ subcollection: cloud-object-storage
 # Serving static content with {{site.data.keyword.cos_full_notm}}
 {: #static-website-options}
 
-Hosting a static website on {{site.data.keyword.cos_full}} starts with [configuring a bucket]() for public access. Then, [upload]() your website content to your bucket. And finally, at a minimum [configure the website]() to use your documents as an index for the site and to potentially display errors. The ability to serve static content over the web demonstrates one capability of using {{site.data.keyword.cos_short}} solutions as part of your overall web strategy.
+Hosting a static website on {{site.data.keyword.cos_full}} starts with [configuring a bucket](/docs/cloud-object-storage?topic=static-website-tutorial#static-website-create-public-bucket) for public access. Then, [upload](/docs/cloud-object-storage?topic=static-website-tutorial#static-website-upload-content) your website content to your bucket. And finally, at a minimum [configure the website](/docs/cloud-object-storage?topic=static-website-tutorial#static-website-configure-options) to use your documents as an index for the site and to potentially display errors. The ability to serve static content over the web demonstrates one capability of using {{site.data.keyword.cos_short}} solutions as part of your overall web strategy.
 {: shortdesc}
 
 Note that this is unreleased information and represents work in progress for the purpose of review.
@@ -47,7 +47,7 @@ Static content differs substantially from dynamic web content. Learn more at the
 ## Compatibility
 {: #static-websites-options-compatibility}
 
-Creating static website hosting in {{site.data.keyword.cos_full_notm}} can be accomplished with [cURL](), as well as libraries for [Java](), [Python](), and [NodeJS](). In addition, S3 compatibility means that the [AWS CLI]() can also be used to define static website functionality from the command line.
+Creating static website hosting in {{site.data.keyword.cos_full_notm}} can be accomplished with [cURL](/docs/cloud-object-storage?topic=cloud-object-storage-curl), as well as libraries for [Java](/docs/cloud-object-storage?topic=cloud-object-storage-java), [Python](/docs/cloud-object-storage?topic=cloud-object-storage-python), and [NodeJS](/docs/cloud-object-storage?topic=cloud-object-storage-node). In addition, S3 compatibility means that the [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) can also be used to define static website functionality from the command line.
 
 ## {{site.data.keyword.cloud_notm}} Content Delivery Networks
 {: #static-websites-options-cdn}
@@ -59,4 +59,4 @@ The process for delivering static content through dedicated networks starts with
 ## Next steps
 {: #static-websites-options-next-steps}
 
-The detailed description of configuration options for {{site.data.keyword.cos_full_notm}} hosted static websites can be found in the [API]().
+The detailed description of configuration options for {{site.data.keyword.cos_full_notm}} hosted static websites can be found in the [API Documentation](https://cloud.ibm.com/apidocs/cos/cos-configuration){: external}.
