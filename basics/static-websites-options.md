@@ -59,3 +59,4 @@ The process for delivering static content through dedicated networks starts with
 ## Next steps
 {: #static-websites-options-next-steps}
 
+The detailed description of configuration options for {{site.data.keyword.cos_full_notm}} hosted static websites can be found in the [API]().
