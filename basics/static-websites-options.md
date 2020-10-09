@@ -29,24 +29,33 @@ subcollection: cloud-object-storage
 # Serving static content with {{site.data.keyword.cos_full_notm}}
 {: #static-website-options}
 
-There are many possible paths to take when building static websites with content sourced from {{site.data.keyword.cos_full}}. The ability to serve static content over the web demonstrates one capability of using {{site.data.keyword.cos_short}}.
+Hosting a static website on {{site.data.keyword.cos_full}} starts with [configuring a bucket]() for public access. Then, [upload]() your website content to your bucket. And finally, at a minimum [configure the website]() to use your documents as an index for the site and to potentially display errors. The ability to serve static content over the web demonstrates one capability of using {{site.data.keyword.cos_short}} solutions as part of your overall web strategy.
 {: shortdesc}
+
+Note that this is unreleased information and represents work in progress for the purpose of review.
+{: note}
+
+## Overview
+{: #static-websites-options-overview}
 
 Modern web development requires modern tools and secure infrastructure. Static websites represent the latest developments in high-availability, SEO improvement, and increased security. While covering every available option is beyond the scope of this hands-on overview, the ease of serving static content on {{site.data.keyword.cos_full_notm}} allows for many possible strategies.
 
-## Before you start
-{: #static-websites-options-before-you-start}
-
 Hosted static websites focus on the content your users desire: information and media. By removing the administration of webservers like Apache or Nginx, management of your website focuses directly on content, from generation to deployment. An excellent overview of open source generators can be found on the web at [StaticGen](https://www.staticgen.com){: external}.
+
+Static content differs substantially from dynamic web content. Learn more at the {{site.data.keyword.cloud_notm}} overview of [dynamic websites](https://www.ibm.com/cloud/websites){: external} to see if that is right for you. But if you don't need to generate dynamic content on the web or if your workflow results in content saved to a fixed form, then the hosted static solution presented here presents the best choice.
+
+## Compatibility
+{: #static-websites-options-compatibility}
+
+Creating static website hosting in {{site.data.keyword.cos_full_notm}} can be done using the [API](), as well as libraries for [Java](), [Python](), and [NodeJS](). In addition, S3 compatibility means that the [AWS CLI]() can also be used
 
 ## {{site.data.keyword.cloud_notm}} Content Delivery Networks
 {: #static-websites-options-cdn}
 
-Static websites are meant to be fast and secure. Serving up static content is easy with the right tools.
+Static websites are meant to be fast and secure. Serving up static content is easy with the right tools that deliver the content to your customers.
 
-The process for serving static content can be covered from start to finish with [this tutorial](/docs/solution-tutorials?topic=solution-tutorials-static-files-cdn). Using the above solution as a template, others have contributed their [expertise](https://jamesthom.as/2019/07/hosting-static-websites-on-ibm-cloud/){: external}, and [enthusiasm](https://bakingclouds.com/hosting-a-static-website-on-ibm-cos/){: external}.
+The process for serving static content can be covered from start to finish with [this tutorial](https://www.ibm.com/cloud/cdn). Using the above solution as a template, others have also contributed their [expertise](https://jamesthom.as/2019/07/hosting-static-websites-on-ibm-cloud/){: external}, and [enthusiasm](https://bakingclouds.com/hosting-a-static-website-on-ibm-cos/){: external}.
 
 ## Next steps
 {: #static-websites-options-next-steps}
 
-Learn more at the {{site.data.keyword.cloud_notm}} overview of [web development](https://www.ibm.com/cloud/websites){: external} and choose the path that is right for you.
