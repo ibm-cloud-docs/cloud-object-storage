@@ -51,6 +51,9 @@ completion-time: 10m
 This tutorial shows how to host a static website on {{site.data.keyword.cos_full}}, including configuring a bucket, uploading content, and configuring your new website.
 {: shortdesc}
 
+Note that this is unreleased information and represents work in progress for the purpose of review.
+{: note}
+
 Hosting static websites with {{site.data.keyword.cos_full}} serves static content for public access giving users flexibility, ease of delivery, and high availability.
 
 This material represents work in progress and should not be considered final.
