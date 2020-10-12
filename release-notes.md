@@ -25,6 +25,13 @@ subcollection: cloud-object-storage
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
+## Q4 2020
+{: #updates-2020-q4}
+
+Lifecycle actions on Key Protect encyrption keys can now generate bucket events in Activity Tracker.
+
+Buckets can now be encrypted using {{site.data.keyword.hscrypto}} in the US East region.
+
 ## Q3 2020
 {: #updates-2020-q3}
 
