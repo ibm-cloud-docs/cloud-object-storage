@@ -54,7 +54,7 @@ This tutorial shows how to host a static website on {{site.data.keyword.cos_full
 Note that this is unreleased information and represents work in progress for the purpose of review.
 {: note}
 
-Hosting static websites with {{site.data.keyword.cos_full}} serves static content for public access giving users flexibility, ease of delivery, and high availability.
+Hosting static websites with {{site.data.keyword.cos_full_notm}} serves static content for public access giving users flexibility, ease of delivery, and high availability.
 
 This material represents work in progress and should not be considered final.
 {: important}
@@ -71,6 +71,21 @@ Ensure that you have what you need to start:
 
 - {: hide-dashboard} An account for the {{site.data.keyword.cloud_notm}} Platform 
 - Content in fixed form, like text (HTML would be perfect) and image files.
+
+Check that you have the access as appropriate to either the instance of {{site.data.keyword.cos_full_notm}} you will be using or the proper [permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions) for the buckets you will be using for this tutorial. 
+{: console}
+
+For use of the [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) with this tutorial, you will need to [obtain HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main). Then, start your CLI session at the command prompt with `aws config` where you paste the `access_key_id` and `secret_access_key` from your credentials at the appropriate prompt.
+{: aws}
+
+Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) stored as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=javascript).
+{: javascript}
+
+Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) stored as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=java).
+{: java}
+
+Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) stored as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=python).
+{: python}
 
 ## Create a bucket configured for public access
 {: #static-website-create-public-bucket}
