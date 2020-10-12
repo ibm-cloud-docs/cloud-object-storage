@@ -48,7 +48,7 @@ completion-time: 10m
 {: toc-services="cloud-object-storage"}
 {: toc-completion-time="10m"}
 
-This tutorial shows how to host a static website on {{site.data.keyword.cos_full}}, including configuring a bucket, uploading content to your, and configuring your new website.
+This tutorial shows how to host a static website on {{site.data.keyword.cos_full}}, including configuring a bucket, uploading content, and configuring your new website.
 {: shortdesc}
 
 Hosting static websites with {{site.data.keyword.cos_full}} serves static content for public access giving users flexibility, ease of delivery, and high availability.
