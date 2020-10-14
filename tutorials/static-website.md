@@ -28,7 +28,7 @@ completion-time: 10m
 {:note: .note}
 {:download: .download}
 {:http: .ph data-hd-programlang='http'}
-{:aws: .ph data-hd-programlang='aws cli'}
+{:aws: .ph data-hd-programlang='aws'}
 {:javascript: .ph data-hd-programlang='javascript'}
 {:java: .ph data-hd-programlang='java'}
 {:python: .ph data-hd-programlang='python'}
@@ -78,16 +78,16 @@ Check that you have the access as appropriate to either the instance of {{site.d
 Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to use [cURL](/docs/cloud-object-storage?topic=cloud-object-storage-curl).
 {: http}
 
-For use of the [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) with this tutorial, you will need to [obtain HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main). Then, start your CLI session at the command prompt with `aws config` where you paste the `access_key_id` and `secret_access_key` from your credentials at the appropriate prompt.
+For use of the [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) with this tutorial, you will need to have the appropriate [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) for your use. Then, start your AWS CLI session at the command prompt with `aws config` where you paste the `access_key_id` and `secret_access_key` from your credentials at the appropriate prompts.
 {: aws}
 
-Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=javascript).
+Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started with NodeJS](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=javascript).
 {: javascript}
 
-Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=java).
+Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started with Java](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=java).
 {: java}
 
-Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=python).
+Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started with Python](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=python).
 {: python}
 
 ## Create a bucket configured for public access
@@ -98,10 +98,12 @@ Creating a bucket for a static website will require public access. There are, of
 ## Upload content to your bucket
 {: #static-website-upload-content}
 
+
 ## Configure the options for your website
 {: #static-website-configure-options}
+
 
 ## Next steps
 {: #static-website-next-steps}
 
-Learn more at the {{site.data.keyword.cloud_notm}} overview of [web development](https://www.ibm.com/cloud/websites){: external} and choose the path that is right for you.
+The detailed description of configuration options for {{site.data.keyword.cos_full_notm}} hosted static websites can be found in the [API Documentation](https://cloud.ibm.com/apidocs/cos/cos-configuration){: external}.
