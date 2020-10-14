@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019
-lastupdated: "2019-11-14"
+  years: 2019, 2020
+lastupdated: "2019-10-14"
 
 keywords: r, tutorial, cloudyr, data science
 
@@ -123,4 +123,4 @@ plot(d)
 ## Next steps
 {: #cloudyr-next-steps}
 
-In addition to creating your own projects, you can also use [R Studio to analyze data](https://developer.ibm.com/clouddataservices/docs/ibm-data-science-experience/integrate/analyze-data-using-rstudio/){: external}.
+In addition to creating your own projects, you can also use [R Studio to analyze data](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/rstudio-overview.html){: external}.

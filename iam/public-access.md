@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-10-01"
+lastupdated: "2020-04-22"
 
 keywords: public, cdn, anonymous, files
 
@@ -26,7 +26,7 @@ subcollection: cloud-object-storage
 Sometimes data is meant to be shared. Buckets might hold open data sets for academic and private research or image repositories that are used by web applications and content delivery networks. Make these buckets accessible using the **Public Access** group. 
 {: shortdesc}
 
-There are two IAM roles that can be used for public access to a bucket: `ContentReader` and `ObjectReader`.  The only difference between the two is the former has the ability to list the objects in a bucket, which may be useful for applications that require ease of listing (for example, a web UI) in addition to reading objects.  For more information, see [the IAM reference documentation](/docs/cloud-object-storage?topic=cloud-object-storage-iam). 
+There are two IAM roles that can be used for public access to a bucket: `ContentReader` and `ObjectReader`.  The only difference between the two is the former can list the objects in a bucket, which may be useful for applications that require ease of listing (for example, a web UI) in addition to reading objects.  For more information, see [the IAM reference documentation](/docs/cloud-object-storage?topic=cloud-object-storage-iam). 
 {:tip}
 
 ## Using the console to set public access
@@ -101,4 +101,4 @@ curl -X "PUT" "https://{endpoint}/{bucket-name}/{object-name}?acl" \
 ## Static websites
 {: #public-access-static-website}
 
-While {{site.data.keyword.cos_full_notm}} doesn't support automatic static website hosting, it's possible to manually configure a web server and use it to serve publicly accessible content hosted in a bucket. For more information, see [this tutorial](https://www.ibm.com/cloud/blog/static-websites-cloud-object-storage-cos){: external}.
+While {{site.data.keyword.cos_full_notm}} doesn't support automatic static website hosting, it's possible to manually configure a web server and use it to serve publicly accessible content hosted in a bucket. For more information, see the [overview of static website options](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-options).
