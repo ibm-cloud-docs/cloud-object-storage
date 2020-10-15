@@ -29,7 +29,7 @@ subcollection: cloud-object-storage
 # Serving static content with {{site.data.keyword.cos_full_notm}}
 {: #static-website-options}
 
-Hosting a static website on {{site.data.keyword.cos_full}} starts with [configuring a bucket](/docs/cloud-object-storage?topic=static-website-tutorial#static-website-create-public-bucket) for public access. Then, [upload](/docs/cloud-object-storage?topic=static-website-tutorial#static-website-upload-content) your website content to your bucket. Finally, [configure the website](/docs/cloud-object-storage?topic=static-website-tutorial#static-website-configure-options) to use your documents as an index for the site and to potentially display errors.
+Hosting a static website on {{site.data.keyword.cos_full}} starts with [configuring a bucket](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial#static-website-create-public-bucket) for public access. Then, [upload](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial#static-website-upload-content) your website content to your bucket. Finally, [configure the website](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial#static-website-configure-options) to use your documents as an index for the site and to potentially display errors.
 {: shortdesc}
 
 Note that this is unreleased information and represents work in progress for the purpose of review.
