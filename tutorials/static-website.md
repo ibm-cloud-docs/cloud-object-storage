@@ -93,7 +93,7 @@ Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-s
 ## Create a bucket configured for public access
 {: #static-website-create-public-bucket}
 
-Creating a bucket for a static website will require public access. There are, of course, a number of options for configuring public access. Specifically, using the ContentReader [IAM role](/docs/cloud-object-storage?topic=cloud-object-storage-iam) will prevent the listing of the contents of the bucket while still allowing for the static content to be viewed on the internet. 
+Creating a bucket for a static website will require public access. There are, of course, a number of options for configuring public access. Specifically, using the ObjectReader [IAM role](/docs/cloud-object-storage?topic=cloud-object-storage-iam) will prevent the listing of the contents of the bucket while still allowing for the static content to be viewed on the internet. If you want to allow the viewing of the directory listing of your bucket, use the ContentReader [IAM role](/docs/cloud-object-storage?topic=cloud-object-storage-iam).  
 
 ## Upload content to your bucket
 {: #static-website-upload-content}
