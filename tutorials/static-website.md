@@ -147,6 +147,8 @@ http://<bucketname>.s3-website.<endpoint>/
 ```
 {: screen}
 
+With the successful testing of your new site, you can now explore more options and add more content.
+
 ## Next steps
 {: #static-website-next-steps}
 
