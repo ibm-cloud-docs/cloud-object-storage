@@ -27,10 +27,11 @@ completion-time: 10m
 {:important: .important}
 {:note: .note}
 {:download: .download}
-{:http: .ph data-hd-programlang='http'}
+{:http: .ph data-hd-programlang='curl'}
 {:aws: .ph data-hd-programlang='aws'}
 {:javascript: .ph data-hd-programlang='javascript'}
 {:java: .ph data-hd-programlang='java'}
+{:go: .ph data-hd-programlang='go'}
 {:python: .ph data-hd-programlang='python'}
 {:console: .ph data-hd-programlang='Console'}
 {:faq: data-hd-content-type='faq'}
@@ -62,7 +63,7 @@ This material represents work in progress and should not be considered final.
 ## The Scenario
 {: #wa-scenario}
 
-The scenario for this tutorial simplifies web development to its essentials in order to highlight the steps involved. While not every configuration option will be covered in this tutorial, you should have web-accessible content when it's complete.
+The scenario for this tutorial simplifies web development to its essentials in order to highlight the steps involved. While not every configuration option will be covered in this tutorial, correctly completing this tutorial results in web-accessible content.
 
 ## Before you start
 {: #static-website-before-you-start}
@@ -70,6 +71,7 @@ The scenario for this tutorial simplifies web development to its essentials in o
 Ensure that you have what you need to start:
 
 - {: hide-dashboard} An account for the {{site.data.keyword.cloud_notm}} Platform 
+- An instance of {{site.data.keyword.cos_full_notm}}
 - Content in fixed form, like text (HTML would be perfect) and image files.
 
 Check that you have the access as appropriate to either the instance of {{site.data.keyword.cos_full_notm}} you will be using or the proper [permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions) for the buckets you will be using for this tutorial. 
@@ -86,6 +88,9 @@ Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-s
 
 Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started with Java](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=java).
 {: java}
+
+Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started with Java](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=go).
+{: go}
 
 Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started with Python](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=python).
 {: python}
@@ -114,6 +119,7 @@ aws --endpoint-url=https://<endpoint> s3api create-bucket --bucket <bucketname>
 {: pre}
 {: aws}
 
+In all scenarios for this tutorial, you will want to use the [Console UI](https://cloud.ibm.com/login){: external} to allow [public access](/docs/cloud-object-storage?topic=cloud-object-storage-iam-public-access) to your new website.
 
 ## Upload content to your bucket
 {: #static-website-upload-content}
@@ -217,10 +223,10 @@ aws --endpoint-url=https://<endpoint> s3 website s3://<bucketname>/ --index-docu
 {: pre}
 {: aws}
 
-Once you have configured your bucket to provide HTTP headers using the example command, all you have to do to test your new site is visit the URL as shown after replacing the placeholders with your own choices made previously in this tutorial:
+Once you have configured your bucket to provide HTTP headers using the example command, all you have to do to test your new site is visit the URL for the site. Please note the protocol shown (http), after replacing the placeholders with your own choices made previously in this tutorial:
 
 ```
-http://<bucketname>.s3-website.<endpoint>/
+http://<bucketname>.s3-web.<endpoint>/
 ```
 {: screen}
 
@@ -229,4 +235,4 @@ With the successful testing of your new site, you can now explore more options a
 ## Next steps
 {: #static-website-next-steps}
 
-The detailed description of configuration options for {{site.data.keyword.cos_full_notm}} hosted static websites can be found in the [API Documentation](https://cloud.ibm.com/apidocs/cos/cos-configuration){: external}.
+The detailed description of configuration options for {{site.data.keyword.cos_full_notm}} hosted static websites can be found in the [API Documentation](https://cloud.ibm.com/apidocs/cos/cos-compatibility){: external}.
