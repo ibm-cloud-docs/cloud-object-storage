@@ -31,6 +31,7 @@ completion-time: 10m
 {:aws: .ph data-hd-programlang='aws'}
 {:javascript: .ph data-hd-programlang='javascript'}
 {:java: .ph data-hd-programlang='java'}
+{:go: .ph data-hd-programlang='go'}
 {:python: .ph data-hd-programlang='python'}
 {:console: .ph data-hd-programlang='Console'}
 {:faq: data-hd-content-type='faq'}
@@ -87,6 +88,9 @@ Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-s
 
 Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started with Java](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=java).
 {: java}
+
+Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started with Java](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=go).
+{: go}
 
 Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started with Python](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=python).
 {: python}
@@ -219,7 +223,7 @@ aws --endpoint-url=https://<endpoint> s3 website s3://<bucketname>/ --index-docu
 {: pre}
 {: aws}
 
-Once you have configured your bucket to provide HTTP headers using the example command, all you have to do to test your new site is visit the URL as shown after replacing the placeholders with your own choices made previously in this tutorial:
+Once you have configured your bucket to provide HTTP headers using the example command, all you have to do to test your new site is visit the URL for the site. Please note the protocol shown (http), after replacing the placeholders with your own choices made previously in this tutorial:
 
 ```
 http://<bucketname>.s3-web.<endpoint>/
