@@ -75,25 +75,35 @@ Ensure that you have what you need to start:
 Check that you have the access as appropriate to either the instance of {{site.data.keyword.cos_full_notm}} you will be using or the proper [permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions) for the buckets you will be using for this tutorial. 
 {: console}
 
-Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to use [cURL](/docs/cloud-object-storage?topic=cloud-object-storage-curl).
+Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to use [cURL](/docs/cloud-object-storage?topic=cloud-object-storage-curl). Preparing to authorize your API calls typically starts with getting an [IAM bearer token](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-iam). 
 {: http}
 
-For use of the [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) with this tutorial, you will need to have the appropriate [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) for your use. Then, start your AWS CLI session at the command prompt with `aws config` where you paste the `access_key_id` and `secret_access_key` from your credentials at the appropriate prompts.
+For use of the [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) with this tutorial, you will need to have the appropriate [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) for your use. Then, start your AWS CLI session at the command prompt with `aws configure` where you paste the `access_key_id` and `secret_access_key` from your credentials at the appropriate prompts. Or, use the appropriate format for the files `~/.aws/config` and `~/.aws/credentials`. 
 {: aws}
 
 Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started with NodeJS](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=javascript).
 {: javascript}
 
-Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started with Java](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=java).
+Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started with Java](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=java).
 {: java}
 
-Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started with Python](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=python).
+Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started with Python](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=python).
 {: python}
 
 ## Create a bucket configured for public access
 {: #static-website-create-public-bucket}
 
 Creating a bucket for a static website will require public access. There are a number of options for configuring public access. Specifically, using the ObjectReader [IAM role](/docs/cloud-object-storage?topic=cloud-object-storage-iam) will prevent the listing of the contents of the bucket while still allowing for the static content to be viewed on the internet. If you want to allow the viewing of the listing of the contents, use the ContentReader [IAM role](/docs/cloud-object-storage?topic=cloud-object-storage-iam) for your bucket.
+
+In working with `cURL` you will need to start by choosing a [region and endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) as well as the [name of your bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage#gs-create-buckets). In addition to the bearer token or other authorization headers, keep those choices handy for this tutorial. You will need them to replace the placeholder content as shown in the example command to create a bucket:
+{: http}
+
+```bash
+curl --location --request PUT 'https://<endpoint>/<bucketname>' \
+--header 'Authorization: bearer <token>' --header 'ibm-service-instance-id: <resource_instance_id>
+```
+{: pre}
+{: http}
 
 The compatibility layer of {{site.data.keyword.cos_full_notm}} allows for S3 operations, like using the command to create a bucket: `aws s3 mb` once you have configured your AWS CLI instance. In this tutorial, we'll use the configuration service represented by `aws s3api create-bucket`. Once you've chosen your [region and endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) as well as the [name of your bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage#gs-create-buckets) replace the placeholder content as shown in the example command to create a bucket:
 {: aws}
@@ -115,6 +125,28 @@ The content of your hosted static website files focuses naturally on information
 
 Any other files, like images, PDFs, or videos can also be uploaded (but this tutorial will focus only on what is required).
 
+For the `index.html` file, we can use `curl` to upload a simple file with a single command. Please note you may have to refresh your token if it has expired.
+{: http}
+
+```
+curl --location --request PUT 'https://<endpoint>/<bucketname>/index.html' \
+--header 'Authorization: bearer <token>' --header 'ibm-service-instance-id: <resource_instance_id> --header 'Content-Type: text/plain' \
+--data-raw '<html><head><title>Index</title></head><body><h1>Index</h1></body></html>'
+```
+{: pre}
+{: http}
+
+For the `error.html` file, we can also upload the file with a single command. Please note that all the HTTPS calls use the endpoint you chose earlier.
+{: http}
+
+```
+curl --location --request PUT 'https://<endpoint>/<bucketname>/index.html' \
+--header 'Authorization: bearer <token>' --header 'ibm-service-instance-id: <resource_instance_id> --header 'Content-Type: text/plain' \
+--data-raw '<html><head><title>Error</title></head><body><h1>Error</h1></body></html>'
+```
+{: pre}
+{: http}
+
 The compatibility layer of {{site.data.keyword.cos_full_notm}} will provide the means to upload your content to your bucket. Replace the placeholder content as shown in the example command to upload your html files:
 {: aws}
 
@@ -130,6 +162,51 @@ For the rest of the tutorial, we will assume that the object key for the index p
 {: #static-website-configure-options}
 
 There are more options than this tutorial can describe, and for the purpose of this tutorial we only need to set the configuration to start using the static website feature.
+
+Configuring the bucket to be a static website using `cURL` starts with the parameter `?website` as shown. But to configure the website, you will need to create some XML and then generate an MD-5 has of the XML.
+{: http}
+
+```xml
+<WebsiteConfiguration>
+    <IndexDocument>
+        <Suffix>index.html</Suffix>
+    </IndexDocument>
+    <ErrorDocument>
+        <Key>error.html</Key>
+    </ErrorDocument>
+</WebsiteConfiguration>
+```
+{: pre}
+{: http}
+
+The `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash.
+{: http}
+
+```
+echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
+``` 
+{: pre}
+{: http}
+ 
+Use the content you've generated to replace the placeholder content as shown in the example command to create a bucket:
+{: http}
+
+```bash
+curl --location --request PUT 'https://<endpoint>/<bucketname>?website' \
+--header 'Authorization: bearer <token>' --header 'ibm-service-instance-id: <resource_instance_id> \
+--header 'Content-MD5: <hashed-output>' --header 'Content-Type: text/plain' \
+--data-raw '<WebsiteConfiguration>
+    <IndexDocument>
+        <Suffix>index.html</Suffix>
+    </IndexDocument>
+    <ErrorDocument>
+        <Key>error.html</Key>
+    </ErrorDocument>
+</WebsiteConfiguration>'
+
+```
+{: pre}
+{: http}
 
 The compatibility layer of {{site.data.keyword.cos_full_notm}} will provide the means to configure your new hosted static website. Replace the placeholder content as shown in the example command to configure the website:
 {: aws}
