@@ -100,6 +100,9 @@ Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-s
 
 Creating a bucket for a static website will require public access. There are a number of options for configuring public access. Specifically, using the ObjectReader [IAM role](/docs/cloud-object-storage?topic=cloud-object-storage-iam) will prevent the listing of the contents of the bucket while still allowing for the static content to be viewed on the internet. If you want to allow the viewing of the listing of the contents, use the ContentReader [IAM role](/docs/cloud-object-storage?topic=cloud-object-storage-iam) for your bucket.
 
+### Create a bucket
+{: #static-website-create-bucket}
+
 In working with `cURL` you will need to start by choosing a [region and endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) as well as the [name of your bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage#gs-create-buckets). In addition to the bearer token or other authorization headers, keep those choices handy for this tutorial. You will need them to replace the placeholder content as shown in the example command to create a bucket:
 {: http}
 
@@ -108,6 +111,9 @@ curl --location --request PUT 'https://<endpoint>/<bucketname>' \
 --header 'Authorization: bearer <token>' --header 'ibm-service-instance-id: <resource_instance_id>
 ```
 {: pre}
+{: http}
+
+When the command succeeds, you will get an HTTP response of `200 OK` from the endpoint handling the request.
 {: http}
 
 The compatibility layer of {{site.data.keyword.cos_full_notm}} allows for S3 operations, like using the command to create a bucket: `aws s3 mb` once you have configured your AWS CLI instance. In this tutorial, we'll use the configuration service represented by `aws s3api create-bucket`. Once you've chosen your [region and endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) as well as the [name of your bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage#gs-create-buckets) replace the placeholder content as shown in the example command to create a bucket:
@@ -119,7 +125,10 @@ aws --endpoint-url=https://<endpoint> s3api create-bucket --bucket <bucketname>
 {: pre}
 {: aws}
 
-In all scenarios for this tutorial, you will want to use the [Console UI](https://cloud.ibm.com/login){: external} to allow [public access](/docs/cloud-object-storage?topic=cloud-object-storage-iam-public-access) to your new website.
+### Setting public access
+{: #static-website-public-access}
+
+In all scenarios for this tutorial, you will want to use the [UI at the Console](https://cloud.ibm.com/login){: external} to allow [public access](/docs/cloud-object-storage?topic=cloud-object-storage-iam-public-access) to your new website.
 
 ## Upload content to your bucket
 {: #static-website-upload-content}
@@ -136,7 +145,7 @@ For the `index.html` file, we can use `curl` to upload a simple file with a sing
 
 ```
 curl --location --request PUT 'https://<endpoint>/<bucketname>/index.html' \
---header 'Authorization: bearer <token>' --header 'ibm-service-instance-id: <resource_instance_id> --header 'Content-Type: text/plain' \
+--header 'Authorization: bearer <token>' --header 'ibm-service-instance-id: <resource_instance_id> --header 'Content-Type: text/html' \
 --data-raw '<html><head><title>Index</title></head><body><h1>Index</h1></body></html>'
 ```
 {: pre}
@@ -147,10 +156,13 @@ For the `error.html` file, we can also upload the file with a single command. Pl
 
 ```
 curl --location --request PUT 'https://<endpoint>/<bucketname>/index.html' \
---header 'Authorization: bearer <token>' --header 'ibm-service-instance-id: <resource_instance_id> --header 'Content-Type: text/plain' \
+--header 'Authorization: bearer <token>' --header 'ibm-service-instance-id: <resource_instance_id> --header 'Content-Type: text/html' \
 --data-raw '<html><head><title>Error</title></head><body><h1>Error</h1></body></html>'
 ```
 {: pre}
+{: http}
+
+When each upload completes, you will get an HTTP response of `200 OK` from the endpoint handling the request.
 {: http}
 
 The compatibility layer of {{site.data.keyword.cos_full_notm}} will provide the means to upload your content to your bucket. Replace the placeholder content as shown in the example command to upload your html files:
@@ -185,11 +197,11 @@ Configuring the bucket to be a static website using `cURL` starts with the param
 {: pre}
 {: http}
 
-The `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash.
+The `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. Note that the quotes handle multi-line input (as in this XML example).
 {: http}
 
 ```
-echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
+echo -n "XML block" | openssl dgst -md5 -binary | openssl enc -base64
 ``` 
 {: pre}
 {: http}
