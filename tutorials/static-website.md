@@ -138,7 +138,7 @@ The content of your hosted static website files focuses naturally on information
 - An index page, typically written in HTML and named `index.html`, that loads by default for visitors to your site
 - An error page, also in HTML and here named `error.html`, and typically loaded when a visitor tries to access a file that isn't present
 
-Any other files, like images, PDFs, or videos can also be uploaded (but this tutorial will focus only on what is required).
+Other files, like images, PDFs, or videos, can also be uploaded to your bucket (but this tutorial will focus only on what is required).
 
 For the `index.html` file, we can use `curl` to upload a simple file with a single command. Please note you may have to refresh your token if it has expired.
 {: http}
@@ -165,7 +165,7 @@ curl --location --request PUT 'https://<endpoint>/<bucketname>/index.html' \
 When each upload completes, you will get an HTTP response of `200 OK` from the endpoint handling the request.
 {: http}
 
-The compatibility layer of {{site.data.keyword.cos_full_notm}} will provide the means to upload your content to your bucket. Replace the placeholder content as shown in the example command to upload your html files:
+For the purpose of this tutorial, place the HTML pages for the index and error handling in a local directory. The compatibility layer of {{site.data.keyword.cos_full_notm}} will provide the means to upload your content to your bucket. Replace the placeholder content as shown in the example command to upload your html files:
 {: aws}
 
 ```
