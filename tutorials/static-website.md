@@ -14,7 +14,7 @@ services: cloud-object-storage
 
 account-plan: lite
 
-completion-time: 10m
+completion-time: 15m
 
 ---
 {:new_window: target="_blank"}
@@ -47,7 +47,7 @@ completion-time: 10m
 {: #static-website-tutorial}
 {: toc-content-type="tutorial"}
 {: toc-services="cloud-object-storage"}
-{: toc-completion-time="10m"}
+{: toc-completion-time="15m"}
 
 This tutorial shows how to host a static website on {{site.data.keyword.cos_full}}, including configuring a bucket, uploading content, and configuring your new website.
 {: shortdesc}
@@ -87,6 +87,66 @@ Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-s
 {: javascript}
 
 Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started with Java](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=java).
+
+In the following example setting initial configuration, please replace the placeholder content with your specific credentials and targeted region. Note the inclusion of the subclass `model.BucketWebsiteConfiguration` for use later.
+{: java}
+
+```java
+ package com.cos;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+import com.ibm.cloud.objectstorage.ClientConfiguration;
+import com.ibm.cloud.objectstorage.auth.AWSCredentials;
+import com.ibm.cloud.objectstorage.auth.AWSStaticCredentialsProvider;
+import com.ibm.cloud.objectstorage.client.builder.AwsClientBuilder.EndpointConfiguration;
+import com.ibm.cloud.objectstorage.services.s3.AmazonS3;
+import com.ibm.cloud.objectstorage.services.s3.AmazonS3ClientBuilder;
+import com.ibm.cloud.objectstorage.services.s3.model.Bucket;
+import com.ibm.cloud.objectstorage.services.s3.model.ListObjectsRequest;
+import com.ibm.cloud.objectstorage.services.s3.model.ObjectListing;
+import com.ibm.cloud.objectstorage.services.s3.model.S3ObjectSummary;
+import com.ibm.cloud.objectstorage.oauth.BasicIBMOAuthCredentials;
+import com.ibm.cloud.objectstorage.services.s3.model.BucketWebsiteConfiguration;
+
+public class HostedStaticWebsite
+{
+    private static String COS_ENDPOINT = "<endpoint>"; // eg "https://s3.us.cloud-object-storage.appdomain.cloud"
+    private static String COS_API_KEY_ID = "<api-key>"; // eg "0viPHOY7LbLNa9eLftrtHPpTjoGv6hbLD1QalRXikliJ"
+    private static String COS_AUTH_ENDPOINT = "https://iam.cloud.ibm.com/identity/token";
+    private static String COS_SERVICE_CRN = "<resource-instance-id>"; // "crn:v1:bluemix:public:cloud-object-storage:global:a/<CREDENTIAL_ID_AS_GENERATED>:<SERVICE_ID_AS_GENERATED>::"
+    private static String COS_BUCKET_LOCATION = "<location>"; // eg "us"
+
+    public static void main(String[] args)
+    {
+        SDKGlobalConfiguration.IAM_ENDPOINT = COS_AUTH_ENDPOINT;
+    
+        try {
+            _cos = createClient(COS_API_KEY_ID, COS_SERVICE_CRN, COS_ENDPOINT, COS_BUCKET_LOCATION);
+            // INSERT CODE for bucket creation/configuration here AS SHOWN IN THE APPROPRIATE SECTIONS
+        } catch (SdkClientException sdke) {
+            System.out.printf("SDK Error: %s\n", sdke.getMessage());
+        } catch (Exception e) {
+            System.out.printf("Error: %s\n", e.getMessage());
+        }
+    }
+
+    public static AmazonS3 createClient(String api_key, String service_instance_id, String endpoint_url, String location)
+    {
+        AWSCredentials credentials = new BasicIBMOAuthCredentials(api_key, service_instance_id);
+        ClientConfiguration clientConfig = new ClientConfiguration().withRequestTimeout(5000);
+        clientConfig.setUseTcpKeepAlive(true);
+    
+        AmazonS3 cos = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .withEndpointConfiguration(new EndpointConfiguration(endpoint_url, location)).withPathStyleAccessEnabled(true)
+                .withClientConfiguration(clientConfig).build();
+    
+        return cos;
+    }
+}
+```
+{: codeblock}
 {: java}
 
 Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started with Java](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=go).
@@ -100,6 +160,9 @@ Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-s
 
 Creating a bucket for a static website will require public access. There are a number of options for configuring public access. Specifically, using the ObjectReader [IAM role](/docs/cloud-object-storage?topic=cloud-object-storage-iam) will prevent the listing of the contents of the bucket while still allowing for the static content to be viewed on the internet. If you want to allow the viewing of the listing of the contents, use the ContentReader [IAM role](/docs/cloud-object-storage?topic=cloud-object-storage-iam) for your bucket.
 
+### Create a bucket
+{: #static-website-create-bucket}
+
 In working with `cURL` you will need to start by choosing a [region and endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) as well as the [name of your bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage#gs-create-buckets). In addition to the bearer token or other authorization headers, keep those choices handy for this tutorial. You will need them to replace the placeholder content as shown in the example command to create a bucket:
 {: http}
 
@@ -108,6 +171,9 @@ curl --location --request PUT 'https://<endpoint>/<bucketname>' \
 --header 'Authorization: bearer <token>' --header 'ibm-service-instance-id: <resource_instance_id>
 ```
 {: pre}
+{: http}
+
+When the command succeeds, you will get an HTTP response of `200 OK` from the endpoint handling the request.
 {: http}
 
 The compatibility layer of {{site.data.keyword.cos_full_notm}} allows for S3 operations, like using the command to create a bucket: `aws s3 mb` once you have configured your AWS CLI instance. In this tutorial, we'll use the configuration service represented by `aws s3api create-bucket`. Once you've chosen your [region and endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) as well as the [name of your bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage#gs-create-buckets) replace the placeholder content as shown in the example command to create a bucket:
@@ -119,24 +185,68 @@ aws --endpoint-url=https://<endpoint> s3api create-bucket --bucket <bucketname>
 {: pre}
 {: aws}
 
-In all scenarios for this tutorial, you will want to use the [Console UI](https://cloud.ibm.com/login){: external} to allow [public access](/docs/cloud-object-storage?topic=cloud-object-storage-iam-public-access) to your new website.
+The SDK library for NodeJS supporting {{site.data.keyword.cos_full_notm}} requires a configured client as shown previously.
+{: javascript}
+
+The SDK library for Java supporting {{site.data.keyword.cos_full_notm}} requires a configured client as shown previously. Add the code shown in the excerpt just after the point where the client method was called, after you've created your bucket. But first, replace the placeholders with your own values, e.g. "my-website-bucket" and "us-south-standard": 
+{: java}
+
+```java
+     // INSERT AFTER CLIENT CREATION
+    _cos.createBucket("<bucketName>", "<storageClass>");
+```
+{: codeblock}
+{: java}
+
+Comment or remove the `createBucket` line of code when complete. Otherwise, creating a bucket with the same name as one already created will result in an error.
+{: tip}
+{: java}
+
+The SDK library for Python supporting {{site.data.keyword.cos_full_notm}} requires a configured client as shown previously.
+{: python}
+
+The SDK library for Go supporting {{site.data.keyword.cos_full_notm}} requires a configured client as shown previously.
+{: go}
+
+Once you login to the Console and after you create an instance of {{site.data.keyword.cos_full_notm}}, you can create a bucket. Click on the button labeled "Create bucket" and choose from the options as shown in Figure 1. Select the card that reads "Host a Static Website."
+{: console}
+
+![Select Static Website option](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-bucket-cards.jpg){: caption="Figure 1. Choose Host a Static Website"}
+{: console}
+
+The container for the static files in your website will reside in a bucket that you can name. The name you create must be unique, should not contain personal or identifying information, can't have two periods, dots, or hyphens in a row, and must start and end with alphanumeric characters (ASCII character set items 3&ndash;63). See Figure 2 for an example.
+{: console}
+
+![Name bucket for Static Website](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-bucketname.jpg){: caption="Figure 2. Type a unique name for your bucket"}
+{: console}
+
+### Setting public access
+{: #static-website-public-access}
+
+In all scenarios for this tutorial, you will want to use the [UI at the Console](https://cloud.ibm.com/login){: external} to allow [public access](/docs/cloud-object-storage?topic=cloud-object-storage-iam-public-access) to your new website.
+
+When creating a bucket for hosting Static Website content, there is an option to enable public access as part of the bucket creation process. See Figure 3 for the option to enable public access to your bucket. For the explanation of the options for the "index document" and "error document" as shown, find more below in the section [Configure the options for your website](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial#static-website-configure-options). You may complete the basic configuration with this step, before uploading content to your bucket as shown in the next step.
+{: console}
+
+![Enable public access](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-basic-config.jpg){: caption="Figure 3. Enable public access"}
+{: console}
 
 ## Upload content to your bucket
 {: #static-website-upload-content}
 
-The content of your hosted static website files focuses naturally on information and media. A popular approact to creating content for static websites are open source generators listed at [StaticGen](https://www.staticgen.com){: external}. For the purpose of this tutorial, we only need two files:
+The content of your hosted static website files focuses naturally on information and media. A popular approach to creating content for static websites are open source generators listed at [StaticGen](https://www.staticgen.com){: external}. For the purpose of this tutorial, we only need two files:
 
 - An index page, typically written in HTML and named `index.html`, that loads by default for visitors to your site
 - An error page, also in HTML and here named `error.html`, and typically loaded when a visitor tries to access a file that isn't present
 
-Any other files, like images, PDFs, or videos can also be uploaded (but this tutorial will focus only on what is required).
+Other files, like images, PDFs, or videos, can also be uploaded to your bucket (but this tutorial will focus only on what is required).
 
 For the `index.html` file, we can use `curl` to upload a simple file with a single command. Please note you may have to refresh your token if it has expired.
 {: http}
 
 ```
 curl --location --request PUT 'https://<endpoint>/<bucketname>/index.html' \
---header 'Authorization: bearer <token>' --header 'ibm-service-instance-id: <resource_instance_id> --header 'Content-Type: text/plain' \
+--header 'Authorization: bearer <token>' --header 'ibm-service-instance-id: <resource_instance_id> --header 'Content-Type: text/html' \
 --data-raw '<html><head><title>Index</title></head><body><h1>Index</h1></body></html>'
 ```
 {: pre}
@@ -147,13 +257,16 @@ For the `error.html` file, we can also upload the file with a single command. Pl
 
 ```
 curl --location --request PUT 'https://<endpoint>/<bucketname>/index.html' \
---header 'Authorization: bearer <token>' --header 'ibm-service-instance-id: <resource_instance_id> --header 'Content-Type: text/plain' \
+--header 'Authorization: bearer <token>' --header 'ibm-service-instance-id: <resource_instance_id> --header 'Content-Type: text/html' \
 --data-raw '<html><head><title>Error</title></head><body><h1>Error</h1></body></html>'
 ```
 {: pre}
 {: http}
 
-The compatibility layer of {{site.data.keyword.cos_full_notm}} will provide the means to upload your content to your bucket. Replace the placeholder content as shown in the example command to upload your html files:
+When each upload completes, you will get an HTTP response of `200 OK` from the endpoint handling the request.
+{: http}
+
+For the purpose of this tutorial, place the HTML pages for the index and error handling in a local directory. The compatibility layer of {{site.data.keyword.cos_full_notm}} will provide the means to upload your content to your bucket. Replace the placeholder content as shown in the example command to upload your html files:
 {: aws}
 
 ```
@@ -162,14 +275,38 @@ aws --endpoint-url=https://<endpoint> s3 cp /<local-path-to-directory-containing
 {: pre}
 {: aws}
 
-For the rest of the tutorial, we will assume that the object key for the index page is `index.html` and the key for the error document is `error.html` although any appropriate key can be used.
+For the purpose of this tutorial, place the HTML pages for the index and error handling in a local directory. Replace the placeholders shown in the example and add the excerpt to your application. 
+{: java}
+
+```java
+cos.putObject(
+    "<bucketName>", // the name of the destination bucket
+    "index.html", // the object key
+    new File("/<path-to-directory>/index.html") // the file name and path of the object to be uploaded
+);
+cos.putObject(
+    "<bucketName>", // the name of the destination bucket
+    "error.html", // the object key
+    new File("/<path-to-directory>/error.html") // the file name and path of the object to be uploaded
+);
+```
+{: codeblock}
+{: java}
+
+You may have already completed the basic configuration for hosting your static website. Files can be uploaded directly in the Console once you've named and configured your bucket. Note the step is optional as shown in Figure 4, and can occur at any point before the testing of your new hosted website.
+{: console}
+
+![Upload files](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-upload-files.jpg){: caption="Figure 4. Upload files"}
+{: console}
+
+For the rest of the tutorial, we will assume that the object key for the index page is `index.html` and the key for the error document is `error.html` although any appropriate filename can be used for the suffix or key.
 
 ## Configure the options for your website
 {: #static-website-configure-options}
 
 There are more options than this tutorial can describe, and for the purpose of this tutorial we only need to set the configuration to start using the static website feature.
 
-Configuring the bucket to be a static website using `cURL` starts with the parameter `?website` as shown. But to configure the website, you will need to create some XML and then generate an MD-5 has of the XML.
+Configuring the bucket to be a static website using `cURL` starts with the parameter `?website` as shown later. To configure the website, you will need to create specific XML for the setting and then generate an MD5 hash of the XML you created. Use the excerpt from the sample as a start.
 {: http}
 
 ```xml
@@ -185,11 +322,11 @@ Configuring the bucket to be a static website using `cURL` starts with the param
 {: pre}
 {: http}
 
-The `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash.
+The `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. Note that the quotes encapsulate multi-line input (as in this XML example).
 {: http}
 
 ```
-echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
+echo -n "XML block" | openssl dgst -md5 -binary | openssl enc -base64
 ``` 
 {: pre}
 {: http}
@@ -222,6 +359,25 @@ aws --endpoint-url=https://<endpoint> s3 website s3://<bucketname>/ --index-docu
 ```
 {: pre}
 {: aws}
+
+The SDK library for Java from {{site.data.keyword.cos_full_notm}} supports configuring your new hosted website. Add the code shown in the excerpt just after the point where the client method was called, after you've created your bucket. But first, replace the placeholders with your own values, e.g. "my-website-bucket" and "us-south-standard": 
+{: java}
+
+```java
+     // INSERT AFTER CLIENT CREATION
+    _cos.createBucket("<bucketName>", "<storageClass>");
+```
+{: codeblock}
+{: java}
+
+You may have completed this step during the creation of your bucket, as the basic configuration for your hosted static website determines when and how content is shown. For visitors to your website who fail to provide a key, or webpage, the default file will be shown instead. When your users encounter an error, the key for the error page determines what content visitors will receive. The basic configuration options for the default and error pages are shown in Figure 5.  
+{: console}
+
+![Configure basic options](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-basic-config.jpg){: caption="Figure 5. Configure basic options"}
+{: console}
+
+### Testing and visiting your new website
+{: #static-website-testing}
 
 Once you have configured your bucket to provide HTTP headers using the example command, all you have to do to test your new site is visit the URL for the site. Please note the protocol shown (http), after replacing the placeholders with your own choices made previously in this tutorial:
 
