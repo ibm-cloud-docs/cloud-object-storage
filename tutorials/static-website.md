@@ -27,9 +27,9 @@ completion-time: 15m
 {:important: .important}
 {:note: .note}
 {:download: .download}
+{:console: .ph data-hd-programlang='Console'}
 {:http: .ph data-hd-programlang='curl'}
 {:aws: .ph data-hd-programlang='aws'}
-{:console: .ph data-hd-programlang='Console'}
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 {:step: data-tutorial-type='step'}
@@ -49,12 +49,9 @@ This tutorial shows how to host a static website on {{site.data.keyword.cos_full
 {: shortdesc}
 
 Note that this is unreleased information and represents work in progress for the purpose of review.
-{: note}
+{: important}
 
 Hosting static websites with {{site.data.keyword.cos_full_notm}} serves static content for public access giving users flexibility, ease of delivery, and high availability.
-
-This material represents work in progress and should not be considered final.
-{: important}
 
 ## The Scenario
 {: #static-website-scenario}
