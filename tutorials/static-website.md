@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-10-22"
+lastupdated: "2020-10-26"
 
 keywords: static website, hosting, tutorial 
 
@@ -56,7 +56,7 @@ Hosting static websites with {{site.data.keyword.cos_full_notm}} serves static c
 ## The Scenario
 {: #static-website-scenario}
 
-The scenario for this tutorial simplifies web development to its essentials in order to highlight the steps involved. While not every configuration option will be covered in this tutorial, correctly completing this tutorial results in web-accessible content.
+The scenario for this tutorial simplifies web hosting to its essentials in order to highlight the steps involved. While not every configuration option will be covered in this tutorial, correctly completing this tutorial results in web-accessible content.
 
 ## Before you start
 {: #static-website-before-you-start}
@@ -65,7 +65,7 @@ Ensure that you have what you need to start:
 
 - {: hide-dashboard} An account for the {{site.data.keyword.cloud_notm}} Platform 
 - An instance of {{site.data.keyword.cos_full_notm}}
-- Content in fixed form, like text (HTML would be perfect) and image files.
+- Content in fixed form, like text (HTML would be perfect), and image files
 
 Check that you have the access as appropriate to either the instance of {{site.data.keyword.cos_full_notm}} you will be using or the proper [permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions) for the buckets you will be using for this tutorial. 
 {: console}
@@ -73,7 +73,7 @@ Check that you have the access as appropriate to either the instance of {{site.d
 Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to use [cURL](/docs/cloud-object-storage?topic=cloud-object-storage-curl). Preparing to authorize your API calls typically starts with getting an [IAM bearer token](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-iam). 
 {: http}
 
-For use of the [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) with this tutorial, you will need to have the appropriate [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) for your use. Then, start your AWS CLI session at the command prompt with `aws configure` where you paste the `access_key_id` and `secret_access_key` from your credentials at the appropriate prompts. Or, use the appropriate format for the files `~/.aws/config` and `~/.aws/credentials`. 
+For use of the [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) with this tutorial, you will need to have the appropriate [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) for your use. Then, start your AWS CLI session at the command prompt with `aws configure` where you paste the `access_key_id` and `secret_access_key` from your credentials at the appropriate prompts. Or, use the appropriate format for your credentials in the files located at `~/.aws/config` and `~/.aws/credentials`. 
 {: aws}
 
 ## Create a bucket configured for public access
@@ -135,9 +135,9 @@ When creating a bucket for hosting Static Website content, there is an option to
 The content of your hosted static website files focuses naturally on information and media. A popular approach to creating content for static websites are open source generators listed at [StaticGen](https://www.staticgen.com){: external}. For the purpose of this tutorial, we only need two files:
 
 - An index page, typically written in HTML and named `index.html`, that loads by default for visitors to your site
-- An error page, also in HTML and here named `error.html`, and typically loaded when a visitor tries to access a file that isn't present
+- An error page, also in HTML and here named `error.html`; typically the error page is loaded when a visitor tries to access an object that isn't present or doesn't have public access
 
-Other files, like images, PDFs, or videos, can also be uploaded to your bucket (but this tutorial will focus only on what is required).
+Other files, like images, PDFs, or videos, can also be uploaded to your bucket (but this tutorial will focus only on a minimum set of requirements).
 
 For the `index.html` file, we can use `curl` to upload a simple file with a single command. Please note you may have to refresh your token if it has expired.
 {: http}
