@@ -109,13 +109,12 @@ aws --endpoint-url=https://<endpoint> s3api create-bucket --bucket <bucketname>
 Once you login to the Console and after you create an instance of {{site.data.keyword.cos_full_notm}}, you can create a bucket. Click on the button labeled "Create bucket" and choose from the options as shown in Figure 1. Select the card that reads "Host a Static Website."
 {: console}
 
-![Select Static Website option](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-bucket-cards.jpg){: caption="Figure 1. Choose Host a Static Website"}{: console}
+![Select Static Website option](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-bucket-cards.jpg){: console}
 
 The container for the static files in your website will reside in a bucket that you can name. The name you create must be unique, should not contain personal or identifying information, can't have two periods, dots, or hyphens in a row, and must start and end with alphanumeric characters (ASCII character set items 3&ndash;63). See Figure 2 for an example.
 {: console}
 
-![Name bucket for Static Website](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-bucketname.jpg){: caption="Figure 2. Type a unique name for your bucket"}
-{: console}
+![Name bucket for Static Website](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-bucketname.jpg){: console}
 
 ### Setting public access
 {: #static-website-public-access}
@@ -125,7 +124,7 @@ In all scenarios for this tutorial, you will want to use the [UI at the Console]
 When creating a bucket for hosting Static Website content, there is an option to enable public access as part of the bucket creation process. See Figure 3 for the option to enable public access to your bucket. For the explanation of the options for the "index document" and "error document" as shown, find more below in the section [Configure the options for your website](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial#static-website-configure-options). You may complete the basic configuration with this step, before uploading content to your bucket as shown in the next step.
 {: console}
 
-![Enable public access](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-basic-config.jpg){: caption="Figure 3. Enable public access"}{: console}
+![Enable public access](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-basic-config.jpg){: console}
 
 ## Upload content to your bucket
 {: #static-website-upload-content}
@@ -174,7 +173,7 @@ aws --endpoint-url=https://<endpoint> s3 cp /<local-path-to-directory-containing
 You may have already completed the basic configuration for hosting your static website. Files can be uploaded directly in the Console once you've named and configured your bucket. Note the step is optional as shown in Figure 4, and can occur at any point before the testing of your new hosted website.
 {: console}
 
-![Upload files](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-upload-files.jpg){: caption="Figure 4. Upload files"}{: console}
+![Upload files](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-upload-files.jpg){: console}
 
 For the rest of the tutorial, we will assume that the object key for the index page is `index.html` and the key for the error document is `error.html` although any appropriate filename can be used for the suffix or key.
 
@@ -240,7 +239,7 @@ aws --endpoint-url=https://<endpoint> s3 website s3://<bucketname>/ --index-docu
 You may have completed this step during the creation of your bucket, as the basic configuration for your hosted static website determines when and how content is shown. For visitors to your website who fail to provide a key, or webpage, the default file will be shown instead. When your users encounter an error, the key for the error page determines what content visitors will receive. The basic configuration options for the default and error pages are shown in Figure 5.  
 {: console}
 
-![Configure basic options](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-basic-config.jpg){: caption="Figure 5. Configure basic options"}{: console}
+![Configure basic options](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-basic-config.jpg){: console}
 
 ### Testing and visiting your new website
 {: #static-website-testing}
