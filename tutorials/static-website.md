@@ -29,10 +29,6 @@ completion-time: 15m
 {:download: .download}
 {:http: .ph data-hd-programlang='curl'}
 {:aws: .ph data-hd-programlang='aws'}
-{:javascript: .ph data-hd-programlang='javascript'}
-{:java: .ph data-hd-programlang='java'}
-{:go: .ph data-hd-programlang='go'}
-{:python: .ph data-hd-programlang='python'}
 {:console: .ph data-hd-programlang='Console'}
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
@@ -61,7 +57,7 @@ This material represents work in progress and should not be considered final.
 {: important}
 
 ## The Scenario
-{: #wa-scenario}
+{: #static-website-scenario}
 
 The scenario for this tutorial simplifies web development to its essentials in order to highlight the steps involved. While not every configuration option will be covered in this tutorial, correctly completing this tutorial results in web-accessible content.
 
@@ -82,78 +78,6 @@ Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-s
 
 For use of the [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) with this tutorial, you will need to have the appropriate [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) for your use. Then, start your AWS CLI session at the command prompt with `aws configure` where you paste the `access_key_id` and `secret_access_key` from your credentials at the appropriate prompts. Or, use the appropriate format for the files `~/.aws/config` and `~/.aws/credentials`. 
 {: aws}
-
-Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started with NodeJS](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=javascript).
-{: javascript}
-
-Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started with Java](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=java).
-
-In the following example setting initial configuration, please replace the placeholder content with your specific credentials and targeted region. Note the inclusion of the subclass `model.BucketWebsiteConfiguration` for use later.
-{: java}
-
-```java
- package com.cos;
-
-import java.time.LocalDateTime;
-import java.util.List;
-
-import com.ibm.cloud.objectstorage.ClientConfiguration;
-import com.ibm.cloud.objectstorage.auth.AWSCredentials;
-import com.ibm.cloud.objectstorage.auth.AWSStaticCredentialsProvider;
-import com.ibm.cloud.objectstorage.client.builder.AwsClientBuilder.EndpointConfiguration;
-import com.ibm.cloud.objectstorage.services.s3.AmazonS3;
-import com.ibm.cloud.objectstorage.services.s3.AmazonS3ClientBuilder;
-import com.ibm.cloud.objectstorage.services.s3.model.Bucket;
-import com.ibm.cloud.objectstorage.services.s3.model.ListObjectsRequest;
-import com.ibm.cloud.objectstorage.services.s3.model.ObjectListing;
-import com.ibm.cloud.objectstorage.services.s3.model.S3ObjectSummary;
-import com.ibm.cloud.objectstorage.oauth.BasicIBMOAuthCredentials;
-import com.ibm.cloud.objectstorage.services.s3.model.BucketWebsiteConfiguration;
-
-public class HostedStaticWebsite
-{
-    private static String COS_ENDPOINT = "<endpoint>"; // eg "https://s3.us.cloud-object-storage.appdomain.cloud"
-    private static String COS_API_KEY_ID = "<api-key>"; // eg "0viPHOY7LbLNa9eLftrtHPpTjoGv6hbLD1QalRXikliJ"
-    private static String COS_AUTH_ENDPOINT = "https://iam.cloud.ibm.com/identity/token";
-    private static String COS_SERVICE_CRN = "<resource-instance-id>"; // "crn:v1:bluemix:public:cloud-object-storage:global:a/<CREDENTIAL_ID_AS_GENERATED>:<SERVICE_ID_AS_GENERATED>::"
-    private static String COS_BUCKET_LOCATION = "<location>"; // eg "us"
-
-    public static void main(String[] args)
-    {
-        SDKGlobalConfiguration.IAM_ENDPOINT = COS_AUTH_ENDPOINT;
-    
-        try {
-            _cos = createClient(COS_API_KEY_ID, COS_SERVICE_CRN, COS_ENDPOINT, COS_BUCKET_LOCATION);
-            // INSERT CODE for bucket creation/configuration here AS SHOWN IN THE APPROPRIATE SECTIONS
-        } catch (SdkClientException sdke) {
-            System.out.printf("SDK Error: %s\n", sdke.getMessage());
-        } catch (Exception e) {
-            System.out.printf("Error: %s\n", e.getMessage());
-        }
-    }
-
-    public static AmazonS3 createClient(String api_key, String service_instance_id, String endpoint_url, String location)
-    {
-        AWSCredentials credentials = new BasicIBMOAuthCredentials(api_key, service_instance_id);
-        ClientConfiguration clientConfig = new ClientConfiguration().withRequestTimeout(5000);
-        clientConfig.setUseTcpKeepAlive(true);
-    
-        AmazonS3 cos = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
-                .withEndpointConfiguration(new EndpointConfiguration(endpoint_url, location)).withPathStyleAccessEnabled(true)
-                .withClientConfiguration(clientConfig).build();
-    
-        return cos;
-    }
-}
-```
-{: codeblock}
-{: java}
-
-Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started with Java](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=go).
-{: go}
-
-Once you have your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), keep them handy as appropriate for your task. If this is your first time working with {{site.data.keyword.cos_full_notm}}, please review how to [get started with Python](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs&programming_language=python).
-{: python}
 
 ## Create a bucket configured for public access
 {: #static-website-create-public-bucket}
@@ -184,29 +108,6 @@ aws --endpoint-url=https://<endpoint> s3api create-bucket --bucket <bucketname>
 ```
 {: pre}
 {: aws}
-
-The SDK library for NodeJS supporting {{site.data.keyword.cos_full_notm}} requires a configured client as shown previously.
-{: javascript}
-
-The SDK library for Java supporting {{site.data.keyword.cos_full_notm}} requires a configured client as shown previously. Add the code shown in the excerpt just after the point where the client method was called, after you've created your bucket. But first, replace the placeholders with your own values, e.g. "my-website-bucket" and "us-south-standard": 
-{: java}
-
-```java
-     // INSERT AFTER CLIENT CREATION
-    _cos.createBucket("<bucketName>", "<storageClass>");
-```
-{: codeblock}
-{: java}
-
-Comment or remove the `createBucket` line of code when complete. Otherwise, creating a bucket with the same name as one already created will result in an error.
-{: tip}
-{: java}
-
-The SDK library for Python supporting {{site.data.keyword.cos_full_notm}} requires a configured client as shown previously.
-{: python}
-
-The SDK library for Go supporting {{site.data.keyword.cos_full_notm}} requires a configured client as shown previously.
-{: go}
 
 Once you login to the Console and after you create an instance of {{site.data.keyword.cos_full_notm}}, you can create a bucket. Click on the button labeled "Create bucket" and choose from the options as shown in Figure 1. Select the card that reads "Host a Static Website."
 {: console}
@@ -275,24 +176,6 @@ aws --endpoint-url=https://<endpoint> s3 cp /<local-path-to-directory-containing
 {: pre}
 {: aws}
 
-For the purpose of this tutorial, place the HTML pages for the index and error handling in a local directory. Replace the placeholders shown in the example and add the excerpt to your application. 
-{: java}
-
-```java
-cos.putObject(
-    "<bucketName>", // the name of the destination bucket
-    "index.html", // the object key
-    new File("/<path-to-directory>/index.html") // the file name and path of the object to be uploaded
-);
-cos.putObject(
-    "<bucketName>", // the name of the destination bucket
-    "error.html", // the object key
-    new File("/<path-to-directory>/error.html") // the file name and path of the object to be uploaded
-);
-```
-{: codeblock}
-{: java}
-
 You may have already completed the basic configuration for hosting your static website. Files can be uploaded directly in the Console once you've named and configured your bucket. Note the step is optional as shown in Figure 4, and can occur at any point before the testing of your new hosted website.
 {: console}
 
@@ -359,16 +242,6 @@ aws --endpoint-url=https://<endpoint> s3 website s3://<bucketname>/ --index-docu
 ```
 {: pre}
 {: aws}
-
-The SDK library for Java from {{site.data.keyword.cos_full_notm}} supports configuring your new hosted website. Add the code shown in the excerpt just after the point where the client method was called, after you've created your bucket. But first, replace the placeholders with your own values, e.g. "my-website-bucket" and "us-south-standard": 
-{: java}
-
-```java
-     // INSERT AFTER CLIENT CREATION
-    _cos.createBucket("<bucketName>", "<storageClass>");
-```
-{: codeblock}
-{: java}
 
 You may have completed this step during the creation of your bucket, as the basic configuration for your hosted static website determines when and how content is shown. For visitors to your website who fail to provide a key, or webpage, the default file will be shown instead. When your users encounter an error, the key for the error page determines what content visitors will receive. The basic configuration options for the default and error pages are shown in Figure 5.  
 {: console}
