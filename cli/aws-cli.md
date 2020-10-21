@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2020
+lastupdated: "2020-10-26"
 
 keywords: cli, command line interface, object storage, s3
 
@@ -263,3 +263,17 @@ $ aws --endpoint-url {endpoint} s3api list-objects --bucket bucket-1
     ]
 }
 ```
+
+### Configure a Static Website
+{: #aws-cli-configure-static-web}
+
+```sh
+aws --endpoint-url=https://<endpoint> s3 website s3://<bucketname>/ --index-document index.html --error-document error.html
+```
+{: pre}
+
+## Next Steps
+{: #aws-cli-next-steps}
+
+
+The detailed description of the RESTful API for {{site.data.keyword.cos_full_notm}} can be found in the [S3 Compatibility API Documentation](https://cloud.ibm.com/apidocs/cos/cos-compatibility){: external} or the [Configuration API Documentation]( https://cloud.ibm.com/apidocs/cos/cos-configuration){: external}. 
