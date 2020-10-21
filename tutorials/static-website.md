@@ -14,7 +14,7 @@ services: cloud-object-storage
 
 account-plan: lite
 
-completion-time: 10m
+completion-time: 15m
 
 ---
 {:new_window: target="_blank"}
@@ -47,7 +47,7 @@ completion-time: 10m
 {: #static-website-tutorial}
 {: toc-content-type="tutorial"}
 {: toc-services="cloud-object-storage"}
-{: toc-completion-time="10m"}
+{: toc-completion-time="15m"}
 
 This tutorial shows how to host a static website on {{site.data.keyword.cos_full}}, including configuring a bucket, uploading content, and configuring your new website.
 {: shortdesc}
@@ -208,15 +208,33 @@ The SDK library for Python supporting {{site.data.keyword.cos_full_notm}} requir
 The SDK library for Go supporting {{site.data.keyword.cos_full_notm}} requires a configured client as shown previously.
 {: go}
 
+Once you login to the Console and after you create an instance of {{site.data.keyword.cos_full_notm}}, you can create a bucket. Click on the button labeled "Create bucket" and choose from the options as shown in Figure 1. Select the card that reads "Host a Static Website."
+{: console}
+
+![Select Static Website option](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-bucket-cards.jpg){: caption="Figure 1. Choose Host a Static Website"}
+{: console}
+
+The container for the static files in your website will reside in a bucket that you can name. The name you create must be unique, should not contain personal or identifying information, can't have two periods, dots, or hyphens in a row, and must start and end with alphanumeric characters (ASCII character set items 3&ndash;63). See Figure 2 for an example.
+{: console}
+
+![Name bucket for Static Website](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-bucketname.jpg){: caption="Figure 2. Type a unique name for your bucket"}
+{: console}
+
 ### Setting public access
 {: #static-website-public-access}
 
 In all scenarios for this tutorial, you will want to use the [UI at the Console](https://cloud.ibm.com/login){: external} to allow [public access](/docs/cloud-object-storage?topic=cloud-object-storage-iam-public-access) to your new website.
 
+When creating a bucket for hosting Static Website content, there is an option to enable public access as part of the bucket creation process. See Figure 3 for the option to enable public access to your bucket. For the explanation of the options for the "index document" and "error document" as shown, find more below in the section [Configure the options for your website](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial#static-website-configure-options). You may complete the basic configuration with this step, before uploading content to your bucket as shown in the next step.
+{: console}
+
+![Enable public access](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-basic-config.jpg){: caption="Figure 3. Enable public access"}
+{: console}
+
 ## Upload content to your bucket
 {: #static-website-upload-content}
 
-The content of your hosted static website files focuses naturally on information and media. A popular approact to creating content for static websites are open source generators listed at [StaticGen](https://www.staticgen.com){: external}. For the purpose of this tutorial, we only need two files:
+The content of your hosted static website files focuses naturally on information and media. A popular approach to creating content for static websites are open source generators listed at [StaticGen](https://www.staticgen.com){: external}. For the purpose of this tutorial, we only need two files:
 
 - An index page, typically written in HTML and named `index.html`, that loads by default for visitors to your site
 - An error page, also in HTML and here named `error.html`, and typically loaded when a visitor tries to access a file that isn't present
@@ -257,9 +275,6 @@ aws --endpoint-url=https://<endpoint> s3 cp /<local-path-to-directory-containing
 {: pre}
 {: aws}
 
-
-{: javascript}
-
 For the purpose of this tutorial, place the HTML pages for the index and error handling in a local directory. Replace the placeholders shown in the example and add the excerpt to your application. 
 {: java}
 
@@ -278,13 +293,13 @@ cos.putObject(
 {: codeblock}
 {: java}
 
+You may have already completed the basic configuration for hosting your static website. Files can be uploaded directly in the Console once you've named and configured your bucket. Note the step is optional as shown in Figure 4, and can occur at any point before the testing of your new hosted website.
+{: console}
 
-{: python}
+![Upload files](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-upload-files.jpg){: caption="Figure 4. Upload files"}
+{: console}
 
-
-{: go}
-
-For the rest of the tutorial, we will assume that the object key for the index page is `index.html` and the key for the error document is `error.html` although any appropriate key can be used.
+For the rest of the tutorial, we will assume that the object key for the index page is `index.html` and the key for the error document is `error.html` although any appropriate filename can be used for the suffix or key.
 
 ## Configure the options for your website
 {: #static-website-configure-options}
@@ -345,9 +360,6 @@ aws --endpoint-url=https://<endpoint> s3 website s3://<bucketname>/ --index-docu
 {: pre}
 {: aws}
 
-
-{: javascript}
-
 The SDK library for Java from {{site.data.keyword.cos_full_notm}} supports configuring your new hosted website. Add the code shown in the excerpt just after the point where the client method was called, after you've created your bucket. But first, replace the placeholders with your own values, e.g. "my-website-bucket" and "us-south-standard": 
 {: java}
 
@@ -358,11 +370,11 @@ The SDK library for Java from {{site.data.keyword.cos_full_notm}} supports confi
 {: codeblock}
 {: java}
 
+You may have completed this step during the creation of your bucket, as the basic configuration for your hosted static website determines when and how content is shown. For visitors to your website who fail to provide a key, or webpage, the default file will be shown instead. When your users encounter an error, the key for the error page determines what content visitors will receive. The basic configuration options for the default and error pages are shown in Figure 5.  
+{: console}
 
-{: python}
-
-
-{: go}
+![Configure basic options](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-basic-config.jpg){: caption="Figure 5. Configure basic options"}
+{: console}
 
 ### Testing and visiting your new website
 {: #static-website-testing}
