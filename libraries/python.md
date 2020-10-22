@@ -1246,3 +1246,28 @@ def list_legal_holds_on_object(bucket_name, object_name):
 {: codeblock}
 {: python}
 
+### Create a hosted static website
+{: #python-examples-hosted-static-website}
+
+This operation requires permissions, as only the bucket owner is typically permitted to configure a bucket to host a static website. The parameters determine the default suffix for visitors to the site as well as an optional error document.
+
+```py 
+def putBucketWebsiteConfiguration(bucket_name):
+    website_defaults = {
+        'ErrorDocument': {'Key': 'error.html'},
+        'IndexDocument': {'Suffix': 'index.html'},
+    }
+    
+    cos.put_bucket_website(Bucket=bucket_name, WebsiteConfiguration=website_defaults)
+
+    print("Website configuration set on bucket {0}\n".format(bucket_name))
+
+```
+{: codeblock}
+{: python}
+
+## Next Steps
+{: #python-guide-next-steps}
+
+For more information, the source code can be found at [GitHub](https://github.com/ibm/ibm-cos-sdk-python/){: external}.
+ 
