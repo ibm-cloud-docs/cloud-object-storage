@@ -1704,7 +1704,7 @@ public static void listLegalHoldsOnObject(String bucketName, String objectName) 
 {: java}
 
 ### Create a hosted static website
-{: #java-examples-hosted-static-website}
+{: #java-examples-hosted-static-website-create}
 
 This operation requires an import statement to be added:
 

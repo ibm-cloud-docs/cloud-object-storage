@@ -929,7 +929,7 @@ function listLegalHoldsOnObject(bucketName, objectName) {
 {: javascript}
 
 ### Create a hosted static website
-{: #node-examples-hosted-static-website}
+{: #node-examples-hosted-static-website-create}
 
 This operation requires permissions, as only the bucket owner is typically permitted to configure a bucket to host a static website. The parameters determine the default suffix for visitors to the site as well as an optional error document.
 

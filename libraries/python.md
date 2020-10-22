@@ -1247,7 +1247,7 @@ def list_legal_holds_on_object(bucket_name, object_name):
 {: python}
 
 ### Create a hosted static website
-{: #python-examples-hosted-static-website}
+{: #python-examples-hosted-static-website-create}
 
 This operation requires permissions, as only the bucket owner is typically permitted to configure a bucket to host a static website. The parameters determine the default suffix for visitors to the site as well as an optional error document.
 
