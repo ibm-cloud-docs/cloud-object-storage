@@ -746,7 +746,7 @@ func main() {
 	fmt.Println(e) // should print <nil>
 
 	// PUT BUCKET WEBSITE
-	params := s3.PutBucketWebsiteInput{
+	pInput := s3.PutBucketWebsiteInput{
         Bucket: input,
         WebsiteConfiguration: &s3.WebsiteConfiguration{
             IndexDocument: &s3.IndexDocument{
@@ -755,7 +755,7 @@ func main() {
         },
     }
 
-    params.WebsiteConfiguration.ErrorDocument = &s3.ErrorDocument{
+    pInput.WebsiteConfiguration.ErrorDocument = &s3.ErrorDocument{
         Key: aws.String("error.html"),
     }
 
