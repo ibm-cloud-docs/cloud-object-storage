@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-16"
+lastupdated: "2020-10-26"
 
 keywords: cli, command line interface, object storage, curl
 
@@ -365,3 +365,34 @@ curl -X "DELETE" "https://(endpoint)/(bucket-name)/(object-key)?uploadId"
  -H "Authorization: bearer (token)"
 ```
 {:codeblock}
+
+## Configure a Static Website
+{: #curl-configure-static-web}
+
+```bash
+curl --location --request PUT 'https://<endpoint>/<bucketname>?website' \
+--header 'Authorization: bearer <token>' --header 'ibm-service-instance-id: <resource_instance_id> \
+--header 'Content-MD5: <hashed-output>' --header 'Content-Type: text/plain' \
+--data-raw '<WebsiteConfiguration>
+    <IndexDocument>
+        <Suffix>index.html</Suffix>
+    </IndexDocument>
+    <ErrorDocument>
+        <Key>error.html</Key>
+    </ErrorDocument>
+</WebsiteConfiguration>'
+
+```
+{: pre}
+
+As a reminder, the `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash.
+
+```
+echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
+```
+{: pre}
+
+## Next Steps
+{: curl-next-steps}
+
+The detailed description of the RESTful API for {{site.data.keyword.cos_full_notm}} can be found in the [S3 Compatibility API Documentation](https://cloud.ibm.com/apidocs/cos/cos-compatibility){: external} or the [Configuration API Documentation]( https://cloud.ibm.com/apidocs/cos/cos-configuration){: external}. 
