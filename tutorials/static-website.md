@@ -103,10 +103,10 @@ aws --endpoint-url=https://<endpoint> s3api create-bucket --bucket <bucketname>
 {: pre}
 {: aws}
 
-Once you login to the Console and after you create an instance of {{site.data.keyword.cos_full_notm}}, you can create a bucket. Click on the button labeled "Create bucket" and choose from the options as shown in Figure 1. Select the card that reads "Host a Static Website."
+Once you login to the Console and after you create an instance of {{site.data.keyword.cos_full_notm}}, you can create a bucket. Click on the button labeled "Create bucket" and choose from the options as shown in Figure 1. Select the card that reads "Customize your bucket."
 {: console}
 
-![Select Static Website option](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-bucket-cards.jpg){: console}
+![Customize your bucket](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-bucket-cards.jpg){: console}
 
 The container for the static files in your website will reside in a bucket that you can name. The name you create must be unique, should not contain personal or identifying information, can't have two periods, dots, or hyphens in a row, and must start and end with alphanumeric characters (ASCII character set items 3&ndash;63). See Figure 2 for an example.
 {: console}
@@ -121,7 +121,7 @@ In all scenarios for this tutorial, you will want to use the [UI at the Console]
 When creating a bucket for hosting Static Website content, there is an option to enable public access as part of the bucket creation process. See Figure 3 for the option to enable public access to your bucket. For the explanation of the options for the "index document" and "error document" as shown, find more below in the section [Configure the options for your website](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial#static-website-configure-options). You may complete the basic configuration with this step, before uploading content to your bucket as shown in the next step.
 {: console}
 
-![Enable public access](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-basic-config.jpg){: console}
+![Enable public access](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-complete-config.jpg){: console}
 
 ## Upload content to your bucket
 {: #static-website-upload-content}
