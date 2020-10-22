@@ -1702,3 +1702,31 @@ public static void listLegalHoldsOnObject(String bucketName, String objectName) 
 ```
 {: codeblock}
 {: java}
+
+### Create a hosted static website
+{: #java-examples-hosted-static-website}
+
+This operation requires an import statement to be added:
+
+```java
+import com.ibm.cloud.objectstorage.services.s3.model.model.BucketWebsiteConfiguration;
+```
+{: codeblock}
+{: java}
+
+This operation provides the following upon configuration and requires a correctly configured client:
+
+* Bucket configuration for suffix (index document)
+* Bucket configuration for key (error document)
+
+```java
+cosClient.setBucketWebsiteConfiguration("<bucket_name>", new BucketWebsiteConfiguration("index.html", "error.html"));
+```
+{: codeblock}
+{: java}
+
+## Next Steps
+{: #java-guide-next-steps}
+
+ For more information, [see the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/){: external}. The source code for the project can be found in the [GitHub repository](https://github.com/ibm/ibm-cos-sdk-java){: external}.
+ 
