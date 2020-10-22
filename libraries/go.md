@@ -728,7 +728,7 @@ The typical response is exemplified here.
 ### Create a hosted static website
 {: #go-guide-hosted-static-website-create}
 
-This operation requires permissions, as only the bucket owner is typically permitted to configure a bucket to host a static website. The parameters determine the default suffix for visitors to the site as well as an optional error document included her to complete the example.
+This operation requires permissions, as only the bucket owner is typically permitted to configure a bucket to host a static website. The parameters determine the default suffix for visitors to the site as well as an optional error document included here to complete the example.
 
 ```
 func main() {
