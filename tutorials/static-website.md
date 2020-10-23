@@ -48,7 +48,7 @@ completion-time: 15m
 This tutorial shows how to [host a static website](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-options) on {{site.data.keyword.cos_full}}, including creating a bucket, uploading content, and configuring your new website.
 {: shortdesc}
 
-Hosting static websites with {{site.data.keyword.cos_full_notm}} serves static content for public access giving users flexibility, ease of delivery, and high availability.
+Hosting static websites with {{site.data.keyword.cos_full_notm}} serves static content for public access giving users flexibility, ease of delivery, and high availability. This tutorial contains instructions for using [cURL](/docs/cloud-object-storage?topic=cloud-object-storage-curl), the [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli), as well as the [Console](https://cloud.ibm.com/login){: external}. Choose your path for this tutorial by using the links for switching between the instructions above the title of this topic.
 
 ## The Scenario
 {: #static-website-scenario}
