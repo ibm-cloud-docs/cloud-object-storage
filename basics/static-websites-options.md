@@ -102,7 +102,7 @@ Static websites are meant to be fast and secure. Serving up static content is ea
 
 The process for delivering static content through dedicated networks starts with this [overview of CDN options](https://www.ibm.com/cloud/cdn). Content Delivery moves your static content closer to your customer's own location, extending your reach without having to manage copies of your content.
 
-## More Endpoints
+## Endpoints for hosting static website content
 {: #static-websites-options-more-endpoints}
 
 The following tables match each of the regions, locations, and type of connections used in {{site.data.keyword.cos_full_notm}} to the new specific endpoints used for sourcing and testing hosted static websites.
