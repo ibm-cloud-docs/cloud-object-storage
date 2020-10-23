@@ -233,10 +233,10 @@ aws --endpoint-url=https://<endpoint> s3 website s3://<bucketname>/ --index-docu
 {: pre}
 {: aws}
 
-You may have completed this step during the creation of your bucket, as the basic configuration for your hosted static website determines when and how content is shown. For visitors to your website who fail to provide a key, or webpage, the default file will be shown instead. When your users encounter an error, the key for the error page determines what content visitors will receive. The basic configuration options for the default and error pages are shown in Figure 5.  
+You may have completed this step during the creation of your bucket, as the basic configuration for your hosted static website determines when and how content is shown. For visitors to your website who fail to provide a key, or webpage, the default file will be shown instead. When your users encounter an error, the key for the error page determines what content visitors will receive. The configuration options for the default and error pages are repeated for reference.  
 {: console}
 
-![Configure basic options](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-basic-config.jpg){: console}
+![Configure options](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-complete-config.jpg){: console}
 
 ### Testing and visiting your new website
 {: #static-website-testing}
