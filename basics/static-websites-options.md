@@ -44,7 +44,7 @@ Static content differs substantially from dynamic web content. However, if you d
 ## Capabilities
 {: #static-websites-options-compatibility}
 
-Creating static website hosting in {{site.data.keyword.cos_full_notm}} can be accomplished with [cURL](/docs/cloud-object-storage?topic=cloud-object-storage-curl), as well as libraries for [Java](/docs/cloud-object-storage?topic=cloud-object-storage-java), [Go](/docs/cloud-object-storage?topic=cloud-object-storage-using-go), [Python](/docs/cloud-object-storage?topic=cloud-object-storage-python), and [NodeJS](/docs/cloud-object-storage?topic=cloud-object-storage-node). In addition, S3 compatibility means that the [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) can also be used to define static website functionality from the command line. Also, creating and configuring a new hosted static website solution can be created using a GUI in the [Console](https://cloud.ibm.com/login){: external}.
+Creating static website hosting in {{site.data.keyword.cos_full_notm}} can be accomplished with [cURL](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-configure-static-web), as well as libraries for [Java](/docs/cloud-object-storage?topic=cloud-object-storage-java#java-examples-hosted-static-website-create), [Go](/docs/cloud-object-storage?topic=cloud-object-storage-using-go#go-guide-hosted-static-website-create), [Python](https://test.cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-python#python-examples-hosted-static-website-create), and [NodeJS](/docs/cloud-object-storage?topic=cloud-object-storage-node#node-examples-hosted-static-website-create). In addition, S3 compatibility means that the [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli#aws-cli-configure-static-web) can also be used to define static website functionality from the command line. Also, creating and configuring a new hosted static website solution can be created using a GUI in the [Console](https://cloud.ibm.com/login){: external} just by adding the option for Static Website when creating a bucket.
 
 ## Basic Configuration
 {: #static-websites-options-basic-conf}
@@ -56,7 +56,7 @@ At minimum, your configuration should consist of a required index document for v
 ## Advanced Configuration
 {: #static-websites-options-adv-conf}
 
-When you create and configure a new hosted static website, you also have the full power of {{cis_full_notm}} to configure more advanced options than just the defaults. But you don't even have to go further than configuring your bucket during creation to start customizing your new site.
+When you create and configure a new hosted static website, you also have the full power of {{site.data.keyword.cis_full_notm}} to configure more advanced options than just the defaults. But you don't even have to go further than configuring your bucket during creation to start customizing your new site.
 
 ![Configure options](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-complete-config.jpg){: caption="Figure 1. Initial configuration options"}
 
@@ -96,13 +96,13 @@ The same rule codified previously can be added as an individual rule using the C
 ### {{site.data.keyword.cloud_notm}} Internet, Domain, and Delivery Services
 {: #static-websites-options-cdn}
 
-One of the benefits of using {{site.data.keyword.cis_full_notm}} pertains to [setting up your own domains](/docs/cis?topic=cis-set-up-your-dns-for-cis). A "domain" is part of the overall web address, consisting of a Top Level Domain (TLD) and one or more unique words separated by dots, like `example.com` where the TLD is `com`. You can choose to skip this step, but if your DNS records are not configured properly using {{site.data.keyword.cis_short_notm}} (or other service providing domain name services), it might leave all or part of your website inaccessible. 
+One of the benefits of using {{site.data.keyword.cis_full_notm}} pertains to [setting up your own domains](/docs/cis?topic=cis-set-up-your-dns-for-cis). A "domain" is part of the overall web address, consisting of a Top Level Domain (TLD) and one or more unique words separated by dots, like `example.com` where the TLD is `com`. You can choose to skip this step, but if your DNS records are not configured properly using {{site.data.keyword.cis_short_notm}} (or other service providing domain name resolution), it might leave all or part of your website inaccessible. 
 
 Static websites are meant to be fast and secure. Serving up static content is easy with the right tools that deliver the content to your customers. Many deployment tools have built-in support for CDN support. Computer networking solutions are the provenance of [{{site.data.keyword.cis_full}}](/docs/cis?topic=cis-getting-started). When creating redirect rules, you will be adding a `CNAME`, a "canonical (domain) name", or alias. Just like files on an operating system can have an alias for convenience, your hosted static website can be just as convenient. 
 
 The process for delivering static content through dedicated networks starts with this [overview of CDN options](https://www.ibm.com/cloud/cdn). Content Delivery moves your static content closer to your customer's own location, extending your reach without having to manage copies of your content.
 
-## More Endpoints
+## Endpoints for hosting static website content
 {: #static-websites-options-more-endpoints}
 
 The following tables match each of the regions, locations, and type of connections used in {{site.data.keyword.cos_full_notm}} to the new specific endpoints used for sourcing and testing hosted static websites.
