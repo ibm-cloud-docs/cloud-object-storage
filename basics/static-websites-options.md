@@ -132,7 +132,7 @@ The following tables match each of the regions, locations, and type of connectio
 | EU Germany        | `s3-web.private.eu-de.cloud-object-storage.appdomain.cloud`    |
 | AP Australia      | `s3-web.private.au-syd.cloud-object-storage.appdomain.cloud`   |
 | AP Japan          | `s3-web.private.jp-tok.cloud-object-storage.appdomain.cloud`   |
-{: class="simple-tab-
+{: class="simple-tab-table"}
 {: caption="Table 1. Regional Endpoints" caption-side="top"}
 {: #swregionalendpointtable2}
 {: tab-title="Private"}
@@ -220,7 +220,7 @@ The following tables match each of the regions, locations, and type of connectio
 | AP: Tokyo            | `s3-web.private.tok.ap.cloud-object-storage.appdomain.cloud` |
 | AP: Seoul            | `s3-web.private.seo.ap.cloud-object-storage.appdomain.cloud` |
 | AP: Hong Kong        | `s3-web.private.hkg.ap.cloud-object-storage.appdomain.cloud` |
-{: class="simple-tab-tab
+{: class="simple-tab-table"}
 {: caption="Table 2a. Cross Region Endpoints (Tethered)" caption-side="top"}
 {: #swtether2}
 {: tab-title="Private"}
