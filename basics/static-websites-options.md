@@ -29,7 +29,7 @@ subcollection: cloud-object-storage
 # Serving static content with {{site.data.keyword.cos_full_notm}}
 {: #static-website-options}
 
-A new hosted static website can be created with {{site.data.keyword.cos_full}} in minutes using [this simple tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial). This presentation contains the details and some advanced configuration options for hosting static websites.
+A new hosted static website can be created with {{site.data.keyword.cos_full}} in minutes using [this simple tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial). This topic contains the details and some advanced configuration options for hosting static websites.
 {: shortdesc}
 
 ## Overview
@@ -98,7 +98,7 @@ The same rule codified previously can be added as an individual rule using the C
 
 One of the benefits of using {{site.data.keyword.cis_full_notm}} pertains to [setting up your own domains](/docs/cis?topic=cis-set-up-your-dns-for-cis). A "domain" is part of the overall web address, consisting of a Top Level Domain (TLD) and one or more unique words separated by dots, like `example.com` where the TLD is `com`. You can choose to skip this step, but if your DNS records are not configured properly using {{site.data.keyword.cis_short_notm}} (or other service providing domain name resolution), it might leave all or part of your website inaccessible. 
 
-Static websites are meant to be fast and secure. Serving up static content is easy with the right tools that deliver the content to your customers. Many deployment tools have built-in support for CDN support. Computer networking solutions are the provenance of [{{site.data.keyword.cis_full}}](/docs/cis?topic=cis-getting-started). When creating redirect rules, you will be adding a `CNAME`, a "canonical (domain) name", or alias. Just like files on an operating system can have an alias for convenience, your hosted static website can be just as convenient. 
+Static websites are meant to be fast and secure. Serving up static content is easy with the right tools that deliver the content to your customers. Many deployment tools have built-in support for CDN support. Getting started configuring your domains using [{{site.data.keyword.cis_full}}](/docs/cis?topic=cis-resolve-override-cos). When creating redirect rules, you will be adding a `CNAME`, a "canonical (domain) name", or alias. Just like files on an operating system can have an alias for convenience, your hosted static website can be just as convenient. 
 
 The process for delivering static content through dedicated networks starts with this [overview of CDN options](https://www.ibm.com/cloud/cdn). Content Delivery moves your static content closer to your customer's own location, extending your reach without having to manage copies of your content.
 
@@ -107,130 +107,136 @@ The process for delivering static content through dedicated networks starts with
 
 The following tables match each of the regions, locations, and type of connections used in {{site.data.keyword.cos_full_notm}} to the new specific endpoints used for sourcing and testing hosted static websites.
 
-| Region            | Type   | Hosted Static Website Endpoint                         |
-|-------------------|--------|--------------------------------------------------------|
-| US South          | Public | `s3-web.us-south.cloud-object-storage.appdomain.cloud` |
-| US East           | Public | `s3-web.us-east.cloud-object-storage.appdomain.cloud`  |
-| EU United Kingdom | Public | `s3-web.eu-gb.cloud-object-storage.appdomain.cloud`    |
-| EU Germany        | Public | `s3-web.eu-de.cloud-object-storage.appdomain.cloud`    |
-| AP Australia      | Public | `s3-web.au-syd.cloud-object-storage.appdomain.cloud`   |
-| AP Japan          | Public | `s3-web.jp-tok.cloud-object-storage.appdomain.cloud`   |
+### Regional endpoints
+{: #static-websites-options-regional-endpoints}
+
+| Region            | Hosted Static Website Endpoint                         |
+|-------------------|--------------------------------------------------------|
+| US South          | `s3-web.us-south.cloud-object-storage.appdomain.cloud` |
+| US East           | `s3-web.us-east.cloud-object-storage.appdomain.cloud`  |
+| EU United Kingdom | `s3-web.eu-gb.cloud-object-storage.appdomain.cloud`    |
+| EU Germany        | `s3-web.eu-de.cloud-object-storage.appdomain.cloud`    |
+| AP Australia      | `s3-web.au-syd.cloud-object-storage.appdomain.cloud`   |
+| AP Japan          | `s3-web.jp-tok.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
 {: caption="Table 1. Regional Endpoints" caption-side="top"}
 {: #swregionalendpointtable1}
 {: tab-title="Public"}
 {: tab-group="Regional-endpoints"}
 
-
-| Region            | Type    | Hosted Static Website Endpoint                                 |
-|-------------------|---------|----------------------------------------------------------------|
-| US South          | Private | `s3-web.private.us-south.cloud-object-storage.appdomain.cloud` |
-| US East           | Private | `s3-web.private.us-east.cloud-object-storage.appdomain.cloud`  |
-| EU United Kingdom | Private | `s3-web.private.eu-gb.cloud-object-storage.appdomain.cloud`    |
-| EU Germany        | Private | `s3-web.private.eu-de.cloud-object-storage.appdomain.cloud`    |
-| AP Australia      | Private | `s3-web.private.au-syd.cloud-object-storage.appdomain.cloud`   |
-| AP Japan          | Private | `s3-web.private.jp-tok.cloud-object-storage.appdomain.cloud`   |
-{: class="simple-tab-table"}
+| Region            | Hosted Static Website Endpoint                                 |
+|-------------------|----------------------------------------------------------------|
+| US South          | `s3-web.private.us-south.cloud-object-storage.appdomain.cloud` |
+| US East           | `s3-web.private.us-east.cloud-object-storage.appdomain.cloud`  |
+| EU United Kingdom | `s3-web.private.eu-gb.cloud-object-storage.appdomain.cloud`    |
+| EU Germany        | `s3-web.private.eu-de.cloud-object-storage.appdomain.cloud`    |
+| AP Australia      | `s3-web.private.au-syd.cloud-object-storage.appdomain.cloud`   |
+| AP Japan          | `s3-web.private.jp-tok.cloud-object-storage.appdomain.cloud`   |
+{: class="simple-tab-
 {: caption="Table 1. Regional Endpoints" caption-side="top"}
 {: #swregionalendpointtable2}
 {: tab-title="Private"}
 {: tab-group="Regional-endpoints"}
 
-| Region            | Type   | Hosted Static Website Endpoint                                              |
-|-------------------|--------|---------------------------------------------------------------|
-| US South          | Direct | `s3-web.direct.us-south.cloud-object-storage.appdomain.cloud` |
-| US East           | Direct | `s3-web.direct.us-east.cloud-object-storage.appdomain.cloud`  |
-| EU United Kingdom | Direct | `s3-web.direct.eu-gb.cloud-object-storage.appdomain.cloud`    |
-| EU Germany        | Direct | `s3-web.direct.eu-de.cloud-object-storage.appdomain.cloud`    |
-| AP Australia      | Direct | `s3-web.direct.au-syd.cloud-object-storage.appdomain.cloud`   |
-| AP Japan          | Direct | `s3-web.direct.jp-tok.cloud-object-storage.appdomain.cloud`   |
+| Region            | Hosted Static Website Endpoint                                |
+|-------------------|---------------------------------------------------------------|
+| US South          | `s3-web.direct.us-south.cloud-object-storage.appdomain.cloud` |
+| US East           | `s3-web.direct.us-east.cloud-object-storage.appdomain.cloud`  |
+| EU United Kingdom | `s3-web.direct.eu-gb.cloud-object-storage.appdomain.cloud`    |
+| EU Germany        | `s3-web.direct.eu-de.cloud-object-storage.appdomain.cloud`    |
+| AP Australia      | `s3-web.direct.au-syd.cloud-object-storage.appdomain.cloud`   |
+| AP Japan          | `s3-web.direct.jp-tok.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
 {: caption="Table 1. Regional Endpoints" caption-side="top"}
 {: #swregionalendpointtable3}
 {: tab-title="Direct"}
 {: tab-group="Regional-endpoints"}
 
-| Region          | Type   | Hosted Static Website Endpoint                   |
-|-----------------|--------|--------------------------------------------------|
-| US Cross Region | Public | `s3-web.us.cloud-object-storage.appdomain.cloud` |
-| EU Cross Region | Public | `s3-web.eu.cloud-object-storage.appdomain.cloud` |
-| AP Cross Region | Public | `s3-web.ap.cloud-object-storage.appdomain.cloud` |
+
+### Cross Region endpoints
+{: #static-websites-options-cross-region-endpoints}
+
+| Region          | Hosted Static Website Endpoint                   |
+|-----------------|--------------------------------------------------|
+| US Cross Region | `s3-web.us.cloud-object-storage.appdomain.cloud` |
+| EU Cross Region | `s3-web.eu.cloud-object-storage.appdomain.cloud` |
+| AP Cross Region | `s3-web.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 2. Cross Region Endpoints" caption-side="top"}
 {: #swcrossregionalendpointtable1}
 {: tab-title="Public"}
 {: tab-group="Cross-regional-endpoints"}
 
-| Region          | Type    | Hosted Static Website Endpoint                           |
-|-----------------|---------|----------------------------------------------------------|
-| US Cross Region | Private | `s3-web.private.us.cloud-object-storage.appdomain.cloud` |
-| EU Cross Region | Private | `s3-web.private.eu.cloud-object-storage.appdomain.cloud` |
-| AP Cross Region | Private | `s3-web.private.ap.cloud-object-storage.appdomain.cloud` |
+| Region          | Hosted Static Website Endpoint                           |
+|-----------------|----------------------------------------------------------|
+| US Cross Region | `s3-web.private.us.cloud-object-storage.appdomain.cloud` |
+| EU Cross Region | `s3-web.private.eu.cloud-object-storage.appdomain.cloud` |
+| AP Cross Region | `s3-web.private.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 2. Cross Region Endpoints" caption-side="top"}
 {: #swcrossregionalendpointtable2}
 {: tab-title="Private"}
 {: tab-group="Cross-regional-endpoints"}
 
-| Region          | Type   | Hosted Static Website Endpoint                          |
-|-----------------|--------|---------------------------------------------------------|
-| US Cross Region | Direct | `s3-web.direct.us.cloud-object-storage.appdomain.cloud` |
-| EU Cross Region | Direct | `s3-web.direct.eu.cloud-object-storage.appdomain.cloud` |
-| AP Cross Region | Direct | `s3-web.direct.ap.cloud-object-storage.appdomain.cloud` |
+| Region          | Hosted Static Website Endpoint                          |
+|-----------------|---------------------------------------------------------|
+| US Cross Region | `s3-web.direct.us.cloud-object-storage.appdomain.cloud` |
+| EU Cross Region | `s3-web.direct.eu.cloud-object-storage.appdomain.cloud` |
+| AP Cross Region | `s3-web.direct.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 2. Cross Region Endpoints" caption-side="top"}
 {: #swcrossregionalendpointtable3}
 {: tab-title="Direct"}
 {: tab-group="Cross-regional-endpoints"}
 
-### Tethered endpoints
-{: #remap-endpoint-reference}
+### Single site endpoints
+{: #static-websites-options-single-site-endpoints}
 
-| Region               | Type              | Hosted Static Website Endpoint                       |
-|----------------------|-------------------|------------------------------------------------------|
-| US: Dallas           | Public (Tethered) | `s3-web.dal.us.cloud-object-storage.appdomain.cloud` |
-| US: San Jose         | Public (Tethered) | `s3-web.sjc.us.cloud-object-storage.appdomain.cloud` |
-| US: Washington, D.C. | Public (Tethered) | `s3-web.wdc.us.cloud-object-storage.appdomain.cloud` |
-| EU: Amsterdam        | Public (Tethered) | `s3-web.ams.eu.cloud-object-storage.appdomain.cloud` |
-| EU: Frankfurt        | Public (Tethered) | `s3-web.fra.eu.cloud-object-storage.appdomain.cloud` |
-| EU: Milan            | Public (Tethered) | `s3-web.mil.eu.cloud-object-storage.appdomain.cloud` |
-| AP: Tokyo            | Public (Tethered) | `s3-web.tok.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Seoul            | Public (Tethered) | `s3-web.seo.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Hong Kong        | Public (Tethered) | `s3-web.hkg.ap.cloud-object-storage.appdomain.cloud` |
+| Region               | Hosted Static Website Endpoint                       |
+|----------------------|------------------------------------------------------|
+| US: Dallas           | `s3-web.dal.us.cloud-object-storage.appdomain.cloud` |
+| US: San Jose         | `s3-web.sjc.us.cloud-object-storage.appdomain.cloud` |
+| US: Washington, D.C. | `s3-web.wdc.us.cloud-object-storage.appdomain.cloud` |
+| EU: Amsterdam        | `s3-web.ams.eu.cloud-object-storage.appdomain.cloud` |
+| EU: Frankfurt        | `s3-web.fra.eu.cloud-object-storage.appdomain.cloud` |
+| EU: Milan            | `s3-web.mil.eu.cloud-object-storage.appdomain.cloud` |
+| AP: Tokyo            | `s3-web.tok.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Seoul            | `s3-web.seo.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Hong Kong        | `s3-web.hkg.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 2a. Cross Region Endpoints (Tethered)" caption-side="top"}
 {: #swtether1}
 {: tab-title="Public"}
 {: tab-group="Cross-regional-endpoints-tether"}
 
-| Region               | Type               | Hosted Static Website Endpoint                               |
-|----------------------|--------------------|--------------------------------------------------------------|
-| US: Dallas           | Private (Tethered) | `s3-web.private.dal.us.cloud-object-storage.appdomain.cloud` |
-| US: San Jose         | Private (Tethered) | `s3-web.private.sjc.us.cloud-object-storage.appdomain.cloud` |
-| US: Washington, D.C. | Private (Tethered) | `s3-web.private.wdc.us.cloud-object-storage.appdomain.cloud` |
-| EU: Amsterdam        | Private (Tethered) | `s3-web.private.ams.eu.cloud-object-storage.appdomain.cloud` |
-| EU: Frankfurt        | Private (Tethered) | `s3-web.private.fra.eu.cloud-object-storage.appdomain.cloud` |
-| EU: Milan            | Private (Tethered) | `s3-web.private.mil.eu.cloud-object-storage.appdomain.cloud` |
-| AP: Tokyo            | Private (Tethered) | `s3-web.private.tok.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Seoul            | Private (Tethered) | `s3-web.private.seo.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Hong Kong        | Private (Tethered) | `s3-web.private.hkg.ap.cloud-object-storage.appdomain.cloud` |
-{: class="simple-tab-table"}
+| Region               | Hosted Static Website Endpoint                               |
+|----------------------|--------------------------------------------------------------|
+| US: Dallas           | `s3-web.private.dal.us.cloud-object-storage.appdomain.cloud` |
+| US: San Jose         | `s3-web.private.sjc.us.cloud-object-storage.appdomain.cloud` |
+| US: Washington, D.C. | `s3-web.private.wdc.us.cloud-object-storage.appdomain.cloud` |
+| EU: Amsterdam        | `s3-web.private.ams.eu.cloud-object-storage.appdomain.cloud` |
+| EU: Frankfurt        | `s3-web.private.fra.eu.cloud-object-storage.appdomain.cloud` |
+| EU: Milan            | `s3-web.private.mil.eu.cloud-object-storage.appdomain.cloud` |
+| AP: Tokyo            | `s3-web.private.tok.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Seoul            | `s3-web.private.seo.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Hong Kong        | `s3-web.private.hkg.ap.cloud-object-storage.appdomain.cloud` |
+{: class="simple-tab-tab
 {: caption="Table 2a. Cross Region Endpoints (Tethered)" caption-side="top"}
 {: #swtether2}
 {: tab-title="Private"}
 {: tab-group="Cross-regional-endpoints-tether"}
 
-| Region               | Type              | Hosted Static Website Endpoint                              |
-|----------------------|-------------------|-------------------------------------------------------------|
-| US: Dallas           | Direct (Tethered) | `s3-web.direct.dal.us.cloud-object-storage.appdomain.cloud` |
-| US: San Jose         | Direct (Tethered) | `s3-web.direct.sjc.us.cloud-object-storage.appdomain.cloud` |
-| US: Washington, D.C. | Direct (Tethered) | `s3-web.direct.wdc.us.cloud-object-storage.appdomain.cloud` |
-| EU: Amsterdam        | Direct (Tethered) | `s3-web.direct.ams.eu.cloud-object-storage.appdomain.cloud` |
-| EU: Frankfurt        | Direct (Tethered) | `s3-web.direct.fra.eu.cloud-object-storage.appdomain.cloud` |
-| EU: Milan            | Direct (Tethered) | `s3-web.direct.mil.eu.cloud-object-storage.appdomain.cloud` |
-| AP: Tokyo            | Direct (Tethered) | `s3-web.direct.tok.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Seoul            | Direct (Tethered) | `s3-web.direct.seo.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Hong Kong        | Direct (Tethered) | `s3-web.direct.hkg.ap.cloud-object-storage.appdomain.cloud` |
+| Region               | Hosted Static Website Endpoint                              |
+|----------------------|-------------------------------------------------------------|
+| US: Dallas           | `s3-web.direct.dal.us.cloud-object-storage.appdomain.cloud` |
+| US: San Jose         | `s3-web.direct.sjc.us.cloud-object-storage.appdomain.cloud` |
+| US: Washington, D.C. | `s3-web.direct.wdc.us.cloud-object-storage.appdomain.cloud` |
+| EU: Amsterdam        | `s3-web.direct.ams.eu.cloud-object-storage.appdomain.cloud` |
+| EU: Frankfurt        | `s3-web.direct.fra.eu.cloud-object-storage.appdomain.cloud` |
+| EU: Milan            | `s3-web.direct.mil.eu.cloud-object-storage.appdomain.cloud` |
+| AP: Tokyo            | `s3-web.direct.tok.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Seoul            | `s3-web.direct.seo.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Hong Kong        | `s3-web.direct.hkg.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 2a. Cross Region Endpoints (Tethered)" caption-side="top"}
 {: #swtether3}
@@ -238,63 +244,63 @@ The following tables match each of the regions, locations, and type of connectio
 {: tab-group="Cross-regional-endpoints-tether"}
 
 
-| Location                    | Type   | Hosted Static Website Endpoint                      |
-|-----------------------------|--------|-----------------------------------------------------|
-| Amsterdam, Netherlands      | Public | `s3-web.ams03.cloud-object-storage.appdomain.cloud` |
-| Chennai, India              | Public | `s3-web.che01.cloud-object-storage.appdomain.cloud` |
-| Hong Kong S.A.R. of the PRC | Public | `s3-web.hkg02.cloud-object-storage.appdomain.cloud` |
-| Mexico City, Mexico         | Public | `s3-web.mex01.cloud-object-storage.appdomain.cloud` |
-| Milan, Italy                | Public | `s3-web.mil01.cloud-object-storage.appdomain.cloud` |
-| Montr&egrave;al, Canada     | Public | `s3-web.mon01.cloud-object-storage.appdomain.cloud` |
-| Oslo, Norway                | Public | `s3-web.osl01.cloud-object-storage.appdomain.cloud` |
-| Paris, France               | Public | `s3-web.par01.cloud-object-storage.appdomain.cloud` |
-| San Jose, US                | Public | `s3-web.sjc04.cloud-object-storage.appdomain.cloud` |
-| S&atilde;o Paulo, Brazil    | Public | `s3-web.sao01.cloud-object-storage.appdomain.cloud` |
-| Seoul, South Korea          | Public | `s3-web.seo01.cloud-object-storage.appdomain.cloud` |
-| Singapore                   | Public | `s3-web.sng01.cloud-object-storage.appdomain.cloud` |
-| Toronto, Canada             | Public | `s3-web.tor01.cloud-object-storage.appdomain.cloud` |
+| Location                    | Hosted Static Website Endpoint                      |
+|-----------------------------|-----------------------------------------------------|
+| Amsterdam, Netherlands      | `s3-web.ams03.cloud-object-storage.appdomain.cloud` |
+| Chennai, India              | `s3-web.che01.cloud-object-storage.appdomain.cloud` |
+| Hong Kong S.A.R. of the PRC | `s3-web.hkg02.cloud-object-storage.appdomain.cloud` |
+| Mexico City, Mexico         | `s3-web.mex01.cloud-object-storage.appdomain.cloud` |
+| Milan, Italy                | `s3-web.mil01.cloud-object-storage.appdomain.cloud` |
+| Montr&egrave;al, Canada     | `s3-web.mon01.cloud-object-storage.appdomain.cloud` |
+| Oslo, Norway                | `s3-web.osl01.cloud-object-storage.appdomain.cloud` |
+| Paris, France               | `s3-web.par01.cloud-object-storage.appdomain.cloud` |
+| San Jose, US                | `s3-web.sjc04.cloud-object-storage.appdomain.cloud` |
+| S&atilde;o Paulo, Brazil    | `s3-web.sao01.cloud-object-storage.appdomain.cloud` |
+| Seoul, South Korea          | `s3-web.seo01.cloud-object-storage.appdomain.cloud` |
+| Singapore                   | `s3-web.sng01.cloud-object-storage.appdomain.cloud` |
+| Toronto, Canada             | `s3-web.tor01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
 {: #swsdcendpointtable1}
 {: tab-title="Public"}
 {: tab-group="single-datacenter-endpoints"}
 
-| Location                    | Type    | Hosted Static Website Endpoint                              |
-|-----------------------------|---------|-------------------------------------------------------------|
-| Amsterdam, Netherlands      | Private | `s3-web.private.ams03.cloud-object-storage.appdomain.cloud` |
-| Chennai, India              | Private | `s3-web.private.che01.cloud-object-storage.appdomain.cloud` |
-| Hong Kong S.A.R. of the PRC | Private | `s3-web.private.hkg02.cloud-object-storage.appdomain.cloud` |
-| Mexico City, Mexico         | Private | `s3-web.private.mex01.cloud-object-storage.appdomain.cloud` |
-| Milan, Italy                | Private | `s3-web.private.mil01.cloud-object-storage.appdomain.cloud` |
-| Montr&egrave;al, Canada     | Private | `s3-web.private.mon01.cloud-object-storage.appdomain.cloud` |
-| Oslo, Norway                | Private | `s3-web.private.osl01.cloud-object-storage.appdomain.cloud` |
-| Paris, France               | Private | `s3-web.private.par01.cloud-object-storage.appdomain.cloud` |
-| San Jose, US                | Private | `s3-web.private.sjc04.cloud-object-storage.appdomain.cloud` |
-| S&atilde;o Paulo, Brazil    | Private | `s3-web.private.sao01.cloud-object-storage.appdomain.cloud` |
-| Seoul, South Korea          | Private | `s3-web.private.seo01.cloud-object-storage.appdomain.cloud` |
-| Singapore                   | Private | `s3-web.private.sng01.cloud-object-storage.appdomain.cloud` |
-| Toronto, Canada             | Private | `s3-web.private.tor01.cloud-object-storage.appdomain.cloud` |
+| Location                    | Hosted Static Website Endpoint                              |
+|-----------------------------|-------------------------------------------------------------|
+| Amsterdam, Netherlands      | `s3-web.private.ams03.cloud-object-storage.appdomain.cloud` |
+| Chennai, India              | `s3-web.private.che01.cloud-object-storage.appdomain.cloud` |
+| Hong Kong S.A.R. of the PRC | `s3-web.private.hkg02.cloud-object-storage.appdomain.cloud` |
+| Mexico City, Mexico         | `s3-web.private.mex01.cloud-object-storage.appdomain.cloud` |
+| Milan, Italy                | `s3-web.private.mil01.cloud-object-storage.appdomain.cloud` |
+| Montr&egrave;al, Canada     | `s3-web.private.mon01.cloud-object-storage.appdomain.cloud` |
+| Oslo, Norway                | `s3-web.private.osl01.cloud-object-storage.appdomain.cloud` |
+| Paris, France               | `s3-web.private.par01.cloud-object-storage.appdomain.cloud` |
+| San Jose, US                | `s3-web.private.sjc04.cloud-object-storage.appdomain.cloud` |
+| S&atilde;o Paulo, Brazil    | `s3-web.private.sao01.cloud-object-storage.appdomain.cloud` |
+| Seoul, South Korea          | `s3-web.private.seo01.cloud-object-storage.appdomain.cloud` |
+| Singapore                   | `s3-web.private.sng01.cloud-object-storage.appdomain.cloud` |
+| Toronto, Canada             | `s3-web.private.tor01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
 {: #swsdcendpointtable2}
 {: tab-title="Private"}
 {: tab-group="single-datacenter-endpoints"}
 
-| Location                    | Type   | Hosted Static Website Endpoint                             |
-|-----------------------------|--------|------------------------------------------------------------|
-| Amsterdam, Netherlands      | Direct | `s3-web.direct.ams03.cloud-object-storage.appdomain.cloud` |
-| Chennai, India              | Direct | `s3-web.direct.che01.cloud-object-storage.appdomain.cloud` |
-| Hong Kong S.A.R. of the PRC | Direct | `s3-web.direct.hkg02.cloud-object-storage.appdomain.cloud` |
-| Mexico City, Mexico         | Direct | `s3-web.direct.mex01.cloud-object-storage.appdomain.cloud` |
-| Milan, Italy                | Direct | `s3-web.direct.mil01.cloud-object-storage.appdomain.cloud` |
-| Montr&egrave;al, Canada     | Direct | `s3-web.direct.mon01.cloud-object-storage.appdomain.cloud` |
-| Oslo, Norway                | Direct | `s3-web.direct.osl01.cloud-object-storage.appdomain.cloud` |
-| Paris, France               | Direct | `s3-web.direct.par01.cloud-object-storage.appdomain.cloud` |
-| San Jose, US                | Direct | `s3-web.direct.sjc04.cloud-object-storage.appdomain.cloud` |
-| S&atilde;o Paulo, Brazil    | Direct | `s3-web.direct.sao01.cloud-object-storage.appdomain.cloud` |
-| Seoul, South Korea          | Direct | `s3-web.direct.seo01.cloud-object-storage.appdomain.cloud` |
-| Singapore                   | Direct | `s3-web.direct.sng01.cloud-object-storage.appdomain.cloud` |
-| Toronto, Canada             | Direct | `s3-web.direct.tor01.cloud-object-storage.appdomain.cloud` |
+| Location                    | Hosted Static Website Endpoint                             |
+|-----------------------------|------------------------------------------------------------|
+| Amsterdam, Netherlands      | `s3-web.direct.ams03.cloud-object-storage.appdomain.cloud` |
+| Chennai, India              | `s3-web.direct.che01.cloud-object-storage.appdomain.cloud` |
+| Hong Kong S.A.R. of the PRC | `s3-web.direct.hkg02.cloud-object-storage.appdomain.cloud` |
+| Mexico City, Mexico         | `s3-web.direct.mex01.cloud-object-storage.appdomain.cloud` |
+| Milan, Italy                | `s3-web.direct.mil01.cloud-object-storage.appdomain.cloud` |
+| Montr&egrave;al, Canada     | `s3-web.direct.mon01.cloud-object-storage.appdomain.cloud` |
+| Oslo, Norway                | `s3-web.direct.osl01.cloud-object-storage.appdomain.cloud` |
+| Paris, France               | `s3-web.direct.par01.cloud-object-storage.appdomain.cloud` |
+| San Jose, US                | `s3-web.direct.sjc04.cloud-object-storage.appdomain.cloud` |
+| S&atilde;o Paulo, Brazil    | `s3-web.direct.sao01.cloud-object-storage.appdomain.cloud` |
+| Seoul, South Korea          | `s3-web.direct.seo01.cloud-object-storage.appdomain.cloud` |
+| Singapore                   | `s3-web.direct.sng01.cloud-object-storage.appdomain.cloud` |
+| Toronto, Canada             | `s3-web.direct.tor01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
 {: #swsdcendpointtable3}
@@ -304,4 +310,4 @@ The following tables match each of the regions, locations, and type of connectio
 ## Next steps
 {: #static-websites-options-next-steps}
 
-The detailed description of operations for hosted static websites at {{site.data.keyword.cos_full_notm}} can be found in the [API Documentation](https://cloud.ibm.com/apidocs/cos/cos-configuration){: external}.
+Making the most of modern web development requires modern tools and secure infrastructure, but shouldn't be a barrier to the success of your projects. If you haven't already tried the tutorial, check out for yourself [how hosting a static website](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial) can work for you.
