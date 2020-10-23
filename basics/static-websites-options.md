@@ -310,4 +310,4 @@ The following tables match each of the regions, locations, and type of connectio
 ## Next steps
 {: #static-websites-options-next-steps}
 
-The detailed description of operations for hosted static websites at {{site.data.keyword.cos_full_notm}} can be found in the [API Documentation](https://cloud.ibm.com/apidocs/cos/cos-configuration){: external}.
+Making the most of modern web development requires modern tools and secure infrastructure, but shouldn't be a barrier to the success of your projects. If you haven't already tried the tutorial, check out for yourself [how hosting a static website](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial) can work for you.
