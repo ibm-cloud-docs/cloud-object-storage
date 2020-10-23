@@ -21,9 +21,7 @@ subcollection: cloud-object-storage
 {:note: .note}
 {:download: .download} 
 {:http: .ph data-hd-programlang='http'} 
-{:javascript: .ph data-hd-programlang='javascript'} 
-{:java: .ph data-hd-programlang='java'} 
-{:python: .ph data-hd-programlang='python'}
+{:java: .ph data-hd-programlang='java'}
 {:go: .ph data-hd-programlang='go'}
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
@@ -466,7 +464,8 @@ cos.copyObject( // copy the Object, passing…
 #### `putObject` Exception
 {: #java-examples-put-exception}
 
-The `putObject` method might throw the following exception even if the new object upload was successful
+The `putObject` method might throw the following exception even if the new object upload was successful:
+
 ```
 Exception in thread "main" java.lang.NoClassDefFoundError: javax/xml/bind/JAXBException
 	at com.ibm.cloud.objectstorage.services.s3.AmazonS3Client.putObject(AmazonS3Client.java:1597)
@@ -482,6 +481,7 @@ Caused by: java.lang.ClassNotFoundException: javax.xml.bind.JAXBException
 **Root Cause:** The JAXB APIs are considered to be Java EE APIs, and are no longer contained on the default class path in Java SE 9.
 
 **Fix:** Add the following entry to the pom.xml file in your project folder and repackage your project
+
 ```xml
 <dependency>
     <groupId>javax.xml.bind</groupId>
@@ -1513,7 +1513,6 @@ public static void addProtectionConfigurationToBucketWithRequest(String bucketNa
 }
 ```
 {: codeblock}
-{: java}
 
 ### Check protection on a bucket
 {: #java-examples-immutable-check}
@@ -1536,7 +1535,6 @@ public static void getProtectionConfigurationOnBucket(String bucketName) {
 }
 ```
 {: codeblock}
-{: java}
 
 ### Upload a protected object
 {: #java-examples-immutable-upload}
@@ -1589,7 +1587,6 @@ public static void copyProtectedObject(String sourceBucketName, String sourceObj
 }
 ```
 {: codeblock}
-{: java}
 
 ### Add or remove a legal hold to or from a protected object
 {: #java-examples-immutable-legal-hold}
@@ -1604,7 +1601,6 @@ The object can support 100 legal holds:
 * If an object does not have retention period metadata, a `400` error is returned and adding or removing a legal hold is not allowed.
 
 The presence of a retention period header is required, otherwise a `400` error is returned.
-{: http}
 
 The user making adding or removing a legal hold must have `Manager` permissions for this bucket.
 
@@ -1634,7 +1630,6 @@ public static void deleteLegalHoldFromObject(String bucketName, String objectNam
 }
 ```
 {: codeblock}
-{: java}
 
 ### Extend the retention period of a protected object
 {: #java-examples-immutable-extend}
@@ -1666,7 +1661,6 @@ public static void extendRetentionPeriodOnObject(String bucketName, String objec
 }
 ```
 {: codeblock}
-{: java}
 
 ### List legal holds on a protected object
 {: #java-examples-immutable-list-holds}
@@ -1701,7 +1695,6 @@ public static void listLegalHoldsOnObject(String bucketName, String objectName) 
 }
 ```
 {: codeblock}
-{: java}
 
 ### Create a hosted static website
 {: #java-examples-hosted-static-website-create}
@@ -1712,7 +1705,6 @@ This operation requires an import statement to be added:
 import com.ibm.cloud.objectstorage.services.s3.model.model.BucketWebsiteConfiguration;
 ```
 {: codeblock}
-{: java}
 
 This operation provides the following upon configuration and requires a correctly configured client:
 
@@ -1723,7 +1715,6 @@ This operation provides the following upon configuration and requires a correctl
 cosClient.setBucketWebsiteConfiguration("<bucket_name>", new BucketWebsiteConfiguration("index.html", "error.html"));
 ```
 {: codeblock}
-{: java}
 
 ## Next Steps
 {: #java-guide-next-steps}
