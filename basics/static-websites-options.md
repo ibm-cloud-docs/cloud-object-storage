@@ -105,7 +105,7 @@ The process for delivering static content through dedicated networks starts with
 ## Endpoints for hosting static website content
 {: #static-websites-options-more-endpoints}
 
-The following tables match each of the regions, locations, and type of connections used in {{site.data.keyword.cos_full_notm}} to the new specific endpoints used for sourcing and testing hosted static websites.
+The following tables match most of the regions, locations, and type of connections used in {{site.data.keyword.cos_full_notm}} to the new specific endpoints used for sourcing and testing hosted static websites. For tethered endpoints not listed here, find more information on [using tethered endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-advanced-endpoints). 
 
 ### Regional endpoints
 {: #static-websites-options-regional-endpoints}
