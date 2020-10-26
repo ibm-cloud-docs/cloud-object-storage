@@ -105,7 +105,7 @@ The process for delivering static content through dedicated networks starts with
 ## Endpoints for hosting static website content
 {: #static-websites-options-more-endpoints}
 
-The following tables match each of the regions, locations, and type of connections used in {{site.data.keyword.cos_full_notm}} to the new specific endpoints used for sourcing and testing hosted static websites.
+The following tables match most of the regions, locations, and type of connections used in {{site.data.keyword.cos_full_notm}} to the new specific endpoints used for sourcing and testing hosted static websites. For tethered endpoints not listed here, find more information on [using tethered endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-advanced-endpoints). 
 
 ### Regional endpoints
 {: #static-websites-options-regional-endpoints}
@@ -191,58 +191,6 @@ The following tables match each of the regions, locations, and type of connectio
 
 ### Single site endpoints
 {: #static-websites-options-single-site-endpoints}
-
-| Region               | Hosted Static Website Endpoint                       |
-|----------------------|------------------------------------------------------|
-| US: Dallas           | `s3-web.dal.us.cloud-object-storage.appdomain.cloud` |
-| US: San Jose         | `s3-web.sjc.us.cloud-object-storage.appdomain.cloud` |
-| US: Washington, D.C. | `s3-web.wdc.us.cloud-object-storage.appdomain.cloud` |
-| EU: Amsterdam        | `s3-web.ams.eu.cloud-object-storage.appdomain.cloud` |
-| EU: Frankfurt        | `s3-web.fra.eu.cloud-object-storage.appdomain.cloud` |
-| EU: Milan            | `s3-web.mil.eu.cloud-object-storage.appdomain.cloud` |
-| AP: Tokyo            | `s3-web.tok.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Seoul            | `s3-web.seo.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Hong Kong        | `s3-web.hkg.ap.cloud-object-storage.appdomain.cloud` |
-{: class="simple-tab-table"}
-{: caption="Table 2a. Cross Region Endpoints (Tethered)" caption-side="top"}
-{: #swtether1}
-{: tab-title="Public"}
-{: tab-group="Cross-regional-endpoints-tether"}
-
-| Region               | Hosted Static Website Endpoint                               |
-|----------------------|--------------------------------------------------------------|
-| US: Dallas           | `s3-web.private.dal.us.cloud-object-storage.appdomain.cloud` |
-| US: San Jose         | `s3-web.private.sjc.us.cloud-object-storage.appdomain.cloud` |
-| US: Washington, D.C. | `s3-web.private.wdc.us.cloud-object-storage.appdomain.cloud` |
-| EU: Amsterdam        | `s3-web.private.ams.eu.cloud-object-storage.appdomain.cloud` |
-| EU: Frankfurt        | `s3-web.private.fra.eu.cloud-object-storage.appdomain.cloud` |
-| EU: Milan            | `s3-web.private.mil.eu.cloud-object-storage.appdomain.cloud` |
-| AP: Tokyo            | `s3-web.private.tok.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Seoul            | `s3-web.private.seo.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Hong Kong        | `s3-web.private.hkg.ap.cloud-object-storage.appdomain.cloud` |
-{: class="simple-tab-table"}
-{: caption="Table 2a. Cross Region Endpoints (Tethered)" caption-side="top"}
-{: #swtether2}
-{: tab-title="Private"}
-{: tab-group="Cross-regional-endpoints-tether"}
-
-| Region               | Hosted Static Website Endpoint                              |
-|----------------------|-------------------------------------------------------------|
-| US: Dallas           | `s3-web.direct.dal.us.cloud-object-storage.appdomain.cloud` |
-| US: San Jose         | `s3-web.direct.sjc.us.cloud-object-storage.appdomain.cloud` |
-| US: Washington, D.C. | `s3-web.direct.wdc.us.cloud-object-storage.appdomain.cloud` |
-| EU: Amsterdam        | `s3-web.direct.ams.eu.cloud-object-storage.appdomain.cloud` |
-| EU: Frankfurt        | `s3-web.direct.fra.eu.cloud-object-storage.appdomain.cloud` |
-| EU: Milan            | `s3-web.direct.mil.eu.cloud-object-storage.appdomain.cloud` |
-| AP: Tokyo            | `s3-web.direct.tok.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Seoul            | `s3-web.direct.seo.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Hong Kong        | `s3-web.direct.hkg.ap.cloud-object-storage.appdomain.cloud` |
-{: class="simple-tab-table"}
-{: caption="Table 2a. Cross Region Endpoints (Tethered)" caption-side="top"}
-{: #swtether3}
-{: tab-title="Direct"}
-{: tab-group="Cross-regional-endpoints-tether"}
-
 
 | Location                    | Hosted Static Website Endpoint                      |
 |-----------------------------|-----------------------------------------------------|
