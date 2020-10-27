@@ -910,7 +910,6 @@ This operation returns:
 If there are no legal holds on the object, an empty `LegalHoldSet` is returned.
 If there is no retention period specified on the object, a `404` error is returned.
 
-
 ```js
 function listLegalHoldsOnObject(bucketName, objectName) {
     console.log(`List all legal holds on object ${objectName} in bucket ${bucketName}`);
@@ -928,3 +927,39 @@ function listLegalHoldsOnObject(bucketName, objectName) {
 ```
 {: codeblock}
 {: javascript}
+
+### Create a hosted static website
+{: #node-examples-hosted-static-website-create}
+
+This operation requires permissions, as only the bucket owner is typically permitted to configure a bucket to host a static website. The parameters determine the default suffix for visitors to the site as well as an optional error document.
+
+```js
+var websiteParams = {
+  Bucket: "bucketName", 
+  WebsiteConfiguration: {
+    ErrorDocument: {
+      Key: "error.html"
+    }, 
+    IndexDocument: {
+      Suffix: "index.html"
+    }
+  }
+};
+function putBucketWebsiteConfiguration(websiteParams) {
+  return cos.putBucketWebsite({websiteParams}).promise()
+    .then((data) => {
+       console.log(`Website configured for ${bucketName}`);
+    })
+    .catch((e) => {
+       console.log(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+{: codeblock}
+{: javascript}
+
+## Next Steps
+{: #node-guide-next-steps}
+
+More detail on individual methods and classes can be found in [the SDK's API documentation](https://ibm.github.io/ibm-cos-sdk-js/){: external}. Check out the source code on [GitHub](https://github.com/IBM/ibm-cos-sdk-js){: external}.
+ 

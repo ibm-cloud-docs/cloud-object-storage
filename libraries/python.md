@@ -112,7 +112,6 @@ COS_INSTANCE_CRN = "<service-instance-id>" # eg "crn:v1:bluemix:public:cloud-obj
 cos = ibm_boto3.resource("s3",
     ibm_api_key_id=COS_API_KEY_ID,
     ibm_service_instance_id=COS_RESOURCE_CRN,
-    ibm_auth_endpoint=COS_AUTH_ENDPOINT,
     config=Config(signature_version="oauth"),
     endpoint_url=COS_ENDPOINT
 )
@@ -422,7 +421,6 @@ def multi_part_upload_manual(bucket_name, item_name, file_path):
         cos_cli = ibm_boto3.client("s3",
             ibm_api_key_id=COS_API_KEY_ID,
             ibm_service_instance_id=COS_SERVICE_CRN,
-            ibm_auth_endpoint=COS_AUTH_ENDPOINT,
             config=Config(signature_version="oauth"),
             endpoint_url=COS_ENDPOINT
         )
@@ -524,7 +522,6 @@ def upload_large_file(bucket_name, item_name, file_path):
     cos_cli = ibm_boto3.client("s3",
         ibm_api_key_id=COS_API_KEY_ID,
         ibm_service_instance_id=COS_SERVICE_CRN,
-        ibm_auth_endpoint=COS_AUTH_ENDPOINT,
         config=Config(signature_version="oauth"),
         endpoint_url=COS_ENDPOINT
     )
@@ -567,7 +564,6 @@ def get_bucket_contents_v2(bucket_name, max_keys):
         cos_cli = ibm_boto3.client("s3",
             ibm_api_key_id=COS_API_KEY_ID,
             ibm_service_instance_id=COS_SERVICE_CRN,
-            ibm_auth_endpoint=COS_AUTH_ENDPOINT,
             config=Config(signature_version="oauth"),
             endpoint_url=COS_ENDPOINT)
 
@@ -682,7 +678,6 @@ from ibm_s3transfer.aspera.manager import AsperaTransferManager
 
 COS_ENDPOINT = "<endpoint>" # Current list avaiable at https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints
 COS_API_KEY_ID = "<api-key>"
-COS_AUTH_ENDPOINT = "https://iam.cloud.ibm.com/identity/token"
 COS_RESOURCE_CRN = "<resource-instance-id>"
 COS_BUCKET_LOCATION = "<location>"
 
@@ -690,7 +685,6 @@ COS_BUCKET_LOCATION = "<location>"
 cos = ibm_boto3.client("s3",
     ibm_api_key_id=COS_API_KEY_ID,
     ibm_service_instance_id=COS_RESOURCE_CRN,
-    ibm_auth_endpoint=COS_AUTH_ENDPOINT,
     config=Config(signature_version="oauth"),
     endpoint_url=COS_ENDPOINT
 )
@@ -1252,3 +1246,28 @@ def list_legal_holds_on_object(bucket_name, object_name):
 {: codeblock}
 {: python}
 
+### Create a hosted static website
+{: #python-examples-hosted-static-website-create}
+
+This operation requires permissions, as only the bucket owner is typically permitted to configure a bucket to host a static website. The parameters determine the default suffix for visitors to the site as well as an optional error document.
+
+```py 
+def putBucketWebsiteConfiguration(bucket_name):
+    website_defaults = {
+        'ErrorDocument': {'Key': 'error.html'},
+        'IndexDocument': {'Suffix': 'index.html'},
+    }
+    
+    cos.put_bucket_website(Bucket=bucket_name, WebsiteConfiguration=website_defaults)
+
+    print("Website configuration set on bucket {0}\n".format(bucket_name))
+
+```
+{: codeblock}
+{: python}
+
+## Next Steps
+{: #python-guide-next-steps}
+
+For more information, the source code can be found at [GitHub](https://github.com/ibm/ibm-cos-sdk-python/){: external}.
+ 

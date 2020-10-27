@@ -702,8 +702,8 @@ func main() {
 	fmt.Println(e)
 }
 
-
 ```
+{: codeblock}
 
 The typical response is exemplified here.
 
@@ -723,7 +723,49 @@ The typical response is exemplified here.
    }
  }
 ```
-{: .codeblock}
+{: codeblock}
+
+### Create a hosted static website
+{: #go-guide-hosted-static-website-create}
+
+This operation requires permissions, as only the bucket owner is typically permitted to configure a bucket to host a static website. The parameters determine the default suffix for visitors to the site as well as an optional error document included here to complete the example.
+
+```
+func main() {
+
+	// Create Client
+	sess := session.Must(session.NewSession())
+	client := s3.New(sess, conf)
+	
+	// Create a bucket
+	input := &s3.CreateBucketInput{
+		Bucket: aws.String("<BUCKET_NAME>"),
+	}
+	d, e := client.CreateBucket(input)
+	fmt.Println(d) // should print an empty bracket
+	fmt.Println(e) // should print <nil>
+
+	// PUT BUCKET WEBSITE
+	pInput := s3.PutBucketWebsiteInput{
+        Bucket: input,
+        WebsiteConfiguration: &s3.WebsiteConfiguration{
+            IndexDocument: &s3.IndexDocument{
+                Suffix: aws.String("index.html"),
+            },
+        },
+    }
+
+    pInput.WebsiteConfiguration.ErrorDocument = &s3.ErrorDocument{
+        Key: aws.String("error.html"),
+    }
+
+    p, e := client.PutBucketWebsite(&params)
+	fmt.Println(p)
+	fmt.Println(e) // see response for results
+
+}
+```
+{: codeblock}
 
 ## Next Steps
 {: #go-next-steps}
