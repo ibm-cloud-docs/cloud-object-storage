@@ -28,6 +28,8 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 ## Q4 2020
 {: #updates-2020-q4}
 
+Buckets can now be configured to [serve static websites](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-options).
+
 Lifecycle actions on Key Protect encyrption keys can now generate bucket events in Activity Tracker.
 
 Buckets can now be encrypted using {{site.data.keyword.hscrypto}} in the US East region.
