@@ -1157,6 +1157,7 @@ Content-Length: 0
 ----
 
 ## Delete any cross-origin resource sharing configuration for a bucket
+{: #compatibility-api-delete-cors}
 
 A `DELETE` issued to a bucket with the proper parameters creates or replaces a cross-origin resource sharing (CORS) configuration for a bucket.
 
@@ -1602,6 +1603,134 @@ X-Clv-S3-Version: 2.5
 x-amz-request-id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
 Content-Length: 0
 ```
+
+----
+
+## Configure a bucket for static website hosting
+{: #compatibility-api-add-website}
+
+A `PUT` issued to a bucket with the proper parameters creates or replaces a static website configuration for a bucket.
+
+**Syntax**
+
+```bash
+PUT https://{endpoint}/{bucket-name}?website # path style
+PUT https://{bucket-name}.{endpoint}?website # virtual host style
+```
+{: codeblock}
+
+**Payload Elements**
+
+The body of the request must contain an XML block with the following schema:
+
+| Element                     | Type      | Children                                                                   | Ancestor              | Notes                                    |
+|-----------------------------|-----------|----------------------------------------------------------------------------|-----------------------|------------------------------------------|
+| WebsiteConfiguration        | Container | ErrorDocument, IndexDocument, RedirectAllRequestsTo, RoutingRule           | -                     | Required                                 |
+| ErrorDocument               | Container | Key                                                                        | WebsiteConfiguration  | -                                        |
+| Key                         | String    | -                                                                          | ErrorDocument         | -                                        |
+| IndexDocument               | Container | Suffix                                                                     | WebsiteConfiguration  | -                                        |
+| Suffix                      | String    | -                                                                          | IndexDocument         | -                                        |
+| RedirectAllRequestsTo       | Container | HostName, Protocol                                                         | WebsiteConfiguration  | If given, must be only element specified |
+| HostName                    | String    | -                                                                          | RedirectAllRequestsTo | -                                        |
+| Protocol                    | String    | -                                                                          | RedirectAllRequestsTo | -                                        |
+| RoutingRules                | Container | RoutingRule                                                                | WebsiteConfiguration  | -                                        |
+| RoutingRule                 | Container | Condition, Redirect                                                        | RoutingRules          | -                                        |
+| Condition                   | Container | HttpErrorCodeReturnedEquals, KeyPrefixEquals                               | RoutingRule           | -                                        |
+| HttpErrorCodeReturnedEquals | String    | -                                                                          | Condition             | -                                        |
+| KeyPrefixEquals             | String    | -                                                                          | Condition             | -                                        |
+| Redirect                    | Container | HostName, HttpRedirectCode, Protocol, ReplaceKeyPrefixWith, ReplaceKeyWith | RoutingRule           | -                                        |
+| HostName                    | String    | -                                                                          | Redirect              | -                                        |
+| HttpRedirectCode            | String    | -                                                                          | Redirect              | -                                        |
+| Protocol                    | String    | -                                                                          | Redirect              | -                                        |
+| ReplaceKeyPrefixWith        | String    | -                                                                          | Redirect              | -                                        |
+| ReplaceKeyWith              | String    | -                                                                          | Redirect              | -                                        |
+
+**Example request**
+
+This is an example of adding a website configuration that serves a basic website that looks for an `index.html` file in each prefix. For example, a request made to `/apiary/images/` will serve the content in `/apiary/images/index.html` without the need for specifying the actual file.
+
+```http
+PUT /apiary?website HTTP/1.1
+Authorization: Bearer {token}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+Content-Length: 119
+```
+{: token}
+
+
+```http
+PUT /apiary?website HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+Content-Length: 119
+```
+{: hmac}
+
+```xml
+<WebsiteConfiguration>
+   <IndexDocument>
+      <Suffix>index.html</Suffix>
+   </IndexDocument>
+</WebsiteConfiguration>
+```
+
+
+**Example response**
+
+```http
+HTTP/1.1 200 OK
+Date: Wed, 5 Oct 2020 15:39:38 GMT
+X-Clv-Request-Id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
+Accept-Ranges: bytes
+Content-Length: 0
+```
+
+----
+
+## Delete any website configuration for a bucket
+{: #compatibility-api-delete-website}
+
+A `DELETE` issued to a bucket with the proper parameters removes the website configuration for a bucket.
+
+**Syntax**
+
+```bash
+DELETE https://{endpoint}/{bucket-name}?website # path style
+DELETE https://{bucket-name}.{endpoint}?website # virtual host style
+```
+{: codeblock}
+
+**Example request**
+{: token}
+
+This is an example of deleting a website configuration for a bucket.
+{: token}
+
+```http
+DELETE /apiary?website HTTP/1.1
+Authorization: Bearer {token}
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+DELETE /apiary?website HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
+
+The server responds with `204 No Content`.
+
+----
 
 ## Next Steps
 {: #api-ref-buckets-next-steps}

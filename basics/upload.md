@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-28"
+lastupdated: "2020-09-09"
 
 keywords: upload, getting started, basics, ingest
 
@@ -87,7 +87,7 @@ On an object HEAD or GET request, [the `If-Modified-Since` header](https://tools
 ### Using `If-Unmodified-Since`
 {: #upload-if-unmodified-since}
 
-On an object PUT, HEAD, or GET request, [the `If-Unodified-Since` header](https://tools.ietf.org/html/rfc7232#section-3.3) will check to see if the object's `Last-Modified` value (for example `Sat, 14 March 2020 19:43:31 GMT`) is equal to or earlier than a provided value. If the object has not been modified, the operation will proceed. If the `Last-Modified` value is more recent, the system will return a `412 Precondition Failed` error on a PUT and a `304 Not Modified` on GET or HEAD.
+On an object PUT, HEAD, or GET request, [the `If-Unmodified-Since` header](https://tools.ietf.org/html/rfc7232#section-3.3) will check to see if the object's `Last-Modified` value (for example `Sat, 14 March 2020 19:43:31 GMT`) is equal to or earlier than a provided value. If the object has not been modified, the operation will proceed. If the `Last-Modified` value is more recent, the system will return a `412 Precondition Failed` error on a PUT and a `304 Not Modified` on GET or HEAD.
 
 >   If-Unmodified-Since is most often used with state-changing methods (e.g., POST, PUT, DELETE) to prevent accidental overwrites when multiple user agents might be acting in parallel on a resource that does not supply entity-tags with its representations (i.e., to prevent the "lost update" problem).  It can also be used with safe methods to abort a request if the selected representation does not match one already stored (or partially stored) from a prior request.
 

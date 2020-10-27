@@ -2,12 +2,11 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-19"
+lastupdated: "2020-09-09"
 
 keywords: object storage, sdk, guide
 
 subcollection: cloud-object-storage
-
 
 ---
 {:new_window: target="_blank"}
@@ -77,6 +76,9 @@ To complete the code example, you need to replace the following values:
 |`<storage-class>`|Storage class for a new bucket|`us-south-standard`|
 
 For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+
+Code examples are tested on supported release versions of Python. 
+{: python}
 
 ```python
 import os
