@@ -52,6 +52,8 @@ mc config host add <ALIAS> <COS-ENDPOINT> <ACCESS-KEY> <SECRET-KEY>
 * `<ACCESS-KEY>` - access key that is assigned to your Service Credential
 * `<SECRET-KEY>` - secret key that is assigned to your Service Credential
 
+The `<ACCESS-KEY>` and `<SECRET-KEY>` can be accessed/generated using [HMAC](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main)  
+
 The configuration information is stored in a JSON file that is at `~/.mc/config.json`
 
 ```
