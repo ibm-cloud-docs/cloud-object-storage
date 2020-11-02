@@ -1735,7 +1735,7 @@ The server responds with `204 No Content`.
 ## Block public ACLs on a bucket
 {: #compatibility-api-add-block}
 
-A `PUT` issued to a bucket with the proper parameters prevents adding public access ACLs on a bucket. It can be set either to fail new ACL requests, or to ignore them.  This does not affect existing ACLs.  **This operation does not affect IAM Public Access policies.**
+A `PUT` issued to a bucket with the proper parameters prevents adding public access ACLs on a bucket. It can be set either to fail new ACL requests, or to ignore them.  `BlockPublicAcls` does not affect existing ACLs, but `IgnorePublicAcls` will ignore existing ACLs.  **This operation does not affect IAM Public Access policies.**
 
 **Syntax**
 
