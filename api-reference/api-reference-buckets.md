@@ -1732,8 +1732,6 @@ The server responds with `204 No Content`.
 
 ----
 
-----
-
 ## Block public ACLs on a bucket
 {: #compatibility-api-add-block}
 
@@ -1758,8 +1756,6 @@ The body of the request must contain an XML block with the following schema:
 | IgnorePublicAcls               | Boolean   | -                                 | PublicAccessBlockConfiguration | -        |
 
 **Example request**
-
-This is an example of adding a website configuration that serves a basic website that looks for an `index.html` file in each prefix. For example, a request made to `/apiary/images/` will serve the content in `/apiary/images/index.html` without the need for specifying the actual file.
 
 ```http
 PUT /apiary?publicAccessBlock HTTP/1.1
