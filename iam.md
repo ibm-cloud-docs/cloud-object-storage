@@ -76,8 +76,8 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 ## Identity and Access Management actions
 {: #iam-actions}
 
-| Action                                      | Description                                                    |
-|---------------------------------------------|----------------------------------------------------------------|
+| Action                                                           | Description                                                    |
+|------------------------------------------------------------------|----------------------------------------------------------------|
 | `cloud-object-storage.account.get_account_buckets`               | List all buckets in a service instance.                        |
 | `cloud-object-storage.bucket.put_bucket`                         | Create a bucket.                                               |
 | `cloud-object-storage.bucket.post_bucket`                        | Internal use only - unsupported for users.                     |
@@ -138,4 +138,7 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 | `cloud-object-storage.object.get_legal_hold`                     | View any legal holds on an object.                             |
 | `cloud-object-storage.object.post_extend_retention`              | Extend a retention policy.                                     |
 | `cloud-object-storage.provide_ibm_client_originating_ip_address` | Internal use only - unsupported for users.                     |
+| `cloud-object-storage.bucket.put_public_access_block`            | Add a public ACL block configuration                           |
+| `cloud-object-storage.bucket.get_public_access_block`            | Read a public ACL block configuration                          |
+| `cloud-object-storage.bucket.delete_public_access_block`         | Delete a public ACL block configuration                        |
 {: caption="Table 4. Granular IAM action descriptions"}
