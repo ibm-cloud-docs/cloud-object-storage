@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-02-11"
+lastupdated: "2020-11-02"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -56,7 +56,7 @@ A `GET` request sent to the endpoint root returns a list of buckets that are ass
 Header                    | Type   | Required? | Description
 --------------------------|--------|-----------|---------------------------------------------------------
 `ibm-service-instance-id` | String | Yes       | List buckets that were created in this service instance.
-
+{: token}
 
 Query Parameter | Value | Required? | Description
 ----------------|-------|-----------|-------------------------------------------------------
