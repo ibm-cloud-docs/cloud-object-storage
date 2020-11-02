@@ -1732,6 +1732,171 @@ The server responds with `204 No Content`.
 
 ----
 
+----
+
+## Block public ACLs on a bucket
+{: #compatibility-api-add-block}
+
+A `PUT` issued to a bucket with the proper parameters prevents adding public access ACLs on a bucket. It can be set either to fail new ACL requests, or to ignore them.  This does not affect existing ACLs.  **This operation does not affect IAM Public Access policies.**
+
+**Syntax**
+
+```bash
+PUT https://{endpoint}/{bucket-name}?publicAccessBlock # path style
+PUT https://{bucket-name}.{endpoint}?publicAccessBlock # virtual host style
+```
+{: codeblock}
+
+**Payload Elements**
+
+The body of the request must contain an XML block with the following schema:
+
+| Element                        | Type      | Children                          | Ancestor                       | Notes    |
+|--------------------------------|-----------|-----------------------------------|--------------------------------|----------|
+| PublicAccessBlockConfiguration | Container | BlockPublicAcls, IgnorePublicAcls | -                              | Required |
+| BlockPublicAcls                | Boolean   | -                                 | PublicAccessBlockConfiguration | -        |
+| IgnorePublicAcls               | Boolean   | -                                 | PublicAccessBlockConfiguration | -        |
+
+**Example request**
+
+This is an example of adding a website configuration that serves a basic website that looks for an `index.html` file in each prefix. For example, a request made to `/apiary/images/` will serve the content in `/apiary/images/index.html` without the need for specifying the actual file.
+
+```http
+PUT /apiary?publicAccessBlock HTTP/1.1
+Authorization: Bearer {token}
+Host: s3.us.cloud-object-storage.appdomain.cloud
+Content-Length: 155
+```
+{: token}
+
+
+```http
+PUT /apiary?publicAccessBlock HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Host: s3.us.cloud-object-storage.appdomain.cloud
+Content-Length: 155
+```
+{: hmac}
+
+```xml
+<PublicAccessBlockConfiguration>
+   <BlockPublicAcls>True</BlockPublicAcls>
+   <IgnorePublicAcls>True</IgnorePublicAcls>
+</PublicAccessBlockConfiguration>
+```
+
+
+**Example response**
+
+```http
+HTTP/1.1 200 OK
+Date: Mon, 02 Nov 2020 15:39:38 GMT
+X-Clv-Request-Id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
+Accept-Ranges: bytes
+Content-Length: 0
+```
+
+----
+
+## Check a public ACL block for a bucket
+{: #compatibility-api-get-block}
+
+A `GET` issued to a bucket with the proper parameters returns the ACL block configuration for a bucket.
+
+**Syntax**
+
+```bash
+GET https://{endpoint}/{bucket-name}?publicAccessBlock # path style
+GET https://{bucket-name}.{endpoint}?publicAccessBlock # virtual host style
+```
+{: codeblock}
+
+**Example request**
+{: token}
+
+This is an example of reading a public access block for a bucket.
+{: token}
+
+```http
+GET /apiary?publicAccessBlock HTTP/1.1
+Authorization: Bearer {token}
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+GET /apiary?publicAccessBlock HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
+
+```
+HTTP/1.1 200 OK
+Date: Mon, 02 Nov 2020 19:52:56 GMT
+X-Clv-Request-Id: 7c9079b1-2833-4abc-ba10-466ef06725b2
+Server: Cleversafe/3.15.2.31
+X-Clv-S3-Version: 2.5
+Accept-Ranges: bytes
+Content-Type: application/xml
+Content-Length: 248
+```
+
+```xml
+<PublicAccessBlockConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+  <BlockPublicAcls>true</BlockPublicAcls>
+  <IgnorePublicAcls>true</IgnorePublicAcls>
+</PublicAccessBlockConfiguration>
+```
+
+## Delete a public ACL block from a bucket
+{: #compatibility-api-delete-block}
+
+A `DELETE` issued to a bucket with the proper parameters removes the public ACL block from a bucket.
+
+**Syntax**
+
+```bash
+DELETE https://{endpoint}/{bucket-name}?publicAccessBlock # path style
+DELETE https://{bucket-name}.{endpoint}?publicAccessBlock # virtual host style
+```
+{: codeblock}
+
+**Example request**
+{: token}
+
+This is an example of deleting an ACL block for a bucket.
+{: token}
+
+```http
+DELETE /apiary?publicAccessBlock HTTP/1.1
+Authorization: Bearer {token}
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+DELETE /apiary?publicAccessBlock HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
+
+The server responds with `204 No Content`.
+
+----
+
 ## Next Steps
 {: #api-ref-buckets-next-steps}
 
