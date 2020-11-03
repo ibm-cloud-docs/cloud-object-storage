@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2020
 lastupdated: "2020-09-30"
 
-keywords: actions, api
+keywords: activity tracker, actions, api
 
 subcollection: cloud-object-storage
 
@@ -25,14 +25,14 @@ subcollection: cloud-object-storage
 # IAM and Activity Tracker actions by API
 {: #at-iam}
 
-List of {{site.data.keyword.cloud_notm}} IAM and {{site.data.keyword.at_full}} actions by API method.
+Find detailed information on {{site.data.keyword.cloud_notm}} events from IAM and {{site.data.keyword.at_full}} actions, listed here by API method.
 {: shortdesc}
 
 ## Resource Configuration API
 {: #at-iam-config}
 
-API for configuring {{site.data.keyword.cos_full}} buckets: [COS Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration#introduction)
-*  Endpoint URL: `https://config.cloud-object-storage.cloud.ibm.com/v1`
+The first table details the API for configuring {{site.data.keyword.cos_full}} buckets: [COS Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration#introduction)
+*  Note the endpoint URL: `https://config.cloud-object-storage.cloud.ibm.com/v1`
 
 | Action                                    | Method                                | IAM Action                                                                                                                                                        | Activity Tracker action                              |
 |-------------------------------------------|---------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
@@ -43,8 +43,8 @@ API for configuring {{site.data.keyword.cos_full}} buckets: [COS Resource Config
 ## S3 API
 {: #at-iam-s3}
 
-API for reading and writing objects: [COS Compatibility S3 API](https://cloud.ibm.com/apidocs/cos/cos-compatibility#introduction)
-* Endpoint URL is different by region: [Endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints)
+The next table describes the API for reading and writing objects as defined in the [COS Compatibility S3 API](https://cloud.ibm.com/apidocs/cos/cos-compatibility#introduction)
+* Note that the endpoint URL for S3 operations differs by region: [Endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints)
 
 | Action                                              | Method                                                                      | IAM Action                                                                          | Activity Tracker action                          |
 |-----------------------------------------------------|-----------------------------------------------------------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------|

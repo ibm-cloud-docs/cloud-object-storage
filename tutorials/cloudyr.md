@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-10-14"
+lastupdated: "2019-10-14"
 
 keywords: r, tutorial, cloudyr, data science
 
@@ -78,7 +78,7 @@ As it is beyond the scope of this tutorial, it is assumed you already installed 
 Sys.setenv("AWS_ACCESS_KEY_ID" = "access_key_id",
            "AWS_SECRET_ACCESS_KEY" = "secret_access_key",
            "AWS_S3_ENDPOINT" = "myendpoint",
-           "AWS_DEFAULT_REGION" = "us-geo")
+           "AWS_DEFAULT_REGION" = "")
 ```
 {: codeblock}
 
@@ -99,6 +99,9 @@ bucketlist()
 {: #cloudyr-s3-library-methods}
 
 You can learn a lot from working with sample packages. For example, the package for [Cosmic Microwave Background Data Analysis](https://github.com/frycast/rcosmo){: external} presents a conundrum. The executable of the project for local compiling are small enough to work on one's personal machine, but working with the source data would be constrained due to the size of the data.
+
+When using version `0.3.21` of the package, it is necessary to add `region=""` in a request to connect to COS.
+{: tip}
 
 In addition to PUT, HEAD, and other compatible API commands, we can GET objects as shown with the S3-compatible client we included earlier. 
  
