@@ -56,7 +56,7 @@ At minimum, your configuration should consist of a required index document for v
 ## Advanced Configuration
 {: #static-websites-options-adv-conf}
 
-When you create and configure a new hosted static website, you also have the full power of {{site.data.keyword.cis_full_notm}} to configure more advanced options than just the defaults. But you don't even have to go further than configuring your bucket during creation to start customizing your new site.
+When you create and configure a new hosted static website, you may also wish to use {{site.data.keyword.cis_full_notm}} to configure more advanced options including [routing rules for your domain](). But you don't even have to go further than configuring your bucket during creation to start customizing your new site.
 
 ![Configure options](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-complete-config.jpg){: caption="Figure 1. Initial configuration options"}
 
