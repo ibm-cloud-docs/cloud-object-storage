@@ -142,6 +142,7 @@ Cloud Object Storage
         info/activestorage.md
         [Use Velero for Kubernetes Backups](https://velero.io/docs/v1.3.2/contributions/ibm-config/)
         help/object-storage.md
+        info/cis-routing-rules-for-cos.md
 
     {: .topicgroup}
     Security and compliance
