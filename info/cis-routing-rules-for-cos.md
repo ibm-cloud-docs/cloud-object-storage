@@ -29,12 +29,25 @@ subcollection: cloud-object-storage
 # Domain Routing for {{site.data.keyword.cos_full_notm}}
 {: #routing-rules-cos}
 
-A new hosted static website can be configured using {{site.data.keyword.cis_full_notm}}. Configuring routing rules for domains hosted in {{site.data.keyword.cos_full}} will be explored in this "how to."
+A static website hosted with {{site.data.keyword.cos_full}} can be configured using {{site.data.keyword.cis_full_notm}}. Configuring routing rules for domains hosted in {{site.data.keyword.cos_full_notm}} will be explored in this "how to."
 {: shortdesc}
+
+These instructions are subject to change and are provided here for review. 
+{: important}
 
 ## Overview
 {: #routing-rules-cos-overview}
 
+## Before you start
+{: #routing-rules-cos-prerequisites}
+
+Prerequisites:
+
+- An account for the {{site.data.keyword.cloud_notm}} Platform 
+- An Internet domain managed through {{site.data.keyword.cis_full_notm}}
+
+These instructions require an account with the correct [plan](/docs/cis?topic=cis-multi-domain-support) in order to access the services as described. 
+{: note}
 
 ### {{site.data.keyword.cloud_notm}} Internet, Domain, and Delivery Services
 {: #routing-rules-cos-cis}
