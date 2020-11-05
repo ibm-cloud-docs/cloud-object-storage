@@ -64,7 +64,8 @@ Buckets that are created at a regional endpoint distribute data across three dat
 | EU United Kingdom | Public | `s3.eu-gb.cloud-object-storage.appdomain.cloud`    |
 | EU Germany        | Public | `s3.eu-de.cloud-object-storage.appdomain.cloud`    |
 | AP Australia      | Public | `s3.au-syd.cloud-object-storage.appdomain.cloud`   |
-| AP Japan          | Public | `s3.jp-tok.cloud-object-storage.appdomain.cloud`   |
+| AP Tokyo          | Public | `s3.jp-tok.cloud-object-storage.appdomain.cloud`   |
+| AP Osaka          | Public | `s3.jp-osa.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
 {: caption="Table 1. Regional Endpoints" caption-side="top"}
 {: #regionalendpointtable1}
@@ -78,7 +79,8 @@ Buckets that are created at a regional endpoint distribute data across three dat
 | EU United Kingdom | Private | `s3.private.eu-gb.cloud-object-storage.appdomain.cloud`    |
 | EU Germany        | Private | `s3.private.eu-de.cloud-object-storage.appdomain.cloud`    |
 | AP Australia      | Private | `s3.private.au-syd.cloud-object-storage.appdomain.cloud`   |
-| AP Japan          | Private | `s3.private.jp-tok.cloud-object-storage.appdomain.cloud`   |
+| AP Tokyo          | Private | `s3.private.jp-tok.cloud-object-storage.appdomain.cloud`   |
+| AP Osaka          | Private | `s3.private.jp-osa.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
 {: caption="Table 1. Regional Endpoints" caption-side="top"}
 {: #regionalendpointtable2}
@@ -92,7 +94,8 @@ Buckets that are created at a regional endpoint distribute data across three dat
 | EU United Kingdom | Direct | `s3.direct.eu-gb.cloud-object-storage.appdomain.cloud`    |
 | EU Germany        | Direct | `s3.direct.eu-de.cloud-object-storage.appdomain.cloud`    |
 | AP Australia      | Direct | `s3.direct.au-syd.cloud-object-storage.appdomain.cloud`   |
-| AP Japan          | Direct | `s3.direct.jp-tok.cloud-object-storage.appdomain.cloud`   |
+| AP Tokyo          | Direct | `s3.direct.jp-tok.cloud-object-storage.appdomain.cloud`   |
+| AP Osaka          | Direct | `s3.direct.jp-osa.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
 {: caption="Table 1. Regional Endpoints" caption-side="top"}
 {: #regionalendpointtable3}
