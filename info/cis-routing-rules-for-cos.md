@@ -26,7 +26,7 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Domain Routing for {{site.data.keyword.cos_full_notm}}
+# Domain Routing for {{site.data.keyword.cos_full_notm}} static web hosting
 {: #routing-rules-cos}
 
 A static website hosted with {{site.data.keyword.cos_full}} can be configured using {{site.data.keyword.cis_full_notm}}. Configuring routing rules for domains hosted in {{site.data.keyword.cos_full_notm}} will be explored in this "how to."
@@ -46,7 +46,7 @@ When hosting static website content on {{site.data.keyword.cos_full_notm}}, you 
 Prerequisites:
 
 - An account for the {{site.data.keyword.cloud_notm}} Platform
-- An instance of {{}}
+- An instance of {{site.data.keyword.cis_short}} with an applicable plan and permissions
 - A bucket in your instance configured as a hosted static website 
 - An Internet domain managed through {{site.data.keyword.cis_full_notm}}
 
@@ -74,7 +74,7 @@ Create a "Page Rule" in your instance of {{site.data.keyword.cis_full_notm}}
 1. Add a new DNS record, substituting your configuration for the examplified values shown:
 
    - Type: CNAME
-   - Name: <sub-domain>
+   - Name: `<sub-domain>`
    - TTL: Automatic
    - Alias Domain Name: web-example-com.s3-web.us-east.cloud-object-storage.appdomain.cloud
    
@@ -86,4 +86,4 @@ To test the rule you just created, allow for the configuration to propagate and 
 ## Next steps
 {: #routing-rules-cos-steps}
 
-Reviewing this content should be essential.
+Learn more about [{{site.data.keyword.cis_full_notm}}](/docs/cis?topic=cis-about-ibm-cloud-internet-services-cis), or jump right in using {{site.data.keyword.cis_short}} to [get started](/docs/cis?topic=cis-getting-started).
