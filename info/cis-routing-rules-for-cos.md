@@ -90,9 +90,9 @@ After you have directed your visitors to the right location using a "Page Rule,"
 1. Click "Add" to save the DNS entry when you've completed the configuration.
 1. In the table of rules where your new entry appears, enable the Proxy option as "on."
 
-To test the rule you just created, allow for the configuration to propagate and visit the subdomain exemplified by `web.example.com`.
+To test the rule you just created, allow some time for the configuration to propagate. Then, use a browser to visit the subdomain exemplified by `web.example.com` to validate the settings.
 
 ## Next steps
 {: #routing-rules-cos-steps}
 
-Learn more about [{{site.data.keyword.cis_full_notm}}](/docs/cis?topic=cis-about-ibm-cloud-internet-services-cis), or jump right in using {{site.data.keyword.cis_short}} to [get started](/docs/cis?topic=cis-getting-started).
+Learn more about [{{site.data.keyword.cis_full_notm}}](/docs/cis?topic=cis-about-ibm-cloud-internet-services-cis), or jump right in using {{site.data.keyword.cis_short}} to [get started](/docs/cis?topic=cis-getting-started) managing your presence on the Internet.
