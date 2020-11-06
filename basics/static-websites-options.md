@@ -117,7 +117,8 @@ The following tables match most of the regions, locations, and type of connectio
 | EU United Kingdom | `s3-web.eu-gb.cloud-object-storage.appdomain.cloud`    |
 | EU Germany        | `s3-web.eu-de.cloud-object-storage.appdomain.cloud`    |
 | AP Australia      | `s3-web.au-syd.cloud-object-storage.appdomain.cloud`   |
-| AP Japan          | `s3-web.jp-tok.cloud-object-storage.appdomain.cloud`   |
+| AP Tokyo          | `s3-web.jp-tok.cloud-object-storage.appdomain.cloud`   |
+| AP Osaka          | `s3-web.jp-osa.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
 {: caption="Table 1. Regional Endpoints" caption-side="top"}
 {: #swregionalendpointtable1}
@@ -131,7 +132,8 @@ The following tables match most of the regions, locations, and type of connectio
 | EU United Kingdom | `s3-web.private.eu-gb.cloud-object-storage.appdomain.cloud`    |
 | EU Germany        | `s3-web.private.eu-de.cloud-object-storage.appdomain.cloud`    |
 | AP Australia      | `s3-web.private.au-syd.cloud-object-storage.appdomain.cloud`   |
-| AP Japan          | `s3-web.private.jp-tok.cloud-object-storage.appdomain.cloud`   |
+| AP Tokyo          | `s3-web.private.jp-tok.cloud-object-storage.appdomain.cloud`   |
+| AP Osaka          | `s3-web.private.jp-osa.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
 {: caption="Table 1. Regional Endpoints" caption-side="top"}
 {: #swregionalendpointtable2}
@@ -145,7 +147,8 @@ The following tables match most of the regions, locations, and type of connectio
 | EU United Kingdom | `s3-web.direct.eu-gb.cloud-object-storage.appdomain.cloud`    |
 | EU Germany        | `s3-web.direct.eu-de.cloud-object-storage.appdomain.cloud`    |
 | AP Australia      | `s3-web.direct.au-syd.cloud-object-storage.appdomain.cloud`   |
-| AP Japan          | `s3-web.direct.jp-tok.cloud-object-storage.appdomain.cloud`   |
+| AP Tokyo          | `s3-web.direct.jp-tok.cloud-object-storage.appdomain.cloud`   |
+| AP Osaka          | `s3-web.direct.jp-osa.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
 {: caption="Table 1. Regional Endpoints" caption-side="top"}
 {: #swregionalendpointtable3}
