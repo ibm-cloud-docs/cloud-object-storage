@@ -80,7 +80,7 @@ After you have directed your visitors to the right location using a "Page Rule,"
 
 1. Select Reliability from the Navigation
 1. Select the DNS Tab from the options.
-1. Add a new DNS record, substituting your configuration for the exemplified values shown.
+1. Add a new DNS record, substituting your configuration for the exemplified values shown. The desired subdomain should be added in the "name" field. in this example, we used `web` as a new subdomain value. The "alias domain name" is the same as entered earlier, which in this example comprised a bucket name followed by a dot and then the endpoint, e.g. `web-example-com.s3-web.us-east.cloud-object-storage.appdomain.cloud`.
 
    - Type: CNAME
    - Name: `<sub-domain>`
