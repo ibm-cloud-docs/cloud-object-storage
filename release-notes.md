@@ -28,6 +28,8 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 ## Q4 2020
 {: #updates-2020-q4}
 
+Buckets can now be created in a Regional configuration in Osaka, Japan. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints).
+
 Buckets can now be configured to [serve static websites](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-options).
 
 Lifecycle actions on Key Protect encyrption keys can now generate bucket events in Activity Tracker.

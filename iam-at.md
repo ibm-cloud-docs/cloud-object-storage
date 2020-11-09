@@ -32,6 +32,7 @@ Find detailed information on {{site.data.keyword.cloud_notm}} events from IAM an
 {: #at-iam-config}
 
 The first table details the API for configuring {{site.data.keyword.cos_full}} buckets: [COS Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration#introduction)
+
 *  Note the endpoint URL: `https://config.cloud-object-storage.cloud.ibm.com/v1`
 
 | Action                                    | Method                        | IAM Action                                                                                                                                                                                                             | Activity Tracker action                              |
