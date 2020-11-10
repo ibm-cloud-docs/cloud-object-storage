@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-06-19"
+lastupdated: "2020-11-11"
 
 keywords: Object Storage, SysDig, monitoring, integration
 
@@ -197,7 +197,7 @@ When you have created your instance of {{site.data.keyword.mon_short}}, click on
 
 This guide has skipped right past the installation of agents that is typical of most monitoring configurations. In addition, you can also skip the manual creation of building a dashboard by using a pre-built solution. As shown in Figure 2, you can choose how to present your data using one of the options given.
 
-![Dashboard configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-pre-built-reports.png){: caption="Figure 2. Choose a bre-built report"}
+![Dashboard configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-pre-built-reports.png){: caption="Figure 2. Choose a pre-built report"}
 
 ### View your data in {{site.data.keyword.mon_short}}
 {: #mm-cos-connection-view-data}
