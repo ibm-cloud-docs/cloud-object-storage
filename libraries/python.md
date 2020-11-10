@@ -111,7 +111,7 @@ COS_INSTANCE_CRN = "<service-instance-id>" # eg "crn:v1:bluemix:public:cloud-obj
 # Create resource
 cos = ibm_boto3.resource("s3",
     ibm_api_key_id=COS_API_KEY_ID,
-    ibm_service_instance_id=COS_RESOURCE_CRN,
+    ibm_service_instance_id=COS_INSTANCE_CRN,
     config=Config(signature_version="oauth"),
     endpoint_url=COS_ENDPOINT
 )
@@ -134,7 +134,7 @@ COS_INSTANCE_CRN = "<service-instance-id>" # eg "crn:v1:bluemix:public:cloud-obj
 # Create client 
 cos = ibm_boto3.client("s3",
     ibm_api_key_id=COS_API_KEY_ID,
-    ibm_service_instance_id=COS_SERVICE_CRN,
+    ibm_service_instance_id=COS_INSTANCE_CRN,
     config=Config(signature_version="oauth"),
     endpoint_url=COS_ENDPOINT
 )
