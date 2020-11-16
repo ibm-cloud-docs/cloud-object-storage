@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2020
-lastupdated: "2020-10-20"
+lastupdated: "2020-11-12"
 
 keywords: security and compliance for cloud-object-storage, security for cloud-object-storage, compliance for cloud-object-storage
 
@@ -18,10 +18,8 @@ subcollection: cloud-object-storage
 # Managing security and compliance with {{site.data.keyword.cos_full_notm}}
 {: #manage-security-compliance}
 
-
 {{site.data.keyword.cos_full_notm}} is integrated with the {{site.data.keyword.compliance_short}} to help you manage security and compliance for your organization.
 {: shortdesc}
-
 
 With the {{site.data.keyword.compliance_short}}, you can:
 
@@ -31,7 +29,7 @@ With the {{site.data.keyword.compliance_short}}, you can:
 This service only supports the ability to view the results of your configuration scans in the Security and Compliance Center.
 {:note}
 
-## Monitoring security and compliance posture with *service_name*
+## Monitoring security and compliance posture with {{site.data.keyword.cos_short}}
 {: #monitor-cloud-object-storage}
 
 As a security or compliance focal, you can use the {{site.data.keyword.cos_short}} [goals](x2117978){: term} to help ensure that your organization is adhering to the external and internal standards for your industry. By using the {{site.data.keyword.compliance_short}} to validate the resource configurations in your account against a [profile](x2034950){: term}, you can identity potential issues as they arise.
@@ -45,7 +43,6 @@ To start monitoring your resources, check out [Getting started with {{site.data.
 {: #cloud-object-storage-available-goals}
 
 * Ensure that Cloud Object Storage buckets are accessible by using private endpoints only
-
 
 ## Governing {{site.data.keyword.cos_short}} resource configuration
 {: #govern-cloud-object-storage}
