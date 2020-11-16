@@ -26,7 +26,7 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Serving static content with {{site.data.keyword.cos_full_notm}}
+# Serving static websites with {{site.data.keyword.cos_full_notm}}
 {: #static-website-options}
 
 A new hosted static website can be created with {{site.data.keyword.cos_full}} in minutes using [this simple tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial). This topic contains the details and some advanced configuration options for hosting static websites.
@@ -56,7 +56,7 @@ At minimum, your configuration should consist of a required index document for v
 ## Advanced Configuration
 {: #static-websites-options-adv-conf}
 
-When you create and configure a new hosted static website, you also have the full power of {{site.data.keyword.cis_full_notm}} to configure more advanced options than just the defaults. But you don't even have to go further than configuring your bucket during creation to start customizing your new site.
+When you create and configure a new hosted static website, you may also wish to use {{site.data.keyword.cis_full_notm}} to configure more advanced options including [routing rules for your domain](/docs/cloud-object-storage?topic=cloud-object-storage-routing-rules-cos). But you don't even have to go further than configuring your bucket during creation to start customizing your new site.
 
 ![Configure options](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-complete-config.jpg){: caption="Figure 1. Initial configuration options"}
 
@@ -117,7 +117,8 @@ The following tables match most of the regions, locations, and type of connectio
 | EU United Kingdom | `s3-web.eu-gb.cloud-object-storage.appdomain.cloud`    |
 | EU Germany        | `s3-web.eu-de.cloud-object-storage.appdomain.cloud`    |
 | AP Australia      | `s3-web.au-syd.cloud-object-storage.appdomain.cloud`   |
-| AP Japan          | `s3-web.jp-tok.cloud-object-storage.appdomain.cloud`   |
+| AP Tokyo          | `s3-web.jp-tok.cloud-object-storage.appdomain.cloud`   |
+| AP Osaka          | `s3-web.jp-osa.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
 {: caption="Table 1. Regional Endpoints" caption-side="top"}
 {: #swregionalendpointtable1}
@@ -131,7 +132,8 @@ The following tables match most of the regions, locations, and type of connectio
 | EU United Kingdom | `s3-web.private.eu-gb.cloud-object-storage.appdomain.cloud`    |
 | EU Germany        | `s3-web.private.eu-de.cloud-object-storage.appdomain.cloud`    |
 | AP Australia      | `s3-web.private.au-syd.cloud-object-storage.appdomain.cloud`   |
-| AP Japan          | `s3-web.private.jp-tok.cloud-object-storage.appdomain.cloud`   |
+| AP Tokyo          | `s3-web.private.jp-tok.cloud-object-storage.appdomain.cloud`   |
+| AP Osaka          | `s3-web.private.jp-osa.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
 {: caption="Table 1. Regional Endpoints" caption-side="top"}
 {: #swregionalendpointtable2}
@@ -145,7 +147,8 @@ The following tables match most of the regions, locations, and type of connectio
 | EU United Kingdom | `s3-web.direct.eu-gb.cloud-object-storage.appdomain.cloud`    |
 | EU Germany        | `s3-web.direct.eu-de.cloud-object-storage.appdomain.cloud`    |
 | AP Australia      | `s3-web.direct.au-syd.cloud-object-storage.appdomain.cloud`   |
-| AP Japan          | `s3-web.direct.jp-tok.cloud-object-storage.appdomain.cloud`   |
+| AP Tokyo          | `s3-web.direct.jp-tok.cloud-object-storage.appdomain.cloud`   |
+| AP Osaka          | `s3-web.direct.jp-osa.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
 {: caption="Table 1. Regional Endpoints" caption-side="top"}
 {: #swregionalendpointtable3}

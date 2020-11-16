@@ -84,21 +84,24 @@ The following table lists the COS resource configuration events:
 
 The following table lists the COS bucket events:
 
-| Action                                         | Description                                |
-|------------------------------------------------|--------------------------------------------|
-| `cloud-object-storage.bucket-cors.read`        | Get the CORS configuration                 |
-| `cloud-object-storage.bucket-cors.create`      | Create the CORS configuration              |
-| `cloud-object-storage.bucket-cors.delete`      | Delete the CORS configuration              |
-| `cloud-object-storage.bucket-lifecycle.read`   | Get the bucket lifecycle configuration     |
-| `cloud-object-storage.bucket-lifecycle.create` | Create the bucket lifecycle configuration  |
-| `cloud-object-storage.bucket-lifecycle.delete` | Delete the bucket lifecycle configuration  |
-| `cloud-object-storage.bucket-acl.read`         | Get the bucket [ACL](#x2012793){: term}    |
-| `cloud-object-storage.bucket-acl.create`       | Create the bucket [ACL](#x2012793){: term} |
-| `cloud-object-storage.bucket-crn.read`         | Get the bucket CRN                         |
-| `cloud-object-storage.bucket-location.read`    | Get the bucket location                    |
-| `cloud-object-storage.bucket-retention.read`   | Get the bucket retention                   |
-| `cloud-object-storage.bucket-retention.create` | Create the bucket retention                |
-| `cloud-object-storage.bucket-key-state.update` | Updating a Key Protect root encryption key |
+| Action                                                   | Description                                |
+|----------------------------------------------------------|--------------------------------------------|
+| `cloud-object-storage.bucket-cors.read`                  | Get the CORS configuration                 |
+| `cloud-object-storage.bucket-cors.create`                | Create the CORS configuration              |
+| `cloud-object-storage.bucket-cors.delete`                | Delete the CORS configuration              |
+| `cloud-object-storage.bucket-lifecycle.read`             | Get the bucket lifecycle configuration     |
+| `cloud-object-storage.bucket-lifecycle.create`           | Create the bucket lifecycle configuration  |
+| `cloud-object-storage.bucket-lifecycle.delete`           | Delete the bucket lifecycle configuration  |
+| `cloud-object-storage.bucket-acl.read`                   | Get the bucket [ACL](#x2012793){: term}    |
+| `cloud-object-storage.bucket-acl.create`                 | Create the bucket [ACL](#x2012793){: term} |
+| `cloud-object-storage.bucket-crn.read`                   | Get the bucket CRN                         |
+| `cloud-object-storage.bucket-location.read`              | Get the bucket location                    |
+| `cloud-object-storage.bucket-retention.read`             | Get the bucket retention                   |
+| `cloud-object-storage.bucket-retention.create`           | Create the bucket retention                |
+| `cloud-object-storage.bucket-key-state.update`           | Updating a Key Protect root encryption key |
+| `cloud-object-storage.bucket-public-access-block.create` | Add a public ACL block configuration       |
+| `cloud-object-storage.bucket-public-access-block.read`   | Read a public ACL block configuration      |
+| `cloud-object-storage.bucket-public-access-block.delete` | Delete a public ACL block configuration    |
 {: caption="Table 3. Bucket events"}
 
 For `cloud-object-storage.bucket-key-state.update` events, the following fields include extra information:

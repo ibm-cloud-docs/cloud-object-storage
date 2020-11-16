@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-10-27"
+lastupdated: "2020-11-07"
 
 keywords: static website, hosting, tutorial 
 
