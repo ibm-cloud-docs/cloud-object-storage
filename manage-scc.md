@@ -1,7 +1,8 @@
 ---
 copyright:
   years: 2020
-lastupdated: "2020-11-12"
+lastupdated: "2020-11-12
+"
 
 keywords: security and compliance for cloud-object-storage, security for cloud-object-storage, compliance for cloud-object-storage
 
@@ -42,7 +43,15 @@ To start monitoring your resources, check out [Getting started with {{site.data.
 ### Available goals for {{site.data.keyword.cos_short}}
 {: #cloud-object-storage-available-goals}
 
-* Ensure that Cloud Object Storage buckets are accessible by using private endpoints only
+* Ensure that Cloud Object Storage buckets are only created in designated locations
+* Ensure that Cloud Object Storage buckets are only created in a certain storage class
+* Ensure that Cloud Object Storage buckets are created with a designated managed encyption root key CRN
+* Ensure that Cloud Object Storage buckets are prevented from setting public ACLs
+* Ensure that Cloud Object Storage buckets are accessible by using private or direct endpoints only
+* Ensure that Cloud Object Storage buckets are only accessible from designated IP addresses
+* Ensure that Cloud Object Storage buckets can not be accessed from designated IP addresses
+* Ensure that Cloud Object Storage buckets use a designated instance of Activity Tracker
+* Ensure that Cloud Object Storage buckets send object read and/or write events to Activity Tracker
 
 ## Governing {{site.data.keyword.cos_short}} resource configuration
 {: #govern-cloud-object-storage}
@@ -51,11 +60,20 @@ As a security or compliance focal, you can use the {{site.data.keyword.complianc
 
 [Config rules](x3084914){: term} are used to enforce the configuration standards that you want to implement across your accounts. To learn more about the about the data that you can use to create a rule for {{site.data.keyword.cos_short}}, review the following table.
 
-| Resource kind   | Property               | Operator type | Value   | Description                                                                                                        |
-|-----------------|------------------------|---------------|---------|--------------------------------------------------------------------------------------------------------------------|
-| *instance*      | *private_network_only* | Boolean       | -       | *Indicates whether access to a {{site.data.keyword.cos_short}} instance is allowed only through a private network. |
-| <resource_kind> | <property_name>        | <operator>    | <value> | <description>                                                                                                      |
+| Resource kind | Property                                               | Operator type | Value | Description                                                                                                                                                                                                      |
+|---------------|--------------------------------------------------------|---------------|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| *bucket*      | *location*                                             | String        | -     | Bucket location. This is configured during bucket creation in the request endpoint.                                                                                                                              |
+| *bucket*      | *storage_class*                                        | String        | -     | Bucket storage class. This is configured during bucket creation in the `LocationConstraint` field.                                                                                                               |
+| *bucket*      | *ibm_sse_kms_customer_root_key_crn*                    | String        | -     | Bucket SSE Key Protect or Hyper Protect Crypto Services Customer Root Key CRN. This maps to the bucket configuration parameter, `ibm-sse-kp-customer-root-key-crn`.                                              |
+| *bucket*      | *public_access_block_configuration.block_public_acls*  | String        | -     | Setting to prevent future configuration of ACLs that permit public access on the bucket and its objects. Prior public access configuration for the bucket and its objects is unchanged.                          |
+| *bucket*      | *public_access_block_configuration.ignore_public_acls* | String        | -     | Setting to ignore configuration of public ACLs on the bucket and its objects, rendering effective access as private. GET Bucket ACL and GET Object ACL return effective (enforced) permissions for the resource. |
+| *bucket*      | *firewall.allowed_network_type*                        | String        | -     | List of network endpoint types that are allowed. Refer to COS Resource Configuration API for the list of valid values.                                                                                           |
+| *bucket*      | *firewall.allowed_ip*                                  | String        | -     | List of allowed originating IP addresses/ranges. The list can contain up to 1000 IPv4 or IPv6 addresses/ranges in CIDR notation.                                                                                 |
+| *bucket*      | *firewall.denied_ip*                                   | String        | -     | List of originating IP addresses/ranges that are not permitted. The list can contain up to 1000 IPv4 or IPv6 addresses/ranges in CIDR notation.                                                                  |
+| *bucket*      | *activity_tracking.activity_tracker_crn*               | String        | -     | CRN of the Activity Tracker instance that receives management events and based on opt-in configuration, read and write data events.                                                                              |
+| *bucket*      | *activity_tracking.write_data_events*                  | String        | -     | Opt-in to send the bucket's object write data events (i.e. uploads) to the configured Activity Tracker instance.                                                                                                 |
+| *bucket*      | *activity_tracking.read_data_events*                   | String        | -     | Opt-in to send the bucket's object read events (i.e. downloads) to the configured Activity Tracker instance.                                                                                                     |
+
 {: caption="Table 1. Rule properties for {{site.data.keyword.cos_short}}" caption-side="top"}
 
 To learn more about config rules, check out [What is a config rule?](/docs/security-compliance?topic=security-compliance-what-is-rule).
-
