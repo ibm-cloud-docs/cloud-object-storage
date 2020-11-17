@@ -27,21 +27,13 @@ With the {{site.data.keyword.compliance_short}}, you can:
 * Monitor for controls and goals that pertain to {{site.data.keyword.cos_short}}.
 * Define rules for {{site.data.keyword.cos_short}} that can help to standardize resource configuration.
 
-This service only supports the ability to view the results of your configuration scans in the Security and Compliance Center.
+This service only supports the ability to view the results of your configuration scans in the Security and Compliance Center.  It is not necessary to set up a collector to use configuration rules.
 {:note}
 
-## Monitoring security and compliance posture with {{site.data.keyword.cos_short}}
-{: #monitor-cloud-object-storage}
+## Governing {{site.data.keyword.cos_short}} resource configuration
+{: #govern-cloud-object-storage}
 
-As a security or compliance focal, you can use the {{site.data.keyword.cos_short}} [goals](x2117978){: term} to help ensure that your organization is adhering to the external and internal standards for your industry. By using the {{site.data.keyword.compliance_short}} to validate the resource configurations in your account against a [profile](x2034950){: term}, you can identity potential issues as they arise.
-
-All of the goals for {{site.data.keyword.cos_short}} are added to the {{site.data.keyword.cloud_notm}} Best Practices Controls 1.0 profile but can also be mapped to other profiles.
-{: note}
-
-To start monitoring your resources, check out [Getting started with {{site.data.keyword.compliance_short}}](/docs/security-compliance?topic-security-compliance-getting-started).
-
-### Available goals for {{site.data.keyword.cos_short}}
-{: #cloud-object-storage-available-goals}
+As a security or compliance focal, you can use the {{site.data.keyword.compliance_short}} to define configuration rules for the instances of {{site.data.keyword.cos_short}} that you create.
 
 * Ensure that Cloud Object Storage buckets are only created in designated locations
 * Ensure that Cloud Object Storage buckets are only created in a certain storage class
@@ -52,11 +44,6 @@ To start monitoring your resources, check out [Getting started with {{site.data.
 * Ensure that Cloud Object Storage buckets can not be accessed from designated IP addresses
 * Ensure that Cloud Object Storage buckets use a designated instance of Activity Tracker
 * Ensure that Cloud Object Storage buckets send object read and/or write events to Activity Tracker
-
-## Governing {{site.data.keyword.cos_short}} resource configuration
-{: #govern-cloud-object-storage}
-
-As a security or compliance focal, you can use the {{site.data.keyword.compliance_short}} to define configuration rules for the instances of {{site.data.keyword.cos_short}} that you create.
 
 [Configuration rules](x3084914){: term} are used to enforce the configuration standards that you want to implement across your accounts. To learn more about the data that you can use to create a rule for {{site.data.keyword.cos_short}}, review the following table. For more information about configuration rules, see [What makes up a rule](/docs/security-compliance?topic=security-compliance-what-is-rule).
 
