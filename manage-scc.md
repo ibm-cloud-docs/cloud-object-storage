@@ -73,7 +73,6 @@ As a security or compliance focal, you can use the {{site.data.keyword.complianc
 | *bucket*      | *activity_tracking.activity_tracker_crn*               | String        | CRN of the Activity Tracker instance that receives management events and based on opt-in configuration, read and write data events.                                                                              |
 | *bucket*      | *activity_tracking.write_data_events*                  | String        | Opt-in to send the bucket's object write data events (i.e. uploads) to the configured Activity Tracker instance.                                                                                                 |
 | *bucket*      | *activity_tracking.read_data_events*                   | String        | Opt-in to send the bucket's object read events (i.e. downloads) to the configured Activity Tracker instance.                                                                                                     |
-
 {: caption="Table 1. Rule properties for {{site.data.keyword.cos_short}}" caption-side="top"}
 
 To learn more about config rules, check out [What is a config rule?](/docs/security-compliance?topic=security-compliance-what-is-rule).
