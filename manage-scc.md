@@ -38,7 +38,7 @@ As a security or compliance focal, you can use the {{site.data.keyword.cos_short
 All of the goals for {{site.data.keyword.cos_short}} are added to the {{site.data.keyword.cloud_notm}} Best Practices Controls 1.0 profile but can also be mapped to other profiles.
 {: note}
 
-To start monitoring your resources, check out [Getting started with {{site.data.keyword.compliance_short}}](/docs/security-compliance?topic-security-compliance-getting-started)
+To start monitoring your resources, check out [Getting started with {{site.data.keyword.compliance_short}}](/docs/security-compliance?topic-security-compliance-getting-started).
 
 ### Available goals for {{site.data.keyword.cos_short}}
 {: #cloud-object-storage-available-goals}
@@ -76,3 +76,13 @@ As a security or compliance focal, you can use the {{site.data.keyword.complianc
 {: caption="Table 1. Rule properties for {{site.data.keyword.cos_short}}" caption-side="top"}
 
 To learn more about config rules, check out [What is a config rule?](/docs/security-compliance?topic=security-compliance-what-is-rule).
+
+## Evaluating results
+{: #results-cloud-object-storage}
+
+After [rules are created and added to scopes](/docs/security-compliance?topic=security-compliance-rules), you can view the evaluation results in the {{site.data.keyword.compliance_short}}. Each rule is shown to be compliant or noncompliant - if a rule shows as being noncompliant then you can view the specific bucket that is in violation of the rule. 
+
+The evaluation results are only available for seven days.  It is recommended that reports are downloaded and organized to maintain a history of compliance for audit purposes. 
+{:note}
+
+For more information on reporting results, see [Viewing evaluation results](/docs/security-compliance?topic=security-compliance-results).
