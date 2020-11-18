@@ -35,15 +35,16 @@ This service only supports the ability to view the results of your configuration
 
 As a security or compliance focal, you can use the {{site.data.keyword.compliance_short}} to [define configuration rules](/docs/security-compliance?topic=security-compliance-rules) for the instances of {{site.data.keyword.cos_short}} that you create.
 
-* Ensure that Cloud Object Storage buckets are only created in designated locations
-* Ensure that Cloud Object Storage buckets are only created in a certain storage class
-* Ensure that Cloud Object Storage buckets are created with a designated managed encyption root key CRN
-* Ensure that Cloud Object Storage buckets are prevented from setting public ACLs
-* Ensure that Cloud Object Storage buckets are accessible by using private or direct endpoints only
-* Ensure that Cloud Object Storage buckets are only accessible from designated IP addresses
-* Ensure that Cloud Object Storage buckets can not be accessed from designated IP addresses
-* Ensure that Cloud Object Storage buckets use a designated instance of Activity Tracker
-* Ensure that Cloud Object Storage buckets send object read and/or write events to Activity Tracker
+Create rules to ensure that Cloud Object Storage buckets:
+* are only created in designated locations
+* are only created in a certain storage class
+* are created with a designated managed encyption root key CRN
+* are prevented from setting public ACLs
+* are accessible by using private or direct endpoints only
+* are only accessible from designated IP addresses
+* can not be accessed from designated IP addresses
+* use a designated instance of Activity Tracker
+* send object read and/or write events to Activity Tracker
 
 [Configuration rules](x3084914){: term} are used to monitor and enforce configuration standards that you want to implement across your accounts. For more information about configuration rules, see [What makes up a rule](/docs/security-compliance?topic=security-compliance-what-is-rule).
 
