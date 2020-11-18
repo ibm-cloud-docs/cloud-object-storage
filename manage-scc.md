@@ -33,7 +33,7 @@ This service only supports the ability to view the results of your configuration
 ## Governing {{site.data.keyword.cos_short}} resource configuration
 {: #govern-cloud-object-storage}
 
-As a security or compliance focal, you can use the {{site.data.keyword.compliance_short}} to define configuration rules for the instances of {{site.data.keyword.cos_short}} that you create.
+As a security or compliance focal, you can use the {{site.data.keyword.compliance_short}} to [define configuration rules](/docs/security-compliance?topic=security-compliance-rules) for the instances of {{site.data.keyword.cos_short}} that you create.
 
 * Ensure that Cloud Object Storage buckets are only created in designated locations
 * Ensure that Cloud Object Storage buckets are only created in a certain storage class
@@ -45,7 +45,7 @@ As a security or compliance focal, you can use the {{site.data.keyword.complianc
 * Ensure that Cloud Object Storage buckets use a designated instance of Activity Tracker
 * Ensure that Cloud Object Storage buckets send object read and/or write events to Activity Tracker
 
-[Configuration rules](x3084914){: term} are used to enforce the configuration standards that you want to implement across your accounts. To learn more about the data that you can use to create a rule for {{site.data.keyword.cos_short}}, review the following table. For more information about configuration rules, see [What makes up a rule](/docs/security-compliance?topic=security-compliance-what-is-rule).
+[Configuration rules](x3084914){: term} are used to monitor and enforce configuration standards that you want to implement across your accounts. For more information about configuration rules, see [What makes up a rule](/docs/security-compliance?topic=security-compliance-what-is-rule).
 
 | Resource kind | Property                                               | Operator type | Description                                                                                                                                                                                                      |
 |---------------|--------------------------------------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
