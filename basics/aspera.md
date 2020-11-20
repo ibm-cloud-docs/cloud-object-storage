@@ -152,12 +152,13 @@ Maven uses a file named `pom.xml` to specify the libraries (and their versions) 
         <dependency>
             <groupId>com.ibm.cos</groupId>
             <artifactId>ibm-cos-java-sdk</artifactId>
-            <version>2.1.3</version>
+            <version>2.8.0</version>
         </dependency>
         <dependency>
             <groupId>com.ibm.cos-aspera</groupId>
             <artifactId>cos-aspera</artifactId>
             <version>0.1.163682</version>
+            <type>pom</type>
         </dependency>
     </dependencies>
 </project>
