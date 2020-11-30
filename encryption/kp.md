@@ -130,9 +130,6 @@ Although objects in a crypto-shredded bucket can not be read, and new object can
 
 As an admin, you might need to [restore a root key that you imported](/docs/key-protect?topic=key-protect-restore-keys) to Key Protect so that you can access data that the key previously protected. When you restore a key, you move the key from the Destroyed to the Active key state, and you restore access to any data that was previously encrypted with the key. This must occur within 30 days of deleting a key.
 
-If a key that was originally uploaded by a user is deleted, and then restored using different key material, it **will result in a loss of data**. It is recommended to keep n-5 keys archived somewhere in order to ensure that the correct key material is available for restoration.
-{: important}
-
 ## Activity Tracking
 {: kp-at}
 
