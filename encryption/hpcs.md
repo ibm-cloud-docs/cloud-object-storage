@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-11-14"
+lastupdated: "2020-11-24"
 
 keywords: encryption, security, {{site.data.keyword.hscrypto}}
 
