@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-10-01"
+lastupdated: "2020-11-25"
 
 keywords: encryption, security, sse-c, key protect
 
