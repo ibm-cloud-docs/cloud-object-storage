@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-06-19"
+lastupdated: "2020-11-11"
 
 keywords: Object Storage, SysDig, monitoring, integration
 
@@ -41,7 +41,7 @@ Use the {{site.data.keyword.mon_full}} service to monitor your {{site.data.keywo
 ### Working with Metrics
 {: #mm-cos-metrics}
 
-According to the [{{site.data.keyword.mon_short}} documentation](/docs/Monitoring-with-Sysdig?topic=Monitoring-with-Sysdig-metrics), "A metric is a quantitative measure that has one or more labels to define its characteristics." When you configure your buckets to forward data to a {{site.data.keyword.mon_short}} instance, that data is automatically collected and available for analysis through the web UI.
+According to the [{{site.data.keyword.mon_short}} documentation](/docs/Monitoring-with-Sysdig?topic=Monitoring-with-Sysdig-platform_metrics_enabling), "A metric is a quantitative measure that has one or more labels to define its characteristics." When you configure your buckets to forward data to a {{site.data.keyword.mon_short}} instance, that data is automatically collected and available for analysis through the web UI.
 
 ## Before you begin
 {: #mm-cos-before-starting}
@@ -197,7 +197,7 @@ When you have created your instance of {{site.data.keyword.mon_short}}, click on
 
 This guide has skipped right past the installation of agents that is typical of most monitoring configurations. In addition, you can also skip the manual creation of building a dashboard by using a pre-built solution. As shown in Figure 2, you can choose how to present your data using one of the options given.
 
-![Dashboard configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-pre-built-reports.png){: caption="Figure 2. Choose a bre-built report"}
+![Dashboard configuration](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-pre-built-reports.png){: caption="Figure 2. Choose a pre-built report"}
 
 ### View your data in {{site.data.keyword.mon_short}}
 {: #mm-cos-connection-view-data}

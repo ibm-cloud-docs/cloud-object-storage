@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-10-26"
+lastupdated: "2020-11-25"
 
 keywords: object storage, java, sdk
 
@@ -52,7 +52,7 @@ Maven uses a file that is called `pom.xml` to specify the libraries (and their v
         <dependency>
             <groupId>com.ibm.cos</groupId>
             <artifactId>ibm-cos-java-sdk</artifactId>
-            <version>2.1.0</version>
+            <version>2.8.0</version>
         </dependency>
     </dependencies>
 </project>

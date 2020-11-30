@@ -421,7 +421,7 @@ These headers apply to POST object and multipart upload requests as well. If upl
 |Value	| Type	| Description |
 | --- | --- | --- | 
 |`Retention-Period` | Non-negative integer (seconds) | Retention period to store on the object in seconds. The object can be neither overwritten nor deleted until the amount of time that is specified in the retention period has elapsed. If this field and `Retention-Expiration-Date` are specified a `400`  error is returned. If neither is specified the bucket's `DefaultRetention` period will be used. Zero (`0`) is a legal value assuming the bucket's minimum retention period is also `0`. |
-| `Retention-expiration-date` | Date (ISO 8601 Format) | Date on which it is legal to delete or modify the object. You can only specify this or the Retention-Period header. If both are specified a `400`  error will be returned. If neither is specified the bucket's DefaultRetention period will be used. |
+| `Retention-expiration-date` | Date (ISO 8601 Format) | Date on which it is legal to delete or modify the object. You can only specify this or the Retention-Period header. If both are specified a `400`  error will be returned. If neither is specified the bucket's `DefaultRetention` period will be used. Supported ISO 8601 format is `[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss]Z` or `[YYYY][MM][DD]T[hh][mm][ss]Z` (for example, `2020-11-28T03:10:01Z` or `20201128T031001Z` are both valid).
 | `Retention-legal-hold-id` | String | A single legal hold to apply to the object. A legal hold is a Y character long string. The object cannot be overwritten or deleted until all legal holds associated with the object are removed. |
 
 ```py
@@ -723,6 +723,8 @@ The retention expansion value is set in one of three ways:
 * new retention expiry date of the object (`New-Retention-Expiration-Date` or similar method)
 
 The current retention period that is stored in the object metadata is either increased by the given extra time or replaced with the new value, depending on the parameter that is set in the `extendRetention` request. In all cases, the extend retention parameter is checked against the current retention period and the extended parameter is only accepted if the updated retention period is greater than the current retention period.
+
+Supported ISO 8601 format for `New-Retention-Expiration-Date` is `[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss]Z` or `[YYYY][MM][DD]T[hh][mm][ss]Z` (for example, `2020-11-28T03:10:01Z` or `20201128T031001Z` are both valid).
 
 Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
 

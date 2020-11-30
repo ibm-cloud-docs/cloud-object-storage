@@ -28,7 +28,7 @@ subcollection: cloud-object-storage
 # Emptying a bucket 
 {: #deleting-multiple-objects-patterns}
 
-This overview focuses on the steps that are needed to access a list of all items in a bucket within an instance of{{site.data.keyword.cos_full}} for the purpose of deleting each one sequentially.
+This overview focuses on the steps that are needed to access a list of all items in a bucket within an instance of {{site.data.keyword.cos_full}} for the purpose of deleting each one sequentially.
 {: shortdesc}
 
 The process of emptying a bucket is familiar to anyone who has to delete buckets in their instance of {{site.data.keyword.cos_full_notm}} because a bucket has to be empty to be deleted. There may be other reasons you may wish to delete items, but want to avoid deleting every object individually. This code pattern for the supported SDKs will allow you to define your configuration, create a client, and then connect with that client in order to get a list of all the items in an identified bucket for in order to delete them.

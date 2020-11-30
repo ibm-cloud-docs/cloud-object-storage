@@ -65,6 +65,7 @@ Create rules to ensure that Cloud Object Storage buckets:
 
 To learn more about config rules, check out [What is a config rule?](/docs/security-compliance?topic=security-compliance-what-is-rule).
 
+
 ## Evaluating results
 {: #results-cloud-object-storage}
 
