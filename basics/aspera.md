@@ -76,7 +76,7 @@ An Aspera server runs one SSH server on a configurable TCP port (22 by default, 
 
 **Preferences:** You can set the default for uploads and downloads to High speed.
 
-Downloads that use Aspera high-speed transfer incur egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage).
+Downloads that use Aspera high-speed transfer incur egress charges. For more information, see the [pricing page](https://cloud.ibm.com/objectstorage/create#pricing).
 {:tip}
 
 **Advanced Preferences:** You can set bandwidth for uploads and downloads.
