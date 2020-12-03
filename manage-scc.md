@@ -50,6 +50,8 @@ To start monitoring your resources, check out [Getting started with {{site.data.
 * Ensure that COS bucket access is restricted by using IAM and S3 access control
 * Ensure network access for COS is restricted to specific IP range
 * Ensure that COS encryption is enabled with KYOK
+* Ensure COS buckets are not accessible over the Public network
+* Ensure that the S3 Anonymous Access is blocked for COS Buckets
 
 ## Governing {{site.data.keyword.cos_short}} resource configuration
 {: #govern-cloud-object-storage}
