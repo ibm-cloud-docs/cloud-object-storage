@@ -76,7 +76,7 @@ An Aspera server runs one SSH server on a configurable TCP port (22 by default, 
 
 **Preferences:** You can set the default for uploads and downloads to High speed.
 
-Downloads that use Aspera high-speed transfer incur egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage).
+Downloads that use Aspera high-speed transfer incur egress charges. For more information, see the [pricing page](https://cloud.ibm.com/objectstorage/create#pricing).
 {:tip}
 
 **Advanced Preferences:** You can set bandwidth for uploads and downloads.
@@ -152,12 +152,13 @@ Maven uses a file named `pom.xml` to specify the libraries (and their versions) 
         <dependency>
             <groupId>com.ibm.cos</groupId>
             <artifactId>ibm-cos-java-sdk</artifactId>
-            <version>2.1.3</version>
+            <version>2.8.0</version>
         </dependency>
         <dependency>
             <groupId>com.ibm.cos-aspera</groupId>
             <artifactId>cos-aspera</artifactId>
             <version>0.1.163682</version>
+            <type>pom</type>
         </dependency>
     </dependencies>
 </project>
