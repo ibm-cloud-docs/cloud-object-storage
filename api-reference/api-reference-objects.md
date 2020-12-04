@@ -423,7 +423,7 @@ Content-Length: 119
 {: token}
 
 ```http
-PUT /apiary?website HTTP/1.1
+PUT /apiary/myObject?tagging HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
