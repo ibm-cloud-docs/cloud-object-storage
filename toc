@@ -39,6 +39,7 @@ Cloud Object Storage
     
     basics/closures.md
     basics/upload.md
+    basics/object-tagging.md
 
     {: .topicgroup}
     Managing access
