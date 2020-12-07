@@ -91,14 +91,14 @@ This configuration deletes any objects with the prefix `foo/` on June 1, 2020.
 ```xml
 <LifecycleConfiguration>
 	<Rule>
-		<ID>delete-on-a-date</ID>
+        <ID>delete-on-a-date</ID>
     <Filter>
-      <Prefix>foo/</Prefix>
+        <Prefix>foo/</Prefix>
     </Filter>
-		<Status>Enabled</Status>
-		<Expiration>
-			<Date>2020-06-01T00:00:00.000Z</Date>
-		</Expiration>
+        <Status>Enabled</Status>
+        <Expiration>
+            <Date>2020-06-01T00:00:00.000Z</Date>
+        </Expiration>
 	</Rule>
 </LifecycleConfiguration>
 ```
@@ -107,25 +107,25 @@ You can also combine transition and expiration rules.  This configuration archiv
 
 ```xml
 <LifecycleConfiguration>
-  <Rule>
-		<ID>archive-first</ID>
-		<Filter />
-		<Status>Enabled</Status>
+    <Rule>
+        <ID>archive-first</ID>
+        <Filter />
+        <Status>Enabled</Status>
     <Transition>
-      <Days>90</Days>
-      <StorageClass>GLACIER</StorageClass>
+        <Days>90</Days>
+        <StorageClass>GLACIER</StorageClass>
     </Transition>
-	</Rule>
-	<Rule>
-		<ID>then-delete</ID>
+    </Rule>
+    <Rule>
+        <ID>then-delete</ID>
     <Filter>
-      <Prefix>foo/</Prefix>
+        <Prefix>foo/</Prefix>
     </Filter>
-		<Status>Enabled</Status>
-		<Expiration>
-			<Days>180</Days>
-		</Expiration>
-	</Rule>
+        <Status>Enabled</Status>
+        <Expiration>
+            <Days>180</Days>
+        </Expiration>
+    </Rule>
 </LifecycleConfiguration>
 ```
 
