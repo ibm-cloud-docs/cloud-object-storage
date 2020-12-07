@@ -1082,7 +1082,7 @@ AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_A
     .build();
 
 // Download file
-Future<AsperaTransaction> asperaTransactionFuture = asperaTransferMgr.download(bucketName, itemName, outputFile);
+Future<AsperaTransaction> asperaTransactionFuture = asperaTransferMgr.download(bucketName, itemName, outputPath);
 AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
 
 ```
@@ -1097,7 +1097,7 @@ AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
 
 ```java
 String bucketName = "<bucket-name>";
-String directoryPath = "<absolute-path-to-directory>";
+String directoryPath = "<absolute-path-to-directory-for-new-file>";
 String directoryPrefix = "<virtual-directory-prefix>";
 boolean includeSubDirectories = true;
 
