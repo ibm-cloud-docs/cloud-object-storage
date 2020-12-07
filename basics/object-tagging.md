@@ -22,6 +22,11 @@ subcollection: cloud-object-storage
 {:table: .aria-labeledby="caption"}
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
+{:http: .ph data-hd-programlang='http'}
+{:javascript: .ph data-hd-programlang='javascript'}
+{:java: .ph data-hd-programlang='java'}
+{:python: .ph data-hd-programlang='python'}
+{:go: .ph data-hd-programlang='go'}
 
 # Tagging objects in {{site.data.keyword.cos_full_notm}}
 {: #object-tagging}
