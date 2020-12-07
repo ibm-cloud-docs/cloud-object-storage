@@ -74,6 +74,12 @@ This is an example of a service credential:
 }
 ```
 
+You can also use the IBM Cloud CLI to create a new service credential (which is a subset of something called a *service key*). This example extracts the credential and writes it to a file where the IBM COS SDKs can automatically source the API key and Service Instance ID:
+
+```sh
+ic resource service-key config-example --output JSON | jq '.[].credentials' > ~/.bluemix/cos_credentials
+```
+
 ## Understanding the `endpoints` objects
 {: #service-credential-endpoints}
 
