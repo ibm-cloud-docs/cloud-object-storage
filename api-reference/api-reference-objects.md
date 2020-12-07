@@ -384,6 +384,180 @@ Content-Length: 207
 
 ----
 
+## Add tags to an object
+{: #object-operations-add-tags}
+
+A `PUT` issued to an object with the proper parameters creates or replaces a set of key-value tags associated with the object.
+
+**Syntax**
+
+```bash
+PUT https://{endpoint}/{bucket-name}/{object-name}?tagging # path style
+PUT https://{bucket-name}.{endpoint}/{object-name}?tagging # virtual host style
+```
+{: codeblock}
+
+**Payload Elements**
+
+The body of the request must contain an XML block with the following schema:
+
+| Element | Type      | Children   | Ancestor | Notes    |
+|---------|-----------|------------|----------|----------|
+| Tagging | Container | TagSet     | -        | Required |
+| TagSet  | Container | Tag        | Tagging  | Required |
+| Tag     | String    | Key, Value | TagSet   | Required |
+| Key     | Container | -          | Tag      | Required |
+| Value   | String    | -          | Tag      | Required |
+
+**Example request**
+
+This is an example of adding a set of tags to an object.
+
+```http
+PUT /apiary/myObject?tagging HTTP/1.1
+Authorization: Bearer {token}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+Content-Length: 119
+```
+{: token}
+
+```http
+PUT /apiary/myObject?tagging HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+Content-Length: 128
+```
+{: hmac}
+
+```xml
+<Tagging>
+   <TagSet>
+      <Tag>
+         <Key>string</Key>
+         <Value>string</Value>
+      </Tag>
+   </TagSet>
+</Tagging>
+```
+
+
+**Example response**
+
+```http
+HTTP/1.1 200 OK
+Date: Wed, 5 Oct 2020 15:39:38 GMT
+X-Clv-Request-Id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
+Accept-Ranges: bytes
+Content-Length: 0
+```
+
+----
+
+## Read an object's tags
+{: #object-operations-get-tags}
+
+A `GET` issued to an object with the proper parameters returns the set of key-value tags associated with the object.
+
+**Syntax**
+
+```bash
+GET https://{endpoint}/{bucket-name}/{object-name}?tagging # path style
+GET https://{bucket-name}.{endpoint}/{object-name}?tagging # virtual host style
+```
+{: codeblock}
+
+
+**Example request**
+
+This is an example of reading a set of object tags.
+
+```http
+GET /apiary/myObject?tagging HTTP/1.1
+Authorization: Bearer {token}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+Content-Length: 0
+```
+{: token}
+
+```http
+GET /apiarymyObject?tagging HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+Content-Length: 0
+```
+{: hmac}
+
+
+**Example response**
+
+```http
+HTTP/1.1 200 OK
+Date: Wed, 5 Oct 2020 15:39:38 GMT
+X-Clv-Request-Id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
+Accept-Ranges: bytes
+Content-Length: 128
+```
+
+```xml
+<Tagging>
+   <TagSet>
+      <Tag>
+         <Key>string</Key>
+         <Value>string</Value>
+      </Tag>
+   </TagSet>
+</Tagging>
+```
+----
+
+## Delete an object's tags
+{: #object-operations-delete-tags}
+
+A `DELETE` issued to a bucket with the proper parameters removes an object's tags.
+
+**Syntax**
+
+```bash
+DELETE https://{endpoint}/{bucket-name}{object-name}?tagging # path style
+DELETE https://{bucket-name}.{endpoint}{object-name}?tagging # virtual host style
+```
+{: codeblock}
+
+**Example request**
+{: token}
+
+This is an example of deleting an object's tags.
+{: token}
+
+```http
+DELETE /apiary/myObject?tagging HTTP/1.1
+Authorization: Bearer {token}
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+DELETE /apiary/myObject?tagging HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
+
+The server responds with `204 No Content`.
+
+----
+
 ## Copy an object
 {: #object-operations-copy}
 
