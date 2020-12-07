@@ -477,8 +477,6 @@ s3.getBucketLifecycleConfiguration(params, function(err, data) {
 {: codeblock}
 {: javascript}
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration.
-
 ```python
 import sys
 import ibm_boto3
