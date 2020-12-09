@@ -65,7 +65,9 @@ Specific instructions for downloading and installing the SDK is available for [P
 ### Reading tags
 {: #object-tagging-reading-tags}
 
-Log in to the console, selecting your instance of {{site.data.keyword.cos_full_notm}} and your bucket where your data is represented. After you've uploaded files to your bucket, you can manage your tags right in place. Place the cursor over the ellipses at the end of any row representing your data, and select "Manage your tags" from the options in the menu.
+Tags are accessible throughout an instance with the proper permissions. While the true organizational power of using tags as an organizational principle scales with you, you can access tags on an individual basis as well.
+
+Log in to the console, selecting your instance of {{site.data.keyword.cos_full_notm}} and your bucket where your data is represented. After you've uploaded files to your bucket, you can view and manage your tags right in place. Place the cursor over the ellipses at the end of any row representing your data, and select "Manage your tags" from the options in the menu.
 {: console}
 
 ![Manage your tags](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/object-manage-tags.jpg){: console}
@@ -80,18 +82,28 @@ curl 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
 {: pre}
 {: http}
 
-```shell
-curl -X "PUT" "https://s3.test.cloud-object-storage.sample.appdomain.cloud/taggingtest/example-file.csv?tagging" -H "Authorization: bearer ...iOiIyMDIwMTIwNzE0NDkiLCJh..." -H "ibm-service-instance-id: 7nnnnn52-2nn0-nna9-bann-7nnnnn4cc4e7" --data "<Tagging><TagSet><Tag><Key>source</Key><Value>text</Value></Tag></TagSet></Tagging>"
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Tagging xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+  <TagSet>
+    <Tag>
+      <Key>Example Key</Key>
+      <Value>Value Example</Value>
+    </Tag>
+  </TagSet>
+</Tagging>
 ```
 {: screen}
 {: http}
 
+Of course, before tags can be viewed they have to be created, which we will turn to next. 
+
 ### Creating tags
 {: #object-tagging-create-tags}
 
-The objects in your buckets represent your data in a fixed form, that is, saved to {{site.data.keyword.cos_short}}. 
+The objects in your buckets represent your data in a fixed form, that is, saved to {{site.data.keyword.cos_short}}. Creating tags can be done either individually or in bulk.
 
-As noted previously, log in to your instance and navigate to the bucket and object you wish to "tag." In the panel that appears, add tags by typing text into the `key` and `value` fields as desired.
+As noted previously, log in to your instance and navigate to the bucket and object you wish to "tag." In the panel that appears when you select "Manage your tags", start by clicking on the "Add tags +" button. Then, you can add tags by typing text into the `key` and `value` fields as desired. Add more tags one at a time, by repeating the steps you've just completed.
 {: console}
 
 ![Add tags in place](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/object-add-tags.jpg){: console}
@@ -122,6 +134,7 @@ curl -X "PUT" "https://s3.test.cloud-object-storage.sample.appdomain.cloud/taggi
 
 ### Editing tags
 {: #object-tagging-edit-tags}
+
 
 
 Change the contents of the form fields and press "Save" when complete.
