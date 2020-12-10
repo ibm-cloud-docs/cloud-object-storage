@@ -136,7 +136,7 @@ In order to edit the tags using the graphic interface, you will have to log into
 
 ![Save tags when complete](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/object-save-tags.jpg){: console}
 
-You will have to authorize in order to tag your data. Also, you will have to programmatically keep any old tags while updating your objects with new information. The example shown repeats the tags from the previous examples while adding a new tag. 
+Your requests must be authenticated in order to tag your data. Also, you will have to programmatically keep any old tags while updating your objects with new information. The example shown repeats the tags from the previous examples while adding a new tag. 
 {: http}
 
 Remember that performing "PUT" operations involving tags will overwrite any current tags.
