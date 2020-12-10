@@ -25,11 +25,6 @@ subcollection: cloud-object-storage
 {:support: data-reuse='support'}
 {:console: .ph data-hd-programlang='Console'}
 {:http: .ph data-hd-programlang='curl'}
-{:aws: .ph data-hd-programlang='aws'}
-{:javascript: .ph data-hd-programlang='javascript'}
-{:java: .ph data-hd-programlang='java'}
-{:python: .ph data-hd-programlang='python'}
-{:go: .ph data-hd-programlang='go'}
 
 # Tagging objects in {{site.data.keyword.cos_full_notm}}
 {: #object-tagging}
@@ -57,11 +52,6 @@ You need:
 * An [IAM API key](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview) with Writer access to your {{site.data.keyword.cos_short}} bucket or instance 
 * Objects (files) that have been uploaded to your bucket, or can be uploaded so that they may be tagged
 
-### Getting the SDK or CLI
-{: #object-tagging-obtain-sdks}
-
-Specific instructions for downloading and installing the SDK is available for [Python](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python), [Node.JS](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-node), [Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java), and [Go](/docs/cloud-object-storage?topic=cloud-object-storage-using-go){: external}{: go}. You can find out more information about using the {{site.data.keyword.cloud_notm}} [CLI](/docs/cloud-object-storage?topic=cloud-object-storage-cli-plugin-ic-cos-cli), or use the S3-compatible CLI from [AWS](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli). 
-
 ### Reading tags
 {: #object-tagging-reading-tags}
 
@@ -72,7 +62,7 @@ Log in to the [console](https://cloud.ibm.com/){: external}, selecting your inst
 
 ![Manage your tags](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/object-manage-tags.jpg){: console}
 
-A properly formed and authenticated "GET" request with the `?tagging` query paramter is all that is required for accessing the tags for your objects using `curl`. The examples here use bearer tokens generated using [this example](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-token). In addition to the bucket identifier and object key, you will also need the correct [endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) and the resource instance id from the service instance id in your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials). The resulting XML object is also shown, where the "Tag" element will be repeated for each tag assigned to the object.
+A properly formed and authenticated "GET" request with the `?tagging` query paramter is all that is required for accessing the tags for your objects using `curl`. The examples here use bearer tokens generated using [this example](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-token). In addition to the bucket identifier and object key, you will also need the correct [endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) and the resource instance id from the service instance id in your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials). The resulting XML object is also shown, where the "Tag" element will be repeated for each tag assigned to the object. If there are no tags, the response will return XML with an empty element, `<TagSet />`.
 {: http}
 
 ```bash
@@ -97,7 +87,7 @@ curl 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
 {: screen}
 {: http}
 
-Of course, before tags can be viewed they have to be created, which we will turn to next. 
+Of course, before tags can be viewed they must be created, which we will turn to next.
 
 ### Creating tags
 {: #object-tagging-create-tags}
@@ -141,12 +131,16 @@ curl -X "PUT" "https://s3.test.cloud-object-storage.sample.appdomain.cloud/taggi
 
 Once your objects have been tagged, over time it may become necessary to modify them. 
 
-Change the contents of the form fields and press "Save" when complete.
+In order to edit the tags using the graphic interface, you will have to log into the console and access your objects as described previously. Once you've clicked on the "Manage Tags" option, simply change the contents of the form fields. Remember to press "Save" when complete.
 {: console}
 
 ![Save tags when complete](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/object-save-tags.jpg){: console}
 
-You will have to authorize in order to tag your data. The examples here use bearer tokens generated using [this example](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-token). In addition to the bucket identifier and object key, you will also need the correct [endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) and the resource instance id from the service instance id in your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials). Note the query string for adding tags: **`?tagging`**.
+You will have to authorize in order to tag your data. Also, you will have to programmatically keep any old tags while updating your objects with new information. The example shown repeats the tags from the previous examples while adding a new tag. 
+{: http}
+
+Remember that performing "PUT" operations involving tags will overwrite any current tags.
+{: important}
 {: http}
 
 ```bash
@@ -154,20 +148,7 @@ curl -X "PUT" 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
 -H 'Authorization: bearer <token>' \
 -H 'ibm-service-instance-id: <resource_instance_id>' \
 -H "content-type: text/plain" \
---data "<Tagging><TagSet><Tag><Key>source</Key><Value>text</Value></Tag></TagSet></Tagging>"
-```
-{: pre}
-{: http}
-
-As before, you will have to authenticate in order to modify your tags. The examples here use bearer tokens generated using [this example](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-token). In addition to the bucket identifier and object key, you will also need the correct [endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) and the resource instance id from the service instance id in your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials). Note the query string for adding tags: **`?tagging`**.
-{: http}
-
-```bash
-curl -X "PUT" 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
--H 'Authorization: bearer <token>' \
--H 'ibm-service-instance-id: <resource_instance_id>' \
--H "content-type: text/plain" \
---data "<Tagging><TagSet><Tag><Key>new key source</Key><Value>new value text</Value></Tag></TagSet></Tagging>"
+--data "<Tagging><TagSet><Tag><Key>source</Key><Value>text</Value></Tag><Tag><Key>source1</Key><Value>text1</Value></Tag></TagSet></Tagging>"
 ```
 {: pre}
 {: http}
@@ -175,6 +156,29 @@ curl -X "PUT" 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
 ### Removing tags
 {: #object-tagging-delete-tags}
 
+After you have added tags to your objects, it may become necessary to remove them.
+
+In order to delete the tags using the graphic interface, you will have to log into the console and access your objects as previously described. Again, click on the "Manage Tags" option, and in the panel that appears, choose either to "delete all" or delete one tag at a time by clicking on the "trash can" icon in the same row as the tag.
+{: console}
+
+Remember to press "Save" when complete.
+{: console}
+
+![Delete one or all tags](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/object-edit-tags.jpg){: console}
+
+You will have to authenticate in order to delete tags from your data. Simply use the "DELETE" HTTP method with the `?tagging` query parameter to delete all tags. If you wish to delete one or more tags while simultaneously keeping one or more tags, use the "edit" instructions to make your changes.
+{: http}
+
+```bash
+curl -X "DELETE" 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
+-H 'Authorization: bearer <token>' \
+-H 'ibm-service-instance-id: <resource_instance_id>' \
+-H "content-type: text/plain"
+```
+{: pre}
+{: http}
+
 ## Next Steps
 {: #object-tagging-next-steps}
 
+Find more details about the operations related to objects in the [S3 API documentation](/apidocs/cos/cos-compatibility) and more configuration options in the [configuration API](/apidocs/cos/cos-configuration).
