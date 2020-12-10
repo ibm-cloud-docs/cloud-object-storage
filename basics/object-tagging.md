@@ -67,17 +67,18 @@ Specific instructions for downloading and installing the SDK is available for [P
 
 Tags are accessible throughout an instance with the proper permissions. While the true organizational power of using tags as an organizational principle scales with you, you can access tags on an individual basis as well.
 
-Log in to the console, selecting your instance of {{site.data.keyword.cos_full_notm}} and your bucket where your data is represented. After you've uploaded files to your bucket, you can view and manage your tags right in place. Place the cursor over the ellipses at the end of any row representing your data, and select "Manage your tags" from the options in the menu.
+Log in to the [console](https://cloud.ibm.com/){: external}, selecting your instance of {{site.data.keyword.cos_full_notm}} and your bucket where your data is represented. After you've uploaded files to your bucket, you can view and manage your tags right in place. Place the cursor over the ellipses at the end of any row representing your data (stored as an object), and select "Manage your tags" from the options in the menu.
 {: console}
 
 ![Manage your tags](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/object-manage-tags.jpg){: console}
 
-A properly formed "GET" request is all that is required for accessing the tags for your objects using `curl`. The resulting XML object is also shown.
+A properly formed and authenticated "GET" request with the `?tagging` query paramter is all that is required for accessing the tags for your objects using `curl`. The examples here use bearer tokens generated using [this example](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-token). In addition to the bucket identifier and object key, you will also need the correct [endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) and the resource instance id from the service instance id in your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials). The resulting XML object is also shown, where the "Tag" element will be repeated for each tag assigned to the object.
 {: http}
 
 ```bash
 curl 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
--H 'Authorization: bearer <token>' -H 'ibm-service-instance-id: <resource_instance_id>'
+-H 'Authorization: bearer <token>' \
+-H 'ibm-service-instance-id: <resource_instance_id>'
 ```
 {: pre}
 {: http}
@@ -113,12 +114,15 @@ If you do not click on "save" when completing your changes, a dialog box will re
 
 ![Unsaved changes are discarded](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/object-discard-changes.jpg){: console}
 
-You will have to authorize in order to tag your data. The examples here use bearer tokens generated using [this example](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-token). In addition to the bucket identifier and object key, you will also need the correct [endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) and the resource instance id from the service instance id in your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials). Note the query string for adding tags: **`?tagging`**.
+As noted previously, you will have to authenticate in order to add tags to your data. If you have questions about bearer tokens, see [this example](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-token). Again, note the query string for working with tags: **`?tagging`**.
 {: http}
 
 ```bash
 curl -X "PUT" 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
--H 'Authorization: bearer <token>' -H 'ibm-service-instance-id: <resource_instance_id>' -H "content-type: text/plain" --data "<Tagging><TagSet><Tag><Key>source</Key><Value>text</Value></Tag></TagSet></Tagging>"
+-H 'Authorization: bearer <token>' \
+-H 'ibm-service-instance-id: <resource_instance_id>' \
+-H "content-type: text/plain" \
+--data "<Tagging><TagSet><Tag><Key>your key</Key><Value>your text</Value></Tag></TagSet></Tagging>"
 ```
 {: pre}
 {: http}
@@ -135,12 +139,38 @@ curl -X "PUT" "https://s3.test.cloud-object-storage.sample.appdomain.cloud/taggi
 ### Editing tags
 {: #object-tagging-edit-tags}
 
-
+Once your objects have been tagged, over time it may become necessary to modify them. 
 
 Change the contents of the form fields and press "Save" when complete.
 {: console}
 
 ![Save tags when complete](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/object-save-tags.jpg){: console}
+
+You will have to authorize in order to tag your data. The examples here use bearer tokens generated using [this example](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-token). In addition to the bucket identifier and object key, you will also need the correct [endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) and the resource instance id from the service instance id in your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials). Note the query string for adding tags: **`?tagging`**.
+{: http}
+
+```bash
+curl -X "PUT" 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
+-H 'Authorization: bearer <token>' \
+-H 'ibm-service-instance-id: <resource_instance_id>' \
+-H "content-type: text/plain" \
+--data "<Tagging><TagSet><Tag><Key>source</Key><Value>text</Value></Tag></TagSet></Tagging>"
+```
+{: pre}
+{: http}
+
+As before, you will have to authenticate in order to modify your tags. The examples here use bearer tokens generated using [this example](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-token). In addition to the bucket identifier and object key, you will also need the correct [endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) and the resource instance id from the service instance id in your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials). Note the query string for adding tags: **`?tagging`**.
+{: http}
+
+```bash
+curl -X "PUT" 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
+-H 'Authorization: bearer <token>' \
+-H 'ibm-service-instance-id: <resource_instance_id>' \
+-H "content-type: text/plain" \
+--data "<Tagging><TagSet><Tag><Key>new key source</Key><Value>new value text</Value></Tag></TagSet></Tagging>"
+```
+{: pre}
+{: http}
 
 ### Removing tags
 {: #object-tagging-delete-tags}
