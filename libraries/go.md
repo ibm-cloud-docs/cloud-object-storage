@@ -406,7 +406,7 @@ func main() {
 ```
 {: codeblock}
 
-## Using Key Protect
+### Using Key Protect
 {: #go-examples-kp}
 
 Key Protect can be added to a storage bucket to manage encryption keys. All data is encrypted in IBM COS, but Key Protect provides a service for generating, rotating, and controlling access to encryption keys by using a centralized service.
