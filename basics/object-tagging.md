@@ -158,7 +158,7 @@ curl -X "PUT" 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
 
 After you have added tags to your objects, it may become necessary to remove them.
 
-In order to delete the tags using the graphic interface, you will have to log into the console and access your objects as previously described. Again, click on the "Manage Tags" option, and in the panel that appears, choose either to "delete all" or delete one tag at a time by clicking on the "trash can" icon in the same row as the tag.
+In order to delete the tags using the graphic interface, you will have to log into the console and access your objects as previously described. Again, click on the "Manage tags" option, and in the panel that appears, choose either to "delete all" or delete one tag at a time by clicking on the "trash can" icon in the same row as the tag.
 {: console}
 
 Remember to press "Save" when complete.
