@@ -45,7 +45,7 @@ Figure 3 shows the panel that opens when the card is selected. This panel give y
 
 ![Create SQL Instance](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/create-sql-instance-cos.jpg){: caption="Figure 3. Fill out form fields to configure your instance"}
 
-## Querying {{site.data.keyword.cos_full_short}} with SQL Query
+## Querying {{site.data.keyword.cos_short}} with SQL Query
 {: #sql-query-querying-objects}
 
 You can use SQL Query to create `SELECT` statements only; actions such as `CREATE`, `DELETE`, `INSERT`, and `UPDATE` are not possible.
