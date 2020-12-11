@@ -136,7 +136,7 @@ In order to edit the tags using the graphic interface, you will have to log into
 
 ![Save tags when complete](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/object-save-tags.jpg){: console}
 
-You will have to authorize in order to tag your data. Also, you will have to programmatically keep any old tags while updating your objects with new information. The example shown repeats the tags from the previous examples while adding a new tag. 
+Your requests must be authenticated in order to tag your data. Also, you will have to programmatically keep any old tags while updating your objects with new information. The example shown repeats the tags from the previous examples while adding a new tag. 
 {: http}
 
 Remember that performing "PUT" operations involving tags will overwrite any current tags.
@@ -158,7 +158,7 @@ curl -X "PUT" 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
 
 After you have added tags to your objects, it may become necessary to remove them.
 
-In order to delete the tags using the graphic interface, you will have to log into the console and access your objects as previously described. Again, click on the "Manage Tags" option, and in the panel that appears, choose either to "delete all" or delete one tag at a time by clicking on the "trash can" icon in the same row as the tag.
+In order to delete the tags using the graphic interface, you will have to log into the console and access your objects as previously described. Again, click on the "Manage tags" option, and in the panel that appears, choose either to "delete all" or delete one tag at a time by clicking on the "trash can" icon in the same row as the tag.
 {: console}
 
 Remember to press "Save" when complete.
