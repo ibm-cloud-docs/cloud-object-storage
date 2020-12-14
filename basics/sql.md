@@ -30,10 +30,10 @@ subcollection: cloud-object-storage
 # Using SQL Query
 {: #sql-query}
 
-{{site.data.keyword.sqlquery_full}} is a fully-managed service that lets you run SQL queries (that is, `SELECT` statements) to analyze, transform, or clean up rectangular data.
+{{site.data.keyword.sqlquery_full}} is a fully-managed service that lets you run SQL queries (that is, `SELECT` statements) to analyze, transform, or clean up rectangular data using the full ANSI SQL standard.
 {: shortdesc}
 
-If you use the console to interact with your instance of {{site.data.keyword.cos_full_notm}}, you can create an instance of {{site.data.keyword.sqlquery_notm}} from the browser. See Figure 1, showing the option to integrate other services like {{site.data.keyword.sqlquery_short}} next to your credentials and buckets.
+When you use the console to interact with your instance of {{site.data.keyword.cos_full_notm}}, you can create an instance of {{site.data.keyword.sqlquery_notm}} from the browser. See Figure 1, showing the option to integrate other services like {{site.data.keyword.sqlquery_short}} next to your credentials and buckets.
 
 ![Integrations in COS](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/integrate-from-cos.jpg){: caption="Figure 1. Integrate SQL Query from COS instance"}
 
@@ -51,9 +51,12 @@ Figure 3 shows the panel that opens when the card is selected. This panel give y
 You can use SQL Query to create `SELECT` statements only; actions such as `CREATE`, `DELETE`, `INSERT`, and `UPDATE` are not possible.
 {: tip}
 
-Input data for your queries are read from ORC, CSV, JSON, or Parquet files located in one or more {{site.data.keyword.cos_full_notm}} instances. Each query result is written to a CSV file in a Cloud Object Storage instance where you created the integration.
+Input data for your queries are read from ORC, CSV, JSON, or Parquet files located in one or more {{site.data.keyword.cos_full_notm}} instances. Each query result is written by default to a CSV file in a Cloud Object Storage instance where you created the integration. But you can freely override and customise the format and {{site.data.keyword.cos_short}} location as part of the SQL statement that you run.
 
-Getting started using SQL Query `SELECT` statements from inside your instance is as easy as creating an integration. Data of queryable types, as well as zero-byte resources associated with key prefixes, will be labeled as shown in Figure 4.
+Per the SQL standard, you can use the INTO clause of the SELECT statement to control where and how result data from a SELECT statement is written to {{site.data.keyword.cos_full_notm}}.
+{: note}
+
+Getting started using SQL Query `SELECT` statements from inside your instance is as easy as creating an integration. Objects of queryable data formats, as well as folders with multiple objects of a consistent queryable format (when shown in the "folders" view) are labeled as shown in Figure 4.
 
 ![Object with SQL label](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/accessible-using-sql.jpg){: caption="Figure 4. SQL label shows queryable objects"}
 
