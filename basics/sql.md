@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 # Using SQL Query
 {: #sql-query}
 
-{{site.data.keyword.sqlquery_full}} is a fully-managed service that lets you run SQL queries (that is, `SELECT` statements) to analyze, transform, or clean up rectangular data.
+{{site.data.keyword.sqlquery_full}} is a fully-managed service that lets you run SQL queries (that is, `SELECT` statements) to analyze, transform, or clean up rectangular data using the full ANSI SQL standard.
 {: shortdesc}
 
 If you use the console to interact with your instance of {{site.data.keyword.cos_full_notm}}, you can create an instance of {{site.data.keyword.sqlquery_notm}} from the browser. See Figure 1, showing the option to integrate other services like {{site.data.keyword.sqlquery_short}} next to your credentials and buckets.
