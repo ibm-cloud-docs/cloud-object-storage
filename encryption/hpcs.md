@@ -46,8 +46,6 @@ Refer to the service-specific product pages for instructions on how to provision
 
 Once you have an instance of {{site.data.keyword.hscrypto}} in a region that you want to create a new bucket in, you need to create a root key and note the CRN ([Cloud Resource Name](/docs/account?topic=account-crn)) of that key. The CRN is sent in a header during bucket creation.
 
-Note that the location in which the bucket is created must be the same location where the instance of {{site.data.keyword.hscrypto}} is operating.
-{:important}
 
 ## Create or add a key in {{site.data.keyword.hscrypto}}
 {: #hpcs-keys}

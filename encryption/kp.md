@@ -45,9 +45,6 @@ Refer to the service-specific product pages for instructions on how to provision
 
 Once you have an instance of Key Protect in a region that you want to create a new bucket in, you need to create a root key and note the CRN ([Cloud Resource Name](/docs/account?topic=account-crn)) of that key. The CRN is sent in a header during bucket creation.
 
-Note that the location in which the bucket is created must be the same location where the instance of Key Protect is operating.
-{:important}
-
 ## Create or add a key in Key Protect
 {: #kp-create}
 Navigate to your instance of Key Protect and [generate or enter a root key](/docs/services/key-protect?topic=key-protect-getting-started-tutorial).
