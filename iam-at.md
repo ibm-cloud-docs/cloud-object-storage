@@ -31,7 +31,8 @@ Find detailed information on {{site.data.keyword.cloud_notm}} events from IAM an
 ## Resource Configuration API
 {: #at-iam-config}
 
-The first table detais the API for configuring {{site.data.keyword.cos_full}} buckets: [COS Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration#introduction)
+The first table details the API for configuring {{site.data.keyword.cos_full}} buckets: [COS Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration#introduction)
+
 *  Note the endpoint URL: `https://config.cloud-object-storage.cloud.ibm.com/v1`
 
 | Action                                    | Method                        | IAM Action                                                                                                                                                                                                             | Activity Tracker action                              |
@@ -71,5 +72,4 @@ The next table describes the API for reading and writing objects as defined in t
 | Add a public ACL block configuration                | `PUT {endpoint}/{bucket}?publicAccessBlock`                                 | `cloud-object-storage.bucket.put_public_access_block`                               | `cloud-object-storage.bucket-public-access-block.create` |
 | Read a public ACL block configuration               | `GET {endpoint}/{bucket}?publicAccessBlock`                                 | `cloud-object-storage.bucket.get_public_access_block`                               | `cloud-object-storage.bucket-public-access-block.read`   |
 | Delete a public ACL block configuration             | `DELETE {endpoint}/{bucket}?publicAccessBlock`                              | `cloud-object-storage.bucket.delete_public_access_block`                            | `cloud-object-storage.bucket-public-access-block.delete` |
-
 {: caption="S3 API actions" caption-side="top"}

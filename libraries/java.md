@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-10-26"
+lastupdated: "2020-11-25"
 
 keywords: object storage, java, sdk
 
@@ -52,7 +52,7 @@ Maven uses a file that is called `pom.xml` to specify the libraries (and their v
         <dependency>
             <groupId>com.ibm.cos</groupId>
             <artifactId>ibm-cos-java-sdk</artifactId>
-            <version>2.1.0</version>
+            <version>2.8.0</version>
         </dependency>
     </dependencies>
 </project>
@@ -986,6 +986,9 @@ You will need instances of the S3 Client and IAM Token Manager classes to initia
 
 Before initializing the `AsperaTransferManager`, make sure you've got working [`s3Client`](#java-examples-config) and [`tokenManager`](#java-examples-config) objects. 
 
+It is advised to use `TokenManager tokenManager = new DefaultTokenManager(new DelegateTokenProvider(apiKey));` and avoid `.withTokenManager(tokenManager)` when building `AsperaTransferManager` with `AsperaTransferManagerBuilder`.
+{: note}
+
 There isn't a lot of benefit to using a single session of Aspera high-speed transfer unless you expect to see significant noise or packet loss in the network. So we need to tell the `AsperaTransferManager` to use multiple sessions using the `AsperaConfig` class. This will split the transfer into a number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value.
 
 The typical configuration for using multi-session should be:
@@ -999,9 +1002,10 @@ AsperaTransferManagerConfig transferConfig = new AsperaTransferManagerConfig()
 AsperaConfig asperaConfig = new AsperaConfig()
     .withTargetRateMbps(2500L)
     .withMultiSessionThresholdMb(100);
+    
+TokenManager tokenManager = new DefaultTokenManager(new DelegateTokenProvider(API_KEY));
 
 AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client)
-    .withTokenManager(tokenManager)
     .withAsperaTransferManagerConfig(transferConfig)
     .withAsperaConfig(asperaConfig)
     .build();
@@ -1019,8 +1023,9 @@ AsperaConfig asperaConfig = new AsperaConfig()
     .withMultiSession(2)
     .withMultiSessionThresholdMb(100);
 
+TokenManager tokenManager = new DefaultTokenManager(new DelegateTokenProvider(API_KEY));
+
 AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client)
-    .withTokenManager(tokenManager)
     .withAsperaConfig(asperaConfig)
     .build();
 ```
@@ -1077,7 +1082,7 @@ AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(COS_A
     .build();
 
 // Download file
-Future<AsperaTransaction> asperaTransactionFuture = asperaTransferMgr.download(bucketName, itemName, outputFile);
+Future<AsperaTransaction> asperaTransactionFuture = asperaTransferMgr.download(bucketName, itemName, outputPath);
 AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
 
 ```
@@ -1092,7 +1097,7 @@ AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
 
 ```java
 String bucketName = "<bucket-name>";
-String directoryPath = "<absolute-path-to-directory>";
+String directoryPath = "<absolute-path-to-directory-for-new-file>";
 String directoryPrefix = "<virtual-directory-prefix>";
 boolean includeSubDirectories = true;
 
