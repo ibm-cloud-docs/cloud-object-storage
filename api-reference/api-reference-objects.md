@@ -64,6 +64,13 @@ PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
 {: codeblock}
 
+### Optional headers
+{: #object-operations-put-options}
+
+Header | Type | Description
+--- | ---- | ------------
+`x-amz-tagging` | string | A set of tags to apply to the object, formatted as query parameters (`"SomeKey=SomeValue"`).
+
 **Example request**
 {: token}
 
@@ -409,6 +416,19 @@ The body of the request must contain an XML block with the following schema:
 | Key     | Container | -          | Tag      | Required |
 | Value   | String    | -          | Tag      | Required |
 
+Tags must comply with the following restrictions:
+* An object can have a maximum of 10 tags
+* For each object, each tag key must be unique, and each tag key can have only one value.
+* Minimum key length - 1 Unicode characters in UTF-8
+* Maximum key length - 128 Unicode characters in UTF-8
+* Maximum key byte size - 256 bytes
+* Minimum value length - 0 Unicode characters in UTF-8 (Tag Value can be empty)
+* Maximum value length - 256 Unicode characters in UTF-8
+* Maximum value byte size - 512 bytes
+* A Tag key and value may consist of US Alpha Numeric Characters (a-zA-Z0-9), and spaces representable in UTF-8, and the following symbols: `!`, `_`, `.`, `*`, `` ` ``, `(`, `)`, `-`, `:`
+* Tag keys and values are case-sensitive
+* `ibm:` cannot be used as a key prefix for tags
+
 **Example request**
 
 This is an example of adding a set of tags to an object.
@@ -566,9 +586,6 @@ A `PUT` given a path to a new object creates a new copy of another object that i
 **Note**: Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
 {:tip}
 
-**Note**: Copying an item from a *Key Protect*-enabled bucket to a destination bucket in another region is restricted and will result in a `500 - Internal Error`.
-{:tip}
-
 **Note**: Copying objects (even across locations) does not incur the public outbound bandwidth charges. All data remains inside the COS internal network.
 {:tip}
 
@@ -586,6 +603,8 @@ PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 Header | Type | Description
 --- | ---- | ------------
 `x-amz-metadata-directive` | string (`COPY` or `REPLACE`) | A `REPLACE` overwrites original metadata with new metadata that is provided.
+`x-amz-tagging` | string | A set of tags to apply to the object, formatted as query parameters (`"SomeKey=SomeValue"`).
+`x-amz-tagging-directive` | string (`COPY` or `REPLACE`) | A `REPLACE` overwrites original tags with new tags that is provided.
 `x-amz-copy-source-if-match` | String (`ETag`)| Creates a copy if the specified `ETag` matches the source object.
 `x-amz-copy-source-if-none-match` | String (`ETag`)| Creates a copy if the specified `ETag` is different from the source object.
 `x-amz-copy-source-if-unmodified-since` | String (time stamp)| Creates a copy if the source object has not been modified since the specified date. Date must be a valid HTTP date (for example, `Wed, 30 Nov 2016 20:21:38 GMT`).

@@ -50,7 +50,7 @@ You need:
 * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com/login)
 * An [instance of {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage/basics?topic=cloud-object-storage-provision) and a bucket created for this purpose
 * An [IAM API key](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview) with Writer access to your {{site.data.keyword.cos_short}} bucket or instance 
-* Objects (files) that have been uploaded to your bucket, or can be uploaded so that they may be tagged
+* Either existing or new objects that will have tags applied to them.
 
 ### Reading tags
 {: #object-tagging-reading-tags}
@@ -62,13 +62,12 @@ Log in to the [console](https://cloud.ibm.com/){: external}, selecting your inst
 
 ![Manage your tags](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/object-manage-tags.jpg){: console}
 
-A properly formed and authenticated "GET" request with the `?tagging` query paramter is all that is required for accessing the tags for your objects using `curl`. The examples here use bearer tokens generated using [this example](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-token). In addition to the bucket identifier and object key, you will also need the correct [endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) and the resource instance id from the service instance id in your [credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials). The resulting XML object is also shown, where the "Tag" element will be repeated for each tag assigned to the object. If there are no tags, the response will return XML with an empty element, `<TagSet />`.
+A properly formed and authenticated "GET" request with the `?tagging` query paramter is all that is required for accessing the tags for your objects using `curl`. The examples here use bearer tokens generated using [this example](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-token). In addition to the bucket identifier and object key, you will also need the correct [endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints). The resulting XML object is also shown, where the "Tag" element will be repeated for each tag assigned to the object. If there are no tags, the response will return XML with an empty element, `<TagSet />`.
 {: http}
 
 ```bash
 curl 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
 -H 'Authorization: bearer <token>' \
--H 'ibm-service-instance-id: <resource_instance_id>'
 ```
 {: pre}
 {: http}
@@ -92,7 +91,18 @@ Of course, before tags can be viewed they must be created, which we will turn to
 ### Creating tags
 {: #object-tagging-create-tags}
 
-The objects in your buckets represent your data in a fixed form, that is, saved to {{site.data.keyword.cos_short}}. Creating tags can be done either individually or in bulk.
+Tags must comply with the following restrictions:
+* An object can have a maximum of 10 tags
+* For each object, each tag key must be unique, and each tag key can have only one value.
+* Minimum key length - 1 Unicode characters in UTF-8
+* Maximum key length - 128 Unicode characters in UTF-8
+* Maximum key byte size - 256 bytes
+* Minimum value length - 0 Unicode characters in UTF-8 (Tag Value can be empty)
+* Maximum value length - 256 Unicode characters in UTF-8
+* Maximum value byte size - 512 bytes
+* A Tag key and value may consist of US Alpha Numeric Characters (a-zA-Z0-9), and spaces representable in UTF-8, and the following symbols: `!`, `_`, `.`, `*`, `` ` ``, `(`, `)`, `-`, `:`
+* Tag keys and values are case-sensitive
+* `ibm:` cannot be used as a key prefix for tags
 
 As noted previously, log in to your instance and navigate to the bucket and object you wish to "tag." In the panel that appears when you select "Manage your tags", start by clicking on the "Add tags +" button. Then, you can add tags by typing text into the `key` and `value` fields as desired. Add more tags one at a time, by repeating the steps you've just completed.
 {: console}
