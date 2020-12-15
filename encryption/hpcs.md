@@ -34,7 +34,7 @@ You can use [{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-c
 Before you plan on using {{site.data.keyword.hscrypto}} with Cloud Object Storage buckets, you need:
 
 - An [IBM Cloud™ Platform account](http://cloud.ibm.com/)
-- An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage)
+- An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage) with a *standard* pricing plan.
 
 You will need to ensure that a service instance is created by using the [IBM Cloud catalog](https://cloud.ibm.com/catalog) and appropriate permissions are granted. This section outlines step-by-step instructions to help you get started. 
 
@@ -44,10 +44,9 @@ Refer to the service-specific product pages for instructions on how to provision
 
 - Getting started with [{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-crypto-get-started)
 
-Once you have an instance of {{site.data.keyword.hscrypto}} in a region that you want to create a new bucket in, you need to create a root key and note the CRN ([Cloud Resource Name](/docs/account?topic=account-crn)) of that key. The CRN is sent in a header during bucket creation.
+Once you have an instance of {{site.data.keyword.hscrypto}}, you need to create a root key and note the CRN ([Cloud Resource Name](/docs/account?topic=account-crn)) of that key. The CRN is sent in a header during bucket creation.
 
-Note that the location in which the bucket is created must be the same location where the instance of {{site.data.keyword.hscrypto}} is operating.
-{:important}
+Before creating the bucket for use with {{site.data.keyword.hscrypto}}, review the [relavent guidance around availability and disaster recovery](/docs/hs-crypto?hs-crypto-ha-dr).  
 
 ## Create or add a key in {{site.data.keyword.hscrypto}}
 {: #hpcs-keys}
@@ -58,9 +57,9 @@ Navigate to your instance of {{site.data.keyword.hscrypto}} and [initialize the 
 Authorize {{site.data.keyword.hscrypto}} for use with IBM COS:
 
 1. Open your IBM Cloud dashboard.
-2. From the menu bar, click **Manage > Access**.
+2. From the menu bar, click **Manage > Access (IAM)**.
 3. In the side navigation, click **Authorizations**.
-4. Click **Create authorization**.
+4. Click **Create** to create an authorization.
 5. In the **Source service** menu, select **Cloud Object Storage**.
 6. In the **Source service instance** menu, select the service instance to authorize.
 7. In the **Target service** menu, select **{{site.data.keyword.hscrypto}}**.
@@ -70,7 +69,7 @@ Authorize {{site.data.keyword.hscrypto}} for use with IBM COS:
 
 ## Create a bucket
 {: #hpcs-bucket}
-When your key exists in {{site.data.keyword.hscrypto}} and you authorized the service for use with IBM COS, associate the key with a new bucket:
+When your key exists in {{site.data.keyword.hscrypto}} and you authorized the service for use with IBM COS, you can now associate the key with a new bucket:
 
 1. Navigate to your instance of Object Storage.
 2. Click **Create bucket**.
@@ -87,7 +86,7 @@ You can choose to use {{site.data.keyword.hscrypto}} to manage encryption for a 
 If bucket creation fails with a `400 Bad Request` error with the message `The Key CRN could not be found`, ensure that the CRN is correct and that the service to service authorization policy exists.
 {:tip}
 
-In the **Buckets** listing, the bucket now has a _View_ link under **Attributes**, indicating that the bucket has a {{site.data.keyword.hscrypto}} key enabled. To view the key details, click _View_.
+In the **Buckets** listing, the bucket now has a _View_ link under **Attributes**, indicating that the bucket has a {{site.data.keyword.hscrypto}} key enabled. To view the key details (along with other object metadata), click _View_.
 
 Note that the `Etag` value returned for objects encrypted using {{site.data.keyword.hscrypto}} **will** be the actual MD5 hash of the original decrypted object.
 {:tip}
@@ -111,8 +110,6 @@ For more information, see the documentation for rotating keys in [{{site.data.ke
 
 As an admin, you might need to [temporarily disable a root key](/docs/hs-crypto?topic=hs-crypto-disable-keys) if you suspect a possible security exposure, compromise, or breach with your data. When you disable a root key, you suspend its encrypt and decrypt operations. After confirming that a security risk is no longer active, you can reestablish access to your data by enabling the disabled root key.
 
-If a key is disabled, and then re-enabled quickly, requests made to that bucket may be rejected for up to an hour before cached key information is refreshed.  
-{:note}
 
 ### Deleting keys and cryptographic erasure
 {: hpcs-cryptoerasure}
@@ -133,7 +130,7 @@ If a key that was originally uploaded by a user is deleted, and then restored us
 ## Activity Tracking
 {: hpcs-at}
 
-When a {{site.data.keyword.hscrypto}} root keys are deleted, rotated, suspended, enabled, or restored, an [Activity Tracker management event](/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global) (`cloud-object-storage.bucket-key-state.update`) is generated in addition to any events logged by {{site.data.keyword.hscrypto}}. 
+When {{site.data.keyword.hscrypto}} root keys are deleted, rotated, suspended, enabled, or restored, an [Activity Tracker management event](/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global) (`cloud-object-storage.bucket-key-state.update`) is generated in addition to any events logged by {{site.data.keyword.hscrypto}}. 
 
 In the event of a server-side failure in a lifecycle action on a key, that failure is not logged by COS.  If {{site.data.keyword.hscrypto}} does not receive a success from COS for the event handling within four hours of the event being sent, {{site.data.keyword.hscrypto}} will log a failure.
 {:note}
