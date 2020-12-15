@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-11-25"
+lastupdated: "2020-12-15"
 
 keywords: encryption, security, sse-c, key protect
 
@@ -45,7 +45,7 @@ Refer to the service-specific product pages for instructions on how to provision
 
 Once you have an instance of Key Protect in a region that you want to create a new bucket in, you need to create a root key and note the CRN ([Cloud Resource Name](/docs/account?topic=account-crn)) of that key. The CRN is sent in a header during bucket creation.
 
-Before creating the bucket for use with Key Protect, review the [relavent guidance around availability and disaster recovery](/docs/key-protect?key-protect-ha-dr).  
+Before creating the bucket for use with Key Protect, review the [relevant guidance around availability and disaster recovery](/docs/key-protect?key-protect-ha-dr).  
 ## Create or add a key in Key Protect
 {: #kp-create}
 Navigate to your instance of Key Protect and [generate or enter a root key](/docs/services/key-protect?topic=key-protect-getting-started-tutorial).
@@ -55,7 +55,7 @@ Navigate to your instance of Key Protect and [generate or enter a root key](/doc
 Authorize Key Protect for use with IBM COS:
 
 1. Open your IBM Cloud dashboard.
-2. From the menu bar, click **Manage > Access**.
+2. From the menu bar, click **Manage > Access (IAM)**.
 3. In the side navigation, click **Authorizations**.
 4. Click **Create authorization**.
 5. In the **Source service** menu, select **Cloud Object Storage**.

@@ -46,7 +46,7 @@ Refer to the service-specific product pages for instructions on how to provision
 
 Once you have an instance of {{site.data.keyword.hscrypto}}, you need to create a root key and note the CRN ([Cloud Resource Name](/docs/account?topic=account-crn)) of that key. The CRN is sent in a header during bucket creation.
 
-Before creating the bucket for use with {{site.data.keyword.hscrypto}}, review the [relavent guidance around availability and disaster recovery](/docs/hs-crypto?hs-crypto-ha-dr).  
+Before creating the bucket for use with {{site.data.keyword.hscrypto}}, review the [relevant guidance around availability and disaster recovery](/docs/hs-crypto?hs-crypto-ha-dr).  
 
 ## Create or add a key in {{site.data.keyword.hscrypto}}
 {: #hpcs-keys}
