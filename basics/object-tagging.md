@@ -120,7 +120,6 @@ As noted previously, you will have to authenticate in order to add tags to your 
 ```bash
 curl -X "PUT" 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
 -H 'Authorization: bearer <token>' \
--H 'ibm-service-instance-id: <resource_instance_id>' \
 -H "content-type: text/plain" \
 --data "<Tagging><TagSet><Tag><Key>your key</Key><Value>your text</Value></Tag></TagSet></Tagging>"
 ```
@@ -156,7 +155,6 @@ Remember that performing "PUT" operations involving tags will overwrite any curr
 ```bash
 curl -X "PUT" 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
 -H 'Authorization: bearer <token>' \
--H 'ibm-service-instance-id: <resource_instance_id>' \
 -H "content-type: text/plain" \
 --data "<Tagging><TagSet><Tag><Key>source</Key><Value>text</Value></Tag><Tag><Key>source1</Key><Value>text1</Value></Tag></TagSet></Tagging>"
 ```
@@ -182,7 +180,6 @@ You will have to authenticate in order to delete tags from your data. Simply use
 ```bash
 curl -X "DELETE" 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
 -H 'Authorization: bearer <token>' \
--H 'ibm-service-instance-id: <resource_instance_id>' \
 -H "content-type: text/plain"
 ```
 {: pre}
