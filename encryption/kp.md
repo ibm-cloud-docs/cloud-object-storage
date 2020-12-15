@@ -72,12 +72,10 @@ When your key exists in Key Protect and you authorized the service for use with 
 
 1. Navigate to your instance of Object Storage.
 2. Click **Create bucket**.
-3. Click **Custom bucket**.
+3. Select **Custom bucket**.
 3. Enter a bucket name, select the **Regional** resiliency, and choose a location and storage class.
-4. In Advanced Configuration, under **Key management services** click on **Add**.
-  ![Add KP](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/kp-add.png){: caption="Figure 2: Add Key Protect to a new bucket."}
+4. In **Service integrations**, toggle **Key management disabled** to enable encryption key management and click on **Use existing instance**.
 5. Select the associated service instance and key, and click **Associate key**.
-  ![Add KP](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/kp-associate-key.png){: caption="Figure 3: Choose a root key."}
 5. Verify the information is correct.
 6. Click **Create**.
 
