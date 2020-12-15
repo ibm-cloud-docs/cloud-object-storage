@@ -33,7 +33,7 @@ subcollection: cloud-object-storage
 {{site.data.keyword.sqlquery_full}} is a fully-managed service that lets you run SQL queries (that is, `SELECT` statements) to analyze, transform, or clean up rectangular data using the full ANSI SQL standard.
 {: shortdesc}
 
-When you use the console to interact with your instance of {{site.data.keyword.cos_full_notm}}, you can create an instance of {{site.data.keyword.sqlquery_notm}} from the browser. See Figure 1, showing the option to integrate other services like {{site.data.keyword.sqlquery_short}} next to your credentials and buckets.
+When you use the console to interact with your instance of {{site.data.keyword.cos_full_notm}}, there are instances of IBM Cloud SQL Query automatically recognised in the new "Integrations" panel. You can also create new instances of {{site.data.keyword.sqlquery_notm}} directly from the "Integrations" panel in your browser. See Figure 1, showing the option to integrate services like {{site.data.keyword.sqlquery_short}} next to your credentials and buckets.
 
 ![Integrations in COS](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/integrate-from-cos.jpg){: caption="Figure 1. Integrate SQL Query from COS instance"}
 
@@ -53,7 +53,7 @@ You can use SQL Query to create `SELECT` statements only; actions such as `CREAT
 
 Input data for your queries are read from ORC, CSV, JSON, or Parquet files located in one or more {{site.data.keyword.cos_full_notm}} instances. Each query result is written by default to a CSV file in a Cloud Object Storage instance where you created the integration. But you can freely override and customise the format and {{site.data.keyword.cos_short}} location as part of the SQL statement that you run.
 
-Per the SQL standard, you can use the INTO clause of the SELECT statement to control where and how result data from a SELECT statement is written to {{site.data.keyword.cos_full_notm}}.
+You can use a custom `INTO` clause of a `SELECT` statement to control where and how result data from a `SELECT` statement is written to {{site.data.keyword.cos_full_notm}}.
 {: note}
 
 Getting started using SQL Query `SELECT` statements from inside your instance is as easy as creating an integration. Objects of queryable data formats, as well as folders with multiple objects of a consistent queryable format (when shown in the "folders" view) are labeled as shown in Figure 4.
