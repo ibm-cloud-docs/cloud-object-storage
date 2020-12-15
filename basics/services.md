@@ -57,7 +57,7 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 |-----------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
 | AP Cross Region | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
 | EU Cross Region | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
-| US Cross Region | Yes    | No          | No                             | No           | Yes                      | Dallas           | No        | Yes        | Dallas     |
+| US Cross Region | Yes    | Yes         | No                             | No           | Yes                      | Dallas           | No        | Yes        | Dallas     |
 
 
 ## Regional
