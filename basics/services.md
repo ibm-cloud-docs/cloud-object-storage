@@ -37,7 +37,8 @@ The document describes the regions where services and the different kinds of ava
 For more information about the following services, be sure to check out the respective links:
 
 * [Aspera high-speed transfer](/docs/cloud-object-storage/basics?topic=cloud-object-storage-aspera)
-* [{{site.data.keyword.hscrypto}} (SSE-KP)](/docs/cloud-object-storage?topic=cloud-object-storage-kp)
+* [Key Protect (SSE-KP)](/docs/cloud-object-storage?topic=cloud-object-storage-kp)
+* [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs)
 * [Archive Data](/docs/cloud-object-storage/basics?topic=cloud-object-storage-archive)
 * [Immutable Object Storage](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable)
 * [Activity Tracker](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started)
@@ -57,7 +58,7 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 |-----------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
 | AP Cross Region | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
 | EU Cross Region | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
-| US Cross Region | Yes    | No          | No                             | No           | Yes                      | Dallas           | No        | Yes        | Dallas     |
+| US Cross Region | Yes    | Yes         | No                             | No           | Yes                      | Dallas           | No        | Yes        | Dallas     |
 
 
 ## Regional
