@@ -93,7 +93,7 @@ Note that the `Etag` value returned for objects encrypted using {{site.data.keyw
 
 It is also possible to use [the REST API](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-key-protect) or SDKs ([Go](/docs/cloud-object-storage?topic=cloud-object-storage-using-go#go-examples-kp), [Java](/docs/cloud-object-storage?topic=cloud-object-storage-java#java-examples-kp), [Node.js](/docs/cloud-object-storage?topic=cloud-object-storage-node#node-examples-kp), or [Python](/docs/cloud-object-storage?topic=cloud-object-storage-python#python-examples-kp)).
 
-# Key lifecycle management 
+## Key lifecycle management 
 {: #hpcs-lifecycle}
 
 {{site.data.keyword.hscrypto}} offers various ways to manage the lifecycle of encryption keys.  For more details, see [the {{site.data.keyword.hscrypto}} documentation](/docs/services/hs-crypto?topic=hs-crypto-overview).
