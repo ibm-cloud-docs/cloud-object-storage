@@ -112,7 +112,7 @@ As an admin, you might need to [temporarily disable a root key](/docs/hs-crypto?
 
 
 ### Deleting keys and cryptographic erasure
-{: hpcs-cryptoerasure}
+{: #hpcs-cryptoerasure}
 
 Cryptographic erasure (or crypto-shredding) is a method of rendering encrypted data  unreadable by [deleting the encryption keys](/docs/hs-crypto?topic=hs-crypto-security-and-compliance#data-deletion) rather than the data itself. When a [root key is deleted in {{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-delete-keys), it will affect all objects in any buckets created using that root key, effectively "shredding" the data and preventing any further reading or writing to the buckets. This process is not instantaneous, but occurs within approximatedly 90 seconds after the key is deleted.
 
@@ -120,7 +120,7 @@ Although objects in a crypto-shredded bucket can not be read, and new object can
 {: tip}
 
 ### Restoring a deleted key 
-{: hpcs-restore}
+{: #hpcs-restore}
 
 As an admin, you might need to [restore a root key that you imported](/docs/hs-crypto?topic=hs-crypto-restore-keys) to {{site.data.keyword.hscrypto}} so that you can access data that the key previously protected. When you restore a key, you move the key from the Destroyed to the Active key state, and you restore access to any data that was previously encrypted with the key. This must occur within 30 days of deleting a key.
 
@@ -128,7 +128,7 @@ If a key that was originally uploaded by a user is deleted, and then restored us
 {: important}
 
 ## Activity Tracking
-{: hpcs-at}
+{: #hpcs-at}
 
 When {{site.data.keyword.hscrypto}} root keys are deleted, rotated, suspended, enabled, or restored, an [Activity Tracker management event](/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global) (`cloud-object-storage.bucket-key-state.update`) is generated in addition to any events logged by {{site.data.keyword.hscrypto}}. 
 

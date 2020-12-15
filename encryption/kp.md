@@ -116,7 +116,7 @@ If a key is disabled, and then re-enabled quickly, requests made to that bucket 
 {:note}
 
 ### Deleting keys and cryptographic erasure
-{: kp-cryptoerasure}
+{: #kp-cryptoerasure}
 
 Cryptographic erasure (or crypto-shredding) is a method of rendering encrypted data  unreadable by [deleting the encryption keys](/docs/key-protect?topic=key-protect-security-and-compliance#data-deletion) rather than the data itself. When a [root key is deleted in Key Protect](/docs/key-protect?topic=key-protect-delete-keys), it will affect all objects in any buckets created using that root key, effectively "shredding" the data and preventing any further reading or writing to the buckets. This process is not instantaneous, but occurs within approximatedly 90 seconds after the key is deleted.
 
@@ -124,12 +124,12 @@ Although objects in a crypto-shredded bucket can not be read, and new object can
 {: tip}
 
 ### Restoring a deleted key 
-{: kp-restore}
+{: #kp-restore}
 
 As an admin, you might need to [restore a root key that you imported](/docs/key-protect?topic=key-protect-restore-keys) to Key Protect so that you can access data that the key previously protected. When you restore a key, you move the key from the Destroyed to the Active key state, and you restore access to any data that was previously encrypted with the key. This must occur within 30 days of deleting a key.
 
 ## Activity Tracking
-{: kp-at}
+{: #kp-at}
 
 When Key Protect root keys are deleted, rotated, suspended, enabled, or restored, an [Activity Tracker management event](/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global) (`cloud-object-storage.bucket-key-state.update`) is generated in addition to any events logged by Key Protect. 
 
