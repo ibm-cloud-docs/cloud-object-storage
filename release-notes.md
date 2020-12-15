@@ -36,7 +36,7 @@ Buckets can now be created in a Regional configuration in Osaka, Japan. More inf
 
 Buckets can now be configured to [serve static websites](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-options).
 
-Lifecycle actions on Key Protect encryption keys can now generate bucket events in Activity Tracker.
+Lifecycle actions on [Key Protect](/docs/cloud-object-storage?topic=cloud-object-storage-kp#kp-lifecycle) and [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-lifecycle) encryption keys can now generate bucket events in Activity Tracker.
 
 Buckets can now be encrypted using {{site.data.keyword.hscrypto}} in the US East region.
 

@@ -36,10 +36,6 @@ Cloud Object Storage
         basics/services.md
         [Connect from VPC](/vpc/vpc-connecting-vpc-cos)
         [Connect from VPC (Classic)](/vpc-on-classic/vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc)
-    
-    basics/closures.md
-    basics/upload.md
-    basics/object-tagging.md
 
     {: .topicgroup}
     Managing access
@@ -50,7 +46,12 @@ Cloud Object Storage
         iam/public-access.md
         basics/firewall.md
 
-    [Connect to resources using a CDN](/CDN/CDN-configure-ibm-cloud-object-storage-for-cdn)
+    {: .topicgroup}
+    Managing encryption
+        encryption/overview.md
+        encryption/sse-c.md
+        encryption/kp.md
+        encryption/hpcs.md
 
     {: .topicgroup}
     Using Access/Secret Key (HMAC) authentication
@@ -63,20 +64,17 @@ Cloud Object Storage
         basics/archive.md
         basics/expiry.md
 
+    basics/upload.md
+    basics/closures.md
+    basics/object-tagging.md
     tutorials/cos-region-copy.md
     basics/aspera.md
     basics/immutable.md
     basics/classes.md
     basics/static-websites-options.md
+    [Connect to resources using a CDN](/CDN/CDN-configure-ibm-cloud-object-storage-for-cdn)
     basics/multipart.md
     basics/deleting-multiple-objects.md
-    
-    {: .topicgroup}
-    Managing encryption
-        encryption/overview.md
-        encryption/sse-c.md
-        encryption/kp.md
-        encryption/hpcs.md
     basics/sql.md
     basics/logdna.md
     basics/metrics-monitoring.md
