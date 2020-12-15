@@ -44,7 +44,7 @@ Refer to the service-specific product pages for instructions on how to provision
 
 - Getting started with [{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-crypto-get-started)
 
-Once you have an instance of {{site.data.keyword.hscrypto}} in a region that you want to create a new bucket in, you need to create a root key and note the CRN ([Cloud Resource Name](/docs/account?topic=account-crn)) of that key. The CRN is sent in a header during bucket creation.
+Once you have an instance of {{site.data.keyword.hscrypto}}, you need to create a root key and note the CRN ([Cloud Resource Name](/docs/account?topic=account-crn)) of that key. The CRN is sent in a header during bucket creation.
 
 Before creating the bucket for use with {{site.data.keyword.hscrypto}}, review the [relavent guidance around availability and disaster recovery](/docs/hs-crypto?hs-crypto-ha-dr).  
 
@@ -69,7 +69,7 @@ Authorize {{site.data.keyword.hscrypto}} for use with IBM COS:
 
 ## Create a bucket
 {: #hpcs-bucket}
-When your key exists in {{site.data.keyword.hscrypto}} and you authorized the service for use with IBM COS, associate the key with a new bucket:
+When your key exists in {{site.data.keyword.hscrypto}} and you authorized the service for use with IBM COS, you can now associate the key with a new bucket:
 
 1. Navigate to your instance of Object Storage.
 2. Click **Create bucket**.
@@ -86,7 +86,7 @@ You can choose to use {{site.data.keyword.hscrypto}} to manage encryption for a 
 If bucket creation fails with a `400 Bad Request` error with the message `The Key CRN could not be found`, ensure that the CRN is correct and that the service to service authorization policy exists.
 {:tip}
 
-In the **Buckets** listing, the bucket now has a _View_ link under **Attributes**, indicating that the bucket has a {{site.data.keyword.hscrypto}} key enabled. To view the key details, click _View_.
+In the **Buckets** listing, the bucket now has a _View_ link under **Attributes**, indicating that the bucket has a {{site.data.keyword.hscrypto}} key enabled. To view the key details (along with other object metadata), click _View_.
 
 Note that the `Etag` value returned for objects encrypted using {{site.data.keyword.hscrypto}} **will** be the actual MD5 hash of the original decrypted object.
 {:tip}
@@ -110,8 +110,6 @@ For more information, see the documentation for rotating keys in [{{site.data.ke
 
 As an admin, you might need to [temporarily disable a root key](/docs/hs-crypto?topic=hs-crypto-disable-keys) if you suspect a possible security exposure, compromise, or breach with your data. When you disable a root key, you suspend its encrypt and decrypt operations. After confirming that a security risk is no longer active, you can reestablish access to your data by enabling the disabled root key.
 
-If a key is disabled, and then re-enabled quickly, requests made to that bucket may be rejected for up to an hour before cached key information is refreshed.  
-{:note}
 
 ### Deleting keys and cryptographic erasure
 {: hpcs-cryptoerasure}
