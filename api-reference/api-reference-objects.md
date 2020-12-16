@@ -64,6 +64,13 @@ PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
 {: codeblock}
 
+### Optional headers
+{: #object-operations-put-options}
+
+Header | Type | Description
+--- | ---- | ------------
+`x-amz-tagging` | string | A set of tags to apply to the object, formatted as query parameters (`"SomeKey=SomeValue"`).
+
 **Example request**
 {: token}
 
@@ -384,15 +391,199 @@ Content-Length: 207
 
 ----
 
+## Add tags to an object
+{: #object-operations-add-tags}
+
+A `PUT` issued to an object with the proper parameters creates or replaces a set of key-value tags associated with the object.
+
+**Syntax**
+
+```bash
+PUT https://{endpoint}/{bucket-name}/{object-name}?tagging # path style
+PUT https://{bucket-name}.{endpoint}/{object-name}?tagging # virtual host style
+```
+{: codeblock}
+
+**Payload Elements**
+
+The body of the request must contain an XML block with the following schema:
+
+| Element | Type      | Children   | Ancestor | Notes    |
+|---------|-----------|------------|----------|----------|
+| Tagging | Container | TagSet     | -        | Required |
+| TagSet  | Container | Tag        | Tagging  | Required |
+| Tag     | String    | Key, Value | TagSet   | Required |
+| Key     | Container | -          | Tag      | Required |
+| Value   | String    | -          | Tag      | Required |
+
+Tags must comply with the following restrictions:
+* An object can have a maximum of 10 tags
+* For each object, each tag key must be unique, and each tag key can have only one value.
+* Minimum key length - 1 Unicode characters in UTF-8
+* Maximum key length - 128 Unicode characters in UTF-8
+* Maximum key byte size - 256 bytes
+* Minimum value length - 0 Unicode characters in UTF-8 (Tag Value can be empty)
+* Maximum value length - 256 Unicode characters in UTF-8
+* Maximum value byte size - 512 bytes
+* A Tag key and value may consist of US Alpha Numeric Characters (a-zA-Z0-9), and spaces representable in UTF-8, and the following symbols: `!`, `_`, `.`, `*`, `` ` ``, `(`, `)`, `-`, `:`
+* Tag keys and values are case-sensitive
+* `ibm:` cannot be used as a key prefix for tags
+
+**Example request**
+
+This is an example of adding a set of tags to an object.
+
+```http
+PUT /apiary/myObject?tagging HTTP/1.1
+Authorization: Bearer {token}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+Content-Length: 119
+```
+{: token}
+
+```http
+PUT /apiary/myObject?tagging HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+Content-Length: 128
+```
+{: hmac}
+
+```xml
+<Tagging>
+   <TagSet>
+      <Tag>
+         <Key>string</Key>
+         <Value>string</Value>
+      </Tag>
+   </TagSet>
+</Tagging>
+```
+
+
+**Example response**
+
+```http
+HTTP/1.1 200 OK
+Date: Wed, 5 Oct 2020 15:39:38 GMT
+X-Clv-Request-Id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
+Accept-Ranges: bytes
+Content-Length: 0
+```
+
+----
+
+## Read an object's tags
+{: #object-operations-get-tags}
+
+A `GET` issued to an object with the proper parameters returns the set of key-value tags associated with the object.
+
+**Syntax**
+
+```bash
+GET https://{endpoint}/{bucket-name}/{object-name}?tagging # path style
+GET https://{bucket-name}.{endpoint}/{object-name}?tagging # virtual host style
+```
+{: codeblock}
+
+
+**Example request**
+
+This is an example of reading a set of object tags.
+
+```http
+GET /apiary/myObject?tagging HTTP/1.1
+Authorization: Bearer {token}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+Content-Length: 0
+```
+{: token}
+
+```http
+GET /apiarymyObject?tagging HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+Content-Length: 0
+```
+{: hmac}
+
+
+**Example response**
+
+```http
+HTTP/1.1 200 OK
+Date: Wed, 5 Oct 2020 15:39:38 GMT
+X-Clv-Request-Id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
+Accept-Ranges: bytes
+Content-Length: 128
+```
+
+```xml
+<Tagging>
+   <TagSet>
+      <Tag>
+         <Key>string</Key>
+         <Value>string</Value>
+      </Tag>
+   </TagSet>
+</Tagging>
+```
+----
+
+## Delete an object's tags
+{: #object-operations-delete-tags}
+
+A `DELETE` issued to a bucket with the proper parameters removes an object's tags.
+
+**Syntax**
+
+```bash
+DELETE https://{endpoint}/{bucket-name}{object-name}?tagging # path style
+DELETE https://{bucket-name}.{endpoint}{object-name}?tagging # virtual host style
+```
+{: codeblock}
+
+**Example request**
+{: token}
+
+This is an example of deleting an object's tags.
+{: token}
+
+```http
+DELETE /apiary/myObject?tagging HTTP/1.1
+Authorization: Bearer {token}
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+DELETE /apiary/myObject?tagging HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
+
+The server responds with `204 No Content`.
+
+----
+
 ## Copy an object
 {: #object-operations-copy}
 
 A `PUT` given a path to a new object creates a new copy of another object that is specified by the `x-amz-copy-source` header. Unless otherwise altered the metadata remains the same.
 
 **Note**: Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
-{:tip}
-
-**Note**: Copying an item from a *Key Protect*-enabled bucket to a destination bucket in another region is restricted and will result in a `500 - Internal Error`.
 {:tip}
 
 **Note**: Copying objects (even across locations) does not incur the public outbound bandwidth charges. All data remains inside the COS internal network.
@@ -412,6 +603,8 @@ PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 Header | Type | Description
 --- | ---- | ------------
 `x-amz-metadata-directive` | string (`COPY` or `REPLACE`) | A `REPLACE` overwrites original metadata with new metadata that is provided.
+`x-amz-tagging` | string | A set of tags to apply to the object, formatted as query parameters (`"SomeKey=SomeValue"`).
+`x-amz-tagging-directive` | string (`COPY` or `REPLACE`) | A `REPLACE` overwrites original tags with new tags that is provided.
 `x-amz-copy-source-if-match` | String (`ETag`)| Creates a copy if the specified `ETag` matches the source object.
 `x-amz-copy-source-if-none-match` | String (`ETag`)| Creates a copy if the specified `ETag` is different from the source object.
 `x-amz-copy-source-if-unmodified-since` | String (time stamp)| Creates a copy if the source object has not been modified since the specified date. Date must be a valid HTTP date (for example, `Wed, 30 Nov 2016 20:21:38 GMT`).

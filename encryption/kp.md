@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-11-25"
+lastupdated: "2020-12-15"
 
 keywords: encryption, security, sse-c, key protect
 
@@ -45,9 +45,7 @@ Refer to the service-specific product pages for instructions on how to provision
 
 Once you have an instance of Key Protect in a region that you want to create a new bucket in, you need to create a root key and note the CRN ([Cloud Resource Name](/docs/account?topic=account-crn)) of that key. The CRN is sent in a header during bucket creation.
 
-Note that the location in which the bucket is created must be the same location where the instance of Key Protect is operating.
-{:important}
-
+Before creating the bucket for use with Key Protect, review the [relevant guidance around availability and disaster recovery](/docs/key-protect?key-protect-ha-dr).  
 ## Create or add a key in Key Protect
 {: #kp-create}
 Navigate to your instance of Key Protect and [generate or enter a root key](/docs/services/key-protect?topic=key-protect-getting-started-tutorial).
@@ -57,7 +55,7 @@ Navigate to your instance of Key Protect and [generate or enter a root key](/doc
 Authorize Key Protect for use with IBM COS:
 
 1. Open your IBM Cloud dashboard.
-2. From the menu bar, click **Manage > Access**.
+2. From the menu bar, click **Manage > Access (IAM)**.
 3. In the side navigation, click **Authorizations**.
 4. Click **Create authorization**.
 5. In the **Source service** menu, select **Cloud Object Storage**.
@@ -74,12 +72,10 @@ When your key exists in Key Protect and you authorized the service for use with 
 
 1. Navigate to your instance of Object Storage.
 2. Click **Create bucket**.
-3. Click **Custom bucket**.
+3. Select **Custom bucket**.
 3. Enter a bucket name, select the **Regional** resiliency, and choose a location and storage class.
-4. In Advanced Configuration, under **Key management services** click on **Add**.
-  ![Add KP](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/kp-add.png){: caption="Figure 2: Add Key Protect to a new bucket."}
+4. In **Service integrations**, toggle **Key management disabled** to enable encryption key management and click on **Use existing instance**.
 5. Select the associated service instance and key, and click **Associate key**.
-  ![Add KP](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/kp-associate-key.png){: caption="Figure 3: Choose a root key."}
 5. Verify the information is correct.
 6. Click **Create**.
 
@@ -118,7 +114,7 @@ If a key is disabled, and then re-enabled quickly, requests made to that bucket 
 {:note}
 
 ### Deleting keys and cryptographic erasure
-{: kp-cryptoerasure}
+{: #kp-cryptoerasure}
 
 Cryptographic erasure (or crypto-shredding) is a method of rendering encrypted data  unreadable by [deleting the encryption keys](/docs/key-protect?topic=key-protect-security-and-compliance#data-deletion) rather than the data itself. When a [root key is deleted in Key Protect](/docs/key-protect?topic=key-protect-delete-keys), it will affect all objects in any buckets created using that root key, effectively "shredding" the data and preventing any further reading or writing to the buckets. This process is not instantaneous, but occurs within approximatedly 90 seconds after the key is deleted.
 
@@ -126,14 +122,14 @@ Although objects in a crypto-shredded bucket can not be read, and new object can
 {: tip}
 
 ### Restoring a deleted key 
-{: kp-restore}
+{: #kp-restore}
 
 As an admin, you might need to [restore a root key that you imported](/docs/key-protect?topic=key-protect-restore-keys) to Key Protect so that you can access data that the key previously protected. When you restore a key, you move the key from the Destroyed to the Active key state, and you restore access to any data that was previously encrypted with the key. This must occur within 30 days of deleting a key.
 
 ## Activity Tracking
-{: kp-at}
+{: #kp-at}
 
-When a Key Protect root keys are deleted, rotated, suspended, enabled, or restored, an [Activity Tracker management event](/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global) (`cloud-object-storage.bucket-key-state.update`) is generated in addition to any events logged by Key Protect. 
+When Key Protect root keys are deleted, rotated, suspended, enabled, or restored, an [Activity Tracker management event](/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global) (`cloud-object-storage.bucket-key-state.update`) is generated in addition to any events logged by Key Protect. 
 
 In the event of a server-side failure in a lifecycle action on a key, that failure is not logged by COS.  If Key Protect does not receive a success from COS for the event handling within four hours of the event being sent, Key Protect will log a failure.
 {:note}
