@@ -123,13 +123,11 @@ def get_bucket_contents(bucket_name):
     print("Retrieving bucket contents from: {0}".format(bucket_name))
     try:
         file_list = cos_cli.list_objects(Bucket=bucket_name)
-        if file_list.has_key("Contents"):
-            for file in file_list["Contents"]:
-                print("Item: {0} ({1} bytes).".format(file["Key"], file["Size"]))
-
-            log_done()
+        for file in file_list.get("Contents", []):
+            print("Item: {0} ({1} bytes).".format(file["Key"], file["Size"]))
         else:
             print("Bucket {0} has no items.".format(bucket_name))
+        log_done()
     except ClientError as be:
         log_client_error(be)
     except Exception as e:
