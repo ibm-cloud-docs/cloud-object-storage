@@ -39,7 +39,7 @@ There are some rules around setting a firewall:
 When a firewall is set, the bucket is isolated from the rest of {{site.data.keyword.cloud_notm}}. Consider how this may impact applications and workflows that depend on other services directly accessing a bucket before enabling the firewall.
 {: important}
 
-It is possible to access a bucket with a firewall enabled from a VPC environment, although only at the VPC/Zone level. It is not possible to add individual VSIs to the allow list.
+Access from a VPC environment can pass `allowed_network_type` checks, and VPC-zone underlay IP addresses can be added to the `allowed_ip` list. It is not possible to restrict access to an overlay IP for an individual VSI.
 {: note}
 
 ## Before you begin
