@@ -36,8 +36,11 @@ There are some rules around setting a firewall:
 * The {{site.data.keyword.cos_short}} Console can still access the bucket, provided the user's IP address is authorized.
 * Other {{site.data.keyword.cloud_notm}} services **are not authorized** to bypass the firewall. This limitation means that other services that rely on IAM policies for bucket access (such as Aspera, SQL Query, Security Advisor, Watson Studio, Cloud Functions, and others) will be unable to do so.
 
-It isn't possible to use a bucket with a firewall enabled in a VPC environment. When a firewall is set, the bucket is isolated from the rest of {{site.data.keyword.cloud_notm}}. Consider how this may impact applications and workflows that depend on other services directly accessing a bucket before enabling the firewall.
+When a firewall is set, the bucket is isolated from the rest of {{site.data.keyword.cloud_notm}}. Consider how this may impact applications and workflows that depend on other services directly accessing a bucket before enabling the firewall.
 {: important}
+
+It is possible to access a bucket with a firewall enabled from a VPC environment, although only at the VPC/Zone level. It is not possible to add individual VSIs to the allow list.
+{: note}
 
 ## Before you begin
 {: #firewall-precursors}
