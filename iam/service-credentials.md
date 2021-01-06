@@ -63,7 +63,7 @@ This is an example of a service credential:
   "apikey": "0viPHOY7LbLNa9eLftrtHPpTjoGv6hbLD1QalRXikliJ",
   "cos_hmac_keys": {
       "access_key_id": "347aa3a4b34344f8bc7c7cccdf856e4c",
-      "secret_access_key": "gvurfb82712ad14e7a7915h763a6i87155d30a1234364f61"
+      "secret_access_key": "gvurfb82712ad14W7a7915h763a6i87155d30a1234364f61"
   },
   "endpoints": "https://control.cloud-object-storage.test.cloud.ibm.com/v2/endpoints",
   "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:bluemix:public:cloud-object-storage:global:a/3ag0e9402tyfd5d29761c3e97696b71n:d6f74k03-6k4f-4a82-b165-697354o63903::",
