@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-11-24"
+lastupdated: "2020-10-01"
 
 keywords: encryption, security, {{site.data.keyword.hscrypto}}
 
@@ -63,7 +63,7 @@ Authorize {{site.data.keyword.hscrypto}} for use with IBM COS:
 5. In the **Source service** menu, select **Cloud Object Storage**.
 6. In the **Source service instance** menu, select the service instance to authorize.
 7. In the **Target service** menu, select **{{site.data.keyword.hscrypto}}**.
-8. In the **Target service instance** menu, select the service instance to authorize. The additional fields may be left blank.
+8. In the **Target service instance** menu, select the service instance to authorize.
 9. Enable the **Reader** role.
 10. Click **Authorize**.
 
@@ -109,7 +109,6 @@ For more information, see the documentation for rotating keys in [{{site.data.ke
 {: #hpcs-disable}
 
 As an admin, you might need to [temporarily disable a root key](/docs/hs-crypto?topic=hs-crypto-disable-keys) if you suspect a possible security exposure, compromise, or breach with your data. When you disable a root key, you suspend its encrypt and decrypt operations. After confirming that a security risk is no longer active, you can reestablish access to your data by enabling the disabled root key.
-
 
 ### Deleting keys and cryptographic erasure
 {: #hpcs-cryptoerasure}
