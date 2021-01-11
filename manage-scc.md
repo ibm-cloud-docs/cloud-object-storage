@@ -38,7 +38,7 @@ As a security or compliance focal, you can use the {{site.data.keyword.cos_short
 All of the goals for {{site.data.keyword.cos_short}} are added to the {{site.data.keyword.cloud_notm}} Best Practices Controls 1.0 profile but can also be mapped to other profiles.
 {: note}
 
-To start monitoring your resources, check out [Getting started with {{site.data.keyword.compliance_short}}](/docs/security-compliance?topic-security-compliance-getting-started)
+To start monitoring your resources, check out [Getting started](/docs/security-compliance?topic-security-compliance-getting-started) for {{site.data.keyword.compliance_short}}.
 
 ### Available goals for {{site.data.keyword.cos_short}}
 {: #cloud-object-storage-available-goals}
