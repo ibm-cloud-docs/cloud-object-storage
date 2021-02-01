@@ -93,16 +93,15 @@ Getting started with [Node.js](https://nodejs.org/en/about/){: external}&mdash;o
 {: #node-examples-init}
 
 ```javascript
-const myCOS = require('ibm-cos-sdk');
+const IBM = require('ibm-cos-sdk');
 
 var config = {
     endpoint: '<endpoint>',
     apiKeyId: '<api-key>',
-    ibmAuthEndpoint: 'https://iam.cloud.ibm.com/identity/token',
     serviceInstanceId: '<resource-instance-id>',
 };
 
-var cosClient = new myCOS.S3(config);
+var cos = new IBM.S3(config);
 ```
 *Key Values*
 * `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){: external}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
