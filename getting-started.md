@@ -28,7 +28,7 @@ subcollection: cloud-object-storage
 {: shortdesc}
 
 ## Before you begin
-{: #gs-prereqs-cloud-object-storage}
+{: #getting-started}
 
 You need the following to get started with {{site.data.keyword.cos_full_notm}}:
   * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com)
