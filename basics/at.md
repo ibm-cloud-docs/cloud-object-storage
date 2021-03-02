@@ -266,7 +266,12 @@ To collect and monitor all events that report on a copy action across buckets, c
 
 You can use the `responseData.requestId` field to identify the events that are generated when you copy an object from one bucket to another.
 
+### Getting the details of a firewall update
+{: #at-events-analyze-7}
 
+Updating a bucket's firewall will generate a `cloud-object-storage.resource-configuration.update` event.
+
+To get the details of what was changed, check for fields `responseData.allowedIp`, `responseData.deniedIp`, and `responseData.allowedNetworkTypes` that appear in the **responseData** field.
 
 
 

@@ -26,7 +26,7 @@ subcollection: cloud-object-storage
 # Setting a quota on a bucket
 {: #quota}
 
-Setting a hard quota on a bucket ensures that usage doesn't go above a defined threshold.
+Setting a hard quota on a bucket ensures that usage doesn't go above a defined threshold.  
 {: shortdesc}
 
 ## Using the console
