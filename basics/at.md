@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-09-09"
+  years: 2017, 2021
+lastupdated: "2021-03-15"
 
 keywords: activity tracker, LogDNA, event, object storage, COS API calls, monitor COS events
 
