@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-09-09"
+  years: 2017, 2021
+lastupdated: "2021-03-15"
 
 keywords: activity tracker, LogDNA, event, object storage, COS API calls, monitor COS events
 
@@ -266,7 +266,12 @@ To collect and monitor all events that report on a copy action across buckets, c
 
 You can use the `responseData.requestId` field to identify the events that are generated when you copy an object from one bucket to another.
 
+### Getting the details of a firewall update
+{: #at-events-analyze-7}
 
+Updating a bucket's firewall will generate a `cloud-object-storage.resource-configuration.update` event.
+
+To get the details of what was changed, check for fields `requestData.allowedIp`, `requestData.deniedIp`, and `requestData.allowedNetworkTypes` that appear in the **requestData** field.
 
 
 
