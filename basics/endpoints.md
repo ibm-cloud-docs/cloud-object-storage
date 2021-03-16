@@ -52,6 +52,9 @@ All {{site.data.keyword.cos_full}} endpoints support TLS 1.2 encryption.
 
 Requests must be sent to the endpoint associated with a given bucket's location. If you aren't sure where a bucket is located, there is an [extension to the bucket listing API](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets-extended) that returns the location and storage class information for all buckets in a service instance.
 
+When using Virtual Private Endpoints in an application that makes requests to IBM COS, it may be necessary to add some additional configuration for authentication. The IBM COS SDKs will automatically attempt to fetch an IAM token from `https://iam.cloud.ibm.com/identity/token`.  If you are using a virtualized endpoint for token acquisition you will need alter the IAM endpoint appropriately.
+{: note}
+
 ## Regional Endpoints
 {: #endpoints-region}
 
