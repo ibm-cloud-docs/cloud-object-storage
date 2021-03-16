@@ -37,6 +37,12 @@ Developers use an {{site.data.keyword.cos_full_notm}} API to interact with their
 
 Users of {{site.data.keyword.cos_full_notm}} refer to their binary data, such as files, images, media, archives, or even entire databases as objects. Objects are stored in a bucket, the container for their unstructured data. Buckets contain both inherent and user-defined metadata. Finally, objects are defined by a globally unique combination of the bucket name and the object key, or name.
 
+
+## For users of Cloud Object Storage IaaS
+{: #iaas}
+
+IaaS users migrating to the IAM enabled service can reference this documentation, but not all features are supported, and naturally only HMAC authentication can be used.
+
 ## Next Steps
 {: #about-cos-next-steps}
 
