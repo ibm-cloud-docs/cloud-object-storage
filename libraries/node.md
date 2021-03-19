@@ -99,6 +99,7 @@ var config = {
     endpoint: '<endpoint>',
     apiKeyId: '<api-key>',
     serviceInstanceId: '<resource-instance-id>',
+    signatureVersion: 'iam',
 };
 
 var cos = new IBM.S3(config);

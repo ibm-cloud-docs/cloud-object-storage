@@ -272,6 +272,3 @@ You can use the `responseData.requestId` field to identify the events that are g
 Updating a bucket's firewall will generate a `cloud-object-storage.resource-configuration.update` event.
 
 To get the details of what was changed, check for fields `requestData.allowedIp`, `requestData.deniedIp`, and `requestData.allowedNetworkTypes` that appear in the **requestData** field.
-
-
-
