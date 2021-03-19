@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2020
-lastupdated: "2020-06-19"
+  years: 2021
+lastupdated: "2021-03-16"
 
 keywords: events, activity, logging, api
 

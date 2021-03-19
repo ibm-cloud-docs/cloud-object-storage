@@ -548,6 +548,7 @@ var config = {
     apiKeyId: COS_API_KEY_ID,
     ibmAuthEndpoint: COS_AUTH_ENDPOINT,
     serviceInstanceId: COS_SERVICE_CRN,
+    signatureVersion: 'iam'
 };
 
 var cos = new ibm.S3(config);
