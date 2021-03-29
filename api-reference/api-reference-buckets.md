@@ -60,7 +60,7 @@ Header                    | Type   | Required? | Description
 
 Query Parameter | Value | Required? | Description
 ----------------|-------|-----------|-------------------------------------------------------
-`extended`      | None  | No        | Provides `LocationConstraint` metadata in the listing.
+`extended`      | None  | No        | Provides `LocationConstraint` and `CreationTemplateId` metadata in the listing.
 
 **Syntax**
 
