@@ -96,10 +96,8 @@ To learn more about configuration rules and how they are evaluated and enforced,
 
 After [rules are created and added to scopes](/docs/security-compliance?topic=security-compliance-rules), you can view the evaluation results in the {{site.data.keyword.compliance_short}}. Each rule is shown to be compliant or noncompliant - if a rule shows as being noncompliant then you can view the specific bucket that is in violation of the rule. 
 
-The evaluation results are only available for a limited period.  It is recommended that reports are downloaded and organized to maintain a history of compliance for audit purposes. For details, see [Viewing your current posture](/docs/security-compliance?topic=security-compliance-view-posture).
+The evaluation results are only available for a limited period.  It is recommended that reports are downloaded and organized to maintain a history of compliance for audit purposes. For more information on reporting results, see [Viewing evaluation results](/docs/security-compliance?topic=security-compliance-results).
 {:note}
-
-For more information on reporting results, see [Viewing evaluation results](/docs/security-compliance?topic=security-compliance-results).
 
 For example, let's assume you want to enforce a set of goals on new buckets:
 
@@ -109,6 +107,10 @@ For example, let's assume you want to enforce a set of goals on new buckets:
 4. Only the IP addresses in the range `fe80:021b::0/64` will be allowed to make requests.
 5. Activity tracking must be enabled for both read and write requests.
 6. The bucket cannot be allowed to grow past 10 TiB (10995116277760 bytes).
+
+
+For step-by-step instructions using the UI and API, see [Working with config rules](/docs/security-compliance?topic=security-compliance-rules).
+{:tip}
 
 The rule would look like the following:
 
@@ -170,15 +172,16 @@ The rule would look like the following:
 }
 ```
 
-While you can set the enforcement action for this rule to log any violations without trouble, there's a problem with enforcing this rule using `disallow` - you can't assign some of these values when you create a bucket, so you need to use a template to assign default values. 
+While you can set the enforcement action for this rule to log any violations without trouble, there's a problem with enforcing this rule using `disallow` - only the `location`, `storage_class`, and `ibm_sse_kms_customer_root_key_crn` can be set when you create a bucket. All of the other parameters can only be applied to an existing bucket, so in order to be able to create buckets with this rule being enforced you need to use a **template** to assign default values. 
+
 ### Using templates to automatically assign default values
 
-When creating a bucket, you can assign the location, storage class, and encryption key CRN.  All other aspects of that bucket's configuration, such as firewall details, activity tracking, metrics monitoring, or a hard quota on a bucket's size must be applied to an existing bucket after creation.  Enforcing these rules would then be paradoxical - as it would not be possible to create a bucket that is in compliance with the security requirements established for new buckets. **Templates** make it possible to automatically assign default values to ensure that new buckets are in compliance with defined rules.
+When creating a bucket, you can assign the location, storage class, and encryption key CRN.  All other aspects of that bucket's configuration, such as firewall details, activity tracking, metrics monitoring, or a hard quota on a bucket's size must be applied to an existing bucket after creation.  Enforcing these rules would then be paradoxical - as it would not be possible to create a bucket that is in compliance with the security requirements established for new buckets. Templates make it possible to automatically assign default values to ensure that new buckets are in compliance with defined rules.
 
 Support for the `metrics_monitoring.request_metrics_enabled` property is not available at this time, although it may appear as an option in the console.  Do not set this parameter as a requirement in a bucket template, or you will not be able to create buckets.
 {:important}
 
-For step-by-step instructions using the UI and API, see [Managing templates](/docs/security-compliance?topic=security-compliance-templates.)
+For step-by-step instructions using the UI and API, see [Managing templates](/docs/security-compliance?topic=security-compliance-templates).
 
 The template used to allow enforcement this would look like the following:
 
@@ -214,7 +217,7 @@ The template used to allow enforcement this would look like the following:
      },
       {
         "property": "activity_tracking.activity_tracker_crn",
-        "value": "crn:v1:bluemix:public:logdnaat:us-south:a/9de510898576402ab41f6a6a4c93c080:9ba3c7f7-1866-4612-73h8-a1cb0438c396::"
+        "value": "<valid CRN>"
       },
       {
         "property": "activity_tracking.write_data_events",
