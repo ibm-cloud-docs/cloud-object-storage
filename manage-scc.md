@@ -95,7 +95,7 @@ To learn more about configuration rules and how they are evaluated and enforced,
 
 After [rules are created and added to scopes](/docs/security-compliance?topic=security-compliance-rules), you can view the evaluation results in the {{site.data.keyword.compliance_short}}. Each rule is shown to be compliant or noncompliant - if a rule shows as being noncompliant then you can view the specific bucket that is in violation of the rule. 
 
-The evaluation results are only available for short period.  It is recommended that reports are downloaded and organized to maintain a history of compliance for audit purposes. 
+The evaluation results are only available for a limited period.  It is recommended that reports are downloaded and organized to maintain a history of compliance for audit purposes. For details, see [Viewing your current posture](/docs/security-compliance?topic=security-compliance-view-posture).
 {:note}
 
 For more information on reporting results, see [Viewing evaluation results](/docs/security-compliance?topic=security-compliance-results).
