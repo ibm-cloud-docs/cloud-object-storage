@@ -29,7 +29,7 @@ With the {{site.data.keyword.compliance_short}}, you can:
 * Define rules for {{site.data.keyword.cos_short}} that can help to standardize resource configuration.
 * Enforce those rules by failing requests that would violate defined rules.
 
-This service supports the ability to view the results of your configuration scans in the Security and Compliance Center, as well allowing for the enforcement of defined rules. The enforcement of some rules may require the use of **templates** to automatically assign default values to new bucket resources.  It is not necessary to set up a collector to use configuration rules.
+This service supports the ability to view and the results of your configuration scans in the Security and Compliance Center, as well allowing for the enforcement of defined rules. The enforcement of some rules may require the use of **templates** to automatically assign default values to new bucket resources.  It is not necessary to set up a collector to use configuration rules.
 {:note}
 
 ## Monitoring security and compliance posture with {{site.data.keyword.cos_short}}
@@ -92,6 +92,9 @@ Create rules to ensure that Cloud Object Storage buckets:
 | *bucket*      | *hard_quota*                                           | numeric        | Maximum bytes allotted to the Cloud Object Storage bucket.                                                                                                     |
 {: caption="Table 1. Rule properties for {{site.data.keyword.cos_short}}" caption-side="top"}
 
+Although the operator types may indicate the values are numeric or boolean, all of the values in the rule are entered as strings or lists of strings, such as `'true'` or `'324342'`.
+{:note}
+
 To learn more about configuration rules and how they are evaluated and enforced, check out [What is a configuration rule?](/docs/security-compliance?topic=security-compliance-what-is-rule).
 
 After [rules are created and added to scopes](/docs/security-compliance?topic=security-compliance-rules), you can view the evaluation results in the {{site.data.keyword.compliance_short}}. Each rule is shown to be compliant or noncompliant - if a rule shows as being noncompliant then you can view the specific bucket that is in violation of the rule. 
@@ -107,7 +110,6 @@ For example, let's assume you want to enforce a set of goals on new buckets:
 4. Only the IP addresses in the range `fe80:021b::0/64` will be allowed to make requests.
 5. Activity tracking must be enabled for both read and write requests.
 6. The bucket cannot be allowed to grow past 10 TiB (10995116277760 bytes).
-
 
 For step-by-step instructions using the UI and API, see [Working with config rules](/docs/security-compliance?topic=security-compliance-rules).
 {:tip}
@@ -128,12 +130,14 @@ The rule would look like the following:
    ]
  },
  "required_config": {
-   "description": "My object storage rules.",
+   "description": "us south restrictions",
    "and": [
      {
        "property": "storage_class",
-       "operator": "string_equals",
-       "value": "us-south-smart"    
+       "operator": "strings_in_list",
+       "value": [
+         "smart"    
+       ]
      },
      {
        "property": "firewall.allowed_network_type",
@@ -151,8 +155,10 @@ The rule would look like the following:
      },
       {
         "property": "activity_tracking.activity_tracker_crn",
-        "operator": "string_equals",
-        "value": "crn:v1:bluemix:public:logdnaat:us-south:a/9de510898576402ab41f6a6a4c93c080:9ba3c7f7-1866-4612-73h8-a1cb0438c396::"
+        "operator": "strings_in_list",
+        "value": [
+          "crn:v1:bluemix:public:logdnaat:us-south:a/9de510898576402ab41f6a6a4c93c080:9ba3c7f7-1866-4612-73h8-a1cb0438c396::"
+        ]
       },
       {
         "property": "activity_tracking.write_data_events",
@@ -171,6 +177,7 @@ The rule would look like the following:
  }
 }
 ```
+{: codeblock}
 
 While you can set the enforcement action for this rule to log any violations without trouble, there's a problem with enforcing this rule using `disallow` - only the `location`, `storage_class`, and `ibm_sse_kms_customer_root_key_crn` can be set when you create a bucket. All of the other parameters can only be applied to an existing bucket, so in order to be able to create buckets with this rule being enforced you need to use a **template** to assign default values. 
 
@@ -233,6 +240,5 @@ The template used to allow enforcement this would look like the following:
      }
    ]
  }
-
 ```
-
+{: codeblock}
