@@ -97,7 +97,7 @@ Changes made to object storage data can be used as an [event source for Cloud Fu
 {: #updates-2019-q3-aug}
 Data can be encrypted [using HPCS](/docs/cloud-object-storage?topic=cloud-object-storage-encryption).
 
-Object-level events can be tracked [using Activity Tracker with LogDNA](/docs/cloud-object-storage?topic=cloud-object-storage-at).
+Object-level events can be tracked [using Activity Tracker](/docs/cloud-object-storage?topic=cloud-object-storage-at).
 
 ## Q2 2019
 {: #updates-2019-q2}

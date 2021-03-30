@@ -23,10 +23,10 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Tracking events using Activity Tracker with LogDNA
+# Tracking events using {{site.data.keyword.at_full_notm}}
 {: #at}
 
-[Activity Tracker with LogDNA](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started) allows you to [audit the requests](/docs/cloud-object-storage?topic=cloud-object-storage-at-events) made against a bucket and the objects it contains.
+[{{site.data.keyword.at_full_notm}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started) allows you to [audit the requests](/docs/cloud-object-storage?topic=cloud-object-storage-at-events) made against a bucket and the objects it contains.
 {: shortdesc}
 
 ## Using the console
@@ -43,13 +43,13 @@ First, make sure that you have a bucket. If not, follow the [getting started tut
 4. Select **Configuration** from the navigation menu.
 5. Navigate to the **Activity Tracker** tab.
 6. Click **Create**.
-7. If you already have an instance of Activity Tracker with LogDNA, you can select it here.  If not, select the appropriate configuration, and click **Create**.
+7. If you already have an instance of {{site.data.keyword.at_full_notm}}, you can select it here.  If not, select the appropriate configuration, and click **Create**.
 8. After a few minutes, any activity will be [visible in the web UI](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-launch).
 
 ### Archive events to object storage.
 {: #at-archive}
 
-It is possible to have all data collected in an instance of Activity Tracker with LogDNA be archived and written to a bucket.  For more information, [see the Activity Tracker documentation](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-archiving).
+It is possible to have all data collected in an instance of {{site.data.keyword.at_full_notm}} be archived and written to a bucket.  For more information, [see the Activity Tracker documentation](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-archiving).
 
 
 ## Using an API
