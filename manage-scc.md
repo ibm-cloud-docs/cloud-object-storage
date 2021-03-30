@@ -134,7 +134,7 @@ The rule would look like the following:
    "and": [
      {
        "property": "storage_class",
-       "operator": "strings_in_list",
+       "operator": "string_equals",
        "value": [
          "smart"    
        ]
@@ -155,10 +155,8 @@ The rule would look like the following:
      },
       {
         "property": "activity_tracking.activity_tracker_crn",
-        "operator": "strings_in_list",
-        "value": [
-          "crn:v1:bluemix:public:logdnaat:us-south:a/9de510898576402ab41f6a6a4c93c080:9ba3c7f7-1866-4612-73h8-a1cb0438c396::"
-        ]
+        "operator": "string_equals",
+        "value": "crn:v1:bluemix:public:logdnaat:us-south:a/91631433ee674cd9ab0ef150b8e7030f:xxxxxxx-830b-43f1-b517-0be1bc50108f::"
       },
       {
         "property": "activity_tracking.write_data_events",
@@ -224,7 +222,7 @@ The template used to allow enforcement this would look like the following:
      },
       {
         "property": "activity_tracking.activity_tracker_crn",
-        "value": "<valid CRN>"
+        "value": "crn:v1:bluemix:public:logdnaat:us-south:a/91631433ee674cd9ab0ef150b8e7030f:xxxxxxx-830b-43f1-b517-0be1bc50108f::"
       },
       {
         "property": "activity_tracking.write_data_events",
