@@ -13,6 +13,7 @@ subcollection: cloud-object-storage
 {:important: .important}
 {:note: .note}
 {:term: .term}
+{:codeblock .codeblock}
 {:shortdesc: .shortdesc}
 {:table: .aria-labeledby="caption"}
 
