@@ -105,7 +105,7 @@ The evaluation results are only available for a limited period.  It is recommend
 For example, let's assume you want to enforce a set of goals on new buckets:
 
 1. Only buckets in the `us-south` region are subject to the rule; other locations aren't affected.
-2. Buckets must use the Smart Tier storage class.
+2. Buckets must use either the Smart Tier or Standard storage classes.
 3. A firewall must be in place to only allow requests from inside the IBM Cloud.
 4. Only the IP addresses in the range `fe80:021b::0/64` will be allowed to make requests.
 5. Activity tracking must be enabled for both read and write requests.
@@ -136,7 +136,7 @@ The rule would look like the following:
        "property": "storage_class",
        "operator": "string_equals",
        "value": [
-         "smart"    
+         "smart", "standard"    
        ]
      },
      {
@@ -206,7 +206,7 @@ The template used to allow enforcement this would look like the following:
  "customized_defaults": [
      {
        "property": "storage_class",
-       "value": "us-south-smart"    
+       "value": "smart"    
      },
      {
        "property": "firewall.allowed_network_type",
