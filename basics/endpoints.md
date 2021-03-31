@@ -218,7 +218,7 @@ If a networking failure results in a partition where the data center is unable t
 ## EU-Managed Endpoints
 {: #endpoints-eu-managed}
 
-The Activity Tracker and Logging Service with LogDNA can archive to a bucket at specific {{site.data.keyword.cos_full_notm}} instances. This table shows the EU-Managed locations of {{site.data.keyword.cos_short}} instances for archiving events.
+The {{site.data.keyword.at_full_notm}} can archive to a bucket at specific {{site.data.keyword.cos_full_notm}} instances. This table shows the EU-Managed locations of {{site.data.keyword.cos_short}} instances for archiving events.
 
 | {{site.data.keyword.cos_short}} bucket location | Resiliency   | City                        |
 |-------------------------------------------------|--------------|-----------------------------|

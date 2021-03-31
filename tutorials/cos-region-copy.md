@@ -46,12 +46,12 @@ You have the option of using your existing instance of {{site.data.keyword.cos_f
   Feature configuration and access policies documentation can be viewed at the IBM Cloud portal pages listed below:
  * [IBM Cloud Identity and Access Management - IAM](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-iam)
  * [Activity Tracker](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-at)
- * [SysDig Monitoring](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration)
+ * [Metrics Monitoring](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration)
  * [Object Expiry](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-expiry)
  * [Cloud Object Storage Firewall](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall)
  * [Content Delivery Network - CDN](https://cloud.ibm.com/docs/cis?topic=cis-resolve-override-cos)
  * [Archive](/docs/cloud-object-storage?topic=cloud-object-storage-archive)
- * [KeyProtect](https://cloud.ibm.com/docs/key-protect?topic=key-protect-integrate-cos)
+ * [Key Protect](https://cloud.ibm.com/docs/key-protect?topic=key-protect-integrate-cos)
  * [IBM Cloud Functions](https://cloud.ibm.com/docs/openwhisk?topic=openwhisk-pkg_obstorage)
 
 ## Set up a compute resource to run the migration tool

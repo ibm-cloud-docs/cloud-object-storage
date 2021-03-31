@@ -90,8 +90,8 @@ In the code sample, replace the placeholders with the appropriate values.
 
 | Value	| Description | Sample |
 | --- | --- | --- |
-| &lt;INSTANCE_NAME&gt; | The name of your new instance | `MySysDig` |
-| &lt;SERVICE_NAME&gt; | The name of the service | `sysdig-monitor` |
+| &lt;INSTANCE_NAME&gt; | The name of your new instance | `MyMonitoring` |
+| &lt;SERVICE_NAME&gt; | The name of the service | `cloud-monitor` |
 | &lt;SERVICE_PLAN_NAME&gt; | The name of the plan | `Lite` |
 | &lt;LOCATION&gt; | The region of your buckets | `us-east` |
 {: cli}
@@ -188,7 +188,7 @@ In the code sample, replace the placeholders with the appropriate values.
 ### Launch your instance of {{site.data.keyword.mon_short}}
 {: #mm-cos-connection-launch}
 
-When you have created your instance of {{site.data.keyword.mon_short}}, click on the "View Sysdig" button in the "View dashboard" column, as shown in Figure 4.
+When you have created your instance of {{site.data.keyword.mon_short}}, click on the "View Monitoring" button in the "View dashboard" column, as shown in Figure 4.
 
 ![Launching instances](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-instance-management.png){: caption="Figure 1. Launching {{site.data.keyword.mon_short}} instances"}
 
