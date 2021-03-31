@@ -28,6 +28,8 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 ## Q1 2021
 {: #updates-2021-q1}
 
+Rules set in the [Security and Compliance Center](/docs/cloud-object-storage?topic=cloud-object-storage-manage-security-compliance) can now be enforced using the `disallow` action.
+
 Buckets can now be [configured to have a hard quota](/docs/cloud-object-storage?topic=cloud-object-storage-quota) to control costs by limiting the maximum amount of storage available for that bucket.
 
 Updates to a bucket's metadata using the [Resource Configuration API](/apidocs/cos/cos-configuration) (such as [adding or modifying a firewall](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall)) will now show the details of the change in the `requestData` fields shown in [Activity Tracker](/docs/cloud-object-storage?topic=cloud-object-storage-at).
