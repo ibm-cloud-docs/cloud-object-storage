@@ -189,7 +189,7 @@ The `metrics_monitoring.request_metrics_enabled` property is currently unsupport
 
 For step-by-step instructions using the UI and API, see [Managing templates](/docs/security-compliance?topic=security-compliance-templates).
 
-A template allowing enforcement of the previous rules might look like the following example:
+A template with default configurations which are compliant with the previous rules:
 
 ```json
 {
