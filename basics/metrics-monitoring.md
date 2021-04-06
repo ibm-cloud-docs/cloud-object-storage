@@ -65,7 +65,7 @@ If you have not already done so, [set up and provision](/docs/cloud-object-stora
 
 There are many ways to manage access to your {{site.data.keyword.cos_short}} instance, but for this guide we'll focus on how to access the dashboard you are going to create. 
 
-**Users in an account [must be assigned a platform role](/docs/Monitoring-with-Sysdig?topic=Monitoring-with-Sysdig-iam) in order to manage instances as well as launching the Sysdig UI from the {{site.data.keyword.cloud_notm}} console. In addition, users must have a service role that defines the permissions to work with {{site.data.keyword.mon_full_notm}}.** 
+**Users in an account [must be assigned a platform role](/docs/Monitoring-with-Sysdig?topic=Monitoring-with-Sysdig-iam) in order to manage instances as well as launching the IBM Cloud Monitoring UI from the {{site.data.keyword.cloud_notm}} console. In addition, users must have a service role that defines the permissions to work with {{site.data.keyword.mon_full_notm}}.** 
 {: important}
 
 ## Provisioning an instance of {{site.data.keyword.mon_short}}
