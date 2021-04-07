@@ -198,7 +198,6 @@ The template used to allow enforcement this would look like the following:
    "additional_target_attributes": [
      {
        "name": "location",
-       "operator": "string_equals",
        "value": "us-south"
      }
    ]
