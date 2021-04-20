@@ -81,6 +81,7 @@ Cloud Object Storage
     basics/metrics-monitoring.md
     basics/functions.md
     basics/ftp.md
+    file-gateway.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
