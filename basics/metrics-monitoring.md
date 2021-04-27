@@ -127,8 +127,6 @@ Keep the token handy for later if you are using the Dev Tools CLI.
 ### Configure a bucket for metrics
 {: #mm-cos-connection-console}
 
-In this guide, we want to measure the number and size of objects in our buckets.
-
 Metrics are only sent to {{site.data.keyword.mon_short}} every 24 hours. Any alert thresholds exceeded on metrics will not trigger until the next time the metrics are sent to {{site.data.keyword.mon_short}}.
 {: important}
 
@@ -169,6 +167,7 @@ curl -X PATCH -k  \
   -H 'cache-control: no-cache' \
   -d '{"metrics_monitoring": {
     "usage_metrics_enabled": true,
+    "request_metrics_enabled": true,
     "metrics_monitoring_crn": "crn:v1:bluemix:public:sysdig-monitor:us-east:a/9xxxxxxxxxb1xxxc7fdxxxxxxxxxx5:7xxxxxxxx0-xx7x-xdx8-9fxx-123456789012::"
     }
    }'
@@ -213,11 +212,17 @@ Once you've configured your dashboard, you can view your data. Figures 3-5 show 
 ## Cloud Object Storage metrics details
 {: mm-cos-metrics}
 
+### Usage metrics
+{: mm-cos-metrics-usage}
+
 There are a set of basic metrics that track usage:
 
 - ibm_cos_bucket_used_bytes
 - ibm_cos_bucket_object_count
 - ibm_cos_bucket_hard_quota_bytes
+
+### Request metrics
+{: mm-cos-metrics-request}
 
 There are metrics that report the aggregates for different classes of HTTP requests:
 
