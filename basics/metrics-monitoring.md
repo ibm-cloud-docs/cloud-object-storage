@@ -210,7 +210,7 @@ Once you've configured your dashboard, you can view your data. Figures 3-5 show 
 ![View metrics by storage class](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-metrics-3.jpg){: caption="Figure 5. View used space by storage class"}
 
 ## Cloud Object Storage metrics details
-{: mm-cos-metrics}
+{: mm-cos-metrics-details}
 
 ### Usage metrics
 {: mm-cos-metrics-usage}
