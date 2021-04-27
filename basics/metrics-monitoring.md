@@ -213,33 +213,70 @@ Once you've configured your dashboard, you can view your data. Figures 3-5 show 
 ## Cloud Object Storage metrics details
 {: mm-cos-metrics}
 
-You can measure the number of objects in your bucket as well as its size, by using the following metrics.
+There are a set of basic metrics that track usage:
 
-### IBM COS Bucket object count
-{: #mm-cos-ibm_cos_bucket_object_count}
+- ibm_cos_bucket_used_bytes
+- ibm_cos_bucket_object_count
+- ibm_cos_bucket_hard_quota_bytes
 
-Number of objects in the bucket enumerates your contents.
+There are metrics that report the aggregates for different classes of HTTP requests:
 
-| Metadata | Description |
-|----------|-------------|
-| `Metric Name` | `ibm_cos_bucket_object_count`|
-| `Metric Type` | `gauge` |
-| `Value Type`  | `none` |
-| `Segment By` | `Service instance, IBM COS Bucket storage class` |
-{: caption="Table 2: IBM COS Bucket object count metric metadata" caption-side="top"}
+- ibm_cos_bucket_all_requests
+- ibm_cos_bucket_get_requests
+- ibm_cos_bucket_put_requests
+- ibm_cos_bucket_delete_requests
+- ibm_cos_bucket_post_requests
+- ibm_cos_bucket_list_requests
+- ibm_cos_bucket_head_requests
 
-### IBM COS Bucket size
-{: #mm-cos-ibm_cos_bucket_used_bytes}
+Errors are also collected, with server-side (5xx) errors broken out:
 
-Bucket Size in bytes shows the usage of the bucket.
+- ibm_cos_bucket_4xx_errors
+- ibm_cos_bucket_5xx_errors
 
-| Metadata | Description |
-|----------|-------------|
-| `Metric Name` | `ibm_cos_bucket_used_bytes`|
-| `Metric Type` | `gauge` |
-| `Value Type`  | `byte` |
-| `Segment By` | `Service instance, IBM COS Bucket storage class` |
-{: caption="Table 3: IBM COS Bucket size metric metadata" caption-side="top"}
+The minimum, maximum, and average bytes transferred by network type are reported:
+
+- ibm_cos_bucket_bytes_download_public_min
+- ibm_cos_bucket_bytes_download_public_max
+- ibm_cos_bucket_bytes_download_public_avg
+- ibm_cos_bucket_bytes_download_private_min
+- ibm_cos_bucket_bytes_download_private_max
+- ibm_cos_bucket_bytes_download_private_avg
+- ibm_cos_bucket_bytes_download_direct_min
+- ibm_cos_bucket_bytes_download_direct_max
+- ibm_cos_bucket_bytes_download_direct_avg
+- ibm_cos_bucket_bytes_upload_public_min
+- ibm_cos_bucket_bytes_upload_public_max
+- ibm_cos_bucket_bytes_upload_public_avg
+- ibm_cos_bucket_bytes_upload_private_min
+- ibm_cos_bucket_bytes_upload_private_max
+- ibm_cos_bucket_bytes_upload_private_avg
+- ibm_cos_bucket_bytes_upload_direct_min
+- ibm_cos_bucket_bytes_upload_direct_max
+- ibm_cos_bucket_bytes_upload_direct_avg
+
+Latency metrics (first byte and general) for requests are broken down by request type:
+
+- ibm_cos_bucket_first_byte_latency_read_min
+- ibm_cos_bucket_first_byte_latency_read_max
+- ibm_cos_bucket_first_byte_latency_read_avg
+- ibm_cos_bucket_first_byte_latency_write_min
+- ibm_cos_bucket_first_byte_latency_write_max
+- ibm_cos_bucket_first_byte_latency_write_avg
+- ibm_cos_bucket_first_byte_latency_misc_min
+- ibm_cos_bucket_first_byte_latency_misc_max
+- ibm_cos_bucket_first_byte_latency_misc_avg
+- ibm_cos_bucket_request_latency_read_min
+- ibm_cos_bucket_request_latency_read_max
+- ibm_cos_bucket_request_latency_read_avg
+- ibm_cos_bucket_request_latency_write_min
+- ibm_cos_bucket_request_latency_write_max
+- ibm_cos_bucket_request_latency_write_avg
+- ibm_cos_bucket_request_latency_misc_min
+- ibm_cos_bucket_request_latency_misc_max
+- ibm_cos_bucket_request_latency_misc_avg
+
+All metrics are reported as `float64` numeric values:
 
 ## Attributes for Segmentation
 {: mm-cos-attributes}
