@@ -25,6 +25,11 @@ subcollection: cloud-object-storage
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
+## Q2 2021
+{: #updates-2021-q2}
+
+In addition to [usage metrics](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration#mm-cos-metrics-usage), IBM Cloud Monitoring can now track [request metrics](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration#mm-cos-metrics-usage) for buckets.
+
 ## Q1 2021
 {: #updates-2021-q1}
 
