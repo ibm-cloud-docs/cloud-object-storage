@@ -69,6 +69,7 @@ Buckets that are created at a regional endpoint distribute data across three dat
 | AP Australia      | Public | `s3.au-syd.cloud-object-storage.appdomain.cloud`   |
 | AP Tokyo          | Public | `s3.jp-tok.cloud-object-storage.appdomain.cloud`   |
 | AP Osaka          | Public | `s3.jp-osa.cloud-object-storage.appdomain.cloud`   |
+| CA Toronto        | Public | `s3.ca-tor.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
 {: caption="Table 1. Regional Endpoints" caption-side="top"}
 {: #regionalendpointtable1}
@@ -84,6 +85,7 @@ Buckets that are created at a regional endpoint distribute data across three dat
 | AP Australia      | Private | `s3.private.au-syd.cloud-object-storage.appdomain.cloud`   |
 | AP Tokyo          | Private | `s3.private.jp-tok.cloud-object-storage.appdomain.cloud`   |
 | AP Osaka          | Private | `s3.private.jp-osa.cloud-object-storage.appdomain.cloud`   |
+| CA Toronto        | Private | `s3.private.ca-tor.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
 {: caption="Table 1. Regional Endpoints" caption-side="top"}
 {: #regionalendpointtable2}
@@ -99,6 +101,7 @@ Buckets that are created at a regional endpoint distribute data across three dat
 | AP Australia      | Direct | `s3.direct.au-syd.cloud-object-storage.appdomain.cloud`   |
 | AP Tokyo          | Direct | `s3.direct.jp-tok.cloud-object-storage.appdomain.cloud`   |
 | AP Osaka          | Direct | `s3.direct.jp-osa.cloud-object-storage.appdomain.cloud`   |
+| CA Toronto        | Direct | `s3.direct.ca-tor.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
 {: caption="Table 1. Regional Endpoints" caption-side="top"}
 {: #regionalendpointtable3}
@@ -208,7 +211,6 @@ If a networking failure results in a partition where the data center is unable t
 | S&atilde;o Paulo, Brazil    | Direct | `s3.direct.sao01.cloud-object-storage.appdomain.cloud` |
 | Seoul, South Korea          | Direct | `s3.direct.seo01.cloud-object-storage.appdomain.cloud` |
 | Singapore                   | Direct | `s3.direct.sng01.cloud-object-storage.appdomain.cloud` |
-| Toronto, Canada             | Direct | `s3.direct.tor01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
 {: #sdcendpointtable3}
@@ -253,4 +255,8 @@ Over time, it may be necessary for locations to transform from a Single Data Cen
 | Melbourne, Australia | Public  | `s3.mel01.cloud-object-storage.appdomain.cloud`         |
 | Melbourne, Australia | Private | `s3.private.mel01.cloud-object-storage.appdomain.cloud` |
 | Melbourne, Australia | Direct  | `s3.direct.mel01.cloud-object-storage.appdomain.cloud`  |
+| Toronto, Canada      | Public  | `s3.tor01.cloud-object-storage.appdomain.cloud`  |
+| Toronto, Canada      | Private | `s3.private.tor01.cloud-object-storage.appdomain.cloud`  |
+| Toronto, Canada      | Direct  | `s3.direct.tor01.cloud-object-storage.appdomain.cloud`  |
+
 {: caption="Table 5. Decommissioned Endpoints" caption-side="top"}
