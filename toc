@@ -65,6 +65,7 @@ Cloud Object Storage
         basics/expiry.md
 
     basics/upload.md
+    versioning.md
     basics/closures.md
     basics/object-tagging.md
     tutorials/cos-region-copy.md
@@ -76,7 +77,7 @@ Cloud Object Storage
     basics/multipart.md
     basics/deleting-multiple-objects.md
     basics/sql.md
-    basics/logdna.md
+    basics/activity-tracker.md
     basics/quota.md
     basics/metrics-monitoring.md
     basics/functions.md
