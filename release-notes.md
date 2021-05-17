@@ -28,6 +28,8 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 ## Q1 2021
 {: #updates-2021-q1}
 
+Buckets can now be [configured to version objects](/docs/cloud-object-storage?topic=cloud-object-storage-versioning), allowing for non-destructive overwrites and deletes.
+
 Rules set in the [Security and Compliance Center](/docs/cloud-object-storage?topic=cloud-object-storage-manage-security-compliance) can now be enforced using the `disallow` action.
 
 Buckets can now be [configured to have a hard quota](/docs/cloud-object-storage?topic=cloud-object-storage-quota) to control costs by limiting the maximum amount of storage available for that bucket.
