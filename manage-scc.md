@@ -184,9 +184,6 @@ While you can set the enforcement action for this rule to log any violations wit
 
 When creating a bucket, you can assign the location, storage class, and encryption key CRN.  All other aspects of that bucket's configuration, such as firewall details, activity tracking, metrics monitoring, or a hard quota on a bucket's size must be applied to an existing bucket after creation.  Enforcing these rules would then be paradoxical - as it would not be possible to create a bucket that is in compliance with the security requirements established for new buckets. Templates make it possible to automatically assign default values to ensure that new buckets are in compliance with defined rules.
 
-Support for the `metrics_monitoring.request_metrics_enabled` property is not available at this time, although it may appear as an option in the console.  Do not set this parameter as a requirement in a bucket template, or you will not be able to create buckets.
-{:important}
-
 For step-by-step instructions using the UI and API, see [Managing templates](/docs/security-compliance?topic=security-compliance-templates).
 
 The template used to allow enforcement this would look like the following:

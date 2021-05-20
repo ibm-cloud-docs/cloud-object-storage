@@ -80,19 +80,18 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 
 | Region                      | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
 |-----------------------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
-| Amsterdam, Netherlands      | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
-| Chennai, India              | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
-| Hong Kong S.A.R. of the PRC | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
-| Mexico City, Mexico         | Yes    | No          | No                             | No           | No                       | Dallas           | No        | Yes        | Dallas     |
-| Milan, Italy                | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
-| Montréal, Canada            | Yes    | No          | No                             | No           | No                       | Dallas           | No        | Yes        | Dallas     |
-| Oslo, Norway                | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
-| Paris, France               | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
-| San Jose, US                | Yes    | No          | No                             | No           | No                       | Dallas           | No        | Yes        | Dallas     |
+| Amsterdam, Netherlands      | No     | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
+| Chennai, India              | No     | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
+| Hong Kong S.A.R. of the PRC | No     | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
+| Mexico City, Mexico         | No     | No          | No                             | No           | No                       | Dallas           | No        | Yes        | Dallas     |
+| Milan, Italy                | No     | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
+| Montréal, Canada            | No     | No          | No                             | No           | No                       | Dallas           | No        | Yes        | Dallas     |
+| Oslo, Norway                | No     | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
+| Paris, France               | No     | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
+| San Jose, US                | No     | No          | No                             | No           | No                       | Dallas           | No        | Yes        | Dallas     |
 | São Paulo, Brazil           | Yes    | No          | No                             | Yes          | No                       | Dallas           | No        | Yes        | Dallas     |
-| Seoul, South Korea          | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
-| Singapore                   | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
-| Toronto, Canada             | Yes    | No          | No                             | Yes          | No                       | Dallas           | No        | Yes        | Dallas     |
+| Seoul, South Korea          | No     | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
+| Singapore                   | No     | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
 
 ## More information
 {: #service-availability-more-info}
