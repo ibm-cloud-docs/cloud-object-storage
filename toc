@@ -65,6 +65,7 @@ Cloud Object Storage
         basics/expiry.md
 
     basics/upload.md
+    versioning.md
     basics/closures.md
     basics/object-tagging.md
     tutorials/cos-region-copy.md

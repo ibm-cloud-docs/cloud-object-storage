@@ -13,7 +13,6 @@ subcollection: cloud-object-storage
 {:important: .important}
 {:note: .note}
 {:term: .term}
-{:codeblock .codeblock}
 {:shortdesc: .shortdesc}
 {:table: .aria-labeledby="caption"}
 
@@ -46,15 +45,16 @@ To start monitoring your resources, check out [Getting started](/docs/security-c
 ### Available goals for {{site.data.keyword.cos_short}}
 {: #cloud-object-storage-available-goals}
 
-* Ensure IAM does not allow public access to COS (not applicable to ACLs managed using S3 APIs)
-* Ensure that COS encryption is enabled
-* Ensure that COS encryption is enabled with BYOK
-* Ensure that network access is set for COS to be exposed on private end points only
-* Ensure that COS bucket access is restricted by using IAM and S3 access control
-* Ensure network access for COS is restricted to specific IP range
-* Ensure that COS encryption is enabled with KYOK
-* Ensure COS buckets are not accessible over the Public network
-* Ensure that the S3 Anonymous Access is blocked for COS Buckets
+* Check whether Cloud Object Storage public access is disabled in IAM settings (not applicable to ACLs managed using S3 APIs)
+* Check whether Cloud Object Storage is enabled with encryption
+* Check whether Cloud Object Storage is enabled with customer-managed encryption and Bring Your Own Key (BYOK)
+* Check whether Cloud Object Storage is accessible only by using private endpoints
+* Check whether Cloud Object Storage bucket access is restricted by using IAM and S3 access control
+* Check whether Cloud Object Storage network access is restricted to a specific IP range
+* Check whether Cloud Object Storage is enabled with customer-managed encryption and Keep Your Own Key (KYOK)
+* Check whether Cloud Object Storage buckets are enabled with IBM Cloud Monitoring
+* Check whether Cloud Object Storage bucket resiliency is set to cross region
+
 
 ## Governing {{site.data.keyword.cos_short}} resource configuration
 {: #govern-cloud-object-storage}
@@ -103,10 +103,10 @@ After [rules are created and added to scopes](/docs/security-compliance?topic=se
 The evaluation results are only available for a limited period.  It is recommended that reports are downloaded and organized to maintain a history of compliance for audit purposes. For more information on reporting results, see [Viewing evaluation results](/docs/security-compliance?topic=security-compliance-results).
 {:note}
 
-For example, let's assume you want to enforce a set of goals on new buckets:
+For example, let's assume you want to enforce a set of requirements on new buckets:
 
 1. Only buckets in the `us-south` region are subject to the rule; other locations aren't affected.
-2. Buckets must use either the Smart Tier or Standard storage classes.
+2. Buckets must use the Smart Tier storage class.
 3. A firewall must be in place to only allow requests from inside the IBM Cloud.
 4. Only the IP addresses in the range `fe80:021b::0/64` will be allowed to make requests.
 5. Activity tracking must be enabled for both read and write requests.
@@ -137,7 +137,7 @@ The rule would look like the following:
        "property": "storage_class",
        "operator": "string_equals",
        "value": [
-         "smart", "standard"    
+         "smart"    
        ]
      },
      {
@@ -184,9 +184,12 @@ While you can set the enforcement action for this rule to log any violations wit
 
 When creating a bucket, you can assign the location, storage class, and encryption key CRN.  All other aspects of that bucket's configuration, such as firewall details, activity tracking, metrics monitoring, or a hard quota on a bucket's size must be applied to an existing bucket after creation.  Enforcing these rules would then be paradoxical - as it would not be possible to create a bucket that is in compliance with the security requirements established for new buckets. Templates make it possible to automatically assign default values to ensure that new buckets are in compliance with defined rules.
 
+Support for the `metrics_monitoring.request_metrics_enabled` property is not available at this time, although it may appear as an option in the console.  Do not set this parameter as a requirement in a bucket template, or you will not be able to create buckets.
+{:important}
+
 For step-by-step instructions using the UI and API, see [Managing templates](/docs/security-compliance?topic=security-compliance-templates).
 
-A template with default configurations which are compliant with the previous rules:
+The template used to allow enforcement this would look like the following:
 
 ```json
 {
@@ -196,7 +199,6 @@ A template with default configurations which are compliant with the previous rul
    "additional_target_attributes": [
      {
        "name": "location",
-       "operator": "string_equals",
        "value": "us-south"
      }
    ]
@@ -204,7 +206,7 @@ A template with default configurations which are compliant with the previous rul
  "customized_defaults": [
      {
        "property": "storage_class",
-       "value": "smart"    
+       "value": "us-south-smart"    
      },
      {
        "property": "firewall.allowed_network_type",
