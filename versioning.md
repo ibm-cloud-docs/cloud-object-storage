@@ -43,7 +43,7 @@ First, create a new bucket that with object versioning enabled.
 1. After navigating to your object storage instance, click on **Create bucket**.
 2. Choose a region and resiliency, then look for **Object versioning** and toggle the selector to **Enabled**.
 
-![Enable versioning](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/versioning_objects.png){: caption="Figure 1. Enable versioning"}
+![Enable versioning](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/versioning_enable.png){: caption="Figure 1. Enable versioning"}
 
 Then create a versioned object.
 
