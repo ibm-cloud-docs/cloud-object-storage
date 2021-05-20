@@ -36,6 +36,23 @@ After a bucket has enabled versioning, versioning can only be suspended, not ful
 
 A `GET` request for an object will retrieve the most recently stored version. If the current version is a delete marker, IBM COS returns a `404 Not Found` error.
 
+## Getting started with versioning
+
+First, create a new bucket that with object versioning enabled.
+
+1. After navigating to your object storage instance, click on **Create bucket**.
+2. Choose a region and resiliency, then look for **Object versioning** and toggle the selector to **Enabled**.
+
+![Enable versioning](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/versioning_objects.png){: caption="Figure 1. Enable versioning"}
+
+Then create a versioned object.
+
+1. Navigate your new bucket, and upload a file by dragging it onto the browser window.  
+2. After the object has uploaded successfully, upload another object with the same name.  Instead of being overwritten, the file will be assigned a UUID and saved as a non-current version of the object.
+3. Toggle **View versions** to see and interact with alternate versions of objects.
+
+![View versions](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/versioning_objects.png){: caption="Figure 2. View versions"}
+
 ## Terminology
 {: #versioning-terminology}
 
@@ -122,7 +139,7 @@ The IBM COS implementation of Immutable Object Storage (i.e. retention policies)
 ## Supported S3 APIs
 {: #versioning-apis}
 
-The following set of REST APIs interact with versioning in some way:
+The following set of REST APIs can interact with versioning in some way:
 
 - `GET Object`
 - `HEAD Object`
