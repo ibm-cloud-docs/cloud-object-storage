@@ -45,15 +45,16 @@ To start monitoring your resources, check out [Getting started](/docs/security-c
 ### Available goals for {{site.data.keyword.cos_short}}
 {: #cloud-object-storage-available-goals}
 
-* Ensure IAM does not allow public access to COS (not applicable to ACLs managed using S3 APIs)
-* Ensure that COS encryption is enabled
-* Ensure that COS encryption is enabled with BYOK
-* Ensure that network access is set for COS to be exposed on private end points only
-* Ensure that COS bucket access is restricted by using IAM and S3 access control
-* Ensure network access for COS is restricted to specific IP range
-* Ensure that COS encryption is enabled with KYOK
-* Ensure COS buckets are not accessible over the Public network
-* Ensure that the S3 Anonymous Access is blocked for COS Buckets
+* Check whether Cloud Object Storage public access is disabled in IAM settings (not applicable to ACLs managed using S3 APIs)
+* Check whether Cloud Object Storage is enabled with encryption
+* Check whether Cloud Object Storage is enabled with customer-managed encryption and Bring Your Own Key (BYOK)
+* Check whether Cloud Object Storage is accessible only by using private endpoints
+* Check whether Cloud Object Storage bucket access is restricted by using IAM and S3 access control
+* Check whether Cloud Object Storage network access is restricted to a specific IP range
+* Check whether Cloud Object Storage is enabled with customer-managed encryption and Keep Your Own Key (KYOK)
+* Check whether Cloud Object Storage buckets are enabled with IBM Cloud Monitoring
+* Check whether Cloud Object Storage bucket resiliency is set to cross region
+
 
 ## Governing {{site.data.keyword.cos_short}} resource configuration
 {: #govern-cloud-object-storage}
@@ -102,7 +103,7 @@ After [rules are created and added to scopes](/docs/security-compliance?topic=se
 The evaluation results are only available for a limited period.  It is recommended that reports are downloaded and organized to maintain a history of compliance for audit purposes. For more information on reporting results, see [Viewing evaluation results](/docs/security-compliance?topic=security-compliance-results).
 {:note}
 
-For example, let's assume you want to enforce a set of goals on new buckets:
+For example, let's assume you want to enforce a set of requirements on new buckets:
 
 1. Only buckets in the `us-south` region are subject to the rule; other locations aren't affected.
 2. Buckets must use the Smart Tier storage class.
