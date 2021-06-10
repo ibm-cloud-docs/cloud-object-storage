@@ -65,7 +65,7 @@ If you have not already done so, [set up and provision](/docs/cloud-object-stora
 
 There are many ways to manage access to your {{site.data.keyword.cos_short}} instance, but for this guide we'll focus on how to access the dashboard you are going to create. 
 
-**Users in an account [must be assigned a platform role](/docs/Monitoring-with-Sysdig?topic=Monitoring-with-Sysdig-iam) in order to manage instances as well as launching the Sysdig UI from the {{site.data.keyword.cloud_notm}} console. In addition, users must have a service role that defines the permissions to work with {{site.data.keyword.mon_full_notm}}.** 
+**Users in an account [must be assigned a platform role](/docs/Monitoring-with-Sysdig?topic=Monitoring-with-Sysdig-iam) in order to manage instances as well as launching the IBM Cloud Monitoring UI from the {{site.data.keyword.cloud_notm}} console. In addition, users must have a service role that defines the permissions to work with {{site.data.keyword.mon_full_notm}}.** 
 {: important}
 
 ## Provisioning an instance of {{site.data.keyword.mon_short}}
@@ -127,8 +127,6 @@ Keep the token handy for later if you are using the Dev Tools CLI.
 ### Configure a bucket for metrics
 {: #mm-cos-connection-console}
 
-In this guide, we want to measure the number and size of objects in our buckets.
-
 Metrics are only sent to {{site.data.keyword.mon_short}} every 24 hours. Any alert thresholds exceeded on metrics will not trigger until the next time the metrics are sent to {{site.data.keyword.mon_short}}.
 {: important}
 
@@ -169,6 +167,7 @@ curl -X PATCH -k  \
   -H 'cache-control: no-cache' \
   -d '{"metrics_monitoring": {
     "usage_metrics_enabled": true,
+    "request_metrics_enabled": true,
     "metrics_monitoring_crn": "crn:v1:bluemix:public:sysdig-monitor:us-east:a/9xxxxxxxxxb1xxxc7fdxxxxxxxxxx5:7xxxxxxxx0-xx7x-xdx8-9fxx-123456789012::"
     }
    }'
@@ -211,35 +210,78 @@ Once you've configured your dashboard, you can view your data. Figures 3-5 show 
 ![View metrics by storage class](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-COS-metrics-3.jpg){: caption="Figure 5. View used space by storage class"}
 
 ## Cloud Object Storage metrics details
-{: mm-cos-metrics}
+{: mm-cos-metrics-details}
 
-You can measure the number of objects in your bucket as well as its size, by using the following metrics.
+### Usage metrics
+{: mm-cos-metrics-usage}
 
-### IBM COS Bucket object count
-{: #mm-cos-ibm_cos_bucket_object_count}
+There are a set of basic metrics that track usage:
 
-Number of objects in the bucket enumerates your contents.
+- ibm_cos_bucket_used_bytes
+- ibm_cos_bucket_object_count
+- ibm_cos_bucket_hard_quota_bytes
 
-| Metadata | Description |
-|----------|-------------|
-| `Metric Name` | `ibm_cos_bucket_object_count`|
-| `Metric Type` | `gauge` |
-| `Value Type`  | `none` |
-| `Segment By` | `Service instance, IBM COS Bucket storage class` |
-{: caption="Table 2: IBM COS Bucket object count metric metadata" caption-side="top"}
+### Request metrics
+{: mm-cos-metrics-request}
 
-### IBM COS Bucket size
-{: #mm-cos-ibm_cos_bucket_used_bytes}
+There are metrics that report the aggregates for different classes of HTTP requests:
 
-Bucket Size in bytes shows the usage of the bucket.
+- ibm_cos_bucket_all_requests
+- ibm_cos_bucket_get_requests
+- ibm_cos_bucket_put_requests
+- ibm_cos_bucket_delete_requests
+- ibm_cos_bucket_post_requests
+- ibm_cos_bucket_list_requests
+- ibm_cos_bucket_head_requests
 
-| Metadata | Description |
-|----------|-------------|
-| `Metric Name` | `ibm_cos_bucket_used_bytes`|
-| `Metric Type` | `gauge` |
-| `Value Type`  | `byte` |
-| `Segment By` | `Service instance, IBM COS Bucket storage class` |
-{: caption="Table 3: IBM COS Bucket size metric metadata" caption-side="top"}
+Errors are also collected, with server-side (5xx) errors broken out:
+
+- ibm_cos_bucket_4xx_errors
+- ibm_cos_bucket_5xx_errors
+
+The minimum, maximum, and average bytes transferred by network type are reported:
+
+- ibm_cos_bucket_bytes_download_public_min
+- ibm_cos_bucket_bytes_download_public_max
+- ibm_cos_bucket_bytes_download_public_avg
+- ibm_cos_bucket_bytes_download_private_min
+- ibm_cos_bucket_bytes_download_private_max
+- ibm_cos_bucket_bytes_download_private_avg
+- ibm_cos_bucket_bytes_download_direct_min
+- ibm_cos_bucket_bytes_download_direct_max
+- ibm_cos_bucket_bytes_download_direct_avg
+- ibm_cos_bucket_bytes_upload_public_min
+- ibm_cos_bucket_bytes_upload_public_max
+- ibm_cos_bucket_bytes_upload_public_avg
+- ibm_cos_bucket_bytes_upload_private_min
+- ibm_cos_bucket_bytes_upload_private_max
+- ibm_cos_bucket_bytes_upload_private_avg
+- ibm_cos_bucket_bytes_upload_direct_min
+- ibm_cos_bucket_bytes_upload_direct_max
+- ibm_cos_bucket_bytes_upload_direct_avg
+
+Latency metrics (first byte and general) for requests are broken down by request type:
+
+- ibm_cos_bucket_first_byte_latency_read_min
+- ibm_cos_bucket_first_byte_latency_read_max
+- ibm_cos_bucket_first_byte_latency_read_avg
+- ibm_cos_bucket_first_byte_latency_write_min
+- ibm_cos_bucket_first_byte_latency_write_max
+- ibm_cos_bucket_first_byte_latency_write_avg
+- ibm_cos_bucket_first_byte_latency_misc_min
+- ibm_cos_bucket_first_byte_latency_misc_max
+- ibm_cos_bucket_first_byte_latency_misc_avg
+- ibm_cos_bucket_request_latency_read_min
+- ibm_cos_bucket_request_latency_read_max
+- ibm_cos_bucket_request_latency_read_avg
+- ibm_cos_bucket_request_latency_write_min
+- ibm_cos_bucket_request_latency_write_max
+- ibm_cos_bucket_request_latency_write_avg
+- ibm_cos_bucket_request_latency_misc_min
+- ibm_cos_bucket_request_latency_misc_max
+- ibm_cos_bucket_request_latency_misc_avg
+
+All metrics are reported as `float64` numeric values:
 
 ## Attributes for Segmentation
 {: mm-cos-attributes}

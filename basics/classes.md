@@ -70,10 +70,10 @@ When creating buckets programmatically, it is necessary to specify a `LocationCo
 &emsp;&emsp;  **AP Tokyo** `jp-tok-standard`                  / `jp-tok-vault`  / `jp-tok-cold`  / `jp-tok-smart`<br>
 &emsp;&emsp;  **AP Osaka** `jp-osa-standard`                  / `jp-osa-vault`  / `jp-osa-cold`  / `jp-osa-smart`<br>
 &emsp;&emsp;  **AP Australia** `au-syd-standard`              / `au-syd-vault`  / `au-syd-cold`  / `au-syd-smart` <br>
+&emsp;&emsp;  **CA Toronto** `ca-tor-standard`                / `ca-tor-vault`  / `ca-tor-cold`  / `ca-tor-smart` <br>
 &emsp;&emsp;  **Amsterdam** `ams03-standard`                  / `ams03-vault`   / `ams03-cold`   / `ams03-smart` <br>
 &emsp;&emsp;  **Chennai** `che01-standard`                    / `che01-vault`   / `che01-cold`   / `che01-smart` <br>
 &emsp;&emsp;  **Hong Kong S.A.R. of the PRC** `hkg02-standard`/ `hkg02-vault`   / `hkg02-cold`   / `hkg02-smart` <br>
-&emsp;&emsp;  **Melbourne** `mel01-standard`                  / `mel01-vault`   / `mel01-cold`   / `mel01-smart` <br>
 &emsp;&emsp;  **Mexico** `mex01-standard`                     / `mex01-vault`   / `mex01-cold`   / `mex01-smart` <br>
 &emsp;&emsp;  **Milan** `mil01-standard`                      / `mil01-vault`   / `mil01-cold`   / `mil01-smart` <br>
 &emsp;&emsp;  **Montréal** `mon01-standard`                   / `mon01-vault`   / `mon01-cold`   / `mon01-smart` <br>
@@ -83,7 +83,6 @@ When creating buckets programmatically, it is necessary to specify a `LocationCo
 &emsp;&emsp;  **São Paulo** `sao01-standard`                  / `sao01-vault`   / `sao01-cold`   / `sao01-smart` <br>
 &emsp;&emsp;  **Seoul** `seo01-standard`                      / `seo01-vault`   / `seo01-cold`   / `seo01-smart` <br>
 &emsp;&emsp;  **Singapore** `sng01-standard`                  / `sng01-vault`   / `sng01-cold`   / `sng01-smart` <br>
-&emsp;&emsp;  **Toronto** `tor01-standard`                    / `tor01-vault`   / `tor01-cold`   / `tor01-smart` <br>
 
 
 For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
