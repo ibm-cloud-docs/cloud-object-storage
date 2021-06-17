@@ -178,7 +178,7 @@ The rule would look like the following:
 ```
 {: codeblock}
 
-While you can set the enforcement action for this rule to log any violations without trouble, there's a problem with enforcing this rule using `disallow` - only the `location`, `storage_class`, and `ibm_sse_kms_customer_root_key_crn` can be set when you create a bucket. All of the other parameters can only be applied to an existing bucket, so in order to be able to create buckets with this rule being enforced you need to use a **template** to assign default values. 
+While you can set the enforcement action for this rule to log any violations without trouble, you will need to use a **template** to enforce this rule using `disallow` - as only the `location`, `storage_class`, and `ibm_sse_kms_customer_root_key_crn` can be set when you create a bucket, and the other parameters can only be applied to an existing bucket.
 
 ### Using templates to automatically assign default values
 
