@@ -1,9 +1,9 @@
 ---
 
 copyright:
-  years: 2017, 2020
+  years: 2017, 2021
 
-lastupdated: "2020-09-14"
+lastupdated: "2021-05-03"
 
 keywords: endpoint, location, object storage
 
