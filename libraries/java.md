@@ -331,18 +331,20 @@ cos.createBucket("sample", "us-vault"); // the name of the bucket, and the stora
 ```java
 public static void createTextFile(String bucketName, String itemName, String fileText) {
     System.out.printf("Creating new item: %s\n", itemName);
-
-    InputStream newStream = new ByteArrayInputStream(fileText.getBytes(StandardCharsets.UTF_8));
-
-    ObjectMetadata metadata = new ObjectMetadata();        
-    metadata.setContentLength(fileText.length());
-
+    
+    byte[] arr = fileText.getBytes(StandardCharsets.UTF_8);
+    InputStream newStream = new ByteArrayInputStream(arr);
+    
+    ObjectMetadata metadata = new ObjectMetadata();
+    metadata.setContentLength(arr.length);
+    
     PutObjectRequest req = new PutObjectRequest(bucketName, itemName, newStream, metadata);
     _cos.putObject(req);
     
     System.out.printf("Item: %s created!\n", itemName);
 }
 ```
+
 Note that when adding custom metadata to an object, it is necessary to create an `ObjectMetadata` object by using the SDK, and not to manually send a custom header containing `x-amz-meta-{key}`. The latter can cause issues when authenticating by using HMAC credentials.
 {: .tip}
 
