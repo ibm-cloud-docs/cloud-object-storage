@@ -557,27 +557,6 @@ public static void getBucketContentsV2(String bucketName, int maxKeys) {
     * [getNextContinuationToken](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html#getNextContinuationToken--){: external}
     * [listObjectsV2](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){: external}
   
-### List items in a bucket (v1)
-{: #java-examples-list-objects}
-
-```java
-public static void getBucketContents(String bucketName) {
-    System.out.printf("Retrieving bucket contents from: %s\n", bucketName);
-
-    ObjectListing objectListing = _cos.listObjects(new ListObjectsRequest().withBucketName(bucketName));
-    for (S3ObjectSummary objectSummary : objectListing.getObjectSummaries()) {
-        System.out.printf("Item: %s (%s bytes)\n", objectSummary.getKey(), objectSummary.getSize());
-    }
-}
-```
-
-*SDK References*
-* Classes
-    * [ListObjectsRequest](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsRequest.html){: external}
-    * [ObjectListing](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ObjectListing.html){: external}
-    * [S3ObjectSummary](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/S3ObjectSummary.html){: external}
-* Methods
-    * [listObjects](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ObjectListing.html){: external}
 
 ### Get file contents of particular item
 {: #java-examples-get-contents}
