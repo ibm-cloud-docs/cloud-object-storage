@@ -36,8 +36,6 @@ Developers use APIs to interact with their object storage. {{site.data.keyword.c
 
 The [{{site.data.keyword.cloud_notm}} console](https://cloud.ibm.com/){: external} provides a user interface for most operations and configuration as well. 
 
-Users of {{site.data.keyword.cos_full_notm}} refer to their binary data, such as files, images, media, archives, or even entire databases as objects. Objects are stored in a bucket, the container for their unstructured data. Buckets contain both inherent and user-defined metadata. Finally, objects are defined by a globally unique combination of the bucket name and the object key, or name.
-
 ## For users of Cloud Object Storage IaaS
 {: #iaas}
 
