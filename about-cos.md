@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2021
 lastupdated: "2021-03-25"
 
-keywords: about, object storage, overview, erasure coding, multiple writes, availability zone, bucket, integrity, s3
+keywords: about, object storage, overview, erasure coding, multiple writes, availability zone, bucket, integrity, s3, storage
 
 subcollection: cloud-object-storage
 
