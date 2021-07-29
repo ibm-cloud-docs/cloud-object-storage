@@ -68,12 +68,12 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 |------------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|---------------|
 | AP Australia     | Yes    | Yes         | Yes                            | Yes          | Yes                      | Sydney           | No        | Yes        | Sydney        |
 | AP Tokyo         | Yes    | Yes         | No                             | Yes          | Yes                      | Tokyo            | Yes       | Yes        | Tokyo         |
-| AP Osaka         | NO     | Yes         | No                             | Yes          | Yes                      | Tokyo            | Yes       | Yes        | Tokyo         |
+| AP Osaka         | No     | Yes         | No                             | Yes          | Yes                      | Tokyo            | Yes       | Yes        | Tokyo         |
 | EU Great Britain | Yes    | Yes         | No                             | Yes          | Yes                      | London           | Yes       | Yes        | London        |
 | EU Germany       | Yes    | Yes         | Yes                            | Yes          | Yes                      | Frankfurt        | Yes       | Yes        | Frankfurt     |
 | US South         | Yes    | Yes         | Yes                            | Yes          | Yes                      | Dallas           | Yes       | Yes        | Dallas        |
 | US East          | Yes    | Yes         | Yes                            | Yes          | Yes                      | Washington DC    | Yes       | Yes        | Washington DC |
-| CA Toronto       | No     | Yes         | No                             | Yes          | Yes                      | Dallas           | No        | Yes        | Dallas        |
+| CA Toronto       | No     | Yes         | No                             | Yes          | Yes                      | Toronto          | No        | Yes        | Toronto       |
 
 ## Single Data Centers
 {: #service-availability-zone}
