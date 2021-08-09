@@ -54,11 +54,11 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 ## Cross Region
 {: #service-availability-geo}
 
-| Region          | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
-|-----------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
-| AP Cross Region | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
-| EU Cross Region | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
-| US Cross Region | Yes    | Yes         | No                             | No           | Yes                      | Dallas           | No        | Yes        | Dallas     |
+| Region          | Aspera | Key Protect         | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
+|-----------------|--------|---------------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
+| AP Cross Region | Yes    | Yes (in `jp-tok`)   | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
+| EU Cross Region | Yes    | No                  | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
+| US Cross Region | Yes    | Yes (in `us-south`) | No                             | No           | Yes                      | Dallas           | No        | Yes        | Dallas     |
 
 
 ## Regional
