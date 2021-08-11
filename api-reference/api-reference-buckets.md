@@ -340,14 +340,14 @@ Content-Length: 0
 ## Create a new bucket with Key Protect or {{site.data.keyword.hscrypto}} managed encryption keys (SSE-KP)
 {: #compatibility-api-key-protect}
 
-To create a bucket where the encryption keys are managed by Key Protect or {{site.data.keyword.hscrypto}}, it is necessary to have access to an active Key Protect or {{site.data.keyword.hscrypto}} service instance located in the same location as the new bucket. This operation does not make use of operation specific query parameters.
+To create a bucket where the encryption keys are managed by Key Protect or {{site.data.keyword.hscrypto}}, it is necessary to have access to an active Key Protect or {{site.data.keyword.hscrypto}} service instance. This operation does not make use of operation specific query parameters.
 
 For more information on using Key Protect to manage your encryption keys, [see the documentation for Key Protect](/docs/key-protect?topic=key-protect-getting-started-tutorial).
 
 For more information on {{site.data.keyword.hscrypto}}, [see the documentation](/docs/hs-crypto?topic=hs-crypto-get-started).
 
-Note that managed encryption is **not** available in a Cross Region configuration and any SSE-KP buckets must be Regional.
-{:tip}
+Note that managed encryption for a Cross Region bucket **must** use a root key from a Key Protect instance in the nearest [high-availability location](/docs/key-protect?topic=key-protect-ha-dr) (`us-south` or `jp-tok`).
+{:important}
 
 Header                             | Type   | Description
 -----------------------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
