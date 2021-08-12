@@ -25,6 +25,11 @@ subcollection: cloud-object-storage
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
+## Q3 2021
+{: #updates-2021-q3}
+
+New buckets created in `us` or `ap` Cross Region configuration can now use [Key Protect managed encryption](/docs/cloud-object-storage?topic=cloud-object-storage-kp).
+
 ## Q2 2021
 {: #updates-2021-q2}
 
