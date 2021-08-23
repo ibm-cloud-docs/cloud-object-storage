@@ -36,7 +36,7 @@ After a bucket has enabled versioning, all the objects in the bucket are version
 
 ## Getting started with versioning
 
-First, create a new bucket that with object versioning enabled.
+First, create a new bucket with object versioning enabled.
 
 1. After navigating to your object storage instance, click on **Create bucket**.
 2. Choose a region and resiliency, then look for **Object versioning** and toggle the selector to **Enabled**.
