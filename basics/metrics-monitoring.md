@@ -71,7 +71,7 @@ There are many ways to manage access to your {{site.data.keyword.cos_short}} ins
 ## Provisioning an instance of {{site.data.keyword.mon_short}}
 {: #mm-cos-provisioning}
 
-From the [catalog](https://cloud.ibm.com/login){: external} choose {{site.data.keyword.mon_full_notm}} from the available services. When selected, you will be taken to the configuration shown in Figure 1.  At the bottom of the screen under "IBM platform metrics:" select Enable before creating the instance.
+From the [catalog](https://cloud.ibm.com/login){: external} choose {{site.data.keyword.mon_full_notm}} from the available services. When selected, you will be taken to the configuration shown in Figure 1.  At the bottom of the screen under "IBM platform metrics:" select Enable before creating the instance. You can use either the console or the CLI to provision a new service instance.
 {: console}
 
 ![Instance creation](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/SysDig-instance-creation.png){: console}
@@ -85,13 +85,13 @@ ibmcloud resource service-instance-create <INSTANCE_NAME> <SERVICE_NAME> <SERVIC
 {: codeblock}
 {: cli}
 
-In the code sample, replace the placeholders with the appropriate values.
+In the code sample, replace the placeholders with the [appropriate values](/docs/monitoring?topic=monitoring-pricing_plans).
 {: cli}
 
 | Value	| Description | Sample |
 | --- | --- | --- |
 | &lt;INSTANCE_NAME&gt; | The name of your new instance | `MyMonitoring` |
-| &lt;SERVICE_NAME&gt; | The name of the service | `cloud-monitor` |
+| &lt;SERVICE_NAME&gt; | The name of the service | `sysdig-monitor` |
 | &lt;SERVICE_PLAN_NAME&gt; | The name of the plan | `Lite` |
 | &lt;LOCATION&gt; | The region of your buckets | `us-east` |
 {: cli}
