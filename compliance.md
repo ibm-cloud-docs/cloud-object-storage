@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-02-10"
+lastupdated: "2021-08-10"
 
 keywords: compliance, object storage, gdpr
 
