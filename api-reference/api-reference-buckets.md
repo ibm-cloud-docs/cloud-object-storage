@@ -346,8 +346,6 @@ For more information on using Key Protect to manage your encryption keys, [see t
 
 For more information on {{site.data.keyword.hscrypto}}, [see the documentation](/docs/hs-crypto?topic=hs-crypto-get-started).
 
-Note that managed encryption for a Cross Region bucket **must** use a root key from a Key Protect instance in the nearest [high-availability location](/docs/key-protect?topic=key-protect-ha-dr) (`us-south` or `jp-tok`).
-{:important}
 
 Header                             | Type   | Description
 -----------------------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
