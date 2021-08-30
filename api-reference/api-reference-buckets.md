@@ -1536,6 +1536,9 @@ The minimum and maximum supported values for the retention period settings `Mini
 
 This operation does not make use of extra query parameters. The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. The following snippet shows one way to achieve the content for that particular header.
 
+Policies are enforced until the end of a retention period, and can not be altered until the retention period has expired. While {{site.data.keyword.cos_full_notm}} makes use of the S3 API for most operations, the APIs used for configuring retention policies is not the same as the S3 API, although some terminology may be shared. Read this documentation carefully to prevent any users in your organization from creating objects that can not be deleted, even by IBM Cloud administrators.  
+{:important}
+
 ```
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 ```
