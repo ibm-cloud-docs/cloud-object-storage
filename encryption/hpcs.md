@@ -38,6 +38,9 @@ Before you plan on using {{site.data.keyword.hscrypto}} with Cloud Object Storag
 
 You will need to ensure that a service instance is created by using the [IBM Cloud catalog](https://cloud.ibm.com/catalog) and appropriate permissions are granted. This section outlines step-by-step instructions to help you get started. 
 
+It is not possible to use [Immutable Object Storage](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable) to create retention policies that prevent object deletion or modification on buckets that use {{site.data.keyword.hscrypto}}.
+{:tip}
+
 ## Provisioning an instance of {{site.data.keyword.hscrypto}}
 {: #hpcs-provision}
 Refer to the service-specific product pages for instructions on how to provision and setup appropriate service instances.
