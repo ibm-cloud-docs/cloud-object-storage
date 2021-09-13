@@ -118,7 +118,6 @@ Cloud Object Storage
         gui/cyberduck.md
         gui/cloudberry.md
         gui/simpana.md
-        gui/crossftp.md
 
     basics/at.md
     iam-at.md
