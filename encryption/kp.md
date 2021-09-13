@@ -120,7 +120,7 @@ If a key is disabled, and then re-enabled quickly, requests made to that bucket 
 ### Deleting keys and cryptographic erasure
 {: #kp-cryptoerasure}
 
-It isn't possible to delete a root key associated with a bucket that has a [retention policy](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable) in place.  The bucket must be first emptied and destroyed before the root key can be deleted.  
+It isn't possible to delete a root key associated with a bucket that has a [retention policy](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable) in place.  The bucket must be first emptied and destroyed before the root key can be deleted. For more information, [see the Key Protect documentation](/docs/key-protect?topic=key-protect-delete-purge-keys#delete-purge-keys-considerations).
 {:important}
 
 Cryptographic erasure (or crypto-shredding) is a method of rendering encrypted data  unreadable by [deleting the encryption keys](/docs/key-protect?topic=key-protect-security-and-compliance#data-deletion) rather than the data itself. When a [root key is deleted in Key Protect](/docs/key-protect?topic=key-protect-delete-keys), it will affect all objects in any buckets created using that root key, effectively "shredding" the data and preventing any further reading or writing to the buckets. This process is not instantaneous, but occurs within approximatedly 90 seconds after the key is deleted.
