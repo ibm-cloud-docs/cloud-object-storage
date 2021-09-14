@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2020
-lastupdated: "2020-10-01"
+  years: 2018, 2021
+lastupdated: "2021-09-12"
 
 keywords: encryption, security, {{site.data.keyword.hscrypto}}
 
@@ -37,6 +37,9 @@ Before you plan on using {{site.data.keyword.hscrypto}} with Cloud Object Storag
 - An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage) with a *standard* pricing plan.
 
 You will need to ensure that a service instance is created by using the [IBM Cloud catalog](https://cloud.ibm.com/catalog) and appropriate permissions are granted. This section outlines step-by-step instructions to help you get started. 
+
+It is not possible to use [Immutable Object Storage](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable) to create retention policies that prevent object deletion or modification on buckets that use {{site.data.keyword.hscrypto}}.
+{:tip}
 
 ## Provisioning an instance of {{site.data.keyword.hscrypto}}
 {: #hpcs-provision}
