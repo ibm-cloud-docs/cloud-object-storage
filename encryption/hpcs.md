@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2020
-lastupdated: "2020-10-01"
+  years: 2018, 2021
+lastupdated: "2021-09-12"
 
 keywords: encryption, security, {{site.data.keyword.hscrypto}}
 
@@ -37,6 +37,9 @@ Before you plan on using {{site.data.keyword.hscrypto}} with Cloud Object Storag
 - An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage) with a *standard* pricing plan.
 
 You will need to ensure that a service instance is created by using the [IBM Cloud catalog](https://cloud.ibm.com/catalog) and appropriate permissions are granted. This section outlines step-by-step instructions to help you get started. 
+
+It is not possible to use [Immutable Object Storage](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable) to create retention policies that prevent object deletion or modification on buckets that use {{site.data.keyword.hscrypto}}.
+{:tip}
 
 ## Provisioning an instance of {{site.data.keyword.hscrypto}}
 {: #hpcs-provision}
@@ -136,7 +139,7 @@ In the event of a server-side failure in a lifecycle action on a key, that failu
 
 The `cloud-object-storage.bucket-key-state.update` actions are triggered by events taking place in {{site.data.keyword.hscrypto}}, and require that the bucket is registered with the {{site.data.keyword.hscrypto}} service.  This registration happens automatically when a bucket is created with a {{site.data.keyword.hscrypto}} root key.
 
-Buckets created prior to February 26th, 2020 are not registered with the {{site.data.keyword.hscrypto}} service and will not receive notifications of encryption key lifecycle events at this time. These buckets can be identified by performing [a bucket listing operation](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets) and looking at the dates for bucket creation. To ensure that these buckets have the latest key state from {{site.data.keyword.hscrypto}}, it is recommended that [some data operation is performed]((/docs/cloud-object-storage?topic=cloud-object-storage-object-operations#object-operations-head)), such as a `PUT`, `GET`, or `HEAD` on an object in each affected bucket.  It is recommended that an object operation is done twice, at least an hour apart, to ensure that the key state is properly in synchronization with the {{site.data.keyword.hscrypto}} state.
+Buckets created prior to February 26th, 2020 are not registered with the {{site.data.keyword.hscrypto}} service and will not receive notifications of encryption key lifecycle events at this time. These buckets can be identified by performing [a bucket listing operation](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets) and looking at the dates for bucket creation. To ensure that these buckets have the latest key state from {{site.data.keyword.hscrypto}}, it is recommended that [some data operation is performed](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations#object-operations-head), such as a `PUT`, `GET`, or `HEAD` on an object in each affected bucket.  It is recommended that an object operation is done twice, at least an hour apart, to ensure that the key state is properly in synchronization with the {{site.data.keyword.hscrypto}} state.
 {: important}
 
 For more information on Activity Tracker events for object storage, [see the reference topic](/docs/cloud-object-storage?topic=cloud-object-storage-at-events).

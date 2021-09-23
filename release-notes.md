@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-11-20"
+  years: 2017, 2021
+lastupdated: "2021-09-12"
 
 keywords: updates, releases, news, object storage
 
@@ -24,6 +24,15 @@ subcollection: cloud-object-storage
 
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
+
+## Q3 2021
+{: #updates-2021-q3}
+
+Buckets created using [Key Protect managed encryption](/docs/cloud-object-storage?topic=cloud-object-storage-kp) can now also use [Immutable Object Storage](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable) to create retention policies that prevent object deletion or modification.
+
+Buckets can now be created in a Regional configuration in São Paulo, Brazil. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+
+New buckets created in `us` or `ap` Cross Region configuration can now use [Key Protect managed encryption](/docs/cloud-object-storage?topic=cloud-object-storage-kp).
 
 ## Q2 2021
 {: #updates-2021-q2}

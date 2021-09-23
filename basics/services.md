@@ -1,9 +1,9 @@
 ---
 
 copyright:
-  years: 2017, 2020
+  years: 2017, 2021
 
-lastupdated: "2020-03-25"
+lastupdated: "2021-08-30"
 
 keywords: aspera, key protect, archive, worm
 
@@ -54,11 +54,11 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 ## Cross Region
 {: #service-availability-geo}
 
-| Region          | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
-|-----------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
-| AP Cross Region | Yes    | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
-| EU Cross Region | Yes    | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
-| US Cross Region | Yes    | Yes         | No                             | No           | Yes                      | Dallas           | No        | Yes        | Dallas     |
+| Region          | Aspera | Key Protect         | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
+|-----------------|--------|---------------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
+| AP Cross Region | Yes    | Yes (in `jp-tok`)   | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
+| EU Cross Region | Yes    | No                  | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
+| US Cross Region | Yes    | Yes (in `us-south`) | No                             | No           | Yes                      | Dallas           | No        | Yes        | Dallas     |
 
 
 ## Regional
@@ -68,12 +68,13 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 |------------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|---------------|
 | AP Australia     | Yes    | Yes         | Yes                            | Yes          | Yes                      | Sydney           | No        | Yes        | Sydney        |
 | AP Tokyo         | Yes    | Yes         | No                             | Yes          | Yes                      | Tokyo            | Yes       | Yes        | Tokyo         |
-| AP Osaka         | No     | Yes         | No                             | Yes          | Yes                      | Tokyo            | Yes       | Yes        | Tokyo         |
+| AP Osaka         | No     | Yes         | No                             | Yes          | Yes                      | Osaka            | Yes       | Yes        | Osaka         |
 | EU Great Britain | Yes    | Yes         | No                             | Yes          | Yes                      | London           | Yes       | Yes        | London        |
 | EU Germany       | Yes    | Yes         | Yes                            | Yes          | Yes                      | Frankfurt        | Yes       | Yes        | Frankfurt     |
 | US South         | Yes    | Yes         | Yes                            | Yes          | Yes                      | Dallas           | Yes       | Yes        | Dallas        |
 | US East          | Yes    | Yes         | Yes                            | Yes          | Yes                      | Washington DC    | Yes       | Yes        | Washington DC |
 | CA Toronto       | No     | Yes         | No                             | Yes          | Yes                      | Toronto          | No        | Yes        | Toronto       |
+| BR São Paulo     | No     | Yes         | No                             | Yes          | Yes                      | Dallas           | No        | Yes        | Dallas        |
 
 ## Single Data Centers
 {: #service-availability-zone}
