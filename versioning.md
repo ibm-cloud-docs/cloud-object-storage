@@ -125,10 +125,10 @@ Lifecycle configurations with a single transition rule (i.e archiving) are permi
 It is not possible to use `NoncurrentVersionTransition` rules in a lifecycle configuration.
 
 
-[comment]:<Removed for F1697 ### Object expiration
+<!-- [comment]:Removed for F1697 ### Object expiration
 {: #versioning-expiration}
 
-Object expiration is not currently permitted in buckets with versioning enabled.  Attempts to create a lifecycle configuration with an expiration rule will fail, as will attempts to enable versioning on a bucket with an expiration rule. Removing this limitation is a road-map item and expiration for versioned objects will be supported in a future release. >
+Object expiration is not currently permitted in buckets with versioning enabled.  Attempts to create a lifecycle configuration with an expiration rule will fail, as will attempts to enable versioning on a bucket with an expiration rule. Removing this limitation is a road-map item and expiration for versioned objects will be supported in a future release.  -->
 
 ### Immutable Object Storage (WORM)
 {: #versioning-worm}
