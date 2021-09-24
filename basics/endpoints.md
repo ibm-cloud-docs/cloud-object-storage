@@ -171,7 +171,6 @@ If a networking failure results in a partition where the data center is unable t
 | `sjc01` | Public | `s3.sjc04.cloud-object-storage.appdomain.cloud` |
 | `seo01` | Public | `s3.seo01.cloud-object-storage.appdomain.cloud` |
 | `sng01` | Public | `s3.sng01.cloud-object-storage.appdomain.cloud` |
-
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
 {: #sdcendpointtable1}
@@ -210,7 +209,6 @@ If a networking failure results in a partition where the data center is unable t
 | `sjc01` | Direct | `s3.direct.sjc04.cloud-object-storage.appdomain.cloud` |
 | `seo01` | Direct | `s3.direct.seo01.cloud-object-storage.appdomain.cloud` |
 | `sng01` | Direct | `s3.direct.sng01.cloud-object-storage.appdomain.cloud` |
-
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
 {: #sdcendpointtable3}
@@ -261,5 +259,4 @@ Over time, it may be necessary for locations to transform from a Single Data Cen
 | `osl01` | Public  | `s3.direct.osl01.cloud-object-storage.appdomain.cloud`  |
 | `osl01` | Private | `s3.direct.osl01.cloud-object-storage.appdomain.cloud`  |
 | `osl01` | Direct  | `s3.direct.osl01.cloud-object-storage.appdomain.cloud`  |
-
 {: caption="Table 5. Decommissioned Endpoints" caption-side="top"}
