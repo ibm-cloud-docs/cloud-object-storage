@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2021
 
-lastupdated: "2021-08-30"
+lastupdated: "2021-09-24"
 
 keywords: aspera, key protect, archive, worm
 
@@ -54,45 +54,44 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 ## Cross Region
 {: #service-availability-geo}
 
-| Region          | Aspera | Key Protect         | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
-|-----------------|--------|---------------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
-| AP Cross Region | Yes    | Yes (in `jp-tok`)   | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
-| EU Cross Region | Yes    | No                  | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
-| US Cross Region | Yes    | Yes (in `us-south`) | No                             | No           | Yes                      | Dallas           | No        | Yes        | Dallas     |
+| Region | Aspera | Key Protect         | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
+| ------ | ------ | ------------------- | ------------------------------ | ------------ | ------------------------ | ---------------- | --------- | ---------- | ---------- |
+| `ap`   | Yes    | Yes (in `jp-tok`)   | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   |
+| `eu`   | Yes    | No                  | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    |
+| `us`   | Yes    | Yes (in `us-south`) | No                             | No           | Yes                      | `us-south`       | No        | Yes        | `us-south` |
 
 
 ## Regional
 {: #service-availability-region}
 
-| Region           | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring    |
-|------------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|---------------|
-| AP Australia     | Yes    | Yes         | Yes                            | Yes          | Yes                      | Sydney           | No        | Yes        | Sydney        |
-| AP Tokyo         | Yes    | Yes         | No                             | Yes          | Yes                      | Tokyo            | Yes       | Yes        | Tokyo         |
-| AP Osaka         | No     | Yes         | No                             | Yes          | Yes                      | Osaka            | Yes       | Yes        | Osaka         |
-| EU Great Britain | Yes    | Yes         | No                             | Yes          | Yes                      | London           | Yes       | Yes        | London        |
-| EU Germany       | Yes    | Yes         | Yes                            | Yes          | Yes                      | Frankfurt        | Yes       | Yes        | Frankfurt     |
-| US South         | Yes    | Yes         | Yes                            | Yes          | Yes                      | Dallas           | Yes       | Yes        | Dallas        |
-| US East          | Yes    | Yes         | Yes                            | Yes          | Yes                      | Washington DC    | Yes       | Yes        | Washington DC |
-| CA Toronto       | No     | Yes         | No                             | Yes          | Yes                      | Toronto          | No        | Yes        | Toronto       |
-| BR São Paulo     | No     | Yes         | No                             | Yes          | Yes                      | Dallas           | No        | Yes        | Dallas        |
+| Region     | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
+| ---------- | ------ | ----------- | ------------------------------ | ------------ | ------------------------ | ---------------- | --------- | ---------- | ---------- |
+| `au-syd`   | Yes    | Yes         | Yes                            | Yes          | Yes                      | `au-syd`         | No        | Yes        | `au-syd`   |
+| `ap-tok`   | Yes    | Yes         | No                             | Yes          | Yes                      | `ap-tok`         | Yes       | Yes        | `ap-tok`   |
+| `ap-osa`   | No     | Yes         | No                             | Yes          | Yes                      | `ap-osa`         | Yes       | Yes        | `ap-osa`   |
+| `eu-gb`    | Yes    | Yes         | No                             | Yes          | Yes                      | `eu-gb`          | Yes       | Yes        | `eu-gb`    |
+| `eu-de`    | Yes    | Yes         | Yes                            | Yes          | Yes                      | `eu-de`          | Yes       | Yes        | `eu-de`    |
+| `us-south` | Yes    | Yes         | Yes                            | Yes          | Yes                      | `us-south`       | Yes       | Yes        | `us-south` |
+| `us-east`  | Yes    | Yes         | Yes                            | Yes          | Yes                      | `us-east`        | Yes       | Yes        | `us-east`  |
+| `ca-tor`   | No     | Yes         | No                             | Yes          | Yes                      | `ca-tor`         | No        | Yes        | `ca-tor`   |
+| `br-sao`   | No     | Yes         | No                             | Yes          | Yes                      | `br-sao`         | No        | Yes        | `br-sao`   |
 
 ## Single Data Centers
 {: #service-availability-zone}
 
-| Region                      | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
-|-----------------------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
-| Amsterdam, Netherlands      | No     | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
-| Chennai, India              | No     | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
-| Hong Kong S.A.R. of the PRC | No     | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
-| Mexico City, Mexico         | No     | No          | No                             | No           | No                       | Dallas           | No        | Yes        | Dallas     |
-| Milan, Italy                | No     | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
-| Montréal, Canada            | No     | No          | No                             | No           | No                       | Dallas           | No        | Yes        | Dallas     |
-| Oslo, Norway                | No     | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
-| Paris, France               | No     | No          | No                             | No           | No                       | Frankfurt        | No        | Yes        | Frankfurt  |
-| San Jose, US                | No     | No          | No                             | No           | No                       | Dallas           | No        | Yes        | Dallas     |
-| São Paulo, Brazil           | Yes    | No          | No                             | Yes          | No                       | Dallas           | No        | Yes        | Dallas     |
-| Seoul, South Korea          | No     | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
-| Singapore                   | No     | No          | No                             | No           | No                       | Tokyo            | No        | Yes        | Tokyo      |
+| Region  | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
+| ------- | ------ | ----------- | ------------------------------ | ------------ | ------------------------ | ---------------- | --------- | ---------- | ---------- |
+| `ams03` | No     | No          | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    |
+| `che01` | No     | No          | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   |
+| `hkg02` | No     | No          | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   |
+| `mex01` | No     | No          | No                             | No           | No                       | `us-south`       | No        | Yes        | `us-south` |
+| `mil01` | No     | No          | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    |
+| `mon01` | No     | No          | No                             | No           | No                       | `us-south`       | No        | Yes        | `us-south` |
+| `osl01` | No     | No          | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    |
+| `par01` | No     | No          | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    |
+| `sjc01` | No     | No          | No                             | No           | No                       | `us-south`       | No        | Yes        | `us-south` |
+| `seo01` | No     | No          | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   |
+| `sng01` | No     | No          | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   |
 
 ## More information
 {: #service-availability-more-info}
