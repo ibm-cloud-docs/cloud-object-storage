@@ -1368,6 +1368,78 @@ The server responds with `200 OK`.
 
 ----
 
+```xml
+<LifecycleConfiguration>
+    <Rule>
+        <ID>{string}</ID>
+        <Status>Enabled</Status>
+        <Filter>
+            <Prefix/>
+        </Filter>
+        <Expiration>
+            <Days>{integer}</Days>
+        </Expiration>
+    </Rule>
+</LifecycleConfiguration>
+```
+
+The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. The following snippet shows one way to achieve the content for that particular header.
+
+```
+echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
+```
+{:codeblock}
+
+**Example request**
+{: expiration}
+
+```http
+PUT /cit-test?lifecycle HTTP/1.1
+Host: 192.168.35.22
+User-Agent: curl/7.64.1
+Accept: */*
+Date: Fri, 28 Feb 2020 14:12:06 +0000
+Authorization: AWS MOfXYiHQ9QTyD2ALoiOh:WrlFRE2KMmhutBf3CxIZoNLl/ko=
+Content-MD5: To3JYtaVNR3+aGYtl1dlmw==
+Content-Length: 321
+
+```
+{: expiration}
+
+```xml
+<LifecycleConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+  <Rule>
+    <ID>ID1</ID>
+    <Status>Enabled</Status>
+    <Filter>
+      <Prefix/>
+    </Filter>
+    <Expiration>
+      <Days>100</Days>
+    </Expiration>
+  </Rule>
+</LifecycleConfiguration>
+
+```
+{: codeblock}
+
+**Example response**
+The server responds with `200 OK`.
+{: expiration}
+
+```http
+We are completely uploaded and fine
+HTTP/1.1 200 OK
+Date: Fri, 28 Feb 2020 14:12:06 GMT
+X-Clv-Request-Id: 587d909f-4939-41ef-8c16-80aea16a0587
+Server: Cleversafe/3.14.9.53
+X-Clv-S3-Version: 2.5
+x-amz-request-id: 587d909f-4939-41ef-8c16-80aea16a0587
+Content-Length: 0
+ 
+
+```
+----
 ## Retrieve a bucket lifecycle configuration
 {: #compatibility-api-get-config}
 
@@ -1422,6 +1494,50 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 </LifecycleConfiguration>
 ```
 
+{: codeblock}
+
+**Example request**
+{: expiration}
+
+```http
+GET /cit_dump-log?lifecycle HTTP/1.1
+Host: 192.168.35.22
+User-Agent: curl/7.64.1
+Accept: */*
+Date: Fri, 28 Feb 2020 14:00:43 +0000
+Authorization: AWS MOfXYiHQ9QTyD2ALoiOh:iKm2QNetyW740kylP6ja2pze3DM=
+Content-MD5: 1B2M2Y8AsgTpgAmY7PhCfg==
+
+```
+{: expiration}
+
+**Example Response**
+
+HTTP/1.1 200 OK
+Date: Fri, 28 Feb 2020 14:00:43 GMT
+X-Clv-Request-Id: ecbf9294-284d-4169-b2cd-5d52b2450808
+Server: Cleversafe/3.14.9.53
+X-Clv-S3-Version: 2.5
+Accept-Ranges: bytes
+x-amz-request-id: ecbf9294-284d-4169-b2cd-5d52b2450808
+Content-Type: application/xml
+Content-Length: 276
+
+```xml
+<LifecycleConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+  <Rule>
+    <ID>ID1</ID>
+    <Status>Enabled</Status>
+    <Filter>
+      <Prefix/>
+    </Filter>
+    <Expiration>
+      <Days>270</Days>
+    </Expiration>
+  </Rule>
+</LifecycleConfiguration>
+
+```
 ----
 
 ## Delete stale data with expiration rules
@@ -1529,6 +1645,37 @@ Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 {: hmac}
+
+The server responds with `204 No Content`.
+
+{: codeblock}
+
+**Example request**
+{: expiration}
+
+```http
+DELETE /cit-test?lifecycle HTTP/1.1
+Host: 192.168.35.22
+User-Agent: curl/7.64.1
+Accept: */*
+Date: Fri, 28 Feb 2020 14:16:47 +0000
+Authorization: AWS MOfXYiHQ9QTyD2ALoiOh:n25GU28DiBgkNVgET5hKmLmp938=
+Content-MD5: 1B2M2Y8AsgTpgAmY7PhCfg==
+
+```
+{: expriation}
+
+**Example response**
+
+```http
+HTTP/1.1 204 No Content
+Date: Fri, 28 Feb 2020 14:16:47 GMT
+X-Clv-Request-Id: 3e8bdf1e-b611-4b83-a404-e7d3e58e60b0
+Server: Cleversafe/3.14.9.53
+X-Clv-S3-Version: 2.5
+x-amz-request-id: 3e8bdf1e-b611-4b83-a404-e7d3e58e60b0
+
+```
 
 The server responds with `204 No Content`.
 
