@@ -188,6 +188,7 @@ If a networking failure results in a partition where the data center is unable t
 | `osl01` | Private | `s3.private.osl01.cloud-object-storage.appdomain.cloud` |
 | `par01` | Private | `s3.private.par01.cloud-object-storage.appdomain.cloud` |
 | `sjc04` | Private | `s3.private.sjc04.cloud-object-storage.appdomain.cloud` |
+| `sjc01` | Private | `s3.private.sjc04.cloud-object-storage.appdomain.cloud` |
 | `seo01` | Private | `s3.private.seo01.cloud-object-storage.appdomain.cloud` |
 | `sng01` | Private | `s3.private.sng01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
