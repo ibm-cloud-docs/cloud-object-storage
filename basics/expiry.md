@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-02-10"
+  years: 2017, 2021
+lastupdated: "2021-09-27"
 
 keywords: expiry, glacier, tier, s3, compatibility, api
 

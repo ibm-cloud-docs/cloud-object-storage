@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2021
+lastupdated: "2021-09-29"
 
 keywords: developer, best practices, object storage
 
@@ -47,8 +47,11 @@ Multipart uploads are only available for objects larger than 5 MB. For objects s
 
 Due to the additional complexity involved, it is recommended that developers make use of S3 API libraries that provide multipart upload support.
 
-Incomplete multipart uploads do persist until the object is deleted or the multipart upload is aborted with `AbortIncompleteMultipartUpload`. If an incomplete multipart upload is not aborted, the partial upload continues to use resources. Interfaces should be designed with this point in mind, and clean up incomplete multipart uploads. [Note:] `AbortIncompleteMultipartUpload` lifecycle action expires incomplete multipart uploads based on the days that are specified in the policy. This is determined by the initiation timestamp of the multipart
+Incomplete multipart uploads do persist until the object is deleted or the multipart upload is aborted with `AbortIncompleteMultipartUpload`. If an incomplete multipart upload is not aborted, the partial upload continues to use resources. Interfaces should be designed with this point in mind, and clean up incomplete multipart uploads. 
+
+`AbortIncompleteMultipartUpload` lifecycle action expires incomplete multipart uploads based on the days that are specified in the policy. This is determined by the initiation timestamp of the multipart
 upload transaction. This lifecycle is the only one that deletes incomplete MPU transactions, so it does not apply once the MPU is completed (even if it was scanned already for reclamation).
+{:important}
 
 ## Using software development kits
 {: #dev-guide-sdks}
