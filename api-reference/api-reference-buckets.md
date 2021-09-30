@@ -1396,8 +1396,6 @@ echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 ```http
 PUT /cit-test?lifecycle HTTP/1.1
 Host: 192.168.35.22
-User-Agent: curl/7.64.1
-Accept: */*
 Date: Fri, 28 Feb 2020 14:12:06 +0000
 Authorization: AWS MOfXYiHQ9QTyD2ALoiOh:WrlFRE2KMmhutBf3CxIZoNLl/ko=
 Content-MD5: To3JYtaVNR3+aGYtl1dlmw==
@@ -1437,6 +1435,32 @@ X-Clv-S3-Version: 2.5
 x-amz-request-id: 587d909f-4939-41ef-8c16-80aea16a0587
 Content-Length: 0
  
+ **Example request**
+{: token}
+
+```http
+PUT /{bucket-name}?lifecycle HTTP/1.1
+Authorization: Bearer {token}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+ibm-service-instance-id: {ibm-service-instance-id}
+Content-Length: 123
+```
+{: codeblock}
+{: token}
+
+**Example request**
+{: hmac v4}
+
+```http
+PUT /{bucket-name}?lifecycle HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+Content-Length: 123
+```
+{: hmac}
 
 ```
 ----

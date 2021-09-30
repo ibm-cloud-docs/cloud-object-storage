@@ -33,7 +33,7 @@ This overview focuses on the steps that are needed to access a list of all items
 
 The process of emptying a bucket is familiar to anyone who has to delete buckets in their instance of {{site.data.keyword.cos_full_notm}} because a bucket has to be empty to be deleted. There may be other reasons you may wish to delete items, but want to avoid deleting every object individually. This code pattern for the supported SDKs will allow you to define your configuration, create a client, and then connect with that client in order to get a list of all the items in an identified bucket for in order to delete them.
 
-If version is enabled, the expiration rule would only create delete markeds and not empty the bucket if versioning is enabled.
+If versioning is enabled, the expiration rule would only create delete markeds and not empty the bucket.
 {important}
 
 It is a best practice to avoid putting credentials in scripts. This example is for testing and educational purposes, and your specific setup should be informed by best practices and [Developer Guidance](/docs/cloud-object-storage?topic=cloud-object-storage-dev-guide).
