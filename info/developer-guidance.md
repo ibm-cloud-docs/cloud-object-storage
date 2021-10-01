@@ -49,8 +49,8 @@ Due to the additional complexity involved, it is recommended that developers mak
 
 Incomplete multipart uploads do persist until the object is deleted or the multipart upload is aborted with `AbortIncompleteMultipartUpload`. If an incomplete multipart upload is not aborted, the partial upload continues to use resources. Interfaces should be designed with this point in mind, and clean up incomplete multipart uploads. 
 
-`AbortIncompleteMultipartUpload` lifecycle action expires incomplete multipart uploads based on the days that are specified in the policy. This is determined by the initiation timestamp of the multipart
-upload transaction. This lifecycle is the only one that deletes incomplete MPU transactions, so it does not apply once the MPU is completed (even if it was scanned already for reclamation).
+The `AbortIncompleteMultipartUpload` lifecycle action expires incomplete multipart uploads based on the days that are specified in the policy. This is determined by the initiation timestamp of the multipart
+upload transaction. 
 {:important}
 
 ## Using software development kits
