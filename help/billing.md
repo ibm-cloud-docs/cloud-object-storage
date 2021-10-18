@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-02-10"
+  years: 2017, 2021
+lastupdated: "2021-10-18"
 
 keywords: administration, billing, platform
 
@@ -38,7 +38,10 @@ Information on pricing can be found at [{{site.data.keyword.cloud}}](https://www
 
 Find your account invoices at **Manage** > **Billing and Usage** in the navigation menu.
 
-Each account receives a single bill. If you need separate billing for different sets of containers, then creating multiple accounts is necessary.
+Each service instance receives a single bill. If you need separate billing for different sets of buckets, then creating multiple instances is necessary.
+
+For each storage class, billing is based on aggregated usage across all buckets at the instance level. For example, for Smart Tier, the billing is based on usage across all Smart Tier buckets in a given instance - not on the individual buckets.
+{: important}
 
 ## {{site.data.keyword.cos_full_notm}} pricing
 {: #billing-pricing}
