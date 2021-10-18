@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2020
-lastupdated: "2020-12-15"
+  years: 2018, 2021
+lastupdated: "2021-09-12"
 
 keywords: encryption, security, sse-c, key protect
 
@@ -43,9 +43,13 @@ Refer to the service-specific product pages for instructions on how to provision
 
 - Getting started with [IBM Key Protect](/docs/services/key-protect?topic=key-protect-getting-started-tutorial#getting-started-tutorial) 
 
-Once you have an instance of Key Protect in a region that you want to create a new bucket in, you need to create a root key and note the CRN ([Cloud Resource Name](/docs/account?topic=account-crn)) of that key. The CRN is sent in a header during bucket creation.
+Once you have an instance of Key Protect, you need to create a root key and note the CRN ([Cloud Resource Name](/docs/account?topic=account-crn)) of that key. The CRN is sent in a header during bucket creation.
 
-Before creating the bucket for use with Key Protect, review the [relevant guidance around availability and disaster recovery](/docs/key-protect?key-protect-ha-dr).  
+Before creating the bucket for use with Key Protect, review the [relevant guidance around availability and disaster recovery](/docs/key-protect?key-protect-ha-dr). 
+
+Note that managed encryption for a Cross Region bucket **must** use a root key from a Key Protect instance in the nearest [high-availability location](/docs/key-protect?topic=key-protect-ha-dr) (`us-south` or `jp-tok`).
+{:important}
+
 ## Create or add a key in Key Protect
 {: #kp-create}
 Navigate to your instance of Key Protect and [generate or enter a root key](/docs/services/key-protect?topic=key-protect-getting-started-tutorial).
@@ -116,6 +120,9 @@ If a key is disabled, and then re-enabled quickly, requests made to that bucket 
 ### Deleting keys and cryptographic erasure
 {: #kp-cryptoerasure}
 
+It isn't possible to delete a root key associated with a bucket that has a [retention policy](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable) in place.  The bucket must be first emptied and destroyed before the root key can be deleted. For more information, [see the Key Protect documentation](/docs/key-protect?topic=key-protect-delete-purge-keys#delete-purge-keys-considerations).
+{:important}
+
 Cryptographic erasure (or crypto-shredding) is a method of rendering encrypted data  unreadable by [deleting the encryption keys](/docs/key-protect?topic=key-protect-security-and-compliance#data-deletion) rather than the data itself. When a [root key is deleted in Key Protect](/docs/key-protect?topic=key-protect-delete-keys), it will affect all objects in any buckets created using that root key, effectively "shredding" the data and preventing any further reading or writing to the buckets. This process is not instantaneous, but occurs within approximatedly 90 seconds after the key is deleted.
 
 Although objects in a crypto-shredded bucket can not be read, and new object can not be written, existing objects will continue to consume storage until they are deleted by a user.
@@ -136,7 +143,7 @@ In the event of a server-side failure in a lifecycle action on a key, that failu
 
 The `cloud-object-storage.bucket-key-state.update` actions are triggered by events taking place in Key Protect, and require that the bucket is registered with the Key Protect service.  This registration happens automatically when a bucket is created with a Key Protect root key.
 
-Buckets created prior to February 26th, 2020 are not registered with the Key Protect service and will not receive notifications of encryption key lifecycle events at this time. These buckets can be identified by performing [a bucket listing operation](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets) and looking at the dates for bucket creation. To ensure that these buckets have the latest key state from Key Protect, it is recommended that [some data operation is performed]((/docs/cloud-object-storage?topic=cloud-object-storage-object-operations#object-operations-head)), such as a `PUT`, `GET`, or `HEAD` on an object in each affected bucket.  It is recommended that an object operation is done twice, at least an hour apart, to ensure that the key state is properly in synchronization with the Key Protect state.
+Buckets created prior to February 26th, 2020 are not registered with the Key Protect service and will not receive notifications of encryption key lifecycle events at this time. These buckets can be identified by performing [a bucket listing operation](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets) and looking at the dates for bucket creation. To ensure that these buckets have the latest key state from Key Protect, it is recommended that [some data operation is performed](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations#object-operations-head), such as a `PUT`, `GET`, or `HEAD` on an object in each affected bucket.  It is recommended that an object operation is done twice, at least an hour apart, to ensure that the key state is properly in synchronization with the Key Protect state.
 {: important}
 
 For more information on Activity Tracker events for object storage, [see the reference topic](/docs/cloud-object-storage?topic=cloud-object-storage-at-events).

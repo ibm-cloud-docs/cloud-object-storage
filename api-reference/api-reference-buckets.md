@@ -340,14 +340,14 @@ Content-Length: 0
 ## Create a new bucket with Key Protect or {{site.data.keyword.hscrypto}} managed encryption keys (SSE-KP)
 {: #compatibility-api-key-protect}
 
-To create a bucket where the encryption keys are managed by Key Protect or {{site.data.keyword.hscrypto}}, it is necessary to have access to an active Key Protect or {{site.data.keyword.hscrypto}} service instance located in the same location as the new bucket. This operation does not make use of operation specific query parameters.
+To create a bucket where the encryption keys are managed by Key Protect or {{site.data.keyword.hscrypto}}, it is necessary to have access to an active Key Protect or {{site.data.keyword.hscrypto}} service instance. This operation does not make use of operation specific query parameters.
 
 For more information on using Key Protect to manage your encryption keys, [see the documentation for Key Protect](/docs/key-protect?topic=key-protect-getting-started-tutorial).
 
 For more information on {{site.data.keyword.hscrypto}}, [see the documentation](/docs/hs-crypto?topic=hs-crypto-get-started).
 
-Note that managed encryption is **not** available in a Cross Region configuration and any SSE-KP buckets must be Regional.
-{:tip}
+Note that managed encryption for a Cross Region bucket **must** use a root key from a Key Protect instance in the nearest [high-availability location](/docs/key-protect?topic=key-protect-ha-dr) (`us-south` or `jp-tok`).
+{:important}
 
 Header                             | Type   | Description
 -----------------------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1537,6 +1537,9 @@ Find out more about Immutable Object Storage in the [documentation](/docs/cloud-
 The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are a minimum of 0 days and a maximum of 365243 days (1000 years). 
 
 This operation does not make use of extra query parameters. The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. The following snippet shows one way to achieve the content for that particular header.
+
+Policies are enforced until the end of a retention period, and can not be altered until the retention period has expired. While {{site.data.keyword.cos_full_notm}} makes use of the S3 API for most operations, the APIs used for configuring retention policies is not the same as the S3 API, although some terminology may be shared. Read this documentation carefully to prevent any users in your organization from creating objects that can not be deleted, even by IBM Cloud administrators.  
+{:important}
 
 ```
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64

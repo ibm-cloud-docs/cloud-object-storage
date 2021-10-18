@@ -34,6 +34,9 @@ subcollection: cloud-object-storage
 Immutable Object Storage preserves electronic records and maintains data integrity. Retention policies ensure that data is stored in a WORM (Write-Once-Read-Many), non-erasable and non-rewritable manner. This policy is enforced until the end of a retention period and the removal of any legal holds. 
 {: shortdesc}
 
+Policies are enforced until the end of a retention period, and can not be altered until the retention period has expired. While {{site.data.keyword.cos_full_notm}} makes use of the S3 API for most operations, the APIs used for configuring retention policies is not the same as the S3 API, although some terminology may be shared. Read this documentation carefully to prevent any users in your organization from creating objects that can not be deleted, even by IBM Cloud administrators.  
+{:important}
+
 This feature can be used by any user that needs long-term data retention in their environment, including but not limited to organizations in the following industries:
 
  * Financial
@@ -96,8 +99,10 @@ Immutable Object Storage allows users to set indefinite retention on the object 
 ### Permanent retention
 {: #immutable-terminology-permanent}
 
-Permanent retention can only be enabled at a {{site.data.keyword.cos_full_notm}} bucket level with retention policy enabled and users are able to select the permanent retention period option during object uploads. Once enabled, this process can't be reversed and objects uploaded that use a permanent retention period **cannot be deleted**. It's the responsibility of the users to validate at their end if there's a legitimate need to **permanently** store objects by using {{site.data.keyword.cos_short}} buckets with a retention policy. 
+Permanent retention ensures that data can not be deleted, ever, by anyone. Read the documentation carefully and do not use permanent retention unless there is a compelling regulatory or compliance need for **permanent** data storage. 
+{:important}
 
+Permanent retention can only be enabled at a {{site.data.keyword.cos_full_notm}} bucket level with retention policy enabled and users are able to select the permanent retention period option during object uploads. Once enabled, this process can't be reversed and objects uploaded that use a permanent retention period **cannot be deleted**. It's the responsibility of the users to validate at their end if there's a legitimate need to **permanently** store objects by using {{site.data.keyword.cos_short}} buckets with a retention policy. 
 
 When using Immutable Object Storage, you are responsible for ensuring that your IBM Cloud Account is kept in good standing per IBM Cloud policies and guidelines for as long as the data is subject to a retention policy. Refer to IBM Cloud Service terms for more information.
 {:important}

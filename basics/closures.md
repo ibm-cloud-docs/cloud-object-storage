@@ -30,8 +30,6 @@ subcollection: cloud-object-storage
 # Migrating resources to a different data center
 {: #migrate-data-center}
 
-As part of the data center modernization strategy for IBM Cloud™, older legacy data centers in Dallas and Houston (D2, D6, D7, H2) are closing on 31 August 2020. Through coordination with our vendors, we’ve secured an extension for select facilities in Dallas, **Melbourne** and Seattle. For DAL07, **MEL01**, and SEA01, data center closures are extended to **30 November 2020**.
-
 IBM Cloud invests significantly in data center infrastructure. These investments include rolling out newer data centers and multizone regions (MZRs) designed to deliver a more resilient architecture with higher levels of network throughput and redundancy. 
 
 Part of this modernization strategy is to close older data centers that are unsuitable for upgrading. As this transition approaches, help is available to assist you in your migration to modern data centers. For a list of the available data centers, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints).
@@ -39,16 +37,6 @@ Part of this modernization strategy is to close older data centers that are unsu
 For additional information about data center closings, see [Withdrawal of support for some data centers](/docs/get-support?topic=get-support-dc-migrate). 
 
 {:shortdesc}
-
-The [single data center storage location](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints-zone) in **Melbourne, Australia (`MEL01`)** will be closed November 30, 2020. The following endpoints will no longer be valid:
-
-- `s3.mel01.cloud-object-storage.appdomain.cloud`
-- `s3.private.mel01.cloud-object-storage.appdomain.cloud`
-- `s3.direct.mel01.cloud-object-storage.appdomain.cloud`
-- `s3.mel01.objectstorage.softlayer.net`
-- `s3.mel01.objectstorage.service.networklayer.com`
-- `s3.mel01.objectstorage.adn.networklayer.com`
-
 
 To identify your impacted resources, take advantage of special offers, or learn about recommended configurations, use one of the following options to contact the {{site.data.keyword.IBM_notm}} 24x7 Client Success team: 
   * [Live chat](https://www.ibm.com/cloud/data-centers/?focusArea=WCP%20-%20Pooled%20CSM&contactmodule){: external}
