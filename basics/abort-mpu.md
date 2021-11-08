@@ -64,13 +64,13 @@ This configuration expires any uploads that haven't completed after 3 days.
 
 ```xml
 <LifecycleConfiguration>
-	<Rule>
-		<ID>delete-after-3-days</ID>
-		<Status>Enabled</Status>
-		<AbortIncompleteMultipartUpload>
-			<DaysAfterInitiation>3</DaysAfterInitiation>
-		</AbortIncompleteMultipartUpload>
-	</Rule>
+    <Rule>
+        <ID>delete-after-3-days</ID>
+        <Status>Enabled</Status>
+        <AbortIncompleteMultipartUpload>
+            <DaysAfterInitiation>3</DaysAfterInitiation>
+        </AbortIncompleteMultipartUpload>
+    </Rule>
 </LifecycleConfiguration>
 ```
 
@@ -97,13 +97,13 @@ You can also combine rules.  This configuration cancels inactive uploads after 5
             <Days>180</Days>
         </Expiration>
     </Rule>
-	<Rule>
-		<ID>delete-after-3-days</ID>
-		<Status>Enabled</Status>
+    <Rule>
+        <ID>delete-after-3-days</ID>
+        <Status>Enabled</Status>
 		<AbortIncompleteMultipartUpload>
-			<DaysAfterInitiation>3</DaysAfterInitiation>
-		</AbortIncompleteMultipartUpload>
-	</Rule>
+		    <DaysAfterInitiation>3</DaysAfterInitiation>
+        </AbortIncompleteMultipartUpload>
+    </Rule>
 </LifecycleConfiguration>
 ```
 
@@ -111,16 +111,12 @@ You can also combine rules.  This configuration cancels inactive uploads after 5
 ## Using the API and SDKs
 {: #mpu-cleanup-using-api-sdks}
 
-You can programmatically manage lifecycle rules by using the REST API or the IBM COS SDKs. Select the format for the examples by selecting a category in the context switcher.
-
-### Add an expiration rule to a bucket’s lifecycle configuration
+You can programmatically manage lifecycle rules by using the REST API or the IBM COS SDKs. 
 {: #lifecycle-mpu-api-put}
 
 **REST API reference**
-{: http}
 
 This implementation of the `PUT` operation uses the `lifecycle` query parameter to set lifecycle settings for the bucket. This operation allows for a single lifecycle policy definition for a bucket. The policy is defined as a set of rules consisting of the following parameters: `ID`, `Status`, `Filter`, and `Expiration`.
-{: http}
  
 Cloud IAM users must have the `Writer` role to add a lifecycle policy from a bucket.
 
@@ -129,10 +125,8 @@ Classic Infrastructure Users must have `Owner` permissions on the bucket to add 
 | Header        | Type   | Description                                                                                                                                                 |
 | ------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `Content-MD5` | String | **Required**: The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit. |
-{: http}
 
 The body of the request must contain an XML block with the following schema:
-{: http}
 
 | Element                          | Type                 | Children                                                   | Ancestor                         | Constraint                                                                                 |
 | -------------------------------- | -------------------- | ---------------------------------------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------ |
@@ -143,10 +137,8 @@ The body of the request must contain an XML block with the following schema:
 | `Prefix`                         | String               | None                                                       | `Filter`                         | The rule applies to any objects with keys that match this prefix.                          |
 | `AbortIncompleteMultipartUpload` | `Container`          | `DaysAfterInitiation`                                      | `Rule`                           | Limit 1.                                                                                   |
 | `DaysAfterInitiation`            | Non-negative integer | None                                                       | `AbortIncompleteMultipartUpload` | Must be a value greater than 0.                                                            |
-{: http}
 
 The body of the request must contain an XML block with the schema that is addressed in the table (see Example 1).
-{: http}
 
 ```xml
 <LifecycleConfiguration>
@@ -161,10 +153,8 @@ The body of the request must contain an XML block with the schema that is addres
 ```
 {: codeblock}
 {: caption="Example 1. XML sample from the body of the request." caption-side="bottom"}
-{: http}
 
 **Syntax**
-{: http}
 
 ```yaml
 PUT https://{endpoint}/{bucket}?lifecycle # path style
@@ -172,10 +162,8 @@ PUT https://{bucket}.{endpoint}?lifecycle # virtual host style
 ```
 {: caption="Example 2. Note the use of slashes and dots in this example of syntax." caption-side="bottom"}
 {: codeblock}
-{: http}
 
 **Example request**
-{: http}
 
 ```yaml
 PUT /images?lifecycle HTTP/1.1
@@ -198,13 +186,10 @@ Content-Length: 305
 ```
 {: codeblock}
 {: caption="Example 3. Request header samples for creating an object lifecycle configuration." caption-side="bottom"}
-{: http}
 
 **Code sample for use with NodeJS COS SDK**
-{: javascript}
 
 Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
-{: javascript}
 
 ```js
 var aws = require('ibm-cos-sdk');
@@ -239,13 +224,10 @@ s3.putBucketLifecycleConfiguration(params, function(err, data) {
 });
 ```
 {: codeblock}
-{: javascript}
 
 **Code sample for use with Python COS SDK**
-{: python}
 
 Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
-{: python}
 
 ```python
 import sys
@@ -282,13 +264,10 @@ response = cos.Bucket('<name-of-bucket>').put_bucket_lifecycle_configuration(
 print("Bucket lifecyle: {0}".format(response))
 ```
 {: codeblock}
-{: python}
 
 **Code sample for use with Java COS SDK**
-{: java}
 
 Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
-{: java}
 
 ```java
 package com.ibm.cloud;
@@ -372,22 +351,18 @@ package com.ibm.cloud;
     }
 ```
 {: codeblock}
-{: java}
 {: caption="Example 1. Code samples showing creation of lifecycle configuration." caption-side="bottom"}
 
 ### Examine a bucket’s lifecycle configuration, including expiration
 {: #lifecycle-mpu-api-get}
 
 This implementation of the `GET` operation uses the `lifecycle` query parameter to examine lifecycle settings for the bucket. An HTTP `404` response will be returned if no lifecycle configuration is present.
-{: http}
 
 Cloud IAM users must have the `Reader` role to examine a lifecycle policy from a bucket.
 
 Classic Infrastructure Users must have `Read` permissions on the bucket to examine a lifecycle policy from a bucket.
 
-
 **Syntax**
-{: http}
 
 ```yaml
 GET https://{endpoint}/{bucket}?lifecycle # path style
@@ -395,10 +370,8 @@ GET https://{bucket}.{endpoint}?lifecycle # virtual host style
 ```
 {: caption="Example 5. Note the use of slashes and dots in this example of syntax." caption-side="bottom"}
 {: codeblock}
-{: http}
 
 **Example Header Request**
-{: http}
 
 ```yaml
 GET /images?lifecycle HTTP/1.1
@@ -410,10 +383,8 @@ Content-Length: 305
 ```
 {: codeblock}
 {: caption="Example 6. Request header samples for creating an object lifecycle configuration." caption-side="bottom"}
-{: http}
 
 Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration.
-{: javascript}
 
 ```js
 var aws = require('ibm-cos-sdk');
@@ -436,7 +407,6 @@ s3.getBucketLifecycleConfiguration(params, function(err, data) {
 });
 ```
 {: codeblock}
-{: javascript}
 
 ```python
 import sys
@@ -462,7 +432,6 @@ response = cos.Bucket('<name-of-bucket>').get_bucket_lifecycle_configuration(
 print("Bucket lifecyle: {0}".format(response))
 ```
 {: codeblock}
-{: python}
 
 Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
 
@@ -546,14 +515,12 @@ package com.ibm.cloud;
 {: #lifecycle-mpu-api-delete}
 
 This implementation of the `DELETE` operation uses the `lifecycle` query parameter to examine lifecycle settings for the bucket. All lifecycle rules associated with the bucket will be deleted.  Transitions defined by the rules will no longer take place for new objects.  However, existing transition rules will be maintained for objects that were already written to the bucket before the rules were deleted.  Expiration Rules will no longer exist. An HTTP `404` response will be returned if no lifecycle configuration is present.
-{: http}
 
 Cloud IAM users must have the `Writer` role to remove a lifecycle policy from a bucket.
 
 Classic Infrastructure Users must have `Owner` permissions on the bucket to remove a lifecycle policy from a bucket.
 
 **Syntax**
-{: http}
 
 ```yaml
 DELETE https://{endpoint}/{bucket}?lifecycle # path style
@@ -561,10 +528,8 @@ DELETE https://{bucket}.{endpoint}?lifecycle # virtual host style
 ```
 {: caption="Example 7. Note the use of slashes and dots in this example of syntax." caption-side="bottom"}
 {: codeblock}
-{: http}
 
 **Example Header Request**
-{: http}
 
 ```yaml
 DELETE /images?lifecycle HTTP/1.1
@@ -576,10 +541,8 @@ Content-Length: 305
 ```
 {: codeblock}
 {: caption="Example 8. Request header samples for creating an object lifecycle configuration." caption-side="bottom"}
-{: http}
 
 Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
-{: javascript}
 
 ```js
 var aws = require('ibm-cos-sdk');
@@ -602,7 +565,6 @@ s3.deleteBucketLifecycleConfiguration(params, function(err, data) {
 });
 ```
 {: codeblock}
-{: javascript}
 
 Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
 
@@ -630,10 +592,8 @@ response = cos.Bucket('<name-of-bucket>').delete_bucket_lifecycle_configuration(
 print("Bucket lifecyle: {0}".format(response))
 ```
 {: codeblock}
-{: python}
 
 Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
-{: java}
 
 ```java
 package com.ibm.cloud;
@@ -712,11 +672,10 @@ package com.ibm.cloud;
 
 ```
 {: codeblock}
-{: java}
 {: caption="Example 3. Code samples showing deletion of lifecycle configuration." caption-side="bottom"}
 
 ## Next Steps
-{: #expiry-next-steps}
+{: #lifecycle-mpu-next-steps}
 
 Expiration is just one of many lifecycle concepts available for {{site.data.keyword.cos_full_notm}}.
 Each of the concepts we've covered in this overview can be explored further at the 
