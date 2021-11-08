@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-02-10"
+  years: 2017, 2021
+lastupdated: "2021-09-27"
 
 keywords: expiry, glacier, tier, s3, compatibility, api
 
@@ -48,6 +48,12 @@ You can set the lifecycle for objects by using the web console, REST API, and th
 * An expiration rule without a prefix filter will apply to all objects in the bucket.
 * The expiration period for an object, specified in number(s) of days, is calculated from the time the object was created, and is rounded off to the next day's midnight UTC. For example, if you have an expiration rule for a bucket to expire a set of objects ten days after the creation date, an object that was created on 15 April 2019 05:10 UTC will expire on 26 April 2019 00:00 UTC. 
 * The expiration rules for each bucket are evaluated once every 24 hours. Any object that qualifies for expiration (based on the objects' expiration date) will be queued for deletion. The deletion of expired objects begins the following day and will typically take less than 24 hours. You will not be billed for any associated storage for objects once they are deleted.
+* The expiration of non-current versions are determined by its successor's last modified time (see AWS's How Amazon S3 calculates how long an object has been noncurrent for reference)
+* If versions are manually deleted from an object that has versions to be expired the next day, those expirations may not occur.
+* In versioned enabled or suspended buckets, a regular <Expiration> rule retains the current version and creates a delete marker rather than permanently deleting data. This is similar to how DELETE object request creates delete markers in the same situation.
+
+    The only time where data might be permanently lost with <Expiration> rule on a versioned bucket is when versioning is suspended and there is a null version present for the expired object. In this case, a null delete marker is written, overwriting the existing null version.
+* From a user's perspective, we delete the expired multipart transaction upfront rather than deleting individual parts, so either the transaction is wholly present or removed. They won't see transactions with only some of its parts deleted for example.
 
 Objects that are subject to a bucket's Immutable Object Storage retention policy will have any expiration actions deferred until the retention policy is no longer enforced. 
 {: important}

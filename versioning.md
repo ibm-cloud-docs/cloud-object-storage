@@ -34,6 +34,9 @@ Versioning allows multiple revisions of a single object to exist in the same buc
 
 After a bucket has enabled versioning, all the objects in the bucket are versioned.  All new objects (created after enabling versioning on a bucket) will receive a permanently assigned version ID. Objects created before versioning was enabled (on the bucket) are assigned a version of `null`.  When an object with a `null` version ID is overwritten or deleted it is assigned a new version ID. Suspending versioning does not alter any existing objects, but will change the way future requests are handled by IBM COS. Once enabled, versioning can only be suspended, and not fully disabled.  Therefore, a bucket can have three states related to versioning: 1) Default (unversioned), 2) Enabled, or 3) Suspended.
 
+It is possible to set up a lifecycle to clean up stale versions.  This is also true with MPU.
+{:important}
+
 ## Getting started with versioning
 
 First, create a new bucket with object versioning enabled.
@@ -124,10 +127,11 @@ Lifecycle configurations with a single transition rule (i.e archiving) are permi
 
 It is not possible to use `NoncurrentVersionTransition` rules in a lifecycle configuration.
 
-### Object expiration
+<!--### Object expiration
 {: #versioning-expiration}
 
-Object expiration is not currently permitted in buckets with versioning enabled.  Attempts to create a lifecycle configuration with an expiration rule will fail, as will attempts to enable versioning on a bucket with an expiration rule. Removing this limitation is a road-map item and expiration for versioned objects will be supported in a future release. 
+Object expiration is permitted in buckets with versioning enabled.  <!-- [comment:Removed for F1697] Attempts to create a lifecycle configuration with an expiration rule will fail, as will attempts to enable versioning on a bucket with an expiration rule. Removing this limitation is a road-map item and expiration for versioned objects will be supported in a future release.  --> 
+
 
 ### Immutable Object Storage (WORM)
 {: #versioning-worm}
