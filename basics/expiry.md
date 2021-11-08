@@ -55,8 +55,6 @@ You can set the lifecycle for objects by using the web console, REST API, and th
 Without caution, data might be permanently lost with when using [expiration rules on a versioned bucket](/docs/cloud-object-storage?topic=cloud-object-storage-versioning). In cases where **versioning is suspended** and there is a null version present for the expired object, data might be permanently lost. In this case, a `null` delete marker is overwritten, permanently deleting the object.
 {: important}
 
-* From a user's perspective, we delete the expired multipart transaction upfront rather than deleting individual parts, so either the transaction is wholly present or removed. They won't see transactions with only some of its parts deleted for example.
-
 Objects that are subject to a bucket's Immutable Object Storage retention policy will have any expiration actions deferred until the retention policy is no longer enforced. 
 {: important}
 
