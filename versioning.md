@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021
-lastupdated: "2021-05-20"
+lastupdated: "2021-11-11"
 
 keywords: data, versioning, loss prevention
 
@@ -33,9 +33,6 @@ subcollection: cloud-object-storage
 Versioning allows multiple revisions of a single object to exist in the same bucket. Each version of an object can be queried, read, restored from an archived state, or deleted. Enabling versioning on a bucket can mitigate data loss from user error or inadvertent deletion. When an object is overwritten, a new version is created, and the previous version of the object is automatically preserved.  Therefore, in a versioning-enabled bucket, objects that are deleted as a result of accidental deletion or overwrite can easily be recovered by restoring a previous version of the object.  If an object is deleted, it is replaced by a _delete marker_ and the previous version is saved (nothing is permanently deleted). To permanently delete individual versions of an object, a delete request must specify a _version ID_. A `GET` request for an object will retrieve the most recently stored version.  If the current version is a delete marker, IBM COS returns a `404 Not Found` error.
 
 After a bucket has enabled versioning, all the objects in the bucket are versioned.  All new objects (created after enabling versioning on a bucket) will receive a permanently assigned version ID. Objects created before versioning was enabled (on the bucket) are assigned a version of `null`.  When an object with a `null` version ID is overwritten or deleted it is assigned a new version ID. Suspending versioning does not alter any existing objects, but will change the way future requests are handled by IBM COS. Once enabled, versioning can only be suspended, and not fully disabled.  Therefore, a bucket can have three states related to versioning: 1) Default (unversioned), 2) Enabled, or 3) Suspended.
-
-It is possible to set up a lifecycle to clean up stale versions.  This is also true with MPU.
-{:important}
 
 ## Getting started with versioning
 
@@ -120,18 +117,10 @@ As mentioned, versioning can only be enabled or suspended. If for any reason the
 
 The IBM COS implementation of the S3 APIs for versioning is identical to the AWS S3 APIs for versioning, with a few limitations.
 
-### Archiving versioned objects
+### Archiving and expiring versioned objects
 {: #versioning-archive}
 
-Lifecycle configurations with a single transition rule (i.e archiving) are permitted in a version-enabled bucket.  However, unlike Amazon S3, new versions are subject to the archive rule in the same manner as regular objects. Objects are given a transition date when they are created, and are archived on their individual transition date, regardless of whether they are current or non-current versions.  Overwriting an object does not affect the transition date of the previous version, and the new (current) version will be assigned a transition date. 
-
-It is not possible to use `NoncurrentVersionTransition` rules in a lifecycle configuration.
-
-<!--### Object expiration
-{: #versioning-expiration}
-
-Object expiration is permitted in buckets with versioning enabled.  <!-- [comment:Removed for F1697] Attempts to create a lifecycle configuration with an expiration rule will fail, as will attempts to enable versioning on a bucket with an expiration rule. Removing this limitation is a road-map item and expiration for versioned objects will be supported in a future release.  --> 
-
+Lifecycle configurations are permitted in a version-enabled bucket.  However, unlike Amazon S3, new versions are subject to the archive rule in the same manner as regular objects. Objects are given a transition date when they are created, and are archived on their individual transition date, regardless of whether they are current or non-current versions.  Overwriting an object does not affect the transition date of the previous version, and the new (current) version will be assigned a transition date. 
 
 ### Immutable Object Storage (WORM)
 {: #versioning-worm}

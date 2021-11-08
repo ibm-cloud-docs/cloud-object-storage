@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2017, 2021
+  years: 2021
 lastupdated: "2021-11-11"
 
-keywords: expiry, glacier, tier, s3, compatibility, api
+keywords: lifecycle, multipart, cleanup
 
 subcollection: cloud-object-storage
 
@@ -30,35 +30,16 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Deleting stale data with expiration rules
-{: #expiry}
+# Cleaning up incomplete multipart uploads
+{: #lifecycle-cleanup-mpu}
 
-An expiration rule deletes objects after a defined period (from the object creation date).
+This lifecyle rule stops any multipart uploads if the uploads are not completed a defined number of days after initiation.
 {: shortdesc}
 
-You can set the lifecycle for objects by using the web console, REST API, and third-party tools that are integrated with {{site.data.keyword.cos_full_notm}}. 
+You can set lifecycle rules for objects by using the web console, REST API, and third-party tools that are integrated with {{site.data.keyword.cos_full_notm}}. 
 
-* An expiration rule can be added to a new or existing bucket.
-* An existing expiration rule can be modified or disabled.
-* A newly added or modified Expiration rule applies to all new and existing objects in the bucket.
-* Adding or modifying lifecycle policies requires the `Writer` role. 
-* Up to 1000 lifecycle rules (archive + expiration) can be defined per bucket.
-* Allow up to 24 hours for any changes in Expiration rules to take effect.
-* The scope of each expiration rule can be limited by defining an optional prefix filter to apply to only a subset of objects with names that match the prefix.
-* An expiration rule without a prefix filter will apply to all objects in the bucket.
-* The expiration period for an object, specified in number(s) of days, is calculated from the time the object was created, and is rounded off to the next day's midnight UTC. For example, if you have an expiration rule for a bucket to expire a set of objects ten days after the creation date, an object that was created on 15 April 2019 05:10 UTC will expire on 26 April 2019 00:00 UTC. 
-* The expiration rules for each bucket are evaluated once every 24 hours. Any object that qualifies for expiration (based on the objects' expiration date) will be queued for deletion. The deletion of expired objects begins the following day and will typically take less than 24 hours. You will not be billed for any associated storage for objects once they are deleted.
-* The expiration time of non-current versions is determined by its successor's last modified time, rounded to the next day at midnight UTC.
-* If versions are manually deleted from an object that has versions to be expired the next day, those expirations may not occur.
-* In [versioning enabled or suspended buckets](/docs/cloud-object-storage?topic=cloud-object-storage-versioning), a regular <Expiration> rule retains the current version and creates a delete marker rather than permanently deleting data. 
-
-Without caution, data might be permanently lost with when using [expiration rules on a versioned bucket](/docs/cloud-object-storage?topic=cloud-object-storage-versioning). In cases where **versioning is suspended** and there is a null version present for the expired object, data might be permanently lost. In this case, a `null` delete marker is overwritten, permanently deleting the object.
-{: important}
-
-* From a user's perspective, we delete the expired multipart transaction upfront rather than deleting individual parts, so either the transaction is wholly present or removed. They won't see transactions with only some of its parts deleted for example.
-
-Objects that are subject to a bucket's Immutable Object Storage retention policy will have any expiration actions deferred until the retention policy is no longer enforced. 
-{: important}
+* A new rule can be added to a new or existing bucket at any time. 
+* An existing rule can be modified or disabled. 
 
 ## Attributes of expiration rules
 {: #expiry-rules-attributes}
@@ -68,50 +49,32 @@ Each expiration rule has the following attributes:
 ### ID
 A rule's ID must be unique within the bucket's lifecycle configuration.
 
-### Expiration
-The expiration block contains the details that govern the automatic deletion of objects. This could be a specific date in the future, or a period of time after new objects are written.
+### AbortIncompleteMultipartUpload
+The `AbortIncompleteMultipartUpload` block contains the details that govern the automatic cancellation of uploads. The block contains a single field: `DaysAfterInitiation`.
 
 ### Prefix
-An optional string that will be matched to the prefix of the object name in the bucket. A rule with a prefix will only apply to the objects that match. You can use multiple rules for different expiration actions for different prefixes within the same bucket. For example, within the same lifecycle configuration, one rule could delete all objects that begin with `logs/` after 30 days, and a second rule could delete objects that begin with `video/` after 365 days.  
+An optional string that will be matched to the prefix of the object name in the bucket. A rule with a prefix will only apply to the objects that match. You can use multiple rules for different actions for different prefixes within the same bucket. 
 
 ### Status
 A rule can either be enabled or disabled. A rule is active only when enabled.
 
 ## Sample lifecycle configurations
 
-This configuration expires any new objects after 30 days.
+This configuration expires any uploads that haven't completed after 3 days.
 
 ```xml
 <LifecycleConfiguration>
 	<Rule>
-		<ID>delete-after-30-days</ID>
-		<Filter />
+		<ID>delete-after-3-days</ID>
 		<Status>Enabled</Status>
-		<Expiration>
-			<Days>30</Days>
-		</Expiration>
+		<AbortIncompleteMultipartUpload>
+			<DaysAfterInitiation>3</DaysAfterInitiation>
+		</AbortIncompleteMultipartUpload>
 	</Rule>
 </LifecycleConfiguration>
 ```
 
-This configuration deletes any objects with the prefix `foo/` on June 1, 2020.
-
-```xml
-<LifecycleConfiguration>
-	<Rule>
-        <ID>delete-on-a-date</ID>
-    <Filter>
-        <Prefix>foo/</Prefix>
-    </Filter>
-        <Status>Enabled</Status>
-        <Expiration>
-            <Date>2020-06-01T00:00:00.000Z</Date>
-        </Expiration>
-	</Rule>
-</LifecycleConfiguration>
-```
-
-You can also combine transition and expiration rules.  This configuration archives any objects 90 days after creation, and deletes any objects with the prefix `foo/` after 180 days .
+You can also combine rules.  This configuration cancels inactive uploads after 5 days, archives any objects 90 days after creation, and deletes any objects with the prefix `foo/` after 180 days .
 
 ```xml
 <LifecycleConfiguration>
@@ -134,23 +97,24 @@ You can also combine transition and expiration rules.  This configuration archiv
             <Days>180</Days>
         </Expiration>
     </Rule>
+	<Rule>
+		<ID>delete-after-3-days</ID>
+		<Status>Enabled</Status>
+		<AbortIncompleteMultipartUpload>
+			<DaysAfterInitiation>3</DaysAfterInitiation>
+		</AbortIncompleteMultipartUpload>
+	</Rule>
 </LifecycleConfiguration>
 ```
 
-## Using the console
-{: #expiry-using-console}
-
-When creating a new bucket, check the **Add expiration rule** box. Next, click **Add rule** to create the new expiration rule. You can add up to five rules during bucket creation, and extra rules can be added later.
-
-For an existing bucket, select **Configuration** from the navigation menu and click **Add rule** under the _Expiration rule_ section.
 
 ## Using the API and SDKs
-{: #expiry-using-api-sdks}
+{: #mpu-cleanup-using-api-sdks}
 
-You can programmatically manage expiration rules by using the REST API or the IBM COS SDKs. Select the format for the examples by selecting a category in the context switcher.
+You can programmatically manage lifecycle rules by using the REST API or the IBM COS SDKs. Select the format for the examples by selecting a category in the context switcher.
 
 ### Add an expiration rule to a bucket’s lifecycle configuration
-{: #expiry-api-create}
+{: #lifecycle-mpu-api-put}
 
 **REST API reference**
 {: http}
@@ -162,24 +126,23 @@ Cloud IAM users must have the `Writer` role to add a lifecycle policy from a buc
 
 Classic Infrastructure Users must have `Owner` permissions on the bucket to add a lifecycle policy from a bucket.
 
-Header                    | Type   | Description
---------------------------|--------|----------------------------------------------------------------------------------------------------------------------
-`Content-MD5` | String | **Required**: The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.
+| Header        | Type   | Description                                                                                                                                                 |
+| ------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Content-MD5` | String | **Required**: The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit. |
 {: http}
 
 The body of the request must contain an XML block with the following schema:
 {: http}
 
-| Element                  | Type                 | Children                               | Ancestor                 | Constraint                                                                                 |
-|--------------------------|----------------------|----------------------------------------|--------------------------|--------------------------------------------------------------------------------------------|
-| `LifecycleConfiguration` | Container            | `Rule`                                 | None                     | Limit 1.                                                                                  |
-| `Rule`                   | Container            | `ID`, `Status`, `Filter`, `Expiration` | `LifecycleConfiguration` | Limit 1000.                                                                                  |
-| `ID`                     | String               | None                                   | `Rule`                   | Must consist of (`a-z,`A-Z0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-` |
-| `Filter`                 | String               | `Prefix`                               | `Rule`                   | Must contain a `Prefix` element                                                            |
-| `Prefix`                 | String               | None                                   | `Filter`                 | The rule applies to any objects with keys that match this prefix.                                                           |
-| `Expiration`             | `Container`          | `Days` or `Date`                       | `Rule`                   | Limit 1.                                                                                  |
-| `Days`                   | Non-negative integer | None                                   | `Expiration`             | Must be a value greater than 0.                                                           |
-| `Date`                   | Date                 | None                                   | `Expiration`             | Must be in ISO 8601 Format.                            |
+| Element                          | Type                 | Children                                                   | Ancestor                         | Constraint                                                                                 |
+| -------------------------------- | -------------------- | ---------------------------------------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------ |
+| `LifecycleConfiguration`         | Container            | `Rule`                                                     | None                             | Limit 1.                                                                                   |
+| `Rule`                           | Container            | `ID`, `Status`, `Filter`, `AbortIncompleteMultipartUpload` | `LifecycleConfiguration`         | Limit 1000.                                                                                |
+| `ID`                             | String               | None                                                       | `Rule`                           | Must consist of (`a-z,`A-Z0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-` |
+| `Filter`                         | String               | `Prefix`                                                   | `Rule`                           | Must contain a `Prefix` element                                                            |
+| `Prefix`                         | String               | None                                                       | `Filter`                         | The rule applies to any objects with keys that match this prefix.                          |
+| `AbortIncompleteMultipartUpload` | `Container`          | `DaysAfterInitiation`                                      | `Rule`                           | Limit 1.                                                                                   |
+| `DaysAfterInitiation`            | Non-negative integer | None                                                       | `AbortIncompleteMultipartUpload` | Must be a value greater than 0.                                                            |
 {: http}
 
 The body of the request must contain an XML block with the schema that is addressed in the table (see Example 1).
@@ -188,12 +151,11 @@ The body of the request must contain an XML block with the schema that is addres
 ```xml
 <LifecycleConfiguration>
 	<Rule>
-		<ID>id1</ID>
-		<Filter />
+		<ID>delete-after-3-days</ID>
 		<Status>Enabled</Status>
-		<Expiration>
-			<Days>60</Days>
-		</Expiration>
+		<AbortIncompleteMultipartUpload>
+			<DaysAfterInitiation>3</DaysAfterInitiation>
+		</AbortIncompleteMultipartUpload>
 	</Rule>
 </LifecycleConfiguration>
 ```
@@ -226,12 +188,11 @@ Content-Length: 305
 
 <LifecycleConfiguration>
 	<Rule>
-		<ID>id1</ID>
-		<Filter />
+		<ID>delete-after-3-days</ID>
 		<Status>Enabled</Status>
-		<Expiration>
-			<Days>60</Days>
-		</Expiration>
+		<AbortIncompleteMultipartUpload>
+			<DaysAfterInitiation>3</DaysAfterInitiation>
+		</AbortIncompleteMultipartUpload>
 	</Rule>
 </LifecycleConfiguration>
 ```
@@ -255,7 +216,6 @@ var config = {
     serviceInstanceId: 'crn:v1:bluemix:public:cloud-object-storage:global:a/<CREDENTIAL_ID_AS_GENERATED>:<SERVICE_ID_AS_GENERATED>::',
 };
 var s3 = new aws.S3(config);
-var date = new Date('June 16, 2019 00:00:00');
 
 var params = {
   Bucket: 'STRING_VALUE', /* required */
@@ -265,9 +225,8 @@ var params = {
         Status: 'Enabled', /* required */
         ID: 'OPTIONAL_STRING_VALUE',
         Filter: {}, /* required */
-        Expiration:
-        {
-          Date: date
+        AbortIncompleteMultipartUpload: {
+          DaysAfterInitiation: 'NUMBER_VALUE'
         }
       },
     ]
@@ -312,10 +271,9 @@ response = cos.Bucket('<name-of-bucket>').put_bucket_lifecycle_configuration(
             {
                 'Status': 'Enabled',
                 'Filter': {},
-                'Expiration':
-                {
-                    'Days': 123
-                },
+                'AbortIncompleteMultipartUpload': {
+                    'DaysAfterInitiation': <NUMBER_VALUE>
+        }
             },
         ]
     }
@@ -418,7 +376,7 @@ package com.ibm.cloud;
 {: caption="Example 1. Code samples showing creation of lifecycle configuration." caption-side="bottom"}
 
 ### Examine a bucket’s lifecycle configuration, including expiration
-{: #expiry-api-view}
+{: #lifecycle-mpu-api-get}
 
 This implementation of the `GET` operation uses the `lifecycle` query parameter to examine lifecycle settings for the bucket. An HTTP `404` response will be returned if no lifecycle configuration is present.
 {: http}
@@ -427,10 +385,6 @@ Cloud IAM users must have the `Reader` role to examine a lifecycle policy from a
 
 Classic Infrastructure Users must have `Read` permissions on the bucket to examine a lifecycle policy from a bucket.
 
-Header                    | Type   | Description
---------------------------|--------|----------------------------------------------------------------------------------------------------------------------
-`Content-MD5` | String | **Required**: The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.
-{: http}
 
 **Syntax**
 {: http}
@@ -452,7 +406,6 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 17:50:00 GMT
 Authorization: authorization string
 Content-Type: text/plain
-Content-MD5: M625BaNwd/OytcM7O5gIaQ==
 Content-Length: 305
 ```
 {: codeblock}
@@ -590,7 +543,7 @@ package com.ibm.cloud;
 {: caption="Example 2. Code samples showing inspection of lifecycle configuration." caption-side="bottom"}
 
 ### Delete a bucket’s lifecycle configuration, including expiration
-{: #expiry-api-delete}
+{: #lifecycle-mpu-api-delete}
 
 This implementation of the `DELETE` operation uses the `lifecycle` query parameter to examine lifecycle settings for the bucket. All lifecycle rules associated with the bucket will be deleted.  Transitions defined by the rules will no longer take place for new objects.  However, existing transition rules will be maintained for objects that were already written to the bucket before the rules were deleted.  Expiration Rules will no longer exist. An HTTP `404` response will be returned if no lifecycle configuration is present.
 {: http}
