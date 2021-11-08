@@ -73,7 +73,7 @@ Cloud Object Storage
     basics/immutable.md
     basics/classes.md
     basics/static-websites-options.md
-    [Connect to resources using a CDN](/CDN/CDN-configure-ibm-cloud-object-storage-for-cdn)
+    [Connect to resources using a CDN](CDN/CDN-configure-cdn-with-ibm-cloud-object-storage)
     basics/multipart.md
     basics/deleting-multiple-objects.md
     basics/sql.md

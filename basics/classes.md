@@ -1,9 +1,9 @@
 ---
 
 copyright:
-  years: 2017, 2020
+  years: 2017, 2021
 
-lastupdated: "2020-02-10"
+lastupdated: "2021-10-18"
 
 keywords: storage classes, tiers, cost, buckets, location constraint, provisioning code, locationconstraint
 
@@ -53,6 +53,9 @@ You can choose from four storage classes:
 For more information, see [the pricing table at ibm.com](https://cloud.ibm.com/objectstorage/create#pricing){: external}.
 
 For more information about how to create buckets with different storage classes, see the [API reference](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
+
+For each storage class, billing is based on aggregated usage across all buckets at the instance level. For example, for Smart Tier, the billing is based on usage across all Smart Tier buckets in a given instance - not on the individual buckets.
+{: important}
 
 ## How do I create a bucket with a different storage class?
 {: #classes-locationconstraint}

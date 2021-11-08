@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-08-31"
+  years: 2017, 2021
+lastupdated: "2021-10-27"
 
 keywords: authorization, iam, basics
 
@@ -85,7 +85,7 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 | `cloud-object-storage.bucket.get`                                | List all the objects in a bucket.                              |
 | `cloud-object-storage.bucket.list_crk_id`                        | List the IDs of encryption root keys associated with a bucket. |
 | `cloud-object-storage.bucket.head`                               | View bucket metadata.                                          |
-| `cloud-object-storage.bucket.get_versions`                       | Unsupported operation - used for S3 API compatibility only.    |
+| `cloud-object-storage.bucket.get_versions`                       | List object versions.    |
 | `cloud-object-storage.bucket.get_uploads`                        | List all active multipart uploads for a bucket.                |
 | `cloud-object-storage.bucket.put_quota`                          | Unsupported operation - used for S3 API compatibility only.    |
 | `cloud-object-storage.bucket.get_acl`                            | Read a bucket ACL [deprecated].                                |
@@ -93,8 +93,8 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 | `cloud-object-storage.bucket.get_cors`                           | Read CORS rules.                                               |
 | `cloud-object-storage.bucket.put_cors`                           | Add CORS rules to a bucket.                                    |
 | `cloud-object-storage.bucket.delete_cors`                        | Delete CORS rules.                                             |
-| `cloud-object-storage.bucket.get_versioning`                     | Unsupported operation - used for S3 API compatibility only.    |
-| `cloud-object-storage.bucket.put_versioning`                     | Unsupported operation - used for S3 API compatibility only.    |
+| `cloud-object-storage.bucket.get_versioning`                     | Check versioning status of a bucket.    |
+| `cloud-object-storage.bucket.put_versioning`                     | Enable versioning on a bucket.    |
 | `cloud-object-storage.bucket.get_fasp_connection_info`           | View Aspera FASP connection information.                       |
 | `cloud-object-storage.account.delete_fasp_connection_info`       | Delete Aspera FASP connection information.                     |
 | `cloud-object-storage.bucket.get_location`                       | View the location and storage class of a bucket.               |
@@ -113,8 +113,8 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 | `cloud-object-storage.bucket.put_notifications`                  | Internal use only - unsupported for users.                     |
 | `cloud-object-storage.object.get`                                | View and download objects.                                     |
 | `cloud-object-storage.object.head`                               | Read an object's metadata.                                     |
-| `cloud-object-storage.object.get_version`                        | Unsupported operation - used for S3 API compatibility only.    |
-| `cloud-object-storage.object.head_version`                       | Unsupported operation - used for S3 API compatibility only.    |
+| `cloud-object-storage.object.get_version`                        | Read a specified version of an object.    |
+| `cloud-object-storage.object.head_version`                       | Get headers for a specific version of an object.    |
 | `cloud-object-storage.object.put`                                | Write and upload objects.                                      |
 | `cloud-object-storage.object.post`                               | Upload an object using HTML forms [deprecated].                |
 | `cloud-object-storage.object.post_md`                            | Update object metadata using HTML forms [deprecated].          |
@@ -129,7 +129,7 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 | `cloud-object-storage.object.put_acl`                            | Write object ACL [deprecated].                                 |
 | `cloud-object-storage.object.put_acl_version`                    | Unsupported operation - used for S3 API compatibility only.    |
 | `cloud-object-storage.object.delete`                             | Delete an object.                                              |
-| `cloud-object-storage.object.delete_version`                     | Unsupported operation - used for S3 API compatibility only.    |
+| `cloud-object-storage.object.delete_version`                     | Delete a specific version of an object.    |
 | `cloud-object-storage.object.get_uploads`                        | List parts of an object.                                       |
 | `cloud-object-storage.object.delete_upload`                      | Abort a multipart upload.                                      |
 | `cloud-object-storage.object.restore`                            | Temporarily restore an archived object.                        |
