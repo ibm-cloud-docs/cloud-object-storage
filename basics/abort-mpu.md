@@ -33,13 +33,15 @@ subcollection: cloud-object-storage
 # Cleaning up incomplete multipart uploads
 {: #lifecycle-cleanup-mpu}
 
-This lifecyle rule stops any multipart uploads if the uploads are not completed a defined number of days after initiation.
+This lifecycle rule stops any multipart uploads if the uploads are not completed within a defined number of days after initiation.
 {: shortdesc}
 
 You can set lifecycle rules for objects by using the web console, REST API, and third-party tools that are integrated with {{site.data.keyword.cos_full_notm}}. 
 
 * A new rule can be added to a new or existing bucket at any time. 
 * An existing rule can be modified or disabled. 
+
+These incomplete uploads do not appear in the console, but the uploaded parts continue to accrue usage and billing charges. Setting up lifecycle rules to automatically delete incomplete uploads is the user's responsibility.
 
 ## Attributes of expiration rules
 {: #expiry-rules-attributes}
