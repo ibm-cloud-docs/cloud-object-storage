@@ -215,6 +215,7 @@ For `cloud-object-storage.bucket-versioning.create` events, the following fields
 | --------------------------------------- | ---------------------------------------------------------- |
 | `requestData.newValue.versioning.state` | The versioning state of the bucket (enabled or suspended). |
 {: caption="Table 8a. Additional fields for `bucket-versioning.create` events"}
+
 ## Viewing events
 {: #at-ui}
 
