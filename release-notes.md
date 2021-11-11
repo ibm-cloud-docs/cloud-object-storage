@@ -26,6 +26,13 @@ subcollection: cloud-object-storage
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
+## Q4 2021
+{: #updates-2021-q4}
+
+Object expiration is now permitted in [buckets with versioning enabled](/docs/cloud-object-storage?topic=cloud-object-storage-versioning).
+
+Bucket lifecycle rules can now be created to [automatically remove incomplete multipart uploads](/docs/cloud-object-storage?topic=cloud-object-storage-lifecycle-cleanup-mpu).
+
 ## Q3 2021
 {: #updates-2021-q3}
 

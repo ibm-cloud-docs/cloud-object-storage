@@ -63,6 +63,7 @@ Cloud Object Storage
     Managing a bucket's lifecycle configurations
         basics/archive.md
         basics/expiry.md
+        basics/abort-mpu.md
 
     basics/upload.md
     versioning.md
