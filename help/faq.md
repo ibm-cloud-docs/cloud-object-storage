@@ -226,5 +226,24 @@ A bucket name can be reused as soon as 15 minutes after the contents of the buck
 If the user does not first empty and then delete the bucket, and instead [deletes or schedules the {{site.data.keyword.cos_short}} service instance for deletion](/docs/cloud-object-storage?topic=cloud-object-storage-provision#deleting-a-service-instance), the bucket names will be held in reserve for a [default period of seven (7) days until the account reclamation process](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_reclamations) is completed. Until the reclamation process is complete it remains possible to restore the instance, along with the buckets and objects.  After reclamation is complete, all buckets and objects will be irrevocably deleted and **can not** be restored, although the bucket names will be made available for new buckets to reuse.
 
 
+### Does COS support object versioning?
+{: #faq-obj_ver}
+
+Yes, COS supports object versioning. For more information, see [Cloud Object Versioning](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-versioning)
 
 
+### What is the max expiration period for the bucket that can be set using web console and CLI?
+{: #faq-obj_expiration}
+Using the web console, you can set a maximum expiration period up to 3650 days. To set a period beyond 3650 days, use the IBM Cloud CLI.
+
+### How to upload large objects to COS?
+{: #faq-large_object_upload}
+
+* IBM Cloud Object Storage supports object size up to 10 TB when using multipart uploads. For more information, see [Uploading large files](https://cloud.ibm.com/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-large-objects&locale=en-us)
+* Large objects can also be uploaded by using the console with Aspera high-speed-transfer enabled. 
+* You can also use 'IBM Mass Data Migration' from IBM cloud catalog. For more information, see [mass-data-migration](https://www.ibm.com/cloud/mass-data-migration)
+
+### Does COS allow to apply expiration to an object in a bucket, without specifying any retention policies at the bucket level?
+{: #faq-object_expiry}
+
+Expiration and retention are two different features of COS.  For details on these capabilities, see [Object Storage Expiry](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-expiry) and [Retention policy](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-immutable)
