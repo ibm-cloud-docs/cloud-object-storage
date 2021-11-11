@@ -104,6 +104,7 @@ Cloud Object Storage
         libraries/python.md
         libraries/node.md
         libraries/go.md
+        libraries/terraform.md
 
     {: .topicgroup}
     Use the command line
