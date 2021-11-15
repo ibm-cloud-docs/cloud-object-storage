@@ -173,6 +173,14 @@ The following table lists the COS object access events:
 | `cloud-object-storage.object-restore.create` | Create the target object from the restore |
 {: caption="Table 6. Object access events"}
 
+If versioning is enabled for a bucket, then `target.versionId` will be present for operations that make use of object versions. 
+
+For `cloud-object-storage.object.delete` and `cloud-object-storage.object-batch.delete` events, the following fields include extra information:
+
+| Field                               | Description                                                      |
+| ----------------------------------- | ---------------------------------------------------------------- |
+| `responseData.deleteMarker.created` | The object has been versioned and replaced with a delete marker. |
+{: caption="Table 6a. Additional fields for deletion events"}
 
 ### Multipart events
 {: #at-actions-data-3}
@@ -192,7 +200,7 @@ The following table lists the COS multipart events:
 ### Bucket versioning events
 {: #at-actions-data-4}
 
-The following table lists the COS multipart events:
+The following table lists the COS versioning events:
 
 | Action                                          | Description                          |
 | ----------------------------------------------- | ------------------------------------ |
@@ -201,6 +209,12 @@ The following table lists the COS multipart events:
 | `cloud-object-storage.bucket-versioning.list`   | List versions of objects in a bucket |
 {: caption="Table 8. Versioning events"}
 
+For `cloud-object-storage.bucket-versioning.create` events, the following fields include extra information:
+
+| Field                                   | Description                                                |
+| --------------------------------------- | ---------------------------------------------------------- |
+| `requestData.newValue.versioning.state` | The versioning state of the bucket (enabled or suspended). |
+{: caption="Table 8a. Additional fields for `bucket-versioning.create` events"}
 
 ## Viewing events
 {: #at-ui}
