@@ -199,51 +199,174 @@ You can use metadata that is associated with each object to find the objects you
 {{site.data.keyword.cos_short}} supports a ranged GET on the object, so an application can do a distributed striped read type operation. Doing the striping would be on the application to manage.
 
 ### Can I restore a bucket from a specific back-up file?
+
 {: #faq-cos-backup}
 
 It is possible to overwrite an existing bucket. Restore options depend on the capabilities provided by the back-up tool you use; check with your back-up provider.  As described in [Your responsibilities when using IBM Cloud Object Storage](/docs/cloud-object-storage?topic=cloud-object-storage-responsibilities), you are responsible for ensuring data back-ups if necessary. IBM Cloud Object Storage does not provide a back-up service.
 
 ### Can a web browser display the content of files stored in Cloud Object Storage?
+
 {: #faq-cos-web}
 
 Web browsers can display web content in Cloud Object Storage files, using the COS endpoint as the file location. To create a functioning website, however, you need to set up a web environment, for example elements such as a CNAME record. IBM Cloud Object Storage doesn't support automatic static website hosting.  For information, see [Static websites](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-public-access#public-access-static-website) and this [tutorial](https://www.ibm.com/cloud/blog/static-websites-cloud-object-storage-cos).
 
 ### If I set an archive policy on an existing bucket, does the policy apply to existing files?
+
 {: #faq-archive}
 
 The policy applies to the new objects uploaded but does not affect existing objects on a bucket.  For details, refer to [Add or manage an archive policy on a bucket](https://cloud.ibm.com/docs/cloud-object-storage/basics?topic=cloud-object-storage-archive#archive-add).
 
 ### Can I unzip a file after I upload it?
+
 {: #faq-unzip}
 
 A feature to unzip or decompress files is not part of the service.  For large data transfer, consider using Aspera high-speed transfer, multi-part uploads, or threads to manage multi-part uploads.  See [Store large objects](/docs/cloud-object-storage?topic=cloud-object-storage-large-objects).
 
 ### Can I create a bucket, in the same or different region, with a deleted bucket name?
+
 {: #faq-reuse-name}
 
 A bucket name can be reused as soon as 15 minutes after the contents of the bucket have been deleted and then the bucket has been deleted.  At this point, the objects and bucket are irrevocably deleted and **can not** be restored.
 
 If the user does not first empty and then delete the bucket, and instead [deletes or schedules the {{site.data.keyword.cos_short}} service instance for deletion](/docs/cloud-object-storage?topic=cloud-object-storage-provision#deleting-a-service-instance), the bucket names will be held in reserve for a [default period of seven (7) days until the account reclamation process](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_reclamations) is completed. Until the reclamation process is complete it remains possible to restore the instance, along with the buckets and objects.  After reclamation is complete, all buckets and objects will be irrevocably deleted and **can not** be restored, although the bucket names will be made available for new buckets to reuse.
 
+### Why do  ```CredentialRetrievalError``` occurs while uploading data to COS  or while retrieving credentials? 
 
-### Does COS support object versioning?
-{: #faq-obj_ver}
+{: #faq-credret-error}
 
-Yes, COS supports object versioning. For more information, see [Cloud Object Versioning](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-versioning)
+```CredentialRetrievalError``` can occur due to the following reasons:
+   * If the API key is not valid.
+   * If the IAM endpoint is incorrect. 
+
+      However, If the issue persists, reach out to IBM support.
 
 
-### What is the max expiration period for the bucket that can be set using web console and CLI?
-{: #faq-obj_expiration}
-Using the web console, you can set a maximum expiration period up to 3650 days. To set a period beyond 3650 days, use the IBM Cloud CLI.
+### How to ensure communication with COS?
+{: #faq-faq-error}
 
-### How to upload large objects to COS?
-{: #faq-large_object_upload}
+You can check  communication with  COS by one of the follwing:
+* By using `COS API HEAD` call to a bucket that will return the headers for that bucket. See [api-head-bucket](https://cloud.ibm.com/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-head-bucket)
 
-* IBM Cloud Object Storage supports object size up to 10 TB when using multipart uploads. For more information, see [Uploading large files](https://cloud.ibm.com/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-large-objects&locale=en-us)
-* Large objects can also be uploaded by using the console with Aspera high-speed-transfer enabled. 
-* You can also use 'IBM Mass Data Migration' from IBM cloud catalog. For more information, see [mass-data-migration](https://www.ibm.com/cloud/mass-data-migration)
+* By using SDK : See [ headbucket property](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#headBucket-property)
 
-### Does COS allow to apply expiration to an object in a bucket, without specifying any retention policies at the bucket level?
-{: #faq-object_expiry}
 
-Expiration and retention are two different features of COS.  For details on these capabilities, see [Object Storage Expiry](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-expiry) and [Retention policy](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-immutable)
+### Can we migrate bucket from one COS instance to another?
+{: #faq-create-bucket}
+
+Yes, You can achieve the same by creating a bucket in the target COS instance and perform a sync . For details see [cloud-object-storage-region-copy](
+ https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-region-copy)
+
+### My COS service is locked. How do I reactivate the COS service?
+
+{: #faq-locked-account}
+
+Exceeding the data limit for the Lite account is one of the reasons why your account is locked/deactived.\
+[COS support](https://cloud.ibm.com/unifiedsupport/cases/form) team can help unlocking the account.
+
+
+## After deleting a COS instance, is it possible to reuse the same bucket names that were part of the deleted COS instance?
+
+{: #faq-resue-bucketname}
+
+When we delete an empty bucket, the name of the bucket is held in reserve by the system for 10 minutes after the delete operation.  After 10 minutes the name is released for re-use.  
+
+### How to archive/restore objects in COS?
+
+{: #faq-restore-object}
+
+Archived objects needs to be restored first before you can access them. While restoring, specify the time limit the objects should remain available before being re-archived. For details, see [archive-restore data ](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-archive)
+
+### Can we enable COS replication between two different regions for DR purposes?
+
+{: #faq-cos-replication}
+
+COS by itself does not provide any replication feature. However IBM COS offers data resiliency.
+For details, see [object-storage resiliency](https://www.ibm.com/cloud/object-storage/resiliency)
+
+
+### How to track events in COS?
+
+{: #faq-event-tracking}
+
+The IBM Cloud Activity Tracker service records user-initiated activities that change the state of a service in IBM Cloud. For details see [IBM Cloud Activity Tracker](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-at-events)
+
+
+### How to setup notifications when objects gets updated/written to a bucket?
+
+{: #faq-notification-setup}
+
+
+Use [Cloud Functions for object storage](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-functions) to setup an Event Source (notification.)
+
+
+### Does COS have rate limits when writing/reading to/from buckets?
+
+{: #faq-rate-limit}
+
+Yes, COS has rate limiting. To know more, please reach out to [COS support](https://cloud.ibm.com/unifiedsupport/cases/form)
+
+
+### Is COS HIPAA compliant to host PHI data?
+
+{: #faq-hipaa}
+
+Yes, COS is HIPAA  compliant.
+
+### Is there any option in IBM COS to enable ```accelerate data transfer```?
+
+{: #faq-accel-data}
+
+IBM COS offers [**Aspera**]( https://www.ibm.com/cloud/object-storage/aspera) service for high speed data transfer.
+
+### How do we compare various attributes of object in two different buckets?
+
+{: #faq-comp-attributes}
+
+Use [Rclone](https://rclone.org/commands/rclone_check), It enables to compare various attributes.
+
+### What is the default retention period for buckets?
+
+{: #faq-default-retention}
+
+There is no default retention period applied. You can set it  while creating the bucket.
+
+
+### Can we add a retention policy to an existing bucket?
+
+{: #faq-add-retention}
+
+Yes, [Retention policies](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-immutable#immutable-sdk-add-policy) can be added to an existing bucket, however, the retention period can only be extended. It cannot be decreased from the currently configured value.
+
+### Why is there a "legal hold" concept on top of the "retention period"?
+
+{: #faq-legal-hold}
+
+A legal hold prevents an object from being overwritten or deleted. However, a legal hold doesn't have to be  associated with a retention period and remains in effect until legal hold is removed.  For more details, see [Legal hold and retention period](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-immutable#immutable-terminology-hold)
+
+
+### How do we access private COS endpoint in a data center from an another date center?
+
+{: #faq-access-pvt-cospoints}
+
+Use IBM Cloud [Direct Link Connection]((https://cloud.ibm.com/docs/direct-link?topic=direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage)) to create a global direct link.
+
+
+### How does frequency of data access impacts the pricing of COS?
+
+{: #faq-access-price}
+
+
+Storage cost for COS is determined by the total volume of data stored, the amount of public outbound bandwidth used, and the total number of operational requests processed by the system. For more details, see [cloud-object-storage-billing](https://cloud.ibm.com/docs/cloud-object-storage/iam?topic=cloud-object-storage-billing)
+
+
+### What are the considerations for choosing the right storage class in COS?  
+
+{: #faq-choose-storageclass}
+
+You can choose the right storage class based on your requirement. For details information, see [billing-storage-classes](https://cloud.ibm.com/docs/cloud-object-storage/iam?topic=cloud-object-storage-billing#billing-storage-classes)
+
+### How to invoke IBM Cloud Object Storage Bucket operations using cURL?
+
+{: #faq-using-curl}
+
+You can get the most out working with the command line in most environments with IBM® Cloud Object Storage and cURL, however using curl assumes a certain amount of familiarity with the command line and Object Storage, For details, refer [ Using cURL](https://cloud.ibm.com/docs/cloud-object-storage/cli?topic=cloud-object-storage-curl)%
