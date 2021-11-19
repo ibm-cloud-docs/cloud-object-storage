@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-02-10"
+lastupdated: "2021-11-15"
 
 keywords: faq, frequently asked questions, object storage
 
@@ -138,6 +138,8 @@ For performance optimization, objects can be uploaded and downloaded in multiple
 
 Yes. Data at rest is encrypted with automatic provider side Advanced Encryption Standard (AES) 256-bit encryption and Secure Hash Algorithm (SHA)-256 hash. Data in motion is secured by using built-in carrier grade Transport Layer Security/Secure Sockets Layer (TLS/SSL) or SNMPv3 with AES encryption.
 
+If you want more control over encryption, you can make use of IBM Key Protect to manage generated or "bring your own" keying. For details, see [Key-protech COS Integration](https://cloud.ibm.com/docs/key-protect?topic=key-protect-integrate-cos)
+
 ### Is there additional encryption processing if a customer wants to encrypt their data?
 {: #faq-encrypt-add}
 
@@ -162,7 +164,6 @@ Yes, client-key encryption is supported by using SSE-C, Key Protect, or HPCS.
 {: #faq-expired}
 
 Deletion of an object undergoes various stages to prevent data from being accessible (both before and after deletion).  Review [Data deletion](/docs/cloud-object-storage?topic=cloud-object-storage-security#security-deletion) for details.
-
 
 ## General questions
 {: #faq-general}
@@ -264,7 +265,7 @@ Exceeding the data limit for the Lite account is one of the reasons why your acc
 [COS support](https://cloud.ibm.com/unifiedsupport/cases/form) team can help unlocking the account.
 
 
-## After deleting a COS instance, is it possible to reuse the same bucket names that were part of the deleted COS instance?
+### After deleting a COS instance, is it possible to reuse the same bucket names that were part of the deleted COS instance?
 
 {: #faq-resue-bucketname}
 
@@ -355,7 +356,6 @@ Use IBM Cloud [Direct Link Connection]((https://cloud.ibm.com/docs/direct-link?t
 
 {: #faq-access-price}
 
-
 Storage cost for COS is determined by the total volume of data stored, the amount of public outbound bandwidth used, and the total number of operational requests processed by the system. For more details, see [cloud-object-storage-billing](https://cloud.ibm.com/docs/cloud-object-storage/iam?topic=cloud-object-storage-billing)
 
 
@@ -370,3 +370,149 @@ You can choose the right storage class based on your requirement. For details in
 {: #faq-using-curl}
 
 You can get the most out working with the command line in most environments with IBM® Cloud Object Storage and cURL, however using curl assumes a certain amount of familiarity with the command line and Object Storage, For details, refer [ Using cURL](https://cloud.ibm.com/docs/cloud-object-storage/cli?topic=cloud-object-storage-curl)%
+
+
+### Is encryption applied to a bucket by default?
+{: #faq-default-enc}
+
+Yes, by default, all objects stored in COS are encrypted by using randomly generated keys and an all-or-nothing-transform (AONT). We can get the encryption details using IBM Cloud UI/CLI.
+For details see [Cloud Storage Encryption](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-encryption)
+
+
+### How to list all permissions of a bucket? 
+{: #faq-bucket-permison}
+
+There is an IAM feature that can create a report at the instance level which may extend to their buckets. It doesn’t specifically report at the bucket level. For details, see [Account Access Report](https://cloud.ibm.com/docs/account?topic=account-access-report)
+
+ 
+### How to monitor bucket changes in public cloud without using cloud function?
+{: #faq-Cloud-Function}
+
+The only way to get notifications for object changes is using Cloud Functions.
+
+
+### How to monitor COS resource?
+{: #faq-monitor-cos-res}
+
+Use the Activity Tracker service to capture a record IBM Cloud activities and monitor the activity of your IBM Cloud account. Activity  Tracker is used to track how users and applications interact with IBM Cloud Object Storage (COS).
+ 
+ 
+### Does the object in a bucket  gets overwritten, if the same objet name is used again in the same bucket?
+{: #faq-obj-overwrite}
+Yes, it overwrites.
+ 
+ 
+### How to get bucket information without using web console? 
+{: #faq-bucketinfo-webconsole}
+
+Use the COS Resource Configuration API to get bucket information.
+For details, see [COS configuration](https://cloud.ibm.com/apidocs/cos/cos-configuration#returns-metadata-for-the-specified-bucket) and [COS Integration](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration)
+
+ 
+### How to  manage service credentials for a COS instances?
+{: #faq-mnge-cosinst}
+
+When a service credential is created, the underlying Service ID is granted a role on the entire instance of Object Storage. To know more, refer [Managing Service credentials](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials)
+
+
+ 
+### Is there a way to enable Key Protect to a COS bucket after the bucket is created?
+{: #faq-vucket-keypro}
+
+No, It's not possible to add Key Protect after creating a bucket. It can only be  added while creating the bucket.
+
+
+### How do we move the data into archive tier?
+{: #faq-archive tier}
+
+You can archive objects using the web console, REST API, and 3rd party tools that are integrated with IBM Cloud Object Storage. See [COS Archive](https://cloud.ibm.com/docs/cloud-object-storage/basics?topic=cloud-object-storage-archive)
+ 
+
+### Can we use the  same COS instance across multiple regions?
+{: #faq-cosinstance-multiplereg}
+
+Yes, Cos instance is a global service. Once an instance is created,  you can choose the region while creating the bucket.
+
+ 
+### Are the file scanned for viruses, while being uploaded to COS?
+{: #faq-file-scan}
+
+No, the files are not scanned when uploading to COS.
+When an  object is uploaded, You get upload events  via activity tracker or a Cloud Functions. thereby you can download, scan, and re upload the object.
+
+### Is it possible to form a hadoop cluster using COS?
+{: #faq-hadoop-cluster}
+
+No, COS is for object storage service and for a Hadoop cluster, you need processing associated with each unit of storage. You may consider Hadoop-as-a-Service setup.
+
+
+### Is there a way to generate a "Presigned URL" to download a file? review?
+{: #faq-preassign-url}
+
+We cannot generate PreSigned RUL using  IBM Cloud UI, however you can use CyberDuck to generate the “pre-signed URL”. it is free. 
+Slack reference:  https://ibm-cloudplatform.slack.com/archives/C0VJSU370/p1606859253294800
+
+
+### How to generate Auth Token using the IAM API Key using REST?
+{: #faq-genrt-auth-token}
+
+For more information on working with API, see [Creating IAM token for API Key](https://cloud.ibm.com/docs/account?topic=account-iamtoken_from_apikey) and [Congfiguration Authentication](https://cloud.ibm.com/apidocs/cos/cos-configuration#authentication)
+
+
+### How to use COS web console to download/upload large objects?
+{: #faq-large-object}
+
+You have to either use IBM Cloud CLI/API to download large objects . Alternatively, plugins  like Aspera /rclone can also be used.
+
+
+### What are the libraries that IBM COS  SDK supports?
+{: #faq-library-support}
+
+IBM COS provides SDKs for Java, Python, NodeJS, and Go featuring capabilities to make the most of IBM Cloud Object Storage. To know freatures supported by each SDK, see [Feature List](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-sdk-about)
+
+
+### When a file is uploaded to a cross region bucket using the ‘us-geo’ endpoint, how long is the delay before the file is available at the other US sites?
+{: #faq-time-req}
+
+The data is spread immediately without delay and the uploaded files are available  once the write is successful.
+   
+### How do we access the reclaimed resources?
+{: #faq-reclaimed-resource}
+
+You have to create a new set of credentials for accessing the restored resources.
+
+
+### Can we host a website using COS bucket?
+{: #faq-static-website}
+
+Yes, you can use COS bucket to host static website. For details, see [Hosting Website using COS](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial)
+ 
+ 
+### Are REST, cURL commands supported for COS bucket creation using HMAC credentials?
+{: #faq-using-hmac}
+
+Yes, you need to set an authorization header. For details, see [Using HMAC Signature](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-hmac-signature)
+
+
+### What kind of IAM authorization is required to edit a bucket's authorized IPs list? 
+{: #faq-author-iplist}
+A user  must have 'Manager' privilege on the bucket to manage the firewall and to set authorization.
+
+ 
+### Is there a way to convert single region COS bucket to cross region without having to copy objects over again?
+{: #faq-singleregion-to-multiregion}
+No,  it is not possible. You have to copy objects to the target bucket. For details, see [COS Region Copy](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-region-copy)
+
+ 
+### Is there a way to verify an object’s integrity during upload to COS?
+{: #faq-data-integrity}
+
+COS support object integrity and ensure that the payload is not altered during transit. 
+
+
+
+### How to set a notification when usage in a COS instance gets near a certain billing amount?
+{: #faq-quota-billing}
+
+You can use bucket quote feature by integrating with sysdig and configure for notifications. For details, see [Using Bucket Quota](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-quota)
+ 
