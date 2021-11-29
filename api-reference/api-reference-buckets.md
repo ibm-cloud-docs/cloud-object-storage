@@ -1281,7 +1281,7 @@ Rule                   | Container            | ID, Status, Filter, Transition |
 ID                     | String               | None                           | Rule                   | **Must** consist of `(a-z,A- Z0-9)` and the following symbols:`` !`_ .*'()- ``
 Filter                 | String               | Prefix                         | Rule                   | **Must** contain a `Prefix` element.
 Expiration             | Container            | Days, Date, ExpiredObjectDeleteMarker                         | Rule                   | Limit 1
-Prefix                 | String               | None                           | Filter                 | **Must** be set to `<Prefix/>`.
+Prefix                 | String               | None                           | Filter                 | If using a transition (archive) rule, the value **must** be set to `<Prefix/>`.  This limitation does not apply to expiration rules.
 Transition             | Container            | Days, StorageClass             | Rule                   | Limit 1 transition rule, and 1000 rules in total.
 Days                   | Non-negative integer | None                           | Transition             | **Must** be a value equal to or greater than 0.
 Date                   | Date                 | None                           | Transition             | **Must** be in ISO 8601 Format and the date must be in the future.
