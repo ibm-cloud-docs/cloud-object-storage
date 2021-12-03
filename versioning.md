@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021
-lastupdated: "2021-05-20"
+lastupdated: "2021-11-11"
 
 keywords: data, versioning, loss prevention
 
@@ -112,22 +112,17 @@ All versions are metered as if they were equal objects.  This means that if a bu
 
 As mentioned, versioning can only be enabled or suspended. If for any reason there is a desire to completely disable versioning, then it is necessary to migrate the contents of the bucket to a new bucket that does not have versioning enabled.
 
-## Limitations
+## Interactions
 {: #versioning-limitations}
 
-The IBM COS implementation of the S3 APIs for versioning is identical to the AWS S3 APIs for versioning, with a few limitations.
+The IBM COS implementation of the S3 APIs for versioning is identical to the AWS S3 APIs for versioning, with a few differences.
 
-### Archiving versioned objects
+### Archiving and expiring versioned objects
 {: #versioning-archive}
 
-Lifecycle configurations with a single transition rule (i.e archiving) are permitted in a version-enabled bucket.  However, unlike Amazon S3, new versions are subject to the archive rule in the same manner as regular objects. Objects are given a transition date when they are created, and are archived on their individual transition date, regardless of whether they are current or non-current versions.  Overwriting an object does not affect the transition date of the previous version, and the new (current) version will be assigned a transition date. 
+Lifecycle configurations are permitted in a version-enabled bucket.  However, unlike Amazon S3, new versions are subject to the archive rule in the same manner as regular objects. Objects are given a transition date when they are created, and are archived on their individual transition date, regardless of whether they are current or non-current versions.  Overwriting an object does not affect the transition date of the previous version, and the new (current) version will be assigned a transition date. 
 
-It is not possible to use `NoncurrentVersionTransition` rules in a lifecycle configuration.
-
-### Object expiration
-{: #versioning-expiration}
-
-Object expiration is not currently permitted in buckets with versioning enabled.  Attempts to create a lifecycle configuration with an expiration rule will fail, as will attempts to enable versioning on a bucket with an expiration rule. Removing this limitation is a road-map item and expiration for versioned objects will be supported in a future release. 
+It is not possible to use `NoncurrentVersionTransition` rules to archive _only_ non-current versions of objects in a lifecycle configuration.
 
 ### Immutable Object Storage (WORM)
 {: #versioning-worm}

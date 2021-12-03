@@ -38,6 +38,14 @@ Cloud Object Storage
         [Connect from VPC (Classic)](/vpc-on-classic/vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc)
 
     {: .topicgroup}
+    Using IBM Cloud Satellite
+        satellite/about-satellite.md
+        satellite/satellite-provisioning.md
+        satellite/satellite-billing.md
+        satellite/satellite-link.md
+        satellite/satellite-apis.md
+
+    {: .topicgroup}
     Managing access
         iam.md
         iam/overview.md
@@ -63,6 +71,7 @@ Cloud Object Storage
     Managing a bucket's lifecycle configurations
         basics/archive.md
         basics/expiry.md
+        basics/abort-mpu.md
 
     basics/upload.md
     versioning.md
@@ -73,7 +82,7 @@ Cloud Object Storage
     basics/immutable.md
     basics/classes.md
     basics/static-websites-options.md
-    [Connect to resources using a CDN](/CDN/CDN-configure-ibm-cloud-object-storage-for-cdn)
+    [Connect to resources using a CDN](/CDN/CDN-configure-cdn-with-ibm-cloud-object-storage)
     basics/multipart.md
     basics/deleting-multiple-objects.md
     basics/sql.md
@@ -103,6 +112,7 @@ Cloud Object Storage
         libraries/python.md
         libraries/node.md
         libraries/go.md
+        libraries/terraform.md
 
     {: .topicgroup}
     Use the command line

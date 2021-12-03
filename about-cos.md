@@ -36,10 +36,15 @@ Developers use APIs to interact with their object storage. {{site.data.keyword.c
 
 The [{{site.data.keyword.cloud_notm}} console](https://cloud.ibm.com/){: external} provides a user interface for most operations and configuration as well. 
 
-## For users of Cloud Object Storage IaaS
+## Cloud Object Storage on IBM Cloud Satellite
+{: #satellite}
+
+Workloads that require object storage on-premise, or in a geographic location not supported by IBM Cloud data centers, can make use of IBM Cloud Satellite.  For more information, see [the documentation]().
+
+## Cloud Object Storage IaaS (Legacy)
 {: #iaas}
 
-IaaS users migrating to the IAM enabled service can reference this documentation, but not all features are supported, and naturally only HMAC authentication can be used.
+Legacy IaaS users are encouraged to migrate workloads to the IAM-enabled service. IaaS users can reference this documentation, but any features that relate to cloud services (IAM, Key Protect, Activity Tracking, Metrics Monitoring, Notifications, etc) are not supported for COS IaaS.
 
 ## Next Steps
 {: #about-cos-next-steps}

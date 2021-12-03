@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-03-15"
+lastupdated: "2021-10-27"
 
 keywords: activity tracker, LogDNA, event, object storage, COS API calls, monitor COS events
 
@@ -61,11 +61,11 @@ Management events are classified in the following categories:
 
 The following table lists the COS actions that generate a global event. You can monitor this events through the Activity Tracker instance that is available in the Frankfurt location.
 
-| Action                                         | Description                               |
-|------------------------------------------------|-------------------------------------------|
-| `cloud-object-storage.instance.list`           | List the buckets in the service instance  |
-| `cloud-object-storage.bucket.create`           | Create a bucket in the service instance   |
-| `cloud-object-storage.bucket.delete`           | Delete a bucket in the service instance   |
+| Action                               | Description                              |
+| ------------------------------------ | ---------------------------------------- |
+| `cloud-object-storage.instance.list` | List the buckets in the service instance |
+| `cloud-object-storage.bucket.create` | Create a bucket in the service instance  |
+| `cloud-object-storage.bucket.delete` | Delete a bucket in the service instance  |
 {: caption="Table 1. {{site.data.keyword.cos_short}} actions that generate global events"}
 
 ### Resource configuration events
@@ -74,7 +74,7 @@ The following table lists the COS actions that generate a global event. You can 
 The following table lists the COS resource configuration events:
 
 | Action                                               | Description                                      |
-|------------------------------------------------------|--------------------------------------------------|
+| ---------------------------------------------------- | ------------------------------------------------ |
 | `cloud-object-storage.resource-configuration.read`   | Read the resource configuration for the bucket   |
 | `cloud-object-storage.resource-configuration.update` | Update the resource configuration for the bucket |
 {: caption="Table 2. Resource Configuration events"}
@@ -85,7 +85,7 @@ The following table lists the COS resource configuration events:
 The following table lists the COS bucket events:
 
 | Action                                                   | Description                                |
-|----------------------------------------------------------|--------------------------------------------|
+| -------------------------------------------------------- | ------------------------------------------ |
 | `cloud-object-storage.bucket-cors.read`                  | Get the CORS configuration                 |
 | `cloud-object-storage.bucket-cors.create`                | Create the CORS configuration              |
 | `cloud-object-storage.bucket-cors.delete`                | Delete the CORS configuration              |
@@ -107,7 +107,7 @@ The following table lists the COS bucket events:
 For `cloud-object-storage.bucket-key-state.update` events, the following fields include extra information:
 
 | Field                            | Description                                                               |
-|----------------------------------|---------------------------------------------------------------------------|
+| -------------------------------- | ------------------------------------------------------------------------- |
 | `requestData.eventType`          | The type of lifecyle event that occured, such as deletion, rotation, etc. |
 | `requestData.requestedKeyState`  | The the requested state of the key (enabled or disabled).                 |
 | `requestData.requestKeyVersion`  | The requested version of the key.                                         |
@@ -123,7 +123,7 @@ For `cloud-object-storage.bucket-key-state.update` events, the following fields 
 The following table lists the COS object events:
 
 | Action                                                    | Description                        |
-|-----------------------------------------------------------|------------------------------------|
+| --------------------------------------------------------- | ---------------------------------- |
 | `cloud-object-storage.object-cors.read`                   | Get the CORS configuration         |
 | `cloud-object-storage.object-acl.read`                    | Get the object ACL                 |
 | `cloud-object-storage.object-acl.create`                  | Create the object ACL              |
@@ -140,6 +140,7 @@ Data events are classified in the following categories:
 * Bucket access events
 * Object access events
 * Multipart events
+* Bucket versioning events
 
 ### Bucket access events
 {: #at-actions-data-1}
@@ -147,7 +148,7 @@ Data events are classified in the following categories:
 The following table lists the COS bucket access events:
 
 | Action                                      | Description                     |
-|---------------------------------------------|---------------------------------|
+| ------------------------------------------- | ------------------------------- |
 | `cloud-object-storage.bucket.list`          | List the objects in the bucket  |
 | `cloud-object-storage.bucket-metadata.read` | Get the metadata for the bucket |
 {: caption="Table 5. Bucket access events"}
@@ -159,7 +160,7 @@ The following table lists the COS bucket access events:
 The following table lists the COS object access events:
 
 | Action                                       | Description                               |
-|----------------------------------------------|-------------------------------------------|
+| -------------------------------------------- | ----------------------------------------- |
 | `cloud-object-storage.object-metadata.read`  | Get the metadata for the object           |
 | `cloud-object-storage.object.read`           | Read the object                           |
 | `cloud-object-storage.object.create`         | Create the object                         |
@@ -172,14 +173,22 @@ The following table lists the COS object access events:
 | `cloud-object-storage.object-restore.create` | Create the target object from the restore |
 {: caption="Table 6. Object access events"}
 
+If versioning is enabled for a bucket, then `target.versionId` will be present for operations that make use of object versions. 
 
-### Multipart Events
+For `cloud-object-storage.object.delete` and `cloud-object-storage.object-batch.delete` events, the following fields include extra information:
+
+| Field                               | Description                                                      |
+| ----------------------------------- | ---------------------------------------------------------------- |
+| `responseData.deleteMarker.created` | The object has been versioned and replaced with a delete marker. |
+{: caption="Table 6a. Additional fields for deletion events"}
+
+### Multipart events
 {: #at-actions-data-3}
 
 The following table lists the COS multipart events:
 
 | Action                                           | Description                                       |
-|--------------------------------------------------|---------------------------------------------------|
+| ------------------------------------------------ | ------------------------------------------------- |
 | `cloud-object-storage.bucket-multipart.list`     | List multipart uploads of objects in a bucket     |
 | `cloud-object-storage.object-multipart.list`     | List parts of an object                           |
 | `cloud-object-storage.object-multipart.start`    | Initiate a multipart upload of an object          |
@@ -188,6 +197,24 @@ The following table lists the COS multipart events:
 | `cloud-object-storage.object-multipart.delete`   | Abort an incomplete multipart upload of an object |
 {: caption="Table 7. Multipart events"}
 
+### Bucket versioning events
+{: #at-actions-data-4}
+
+The following table lists the COS versioning events:
+
+| Action                                          | Description                          |
+| ----------------------------------------------- | ------------------------------------ |
+| `cloud-object-storage.bucket-versioning.create` | Enable versioning on a bucket        |
+| `cloud-object-storage.bucket-versioning.read`   | Check versioning status of a bucket  |
+| `cloud-object-storage.bucket-versioning.list`   | List versions of objects in a bucket |
+{: caption="Table 8. Versioning events"}
+
+For `cloud-object-storage.bucket-versioning.create` events, the following fields include extra information:
+
+| Field                                   | Description                                                |
+| --------------------------------------- | ---------------------------------------------------------- |
+| `requestData.newValue.versioning.state` | The versioning state of the bucket (enabled or suspended). |
+{: caption="Table 8a. Additional fields for `bucket-versioning.create` events"}
 
 ## Viewing events
 {: #at-ui}
