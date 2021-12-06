@@ -24,18 +24,60 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Supported APIs for COS on Satellite
+# Supported APIs
 {: #apis-cos-satellite}
 
-{{site.data.keyword.cos_full_notm}} (COS) on Satellite supports most S3 APIs.
+{{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} supports most S3 APIs.
 {: shortdesc}
 
-## Supported APIs
+## Supported S3 APIs
 {: #apis-satellite-supported}
 
-Lorem ipsum
+* `AbortMultipartUpload`
+* `CompleteMultipartUpload`
+* `CopyObject`
+* `CreateBucket`
+* `CreateMultipartUpload`
+* `DeleteBucket`
+* `DeleteBucketCors`
+* `DeleteBucketLifecycle`
+* `DeleteBucketWebsite`
+* `DeleteObject`
+* `DeleteObjects`
+* `DeleteObjectTagging`
+* `DeletePublicAccessBlock`
+* `GetBucketAcl`
+* `GetBucketCors`
+* `GetBucketLifecycle`
+* `GetBucketLocation`
+* `GetBucketVersioning`
+* `GetBucketWebsite`
+* `GetObject`
+* `GetObjectAcl`
+* `GetObjectTagging`
+* `GetPublicAccessBlock`
+* `HeadBucket`
+* `HeadObject`
+* `ListBuckets`
+* `ListMultipartUploads`
+* `ListObjects`
+* `ListObjectsV2`
+* `ListObjectVersions`
+* `ListParts`
+* `PutBucketAcl`
+* `PutBucketCors`
+* `PutBucketLifecycle` (expiration rules only)
+* `PutBucketVersioning`
+* `PutBucketWebsite`
+* `PutObject`
+* `PutObjectAcl`
+* `PutObjectTagging`
+* `PutPublicAccessBlock`
+* `UploadPart`
+* `UploadPartCopy`
 
-## Supported APIs
+## Unsupported S3 APIs
 {: #apis-satellite-unsupported}
 
-Lorem ipsum
+* `PutBucketLifecycle` (archive rules only)
+* `RestoreObject`
