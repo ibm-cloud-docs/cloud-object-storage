@@ -53,7 +53,7 @@ Essentially, provisioning an instance of {{site.data.keyword.cos_short}} for {{s
 3. The {{site.data.keyword.satelliteshort}} administrator assigns the appropriate hosts and storage blocks to the new {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} cluster.
 4. The new instance is available for both {{site.data.keyword.cos_short}} bucket configuration and data operations.
 
-At this time, the {{site.data.keyword.satelliteshort}} service must be configured in the `us-east` region.
+At this time, the {{site.data.keyword.satelliteshort}} service must be configured in the Washington, DC (`us-east`) region.
 {:note}
 
 ## What features are currently supported?
