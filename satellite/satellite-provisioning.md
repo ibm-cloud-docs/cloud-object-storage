@@ -24,16 +24,16 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Provisioning COS on Satellite
+# Provisioning {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}
 {: #provision-cos-satellite}
 
-You can provision {{site.data.keyword.cos_full_notm}} (COS) on Satellite using the IBM Cloud console.
+You can provision {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} using the IBM Cloud console.
 {: shortdesc}
 
 ## Before you begin
 {: #pre-provision-satellite}
 
-Lorem ipsum
+Ensure that you have an existing {{site.data.keyword.satelliteshort}} location with sufficient raw storage allocated for provisioning {{site.data.keyword.cos_short}}.
 
 ## Creating a service instance
 {: #provision-satellite-create}
