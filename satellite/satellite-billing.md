@@ -24,16 +24,23 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Billing for COS on Satellite
+# Billing for {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}
 {: #billing-cos-satellite}
 
-{{site.data.keyword.cos_full_notm}} (COS) on Satellite has a different pricing model.
+{{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} has a different pricing model than the typical pay-as-you-go scheme used in the public cloud.
 {: shortdesc}
 
+Instead, storage is allocated at a fixed capacity using a "T-shirt size" model.  The available sizes are:
+
+* Small (12 TB)
+* Medium (24 TB)
+* Large (48 TB)
+* Extra Large (96 TB)
+  
 ## Choosing capacity
 {: #billing-satellite-sizing}
 
-Lorem ipsum
+The storage instance capacity is set during the provisioning process. You will need to work with your {{site.data.keyword.satelliteshort}} administrator to ensure that enough raw capacity exists in the underlying {{site.data.keyword.satelliteshort}} infrastructure.
 
 ## Adding capacity
 {: #billing-satellite-adding}
