@@ -105,8 +105,8 @@ You can confirm that failover is properly configured for the selected {{site.dat
 
 From IBM Cloud console, navigate to a {{site.data.keyword.hscrypto}} instance and click on **Overview**. A "Failover" section will indicate the status of crypto units in the corresponding failover regions.
  
-Ensure the failover section is present, all validation checks are green and there are no warnings for that HPCS instance.  If you see any errors or warnings, or if the failover section is not present, [refer to the {{site.data.keyword.hscrypto}} documentation for further guidance](https://cloud.ibm.com/docs/hs-crypto?topic=hs-crypto-enable-add-failover).
- 
+Ensure the failover section is present, all validation checks are green and there are no warnings for that {{site.data.keyword.hscrypto}} instance.  If you see any errors or warnings, or if the failover section is not present, [refer to the {{site.data.keyword.hscrypto}} documentation for further guidance](https://cloud.ibm.com/docs/hs-crypto?topic=hs-crypto-enable-add-failover).
+
 You can also use the CLI to list all the crypto units for all instances belong to the targeted resource group:
 
 ```sh
