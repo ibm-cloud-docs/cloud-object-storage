@@ -77,7 +77,7 @@ When your key exists in {{site.data.keyword.hscrypto}} and you authorized the se
 1. Navigate to your instance of Object Storage.
 2. Click **Create bucket**.
 3. Select **Custom bucket**.
-3. Enter a bucket name, select the **Regional** resiliency, and choose a location and storage class.
+3. Enter a bucket name, select the resiliency (only Regional and US Cross-Region are currently supported), and choose a location and storage class.
 4. In **Service integrations**, toggle **Key management disabled** to enable encryption key management and click on **Use existing instance**.
 5. Select the associated service instance and key, and click **Associate key**.
 5. Verify the information is correct.
