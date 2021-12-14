@@ -29,6 +29,8 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 ## Q4 2021
 {: #updates-2021-q4}
 
+Buckets can be created in a US cross-region configuration using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-cr) managed encryption.
+
 Object expiration is now permitted in [buckets with versioning enabled](/docs/cloud-object-storage?topic=cloud-object-storage-versioning).
 
 Bucket lifecycle rules can now be created to [automatically remove incomplete multipart uploads](/docs/cloud-object-storage?topic=cloud-object-storage-lifecycle-cleanup-mpu).
