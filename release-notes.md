@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2021
 
-lastupdated: "2021-09-12"
+lastupdated: "2021-12-06"
 
 keywords: updates, releases, news, object storage
 
@@ -29,9 +29,14 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 ## Q4 2021
 {: #updates-2021-q4}
 
+Buckets can be created in a US cross-region configuration using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-cr) managed encryption.
+
 Object expiration is now permitted in [buckets with versioning enabled](/docs/cloud-object-storage?topic=cloud-object-storage-versioning).
 
 Bucket lifecycle rules can now be created to [automatically remove incomplete multipart uploads](/docs/cloud-object-storage?topic=cloud-object-storage-lifecycle-cleanup-mpu).
+
+{{site.data.keyword.satellitelong_notm}} lets you use your own compute infrastructure to create a {{site.data.keyword.satelliteshort}} location. Then, you use the capabilities of {{site.data.keyword.satelliteshort}} to run {{site.data.keyword.cloud_notm}} services on your infrastructure, and consistently deploy, manage, and control your software workloads. For details, see [{{site.data.keyword.satellitelong_notm}}](/docs/satellite)
+
 
 ## Q3 2021
 {: #updates-2021-q3}
