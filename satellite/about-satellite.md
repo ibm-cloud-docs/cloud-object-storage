@@ -32,6 +32,9 @@ subcollection: cloud-object-storage
 
 Essentially, provisioning an instance of {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} provides the same familiar interfaces of {{site.data.keyword.cos_full_notm}} outside of {{site.data.keyword.cloud_notm}}. 
 
+{{site.data.keyword.cos_short}} is integrated into {{site.data.keyword.satelliteshort}} in three different ways: configuration data and backup storage for the {{site.data.keyword.satelliteshort}} instance itself, as a persistent volume that allows for file-like access, and as a local instance of an {{site.data.keyword.cos_full_notm}} service instance.  This documentation focuses on the latter - setting up and accessing an instance of {{site.data.keyword.cos_short}} running on {{site.data.keyword.satelliteshort}} hardware.
+{:note}
+
 ## Typical use cases of {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}
 {: #about-cos-satellite-benefits}
 
