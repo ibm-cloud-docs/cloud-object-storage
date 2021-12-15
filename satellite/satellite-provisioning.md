@@ -33,17 +33,22 @@ You can provision {{site.data.keyword.cos_short}} for {{site.data.keyword.satell
 ## Before you begin
 {: #pre-provision-satellite}
 
-Ensure that you have an existing {{site.data.keyword.satelliteshort}} location with sufficient raw storage allocated for provisioning {{site.data.keyword.cos_short}}.
+Ensure that you have [an existing {{site.data.keyword.satelliteshort}} location](/docs/satellite?topic=satellite-locations) with sufficient raw storage allocated for provisioning {{site.data.keyword.cos_short}}.
+
+* A Small (12 TB) instance requires 18 TB raw storage.
+* A Medium (24 TB) instance requires 36 TB raw storage.
+* A Large (48 TB) instance requires 72 TB raw storage.
+* An Extra Large (96 TB) instance requires 144 TB raw storage.
+
+For more information on configuring hosts for storage, [see the {{site.data.keyword.satelliteshort}} documentation](/docs/satellite?topic=satellite-host-reqs#reqs-host-storage).
 
 ## Creating a service instance
 {: #provision-satellite-create}
 
-Lorem ipsum
-
-## Deleting a service instance
-{: #provision-satellite-delete}
-
-Lorem ipsum
-
-## Next steps
-{: #provision-satellite-next}
+1. Log in to [the console](https://cloud.ibm.com/){: external}.
+2. Navigate to the catalog, by clicking **Catalog** in the navigation bar.
+3. Look for the **Object Storage** tile in the storage section and select it.
+4. Select **Satellite** from the "Choose an Infrastructure" section.
+5. Choose an existing [Satellite location](/docs/satellite?topic=satellite-locations).
+6. [Choose a capacity](/docs/cloud-object-storage?topic=cloud-object-storage-billing-cos-satellite) for your new {{site.data.keyword.cos_short}} instance.
+7. Click **Create** and you're automatically redirected to your new instance.
