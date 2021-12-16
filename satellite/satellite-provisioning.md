@@ -33,7 +33,7 @@ You can provision {{site.data.keyword.cos_short}} for {{site.data.keyword.satell
 ## Before you begin
 {: #pre-provision-satellite}
 
-Ensure that you have [an existing {{site.data.keyword.satelliteshort}} location](/docs/satellite?topic=satellite-locations) with sufficient raw storage allocated for provisioning {{site.data.keyword.cos_short}}.
+Ensure that you have [an existing {{site.data.keyword.satelliteshort}} location](/docs/satellite?topic=satellite-locations) with sufficient raw block storage allocated for provisioning {{site.data.keyword.cos_short}}.
 
 * A Small (12 TB) instance requires 18 TB raw storage.
 * A Medium (24 TB) instance requires 36 TB raw storage.

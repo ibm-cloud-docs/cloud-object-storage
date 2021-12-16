@@ -72,7 +72,7 @@ At this time, the {{site.data.keyword.satelliteshort}} service must be configure
 {: #about-cos-satellite-unsupported}
 
 * Key Protect encryption and key lifecycle management
-* HPCS encryption
+* {{site.data.keyword.hscrypto}} encryption
 * Firewall (IP rules, allowed network type rules)
 * Activity Tracker
 * Metrics Monitoring
@@ -82,7 +82,3 @@ At this time, the {{site.data.keyword.satelliteshort}} service must be configure
 * Immutable Object Storage
 * Archive lifecycle rules
 * Storage classes (billing tiers)
-
-
-
-
