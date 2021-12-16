@@ -139,21 +139,6 @@
 		"Cloud Object Storage bucket authorized IPs",
 		"Cloud Object Storage bucket configuration with cross-origin resource sharing CORS"
 	],
-	"faq-lite-storage": [
-		"more than one Cloud Object Storage Lite plan service instance in an account",
-		"you can have only one instance of a Lite plan per service for Cloud Object Storage",
-		"multiple Cloud Object Storage Lite plan service instances",
-		"portal error message with 'You can have only one instance of a Lite plan per service' COS",
-		"error message with BXCOS10012E Cloud Object Storage",
-		"object storage Lite Plan limit",
-		"limit to the number of Lite plan COS",
-		"error when creating object storage Lite plan",
-		"unable to create a COS",
-		"Not able to create COS service",
-		"can't create COS",
-		"ibmcloud CLI error message with 'RC-InstanceCountExceeded' COS",
-		"error message with 409 Cloud Object Storage COS"
-	],
 	"faq-lite-exceed": [
 		"is Cloud Object Storage Lite plan service instance still in service when it exceeds max usage",
 		"Cloud Object Storage Lite plan exceeds max usage",
