@@ -77,7 +77,7 @@ When your key exists in {{site.data.keyword.hscrypto}} and you authorized the se
 1. Navigate to your instance of Object Storage.
 2. Click **Create bucket**.
 3. Select **Custom bucket**.
-3. Enter a bucket name, select the **Regional** resiliency, and choose a location and storage class.
+3. Enter a bucket name, select the resiliency (only Regional and US Cross-Region are currently supported), and choose a location and storage class.
 4. In **Service integrations**, toggle **Key management disabled** to enable encryption key management and click on **Use existing instance**.
 5. Select the associated service instance and key, and click **Associate key**.
 5. Verify the information is correct.
@@ -95,6 +95,44 @@ Note that the `Etag` value returned for objects encrypted using {{site.data.keyw
 {:tip}
 
 It is also possible to use [the REST API](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-key-protect) or SDKs ([Go](/docs/cloud-object-storage?topic=cloud-object-storage-using-go#go-examples-kp), [Java](/docs/cloud-object-storage?topic=cloud-object-storage-java#java-examples-kp), [Node.js](/docs/cloud-object-storage?topic=cloud-object-storage-node#node-examples-kp), or [Python](/docs/cloud-object-storage?topic=cloud-object-storage-python#python-examples-kp)).
+
+### Creating Cross Region buckets
+{: #hpcs-cr}
+
+Creating COS Cross Region bucket with a root key from a {{site.data.keyword.hscrypto}} instance requires that instance to be [configured with failover configuration](https://cloud.ibm.com/docs/hs-crypto?topic=hs-crypto-enable-add-failover). 
+
+You can confirm that failover is properly configured for the selected {{site.data.keyword.hscrypto}} instance correctly using either the IBM Cloud console or CLI.
+
+From IBM Cloud console, navigate to a {{site.data.keyword.hscrypto}} instance and click on **Overview**. A "Failover" section will indicate the status of crypto units in the corresponding failover regions.
+ 
+Ensure the failover section is present, all validation checks are green and there are no warnings for that {{site.data.keyword.hscrypto}} instance.  If you see any errors or warnings, or if the failover section is not present, [refer to the {{site.data.keyword.hscrypto}} documentation for further guidance](https://cloud.ibm.com/docs/hs-crypto?topic=hs-crypto-enable-add-failover).
+
+You can also use the CLI to list all the crypto units for all instances belong to the targeted resource group:
+
+```sh
+ibmcloud tke cryptounits
+```
+{:screen}
+
+To get status of crypto units for the selected instance, create a list of crypto units associated with that instance and compare them:
+
+```sh
+ibmcloud tke cryptounit-add
+```
+
+After the units have been selected, you can check their verification patterns:
+
+```sh
+ibmcloud tke cryptounit-compare
+```
+
+Make sure all of them are valid and have same verification pattern.
+
+Once the presence of the failover configuration is verified, you may proceed to create the cross-region bucket using the key from that {{site.data.keyword.hscrypto}} instance.
+
+If the cross-region bucket creation in US Cross Region with a {{site.data.keyword.hscrypto}} root key fails with a `500` error, then the user is advised to check if the status of failover configuration for that {{site.data.keyword.hscrypto}} instance (using the methods detailed above) before reattempting the bucket creation.
+{:important}
+
 
 ## Key lifecycle management 
 {: #hpcs-lifecycle}

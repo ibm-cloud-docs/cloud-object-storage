@@ -58,7 +58,7 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | ------ | ------ | ------------------- | ------------------------------ | ------------ | ------------------------ | ---------------- | --------- | ---------- | ---------- |
 | `ap`   | Yes    | Yes (in `jp-tok`)   | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   |
 | `eu`   | Yes    | No                  | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    |
-| `us`   | Yes    | Yes (in `us-south`) | No                             | No           | Yes                      | `us-south`       | No        | Yes        | `us-south` |
+| `us`   | Yes    | Yes (in `us-south`) | Yes (failover in `us-east`)    | No           | Yes                      | `us-south`       | No        | Yes        | `us-south` |
 
 
 ## Regional
