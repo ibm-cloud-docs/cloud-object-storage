@@ -55,7 +55,7 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 {: #service-availability-geo}
 
 | Region | Aspera | Key Protect         | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
-| ------ | ------ | ------------------- | ------------------------------ | ------------ | ------------------------ | ---------------- | --------- | ---------- | ---------- |
+|--------|--------|---------------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
 | `ap`   | Yes    | Yes (in `jp-tok`)   | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   |
 | `eu`   | Yes    | No                  | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    |
 | `us`   | Yes    | Yes (in `us-south`) | Yes (failover in `us-east`)    | No           | Yes                      | `us-south`       | No        | Yes        | `us-south` |
@@ -65,7 +65,7 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 {: #service-availability-region}
 
 | Region     | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
-| ---------- | ------ | ----------- | ------------------------------ | ------------ | ------------------------ | ---------------- | --------- | ---------- | ---------- |
+|------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
 | `au-syd`   | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `au-syd`         | No        | Yes        | `au-syd`   |
 | `ap-tok`   | Yes    | Yes         | No                             | Yes          | Yes                      | `ap-tok`         | Yes       | Yes        | `ap-tok`   |
 | `ap-osa`   | No     | Yes         | No                             | Yes          | Yes                      | `ap-osa`         | Yes       | Yes        | `ap-osa`   |
@@ -82,7 +82,7 @@ It is possible to create a bucket and associate any available Key Protect or Hyp
 {: #service-availability-zone}
 
 | Region  | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
-| ------- | ------ | ----------- | ------------------------------ | ------------ | ------------------------ | ---------------- | --------- | ---------- | ---------- |
+|---------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
 | `ams03` | No     | No          | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    |
 | `che01` | No     | No          | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   |
 | `hkg02` | No     | No          | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   |
@@ -94,6 +94,13 @@ It is possible to create a bucket and associate any available Key Protect or Hyp
 | `sjc01` | No     | No          | No                             | No           | No                       | `us-south`       | No        | Yes        | `us-south` |
 | `seo01` | No     | No          | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   |
 | `sng01` | No     | No          | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   |
+
+## Satellite 
+{: #service-availability-sat}
+| Location  | Aspera | Key Protect (IBM Cloud) | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
+|-----------|--------|-------------------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
+| `us-east` | No     | Yes                     | No                             | No           | No                       | No               | No        | No         | No         |
+
 
 ## More information
 {: #service-availability-more-info}

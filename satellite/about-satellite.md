@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 {{site.data.keyword.cos_full_notm}} for {{site.data.keyword.satellitelong_notm}} offers users the flexibility to run a managed {{site.data.keyword.cos_short}} service on client-owned on-premises infrastructure, edge locations or third-party public cloud infrastructure. 
 {: shortdesc}
 
-This introductory offering of {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} is limited in capabilities and will be expanded on in the future as adoption increases. Keep in mind that not all APIs or connected services may work in the same fashion as {{site.data.keyword.cos_short}} on {{site.data.keyword.cloud_notm}}.
+This introductory offering of {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} is limited in capabilities and will be expanded on in the future. Keep in mind that not all APIs or connected services may work in the same fashion as {{site.data.keyword.cos_short}} on {{site.data.keyword.cloud_notm}}.
 {:important}
 
 Essentially, provisioning an instance of {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} provides the same familiar interfaces of {{site.data.keyword.cos_full_notm}} outside of {{site.data.keyword.cloud_notm}}. 
@@ -59,9 +59,6 @@ Essentially, provisioning an instance of {{site.data.keyword.cos_short}} for {{s
 3. The {{site.data.keyword.satelliteshort}} administrator assigns the appropriate hosts and block storage to the new {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} cluster.
 4. The new instance is available for both {{site.data.keyword.cos_short}} bucket configuration and data operations.
 
-At this time, the {{site.data.keyword.satelliteshort}} service must be configured in the Washington, DC (`us-east`) region.
-{:important}
-
 ## What features are currently supported?
 {: #about-cos-satellite-supported}
 
@@ -72,24 +69,13 @@ At this time, the {{site.data.keyword.satelliteshort}} service must be configure
 * [Static Web hosting](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-options)
 * [Key Protect managed encryption](/docs/cloud-object-storage?topic=cloud-object-storage-kp)
 
-Any Key Protect instances in cloud must be located in the tethered region (`us-east`).
+Any Key Protect instances must be in {{site.data.keyword.cloud_notm}} and must be located in the same IBM Cloud region from where the Satellite location is managed.
 {:important}
 
 Activity Tracker will log service instance creation and deletion, but not any actions specific to object storage, such as listing buckets or reading/writing data.
 {:important}
-## What features are not yet supported?
-{: #about-cos-satellite-unsupported}
 
-* {{site.data.keyword.hscrypto}} encryption
-* Firewall (IP rules, allowed network type rules)
-* Activity Tracker (for bucket/object events)
-* Metrics Monitoring
-* Security and Compliance Center 
-* Cloud Functions
-* Aspera High-Speed Transfer
-* Immutable Object Storage
-* Archive lifecycle rules
-* Storage classes (billing tiers)
+Other features that are currently not supported (such as Activity Tracking, Metrics Monitoring, Security and Compliance Center) will be added in the future. 
 
 ## Endpoints
 
