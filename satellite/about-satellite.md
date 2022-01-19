@@ -24,11 +24,14 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# What is {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}?
+# About {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}?
 {: #about-cos-satellite}
 
 {{site.data.keyword.cos_full_notm}} for {{site.data.keyword.satellitelong_notm}} offers users the flexibility to run a managed {{site.data.keyword.cos_short}} service on client-owned on-premises infrastructure, edge locations or third-party public cloud infrastructure. 
 {: shortdesc}
+
+This introductory offering of {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} is limited in capabilities and will be expanded on in the future as adoption increases. Keep in mind that not all APIs or connected services may work in the same fashion as {{site.data.keyword.cos_short}} on {{site.data.keyword.cloud_notm}}.
+{:important}
 
 Essentially, provisioning an instance of {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} provides the same familiar interfaces of {{site.data.keyword.cos_full_notm}} outside of {{site.data.keyword.cloud_notm}}. 
 
@@ -53,11 +56,11 @@ Essentially, provisioning an instance of {{site.data.keyword.cos_short}} for {{s
 
 1. A {{site.data.keyword.satelliteshort}} administrator needs to configure a new "Location" using the {{site.data.keyword.satelliteshort}} console and assigns hosts for the {{site.data.keyword.satelliteshort}} Control Plane.  
 2. After the new location is created and accessible, an {{site.data.keyword.cos_short}} administrator provisions the {{site.data.keyword.cos_short}} instance in the new location.
-3. The {{site.data.keyword.satelliteshort}} administrator assigns the appropriate hosts and storage blocks to the new {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} cluster.
+3. The {{site.data.keyword.satelliteshort}} administrator assigns the appropriate hosts and block storage to the new {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} cluster.
 4. The new instance is available for both {{site.data.keyword.cos_short}} bucket configuration and data operations.
 
 At this time, the {{site.data.keyword.satelliteshort}} service must be configured in the Washington, DC (`us-east`) region.
-{:note}
+{:important}
 
 ## What features are currently supported?
 {: #about-cos-satellite-supported}
@@ -67,14 +70,19 @@ At this time, the {{site.data.keyword.satelliteshort}} service must be configure
 * [Object Versioning](/docs/cloud-object-storage?topic=cloud-object-storage-versioning)
 * [Object Tagging](/docs/cloud-object-storage?topic=cloud-object-storage-object-tagging)
 * [Static Web hosting](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-options)
+* [Key Protect managed encryption](/docs/cloud-object-storage?topic=cloud-object-storage-kp)
 
+Any Key Protect instances in cloud must be located in the tethered region (`us-east`).
+{:important}
+
+Activity Tracker will log service instance creation and deletion, but not any actions specific to object storage, such as listing buckets or reading/writing data.
+{:important}
 ## What features are not yet supported?
 {: #about-cos-satellite-unsupported}
 
-* Key Protect encryption and key lifecycle management
 * {{site.data.keyword.hscrypto}} encryption
 * Firewall (IP rules, allowed network type rules)
-* Activity Tracker
+* Activity Tracker (for bucket/object events)
 * Metrics Monitoring
 * Security and Compliance Center 
 * Cloud Functions
@@ -82,3 +90,8 @@ At this time, the {{site.data.keyword.satelliteshort}} service must be configure
 * Immutable Object Storage
 * Archive lifecycle rules
 * Storage classes (billing tiers)
+
+## Endpoints
+
+In order to interact with object storage, a client makes API calls to a _service endpoint_.  In a Satellite configuration, these should not be confused with [_link endpoints_](/docs/satellite?topic=satellite-link-location-cloud) which are used for communication between services.  The _service endpoint_ that is used typically takes the form of `https://s3.{location ID}.cloud-object-storage.appdomain.cloud` and can be found under the **Endpoints** section of the object storage console.
+

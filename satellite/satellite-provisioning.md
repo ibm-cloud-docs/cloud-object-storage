@@ -33,14 +33,26 @@ You can provision {{site.data.keyword.cos_short}} for {{site.data.keyword.satell
 ## Before you begin
 {: #pre-provision-satellite}
 
-Ensure that you have [an existing {{site.data.keyword.satelliteshort}} location](/docs/satellite?topic=satellite-locations) with sufficient raw block storage allocated for provisioning {{site.data.keyword.cos_short}}.
+Before deploying {{site.data.keyword.cos_short}} in a Satellite location, you must first deploy [a {{site.data.keyword.satelliteshort}} location](/docs/satellite?topic=satellite-locations) with sufficient raw block storage allocated for provisioning {{site.data.keyword.cos_short}}. Note that this location **must be [on-prem](#x6969434){: term}** in a user-owned [VM](##x2043253){: term}. It cannot be contained in {{site.data.keyword.cloud_notm}}.
 
-* A Small (12 TB) instance requires 18 TB raw storage.
-* A Medium (24 TB) instance requires 36 TB raw storage.
-* A Large (48 TB) instance requires 72 TB raw storage.
-* An Extra Large (96 TB) instance requires 144 TB raw storage.
+{{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} is currently known to be compatible with **NetApp ONTAP-SAN** and **AWS Elastic Block Storage**.  
+{:important} 
+
+{{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} requires OpenShift 4.7.
+{:note}
+
+| Object Storage capacity | Raw storage required | Minimum host requirements |
+| Small (12 TB) | 18 TB | 8 nodes of 3 vCPU and 32 GiB memory |
+| Medium (24 TB) | 36 TB | 8 nodes of 3 vCPU and 32 GiB memory |
+| Large (48 TB) | 72 TB | 8 nodes of 3 vCPU and 32 GiB memory | 
+| Extra Large (96 TB) | 144 TB | 16 nodes of 3 vCPU and 32 GiB memory |
 
 For more information on configuring hosts for storage, [see the {{site.data.keyword.satelliteshort}} documentation](/docs/satellite?topic=satellite-host-reqs#reqs-host-storage).
+
+Workloads that demand higher performance may benefit from using an Extra Large plan.
+
+It is recommended to use a Silver plan at a minimum to ensure adequate performance.
+{:tip}
 
 ## Creating a service instance
 {: #provision-satellite-create}
