@@ -45,7 +45,6 @@ Before deploying {{site.data.keyword.cos_short}} in a Satellite location, you mu
 | Large (48 TB)           | 72 TB                | 9 nodes of 4 vCPU and 16 GiB memory  |
 | Extra Large (96 TB)     | 144 TB               | 18 nodes of 4 vCPU and 16 GiB memory |
 
-
 For more information on configuring hosts for storage, [see the {{site.data.keyword.satelliteshort}} documentation](/docs/satellite?topic=satellite-host-reqs#reqs-host-storage).
 
 Workloads that demand higher performance may benefit from the additional computing power provided by the Extra Large plan, regardless of total storage required.
