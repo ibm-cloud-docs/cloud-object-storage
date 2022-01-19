@@ -42,6 +42,7 @@ Before deploying {{site.data.keyword.cos_short}} in a Satellite location, you mu
 {:note}
 
 | Object Storage capacity | Raw storage required | Minimum host requirements |
+|-------------------------|----------------------|---------------------------|
 | Small (12 TB) | 18 TB | 8 nodes of 3 vCPU and 32 GiB memory |
 | Medium (24 TB) | 36 TB | 8 nodes of 3 vCPU and 32 GiB memory |
 | Large (48 TB) | 72 TB | 8 nodes of 3 vCPU and 32 GiB memory | 
