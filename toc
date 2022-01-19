@@ -42,7 +42,6 @@ Cloud Object Storage
         satellite/about-satellite.md
         satellite/satellite-provisioning.md
         satellite/satellite-billing.md
-        satellite/satellite-link.md
         satellite/satellite-apis.md
 
     {: .topicgroup}
