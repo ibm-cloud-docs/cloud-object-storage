@@ -29,6 +29,9 @@ subcollection: cloud-object-storage
 
 You can use [{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-crypto-overview) to create, add, and manage keys, which you can then associate with your instance of IBM® Cloud Object Storage to encrypt buckets.
 
+This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
+{: note}
+
 ## Before you begin
 {: #hpcs-begin}
 Before you plan on using {{site.data.keyword.hscrypto}} with Cloud Object Storage buckets, you need:

@@ -65,7 +65,7 @@ In order to interact with object storage, a client makes API calls to a _service
 
 The _service endpoint_ that is used for reading and writing data typically takes the form of `https://s3.{cos-instance-uuid}.{location-id}.cloud-object-storage.appdomain.cloud` and can be found under the **Endpoints** section of the object storage console.
 
-![COS on Satellite Endpoints](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/satellite_endpoints.png){: caption="Figure 1. Object Storage for Satellite Endpoints"}
+![COS on Satellite Endpoints](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/satellite_endpoints.png){: caption="Figure 2. Object Storage for Satellite Endpoints"}
 
 Keep in mind that requests made to {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} must originate from the same infrastructure hosts the service - the service endpoint is not accessible from outside of the local network.
 {:note}

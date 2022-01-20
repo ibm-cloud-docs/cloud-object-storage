@@ -30,6 +30,9 @@ subcollection: cloud-object-storage
 Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP transfers to improve data transfer performance under most conditions, especially in networks with high latency and packet loss.
 {: shortdesc}
  
+This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
+{: note}
+
 Instead of the standard HTTP `PUT` operation, Aspera high-speed transfer uploads the object by using the [FASP protocol](https://www.ibm.com/products/aspera/technology){: external}. Using Aspera high-speed transfer for uploads and downloads offers the following benefits:
 
 - Faster transfer speeds

@@ -29,6 +29,9 @@ subcollection: cloud-object-storage
 IAM policies provide a way for administrators to limit access to individual buckets. What if certain data must be accessed from trusted networks only? A bucket firewall restricts all access to data unless the request originates from a list of allowed IP addresses.
 {: shortdesc}
 
+This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
+{: note}
+
 There are some rules around setting a firewall:
 
 * A user that sets or views a firewall must have the `Manager` role on the bucket. 
