@@ -2,8 +2,7 @@
 
 copyright:
   years: 2017, 2021
-
-lastupdated: "2021-12-06"
+lastupdated: "2022-01-19"
 
 keywords: updates, releases, news, object storage
 

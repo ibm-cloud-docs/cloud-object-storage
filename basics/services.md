@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2021
 
-lastupdated: "2021-09-24"
+lastupdated: "2021-12-15"
 
 keywords: aspera, key protect, archive, worm
 
@@ -78,6 +78,7 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 
 It is possible to create a bucket and associate any available Key Protect or Hyper Protect Crypto Services instance with any of the listed Cloud Object Storage locations. Hyper Protect Crypto Services is only available in selected locations and it is your responsibility to ensure the location/region you select meets any pertinent requirements. Please refer to [Hyper Protect Crypto Services documentation](/docs/hs-crypto?topic=hs-crypto-regions) for a list of regions/locations currently available. 
 {:note}
+
 ## Single Data Centers
 {: #service-availability-zone}
 
