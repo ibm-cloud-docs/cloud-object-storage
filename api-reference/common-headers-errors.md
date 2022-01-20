@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-06-01"
+  years: 2017, 2022
+lastupdated: "2022-01-19"
 
 keywords: metadata, reference, api
 

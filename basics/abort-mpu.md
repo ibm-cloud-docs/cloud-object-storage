@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021
-lastupdated: "2021-11-11"
+  years: 2021, 2022
+lastupdated: "2022-01-19"
 
 keywords: lifecycle, multipart, cleanup
 

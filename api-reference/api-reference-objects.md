@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-02-10"
+  years: 2017, 2022
+lastupdated: "2022-01-19"
 
 keywords: rest, s3, compatibility, api, objects
 
@@ -53,8 +53,11 @@ When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [usi
 
 A `PUT` given a path to an object uploads the request body as an object. All objects uploaded in a single thread should be smaller than 500 MB (objects that are [uploaded in multiple parts](/docs/cloud-object-storage?topic=cloud-object-storage-large-objects) can be as large as 10 TB).
 
-**Note**: Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
-{: tip}
+Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
+{: note}
+
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+{: note}
 
 **Syntax**
 
@@ -132,8 +135,11 @@ Content-Length: 0
 
 A `HEAD` given a path to an object retrieves that object's headers.
 
-Note that the `Etag` value returned for objects encrypted using SSE-KP **is** the MD5 hash of the original decrypted object.
-{:tip}
+The `Etag` value returned for objects encrypted using SSE-KP **is** the MD5 hash of the original decrypted object.
+{: note}
+
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+{: note}
 
 **Syntax**
 
@@ -187,7 +193,10 @@ Content-Length: 11
 A `GET` given a path to an object downloads the object.
 
 The `Etag` value that is returned for objects encrypted using SSE-C/SSE-KP will **not** be the MD5 hash of the original decrypted object.
-{:tip}
+{: note}
+
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+{: note}
 
 **Syntax**
 
@@ -253,6 +262,9 @@ Content-Length: 467
 
 A `DELETE` given a path to an object deletes an object.
 
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+{: note}
+
 **Syntax**
 
 ```bash
@@ -303,7 +315,11 @@ A `POST` given a path to a bucket and proper parameters deletes a specified set 
 
 The required `Content-MD5` header needs to be the binary representation of a base64 encoded MD5 hash.
 
-**Note:** When an object that is specified in the request is not found the result returns as deleted. 
+When an object that is specified in the request is not found the result returns as deleted. 
+{: note}
+
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+{: note}
 
 ### Optional Elements
 {: #object-operations-multidelete-options}
@@ -396,6 +412,9 @@ Content-Length: 207
 
 A `PUT` issued to an object with the proper parameters creates or replaces a set of key-value tags associated with the object.
 
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+{: note}
+
 **Syntax**
 
 ```bash
@@ -481,6 +500,9 @@ Content-Length: 0
 
 A `GET` issued to an object with the proper parameters returns the set of key-value tags associated with the object.
 
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+{: note}
+
 **Syntax**
 
 ```bash
@@ -541,6 +563,9 @@ Content-Length: 128
 
 A `DELETE` issued to a bucket with the proper parameters removes an object's tags.
 
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+{: note}
+
 **Syntax**
 
 ```bash
@@ -583,11 +608,14 @@ The server responds with `204 No Content`.
 
 A `PUT` given a path to a new object creates a new copy of another object that is specified by the `x-amz-copy-source` header. Unless otherwise altered the metadata remains the same.
 
-**Note**: Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
-{:tip}
+Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
+{: note}
 
-**Note**: Copying objects (even across locations) does not incur the public outbound bandwidth charges. All data remains inside the COS internal network.
-{:tip}
+Copying objects (even across locations) does not incur the public outbound bandwidth charges. All data remains inside the COS internal network.
+{: note}
+
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+{: note}
 
 **Syntax**
 
@@ -664,6 +692,9 @@ Content-Length: 240
 
 An `OPTIONS` given a path to an object along with an origin and request type checks to see whether that object is accessible from that origin by using that request type. Unlike all other requests, an OPTIONS request does not require the `authorization` or `x-amx-date` headers.
 
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+{: note}
+
 **Syntax**
 
 ```bash
@@ -726,7 +757,7 @@ Multipart uploads are only available for objects larger than 5 MB. For objects s
 Due to the additional complexity involved, it is recommended that developers make use of a library that provides multipart upload support.
 
 Incomplete multipart uploads do persist until the object is deleted or the multipart upload is aborted with `AbortIncompleteMultipartUpload`. If an incomplete multipart upload is not aborted, the partial upload continues to use resources. Interfaces should be designed with this point in mind, and clean up incomplete multipart uploads.
-{:tip}
+{: tip}
 
 There are three phases to uploading an object in multiple parts:
 
@@ -739,8 +770,11 @@ There are three phases to uploading an object in multiple parts:
 
 A `POST` issued to an object with the query parameter `upload` creates a new `UploadId` value, which is then be referenced by each part of the object being uploaded.
 
-**Note**: Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
-{:tip}
+Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
+{: note}
+
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+{: note}
 
 **Syntax**
 
@@ -799,8 +833,11 @@ Content-Length: 276
 
 A `PUT` request that is issued to an object with query parameters `partNumber` and `uploadId` will upload one part of an object. The parts can be uploaded serially or in parallel, but must be numbered in order.
 
-**Note**: Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
-{:tip}
+Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
+{: note}
+
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+{: note}
 
 **Syntax**
 
@@ -858,6 +895,8 @@ Content-Length: 0
 
 A `GET` given a path to a multipart object with an active `UploadID` specified as a query parameter returns a list of all of the object's parts.
 
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+{: note}
 
 **Syntax**
 
@@ -940,6 +979,9 @@ Content-Length: 743
 {: #object-operations-multipart-complete}
 
 A `POST` request that is issued to an object with query parameter `uploadId` and the appropriate XML block in the body will complete a multipart upload.
+
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+{: note}
 
 **Syntax**
 
@@ -1035,6 +1077,9 @@ Content-Length: 364
 
 A `DELETE` request issued to an object with query parameter `uploadId` deletes all unfinished parts of a multipart upload.
 
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+{: note}
+
 **Syntax**
 
 ```bash
@@ -1085,6 +1130,9 @@ An archived object must be restored before downloading or modifying the object. 
 For buckets with a lifecycle policy transition storage class of `GLACIER`, there can be a delay of up to 12 hours before the restored copy is available for access. If the transition storage class was set to `ACCELERATED`, there can be a delay of up to two (2) hours before the restored object is available.  A HEAD request can check whether the restored copy is available.
 
 To permanently restore the object, it must be copied to a bucket that doesn't have an active lifecycle configuration.
+
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+{: note}
 
 **Syntax**
 
@@ -1169,6 +1217,9 @@ There are two ways to update the metadata on an existing object:
 
 All metadata key must be prefixed with `x-amz-meta-`
 {: tip}
+
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+{: note}
 
 ### Using PUT to update metadata
 {: #object-operations-metadata-put}

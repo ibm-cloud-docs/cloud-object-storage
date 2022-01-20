@@ -38,6 +38,13 @@ Cloud Object Storage
         [Connect from VPC (Classic)](/vpc-on-classic/vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc)
 
     {: .topicgroup}
+    Using IBM Cloud Satellite
+        satellite/about-satellite.md
+        satellite/satellite-provisioning.md
+        satellite/satellite-billing.md
+        satellite/satellite-apis.md
+
+    {: .topicgroup}
     Managing access
         iam.md
         iam/overview.md
@@ -104,6 +111,7 @@ Cloud Object Storage
         libraries/python.md
         libraries/node.md
         libraries/go.md
+        libraries/terraform.md
 
     {: .topicgroup}
     Use the command line

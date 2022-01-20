@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2020
-lastupdated: "2020-06-19"
+  years: 2019, 2022
+lastupdated: "2022-01-19"
 
 keywords: events, activity, logging, api
 
@@ -28,6 +28,9 @@ subcollection: cloud-object-storage
 
 [{{site.data.keyword.at_full_notm}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started) allows you to [audit the requests](/docs/cloud-object-storage?topic=cloud-object-storage-at-events) made against a bucket and the objects it contains.
 {: shortdesc}
+
+This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
+{: note}
 
 ## Using the console
 {: #at-console}

@@ -1,9 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-
-lastupdated: "2021-12-15"
+  years: 2017, 2022
+lastupdated: "2022-01-19"
 
 keywords: updates, releases, news, object storage
 
@@ -25,6 +24,11 @@ subcollection: cloud-object-storage
 
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
+
+## Q1 2022
+{: #updates-2022-q1}
+
+Service instances can now be created for [IBM Cloud Satellite locations](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite).
 
 ## Q4 2021
 {: #updates-2021-q4}
