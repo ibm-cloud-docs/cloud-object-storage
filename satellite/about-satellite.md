@@ -24,7 +24,7 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# About {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}?
+# About {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}
 {: #about-cos-satellite}
 
 {{site.data.keyword.cos_full_notm}} for {{site.data.keyword.satellitelong_notm}} offers users the flexibility to run a managed {{site.data.keyword.cos_short}} service on client-owned on-premises infrastructure, edge locations or third-party public cloud infrastructure. 
