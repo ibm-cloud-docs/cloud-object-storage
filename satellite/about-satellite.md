@@ -67,7 +67,7 @@ The _service endpoint_ that is used for reading and writing data typically takes
 
 ![COS on Satellite Endpoints](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/satellite_endpoints.png){: caption="Figure 2. Object Storage for Satellite Endpoints"}
 
-Keep in mind that requests made to {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} must originate from the same infrastructure hosts the service - the service endpoint is not accessible from outside of the local network.
+Keep in mind that requests made to {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} infrastructure must originate within the satellite location as the service endpoint may not be accessible from the outside of that location.
 {:note}
 
 ## What features are currently supported?

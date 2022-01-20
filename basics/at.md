@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 Use the {{site.data.keyword.at_full}} service to track how users and applications interact with {{site.data.keyword.cos_full_notm}} (COS).
 {: shortdesc}
 
-This feature is not supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
+This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
 {: note}
 
 The {{site.data.keyword.at_full_notm}} service records user-initiated activities that change the state of a service in {{site.data.keyword.cloud_notm}}. 
