@@ -59,6 +59,17 @@ Essentially, provisioning an instance of {{site.data.keyword.cos_short}} for {{s
 3. The {{site.data.keyword.satelliteshort}} administrator assigns the appropriate hosts and block storage to the new {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} cluster.
 4. The new instance is available for both {{site.data.keyword.cos_short}} bucket configuration and data operations.
 
+## Connecting to {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}
+
+In order to interact with object storage, a client makes API calls to a _service endpoint_.  In a Satellite configuration, these should not be confused with [_link endpoints_](/docs/satellite?topic=satellite-link-location-cloud) which are used for communication between services.  
+
+The _service endpoint_ that is used for reading and writing data typically takes the form of `https://s3.{location ID}.cloud-object-storage.appdomain.cloud` and can be found under the **Endpoints** section of the object storage console.
+
+![COS on Satellite Endpoints](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/satellite_endpoints.png){: caption="Figure 1. Object Storage for Satellite Endpoints"}
+
+Keep in mind that requests made to {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} must originate from the same infrastructure hosts the service - the service endpoint is not accessible from outside of the local network.
+{:note}
+
 ## What features are currently supported?
 {: #about-cos-satellite-supported}
 
@@ -76,8 +87,3 @@ Activity Tracker will log service instance creation and deletion, but not any ac
 {:important}
 
 Other features that are currently not supported (such as Activity Tracking, Metrics Monitoring, Security and Compliance Center) will be added in the future. 
-
-## Endpoints
-
-In order to interact with object storage, a client makes API calls to a _service endpoint_.  In a Satellite configuration, these should not be confused with [_link endpoints_](/docs/satellite?topic=satellite-link-location-cloud) which are used for communication between services.  The _service endpoint_ that is used typically takes the form of `https://s3.{location ID}.cloud-object-storage.appdomain.cloud` and can be found under the **Endpoints** section of the object storage console.
-
