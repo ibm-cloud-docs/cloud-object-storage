@@ -47,7 +47,7 @@ Before deploying {{site.data.keyword.cos_short}} in a Satellite location, you mu
 
 For more information on configuring hosts for storage, [see the {{site.data.keyword.satelliteshort}} documentation](/docs/satellite?topic=satellite-host-reqs#reqs-host-storage).
 
-Workloads that demand higher performance may benefit from the additional computing power provided by the Extra Large plan, regardless of total storage required.
+Unlike cloud storage which scales elastically, there may be negative performance impacts when an instance gets near capacity.  Workloads that demand higher performance may benefit from the additional computing power provided by the Extra Large plan, regardless of total storage required. 
 
 When provisioning block storage, is recommended to use a ["Silver" storage class at a minimum](/docs/satellite?topic=satellite-config-storage-ebs#sat-ebs-sc-reference) to ensure adequate performance.
 {:tip}

@@ -32,20 +32,25 @@ subcollection: cloud-object-storage
 
 Instead, storage is allocated at a fixed capacity using a "T-shirt size" model.  The available sizes are:
 
-* Small (12 TB)
-* Medium (24 TB)
-* Large (48 TB)
-* Extra Large (96 TB)
+| Object Storage capacity | Raw storage required | Monthly price |
+|-------------------------|----------------------|---------------|
+| Small (12 TB)           | 18 TB                | $480          |
+| Medium (24 TB)          | 36 TB                | $840          |
+| Large (48 TB)           | 72 TB                | $1200         |
+| Extra Large (96 TB)     | 144 TB               | $1920         |
   
-These represent usable capacity - keep in mind that the {{site.data.keyword.cos_short}} system makes use of erasure coding and requires 1.5x underlying raw storage for provisioning.
-{:important}
+The total cost for using {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} is a combination of:
+
+1. Cost of infrastructure
+2. Base {{site.data.keyword.satelliteshort}} charge
+3. {{site.data.keyword.cos_short}} fixed capacity pricing
 
 ## Choosing capacity
 {: #billing-satellite-sizing}
 
 The storage instance capacity is set during the provisioning process. You will need to work with your {{site.data.keyword.satelliteshort}} administrator to ensure that enough raw capacity exists in the underlying {{site.data.keyword.satelliteshort}} infrastructure.
 
-As each application has unique storage needs, it is not possible to provide much in the way of generic guidance for choosing a capacity. Take into account the nature of the application (for example, processing high-resolution satellite imagery or 4K video will require a greater capacity than a simple document repository) and the expected scaling of storage needs, and [consult IBM Cloud support](https://test.cloud.ibm.com/docs/get-support?topic=get-support-using-avatar) as needed.
+As each application has unique storage needs, it is not possible to provide much in the way of generic guidance for choosing a capacity. Take into account the nature of the application (for example, processing high-resolution satellite imagery or 4K video will require a greater capacity than a simple document repository) and the expected scaling of storage needs, and [consult IBM Cloud support](https://cloud.ibm.com/docs/get-support?topic=get-support-using-avatar) as needed.
 
 ## Adding capacity
 {: #billing-satellite-adding}
