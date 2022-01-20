@@ -63,7 +63,7 @@ Essentially, provisioning an instance of {{site.data.keyword.cos_short}} for {{s
 
 In order to interact with object storage, a client makes API calls to a _service endpoint_.  In a Satellite configuration, these should not be confused with [_link endpoints_](/docs/satellite?topic=satellite-link-location-cloud) which are used for communication between services.  
 
-The _service endpoint_ that is used for reading and writing data typically takes the form of `https://s3.{location ID}.cloud-object-storage.appdomain.cloud` and can be found under the **Endpoints** section of the object storage console.
+The _service endpoint_ that is used for reading and writing data typically takes the form of `https://s3.{cos-instance-uuid}.{location-id}.cloud-object-storage.appdomain.cloud` and can be found under the **Endpoints** section of the object storage console.
 
 ![COS on Satellite Endpoints](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/satellite_endpoints.png){: caption="Figure 1. Object Storage for Satellite Endpoints"}
 

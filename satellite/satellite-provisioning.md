@@ -83,5 +83,7 @@ If the location chosen for the new instance of {{site.data.keyword.cos_short}} f
 
 1. Log in to [the console](https://cloud.ibm.com/){: external}.
 2. Navigate to Satellite, by clicking **Satellite** > **Locations** in the navigation bar.
-3. Look for the acknowledgement pop-up and approve the assignment.
-   
+3. Select the **Services** tab.
+4. Look for the acknowledgement pop-up and approve the assignment.
+
+![Assign storage](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/satellite-popup.png){: caption="Figure 1. Confirming host and storage assignment."}
