@@ -203,12 +203,6 @@ The `endpoints` URL provided as part of the service credential provides a list o
           "mel01": "s3.private.mel01.cloud-object-storage.appdomain.cloud"
         }
       },
-      "osl01": {
-        "public": {"osl01": "s3.osl01.cloud-object-storage.appdomain.cloud"},
-        "private": {
-          "osl01": "s3.private.osl01.cloud-object-storage.appdomain.cloud"
-        }
-      },
       "tor01": {
         "public": {"tor01": "s3.tor01.cloud-object-storage.appdomain.cloud"},
         "private": {
