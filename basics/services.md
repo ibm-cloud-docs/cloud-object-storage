@@ -1,9 +1,9 @@
 ---
 
 copyright:
-  years: 2017, 2021
+  years: 2017, 2022
 
-lastupdated: "2021-12-15"
+lastupdated: "2022-01-28"
 
 keywords: aspera, key protect, archive, worm
 
@@ -90,7 +90,6 @@ It is possible to create a bucket and associate any available Key Protect or Hyp
 | `mex01` | No     | No          | No                             | No           | No                       | `us-south`       | No        | Yes        | `us-south` |
 | `mil01` | No     | No          | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    |
 | `mon01` | No     | No          | No                             | No           | No                       | `us-south`       | No        | Yes        | `us-south` |
-| `osl01` | No     | No          | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    |
 | `par01` | No     | No          | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    |
 | `sjc01` | No     | No          | No                             | No           | No                       | `us-south`       | No        | Yes        | `us-south` |
 | `seo01` | No     | No          | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   |
