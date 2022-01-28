@@ -1,0 +1,79 @@
+toc:
+  properties:
+    subcollection: service-name
+    category: category-value
+    audience: audience-value
+    href: /docs/subcollection-value
+    console-page: /relative/console/path
+    product-page: https://ibm.com/cloud/product-value
+    path: repo-name
+    label: Docs subcollection title
+
+#  List your getting started tutorial (getting-started.md) as the first item in the Get started nav group. See https://test.cloud.ibm.com/docs/writing?topic=writing-navigation for more details on the toc design.
+  entries: 
+  - navgroup: 
+      id: learn
+      topics:
+      - topicgroup: 
+          label: topic-group-label
+          topics:
+          - index.md
+
+  - navgroup: 
+      id: tutorial
+      topics: 
+      - topic-1.md
+      - topic-2.md
+      - topic: topic-3.md
+        navtitle: A shorter navtitle 
+
+  - navgroup: 
+      id: howto
+      topics:
+      - topic-3.md
+      - topicgroup: 
+          label: topic-group-label
+          topics: 
+          - topic-4.md
+          - topicgroup: 
+              label: nested-topic-group-label
+              topics: 
+              - topic-5.md
+
+#  Links to your REST API docs should be included in the Reference navigation group. For details on publishing API docs, see https://test.cloud.ibm.com/docs/api-docs.
+#  Links to your command line reference docs should be included in the Reference navigation group.
+  - navgroup:
+      id: reference
+      topics: 
+      - topicgroup:
+          label: API reference
+          links: 
+          - link: 
+              label: Catalog Management
+              href: https://cloud.ibm.com/apidocs/resource-catalog/private-catalog
+          - link: 
+              label: Enterprise Management
+              href: https://{DomainName}/apidocs/enterprise-apis/enterprise
+      - topicgroup:
+          label: Command reference
+          topics:
+          - /cli/cli-manage-catalogs-plugin
+          - /cli/cli-ibmcloud_commands_services
+          - /cli/cli-ibmcloud_commands_account
+      - topic-6.md
+
+  - navgroup:
+      id: help
+      topics: 
+      - support.md
+      - topicgroup: 
+          label: FAQs
+          topics: 
+          - topic-7.md
+          - topic-8.md
+      - topicgroup: 
+          label: Troubleshooting
+          topics: 
+          - topic-9.md
+          - topic-10.md
+      - release-notes.md
