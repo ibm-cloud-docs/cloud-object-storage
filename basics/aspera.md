@@ -83,3 +83,105 @@ Downloads that use Aspera high-speed transfer incur egress charges. For more inf
 {:tip}
 
 **Advanced Preferences:** You can set bandwidth for uploads and downloads.
+
+## Using the Aspera Transfer SDK
+
+1. [Download the Aspera Transfer SDK from the IBM API Hub.](https://developer.ibm.com/apis/catalog/aspera--aspera-transfer-sdk/Introduction) The SDK is a collection of binaries (command line utilities and a daemon to listen for transfer requests), configuration files, and language specific connectors.
+2. Install the grpc dependencies from the appropriate package manager (pip, maven, gem, etc).
+3. Launch the daemon and import the relevant programming language connector files to your project.
+4. Instantiate an Aspera client by passing it the local port used by the daemon.
+5. Create a `transfer_spec` containing all the information needed for the transfer:
+   1. `icos` information:
+      1. API key
+      2. Service instance ID
+      3. Target endpoint
+      4. Bucket name
+      5. Transfer direction
+      6. Remote host (you find this by sending a GET request to a bucket with a `?faspConnectionInfo` query parameter)
+      7. Assets for transfer (basically a set of file paths)
+6. Pass the transfer specification and configuration info to a transfer request.
+
+The following is an example using Python:
+
+```py
+import random
+import string
+
+import grpc
+import json
+import os.path
+
+from urllib3.connectionpool import xrange
+
+import transfer_pb2 as transfer_manager
+import transfer_pb2_grpc as transfer_manager_grpc
+
+
+def run():
+    # create a connection to the transfer manager daemon
+    client = transfer_manager_grpc.TransferServiceStub(
+        grpc.insecure_channel('localhost:55002'))
+
+    # create file
+    file_path = generate_source_file()
+
+    # create transfer spec
+    transfer_spec = {
+        "session_initiation": {
+            "icos": {
+                "api_key": os.environ.get('IBMCLOUD_API_KEY'),
+                "bucket": os.environ.get('IBMCLOUD_BUCKET'),
+                "ibm_service_instance_id": os.environ.get('IBMCLOUD_COS_INSTANCE'),
+                "ibm_service_endpoint": os.environ.get('IBMCLOUD_COS_ENDPOINT')
+            }
+        },
+        "direction": "send",
+        "remote_host": "https://ats-sl-dal.aspera.io:443",
+        "title": "strategic",
+        "assets": {
+            "destination_root": "/aspera/file",
+            "paths": [
+                {
+                    "source": file_path
+                }
+            ]
+        }
+    }
+    transfer_spec = json.dumps(transfer_spec)
+
+    # create a transfer request
+    transfer_request = transfer_manager.TransferRequest(
+        transferType=transfer_manager.FILE_REGULAR,
+        config=transfer_manager.TransferConfig(),
+        transferSpec=transfer_spec)
+
+    # send start transfer request to transfer manager daemon
+    transfer_response = client.StartTransfer(transfer_request)
+    transfer_id = transfer_response.transferId
+    print("transfer started with id {0}".format(transfer_id))
+
+    # monitor transfer status
+    for transfer_info in client.MonitorTransfers(
+            transfer_manager.RegistrationRequest(
+                filters=[transfer_manager.RegistrationFilter(
+                    transferId=[transfer_id]
+                )])):
+        print("transfer info {0}".format(transfer_info))
+
+        # check transfer status in response, and exit if it's done
+        status = transfer_info.status
+        if status == transfer_manager.FAILED or status == transfer_manager.COMPLETED:
+            print("finished {0}".format(status))
+            break
+
+
+def generate_source_file(name='file'):
+    with open(name, 'w') as file:
+        # file.write('Hello World!')
+        file.write(''.join(random.choice(string.ascii_lowercase) for i in xrange(10 ** 10)))
+    return os.path.abspath(name)
+
+
+if __name__ == '__main__':
+    run()
+```
