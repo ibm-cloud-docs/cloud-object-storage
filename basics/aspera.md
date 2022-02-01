@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-19"
+lastupdated: "2022-01-31"
 
 keywords: aspera, high speed, big data, packet loss
 
