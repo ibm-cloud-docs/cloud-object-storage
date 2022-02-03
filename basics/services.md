@@ -100,7 +100,9 @@ It is possible to create a bucket and associate any available Key Protect or Hyp
 | Location  | Aspera | Key Protect (IBM Cloud) | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
 |-----------|--------|-------------------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
 | `us-east` | No     | Yes                     | No                             | No           | No                       | No               | No        | No         | No         |
-
+| `eu-de`   | No     | Yes                     | No                             | No           | No                       | No               | No        | No         | No         |
+| `eu-gb`   | No     | Yes                     | No                             | No           | No                       | No               | No        | No         | No         |
+| `ap-tok`  | No     | Yes                     | No                             | No           | No                       | No               | No        | No         | No         |
 
 ## More information
 {: #service-availability-more-info}
