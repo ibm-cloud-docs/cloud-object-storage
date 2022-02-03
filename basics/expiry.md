@@ -297,14 +297,14 @@ service_instance_id = "85SAMPLE-eDOb-4NOT-bUSE-86nnnb31eaxx"
 auth_endpoint = "https://iam.cloud.ibm.com/identity/token"
 service_endpoint = "https://s3.us-south.cloud-object-storage.appdomain.cloud"
 
-cos = ibm_boto3.resource('s3',
+cos = ibm_boto3.client('s3',
                          ibm_api_key_id=api_key,
                          ibm_service_instance_id=service_instance_id,
                          ibm_auth_endpoint=auth_endpoint,
                          config=Config(signature_version='oauth'),
                          endpoint_url=service_endpoint)
 
-response = cos.Bucket('<name-of-bucket>').put_bucket_lifecycle_configuration(
+response = cos.put_bucket_lifecycle_configuration(
     Bucket='string',
     LifecycleConfiguration={
         'Rules': [

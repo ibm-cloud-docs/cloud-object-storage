@@ -102,6 +102,7 @@ It is possible to create a bucket and associate any available Key Protect or Hyp
 | `us-east` | No     | Yes                     | No                             | No           | No                       | No               | No        | No         | No         |
 | `eu-de`   | No     | Yes                     | No                             | No           | No                       | No               | No        | No         | No         |
 | `eu-gb`   | No     | Yes                     | No                             | No           | No                       | No               | No        | No         | No         |
+| `ap-tok`  | No     | Yes                     | No                             | No           | No                       | No               | No        | No         | No         |
 
 ## More information
 {: #service-availability-more-info}
