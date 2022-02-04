@@ -79,6 +79,9 @@ When provisioning block storage, is recommended to use a ["Silver" storage class
 ## Assign hosts and storage to object storage cluster
 {: #provision-satellite-assign}
 
+To access the Storage UI for Satellite, you must be added to the allowlist. [Contact IBM](https://www.ibm.com/contact/us/en/) to learn more.
+{:important}
+
 If the location chosen for the new instance of {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} was correctly configured with the required hosts and storage available, they will be automatically queued for assignment.  This assignment requires acknowledgement from a Satellite administrator.
 
 1. Log in to [the console](https://cloud.ibm.com/){: external}.
@@ -87,3 +90,13 @@ If the location chosen for the new instance of {{site.data.keyword.cos_short}} f
 4. Look for the acknowledgement pop-up and approve the assignment.
 
 ![Assign storage](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/satellite-popup.png){: caption="Figure 1. Confirming host and storage assignment."}
+
+Alternatively, storage can be assigned by calling the API directly:
+
+```sh
+curl -X PATCH "https://containers.cloud.ibm.com/global/v2/storage/satellite/ackDesiredStorageConfigCapacity" \
+     -H "accept: application/json" \
+     -H "Authorization: "token" \
+     -H "Content-Type: application/json" \
+     -d "{ \"cluster\": \"string\", \"controller\": \"string\", \"request-id\": \"string\"}"
+```
