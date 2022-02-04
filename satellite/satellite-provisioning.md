@@ -76,8 +76,11 @@ When provisioning block storage, is recommended to use a ["Silver" storage class
 6. [Choose a capacity](/docs/cloud-object-storage?topic=cloud-object-storage-billing-cos-satellite) for your new {{site.data.keyword.cos_short}} instance.
 7. Click **Create** and you're automatically redirected to your new instance.
 
-## Assign hosts and storage to object storage cluster
+## Assign hosts and storage to object storage cluster (using Satellite Storage UI)
 {: #provision-satellite-assign}
+
+To access the Storage UI for Satellite, you must be added to the allowlist. [Contact IBM](https://www.ibm.com/contact/us/en/) to learn more.
+{:important}
 
 If the location chosen for the new instance of {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} was correctly configured with the required hosts and storage available, they will be automatically queued for assignment.  This assignment requires acknowledgement from a Satellite administrator.
 
@@ -87,3 +90,19 @@ If the location chosen for the new instance of {{site.data.keyword.cos_short}} f
 4. Look for the acknowledgement pop-up and approve the assignment.
 
 ![Assign storage](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/satellite-popup.png){: caption="Figure 1. Confirming host and storage assignment."}
+
+<!--
+## Assign hosts and storage to object storage cluster (using IBM Cloud CLI)
+{: #provision-satellite-assign-api}
+
+Alternatively, storage can be assigned using the CLI.  You'll need to have the IDs of the cluster and the Satellite location - these can be found using the IBM Cloud CLI and running the following commands:
+
+1. `ibmcloud sat location ls`
+2. `ibmcloud ks cluster ls`
+
+Once you have that information, you can proceed to finding the storage request made by the new {{site.data.keyword.cos_short}} instance, creating a storage assignment, and approving the new storage expansion.
+
+1. First, you need to find out the storage request information using [the `getDesiredStorageConfig` API](https://containers.cloud.ibm.com/global/swagger-global-api/#/storage/getDesiredStorageConfig). This will return the `request-id` that we'll need to approve the assignment.
+2. Then create an assignment using [the `createAssignmentByCluster` API](https://containers.cloud.ibm.com/global/swagger-global-api/#/storage/createAssignmentByCluster). 
+3. Finally, approve the assignment using [the `ackDesiredStorageConfigCapacity` API](https://containers.cloud.ibm.com/global/swagger-global-api/#/storage/ackDesiredStorageConfigCapacity).
+-->
