@@ -102,6 +102,7 @@ Alternatively, storage can be assigned by calling the API directly.  In addition
 
 Once you have that information, you can proceed to finding the storage request made by the new {{site.data.keyword.cos_short}} instance, creating a storage assignment, and approving the new storage expansion.
 
-1. First, you need to find out the storage request information using [the `getDesiredStorageConfig` API](https://containers.cloud.ibm.com/global/swagger-global-api/#/storage/getDesiredStorageConfig).
-2. Then create an assignment using [the `createAssignmentByCluster` API](https://containers.cloud.ibm.com/global/swagger-global-api/#/storage/createAssignmentByCluster).
+1. First, you need to find out the storage request information using [the `getDesiredStorageConfig` API](https://containers.cloud.ibm.com/global/swagger-global-api/#/storage/getDesiredStorageConfig). This will return the `request-id` that we'll need to approve the assignment.
+2. Then create an assignment using [the `createAssignmentByCluster` API](https://containers.cloud.ibm.com/global/swagger-global-api/#/storage/createAssignmentByCluster). 
 3. Finally, approve the assignment using [the `ackDesiredStorageConfigCapacity` API](https://containers.cloud.ibm.com/global/swagger-global-api/#/storage/ackDesiredStorageConfigCapacity).
+
