@@ -312,7 +312,7 @@ A legal hold prevents an object from being overwritten or deleted. However, a le
 ### How can I access a private COS endpoint in a data center from another date center?
 {: #faq-access-pvt-cospoints}
 
-Use {{site.data.keyword.cos_short}} [Direct Link Connection]((https://cloud.ibm.com/docs/direct-link?topic=direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage)) to create a global direct link.
+Use {{site.data.keyword.cos_short}} [Direct Link Connection](/docs/direct-link?topic=direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage) to create a global direct link.
 
 ### How does frequency of data access impact the pricing of {{site.data.keyword.cos_short}}?
 {: #faq-access-price}
