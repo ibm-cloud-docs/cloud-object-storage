@@ -57,8 +57,8 @@ To avoid any disruption to your service, please complete the following steps **b
 
 You can use the IBM Cloud CLI to identify buckets located in a given location.
 
-1. First, ensure you have both the [IBM Cloud CLI](/docs/cli) and [COS plug-in](docs/cloud-object-storage?topic=cloud-object-storage-cli-plugin-ic-cos-cli) installed.
-2. After you are logged into the CLI, you can use the `ibmcloud cos buckets-extended` command to list all of the buckets in a given instacne.
+1. First, ensure you have both the [IBM Cloud CLI](/docs/cli) and [COS plug-in](/docs/cloud-object-storage?topic=cloud-object-storage-cli-plugin-ic-cos-cli) installed.
+2. After you are logged into the CLI, you can use the `ibmcloud cos buckets-extended` command to list all of the buckets in a given instance.
 3. You can filter the results using `grep`. For example, `ibmcloud cos buckets-extended | grep mon01` will return all buckets that are located in the `mon01` single data center.
 
 We're here to help! Please email us at talk-to-cos@wwpdl.vnet.ibm.com, if you have any questions or need assistance.
