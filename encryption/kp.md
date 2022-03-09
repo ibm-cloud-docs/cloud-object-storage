@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2021
-lastupdated: "2021-09-12"
+  years: 2018, 2022
+lastupdated: "2022-03-09"
 
 keywords: encryption, security, sse-c, key protect
 
