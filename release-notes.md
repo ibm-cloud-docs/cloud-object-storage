@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-19"
+lastupdated: "2022-03-09"
 
 keywords: updates, releases, news, object storage
 
@@ -27,6 +27,8 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 
 ## Q1 2022
 {: #updates-2022-q1}
+
+New buckets created in `eu` Cross Region configuration can now use [Key Protect managed encryption](/docs/cloud-object-storage?topic=cloud-object-storage-kp).
 
 Service instances can now be created for [IBM Cloud Satellite locations](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite).
 
