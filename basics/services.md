@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2022
 
-lastupdated: "2022-01-28"
+lastupdated: "2022-03-09"
 
 keywords: aspera, key protect, archive, worm
 
@@ -57,7 +57,7 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | Region | Aspera | Key Protect         | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
 |--------|--------|---------------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
 | `ap`   | Yes    | Yes (in `jp-tok`)   | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   |
-| `eu`   | Yes    | No                  | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    |
+| `eu`   | Yes    | Yes (in `eu-de`)    | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    |
 | `us`   | Yes    | Yes (in `us-south`) | Yes (failover in `us-east`)    | No           | Yes                      | `us-south`       | No        | Yes        | `us-south` |
 
 
