@@ -69,7 +69,7 @@ Ensure you have the following packages installed (all are available via [Homebre
 - `pkg-config`
 - `openssl`
 
-Be aware that [macFUSE is closed-source software](https://osxfuse.github.io) containing a kernel extension, and requires a license for commercial use.   
+Be aware that [macFUSE is closed-source software](https://osxfuse.github.io) containing a kernel extension, and may require a license for commercial use.   
 {:important}
 
 First clone the Github repository:
