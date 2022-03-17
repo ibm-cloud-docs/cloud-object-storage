@@ -11,7 +11,7 @@ subcollection: containers # <subcollection name>
 content-type: tutorial
 services: storage instances, Buckets, <subcollection names from toc> # Only if the tutorial includes multiple services. If it only uses your service, don't specify. DO NOT set any platform subcollections. 
 account-plan: lite # Set `lite` if tutorial can be completed by using only Lite plan services; Set `paid` if the tutorial requires a pay-go or subscription versions of plans for the service
-completion-time: 15m # Estimated time to complete the steps in this tutorial. Minute values are supported up to 90 minutes. Whole hours are also supported; for example: 2h
+completion-time: 10m # Estimated time to complete the steps in this tutorial. Minute values are supported up to 90 minutes. Whole hours are also supported; for example: 2h
 
 ---
 
@@ -33,13 +33,13 @@ In this tutorial, you learn how to create a bucket and choose KP encrption.  The
 
 <!-- It's recommended to include an architectural diagram that shows how the services that are used in this tutorial interact. SVG is the recommended format. If you include a diagram, include a brief text-based description of the workflow shown in the diagram, using active voice to describe the workflow. This makes the content more searchable and improves accessibility. -->
 
-![Architectural diagram](images/image.svg)
+<!-- [Architectural diagram](images/image.svg)
 {: figure caption="Figure 1. A diagram that shows the architecture for my tutorial."}
 
 The pipeline that you create has the following architecture:
 1. Create a bucket
 1. Choose KP encryption
-1. Verify that it works
+1. Verify that it works-->
 
 ## Before you begin
 {: #kp-encrypt-bucket-prereqs}
@@ -84,6 +84,7 @@ If bucket creation fails with a `400 Bad Request` error with the message `The Ke
 {:tip}
 
 In the **Buckets** listing, the bucket has a _View_ link under **Attributes** where you can verify that the bucket has a Key Protect key enabled.
+
 ## Verify that it works
 {: #kp-encrypt-bucket}
 {: step}
