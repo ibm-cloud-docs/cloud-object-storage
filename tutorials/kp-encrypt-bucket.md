@@ -2,14 +2,16 @@
 
 copyright:
    years: 2022
-lastupdated: "2022-03-09"
+lastupdated: "2022-03-17"
 
-keywords: 
+keywords: tutorials
 
-subcollection: containers # <subcollection name>
+subcollection: service-name # <To find this value, look up the subcollection value in that service's `toc.yaml` file and use the exact value (case matters). Do not add your own subcollection value, and do not set any platform subcollection values.>
 
+In the YAML definiton, add:
+```yaml
 content-type: tutorial
-services: storage instances, Buckets, <subcollection names from toc> # Only if the tutorial includes multiple services. If it only uses your service, don't specify. DO NOT set any platform subcollections. 
+services: <subcollection names from toc> # Only if the tutorial includes multiple services. If it only uses your service, don't specify. DO NOT set any platform subcollections. 
 account-plan: lite # Set `lite` if tutorial can be completed by using only Lite plan services; Set `paid` if the tutorial requires a pay-go or subscription versions of plans for the service
 completion-time: 10m # Estimated time to complete the steps in this tutorial. Minute values are supported up to 90 minutes. Whole hours are also supported; for example: 2h
 
