@@ -244,12 +244,12 @@ When creating a client by using a library that requires an "auth" endpoint value
 ## Using service credentials for single-bucket access
 {: #service-credentials-bucket}
 
-When a service credential is created, the underlying Service ID is granted a role on the entire instance of {{site.data.keyword.cos_short}}. If the intention that the credential be used to grant,  access to a subset of buckets and not the entire instance, this policy needs to be edited. See the [Bucket permissions](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions) page for more details.
+When a service credential is created, the underlying Service ID is granted a role on the entire instance of {{site.data.keyword.cos_short}}. If the intention that the credential be used to grant access to a subset of buckets and not the entire instance, this policy needs to be edited. See the [Bucket permissions](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions) page for more details.
 
 ## API Key vs HMAC
 {: #service-credentials-iam-hmac}
 
-In general IAM API Keys are the preferred method of authentication for {{site.data.keyword.cos_full}}. HMAC is supported primarily for compatibility with an earlier version with applications which migrated from IaaS {site.data.keyword.cos_short}} and legacy S3 applications. IAM is also natively supported when developing applications with the COS SDKs. Token expiration and refresh are handled automatically to simplify the process.
+In general IAM API Keys are the preferred method of authentication for {{site.data.keyword.cos_full}}. HMAC is supported primarily for compatibility with an earlier version with applications which migrated from IaaS {{site.data.keyword.cos_short}} and legacy S3 applications. IAM is also natively supported when developing applications with the COS SDKs. Token expiration and refresh are handled automatically to simplify the process.
 
 
 For more information about IAM visit - [Getting started with IAM](/docs/cloud-object-storage?topic=cloud-object-storage-iam)
