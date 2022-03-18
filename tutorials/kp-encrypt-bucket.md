@@ -61,7 +61,7 @@ You will also need to ensure that a service instance is created by using the [IB
 <!-- For each step in your tutorial, add an H2 section. The title should be task-oriented and descriptive. If you find your tutorial going over 9 steps, consider whether your substeps can be grouped differently or whether your tutorial should be a multi-part series. -->
 
 ## Create a bucket
-{: #kp-encrypt-bucket}
+{: #kp-encrypt-bucket-create}
 {: step}
 
 When your key exists in Key Protect and you authorize a service for use with IBM COS, associate the key with a new bucket:
@@ -75,7 +75,7 @@ You can choose to use Key Protect to manage encryption for a bucket only at the 
 {:important}
 
 ## Choose KP encryption
-{: #kp-encrypt-bucket}
+{: #kp-encrypt-bucket-select}
 {: step}
 1. Scroll down to **Service integrations (optional)**, toggle **Key management disabled** to enable encryption key management and click on **Use existing instance**.
 2. Select the associated service instance and key, and click **Associate key**.
@@ -88,12 +88,11 @@ If bucket creation fails with a `400 Bad Request` error with the message `The Ke
 In the **Buckets** listing, the bucket has a _View_ link under **Attributes** where you can verify that the bucket has a Key Protect key enabled.
 
 ## Verify that it works
-{: #kp-encrypt-bucket}
+{: #kp-encrypt-bucket-verify}
 {: step}
-1. Scroll down to **Service integrations (optional)**, toggle **Key management disabled** to enable encryption key management and click on **Use existing instance**.
-2. Select the associated service instance and key, and click **Associate key**.
+1. In the **Buckets** listing, the bucket has **Advanced Configurations** where you can click the tab to verify that the bucket has Key Protect enabled.
+2. Scroll down to **Advanced configurations** and locate **Associated key management service** .
 3. Verify the information is correct.
-3. Click **Create bucket**.
 
 <!-- Introduce each major step with a description of what it will accomplish. If there are sequential substeps, use an ordered list for each substep. Don't include the step number. -->
 
