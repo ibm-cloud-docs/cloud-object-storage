@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2021
-lastupdated: "2021-09-12"
+lastupdated: "2021-12-15"
 
 keywords: encryption, security, {{site.data.keyword.hscrypto}}
 
@@ -28,6 +28,9 @@ subcollection: cloud-object-storage
 {: #hpcs}
 
 You can use [{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-crypto-overview) to create, add, and manage keys, which you can then associate with your instance of IBM® Cloud Object Storage to encrypt buckets.
+
+This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
+{: note}
 
 ## Before you begin
 {: #hpcs-begin}
@@ -77,7 +80,7 @@ When your key exists in {{site.data.keyword.hscrypto}} and you authorized the se
 1. Navigate to your instance of Object Storage.
 2. Click **Create bucket**.
 3. Select **Custom bucket**.
-3. Enter a bucket name, select the resiliency (only Regional and US Cross-Region are currently supported), and choose a location and storage class.
+3. Enter a bucket name, select the resiliency (only Regional and US Cross Region are currently supported), and choose a location and storage class.
 4. In **Service integrations**, toggle **Key management disabled** to enable encryption key management and click on **Use existing instance**.
 5. Select the associated service instance and key, and click **Associate key**.
 5. Verify the information is correct.
@@ -128,9 +131,9 @@ ibmcloud tke cryptounit-compare
 
 Make sure all of them are valid and have same verification pattern.
 
-Once the presence of the failover configuration is verified, you may proceed to create the cross-region bucket using the key from that {{site.data.keyword.hscrypto}} instance.
+Once the presence of the failover configuration is verified, you may proceed to create the Cross Region bucket using the key from that {{site.data.keyword.hscrypto}} instance.
 
-If the cross-region bucket creation in US Cross Region with a {{site.data.keyword.hscrypto}} root key fails with a `500` error, then the user is advised to check if the status of failover configuration for that {{site.data.keyword.hscrypto}} instance (using the methods detailed above) before reattempting the bucket creation.
+If the Cross Region bucket creation in US Cross Region with a {{site.data.keyword.hscrypto}} root key fails with a `500` error, then the user is advised to check if the status of failover configuration for that {{site.data.keyword.hscrypto}} instance (using the methods detailed above) before reattempting the bucket creation.
 {:important}
 
 

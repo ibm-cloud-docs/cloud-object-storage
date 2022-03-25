@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2022
+lastupdated: "2022-01-19"
 
 keywords: administrator, object storage, access, iam
 

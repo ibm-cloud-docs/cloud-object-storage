@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2022
+lastupdated: "2022-03-14"
 
 keywords: s3fs, open source, file system, gateway
 
@@ -41,19 +41,11 @@ Looking for instructions for how to use {{site.data.keyword.cos_full}} in an {{s
 {: #s3fs-prereqs}
 
 * IBM Cloud account and an instance of {{site.data.keyword.cos_full}}
-* A Linux or OSX environment
+* A Linux or macOS environment
 * Credentials (either an [IAM API key](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview) or [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main))
 
 ## Installation
 {: #s3fs-install}
-
-On OSX, use [Homebrew](https://brew.sh/):
-
-```sh
-brew cask install osxfuse
-brew install s3fs
-```
-{:codeblock}
 
 On Debian or Ubuntu: 
 
@@ -65,7 +57,22 @@ sudo apt-get install automake autotools-dev fuse g++ git libcurl4-openssl-dev li
 The official `s3fs` documentation suggests using `libcurl4-gnutls-dev` instead of `libcurl4-openssl-dev`. Either work, but the OpenSSL version may result in better performance. 
 {:tip}
 
-You can also build `s3fs` from source. First clone the Github repository:
+For macOS, you will need to build `s3fs` from source:
+
+Ensure you have the following packages installed (all are available via [Homebrew](https://brew.sh)):
+
+- `macfuse`
+- `automake`
+- `gcc`
+- `curl`
+- `libxml2`
+- `pkg-config`
+- `openssl`
+
+Be aware that [macFUSE is closed-source software](https://osxfuse.github.io) containing a kernel extension, and requires a license for commercial use.   
+{:important}
+
+First clone the Github repository:
 
 ```sh
 git clone https://github.com/s3fs-fuse/s3fs-fuse.git 
