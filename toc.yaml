@@ -101,7 +101,6 @@ toc:
           - basics/immutable.md
           - basics/classes.md
           - basics/static-websites-options.md
-        links:
           - link:
               label: Connect to resources using a CDN
               href: https://cloud.ibm.com/docs/CDN/CDN-configure-cdn-with-ibm-cloud-object-storage
@@ -119,6 +118,7 @@ toc:
         topics:
           - topicgroup:
               label: API reference
+              topics:
               links:
                 - link:
                     label: Cloud Object Storage S3 API
