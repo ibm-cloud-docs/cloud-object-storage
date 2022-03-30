@@ -52,11 +52,11 @@ toc:
                 - basics/services.md
               links:
                 - link:
-                  label: Connect from VPC
-                  href: /vpc/vpc-connecting-vpc-cos
+                    label: Connect from VPC
+                    href: https://cloud.ibm.com/docs/vpc/vpc-connecting-vpc-cos
                 - link:
-                  label: Connect from VPC (Classic)
-                  href: /vpc-on-classic/vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc
+                    label: Connect from VPC (Classic)
+                    href: https://cloud.ibm.com/docs/vpc-on-classic/vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc
           - topicgroup:
               label: Using IBM Cloud Satellite
               topics:
@@ -103,8 +103,8 @@ toc:
           - basics/static-websites-options.md
         links:
           - link:
-            label: Connect to resources using a CDN
-            href: /CDN/CDN-configure-cdn-with-ibm-cloud-object-storage
+              label: Connect to resources using a CDN
+              href: https://cloud.ibm.com/docs/CDN/CDN-configure-cdn-with-ibm-cloud-object-storage
           - basics/multipart.md
           - basics/deleting-multiple-objects.md
           - basics/sql.md
@@ -121,11 +121,11 @@ toc:
               label: API reference
               links:
                 - link:
-                  label: Cloud Object Storage S3 API
-                  href: https://cloud.ibm.com/apidocs/cos/cos-compatibility
+                    label: Cloud Object Storage S3 API
+                    href: https://cloud.ibm.com/apidocs/cos/cos-compatibility
                 - link:
-                  label: Resource Configuration API
-                  href: https://cloud.ibm.com/apidocs/cos/cos-configuration
+                    label: Resource Configuration API
+                    href: https://cloud.ibm.com/apidocs/cos/cos-configuration
                 - api-reference/about-api.md
                 - api-reference/common-headers-errors.md
                 - api-reference/api-reference-buckets.md
@@ -165,5 +165,5 @@ toc:
                 - help/flex-pricing.md
               links:
                 - link:
-                  label: Pricing
-                  href: https://cloud.ibm.com/objectstorage/create#pricing
+                    label: Pricing
+                    href: https://cloud.ibm.com/objectstorage/create#pricing
