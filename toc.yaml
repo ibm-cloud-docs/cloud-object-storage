@@ -10,35 +10,35 @@ toc:
     label: Object Storage
   entries:
     - navgroup:
-      id: learn
-      topics:
-        - getting-started.md
-        - about-cos.md
-        - topicgroup:
-          label: Getting organized
-          topics:
-            - basics/administrators.md
-            - basics/developers.md
-        - topicgroup:
-          label: Optimizing performance
-          topics:
-            - performance/topology.md
-            - performance/data-io.md
-            - performance/bottlenecks.md
-        - cos-responsibilities.md
-        - quick-facts.md
-        - release-notes.md
+        id: learn
+        topics:
+          - getting-started.md
+          - about-cos.md
+          - topicgroup:
+            label: Getting organized
+            topics:
+              - basics/administrators.md
+              - basics/developers.md
+          - topicgroup:
+            label: Optimizing performance
+            topics:
+              - performance/topology.md
+              - performance/data-io.md
+              - performance/bottlenecks.md
+          - cos-responsibilities.md
+          - quick-facts.md
+          - release-notes.md
     - navgroup:
         id: tutorial
         topics:
-        - link: 
-            label: Tutorials library for Object Storage
-            href: https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage
-        - tutorials/migrate.md
-        - tutorials/web-application.md
-        - tutorials/cloudyr.md
-        - tutorials/static-website.md
-        - /direct-link/direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage
+          - link:
+              label: Tutorials library for Object Storage
+              href: https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage
+          - tutorials/migrate.md
+          - tutorials/web-application.md
+          - tutorials/cloudyr.md
+          - tutorials/static-website.md
+          - /direct-link/direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage
     - navgroup:
       id: howto
       topics:
@@ -163,10 +163,9 @@ toc:
           - topicgroup:
               label: Billing and pricing
               topics:
-              - help/billing.md
-              - help/flex-pricing.md
+                - help/billing.md
+                - help/flex-pricing.md
               links:
                 - link:
                   label: Pricing
                   href: https://cloud.ibm.com/objectstorage/create#pricing
-
