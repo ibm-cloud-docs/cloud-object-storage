@@ -1,6 +1,7 @@
 toc:
   properties:
     subcollection: cloud-object-storage
+    service-name: cloud-object-storage
     category: storage
     audience: service
     href: /docs/cloud-object-storage
