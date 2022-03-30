@@ -118,7 +118,6 @@ toc:
         topics:
           - topicgroup:
               label: API reference
-              topics:
               links:
                 - link:
                     label: Cloud Object Storage S3 API
@@ -126,6 +125,7 @@ toc:
                 - link:
                     label: Resource Configuration API
                     href: https://cloud.ibm.com/apidocs/cos/cos-configuration
+              topics:
                 - api-reference/about-api.md
                 - api-reference/common-headers-errors.md
                 - api-reference/api-reference-buckets.md
