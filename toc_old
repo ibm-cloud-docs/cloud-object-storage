@@ -1,0 +1,174 @@
+{:navgroup: .navgroup}
+{:topicgroup: .topicgroup}
+
+{: .toc subcollection="cloud-object-storage" category="storage" audience="service" href="/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage" path="cloud-object-storage"}
+Cloud Object Storage
+
+    {: .navgroup id="learn"}
+    getting-started.md
+    about-cos.md
+    [Feature overview](https://www.ibm.com/cloud/object-storage)
+
+    {: .topicgroup}
+    Getting organized
+        basics/administrators.md
+        basics/developers.md
+
+    {: .topicgroup}
+    Optimizing performance
+        performance/topology.md
+        performance/data-io.md
+        performance/bottlenecks.md
+
+    cos-responsibilities.md
+    quick-facts.md
+    release-notes.md
+    {: .navgroup-end}
+
+    {: .navgroup id="howto"}
+    basics/order-storage.md
+
+    {: .topicgroup}
+    Choose regions and connect services
+        basics/endpoints.md
+        info/advanced_endpoints.md
+        info/endpoint-remap.md
+        basics/services.md
+        [Connect from VPC](/vpc/vpc-connecting-vpc-cos)
+        [Connect from VPC (Classic)](/vpc-on-classic/vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc)
+
+    {: .topicgroup}
+    Using IBM Cloud Satellite
+        satellite/about-satellite.md
+        satellite/satellite-provisioning.md
+        satellite/satellite-billing.md
+        satellite/satellite-apis.md
+
+    {: .topicgroup}
+    Managing access
+        iam.md
+        iam/overview.md
+        iam/service-credentials.md
+        iam/buckets.md
+        iam/public-access.md
+        basics/firewall.md
+
+    {: .topicgroup}
+    Managing encryption
+        encryption/overview.md
+        encryption/sse-c.md
+        encryption/kp.md
+        encryption/hpcs.md
+
+    {: .topicgroup}
+    Using Access/Secret Key (HMAC) authentication
+        hmac/credentials.md
+        hmac/hmac-signature.md
+        hmac/presigned-urls.md
+    
+    {: .topicgroup}
+    Managing a bucket's lifecycle configurations
+        basics/archive.md
+        basics/expiry.md
+        basics/abort-mpu.md
+
+    basics/upload.md
+    versioning.md
+    basics/closures.md
+    basics/object-tagging.md
+    tutorials/cos-region-copy.md
+    basics/aspera.md
+    basics/immutable.md
+    basics/classes.md
+    basics/static-websites-options.md
+    [Connect to resources using a CDN](/CDN/CDN-configure-cdn-with-ibm-cloud-object-storage)
+    basics/multipart.md
+    basics/deleting-multiple-objects.md
+    basics/sql.md
+    basics/activity-tracker.md
+    basics/quota.md
+    basics/metrics-monitoring.md
+    basics/functions.md
+    basics/ftp.md
+    file-gateway.md
+    {: .navgroup-end}
+
+    {: .navgroup id="reference"}
+    {: .topicgroup}
+    API reference
+        api-reference/about-api.md
+        api-reference/common-headers-errors.md
+        api-reference/api-reference-buckets.md
+        api-reference/api-reference-objects.md
+        [Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration)
+        api-reference/postman.md
+
+    {: .topicgroup}
+    Libraries
+        libraries/overview-sdks.md
+        libraries/getting-started-sdks.md
+        libraries/java.md
+        libraries/python.md
+        libraries/node.md
+        libraries/go.md
+        libraries/terraform.md
+
+    {: .topicgroup}
+    Use the command line
+        /cloud-object-storage-cli-plugin/cloud-object-storage-cli-plugin-ic-cos-cli
+        cli/curl.md
+        cli/aws-cli.md
+        cli/s3fs.md
+        cli/minio.md
+        cli/rclone.md
+
+    {: .topicgroup}
+    Desktop clients
+        gui/cyberduck.md
+        gui/cloudberry.md
+        gui/simpana.md
+
+    basics/at.md
+    iam-at.md
+    
+    {: .topicgroup}
+    Tutorials
+        [Get started with Watson Studio](https://developer.ibm.com/clouddataservices/docs/cos/get-started/)
+        [Upload files using IBM Cloud Functions](https://medium.com/codait/keeping-your-secrets-between-cloud-object-storage-and-your-browser-part-1-68f4b83bbd38)
+        [Detach Cloudant Attachments to IBM COS](https://medium.com/ibm-watson-data-lab/detaching-cloudant-attachments-to-object-storage-with-serverless-functions-99b8c3c77925)
+        tutorials/static-website.md
+        [Build, deploy and scale real-world solutions on IBM Cloud.](https://cloud.ibm.com/docs/tutorials/index.html#tutorials)
+        [File-like access to IBM COS using s3fs](https://medium.com/@ozeri/file-like-access-to-ibm-cloud-object-storage-using-s3fs-f5094ed42594)
+        tutorials/migrate.md
+        tutorials/web-application.md
+        tutorials/cloudyr.md
+        [Connect to IBM COS using IBM Cloud Direct Link](/direct-link/direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage)
+
+    {: .topicgroup}
+    Technical guides
+        info/developer-guidance.md
+        [Using Cloud Object Storage with Kubernetes](https://cloud.ibm.com/docs/containers?topic=containers-object_storage)
+        info/cof.md
+        info/activestorage.md
+        [Use Velero for Kubernetes Backups](https://velero.io/docs/v1.3.2/contributions/ibm-config/)
+        help/object-storage.md
+        info/cis-routing-rules-for-cos.md
+
+    {: .topicgroup}
+    Security and compliance
+        manage-scc.md
+        info/data-security-encryption.md
+        compliance.md
+        eu.md
+    {: .navgroup-end}
+
+    {: .navgroup id="help"}
+    help/faq.md
+    help/support.md
+
+    {: .topicgroup}
+    Billing and pricing
+        help/billing.md
+        [Pricing](https://cloud.ibm.com/objectstorage/create#pricing)
+        help/flex-pricing.md
+    {: .navgroup-end}
