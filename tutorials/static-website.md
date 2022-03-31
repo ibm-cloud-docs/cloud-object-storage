@@ -130,7 +130,7 @@ ibmcloud cos object-put --bucket BUCKET_NAME --key KEY [--body FILE_PATH]
 You may have already completed the basic configuration for hosting your static website. Files can be uploaded directly in the Console once you've named and configured your bucket. Note the step is optional as shown in Figure 4, and can occur at any point before the testing of your new hosted website.
 {: ui}
 
-![Upload files](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-upload-files.jpg){: console}
+![Upload files](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-upload-files.jpg){: ui}
 
 For the rest of the tutorial, we will assume that the object key for the index page is `index.html` and the key for the error document is `error.html` although any appropriate filename can be used for the suffix or key.
 
