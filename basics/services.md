@@ -66,14 +66,14 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 
 | Region     | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
 |------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
-| `au-syd`   | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `au-syd`         | No        | Yes        | `au-syd`   |
-| `ap-tok`   | Yes    | Yes         | No                             | Yes          | Yes                      | `ap-tok`         | Yes       | Yes        | `ap-tok`   |
-| `ap-osa`   | No     | Yes         | No                             | Yes          | Yes                      | `ap-osa`         | Yes       | Yes        | `ap-osa`   |
+| `au-syd`   | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `au-syd`         | Yes       | Yes        | `au-syd`   |
+| `jp-tok`   | Yes    | Yes         | No                             | Yes          | Yes                      | `ap-tok`         | Yes       | Yes        | `ap-tok`   |
+| `jp-osa`   | No     | Yes         | No                             | Yes          | Yes                      | `ap-osa`         | Yes       | Yes        | `ap-osa`   |
 | `eu-gb`    | Yes    | Yes         | No                             | Yes          | Yes                      | `eu-gb`          | Yes       | Yes        | `eu-gb`    |
 | `eu-de`    | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `eu-de`          | Yes       | Yes        | `eu-de`    |
 | `us-south` | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `us-south`       | Yes       | Yes        | `us-south` |
 | `us-east`  | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `us-east`        | Yes       | Yes        | `us-east`  |
-| `ca-tor`   | No     | Yes         | No                             | Yes          | Yes                      | `ca-tor`         | No        | Yes        | `ca-tor`   |
+| `ca-tor`   | No     | Yes         | No                             | Yes          | Yes                      | `ca-tor`         | Yes       | Yes        | `ca-tor`   |
 | `br-sao`   | No     | Yes         | No                             | Yes          | Yes                      | `br-sao`         | No        | Yes        | `br-sao`   |
 
 It is possible to create a bucket and associate any available Key Protect or Hyper Protect Crypto Services instance with any of the listed Cloud Object Storage locations. Hyper Protect Crypto Services is only available in selected locations and it is your responsibility to ensure the location/region you select meets any pertinent requirements. Please refer to [Hyper Protect Crypto Services documentation](/docs/hs-crypto?topic=hs-crypto-regions) for a list of regions/locations currently available. 
@@ -102,7 +102,7 @@ It is possible to create a bucket and associate any available Key Protect or Hyp
 | `us-east` | No     | Yes                     | No                             | No           | No                       | No               | No        | No         | No         |
 | `eu-de`   | No     | Yes                     | No                             | No           | No                       | No               | No        | No         | No         |
 | `eu-gb`   | No     | Yes                     | No                             | No           | No                       | No               | No        | No         | No         |
-| `ap-tok`  | No     | Yes                     | No                             | No           | No                       | No               | No        | No         | No         |
+| `jp-tok`  | No     | Yes                     | No                             | No           | No                       | No               | No        | No         | No         |
 
 ## More information
 {: #service-availability-more-info}
