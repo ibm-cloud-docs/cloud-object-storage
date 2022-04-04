@@ -1,9 +1,9 @@
 ---
 
 copyright:
-  years: 2017, 2021
+  years: 2017, 2022
 
-lastupdated: "2021-12-15"
+lastupdated: "2022-04-05"
 
 keywords: aspera, key protect, archive, worm
 
@@ -46,8 +46,6 @@ For more information about the following services, be sure to check out the resp
 * [Smart Tier](/docs/cloud-object-storage?topic=cloud-object-storage-billing#smart-tier-pricing-details)
 * [Monitoring](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration)
 
-
-
 Downloads that use Aspera high-speed transfer incur extra egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage).
 {: tip}
 
@@ -57,7 +55,7 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | Region | Aspera | Key Protect         | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
 |--------|--------|---------------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
 | `ap`   | Yes    | Yes (in `jp-tok`)   | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   |
-| `eu`   | Yes    | No                  | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    |
+| `eu`   | Yes    | Yes (in `eu-de`)    | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    |
 | `us`   | Yes    | Yes (in `us-south`) | Yes (failover in `us-east`)    | No           | Yes                      | `us-south`       | No        | Yes        | `us-south` |
 
 
@@ -66,15 +64,15 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 
 | Region     | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
 |------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
-| `au-syd`   | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `au-syd`         | No        | Yes        | `au-syd`   |
-| `ap-tok`   | Yes    | Yes         | No                             | Yes          | Yes                      | `ap-tok`         | Yes       | Yes        | `ap-tok`   |
-| `ap-osa`   | No     | Yes         | No                             | Yes          | Yes                      | `ap-osa`         | Yes       | Yes        | `ap-osa`   |
-| `eu-gb`    | Yes    | Yes         | No                             | Yes          | Yes                      | `eu-gb`          | Yes       | Yes        | `eu-gb`    |
+| `au-syd`   | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `au-syd`         | Yes       | Yes        | `au-syd`   |
+| `jp-tok`   | Yes    | Yes         | No                             | Yes          | Yes                      | `ap-tok`         | Yes       | Yes        | `ap-tok`   |
+| `jp-osa`   | No     | Yes         | No                             | Yes          | Yes                      | `ap-osa`         | Yes       | Yes        | `ap-osa`   |
+| `eu-gb`    | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `eu-gb`          | Yes       | Yes        | `eu-gb`    |
 | `eu-de`    | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `eu-de`          | Yes       | Yes        | `eu-de`    |
 | `us-south` | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `us-south`       | Yes       | Yes        | `us-south` |
 | `us-east`  | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `us-east`        | Yes       | Yes        | `us-east`  |
-| `ca-tor`   | No     | Yes         | No                             | Yes          | Yes                      | `ca-tor`         | No        | Yes        | `ca-tor`   |
-| `br-sao`   | No     | Yes         | No                             | Yes          | Yes                      | `br-sao`         | No        | Yes        | `br-sao`   |
+| `ca-tor`   | No     | Yes         | No                             | Yes          | Yes                      | `ca-tor`         | Yes       | Yes        | `ca-tor`   |
+| `br-sao`   | No     | Yes         | No                             | Yes          | Yes                      | `br-sao`         | Yes       | Yes        | `br-sao`   |
 
 It is possible to create a bucket and associate any available Key Protect or Hyper Protect Crypto Services instance with any of the listed Cloud Object Storage locations. Hyper Protect Crypto Services is only available in selected locations and it is your responsibility to ensure the location/region you select meets any pertinent requirements. Please refer to [Hyper Protect Crypto Services documentation](/docs/hs-crypto?topic=hs-crypto-regions) for a list of regions/locations currently available. 
 {:note}
@@ -90,7 +88,6 @@ It is possible to create a bucket and associate any available Key Protect or Hyp
 | `mex01` | No     | No          | No                             | No           | No                       | `us-south`       | No        | Yes        | `us-south` |
 | `mil01` | No     | No          | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    |
 | `mon01` | No     | No          | No                             | No           | No                       | `us-south`       | No        | Yes        | `us-south` |
-| `osl01` | No     | No          | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    |
 | `par01` | No     | No          | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    |
 | `sjc01` | No     | No          | No                             | No           | No                       | `us-south`       | No        | Yes        | `us-south` |
 | `seo01` | No     | No          | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   |
@@ -101,7 +98,9 @@ It is possible to create a bucket and associate any available Key Protect or Hyp
 | Location  | Aspera | Key Protect (IBM Cloud) | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
 |-----------|--------|-------------------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|
 | `us-east` | No     | Yes                     | No                             | No           | No                       | No               | No        | No         | No         |
-
+| `eu-de`   | No     | Yes                     | No                             | No           | No                       | No               | No        | No         | No         |
+| `eu-gb`   | No     | Yes                     | No                             | No           | No                       | No               | No        | No         | No         |
+| `jp-tok`  | No     | Yes                     | No                             | No           | No                       | No               | No        | No         | No         |
 
 ## More information
 {: #service-availability-more-info}
