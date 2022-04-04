@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-03-09"
+lastupdated: "2022-04-05"
 
 keywords: updates, releases, news, object storage
 
@@ -26,6 +26,12 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
+## 5 April 2022
+{: #cloud-object-storage-apr0522}
+{: release-note}
+
+Encryption update
+:   Buckets can be created in the `eu-gb` region using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-cr) managed encryption.
 ## 9 March 2022
 {: #cloud-object-storage-mar0922}
 {: release-note}
