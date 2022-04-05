@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2022
 
-lastupdated: "2022-03-09"
+lastupdated: "2022-04-05"
 
 keywords: aspera, key protect, archive, worm
 
@@ -46,8 +46,6 @@ For more information about the following services, be sure to check out the resp
 * [Smart Tier](/docs/cloud-object-storage?topic=cloud-object-storage-billing#smart-tier-pricing-details)
 * [Monitoring](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration)
 
-
-
 Downloads that use Aspera high-speed transfer incur extra egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage).
 {: tip}
 
@@ -69,7 +67,7 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | `au-syd`   | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `au-syd`         | Yes       | Yes        | `au-syd`   |
 | `jp-tok`   | Yes    | Yes         | No                             | Yes          | Yes                      | `ap-tok`         | Yes       | Yes        | `ap-tok`   |
 | `jp-osa`   | No     | Yes         | No                             | Yes          | Yes                      | `ap-osa`         | Yes       | Yes        | `ap-osa`   |
-| `eu-gb`    | Yes    | Yes         | No                             | Yes          | Yes                      | `eu-gb`          | Yes       | Yes        | `eu-gb`    |
+| `eu-gb`    | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `eu-gb`          | Yes       | Yes        | `eu-gb`    |
 | `eu-de`    | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `eu-de`          | Yes       | Yes        | `eu-de`    |
 | `us-south` | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `us-south`       | Yes       | Yes        | `us-south` |
 | `us-east`  | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `us-east`        | Yes       | Yes        | `us-east`  |
