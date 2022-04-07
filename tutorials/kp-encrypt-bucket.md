@@ -2,7 +2,7 @@
 
 copyright:
    years: 2022
-lastupdated: "2022-03-17"
+lastupdated: "2022-04-07"
 
 keywords: tutorials
 
@@ -11,7 +11,7 @@ subcollection: service-name # <To find this value, look up the subcollection val
 In the YAML definiton, add:
 ```yaml
 content-type: tutorial
-services: <subcollection names from toc> # Only if the tutorial includes multiple services. If it only uses your service, don't specify. DO NOT set any platform subcollections. 
+services: <subcollection names from toc> # Only if the tutorial includes multiple services. If it only uses your service, don't specify. DO NOT set any platform subcollections.
 account-plan: lite # Set `lite` if tutorial can be completed by using only Lite plan services; Set `paid` if the tutorial requires a pay-go or subscription versions of plans for the service
 completion-time: 10m # Estimated time to complete the steps in this tutorial. Minute values are supported up to 90 minutes. Whole hours are also supported; for example: 2h
 
@@ -28,9 +28,9 @@ completion-time: 10m # Estimated time to complete the steps in this tutorial. Mi
 {: toc-services="storage instances, Buckets"} <!-- Only if multi-service - use same values from services metadata above-->
 {: toc-completion-time="10m"} <!-- Use same value from completion-time metadata above-->
 
-<!-- The short description should be a single, concise paragraph that contains one or two sentences and no more than 50 words. Briefly mention what the user's learning goal is and include the following SEO keywords in the title short description: IBM Cloud, ServiceName, tutorial.--> 
+<!-- The short description should be a single, concise paragraph that contains one or two sentences and no more than 50 words. Briefly mention what the user's learning goal is and include the following SEO keywords in the title short description: IBM Cloud, ServiceName, tutorial.-->
 
-In this tutorial, you learn how to create a bucket and choose KP encrption.  The final step is verifying the setup works. 
+In this tutorial, you learn how to create a bucket and choose KP encrption.  The final step is verifying the setup works.
 {: shortdesc}
 
 <!-- It's recommended to include an architectural diagram that shows how the services that are used in this tutorial interact. SVG is the recommended format. If you include a diagram, include a brief text-based description of the workflow shown in the diagram, using active voice to describe the workflow. This makes the content more searchable and improves accessibility. -->
@@ -51,6 +51,7 @@ The pipeline that you create has the following architecture:
 <!-- Note: Currently no format for checkboxes. Let's check with design if required for first pass -->
 
 {: #kp-begin}
+
 Before you plan on using Key Protect with Cloud Object Storage buckets, you need:
 
 - An [IBM Cloud™ Platform account](http://cloud.ibm.com/)
@@ -67,35 +68,37 @@ You will also need to ensure that a service instance is created by using the [IB
 When your key exists in Key Protect and you authorize a service for use with IBM COS, associate the key with a new bucket:
 
 1. Navigate to your instance of Object Storage.
-2. Click **Create bucket**.
-3. Select **Custom bucket**.
-3. Enter a bucket name, select the **Regional** resiliency, and choose a location and storage class.
+1. Click **Create bucket**.
+1. Select **Custom bucket**.
+1. Enter a bucket name, select the **Regional** resiliency, and choose a location and storage class.
 
 You can choose to use Key Protect to manage encryption for a bucket only at the time of creation. It isn't possible to change an existing bucket to use Key Protect.
-{:important}
+{: important}
 
 ## Choose KP encryption
 {: #kp-encrypt-bucket-select}
 {: step}
+
 1. Scroll down to **Service integrations (optional)**, toggle **Key management disabled** to enable encryption key management and click on **Use existing instance**.
-2. Select the associated service instance and key, and click **Associate key**.
-3. Verify the information is correct.
-3. Click **Create bucket**.
+1. Select the associated service instance and key, and click **Associate key**.
+1. Verify the information is correct.
+1. Click **Create bucket**.
 
 If bucket creation fails with a `400 Bad Request` error with the message `The Key CRN could not be found`, ensure that the CRN is correct and that the service to service authorization policy exists.
-{:tip}
+{: tip}
 
 In the **Buckets** listing, the bucket has a _View_ link under **Attributes** where you can verify that the bucket has a Key Protect key enabled.
 
 ## Verify that it works
 {: #kp-encrypt-bucket-verify}
 {: step}
+
 1. In the **Buckets** listing, the bucket has **Advanced Configurations** where you can click the tab to verify that the bucket has Key Protect enabled.
-2. Scroll down to **Advanced configurations** and locate **Associated key management service** .
-3. Verify the information is correct.
+1. Scroll down to **Advanced configurations** and locate **Associated key management service** .
+1. Verify the information is correct.
 
 <!-- Introduce each major step with a description of what it will accomplish. If there are sequential substeps, use an ordered list for each substep. Don't include the step number. -->
 
-<!-- For commands, introduce the command in a sentence first. Then surround what the user must enter in the command prompt with three backticks, and set the programming language if it applies. After the code block, add a {: pre} attribute to add a $ before the command and a copy link. --> 
+<!-- For commands, introduce the command in a sentence first. Then surround what the user must enter in the command prompt with three backticks, and set the programming language if it applies. After the code block, add a {: pre} attribute to add a $ before the command and a copy link. -->
 
 
