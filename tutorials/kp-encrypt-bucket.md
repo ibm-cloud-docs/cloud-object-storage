@@ -51,6 +51,7 @@ The pipeline that you create has the following architecture:
 <!-- Note: Currently no format for checkboxes. Let's check with design if required for first pass -->
 
 {: #kp-begin}
+
 Before you plan on using Key Protect with Cloud Object Storage buckets, you need:
 
 - An [IBM Cloud™ Platform account](http://cloud.ibm.com/)
@@ -67,32 +68,34 @@ You will also need to ensure that a service instance is created by using the [IB
 When your key exists in Key Protect and you authorize a service for use with IBM COS, associate the key with a new bucket:
 
 1. Navigate to your instance of Object Storage.
-2. Click **Create bucket**.
-3. Select **Custom bucket**.
-3. Enter a bucket name, select the **Regional** resiliency, and choose a location and storage class.
+1. Click **Create bucket**.
+1. Select **Custom bucket**.
+1. Enter a bucket name, select the **Regional** resiliency, and choose a location and storage class.
 
 You can choose to use Key Protect to manage encryption for a bucket only at the time of creation. It isn't possible to change an existing bucket to use Key Protect.
-{:important}
+{: important}
 
 ## Choose KP encryption
 {: #kp-encrypt-bucket-select}
 {: step}
+
 1. Scroll down to **Service integrations (optional)**, toggle **Key management disabled** to enable encryption key management and click on **Use existing instance**.
-2. Select the associated service instance and key, and click **Associate key**.
-3. Verify the information is correct.
-3. Click **Create bucket**.
+1. Select the associated service instance and key, and click **Associate key**.
+1. Verify the information is correct.
+1. Click **Create bucket**.
 
 If bucket creation fails with a `400 Bad Request` error with the message `The Key CRN could not be found`, ensure that the CRN is correct and that the service to service authorization policy exists.
-{:tip}
+{: tip}
 
 In the **Buckets** listing, the bucket has a _View_ link under **Attributes** where you can verify that the bucket has a Key Protect key enabled.
 
 ## Verify that it works
 {: #kp-encrypt-bucket-verify}
 {: step}
+
 1. In the **Buckets** listing, the bucket has **Advanced Configurations** where you can click the tab to verify that the bucket has Key Protect enabled.
-2. Scroll down to **Advanced configurations** and locate **Associated key management service** .
-3. Verify the information is correct.
+1. Scroll down to **Advanced configurations** and locate **Associated key management service** .
+1. Verify the information is correct.
 
 <!-- Introduce each major step with a description of what it will accomplish. If there are sequential substeps, use an ordered list for each substep. Don't include the step number. -->
 
