@@ -2,7 +2,7 @@
 
 copyright:
    years: 2022
-lastupdated: "2022-03-17"
+lastupdated: "2022-04-07"
 
 keywords: tutorials
 
@@ -11,7 +11,7 @@ subcollection: service-name # <To find this value, look up the subcollection val
 In the YAML definiton, add:
 ```yaml
 content-type: tutorial
-services: <subcollection names from toc> # Only if the tutorial includes multiple services. If it only uses your service, don't specify. DO NOT set any platform subcollections. 
+services: <subcollection names from toc> # Only if the tutorial includes multiple services. If it only uses your service, don't specify. DO NOT set any platform subcollections.
 account-plan: lite # Set `lite` if tutorial can be completed by using only Lite plan services; Set `paid` if the tutorial requires a pay-go or subscription versions of plans for the service
 completion-time: 10m # Estimated time to complete the steps in this tutorial. Minute values are supported up to 90 minutes. Whole hours are also supported; for example: 2h
 
@@ -28,9 +28,9 @@ completion-time: 10m # Estimated time to complete the steps in this tutorial. Mi
 {: toc-services="storage instances, Buckets"} <!-- Only if multi-service - use same values from services metadata above-->
 {: toc-completion-time="10m"} <!-- Use same value from completion-time metadata above-->
 
-<!-- The short description should be a single, concise paragraph that contains one or two sentences and no more than 50 words. Briefly mention what the user's learning goal is and include the following SEO keywords in the title short description: IBM Cloud, ServiceName, tutorial.--> 
+<!-- The short description should be a single, concise paragraph that contains one or two sentences and no more than 50 words. Briefly mention what the user's learning goal is and include the following SEO keywords in the title short description: IBM Cloud, ServiceName, tutorial.-->
 
-In this tutorial, you learn how to create a bucket and choose KP encrption.  The final step is verifying the setup works. 
+In this tutorial, you learn how to create a bucket and choose KP encrption.  The final step is verifying the setup works.
 {: shortdesc}
 
 <!-- It's recommended to include an architectural diagram that shows how the services that are used in this tutorial interact. SVG is the recommended format. If you include a diagram, include a brief text-based description of the workflow shown in the diagram, using active voice to describe the workflow. This makes the content more searchable and improves accessibility. -->
@@ -99,6 +99,6 @@ In the **Buckets** listing, the bucket has a _View_ link under **Attributes** wh
 
 <!-- Introduce each major step with a description of what it will accomplish. If there are sequential substeps, use an ordered list for each substep. Don't include the step number. -->
 
-<!-- For commands, introduce the command in a sentence first. Then surround what the user must enter in the command prompt with three backticks, and set the programming language if it applies. After the code block, add a {: pre} attribute to add a $ before the command and a copy link. --> 
+<!-- For commands, introduce the command in a sentence first. Then surround what the user must enter in the command prompt with three backticks, and set the programming language if it applies. After the code block, add a {: pre} attribute to add a $ before the command and a copy link. -->
 
 
