@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2022
+lastupdated: "2022-12-04"
 
 keywords: authorization, aws, hmac, signature, presign
 
@@ -59,148 +59,28 @@ Unlike AWS S3, {{site.data.keyword.cos_full_notm}} does not enforce a maximum ex
 {: #presign-url-get-python}
 
 ```python
-import datetime
-import hashlib
-import hmac
-import requests
-from requests.utils import quote
+import ibm_boto3
+import os
 
-access_key = '{COS_HMAC_ACCESS_KEY_ID}'
-secret_key = '{COS_HMAC_SECRET_ACCESS_KEY}'
+bucket_name = '<bucekt name>'
+key_name = '<object key name>'
+http_method = 'get_object'
+expiration = 600  # time in seconds, default:600
 
-# request elements
-http_method = 'GET'
-region = ''
-bucket = 'example-bucket'
-cos_endpoint = '{endpoint}'
-host = cos_endpoint
-endpoint = 'https://' + host
-object_key = 'example-object'
-expiration = 86400  # time in seconds
+access_key = os.environ.get('COS_HMAC_ACCESS_KEY_ID')
+secret_key = os.environ.get('COS_HMAC_SECRET_ACCESS_KEY')
+# Current list avaiable at https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints
+cos_service_endpoint = 'https://s3.<region>.cloud-object-storage.appdomain.cloud'
 
+cos = ibm_boto3.client("s3",
+                       aws_access_key_id=access_key,
+                       aws_secret_access_key=secret_key,
+                       endpoint_url=cos_service_endpoint
+                       )
 
-# hashing methods
-def hash(key, msg):
-    return hmac.new(key, msg.encode('utf-8'), hashlib.sha256).digest()
-
-
-# region is a wildcard value that takes the place of the AWS region value
-# as COS doen't use regions like AWS, this parameter can accept any string
-def createSignatureKey(key, datestamp, region, service):
-    keyDate = hash(('AWS4' + key).encode('utf-8'), datestamp)
-    keyRegion = hash(keyDate, region)
-    keyService = hash(keyRegion, service)
-    keySigning = hash(keyService, 'aws4_request')
-    return keySigning
-
-
-# assemble the standardized request
-time = datetime.datetime.utcnow()
-timestamp = time.strftime('%Y%m%dT%H%M%SZ')
-datestamp = time.strftime('%Y%m%d')
-
-standardized_querystring = ( 'X-Amz-Algorithm=AWS4-HMAC-SHA256' +
-                             '&X-Amz-Credential=' + access_key + '/' + datestamp + '/' + region + '/s3/aws4_request' +
-                             '&X-Amz-Date=' + timestamp +
-                             '&X-Amz-Expires=' + str(expiration) +
-                             '&X-Amz-SignedHeaders=host' )
-standardized_querystring_url_encoded = quote(standardized_querystring, safe='&=')
-
-standardized_resource = '/' + bucket + '/' + object_key
-standardized_resource_url_encoded = quote(standardized_resource, safe='&')
-
-payload_hash = 'UNSIGNED-PAYLOAD'
-standardized_headers = 'host:' + host
-signed_headers = 'host'
-
-standardized_request = (http_method + '\n' +
-                        standardized_resource + '\n' +
-                        standardized_querystring_url_encoded + '\n' +
-                        standardized_headers + '\n' +
-                        '\n' +
-                        signed_headers + '\n' +
-                        payload_hash)
-
-# assemble string-to-sign
-hashing_algorithm = 'AWS4-HMAC-SHA256'
-credential_scope = datestamp + '/' + region + '/' + 's3' + '/' + 'aws4_request'
-sts = ( hashing_algorithm + '\n' +
-        timestamp + '\n' +
-        credential_scope + '\n' +
-        hashlib.sha256(standardized_request).hexdigest() )
-
-# generate the signature
-signature_key = createSignatureKey(secret_key, datestamp, region, 's3')
-signature = hmac.new(signature_key,
-                     (sts).encode('utf-8'),
-                     hashlib.sha256).hexdigest()
-
-# create and send the request
-# the 'requests' package autmatically adds the required 'host' header
-request_url = ( endpoint + '/' +
-                bucket + '/' +
-                object_key + '?' +
-                standardized_querystring_url_encoded +
-                '&X-Amz-Signature=' +
-                signature )
-
-print 'request_url: %s' % request_url
-
-print '\nSending `%s` request to IBM COS -----------------------' % http_method
-print 'Request URL = ' + request_url
-request = requests.get(request_url)
-
-print '\nResponse from IBM COS ---------------------------------'
-print 'Response code: %d\n' % request.status_code
-print request.text
-
-
-# this information can be helpful in troubleshooting, or to better
-# understand what goes into signature creation
-print 'These are the values used to construct this request.'
-print 'Request details -----------------------------------------'
-print 'http_method: %s' % http_method
-print 'host: %s' % host
-print 'region: %s' % region
-print 'endpoint: %s' % endpoint
-print 'bucket: %s' % bucket
-print 'object_key: %s' % object_key
-print 'timestamp: %s' % timestamp
-print 'datestamp: %s' % datestamp
-
-print 'Standardized request details ----------------------------'
-print 'standardized_resource: %s' % standardized_resource_url_encoded
-print 'standardized_querystring: %s' % standardized_querystring_url_encoded
-print 'standardized_headers: %s' % standardized_headers
-print 'signed_headers: %s' % signed_headers
-print 'payload_hash: %s' % payload_hash
-print 'standardized_request: %s' % standardized_request
-
-print 'String-to-sign details ----------------------------------'
-print 'credential_scope: %s' % credential_scope
-print 'string-to-sign: %s' % sts
-print 'signature_key: %s' % signature_key
-print 'signature: %s' % signature
-
-print 'Because the signature key has non-ASCII characters, it is'
-print 'necessary to create a hexadecimal digest for the purposes'
-print 'of checking against this example.'
-
-def hex_hash(key, msg):
-    return hmac.new(key, msg.encode('utf-8'), hashlib.sha256).hexdigest()
-def createHexSignatureKey(key, datestamp, region, service):
-    keyDate = hex_hash(('AWS4' + key).encode('utf-8'), datestamp)
-    keyRegion = hex_hash(keyDate, region)
-    keyService = hex_hash(keyRegion, service)
-    keySigning = hex_hash(keyService, 'aws4_request')
-    return keySigning
-
-signature_key_hex = createHexSignatureKey(secret_key, datestamp, region, 's3')
-
-print 'signature_key (hexidecimal): %s' % signature_key_hex
-
-print 'Header details ------------------------------------------'
-print 'pre-signed url: %s' % request_url
+signedUrl = cos.generate_presigned_url(http_method, Params={
+                                       'Bucket': bucket_name, 'Key': key_name}, ExpiresIn=expiration)
+print("presigned download URL =>" + signedUrl)
 ```
 
 ### Java Example
@@ -443,147 +323,28 @@ public class CoSHMAC {
 {: #presign-url-put-python}
 
 ```python
-import datetime
-import hashlib
-import hmac
-import requests
-from requests.utils import quote
+import ibm_boto3
+import os
 
-access_key = '{COS_HMAC_ACCESS_KEY_ID}'
-secret_key = '{COS_HMAC_SECRET_ACCESS_KEY}'
+bucket_name = '<bucket name>'
+key_name = '<object key name>'
+http_method = 'put_object'
+expiration = 600  # time in seconds, default:600
 
-# request elements
-http_method = 'PUT'
-region = ''
-bucket = 'example-bucket'
-cos_endpoint = '{endpoint}'
-host = cos_endpoint
-endpoint = 'https://' + host
-object_key = 'example-object'
-expiration = 3600  # time in seconds
+access_key = os.environ.get('COS_HMAC_ACCESS_KEY_ID')
+secret_key = os.environ.get('COS_HMAC_SECRET_ACCESS_KEY')
+# Current list avaiable at https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints
+cos_service_endpoint = 'https://s3.<region>.cloud-object-storage.appdomain.cloud'
 
+cos = ibm_boto3.client("s3",
+                       aws_access_key_id=access_key,
+                       aws_secret_access_key=secret_key,
+                       endpoint_url=cos_service_endpoint
+                       )
 
-# hashing methods
-def hash(key, msg):
-    return hmac.new(key, msg.encode('utf-8'), hashlib.sha256).digest()
-
-
-# region is a wildcard value that takes the place of the AWS region value
-# as COS doen't use regions like AWS, this parameter can accept any string
-def createSignatureKey(key, datestamp, region, service):
-    keyDate = hash(('AWS4' + key).encode('utf-8'), datestamp)
-    keyRegion = hash(keyDate, region)
-    keyService = hash(keyRegion, service)
-    keySigning = hash(keyService, 'aws4_request')
-    return keySigning
-
-
-# assemble the standardized request
-time = datetime.datetime.utcnow()
-timestamp = time.strftime('%Y%m%dT%H%M%SZ')
-datestamp = time.strftime('%Y%m%d')
-
-standardized_querystring = ('X-Amz-Algorithm=AWS4-HMAC-SHA256' +
-                            '&X-Amz-Credential=' + access_key + '/' + datestamp + '/' + region + '/s3/aws4_request' +
-                            '&X-Amz-Date=' + timestamp +
-                            '&X-Amz-Expires=' + str(expiration) +
-                            '&X-Amz-SignedHeaders=host')
-standardized_querystring_url_encoded = quote(standardized_querystring, safe='&=')
-
-standardized_resource = '/' + bucket + '/' + object_key
-standardized_resource_url_encoded = quote(standardized_resource, safe='&')
-
-payload_hash = 'UNSIGNED-PAYLOAD'
-standardized_headers = 'host:' + host + '\n'
-signed_headers = 'host'
-
-standardized_request = (http_method + '\n' +
-                        standardized_resource + '\n' +
-                        standardized_querystring_url_encoded + '\n' +
-                        standardized_headers + '\n' +
-                        signed_headers + '\n' +
-                        payload_hash)
-
-# assemble string-to-sign
-hashing_algorithm = 'AWS4-HMAC-SHA256'
-credential_scope = datestamp + '/' + region + '/' + 's3' + '/' + 'aws4_request'
-sts = (hashing_algorithm + '\n' +
-       timestamp + '\n' +
-       credential_scope + '\n' +
-       hashlib.sha256(standardized_request).hexdigest())
-
-# generate the signature
-signature_key = createSignatureKey(secret_key, datestamp, region, 's3')
-signature = hmac.new(signature_key,
-                     (sts).encode('utf-8'),
-                     hashlib.sha256).hexdigest()
-
-# create and send the request
-# the 'requests' package autmatically adds the required 'host' header
-request_url = (endpoint + '/' +
-               bucket + '/' +
-               object_key + '?' +
-               standardized_querystring_url_encoded +
-               '&X-Amz-Signature=' +
-               signature)
-
-print 'request_url: %s' % request_url
-
-print '\nSending `%s` request to IBM COS -----------------------' % http_method
-print 'Request URL = ' + request_url
-request = requests.put(request_url)
-
-print '\nResponse from IBM COS ---------------------------------'
-print 'Response code: %d\n' % request.status_code
-print request.text
-
-
-# this information can be helpful in troubleshooting, or to better
-# understand what goes into signature creation
-print 'These are the values used to construct this request.'
-print 'Request details -----------------------------------------'
-print 'http_method: %s' % http_method
-print 'host: %s' % host
-print 'region: %s' % region
-print 'endpoint: %s' % endpoint
-print 'bucket: %s' % bucket
-print 'object_key: %s' % object_key
-print 'timestamp: %s' % timestamp
-print 'datestamp: %s' % datestamp
-
-print 'Standardized request details ----------------------------'
-print 'standardized_resource: %s' % standardized_resource_url_encoded
-print 'standardized_querystring: %s' % standardized_querystring_url_encoded
-print 'standardized_headers: %s' % standardized_headers
-print 'signed_headers: %s' % signed_headers
-print 'payload_hash: %s' % payload_hash
-print 'standardized_request: %s' % standardized_request
-
-print 'String-to-sign details ----------------------------------'
-print 'credential_scope: %s' % credential_scope
-print 'string-to-sign: %s' % sts
-print 'signature_key: %s' % signature_key
-print 'signature: %s' % signature
-
- print 'Because the signature key has non-ASCII characters, it is'
- print 'necessary to create a hexadecimal digest for the purposes'
- print 'of checking against this example.'
-
- def hex_hash(key, msg):
-     return hmac.new(key, msg.encode('utf-8'), hashlib.sha256).hexdigest()
- def createHexSignatureKey(key, datestamp, region, service):
-     keyDate = hex_hash(('AWS4' + key).encode('utf-8'), datestamp)
-     keyRegion = hex_hash(keyDate, region)
-     keyService = hex_hash(keyRegion, service)
-     keySigning = hex_hash(keyService, 'aws4_request')
-     return keySigning
-
- signature_key_hex = createHexSignatureKey(secret_key, datestamp, region, 's3')
-
- print 'signature_key (hexidecimal): %s' % signature_key_hex
-
- print 'Header details ------------------------------------------'
- print 'pre-signed url: %s' % request_url
+signedUrl = cos.generate_presigned_url(http_method, Params={
+                                       'Bucket': bucket_name, 'Key': key_name}, ExpiresIn=expiration)
+print("presigned upload URL =>" + signedUrl)
 ```
 
 ### NodeJS Example
