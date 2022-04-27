@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-12-11"
+  years: 2017, 2022
+lastupdated: "2022-05-02"
 
 keywords: ip address, firewall, configuration, api
 
@@ -23,14 +23,44 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Setting a firewall
+# Restricting access by network zone (IP address, VPC, or service reference)
 {: #setting-a-firewall}
 
-IAM policies provide a way for administrators to limit access to individual buckets. What if certain data must be accessed from trusted networks only? A bucket firewall restricts all access to data unless the request originates from a list of allowed IP addresses.
+[Context-based restrictions](/docs/account?topic=account-context-restrictions-whatis&interface=ui) provide a way for administrators to limit access to resources. What if certain data must be accessed from trusted networks only? A properly configured policy restricts all access to data unless the request originates from an approved [network zone](/docs/account?topic=account-context-restrictions-whatis&interface=ui#network-zones-whatis).
 {: shortdesc}
 
 This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
 {: note}
+
+## Using context-based restrictions
+
+A [context-based restriction](/docs/account?topic=account-context-restrictions-whatis&interface=ui) is comprised of a **rule** and one or more **contexts** (network zones). These restrictions do not replace IAM policies, but simply check that a request is coming from an allowed context, such as a range of IP addresses, VPCs, or service reference.  
+
+A user must have the `Administrator` role on a service to create, update, or delete rules.  A user must have either the `Editor` or `Administrator` role to create, update, or delete network zones. 
+
+You can learn more about how context-based restrictions work in the [detailed documentation](/docs/account?topic=account-context-restrictions-whatis&interface=ui), or you can follow a [quick tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-cos-tutorial-cbr). 
+
+Any events generated will come from the context-based restrictions service, and not {{site.data.keyword.cos_short}}.  
+{: tip}
+
+## Bucket firewalls versus context-based restrictions
+{: #firewall-precursors}
+
+Prior to the availability of context-based restrictions, {{site.data.keyword.cos_short}} itself would enforce access restrictions based on IP addresses. While this method is still supported, it is recommended to [use the newer context-based restrictions](/docs/account?topic=account-context-restrictions-whatis&interface=ui) instead of the legacy bucket firewall.
+{: important}
+
+Bucket firewalls and context-based restrictions operate independently of one another, which means it's possible to have a request permitted by one and denied by the other.  
+
+* Bucket creation requests **must** be permitted by any context-based restrictions, regardless of any firewall rules in place.
+* For all other bucket or object requests, the context-based restrictions are consulted first.  
+  * If the request is denied, then it is denied - the bucket firewall is not checked.
+  * If the context-based restrictions allow the request, then the bucket firewall is checked and the request is allowed or denied accordingly.  
+
+An IP address that is allowed by context-based restrictions can still be denied by the bucket firewall.
+{: tip}
+
+### About legacy bucket firewalls
+{: #firewall-legacy-about}
 
 There are some rules around setting a firewall:
 
@@ -44,18 +74,9 @@ When a firewall is set, the bucket is isolated from the rest of {{site.data.keyw
 
 Access from a VPC environment can pass `allowed_network_type` checks, and VPC-zone underlay IP addresses can be added to the `allowed_ip` list. It is not possible to restrict access to an overlay IP for an individual VSI.
 {: note}
-
-## Before you begin
-{: #firewall-precursors}
-
 First, make sure that you have an instance of {{site.data.keyword.cos_short}} and have provisioned at least one bucket. If not, follow the [getting started tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) to obtain the prerequisites and become familiar with the console.
 
-## Using the console to set a firewall
-{: #firewall-console}
-
-From the {{site.data.keyword.cloud_notm}} [console dashboard](https://cloud.ibm.com/){: external}, you can restrict access to your content by setting a firewall.
-
-### Set a list of authorized IP addresses
+#### Set a list of authorized IP addresses using a legacy firewall
 {: #firewall-console-enable}
 
 1. Start by selecting **Storage** to view your resource list.
@@ -69,7 +90,7 @@ From the {{site.data.keyword.cloud_notm}} [console dashboard](https://cloud.ibm.
 1. The firewall will not be enforced until the address is saved in the console. Click **Save all** to enforce the firewall.
 1. Note that all objects in this bucket are only accessible from those IP addresses.
 
-### Remove any IP address restrictions
+#### Remove any IP address restrictions using a legacy firewall
 {: #firewalls-console-disable}
 
 1. From the **Authorized IPs** tab, check the boxes next to any IP addresses or ranges to remove from the authorized list.
@@ -81,7 +102,7 @@ If there are no authorized IP addresses listed this means that normal IAM polici
 {: note}
 
 
-## Set a firewall through an API
+#### Set a legacy firewall through an API
 {: #firewall-api}
 
 Firewalls are managed with the [COS Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration). This new REST API is used for configuring buckets. 
@@ -89,7 +110,3 @@ Firewalls are managed with the [COS Resource Configuration API](https://cloud.ib
 Users with the `manager` role can view and edit the list of allowed IP addresses from any network in order to prevent accidental lockouts.
 {: tip}
 
-## Next steps
-{: #firewall-next-steps}
-
-See more information [for developers](/docs/cloud-object-storage?topic=cloud-object-storage-gs-dev) to learn about other powerful tools and options.
