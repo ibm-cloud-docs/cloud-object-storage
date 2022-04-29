@@ -56,7 +56,7 @@ Prior to the availability of context-based restrictions, {{site.data.keyword.cos
 
 Bucket firewalls and context-based restrictions operate independently of one another, which means it's possible to have a request permitted by one and denied by the other.  
 
-* Bucket creation requests **must** be permitted by any context-based restrictions, regardless of any firewall rules in place.
+* Bucket creation requests **must** be permitted by any context-based restrictions.
 * For all other bucket or object requests, both the context-based restrictions _and_ the bucket firewall must allow the request.
 
 An IP address that is allowed by context-based restrictions can still be denied by the bucket firewall.
