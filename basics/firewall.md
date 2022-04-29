@@ -44,6 +44,9 @@ Any Activity Tracker or audit log events generated will come from the context-ba
 {: tip}
 
 If no rules are applicable to a particular resource, access is determined by IAM policies and the presence of a legacy bucket firewall. 
+{: important}
+
+An account is limited in the [number of rules and network zones that can be supported](/docs/account?topic=account-known-issues#context-based-restrictions-limits).  
 
 ## Bucket firewalls versus context-based restrictions
 {: #firewall-precursors}
