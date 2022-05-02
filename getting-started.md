@@ -47,14 +47,14 @@ This tutorial takes a new user through the first steps with the {{site.data.keyw
 
 1. You will need a bucket before you can store data in your new _service instance_. To **Create a bucket**, start by choosing a unique name. All buckets in all regions across the globe share a single namespace. Ensure that you have the [correct permissions](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions) to create a bucket.
 
-   When you create buckets or add objects, be sure to avoid the use of Personally Identifiable Information (PII). **Note:** PII is information that can identify any user (natural person) by name, location, or any other means.
+   When you name buckets or objects, be sure to avoid the use of Personally Identifiable Information (PII). PII is information that can identify any user (natural person) by name, location, or any other means.
    {: tip}
 
-1. First, choose the [level of _resiliency_](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) you want. Then, choose a _location_ where you would like your data to be physically stored. Resiliency refers to the scope and scale of the geographic area across which your data is distributed. _Cross Region_ resiliency spreads your data across several metropolitan areas, while _Regional_ resiliency spreads data across a single metropolitan area. A _Single Data Center_ distributes data across devices within a single site only.
+2. First, choose the [level of _resiliency_](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) you want. Then, choose a _location_ where you would like your data to be physically stored. Resiliency refers to the scope and scale of the geographic area across which your data is distributed. _Cross Region_ resiliency spreads your data across several metropolitan areas, while _Regional_ resiliency spreads data across a single metropolitan area. A _Single Data Center_ distributes data across devices within a single site only.
 
-1. Choose the [bucket's _storage class_](/docs/cloud-object-storage/basics?topic=cloud-object-storage-classes) to accurately reflect how often you expect to read the stored data. This is important as it determines your billing details. Follow the **Create** link to create and access your new bucket.
+3. Choose the [bucket's _storage class_](/docs/cloud-object-storage/basics?topic=cloud-object-storage-classes) to accurately reflect how often you expect to read the stored data. This is important as it determines your billing details. Follow the **Create** link to create and access your new bucket.
 
-1. Determine the advanced configurations, if any, suitable to your content. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option. See the example in Figure 1 for options in creating an archive policy.
+4. Determine the advanced configurations, if any, suitable to your content. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option. See the example in Figure 1 for options in creating an archive policy.
 
 ![Create an archive policy](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/bucket-create-ui-archive-rule.jpg){: caption="Figure 1. Create an archive policy"}
 

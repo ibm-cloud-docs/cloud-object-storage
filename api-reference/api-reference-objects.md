@@ -53,7 +53,7 @@ When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [usi
 
 A `PUT` given a path to an object uploads the request body as an object. All objects uploaded in a single thread should be smaller than 500 MB (objects that are [uploaded in multiple parts](/docs/cloud-object-storage?topic=cloud-object-storage-large-objects) can be as large as 10 TB).
 
-Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
+Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means. 
 {: note}
 
 Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
@@ -608,7 +608,7 @@ The server responds with `204 No Content`.
 
 A `PUT` given a path to a new object creates a new copy of another object that is specified by the `x-amz-copy-source` header. Unless otherwise altered the metadata remains the same.
 
-Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
+Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means. 
 {: note}
 
 Copying objects (even across locations) does not incur the public outbound bandwidth charges. All data remains inside the COS internal network.
@@ -770,7 +770,7 @@ There are three phases to uploading an object in multiple parts:
 
 A `POST` issued to an object with the query parameter `upload` creates a new `UploadId` value, which is then be referenced by each part of the object being uploaded.
 
-Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
+Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means. 
 {: note}
 
 Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
@@ -833,7 +833,7 @@ Content-Length: 276
 
 A `PUT` request that is issued to an object with query parameters `partNumber` and `uploadId` will upload one part of an object. The parts can be uploaded serially or in parallel, but must be numbered in order.
 
-Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
+Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means. 
 {: note}
 
 Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)

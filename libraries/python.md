@@ -960,7 +960,7 @@ There are two ways to update the metadata on an existing object:
 
 ### Using PUT to update metadata
 {: #python-examples-metadata-put}
-**Note:** The `PUT` request overwrites the existing contents of the object so it must first be downloaded and reuploaded with the new metadata
+**Note:** The `PUT` request overwrites the existing contents of the object so it must first be downloaded and re-uploaded with the new metadata.
 
 ```python
 def update_metadata_put(bucket_name, item_name, key, value):
