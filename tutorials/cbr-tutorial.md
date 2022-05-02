@@ -19,13 +19,13 @@ completion-time: 10m
 {: toc-content-type="tutorial"} 
 {: toc-completion-time="10m"} 
 
-In this tutorial, you will establish context-based restrictions that prevent any access to object storage data unless the request originates from a trusted network zone.
+In this tutorial, you will establish [context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall) that prevent any access to object storage data unless the request originates from a trusted network zone.
 {: shortdesc}
 
 ## Before you begin
 {: #cos-tutorial-cbr-prereqs}
 
-Before you plan on using context-based restrictions with Cloud Object Storage buckets, you need:
+Before you plan on using [context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall) with Cloud Object Storage buckets, you need:
 
 - An [IBM Cloud™ Platform account](http://cloud.ibm.com/)
 - An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage)

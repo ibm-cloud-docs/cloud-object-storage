@@ -33,6 +33,7 @@ This feature is not currently supported in {{site.data.keyword.cos_short}} for {
 {: note}
 
 ## Using context-based restrictions
+{: #setting-cbr}
 
 A [context-based restriction](/docs/account?topic=account-context-restrictions-whatis&interface=ui) is comprised of a **rule** and one or more **contexts** (network zones and/or endpoint type). These restrictions do not replace IAM policies, but simply check that a request is coming from an allowed context, such as a range of IP addresses, VPCs, or service references.  
 
