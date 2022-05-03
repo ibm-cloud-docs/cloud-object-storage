@@ -18,15 +18,15 @@ subcollection: cloud-object-storage
 {:tip: .tip}
 {:important: .important}
 {:note: .note}
-{:download: .download} 
-{:http: .ph data-hd-programlang='http'} 
-{:javascript: .ph data-hd-programlang='javascript'} 
-{:java: .ph data-hd-programlang='java'} 
+{:download: .download}
+{:http: .ph data-hd-programlang='http'}
+{:javascript: .ph data-hd-programlang='javascript'}
+{:java: .ph data-hd-programlang='java'}
 {:python: .ph data-hd-programlang='python'}
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Using IBM Cloud Object Storage File Access 
+# Using IBM Cloud Object Storage File Access
 {: #fa-gateway}
 
 IBM Cloud Object Storage File Access is a software-defined solution providing an SMB and NFS protocol interface for applications to store and retrieve infrequently used files on IBM Cloud Object Storage. This solution is an excellent choice for archiving, retention, and active archiving use cases as it also provides a built-in capability to discover and migrate files form existing file systems to IBM Cloud Object Storage.
@@ -61,7 +61,7 @@ Recommended minimum server hardware configuration for the VMware ESXi or Red Hat
 - Network switch (At least 2 for redundancy)
 
 IBM Cloud Object Storage File Access solution performance depends upon the underlying hardware and network it runs on. Note that it is recommended to use SAS SSD or NVMe for cache disk for both the Gateway and the Portal. SSD must be high drive writes per day, at least seven drive writes per day is recommended. Cache disk must also be highly redundant or available, for example RAID5, RAID6, or RAID 10.
-{:note}
+{: note}
 
 ### Software requirements
 {: #fa-gateway-requirements-hardware}
@@ -72,7 +72,7 @@ Hypervisor requirements
 - Hyper-V: Hyper-V for Microsoft Windows Servers 2012 R2, and higher.
 
 All resources allocated to an IBM Cloud Object Storage File Access Portal VM should be dedicated to that VM and not shared with other VMs. You must not run any other applications on the IBM Cloud Object Storage File Access Portal VMs.
-{:note}
+{: note}
 
 ## Installation and administration
 

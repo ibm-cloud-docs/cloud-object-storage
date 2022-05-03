@@ -113,7 +113,7 @@ aws --endpoint-url {endpoint} s3 ls s3://bucket-1
 ### Make a new bucket
 {: #aws-cli-high-level-new-bucket}
 
-**Note**: Personally Identifiable Information (PII): When creating buckets or adding objects, ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
+**Note**: Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means. 
 {:tip}
 
 If the default region in the `~/.aws/config` file corresponds the same location as the chosen endpoint, then bucket creation is straightforward.

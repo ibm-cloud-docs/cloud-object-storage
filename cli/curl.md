@@ -37,7 +37,7 @@ Here's a 'cheat sheet' of basic `curl` commands for the {{site.data.keyword.cos_
 
 Using `curl` assumes a certain amount of familiarity with the command line and Object Storage, and have the necessary information from a [service credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the [endpoints reference](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints), or the [console](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). If any terms or variables are unfamiliar, they can be found in the [glossary](/docs/overview?topic=overview-glossary).
 
-**Note**: Personally Identifiable Information (PII): When you create buckets or adding objects, ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
+**Note**: Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means. 
 {:tip}
 
 ## Request an IAM Token

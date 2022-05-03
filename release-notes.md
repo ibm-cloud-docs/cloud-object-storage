@@ -26,12 +26,20 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
+## 3 May 2022
+{: #cloud-object-storage-may0322}
+{: release-note}
+
+New feature!
+:   It is now possible so manage access [using context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall). This offers significant improvements over the existing bucket firewall, and allows for the allowlisting of VPCs and other cloud services, in addition to IP address ranges.
+
 ## 5 April 2022
 {: #cloud-object-storage-apr0522}
 {: release-note}
 
 Encryption update
 :   Buckets can be created in the `eu-gb` region using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-cr) managed encryption.
+
 ## 9 March 2022
 {: #cloud-object-storage-mar0922}
 {: release-note}
