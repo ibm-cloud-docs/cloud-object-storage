@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-19"
+lastupdated: "2022-03-28"
 
 keywords: archive, accelerated, access, glacier
 
@@ -84,6 +84,9 @@ Archive policies are implemented using subset of the `PUT Bucket Lifecycle Confi
 Supported functionality includes:
 * Specifying either a date or the number of days in the future when objects transition to an archived state.
 * Setting [expiration rules](/docs/cloud-object-storage?topic=cloud-object-storage-expiry) for objects.
+
+Policies specifying a date in the past may take up to a few days to complete.
+{: note} 
 
 Unsupported functionality includes:
 * Multiple transition rules per bucket.

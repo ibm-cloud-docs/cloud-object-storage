@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-11-11"
+  years: 2017, 2022
+lastupdated: "2022-03-28"
 
 keywords: expiry, glacier, tier, s3, compatibility, api
 
@@ -52,6 +52,8 @@ You can set the lifecycle for objects by using the web console, REST API, and th
 * The expiration time of non-current versions is determined by its successor's last modified time, rounded to the next day at midnight UTC.
 * If versions are manually deleted from an object that has versions expected to be expired the next day, those expirations may not occur.
 
+Policies specifying a date in the past may take up to a few days to complete.
+{: note} 
 
 Without caution, data might be permanently lost with when using [expiration rules on a versioned bucket](/docs/cloud-object-storage?topic=cloud-object-storage-versioning). In cases where **versioning is suspended** and there is a null version present for the expired object, data might be permanently lost. In this case, a `null` delete marker is overwritten, permanently deleting the object.
 {: important}
@@ -297,14 +299,14 @@ service_instance_id = "85SAMPLE-eDOb-4NOT-bUSE-86nnnb31eaxx"
 auth_endpoint = "https://iam.cloud.ibm.com/identity/token"
 service_endpoint = "https://s3.us-south.cloud-object-storage.appdomain.cloud"
 
-cos = ibm_boto3.resource('s3',
+cos = ibm_boto3.client('s3',
                          ibm_api_key_id=api_key,
                          ibm_service_instance_id=service_instance_id,
                          ibm_auth_endpoint=auth_endpoint,
                          config=Config(signature_version='oauth'),
                          endpoint_url=service_endpoint)
 
-response = cos.Bucket('<name-of-bucket>').put_bucket_lifecycle_configuration(
+response = cos.put_bucket_lifecycle_configuration(
     Bucket='string',
     LifecycleConfiguration={
         'Rules': [

@@ -39,7 +39,7 @@ The [{{site.data.keyword.cloud_notm}} console](https://cloud.ibm.com/){: externa
 ## Cloud Object Storage on IBM Cloud Satellite
 {: #satellite}
 
-Workloads that require object storage on-premise, or in a geographic location not supported by IBM Cloud data centers, can make use of IBM Cloud Satellite.  For more information, see [the documentation]().
+Workloads that require object storage on-premise, or in a geographic location not supported by IBM Cloud data centers, can make use of IBM Cloud Satellite.  For more information, see [the documentation](/docs/satellite).
 
 ## Cloud Object Storage IaaS (Legacy)
 {: #iaas}

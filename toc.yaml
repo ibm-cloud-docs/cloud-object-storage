@@ -28,7 +28,8 @@ toc:
                 - performance/bottlenecks.md
           - cos-responsibilities.md
           - quick-facts.md
-          - release-notes.md
+          - topic: release-notes.md
+            navtitle: Release notes
     - navgroup:
         id: tutorial
         topics:
@@ -56,9 +57,6 @@ toc:
                 - link:
                     label: Connect from VPC
                     href: https://cloud.ibm.com/docs/vpc/vpc-connecting-vpc-cos
-                - link:
-                    label: Connect from VPC (Classic)
-                    href: https://cloud.ibm.com/docs/vpc-on-classic/vpc-on-classic-connecting-to-ibm-cloud-object-storage-from-a-vpc
           - topicgroup:
               label: Using IBM Cloud Satellite
               topics:

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-19"
+lastupdated: "2022-01-31"
 
 keywords: aspera, high speed, big data, packet loss
 
@@ -84,158 +84,105 @@ Downloads that use Aspera high-speed transfer incur egress charges. For more inf
 
 **Advanced Preferences:** You can set bandwidth for uploads and downloads.
 
-----
+## Using the Aspera Transfer SDK
+{: #aspera-transfer-sdk}
 
-## Using Libraries and SDKs
-{: #aspera-sdk}
+1. [Download the Aspera Transfer SDK from the IBM API Hub.](https://developer.ibm.com/apis/catalog/aspera--aspera-transfer-sdk/Introduction) The SDK is a collection of binaries (command line utilities and a daemon to listen for transfer requests), configuration files, and language specific connectors.
+2. Install the grpc dependencies from the appropriate package manager (pip, maven, gem, etc).
+3. Launch the daemon and import the relevant programming language connector files to your project.
+4. Instantiate an Aspera client by passing it the local port used by the daemon.
+5. Create a `transfer_spec` containing all the information needed for the transfer:
+   1. `icos` information:
+      1. API key
+      2. Service instance ID
+      3. Target endpoint
+      4. Bucket name
+      5. Transfer direction
+      6. Remote host (you find this by sending a GET request to a bucket with a `?faspConnectionInfo` query parameter)
+      7. Assets for transfer (basically a set of file paths)
+6. Pass the transfer specification and configuration info to a transfer request.
 
-Aspera high-speed transfer supports using the Java and Python [SDKs](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs).
+The following is an example using Python:
 
-The Aspera SDK for Python is only available for Python 3.6. Install this base version of Python as an unmanaged, plain installation before installing Aspera. Also, the Aspera SDK for Python is incompatible with popular Python version managers, such as Anaconda and `Pyenv`.
-{: important}
+```py
+import random
+import string
 
-### When to use Aspera High-Speed Transfer
-{: #aspera-guidance}
+import grpc
+import json
+import os.path
 
-The FASP protocol that Aspera high-speed transfer uses is not suited for all data transfers:
+from urllib3.connectionpool import xrange
 
-1. Always make use of multiple sessions - at least two parallel sessions will best use Aspera high-speed transfers capabilities. See specific guidance for [Java](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java#java-examples-aspera) and [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python#python-examples-aspera).
-2. Aspera high-speed transfer is ideal for larger files, and any files or directories that contain a total amount of data less than one GB will instead transfer the object in multiple parts by using the standard Transfer Manager classes. Aspera high-speed transfers require a longer time-to-first-byte than normal HTTP transfers. The instantiation of many Aspera Transfer Manager objects to manage the transfers of individual smaller files can result in subpar performance. It is best to instantiate a single client to upload a directory of smaller files instead.
-3. Aspera high-speed transfer was designed in part to improve performance in network environments with large amounts of packet loss, making the protocol performant over large distances and public wide area networks. Aspera high-speed transfer should not be used for transfers within a region or data center.
+import transfer_pb2 as transfer_manager
+import transfer_pb2_grpc as transfer_manager_grpc
 
-The Aspera high-speed transfer SDK is closed-source and thus an optional dependency for the COS SDK (which uses an Apache license). 
-{:tip}
 
-#### COS/Aspera High-Speed Transfer Packaging
-{: #aspera-packaging}
+def run():
+    # create a connection to the transfer manager daemon
+    client = transfer_manager_grpc.TransferServiceStub(
+        grpc.insecure_channel('localhost:55002'))
 
-![COS/Aspera High-Speed Transfer SDK](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/aspera-packaging.png){: caption="Figure 1. COS/Aspera High-Speed Transfer SDK" caption-side="bottom"}
+    # create file
+    file_path = generate_source_file()
 
-### Supported Platforms
-{: #aspera-sdk-platforms}
+    # create transfer spec
+    transfer_spec = {
+        "session_initiation": {
+            "icos": {
+                "api_key": os.environ.get('IBMCLOUD_API_KEY'),
+                "bucket": os.environ.get('IBMCLOUD_BUCKET'),
+                "ibm_service_instance_id": os.environ.get('IBMCLOUD_COS_INSTANCE'),
+                "ibm_service_endpoint": os.environ.get('IBMCLOUD_COS_ENDPOINT')
+            }
+        },
+        "direction": "send",
+        "remote_host": "https://ats-sl-dal.aspera.io:443",
+        "title": "strategic",
+        "assets": {
+            "destination_root": "/aspera/file",
+            "paths": [
+                {
+                    "source": file_path
+                }
+            ]
+        }
+    }
+    transfer_spec = json.dumps(transfer_spec)
 
-| OS                     | Version   | Architecture | Tested Java Version | Tested Python Version |
-|------------------------|-----------|--------------|--------------|----------------|
-| Ubuntu                 | 18.04 LTS | 64-Bit       | 6 and higher | 2.7, 3.6       |
-| Mac OS X               | 10.13     | 64-Bit       | 6 and higher | 2.7, 3.6       |
-| Microsoft&reg; Windows | 10        | 64-Bit       | 6 and higher | 2.7, 3.6       |
-{: caption="Table 1. Supported platforms for Aspera high-speed transfer"}
+    # create a transfer request
+    transfer_request = transfer_manager.TransferRequest(
+        transferType=transfer_manager.FILE_REGULAR,
+        config=transfer_manager.TransferConfig(),
+        transferSpec=transfer_spec)
 
-Each Aspera high-speed transfer session creates an individual `ascp` process that runs on the client machine to perform the transfer. Ensure that your computing environment can allow this process to run.
-{:tip}
+    # send start transfer request to transfer manager daemon
+    transfer_response = client.StartTransfer(transfer_request)
+    transfer_id = transfer_response.transferId
+    print("transfer started with id {0}".format(transfer_id))
 
-**More limitations**
+    # monitor transfer status
+    for transfer_info in client.MonitorTransfers(
+            transfer_manager.RegistrationRequest(
+                filters=[transfer_manager.RegistrationFilter(
+                    transferId=[transfer_id]
+                )])):
+        print("transfer info {0}".format(transfer_info))
 
-* 32-bit binaries are not supported
-* Windows support requires Windows 10
-* Linux support is limited to Ubuntu (tested against the 18.04 LTS)
-* Aspera Transfer Manager clients must be created that use IAM API keys and not HMAC credentials.
+        # check transfer status in response, and exit if it's done
+        status = transfer_info.status
+        if status == transfer_manager.FAILED or status == transfer_manager.COMPLETED:
+            print("finished {0}".format(status))
+            break
 
-### Getting the SDK
-{: #aspera-sdk-getting}
 
-Code for two {{site.data.keyword.cos_full_notm}} SDKS: Java and Python, can be revealed in the links in the [code switcher]( /docs/services/cloud-object-storage?topic=cloud-object-storage-aspera).
+def generate_source_file(name='file'):
+    with open(name, 'w') as file:
+        # file.write('Hello World!')
+        file.write(''.join(random.choice(string.ascii_lowercase) for i in xrange(10 ** 10)))
+    return os.path.abspath(name)
 
-The best way to use {{site.data.keyword.cos_full_notm}} and Aspera high-speed transfer Java SDK is to use Maven to manage dependencies. If you aren't familiar with Maven, you get can get up and running with the [Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html){: external} guide.
-{: java}
 
-Maven uses a file named `pom.xml` to specify the libraries (and their versions) needed for a Java project. Below is an example `pom.xml` file for using the {{site.data.keyword.cos_full_notm}} and Aspera high-speed transfer Java SDK
-{: java}
-
-```xml
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.cos</groupId>
-    <artifactId>docs</artifactId>
-    <packaging>jar</packaging>
-    <version>2.0-SNAPSHOT</version>
-    <name>docs</name>
-    <url>http://maven.apache.org</url>
-    <dependencies>
-        <dependency>
-            <groupId>com.ibm.cos</groupId>
-            <artifactId>ibm-cos-java-sdk</artifactId>
-            <version>2.8.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ibm.cos-aspera</groupId>
-            <artifactId>cos-aspera</artifactId>
-            <version>0.1.163682</version>
-            <type>pom</type>
-        </dependency>
-    </dependencies>
-</project>
+if __name__ == '__main__':
+    run()
 ```
-{: codeblock}
-{: java}
-
-Examples of initiating Aspera high-speed transfers with Java are available in the [Using Aspera High-Speed Transfer](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java#java-examples-aspera) section.
-{: java}
-
-The {{site.data.keyword.cos_full_notm}} and Aspera high-speed transfer Python SDKs are available from the Python Package Index (PyPI) software repository. 
-{: python}
-
-```
-pip install cos-aspera
-```
-{: codeblock}
-{: python}
-
-Examples of initiating Aspera transfers with Python are available in [Using Aspera High-Speed Transfer](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python#python-examples-aspera) section.
-{: python}
-
-## Using Aspera high-speed transfer in a restricted network environment
-{: #aspera-restricted-network}
-
-Aspera clients and servers are configured by default to use UDP port 33001 after the session is initiated using the same port as the secure `SSH` protocol. Therefore, the firewall configuration must allow traffic on port UDP 33001 to reach the Aspera server. For more, check out the support page on [firewall considerations](https://www.ibm.com/support/pages/firewall-considerations){: external}.
-{: important}
-
-If your application is behind a firewall, it may not be able to make use of Aspera high-speed transfer without additional configuration. The Aspera Transfer Service (ATS) uses an additional endpoint other than the standard service endpoint used for connecting to object storage resources.  The ATS endpoint that must be accessible is determined by the storage location of the bucket and can be discovered using the REST API.
-
-For example, to find the correct ATS endpoint for a bucket called `my-bucket` in the `eu-de` region, you can send the following request:
-
-```
-  curl 'https://s3.eu-de.cloud-object-storage.appdomain.cloud/my-bucket?faspConnectionInfo=' \
-    -H 'Authorization: Bearer <IAMTOKEN>' 
-```
-{: pre}
-
-This will return something like the following XML block:
-
-```xml
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<FASPConnectionInfo xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-    <AccessKey>
-        <Id>REDACTED</Id>
-        <Secret>REDACTED</Secret>
-    </AccessKey>
-    <ATSEndpoint>https://ats-sl-fra.aspera.io:443</ATSEndpoint>
-</FASPConnectionInfo>
-```
-{: screen}
-
-The `ID` and `Secret` values are _not_ the same as HMAC credentials used to authenticate to Cloud Object Storage. These are used internally to communicate with ATS and can be ignored by users.
-{: note}
-
-In order to determine the IP addresses that correspond to the `ATSEndpoint` value, you can use the ATS API and find the matching value in the response.  For example, we can use the command line to find the IP addresses for `https://ats-sl-fra.aspera.io:443`:
-
-```sh
-curl https://ats.aspera.io/pub/v1/servers/softlayer | grep -B 4 -m 1 'https://ats-sl-fra.aspera.io:443'
-```
-{: codeblock}
-
-This will return the following snippet:
-
-```json
-  "public_ips" : [ "169.50.32.96/27", "158.177.83.160/27", "161.156.67.160/27", "149.81.66.32/27" ],
-  "region" : "fra-eu-geo",
-  "s3_authentication_endpoint" : "s3.private.eu.cloud-object-storage.appdomain.cloud",
-  "tcp_port" : 33001,
-  "transfer_setup_url" : "https://ats-sl-fra.aspera.io:443",
-```
-{: screen}
-
-## Next Steps
-{: #aspera-next-steps}
-
-Next, check the [Integrated Services](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability) to see if Aspera high-speed transfer is available in regions suitable for you.

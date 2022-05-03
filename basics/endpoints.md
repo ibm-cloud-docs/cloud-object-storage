@@ -1,9 +1,9 @@
 ---
 
 copyright:
-  years: 2017, 2021
+  years: 2017, 2022
 
-lastupdated: "2021-08-30"
+lastupdated: "2022-01-28"
 
 keywords: endpoint, location, object storage
 
@@ -166,7 +166,6 @@ If a networking failure results in a partition where the data center is unable t
 | `mex01` | Public | `s3.mex01.cloud-object-storage.appdomain.cloud` |
 | `mil01` | Public | `s3.mil01.cloud-object-storage.appdomain.cloud` |
 | `mon01` | Public | `s3.mon01.cloud-object-storage.appdomain.cloud` |
-| `osl01` | Public | `s3.osl01.cloud-object-storage.appdomain.cloud` |
 | `par01` | Public | `s3.par01.cloud-object-storage.appdomain.cloud` |
 | `sjc04` | Public | `s3.sjc04.cloud-object-storage.appdomain.cloud` |
 | `seo01` | Public | `s3.seo01.cloud-object-storage.appdomain.cloud` |
@@ -185,7 +184,6 @@ If a networking failure results in a partition where the data center is unable t
 | `mex01` | Private | `s3.private.mex01.cloud-object-storage.appdomain.cloud` |
 | `mil01` | Private | `s3.private.mil01.cloud-object-storage.appdomain.cloud` |
 | `mon01` | Private | `s3.private.mon01.cloud-object-storage.appdomain.cloud` |
-| `osl01` | Private | `s3.private.osl01.cloud-object-storage.appdomain.cloud` |
 | `par01` | Private | `s3.private.par01.cloud-object-storage.appdomain.cloud` |
 | `sjc04` | Private | `s3.private.sjc04.cloud-object-storage.appdomain.cloud` |
 | `sjc01` | Private | `s3.private.sjc04.cloud-object-storage.appdomain.cloud` |
@@ -205,7 +203,6 @@ If a networking failure results in a partition where the data center is unable t
 | `mex01` | Direct | `s3.direct.mex01.cloud-object-storage.appdomain.cloud` |
 | `mil01` | Direct | `s3.direct.mil01.cloud-object-storage.appdomain.cloud` |
 | `mon01` | Direct | `s3.direct.mon01.cloud-object-storage.appdomain.cloud` |
-| `osl01` | Direct | `s3.direct.osl01.cloud-object-storage.appdomain.cloud` |
 | `par01` | Direct | `s3.direct.par01.cloud-object-storage.appdomain.cloud` |
 | `sjc04` | Direct | `s3.direct.sjc04.cloud-object-storage.appdomain.cloud` |
 | `seo01` | Direct | `s3.direct.seo01.cloud-object-storage.appdomain.cloud` |
@@ -227,7 +224,6 @@ The {{site.data.keyword.at_full_notm}} can archive to a bucket at specific {{sit
 | `eu-de`                                         | Regional     | Frankfurt                   |
 | `eu-gb`                                         | Regional     | London                      |
 | `mil01`                                         | Single Site  | Milan                       |
-| `osl01`                                         | Single Site  | Oslo                        |
 | `par01`                                         | Single Site  | Paris                       |
 | `eu-geo`                                        | Cross Region | Amsterdam, Frankfurt, Milan |
 {: caption="Table 4. EU-managed Endpoints" caption-side="top"}

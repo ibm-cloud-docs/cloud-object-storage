@@ -32,6 +32,7 @@ subcollection: cloud-object-storage
 This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
 {: note}
 
+
 ## Using context-based restrictions
 {: #setting-cbr}
 

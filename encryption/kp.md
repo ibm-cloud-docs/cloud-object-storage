@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2021
-lastupdated: "2021-09-12"
+  years: 2018, 2022
+lastupdated: "2022-03-09"
 
 keywords: encryption, security, sse-c, key protect
 
@@ -47,7 +47,7 @@ Once you have an instance of Key Protect, you need to create a root key and note
 
 Before creating the bucket for use with Key Protect, review the [relevant guidance around availability and disaster recovery](/docs/key-protect?key-protect-ha-dr). 
 
-Note that managed encryption for a Cross Region bucket **must** use a root key from a Key Protect instance in the nearest [high-availability location](/docs/key-protect?topic=key-protect-ha-dr) (`us-south` or `jp-tok`).
+Note that managed encryption for a Cross Region bucket **must** use a root key from a Key Protect instance in the nearest [high-availability location](/docs/key-protect?topic=key-protect-ha-dr) (`us-south`, `eu-de`, or `jp-tok`).
 {:important}
 
 ## Create or add a key in Key Protect
