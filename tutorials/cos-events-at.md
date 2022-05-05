@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2020
-lastupdated: "2020-08-31"
+  years: 2019, 2022
+lastupdated: "2020-04-27"
 
 keywords: activity, tracking, object storage, event, tutorial
 
@@ -26,8 +26,6 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-Warning! This topic contains draft content about unreleased functionality and is being reviewed for accuracy.
-{: important}
 
 # Tracking {{site.data.keyword.cos_short}} events in {{site.data.keyword.at_short}}
 {: #tracking-cos-events}

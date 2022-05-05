@@ -36,6 +36,7 @@ toc:
               label: Tutorials library for Object Storage
               href: https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage
           - tutorials/migrate.md
+          - tutorials/cos-events-at.md
           - tutorials/cbr-tutorial.md
           - tutorials/web-application.md
           - tutorials/cloudyr.md
