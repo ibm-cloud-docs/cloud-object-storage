@@ -32,6 +32,8 @@ completion-time: 30m
 
 # Tracking {{site.data.keyword.cos_short}} events in {{site.data.keyword.at_short}}
 {: #tracking-cos-events}
+{: toc-content-type="tutorial"} 
+{: toc-completion-time="30m"} 
 
 Tracking {{site.data.keyword.cos_full}} events with {{site.data.keyword.at_full}} provides a record of what is happening with your data. 
 {: shortdesc}
