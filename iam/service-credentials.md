@@ -35,7 +35,7 @@ A [service credential](com/docs/account?topic=account-service_credentials&interf
 
 Service credentials are always associated with a Service ID, and new Service IDs can be created along with a new credential. 
 
-For a user to view a credential they must be granted the Administrator role or a custom role that has the `resource-controller.credential.retrieve_all` action. For more information about [this update](/docs/overview?topic=overview-whatsnew), see [the documentation](/docs/account?topic=account-service_credentials&interface=ui#viewing-credentials-ui).
+For a user to view a credential they must be granted the Administrator platform role or a custom role that has the `resource-controller.credential.retrieve_all` action. For more information about [this update](/docs/overview?topic=overview-whatsnew), see [the documentation](/docs/account?topic=account-service_credentials&interface=ui#viewing-credentials-ui).
 {: important}
 
 Use the following steps to create a service credential:
