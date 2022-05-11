@@ -545,3 +545,13 @@ No, you must copy objects to the target bucket. For details, see [COS Region Co
 {: faq}
 
 You can use a "soft" bucket quota feature by integrating with Metrics Monitoring and configuring for notifications. For details on establishing a hard quota that prevents usage beyond a set bucket size, see [Using Bucket Quota](/docs/cloud-object-storage?topic=cloud-object-storage-quota).
+
+## Why am I unable to delete a {{site.data.keyword.cos_short}} instance?
+{: #faq-delete-instance}
+{: faq}
+
+It isn't possible to delete an instance if the API key or Service ID being used is locked. You'll need to navigate in the console to **Manage** > **Access (IAM)** and unlock the API Key or Service ID. The error provided may seem ambiguous but is intended to increase security:
+
+> An error occurred during an attempt to complete the operation. Try fixing the issue or try the operation again later. Description: 400
+
+This is intentionally vague to prevent any useful information from being conveyed to a possible attacker.  For more information on locking API keys or Service IDs, [see the IAM documentation](/docs/account?topic=account-serviceids&interface=ui#lock_serviceid).
