@@ -67,16 +67,16 @@ If it is necessary to restrict,  access to a single bucket (or set of buckets) e
 
 To create a new bucket-level policy: 
 
-  1. Navigate to the **Access IAM** console from the **Manage** menu.
-  2. Select **Users** from the left navigation menu.
-  3. Select a user.
-  4. Select the **Access Policies** tab to view the user's existing policies, assign a new policy, or edit an existing policy.
-  5. Click **Assign access** to create a new policy.
-  6. Choose **Assign access to resources**.
-  7. First, select **Cloud Object Storage** from the services menu.
-  8. Then, select the appropriate service instance. Enter `bucket` in the **Resource type** field and the bucket name in the **Resource ID** field.
-  9. Select the wanted service access role. Selecting the lozenge with the number of actions show the actions available to the role, as exemplified for "Content Reader" in Figure 1.
-  10. Click **Assign** 
+1. Navigate to the **Access IAM** console from the **Manage** menu.
+2. Select **Users** from the left navigation menu.
+3. Select a user.
+4. Select the **Access Policies** tab to view the user's existing policies, assign a new policy, or edit an existing policy.
+5. Click **Assign access** to create a new policy.
+6. Choose **Assign access to resources**.
+7. First, select **Cloud Object Storage** from the services menu.
+8. Then, select the appropriate service instance. Enter `bucket` in the **Resource type** field and the bucket name in the **Resource ID**field.
+9. Select the wanted service access role. Selecting the lozenge with the number of actions show the actions available to the role, asexemplified for "Content Reader" in Figure 1.
+10. Click **Assign** 
 
 ![Role_information](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/console-iam-changes-role-cos.png){: caption="Figure 1. Example actions per Content Reader role"}
 
@@ -124,15 +124,15 @@ If you need to grant,  access to a bucket for an application or other non-human 
 ### Using the UI
 {: #iam-service-id-console}
 
-  1. Navigate to the **Access (IAM)** console from the **Manage** menu.
-  2. Select **Service IDs** from the left navigation menu.
-  3. Select a Service ID to view any existing policies, and assign a new policy or edit an existing policy.
-  3. Select the service instance, service ID, and desired role.
-  4. Enter `bucket` in the **Resource Type** field and the bucket name in the **Resource** field.
-  5. Click **Submit**
+1. Navigate to the **Access (IAM)** console from the **Manage** menu.
+2. Select **Service IDs** from the left navigation menu.
+3. Select a Service ID to view any existing policies, and assign a new policy or edit an existing policy.
+3. Select the service instance, service ID, and desired role.
+4. Enter `bucket` in the **Resource Type** field and the bucket name in the **Resource** field.
+5. Click **Submit**
 
-  Note that leaving the **Resource Type** or **Resource** fields blank will create an instance-level policy.
-  {:tip}
+Note that leaving the **Resource Type** or **Resource** fields blank will create an instance-level policy.
+{:tip}
 
 ### Using the CLI
 {: #iam-service-id-cli}
