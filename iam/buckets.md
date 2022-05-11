@@ -8,12 +8,11 @@ keywords: access control, iam, basics, buckets
 
 subcollection: cloud-object-storage
 
-
 ---
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Bucket permissions
+# Assigning access to an individual bucket
 {: #iam-bucket-permissions}
 
 Assign access roles for users and Service IDs against buckets, by using either the UI or the CLI to create policies.
@@ -31,9 +30,9 @@ Assign access roles for users and Service IDs against buckets, by using either t
 ## Granting access to a user
 {: #iam-user-access}
 
-If the user needs to be able to use the console, it is necessary to **also** grant them a minimum platform access role of `Viewer` on the instance itself in addition to the service access role (such as `Reader`). This allows them to view all buckets and list the objects within them. Then, select **Bucket permissions** from the left navigation menu, select the user, and select the level of access (`Manager` or `Writer`) that they require.
+If the user needs to be able to use the console but should not be able to see the list of all buckets within an instance, it is necessary to custom platform access role. This allows them to view only appropriate buckets and list the objects within them. 
 
-If the user interacts with data by using the API and doesn't require console access, _and_ they are a member of your account, you can grant access to a single bucket without any access to the parent instance.
+If the user interacts with data by using the API and doesn't require console access, _and_ they are a member of your account, you can grant access to a single bucket without any access to the parent instance using the default roles. 
 
 ## Policy enforcement
 {: #iam-policy-enforcement}
@@ -45,10 +44,11 @@ This is also applicable to service instance and bucket level policies.
 - If a user has a policy granting the `Writer` role on a service instance and the `Reader` role on a single bucket, the bucket-level policy is ignored.
 - If a user has a policy granting the `Reader` role on a service instance and the `Writer` role on a single bucket, both policies are enforced and the more permissive `Writer` role will take precedence for the individual bucket.
 
-If it is necessary to restrict,  access to a single bucket (or set of buckets) ensure that the user or Service ID doesn't have any instance level policies by using either the console or CLI.
+If it is necessary to restrict access to a single bucket (or set of buckets) ensure that the user or Service ID doesn't have any other instance level policies by using either the console or CLI.
 
-### Using the UI
+### Create a new policy for a user
 {: #iam-policy-enforcement-console}
+{: ui}
 
 To create a new bucket-level policy: 
 
@@ -68,8 +68,9 @@ To create a new bucket-level policy:
 Note that leaving the **Resource Type** or **Resource** fields blank will create an instance-level policy.
 {:tip}
 
-### Using the CLI
+### Create a new policy for a user
 {: #iam-policy-enforcement-cli}
+{: cli}
 
 From a terminal run the following command:
 
@@ -102,12 +103,13 @@ ibmcloud iam user-policy-update <user-name> <policy-id> \
 ```
 {:codeblock}
 
-## Granting access to a service ID
+## Granting access to a Service ID
 {: #iam-service-id}
 If you need to grant,  access to a bucket for an application or other non-human entity, use a Service ID. The Service ID can be created specifically for this purpose, or can be an existing Service ID already in use.
 
-### Using the UI
+### Create a new policy for a user
 {: #iam-service-id-console}
+{: ui}
 
 1. Navigate to the **Access (IAM)** console from the **Manage** menu.
 2. Select **Service IDs** from the left navigation menu.
@@ -119,8 +121,9 @@ If you need to grant,  access to a bucket for an application or other non-human 
 Note that leaving the **Resource Type** or **Resource** fields blank will create an instance-level policy.
 {:tip}
 
-### Using the CLI
+### Create a new policy for a Service ID
 {: #iam-service-id-cli}
+{: cli}
 
 From a terminal run the following command:
 
