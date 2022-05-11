@@ -140,7 +140,7 @@ For performance optimization, objects can be uploaded and downloaded in multiple
  
 Yes. Data at rest is encrypted with automatic provider-side Advanced Encryption Standard (AES) 256-bit encryption and the Secure Hash Algorithm (SHA)-256 hash. Data in motion is secured by using the built-in carrier grade Transport Layer Security/Secure Sockets Layer (TLS/SSL) or SNMPv3 with AES encryption.
 
-If you want more control over encryption, you can make use of IBM Key Protect to manage generated or "bring your own" keying. For details, see [Key-protect COS Integration](https://cloud.ibm.com/docs/key-protect?topic=key-protect-integrate-cos).
+If you want more control over encryption, you can make use of IBM Key Protect to manage generated or "bring your own" keying. For details, see [Key-protect COS Integration](/docs/key-protect?topic=key-protect-integrate-cos).
 
 ## Is there additional encryption processing if a customer wants to encrypt their data?
 {: #faq-encrypt-add}
@@ -224,7 +224,7 @@ Web browsers can display web content in IBM Cloud Object Storage files, using th
 {: #faq-archive}
 {: faq}
 
-The policy applies to the new objects uploaded but does not affect existing objects on a bucket. For details, see [Add or manage an archive policy on a bucket](https://cloud.ibm.com/docs/cloud-object-storage/basics?topic=cloud-object-storage-archive#archive-add).
+The policy applies to the new objects uploaded but does not affect existing objects on a bucket. For details, see [Add or manage an archive policy on a bucket](/docs/cloud-object-storage/basics?topic=cloud-object-storage-archive#archive-add).
 
 ## Can I unzip a file after I upload it?
 {: #faq-unzip}
@@ -256,7 +256,7 @@ However, if the issue persists, contact IBM customer support.
 {: faq}
 
 You can check the communication with {{site.data.keyword.cos_short}} by using one of the following:
-* Use a `COS API HEAD` call to a bucket that will return the headers for that bucket. See [api-head-bucket](https://cloud.ibm.com/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-head-bucket).
+* Use a `COS API HEAD` call to a bucket that will return the headers for that bucket. See [api-head-bucket](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-head-bucket).
 
 * Use SDK : See [headbucket property](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#headBucket-property).
 
@@ -265,7 +265,7 @@ You can check the communication with {{site.data.keyword.cos_short}} by using on
 {: faq}
 
 Yes, You can achieve the same by creating a bucket in the target {{site.data.keyword.cos_short}} instance and perform a sync. For details see [cloud-object-storage-region-copy](
- https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-region-copy).
+ /docs/cloud-object-storage?topic=cloud-object-storage-region-copy).
 
 ## My COS service is locked. How do I reactivate the COS service?
 {: #faq-locked-account}
@@ -283,7 +283,7 @@ When an empty bucket is deleted, the name of the bucket is held in reserve by th
 {: #faq-restore-object}
 {: faq}
 
-Archived objects must be restored before you can access them. While restoring, specify the time limit the objects should remain available before being re-archived. For details, see [archive-restore data](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-archive).
+Archived objects must be restored before you can access them. While restoring, specify the time limit the objects should remain available before being re-archived. For details, see [archive-restore data](/docs/cloud-object-storage?topic=cloud-object-storage-archive).
 
 ## Can I enable {{site.data.keyword.cos_short}} replication between two different regions for DR purposes?
 {: #faq-cos-replication}
@@ -295,13 +295,13 @@ COS by itself does not provide any replication feature. However {{site.data.keyw
 {: #faq-event-tracking}
 {: faq}
 
-The {{site.data.keyword.cos_short}} Activity Tracker service records user-initiated activities that change the state of a service in {{site.data.keyword.cos_short}}. For details, see [IBM Cloud Activity Tracker](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-at-events).
+The {{site.data.keyword.cos_short}} Activity Tracker service records user-initiated activities that change the state of a service in {{site.data.keyword.cos_short}}. For details, see [IBM Cloud Activity Tracker](/docs/cloud-object-storage?topic=cloud-object-storage-at-events).
 
 ## How can I setup notifications when objects are updated or written to a bucket?
 {: #faq-notification-setup}
 {: faq}
 
-Use [Cloud Functions for object storage](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-functions) to setup an Event Source (notification).
+Use [Cloud Functions for object storage](/docs/cloud-object-storage?topic=cloud-object-storage-functions) to setup an Event Source (notification).
 
 ## Does {{site.data.keyword.cos_short}} have rate limits when writing to or reading from buckets?
 {: #faq-rate-limit}
@@ -337,49 +337,49 @@ There is no default retention period applied. You can set it while creating the
 {: #faq-add-retention}
 {: faq}
 
-Yes, [Retention policies](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-immutable#immutable-sdk-add-policy) can be added to an existing bucket; however, the retention period can only be extended. It cannot be decreased from the currently configured value.
+Yes, [Retention policies](/docs/cloud-object-storage?topic=cloud-object-storage-immutable#immutable-sdk-add-policy) can be added to an existing bucket; however, the retention period can only be extended. It cannot be decreased from the currently configured value.
 
 ## Why is there a "legal hold" concept on top of the "retention period"?
 {: #faq-legal-hold}
 {: faq}
 
-A legal hold prevents an object from being overwritten or deleted. However, a legal hold does not have to be associated with a retention period and remains in effect until the legal hold is removed. For details, see [Legal hold and retention period](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-immutable#immutable-terminology-hold).
+A legal hold prevents an object from being overwritten or deleted. However, a legal hold does not have to be associated with a retention period and remains in effect until the legal hold is removed. For details, see [Legal hold and retention period](/docs/cloud-object-storage?topic=cloud-object-storage-immutable#immutable-terminology-hold).
 
 ## How can I access a private COS endpoint in a data center from another date center?
 {: #faq-access-pvt-cospoints}
 {: faq}
 
-Use {{site.data.keyword.cos_short}} [Direct Link Connection]((https://cloud.ibm.com/docs/direct-link?topic=direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage)) to create a global direct link.
+Use {{site.data.keyword.cos_short}} [Direct Link Connection]((/docs/direct-link?topic=direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage)) to create a global direct link.
 
 ## How does frequency of data access impact the pricing of {{site.data.keyword.cos_short}}?
 {: #faq-access-price}
 {: faq}
 
-Storage cost for {{site.data.keyword.cos_short}} is determined by the total volume of data stored, the amount of public outbound bandwidth used, and the total number of operational requests processed by the system. For details, see [cloud-object-storage-billing](https://cloud.ibm.com/docs/cloud-object-storage/iam?topic=cloud-object-storage-billing).
+Storage cost for {{site.data.keyword.cos_short}} is determined by the total volume of data stored, the amount of public outbound bandwidth used, and the total number of operational requests processed by the system. For details, see [cloud-object-storage-billing](/docs/cloud-object-storage/iam?topic=cloud-object-storage-billing).
 
 ## What are the considerations for choosing the correct storage class in {{site.data.keyword.cos_short}}?  
 {: #faq-choose-storageclass}
 {: faq}
 
-You can choose the correct storage class based on your requirement. For details, see [billing-storage-classes](https://cloud.ibm.com/docs/cloud-object-storage/iam?topic=cloud-object-storage-billing#billing-storage-classes).
+You can choose the correct storage class based on your requirement. For details, see [billing-storage-classes](/docs/cloud-object-storage/iam?topic=cloud-object-storage-billing#billing-storage-classes).
 
 ## How to invoke IBM Cloud Object Storage bucket operations using cURL?
 {: #faq-using-curl}
 {: faq}
 
-You have the most power by using the command line in most environments with IBM Cloud Object Storage and cURL. However using cURL assumes a certain amount of familiarity with the command line and Object Storage. For details, see [Using cURL](https://cloud.ibm.com/docs/cloud-object-storage/cli?topic=cloud-object-storage-curl).
+You have the most power by using the command line in most environments with IBM Cloud Object Storage and cURL. However using cURL assumes a certain amount of familiarity with the command line and Object Storage. For details, see [Using cURL](/docs/cloud-object-storage/cli?topic=cloud-object-storage-curl).
 
 ## Is encryption applied to a bucket by default?
 {: #faq-default-enc}
 {: faq}
 
-Yes, by default, all objects stored in {{site.data.keyword.cos_short}} are encrypted using randomly generated keys and an all-or-nothing-transform (AONT). You can get the encryption details using IBM Cloud UI/CLI. For details, see [Cloud Storage Encryption](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-encryption).
+Yes, by default, all objects stored in {{site.data.keyword.cos_short}} are encrypted using randomly generated keys and an all-or-nothing-transform (AONT). You can get the encryption details using IBM Cloud UI/CLI. For details, see [Cloud Storage Encryption](/docs/cloud-object-storage?topic=cloud-object-storage-encryption).
 
 ## How can I list all permissions of a bucket? 
 {: #faq-bucket-permison}
 {: faq}
 
-The IAM feature creates a report at the instance level which may extend to their buckets. It does not specifically report at the bucket level. For details, see [Account Access Report](https://cloud.ibm.com/docs/account?topic=account-access-report).
+The IAM feature creates a report at the instance level which may extend to their buckets. It does not specifically report at the bucket level. For details, see [Account Access Report](/docs/account?topic=account-access-report).
 
 ## How can I monitor bucket changes in the public cloud without using the cloud functions?
 {: #faq-Cloud-Function}
@@ -403,13 +403,13 @@ Yes, the object is overwriten.
 {: #faq-bucketinfo-webconsole}
 {: faq}
 
-Use the {{site.data.keyword.cos_short}} Resource Configuration API to get bucket information. For details, see [COS configuration](https://cloud.ibm.com/apidocs/cos/cos-configuration#returns-metadata-for-the-specified-bucket) and [COS Integration](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration).
+Use the {{site.data.keyword.cos_short}} Resource Configuration API to get bucket information. For details, see [COS configuration](https://cloud.ibm.com/apidocs/cos/cos-configuration#returns-metadata-for-the-specified-bucket) and [COS Integration](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration).
 
 ## How can I manage service credentials for {{site.data.keyword.cos_short}} instances?
 {: #faq-mnge-cosinst}
 {: faq}
 
-When a service credential is created, the underlying Service ID is granted a role on the entire instance of Object Storage. For details, see [Managing Service credentials](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials).
+When a service credential is created, the underlying Service ID is granted a role on the entire instance of Object Storage. For details, see [Managing Service credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials).
 
 ## Why are parts of my credentials hidden or not viewable?
 {: #faq-unviewable-credentials}
@@ -427,7 +427,7 @@ No, it is not possible to add Key Protect after creating a bucket. Key Protect c
 {: #faq-archive tier}
 {: faq}
 
-You can archive objects using the web console, REST API, and third-party tools that are integrated with IBM Cloud Object Storage. For details, see [COS Archive](https://cloud.ibm.com/docs/cloud-object-storage/basics?topic=cloud-object-storage-archive).
+You can archive objects using the web console, REST API, and third-party tools that are integrated with IBM Cloud Object Storage. For details, see [COS Archive](/docs/cloud-object-storage/basics?topic=cloud-object-storage-archive).
  
 ## Can I use the same {{site.data.keyword.cos_short}} instance across multiple regions?
 {: #faq-cosinstance-multiplereg}
@@ -458,7 +458,7 @@ A PreSigned URL is not generated using the IBM Cloud UI; however, you can use C
 {: #faq-genrt-auth-token}
 {: faq}
 
-For more information on working with the API, see [Creating IAM token for API Key](https://cloud.ibm.com/docs/account?topic=account-iamtoken_from_apikey) and [Congfiguration Authentication](https://cloud.ibm.com/apidocs/cos/cos-configuration#authentication).
+For more information on working with the API, see [Creating IAM token for API Key](/docs/account?topic=account-iamtoken_from_apikey) and [Congfiguration Authentication](https://cloud.ibm.com/apidocs/cos/cos-configuration#authentication).
 
 ## How can I use the {{site.data.keyword.cos_short}} web console to download and upload large objects?
 {: #faq-large-object}
@@ -470,7 +470,7 @@ You can use IBM Cloud CLI or the API to download large objects. Alternatively, p
 {: #faq-library-support}
 {: faq}
 
-{{site.data.keyword.cos_short}} provides SDKs for Java, Python, NodeJS, and Go featuring capabilities to make the most of IBM Cloud Object Storage. For information about the features supported by each SDK, see the [feature list](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-sdk-about).
+{{site.data.keyword.cos_short}} provides SDKs for Java, Python, NodeJS, and Go featuring capabilities to make the most of IBM Cloud Object Storage. For information about the features supported by each SDK, see the [feature list](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-about).
 
 ## When a file is uploaded to a cross region bucket using the ‘us-geo’ endpoint, how long is the delay before the file is available at the other US sites?
 {: #faq-time-req}
@@ -488,13 +488,13 @@ Create a new set of credentials to access the restored resources.
 {: #faq-static-website}
 {: faq}
 
-You can use {{site.data.keyword.cos_short}} bucket to host a static website. For details, see [Hosting Website using COS](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial).
+You can use {{site.data.keyword.cos_short}} bucket to host a static website. For details, see [Hosting Website using COS](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial).
  
 ## Are REST and cURL commands supported for {{site.data.keyword.cos_short}} bucket creation using HMAC credentials?
 {: #faq-using-hmac}
 {: faq}
 
-Yes, you should setup an authorization header. For details, see [Using HMAC Signature](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-hmac-signature).
+Yes, you should setup an authorization header. For details, see [Using HMAC Signature](/docs/cloud-object-storage?topic=cloud-object-storage-hmac-signature).
 
 ## What kind of IAM authorization is required to edit a bucket's authorized IPs list? 
 {: #faq-author-iplist}
@@ -506,7 +506,7 @@ You must have 'Manager' privilege on the bucket to manage the firewall and to se
 {: #faq-singleregion-to-multiregion}
 {: faq}
 
-No, you must copy objects to the target bucket. For details, see [COS Region Copy](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-region-copy).
+No, you must copy objects to the target bucket. For details, see [COS Region Copy](/docs/cloud-object-storage?topic=cloud-object-storage-region-copy).
 
 ## Is there a way to verify an object’s integrity during an upload to {{site.data.keyword.cos_short}}?
 {: #faq-data-integrity}
@@ -518,4 +518,4 @@ No, you must copy objects to the target bucket. For details, see [COS Region Co
 {: #faq-quota-billing}
 {: faq}
 
-You can use a "soft" bucket quota feature by integrating with Metrics Monitoring and configuring for notifications. For details on establishing a hard quota that prevents usage beyond a set bucket size, see [Using Bucket Quota](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-quota).
+You can use a "soft" bucket quota feature by integrating with Metrics Monitoring and configuring for notifications. For details on establishing a hard quota that prevents usage beyond a set bucket size, see [Using Bucket Quota](/docs/cloud-object-storage?topic=cloud-object-storage-quota).
