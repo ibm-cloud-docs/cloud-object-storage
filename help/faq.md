@@ -52,6 +52,14 @@ Keys have a 1024-character limit.
 
 You can use the [Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration#returns-metadata-for-the-specified-bucket) to get the bytes used for a given bucket.
 
+## How can I view my buckets?
+{: #faq-bucket-view}
+{: faq}
+
+You can view and navigate your buckets using the console, CLI or the API.
+
+For example, the CLI command `ibmcloud cos buckets` will list all buckets associated with the targeted service instance.
+
 ## Can I migrate data from AWS S3 into {{site.data.keyword.cos_full_notm}}?
 {: #faq-migrate}
 {: faq}
@@ -397,7 +405,7 @@ Use the Activity Tracker service to capture and record {{site.data.keyword.cos_s
 {: #faq-obj-overwrite}
 {: faq}
 
-Yes, the object is overwriten.
+Yes, the object is overwritten.
  
 ## How do I get bucket information without using the web console? 
 {: #faq-bucketinfo-webconsole}
