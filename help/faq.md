@@ -156,6 +156,12 @@ Also, see [API Key vs HMAC](/docs/cloud-object-storage/iam?topic=cloud-object-st
  
 CORS allows interactions between resources from different origins that are normally prohibited. A bucket firewall allows access only to requests from a list of allowed IP addresses. For more information on CORS, see [What is CORS?](/docs/CDN?topic=CDN-cors-and-cors-requests-through-your-cdn#what-is-cors).
 
+## How do I allow Aspera High-Speed Transfer through a bucket with context-based restrictions or a firewall?
+{: #faq-aspera-ip}
+{: faq}
+ 
+The full list (in JSON) of Aspera High-Speed Transfer IP addresses that are used with {{site.data.keyword.cos_full_notm}} can be found [using this API endpoint](https://ats.aspera.io/pub/v1/servers/softlayer).
+
 ## Can I create more than one Object Storage service with a Lite account?
 {: #faq-lite-storage}
 {: faq}
