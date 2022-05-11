@@ -411,6 +411,12 @@ Use the {{site.data.keyword.cos_short}} Resource Configuration API to get bucket
 
 When a service credential is created, the underlying Service ID is granted a role on the entire instance of Object Storage. For details, see [Managing Service credentials](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials).
 
+## Why are parts of my credentials hidden or not viewable?
+{: #faq-unviewable-credentials}
+{: faq}
+
+There may be an issue where the viewer does not have sufficient roles to view the credential information.  For more information, see [the account credentials documentation](/account?topic=account-service_credentials&interface=ui#viewing-credentials-ui).
+
 ## Is there a way to enable Key Protect on a {{site.data.keyword.cos_short}} bucket after the bucket is created?
 {: #faq-bucket-keypro}
 {: faq}
