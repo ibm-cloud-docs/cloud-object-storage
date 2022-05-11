@@ -34,6 +34,12 @@ content-type: faq
 Frequently asked questions can produce helpful answers and insight into best practices for working with {{site.data.keyword.cos_full}}.
 {: shortdesc}
 
+## Why can I not create or delete a service instance?
+{: #faq-instance-create-delete}
+{: faq}
+
+A user is required to have have at a minimum the platform role of `editor` for all IAM enabled services, or at least for Cloud Object Service. For more information, see the [IAM documentation on roles](/docs/account?topic=account-iam-service-roles-actions).
+
 ## Are bucket names case-sensitive?
 {: #faq-name-case}
 {: faq}
