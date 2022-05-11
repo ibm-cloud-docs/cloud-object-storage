@@ -8,14 +8,7 @@ keywords: security and compliance for cloud-object-storage, security for cloud-o
 subcollection: cloud-object-storage
 ---
 
-{:external: target="_blank" .external}
-{:tip: .tip}
-{:important: .important}
-{:note: .note}
-{:term: .term}
-{:shortdesc: .shortdesc}
-{:table: .aria-labeledby="caption"}
-
+{{site.data.keyword.attribute-definition-list}}
 
 # Managing security and compliance with {{site.data.keyword.cos_full_notm}}
 {: #manage-security-compliance}

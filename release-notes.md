@@ -11,15 +11,9 @@ subcollection: cloud-object-storage
 content-type: release-note
 
 ---
-{:new_window: target="_blank"}
-{:external: target="_blank" .external}
-{:shortdesc: .shortdesc}
-{:tip: .tip}
-{:important: .important}
-{:note: .note}
-{:faq: data-hd-content-type='faq'}
-{:support: data-reuse='support'}
-{:release-note: data-hd-content-type='release-note'}
+
+{{site.data.keyword.attribute-definition-list}}
+
 # Release notes for {{site.data.keyword.cos_short}}
 {: #updates}
 

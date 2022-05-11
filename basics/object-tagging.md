@@ -9,22 +9,8 @@ keywords: tagging, objects, tags, metadata
 subcollection: cloud-object-storage
 
 ---
-{:new_window: target="_blank"}
-{:external: target="_blank" .external}
-{:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:screen: .screen}
-{:tip: .tip}
-{:important: .important}
-{:note: .note}
-{:download: .download}
-{:term: .term}
-{:table: .aria-labeledby="caption"}
-{:faq: data-hd-content-type='faq'}
-{:support: data-reuse='support'}
-{:console: .ph data-hd-programlang='Console'}
-{:http: .ph data-hd-programlang='curl'}
+
+{{site.data.keyword.attribute-definition-list}}
 
 # Tagging objects in {{site.data.keyword.cos_full_notm}}
 {: #object-tagging}

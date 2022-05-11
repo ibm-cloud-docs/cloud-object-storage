@@ -10,20 +10,8 @@ subcollection: cloud-object-storage
 
 
 ---
-{:new_window: target="_blank"}
-{:external: target="_blank" .external}
-{:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:screen: .screen}
-{:tip: .tip}
-{:important: .important}
-{:note: .note}
-{:download: .download}
-{:token: .ph data-hd-programlang='token'}
-{:hmac: .ph data-hd-programlang='hmac'}
-{:faq: data-hd-content-type='faq'}
-{:support: data-reuse='support'}
+
+{{site.data.keyword.attribute-definition-list}}
 
 # Bucket operations
 {: #compatibility-api-bucket-operations}

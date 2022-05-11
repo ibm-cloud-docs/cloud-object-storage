@@ -9,18 +9,9 @@ keywords: encryption, security, sse-c, key protect
 subcollection: cloud-object-storage
 
 ---
-{:new_window: target="_blank"}
-{:external: target="_blank" .external}
-{:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:screen: .screen}
-{:tip: .tip}
-{:important: .important}
-{:note: .note}
-{:download: .download}
-{:faq: data-hd-content-type='faq'}
-{:support: data-reuse='support'}
+
+{{site.data.keyword.attribute-definition-list}}
+
 {:help: data-hd-content-type='help'}
 
 # Server-Side Encryption with {{site.data.keyword.keymanagementservicelong_notm}} (SSE-KP)

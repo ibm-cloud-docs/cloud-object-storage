@@ -13,22 +13,8 @@ account-plan: lite
 completion-time: 30m
 
 ---
-{:new_window: target="_blank"}
-{:external: target="_blank" .external}
-{:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:screen: .screen}
-{:tip: .tip}
-{:important: .important}
-{:note: .note}
-{:download: .download} 
-{:table: .aria-labeledby="caption"}
-{:cli: .ph data-hd-programlang='CLI'}
-{:console: .ph data-hd-programlang='Console'}
-{:faq: data-hd-content-type='faq'}
-{:support: data-reuse='support'}
 
+{{site.data.keyword.attribute-definition-list}}
 
 # Tracking {{site.data.keyword.cos_short}} events in {{site.data.keyword.at_short}}
 {: #tracking-cos-events}

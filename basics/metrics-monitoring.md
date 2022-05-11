@@ -10,19 +10,8 @@ subcollection: cloud-object-storage
 
 
 ---
-{:new_window: target="_blank"}
-{:external: target="_blank" .external}
-{:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:screen: .screen}
-{:tip: .tip}
-{:important: .important}
-{:note: .note}
-{:download: .download} 
-{:table: .aria-labeledby="caption"}
-{:faq: data-hd-content-type='faq'}
-{:support: data-reuse='support'}
+
+{{site.data.keyword.attribute-definition-list}}
 {:http: .ph data-hd-programlang='http'} 
 {:console: .ph data-hd-programlang='Console'} 
 {:cli: .ph data-hd-programlang='CLI'} 

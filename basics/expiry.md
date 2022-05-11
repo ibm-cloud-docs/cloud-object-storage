@@ -10,25 +10,9 @@ subcollection: cloud-object-storage
 
 
 ---
-{:external: target="blank" .external}
-{:new_window: target="_blank"}
-{:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:screen: .screen}
-{:tsSymptoms: .tsSymptoms}
-{:tsCauses: .tsCauses}
-{:tsResolve: .tsResolve}
-{:tip: .tip}
-{:important: .important}
-{:note: .note}
-{:download: .download}
-{:javascript: .ph data-hd-programlang='javascript'}
-{:java: .ph data-hd-programlang='java'} 
-{:python: .ph data-hd-programlang='python'} 
-{:http: .ph data-hd-programlang='http'}
-{:faq: data-hd-content-type='faq'}
-{:support: data-reuse='support'}
+
+{{site.data.keyword.attribute-definition-list}}
+
 
 # Deleting stale data with expiration rules
 {: #expiry}

@@ -9,17 +9,8 @@ keywords: IBM cloud object storage, cloud object storage, object storage, storag
 subcollection: cloud-object-storage
 
 ---
-{:shortdesc: .shortdesc}
-{:external: target="_blank" .external}
-{:new_window: target="_blank"}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:screen: .screen}
-{:important: .important}
-{:tip: .tip}
-{:faq: data-hd-content-type='faq'}
-{:support: data-reuse='support'}
-{:help: data-hd-content-type='help'}
+
+{{site.data.keyword.attribute-definition-list}}
 
 # Getting started with {{site.data.keyword.cos_full_notm}}
 {: #getting-started-cloud-object-storage}
