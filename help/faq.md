@@ -40,6 +40,20 @@ Frequently asked questions can produce helpful answers and insight into best pra
 
 A user is required to have have at a minimum the platform role of `editor` for all IAM enabled services, or at least for Cloud Object Service. For more information, see the [IAM documentation on roles](/docs/account?topic=account-iam-service-roles-actions).
 
+## Which one of my instances uses a Lite plan?
+{: #faq-instance-find-lite}
+{: faq}
+
+An account is limited to a single instance of {{site.data.keyword.cos_full_notm}} that uses a Lite plan.  You can find this instance three different ways:
+
+1. Navigate to the [catalog](https://cloud.ibm.com/objectstorage/create) and attempt to make a new Lite instance.  An error will pop up prompting you to delete the existing instance, and provides a link to the current Lite instance.
+2. Navigate to the storage section of the resource list, and click on any area of blank space to select an instance of {{site.data.keyword.cos_short}}. An informational sidebar will appear and provide the plan name: either Lite or Standard.
+3. Use the CLI to search for the resource:
+
+```sh
+ibmcloud resource search "service_name:cloud-object-storage AND 2fdf0c08-2d32-4f46-84b5-32e0c92fffd8"
+```
+
 ## How do I upgrade a service instance from Lite to Standard?
 {: #faq-instance-upgrade}
 {: faq}
