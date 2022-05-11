@@ -89,3 +89,9 @@ In the **Buckets** listing, the bucket has a _View_ link under **Attributes** wh
 {: step}
 {: cli}
 
+Ensure you've targeted a resource group and then create a new instance of Key Protect.  In this case, we've named it `kp-cli` and it's in the `us-south` region.
+
+```sh
+ic resource service-instance-create kp-cli kms tiered-pricing us-south
+```
+
