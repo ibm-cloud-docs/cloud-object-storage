@@ -40,6 +40,18 @@ Frequently asked questions can produce helpful answers and insight into best pra
 
 A user is required to have have at a minimum the platform role of `editor` for all IAM enabled services, or at least for Cloud Object Service. For more information, see the [IAM documentation on roles](/docs/account?topic=account-iam-service-roles-actions).
 
+## How do I upgrade a service instance from Lite to Standard?
+{: #faq-instance-create-delete}
+{: faq}
+
+Typically, this is easily done from the {{site.data.keyword.cos_full_notm}} console by clicking on **Plan** in the navigation menu, located after **Connections**.
+
+In cases where the instance has been locked due to exceeding the maximum allowed size of a Lite instance it may be necessary to use the CLI. The plan ID for a standard {{site.data.keyword.cos_short}} instance is `744bfc56-d12c-4866-88d5-dac9139e0e5d` (if curious, this can be found by issuing the CLI command `ic catalog service cloud-object-storage`).  You'll need to know the name of the instance you are trying to upgrade.  For example, to upgrade the instance "My Object Storage", you can issue the command:
+
+```sh
+ic resource service-instance-update "My Object Storage" --service-plan-id 744bfc56-d12c-4866-88d5- dac9139e0e5d
+```
+
 ## Are bucket names case-sensitive?
 {: #faq-name-case}
 {: faq}
