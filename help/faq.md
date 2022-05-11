@@ -41,7 +41,7 @@ Frequently asked questions can produce helpful answers and insight into best pra
 A user is required to have have at a minimum the platform role of `editor` for all IAM enabled services, or at least for Cloud Object Service. For more information, see the [IAM documentation on roles](/docs/account?topic=account-iam-service-roles-actions).
 
 ## How do I upgrade a service instance from Lite to Standard?
-{: #faq-instance-create-delete}
+{: #faq-instance-upgrade}
 {: faq}
 
 Typically, this is easily done from the {{site.data.keyword.cos_full_notm}} console by clicking on **Plan** in the navigation menu, located after **Connections**.
@@ -63,6 +63,12 @@ Bucket names are required to be DNS addressable and are not case-sensitive.
 {: faq}
 
 Keys have a 1024-character limit.
+
+## What are some tools unable to render object names?
+{: #faq-xml-error}
+{: faq}
+
+Object names that contain unicode characters that are not allowed by the XML standard will result in "Malformed XML" messages. For more information, see [the XML reference documentation](https://www.w3.org/TR/xml/#charsets).
 
 ## How can I find out the total size of my bucket by using the API?
 {: #faq-bucket-size}
