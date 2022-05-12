@@ -40,7 +40,6 @@ toc:
           - tutorials/cos-events-at.md
           - tutorials/cbr-tutorial.md
           - tutorials/web-application.md
-          - tutorials/cloudyr.md
           - tutorials/static-website.md
           - /direct-link/direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage
     - navgroup:
@@ -142,6 +141,7 @@ toc:
                 - libraries/node.md
                 - libraries/go.md
                 - libraries/terraform.md
+                - tutorials/cloudyr.md
           - topicgroup:
               label: Use the command line
               topics:

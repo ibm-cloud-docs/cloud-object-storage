@@ -95,3 +95,17 @@ Ensure you've targeted a resource group and then create a new instance of Key Pr
 ic resource service-instance-create kp-cli kms tiered-pricing us-south
 ```
 
+## Create a new root key
+{: #kp-encrypt-kp-create-cli}
+{: step}
+{: cli}
+
+Ensure you've got the CLI plugin installed.  
+
+```sh
+ic plugin install kp
+```
+
+```sh
+ic resource service-instance-create kp-cli kms tiered-pricing us-south
+```
