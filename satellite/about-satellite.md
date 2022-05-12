@@ -86,4 +86,4 @@ Any Key Protect instances must be in {{site.data.keyword.cloud_notm}} and must b
 Activity Tracker will log service instance creation and deletion, but not any actions specific to object storage, such as listing buckets or reading/writing data.
 {:important}
 
-Other features that are currently not supported (such as Activity Tracking, Metrics Monitoring, Security and Compliance Center) will be added in the future. 
+Other features that are currently not supported (such as Activity Tracking, Metrics Monitoring, [Compliance](/docs/cloud-object-storage?topic=cloud-object-storage-compliance), Security and Compliance Center) will be added in the future. 
