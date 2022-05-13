@@ -317,7 +317,7 @@ New location!
 :   Buckets can now be created in an AP Cross Region configuration. Data stored in these buckets is distributed across the Seoul, Tokyo, and Hong Kong data centers. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
 
 New feature!
-:   Users can run `SELECT` SQL queries directly against structured data objects using IBM Cloud SQL Query. More information can be found in the [SQL Query documentation](/docs/sql-query?topic=sql-query-overview).
+:   Users can run `SELECT` SQL queries directly against structured data objects using {{site.data.keyword.sqlquery_full}}. More information can be found in the [{{site.data.keyword.sqlquery_short}} documentation](/docs/sql-query?topic=sql-query-overview).
 ## 7 March 2018
 {: #cloud-object-storage-mar718}
 {: release-note}
