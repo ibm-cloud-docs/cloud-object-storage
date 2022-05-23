@@ -20,6 +20,13 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
+## 23 May 2022
+{: #cloud-object-storage-may2322}
+{: release-note}
+
+Encryption update
+:   Buckets can be created in the `jp-tok`, `ca-tor`, and `br-sao` regions using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-cr) managed encryption.
+
 ## 2 May 2022
 {: #cloud-object-storage-may0222}
 {: release-note}
