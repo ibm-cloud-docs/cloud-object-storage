@@ -11,23 +11,17 @@ subcollection: cloud-object-storage
 content-type: release-note
 
 ---
-{:new_window: target="_blank"}
-{:external: target="_blank" .external}
-{:shortdesc: .shortdesc}
-{:tip: .tip}
-{:important: .important}
-{:note: .note}
-{:faq: data-hd-content-type='faq'}
-{:support: data-reuse='support'}
-{:release-note: data-hd-content-type='release-note'}
+
+{{site.data.keyword.attribute-definition-list}}
+
 # Release notes for {{site.data.keyword.cos_short}}
 {: #updates}
 
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
-## 3 May 2022
-{: #cloud-object-storage-may0322}
+## 2 May 2022
+{: #cloud-object-storage-may0222}
 {: release-note}
 
 New feature!
@@ -323,7 +317,7 @@ New location!
 :   Buckets can now be created in an AP Cross Region configuration. Data stored in these buckets is distributed across the Seoul, Tokyo, and Hong Kong data centers. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
 
 New feature!
-:   Users can run `SELECT` SQL queries directly against structured data objects using IBM Cloud SQL Query. More information can be found in the [SQL Query documentation](/docs/sql-query?topic=sql-query-overview).
+:   Users can run `SELECT` SQL queries directly against structured data objects using {{site.data.keyword.sqlquery_full}}. More information can be found in the [{{site.data.keyword.sqlquery_short}} documentation](/docs/sql-query?topic=sql-query-overview).
 ## 7 March 2018
 {: #cloud-object-storage-mar718}
 {: release-note}
