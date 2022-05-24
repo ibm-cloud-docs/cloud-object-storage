@@ -94,7 +94,7 @@ ic resource service-instance-create kp-cli kms tiered-pricing us-south
 ```
 
 ## Create a new root key
-{: #kp-encrypt-kp-create-cli}
+{: #kp-encrypt-kp-create-cli-root}
 {: step}
 {: cli}
 
