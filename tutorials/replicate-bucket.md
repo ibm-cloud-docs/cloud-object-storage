@@ -18,7 +18,7 @@ completion-time: 10m
 {{site.data.keyword.attribute-definition-list}}
 
 # Replicating data across buckets 
-{: #tutorial-replicate-bucket}
+{: #replicating-cos-bucket}
 {: toc-content-type="tutorial"}
 {: toc-completion-time="10m"} 
 
