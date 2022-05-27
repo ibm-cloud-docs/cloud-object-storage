@@ -1,4 +1,4 @@
-toc:
+oc:
   properties:
     subcollection: cloud-object-storage
     service-name: cloud-object-storage
@@ -36,13 +36,13 @@ toc:
               label: Tutorials library for Object Storage
               href: https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage
           - tutorials/kp-encrypt-bucket.md
-          - tutorials/migrate.md
           - tutorials/cos-events-at.md
           - tutorials/cos-mm.md
           - tutorials/cbr-tutorial.md
           - tutorials/web-application.md
           - tutorials/static-website.md
           - /direct-link/direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage
+          - tutorials/migrate.md
     - navgroup:
         id: howto
         topics:
