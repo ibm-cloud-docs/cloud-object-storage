@@ -23,7 +23,7 @@ Bucket replication allows  users to define rules for automatic, asynchronous cop
 
 - Keep copies of data in multiple regions 
 
-To meet compliance regulations for storing data in a certain region/country, you can define replication rules to store replicas in destination buckets within the allowable territory
+- To meet compliance regulations for storing data in a certain region/country, you can define replication rules to store replicas in destination buckets within the allowable territory
 
 To ensure that replicas are identical to the source data, you can use replication to retain object meta data such as last modified time, version ID, etc.
 
@@ -77,22 +77,14 @@ While IBM COS provides strong consistency for all data IO operations, bucket con
 ## IAM actions
 {: #replication-iam}
 
-There are new IAM actions associated with versioning. 
+There are new IAM actions associated with replication. 
 
-| IAM Action                                         | Role                                                   |
-|----------------------------------------------------|--------------------------------------------------------|
-| cloud-object-storage.bucket.put_versioning         | Manager, Writer                                        |
-| cloud-object-storage.bucket.get_versioning         | Manager, Writer, Reader                                |
-| cloud-object-storage.object.get_version            | Manager, Writer, Reader, Content Reader, Object Reader |
-| cloud-object-storage.object.head_version           | Manager, Writer, Reader, Content Reader, Object Reader |
-| cloud-object-storage.bucket.delete_version         | Manager, Writer                                        |
-| cloud-object-storage.object.get_versions           | Manager, Writer, Reader, Content Reader, Object Reader |
-| cloud-object-storage.object.copy_get_version       | Manager, Writer, Reader                                |
-| cloud-object-storage.object.copy_part_get_version  | Manager, Writer, Reader                                |
-| cloud-object-storage.object.restore_version        | Manager, Writer                                        |
-| cloud-object-storage.object.put_tagging_version    | Manager, Writer, Object Writer                         |
-| cloud-object-storage.object.get_tagging_version    | Manager, Writer, Reader                                |
-| cloud-object-storage.object.delete_tagging_version | Manager, Writer                                        |
+| IAM Action                                     | Role                    |
+|------------------------------------------------|-------------------------|
+| cloud-object-storage.bucket.get_replication    | Manager, Writer, Reader |
+| cloud-object-storage.bucket.put_replication    | Manager, Writer         |
+| cloud-object-storage.bucket.delete_replication | Manager, Writer         |
+
 
 
 ## Activity Tracker events 
