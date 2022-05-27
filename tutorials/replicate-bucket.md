@@ -17,7 +17,7 @@ completion-time: 10m
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Encrypting a bucket with Key Protect 
+# Replicating data across buckets 
 {: #tutorial-replicate-bucket}
 {: toc-content-type="tutorial"}
 {: toc-completion-time="10m"} 
