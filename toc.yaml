@@ -9,7 +9,7 @@ toc:
     product-page: https://ibm.com/cloud/object-storage
     path: cloud-object-storage
     label: Object Storage
-    entries:
+   entries:
     - navgroup:
         id: learn
         topics:
@@ -36,6 +36,8 @@ toc:
               label: Tutorials library for Object Storage
               href: https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage
           - tutorials/kp-encrypt-bucket.md
+          - tutorials/migrate.md
+          - tutorials/replicate-bucket.md
           - tutorials/cos-events-at.md
           - tutorials/cos-mm.md
           - tutorials/cbr-tutorial.md
@@ -95,6 +97,7 @@ toc:
                 - basics/abort-mpu.md
           - basics/upload.md
           - versioning.md
+          - replication.md
           - basics/closures.md
           - basics/object-tagging.md
           - tutorials/cos-region-copy.md
