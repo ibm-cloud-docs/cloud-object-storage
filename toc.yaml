@@ -96,6 +96,7 @@ toc:
                 - basics/abort-mpu.md
           - basics/upload.md
           - versioning.md
+          - replication.md
           - basics/closures.md
           - basics/object-tagging.md
           - tutorials/cos-region-copy.md
