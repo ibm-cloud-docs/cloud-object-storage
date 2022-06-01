@@ -9,7 +9,7 @@ toc:
     product-page: https://ibm.com/cloud/object-storage
     path: cloud-object-storage
     label: Object Storage
-  entries:
+   entries:
     - navgroup:
         id: learn
         topics:
@@ -44,6 +44,7 @@ toc:
           - tutorials/web-application.md
           - tutorials/static-website.md
           - /direct-link/direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage
+          - tutorials/migrate.md
     - navgroup:
         id: howto
         topics:
