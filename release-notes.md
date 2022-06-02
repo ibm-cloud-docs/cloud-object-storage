@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-04-05"
+lastupdated: "2022-06-057"
 
 keywords: updates, releases, news, object storage
 
@@ -20,12 +20,19 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
+## 7 June 2022
+{: #cloud-object-storage-jun0722}
+{: release-note}
+
+Encryption update
+:   Buckets created with [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-cr) managed encryption can now use [Immutable Object Storage](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable) to create retention policies that prevent object deletion or modification.
+
 ## 23 May 2022
 {: #cloud-object-storage-may2322}
 {: release-note}
 
 Encryption update
-:   Buckets can be created in the `jp-tok`, `ca-tor`, and `br-sao` regions using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-cr) managed encryption.
+:   Buckets created using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-cr) managed encryption can now use .
 
 ## 2 May 2022
 {: #cloud-object-storage-may0222}
