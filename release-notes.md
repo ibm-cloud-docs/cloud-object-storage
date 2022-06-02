@@ -32,7 +32,7 @@ Encryption update
 {: release-note}
 
 Encryption update
-:  Buckets can be created in the `jp-tok`, `ca-tor`, and `br-sao` regions using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-cr) managed encryption.
+:   Buckets can be created in the `jp-tok`, `ca-tor`, and `br-sao` regions using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-cr) managed encryption.
 
 ## 2 May 2022
 {: #cloud-object-storage-may0222}
