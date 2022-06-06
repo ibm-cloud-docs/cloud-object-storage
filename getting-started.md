@@ -22,9 +22,9 @@ subcollection: cloud-object-storage
 {: #getting-started}
 
 You need the following to get started with {{site.data.keyword.cos_full_notm}}:
- An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com)
- An [instance of {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage/basics?topic=cloud-object-storage-provision)
- And some files on your local computer to upload to {{site.data.keyword.cos_short}}.
+- An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com)
+- An [instance of {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage/basics?topic=cloud-object-storage-provision)
+- Some files on your local computer to upload to {{site.data.keyword.cos_short}}.
 
 This tutorial takes a new user through the first steps with the {{site.data.keyword.cloud_notm}} Platform console. Developers who want to get started with the API, see the [Developer's Guide](/docs/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev) or [API overview](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api).
 
