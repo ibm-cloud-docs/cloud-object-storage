@@ -9,7 +9,7 @@ toc:
     product-page: https://ibm.com/cloud/object-storage
     path: cloud-object-storage
     label: Object Storage
-   entries:
+  entries:
     - navgroup:
         id: learn
         topics:

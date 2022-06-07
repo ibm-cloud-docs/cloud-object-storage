@@ -19,19 +19,6 @@ subcollection: cloud-object-storage
 Bucket replication allows  users to define rules for automatic, asynchronous copying of objects from source bucket to one or many destination buckets in the same or different locations. 
 {: shortdesc}
 
-## Why use replication?
-{: #replication-why}
-
-- Keep copies of data across buckets in multiple geographic locations, or even multiple cross-reqion buckets.
-
-- Meet compliance regulations for data sovereignty by defining replication rules that store replicas only within the allowable locations.
-
-- Keep production and test data in sync, as replication retains object metadata such as last modified time, version ID, etc.
-
-- Manage the storage class and lifecycle policies for the replicated objects independent of the source, by defining different a different storage class and/or lifecycle rules for the destination bucket. Similarly, you can store replicas in a bucket under different ownership, and also control access to the replicas.
-
-- Maintain a Hybrid Cloud footprint by allowing the transfer of you locally managed data (on-premises) that is part of IBM Satellite to public Cloud.
-
 ## What is replication?
 {: #replication-what}
 
@@ -42,8 +29,18 @@ Replication copies newly created objects and object updates from a source bucket
 - Bi-directional replication rules between two buckets requires rules to be active on both buckets.
 - Filters (prefix, tags) can be used to scope the replication rule to only apply to a subset of objects in a bucket.
 
-Replication is an operation, not a long-term consistency guarantee. For disaster recovery use cases, it is the responsibility of the user to set the same policies on both the source and target bucket, and maintain consistency by not  overwriting replicated objects.
-{: important}
+## Why use replication?
+{: #replication-why}
+
+- Keep copies of data across buckets in multiple geographic locations, or even multiple Cross Region buckets.
+
+- Meet compliance regulations for data sovereignty by defining replication rules that store replicas only within the allowable locations.
+
+- Keep production and test data in sync, as replication retains object metadata such as last modified time, version ID, etc.
+
+- Manage the storage class and lifecycle policies for the replicated objects independent of the source, by defining different a different storage class and/or lifecycle rules for the destination bucket. Similarly, you can store replicas in a bucket under different ownership, and also control access to the replicas.
+
+- Maintain a Hybrid Cloud footprint by allowing the transfer of you locally managed data (on-premises) that is part of IBM Satellite to public Cloud.
 
 ## Requirements for replication
 {: #replication-reqs}
