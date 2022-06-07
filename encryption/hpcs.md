@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2021
-lastupdated: "2021-12-15"
+  years: 2018, 2022
+lastupdated: "2022-06-07"
 
 keywords: encryption, security, {{site.data.keyword.hscrypto}}
 
@@ -10,18 +10,9 @@ subcollection: cloud-object-storage
 
 
 ---
-{:new_window: target="_blank"}
-{:external: target="_blank" .external}
-{:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:screen: .screen}
-{:tip: .tip}
-{:important: .important}
-{:note: .note}
-{:download: .download}
-{:faq: data-hd-content-type='faq'}
-{:support: data-reuse='support'}
+
+{{site.data.keyword.attribute-definition-list}}
+
 {:help: data-hd-content-type='help'}
 
 # Server-Side Encryption with {{site.data.keyword.hscrypto}} 
@@ -41,8 +32,6 @@ Before you plan on using {{site.data.keyword.hscrypto}} with Cloud Object Storag
 
 You will need to ensure that a service instance is created by using the [IBM Cloud catalog](https://cloud.ibm.com/catalog) and appropriate permissions are granted. This section outlines step-by-step instructions to help you get started. 
 
-It is not possible to use [Immutable Object Storage](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable) to create retention policies that prevent object deletion or modification on buckets that use {{site.data.keyword.hscrypto}}.
-{:tip}
 
 ## Provisioning an instance of {{site.data.keyword.hscrypto}}
 {: #hpcs-provision}
