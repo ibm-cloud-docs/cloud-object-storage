@@ -56,7 +56,7 @@ toc:
               links:
                 - link:
                     label: Connect from VPC
-                    href: https://cloud.ibm.com/docs/vpc/vpc-connecting-vpc-cos
+                    href: https://cloud.ibm.com/docs/vpc?topic=vpc-connecting-vpc-cos
           - topicgroup:
               label: Using IBM Cloud Satellite
               topics:
