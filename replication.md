@@ -99,9 +99,9 @@ There are new IAM actions associated with replication.
 
 | IAM Action                                     | Role                    |
 |------------------------------------------------|-------------------------|
-| cloud-object-storage.bucket.get_replication    | Manager, Writer, Reader |
-| cloud-object-storage.bucket.put_replication    | Manager, Writer         |
-| cloud-object-storage.bucket.delete_replication | Manager, Writer         |
+| `cloud-object-storage.bucket.get_replication`    | Manager, Writer, Reader |
+| `cloud-object-storage.bucket.put_replication`    | Manager, Writer         |
+| `cloud-object-storage.bucket.delete_replication` | Manager, Writer         |
 
 ## Activity Tracker events 
 {: #replication-at}
