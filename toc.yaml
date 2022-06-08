@@ -35,6 +35,7 @@ toc:
           - link:
               label: Tutorials library for Object Storage
               href: https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage
+          - tutorials/cos-single-bucket.md
           - tutorials/kp-encrypt-bucket.md
           - tutorials/migrate.md
           - tutorials/replicate-bucket.md
