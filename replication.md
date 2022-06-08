@@ -196,6 +196,9 @@ The following fields are supported:
 
 A replication rule can only act on objects that are written _after_ the rule is configured and applied to a bucket.  If there are existing objects in a bucket that should be replicated, the replication processes needs to be made aware of the existence of the objects. This can be easily accomplished by using the `PUT copy` operation to copy objects onto themselves. The server can see that the source and destination objects are identical, so there is no actual writing of data. This makes the copy-in-place approach efficient and quick. 
 
+This process will reset object metadata, including creation timestamps.  This will impact lifecycle policies and any other services that use creation or modification timestamps (such as content delivery networks).  Ensure that any disruptions that may arise from resetting object metadata are dealt with appropriately.
+{: important}
+
 The process involves:
 
 1. Creating a list of all the objects in a bucket that should be subject to replication rules,
