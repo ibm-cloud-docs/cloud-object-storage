@@ -39,12 +39,11 @@ You will also need to ensure that a service instance is created by using the [IB
 ## Create a bucket
 {: #kp-encrypt-bucket-create}
 {: step}
-{: ui}
 
 When your key exists in Key Protect and you authorize a service for use with IBM COS, associate the key with a new bucket:
 
 1. Navigate to your instance of Object Storage.
-1. Click **Create bucket**.
+2. Click **Create bucket**.
 ![Navigate to COS](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/kp-tut-1.png)
 2. Select **Custom bucket**.
 ![Navigate to COS](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/kp-tut-2.png)
@@ -57,7 +56,6 @@ You can choose to use Key Protect to manage encryption for a bucket only at the 
 ## Choose KP encryption
 {: #kp-encrypt-bucket-select}
 {: step}
-{: ui}
 
 1. Scroll down to **Service integrations (optional)**, toggle **Key management disabled** to enable encryption key management and click on **Create new instance**.
 ![Navigate to COS](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/kp-tut-4.png)
@@ -76,34 +74,8 @@ In the **Buckets** listing, the bucket has a _View_ link under **Attributes** wh
 ## Verify that it works
 {: #kp-encrypt-bucket-verify}
 {: step}
-{: ui}
 
 1. When viewing the bucket, click the **Configuration** tab to verify that the bucket has Key Protect enabled.
 2. Scroll down to **Advanced configurations** and locate **Associated key management service** .
 3. Verify the information is correct.ß
 
-## Create a new Key Protect instance
-{: #kp-encrypt-kp-create-cli}
-{: step}
-{: cli}
-
-Ensure you've targeted a resource group and then create a new instance of Key Protect.  In this case, we've named it `kp-cli` and it's in the `us-south` region.
-
-```sh
-ic resource service-instance-create kp-cli kms tiered-pricing us-south
-```
-
-## Create a new root key
-{: #kp-encrypt-kp-create-cli-root}
-{: step}
-{: cli}
-
-Ensure you've got the CLI plugin installed.  
-
-```sh
-ic plugin install kp
-```
-
-```sh
-ic resource service-instance-create kp-cli kms tiered-pricing us-south
-```
