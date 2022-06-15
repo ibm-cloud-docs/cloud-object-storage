@@ -46,7 +46,7 @@ Replication copies newly created objects and object updates from a source bucket
 {: #replication-reqs}
 
 - Both the source and destination buckets must have versioning enabled.
-- {{site.data.keyword.cos_short}} must be granted write access to both source and destination buckets by IAM.
+- The source bucket must be granted write access to the destination bucket in IAM.
 - Creating or altering replication rules requires the `Writer` or `Manager` role, or a custom role with the appropriate actions assigned.
 - The target bucket must not have a legacy bucket firewall enabled. 
 - Objects encrypted using SSE-C can not be replicated.
@@ -66,7 +66,7 @@ First, you'll need to have access to two buckets, each with object versioning en
 4. Assuming the destination bucket is in the same IBM Cloud account, select the instance and bucket from the drop-down menus.  Alternatively, toggle the radio button to **No** and paste in the CRN of the destination bucket.
 5. Click on the **Check permissions** button.
 
-Now, you'll need to grant {{site.data.keyword.cos_short}} `Writer` permissions on the destination bucket. There are several ways to do this, but the easiest is to use the IBM Cloud Shell and the IBM Cloud CLI.
+Now, you'll need to grant the source bucket `Writer` permissions on the destination bucket. There are several ways to do this, but the easiest is to use the IBM Cloud Shell and the IBM Cloud CLI.
 
 1. Open an IBM Cloud Shell in a new window or tab.
 2. Copy the IBM Cloud CLI command and paste it into the new shell.
@@ -85,7 +85,7 @@ Now you'll create a replication rule.
 
 **Target bucket**: The bucket that is defined as the destination in the source bucket replication policy. It is the target of replicated objects. Also referred to as a 'destination' bucket.
 
-**Replica**: The new object created in a target bucket as a result of a request made to a source bucket. Assuming that the target bucket does not have any replication rules in place, this object can be altered or deleted without impacting the original.
+**Replica**: The new object created in a target bucket as a result of a request made to a source bucket. 
 
 ## Consistency and data integrity
 {: #replication-consistency}
@@ -125,7 +125,7 @@ When replication is active, operations on objects may generate the following ext
 |-------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `requestData.replication.replication_throttled` | Indicates if the replication of the object was delayed on the source due to a throttling mechanism.                                                                                                           |
 | `requestData.replication.destination_bucket_id` | The CRN of the destination bucket.                                                                                                                                                                            |
-| `requestData.replication.sync_type`             | The type of sync operation. A `content` sync indicates that the object data _and_ any metadata was written to the destination; a `metadata` sync indicates that only metadata was written to the destination. |
+| `requestData.replication.sync_type`             | The type of sync operation. A `content` sync indicates that the object data _and_ any metadata was written to the destination, a `metadata` sync indicates that only metadata was written to the destination, and a `delete` sync indicates that only delete markers were written to the destination.. |
 
 | Field                                       | Description                                                                                     |
 |---------------------------------------------|-------------------------------------------------------------------------------------------------|
@@ -159,7 +159,7 @@ As stated previously, versioning is mandatory in order to enable replication. Af
 ### Lifecycle configurations
 {: #replication-interactions-lifecycle}
 
-The time it takes for objects to replicate is determined by the size of the objects. Larger objects may take several hours to finish replication. If a lifecycle policy is enabled on a destination bucket, the lifecycle rules will honor the original creation time of the object, not the time that the replica became available in the destination bucket. 
+If a lifecycle policy is enabled on a destination bucket, the lifecycle rules will honor the original creation time of the object, not the time that the replica became available in the destination bucket. 
 
 ### Immutable Object Storage
 {: #replication-interactions-worm}
@@ -173,28 +173,10 @@ Buckets using legacy firewalls to restrict access based on IP addresses are not 
 
 It is recommended to instead use context-based restrictions for controlling access based on network information.  
 
-## S3 API compatibility
-{: #replication-s3api}
-
-The IBM COS implementation of the S3 APIs for replication is a subset of the AWS S3 APIs for replication.
-
-The following fields are supported: 
-
-- `DeleteMarkerReplication`
-- `Destination`
-  - `Bucket`
-- `Filter`
-  - `Prefix`
-  - `Tag`
-- `ID`
-- `Prefix`
-- `Priority`
-- `Status`
-
 ## Replicating existing objects
 {: #replication-existing}
 
-A replication rule can only act on objects that are written _after_ the rule is configured and applied to a bucket.  If there are existing objects in a bucket that should be replicated, the replication processes needs to be made aware of the existence of the objects. This can be easily accomplished by using the `PUT copy` operation to copy objects onto themselves. The server can see that the source and destination objects are identical, so there is no actual writing of data. This makes the copy-in-place approach efficient and quick. 
+A replication rule can only act on objects that are written _after_ the rule is configured and applied to a bucket.  If there are existing objects in a bucket that should be replicated, the replication processes needs to be made aware of the existence of the objects. This can be easily accomplished by using the `PUT copy` operation to copy objects onto themselves. 
 
 This process will reset object metadata, including creation timestamps.  This will impact lifecycle policies and any other services that use creation or modification timestamps (such as content delivery networks).  Ensure that any disruptions that may arise from resetting object metadata are dealt with appropriately.
 {: important}
@@ -249,4 +231,243 @@ def copy_in_place(bucket):
 
 copy_in_place(bucket)
 
+```
+
+## REST API examples
+{: #replication-apis-examples}
+
+The following examples are shown using cURL for ease of use. Environment variables are used to represent user specific elements such as `$BUCKET`, `$TOKEN`, and `$REGION`.  Note that `$REGION` would also include any network type specifications, so sending a request to a bucket in `us-south` using the private network would require setting the variable to `private.us-south`.
+
+### Enable replication on a bucket
+{: #replication-apis-enable}
+
+The replication configuration is provided as XML in the body of the request.
+
+A replication configuration must include at least one rule, and can contain a maximum of 1,000. Each rule identifies a subset of objects to replicate by filtering the objects in the source bucket. To choose additional subsets of objects to replicate, add a rule for each subset.
+
+To specify a subset of the objects in the source bucket to apply a replication rule to, add the `Filter` element as a child of the `Rule` element. You can filter objects based on an object key prefix, one or more object tags, or both. When you add the `Filter` element in the configuration, you must also add the following elements: `DeleteMarkerReplication`, `Status`, and `Priority`.
+
+Header                    | Type   | Description
+--------------------------|--------|----------------------------------------------------------------------------------------------------------------------
+`Content-MD5` | String | **Required**: The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.
+
+The body of the request must contain an XML block with the following schema:
+
+| Element                    | Type      | Children                                                                       | Ancestor                   | Constraint                                                                                                                                                                                                                                                                                                                                                                                        |
+|----------------------------|-----------|--------------------------------------------------------------------------------|----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `ReplicationConfiguration` | Container | `Rule`                                                                         | None                       | Limit 1.                                                                                                                                                                                                                                                                                                                                                                                          |
+| `Rule`                     | Container | `ID`, `Status`, `Filter`, `DeleteMarkerReplication`, `Destination`, `Priority` | `ReplicationConfiguration` | Limit 1000.                                                                                                                                                                                                                                                                                                                                                                                       |
+| `ID`                       | String    | None                                                                           | `Rule`                     | Must consist of (`a-z,`A-Z0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-`                                                                                                                                                                                                                                                                                                        |
+| `Destination`              | Container | `Bucket`                                                                       | `Rule`                     | Limit 1.                                                                                                                                                                                                                                                                                                                                                                                          |
+| `Bucket`                   | String    | None                                                                           | `Destination`              | The CRN of the destination bucket.                                                                                                                                                                                                                                                                                                                                                                |
+| `Priority`                 | Integer   | None                                                                           | `Rule`                     | The priority indicates which rule has precedence whenever two or more replication rules conflict. Object storage will attempt to replicate objects according to all replication rules. However, if there are two or more rules with the same destination bucket, then objects will be replicated according to the rule with the highest priority. The higher the number, the higher the priority. |
+| `Status`                   | String    | None                                                                           | `Rule`                     | Specifies whether the rule is enabled. Valid values are `Enabled` or `Disabled`.                                                                                                                                                                                                                                                                                                                  |
+| `DeleteMarkerReplication`  | Container | `Status`                                                                       | `Rule`                     | Limit 1.                                                                                                                                                                                                                                                                                                                                                                                          |
+| `Status`                   | String    | None                                                                           | `DeleteMarkerReplication`   | Specifies whether Object storage replicates delete markers.  Valid values are `Enabled` or `Disabled`.                                                                                                                                                                                                                                                                                            |
+| `Filter`                   | String    | `Prefix`                                                                       | `Rule`                     | A filter that identifies the subset of objects to which the replication rule applies. A `Filter` must specify exactly one `Prefix`, `Tag`, or an `And` child element.                                                                                                                                                                                                                             |
+| `Prefix`                   | String    | None                                                                           | `Filter`                   | An object key name prefix that identifies the subset of objects to which the rule applies.                                                                                                                                                                                                                                                                                                        |
+| `Tag`                      | String    | None                                                                           | `Filter`                   | A container for specifying a tag key and value. The rule applies only to objects that have the tag in their tag set.                                                                                                                                                                                                                                                                              |
+| `And`                      | String    | None                                                                           | `Filter`                   | A container for specifying rule filters. The filters determine the subset of objects to which the rule applies. This element is required only if you specify more than one filter.                                                                                                                                                                                                                |
+| `Key`                      | String    | None                                                                           | `Tag`                      | The tag key.                                                                                                                                                                                                                                                                                                                                                                                      |
+| `Value`                    | String    | None                                                                           | `Tag`                      | The tag value.                                                                                                                                                                                                                                                                                                                                                                                    |
+
+
+This example will replicate any new objects, but will not replicate delete markers.  
+
+```
+curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?replication" \
+     -H 'Authorization: bearer $TOKEN' \
+     -H 'Content-MD5: exuBoz2kFBykNwqu64JZuA==' \
+     -H 'Content-Type: text/plain; charset=utf-8' \
+     -d $'<ReplicationConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+            <Rule>
+              <ID>SimpleReplication</ID>
+              <Priority>1</Priority>
+              <Status>Enabled</Status>
+              <DeleteMarkerReplication>
+                <Status>Disabled</Status>
+              </DeleteMarkerReplication>
+              <Filter/>
+              <Destination>
+                <Bucket>$DESTINATION_CRN</Bucket>
+              </Destination>
+          	</Rule>
+          </ReplicationConfiguration>'
+```
+
+A successful request returns a `200` response.
+
+
+### View replication configuration for a bucket
+{: #replication-apis-read}
+
+```
+curl -X "GET" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?replication" \
+     -H 'Authorization: bearer $TOKEN' 
+```
+
+This returns an XML response body with the appropriate schema:
+
+```xml
+<ReplicationConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+  <Rule>
+    <ID>SimpleReplication</ID>
+    <Status>ENABLED</Status>
+    <DeleteMarkerReplication>
+      <Status>DISABLED</Status>
+    </DeleteMarkerReplication>
+    <Destination>
+      <Bucket>crn:v1:bluemix:public:cloud-object-storage:global:a/9978e07eXXXXXXXX66c89c428028654:ef1c725e-XXXX-4967-bcc1-734c03a2b846:bucket:replication-destination</Bucket>
+    </Destination>
+    <Priority>1</Priority>
+    <Filter/>
+  </Rule>
+</ReplicationConfiguration>
+```
+
+### Delete the replication configuration for a bucket
+{: #replication-apis-delete}
+
+```
+curl -X "DELETE" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?replication" \
+     -H 'Authorization: bearer $TOKEN' 
+```
+
+A successful request returns a `204` response.
+
+## SDK examples
+{: #replication-sdks}
+
+The following examples make use of the IBM COS SDKs for Python and Node.js, although the implementation of object versioning should be fully compatible with any S3-compatible library or tool that allows for the setting of custom endpoints.  Using third-party tools requires HMAC credentials in order to calculate AWS V4 signatures.  For more information on HMAC credentials, [see the documentation](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main).  
+
+### Python
+{: #versioning-sdks-python}
+
+Enabling versioning using the IBM COS SDK for Python can be done using the [low-level client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client) syntax.
+
+Using a client:
+
+```python
+#!/usr/bin/env python3
+
+import ibm_boto3
+from ibm_botocore.config import Config
+from ibm_botocore.exceptions import ClientError
+
+# Define constants
+API_KEY = os.environ.get('IBMCLOUD_API_KEY')
+SERVICE_INSTANCE = os.environ.get('SERVICE_INSTANCE_ID')
+ENDPOINT = os.environ.get('ENDPOINT')
+
+BUCKET = "my-replication-bucket" # The bucket that will enable replication.
+
+# Create resource client with configuration info pulled from environment variables.
+cosClient = ibm_boto3.client("s3",
+                         ibm_api_key_id=API_KEY,
+                         ibm_service_instance_id=SERVICE_INSTANCE,
+                         config=Config(signature_version="oauth"),
+                         endpoint_url=ENDPOINT
+                         )
+
+response = cosClient.put_bucket_versioning(
+    Bucket=BUCKET,
+    ReplicationConfiguration={
+        'Rules': [
+            {
+                'ID': 'string',
+                'Priority': 123,
+                'Prefix': 'string',
+                'Filter': {
+                    'Prefix': 'string',
+                    'Tag': {
+                        'Key': 'string',
+                        'Value': 'string'
+                    },
+                    'And': {
+                        'Prefix': 'string',
+                        'Tags': [
+                            {
+                                'Key': 'string',
+                                'Value': 'string'
+                            },
+                        ]
+                    }
+                },
+                'Status': 'Enabled'|'Disabled',
+                'Destination': {
+                    'Bucket': 'string',
+                },
+                'DeleteMarkerReplication': {
+                    'Status': 'Enabled'|'Disabled'
+                }
+            },
+        ]
+    }
+)
+```
+
+Listing the versions of an object using the same client: 
+
+```python
+resp = cosClient.list_object_versions(Prefix='some-prefix', Bucket=BUCKET)
+```
+
+Note that the Python APIs are very flexible, and there are many different ways to accomplish the same task.  
+
+### Node.js
+{: #versioning-sdks-node}
+
+Enabling versioning using the [IBM COS SDK for Node.js](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#putBucketVersioning-property):
+
+```js
+const IBM = require('ibm-cos-sdk');
+
+var config = {
+    endpoint: '<endpoint>',
+    apiKeyId: '<api-key>',
+    serviceInstanceId: '<resource-instance-id>',
+};
+
+var cos = new IBM.S3(config);
+
+var params = {
+  Bucket: 'STRING_VALUE', /* required */
+  ReplicationConfiguration: { /* required */
+    Role: 'STRING_VALUE', /* required */
+    Rules: [ /* required */
+      {
+        Destination: { /* required */
+          Bucket: 'STRING_VALUE', /* required */
+        },
+        Status: Enabled | Disabled, /* required */
+        Filter: {
+          And: {
+            Prefix: 'STRING_VALUE',
+            Tags: [
+              {
+                Key: 'STRING_VALUE', /* required */
+                Value: 'STRING_VALUE' /* required */
+              },
+              /* more items */
+            ]
+          },
+          Prefix: 'STRING_VALUE',
+          Tag: {
+            Key: 'STRING_VALUE', /* required */
+            Value: 'STRING_VALUE' /* required */
+          }
+        },
+        ID: 'STRING_VALUE',
+        Prefix: 'STRING_VALUE',
+        Priority: 'NUMBER_VALUE',
+        }
+      }
+    ]
+  },
+  ContentMD5: 'STRING_VALUE',
+};
+cos.putBucketReplication(params, function(err, data) {
+  if (err) console.log(err, err.stack); // an error occurred
+  else     console.log(data);           // successful response
+});
 ```
