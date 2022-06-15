@@ -79,6 +79,7 @@ Now you'll create a replication rule.
 
 **Replica**: The new object created in a target bucket as a result of a request made to a source bucket. 
 
+
 ## Consistency and data integrity
 {: #replication-consistency}
 
