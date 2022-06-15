@@ -16,7 +16,7 @@ subcollection: cloud-object-storage
 # Replicating objects
 {: #replication-overview}
 
-Bucket replication allows  users to define rules for automatic, asynchronous copying of objects from source bucket to one or many destination buckets in the same or different locations. 
+Replication allows users to define rules for automatic, asynchronous copying of objects from source bucket to one or many destination buckets in the same or different locations. 
 {: shortdesc}
 
 ## What is replication?
@@ -33,32 +33,24 @@ Replication copies newly created objects and object updates from a source bucket
 {: #replication-why}
 
 - Keep copies of data across buckets in multiple geographic locations, or even multiple Cross Region buckets.
-
 - Meet compliance regulations for data sovereignty by defining replication rules that store replicas only within the allowable locations.
-
 - Keep production and test data in sync, as replication retains object metadata such as last modified time, version ID, etc.
-
 - Manage the storage class and lifecycle policies for the replicated objects independent of the source, by defining different a different storage class and/or lifecycle rules for the destination bucket. Similarly, you can store replicas in a bucket under different ownership, and also control access to the replicas.
-
-- Maintain a Hybrid Cloud footprint by allowing the transfer of you locally managed data (on-premises) that is part of IBM Satellite to public Cloud.
-
-## Requirements for replication
-{: #replication-reqs}
-
-- Both the source and destination buckets must have versioning enabled.
-- The source bucket must be granted write access to the destination bucket in IAM.
-- Creating or altering replication rules requires the `Writer` or `Manager` role, or a custom role with the appropriate actions assigned.
-- The target bucket must not have a legacy bucket firewall enabled. 
-- Objects encrypted using SSE-C can not be replicated.
-- Objects in an archived state can not be replicated.
-
-As versioning is a requirement for replication, it is not possible to replicate objects in buckets configured with an Immutable Object Storage policy.
-{: note}
 
 ## Getting started with replication
 {: #replication-gs}
 
-First, you'll need to have access to two buckets, each with object versioning enabled.
+In order to get started, there are some some prerequisites:
+
+- You'll need the `Writer` or `Manager` platform role on the source bucket, or a custom role with the appropriate replication actions (such as  `cloud-object-storage.bucket.put_replication`) assigned.
+- You don't need to actually be able to access the destination bucket, but do need to have sufficient platform roles to create a new IAM policies to allow the source bucket to write to the destination bucket.
+- Both the source and destination buckets must have versioning enabled.
+- The target bucket must not have a legacy bucket firewall enabled. 
+- Objects encrypted using SSE-C can not be replicated, although managed encryption (SSE-KMS) like Key Protect is fully compatible with replication.
+- Objects in an archived state can not be replicated.
+
+As versioning is a requirement for replication, it is not possible to replicate objects in buckets configured with an Immutable Object Storage policy.
+{: note}
 
 1. After navigating to your chosen source bucket, click the **Configuration** tab.
 2. Look for **Bucket replication** and click the **Setup replication** button.
@@ -69,7 +61,7 @@ First, you'll need to have access to two buckets, each with object versioning en
 Now, you'll need to grant the source bucket `Writer` permissions on the destination bucket. There are several ways to do this, but the easiest is to use the IBM Cloud Shell and the IBM Cloud CLI.
 
 1. Open an IBM Cloud Shell in a new window or tab.
-2. Copy the IBM Cloud CLI command and paste it into the new shell.
+2. Copy the IBM Cloud CLI command shown in the Object storage console, and paste it into the new shell.
 3. Return to the bucket configuration window or tab, and click on the **Check permissions** button again.
 
 Now you'll create a replication rule.
@@ -111,6 +103,9 @@ Replication generates additional events.
 - `cloud-object-storage.bucket-replication.create`
 - `cloud-object-storage.bucket-replication.read`
 - `cloud-object-storage.bucket-replication.delete`
+- `cloud-object-storage.object-replication.sync` (generated at the source)
+- `cloud-object-storage.object-replication.create` (generated at the destination)
+
 
 For `cloud-object-storage.bucket-replication.create` events, the following fields include extra information:
 
@@ -133,7 +128,13 @@ When replication is active, operations on objects may generate the following ext
 | `responseData.replication.result`           | Values can be `success`, `failure` (indicates a server error), `user` (indicates a user error). |
 | `responseData.replication.message`          | The HTTP response message (such as `OK`).                                                       |
 
+You can trace an object from when it is written to the source until it is written on the target. Search for the request ID associated with the object write and three events should appear: 
 
+1. The original `PUT`,
+2. The sync request from the source,
+3. The PUT request on the target.  
+   
+Any of these three missing indicates a failure. 
 
 ## Usage and accounting
 {: #replication-usage}
@@ -159,7 +160,7 @@ As stated previously, versioning is mandatory in order to enable replication. Af
 ### Lifecycle configurations
 {: #replication-interactions-lifecycle}
 
-If a lifecycle policy is enabled on a destination bucket, the lifecycle rules will honor the original creation time of the object, not the time that the replica became available in the destination bucket. 
+If a lifecycle policy is enabled on a destination bucket, the lifecycle actions will be based on the original creation time of the object at the source, not the time that the replica becomes available in the destination bucket. 
 
 ### Immutable Object Storage
 {: #replication-interactions-worm}
@@ -185,6 +186,9 @@ The process involves:
 
 1. Creating a list of all the objects in a bucket that should be subject to replication rules,
 2. Iterating over that list, performing a `PUT copy` operation on each object with the source being identical to the target of the request.
+
+This example will only replicate the new version of the object created by the `PUT copy` request.  In order to replicate all versions of the object, it would be necessary to copy each individual version as well.
+{: note}
 
 The following example is written in Python, but the algorithm could be applied in any programming language or context.
 
@@ -241,7 +245,7 @@ The following examples are shown using cURL for ease of use. Environment variabl
 ### Enable replication on a bucket
 {: #replication-apis-enable}
 
-The replication configuration is provided as XML in the body of the request.
+The replication configuration is provided as XML in the body of the request.  New requests will overwrite any existing replication rules that are present on the bucket.
 
 A replication configuration must include at least one rule, and can contain a maximum of 1,000. Each rule identifies a subset of objects to replicate by filtering the objects in the source bucket. To choose additional subsets of objects to replicate, add a rule for each subset.
 
@@ -376,7 +380,6 @@ response = cosClient.put_bucket_versioning(
             {
                 'ID': 'string',
                 'Priority': 123,
-                'Prefix': 'string',
                 'Filter': {
                     'Prefix': 'string',
                     'Tag': {
