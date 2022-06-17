@@ -41,6 +41,16 @@ You will also need to ensure that a service instance is created by using the [IB
 
 First we'll create the source bucket:
 
+1. Navigate to an instance of Object Storage.
+2. Click **Create bucket**.
+![Navigate to COS](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/rep-tut-1.png)
+2. Select **Custom bucket**.
+![Navigate to COS](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/rep-tut-2.png)
+3. Enter a bucket name, select the **Regional** resiliency, and choose a location and storage class.
+![Navigate to COS](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/rep-tut-3.png)
+
+You can choose to use Key Protect to manage encryption for a bucket only at the time of creation. It isn't possible to change an existing bucket to use Key Protect.
+{: important}
 
 ## Create a destination bucket
 {: #replicate-bucket-create-2}

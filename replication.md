@@ -175,6 +175,10 @@ Buckets using legacy firewalls to restrict access based on IP addresses are not 
 
 It is recommended to instead use context-based restrictions for controlling access based on network information.  
 
+## Cloud Functions and Code Engine
+{: #replication-interactions-functions}
+
+
 ## Replicating existing objects
 {: #replication-existing}
 
@@ -195,6 +199,7 @@ The following example is written in Python, but the algorithm could be applied i
 
 ```py
 import os
+import sys
 import ibm_boto3
 from ibm_botocore.config import Config
 
@@ -209,7 +214,7 @@ cos = ibm_boto3.client("s3",
 # Define the bucket with existing objects for replication
 bucket = os.environ['BUCKET']
 
-def copy_in_place(bucket):
+def copy_in_place(BUCKET_NAME):
     print("Priming existing objects in " + bucket + " for replication...")
 
     paginator = cos.get_paginator('list_objects_v2')
@@ -219,7 +224,14 @@ def copy_in_place(bucket):
         for obj in page['Contents']:
             key = obj['Key']
             print("  * Copying " + key + " in place...")
-            try:
+            try:            
+                headers = cos.head_object(
+                    Bucket=bucket,
+                    Key=key
+                    )
+                
+                md = headers["Metadata"]
+                
                 cos.copy_object(
                     CopySource={
                         'Bucket': bucket,
@@ -227,7 +239,8 @@ def copy_in_place(bucket):
                         },
                     Bucket=bucket,
                     Key=key,
-                    MetadataDirective='REPLACE'
+                    MetadataDirective='REPLACE',
+                    Metadata=md
                     )
                 print("    Success!")
             except Exception as e:
@@ -235,7 +248,6 @@ def copy_in_place(bucket):
     print("Existing objects in " + bucket + " are now subject to replication rules.")
 
 copy_in_place(bucket)
-
 ```
 
 ## REST API examples
