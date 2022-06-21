@@ -26,7 +26,7 @@ Replication copies newly created objects and object updates from a source bucket
 
 - Only new objects or new versions of the existing objects (created after the replication rule) are copied to the destination bucket. Existing objects can be replicated by 
 - The metadata of the source object is applied to the replicated object.
-- Bi-directional replication rules between two buckets requires rules to be active on both buckets.
+- Bi-directional replication between two buckets requires rules to be active on both buckets.
 - Filters (prefix, tags) can be used to scope the replication rule to only apply to a subset of objects in a source bucket.
 
 ## Why use replication?
@@ -43,7 +43,7 @@ Replication copies newly created objects and object updates from a source bucket
 In order to get started, there are some some prerequisites: 
 
 - You'll need the `Writer` or `Manager` platform role on the source bucket, or a custom role with the appropriate replication actions (such as  `cloud-object-storage.bucket.put_replication`) assigned.
-- You don't need to actually be able to access the destination bucket, but do need to have sufficient platform roles to create new IAM policies that allow the source bucket to write to the destination bucket.
+- You don't need to have access to the destination bucket, but do need to have sufficient platform roles to create new IAM policies that allow the source bucket to write to the destination bucket.
 - Both the source and destination buckets must have versioning enabled.
 - The target bucket must not have a legacy bucket firewall enabled. 
 - Objects encrypted using SSE-C cannot be replicated, although managed encryption (SSE-KMS) like Key Protect is fully compatible with replication.
