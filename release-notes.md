@@ -20,6 +20,13 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
+## 21 June 2022
+{: #cloud-object-storage-jun2122}
+{: release-note}
+
+New feature!
+:   It is now possible to configure buckets for automated [replication of objects to a destination bucket](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview). 
+
 ## 7 June 2022
 {: #cloud-object-storage-jun0722}
 {: release-note}
@@ -32,7 +39,7 @@ Encryption update
 {: release-note}
 
 Encryption update
-:   Buckets can be created in the `jp-tok`, `ca-tor`, and `br-sao` regions using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-cr) managed encryption.
+:   Buckets created using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-cr) managed encryption can now use .
 
 ## 2 May 2022
 {: #cloud-object-storage-may0222}

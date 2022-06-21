@@ -259,10 +259,10 @@ When an empty bucket is deleted, the name of the bucket is held in reserve by th
 
 Archived objects must be restored before you can access them. While restoring, specify the time limit the objects should remain available before being re-archived. For details, see [archive-restore data](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-archive).
 
-### Can I enable {{site.data.keyword.cos_short}} replication between two different regions for DR purposes?
+### Can I enable {{site.data.keyword.cos_short}} replication between two different regions for disaster recovery purposes?
 {: #faq-cos-replication}
 
-COS by itself does not provide any replication feature. However {{site.data.keyword.cos_short}} offers data resiliency. For details, see [object-storage resiliency](https://www.ibm.com/cloud/object-storage/resiliency).
+Yes, it is possible to configure buckets for automated [replication of objects to a destination bucket](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview).
 
 ### How can I track events in {{site.data.keyword.cos_short}}?
 {: #faq-event-tracking}
