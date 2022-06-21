@@ -137,7 +137,7 @@ Any of these three missing indicates a failure.
 ## Usage and accounting
 {: #replication-usage}
 
-All replicas are objects themselves, and contribute usage just like any other data. Successful replication results in billable `PUT`, `GET`, and `HEAD` requests, although any bandwidth consumed in the replication process is not billed.  
+All replicas are objects themselves, and [contribute usage](/docs/cloud-object-storage?topic=cloud-object-storage-billing) just like any other data. Successful replication results in billable `PUT`, `GET`, and `HEAD` requests, although any bandwidth consumed in the replication process is not billed.  
 
 Replication generates additional metrics for use with IBM Cloud Monitoring:
 
@@ -158,12 +158,12 @@ Versioning is mandatory in order to enable replication. After you [enable versio
 ### Key Protect encryption
 {: #replication-interactions-kp}
 
-Source objects will be encrypted using the root key of the source bucket, and replicas are encrypted using the root key of the destination bucket.
+Source objects will be [encrypted using the root key](/docs/key-protect?topic=key-protect-about) of the source bucket, and replicas are encrypted using the root key of the destination bucket.
 
 ### Lifecycle configurations
 {: #replication-interactions-lifecycle}
 
-If a lifecycle policy is enabled on a destination bucket, the lifecycle actions will be based on the original creation time of the object at the source, not the time that the replica becomes available in the destination bucket. 
+If a [lifecycle policy is enabled](/docs/cloud-object-storage?topic=cloud-object-storage-expiry#expiry-rules-attributes) on a destination bucket, the lifecycle actions will be based on the original creation time of the object at the source, not the time that the replica becomes available in the destination bucket. 
 
 ### Immutable Object Storage
 {: #replication-interactions-worm}
@@ -173,14 +173,14 @@ Using retention policies is not possible on a bucket with [versioning enabled](/
 ### Legacy bucket firewalls
 {: #replication-interactions-firewall}
 
-Buckets using legacy firewalls to restrict access based on IP addresses are not able to use replication, as the background services that replicate the objects do not have fixed IP addresses and can not pass the firewall.  
+Buckets using [legacy firewalls to restrict access based on IP addresses](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall#firewall-legacy-about) are not able to use replication, as the background services that replicate the objects do not have fixed IP addresses and can not pass the firewall.  
 
-It is recommended to instead use context-based restrictions for controlling access based on network information.  
+It is recommended to instead [use context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall#setting-cbr) for controlling access based on network information.  
 
-## Cloud Functions and Code Engine
+### Cloud Functions and Code Engine
 {: #replication-interactions-functions}
 
-Replication does not provide a trigger for Cloud Functions or Code Engine events at this time.
+Replication does not provide a [trigger for Cloud Functions](/docs/openwhisk?topic=openwhisk-triggers) or Code Engine events at this time.
 
 ## Replicating existing objects
 {: #replication-existing}
