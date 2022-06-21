@@ -43,13 +43,13 @@ Replication copies newly created objects and object updates from a source bucket
 In order to get started, there are some some prerequisites: 
 
 - You'll need the `Writer` or `Manager` platform role on the source bucket, or a custom role with the appropriate replication actions (such as  `cloud-object-storage.bucket.put_replication`) assigned.
-- You don't need to have access to the destination bucket, but do need to have sufficient platform roles to create new IAM policies that allow the source bucket to write to the destination bucket.
-- Both the source and destination buckets must have versioning enabled.
-- The target bucket must not have a legacy bucket firewall enabled. 
-- Objects encrypted using SSE-C cannot be replicated, although managed encryption (SSE-KMS) like Key Protect is fully compatible with replication.
+- You don't need to have access to the destination bucket, but do need to have sufficient platform roles to create [new IAM policies](/docs/account?topic=account-iamoverview#iamoverview) that allow the source bucket to write to the destination bucket.
+- Both the source and destination buckets must have [versioning enabled](/docs/cloud-object-storage?topic=cloud-object-storage-versioning).
+- The target bucket must not have a legacy bucket firewall enabled, but can use [context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall). 
+- Objects encrypted [using SSE-C](/docs/cloud-object-storage?topic=cloud-object-storage-sse-c) cannot be replicated, although [managed encryption (SSE-KMS) like Key Protect](/docs/cloud-object-storage?topic=cloud-object-storage-kp) is fully compatible with replication.
 - Objects in an archived state cannot be replicated.
 
-As versioning is a requirement for replication, it is not possible to replicate objects in buckets configured with an Immutable Object Storage policy.
+As versioning is a requirement for replication, it is not possible to replicate objects in buckets configured with an [Immutable Object Storage policy](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable).
 {: note}
 
 1. After navigating to your chosen source bucket, click the **Configuration** tab.
@@ -150,7 +150,7 @@ Replication generates additional metrics for use with IBM Cloud Monitoring:
 ### Versioning
 {: #replication-interactions-versioning}
 
-Versioning is mandatory in order to enable replication. After you enable versioning on both the source and destination buckets and configure replication on the source bucket, you may encounter the following issues:
+Versioning is mandatory in order to enable replication. After you [enable versioning](/docs/cloud-object-storage?topic=cloud-object-storage-versioning) on both the source and destination buckets and configure replication on the source bucket, you may encounter the following issues:
 
 - If you attempt to disable versioning on the source bucket, {{site.data.keyword.cos_short}} returns an error. You must remove the replication configuration before you can disable versioning on the source bucket.
 - If you disable versioning on the destination bucket, replication fails. 
@@ -168,7 +168,7 @@ If a lifecycle policy is enabled on a destination bucket, the lifecycle actions 
 ### Immutable Object Storage
 {: #replication-interactions-worm}
 
-Using retention policies is not possible on a bucket with versioning enabled, and as versioning is a requirement for replication, it is not possible to replicate objects to or from a bucket with Immutable Object Storage enabled.
+Using retention policies is not possible on a bucket with [versioning enabled](/docs/cloud-object-storage?topic=cloud-object-storage-versioning), and as versioning is a requirement for replication, it is not possible to replicate objects to or from a bucket with Immutable Object Storage enabled.
 
 ### Legacy bucket firewalls
 {: #replication-interactions-firewall}
