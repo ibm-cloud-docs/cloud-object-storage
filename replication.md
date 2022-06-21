@@ -184,7 +184,7 @@ It is recommended to instead use context-based restrictions for controlling acce
 
 A replication rule can only act on objects that are written _after_ the rule is configured and applied to a bucket.  If there are existing objects in a bucket that should be replicated, the replication processes needs to be made aware of the existence of the objects. This can be easily accomplished by using the `PUT copy` operation to copy objects onto themselves. 
 
-This process will reset object metadata, including creation timestamps.  This will impact lifecycle policies and any other services that use creation or modification timestamps (such as content delivery networks).  Ensure that any disruptions that may arise from resetting object metadata are dealt with appropriately.
+This process will reset some object metadata, including creation timestamps.  This will impact lifecycle policies and any other services that use creation or modification timestamps (such as content delivery networks).  Ensure that any disruptions that may arise from resetting object metadata are dealt with appropriately.
 {: important}
 
 The process involves:
@@ -239,6 +239,7 @@ def copy_in_place(BUCKET_NAME):
                         },
                     Bucket=bucket,
                     Key=key,
+                    TaggingDirective='COPY'
                     MetadataDirective='REPLACE',
                     Metadata=md
                     )
