@@ -24,7 +24,7 @@ Replication allows users to define rules for automatic, asynchronous copying of 
 
 Replication copies newly created objects and object updates from a source bucket to one or more destination buckets.
 
-- Only new objects or new versions of the existing objects (created after the replication rule) are copied to the destination bucket. Existing objects can be replicated by 
+- Only new objects or new versions of the existing objects (created after the replication rule) are copied to the destination bucket. Existing objects can be replicated [by copying them onto themselves](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview#replication-existing), creating a new version that is replicated.
 - The metadata of the source object is applied to the replicated object.
 - Bi-directional replication between two buckets requires rules to be active on both buckets.
 - Filters (prefix, tags) can be used to scope the replication rule to only apply to a subset of objects in a source bucket.
