@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-01-19"
+lastupdated: "2022-06-24"
 
 keywords: events, activity, logging, api
 
@@ -26,7 +26,7 @@ subcollection: cloud-object-storage
 # Tracking events using {{site.data.keyword.at_full_notm}}
 {: #at}
 
-[{{site.data.keyword.at_full_notm}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started) allows you to [audit the requests](/docs/cloud-object-storage?topic=cloud-object-storage-at-events) made against a bucket and the objects it contains.
+[{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started) allows you to [audit the requests](/docs/cloud-object-storage?topic=cloud-object-storage-at-events) made against a bucket and the objects it contains.
 {: shortdesc}
 
 This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
@@ -47,12 +47,12 @@ First, make sure that you have a bucket. If not, follow the [getting started tut
 5. Navigate to the **Activity Tracker** tab.
 6. Click **Create**.
 7. If you already have an instance of {{site.data.keyword.at_full_notm}}, you can select it here.  If not, select the appropriate configuration, and click **Create**.
-8. After a few minutes, any activity will be [visible in the web UI](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-launch).
+8. After a few minutes, any activity will be [visible in the web UI](/docs/activity-tracker?topic=activity-tracker-observe).
 
 ### Archive events to object storage.
 {: #at-archive}
 
-It is possible to have all data collected in an instance of {{site.data.keyword.at_full_notm}} be archived and written to a bucket.  For more information, [see the Activity Tracker documentation](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-archiving).
+It is possible to have all data collected in an instance of {{site.data.keyword.at_full_notm}} be archived and written to a bucket.  For more information, [see the Activity Tracker documentation](/docs/activity-tracker?topic=activity-tracker-archiving-ov).
 
 
 ## Using an API

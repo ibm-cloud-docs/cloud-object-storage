@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-10-27"
+lastupdated: "2022-06-24"
 
 keywords: activity tracker, LogDNA, event, object storage, COS API calls, monitor COS events
 
@@ -34,7 +34,7 @@ This feature is not currently supported in {{site.data.keyword.cos_short}} for {
 {: note}
 
 The {{site.data.keyword.at_full_notm}} service records user-initiated activities that change the state of a service in {{site.data.keyword.cloud_notm}}. 
-For more information, see [{{site.data.keyword.at_full_notm}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started).  
+For more information, see [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started).  
 
 By default, COS events that report on global actions such as creation of a bucket are collected automatically. You can monitor global actions through the Activity Tracker instance that is located in the Frankfurt location.
 
@@ -222,11 +222,11 @@ For `cloud-object-storage.bucket-versioning.create` events, the following fields
 ## Viewing events
 {: #at-ui}
 
-You can view the Activity Tracker events that are associated with your {{site.data.keyword.cos_short}} instance by using [{{site.data.keyword.at_full_notm}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started).
+You can view the Activity Tracker events that are associated with your {{site.data.keyword.cos_short}} instance by using [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started).
 
 You can only provision 1 instance of the {{site.data.keyword.at_full_notm}} service per location. 
 
-To view events, you must identify the location where events are collected and available for monitoring. Then, you must access the web UI of the {{site.data.keyword.at_full_notm}} instance in that location. For more information, see [Launching the web UI through the IBM Cloud UI](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-launch#launch_cloud_ui).
+To view events, you must identify the location where events are collected and available for monitoring. Then, you must access the web UI of the {{site.data.keyword.at_full_notm}} instance in that location. For more information, see [Launching the web UI through the IBM Cloud UI](/docs/activity-tracker?topic=activity-tracker-observe).
 
 ### Management events
 {: #at-ui-mngt}

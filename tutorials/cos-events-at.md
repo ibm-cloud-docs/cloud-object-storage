@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-04-27"
+lastupdated: "2022-06-24"
 
 keywords: activity, tracking, object storage, event, tutorial
 
@@ -39,7 +39,7 @@ This tutorial will provide an introduction to capturing information regarding th
 Also, to find out what works for you beyond this tutorial, check out the offerings listed for each service. With so many options, you are sure to find the specific configuration to work for your needs, beyond this brief introduction. 
 {: tip} 
 
-If you're not familiar with {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). Also, if you're not familiar with {{site.data.keyword.at_full}}, you may wish to check out how to [get started with {{site.data.keyword.at_short}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started).
+If you're not familiar with {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). Also, if you're not familiar with {{site.data.keyword.at_full}}, you may wish to check out how to [get started with {{site.data.keyword.at_short}}](/docs/activity-tracker?topic=activity-tracker-getting-started).
 
 ## Prerequisites
 {: #tracking-cos-events-prereqs}
@@ -114,7 +114,7 @@ Replace the values as appropriate according to the information in Table 1.
 | <instance-name> | Replace with a name of your choice for the instance. |
 | *logdna* | The literal reference of the {{site.data.keyword.la_full_notm}} service. |
 | <service-plan-name> | Type of plan; valid values are *lite*, *7-days*, *14-days*, *30-days*. |
-| <location> | The region where the LogDNA instance is created. To get the latest list of available locations, check out the [locations](/docs/Log-Analysis-with-LogDNA?topic=Log-Analysis-with-LogDNA-regions). |
+| <location> | The region where the LogDNA instance is created. To get the latest list of available locations, check out the [locations](/docs/activity-tracker?topic=activity-tracker-cloud_services_locations). |
 {: caption="Table 1. CLI attributes and values relevant to {{site.data.keyword.at_short}}" caption-side="top"}
 {: cli}
 
@@ -238,26 +238,26 @@ crn:v1:staging:public:logdna:us-south:a/943494a618ed4e978e68b918d1aeec4c:c1ee8d0
 ## Next Steps
 {: #tracking-cos-events-next-steps}
 
-For more about {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). Also, you can find out more regarding {{site.data.keyword.at_full}} at the [getting started with {{site.data.keyword.at_short}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started).
+For more about {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). Also, you can find out more regarding {{site.data.keyword.at_full}} at the [getting started with {{site.data.keyword.at_short}}](/docs/activity-tracker?topic=activity-tracker-getting-started).
 
 With so many options, there is literally too much to cover beyond the scope of this tutorial. Here are only a few links to explore more of the ideas presented in this document to get you started on your own journey.
 
 ### Viewing Events
 {: #tracking-cos-events-viewing}
 
-With multiple options for viewing events in {{site.data.keyword.at_short}}, it may be helpful to review the [documentation](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-view_events).
+With multiple options for viewing events in {{site.data.keyword.at_short}}, it may be helpful to review the [documentation](/docs/activity-tracker?topic=activity-tracker-view_events).
 
 ### Configuring Alerts
 {: #tracking-cos-events-configuring-alerts}
 
-In {{site.data.keyword.at_short}} there are two kinds of alerts but many different ways to use them, as shown in the documentation for [configuring alerts](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-alerts).
+In {{site.data.keyword.at_short}} there are two kinds of alerts but many different ways to use them, as shown in the documentation for [configuring alerts](/docs/activity-tracker?topic=activity-tracker-alerts).
 
 ### Exporting Events
 {: #tracking-cos-events-exporting}
 
-After generating information about each event, {{site.data.keyword.at_short}} also has the ability to [export the events](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-export) per your configuration.
+After generating information about each event, {{site.data.keyword.at_short}} also has the ability to [export the events](/docs/activity-tracker?topic=activity-tracker-export) per your configuration.
 
 ### Archiving Events
 {: #tracking-cos-events-archiving}
 
-In this tutorial, events from {{site.data.keyword.cos_short}} were viewed in {{site.data.keyword.at_short}} as log entries. Reversing the relationship between them, you can also [archive {{site.data.keyword.at_short}} events in {{site.data.keyword.cos_full_notm}}](https://cloud.ibm.com/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-archiving).
+In this tutorial, events from {{site.data.keyword.cos_short}} were viewed in {{site.data.keyword.at_short}} as log entries. Reversing the relationship between them, you can also [archive {{site.data.keyword.at_short}} events in {{site.data.keyword.cos_full_notm}}](/docs/activity-tracker?topic=activity-tracker-archiving-ov).
