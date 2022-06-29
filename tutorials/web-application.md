@@ -26,7 +26,7 @@ completion-time: 1h
 {:username: data-credential-placeholder='username'}
 {:password: data-credential-placeholder='password'}
 
-# Web application tutorial
+# Developing a web application
 {: #web-application}
 {: toc-content-type="tutorial"}
 {: toc-services="cloud-object-storage, cloud-foundry-public"}

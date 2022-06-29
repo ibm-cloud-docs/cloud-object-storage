@@ -14,7 +14,7 @@ completion-time: 10m
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Secure data using context-based restrictions
+# Securing data using context-based restrictions
 {: #cos-tutorial-cbr}
 {: toc-content-type="tutorial"} 
 {: toc-completion-time="10m"} 

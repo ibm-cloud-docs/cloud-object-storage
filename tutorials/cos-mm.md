@@ -76,7 +76,7 @@ Scroll down to the **Monitoring and activity tracking** section and toggle the r
 
 Enable monitoring for both usage and request metrics.
 
-![Add AT](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/mon-tut-4-add-at.png)
+![Add AT](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/mon-tut-4-add.png)
 
 ## Find the new instance of {{site.data.keyword.mon_short}}
 {: #mon-tut-find-at}
@@ -84,7 +84,7 @@ Enable monitoring for both usage and request metrics.
 
 Navigate back to the dashboard, and look for the new instance. Click on it to open the {{site.data.keyword.mon_short}} console.
 
-![Find AT](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/mon-tut-5-find-at.png)
+![Find AT](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/mon-tut-5-find.png)
 
 ## Launch the {{site.data.keyword.mon_short}} interface
 {: #mon-tut-open-at}
@@ -92,27 +92,8 @@ Navigate back to the dashboard, and look for the new instance. Click on it to op
 
 Now we can see some metadata about our new {{site.data.keyword.mon_short}} instance (location, CRN, etc.).  Click on the *View IBM Cloud Monitoring** button to launch the interface.
 
-![Open AT](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/mon-tut-6-open-at.png)
-
 We'll quickly see that there's nothing here.  It will take a little while for the new instance to be associated with the bucket - while data operations (like reading or writing objects) are immediately consistent, operations that update the bucket's metadata (such as adding an {{site.data.keyword.mon_short}} association) are eventually consistent and may take 15 minutes or so to propagate across the system.
 
-![View AT](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/mon-tut-7-empty-at.png)
-
-## Trigger an event
-{: #mon-tut-view-bucket}
-{: step}
-
-Let's navigate back to our bucket.  When we open the bucket in the console it will trigger a listing, even though the bucket is empty. Behind the scenes, the console is sending a `GET bucket` request to list the objects, and {{site.data.keyword.mon_short}} is going to log this listing event.
-
-![View bucket](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/mon-tut-8-view-bucket.png)
-
-## View the {{site.data.keyword.mon_short}} events
-{: #mon-tut-open-at}
-{: step}
-
-Now, assuming there has been enough time for the metadata to propagate, when we return to the {{site.data.keyword.mon_short}} interface we will see some listing events.
-
-![View AT](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/mon-tut-9-view-at.png)
 
 ## Next steps
 {: #mon-tut-next-steps}
