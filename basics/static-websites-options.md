@@ -189,7 +189,6 @@ The following tables match most of the regions, locations, and type of connectio
 | Mexico City, Mexico         | `s3-web.mex01.cloud-object-storage.appdomain.cloud` |
 | Milan, Italy                | `s3-web.mil01.cloud-object-storage.appdomain.cloud` |
 | Montr&egrave;al, Canada     | `s3-web.mon01.cloud-object-storage.appdomain.cloud` |
-| Oslo, Norway                | `s3-web.osl01.cloud-object-storage.appdomain.cloud` |
 | Paris, France               | `s3-web.par01.cloud-object-storage.appdomain.cloud` |
 | San Jose, US                | `s3-web.sjc04.cloud-object-storage.appdomain.cloud` |
 | S&atilde;o Paulo, Brazil    | `s3-web.sao01.cloud-object-storage.appdomain.cloud` |
@@ -210,7 +209,6 @@ The following tables match most of the regions, locations, and type of connectio
 | Mexico City, Mexico         | `s3-web.private.mex01.cloud-object-storage.appdomain.cloud` |
 | Milan, Italy                | `s3-web.private.mil01.cloud-object-storage.appdomain.cloud` |
 | Montr&egrave;al, Canada     | `s3-web.private.mon01.cloud-object-storage.appdomain.cloud` |
-| Oslo, Norway                | `s3-web.private.osl01.cloud-object-storage.appdomain.cloud` |
 | Paris, France               | `s3-web.private.par01.cloud-object-storage.appdomain.cloud` |
 | San Jose, US                | `s3-web.private.sjc04.cloud-object-storage.appdomain.cloud` |
 | S&atilde;o Paulo, Brazil    | `s3-web.private.sao01.cloud-object-storage.appdomain.cloud` |
@@ -231,7 +229,6 @@ The following tables match most of the regions, locations, and type of connectio
 | Mexico City, Mexico         | `s3-web.direct.mex01.cloud-object-storage.appdomain.cloud` |
 | Milan, Italy                | `s3-web.direct.mil01.cloud-object-storage.appdomain.cloud` |
 | Montr&egrave;al, Canada     | `s3-web.direct.mon01.cloud-object-storage.appdomain.cloud` |
-| Oslo, Norway                | `s3-web.direct.osl01.cloud-object-storage.appdomain.cloud` |
 | Paris, France               | `s3-web.direct.par01.cloud-object-storage.appdomain.cloud` |
 | San Jose, US                | `s3-web.direct.sjc04.cloud-object-storage.appdomain.cloud` |
 | S&atilde;o Paulo, Brazil    | `s3-web.direct.sao01.cloud-object-storage.appdomain.cloud` |

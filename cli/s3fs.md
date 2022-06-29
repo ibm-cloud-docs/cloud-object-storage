@@ -55,7 +55,16 @@ Ensure you have the following packages installed (all are available via [Homebre
 - `pkg-config`
 - `openssl`
 
-Be aware that [macFUSE is closed-source software](https://osxfuse.github.io) containing a kernel extension, and requires a license for commercial use.   
+And as noted in the output of the `openssl` install, you'll need to set these environment variables:
+
+```sh
+export LDFLAGS="-L/usr/local/opt/openssl@3/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@3/include"
+export PKG_CONFIG_PATH="/usr/local/opt/openssl@3/lib/pkgconfig"
+```
+{:screen}
+
+Be aware that [macFUSE is closed-source software](https://osxfuse.github.io) containing a kernel extension, and may require a license for commercial use.   
 {:important}
 
 First clone the Github repository:
@@ -63,7 +72,7 @@ First clone the Github repository:
 ```sh
 git clone https://github.com/s3fs-fuse/s3fs-fuse.git 
 ```
-{:codeblock}
+{:screen}
 
 Then build `s3fs`:
 
@@ -72,16 +81,15 @@ cd s3fs-fuse
 ./autogen.sh
 ./configure
 make
-
 ```
-{:codeblock}
+{:screen}
 
 And install the binary:
 
 ```sh
 sudo make install
 ```
-{:codeblock}
+{:screen}
 
 ## Configuration
 {: #s3fs-config}

@@ -28,7 +28,8 @@ toc:
                 - performance/bottlenecks.md
           - cos-responsibilities.md
           - quick-facts.md
-          - release-notes.md
+          - topic: release-notes.md
+            navtitle: Release notes
     - navgroup:
         id: tutorial
         topics:

@@ -51,6 +51,7 @@ This configuration expires any uploads that haven't completed after 3 days.
 <LifecycleConfiguration>
     <Rule>
         <ID>delete-after-3-days</ID>
+        <Filter />
         <Status>Enabled</Status>
         <AbortIncompleteMultipartUpload>
             <DaysAfterInitiation>3</DaysAfterInitiation>
@@ -118,7 +119,7 @@ The body of the request must contain an XML block with the following schema:
 | `LifecycleConfiguration`         | Container            | `Rule`                                                     | None                             | Limit 1.                                                                                   |
 | `Rule`                           | Container            | `ID`, `Status`, `Filter`, `AbortIncompleteMultipartUpload` | `LifecycleConfiguration`         | Limit 1000.                                                                                |
 | `ID`                             | String               | None                                                       | `Rule`                           | Must consist of (`a-z,`A-Z0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-` |
-| `Filter`                         | String               | `Prefix`                                                   | `Rule`                           | Must contain a `Prefix` element                                                            |
+| `Filter`                         | String               | `Prefix`                                                   | `Rule`                           | Must contain a `Prefix` element or be self-closed (`<Filter />`).                                                           |
 | `Prefix`                         | String               | None                                                       | `Filter`                         | The rule applies to any objects with keys that match this prefix.                          |
 | `AbortIncompleteMultipartUpload` | `Container`          | `DaysAfterInitiation`                                      | `Rule`                           | Limit 1.                                                                                   |
 | `DaysAfterInitiation`            | Non-negative integer | None                                                       | `AbortIncompleteMultipartUpload` | Must be a value greater than 0.                                                            |
@@ -129,6 +130,7 @@ The body of the request must contain an XML block with the schema that is addres
 <LifecycleConfiguration>
 	<Rule>
 		<ID>delete-after-3-days</ID>
+        <Filter />
 		<Status>Enabled</Status>
 		<AbortIncompleteMultipartUpload>
 			<DaysAfterInitiation>3</DaysAfterInitiation>
@@ -162,6 +164,7 @@ Content-Length: 305
 <LifecycleConfiguration>
 	<Rule>
 		<ID>delete-after-3-days</ID>
+        <Filter />
 		<Status>Enabled</Status>
 		<AbortIncompleteMultipartUpload>
 			<DaysAfterInitiation>3</DaysAfterInitiation>

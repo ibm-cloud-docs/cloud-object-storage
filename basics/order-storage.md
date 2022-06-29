@@ -27,7 +27,7 @@ Before you create a new {{site.data.keyword.cos_full_notm}} storage instance, it
 2. Complete the form with your email address, name, region, and phone number. Choose a password.
 3. Follow the link provided by the confirmation email, and follow the links to log in to the {{site.data.keyword.cloud}} Platform.
 
-Now that you have a platform account, you can create a new {site.data.keyword.cos_short}} service instance.
+Now that you have a platform account, you can create a new {{site.data.keyword.cos_short}} service instance.
 
 ## Creating a service instance
 {: #provision-instance}
