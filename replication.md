@@ -137,6 +137,7 @@ Any of these three missing indicates a failure.
 ## Usage and accounting
 {: #replication-usage}
 
+
 All replicas are objects themselves, and [contribute usage](/docs/cloud-object-storage?topic=cloud-object-storage-billing) just like any other data. Successful replication results in billable `PUT`, `GET`, and `HEAD` requests, although any bandwidth consumed in the replication process is not billed.  
 
 Replication generates additional metrics for use with IBM Cloud Monitoring:

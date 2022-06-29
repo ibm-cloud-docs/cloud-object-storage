@@ -10,17 +10,7 @@ subcollection: cloud-object-storage
 
 ---
 
-{:new_window: target="_blank"}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:pre: .pre}
-{:table: .aria-labeledby="caption"}
-{:codeblock: .codeblock}
-{:tip: .tip}
-{:download: .download}
-{:important: .important}
-{:note: .note}
-
+{{site.data.keyword.attribute-definition-list}}
 
 # IAM and Activity Tracker actions by API
 {: #at-iam}

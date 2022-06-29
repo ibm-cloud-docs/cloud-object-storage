@@ -9,25 +9,8 @@ keywords: archive, accelerated, access, glacier
 subcollection: cloud-object-storage
 
 ---
-{:new_window: target="_blank"}
-{:external: target="_blank" .external}
-{:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:screen: .screen}
-{:tsSymptoms: .tsSymptoms}
-{:tsCauses: .tsCauses}
-{:tsResolve: .tsResolve}
-{:tip: .tip}
-{:important: .important}
-{:note: .note}
-{:download: .download}
-{:http: .ph data-hd-programlang='http'} 
-{:javascript: .ph data-hd-programlang='javascript'} 
-{:java: .ph data-hd-programlang='java'} 
-{:python: .ph data-hd-programlang='python'}
-{:faq: data-hd-content-type='faq'}
-{:support: data-reuse='support'}
+
+{{site.data.keyword.attribute-definition-list}}
 
 # Archiving and accessing cold data 
 {: #archive}

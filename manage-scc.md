@@ -1,21 +1,14 @@
 ---
 copyright:
-  years: 2020, 2021
-lastupdated: "2021-03-29"
+  years: 2020, 2022
+lastupdated: "2021-06-22"
 
 keywords: security and compliance for cloud-object-storage, security for cloud-object-storage, compliance for cloud-object-storage
 
 subcollection: cloud-object-storage
 ---
 
-{:external: target="_blank" .external}
-{:tip: .tip}
-{:important: .important}
-{:note: .note}
-{:term: .term}
-{:shortdesc: .shortdesc}
-{:table: .aria-labeledby="caption"}
-
+{{site.data.keyword.attribute-definition-list}}
 
 # Managing security and compliance with {{site.data.keyword.cos_full_notm}}
 {: #manage-security-compliance}
@@ -37,7 +30,7 @@ This service supports the ability to view and the results of your configuration 
 
 As a security or compliance focal, you can use the {{site.data.keyword.cos_short}} [goals](#x2117978){: term} to help ensure that your organization is adhering to the external and internal standards for your industry. By using the {{site.data.keyword.compliance_short}} to validate the resource configurations in your account against a [profile](#x2034950){: term}, you can identify potential issues as they arise or even prevent actions that would create a violation of your security policy.
 
-All of the goals for {{site.data.keyword.cos_short}} are added to the {{site.data.keyword.cloud_notm}} Best Practices Controls 1.0 profile but can also be mapped to other profiles.
+All of the goals for {{site.data.keyword.cos_short}} are added to the {{site.data.keyword.cloud_notm}} Control Library but can also be mapped to other profiles.
 {: note}
 
 To start monitoring your resources, check out [Getting started](/docs/security-compliance) for {{site.data.keyword.compliance_short}}.
