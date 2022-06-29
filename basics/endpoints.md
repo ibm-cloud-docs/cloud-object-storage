@@ -10,19 +10,8 @@ keywords: endpoint, location, object storage
 subcollection: cloud-object-storage
 
 ---
-{:new_window: target="_blank"}
-{:external: target="_blank" .external}
-{:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:screen: .screen}
-{:tip: .tip}
-{:important: .important}
-{:note: .note}
-{:table: .aria-labeledby="caption"}
-{:faq: data-hd-content-type='faq'}
-{:support: data-reuse='support'}
-{:help: data-hd-content-type='help'}
+
+{{site.data.keyword.attribute-definition-list}}
 
 # Endpoints and storage locations
 {: #endpoints}

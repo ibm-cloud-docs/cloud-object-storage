@@ -17,28 +17,8 @@ account-plan: lite
 completion-time: 15m
 
 ---
-{:new_window: target="_blank"}
-{:external: target="_blank" .external}
-{:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:screen: .screen}
-{:tip: .tip}
-{:important: .important}
-{:note: .note}
-{:download: .download}
-{:ui: .ph data-hd-interface="ui"}
-{:cli: .ph data-hd-interface="cli"}
-{:api: .ph data-hd-interface="api"}
-{:terraform: .ph data-hd-interface="terraform"}
-{:faq: data-hd-content-type='faq'}
-{:support: data-reuse='support'}
-{:step: data-tutorial-type='step'}
-{:hide-dashboard: .hide-dashboard}
-{:apikey: `data-credential-placeholder`='apikey'}
-{:url: data-credential-placeholder='url'}
-{:username: data-credential-placeholder='username'}
-{:password: data-credential-placeholder='password'}
+
+{{site.data.keyword.attribute-definition-list}}
 
 # Building a Static Website
 {: #static-website-tutorial}

@@ -10,22 +10,8 @@ subcollection: cloud-object-storage
 
 
 ---
-{:new_window: target="_blank"}
-{:external: target="_blank" .external}
-{:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:screen: .screen}
-{:tip: .tip}
-{:important: .important}
-{:note: .note}
-{:download: .download} 
-{:http: .ph data-hd-programlang='http'} 
-{:javascript: .ph data-hd-programlang='javascript'} 
-{:java: .ph data-hd-programlang='java'} 
-{:python: .ph data-hd-programlang='python'}
-{:faq: data-hd-content-type='faq'}
-{:support: data-reuse='support'}
+
+{{site.data.keyword.attribute-definition-list}}
 
 # Data IO and encryption
 {: #performance-io}
@@ -54,7 +40,7 @@ Due to the additional complexity of multipart transfers, it is recommended to us
 
 While there is no dedicated API for a multipart download, it is possible to use a `Range` header in a `GET` request to read only a specific part of an object, and many ranged reads can be issued in parallel, just like when uploading parts. After all parts have been downloaded, they can be concatenated and the complete object can be checked for integrity. As mentioned previously, use of SDKs or other tooling is recommended to avoid the complexities of manually managing these transfers.
 
-Workflows that need to store large numbers of very small objects may be better served by aggregating the small files into a larger data structure (such as [Parquet](https://parquet.apache.org/)) that can allow for access using [IBM SQL Query](/docs/cloud-object-storage?topic=cloud-object-storage-sql-query).
+Workflows that need to store large numbers of very small objects may be better served by aggregating the small files into a larger data structure (such as [Parquet](https://parquet.apache.org/)) that can allow for access using [{{site.data.keyword.sqlquery_full}}](/docs/cloud-object-storage?topic=cloud-object-storage-sql-query).
 
 For objects greater than 200mb in size, especially in less stable networks or over very long distances where packet loss is a concern, Aspera High-Speed Transfer can deliver excellent performance.  Aspera transfers can also upload nested directory structures efficiently within a single request.
 

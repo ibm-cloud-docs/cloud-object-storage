@@ -10,15 +10,8 @@ subcollection: cloud-object-storage
 
 
 ---
-{:new_window: target="_blank"}
-{:external: target="_blank" .external}
-{:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:screen: .screen}
-{:tip: .tip}
-{:faq: data-hd-content-type='faq'}
-{:support: data-reuse='support'}
+
+{{site.data.keyword.attribute-definition-list}}
 
 # Allowing public access
 {: #iam-public-access}

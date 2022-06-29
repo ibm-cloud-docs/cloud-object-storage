@@ -9,22 +9,8 @@ keywords: s3fs, open source, file system, gateway
 subcollection: cloud-object-storage
 
 ---
-{:new_window: target="_blank"}
-{:external: target="_blank" .external}
-{:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:screen: .screen}
-{:tip: .tip}
-{:important: .important}
-{:note: .note}
-{:download: .download} 
-{:http: .ph data-hd-programlang='http'} 
-{:javascript: .ph data-hd-programlang='javascript'} 
-{:java: .ph data-hd-programlang='java'} 
-{:python: .ph data-hd-programlang='python'}
-{:faq: data-hd-content-type='faq'}
-{:support: data-reuse='support'}
+
+{{site.data.keyword.attribute-definition-list}}
 
 # Mounting a bucket using `s3fs`
 {: #s3fs}
