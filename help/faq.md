@@ -327,7 +327,7 @@ Archived objects must be restored before you can access them. While restoring, s
 {: #faq-cos-replication}
 {: faq}
 
-COS by itself does not provide any replication feature. However {{site.data.keyword.cos_short}} offers data resiliency. For details, see [object-storage resiliency](https://www.ibm.com/cloud/object-storage/resiliency).
+Yes, it is possible to configure buckets for automated [replication of objects to a destination bucket](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview).
 
 ## How can I track events in {{site.data.keyword.cos_short}}?
 {: #faq-event-tracking}
@@ -387,7 +387,7 @@ A legal hold prevents an object from being overwritten or deleted. However, a le
 {: #faq-access-pvt-cospoints}
 {: faq}
 
-Use {{site.data.keyword.cos_short}} [Direct Link Connection]((/docs/direct-link?topic=direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage)) to create a global direct link.
+Use {{site.data.keyword.cos_short}} [Direct Link Connection](/docs/direct-link?topic=direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage) to create a global direct link.
 
 ## How does frequency of data access impact the pricing of {{site.data.keyword.cos_short}}?
 {: #faq-access-price}

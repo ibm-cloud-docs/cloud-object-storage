@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022
-lastupdated: "2022-06-15"
+lastupdated: "2022-06-27"
 
 keywords: data, replication, loss prevention
 
@@ -24,7 +24,7 @@ Replication allows users to define rules for automatic, asynchronous copying of 
 
 Replication copies newly created objects and object updates from a source bucket to one or more destination buckets.
 
-- Only new objects or new versions of the existing objects (created after the replication rule) are copied to the destination bucket. Existing objects can be replicated by 
+- Only new objects or new versions of the existing objects (created after the replication rule) are copied to the destination bucket. Existing objects can be replicated [by copying them onto themselves](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview#replication-existing), creating a new version that is replicated.
 - The metadata of the source object is applied to the replicated object.
 - Bi-directional replication between two buckets requires rules to be active on both buckets.
 - Filters (prefix, tags) can be used to scope the replication rule to only apply to a subset of objects in a source bucket.
@@ -137,7 +137,8 @@ Any of these three missing indicates a failure.
 ## Usage and accounting
 {: #replication-usage}
 
-All replicas are objects themselves, and contribute usage just like any other data. Successful replication results in billable `PUT`, `GET`, and `HEAD` requests, although any bandwidth consumed in the replication process is not billed.  
+
+All replicas are objects themselves, and [contribute usage](/docs/cloud-object-storage?topic=cloud-object-storage-billing) just like any other data. Successful replication results in billable `PUT`, `GET`, and `HEAD` requests, although any bandwidth consumed in the replication process is not billed.  
 
 Replication generates additional metrics for use with IBM Cloud Monitoring:
 
@@ -158,12 +159,12 @@ Versioning is mandatory in order to enable replication. After you [enable versio
 ### Key Protect encryption
 {: #replication-interactions-kp}
 
-Source objects will be encrypted using the root key of the source bucket, and replicas are encrypted using the root key of the destination bucket.
+Source objects will be [encrypted using the root key](/docs/key-protect?topic=key-protect-about) of the source bucket, and replicas are encrypted using the root key of the destination bucket.
 
 ### Lifecycle configurations
 {: #replication-interactions-lifecycle}
 
-If a lifecycle policy is enabled on a destination bucket, the lifecycle actions will be based on the original creation time of the object at the source, not the time that the replica becomes available in the destination bucket. 
+If a [lifecycle policy is enabled](/docs/cloud-object-storage?topic=cloud-object-storage-expiry#expiry-rules-attributes) on a destination bucket, the lifecycle actions will be based on the original creation time of the object at the source, not the time that the replica becomes available in the destination bucket. 
 
 ### Immutable Object Storage
 {: #replication-interactions-worm}
@@ -173,14 +174,14 @@ Using retention policies is not possible on a bucket with [versioning enabled](/
 ### Legacy bucket firewalls
 {: #replication-interactions-firewall}
 
-Buckets using legacy firewalls to restrict access based on IP addresses are not able to use replication, as the background services that replicate the objects do not have fixed IP addresses and can not pass the firewall.  
+Buckets using [legacy firewalls to restrict access based on IP addresses](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall#firewall-legacy-about) are not able to use replication, as the background services that replicate the objects do not have fixed IP addresses and can not pass the firewall.  
 
-It is recommended to instead use context-based restrictions for controlling access based on network information.  
+It is recommended to instead [use context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall#setting-cbr) for controlling access based on network information.  
 
-## Cloud Functions and Code Engine
+### Cloud Functions and Code Engine
 {: #replication-interactions-functions}
 
-Replication does not provide a trigger for Cloud Functions or Code Engine events at this time.
+Configuring replication does not provide a [trigger for Cloud Functions](/docs/openwhisk?topic=openwhisk-triggers) or Code Engine events at this time, but object writes and deletes will create `Object:Write` and `Object:Delete` notifications for both the source and destination buckets.  These events are annotated with a `notifications.replication_type` field that indicates if the event triggered a sync, or was triggered by a sync.
 
 ## Replicating existing objects
 {: #replication-existing}
@@ -281,7 +282,7 @@ The body of the request must contain an XML block with the following schema:
 | `ID`                       | String    | None                                                                           | `Rule`                     | Must consist of (`a-z,`A-Z0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-`                                                                                                                                                                                                                                                                                                        |
 | `Destination`              | Container | `Bucket`                                                                       | `Rule`                     | Limit 1.                                                                                                                                                                                                                                                                                                                                                                                          |
 | `Bucket`                   | String    | None                                                                           | `Destination`              | The CRN of the destination bucket.                                                                                                                                                                                                                                                                                                                                                                |
-| `Priority`                 | Integer   | None                                                                           | `Rule`                     | The priority indicates which rule has precedence whenever two or more replication rules conflict. Object storage will attempt to replicate objects according to all replication rules. However, if there are two or more rules with the same destination bucket, then objects will be replicated according to the rule with the highest priority. The higher the number, the higher the priority. |
+| `Priority`                 | Integer   | None                                                                           | `Rule`                     | The priority indicates which rule is in effect. Object storage will attempt to replicate objects according the rule with the highest priority. The higher the number, the higher the priority. |
 | `Status`                   | String    | None                                                                           | `Rule`                     | Specifies whether the rule is enabled. Valid values are `Enabled` or `Disabled`.                                                                                                                                                                                                                                                                                                                  |
 | `DeleteMarkerReplication`  | Container | `Status`                                                                       | `Rule`                     | Limit 1.                                                                                                                                                                                                                                                                                                                                                                                          |
 | `Status`                   | String    | None                                                                           | `DeleteMarkerReplication`   | Specifies whether Object storage replicates delete markers.  Valid values are `Enabled` or `Disabled`.                                                                                                                                                                                                                                                                                            |

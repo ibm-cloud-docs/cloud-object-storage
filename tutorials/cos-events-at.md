@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2020-04-27"
+lastupdated: "2022-06-24"
 
 keywords: activity, tracking, object storage, event, tutorial
 
@@ -26,7 +26,7 @@ Tracking {{site.data.keyword.cos_full}} events with {{site.data.keyword.at_full}
 
 This tutorial provides an introduction to capturing information regarding the events of your {{site.data.keyword.cos_short}} instance using {{site.data.keyword.at_short}}. 
 
-If you're not familiar with {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). Also, if you're not familiar with {{site.data.keyword.at_full}}, you may wish to check out how to [get started with {{site.data.keyword.at_short}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started).
+If you're not familiar with {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). Also, if you're not familiar with {{site.data.keyword.at_full}}, you may wish to check out how to [get started with {{site.data.keyword.at_short}}](/docs/activity-tracker?topic=activity-tracker-getting-started).
 
 ## Before you begin
 {: #tracking-cos-events-prereqs}
@@ -93,6 +93,7 @@ Navigate back to the dashboard, and look for the new instance. Click on it to op
 Now we can see some metadata about our new {{site.data.keyword.at_short}} instance (location, CRN, etc.).  Click on the *View IBM Cloud Activity Tracker** button to launch the interface.
 
 ![Open AT](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/at-tut-6-open-at.png)
+
 
 We'll quickly see that there's nothing here.  It will take a little while for the new instance to be associated with the bucket - while data operations (like reading or writing objects) are immediately consistent, operations that update the bucket's metadata (such as adding an {{site.data.keyword.at_short}} association) are eventually consistent and may take 15 minutes or so to propagate across the system.
 

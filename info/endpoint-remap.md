@@ -177,7 +177,6 @@ If a networking failure results in a partition where the data center is unable t
 | Mexico City, Mexico         | Public | `s3.mex01.objectstorage.softlayer.net` | `s3.mex01.cloud-object-storage.appdomain.cloud` |
 | Milan, Italy                | Public | none                                   | `s3.mil01.cloud-object-storage.appdomain.cloud` |
 | Montr&egrave;al, Canada     | Public | `s3.mon01.objectstorage.softlayer.net` | `s3.mon01.cloud-object-storage.appdomain.cloud` |
-| Oslo, Norway                | Public | `s3.osl01.objectstorage.softlayer.net` | `s3.osl01.cloud-object-storage.appdomain.cloud` |
 | Paris, France               | Public | `s3.par01.objectstorage.softlayer.net` | `s3.par01.cloud-object-storage.appdomain.cloud` |
 | San Jose, US                | Public | none                                   | `s3.sjc04.cloud-object-storage.appdomain.cloud` |
 | S&atilde;o Paulo, Brazil    | Public | `s3.sao01.objectstorage.softlayer.net` | `s3.sao01.cloud-object-storage.appdomain.cloud` |
@@ -198,7 +197,6 @@ If a networking failure results in a partition where the data center is unable t
 | Mexico City, Mexico         | Private | `s3.mex01.objectstorage.service.networklayer.com` | `s3.private.mex01.cloud-object-storage.appdomain.cloud` |
 | Milan, Italy                | Private | none                                              | `s3.private.mil01.cloud-object-storage.appdomain.cloud` |
 | Montr&egrave;al, Canada     | Private | `s3.mon01.objectstorage.service.networklayer.com` | `s3.private.mon01.cloud-object-storage.appdomain.cloud` |
-| Oslo, Norway                | Private | `s3.osl01.objectstorage.service.networklayer.com` | `s3.private.osl01.cloud-object-storage.appdomain.cloud` |
 | Paris, France               | Private | `s3.par01.objectstorage.service.networklayer.com` | `s3.private.par01.cloud-object-storage.appdomain.cloud` |
 | San Jose, US                | Private | none                                              | `s3.private.sjc04.cloud-object-storage.appdomain.cloud` |
 | S&atilde;o Paulo, Brazil    | Private | `s3.sao01.objectstorage.service.networklayer.com` | `s3.private.sao01.cloud-object-storage.appdomain.cloud` |
@@ -219,7 +217,6 @@ If a networking failure results in a partition where the data center is unable t
 | Mexico City, Mexico         | Direct | `s3.mex01.objectstorage.adn.networklayer.com` | `s3.direct.mex01.cloud-object-storage.appdomain.cloud` |
 | Milan, Italy                | Direct | none                                          | `s3.direct.mil01.cloud-object-storage.appdomain.cloud` |
 | Montr&egrave;al, Canada     | Direct | `s3.mon01.objectstorage.adn.networklayer.com` | `s3.direct.mon01.cloud-object-storage.appdomain.cloud` |
-| Oslo, Norway                | Direct | `s3.osl01.objectstorage.adn.networklayer.com` | `s3.direct.osl01.cloud-object-storage.appdomain.cloud` |
 | Paris, France               | Direct | `s3.par01.objectstorage.adn.networklayer.com` | `s3.direct.par01.cloud-object-storage.appdomain.cloud` |
 | San Jose, US                | Direct | none                                          | `s3.direct.sjc04.cloud-object-storage.appdomain.cloud` |
 | S&atilde;o Paulo, Brazil    | Direct | `s3.sao01.objectstorage.adn.networklayer.com` | `s3.direct.sao01.cloud-object-storage.appdomain.cloud` |

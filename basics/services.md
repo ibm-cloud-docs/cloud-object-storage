@@ -27,7 +27,7 @@ For more information about the following services, be sure to check out the resp
 * [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs)
 * [Archive Data](/docs/cloud-object-storage/basics?topic=cloud-object-storage-archive)
 * [Immutable Object Storage](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable)
-* [Activity Tracker](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started)
+* [Activity Tracker](/docs/activity-tracker?topic=activity-tracker-getting-started)
 * [Functions](/docs/cloud-object-storage?topic=cloud-object-storage-functions)
 * [Smart Tier](/docs/cloud-object-storage?topic=cloud-object-storage-billing#smart-tier-pricing-details)
 * [Monitoring](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration)

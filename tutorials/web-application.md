@@ -299,7 +299,7 @@ Select a region for your toolchain from the following options:
 ```
 {: screen}
 
-Generating a new application reminds us that the toolchain used to deploy your app needs some additional configuration. As mentioned earlier, uploading your public key to GitHub (at the CD Toolchain instance on the {{site.data.keyword.cloud_notm}} Platform), is required to deliver the deployed application by using GitHub. More instructions can be found after you deploy your application and log in to your IBM Cloud GitLab account at [readme file#generating-a-new-ssh-key-pair](https://us-south.git.cloud.ibm.com/help/ssh/README#generating-a-new-ssh-key-pair).
+Generating a new application reminds us that the toolchain used to deploy your app needs some additional configuration. As mentioned earlier, uploading your public key to GitHub (at the CD Toolchain instance on the {{site.data.keyword.cloud_notm}} Platform), is required to deliver the deployed application by using GitHub.
 
 ```
 Note: For successful connection to the DevOps toolchain, this machine 
