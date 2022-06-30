@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022
-lastupdated: "2022-06-27"
+lastupdated: "2022-06-29"
 
 keywords: data, replication, loss prevention
 
@@ -16,18 +16,18 @@ subcollection: cloud-object-storage
 # Replicating objects
 {: #replication-overview}
 
-Replication allows users to define rules for automatic, asynchronous copying of objects from source bucket to one or many destination buckets in the same or different locations. 
+Replication allows users to define rules for automatic, asynchronous copying of objects from a source bucket to a destination bucket in the same or different location. 
 {: shortdesc}
 
 ## What is replication?
 {: #replication-what}
 
-Replication copies newly created objects and object updates from a source bucket to one or more destination buckets.
+Replication copies newly created objects and object updates from a source bucket to a destination bucket.
 
 - Only new objects or new versions of the existing objects (created after the replication rule) are copied to the destination bucket. Existing objects can be replicated [by copying them onto themselves](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview#replication-existing), creating a new version that is replicated.
 - The metadata of the source object is applied to the replicated object.
 - Bi-directional replication between two buckets requires rules to be active on both buckets.
-- Filters (prefix, tags) can be used to scope the replication rule to only apply to a subset of objects in a source bucket.
+- Filters (prefix, tags) can be used to scope the replication rule to only apply to a subset of objects in a source bucket. These subsets can be replicated to different buckets.
 
 ## Why use replication?
 {: #replication-why}
@@ -282,13 +282,13 @@ The body of the request must contain an XML block with the following schema:
 | `ID`                       | String    | None                                                                           | `Rule`                     | Must consist of (`a-z,`A-Z0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-`                                                                                                                                                                                                                                                                                                        |
 | `Destination`              | Container | `Bucket`                                                                       | `Rule`                     | Limit 1.                                                                                                                                                                                                                                                                                                                                                                                          |
 | `Bucket`                   | String    | None                                                                           | `Destination`              | The CRN of the destination bucket.                                                                                                                                                                                                                                                                                                                                                                |
-| `Priority`                 | Integer   | None                                                                           | `Rule`                     | The priority indicates which rule is in effect. Object storage will attempt to replicate objects according the rule with the highest priority. The higher the number, the higher the priority. |
+| `Priority`                 | Integer   | None                                                                           | `Rule`                     | The priority indicates which rules are in effect. Object storage will attempt to replicate objects according the rule with the highest priority. The higher the number, the higher the priority. An object can only be subject to a single rule. |
 | `Status`                   | String    | None                                                                           | `Rule`                     | Specifies whether the rule is enabled. Valid values are `Enabled` or `Disabled`.                                                                                                                                                                                                                                                                                                                  |
 | `DeleteMarkerReplication`  | Container | `Status`                                                                       | `Rule`                     | Limit 1.                                                                                                                                                                                                                                                                                                                                                                                          |
 | `Status`                   | String    | None                                                                           | `DeleteMarkerReplication`   | Specifies whether Object storage replicates delete markers.  Valid values are `Enabled` or `Disabled`.                                                                                                                                                                                                                                                                                            |
-| `Filter`                   | String    | `Prefix`                                                                       | `Rule`                     | A filter that identifies the subset of objects to which the replication rule applies. A `Filter` must specify exactly one `Prefix`, `Tag`, or an `And` child element.                                                                                                                                                                                                                             |
+| `Filter`                   | String    | `Prefix`, `Tag`, `AND`                                                         | `Rule`                     | A filter that identifies the subset of objects to which the replication rule applies. A `Filter` must specify exactly one `Prefix`, `Tag`, or an `And` child element.                                                                                                                                                                                                                             |
 | `Prefix`                   | String    | None                                                                           | `Filter`                   | An object key name prefix that identifies the subset of objects to which the rule applies.                                                                                                                                                                                                                                                                                                        |
-| `Tag`                      | String    | None                                                                           | `Filter`                   | A container for specifying a tag key and value. The rule applies only to objects that have the tag in their tag set.                                                                                                                                                                                                                                                                              |
+| `Tag`                      | String    | None                                                                           | `Filter`                   | A container for specifying a tag key and value. The rule applies only to objects that have the tag in their tag set.                                                                                                                                                                                                                                                                                |
 | `And`                      | String    | None                                                                           | `Filter`                   | A container for specifying rule filters. The filters determine the subset of objects to which the rule applies. This element is required only if you specify more than one filter.                                                                                                                                                                                                                |
 | `Key`                      | String    | None                                                                           | `Tag`                      | The tag key.                                                                                                                                                                                                                                                                                                                                                                                      |
 | `Value`                    | String    | None                                                                           | `Tag`                      | The tag value.                                                                                                                                                                                                                                                                                                                                                                                    |
@@ -312,6 +312,45 @@ curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?
               <Filter/>
               <Destination>
                 <Bucket>$DESTINATION_CRN</Bucket>
+              </Destination>
+          	</Rule>
+          </ReplicationConfiguration>'
+```
+
+This example will replicate any objects with a key (name) that begin with `project_a/` to the bucket identified with `$DESTINATION_CRN_A`, and any objects with a key (name) that begin with `project_b/` to the bucket identified with `$DESTINATION_CRN_B`, and will replicate delete markers.  
+
+```
+curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?replication" \
+     -H 'Authorization: bearer $TOKEN' \
+     -H 'Content-MD5: exuBoz2kFBykNwqu64JZuA==' \
+     -H 'Content-Type: text/plain; charset=utf-8' \
+     -d $'<ReplicationConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+            <Rule>
+              <ID>ProjectA</ID>
+              <Priority>1</Priority>
+              <Status>Enabled</Status>
+              <DeleteMarkerReplication>
+                <Status>Enabled</Status>
+              </DeleteMarkerReplication>
+              <Filter>
+                <Prefix>project_a/</prefix>
+              </Filter>
+              <Destination>
+                <Bucket>$DESTINATION_CRN_A</Bucket>
+              </Destination>
+          	</Rule>
+            <Rule>
+              <ID>ProjectB</ID>
+              <Priority>2</Priority>
+              <Status>Enabled</Status>
+              <DeleteMarkerReplication>
+                <Status>Enabled</Status>
+              </DeleteMarkerReplication>
+              <Filter>
+                <Prefix>project_b/</prefix>
+              </Filter>
+              <Destination>
+                <Bucket>$DESTINATION_CRN_B</Bucket>
               </Destination>
           	</Rule>
           </ReplicationConfiguration>'
