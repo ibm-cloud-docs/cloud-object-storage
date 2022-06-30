@@ -282,7 +282,7 @@ The body of the request must contain an XML block with the following schema:
 | `ID`                       | String    | None                                                                           | `Rule`                     | Must consist of (`a-z,`A-Z0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-`                                                                                                                                                                                                                                                                                                        |
 | `Destination`              | Container | `Bucket`                                                                       | `Rule`                     | Limit 1.                                                                                                                                                                                                                                                                                                                                                                                          |
 | `Bucket`                   | String    | None                                                                           | `Destination`              | The CRN of the destination bucket.                                                                                                                                                                                                                                                                                                                                                                |
-| `Priority`                 | Integer   | None                                                                           | `Rule`                     | The priority indicates which rules are in effect. Object storage will attempt to replicate objects according the rule with the highest priority. The higher the number, the higher the priority. An object can only be subject to a single rule. |
+| `Priority`                 | Integer   | None                                                                           | `Rule`                     | The priority indicates which rules are in effect. Object storage will attempt to replicate objects, selecting the applicable rule with the highest priority. The higher the number, the higher the priority. An object can only be subject to a single rule. |
 | `Status`                   | String    | None                                                                           | `Rule`                     | Specifies whether the rule is enabled. Valid values are `Enabled` or `Disabled`.                                                                                                                                                                                                                                                                                                                  |
 | `DeleteMarkerReplication`  | Container | `Status`                                                                       | `Rule`                     | Limit 1.                                                                                                                                                                                                                                                                                                                                                                                          |
 | `Status`                   | String    | None                                                                           | `DeleteMarkerReplication`   | Specifies whether Object storage replicates delete markers.  Valid values are `Enabled` or `Disabled`.                                                                                                                                                                                                                                                                                            |
@@ -317,7 +317,16 @@ curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?
           </ReplicationConfiguration>'
 ```
 
-This example will replicate any objects with a key (name) that begin with `project_a/` to the bucket identified with `$DESTINATION_CRN_A`, and any objects with a key (name) that begin with `project_b/` to the bucket identified with `$DESTINATION_CRN_B`, and will replicate delete markers.  
+This example will replicate any objects with a key (name) that begin with `project_a/` to the bucket identified with `$DESTINATION_CRN_A`, and any objects with a key (name) that begin with `project_b/` to the bucket identified with `$DESTINATION_CRN_B`, and any objects that have an object tag with the key `Client` and the value `ACME` to a third bucket identified with `$DESTINATION_CRN_C`, and will replicate delete markers in all cases.  
+
+Assume there are four objects in the source bucket:
+ 
+ 1. `project_a/foo.mp4`
+ 2. `project_a/bar.mp4`
+ 3. `project_b/baz.pdf`
+ 4. `project_b/acme.pdf`.  This fourth object also has an object tag with the key `Client` and the value `ACME`.  
+
+As a result of the following rules, objects 1 and 2 will be replicated to `$DESTINATION_CRN_A`.  Object 3 will be replicated to `$DESTINATION_CRN_B`.  Object 4 will only be replicated to `$DESTINATION_CRN_C` because the rule with the ID `AcmeCorp` has a higher priority value than the rule with the ID `ProjectB` and while it meets the requirements for both rules, will only be subject to the former.
 
 ```
 curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?replication" \
@@ -327,7 +336,7 @@ curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?
      -d $'<ReplicationConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
             <Rule>
               <ID>ProjectA</ID>
-              <Priority>1</Priority>
+              <Priority>10</Priority>
               <Status>Enabled</Status>
               <DeleteMarkerReplication>
                 <Status>Enabled</Status>
@@ -341,7 +350,7 @@ curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?
           	</Rule>
             <Rule>
               <ID>ProjectB</ID>
-              <Priority>2</Priority>
+              <Priority>5</Priority>
               <Status>Enabled</Status>
               <DeleteMarkerReplication>
                 <Status>Enabled</Status>
@@ -351,6 +360,23 @@ curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?
               </Filter>
               <Destination>
                 <Bucket>$DESTINATION_CRN_B</Bucket>
+              </Destination>
+          	</Rule>
+            <Rule>
+              <ID>AcmeCorp</ID>
+              <Priority>20</Priority>
+              <Status>Enabled</Status>
+              <DeleteMarkerReplication>
+                <Status>Enabled</Status>
+              </DeleteMarkerReplication>
+              <Filter>
+                <Tag>
+                  <Key>Client</Key>
+                  <Value>ACME</Value>
+                </Tag>
+              </Filter>
+              <Destination>
+                <Bucket>$DESTINATION_CRN_C</Bucket>
               </Destination>
           	</Rule>
           </ReplicationConfiguration>'
