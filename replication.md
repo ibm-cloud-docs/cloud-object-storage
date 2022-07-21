@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022
-lastupdated: "2022-06-29"
+lastupdated: "2022-07-21"
 
 keywords: data, replication, loss prevention
 
@@ -79,6 +79,14 @@ Now you'll create a replication rule.
 
 **Replica**: The new object created in a target bucket as a result of a request made to a source bucket. 
 
+## Using replication for business continuity and disaster recovery
+{: #replication-bcdr}
+
+Replication can be used to provide continuity of service in the event of an outage:  
+
+- Ensure that the source and destination buckets are in different locations. 
+- Verify that the latest versions of objects are in sync between both buckets.  A tool such as [Rclone can be useful](/docs/cloud-object-storage?topic=cloud-object-storage-rclone) (the `rclone check` command) for checking synchronicity from the command line.
+- In the event of an outage, an application's traffic can be redirected to the destination bucket.
 
 ## Consistency and data integrity
 {: #replication-consistency}
