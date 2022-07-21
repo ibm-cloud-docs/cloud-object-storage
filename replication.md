@@ -82,10 +82,10 @@ Now you'll create a replication rule.
 ## Using replication for business continuity and disaster recovery
 {: #replication-bcdr}
 
-In the event of an outage, replication can be used to provide continuity of service.
+Replication can be used to provide continuity of service in the event of an outage:  
 
-- Ensure that the source and destination buckets are in different regions.  
-- Verify that the latest versions of objects are in sync between both buckets.  The `rclone check` command can be useful for checking synchronicity from the command line.
+- Ensure that the source and destination buckets are in different locations. 
+- Verify that the latest versions of objects are in sync between both buckets.  A tool such as [Rclone can be useful](/docs/cloud-object-storage?topic=cloud-object-storage-rclone) (the `rclone check` command) for checking synchronicity from the command line.
 - In the event of an outage, an application's traffic can be redirected to the destination bucket.
 
 ## Consistency and data integrity
