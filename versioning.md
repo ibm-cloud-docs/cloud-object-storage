@@ -1,13 +1,12 @@
 ---
 
 copyright:
-  years: 2021
-lastupdated: "2021-11-11"
+  years: 2021, 2022
+lastupdated: "2022-06-29"
 
 keywords: data, versioning, loss prevention
 
 subcollection: cloud-object-storage
-
 
 ---
 
@@ -274,6 +273,23 @@ Server-side copying of object versions is supported, but uses a slightly differe
 curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/<new-object-key>"
  -H "Authorization: bearer $TOKEN"
  -H "x-amz-copy-source: /<source-bucket>/<object-key>?versionId=L4kqtJlcpXroDVBH40Nr8X8gdRQBpUMLUo"
+```
+
+## CLI examples
+{: #versioning-cli-examples}
+
+You can use the IBM Cloud CLI with the `cos` plug-in to enable versioning on a bucket.
+
+```
+cos bucket-versioning-put --bucket $BUCKET --versioning-configuration file://vers.json
+```
+
+In this case, `vers.json` is a simple document:
+
+```json
+{
+    "Status": "Enabled"
+}
 ```
 
 ## SDK examples
