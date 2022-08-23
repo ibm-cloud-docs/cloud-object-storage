@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-03-28"
+lastupdated: "2022-08-23"
 
 keywords: expiry, glacier, tier, s3, compatibility, api
 
@@ -93,6 +93,21 @@ This configuration deletes any objects with the prefix `foo/` on June 1, 2020.
             <Date>2020-06-01T00:00:00.000Z</Date>
         </Expiration>
 	</Rule>
+</LifecycleConfiguration>
+```
+
+This configuration expires any non-current versions of objects after 100 days.
+
+```xml
+<LifecycleConfiguration>
+  <Rule>
+    <ID>DeleteAfterBecomingNonCurrent</ID>
+    <Filter/>
+    <Status>Enabled</Status>
+    <NoncurrentVersionExpiration>
+      <NoncurrentDays>100</NoncurrentDays>
+    </NoncurrentVersionExpiration>
+  </Rule>
 </LifecycleConfiguration>
 ```
 
