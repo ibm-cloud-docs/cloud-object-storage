@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-03-28"
+lastupdated: "2022-08-23"
 
 keywords: expiry, glacier, tier, s3, compatibility, api
 
@@ -56,6 +56,9 @@ A rule's ID must be unique within the bucket's lifecycle configuration.
 ### Expiration
 The expiration block contains the details that govern the automatic deletion of objects. This could be a specific date in the future, or a period of time after new objects are written.
 
+### NoncurrentVersionExpiration
+The number of days after which non-current versions of objects are automatically deleted.
+
 ### Prefix
 An optional string that will be matched to the prefix of the object name in the bucket. A rule with a prefix will only apply to the objects that match. You can use multiple rules for different expiration actions for different prefixes within the same bucket. For example, within the same lifecycle configuration, one rule could delete all objects that begin with `logs/` after 30 days, and a second rule could delete objects that begin with `video/` after 365 days.  
 
@@ -93,6 +96,21 @@ This configuration deletes any objects with the prefix `foo/` on June 1, 2020.
             <Date>2020-06-01T00:00:00.000Z</Date>
         </Expiration>
 	</Rule>
+</LifecycleConfiguration>
+```
+
+This configuration expires any non-current versions of objects after 100 days.
+
+```xml
+<LifecycleConfiguration>
+  <Rule>
+    <ID>DeleteAfterBecomingNonCurrent</ID>
+    <Filter/>
+    <Status>Enabled</Status>
+    <NoncurrentVersionExpiration>
+      <NoncurrentDays>100</NoncurrentDays>
+    </NoncurrentVersionExpiration>
+  </Rule>
 </LifecycleConfiguration>
 ```
 
@@ -155,16 +173,19 @@ Header                    | Type   | Description
 The body of the request must contain an XML block with the following schema:
 {: http}
 
-| Element                  | Type                 | Children                               | Ancestor                 | Constraint                                                                                 |
-|--------------------------|----------------------|----------------------------------------|--------------------------|--------------------------------------------------------------------------------------------|
-| `LifecycleConfiguration` | Container            | `Rule`                                 | None                     | Limit 1.                                                                                  |
-| `Rule`                   | Container            | `ID`, `Status`, `Filter`, `Expiration` | `LifecycleConfiguration` | Limit 1000.                                                                                  |
-| `ID`                     | String               | None                                   | `Rule`                   | Must consist of (`a-z,`A-Z0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-` |
-| `Filter`                 | String               | `Prefix`                               | `Rule`                   | Must contain a `Prefix` element                                                            |
-| `Prefix`                 | String               | None                                   | `Filter`                 | The rule applies to any objects with keys that match this prefix.                                                           |
-| `Expiration`             | `Container`          | `Days` or `Date`                       | `Rule`                   | Limit 1.                                                                                  |
-| `Days`                   | Non-negative integer | None                                   | `Expiration`             | Must be a value greater than 0.                                                           |
-| `Date`                   | Date                 | None                                   | `Expiration`             | Must be in ISO 8601 Format.                            |
+| Element                       | Type                 | Children                               | Ancestor                      | Constraint                                                                                 |
+|-------------------------------|----------------------|----------------------------------------|-------------------------------|--------------------------------------------------------------------------------------------|
+| `LifecycleConfiguration`      | Container            | `Rule`                                 | None                          | Limit 1.                                                                                   |
+| `Rule`                        | Container            | `ID`, `Status`, `Filter`, `Expiration` | `LifecycleConfiguration`      | Limit 1000.                                                                                |
+| `ID`                          | String               | None                                   | `Rule`                        | Must consist of (`a-z,`A-Z0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-` |
+| `Filter`                      | String               | `Prefix`                               | `Rule`                        | Must contain a `Prefix` element                                                            |
+| `Prefix`                      | String               | None                                   | `Filter`                      | The rule applies to any objects with keys that match this prefix.                          |
+| `Expiration`                  | `Container`          | `Days` or `Date`                       | `Rule`                        | Limit 1.                                                                                   |
+| `Days`                        | Non-negative integer | None                                   | `Expiration`                  | Must be a value greater than 0.                                                            |
+| `Date`                        | Date                 | None                                   | `Expiration`                  | Must be in ISO 8601 Format.                                                                |
+| `NoncurrentVersionExpiration` | Date                 | `NoncurrentDays`                       | `Rule`                        | Limit 1.                                                                                   |
+| `NoncurrentDays`              | Non-negative integer | None                                   | `NoncurrentVersionExpiration` | Must be a value greater than 0.                                                            |
+
 {: http}
 
 The body of the request must contain an XML block with the schema that is addressed in the table (see Example 1).
