@@ -67,6 +67,7 @@ toc:
                 - satellite/satellite-provisioning.md
                 - satellite/satellite-billing.md
                 - satellite/satellite-apis.md
+          - onerate.md      
           - topicgroup:
               label: Managing access
               topics:
