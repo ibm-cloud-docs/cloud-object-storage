@@ -4,7 +4,7 @@ copyright:
   years: 2022   
 lastupdated: "2022-08-31"
 
-keywords: data, cost, pricing, reseller
+keywords: data, cost, pricing, isv
 
 subcollection: cloud-object-storage
 
@@ -26,7 +26,7 @@ One-Rate plans provide account-level billing that aggregates storage capacity by
 
 One Rate plan instances are significantly more expensive when it comes to storage costs, but much less expensive when taking into account egress charges.  You should consider using a One Rate instance if:
 
-1. Your are a storage reseller, and most of the data being stored in Object Storage is being read over the public endpoints.
+1. Your are a storage ISV, and most of the data being stored in Object Storage is being read over the public endpoints.
 2. Your storage is being used to read large files outside of IBM Cloud, such as in post-production film editing, satellite imagery, or music production.
 
 Most workloads, such as for backups/long-term storage, data analysis using IBM Cloud resources, or for small files (such as PNGs for websites) are better served by a Standard plan. One Rate plans are generally best for workloads where more 20% of the total storage is read over the public endpoints each month.
