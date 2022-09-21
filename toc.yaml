@@ -169,7 +169,10 @@ toc:
     - navgroup:
         id: help
         topics:
-          - help/faq.md
+          - topicgroup:
+              label: Frequently asked questions
+              topics:
+                - help/faq.md
           - help/support.md
           - topicgroup:
               label: Billing and pricing
