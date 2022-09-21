@@ -12,7 +12,7 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Provisioning storage and choosing a plan
+# Choosing a plan and creating an instance
 {: #provision}
 
 Getting data into your instance of {{site.data.keyword.cos_full}} requires just a few steps before you provision your new storage.

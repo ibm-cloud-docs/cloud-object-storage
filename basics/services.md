@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2022
 
-lastupdated: "2022-07-21"
+lastupdated: "2022-09-21"
 
 keywords: aspera, key protect, archive, worm
 
