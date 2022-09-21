@@ -173,6 +173,8 @@ toc:
               label: Frequently asked questions
               topics:
                 - help/faq.md
+                - help/faq-provisioning.md
+                - help/faq-encryption.md
           - help/support.md
           - topicgroup:
               label: Billing and pricing
