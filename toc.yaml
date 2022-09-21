@@ -48,7 +48,11 @@ toc:
     - navgroup:
         id: howto
         topics:
-          - basics/order-storage.md
+          - topicgroup:
+              label: Provisioning storage
+              topics:
+                - basics/order-storage.md
+                - onerate.md 
           - topicgroup:
               label: Choose regions and connect services
               topics:
@@ -66,8 +70,7 @@ toc:
                 - satellite/about-satellite.md
                 - satellite/satellite-provisioning.md
                 - satellite/satellite-billing.md
-                - satellite/satellite-apis.md
-          - onerate.md      
+                - satellite/satellite-apis.md     
           - topicgroup:
               label: Managing access
               topics:
