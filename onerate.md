@@ -30,7 +30,7 @@ One Rate plan instances are significantly more expensive when it comes to storag
 2. Your storage is being used to read large files outside of IBM Cloud, such as in post-production film editing, satellite imagery, or music production.
 
 Most workloads, such as for backups/long-term storage, data analysis using IBM Cloud resources, or for small files (such as PNGs for websites) are better served by a Standard plan. One Rate plans are generally best for workloads where more 20% of the total storage is read over the public endpoints each month.
-{:important}
+{:note}
 
 One Rate instances are available in Regional and Single Data Center locations, but are not available in Cross Region locations. There are four pricing tiers based on location:
 - North America: `us-south`, `us-east`, `ca-tor`, `mon01`, `sjc04`
@@ -46,6 +46,7 @@ One Rate instances are aggregated and billed at the IBM Cloud account level base
 Unlike Standard instances, One Rate instances provide free tiers for [Class A and B request charges](/docs/cloud-object-storage?topic=cloud-object-storage-billing#billing-request-classes) as well as egress charges.  The thresholds for the free tiers are dependant on total storage capacity.
 
 It is **not** possible to convert an instance created under a One Rate plan to a Standard plan.
+{:important}
 
 ## How to provision a One Rate instance
 {: #onerate-provision}
