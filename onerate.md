@@ -38,11 +38,14 @@ One Rate instances are available in Regional and Single Data Center locations, b
 - Asia: `au-syd`, `jp-osa`, `jp-tok`, `che01`, `sng01`
 - South America: `br-sao`
 
+
 All buckets in a One Rate instance **must** use a new `active` storage class specific to One Rate instances.
 
 One Rate instances are aggregated and billed at the IBM Cloud account level based on average end-of-month usage.
 
 Unlike Standard instances, One Rate instances provide free tiers for [Class A and B request charges](/docs/cloud-object-storage?topic=cloud-object-storage-billing#billing-request-classes) as well as egress charges.  The thresholds for the free tiers are dependant on total storage capacity.
+
+It is **not** possible to convert an instance created under a One Rate plan to a Standard plan.
 
 ## How to provision a One Rate instance
 {: #onerate-provision}
