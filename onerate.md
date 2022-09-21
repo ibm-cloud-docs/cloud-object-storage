@@ -41,7 +41,7 @@ One Rate instances are available in Regional and Single Data Center locations, b
 
 All buckets in a One Rate instance **must** use a new `active` storage class specific to One Rate instances.
 
-One Rate instances are aggregated and billed at the IBM Cloud account level based on average end-of-month usage.
+One Rate instances are aggregated and billed at the IBM Cloud account level based on average end-of-month usage. For detailed information and current pricing, [please review the detailed cost tables](https://cloud.ibm.com/objectstorage/create#pricing).
 
 Unlike Standard instances, One Rate instances provide free tiers for [Class A and B request charges](/docs/cloud-object-storage?topic=cloud-object-storage-billing#billing-request-classes) as well as egress charges.  The thresholds for the free tiers are dependant on total storage capacity.
 
