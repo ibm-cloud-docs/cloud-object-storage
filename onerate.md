@@ -94,8 +94,6 @@ A One Rate instance is specified at the point of provisioning, similar to a Lite
 
 All buckets created in a One Rate plan must use a specific provisioning code (also known as a storage class or location constraint).
 
-North America:
-
 | Location   | Location Constraint |
 |------------|---------------------|
 | `us-south` | `us-south-active`   |
@@ -103,19 +101,42 @@ North America:
 | `ca-tor`   | `ca-tor-active`     |
 | `mon01`    | `mon01-active`      |
 | `sjc04`    | `sjc04-active`      |
+{: class="simple-tab-table"}
+{: #oneratecodes1}
+{: tab-title="North America"}
+{: tab-group="One Rate Codes"}
 
-Europe:
+| Location | Location Constraint |
+|----------|---------------------|
+| `eu-de`  | `eu-de-active`      |
+| `eu-gb`  | `eu-de-active`      |
+| `ams03`  | `ams03-active`      |
+| `mil01`  | `mil01-active`      |
+| `par01`  | `par01-active`      |
+{: class="simple-tab-table"}
+{: #oneratecodes2}
+{: tab-title="Europe"}
+{: tab-group="One Rate Codes"}
 
-| Location   | Location Constraint |
-|------------|---------------------|
-| `eu-de` | `eu-de-active`   |
-| `eu-gb`  | `eu-de-active`    |
-| `ams03` | 
-| `mil01`
+| Location | Location Constraint |
+|----------|---------------------|
+| `au-syd`  | `au-syd-active`      |
+| `jp-tok`  | `jp-tok-active`      |
+| `jp-osa`  | `jp-osa-active`      |
+| `sng01`  | `sng01-active`      |
+| `che01`  | `che01-active`      |
+{: class="simple-tab-table"}
+{: #oneratecodes3}
+{: tab-title="Asia"}
+{: tab-group="One Rate Codes"}
 
-
-North America:
-
+| Location | Location Constraint |
+|----------|---------------------|
+| `br-sao`  | `br-sao-active`      |
+{: class="simple-tab-table"}
+{: #oneratecodes4}
+{: tab-title="South America"}
+{: tab-group="One Rate Codes"}
 
 ## Billing examples
 {: #onerate-billing}
