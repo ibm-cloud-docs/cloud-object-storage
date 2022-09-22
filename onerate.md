@@ -50,7 +50,7 @@ One Rate instances are aggregated and billed at the IBM Cloud account level base
 
 Unlike Standard instances, One Rate instances provide allowances for [Class A and B request charges](/docs/cloud-object-storage?topic=cloud-object-storage-billing#billing-request-classes) as well as egress charges.  The thresholds for the allowances are dependant on total storage capacity.
 
-It is **not** possible to convert an instance created under a One Rate plan to a Standard plan.
+It is **not** possible to convert an instance created under a One Rate plan to a Standard plan, or vice-versa.
 {:important}
 
 ## How to provision a One Rate instance
