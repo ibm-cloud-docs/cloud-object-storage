@@ -78,7 +78,10 @@ Archive is supported but Restore charges are **not** included in the One Rate fr
 
 ### Pricing example
 
-Imagine a large enterprise account called "Rainbow Co.".  It has a number of subsidiary accounts, such as "Blue", and "Green".  Each of these accounts has dozens (or more) Object Storage instances spread out across different regions.  Some have large volumes of storage that is rarely read, while others have smaller volumes but very high rates of egress.  Note that these costs are examples provided to illustrate the mechanics of the billing and are not reflective of actual rates, which can [be found here](https://cloud.ibm.com/objectstorage/create#pricing).
+Imagine a large enterprise account called "Rainbow Co.".  It has a number of subsidiary accounts, such as "Blue", and "Green".  Each of these accounts has dozens (or more) Object Storage instances spread out across different regions.  Some have large volumes of storage that is rarely read, while others have smaller volumes but very high rates of egress.  
+
+These costs are examples provided to illustrate the mechanics of the billing and are not reflective of actual rates, which can [be found here](https://cloud.ibm.com/objectstorage/create#pricing).
+{:note}
 
 Blue (`us-east`, `us-south`):
 | Metric     | Usage  | Standard Cost |
