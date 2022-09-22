@@ -62,20 +62,7 @@ Unlike Standard plan instances, One Rate instances provide allowances for [Class
 It is **not** possible to convert an instance created under a One Rate plan to a Standard plan, or vice-versa.
 {:important}
 
-### How to provision a One Rate instance
-{: #onerate-provision}
-
-A One Rate instance is specified at the point of provisioning, similar to a Lite or Satellite instance.   
-
-1. Log in to [the console](https://cloud.ibm.com/){: external}.
-2. Navigate to the catalog, by clicking **Catalog** in the navigation bar.
-3. Look for the **Object Storage** tile in the storage section and select it.
-4. Select **IBM Cloud** from the "Choose an Infrastructure" section.
-5. Select **One Rate** from the plans.
-6. Choose a name, resource group, and any desired tags.
-7. Click **Create** and you're automatically redirected to your new instance.
-
-## How allowances are calculated
+### How allowances are calculated
 {: #onerate-billing}
 
 One Rate plans use an all-inclusive flat monthly rate which includes capacity, operational requests, and outbound bandwidth.  The built-in allowances for outbound bandwidth are determined by the total capacity.
@@ -89,11 +76,55 @@ One Rate plans use an all-inclusive flat monthly rate which includes capacity, o
 Archive is supported but Restore charges are **not** included in the One Rate allowances
 {: note}
 
-### Predictable TCO pricing example
-{: #onerate-tco}
+### How to provision a One Rate instance
+{: #onerate-provision}
+
+A One Rate instance is specified at the point of provisioning, similar to a Lite or Satellite instance.   
+
+1. Log in to [the console](https://cloud.ibm.com/){: external}.
+2. Navigate to the catalog, by clicking **Catalog** in the navigation bar.
+3. Look for the **Object Storage** tile in the storage section and select it.
+4. Select **IBM Cloud** from the "Choose an Infrastructure" section.
+5. Select **One Rate** from the plans.
+6. Choose a name, resource group, and any desired tags.
+7. Click **Create** and you're automatically redirected to your new instance.
+
+### Special provisioning codes 
+{: #onerate-codes}
+
+All buckets created in a One Rate plan must use a specific provisioning code (also known as a storage class or location constraint).
+
+North America:
+
+| Location   | Location Constraint |
+|------------|---------------------|
+| `us-south` | `us-south-active`   |
+| `us-east`  | `us-east-active`    |
+| `ca-tor`   | `ca-tor-active`     |
+| `mon01`    | `mon01-active`      |
+| `sjc04`    | `sjc04-active`      |
+
+Europe:
+
+| Location   | Location Constraint |
+|------------|---------------------|
+| `eu-de` | `eu-de-active`   |
+| `eu-gb`  | `eu-de-active`    |
+| `ams03` | 
+| `mil01`
+
+
+North America:
+
+
+## Billing examples
+{: #onerate-billing}
 
 These costs are examples provided to illustrate the mechanics of the billing and are not reflective of actual rates, which can [be found here](https://cloud.ibm.com/objectstorage/create#pricing).
 {:note}
+
+### Predictable TCO pricing example
+{: #onerate-tco}
 
 Some workloads see steadily increasing traffic as business grows - which can create some billing surprises as egress charges grow as well.  A One Rate plan can cap those costs until thresholds are crossed.  For example, an account with 10 TB of storage might might see consistent growth until the amount of data being read outside of the IBM Cloud exceeds the amount of data being stored.
 
@@ -109,9 +140,6 @@ Some workloads see steadily increasing traffic as business grows - which can cre
 
 ### Aggregation pricing example
 {: #onerate-aggregate}
-
-These costs are examples provided to illustrate the mechanics of the billing and are not reflective of actual rates, which can [be found here](https://cloud.ibm.com/objectstorage/create#pricing).
-{:note}
 
 Imagine a large enterprise account called "Rainbow Co.".  It has a number of subsidiary accounts, such as "Blue", and "Green".  Each of these accounts has dozens (or more) Object Storage instances spread out across different regions.  Some have large volumes of storage that is rarely read, while others have smaller volumes but very high rates of egress.  
 
@@ -145,30 +173,7 @@ Rainbow Co. (Blue and Green):
 
 Note that the One Rate cost is significantly lower due to the reduced cost for egress.  Also note that rather than dozens of individual invoices (one for each service instance), there will only be four invoices - one for each location used.
 
-## Creating buckets in a One Rate plan
-{: #onerate-codes}
+## What next
+{: #onerate-next}
 
-All buckets created in a One Rate plan must use a specific provisioning code (also known as a storage class or location constraint).
-
-North America:
-
-| Location   | Location Constraint |
-|------------|---------------------|
-| `us-south` | `us-south-active`   |
-| `us-east`  | `us-east-active`    |
-| `ca-tor`   | `ca-tor-active`     |
-| `mon01`    | `mon01-active`      |
-| `sjc04`    | `sjc04-active`      |
-
-Europe:
-
-| Location   | Location Constraint |
-|------------|---------------------|
-| `eu-de` | `eu-de-active`   |
-| `eu-gb`  | `eu-de-active`    |
-| `ams03`
-| `mil01`
-
-
-North America:
-
+link to FAQ, etc
