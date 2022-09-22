@@ -21,11 +21,11 @@ Getting data into your instance of {{site.data.keyword.cos_full}} requires just 
 ## About {{site.data.keyword.cos_full_notm}} plans
 {: #provision-plans}
 
-The highest level of organization in {{site.data.keyword.cos_full_notm}} is a service instance.  Each instance can hold many buckets, and each bucket can hold virtually any number of objects (files).  There are four types of Object Storage service instance:
+The highest level of organization in {{site.data.keyword.cos_full_notm}} is a service instance.  Each instance can hold many buckets, and each bucket can hold virtually any number of objects (files).  There are four types of Object Storage service:
 
-1. **Lite plan** instances are free to use, but are somewhat limited in capacity and features.  They are typically used for experimentation and proof-of-concept work, and can be converted to a Standard account if needed.
+1. **Lite plan** instances are free to use, but are somewhat limited in capacity (< 25GB) and features. It is typically used for experimentation and proof-of-concept work, and will need to be converted to a Standard plan instance to access complete functionality.
 2. **Standard plan** instances are the most common and are recommended for most workloads.  
-3. **One Rate plan** instances should be used for [workloads that involve large volumes of data egress](/docs/cloud-object-storage?topic=cloud-object-storage-onerate).  If more than 20% of the total storage is being read outside of IBM Cloud in a given month, or if you have a very large number of instances (more than 1,000) and would benefit from simpler invoicing, it might make sense to use a One Rate plan.
+3. **One Rate plan** instances should be used for [workloads that involve large volumes of data egress](/docs/cloud-object-storage?topic=cloud-object-storage-onerate).  If a large volume of outbound bandwidth relative to the amount of total storage capacity is being read outside of IBM Cloud in a given month it might make sense to use a One Rate plan.
 4. **Satellite** instances are run on hardware outside of IBM Cloud and are typically used for edge computing or for strict data sovereignty requirements
 
 ## Creating a {{site.data.keyword.cloud_notm}} Platform account
