@@ -76,7 +76,51 @@ Total Monthly Cost = Capacity Cost + API Cost (if # of API > free tier) + Bandwi
 Archive is supported but Restore charges are **not** included in the One Rate free tiers
 {: note}
 
+### Pricing example
+
+Imagine a large enterprise account called "Rainbow Co.".  It has a number of subsidiary accounts, such a "Red", "Blue", and "Green".  Each of these accounts has many Object Storage instances spread out across different regions.  Some have large volumes of storage that is rarely read, while others have smaller volumes but very high rates of egress.  Note that these costs are examples provided to illustrate the mechanics of the billing and are not reflective of actual rates, which can [be found here](https://cloud.ibm.com/objectstorage/create#pricing).
+
+Red (`us-east`, `us-south`):
+| Metric     | Usage | Standard Cost |
+|------------|-------|---------------|
+| Storage    | x     | x             |
+| Class A    | x     | x             |
+| Class B    | x     | x             |
+| Egress     | x     | x             |
+| Total cost |       | xx            |
+
+Green (`eu-de`, `milO1`):
+| Metric     | Usage | Standard Cost |
+|------------|-------|---------------|
+| Storage    | x     | x             |
+| Class A    | x     | x             |
+| Class B    | x     | x             |
+| Egress     | x     | x             |
+| Total cost |       | xx            |
+
+Blue (`sjc04`, `ca-tor`):
+| Metric     | Usage | Standard Cost |
+|------------|-------|---------------|
+| Storage    | x     | x             |
+| Class A    | x     | x             |
+| Class B    | x     | x             |
+| Egress     | x     | x             |
+| Total cost |       | xx            |
+
+Rainbow Co.:
+| Metric     | Total usage | Total Standard Cost | Allowance | Billable Quantity | One Rate Cost |
+|------------|-------------|---------------------|-----------|-------------------|---------------|
+| Storage    | x           | x                   | x         | x                 | x             |
+| Class A    | x           | x                   | x         | x                 | x             |
+| Class B    | x           | x                   | x         | x                 | x             |
+| Egress     | x           | x                   | x         | x                 | x             |
+| Total cost |             | xx                  |           |                   | xx            |
+
+Note that the One Rate cost is significantly lower due to the reduced cost for egress.  Also note that rather than many individual invoices for each service instance, there will only be six invoices - one for each location.
+
 ## Creating buckets in a One Rate plan
+
+All buckets created in a One Rate plan must use a specific provisioning code (also known as a storage class or location constraint).
 
 North America:
 
