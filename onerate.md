@@ -16,17 +16,21 @@ subcollection: cloud-object-storage
 #  Choosing a One Rate plan
 {: #onerate}
 
-Workloads that involve high volumes of data egress, such as media servers, can benefit from using a One Rate plan. 
+Workloads that involve consistently high volumes of data egress, such as media servers, can benefit from using a One Rate plan. 
 {: shortdesc}
 
-One-Rate plans provide account-level billing that aggregates storage capacity by region and across service instances. A flat capacity rate with built-in allowances for data access and egress offers a more predictable cost regardless of fluctuating usage patterns.
+## Why use a One Rate plan?
+{: #onerate-why}
+
+- One-Rate plans provide account-level billing that aggregates storage capacity across service instances by region. 
+- A flat capacity rate with built-in allowances for data access and egress offers a more predictable cost regardless of fluctuating usage patterns.
 
 ## What is One Rate?
 {: #onerate-what}
 
 One Rate plan instances are significantly more expensive when it comes to storage costs, but much less expensive when taking into account egress charges.  You should consider using a One Rate instance if:
 
-1. Your are a storage ISV, and most of the data being stored in Object Storage is being read over the public endpoints.
+1. You are a large enterprise or ISV, and most of the data being stored in Object Storage is constantly being read over the public endpoints.
 2. Your storage is being used to read large files outside of IBM Cloud, such as in post-production film editing, satellite imagery, or music production.
 
 Most workloads, such as for backups/long-term storage, data analysis using IBM Cloud resources, or for small files (such as PNGs for websites) are better served by a Standard plan. One Rate plans are generally best for workloads where more 20% of the total storage is read over the public endpoints each month.
@@ -37,7 +41,6 @@ One Rate instances are available in Regional and Single Data Center locations, b
 - Europe:  `eu-de`, `eu-gb`, `ams03`, `mil01`, `par01`
 - Asia: `au-syd`, `jp-osa`, `jp-tok`, `che01`, `sng01`
 - South America: `br-sao`
-
 
 All buckets in a One Rate instance **must** use a new `active` storage class specific to One Rate instances.
 
