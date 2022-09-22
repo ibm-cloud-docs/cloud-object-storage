@@ -24,13 +24,19 @@ The built-in allowances for outbound bandwidth and operational requests (Class A
 ## Why use a One Rate plan?
 {: #onerate-why}
 
+- Predictable and lower monthly TCO (total cost of ownership) for workloads with high levels of outbound bandwidth to capacity ratios (>20%). 
 - One Rate plans provide account-level billing that aggregates storage capacity across service instances by region. 
 - A flat capacity rate with built-in allowances for data access and egress offers a more predictable cost regardless of fluctuating usage patterns.
 
-## What is One Rate?
-{: #onerate-what}
+## Terminology
+{: #onerate-terminology}
 
-One Rate plan instances are significantly more expensive when it comes to storage costs, but much less expensive when taking into account egress charges.  You should consider using a One Rate instance if:
+**Egress**: The measure of outbound bandwidth (GB) read over the public endpoints.
+
+## Who should use a One Rate plan?
+{: #onerate-who}
+
+One Rate plan instances are more expensive when it comes to storage capacity costs, but much less expensive when taking into account egress charges.  You should consider using a One Rate instance if:
 
 1. You are a large enterprise or ISV, and most of the data being stored in Object Storage is constantly being read over the public endpoints.
 2. Your storage is being used to read large files outside of IBM Cloud, such as in post-production film editing, satellite imagery, or music production.
@@ -38,22 +44,25 @@ One Rate plan instances are significantly more expensive when it comes to storag
 Most workloads, such as for backups/long-term storage, data analysis using IBM Cloud resources, or for small files (such as PNGs for websites) are better served by a Standard plan. One Rate plans are generally best for workloads where more 20% of the total storage is consistently read over the public endpoints each month.
 {:note}
 
+## Getting started with One Rate plans
+{: #onerate-gs}
+
 One Rate instances are available in Regional and Single Data Center locations, but are not available in Cross Region locations. There are four pricing tiers based on location:
 - North America: `us-south`, `us-east`, `ca-tor`, `mon01`, `sjc04`
 - Europe:  `eu-de`, `eu-gb`, `ams03`, `mil01`, `par01`
 - Asia: `au-syd`, `jp-osa`, `jp-tok`, `che01`, `sng01`
 - South America: `br-sao`
 
-All buckets in a One Rate instance **must** use a new `active` storage class specific to One Rate instances.
+All buckets in a One Rate plan instance **must** use a new `active` storage class specific to One Rate instances.
 
-One Rate instances are aggregated and billed at the IBM Cloud account level based on average end-of-month usage. For detailed information and current pricing, [please review the detailed cost tables](https://cloud.ibm.com/objectstorage/create#pricing).
+One Rate plan instances are aggregated and billed at the IBM Cloud account level based on average end-of-month usage. For detailed information and current pricing, [please review the detailed cost tables](https://cloud.ibm.com/objectstorage/create#pricing).
 
-Unlike Standard instances, One Rate instances provide allowances for [Class A and B request charges](/docs/cloud-object-storage?topic=cloud-object-storage-billing#billing-request-classes) as well as egress charges.  The thresholds for the allowances are dependant on total storage capacity.
+Unlike Standard plan instances, One Rate instances provide allowances for [Class A and B request charges](/docs/cloud-object-storage?topic=cloud-object-storage-billing#billing-request-classes) as well as egress charges.  The thresholds for the allowances are dependant on total storage capacity.
 
 It is **not** possible to convert an instance created under a One Rate plan to a Standard plan, or vice-versa.
 {:important}
 
-## How to provision a One Rate instance
+### How to provision a One Rate instance
 {: #onerate-provision}
 
 A One Rate instance is specified at the point of provisioning, similar to a Lite or Satellite instance.   
@@ -69,7 +78,9 @@ A One Rate instance is specified at the point of provisioning, similar to a Lite
 ## How allowances are calculated
 {: #onerate-billing}
 
-Total Monthly Cost = Capacity Cost + API Cost (if # of API > allowance) + Bandwidth cost (if Bandwidth > allowance)
+One Rate plans use an all-inclusive flat monthly rate which includes capacity, operational requests, and outbound bandwidth.  The built-in allowances for outbound bandwidth are determined by the total capacity.
+
+> Total Monthly Cost = Capacity Cost + API Cost (if # of API > allowance) + Bandwidth cost (if Bandwidth > allowance)
 
 - Class A allowance: Number of Class A Requests < 100 x Storage (GB)
 - Class B allowance: Number of Class B Requests < 1000 x Storage (GB)
