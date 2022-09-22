@@ -16,13 +16,15 @@ subcollection: cloud-object-storage
 #  Choosing a One Rate plan
 {: #onerate}
 
-Workloads that involve consistently high volumes of data egress, such as media servers, can benefit from using a One Rate plan. 
+The One Rate plan offers a predictable cost of ownership with an all-inclusive flat monthly charge ($/GB/month) that includes capacity, and built-in allowances for outbound bandwidth and operational requests. The One Rate plan is best suited for active workloads with large amounts of outbound bandwidth relative to storage capacity.
 {: shortdesc}
+
+The built-in allowances for outbound bandwidth and operational requests (Class A, Class B) depend on the monthly stored capacity. There is no data retrieval charge. The One Rate plan has four pricing regions: North America, Europe, South America, and Asia Pacific. Furthermore, the plan aggregates billing metrics (storage capacity, outbound bandwidth and operational requests) across multiple instances within the One Rate pricing region for determining the allowances (the higher the aggregated storage capacity within a region, the higher the allowances for outbound bandwidth and operational requests for that region).
 
 ## Why use a One Rate plan?
 {: #onerate-why}
 
-- One-Rate plans provide account-level billing that aggregates storage capacity across service instances by region. 
+- One Rate plans provide account-level billing that aggregates storage capacity across service instances by region. 
 - A flat capacity rate with built-in allowances for data access and egress offers a more predictable cost regardless of fluctuating usage patterns.
 
 ## What is One Rate?
@@ -46,7 +48,7 @@ All buckets in a One Rate instance **must** use a new `active` storage class spe
 
 One Rate instances are aggregated and billed at the IBM Cloud account level based on average end-of-month usage. For detailed information and current pricing, [please review the detailed cost tables](https://cloud.ibm.com/objectstorage/create#pricing).
 
-Unlike Standard instances, One Rate instances provide free tiers for [Class A and B request charges](/docs/cloud-object-storage?topic=cloud-object-storage-billing#billing-request-classes) as well as egress charges.  The thresholds for the free tiers are dependant on total storage capacity.
+Unlike Standard instances, One Rate instances provide allowances for [Class A and B request charges](/docs/cloud-object-storage?topic=cloud-object-storage-billing#billing-request-classes) as well as egress charges.  The thresholds for the allowances are dependant on total storage capacity.
 
 It is **not** possible to convert an instance created under a One Rate plan to a Standard plan.
 {:important}
@@ -64,24 +66,43 @@ A One Rate instance is specified at the point of provisioning, similar to a Lite
 6. Choose a name, resource group, and any desired tags.
 7. Click **Create** and you're automatically redirected to your new instance.
 
-## How free tiers are calculated
+## How allowances are calculated
 {: #onerate-billing}
 
-Total Monthly Cost = Capacity Cost + API Cost (if # of API > free tier) + Bandwidth cost (if Bandwidth > free tier)
+Total Monthly Cost = Capacity Cost + API Cost (if # of API > allowance) + Bandwidth cost (if Bandwidth > allowance)
 
-- Class A Free Tier: Number of Class A Requests < 100 x Storage (GB)
-- Class B Free Tier: Number of Class B Requests < 1000 x Storage (GB)
-- Bandwidth Free Tier: Bandwidth (GB) < Storage (GB)
+- Class A allowance: Number of Class A Requests < 100 x Storage (GB)
+- Class B allowance: Number of Class B Requests < 1000 x Storage (GB)
+- Bandwidth allowance: Bandwidth (GB) < Storage (GB)
 
-Archive is supported but Restore charges are **not** included in the One Rate free tiers
+Archive is supported but Restore charges are **not** included in the One Rate allowances
 {: note}
 
-### Pricing example
-
-Imagine a large enterprise account called "Rainbow Co.".  It has a number of subsidiary accounts, such as "Blue", and "Green".  Each of these accounts has dozens (or more) Object Storage instances spread out across different regions.  Some have large volumes of storage that is rarely read, while others have smaller volumes but very high rates of egress.  
+### Predictable TCO pricing example
+{: #onerate-tco}
 
 These costs are examples provided to illustrate the mechanics of the billing and are not reflective of actual rates, which can [be found here](https://cloud.ibm.com/objectstorage/create#pricing).
 {:note}
+
+Some workloads see steadily increasing traffic as business grows - which can create some billing surprises as egress charges grow as well.  A One Rate plan can cap those costs until thresholds are crossed.  For example, an account with 10 TB of storage might might see consistent growth until the amount of data being read outside of the IBM Cloud exceeds the amount of data being stored.
+
+| Month | Capacity (GB) | Egress (GB) | Capacity:Egress ratio | Standard cost | One Rate cost |
+|-------|---------------|-------------|-----------------------|---------------|---------------|
+| 1     | 10 TB         | 500 GB      | 5%                    | $280          | $400          |
+| 2     | 10 TB         | 1 TB        | 10%                   | $325          | $400          |
+| 3     | 10 TB         | 2 TB        | 20%                   | $416          | $400          |
+| 4     | 10 TB         | 5 TB        | 50%                   | $687          | $400          |
+| 5     | 10 TB         | 10 TB       | 100%                  | $1,139        | $400          |
+| 6     | 10 TB         | 15 TB       | 150%                  | $1,591        | $652          |
+| Total |               |             |                       | **$4,438**    | **$2,652**    |
+
+### Aggregation pricing example
+{: #onerate-aggregate}
+
+These costs are examples provided to illustrate the mechanics of the billing and are not reflective of actual rates, which can [be found here](https://cloud.ibm.com/objectstorage/create#pricing).
+{:note}
+
+Imagine a large enterprise account called "Rainbow Co.".  It has a number of subsidiary accounts, such as "Blue", and "Green".  Each of these accounts has dozens (or more) Object Storage instances spread out across different regions.  Some have large volumes of storage that is rarely read, while others have smaller volumes but very high rates of egress.  
 
 Blue (`us-east`, `us-south`):
 | Metric     | Usage  | Standard Cost |
@@ -114,6 +135,7 @@ Rainbow Co. (Blue and Green):
 Note that the One Rate cost is significantly lower due to the reduced cost for egress.  Also note that rather than dozens of individual invoices (one for each service instance), there will only be four invoices - one for each location used.
 
 ## Creating buckets in a One Rate plan
+{: #onerate-codes}
 
 All buckets created in a One Rate plan must use a specific provisioning code (also known as a storage class or location constraint).
 
@@ -133,6 +155,9 @@ Europe:
 |------------|---------------------|
 | `eu-de` | `eu-de-active`   |
 | `eu-gb`  | `eu-de-active`    |
+| `ams03`
+| `mil01`
+
 
 North America:
 
