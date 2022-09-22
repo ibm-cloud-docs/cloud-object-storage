@@ -78,45 +78,37 @@ Archive is supported but Restore charges are **not** included in the One Rate fr
 
 ### Pricing example
 
-Imagine a large enterprise account called "Rainbow Co.".  It has a number of subsidiary accounts, such a "Red", "Blue", and "Green".  Each of these accounts has many Object Storage instances spread out across different regions.  Some have large volumes of storage that is rarely read, while others have smaller volumes but very high rates of egress.  Note that these costs are examples provided to illustrate the mechanics of the billing and are not reflective of actual rates, which can [be found here](https://cloud.ibm.com/objectstorage/create#pricing).
+Imagine a large enterprise account called "Rainbow Co.".  It has a number of subsidiary accounts, such as "Blue", and "Green".  Each of these accounts has dozens (or more) Object Storage instances spread out across different regions.  Some have large volumes of storage that is rarely read, while others have smaller volumes but very high rates of egress.  Note that these costs are examples provided to illustrate the mechanics of the billing and are not reflective of actual rates, which can [be found here](https://cloud.ibm.com/objectstorage/create#pricing).
 
-Red (`us-east`, `us-south`):
-| Metric     | Usage | Standard Cost |
-|------------|-------|---------------|
-| Storage    | x     | x             |
-| Class A    | x     | x             |
-| Class B    | x     | x             |
-| Egress     | x     | x             |
-| Total cost |       | xx            |
+Blue (`us-east`, `us-south`):
+| Metric     | Usage  | Standard Cost |
+|------------|--------|---------------|
+| Storage    | 100 TB | $2,300        |
+| Class A    | 100    | $0            |
+| Class B    | 100    | $0            |
+| Egress     | 100 GB | $9            |
+| Total cost |        | **$2,309**    |
 
 Green (`eu-de`, `milO1`):
-| Metric     | Usage | Standard Cost |
-|------------|-------|---------------|
-| Storage    | x     | x             |
-| Class A    | x     | x             |
-| Class B    | x     | x             |
-| Egress     | x     | x             |
-| Total cost |       | xx            |
+| Metric     | Usage       | Standard Cost |
+|------------|-------------|---------------|
+| Storage    | 100 GB      | $2            |
+| Class A    | 11,000,000  | $55           |
+| Class B    | 110,000,000 | $44           |
+| Egress     | 120 TB      | $10,800       |
+| Total cost |             | **$10,901**   |
 
-Blue (`sjc04`, `ca-tor`):
-| Metric     | Usage | Standard Cost |
-|------------|-------|---------------|
-| Storage    | x     | x             |
-| Class A    | x     | x             |
-| Class B    | x     | x             |
-| Egress     | x     | x             |
-| Total cost |       | xx            |
 
-Rainbow Co.:
-| Metric     | Total usage | Total Standard Cost | Allowance | Billable Quantity | One Rate Cost |
-|------------|-------------|---------------------|-----------|-------------------|---------------|
-| Storage    | x           | x                   | x         | x                 | x             |
-| Class A    | x           | x                   | x         | x                 | x             |
-| Class B    | x           | x                   | x         | x                 | x             |
-| Egress     | x           | x                   | x         | x                 | x             |
-| Total cost |             | xx                  |           |                   | xx            |
+Rainbow Co. (Blue and Green):
+| Metric     | Total usage | Total Standard Cost | Allowance   | Billable Quantity | One Rate Cost |
+|------------|-------------|---------------------|-------------|-------------------|---------------|
+| Storage    | 100 TB      | $2,302              | 0 GB        | 100 TB            | $4,004        |
+| Class A    | 11,000,100  | $55                 | 10,010,000  | 990,100           | $5            |
+| Class B    | 110,000,100 | $44                 | 100,100,000 | 9,900,100         | $4            |
+| Egress     | 120 TB      | $10,809             | 100 TB      | 20 TB             | $1,000        |
+| Total cost |             | **$13,210**         |             |                   | **$5,013**    |
 
-Note that the One Rate cost is significantly lower due to the reduced cost for egress.  Also note that rather than many individual invoices for each service instance, there will only be six invoices - one for each location.
+Note that the One Rate cost is significantly lower due to the reduced cost for egress.  Also note that rather than dozens of individual invoices (one for each service instance), there will only be four invoices - one for each location used.
 
 ## Creating buckets in a One Rate plan
 
