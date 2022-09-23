@@ -14,7 +14,7 @@ content-type: faq
 
 {{site.data.keyword.attribute-definition-list}}
 
-# FAQ
+# FAQ - General
 {: #faq}
 
 Frequently asked questions can produce helpful answers and insight into best practices for working with {{site.data.keyword.cos_full}}.
