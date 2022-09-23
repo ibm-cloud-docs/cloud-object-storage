@@ -197,4 +197,4 @@ Note that the One Rate cost is significantly lower due to the reduced cost for e
 ## What next
 {: #onerate-next}
 
-link to FAQ, etc
+Additional information can be found in [the FAQs](), or in the [provisioning storage]() topic.
