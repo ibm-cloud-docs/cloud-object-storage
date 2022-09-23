@@ -96,11 +96,11 @@ All buckets created in a One Rate plan must use a specific provisioning code (al
 
 | Location   | Location Constraint |
 |------------|---------------------|
-| `us-south` | `us-south-active`   |
-| `us-east`  | `us-east-active`    |
-| `ca-tor`   | `ca-tor-active`     |
-| `mon01`    | `mon01-active`      |
-| `sjc04`    | `sjc04-active`      |
+| `us-south` | `us-south-onerate_active`   |
+| `us-east`  | `us-east-onerate_active`    |
+| `ca-tor`   | `ca-tor-onerate_active`     |
+| `mon01`    | `mon01-onerate_active`      |
+| `sjc04`    | `sjc04-onerate_active`      |
 {: class="simple-tab-table"}
 {: #oneratecodes1}
 {: tab-title="North America"}
@@ -108,11 +108,11 @@ All buckets created in a One Rate plan must use a specific provisioning code (al
 
 | Location | Location Constraint |
 |----------|---------------------|
-| `eu-de`  | `eu-de-active`      |
-| `eu-gb`  | `eu-de-active`      |
-| `ams03`  | `ams03-active`      |
-| `mil01`  | `mil01-active`      |
-| `par01`  | `par01-active`      |
+| `eu-de`  | `eu-de-onerate_active`      |
+| `eu-gb`  | `eu-de-onerate_active`      |
+| `ams03`  | `ams03-onerate_active`      |
+| `mil01`  | `mil01-onerate_active`      |
+| `par01`  | `par01-onerate_active`      |
 {: class="simple-tab-table"}
 {: #oneratecodes2}
 {: tab-title="Europe"}
@@ -120,11 +120,11 @@ All buckets created in a One Rate plan must use a specific provisioning code (al
 
 | Location | Location Constraint |
 |----------|---------------------|
-| `au-syd`  | `au-syd-active`      |
-| `jp-tok`  | `jp-tok-active`      |
-| `jp-osa`  | `jp-osa-active`      |
-| `sng01`  | `sng01-active`      |
-| `che01`  | `che01-active`      |
+| `au-syd`  | `au-syd-onerate_active`      |
+| `jp-tok`  | `jp-tok-onerate_active`      |
+| `jp-osa`  | `jp-osa-onerate_active`      |
+| `sng01`  | `sng01-onerate_active`      |
+| `che01`  | `che01-onerate_active`      |
 {: class="simple-tab-table"}
 {: #oneratecodes3}
 {: tab-title="Asia"}
@@ -132,7 +132,7 @@ All buckets created in a One Rate plan must use a specific provisioning code (al
 
 | Location | Location Constraint |
 |----------|---------------------|
-| `br-sao`  | `br-sao-active`      |
+| `br-sao`  | `br-sao-onerate_active`      |
 {: class="simple-tab-table"}
 {: #oneratecodes4}
 {: tab-title="South America"}
