@@ -20,6 +20,13 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
+## 26 September 2022
+{: #cloud-object-storage-sep2622}
+{: release-note}
+
+New feature!
+:   It is now possible to create instances [using a One Rate plan to lower costs and simplify billing for workloads with high levels of egress. 
+
 ## 21 June 2022
 {: #cloud-object-storage-jun2122}
 {: release-note}
