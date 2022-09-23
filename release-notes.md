@@ -25,7 +25,7 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 {: release-note}
 
 New feature!
-:   It is now possible to create instances [using a One Rate plan to lower costs and simplify billing for workloads with high levels of egress. 
+:   It is now possible to create instances [using a One Rate plan](/docs/cloud-object-storage?topic=cloud-object-storage-onerate) to lower costs and simplify billing for workloads with high levels of egress. 
 
 ## 21 June 2022
 {: #cloud-object-storage-jun2122}
