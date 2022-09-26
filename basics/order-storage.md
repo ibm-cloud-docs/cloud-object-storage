@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-08-31"
+  years: 2017, 2022
+lastupdated: "2022-09-21"
 
 keywords: provision, create, service
 
@@ -12,11 +12,24 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Provisioning storage
+# Choosing a plan and creating an instance
 {: #provision}
 
 Getting data into your instance of {{site.data.keyword.cos_full}} requires just a few steps before you provision your new storage.
 {: shortdesc}
+
+## About {{site.data.keyword.cos_full_notm}} plans
+{: #provision-plans}
+
+The highest level of organization in {{site.data.keyword.cos_full_notm}} is a service instance.  Each instance can hold many buckets, and each bucket can hold virtually any number of objects (files).  There are four types of Object Storage service instances:
+
+IBM Public Cloud:
+1. **Lite plan** instances are free to use, but are somewhat limited in capacity (< 25GB) and features. It is typically used for experimentation and proof-of-concept work, and will need to be converted to a Standard plan instance to access complete functionality.
+2. **Standard plan** instances are the most common and are recommended for most workloads.  
+3. **One Rate plan** instances should be used for [workloads that involve large volumes of outbound bandwidth](/docs/cloud-object-storage?topic=cloud-object-storage-onerate) (data transferred on public networks outside of IBM Cloud) relative to the amount of total storage capacity.
+   
+IBM Cloud Satellite:
+4. **Satellite** instances are [run on hardware outside of IBM Cloud](/docs/cloud-object-storage?topic=cloud-object-storage-provision-cos-satellite) and are typically used for edge computing or for strict data sovereignty requirements
 
 ## Creating a {{site.data.keyword.cloud_notm}} Platform account
 {: #provision-account}
@@ -41,7 +54,7 @@ Now that you have a platform account, you can create a new {{site.data.keyword.c
 
    ![github_desktop_setup](http://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/object-storage-card.jpg){: caption="Figure 2. Select {{site.data.keyword.cos_short}}"}
 
-1. Give the service instance a name and choose either the lite or standard plan.
+1. Give the service instance a name and choose a plan.
 1. Click **Create** and you're automatically redirected to your new instance.
 
 It is also possible to manage resources using the [{{site.data.keyword.cloud}} Platform CLI](/docs/account?topic=account-manage_resource):

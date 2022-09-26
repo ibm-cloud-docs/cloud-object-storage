@@ -38,7 +38,7 @@ Information on pricing can be found at [{{site.data.keyword.cloud}}](https://www
 
 Find your account invoices at **Manage** > **Billing and Usage** in the navigation menu.
 
-Each service instance receives a single bill. If you need separate billing for different sets of buckets, then creating multiple instances is necessary.
+Under a Standard plan, service instance receives a single bill. If you need separate billing for different sets of buckets, then creating multiple instances is necessary.
 
 For each storage class, billing is based on aggregated usage across all buckets at the instance level. For example, for Smart Tier, the billing is based on usage across all Smart Tier buckets in a given instance - not on the individual buckets.
 {: important}
@@ -46,7 +46,7 @@ For each storage class, billing is based on aggregated usage across all buckets 
 ## {{site.data.keyword.cos_full_notm}} pricing
 {: #billing-pricing}
 
-Storage costs for {{site.data.keyword.cos_full}} are determined by total volume of data that is stored, the amount of public outbound bandwidth used, and the total number of operational requests processed by the system.
+Storage costs for {{site.data.keyword.cos_full}} are determined by the average monthly stored volume of data, the amount of public outbound bandwidth used, and the total number of operational requests processed by the system.
 
 Infrastructure offerings are connected to a three-tiered network, segmenting public, private, and management traffic. Infrastructure services can transfer data between one another across the private network at no cost. Infrastructure offerings (such as bare metal servers, virtual servers, and cloud storage) connect to other applications and services in the {{site.data.keyword.cloud_notm}} Platform catalog (such as Watson services and Cloud Foundry runtimes) across the public network, so data transfer between those two types of offerings is metered and charged at standard public network bandwidth rates.
 {: tip}
@@ -75,12 +75,13 @@ Deleting buckets or objects from the system does not incur a charge.
 
 Not all data that is stored needs to be accessed frequently, and some archival data might be rarely accessed if at all. For less active workloads, buckets can be created in a different storage class and objects that are stored in these buckets incur charges on a different schedule than standard storage.
 
-There are five classes:
+There are six classes:
 
 *  **Smart Tier** can be used for any workload, especially dynamic workloads where access patterns are unknown or difficult to predict.  Smart Tier provides a simplified pricing structure and automatic cost optimization by classifying the data into "hot", "cool", and "cold" tiers based on monthly usage patterns. All data in the bucket is then billed at the lowest applicable rate.  There are no threshold object sizes or storage periods, and there are no retrieval fees. 
 *  **Standard** is used for active workloads, with no charge for data retrieved (other than the cost of the operational request itself).
 *  **Vault** is used for cool workloads where data is accessed less than once a month - an extra retrieval charge ($/GB) is applied each time data is read. The service includes a minimum threshold for object size and storage period consistent with the intended use of this service for cooler, less-active data.
 *  **Cold Vault** is used for cold workloads where data is accessed every 90 days or less - a larger extra retrieval charge ($/GB) is applied each time data is read. The service includes a longer minimum threshold for object size and storage period consistent with the intended use of this service for cold, inactive data.
+*  **Active** is specifically and solely used by One Rate plan instances, and can not be used in Standard or Lite plan instances.
 
 **Flex** has been replaced by Smart Tier for dynamic workloads. Flex users can continue to manage their data in existing Flex buckets, although no new Flex buckets may be created.  Existing users can reference pricing information [here](/docs/cloud-object-storage?topic=cloud-object-storage-flex-pricing).
 {:note}

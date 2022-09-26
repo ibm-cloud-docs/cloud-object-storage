@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2022
 
-lastupdated: "2022-07-21"
+lastupdated: "2022-09-21"
 
 keywords: aspera, key protect, archive, worm
 
@@ -38,27 +38,27 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 ## Cross Region
 {: #service-availability-geo}
 
-| Region | Aspera | Key Protect         | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring | Replication |
-|--------|--------|---------------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|-------------|
-| `ap`   | Yes    | Yes (in `jp-tok`)   | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   | Yes         |
-| `eu`   | Yes    | Yes (in `eu-de`)    | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    | Yes         |
-| `us`   | Yes    | Yes (in `us-south`) | Yes (failover in `us-east`)    | No           | Yes                      | `us-south`       | No        | Yes        | `us-south` | Yes         |
+| Region | Aspera | Key Protect         | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring | Replication |  One Rate |
+|--------|--------|---------------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|-------------| -----------|
+| `ap`   | Yes    | Yes (in `jp-tok`)   | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   | Yes         |  No        |
+| `eu`   | Yes    | Yes (in `eu-de`)    | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    | Yes         |  No        |
+| `us`   | Yes    | Yes (in `us-south`) | Yes (failover in `us-east`)    | No           | Yes                      | `us-south`       | No        | Yes        | `us-south` | Yes         |  No        |
 
 
 ## Regional
 {: #service-availability-region}
 
-| Region     | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring | Replication |
-|------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|-------------|
-| `au-syd`   | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `au-syd`         | Yes       | Yes        | `au-syd`   | Yes         |
-| `jp-tok`   | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `ap-tok`         | Yes       | Yes        | `ap-tok`   | Yes         |
-| `jp-osa`   | No     | Yes         | No                             | Yes          | Yes                      | `ap-osa`         | Yes       | Yes        | `ap-osa`   | Yes         |
-| `eu-gb`    | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `eu-gb`          | Yes       | Yes        | `eu-gb`    | Yes         |
-| `eu-de`    | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `eu-de`          | Yes       | Yes        | `eu-de`    | Yes         |
-| `us-south` | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `us-south`       | Yes       | Yes        | `us-south` | Yes         |
-| `us-east`  | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `us-east`        | Yes       | Yes        | `us-east`  | Yes         |
-| `ca-tor`   | No     | Yes         | Yes (see note)                 | Yes          | Yes                      | `ca-tor`         | Yes       | Yes        | `ca-tor`   | Yes         |
-| `br-sao`   | No     | Yes         | Yes (see note)                 | Yes          | Yes                      | `br-sao`         | Yes       | Yes        | `br-sao`   | Yes         |
+| Region     | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring | Replication | One Rate |
+|------------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|-------------| ------------|
+| `au-syd`   | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `au-syd`         | Yes       | Yes        | `au-syd`   | Yes         | Yes         |
+| `jp-tok`   | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `ap-tok`         | Yes       | Yes        | `ap-tok`   | Yes         | Yes         |
+| `jp-osa`   | No     | Yes         | No                             | Yes          | Yes                      | `ap-osa`         | Yes       | Yes        | `ap-osa`   | Yes         | Yes         |
+| `eu-gb`    | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `eu-gb`          | Yes       | Yes        | `eu-gb`    | Yes         | Yes         |
+| `eu-de`    | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `eu-de`          | Yes       | Yes        | `eu-de`    | Yes         | Yes         |
+| `us-south` | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `us-south`       | Yes       | Yes        | `us-south` | Yes         | Yes         |
+| `us-east`  | Yes    | Yes         | Yes (see note)                 | Yes          | Yes                      | `us-east`        | Yes       | Yes        | `us-east`  | Yes         | Yes         |
+| `ca-tor`   | No     | Yes         | Yes (see note)                 | Yes          | Yes                      | `ca-tor`         | Yes       | Yes        | `ca-tor`   | Yes         | Yes         |
+| `br-sao`   | No     | Yes         | Yes (see note)                 | Yes          | Yes                      | `br-sao`         | Yes       | Yes        | `br-sao`   | Yes         | Yes         |
 
 It is possible to create a bucket and associate any available Key Protect or Hyper Protect Crypto Services instance with any of the listed Cloud Object Storage locations. Hyper Protect Crypto Services is only available in selected locations and it is your responsibility to ensure the location/region you select meets any pertinent requirements. Please refer to [Hyper Protect Crypto Services documentation](/docs/hs-crypto?topic=hs-crypto-regions) for a list of regions/locations currently available. 
 {:note}
@@ -66,18 +66,18 @@ It is possible to create a bucket and associate any available Key Protect or Hyp
 ## Single Data Centers
 {: #service-availability-zone}
 
-| Region  | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring | Replication |
-|---------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|-------------|
-| `ams03` | No     | No          | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    | Yes         |
-| `che01` | No     | No          | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   | Yes         |
-| `hkg02` | No     | No          | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   | No          |
-| `mex01` | No     | No          | No                             | No           | No                       | `us-south`       | No        | Yes        | `us-south` | No          |
-| `mil01` | No     | No          | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    | Yes         |
-| `mon01` | No     | No          | No                             | No           | No                       | `us-south`       | No        | Yes        | `us-south` | Yes         |
-| `par01` | No     | No          | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    | Yes         |
-| `sjc01` | No     | No          | No                             | No           | No                       | `us-south`       | No        | Yes        | `us-south` | Yes         |
-| `seo01` | No     | No          | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   | No          |
-| `sng01` | No     | No          | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   | Yes         |
+| Region  | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring | Replication | One Rate |
+|---------|--------|-------------|--------------------------------|--------------|--------------------------|------------------|-----------|------------|------------|-------------| -----------|
+| `ams03` | No     | No          | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    | Yes         | Yes        |
+| `che01` | No     | No          | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   | Yes         | Yes        |
+| `hkg02` | No     | No          | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   | No          | Yes        |
+| `mex01` | No     | No          | No                             | No           | No                       | `us-south`       | No        | Yes        | `us-south` | No          | Yes        |
+| `mil01` | No     | No          | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    | Yes         | Yes        |
+| `mon01` | No     | No          | No                             | No           | No                       | `us-south`       | No        | Yes        | `us-south` | Yes         | Yes        |
+| `par01` | No     | No          | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    | Yes         | Yes        |
+| `sjc01` | No     | No          | No                             | No           | No                       | `us-south`       | No        | Yes        | `us-south` | Yes         | Yes        |
+| `seo01` | No     | No          | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   | No          | Yes        |
+| `sng01` | No     | No          | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   | Yes         | Yes        |
 
 ## Satellite 
 {: #service-availability-sat}
