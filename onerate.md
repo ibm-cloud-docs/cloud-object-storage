@@ -39,7 +39,7 @@ The built-in allowances for outbound bandwidth and operational requests (Class A
 One Rate plan instances are more expensive when it comes to storage capacity costs, but much less expensive when taking into account egress charges.  You should consider using a One Rate instance if:
 
 1. You are a large enterprise or ISV, and most of the data being stored in Object Storage is constantly being read over the public endpoints.
-2. Your storage is being used to read large files outside of IBM Cloud, such as in post-production film editing, satellite imagery, or music production.
+2. You are reading large files from outside of IBM Cloud - for example in post-production film editing, satellite imaging, or music production.
 
 Most workloads, such as for backups/long-term storage, data analysis using IBM Cloud resources, or for small files (such as PNGs for websites) are better served by a Standard plan. One Rate plans are generally best for workloads where more 20% of the total storage is consistently read over the public endpoints each month.
 {:note}
@@ -92,7 +92,7 @@ A One Rate instance is specified at the point of provisioning, similar to a Lite
 ### Special provisioning codes 
 {: #onerate-codes}
 
-All buckets created in a One Rate plan must use a specific provisioning code (also known as a storage class or location constraint).
+All buckets created in a One Rate plan must use a [specific provisioning code](/docs/cloud-object-storage?topic=cloud-object-storage-classes) (also known as a storage class or location constraint).
 
 | Location   | Location Constraint |
 |------------|---------------------|
@@ -147,7 +147,7 @@ These costs are examples provided to illustrate the mechanics of the billing and
 ### Predictable TCO pricing example
 {: #onerate-tco}
 
-Some workloads see steadily increasing traffic as business grows - which can create some billing surprises as egress charges grow as well.  A One Rate plan can cap those costs until thresholds are crossed.  For example, an account with 10 TB of storage might might see consistent growth until the amount of data being read outside of the IBM Cloud exceeds the amount of data being stored.
+Some workloads see steadily increasing traffic as business grows - which can create some billing surprises as egress charges grow as well.  A One Rate plan can cap those costs until thresholds are crossed.  For example, an account with 10 TB of storage might might see consistent growth until the amount of data being read outside of the IBM Cloud exceeds the amount of data being stored. 
 
 | Month | Capacity (GB) | Egress (GB) | Capacity:Egress ratio | Standard cost | One Rate cost |
 |-------|---------------|-------------|-----------------------|---------------|---------------|
@@ -197,4 +197,4 @@ Note that the One Rate cost is significantly lower due to the reduced cost for e
 ## What next
 {: #onerate-next}
 
-Additional information can be found in [the FAQs](), or in the [provisioning storage]() topic.
+Additional information can be found in [the FAQs](/docs/cloud-object-storage?topic=cloud-object-storage-faq-onerate), or in the [provisioning storage](/docs/cloud-object-storage?topic=cloud-object-storage-provision) topics.
