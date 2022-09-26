@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-09-21"
+lastupdated: "2022-09-26"
 
 keywords: provision, create, service
 
@@ -31,7 +31,7 @@ IBM Public Cloud:
 
 IBM Cloud Satellite:
 
-1. **Satellite** instances are [run on hardware outside of IBM Cloud](/docs/cloud-object-storage?topic=cloud-object-storage-provision-cos-satellite) and are typically used for edge computing or for strict data sovereignty requirements
+4. **Satellite** instances are [run on hardware outside of IBM Cloud](/docs/cloud-object-storage?topic=cloud-object-storage-provision-cos-satellite) and are typically used for edge computing or for strict data sovereignty requirements
 
 ## Creating a {{site.data.keyword.cloud_notm}} Platform account
 {: #provision-account}
