@@ -29,9 +29,9 @@ IBM Public Cloud:
 2. **Standard plan** instances are the most common and are recommended for most workloads.  
 3. **One Rate plan** instances should be used for [workloads that involve large volumes of outbound bandwidth](/docs/cloud-object-storage?topic=cloud-object-storage-onerate) (data transferred on public networks outside of IBM Cloud) relative to the amount of total storage capacity.
 
-IBM Cloud Satellite:
+   IBM Cloud Satellite:
 
-- **Satellite** instances are [run on hardware outside of IBM Cloud](/docs/cloud-object-storage?topic=cloud-object-storage-provision-cos-satellite) and are typically used for edge computing or for strict data sovereignty requirements
+4.  **Satellite** instances are [run on hardware outside of IBM Cloud](/docs/cloud-object-storage?topic=cloud-object-storage-provision-cos-satellite) and are typically used for edge computing or for strict data sovereignty requirements
 
 ## Creating a {{site.data.keyword.cloud_notm}} Platform account
 {: #provision-account}
