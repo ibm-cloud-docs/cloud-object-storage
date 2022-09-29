@@ -27,6 +27,10 @@ If it's necessary for a user to control encryption keys, root keys can be provid
 
 Storage can be accessed over HTTPS, and internally storage devices communicate with each other using TLS.
 
+## Credential and encryption key rotation
+{: #security-rotation}
+
+Credentials, such as HMAC and API keys, do not naturally expire.  Over time, it is possible that employee turnover or an accidental mishandling of information can result in unintended or unwanted access to cloud resources.  Following a rotation schedule can help to prevent this scenario.  Read more about [rotation of encryption keys](/docs/cloud-object-storage?topic=cloud-object-storage-kp#kp-lifecycle) and [access credentials](/docs/secrets-manager?topic=secrets-manager-manual-rotation&interface=ui).
 
 ## Data deletion
 {: #security-deletion}
