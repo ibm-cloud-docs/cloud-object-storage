@@ -60,6 +60,7 @@ toc:
                 - info/advanced_endpoints.md
                 - info/endpoint-remap.md
                 - basics/services.md
+                - vpe.md
               links:
                 - link:
                     label: Connect from VPC
