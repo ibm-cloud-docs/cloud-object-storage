@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2022
 
-lastupdated: "2022-09-29"
+lastupdated: "2022-10-12"
 
 keywords: storage classes, tiers, cost, buckets, location constraint, provisioning code, locationconstraint
 
@@ -65,7 +65,6 @@ When creating buckets programmatically, it is necessary to specify a `LocationCo
 &emsp;&emsp;  **CA Toronto** `ca-tor-standard`                / `ca-tor-vault`  / `ca-tor-cold`  / `ca-tor-smart` <br>
 &emsp;&emsp;  **Amsterdam** `ams03-standard`                  / `ams03-vault`   / `ams03-cold`   / `ams03-smart` <br>
 &emsp;&emsp;  **Chennai** `che01-standard`                    / `che01-vault`   / `che01-cold`   / `che01-smart` <br>
-&emsp;&emsp;  **Hong Kong S.A.R. of the PRC** `hkg02-standard`/ `hkg02-vault`   / `hkg02-cold`   / `hkg02-smart` <br>
 &emsp;&emsp;  **Mexico** `mex01-standard`                     / `mex01-vault`   / `mex01-cold`   / `mex01-smart` <br>
 &emsp;&emsp;  **Milan** `mil01-standard`                      / `mil01-vault`   / `mil01-cold`   / `mil01-smart` <br>
 &emsp;&emsp;  **Montréal** `mon01-standard`                   / `mon01-vault`   / `mon01-cold`   / `mon01-smart` <br>

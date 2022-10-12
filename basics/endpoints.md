@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2022
 
-lastupdated: "2022-01-28"
+lastupdated: "2022-10-12"
 
 keywords: endpoint, location, object storage
 
@@ -151,7 +151,6 @@ If a networking failure results in a partition where the data center is unable t
 | ------- | ------ | ----------------------------------------------- |
 | `ams03` | Public | `s3.ams03.cloud-object-storage.appdomain.cloud` |
 | `che01` | Public | `s3.che01.cloud-object-storage.appdomain.cloud` |
-| `hkg02` | Public | `s3.hkg02.cloud-object-storage.appdomain.cloud` |
 | `mex01` | Public | `s3.mex01.cloud-object-storage.appdomain.cloud` |
 | `mil01` | Public | `s3.mil01.cloud-object-storage.appdomain.cloud` |
 | `mon01` | Public | `s3.mon01.cloud-object-storage.appdomain.cloud` |
@@ -169,7 +168,6 @@ If a networking failure results in a partition where the data center is unable t
 | ------- | ------- | ------------------------------------------------------- |
 | `ams03` | Private | `s3.private.ams03.cloud-object-storage.appdomain.cloud` |
 | `che01` | Private | `s3.private.che01.cloud-object-storage.appdomain.cloud` |
-| `hkg02` | Private | `s3.private.hkg02.cloud-object-storage.appdomain.cloud` |
 | `mex01` | Private | `s3.private.mex01.cloud-object-storage.appdomain.cloud` |
 | `mil01` | Private | `s3.private.mil01.cloud-object-storage.appdomain.cloud` |
 | `mon01` | Private | `s3.private.mon01.cloud-object-storage.appdomain.cloud` |
@@ -188,7 +186,6 @@ If a networking failure results in a partition where the data center is unable t
 | ------- | ------ | ------------------------------------------------------ |
 | `ams03` | Direct | `s3.direct.ams03.cloud-object-storage.appdomain.cloud` |
 | `che01` | Direct | `s3.direct.che01.cloud-object-storage.appdomain.cloud` |
-| `hkg02` | Direct | `s3.direct.hkg02.cloud-object-storage.appdomain.cloud` |
 | `mex01` | Direct | `s3.direct.mex01.cloud-object-storage.appdomain.cloud` |
 | `mil01` | Direct | `s3.direct.mil01.cloud-object-storage.appdomain.cloud` |
 | `mon01` | Direct | `s3.direct.mon01.cloud-object-storage.appdomain.cloud` |
@@ -235,14 +232,17 @@ Requests made using the Resource Configuration API are sent to a global endpoint
 Over time, it may be necessary for locations to transform from a Single Data Center to a Regional configuration, or for a location to be decommissioned entirely. These situations will require users to migrate data from one bucket to another. Please consult this [guide for migrating a bucket using Rclone](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-region-copy).
 
 | Region  | Type    | Endpoint                                                |
-| ------- | ------- | ------------------------------------------------------- |
+|---------|---------|---------------------------------------------------------|
 | `mel01` | Public  | `s3.mel01.cloud-object-storage.appdomain.cloud`         |
 | `mel01` | Private | `s3.private.mel01.cloud-object-storage.appdomain.cloud` |
 | `mel01` | Direct  | `s3.direct.mel01.cloud-object-storage.appdomain.cloud`  |
 | `tor01` | Public  | `s3.tor01.cloud-object-storage.appdomain.cloud`         |
 | `tor01` | Private | `s3.private.tor01.cloud-object-storage.appdomain.cloud` |
 | `tor01` | Direct  | `s3.direct.tor01.cloud-object-storage.appdomain.cloud`  |
-| `osl01` | Public  | `s3.direct.osl01.cloud-object-storage.appdomain.cloud`  |
-| `osl01` | Private | `s3.direct.osl01.cloud-object-storage.appdomain.cloud`  |
+| `osl01` | Public  | `s3.osl01.cloud-object-storage.appdomain.cloud`         |
+| `osl01` | Private | `s3.private.osl01.cloud-object-storage.appdomain.cloud` |
 | `osl01` | Direct  | `s3.direct.osl01.cloud-object-storage.appdomain.cloud`  |
+| `hkg02` | Public  | `s3.hkg02.cloud-object-storage.appdomain.cloud`         |
+| `hkg02` | Private | `s3.private.hkg02.cloud-object-storage.appdomain.cloud` |
+| `hkg02` | Direct  | `s3.direct.hkg02.cloud-object-storage.appdomain.cloud`  |
 {: caption="Table 5. Decommissioned Endpoints" caption-side="top"}
