@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022   
-lastupdated: "2022-07-21"
+lastupdated: "2022-10-12"
 
 keywords: data, replication, loss prevention
 
@@ -32,7 +32,7 @@ Replication copies newly created objects and object updates from a source bucket
 ## Why use replication?
 {: #replication-why}
 
-- Keep copies of data across buckets in multiple geographic locations, or even multiple Cross Region buckets.
+- Keep a copy of data in a bucket in a different geographic location.
 - Meet compliance regulations for data sovereignty by defining replication rules that store replicas only within the allowable locations.
 - Keep production and test data in sync, as replication retains object metadata such as last modified time, version ID, etc.
 - Manage the storage class and lifecycle policies for the replicated objects independent of the source, by defining a different storage class and/or lifecycle rules for the destination bucket. Similarly, you can store replicas in a bucket in a separate service instance or even IBM Cloud account, and also independently control access to the replicas.
