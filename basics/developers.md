@@ -25,20 +25,20 @@ First, ensure that you have the [{{site.data.keyword.cloud}} Platform CLI](https
 ## Create an instance of {{site.data.keyword.cos_full_notm}}
 {: #gs-dev-provision}
 
-  1. First, make sure that you have an API key. Get it from [IBM Cloud Identity and Access Management](https://cloud.ibm.com/iam/apikeys).
-  2. Log in to {{site.data.keyword.cloud_notm}} Platform by using the CLI. It's also possible to store the API key in a file or set it as an environment variable.
+1. First, make sure that you have an API key. Get it from [IBM Cloud Identity and Access Management](https://cloud.ibm.com/iam/apikeys).
+2. Log in to {{site.data.keyword.cloud_notm}} Platform by using the CLI. It's also possible to store the API key in a file or set it as an environment variable.
 
-```
-ibmcloud login --apikey <value>
-```
-{: codeblock}
+    ```
+    ibmcloud login --apikey <value>
+    ```
+    {: pre}
 
-  3. Next, create an instance of {{site.data.keyword.cos_full_notm}} specifying the name for the instance, the ID, and the wanted plan (`lite` or `standard`). Now we have a CRN for the instance. If you have an upgraded account, specify the `standard` plan. Otherwise, specify `lite`.
+3. Next, create an instance of {{site.data.keyword.cos_full_notm}} specifying the name for the instance, the ID, and the wanted plan (`lite` or `standard`). Now we have a CRN for the instance. If you have an upgraded account, specify the `standard` plan. Otherwise, specify `lite`.
 
-```
-ibmcloud resource service-instance-create <instance-name> cloud-object-storage <plan> global
-```
-{: codeblock}
+    ```
+    ibmcloud resource service-instance-create <instance-name> cloud-object-storage <plan> global
+    ```
+    {: pre}
 
 Some users may encounter the error `No resource group targeted` when trying to create a new instance. This indicates that the default resource group is not available and that a resource group must be explicitly set. A list of available resource groups can be found using `ibmcloud resource groups` and the target can be set with `ibmcloud target -g <resource-group>`.
 {: tip}
