@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-05-28"
+  years: 2017, 2022
+lastupdated: "2022-10-13"
 
 keywords: access control, iam, basics, buckets
 
@@ -30,7 +30,7 @@ Assign access roles for users and Service IDs against buckets, by using either t
 ## Granting access to a user
 {: #iam-user-access}
 
-If the user needs to be able to use the console but should not be able to see the list of all buckets within an instance, it is necessary to custom platform access role. This allows them to view only appropriate buckets and list the objects within them. 
+If the user needs to be able to use the console and is able to see the list of all buckets within an instance, it is possible to use a custom platform access role. This allows them to view only the contents of specific buckets. If it is not appropriate for a user to read the names of other buckets then it is necessary to design and implement a custom portal or other user interface using the API.
 
 If the user interacts with data by using the API and doesn't require console access, _and_ they are a member of your account, you can grant access to a single bucket without any access to the parent instance using the default roles. 
 
