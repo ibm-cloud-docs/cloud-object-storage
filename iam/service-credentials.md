@@ -336,17 +336,6 @@ The `endpoints` URL (`https://control.cloud-object-storage.cloud.ibm.com/v2/endp
                "mil01":"s3.direct.mil01.cloud-object-storage.appdomain.cloud"
             }
          },
-         "hkg02":{
-            "public":{
-               "hkg02":"s3.hkg02.cloud-object-storage.appdomain.cloud"
-            },
-            "private":{
-               "hkg02":"s3.private.hkg02.cloud-object-storage.appdomain.cloud"
-            },
-            "direct":{
-               "hkg02":"s3.direct.hkg02.cloud-object-storage.appdomain.cloud"
-            }
-         },
          "par01":{
             "public":{
                "par01":"s3.par01.cloud-object-storage.appdomain.cloud"

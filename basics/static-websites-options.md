@@ -185,7 +185,6 @@ The following tables match most of the regions, locations, and type of connectio
 |-----------------------------|-----------------------------------------------------|
 | Amsterdam, Netherlands      | `s3-web.ams03.cloud-object-storage.appdomain.cloud` |
 | Chennai, India              | `s3-web.che01.cloud-object-storage.appdomain.cloud` |
-| Hong Kong S.A.R. of the PRC | `s3-web.hkg02.cloud-object-storage.appdomain.cloud` |
 | Mexico City, Mexico         | `s3-web.mex01.cloud-object-storage.appdomain.cloud` |
 | Milan, Italy                | `s3-web.mil01.cloud-object-storage.appdomain.cloud` |
 | Montr&egrave;al, Canada     | `s3-web.mon01.cloud-object-storage.appdomain.cloud` |
@@ -194,7 +193,6 @@ The following tables match most of the regions, locations, and type of connectio
 | S&atilde;o Paulo, Brazil    | `s3-web.sao01.cloud-object-storage.appdomain.cloud` |
 | Seoul, South Korea          | `s3-web.seo01.cloud-object-storage.appdomain.cloud` |
 | Singapore                   | `s3-web.sng01.cloud-object-storage.appdomain.cloud` |
-| Toronto, Canada             | `s3-web.tor01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
 {: #swsdcendpointtable1}
@@ -205,7 +203,6 @@ The following tables match most of the regions, locations, and type of connectio
 |-----------------------------|-------------------------------------------------------------|
 | Amsterdam, Netherlands      | `s3-web.private.ams03.cloud-object-storage.appdomain.cloud` |
 | Chennai, India              | `s3-web.private.che01.cloud-object-storage.appdomain.cloud` |
-| Hong Kong S.A.R. of the PRC | `s3-web.private.hkg02.cloud-object-storage.appdomain.cloud` |
 | Mexico City, Mexico         | `s3-web.private.mex01.cloud-object-storage.appdomain.cloud` |
 | Milan, Italy                | `s3-web.private.mil01.cloud-object-storage.appdomain.cloud` |
 | Montr&egrave;al, Canada     | `s3-web.private.mon01.cloud-object-storage.appdomain.cloud` |
@@ -214,7 +211,6 @@ The following tables match most of the regions, locations, and type of connectio
 | S&atilde;o Paulo, Brazil    | `s3-web.private.sao01.cloud-object-storage.appdomain.cloud` |
 | Seoul, South Korea          | `s3-web.private.seo01.cloud-object-storage.appdomain.cloud` |
 | Singapore                   | `s3-web.private.sng01.cloud-object-storage.appdomain.cloud` |
-| Toronto, Canada             | `s3-web.private.tor01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
 {: #swsdcendpointtable2}
@@ -225,7 +221,6 @@ The following tables match most of the regions, locations, and type of connectio
 |-----------------------------|------------------------------------------------------------|
 | Amsterdam, Netherlands      | `s3-web.direct.ams03.cloud-object-storage.appdomain.cloud` |
 | Chennai, India              | `s3-web.direct.che01.cloud-object-storage.appdomain.cloud` |
-| Hong Kong S.A.R. of the PRC | `s3-web.direct.hkg02.cloud-object-storage.appdomain.cloud` |
 | Mexico City, Mexico         | `s3-web.direct.mex01.cloud-object-storage.appdomain.cloud` |
 | Milan, Italy                | `s3-web.direct.mil01.cloud-object-storage.appdomain.cloud` |
 | Montr&egrave;al, Canada     | `s3-web.direct.mon01.cloud-object-storage.appdomain.cloud` |
@@ -234,7 +229,6 @@ The following tables match most of the regions, locations, and type of connectio
 | S&atilde;o Paulo, Brazil    | `s3-web.direct.sao01.cloud-object-storage.appdomain.cloud` |
 | Seoul, South Korea          | `s3-web.direct.seo01.cloud-object-storage.appdomain.cloud` |
 | Singapore                   | `s3-web.direct.sng01.cloud-object-storage.appdomain.cloud` |
-| Toronto, Canada             | `s3-web.direct.tor01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
 {: #swsdcendpointtable3}
