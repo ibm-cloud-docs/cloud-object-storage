@@ -100,4 +100,4 @@ Now that we have our new role, we can apply it to a user.
 ## Next steps
 {: #single-bucket-next-steps}
 
-Congratulations, you've just set up a policy to limit access to a single user. 
+Congratulations, you've just set up a policy to limit access to a single bucket. 
