@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-05-28"
+lastupdated: "2022-10-10"
 
 keywords: object storage, tutorial
 
@@ -93,11 +93,11 @@ Now that we have our new role, we can apply it to a user.
 
 ![Create a new policy](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/tut-iam-8-bucket.png)
 
-9.  In the _Roles and access_ section, select the roles **Content Reader** and **Object Writer** roles.
+9.  In the _Roles and access_ section, select the roles **Content Reader** and **Object Writer** roles.  You'll also need the Platform **Viewer** role, if you don't already have it, in order to view the UI.
 
 ![Create a new policy](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/tut-iam-9-access.png)
 
 ## Next steps
 {: #single-bucket-next-steps}
 
-Congratulations, you've just set up a policy to limit access to a single user. 
+Congratulations, you've just set up a policy to limit access to a single bucket. 

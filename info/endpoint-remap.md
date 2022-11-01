@@ -173,7 +173,6 @@ If a networking failure results in a partition where the data center is unable t
 |-----------------------------|--------|----------------------------------------|-------------------------------------------------|
 | Amsterdam, Netherlands      | Public | `s3.ams03.objectstorage.softlayer.net` | `s3.ams03.cloud-object-storage.appdomain.cloud` |
 | Chennai, India              | Public | `s3.che01.objectstorage.softlayer.net` | `s3.che01.cloud-object-storage.appdomain.cloud` |
-| Hong Kong S.A.R. of the PRC | Public | none                                   | `s3.hkg02.cloud-object-storage.appdomain.cloud` |
 | Mexico City, Mexico         | Public | `s3.mex01.objectstorage.softlayer.net` | `s3.mex01.cloud-object-storage.appdomain.cloud` |
 | Milan, Italy                | Public | none                                   | `s3.mil01.cloud-object-storage.appdomain.cloud` |
 | Montr&egrave;al, Canada     | Public | `s3.mon01.objectstorage.softlayer.net` | `s3.mon01.cloud-object-storage.appdomain.cloud` |
@@ -193,7 +192,6 @@ If a networking failure results in a partition where the data center is unable t
 |-----------------------------|---------|---------------------------------------------------|---------------------------------------------------------|
 | Amsterdam, Netherlands      | Private | `s3.ams03.objectstorage.service.networklayer.com` | `s3.private.ams03.cloud-object-storage.appdomain.cloud` |
 | Chennai, India              | Private | `s3.che01.objectstorage.service.networklayer.com` | `s3.private.che01.cloud-object-storage.appdomain.cloud` |
-| Hong Kong S.A.R. of the PRC | Private | none                                              | `s3.private.hkg02.cloud-object-storage.appdomain.cloud` |
 | Mexico City, Mexico         | Private | `s3.mex01.objectstorage.service.networklayer.com` | `s3.private.mex01.cloud-object-storage.appdomain.cloud` |
 | Milan, Italy                | Private | none                                              | `s3.private.mil01.cloud-object-storage.appdomain.cloud` |
 | Montr&egrave;al, Canada     | Private | `s3.mon01.objectstorage.service.networklayer.com` | `s3.private.mon01.cloud-object-storage.appdomain.cloud` |
@@ -213,7 +211,6 @@ If a networking failure results in a partition where the data center is unable t
 |-----------------------------|--------|-----------------------------------------------|--------------------------------------------------------|
 | Amsterdam, Netherlands      | Direct | `s3.ams03.objectstorage.adn.networklayer.com` | `s3.direct.ams03.cloud-object-storage.appdomain.cloud` |
 | Chennai, India              | Direct | `s3.che01.objectstorage.adn.networklayer.com` | `s3.direct.che01.cloud-object-storage.appdomain.cloud` |
-| Hong Kong S.A.R. of the PRC | Direct | none                                          | `s3.direct.hkg02.cloud-object-storage.appdomain.cloud` |
 | Mexico City, Mexico         | Direct | `s3.mex01.objectstorage.adn.networklayer.com` | `s3.direct.mex01.cloud-object-storage.appdomain.cloud` |
 | Milan, Italy                | Direct | none                                          | `s3.direct.mil01.cloud-object-storage.appdomain.cloud` |
 | Montr&egrave;al, Canada     | Direct | `s3.mon01.objectstorage.adn.networklayer.com` | `s3.direct.mon01.cloud-object-storage.appdomain.cloud` |

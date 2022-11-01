@@ -32,6 +32,11 @@ Storage can be accessed over HTTPS, and internally storage devices communicate w
 
 Credentials, such as HMAC and API keys, do not naturally expire.  Over time, it is possible that employee turnover or an accidental mishandling of information can result in unintended or unwanted access to cloud resources.  Following a rotation schedule can help to prevent this scenario.  Read more about [rotation of encryption keys](/docs/cloud-object-storage?topic=cloud-object-storage-kp#kp-lifecycle) and [access credentials](/docs/secrets-manager?topic=secrets-manager-manual-rotation&interface=ui).
 
+## Access Control Lists
+{: #security-acl}
+
+Access control lists (often referred to as ACLs) are an outdated method for controlling access to object storage resources.  Some APIs exist for setting individual objects to a `public-read` status, but this is discouraged in favor of [using IAM to allow unauthenticated access to an entire bucket](/docs/cloud-object-storage?topic=cloud-object-storage-iam-public-access), and using these buckets to serve any open data.
+
 ## Data deletion
 {: #security-deletion}
 
