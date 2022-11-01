@@ -59,6 +59,16 @@ The archived object sub-states are:
 * Restoring: An object in the restoring state is in the process of generating a copy from the archived state to its original online storage tier.
 * Restored: An object in the restored state is a copy of the archived object that was restored to its original online storage tier for a specified amount of time. At the end of the period, the copy of the object is deleted, while maintaining the archived object.
 
+### Restoring an object using the AWS CLI
+{: #archive-restore-cli}
+
+The following examples uses environment variables for clarity. These must be set to the desired values, for example `$ENDPOINT` would be set to `https://s3.us.cloud-object-storage.appdomain.cloud`, or `https://s3.eu-de.private.cloud-object-storage.appdomain.cloud`, or any other required value.
+
+1. Check object status: `aws --endpoint-url $ENDPOINT s3api head-object --bucket $BUCKET --key $KEY`
+  The storage class will be shown as `("StorageClass": "GLACIER")`
+2. Restore the object: `aws --endpoint-url $ENDPOINT s3api restore-object ---bucket $BUCKET --key $KEY --restore-request '{"Days":25,"GlacierJobParameters":{"Tier":"Bulk"}}'`
+3. Check the status: `aws --endpoint-url $ENDPOINT s3api head-object --bucket $BUCKET --key $KEY`
+
 ## Limitations
 {: #archive-limitations}
 
