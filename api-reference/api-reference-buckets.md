@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-19"
+lastupdated: "2022-12-2"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -189,7 +189,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 ## Create a bucket
 {: #compatibility-api-new-bucket}
 
-A `PUT` request sent to the endpoint root followed by a string will create a bucket. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints). Bucket names must be globally unique and DNS-compliant; names between 3 and 63 characters long must be made of lowercase letters, numbers, and dashes. Bucket names must begin and end with a lowercase letter or number. Bucket names resembling IP addresses are not allowed. This operation doesn't make use of operation specific query parameters.
+A `PUT` request sent to the endpoint root followed by a string will create a bucket. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints). Bucket names must be globally unique and DNS-compliant; names between 3 and 63 characters long must be made of lowercase letters, numbers, dots (periods) and dashes (hyphens). Bucket names must begin and end with a lowercase letter or number. Bucket names may not contain consecutive dots or dashes. Bucket names resembling IP addresses are not allowed. This operation doesn't make use of operation specific query parameters.
 
 Bucket names must be unique because all buckets in the public cloud share a global namespace. This allows for access to a bucket without needing to provide any service instance or account information. It is also not possible to create a bucket with a name beginning with `cosv1-` or `account-` as these prefixes are reserved by the system.
 {: important}
