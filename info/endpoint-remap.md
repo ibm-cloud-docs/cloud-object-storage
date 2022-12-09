@@ -1,9 +1,9 @@
 ---
-
+ 
 copyright:
-  years: 2017, 2020
+  years: 2017, 2022
 
-lastupdated: "2020-09-14"
+lastupdated: "2022-12-09"
 
 keywords: endpoint, location, object storage
 
@@ -119,8 +119,8 @@ Buckets that are created at a cross region endpoint distribute data across three
 | EU: Frankfurt        | Public (Tethered) | `s3.fra-eu-geo.objectstorage.softlayer.net`     | `s3.fra.eu.cloud-object-storage.appdomain.cloud` |
 | EU: Milan            | Public (Tethered) | `s3.mil-eu-geo.objectstorage.softlayer.net`     | `s3.mil.eu.cloud-object-storage.appdomain.cloud` |
 | AP: Tokyo            | Public (Tethered) | `s3.tok-ap-geo.objectstorage.softlayer.net`     | `s3.tok.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Seoul            | Public (Tethered) | `s3.seo-ap-geo.objectstorage.softlayer.net`     | `s3.seo.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Hong Kong        | Public (Tethered) | `s3.hkg-ap-geo.objectstorage.softlayer.net`     | `s3.hkg.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Sydney           | Public (Tethered) | `s3.syd-ap-geo.objectstorage.softlayer.net`     | `s3.syd.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Osaka            | Public (Tethered) | `s3.osa-ap-geo.objectstorage.softlayer.net`     | `s3.osa.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 2a. Cross Region Endpoints (Tethered)" caption-side="top"}
 {: #tether1}
@@ -136,8 +136,8 @@ Buckets that are created at a cross region endpoint distribute data across three
 | EU: Frankfurt        | Private (Tethered) | `s3.fra-eu-geo.objectstorage.service.networklayer.com`     | `s3.private.fra.eu.cloud-object-storage.appdomain.cloud` |
 | EU: Milan            | Private (Tethered) | `s3.mil-eu-geo.objectstorage.service.networklayer.com`     | `s3.private.mil.eu.cloud-object-storage.appdomain.cloud` |
 | AP: Tokyo            | Private (Tethered) | `s3.tok-ap-geo.objectstorage.service.networklayer.com`     | `s3.private.tok.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Seoul            | Private (Tethered) | `s3.seo-ap-geo.objectstorage.service.networklayer.com`     | `s3.private.seo.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Hong Kong        | Private (Tethered) | `s3.hkg-ap-geo.objectstorage.service.networklayer.com`     | `s3.private.hkg.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Sydney            | Private (Tethered) | `s3.syd-ap-geo.objectstorage.service.networklayer.com`     | `s3.private.syd.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Osaka        | Private (Tethered) | `s3.osa-ap-geo.objectstorage.service.networklayer.com`     | `s3.private.osa.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 2a. Cross Region Endpoints (Tethered)" caption-side="top"}
 {: #tether2}
@@ -153,8 +153,8 @@ Buckets that are created at a cross region endpoint distribute data across three
 | EU: Frankfurt        | Direct (Tethered) | `s3.fra-eu-geo.objectstorage.adn.networklayer.com`     | `s3.direct.fra.eu.cloud-object-storage.appdomain.cloud` |
 | EU: Milan            | Direct (Tethered) | `s3.mil-eu-geo.objectstorage.adn.networklayer.com`     | `s3.direct.mil.eu.cloud-object-storage.appdomain.cloud` |
 | AP: Tokyo            | Direct (Tethered) | `s3.tok-ap-geo.objectstorage.adn.networklayer.com`     | `s3.direct.tok.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Seoul            | Direct (Tethered) | `s3.seo-ap-geo.objectstorage.adn.networklayer.com`     | `s3.direct.seo.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Hong Kong        | Direct (Tethered) | `s3.hkg-ap-geo.objectstorage.adn.networklayer.com`     | `s3.direct.hkg.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Sydney           | Direct (Tethered) | `s3.syd-ap-geo.objectstorage.adn.networklayer.com`     | `s3.direct.syd.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Osaka            | Direct (Tethered) | `s3.osa-ap-geo.objectstorage.adn.networklayer.com`     | `s3.direct.osa.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 2a. Cross Region Endpoints (Tethered)" caption-side="top"}
 {: #tether3}
@@ -181,7 +181,6 @@ If a networking failure results in a partition where the data center is unable t
 | S&atilde;o Paulo, Brazil    | Public | `s3.sao01.objectstorage.softlayer.net` | `s3.sao01.cloud-object-storage.appdomain.cloud` |
 | Seoul, South Korea          | Public | `s3.seo01.objectstorage.softlayer.net` | `s3.seo01.cloud-object-storage.appdomain.cloud` |
 | Singapore                   | Public | none                                   | `s3.sng01.cloud-object-storage.appdomain.cloud` |
-| Toronto, Canada             | Public | `s3.tor01.objectstorage.softlayer.net` | `s3.tor01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
 {: #sdcendpointtable1}
@@ -200,7 +199,6 @@ If a networking failure results in a partition where the data center is unable t
 | S&atilde;o Paulo, Brazil    | Private | `s3.sao01.objectstorage.service.networklayer.com` | `s3.private.sao01.cloud-object-storage.appdomain.cloud` |
 | Seoul, South Korea          | Private | `s3.seo01.objectstorage.service.networklayer.com` | `s3.private.seo01.cloud-object-storage.appdomain.cloud` |
 | Singapore                   | Private | none                                              | `s3.private.sng01.cloud-object-storage.appdomain.cloud` |
-| Toronto, Canada             | Private | `s3.tor01.objectstorage.service.networklayer.com` | `s3.private.tor01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
 {: #sdcendpointtable2}
@@ -219,7 +217,6 @@ If a networking failure results in a partition where the data center is unable t
 | S&atilde;o Paulo, Brazil    | Direct | `s3.sao01.objectstorage.adn.networklayer.com` | `s3.direct.sao01.cloud-object-storage.appdomain.cloud` |
 | Seoul, South Korea          | Direct | `s3.seo01.objectstorage.adn.networklayer.com` | `s3.direct.seo01.cloud-object-storage.appdomain.cloud` |
 | Singapore                   | Direct | none                                          | `s3.direct.sng01.cloud-object-storage.appdomain.cloud` |
-| Toronto, Canada             | Direct | `s3.tor01.objectstorage.adn.networklayer.com` | `s3.direct.tor01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
 {: #sdcendpointtable3}
