@@ -1,8 +1,8 @@
 ---
-
+ 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-06-04"
+  years: 2017, 2022
+lastupdated: "2022-12-09"
 
 keywords: object storage, endpoints, access points, manual failover
 
@@ -51,8 +51,8 @@ For contrast, imagine another application using the normal US cross-region endpo
 | EU: Frankfurt        | Public (Tethered) | `s3.fra.eu.cloud-object-storage.appdomain.cloud` |
 | EU: Milan            | Public (Tethered) | `s3.mil.eu.cloud-object-storage.appdomain.cloud` |
 | AP: Tokyo            | Public (Tethered) | `s3.tok.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Seoul            | Public (Tethered) | `s3.seo.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Hong Kong        | Public (Tethered) | `s3.hkg.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Sydney           | Public (Tethered) | `s3.syd.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Osaka            | Public (Tethered) | `s3.osa.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 1. Cross Region Endpoints" caption-side="top"}
 {: #tether1}
@@ -68,8 +68,8 @@ For contrast, imagine another application using the normal US cross-region endpo
 | EU: Frankfurt        | Private (Tethered) | `s3.private.fra.eu.cloud-object-storage.appdomain.cloud` |
 | EU: Milan            | Private (Tethered) | `s3.private.mil.eu.cloud-object-storage.appdomain.cloud` |
 | AP: Tokyo            | Private (Tethered) | `s3.private.tok.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Seoul            | Private (Tethered) | `s3.private.seo.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Hong Kong        | Private (Tethered) | `s3.private.hkg.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Sydney           | Private (Tethered) | `s3.private.syd.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Osaka        | Private (Tethered) | `s3.private.osa.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 1. Cross Region Endpoints" caption-side="top"}
 {: #tether2}
@@ -85,8 +85,8 @@ For contrast, imagine another application using the normal US cross-region endpo
 | EU: Frankfurt        | Direct (Tethered) | `s3.direct.fra.eu.cloud-object-storage.appdomain.cloud` |
 | EU: Milan            | Direct (Tethered) | `s3.direct.mil.eu.cloud-object-storage.appdomain.cloud` |
 | AP: Tokyo            | Direct (Tethered) | `s3.direct.tok.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Seoul            | Direct (Tethered) | `s3.direct.seo.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Hong Kong        | Direct (Tethered) | `s3.direct.hkg.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Sydney           | Direct (Tethered) | `s3.direct.syd.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Osaka            | Direct (Tethered) | `s3.direct.osa.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 1. Cross Region Endpoints" caption-side="top"}
 {: #tether3}
@@ -105,8 +105,8 @@ For contrast, imagine another application using the normal US cross-region endpo
 | EU: Frankfurt        | `s3-web.fra.eu.cloud-object-storage.appdomain.cloud` |
 | EU: Milan            | `s3-web.mil.eu.cloud-object-storage.appdomain.cloud` |
 | AP: Tokyo            | `s3-web.tok.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Seoul            | `s3-web.seo.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Hong Kong        | `s3-web.hkg.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Sydney           | `s3-web.syd.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Osaka        | `s3-web.osa.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 2. Cross Region Static Web Endpoints" caption-side="top"}
 {: #swtether1}
@@ -122,8 +122,8 @@ For contrast, imagine another application using the normal US cross-region endpo
 | EU: Frankfurt        | `s3-web.private.fra.eu.cloud-object-storage.appdomain.cloud` |
 | EU: Milan            | `s3-web.private.mil.eu.cloud-object-storage.appdomain.cloud` |
 | AP: Tokyo            | `s3-web.private.tok.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Seoul            | `s3-web.private.seo.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Hong Kong        | `s3-web.private.hkg.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Sydney            | `s3-web.private.syd.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Osaka        | `s3-web.private.osa.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 2. Cross Region Static Web Endpoints" caption-side="top"}
 {: #swtether2}
@@ -139,8 +139,8 @@ For contrast, imagine another application using the normal US cross-region endpo
 | EU: Frankfurt        | `s3-web.direct.fra.eu.cloud-object-storage.appdomain.cloud` |
 | EU: Milan            | `s3-web.direct.mil.eu.cloud-object-storage.appdomain.cloud` |
 | AP: Tokyo            | `s3-web.direct.tok.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Seoul            | `s3-web.direct.seo.ap.cloud-object-storage.appdomain.cloud` |
-| AP: Hong Kong        | `s3-web.direct.hkg.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Sydney            | `s3-web.direct.syd.ap.cloud-object-storage.appdomain.cloud` |
+| AP: Osaka        | `s3-web.direct.osa.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 2. Cross Region Static Web Endpoints" caption-side="top"}
 {: #swtether3}
