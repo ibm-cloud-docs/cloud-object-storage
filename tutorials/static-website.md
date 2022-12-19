@@ -71,12 +71,12 @@ ibmcloud cos bucket-create --bucket <bucketname>
 Once you login to the Console and after you create an instance of {{site.data.keyword.cos_full_notm}}, you can create a bucket. Click on the button labeled "Create bucket" and choose from the options as shown in Figure 1. Select the card that reads "Customize your bucket."
 {: ui}
 
-![Customize your bucket](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-bucket-cards.jpg){: ui}
+![Customize your bucket](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/cos-sw-ui-bucket-cards.jpg){: ui}
 
 The container for the static files in your website will reside in a bucket that you can name. The name you create must be unique, should not contain personal or identifying information, can't have two periods, dots, or hyphens in a row, and must start and end with alphanumeric characters (ASCII character set items 3&ndash;63). See Figure 2 for an example.
 {: ui}
 
-![Name bucket for Static Website](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-bucketname.jpg){: ui}
+![Name bucket for Static Website](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/cos-sw-ui-bucketname.jpg){: ui}
 
 ### Setting public access
 {: #static-website-public-access}
@@ -86,7 +86,7 @@ In all scenarios for this tutorial, you will want to use the [UI at the Console]
 When creating a bucket for hosting Static Website content, there is an option to enable public access as part of the bucket creation process. See Figure 3 for the option to enable public access to your bucket. For the explanation of the options for the "index document" and "error document" as shown, find more below in the section [Configure the options for your website](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial#static-website-configure-options). You may complete the basic configuration with this step, before uploading content to your bucket as shown in the next step.
 {: ui}
 
-![Enable public access](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-complete-config.jpg){: ui}
+![Enable public access](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/cos-sw-ui-complete-config.jpg){: ui}
 
 ## Upload content to your bucket
 {: #static-website-upload-content}
@@ -110,7 +110,7 @@ ibmcloud cos object-put --bucket BUCKET_NAME --key KEY [--body FILE_PATH]
 You may have already completed the basic configuration for hosting your static website. Files can be uploaded directly in the Console once you've named and configured your bucket. Note the step is optional as shown in Figure 4, and can occur at any point before the testing of your new hosted website.
 {: ui}
 
-![Upload files](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-upload-files.jpg){: ui}
+![Upload files](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/cos-sw-ui-upload-files.jpg){: ui}
 
 For the rest of the tutorial, we will assume that the object key for the index page is `index.html` and the key for the error document is `error.html` although any appropriate filename can be used for the suffix or key.
 
@@ -145,7 +145,7 @@ ibmcloud cos bucket-website-put --bucket BUCKET_NAME --website-configuration fil
 You may have completed this step during the creation of your bucket, as the basic configuration for your hosted static website determines when and how content is shown. For visitors to your website who fail to provide a key, or webpage, the default file will be shown instead. When your users encounter an error, the key for the error page determines what content visitors will receive. The configuration options for the default and error pages are repeated for reference.  
 {: ui}
 
-![Configure options](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-complete-config.jpg){: ui}
+![Configure options](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/cos-sw-ui-complete-config.jpg){: ui}
 
 ### Testing and visiting your new website
 {: #static-website-testing}

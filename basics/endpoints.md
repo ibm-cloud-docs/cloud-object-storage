@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2022
 
-lastupdated: "2022-10-12"
+lastupdated: "2022-12-19"
 
 keywords: endpoint, location, object storage
 
@@ -156,7 +156,6 @@ If a networking failure results in a partition where the data center is unable t
 | `mon01` | Public | `s3.mon01.cloud-object-storage.appdomain.cloud` |
 | `par01` | Public | `s3.par01.cloud-object-storage.appdomain.cloud` |
 | `sjc04` | Public | `s3.sjc04.cloud-object-storage.appdomain.cloud` |
-| `seo01` | Public | `s3.seo01.cloud-object-storage.appdomain.cloud` |
 | `sng01` | Public | `s3.sng01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
@@ -174,7 +173,6 @@ If a networking failure results in a partition where the data center is unable t
 | `par01` | Private | `s3.private.par01.cloud-object-storage.appdomain.cloud` |
 | `sjc04` | Private | `s3.private.sjc04.cloud-object-storage.appdomain.cloud` |
 | `sjc01` | Private | `s3.private.sjc04.cloud-object-storage.appdomain.cloud` |
-| `seo01` | Private | `s3.private.seo01.cloud-object-storage.appdomain.cloud` |
 | `sng01` | Private | `s3.private.sng01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
@@ -191,7 +189,6 @@ If a networking failure results in a partition where the data center is unable t
 | `mon01` | Direct | `s3.direct.mon01.cloud-object-storage.appdomain.cloud` |
 | `par01` | Direct | `s3.direct.par01.cloud-object-storage.appdomain.cloud` |
 | `sjc04` | Direct | `s3.direct.sjc04.cloud-object-storage.appdomain.cloud` |
-| `seo01` | Direct | `s3.direct.seo01.cloud-object-storage.appdomain.cloud` |
 | `sng01` | Direct | `s3.direct.sng01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
@@ -245,4 +242,7 @@ Over time, it may be necessary for locations to transform from a Single Data Cen
 | `hkg02` | Public  | `s3.hkg02.cloud-object-storage.appdomain.cloud`         |
 | `hkg02` | Private | `s3.private.hkg02.cloud-object-storage.appdomain.cloud` |
 | `hkg02` | Direct  | `s3.direct.hkg02.cloud-object-storage.appdomain.cloud`  |
+| `seo01` | Public | `s3.seo01.cloud-object-storage.appdomain.cloud` |
+| `seo01` | Private | `s3.private.seo01.cloud-object-storage.appdomain.cloud` |
+| `seo01` | Direct | `s3.direct.seo01.cloud-object-storage.appdomain.cloud` |
 {: caption="Table 5. Decommissioned Endpoints" caption-side="top"}
