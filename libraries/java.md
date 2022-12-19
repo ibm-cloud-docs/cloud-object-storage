@@ -280,8 +280,6 @@ public static String getEndpoint(String location, String region, String endpoint
     locationMap.put("eu-germany", "s3.eu-de");
     locationMap.put("ap", "s3.ap-geo");
     locationMap.put("ap-tokyo", "s3.tok-ap-geo");
-    locationMap.put("ap-seoul", "s3.seo-ap-geo");
-    locationMap.put("ap-hongkong", "s3.hkg-ap-geo");
     locationMap.put("che01", "s3.che01");
     locationMap.put("mel01", "s3.mel01");
     locationMap.put("tor01", "s3.tor01");

@@ -45,7 +45,7 @@ Let's say you want to spin up multiple copies of your cloud environment that use
 
 To use Terraform on IBM Cloud, you must create a Terraform configuration file that describes the IBM Cloud resources that you need and how you want to configure them. Based on your configuration, Terraform creates an execution plan and describes the actions that need to be executed to get to the required state. You can review the execution plan, change it, or simply execute the plan. When you change your configuration, Terraform on IBM Cloud can determine what changed and create incremental execution plans that you can apply to your existing IBM Cloud resources.
 
-The following setps shows how Terraform on IBM Cloud provisions your services in IBM Cloud.
+The following steps show how Terraform on IBM Cloud provisions your services in IBM Cloud.
 
 1. You declare the IBM Cloud resources that you want in a Terraform configuration file by using HashiCorp Configuration Language (HCL). Store this configuration file in a source code repository that is version-controlled and that allows teams to collaborate, such as GitHub or GitLab.
 2. Configure the IBM Cloud Provider plug-in.
