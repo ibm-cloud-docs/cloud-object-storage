@@ -50,11 +50,11 @@ Now that you have a platform account, you can create a new {{site.data.keyword.c
 1. Log in to [the console](https://cloud.ibm.com/){: external}.
 1. Navigate to the catalog, by clicking **Catalog** in the navigation bar.
 
-   ![IBM Cloud Catalog](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/catalog.jpg){: caption="Figure 1. Create an {{site.data.keyword.cloud_notm}} instance"}
+   ![IBM Cloud Catalog](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/catalog.jpg){: caption="Figure 1. Create an {{site.data.keyword.cloud_notm}} instance"}
    
 1. Look for the **Object Storage** tile in the storage section and select it.
 
-   ![github_desktop_setup](http://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/object-storage-card.jpg){: caption="Figure 2. Select {{site.data.keyword.cos_short}}"}
+   ![github_desktop_setup](http://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/object-storage-card.jpg){: caption="Figure 2. Select {{site.data.keyword.cos_short}}"}
 
 1. Give the service instance a name and choose a plan.
 1. Click **Create** and you're automatically redirected to your new instance.

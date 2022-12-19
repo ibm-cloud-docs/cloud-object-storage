@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-05-04"
+lastupdated: "2022-12-19"
 
 keywords: authorization, iam, basics, credentials
 
@@ -29,6 +29,9 @@ Use the following steps to create a service credential:
 2. In the side navigation, click **Service Credentials**. 
 3. Click **New credential** and provide the necessary information. If you want to generate HMAC credentials, click on `Advanced Options` to reveal the 'Include HMAC Credential' option. Verify the option is selected before continuing. 
 4. Click **Add** to generate service credential.
+
+When creating a service credential, it is possible to provide a value of `None` for the role.  This will prevent the creation of unintended or unnecessary IAM access policies. Any access policies for the associated service ID will need to be managed using the IAM console or APIs.
+{: tip}
 
 The credential has the following values:
 
@@ -268,17 +271,6 @@ The `endpoints` URL (`https://control.cloud-object-storage.cloud.ibm.com/v2/endp
             },
             "direct":{
                "che01":"s3.direct.che01.cloud-object-storage.appdomain.cloud"
-            }
-         },
-         "sao01":{
-            "public":{
-               "sao01":"s3.sao01.cloud-object-storage.appdomain.cloud"
-            },
-            "private":{
-               "sao01":"s3.private.sao01.cloud-object-storage.appdomain.cloud"
-            },
-            "direct":{
-               "sao01":"s3.direct.sao01.cloud-object-storage.appdomain.cloud"
             }
          },
          "seo01":{

@@ -44,18 +44,18 @@ At minimum, your configuration should consist of a required index document for v
 
 When you create and configure a new hosted static website, you may also wish to use {{site.data.keyword.cis_full_notm}} to configure more advanced options including [routing rules for your domain](/docs/cloud-object-storage?topic=cloud-object-storage-routing-rules-cos). But you don't even have to go further than configuring your bucket during creation to start customizing your new site.
 
-![Configure options](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-complete-config.jpg){: caption="Figure 1. Initial configuration options"}
+![Configure options](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/cos-sw-ui-complete-config.jpg){: caption="Figure 1. Initial configuration options"}
 
 ### Routing
 {: #static-websites-options-adv-conf}
 
 Routing gives you control over the requests coming from your visitors. For example, you could globally redirect all of your traffic from using one protocol to another, like replacing HTTP with the secure HTTPS. Or, you can create individual rules that process incoming requests for specific files and provide responses to your visitors based on the rules you define.
 
-![Global routing rule](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-global-routing.jpg){: caption="Figure 2. Global routing rule"}
+![Global routing rule](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/cos-sw-ui-global-routing.jpg){: caption="Figure 2. Global routing rule"}
 
 If you already have a hosted static website that you wish to migrate, you can bring a set of the routing rules that you have already set and import the set as code. The input shown in Figure 3 requires a JSON array formatted for the website configuration rules. 
 
-![Import configuration code](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-code-config.jpg){: caption="Figure 3. Import configuration as code"}
+![Import configuration code](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/cos-sw-ui-code-config.jpg){: caption="Figure 3. Import configuration as code"}
 
 An example of JSON code exemplifies the possibilities. The following shows a rule that redirects visitors from missing pages or possible malformed request resulting in a `404` error code and redirecting the visitor to a specific error page. The JSON can contain multiple objects representing the definition of the rules as needed.
 
@@ -77,7 +77,7 @@ An example of JSON code exemplifies the possibilities. The following shows a rul
 
 The same rule codified previously can be added as an individual rule using the Console, and shown in Figure 3. 
 
-![Add individual rules](https://s3.us.cloud-object-storage.appdomain.cloud/docs-resources/cos-sw-ui-rule-creation.jpg){: caption="Figure 3. Add individual rules"}
+![Add individual rules](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/cos-sw-ui-rule-creation.jpg){: caption="Figure 3. Add individual rules"}
 
 ### {{site.data.keyword.cloud_notm}} Internet, Domain, and Delivery Services
 {: #static-websites-options-cdn}
