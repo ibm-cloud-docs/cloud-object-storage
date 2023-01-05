@@ -56,7 +56,7 @@ Authorize Key Protect for use with IBM COS:
 5. In the **Source service** menu, select **Cloud Object Storage**.
 6. In the **Source service instance** menu, select the service instance to authorize.
 7. In the **Target service** menu, select **IBM Key Protect**.
-  ![Grant service authorization](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/kp-grant-auth.png){: caption="Figure 1: Grant service authorization for Key Protect."}
+  ![Grant service authorization](images/kp-grant-auth.png){: caption="Figure 1: Grant service authorization for Key Protect."}
 8. In the **Target service instance** menu, select the service instance to authorize. The additional fields may be left blank.
 9. Enable the **Reader** role.
 10. Click **Authorize**.

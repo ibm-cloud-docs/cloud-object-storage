@@ -38,7 +38,7 @@ Before you plan on using [context-based restrictions](/docs/cloud-object-storage
 
 From the **Manage** menu, select **Context-based restrictions**.
 
-![Navigate to CBR](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/cbr_1.png)
+![Navigate to CBR](images/cbr_1.png)
 
 ## Create a new rule
 {: #cos-tutorial-cbr-new-rule}
@@ -48,7 +48,7 @@ From the **Manage** menu, select **Context-based restrictions**.
 1. Choose a name for the rule. This will help keep things organized if you end up with a lot of different rules across all of your cloud services.
 1. Click **Continue**.
 
-![Name the rule](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/cbr_3.png)
+![Name the rule](images/cbr_3.png)
 
 ## Scope the rule
 {: #cos-tutorial-cbr-scope}
@@ -64,7 +64,7 @@ In this example, we will choose a service instance.
 4. Check the **Service instance** box.
 5. Select the service instance you want the rule to affect. 
  
-![Scope the rule](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/cbr_4.png)
+![Scope the rule](images/cbr_4.png)
 
 If you want to instead only limit access to a specific bucket, you can select the **Resource ID** checkbox instead.  Provide the name of the bucket in the field - nothing else is necessary.  
 {: tip}
@@ -77,13 +77,13 @@ Now that we know what the rule will affect, we need to decide what the rule will
 
 1. Click on **Create +**.
 
-![Scope the rule](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/cbr_5.png)
+![Scope the rule](images/cbr_5.png)
 
 2. Give the network zone a helpful name and description.
 3. Add some IP ranges to the **Allowed IP addresses** text box.
 4. Click **Next**.
 
-![Scope the rule](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/cbr_6.png)
+![Scope the rule](images/cbr_6.png)
 
 ## Finish the rule and verify that it works
 {: #cos-tutorial-cbr-network}

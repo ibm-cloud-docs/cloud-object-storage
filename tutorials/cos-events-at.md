@@ -50,7 +50,7 @@ When naming buckets or objects, be sure to avoid the use of Personally Identifia
 
 Navigate to your {{site.data.keyword.cos_short}} instance, and click on the **Create bucket** button.
 
-![Navigate to COS](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/at-tut-1-create-bucket.png)
+![Navigate to COS](images/at-tut-1-create-bucket.png)
 
 ## Create a custom bucket 
 {: #at-tut-custom-bucket}
@@ -58,7 +58,7 @@ Navigate to your {{site.data.keyword.cos_short}} instance, and click on the **Cr
 
 We're going to want to create a custom bucket in order to provision our new {{site.data.keyword.at_short}} instance, so click on the **Customize your bucket** tile.
 
-![Create a custom bucket](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/at-tut-2-custom-bucket.png)
+![Create a custom bucket](images/at-tut-2-custom-bucket.png)
 
 ## Name the new bucket 
 {: #at-tut-name-bucket}
@@ -66,7 +66,7 @@ We're going to want to create a custom bucket in order to provision our new {{si
 
 Give the bucket a memorable name.  In this case the new bucket will be called `tracked-files` and it's being created in the `us-east` region. 
 
-![Name the bucket](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/at-tut-3-name-bucket.png)
+![Name the bucket](images/at-tut-3-name-bucket.png)
 
 ## Add {{site.data.keyword.at_short}}
 {: #at-tut-add-at}
@@ -76,7 +76,7 @@ Scroll down to the **Monitoring and activity tracking** section and toggle the r
 
 Track data events for both reading and writing.
 
-![Add AT](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/at-tut-4-add-at.png)
+![Add AT](images/at-tut-4-add-at.png)
 
 ## Find the new instance of {{site.data.keyword.at_short}}
 {: #at-tut-find-at}
@@ -84,7 +84,7 @@ Track data events for both reading and writing.
 
 Navigate back to the dashboard, and look for the new instance. Click on it to open the {{site.data.keyword.at_short}} console.
 
-![Find AT](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/at-tut-5-find-at.png)
+![Find AT](images/at-tut-5-find-at.png)
 
 ## Launch the {{site.data.keyword.at_short}} interface
 {: #at-tut-open-at}
@@ -92,12 +92,12 @@ Navigate back to the dashboard, and look for the new instance. Click on it to op
 
 Now we can see some metadata about our new {{site.data.keyword.at_short}} instance (location, CRN, etc.).  Click on the *View IBM Cloud Activity Tracker** button to launch the interface.
 
-![Open AT](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/at-tut-6-open-at.png)
+![Open AT](images/at-tut-6-open-at.png)
 
 
 We'll quickly see that there's nothing here.  It will take a little while for the new instance to be associated with the bucket - while data operations (like reading or writing objects) are immediately consistent, operations that update the bucket's metadata (such as adding an {{site.data.keyword.at_short}} association) are eventually consistent and may take 15 minutes or so to propagate across the system.
 
-![View AT](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/at-tut-7-empty-at.png)
+![View AT](images/at-tut-7-empty-at.png)
 
 ## Trigger an event
 {: #at-tut-view-bucket}
@@ -105,7 +105,7 @@ We'll quickly see that there's nothing here.  It will take a little while for th
 
 Let's navigate back to our bucket.  When we open the bucket in the console it will trigger a listing, even though the bucket is empty. Behind the scenes, the console is sending a `GET bucket` request to list the objects, and {{site.data.keyword.at_short}} is going to log this listing event.
 
-![View bucket](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/at-tut-8-view-bucket.png)
+![View bucket](images/at-tut-8-view-bucket.png)
 
 ## View the {{site.data.keyword.at_short}} events
 {: #at-tut-open-at}
@@ -113,7 +113,7 @@ Let's navigate back to our bucket.  When we open the bucket in the console it wi
 
 Now, assuming there has been enough time for the metadata to propagate, when we return to the {{site.data.keyword.at_short}} interface we will see some listing events.
 
-![View AT](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/at-tut-9-view-at.png)
+![View AT](images/at-tut-9-view-at.png)
 
 ## Next steps
 {: #at-tut-next-steps}

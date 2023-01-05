@@ -44,11 +44,11 @@ When your key exists in Key Protect and you authorize a service for use with IBM
 
 1. Navigate to your instance of Object Storage.
 2. Click **Create bucket**.
-![Navigate to COS](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/kp-tut-1.png)
+![Navigate to COS](images/kp-tut-1.png)
 2. Select **Custom bucket**.
-![Navigate to COS](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/kp-tut-2.png)
+![Navigate to COS](images/kp-tut-2.png)
 3. Enter a bucket name, select the **Regional** resiliency, and choose a location and storage class.
-![Navigate to COS](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/kp-tut-3.png)
+![Navigate to COS](images/kp-tut-3.png)
 
 You can choose to use Key Protect to manage encryption for a bucket only at the time of creation. It isn't possible to change an existing bucket to use Key Protect.
 {: important}
@@ -58,11 +58,11 @@ You can choose to use Key Protect to manage encryption for a bucket only at the 
 {: step}
 
 1. Scroll down to **Service integrations (optional)**, toggle **Key management disabled** to enable encryption key management and click on **Create new instance**.
-![Navigate to COS](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/kp-tut-4.png)
+![Navigate to COS](images/kp-tut-4.png)
 2. Choose a region that corresponds with the bucket, give it a memorable name, and click **Create and continue**.
-![Navigate to COS](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/kp-tut-5.png)
+![Navigate to COS](images/kp-tut-5.png)
 3. Give the root key a name and click **Create and continue**.
-![Navigate to COS](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/kp-tut-6.png)
+![Navigate to COS](images/kp-tut-6.png)
 4. Verify the information is correct.
 5. Click **Create bucket**.
 

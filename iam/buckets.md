@@ -63,7 +63,7 @@ To create a new bucket-level policy:
 9. Select the wanted service access role. Selecting the lozenge with the number of actions show the actions available to the role, asexemplified for "Content Reader" in Figure 1.
 10. Click **Assign** 
 
-![Role_information](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/console-iam-changes-role-cos.png){: caption="Figure 1. Example actions per Content Reader role"}
+![Role_information](images/console-iam-changes-role-cos.png){: caption="Figure 1. Example actions per Content Reader role"}
 
 Note that leaving the **Resource Type** or **Resource** fields blank will create an instance-level policy.
 {:tip}

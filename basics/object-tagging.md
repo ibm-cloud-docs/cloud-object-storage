@@ -46,7 +46,7 @@ Tags are accessible throughout an instance with the proper permissions. While th
 Log in to the [console](https://cloud.ibm.com/){: external}, selecting your instance of {{site.data.keyword.cos_full_notm}} and your bucket where your data is represented. After you've uploaded files to your bucket, you can view and manage your tags right in place. Place the cursor over the ellipses at the end of any row representing your data (stored as an object), and select "Manage your tags" from the options in the menu.
 {: console}
 
-![Manage your tags](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/object-manage-tags.jpg){: console}
+![Manage your tags](images/object-manage-tags.jpg){: console}
 
 A properly formed and authenticated "GET" request with the `?tagging` query paramter is all that is required for accessing the tags for your objects using `curl`. The examples here use bearer tokens generated using [this example](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-token). In addition to the bucket identifier and object key, you will also need the correct [endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints). The resulting XML object is also shown, where the "Tag" element will be repeated for each tag assigned to the object. If there are no tags, the response will return XML with an empty element, `<TagSet />`.
 {: http}
@@ -93,12 +93,12 @@ Tags must comply with the following restrictions:
 As noted previously, log in to your instance and navigate to the bucket and object you wish to "tag." In the panel that appears when you select "Manage your tags", start by clicking on the "Add tags +" button. Then, you can add tags by typing text into the `key` and `value` fields as desired. Add more tags one at a time, by repeating the steps you've just completed.
 {: console}
 
-![Add tags in place](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/object-add-tags.jpg){: console}
+![Add tags in place](images/object-add-tags.jpg){: console}
 
 If you do not click on "save" when completing your changes, a dialog box will remind you of the consequences. That is, changes are discarded unless saved.
 {: console}
 
-![Unsaved changes are discarded](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/object-discard-changes.jpg){: console}
+![Unsaved changes are discarded](images/object-discard-changes.jpg){: console}
 
 As noted previously, you will have to authenticate in order to add tags to your data. If you have questions about bearer tokens, see [this example](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-token). Again, note the query string for working with tags: **`?tagging`**.
 {: http}
@@ -129,7 +129,7 @@ Once your objects have been tagged, over time it may become necessary to modify 
 In order to edit the tags using the graphic interface, you will have to log into the console and access your objects as described previously. Once you've clicked on the "Manage Tags" option, simply change the contents of the form fields. Remember to press "Save" when complete.
 {: console}
 
-![Save tags when complete](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/object-save-tags.jpg){: console}
+![Save tags when complete](images/object-save-tags.jpg){: console}
 
 Your requests must be authenticated in order to tag your data. Also, you will have to programmatically keep any old tags while updating your objects with new information. The example shown repeats the tags from the previous examples while adding a new tag. 
 {: http}
@@ -158,7 +158,7 @@ In order to delete the tags using the graphic interface, you will have to log in
 Remember to press "Save" when complete.
 {: console}
 
-![Delete one or all tags](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/object-edit-tags.jpg){: console}
+![Delete one or all tags](images/object-edit-tags.jpg){: console}
 
 You will have to authenticate in order to delete tags from your data. Simply use the "DELETE" HTTP method with the `?tagging` query parameter to delete all tags. If you wish to delete one or more tags while simultaneously keeping one or more tags, use the "edit" instructions to make your changes.
 {: http}

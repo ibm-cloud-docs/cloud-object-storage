@@ -78,7 +78,7 @@ If the location chosen for the new instance of {{site.data.keyword.cos_short}} f
 3. Select the **Services** tab.
 4. Look for the acknowledgement pop-up and approve the assignment.
 
-![Assign storage](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/satellite-popup.png){: caption="Figure 1. Confirming host and storage assignment."}
+![Assign storage](images/satellite-popup.png){: caption="Figure 1. Confirming host and storage assignment."}
 
 <!--
 ## Assign hosts and storage to object storage cluster (using IBM Cloud CLI)

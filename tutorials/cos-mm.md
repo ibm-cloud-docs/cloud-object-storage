@@ -50,7 +50,7 @@ When naming buckets or objects, be sure to avoid the use of Personally Identifia
 
 Navigate to your {{site.data.keyword.cos_short}} instance, and click on the **Create bucket** button.
 
-![Navigate to COS](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/mon-tut-1-create-bucket.png)
+![Navigate to COS](images/mon-tut-1-create-bucket.png)
 
 ## Create a custom bucket 
 {: #mon-tut-custom-bucket}
@@ -58,7 +58,7 @@ Navigate to your {{site.data.keyword.cos_short}} instance, and click on the **Cr
 
 We're going to want to create a custom bucket in order to provision our new {{site.data.keyword.mon_short}} instance, so click on the **Customize your bucket** tile.
 
-![Create a custom bucket](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/mon-tut-2-custom-bucket.png)
+![Create a custom bucket](images/mon-tut-2-custom-bucket.png)
 
 ## Name the new bucket 
 {: #mon-tut-name-bucket}
@@ -66,7 +66,7 @@ We're going to want to create a custom bucket in order to provision our new {{si
 
 Give the bucket a memorable name.  In this case the new bucket will be called `monitored-files` and it's being created in the `us-east` region. 
 
-![Name the bucket](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/mon-tut-3-name-bucket.png)
+![Name the bucket](images/mon-tut-3-name-bucket.png)
 
 ## Add {{site.data.keyword.mon_short}}
 {: #mon-tut-add-at}
@@ -76,7 +76,7 @@ Scroll down to the **Monitoring and activity tracking** section and toggle the r
 
 Enable monitoring for both usage and request metrics.
 
-![Add AT](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/mon-tut-4-add.png)
+![Add AT](images/mon-tut-4-add.png)
 
 ## Find the new instance of {{site.data.keyword.mon_short}}
 {: #mon-tut-find-at}
@@ -84,7 +84,7 @@ Enable monitoring for both usage and request metrics.
 
 Navigate back to the dashboard, and look for the new instance. Click on it to open the {{site.data.keyword.mon_short}} console.
 
-![Find AT](https://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/mon-tut-5-find.png)
+![Find AT](images/mon-tut-5-find.png)
 
 ## Launch the {{site.data.keyword.mon_short}} interface
 {: #mon-tut-open-at}
