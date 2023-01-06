@@ -51,7 +51,7 @@ First, we need to create a role that allows a user to view a list of buckets, bu
 2. Select **Roles** from the navigation menu.
 3. Click the **Create** button to create a new role.
 
-![Create a new role](images/tut-iam-1-roles.png)
+![Create a new role](images/tut-iam-1-roles.png){: caption="Figure 1: Creating a custom role."}
 
 4. We can call this role "List Buckets Only".  Give it a name, ID, and brief description, and then select **Cloud Object Storage** from the drop down.
 
