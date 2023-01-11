@@ -18,14 +18,14 @@ toc:
           - topicgroup:
               label: Getting organized
               topics:
-                - basics/administrators.md
-                - basics/developers.md
+                - administrators.md
+                - developers.md
           - topicgroup:
               label: Optimizing performance
               topics:
-                - performance/topology.md
-                - performance/data-io.md
-                - performance/bottlenecks.md
+                - topology.md
+                - data-io.md
+                - bottlenecks.md
           - cos-responsibilities.md
           - quick-facts.md
           - topic: release-notes.md
@@ -36,14 +36,14 @@ toc:
           - link:
               label: Tutorials library for Object Storage
               href: https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage
-          - tutorials/migrate.md
-          - tutorials/cos-single-bucket.md
-          - tutorials/kp-encrypt-bucket.md
-          - tutorials/cos-events-at.md
-          - tutorials/cos-mm.md
-          - tutorials/cbr-tutorial.md
-          - tutorials/static-website.md
-          - tutorials/web-application.md
+          - migrate.md
+          - cos-single-bucket.md
+          - kp-encrypt-bucket.md
+          - cos-events-at.md
+          - cos-mm.md
+          - cbr-tutorial.md
+          - static-website.md
+          - web-application.md
           - /direct-link/direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage
     - navgroup:
         id: howto
@@ -51,15 +51,15 @@ toc:
           - topicgroup:
               label: Provisioning storage
               topics:
-                - basics/order-storage.md
+                - order-storage.md
                 - onerate.md 
           - topicgroup:
               label: Choose regions and connect services
               topics:
-                - basics/endpoints.md
-                - info/advanced_endpoints.md
-                - info/endpoint-remap.md
-                - basics/services.md
+                - endpoints.md
+                - advanced_endpoints.md
+                - endpoint-remap.md
+                - services.md
                 - vpe.md
               links:
                 - link:
@@ -68,59 +68,59 @@ toc:
           - topicgroup:
               label: Using IBM Cloud Satellite
               topics:
-                - satellite/about-satellite.md
-                - satellite/satellite-provisioning.md
-                - satellite/satellite-billing.md
-                - satellite/satellite-apis.md     
+                - about-satellite.md
+                - satellite-provisioning.md
+                - satellite-billing.md
+                - satellite-apis.md     
           - topicgroup:
               label: Managing access
               topics:
                 - iam.md
-                - iam/overview.md
+                - iam-overview.md
                 - iam/service-credentials.md
                 - topicgroup:
                     label: Using Access/Secret Key (HMAC) authentication
                     topics:
-                      - hmac/credentials.md
-                      - hmac/hmac-signature.md
-                      - hmac/presigned-urls.md
-                - iam/buckets.md
-                - iam/public-access.md
-                - basics/firewall.md
+                      - credentials.md
+                      - hmac-signature.md
+                      - presigned-urls.md
+                - buckets.md
+                - public-access.md
+                - firewall.md
           - topicgroup:
               label: Managing encryption
               topics:
-                - encryption/overview.md
-                - encryption/sse-c.md
-                - encryption/kp.md
-                - encryption/hpcs.md
+                - encryption-overview.md
+                - sse-c.md
+                - kp.md
+                - hpcs.md
           - topicgroup:
               label: Managing a bucket's lifecycle configurations
               topics:
-                - basics/archive.md
-                - basics/expiry.md
-                - basics/abort-mpu.md
-          - basics/upload.md
+                - archive.md
+                - expiry.md
+                - abort-mpu.md
+          - upload.md
           - versioning.md
           - replication.md
-          - basics/closures.md
-          - basics/object-tagging.md
-          - tutorials/cos-region-copy.md
-          - basics/aspera.md
-          - basics/immutable.md
-          - basics/classes.md
-          - basics/static-websites-options.md
+          - closures.md
+          - object-tagging.md
+          - cos-region-copy.md
+          - aspera.md
+          - immutable.md
+          - classes.md
+          - static-websites-options.md
           - link:
               label: Connect to resources using a CDN
               href: https://cloud.ibm.com/docs/CDN/CDN-configure-cdn-with-ibm-cloud-object-storage
-          - basics/multipart.md
-          - basics/deleting-multiple-objects.md
-          - basics/sql.md
-          - basics/activity-tracker.md
-          - basics/quota.md
-          - basics/metrics-monitoring.md
-          - basics/functions.md
-          - basics/ftp.md
+          - multipart.md
+          - deleting-multiple-objects.md
+          - sql.md
+          - activity-tracker.md
+          - quota.md
+          - metrics-monitoring.md
+          - functions.md
+          - ftp.md
           - file-gateway.md
     - navgroup:
         id: reference
@@ -135,40 +135,40 @@ toc:
                     label: Resource Configuration API
                     href: https://cloud.ibm.com/apidocs/cos/cos-configuration
               topics:
-                - api-reference/about-api.md
-                - api-reference/common-headers-errors.md
-                - api-reference/api-reference-buckets.md
-                - api-reference/api-reference-objects.md
-                - api-reference/postman.md
+                - about-api.md
+                - common-headers-errors.md
+                - api-reference-buckets.md
+                - api-reference-objects.md
+                - postman.md
           - topicgroup:
               label: Libraries
               topics:
-                - libraries/overview-sdks.md
-                - libraries/getting-started-sdks.md
-                - libraries/java.md
-                - libraries/python.md
-                - libraries/node.md
-                - libraries/go.md
-                - libraries/terraform.md
-                - tutorials/cloudyr.md
+                - overview-sdks.md
+                - getting-started-sdks.md
+                - java.md
+                - python.md
+                - node.md
+                - go.md
+                - terraform.md
+                - cloudyr.md
           - topicgroup:
               label: Use the command line
               topics:
                 - /cloud-object-storage-cli-plugin/cloud-object-storage-cli-plugin-ic-cos-cli
-                - cli/curl.md
-                - cli/aws-cli.md
-                - cli/s3fs.md
-                - cli/minio.md
-                - cli/rclone.md
+                - curl.md
+                - aws-cli.md
+                - s3fs.md
+                - minio.md
+                - rclone.md
           - topicgroup:
               label: Security and compliance
               topics:
                 - manage-scc.md
-                - info/data-security-encryption.md
+                - data-security-encryption.md
                 - compliance.md
                 - eu.md
-          - info/cis-routing-rules-for-cos.md
-          - basics/at.md
+          - cis-routing-rules-for-cos.md
+          - at.md
           - iam-at.md
     - navgroup:
         id: help
@@ -176,16 +176,16 @@ toc:
           - topicgroup:
               label: Frequently asked questions
               topics:
-                - help/faq.md
-                - help/faq-provisioning.md
-                - help/faq-onerate.md
-                - help/faq-encryption.md
-          - help/support.md
+                - faq.md
+                - faq-provisioning.md
+                - faq-onerate.md
+                - faq-encryption.md
+          - support.md
           - topicgroup:
               label: Billing and pricing
               topics:
-                - help/billing.md
-                - help/flex-pricing.md
+                - billing.md
+                - flex-pricing.md
               links:
                 - link:
                     label: Pricing
