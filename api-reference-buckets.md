@@ -170,7 +170,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
         <Bucket>
             <Name>bucket-27590-drqmydpfdv</Name>
             <CreationDate>2016-08-18T14:22:32.366Z</CreationDate>
-            <LocationConstraint>seo01-standard</LocationConstraint>
+            <LocationConstraint>us-standard</LocationConstraint>
         </Bucket>
         <Bucket>
             <Name>bucket-27852-290jtb0n2y</Name>

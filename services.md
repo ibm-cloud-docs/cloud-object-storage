@@ -75,7 +75,6 @@ It is possible to create a bucket and associate any available Key Protect or Hyp
 | `mon01` | No     | No          | No                             | No           | No                       | `us-south`       | No        | Yes        | `us-south` | Yes         | Yes        |
 | `par01` | No     | No          | No                             | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    | Yes         | Yes        |
 | `sjc01` | No     | No          | No                             | No           | No                       | `us-south`       | No        | Yes        | `us-south` | Yes         | Yes        |
-| `seo01` | No     | No          | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   | No          | Yes        |
 | `sng01` | No     | No          | No                             | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   | Yes         | Yes        |
 
 ## Satellite 
