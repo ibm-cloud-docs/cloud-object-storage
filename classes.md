@@ -71,7 +71,6 @@ When creating buckets programmatically, it is necessary to specify a `LocationCo
 &emsp;&emsp;  **Paris** `par01-standard`                      / `par01-vault`   / `par01-cold`   / `par01-smart` <br>
 &emsp;&emsp;  **San Jose** `sjc04-standard`                   / `sjc04-vault`   / `sjc04-cold`   / `sjc04-smart` <br>
 &emsp;&emsp;  **São Paulo** `sao01-standard`                  / `sao01-vault`   / `sao01-cold`   / `sao01-smart` <br>
-&emsp;&emsp;  **Seoul** `seo01-standard`                      / `seo01-vault`   / `seo01-cold`   / `seo01-smart` <br>
 &emsp;&emsp;  **Singapore** `sng01-standard`                  / `sng01-vault`   / `sng01-cold`   / `sng01-smart` <br>
 
 

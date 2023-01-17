@@ -179,7 +179,6 @@ If a networking failure results in a partition where the data center is unable t
 | Paris, France               | Public | `s3.par01.objectstorage.softlayer.net` | `s3.par01.cloud-object-storage.appdomain.cloud` |
 | San Jose, US                | Public | none                                   | `s3.sjc04.cloud-object-storage.appdomain.cloud` |
 | S&atilde;o Paulo, Brazil    | Public | `s3.sao01.objectstorage.softlayer.net` | `s3.sao01.cloud-object-storage.appdomain.cloud` |
-| Seoul, South Korea          | Public | `s3.seo01.objectstorage.softlayer.net` | `s3.seo01.cloud-object-storage.appdomain.cloud` |
 | Singapore                   | Public | none                                   | `s3.sng01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
@@ -197,7 +196,6 @@ If a networking failure results in a partition where the data center is unable t
 | Paris, France               | Private | `s3.par01.objectstorage.service.networklayer.com` | `s3.private.par01.cloud-object-storage.appdomain.cloud` |
 | San Jose, US                | Private | none                                              | `s3.private.sjc04.cloud-object-storage.appdomain.cloud` |
 | S&atilde;o Paulo, Brazil    | Private | `s3.sao01.objectstorage.service.networklayer.com` | `s3.private.sao01.cloud-object-storage.appdomain.cloud` |
-| Seoul, South Korea          | Private | `s3.seo01.objectstorage.service.networklayer.com` | `s3.private.seo01.cloud-object-storage.appdomain.cloud` |
 | Singapore                   | Private | none                                              | `s3.private.sng01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
@@ -215,7 +213,6 @@ If a networking failure results in a partition where the data center is unable t
 | Paris, France               | Direct | `s3.par01.objectstorage.adn.networklayer.com` | `s3.direct.par01.cloud-object-storage.appdomain.cloud` |
 | San Jose, US                | Direct | none                                          | `s3.direct.sjc04.cloud-object-storage.appdomain.cloud` |
 | S&atilde;o Paulo, Brazil    | Direct | `s3.sao01.objectstorage.adn.networklayer.com` | `s3.direct.sao01.cloud-object-storage.appdomain.cloud` |
-| Seoul, South Korea          | Direct | `s3.seo01.objectstorage.adn.networklayer.com` | `s3.direct.seo01.cloud-object-storage.appdomain.cloud` |
 | Singapore                   | Direct | none                                          | `s3.direct.sng01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}

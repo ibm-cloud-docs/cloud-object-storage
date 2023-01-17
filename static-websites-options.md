@@ -191,7 +191,6 @@ The following tables match most of the regions, locations, and type of connectio
 | Paris, France               | `s3-web.par01.cloud-object-storage.appdomain.cloud` |
 | San Jose, US                | `s3-web.sjc04.cloud-object-storage.appdomain.cloud` |
 | S&atilde;o Paulo, Brazil    | `s3-web.sao01.cloud-object-storage.appdomain.cloud` |
-| Seoul, South Korea          | `s3-web.seo01.cloud-object-storage.appdomain.cloud` |
 | Singapore                   | `s3-web.sng01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
@@ -209,7 +208,6 @@ The following tables match most of the regions, locations, and type of connectio
 | Paris, France               | `s3-web.private.par01.cloud-object-storage.appdomain.cloud` |
 | San Jose, US                | `s3-web.private.sjc04.cloud-object-storage.appdomain.cloud` |
 | S&atilde;o Paulo, Brazil    | `s3-web.private.sao01.cloud-object-storage.appdomain.cloud` |
-| Seoul, South Korea          | `s3-web.private.seo01.cloud-object-storage.appdomain.cloud` |
 | Singapore                   | `s3-web.private.sng01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
@@ -227,7 +225,6 @@ The following tables match most of the regions, locations, and type of connectio
 | Paris, France               | `s3-web.direct.par01.cloud-object-storage.appdomain.cloud` |
 | San Jose, US                | `s3-web.direct.sjc04.cloud-object-storage.appdomain.cloud` |
 | S&atilde;o Paulo, Brazil    | `s3-web.direct.sao01.cloud-object-storage.appdomain.cloud` |
-| Seoul, South Korea          | `s3-web.direct.seo01.cloud-object-storage.appdomain.cloud` |
 | Singapore                   | `s3-web.direct.sng01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
 {: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
