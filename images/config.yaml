@@ -1,0 +1,451 @@
+openapi: 3.0.0
+info:
+  title: Foo
+  description: REST API used to configure Cloud Object Storage buckets.  This version of
+    the API only supports reading bucket metadata and setting IP access
+    controls.
+  version: 1.0.0
+  x-alternate-name: ResourceConfiguration
+  x-codegen-config:
+    java:
+      apiPackage: com.ibm.cloud.objectstorage.config
+  x-sdk-supported-languages:
+    - curl
+    - python
+    - node
+
+security:
+  - IAM:
+      []
+
+servers:
+  - url: https://config.cloud-object-storage.cloud.ibm.com/v1
+
+paths:
+  "/b/{bucket}":
+    parameters:
+      - description: Name of a bucket.
+        in: path
+        name: bucket
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Returns metadata for the specified bucket.
+      description: Returns metadata for the specified bucket.
+      operationId: getBucketConfig
+      x-sdk-operations:
+        request-examples:
+          curl:
+            - name: Example request
+              example:
+                - type: code
+                  lang: curl
+                  source:
+                    - |-
+                      curl https://config.cloud-object-storage.cloud.ibm.com/v1/b/my-bucket \
+                        -H 'authorization: bearer <IAM_token>' 
+          python:
+            - name: Example request
+              example:
+                - type: code
+                  lang: python
+                  source:
+                    - |-
+                      from cos_config.resource_configuration_v1 import ResourceConfigurationV1
+
+                      api_key = '<API_KEY>'
+                      bucket = '<BUCKET_NAME>'
+                      
+                      client = ResourceConfigurationV1(iam_apikey=api_key)
+                      
+                      config = client.get_bucket_config(bucket))
+
+                      print(config)
+
+          node:
+            - name: Example request
+              example:
+                - type: code
+                  lang: node
+                  source:
+                    - |-
+                      const COS = require('ibm-cos-sdk-config')
+
+                      var apikey = "<API_KEY>"
+                      var bucketName = "<BUCKET_NAME>"
+
+                      const clientInfo = {
+                        iam_apikey: apikey,
+                        };
+
+                      const client = new COS.ResourceConfigurationV1(clientInfo);
+                      
+                      client.getBucketConfig({
+                        bucket: bucketName
+                        }
+      responses:
+        "200":
+          description: Success
+          headers:
+            Etag:
+              description: Unique identifier for the bucket configuration.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Bucket"
+              example:
+                name: my-new-bucket
+                crn: crn:v1:bluemix:public:cloud-object-storage:global:a/ 3bf0d9003abfb5d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903:bucket:my-new-bucket
+                service_instance_id: d6f04d83-6c4f-4a62-a165-696756d63903
+                service_instance_crn: "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5\
+                    d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
+                time_created: "2018-03-26T16:23:36.980Z"
+                time_updated: "2018-10-17T19:29:10.117Z"
+                object_count: 764265234
+                bytes_used: 28198745752445145
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error:
+                  http_status_code: 400
+                  code: InvalidRequest
+                  message: The request contains invalid elements.
+                  resource: my-new-bucket
+                  ibm_cos_request_id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error:
+                  code: Unauthorized
+                  message: The token provided is not valid.
+                  resource: my-new-bucket
+                  ibm_cos_request_id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
+                  http_status_code: 401
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error:
+                  code: AccessDenied
+                  message: Access Denied
+                  resource: my-new-bucket
+                  ibm_cos_request_id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
+                  http_status_code: 403
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error:
+                  code: NoSuchBucket
+                  message: The specified bucket does not exist.
+                  resource: my-new-bucket
+                  ibm_cos_request_id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
+                  http_status_code: 404
+        "412":
+          description: Precondition Failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error:
+                  code: PreconditionFailed
+                  message: At least one of the preconditions specified were not met.
+                  resource: my-new-bucket
+                  ibm_cos_request_id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
+                  http_status_code: 412
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error:
+                  code: InternalError
+                  message: Internal server error.
+                  resource: my-new-bucket
+                  ibm_cos_request_id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
+                  http_status_code: 500
+      tags:
+        - buckets                  
+    patch:
+      summary: Make changes to a bucket's configuration.
+      description: Updates a bucket using [JSON Merge Patch](https://tools.ietf.org/html/rfc7396). This request is used to add functionality (like an IP access filter) or to update existing parameters.  **Primitives are overwritten and replaced in their entirety. It is not possible to append a new (or to delete a specific) value to an array.**  Arrays can be cleared by updating the parameter with an empty array `[]`. Only updates specified mutable fields. Please don't use `PATCH` trying to update the number of objects in a bucket, any timestamps, or other non-mutable fields.
+      operationId: updateBucketConfig
+      parameters:
+        - description: An Etag previously returned in a header when fetching or updating a bucket's metadata. If this value does not match the active Etag, the request will fail. 
+          in: header
+          name: if-match
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BucketPatch"
+        description: An object containing new configuration metadata.
+      x-sdk-operations:
+        request-examples:
+          curl:
+            - name: Example request
+              example:
+                - type: code
+                  lang: curl
+                  source:
+                    - |-
+                      curl -X PATCH https://config.cloud-object-storage.cloud.ibm.com/v1/b/my-bucket \
+                        -H 'authorization: bearer <IAM_token>' \
+                        -d '{firewall: {"allowed_ip": ["10.142.175.0/22", "10.198.243.79"]}}'
+          python:
+            - name: Example request
+              example:
+                - type: code
+                  lang: python
+                  source:
+                    - |-
+                      from cos_config.resource_configuration_v1 import ResourceConfigurationV1
+                      from cos_config.iam_token_manager import IAMTokenManager
+
+                      api_key = "<API_KEY>"
+                      bucket = "<BUCKET_NAME>"
+                      patch = "{firewall: {"allowed_ip": ["10.142.175.0/22", "10.198.243.79"]}}"
+                      
+                      client = ResourceConfigurationV1(iam_apikey=api_key)
+                      
+                      client.update_bucket_config(bucket, patch)
+          node:
+            - name: Example request
+              example:
+                - type: code
+                  lang: node
+                  source:
+                    - |-
+                      const COS = require('ibm-cos-sdk-config')
+
+                      var apikey = "<API_KEY>"
+                      var bucketName = "<BUCKET_NAME>"
+                      var ipAddress = "192.168.1.100";
+
+                      const clientInfo = {
+                        iam_apikey: apikey,
+                        };
+
+                      const client = new COS.ResourceConfigurationV1(clientInfo);
+                      
+                      client.updateBucketConfig({
+                        bucket: bucketName,
+                        firewall: {
+                          allowed_ip: [
+                            ipAddress
+                          ]
+                        }
+                      })
+      responses:
+        "200":
+          description: Success
+          headers:
+            Etag:
+              description: Unique identifier for the bucket configuration.
+              schema:
+                type: string
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error:
+                  code: InvalidRequest
+                  message: The request contains invalid elements.
+                  resource: my-new-bucket
+                  ibm_cos_request_id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
+                  http_status_code: 400
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error:
+                  code: Unauthorized
+                  message: The token provided is not valid.
+                  resource: my-new-bucket
+                  ibm_cos_request_id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
+                  http_status_code: 401
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error:
+                  code: AccessDenied
+                  message: Access Denied
+                  resource: my-new-bucket
+                  ibm_cos_request_id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
+                  http_status_code: 403
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error:
+                  code: NoSuchBucket
+                  message: The specified bucket does not exist.
+                  resource: my-new-bucket
+                  ibm_cos_request_id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
+                  http_status_code: 404
+        "412":
+          description: Precondition Failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error:
+                  http_status_code: 412
+                  code: PreconditionFailed
+                  message: At least one of the preconditions specified were not met.
+                  resource: my-new-bucket
+                  ibm_cos_request_id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error:
+                  http_status_code: 500
+                  code: InternalError
+                  message: Internal server error.
+                  resource: my-new-bucket
+                  ibm_cos_request_id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
+
+      tags:
+        - buckets
+
+
+components:
+  securitySchemes:
+    IAM:
+      type: apiKey
+      name: Authorization
+      in: header
+  
+  schemas:
+    Bucket:
+      description: A bucket.
+      properties:
+        name:
+          description: The name of the bucket. Non-mutable.
+          type: string
+          example: my-new-bucket
+        crn:
+          description: The service instance that holds the bucket. Non-mutable.
+          type: string
+          example: crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903:bucket:my-new-bucket
+        service_instance_id:
+          description: The service instance that holds the bucket. Non-mutable.
+          type: string
+          example: d6f04d83-6c4f-4a62-a165-696756d63903
+        service_instance_crn:
+          description: The service instance that holds the bucket. Non-mutable.
+          type: string
+          example: "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5\
+            d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
+        time_created:
+          description: The creation time of the bucket in RFC 3339 format. Non-mutable.
+          format: date-time
+          type: string
+          example: "2018-03-26T16:23:36.980Z"
+        time_updated:
+          description: The modification time of the bucket in RFC 3339 format. Non-mutable.
+          format: date-time
+          type: string
+          example: "2018-10-17T19:29:10.117Z"
+        object_count:
+          description: Total number of objects in the bucket. Non-mutable.
+          type: integer
+          format: int64
+          example: 764265234
+        bytes_used:
+          description: Total size of all objects in the bucket. Non-mutable.
+          type: integer
+          format: int64
+          example: 28198745752445145
+        firewall:
+          $ref: "#/components/schemas/Firewall"
+      type: object
+    BucketPatch:
+      description: An object containing new bucket metadata.
+      x-java-builder: true
+      properties:
+        firewall:
+          $ref: "#/components/schemas/Firewall"
+      type: object
+    Error:
+      type: object
+      description: A container for error messages.
+      properties:
+        http_status_code: 
+          description: HTTP status code for the response.
+          type: integer  
+        code:
+          description: The category of the error.
+          type: string
+        message:
+          description: A short description of the error.
+          type: string
+        resource:
+          description: Target of the failed request.
+          type: string 
+        ibm_cos_request_id:
+          description: The UUID of the failed request.
+          type: string
+      required:
+        - http_status_code
+        - code
+        - message
+        - resource
+        - ibm_cos_request_id
+
+    Firewall:
+      description: An access control mechanism based on the network (IP address) where request originated. Requests not originating from IP addresses listed in the `allowed_ip` field will be denied regardless of any access policies (including public access) that might otherwise permit the request.  Viewing or updating the `Firewall` element requires the requester to have the `manager` role.  
+      properties:
+        allowed_ip:
+          description: List of IPv4 or IPv6 addresses in CIDR notation to be affected by firewall in CIDR notation is supported. Passing an empty array will lift the IP address filter.  The `allowed_ip` array can contain a maximum of 1000 items.
+          type: array
+          items:
+            description: Individual IP address or range of IP addresses.  The entire array
+              will be overwritten in a `PATCH` operation. 
+            type: string
+      example:
+        allowed_ip:
+          - 10.13.175.0/22
+          - 10.198.243.79
+      type: object
+
