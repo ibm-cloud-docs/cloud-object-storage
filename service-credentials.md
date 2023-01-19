@@ -16,7 +16,7 @@ subcollection: cloud-object-storage
 # Service credentials
 {: #service-credentials}
 
-A [service credential](com/docs/account?topic=account-service_credentials&interface=ui) provides the necessary information to connect an application to {{site.data.keyword.cos_short}} packaged in a JSON document. 
+A [service credential](/docs/account?topic=account-service_credentials&interface=ui) provides the necessary information to connect an application to {{site.data.keyword.cos_short}} packaged in a JSON document. 
 {: shortdesc}
 
 Service credentials are always associated with a Service ID, and new Service IDs can be created along with a new credential. 
