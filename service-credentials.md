@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-12-19"
+  years: 2017, 2023
+lastupdated: "2023-02-01"
 
 keywords: authorization, iam, basics, credentials
 
@@ -133,19 +133,25 @@ The `endpoints` URL (`https://control.cloud-object-storage.cloud.ibm.com/v2/endp
                "ap-geo":"s3.ap.cloud-object-storage.appdomain.cloud",
                "Tokyo":"s3.tok.ap.cloud-object-storage.appdomain.cloud",
                "Seoul":"s3.seo.ap.cloud-object-storage.appdomain.cloud",
-               "Hong Kong":"s3.hkg.ap.cloud-object-storage.appdomain.cloud"
+               "Hong Kong":"s3.hkg.ap.cloud-object-storage.appdomain.cloud",
+               "Sydney":"s3.syd.ap.cloud-object-storage.appdomain.cloud",
+               "Osaka":"s3.osa.ap.cloud-object-storage.appdomain.cloud"
             },
             "private":{
                "ap-geo":"s3.private.ap.cloud-object-storage.appdomain.cloud",
                "Tokyo":"s3.private.tok.ap.cloud-object-storage.appdomain.cloud",
                "Seoul":"s3.private.seo.ap.cloud-object-storage.appdomain.cloud",
-               "Hong Kong":"s3.private.hkg.ap.cloud-object-storage.appdomain.cloud"
+               "Hong Kong":"s3.private.hkg.ap.cloud-object-storage.appdomain.cloud",
+               "Sydney":"s3.private.syd.ap.cloud-object-storage.appdomain.cloud",
+               "Osaka":"s3.private.osa.ap.cloud-object-storage.appdomain.cloud"
             },
             "direct":{
                "ap-geo":"s3.direct.ap.cloud-object-storage.appdomain.cloud",
                "Tokyo":"s3.direct.tok.ap.cloud-object-storage.appdomain.cloud",
                "Seoul":"s3.direct.seo.ap.cloud-object-storage.appdomain.cloud",
-               "Hong Kong":"s3.direct.hkg.ap.cloud-object-storage.appdomain.cloud"
+               "Hong Kong":"s3.direct.hkg.ap.cloud-object-storage.appdomain.cloud",
+               "Sydney":"s3.direct.syd.ap.cloud-object-storage.appdomain.cloud",
+               "Osaka":"s3.direct.osa.ap.cloud-object-storage.appdomain.cloud"
             }
          }
       },
@@ -271,17 +277,6 @@ The `endpoints` URL (`https://control.cloud-object-storage.cloud.ibm.com/v2/endp
             },
             "direct":{
                "che01":"s3.direct.che01.cloud-object-storage.appdomain.cloud"
-            }
-         },
-         "seo01":{
-            "public":{
-               "seo01":"s3.seo01.cloud-object-storage.appdomain.cloud"
-            },
-            "private":{
-               "seo01":"s3.private.seo01.cloud-object-storage.appdomain.cloud"
-            },
-            "direct":{
-               "seo01":"s3.direct.seo01.cloud-object-storage.appdomain.cloud"
             }
          },
          "mon01":{
