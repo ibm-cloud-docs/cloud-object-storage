@@ -107,7 +107,11 @@ toc:
           - object-tagging.md
           - cos-region-copy.md
           - aspera.md
-          - immutable.md
+          - topicgroup:
+              label: Immutability
+              topics:
+                - immutable.md 
+                - object-lock.md         
           - classes.md
           - static-websites-options.md
           - link:
