@@ -100,18 +100,18 @@ toc:
                 - archive.md
                 - expiry.md
                 - abort-mpu.md
+          - topicgroup:
+              label: Managing data immutability
+              topics:
+                - immutable.md 
+                - object-lock.md 
           - upload.md
           - versioning.md
           - replication.md
           - closures.md
           - object-tagging.md
           - cos-region-copy.md
-          - aspera.md
-          - topicgroup:
-              label: Immutability
-              topics:
-                - immutable.md 
-                - object-lock.md         
+          - aspera.md        
           - classes.md
           - static-websites-options.md
           - link:
