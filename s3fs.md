@@ -104,14 +104,14 @@ chmod 0600 <credentials_file>
 Now you can mount a bucket using:
 
 ```sh
-s3fs <bucket> <mountpoint> -o url=http{s}://<endpoint> –o passwd_file=<credentials_file>
+s3fs <bucket> <mountpoint> -o url=http{s}://<endpoint> -o passwd_file=<credentials_file>
 ```
 {:codeblock}
 
 If the credentials file only has an API key (no HMAC credentials), you'll need to add the `ibm_iam_auth` flag as well:
 
 ```sh
-s3fs <bucket> <mountpoint> -o url=http{s}://<endpoint> –o passwd_file=<credentials_file> -o ibm_iam_auth
+s3fs <bucket> <mountpoint> -o url=http{s}://<endpoint> -o passwd_file=<credentials_file> -o ibm_iam_auth
 ```
 {:codeblock}
 
