@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2020, 2023
-lastupdated: "2021-01-23"
+lastupdated: "2023-02-23"
 
 keywords: security and compliance for cloud-object-storage, security for cloud-object-storage, compliance for cloud-object-storage
 
@@ -76,7 +76,7 @@ Create rules to ensure that Cloud Object Storage buckets:
 * send object read and/or write events to Activity Tracker
 * don't grow past a defined maximum size
 
-[Configuration rules](x3084914){: term} are used to monitor and enforce configuration standards that you want to implement across your accounts. For more information about configuration rules, see [What makes up a rule](/docs/security-compliance?topic=security-compliance-what-is-rule).
+[Configuration rules](x3084914){: term} are used to monitor configuration standards that you want to implement across your accounts. For more information about configuration rules, see [What makes up a rule](/docs/security-compliance?topic=security-compliance-what-is-rule).
 
 | Resource kind | Property                                               | Operator type | Template required | Description                                                                                                                                                                                                      |
 |---------------|--------------------------------------------------------|---------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
