@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-12-2"
+  years: 2017, 2023
+lastupdated: "2023-03-09"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -197,9 +197,10 @@ Bucket names must be unique because all buckets in the public cloud share a glob
 Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
 {: note}
 
-Header                    | Type   | Required? | Description
---------------------------|--------|-----------|---------------------------------------------------------------------------------------------------------------------
-`ibm-service-instance-id` | String | Yes       | This header references the service instance where the bucket will be created and to which data usage will be billed.
+| Header                             | Type    | Required? | Description                                                                                                          |
+|------------------------------------|---------|-----------|----------------------------------------------------------------------------------------------------------------------|
+| `ibm-service-instance-id`          | String  | Yes       | This header references the service instance where the bucket will be created and to which data usage will be billed. |
+| `x-amz-bucket-object-lock-enabled` | Boolean | No        | Specifies whether you want to enable Object Lock on the new bucket.  This will automatically enable versioning.      |
 
 Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means in the name of the bucket or object.
 {: note}
@@ -907,6 +908,80 @@ If a non-empty bucket is requested for deletion, the server responds with `409 C
   <RequestId>9d2bbc00-2827-4210-b40a-8107863f4386</RequestId>
   <httpStatusCode>409</httpStatusCode>
 </Error>
+```
+
+### Configure Object Lock on an existing bucket
+{: #compatibility-api-object-lock-configuration}
+
+
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+{: note}
+
+A `PUT` request addressed to an empty bucket with the `?object-lock` query parameter will set a new object lock configuration on a bucket.
+
+**Syntax**
+
+```bash
+PUT https://{endpoint}/{bucket-name}?object-lock # path style
+PUT https://{bucket-name}.{endpoint}?object-lock # virtual host style
+```
+{: codeblock}
+
+The Object Lock configuration is provided as XML in the body of the request.  New requests will overwrite any existing replication rules that are present on the bucket.
+
+An Object Lock configuration must include one rule.
+
+Header                    | Type   | Description
+--------------------------|--------|----------------------------------------------------------------------------------------------------------------------
+`Content-MD5` | String | **Required**: The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.
+
+The body of the request must contain an XML block with the following schema:
+
+| Element                   | Type      | Children                    | Ancestor                  | Constraint                                                                                                     |
+|---------------------------|-----------|-----------------------------|---------------------------|----------------------------------------------------------------------------------------------------------------|
+| `ObjectLockConfiguration` | Container | `ObjectLockEnabled`, `Rule` | None                      | Limit 1.                                                                                                       |
+| `ObjectLockEnabled`       | String    | None                        | `ObjectLockConfiguration` | The only valid value is `ENABLED`.                                                                             |
+| `Rule`                    | Container | `DefaultRetention`          | `ObjectLockConfiguration` | Limit 1                                                                                                        |
+| `DefaultRetention`        | Container | `Days`, `Mode`, `Years`     | `Rule`                    | Limit 1.                                                                                                       |
+| `Days`                    | Integer   | None                        | `DefaultRetention`        | The number of days that you want to specify for the default retention period. Cannot be combined with `Years`. |
+| `Mode`                    | String    | None                        | `DefaultRetention`        | Only `COMPLIANCE` is supported at this time.                                                                   |
+| `Years`                   | Integer   | None                        | `DefaultRetention`        | The number of years that you want to specify for the default retention period. Cannot be combined with `Days`. |
+
+**Example request**
+
+This request lists the objects inside the "apiary" bucket.
+
+```http
+GET /apiary HTTP/1.1
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+Authorization: Bearer {token}
+```
+
+**Example response**
+
+```http
+HTTP/1.1 200 OK
+Date: Wed, 24 Aug 2016 17:36:24 GMT
+X-Clv-Request-Id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
+Accept-Ranges: bytes
+Server: Cleversafe/3.9.0.115
+X-Clv-S3-Version: 2.5
+x-amz-request-id: 9f39ff2e-55d1-461b-a6f1-2d0b75138861
+Content-Type: application/xml
+Content-Length: 909
+```
+
+```xml
+<ObjectLockConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+  <ObjectLockEnabled>ENABLED</ObjectLockEnabled>
+  <Rule>
+      <DefaultRetention>
+        <Days>30</Days>
+        <Mode>COMPLIANCE</Mode>
+      </DefaultRetention>
+  </Rule>
+</ObjectLockConfiguration>
 ```
 
 ----

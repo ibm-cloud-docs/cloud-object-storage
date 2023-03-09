@@ -37,7 +37,7 @@ In order to get started, there are some some prerequisites:
 2. Look for **Immutability** and click the **Enable Object Lock** button.
 3. Optionally, set a default retention period.
 4. Upload an object and navigate to the object details.
-5. ??? [[[doesn't seem to work in staging]]]
+5. Enter a retention period or enable a legal hold.
 
 ## Terminology
 {: #ol-terminology}
@@ -143,10 +143,6 @@ For operations on protected objects, the following fields may be present:
 
 Locked objects (and their versions) [contribute usage](/docs/cloud-object-storage?topic=cloud-object-storage-billing) just like any other data.
 
-Object Lock generates additional metrics for use with IBM Cloud Monitoring:
-
-- `ibm_cos_bucket_object_lock?????` [[[ Not sure about this ]]]
-
 ## Interactions
 {: #ol-interactions}
 
@@ -228,7 +224,6 @@ curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?
 
 A successful request returns a `200` response.
 
-
 ### View Object Lock configuration for a bucket
 {: #ol-apis-read}
 
@@ -270,7 +265,7 @@ from ibm_botocore.exceptions import ClientError
 from datetime import datetime, timedelta
 import time
 
-# Create new bucket with objectlock enabled.
+# Create new bucket with Object Lock enabled.
 def create_bucket_with_objectlock(bucket_name):
         cos_cli.create_bucket(
             Bucket=bucket_name,
