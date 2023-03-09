@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2020, 2022
-lastupdated: "2021-06-22"
+  years: 2020, 2023
+lastupdated: "2023-02-23"
 
 keywords: security and compliance for cloud-object-storage, security for cloud-object-storage, compliance for cloud-object-storage
 
@@ -20,9 +20,8 @@ With the {{site.data.keyword.compliance_short}}, you can:
 
 * Monitor for controls and goals that pertain to {{site.data.keyword.cos_short}}.
 * Define rules for {{site.data.keyword.cos_short}} that can help to standardize resource configuration.
-* Enforce those rules by failing requests that would violate defined rules.
 
-This service supports the ability to view and the results of your configuration scans in the Security and Compliance Center, as well allowing for the enforcement of defined rules. The enforcement of some rules may require the use of **templates** to automatically assign default values to new bucket resources.  It is not necessary to set up a collector to use configuration rules.
+This service supports the ability to view  the results of your configuration scans in the Security and Compliance Center. It is not necessary to set up a collector to use configuration rules.
 {:note}
 
 ## Monitoring security and compliance posture with {{site.data.keyword.cos_short}}
@@ -77,7 +76,7 @@ Create rules to ensure that Cloud Object Storage buckets:
 * send object read and/or write events to Activity Tracker
 * don't grow past a defined maximum size
 
-[Configuration rules](x3084914){: term} are used to monitor and enforce configuration standards that you want to implement across your accounts. For more information about configuration rules, see [What makes up a rule](/docs/security-compliance?topic=security-compliance-what-is-rule).
+[Configuration rules](x3084914){: term} are used to monitor configuration standards that you want to implement across your accounts. For more information about configuration rules, see [What makes up a rule](/docs/security-compliance?topic=security-compliance-what-is-rule).
 
 | Resource kind | Property                                               | Operator type | Template required | Description                                                                                                                                                                                                      |
 |---------------|--------------------------------------------------------|---------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -101,16 +100,16 @@ Create rules to ensure that Cloud Object Storage buckets:
 Although the operator types may indicate the values are numeric or boolean, all of the values in the rule are entered as strings or lists of strings, such as `'true'` or `'324342'`.  Additionally, even though an operator type might indicate a string, it is still possible to set an array of possible strings that comply with the rule.  For more information, see [What are the supported operators?](https://cloud.ibm.com/docs/security-compliance?topic=security-compliance-what-is-rule#rule-operators)
 {:note}
 
-To learn more about configuration rules and how they are evaluated and enforced, check out [What is a configuration rule?](/docs/security-compliance?topic=security-compliance-what-is-rule).
+To learn more about configuration rules and how they are evaluated, check out [What is a configuration rule?](/docs/security-compliance?topic=security-compliance-what-is-rule).
 
 After [rules are created and added to scopes](/docs/security-compliance?topic=security-compliance-rules), you can view the evaluation results in the {{site.data.keyword.compliance_short}}. Each rule is shown to be compliant or noncompliant - if a rule shows as being noncompliant then you can view the specific bucket that is in violation of the rule. 
 
 The evaluation results are only available for a limited period.  It is recommended that reports are downloaded and organized to maintain a history of compliance for audit purposes. For more information on reporting results, see [Viewing evaluation results](/docs/security-compliance?topic=security-compliance-results).
 {:note}
 
-For example, let's assume you want to enforce a set of requirements on new buckets:
+For example, let's assume you want to evaluate a set of requirements on new buckets:
 
-1. Only buckets in the `us-south` region are subject to the rule (other locations aren't subject to enforcement).
+1. Only buckets in the `us-south` region are subject to the rule (other locations aren't subject to the rule).
 2. Buckets must use the Smart Tier storage class.
 3. Buckets must use Key Protect for managing encryption.
 4. Public ACLs will be ignored (not blocked).
@@ -203,82 +202,6 @@ The rule would look like the following:
    ]
  }
 }
-```
-{: codeblock}
-
-While you can set the enforcement action for this rule to log any violations without trouble, you will need to use a **template** to enforce this rule using `disallow` - as only the `location`, `storage_class`, and `ibm_sse_kms_customer_root_key_crn` can be set when you create a bucket, and the other parameters can only be applied to an existing bucket.
-
-### Using templates to automatically assign default values
-
-When creating a bucket, you can assign the location, storage class, and encryption key CRN.  All other aspects of that bucket's configuration, such as firewall details, activity tracking, metrics monitoring, or a hard quota on a bucket's size must be applied to an existing bucket after creation.  Enforcing these rules would then be paradoxical - as it would not be possible to create a bucket that is in compliance with the security requirements established for new buckets. Templates make it possible to automatically assign default values to ensure that new buckets are in compliance with defined rules.
-
-For step-by-step instructions using the UI and API, see [Managing templates](/docs/security-compliance?topic=security-compliance-templates-define&interface=ui).
-
-The template used to allow enforcement of the above rules would look like the following:
-
-```json
-{
- "target": {
-   "service_name": "cloud-object-storage",
-   "resource_kind": "bucket",
-   "additional_target_attributes": [
-     {
-       "name": "location",
-       "value": "us-south"
-     }
-   ]
- },
- "customized_defaults": [
-     {
-       "property": "storage_class",
-       "value": "smart"    
-     },
-     {
-       "property": "ibm_sse_kms_customer_root_key_crn",
-       "value": "crn:v1:bluemix:public:kms:us-south:a/3bf0d9003abfb5d29761c4e97696b71c:xxxxxxxx-07ba-4eb4-877b-e5b0c4966051:key:7f5f825a-0463-4cf4-9042-44366a7298f6",
-     },
-     {
-       "property": "firewall.allowed_network_type",
-       "value": [
-         "private"
-       ]
-     },
-     {
-       "property": "firewall.allowed_ip",
-       "value": [
-         "fe80:021b::0/64"
-       ]
-     },
-      {
-        "property": "activity_tracking.activity_tracker_crn",
-        "value": "crn:v1:bluemix:public:logdnaat:us-south:a/91631433ee674cd9ab0ef150b8e7030f:xxxxxxx-830b-43f1-b517-0be1bc50108f::"
-      },
-      {
-        "property": "activity_tracking.write_data_events",
-        "value": "true"
-      },
-      {
-        "property": "activity_tracking.read_data_events",
-        "value": "true"
-      },
-      {
-        "property": "metrics_monitoring.metrics_monitoring_crn",
-        "value": "crn:v1:bluemix:public:sysdig-monitor:us-south:a/9xxxxxxxxxb1xxxc7fdxxxxxxxxxx5:7xxxxxxxx0-xx7x-xdx8-9fxx-123456789012::"
-      },
-      {
-        "property": "metrics_monitoring.usage_metrics_enabled",
-        "value": "true"
-      },
-      {
-        "property": "metrics_monitoring.request_metrics_enabled",
-        "value": "true"
-      },
-     {
-       "property": "hard_quota",
-       "value": "10995116277760"
-     }
-   ]
- }
 ```
 {: codeblock}
 

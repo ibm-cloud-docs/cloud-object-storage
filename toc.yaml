@@ -77,7 +77,7 @@ toc:
               topics:
                 - iam.md
                 - iam-overview.md
-                - iam/service-credentials.md
+                - service-credentials.md
                 - topicgroup:
                     label: Using Access/Secret Key (HMAC) authentication
                     topics:
