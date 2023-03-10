@@ -3,7 +3,7 @@
 copyright:
   years: 2023
 
-lastupdated: "2023-03-08"
+lastupdated: "2023-03-10"
 
 keywords: worm, immutable, policy, retention, compliance
 
@@ -23,21 +23,13 @@ Object Lock preserves electronic records and maintains data integrity by ensurin
 ## Why use Object Lock?
 {: #ol-why}
 
-Whether the goal is regulatory compliance or simply adding an extra layer of security and peace of mind, Object Lock prevents unintended alteration or deletion of data. Built on top of object versioning, Object Lock can act as buffer against both simple accidents and complex ransomware attacks.  
+Object Lock helps customers govern data preservation and retention requirements by enforcing data immutability for their backup, disaster recovery, and cyber resiliency workloads. 
 
-## Getting started with Object Lock
-{: #ol-gs}
+When using Object Lock, it is  your responsibility to ensure compliance with any regulations that you (your organization) may be subject to when it comes to preservation and storage of data for long term retention.
+{:important}
 
-In order to get started, there are some some prerequisites: 
-
-- You'll need the `Writer` or `Manager` platform role on a bucket, or a custom role with the appropriate actions (such as `cloud-object-storage.bucket.put_object_lock_configuration`) assigned.
-- The bucket must be empty.
-
-1. After navigating to your chosen source bucket, click the **Configuration** tab.
-2. Look for **Immutability** and click the **Enable Object Lock** button.
-3. Optionally, set a default retention period.
-4. Upload an object and navigate to the object details.
-5. Enter a retention period or enable a legal hold.
+Important: When using Object Lock, you are responsible for ensuring that your IBM Cloud Account is kept in good standing per IBM Cloud policies and guidelines for as long as the data is subject to a retention period. Refer to IBM Cloud Service terms for more information. 
+{:important}
 
 ## Terminology
 {: #ol-terminology}
@@ -76,6 +68,45 @@ Legal holds and retention periods operate independently. Legal holds have no imp
 
 Imagine an object with both a legal hold and a retention period. When the retention period ends, the object version remains protected until the legal hold is removed. If you remove a legal hold while an object version is subject to a retention period it remains protected until the retention period is complete.
 
+Objects locked and stored with a retention period cannot be deleted until retention period expires and any associated legal hold is removed. 
+{:important}
+
+## Getting started with Object Lock
+{: #ol-gs}
+
+In order to get started, there are some some prerequisites: 
+
+- You'll need the `Writer` or `Manager` platform role on a bucket, or a custom role with the appropriate actions (such as `cloud-object-storage.bucket.put_object_lock_configuration`) assigned.
+- The bucket must be empty.
+- Object Versioning must be enabled
+- You will need to use Standard pricing plan, see pricing for details, 
+- You will need to pick a region where Object Lock is supported, refer to Integrated Services for details.
+
+### Creating and setting up your new bucket for use with Object Lock
+{: #ol-gs-new}
+
+1. Navigate to your desired Object Storage instance and use **Create Bucket** with _Customize your bucket option_
+2. Enter the required bucket configuration details as per your use case requirements
+3. Navigate to the _Object Versioning_ section and set it to **Enabled** 
+4. Look for **Immutability**,  and under Object Lock click **Add**
+5. Set Object Lock to **Enabled**
+6. Optionally, set a default retention period.
+7. Click on Save 
+8. Proceed with rest of the configuration settings and click **Create bucket**
+
+### Enabling Object Lock on an existing (empty) bucket:
+{: #ol-gs-existing}
+
+An empty bucket can be set for Object Lock use as follows:
+
+1. Navigate to your bucket **Configuration** section 
+2. Click on **Object Versioning**
+3. At the _Object Versioning_ section click on **Edit**, set the configuration option to **Enabled** and **Save**
+4. Navigate to _Object Lock_ section, click on **Add**
+5. Set _Object Lock_ to **Enabled**
+6. Optionally, set a default retention period.
+7. Click on **Save** 
+
 ## Using Object Lock for business continuity and disaster recovery
 {: #ol-bcdr}
 
@@ -85,6 +116,46 @@ Object Lock can be used to provide continuity of service in the event of a ranso
 {: #ol-consistency}
 
 While IBM Cloud Object Storage provides strong consistency for all data IO operations, bucket configuration is eventually consistent. After enabling a default retention period on a bucket, it may take a few moments for the configuration to propagate across the system and new objects to be assigned the new default. 
+
+## Usage and accounting
+{: #ol-usage}
+
+Locked objects (and their versions) contribute usage just like any other data and you will be responsible for the [usage costs](/docs/cloud-object-storage?topic=cloud-object-storage-billing) for as long as object remains locked with a retention period. 
+
+## Interactions
+{: #ol-interactions}
+
+Object Lock can be used in combination with several object storage features as per your use case requirements. 
+
+### Versioning
+{: #ol-interactions-versioning}
+
+[Enabling versioning](/docs/cloud-object-storage?topic=cloud-object-storage-versioning) is a prerequisite for enabling Object Lock. If a bucket is created using the `x-amz-bucket-object-lock-enabled` header, versioning will automatically be enabled.  
+
+### Replication
+{: #ol-interactions-replication}
+
+Object Lock can only be used on the source bucket for replication, only as the destination.  Objects will be assigned the default retention period.
+
+### Key Management Systems
+{: #ol-interactions-kms}
+
+Protected objects will be [encrypted using the root key](/docs/key-protect?topic=key-protect-about) of the bucket. Ensure that the key remains valid in order to prevent unintended crypto-shredding of protected objects.  
+
+### Lifecycle configurations
+{: #ol-interactions-lifecycle}
+
+It is possible to enable [lifecycle policies](/docs/cloud-object-storage?topic=cloud-object-storage-expiry#expiry-rules-attributes) that archive locked objects, but naturally not those that expire objects.  
+
+### Immutable Object Storage
+{: #ol-interactions-worm}
+
+Object Lock is an alternative to the retention policies available when using Immutable Object Storage.  As Object Lock requires versioning to be enabled, and Immutable Object Storage is not compatible with versioning, it is not possible to have both WORM solutions enabled on the same bucket.  
+
+### Other interactions
+{: #ol-interactions-worm}
+
+There should be no adverse interactions when using Object Lock with other Object Storage features, such as setting CORS policies, setting IP firewalls or condition based restrictions, bucket quotas, replication, or Code Engine.
 
 ## IAM actions
 {: #ol-iam}
@@ -137,43 +208,6 @@ For operations on protected objects, the following fields may be present:
 | `requestData.object_lock_protection.retention.mode`              | Indicates `COMPLIANCE` mode is active on the object version - `GOVERNANCE` mode is not yet supported.                                                |
 | `requestData.object_lock_protection.retention.retain_until_date` | Indicates the date that object version is eligible for deletion. After this date the object is no longer delete protected based on a retention date. |
 
-
-## Usage and accounting
-{: #ol-usage}
-
-Locked objects (and their versions) [contribute usage](/docs/cloud-object-storage?topic=cloud-object-storage-billing) just like any other data.
-
-## Interactions
-{: #ol-interactions}
-
-### Versioning
-{: #ol-interactions-versioning}
-
-[Enabling versioning](/docs/cloud-object-storage?topic=cloud-object-storage-versioning) is a prerequisite for enabling Object Lock. If a bucket is created using the `x-amz-bucket-object-lock-enabled` header, versioning will automatically be enabled.  
-
-### Replication
-{: #ol-interactions-replication}
-
-Object Lock can only be used on the source bucket for replication, only as the destination.  Objects will be assigned the default retention period.
-
-### Key Protect encryption
-{: #ol-interactions-kp}
-
-Protected objects will be [encrypted using the root key](/docs/key-protect?topic=key-protect-about) of the bucket. Ensure that the key remains valid in order to prevent unintended crypto-shredding of protected objects.  
-
-### Lifecycle configurations
-{: #ol-interactions-lifecycle}
-
-It is possible to enable [lifecycle policies](/docs/cloud-object-storage?topic=cloud-object-storage-expiry#expiry-rules-attributes) that archive locked objects, but naturally not those that expire objects.  
-### Immutable Object Storage
-{: #ol-interactions-worm}
-
-Object Lock is an alternative to the retention policies available when using Immutable Object Storage.  As Object Lock requires versioning to be enabled, and Immutable Object Storage is not compatible with versioning, it is not possible to have both WORM solutions enabled on the same bucket.  
-
-### Other interactions
-{: #ol-interactions-worm}
-
-There should be no adverse interactions when using Object Lock with other Object Storage features, such as setting CORS policies, setting IP firewalls or condition based restrictions, bucket quotas, replication, or Code Engine.
 
 ## REST API examples
 {: #ol-apis-examples}
