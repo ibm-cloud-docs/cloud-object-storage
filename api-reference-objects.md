@@ -906,11 +906,11 @@ GET https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId} # virtual
 
 ### Query parameters
 {: #object-operations-multipart-list-params}
-Parameter | Required?| Type | Description
---- | ---- | ------------
-`uploadId` | Required | string | Upload ID returned when initializing a multipart upload.
-`max-parts` | Optional | string | Defaults to 1,000.
-`part-number​-marker` | Optional | string | Defines where the list of parts begins.
+| Parameter           | Required? | Type   | Description                                              |
+|---------------------|-----------|--------|----------------------------------------------------------|
+| `uploadId`          | Required  | string | Upload ID returned when initializing a multipart upload. |
+| `max-parts`         | Optional  | string | Defaults to 1,000.                                       |
+| `part-number​-marker` | Optional  | string | Defines where the list of parts begins.                  |
 
 **Example request**
 {: token}

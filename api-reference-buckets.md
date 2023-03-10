@@ -200,7 +200,10 @@ Not all operations are supported in Satellite environments. For details, see [su
 | Header                             | Type    | Required? | Description                                                                                                          |
 |------------------------------------|---------|-----------|----------------------------------------------------------------------------------------------------------------------|
 | `ibm-service-instance-id`          | String  | Yes       | This header references the service instance where the bucket will be created and to which data usage will be billed. |
-| `x-amz-bucket-object-lock-enabled` | Boolean | No        | Specifies whether you want to enable Object Lock on the new bucket.  This will automatically enable versioning.      |
+| `x-amz-bucket-object-lock-enabled` | Boolean | No        | Specifies whether you want to enable Object Lock on the new bucket.  This will automatically enable versioning. |
+
+When setting Object Lock on a new bucket, ensure that there are no typos in the `x-amz-bucket-object-lock-enabled` header. If either the header or value are mispelled, the bucket will still be created, but Object Lock and Versioning will **not** be enabled.
+{:tip}
 
 Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means in the name of the bucket or object.
 {: note}
