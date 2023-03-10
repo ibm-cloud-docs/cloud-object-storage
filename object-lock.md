@@ -234,11 +234,11 @@ The body of the request must contain an XML block with the following schema:
 | Element                   | Type      | Children                    | Ancestor                  | Constraint                                                                                                     |
 |---------------------------|-----------|-----------------------------|---------------------------|----------------------------------------------------------------------------------------------------------------|
 | `ObjectLockConfiguration` | Container | `ObjectLockEnabled`, `Rule` | None                      | Limit 1.                                                                                                       |
-| `ObjectLockEnabled`       | String    | None                        | `ObjectLockConfiguration` | The only valid value is `ENABLED`.                                                                             |
+| `ObjectLockEnabled`       | String    | None                        | `ObjectLockConfiguration` | The only valid value is `Enabled` (case-sensitive).                                                                             |
 | `Rule`                    | Container | `DefaultRetention`          | `ObjectLockConfiguration` | Limit 1                                                                                                        |
 | `DefaultRetention`        | Container | `Days`, `Mode`, `Years`     | `Rule`                    | Limit 1.                                                                                                       |
 | `Days`                    | Integer   | None                        | `DefaultRetention`        | The number of days that you want to specify for the default retention period. Cannot be combined with `Years`. |
-| `Mode`                    | String    | None                        | `DefaultRetention`        | Only `COMPLIANCE` is supported at this time.                                                                   |
+| `Mode`                    | String    | None                        | `DefaultRetention`        | Only `COMPLIANCE` is supported at this time (case-sensitive).                                                                  |
 | `Years`                   | Integer   | None                        | `DefaultRetention`        | The number of years that you want to specify for the default retention period. Cannot be combined with `Days`. |
 
 This example will retain any new objects for at least 30 days.  
@@ -249,7 +249,7 @@ curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?
      -H 'Content-MD5: exuBoz2kFBykNwqu64JZuA==' \
      -H 'Content-Type: text/plain; charset=utf-8' \
      -d $'<ObjectLockConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-            <ObjectLockEnabled>string</ObjectLockEnabled>
+            <ObjectLockEnabled>Enabled</ObjectLockEnabled>
             <Rule>
                 <DefaultRetention>
                   <Days>30</Days>
@@ -282,6 +282,72 @@ This returns an XML response body with the appropriate schema:
   </Rule>
 </ObjectLockConfiguration>
 ```
+
+### Add or extend a retention period for an object
+{: #ol-apis-object-add}
+
+The Object Lock configuration is provided as XML in the body of the request.  New requests will overwrite any existing replication rules that are present on the object, provided the `RetainUntilDate` is farther in the future than the current value.
+
+
+
+Header                    | Type   | Description
+--------------------------|--------|----------------------------------------------------------------------------------------------------------------------
+`Content-MD5` | String | **Required**: The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.
+
+The body of the request must contain an XML block with the following schema:
+
+| | Element           | Type      | Children                  | Ancestor    | Constraint                                                                           |
+ |-------------------|-----------|---------------------------|-------------|--------------------------------------------------------------------------------------|
+ | `Retention`       | Container | `Mode`, `RetainUntilDate` | None        | Limit 1.                                                                             |
+ | `Mode`            | String    | None                      | `Retention` | Only `COMPLIANCE` is supported at this time (case-sensitive).                        |
+ | `RetainUntilDate` | String    | None                      | `Retention` | The date after which an object is eligible for deletion in ISO8601 Date-Time Format. |
+
+This example will retain any new objects for at least until March 12, 2023.  
+
+```
+curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?object-lock" \
+     -H 'Authorization: Bearer $TOKEN' \
+     -H 'Content-MD5: fT0hYstki6zUvEh7abhcTA==' \
+     -H 'Content-Type: text/plain; charset=utf-8' \
+     -d $'<Retention>
+            <Mode>COMPLIANCE</Mode>
+            <RetainUntilDate>2023-0312T23:01:00.000Z</RetainUntilDate>
+          </Retention>'
+```
+
+A successful request returns a `200` response.
+
+### Add or remove a legal hold for an object
+{: #ol-apis-object-add}
+
+The Object Lock configuration is provided as XML in the body of the request.  New requests will overwrite any existing replication rules that are present on the object, provided the `RetainUntilDate` is farther in the future than the current value.
+
+
+Header                    | Type   | Description
+--------------------------|--------|----------------------------------------------------------------------------------------------------------------------
+`Content-MD5` | String | **Required**: The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.
+
+The body of the request must contain an XML block with the following schema:
+
+| Element     | Type      | Children | Ancestor    | Constraint                                          |
+|-------------|-----------|----------|-------------|-----------------------------------------------------|
+| `LegalHold` | Container | `Status` | None        | Limit 1.                                            |
+| `Status`    | String    | None     | `LegalHold` | Supported values are `ON` or `OFF` (case-sensitive) |
+
+This example will retain any new objects for at least until March 12, 2023.  
+
+```
+curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?legalHold&versionId=$VERSION_ID" \
+     -H 'Authorization: Bearer $TOKEN' \
+     -H 'Content-MD5: FMh6GxizXUBRaiDuB0vtgQ==' \
+     -H 'Content-Type: text/plain; charset=utf-8' \
+     -d $'<LegalHold>
+    <Status>ON</Status>
+</LegalHold>'
+
+```
+
+A successful request returns a `200` response.
 
 ## SDK examples
 {: #ol-sdks}
