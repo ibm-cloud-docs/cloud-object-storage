@@ -25,10 +25,13 @@ Object Lock preserves electronic records and maintains data integrity by ensurin
 
 Object Lock helps customers govern data preservation and retention requirements by enforcing data immutability for their backup, disaster recovery, and cyber resiliency workloads. 
 
+Object Lock ensures that data can not be deleted by anyone, not even IBM Cloud support. Users familiar with AWS S3 Object Lock may notice that only Compliance Mode and not Governance Mode is supported - there is no way to suspend retention on an object. Read the documentation carefully.
+{:important}
+
 When using Object Lock, it is  your responsibility to ensure compliance with any regulations that you (your organization) may be subject to when it comes to preservation and storage of data for long term retention.
 {:important}
 
-Important: When using Object Lock, you are responsible for ensuring that your IBM Cloud Account is kept in good standing per IBM Cloud policies and guidelines for as long as the data is subject to a retention period. Refer to IBM Cloud Service terms for more information. 
+When using Object Lock, you are responsible for ensuring that your IBM Cloud Account is kept in good standing per IBM Cloud policies and guidelines for as long as the data is subject to a retention period. Refer to IBM Cloud Service terms for more information. 
 {:important}
 
 ## Terminology
@@ -44,16 +47,16 @@ It is possible to make use of any combination of these parameters - an object ve
 ### Retain Until Date (Retention Period)
 {: #ol-terminology-retention-period}
 
-If you need to protect an object version for a fixed amount of time, you need to specify a *retention period*. The object version can be be deleted after this period expires (assuming there are no legal holds on the object version).
+If you need to protect an object version for a fixed amount of time, you need to specify a *Retain Until Date* which determines the period in which it cannot be altered. The object version can be be deleted after this date is passed (assuming there are no legal holds on the object version).
 
 The retention period for new objects can be inherited from the default value set on the bucket, or it can be explicitly defined when writing the object by specifying a *Retain Until Date*. 
 
 When you use bucket default settings, you don’t specify a Retain Until Date. Instead, you specify a duration, in either days or years, for which every object version placed in the bucket should be protected. When you place an object in the bucket, a Retain Until Date is calculated for the object version by adding the specified duration to the time of the object write.
 
-If your request to place an object version in a bucket contains an explicit retention mode and period, those settings override any bucket default settings for that object version.
+If your request to place an object version in a bucket contains an explicit retention mode and Retain Until Date, those settings override any bucket default settings for that object version.
 {:note}
 
-Like all other Object Lock settings, retention periods apply to individual object versions. Different versions of a single object can have different retention modes and periods.
+Like all other Object Lock settings, the Retain Until Date applies to individual object versions. Different versions of a single object can have different retention modes and periods.
 
 Imagine an object that is 60 days into a 90-day retention period, and you overwrite that object with the same name and a two year retention period. The operation will succeed and a new version of the object with a two year retention period is created. Meanwhile, after 30 more days the original version is eligible for deletion.
 
@@ -65,7 +68,9 @@ To extend the retention period of an object, simply send a request to set a new,
 ### Legal Hold
 {: #ol-terminology-legal-hold}
 
-A *legal hold* is ike a retention period in that it prevents an object version from being overwritten or deleted. However, legal holds are more flexible and don't have a defined temporal component. Instead they simply remain in effect until removed. Legal holds can be freely placed and removed by any user who has the `cloud-object-storage.object.put_object_lock_legal_hold` and `cloud-object-storage.object.put_object_lock_legal_hold_version` actions. 
+A *legal hold* is like a retention period in that it prevents an object version from being overwritten or deleted. However, legal holds are more flexible and don't have a defined temporal component. Instead they simply remain in effect until removed. Legal holds can be freely placed and removed by any user who has the `cloud-object-storage.object.put_object_lock_legal_hold` and `cloud-object-storage.object.put_object_lock_legal_hold_version` actions. 
+
+Legal holds have the additional benefit of acting as method for applying indefinite retention on an object. 
 
 Legal holds and retention periods operate independently. Legal holds have no impact on retention periods, and vice-versa.
 
@@ -185,6 +190,8 @@ There are new IAM actions associated with Object Lock.
 | `cloud-object-storage.object.put_object_lock_legal_hold`         | Manager, Writer         |
 | `cloud-object-storage.object.get_object_lock_legal_hold_version` | Manager, Writer, Reader |
 | `cloud-object-storage.object.put_object_lock_legal_hold_version` | Manager, Writer         |
+
+Be advised that users with the Writer role are capable of making objects undeletable for many years (possibly thousand of years).  Be careful, and consider crafting custom roles that do not allow most users to set a Retain Until Date.
 
 ## Activity Tracker events 
 {: #ol-at}
@@ -313,7 +320,7 @@ The body of the request must contain an XML block with the following schema:
 This example will retain any new objects for at least until March 12, 2023.  
 
 ```
-curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?object-lock" \
+curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?retention" \
      -H 'Authorization: Bearer $TOKEN' \
      -H 'Content-MD5: fT0hYstki6zUvEh7abhcTA==' \
      -H 'Content-Type: text/plain; charset=utf-8' \
