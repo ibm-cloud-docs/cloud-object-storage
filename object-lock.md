@@ -25,7 +25,7 @@ Object Lock preserves electronic records and maintains data integrity by ensurin
 
 Object Lock helps customers govern data preservation and retention requirements by enforcing data immutability for their backup, disaster recovery, and cyber resiliency workloads. 
 
-Object Lock ensures that data can not be deleted by anyone, not even IBM Cloud support. Users familiar with AWS S3 Object Lock may notice that only Compliance Mode and not Governance Mode is supported - there is no way to suspend retention on an object. Read the documentation carefully.
+Object Lock ensures that **data cannot be deleted by anyone**, not even IBM Cloud support or internal administrators. No Governance Mode is currently supported - there is **no way to suspend retention** on an object. Read the documentation carefully.
 {:warning}
 
 When using Object Lock, it is your responsibility to ensure compliance with any regulations that you (your organization) may be subject to when it comes to preservation and storage of data for long term retention.
