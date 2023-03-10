@@ -110,6 +110,14 @@ An empty bucket can be set for Object Lock use as follows:
 6. Optionally, set a default retention period.
 7. Click on **Save** 
 
+### Adding a Retain Until Date or Legal Hold to an object
+{: #ol-gs-object}
+
+1. Navigate to the bucket with the target object
+2. Toggle **Display Versions**
+3. Go to the details of the target version
+4. Add a retention period and/or toggle on a legal hold.
+
 ## Using Object Lock for business continuity and disaster recovery
 {: #ol-bcdr}
 
