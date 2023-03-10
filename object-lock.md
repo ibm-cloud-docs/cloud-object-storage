@@ -57,6 +57,9 @@ Like all other Object Lock settings, retention periods apply to individual objec
 
 Imagine an object that is 60 days into a 90-day retention period, and you overwrite that object with the same name and a two year retention period. The operation will succeed and a new version of the object with a two year retention period is created. Meanwhile, after 30 more days the original version is eligible for deletion.
 
+### Extending a retention period
+{: #ol-terminology-retention-period-extend}
+
 To extend the retention period of an object, simply send a request to set a new, longer, retention period.  The old value will be overwritten with the new, assuming the requestor has the `cloud-object-storage.object.put_object_lock_retention` and `cloud-object-storage.object.put_object_lock_retention_version` actions.
 
 ### Legal Hold
