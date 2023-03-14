@@ -91,7 +91,7 @@ In order to get started, there are some some prerequisites:
 - A maximum default retention period of 100 years (or 36500 days) is supported.
 - When using the console, it is also possible to set a Retain Until Date in months, in addition to days or years.
 
-A retention period on an object **cannot be decreased**. If you are using default retention for validation testing please use a lower duration (such as 1 day) as the default retention, changing it to your desired setting as per your use case requirements.
+The retention period for an object **cannot be decreased**. If you are using default retention for validation testing please use a lower duration (such as 1 day) as the default retention, increasing it to your desired setting as needed.
 {:tip}
 
 ### Creating and setting up your new bucket for use with Object Lock
