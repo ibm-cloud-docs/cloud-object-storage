@@ -88,7 +88,7 @@ In order to get started, there are some some prerequisites:
 - Object Versioning must be enabled
 - You will need to use Standard pricing plan, see [pricing](/docs/cloud-object-storage?topic=cloud-object-storage-billing) for details.
 - You will need to pick a region where Object Lock is supported, refer to [Integrated Services](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability) for details.
-- A maximum default retention period of 100 years is supported.
+- A maximum default retention period of 100 years (or 36500 days) is supported.
 - When using the console, it is also possible to set a Retain Until Date in months, in addition to days or years.
 
 A retention period on an object **cannot be decreased**. If you are using default retention for validation testing please use a lower duration (such as 1 day) as the default retention, changing it to your desired setting as per your use case requirements.
