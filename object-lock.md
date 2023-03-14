@@ -26,10 +26,10 @@ Object Lock preserves electronic records and maintains data integrity by ensurin
 Object Lock helps customers govern data preservation and retention requirements by enforcing data immutability for their backup, disaster recovery, and cyber resiliency workloads. 
 
 Object Lock ensures that **data cannot be deleted by anyone**, not even IBM Cloud support or internal administrators. No Governance Mode is currently supported - there is **no way to suspend retention** on an object. Read the documentation carefully.
-{:warning}
+{:attention}
 
 When using Object Lock, it is your responsibility to ensure compliance with any regulations that you (your organization) may be subject to when it comes to preservation and storage of data for long term retention.
-{:important}
+{:remember}
 
 When using Object Lock, you are responsible for ensuring that your IBM Cloud Account is kept in good standing per IBM Cloud policies and guidelines for as long as the data is subject to a retention period. Refer to IBM Cloud Service terms for more information. 
 {:important}
@@ -88,6 +88,11 @@ In order to get started, there are some some prerequisites:
 - Object Versioning must be enabled
 - You will need to use Standard pricing plan, see [pricing](/docs/cloud-object-storage?topic=cloud-object-storage-billing) for details.
 - You will need to pick a region where Object Lock is supported, refer to [Integrated Services](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability) for details.
+- A maximum default retention period of 100 years is supported.
+- When using the console, it is also possible to set a Retain Until Date in months, in addition to days or years.
+
+A retention period on an object **cannot be decreased**. If you are using default retention for validation testing please use a lower duration (such as 1 day) as the default retention, changing it to your desired setting as per your use case requirements.
+{:tip}
 
 ### Creating and setting up your new bucket for use with Object Lock
 {: #ol-gs-new}
