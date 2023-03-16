@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-03-17"
+lastupdated: "2023-03-16"
 
 keywords: updates, releases, news, object storage
 
@@ -20,8 +20,8 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
-## 17 March 2023
-{: #cloud-object-storage-mar1723}
+## 16 March 2023
+{: #cloud-object-storage-mar1623}
 {: release-note}
 
 New feature!
