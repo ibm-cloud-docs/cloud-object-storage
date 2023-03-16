@@ -3,7 +3,7 @@
 copyright:
   years: 2023
 
-lastupdated: "2023-03-14"
+lastupdated: "2023-03-16"
 
 keywords: worm, immutable, policy, retention, compliance
 
@@ -25,7 +25,7 @@ Object Lock preserves electronic records and maintains data integrity by ensurin
 
 Object Lock helps customers govern data preservation and retention requirements by enforcing data immutability for their backup, disaster recovery, and cyber resiliency workloads. 
 
-Object Lock ensures that **data cannot be deleted by anyone**, not even IBM Cloud support or internal administrators. No Governance Mode is currently supported - there is **no way to suspend retention** on an object. Read the documentation carefully.
+Object Lock ensures that **data cannot be deleted by anyone** and there is **no way to suspend retention on an object**. Read the documentation carefully before locking objects with a retention period.
 {:attention}
 
 When using Object Lock, it is your responsibility to ensure compliance with any regulations that you (your organization) may be subject to when it comes to preservation and storage of data for long term retention.
@@ -78,6 +78,9 @@ Imagine an object with both a legal hold and a retention period. When the retent
 
 Objects locked and stored with a retention period cannot be deleted until retention period expires and any associated legal hold is removed. 
 {:important}
+
+Locking objects with a Governance Mode is not supported.
+{:note}
 
 ## Getting started with Object Lock
 {: #ol-gs}
@@ -175,7 +178,7 @@ It is possible to enable lifecycle policies that [archive locked objects](/docs/
 
 Object Lock is an alternative to the retention policies available when using Immutable Object Storage.  As Object Lock requires versioning to be enabled, and Immutable Object Storage is not compatible with versioning, it is not possible to have both WORM solutions enabled on the same bucket. It is possible to have a mix of buckets in a Service Instance, each using either Immutable Object Storage or Object Lock. 
 
-## Object Tagging
+### Object Tagging
 {: #ol-interactions-tagging}
 
 There are no restrictions on adding or modifying tags on a protected object.

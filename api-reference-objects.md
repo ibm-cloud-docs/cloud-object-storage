@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-01-19"
+  years: 2017, 2023
+lastupdated: "2022-03-17"
 
 keywords: rest, s3, compatibility, api, objects
 
@@ -71,6 +71,9 @@ PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 Header | Type | Description
 --- | ---- | ------------
 `x-amz-tagging` | string | A set of tags to apply to the object, formatted as query parameters (`"SomeKey=SomeValue"`).
+`x-amz-object-lock-mode` | string | Valid value is `COMPLIANCE` - required if `x-amz-object-lock-retain-until-date` is present.
+`x-amz-object-lock-retain-until-date` | ISO8601 Date and Time | Required if `x-amz-object-lock-mode` is present.
+`x-amz-object-lock-legal-hold` | string | Valid values are `ON` or `OFF`.
 
 **Example request**
 {: token}
@@ -405,6 +408,73 @@ Content-Length: 207
 
 ----
 
+## Add or extend retention on an object
+{: #object-operations-add-retention}
+
+A `PUT` issued to an object with the proper parameters adds or extends retention period of the object.
+
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+{: note}
+
+**Syntax**
+
+```bash
+PUT https://{endpoint}/{bucket-name}/{object-name}?retention # path style
+PUT https://{bucket-name}.{endpoint}/{object-name}?retention # virtual host style
+```
+{: codeblock}
+
+**Payload Elements**
+
+The body of the request must contain an XML block with the following schema:
+
+| Element | Type      | Children   | Ancestor | Notes    |
+|---------|-----------|------------|----------|----------|
+| Retention | Container | Mode, RetainUntilDate     | -        | Required |
+| Mode  | String | -        | Retention  | Required - valid value is COMPLIANCE |
+| RetainUntilDate     | Timestamp    | - | Retention   | Required |
+
+The following code shows one example of how to create the necessary representation of the header content:
+
+```
+echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
+```
+{:codeblock}
+
+**Example request**
+
+This is an example of adding or extending retention on an object.
+
+```http
+PUT /apiary/myObject?retention HTTP/1.1
+Authorization: Bearer {token}
+Content-Type: text/plain
+Content-MD5: cDeRJIdLuEXWmLpA79K2kg==
+Host: s3.us.cloud-object-storage.appdomain.cloud
+Content-Length: 119
+```
+
+```xml
+<Retention>
+    <Mode>COMPLIANCE</Mode>
+    <RetainUntilDate>2023-04-12T23:01:00.000Z</RetainUntilDate>
+</Retention>
+```
+
+
+**Example response**
+
+```http
+HTTP/1.1 200 OK
+Date: Wed, 5 Oct 2020 15:39:38 GMT
+X-Clv-Request-Id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
+Accept-Ranges: bytes
+Content-Length: 0
+```
+
+----
+
+----
 ## Add tags to an object
 {: #object-operations-add-tags}
 
