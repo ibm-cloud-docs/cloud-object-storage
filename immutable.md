@@ -1,7 +1,7 @@
 ---
 
 copyright:
-  years: 2017, 2022
+  years: 2017, 2023
 
 lastupdated: "2022-05-11"
 
@@ -14,7 +14,7 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Use Immutable Object Storage
+# Using Immutable Object Storage to protect buckets
 {: #immutable}
 
 Immutable Object Storage preserves electronic records and maintains data integrity. Retention policies ensure that data is stored in a WORM (Write-Once-Read-Many), non-erasable and non-rewritable manner. This policy is enforced until the end of a retention period and the removal of any legal holds. 

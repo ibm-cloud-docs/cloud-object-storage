@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-06-057"
+  years: 2017, 2023
+lastupdated: "2023-03-17"
 
 keywords: updates, releases, news, object storage
 
@@ -19,6 +19,13 @@ content-type: release-note
 
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
+
+## 17 March 2023
+{: #cloud-object-storage-mar1723}
+{: release-note}
+
+New feature!
+:   It is now possible to [lock objects](/docs/cloud-object-storage?topic=cloud-object-storage-ol-overview) to ensure individual object versions are stored in a WORM (Write-Once-Read-Many), non-erasable and non-rewritable manner.
 
 ## 26 September 2022
 {: #cloud-object-storage-sep2622}
