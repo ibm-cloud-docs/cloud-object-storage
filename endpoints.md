@@ -1,9 +1,9 @@
 ---
 
 copyright:
-  years: 2017, 2022
+  years: 2017, 2022, 2023
 
-lastupdated: "2022-12-19"
+lastupdated: "2023-04-14"
 
 keywords: endpoint, location, object storage
 
@@ -151,7 +151,6 @@ If a networking failure results in a partition where the data center is unable t
 | ------- | ------ | ----------------------------------------------- |
 | `ams03` | Public | `s3.ams03.cloud-object-storage.appdomain.cloud` |
 | `che01` | Public | `s3.che01.cloud-object-storage.appdomain.cloud` |
-| `mex01` | Public | `s3.mex01.cloud-object-storage.appdomain.cloud` |
 | `mil01` | Public | `s3.mil01.cloud-object-storage.appdomain.cloud` |
 | `mon01` | Public | `s3.mon01.cloud-object-storage.appdomain.cloud` |
 | `par01` | Public | `s3.par01.cloud-object-storage.appdomain.cloud` |
@@ -167,7 +166,6 @@ If a networking failure results in a partition where the data center is unable t
 | ------- | ------- | ------------------------------------------------------- |
 | `ams03` | Private | `s3.private.ams03.cloud-object-storage.appdomain.cloud` |
 | `che01` | Private | `s3.private.che01.cloud-object-storage.appdomain.cloud` |
-| `mex01` | Private | `s3.private.mex01.cloud-object-storage.appdomain.cloud` |
 | `mil01` | Private | `s3.private.mil01.cloud-object-storage.appdomain.cloud` |
 | `mon01` | Private | `s3.private.mon01.cloud-object-storage.appdomain.cloud` |
 | `par01` | Private | `s3.private.par01.cloud-object-storage.appdomain.cloud` |
@@ -184,7 +182,6 @@ If a networking failure results in a partition where the data center is unable t
 | ------- | ------ | ------------------------------------------------------ |
 | `ams03` | Direct | `s3.direct.ams03.cloud-object-storage.appdomain.cloud` |
 | `che01` | Direct | `s3.direct.che01.cloud-object-storage.appdomain.cloud` |
-| `mex01` | Direct | `s3.direct.mex01.cloud-object-storage.appdomain.cloud` |
 | `mil01` | Direct | `s3.direct.mil01.cloud-object-storage.appdomain.cloud` |
 | `mon01` | Direct | `s3.direct.mon01.cloud-object-storage.appdomain.cloud` |
 | `par01` | Direct | `s3.direct.par01.cloud-object-storage.appdomain.cloud` |
@@ -233,6 +230,9 @@ Over time, it may be necessary for locations to transform from a Single Data Cen
 | `mel01` | Public  | `s3.mel01.cloud-object-storage.appdomain.cloud`         |
 | `mel01` | Private | `s3.private.mel01.cloud-object-storage.appdomain.cloud` |
 | `mel01` | Direct  | `s3.direct.mel01.cloud-object-storage.appdomain.cloud`  |
+| `mex01` | Public  | `s3.mex01.cloud-object-storage.appdomain.cloud`         |
+| `mex01` | Private | `s3.private.mex01.cloud-object-storage.appdomain.cloud` |
+| `mex01` | Direct  | `s3.direct.mex01.cloud-object-storage.appdomain.cloud`  |
 | `tor01` | Public  | `s3.tor01.cloud-object-storage.appdomain.cloud`         |
 | `tor01` | Private | `s3.private.tor01.cloud-object-storage.appdomain.cloud` |
 | `tor01` | Direct  | `s3.direct.tor01.cloud-object-storage.appdomain.cloud`  |
