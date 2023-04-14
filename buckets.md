@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-10-13"
+  years: 2017, 2022, 2023
+lastupdated: "2023-04-14"
 
 keywords: access control, iam, basics, buckets
 
@@ -66,7 +66,7 @@ To create a new bucket-level policy:
 ![Role_information](images/console-iam-changes-role-cos.png){: caption="Figure 1. Example actions per Content Reader role"}
 
 Note that leaving the **Resource Type** or **Resource** fields blank will create an instance-level policy.
-{:tip}
+{: tip}
 
 ### Create a new policy for a user
 {: #iam-policy-enforcement-cli}
@@ -82,14 +82,14 @@ ibmcloud iam user-policy-create <user-name> \
       --resource-type bucket \
       --resource <bucket-name>
 ```
-{:codeblock}
+{: codeblock}
 
 To list existing policies:
 
 ```bash
 ibmcloud iam user-policies <user-name>
 ```
-{:codeblock}
+{: codeblock}
 
 To edit an existing policy:
 
@@ -105,7 +105,8 @@ ibmcloud iam user-policy-update <user-name> <policy-id> \
 
 ## Granting access to a Service ID
 {: #iam-service-id}
-If you need to grant,  access to a bucket for an application or other non-human entity, use a Service ID. The Service ID can be created specifically for this purpose, or can be an existing Service ID already in use.
+
+If you need to grant access to a bucket for an application or other non-human entity, use a Service ID. The Service ID can be created specifically for this purpose, or can be an existing Service ID already in use.
 
 ### Create a new policy for a user
 {: #iam-service-id-console}
@@ -119,7 +120,7 @@ If you need to grant,  access to a bucket for an application or other non-human 
 5. Click **Submit**
 
 Note that leaving the **Resource Type** or **Resource** fields blank will create an instance-level policy.
-{:tip}
+{: tip}
 
 ### Create a new policy for a Service ID
 {: #iam-service-id-cli}
