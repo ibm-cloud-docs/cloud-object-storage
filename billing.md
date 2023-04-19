@@ -65,6 +65,9 @@ Deleting buckets or objects from the system does not incur a charge.
 | Class A | PUT, COPY, and POST requests, as well as GET requests used to list buckets and objects | Creating buckets, uploading or copying objects, listing buckets, listing contents of buckets, setting ACLs, and setting CORS configurations |
 | Class B | GET (excluding listing), HEAD, and OPTIONS requests | Retrieving objects and metadata |
 
+Requests made using the Resource Configuration API are not charged for requests and do not accrue usage for billing purposes.
+{: note}
+
 ## Aspera transfers
 {: #billing-aspera}
 
