@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-02-01"
+lastupdated: "2023-04-27"
 
 keywords: authorization, iam, basics, credentials
 
@@ -14,21 +14,23 @@ subcollection: cloud-object-storage
 {{site.data.keyword.attribute-definition-list}}
 
 # Service credentials
+
 {: #service-credentials}
 
 A [service credential](/docs/account?topic=account-service_credentials&interface=ui) provides the necessary information to connect an application to {{site.data.keyword.cos_short}} packaged in a JSON document. 
 {: shortdesc}
 
-Service credentials are always associated with a Service ID, and new Service IDs can be created along with a new credential. 
+Service credentials are always associated with a Service ID, and new Service IDs can be created along with a new credential.
 
-For a user to view a credential they must be granted the Administrator platform role or a custom role that has the `resource-controller.credential.retrieve_all` action. For more information about [this update](/docs/overview?topic=overview-whatsnew), see [the documentation](/docs/account?topic=account-service_credentials&interface=ui#viewing-credentials-ui).
+For a user to view a credential they must be granted the Administrator platform role or a custom role that has the `resource-controller.credential.retrieve_all` action. For more information about [this update](/docs/overview?overview-whatsnew#overview-may2022), see [the documentation](/docs/account?topic=account-service_credentials&interface=ui#viewing-credentials-ui).
 {: important}
 
 Use the following steps to create a service credential:
+
 1. Log in to the {{site.data.keyword.cloud_notm}} console and navigate to your instance of {{site.data.keyword.cos_short}}.
-2. In the side navigation, click **Service Credentials**. 
-3. Click **New credential** and provide the necessary information. If you want to generate HMAC credentials, click on `Advanced Options` to reveal the 'Include HMAC Credential' option. Verify the option is selected before continuing. 
-4. Click **Add** to generate service credential.
+1. In the side navigation, click **Service Credentials**.
+1. Click **New credential** and provide the necessary information. If you want to generate HMAC credentials, click on `Advanced Options` to reveal the 'Include HMAC Credential' option. Verify the option is selected before continuing.
+1. Click **Add** to generate service credential.
 
 When creating a service credential, it is possible to provide a value of `None` for the role.  This will prevent the creation of unintended or unnecessary IAM access policies. Any access policies for the associated service ID will need to be managed using the IAM console or APIs.
 {: tip}
