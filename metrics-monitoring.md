@@ -28,7 +28,7 @@ This feature is not currently supported in {{site.data.keyword.cos_short}} for {
 ## Features
 {: #mm-cos-features}
 
-{{site.data.keyword.mon_full_notm}} is a cloud-native management system. Documentation from [{{site.data.keyword.mon_short}}](/docs/Monitoring-with-Sysdig?topic=Monitoring-with-Sysdig-monitoring#monitoring_dashboards) can guide you in how to use the comprehensive dashboards. In this guide we will focus on how to measure activity on individual buckets in your instance of {{site.data.keyword.cos_full_notm}}.
+{{site.data.keyword.mon_full_notm}} is a cloud-native management system. Documentation from [{{site.data.keyword.mon_short}}](/docs/monitoring?topic=monitoring-dashboards) can guide you in how to use the comprehensive dashboards. In this guide we will focus on how to measure activity on individual buckets in your instance of {{site.data.keyword.cos_full_notm}}.
 
 ### Working with Metrics
 {: #mm-cos-metrics}
