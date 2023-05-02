@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2023
 
-lastupdated: "2023-03-09"
+lastupdated: "2023-05-02"
 
 keywords: aspera, key protect, archive, worm
 
@@ -61,7 +61,7 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | `ca-tor`   | No     | Yes         | Yes (see note)                 | Yes          | Yes         | Yes                      | `ca-tor`         | Yes       | Yes        | `ca-tor`   | Yes         | Yes      |
 | `br-sao`   | No     | Yes         | Yes (see note)                 | Yes          | Yes         | Yes                      | `br-sao`         | Yes       | Yes        | `br-sao`   | Yes         | Yes      |
 
-It is possible to create a bucket and associate any available Key Protect or Hyper Protect Crypto Services instance with any of the listed Cloud Object Storage locations. Hyper Protect Crypto Services is only available in selected locations and it is your responsibility to ensure the location/region you select meets any pertinent requirements. Please refer to [Hyper Protect Crypto Services documentation](/docs/hs-crypto?topic=hs-crypto-regions) for a list of regions/locations currently available. 
+It is possible to create a bucket and associate any available Key Protect or Hyper Protect Crypto Services instance with any of the listed Cloud Object Storage locations. Hyper Protect Crypto Services is only available in selected locations and it is your responsibility to ensure the location/region you select meets any pertinent requirements. Please refer to [Hyper Protect Crypto Services documentation](/docs/hs-crypto?topic=hs-crypto-regions) for a list of regions/locations currently available.
 {:note}
 
 ## Single Data Centers
@@ -71,14 +71,13 @@ It is possible to create a bucket and associate any available Key Protect or Hyp
 |---------|--------|-------------|--------------------------------|--------------|--------------|--------------------------|------------------|-----------|------------|------------|-------------| -----------|
 | `ams03` | No     | No          | No                             | No           | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    | Yes         | Yes        |
 | `che01` | No     | No          | No                             | No           | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   | Yes         | Yes        |
-| `mex01` | No     | No          | No                             | No           | No           | No                       | `us-south`       | No        | Yes        | `us-south` | No          | Yes        |
 | `mil01` | No     | No          | No                             | No           | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    | Yes         | Yes        |
 | `mon01` | No     | No          | No                             | No           | No           | No                       | `us-south`       | No        | Yes        | `us-south` | Yes         | Yes        |
 | `par01` | No     | No          | No                             | No           | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    | Yes         | Yes        |
 | `sjc01` | No     | No          | No                             | No           | No           | No                       | `us-south`       | No        | Yes        | `us-south` | Yes         | Yes        |
 | `sng01` | No     | No          | No                             | No           | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   | Yes         | Yes        |
 
-## Satellite 
+## Satellite
 {: #service-availability-sat}
 | Location  | Aspera | Key Protect (IBM Cloud) | {{site.data.keyword.hscrypto}} | Archive Data | Object Lock  | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring |
 |-----------|--------|-------------------------|--------------------------------|--------------|--------------|--------------------------|------------------|-----------|------------|------------|
