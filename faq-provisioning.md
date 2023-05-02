@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-11-29"
+  years: 2017, 2021, 2023
+lastupdated: "2023-04-17"
 
 keywords: faq, frequently asked questions, object storage
 
@@ -75,7 +75,7 @@ Object names that contain unicode characters that are not allowed by the XML sta
 {: #faq-lite-storage}
 {: faq}
  
-If you have a Lite plan, you can provision only one instance of the service.
+If you already have a Lite plan instance created, you may create other Standard plan instances, but only one Lite plan instance is allowed.
 
 ## What happens if I exceed the maximum usage allowed for a Lite plan?
 {: #faq-lite-exceed}

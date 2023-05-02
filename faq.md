@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-11-29"
+  years: 2017, 2021, 2023
+lastupdated: "2023-04-17"
 
 keywords: faq, frequently asked questions, object storage
 
@@ -172,11 +172,11 @@ If you do not first empty and then delete the bucket, and instead [delete or sch
 ```CredentialRetrievalError``` can occur due to the following reasons:
 
 * The API key is not valid.
-* The IAM endpoint is incorrect. 
+* The IAM endpoint is incorrect.
 
 However, if the issue persists, contact IBM customer support.
 
-## How can I ensure communication with {{site.data.keyword.cos_short}}?
+## How do I ensure communication with {{site.data.keyword.cos_short}}?
 {: #faq-faq-error}
 {: faq}
 

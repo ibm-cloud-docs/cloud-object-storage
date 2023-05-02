@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-09-26"
+  years: 2017, 2022, 2023
+lastupdated: "2023-05-02"
 
 keywords: provision, create, service
 
@@ -54,7 +54,7 @@ Now that you have a platform account, you can create a new {{site.data.keyword.c
    
 1. Look for the **Object Storage** tile in the storage section and select it.
 
-   ![github_desktop_setup](http://docs-resources.s3.us.cloud-object-storage.appdomain.cloud/object-storage-card.jpg){: caption="Figure 2. Select {{site.data.keyword.cos_short}}"}
+   ![github_desktop_setup](images/object-storage-card.jpg){: caption="Figure 2. Select {{site.data.keyword.cos_short}}"}
 
 1. Give the service instance a name and choose a plan.
 1. Click **Create** and you're automatically redirected to your new instance.
