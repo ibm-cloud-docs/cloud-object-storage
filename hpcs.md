@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2022
-lastupdated: "2022-06-07"
+  years: 2018, 2022, 2023
+lastupdated: "2023-05-01"
 
 keywords: encryption, security, {{site.data.keyword.hscrypto}}
 
@@ -136,7 +136,7 @@ If the Cross Region bucket creation in US Cross Region with a {{site.data.keywor
 
 Key rotation is an important part of mitigating the risk of a data breach. Periodically changing keys reduces the potential data loss if the key is lost or compromised. The frequency of key rotations varies by organization and depends on a number of variables, such as the environment, the amount of encrypted data, classification of the data, and compliance laws. The [National Institute of Standards and Technology (NIST)](https://www.nist.gov/topics/cryptography){: external} provides definitions of appropriate key lengths and provides guidelines for how long keys should be used.
 
-For more information, see the documentation for rotating keys in [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-key-rotation#root-key-rotation-intro).
+For more information, see the documentation for rotating keys in [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-key-root-key-rotation-intro).
 
 ### Disabling and re-enabling keys
 {: #hpcs-disable}
