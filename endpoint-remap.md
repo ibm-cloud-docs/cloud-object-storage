@@ -1,9 +1,8 @@
 ---
  
 copyright:
-  years: 2017, 2022
-
-lastupdated: "2022-12-09"
+  years: 2017, 2022, 2023
+lastupdated: "2023-05-02"
 
 keywords: endpoint, location, object storage
 
@@ -16,7 +15,7 @@ subcollection: cloud-object-storage
 # Legacy endpoints
 {: #remap-endpoints}
 
-Over time the endpoint URLs used to access {{site.data.keyword.cos_short}} have changed, and older applications and workflows should be updated to use the newer addresses. 
+Over time the endpoint URLs used to access {{site.data.keyword.cos_short}} have changed, and older applications and workflows should be updated to use the newer addresses.
 {: shortdesc}
 
 
@@ -164,7 +163,7 @@ Buckets that are created at a cross region endpoint distribute data across three
 ## Single Data Center Endpoints
 {: #remap-endpoints-zone}
 
-Single data centers are not colocated with IBM Cloud services, such as IAM or Key Protect, and offer no resiliency in a site outage or destruction. 
+Single data centers are not colocated with IBM Cloud services, such as IAM or Key Protect, and offer no resiliency in a site outage or destruction.
 
 If a networking failure results in a partition where the data center is unable to access IAM, authentication and authorization information is read from a cache that might become stale. This cached data might result in a lack of enforcement of new or altered IAM policies for up to 24 hours.
 {: important}
@@ -173,7 +172,6 @@ If a networking failure results in a partition where the data center is unable t
 |-----------------------------|--------|----------------------------------------|-------------------------------------------------|
 | Amsterdam, Netherlands      | Public | `s3.ams03.objectstorage.softlayer.net` | `s3.ams03.cloud-object-storage.appdomain.cloud` |
 | Chennai, India              | Public | `s3.che01.objectstorage.softlayer.net` | `s3.che01.cloud-object-storage.appdomain.cloud` |
-| Mexico City, Mexico         | Public | `s3.mex01.objectstorage.softlayer.net` | `s3.mex01.cloud-object-storage.appdomain.cloud` |
 | Milan, Italy                | Public | none                                   | `s3.mil01.cloud-object-storage.appdomain.cloud` |
 | Montr&egrave;al, Canada     | Public | `s3.mon01.objectstorage.softlayer.net` | `s3.mon01.cloud-object-storage.appdomain.cloud` |
 | Paris, France               | Public | `s3.par01.objectstorage.softlayer.net` | `s3.par01.cloud-object-storage.appdomain.cloud` |
@@ -190,7 +188,6 @@ If a networking failure results in a partition where the data center is unable t
 |-----------------------------|---------|---------------------------------------------------|---------------------------------------------------------|
 | Amsterdam, Netherlands      | Private | `s3.ams03.objectstorage.service.networklayer.com` | `s3.private.ams03.cloud-object-storage.appdomain.cloud` |
 | Chennai, India              | Private | `s3.che01.objectstorage.service.networklayer.com` | `s3.private.che01.cloud-object-storage.appdomain.cloud` |
-| Mexico City, Mexico         | Private | `s3.mex01.objectstorage.service.networklayer.com` | `s3.private.mex01.cloud-object-storage.appdomain.cloud` |
 | Milan, Italy                | Private | none                                              | `s3.private.mil01.cloud-object-storage.appdomain.cloud` |
 | Montr&egrave;al, Canada     | Private | `s3.mon01.objectstorage.service.networklayer.com` | `s3.private.mon01.cloud-object-storage.appdomain.cloud` |
 | Paris, France               | Private | `s3.par01.objectstorage.service.networklayer.com` | `s3.private.par01.cloud-object-storage.appdomain.cloud` |
@@ -207,7 +204,6 @@ If a networking failure results in a partition where the data center is unable t
 |-----------------------------|--------|-----------------------------------------------|--------------------------------------------------------|
 | Amsterdam, Netherlands      | Direct | `s3.ams03.objectstorage.adn.networklayer.com` | `s3.direct.ams03.cloud-object-storage.appdomain.cloud` |
 | Chennai, India              | Direct | `s3.che01.objectstorage.adn.networklayer.com` | `s3.direct.che01.cloud-object-storage.appdomain.cloud` |
-| Mexico City, Mexico         | Direct | `s3.mex01.objectstorage.adn.networklayer.com` | `s3.direct.mex01.cloud-object-storage.appdomain.cloud` |
 | Milan, Italy                | Direct | none                                          | `s3.direct.mil01.cloud-object-storage.appdomain.cloud` |
 | Montr&egrave;al, Canada     | Direct | `s3.mon01.objectstorage.adn.networklayer.com` | `s3.direct.mon01.cloud-object-storage.appdomain.cloud` |
 | Paris, France               | Direct | `s3.par01.objectstorage.adn.networklayer.com` | `s3.direct.par01.cloud-object-storage.appdomain.cloud` |
