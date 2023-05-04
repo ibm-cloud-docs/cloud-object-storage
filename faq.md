@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021, 2023
-lastupdated: "2023-04-17"
+lastupdated: "2023-05-04"
 
 keywords: faq, frequently asked questions, object storage
 
@@ -176,7 +176,7 @@ If you do not first empty and then delete the bucket, and instead [delete or sch
 
 However, if the issue persists, contact IBM customer support.
 
-## How do I ensure communication with {{site.data.keyword.cos_short}}?
+## How do I ensure communication with {{site.data.keyword.cos_short}} ?
 {: #faq-faq-error}
 {: faq}
 
