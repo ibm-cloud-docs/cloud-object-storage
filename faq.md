@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021, 2023
-lastupdated: "2023-04-17"
+lastupdated: "2023-05-04"
 
 keywords: faq, frequently asked questions, object storage
 
@@ -176,11 +176,11 @@ If you do not first empty and then delete the bucket, and instead [delete or sch
 
 However, if the issue persists, contact IBM customer support.
 
-## How do I ensure communication with {{site.data.keyword.cos_short}}?
+## How do I ensure communication with Object Storage?
 {: #faq-faq-error}
 {: faq}
 
-You can check the communication with {{site.data.keyword.cos_short}} by using one of the following:
+You can check the communication with Object Storage by using one of the following:
 * Use a `COS API HEAD` call to a bucket that will return the headers for that bucket. See [api-head-bucket](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-head-bucket).
 
 * Use SDK : See [headbucket property](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#headBucket-property).
@@ -189,7 +189,7 @@ You can check the communication with {{site.data.keyword.cos_short}} by using on
 {: #faq-create-bucket}
 {: faq}
 
-Yes, You can achieve the same by creating a bucket in the target {{site.data.keyword.cos_short}} instance and perform a sync. For details see [cloud-object-storage-region-copy](
+Yes, You can achieve the same by creating a bucket in the target Object Storage instance and perform a sync. For details see [cloud-object-storage-region-copy](
  /docs/cloud-object-storage?topic=cloud-object-storage-region-copy).
 
 ## My COS service is locked. How do I reactivate the COS service?
@@ -198,29 +198,29 @@ Yes, You can achieve the same by creating a bucket in the target {{site.data.key
 
 Exceeding the data limit for the Lite account is one of the reasons why your account is locked or deactived. The [COS support](https://cloud.ibm.com/unifiedsupport/cases/form) team can help to unlock your account.
 
-## After deleting a {{site.data.keyword.cos_short}} instance, is it possible to reuse the same bucket names that were part of the deleted COS instance?
+## After deleting a Object Storage instance, is it possible to reuse the same bucket names that were part of the deleted COS instance?
 {: #faq-resue-bucketname}
 {: faq}
 
 When an empty bucket is deleted, the name of the bucket is held in reserve by the system for 10 minutes after the delete operation.  After 10 minutes the name is released for re-use.
 
-## How can I archive and restore objects in {{site.data.keyword.cos_short}}?
+## How can I archive and restore objects in Object Storage?
 {: #faq-restore-object}
 {: faq}
 
 Archived objects must be restored before you can access them. While restoring, specify the time limit the objects should remain available before being re-archived. For details, see [archive-restore data](/docs/cloud-object-storage?topic=cloud-object-storage-archive).
 
-## Can I enable {{site.data.keyword.cos_short}} replication between two different regions for DR purposes?
+## Can I enable Object Storage replication between two different regions for DR purposes?
 {: #faq-cos-replication}
 {: faq}
 
 Yes, it is possible to configure buckets for automated [replication of objects to a destination bucket](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview).
 
-## How can I track events in {{site.data.keyword.cos_short}}?
+## How can I track events in Object Storage?
 {: #faq-event-tracking}
 {: faq}
 
-The {{site.data.keyword.cos_short}} Activity Tracker service records user-initiated activities that change the state of a service in {{site.data.keyword.cos_short}}. For details, see [IBM Cloud Activity Tracker](/docs/cloud-object-storage?topic=cloud-object-storage-at-events).
+The Object Storage Activity Tracker service records user-initiated activities that change the state of a service in Object Storage. For details, see [IBM Cloud Activity Tracker](/docs/cloud-object-storage?topic=cloud-object-storage-at-events).
 
 ## How can I setup notifications when objects are updated or written to a bucket?
 {: #faq-notification-setup}
@@ -228,19 +228,19 @@ The {{site.data.keyword.cos_short}} Activity Tracker service records user-initia
 
 Use [Cloud Functions for object storage](/docs/cloud-object-storage?topic=cloud-object-storage-functions) to setup an Event Source (notification).
 
-## Does {{site.data.keyword.cos_short}} have rate limits when writing to or reading from buckets?
+## Does Object Storage have rate limits when writing to or reading from buckets?
 {: #faq-rate-limit}
 {: faq}
 
-Yes, {{site.data.keyword.cos_short}} has rate limiting. For details, see [COS support](https://cloud.ibm.com/unifiedsupport/cases/form).
+Yes, Object Storage has rate limiting. For details, see [COS support](https://cloud.ibm.com/unifiedsupport/cases/form).
 
-## Is {{site.data.keyword.cos_short}} HIPAA compliant to host PHI data?
+## Is Object Storage HIPAA compliant to host PHI data?
 {: #faq-hipaa}
 {: faq}
 
-Yes, {{site.data.keyword.cos_short}} is HIPAA compliant.
+Yes, Object Storage is HIPAA compliant.
 
-## Is there any option in {{site.data.keyword.cos_short}} to enable ```accelerate data transfer```?
+## Is there any option in Object Storage to enable ```accelerate data transfer```?
 {: #faq-accel-data}
 {: faq}
 
