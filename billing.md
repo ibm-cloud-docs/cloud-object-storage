@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-10-18"
+  years: 2017, 2021, 2023
+lastupdated: "2023-05-04"
 
 keywords: administration, billing, platform
 
@@ -19,10 +19,10 @@ subcollection: cloud-object-storage
 {:tip: .tip}
 {:important: .important}
 {:note: .note}
-{:download: .download} 
-{:http: .ph data-hd-programlang='http'} 
-{:javascript: .ph data-hd-programlang='javascript'} 
-{:java: .ph data-hd-programlang='java'} 
+{:download: .download}
+{:http: .ph data-hd-programlang='http'}
+{:javascript: .ph data-hd-programlang='javascript'}
+{:java: .ph data-hd-programlang='java'}
 {:python: .ph data-hd-programlang='python'}
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
@@ -58,7 +58,7 @@ Infrastructure offerings are connected to a three-tiered network, segmenting pub
 
 'Class B' requests are related to retrieving objects or their associated metadata or configurations from the system.
 
-Deleting buckets or objects from the system does not incur a charge.
+Deleting buckets or objects from the system does not incur a charge. For charges related to Multiple Deletes, see [Delete multiple objects](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations#object-operations-multidelete).
 
 | Class | Requests | Examples |
 |--- |--- |--- |
