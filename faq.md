@@ -176,7 +176,7 @@ If you do not first empty and then delete the bucket, and instead [delete or sch
 
 However, if the issue persists, contact IBM customer support.
 
-## How do I ensure communication with ?
+## How do I ensure communication with {{site.data.keyword.cos_short}} ?
 {: #faq-faq-error}
 {: faq}
 
