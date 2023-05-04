@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2022-03-17"
+lastupdated: "2023-05-04"
 
 keywords: rest, s3, compatibility, api, objects
 
@@ -320,6 +320,9 @@ When an object that is specified in the request is not found the result returns 
 {: note}
 
 Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+{: note}
+
+Multiple object deletes involve a `POST operation` that is charged as Class A. The cost of the POST (class A) for multiple deletes vary depending on the storage class of the objects, and the amount of data being deleted. For more information on pricing, please refer to the [IBM Cloud Object Storage pricing page](https://cloud.ibm.com/objectstorage/create#pricing).
 {: note}
 
 ### Optional Elements
