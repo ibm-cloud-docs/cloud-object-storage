@@ -42,7 +42,7 @@ The following table details actions that are mapped to platform management roles
 | Viewer                   | View service instances but not modify them                                                                                         | <ul><li>List available COS service instances</li><li>View COS service plan details</li><li>View usage details</li></ul> |
 | Editor                   | Perform all platform actions except for managing the accounts and assigning access policies                                        | <ul><li>Create and delete COS service instances</li></ul>                                                               |
 | Operator                 | Not used by COS                                                                                                                    | None                                                                                                                    |
-| Administrator            | Perform all platform actions based on the resource this role is being assigned, including assigning access policies to other users | <ul><li>Update user policies, as well as setting PublicAccess policy on buckets.</li>Update pricing plans</ul>                                                              |
+| Administrator            | Perform all platform actions based on the resource this role is being assigned, including assigning access policies to other users, as well as setting PublicAccess policy on buckets. | <ul><li>Update user policies</li>Update pricing plans</ul>                                                              |
 {: caption="Table 1. IAM user roles and actions"}
 
 
