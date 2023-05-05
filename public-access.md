@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-05-04"
+lastupdated: "2023-05-05"
 
 keywords: public, cdn, anonymous, files
 
