@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2022   
-lastupdated: "2022-10-12"
+  years: 2022
+lastupdated: "2023-05-09"
 
 keywords: data, replication, loss prevention
 
@@ -14,12 +14,14 @@ subcollection: cloud-object-storage
 {{site.data.keyword.attribute-definition-list}}
 
 # Replicating objects
+
 {: #replication-overview}
 
 Replication allows users to define rules for automatic, asynchronous copying of objects from a source bucket to a destination bucket in the same or different location. 
 {: shortdesc}
 
 ## What is replication?
+
 {: #replication-what}
 
 Replication copies newly created objects and object updates from a source bucket to a destination bucket.
@@ -30,6 +32,7 @@ Replication copies newly created objects and object updates from a source bucket
 - Filters (composed of prefixes and/or tags) can be used to scope the replication rule to only apply to a subset of objects. Multiple rules can be defined in a single policy and these rules can specify different destinations. In this manner, different objects in the same bucket can be replicated to different destinations..
 
 ## Why use replication?
+
 {: #replication-why}
 
 - Keep a copy of data in a bucket in a different geographic location.
@@ -38,14 +41,15 @@ Replication copies newly created objects and object updates from a source bucket
 - Manage the storage class and lifecycle policies for the replicated objects independent of the source, by defining a different storage class and/or lifecycle rules for the destination bucket. Similarly, you can store replicas in a bucket in a separate service instance or even IBM Cloud account, and also independently control access to the replicas.
 
 ## Getting started with replication
+
 {: #replication-gs}
 
-In order to get started, there are some some prerequisites: 
+In order to get started, there are some some prerequisites:
 
 - You'll need the `Writer` or `Manager` platform role on the source bucket, or a custom role with the appropriate replication actions (such as  `cloud-object-storage.bucket.put_replication`) assigned.
 - You don't need to have access to the destination bucket, but do need to have sufficient platform roles to create [new IAM policies](/docs/account?topic=account-iamoverview#iamoverview) that allow the source bucket to write to the destination bucket.
 - Both the source and destination buckets must have [versioning enabled](/docs/cloud-object-storage?topic=cloud-object-storage-versioning).
-- The target bucket must not have a legacy bucket firewall enabled, but can use [context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall). 
+- The target bucket must not have a legacy bucket firewall enabled, but can use [context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall).
 - Objects encrypted [using SSE-C](/docs/cloud-object-storage?topic=cloud-object-storage-sse-c) cannot be replicated, although [managed encryption (SSE-KMS) like Key Protect](/docs/cloud-object-storage?topic=cloud-object-storage-kp) is fully compatible with replication.
 - Objects in an archived state cannot be replicated.
 
@@ -71,32 +75,36 @@ Now you'll create a replication rule.
 3. Click **Done**.
 
 ## Terminology
+
 {: #replication-terminology}
 
 **Source bucket**: The bucket for which a replication policy is configured. It is the source of replicated objects.
 
 **Target bucket**: The bucket that is defined as the destination in the source bucket replication policy. It is the target of replicated objects. Also referred to as a 'destination' bucket.
 
-**Replica**: The new object created in a target bucket as a result of a request made to a source bucket. 
+**Replica**: The new object created in a target bucket as a result of a request made to a source bucket.
 
 ## Using replication for business continuity and disaster recovery
+
 {: #replication-bcdr}
 
-Replication can be used to provide continuity of service in the event of an outage:  
+Replication can be used to provide continuity of service in the event of an outage:
 
-- Ensure that the source and destination buckets are in different locations. 
+- Ensure that the source and destination buckets are in different locations.
 - Verify that the latest versions of objects are in sync between both buckets.  A tool such as [Rclone can be useful](/docs/cloud-object-storage?topic=cloud-object-storage-rclone) (the `rclone check` command) for checking synchronicity from the command line.
 - In the event of an outage, an application's traffic can be redirected to the destination bucket.
 
 ## Consistency and data integrity
+
 {: #replication-consistency}
 
 While IBM Cloud Object Storage provides strong consistency for all data IO operations, bucket configuration is eventually consistent. After enabling replication rules for the first time on a bucket, it may take a few moments for the configuration to propagate across the system and new objects to start being replicated. 
 
 ## IAM actions
+
 {: #replication-iam}
 
-There are new IAM actions associated with replication. 
+There are new IAM actions associated with replication.
 
 | IAM Action                                     | Role                    |
 |------------------------------------------------|-------------------------|
@@ -104,7 +112,8 @@ There are new IAM actions associated with replication.
 | `cloud-object-storage.bucket.put_replication`    | Manager, Writer         |
 | `cloud-object-storage.bucket.delete_replication` | Manager, Writer         |
 
-## Activity Tracker events 
+## Activity Tracker events
+
 {: #replication-at}
 
 Replication generates additional events.
@@ -134,15 +143,16 @@ When replication is active, operations on objects may generate the following ext
 | `responseData.replication.result`               | Values can be `success`, `failure` (indicates a server error), `user` (indicates a user error).                                                                                                                                                                                                        |
 | `responseData.replication.message`              | The HTTP response message (such as `OK`).                                                                                                                                                                                                                                                              |
 
-You can trace an object from when it is written to the source until it is written on the target. Search for the request ID associated with the object write and three events should appear: 
+You can trace an object from when it is written to the source until it is written on the target. Search for the request ID associated with the object write and three events should appear:
 
 1. The original `PUT`,
 2. The sync request from the source,
-3. The PUT request on the target.  
-   
-Any of these three missing indicates a failure. 
+3. The PUT request on the target.
+
+Any of these three missing indicates a failure.
 
 ## Usage and accounting
+
 {: #replication-usage}
 
 
@@ -154,9 +164,11 @@ Replication generates additional metrics for use with IBM Cloud Monitoring:
 - `ibm_cos_bucket_replication_sync_requests_received`
 
 ## Interactions
+
 {: #replication-interactions}
 
 ### Versioning
+
 {: #replication-interactions-versioning}
 
 Versioning is mandatory in order to enable replication. After you [enable versioning](/docs/cloud-object-storage?topic=cloud-object-storage-versioning) on both the source and destination buckets and configure replication on the source bucket, you may encounter the following issues:
@@ -165,33 +177,39 @@ Versioning is mandatory in order to enable replication. After you [enable versio
 - If you disable versioning on the destination bucket, replication fails. 
 
 ### Key Protect encryption
+
 {: #replication-interactions-kp}
 
 Source objects will be [encrypted using the root key](/docs/key-protect?topic=key-protect-about) of the source bucket, and replicas are encrypted using the root key of the destination bucket.
 
 ### Lifecycle configurations
+
 {: #replication-interactions-lifecycle}
 
 If a [lifecycle policy is enabled](/docs/cloud-object-storage?topic=cloud-object-storage-expiry#expiry-rules-attributes) on a destination bucket, the lifecycle actions will be based on the original creation time of the object at the source, not the time that the replica becomes available in the destination bucket. 
 
 ### Immutable Object Storage
+
 {: #replication-interactions-worm}
 
 Using retention policies is not possible on a bucket with [versioning enabled](/docs/cloud-object-storage?topic=cloud-object-storage-versioning), and as versioning is a requirement for replication, it is not possible to replicate objects to or from a bucket with Immutable Object Storage enabled.
 
 ### Legacy bucket firewalls
+
 {: #replication-interactions-firewall}
 
 Buckets using [legacy firewalls to restrict access based on IP addresses](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall#firewall-legacy-about) are not able to use replication, as the background services that replicate the objects do not have fixed IP addresses and can not pass the firewall.  
 
-It is recommended to instead [use context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall#setting-cbr) for controlling access based on network information.  
+It is recommended to instead [use context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall#setting-cbr) for controlling access based on network information.
 
 ### Cloud Functions and Code Engine
+
 {: #replication-interactions-functions}
 
 Configuring replication does not provide a [trigger for Cloud Functions](/docs/openwhisk?topic=openwhisk-triggers) or Code Engine events at this time, but object writes and deletes will create `Object:Write` and `Object:Delete` notifications for both the source and destination buckets.  These events are annotated with a `notifications.replication_type` field that indicates if the event triggered a sync, or was triggered by a sync.
 
 ## Replicating existing objects
+
 {: #replication-existing}
 
 A replication rule can only act on objects that are written _after_ the rule is configured and applied to a bucket.  If there are existing objects in a bucket that should be replicated, the replication processes needs to be made aware of the existence of the objects. This can be easily accomplished by using the `PUT copy` operation to copy objects onto themselves. 
@@ -236,14 +254,12 @@ def copy_in_place(BUCKET_NAME):
         for obj in page['Contents']:
             key = obj['Key']
             print("  * Copying " + key + " in place...")
-            try:            
+            try:
                 headers = cos.head_object(
                     Bucket=bucket,
                     Key=key
                     )
-                
                 md = headers["Metadata"]
-                
                 cos.copy_object(
                     CopySource={
                         'Bucket': bucket,
@@ -251,7 +267,7 @@ def copy_in_place(BUCKET_NAME):
                         },
                     Bucket=bucket,
                     Key=key,
-                    TaggingDirective='COPY'
+                    TaggingDirective='COPY',
                     MetadataDirective='REPLACE',
                     Metadata=md
                     )
@@ -264,11 +280,13 @@ copy_in_place(bucket)
 ```
 
 ## REST API examples
+
 {: #replication-apis-examples}
 
 The following examples are shown using cURL for ease of use. Environment variables are used to represent user specific elements such as `$BUCKET`, `$TOKEN`, and `$REGION`.  Note that `$REGION` would also include any network type specifications, so sending a request to a bucket in `us-south` using the private network would require setting the variable to `private.us-south`.
 
 ### Enable replication on a bucket
+
 {: #replication-apis-enable}
 
 The replication configuration is provided as XML in the body of the request.  New requests will overwrite any existing replication rules that are present on the bucket.
@@ -304,7 +322,7 @@ The body of the request must contain an XML block with the following schema:
 
 This example will replicate any new objects, but will not replicate delete markers.  
 
-```
+```sh
 curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?replication" \
      -H 'Authorization: bearer $TOKEN' \
      -H 'Content-MD5: exuBoz2kFBykNwqu64JZuA==' \
@@ -325,18 +343,18 @@ curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?
           </ReplicationConfiguration>'
 ```
 
-This example will replicate any objects with a key (name) that begin with `project_a/` to the bucket identified with `$DESTINATION_CRN_A`, and any objects with a key (name) that begin with `project_b/` to the bucket identified with `$DESTINATION_CRN_B`, and any objects that have an object tag with the key `Client` and the value `ACME` to a third bucket identified with `$DESTINATION_CRN_C`, and will replicate delete markers in all cases.  
+This example will replicate any objects with a key (name) that begin with `project_a/` to the bucket identified with `$DESTINATION_CRN_A`, and any objects with a key (name) that begin with `project_b/` to the bucket identified with `$DESTINATION_CRN_B`, and any objects that have an object tag with the key `Client` and the value `ACME` to a third bucket identified with `$DESTINATION_CRN_C`, and will replicate delete markers in all cases.
 
 Assume that the following four objects are added to the source bucket. They will be replicated to target buckets as described below:
- 
+
  1. `project_a/foo.mp4`
  2. `project_a/bar.mp4`
  3. `project_b/baz.pdf`
- 4. `project_b/acme.pdf`.  This fourth object also has an object tag with the key `Client` and the value `ACME`.  
+ 4. `project_b/acme.pdf`.  This fourth object also has an object tag with the key `Client` and the value `ACME`.
 
 As a result of the following rules, objects 1 and 2 will be replicated to `$DESTINATION_CRN_A`.  Object 3 will be replicated to `$DESTINATION_CRN_B`.  Object 4 will only be replicated to `$DESTINATION_CRN_C` because the rule with the ID `AcmeCorp` has a higher priority value than the rule with the ID `ProjectB` and while it meets the requirements for both rules, will only be subject to the former.
 
-```
+```sh
 curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?replication" \
      -H 'Authorization: bearer $TOKEN' \
      -H 'Content-MD5: exuBoz2kFBykNwqu64JZuA==' \
@@ -394,11 +412,12 @@ A successful request returns a `200` response.
 
 
 ### View replication configuration for a bucket
+
 {: #replication-apis-read}
 
-```
+```sh
 curl -X "GET" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?replication" \
-     -H 'Authorization: bearer $TOKEN' 
+     -H 'Authorization: bearer $TOKEN'
 ```
 
 This returns an XML response body with the appropriate schema:
@@ -421,9 +440,10 @@ This returns an XML response body with the appropriate schema:
 ```
 
 ### Delete the replication configuration for a bucket
+
 {: #replication-apis-delete}
 
-```
+```sh
 curl -X "DELETE" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?replication" \
      -H 'Authorization: bearer $TOKEN' 
 ```
@@ -431,11 +451,13 @@ curl -X "DELETE" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.clou
 A successful request returns a `204` response.
 
 ## SDK examples
+
 {: #replication-sdks}
 
-The following examples make use of the IBM COS SDKs for Python and Node.js, although the implementation of object versioning should be fully compatible with any S3-compatible library or tool that allows for the setting of custom endpoints.  Using third-party tools requires HMAC credentials in order to calculate AWS V4 signatures.  For more information on HMAC credentials, [see the documentation](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main).  
+The following examples make use of the IBM COS SDKs for Python and Node.js, although the implementation of object versioning should be fully compatible with any S3-compatible library or tool that allows for the setting of custom endpoints.  Using third-party tools requires HMAC credentials in order to calculate AWS V4 signatures.  For more information on HMAC credentials, [see the documentation](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main).
 
 ### Python
+
 {: #versioning-sdks-python}
 
 Enabling versioning using the IBM COS SDK for Python can be done using the [low-level client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client) syntax.
