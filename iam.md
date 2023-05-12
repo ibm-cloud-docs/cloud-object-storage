@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-10-27"
+  years: 2017, 2023
+lastupdated: "2023-05-05"
 
 keywords: authorization, iam, basics
 
@@ -14,12 +14,14 @@ subcollection: cloud-object-storage
 {{site.data.keyword.attribute-definition-list}}
 
 # Getting Started with IAM
+
 {: #iam}
 
 Access to {{site.data.keyword.cos_full}} service instances for users in your account is controlled by {{site.data.keyword.cloud_notm}} Identity and Access Management (IAM).
 {: shortdesc}
 
 ## Identity and Access Management roles
+
 {: #iam-roles}
 
 Every user that accesses the {{site.data.keyword.cos_full}} service in your account must be assigned an access policy with an IAM user role defined. That policy determines what actions the user can perform within the context of the service or instance you select. The allowable actions are customized and defined by the {{site.data.keyword.cloud_notm}} service as operations that are allowed to be performed on the service. The actions are then mapped to IAM user roles.
@@ -40,7 +42,7 @@ The following table details actions that are mapped to platform management roles
 | Viewer                   | View service instances but not modify them                                                                                         | <ul><li>List available COS service instances</li><li>View COS service plan details</li><li>View usage details</li></ul> |
 | Editor                   | Perform all platform actions except for managing the accounts and assigning access policies                                        | <ul><li>Create and delete COS service instances</li></ul>                                                               |
 | Operator                 | Not used by COS                                                                                                                    | None                                                                                                                    |
-| Administrator            | Perform all platform actions based on the resource this role is being assigned, including assigning access policies to other users | <ul><li>Update user policies</li>Update pricing plans</ul>                                                              |
+| Administrator            | Perform all platform actions based on the resource this role is being assigned, including assigning access policies to other users, as well as setting PublicAccess policy on buckets. | <ul><li>Update user policies</li><li>Update pricing plans</li></ul>                                                              |
 {: caption="Table 1. IAM user roles and actions"}
 
 
@@ -56,10 +58,10 @@ The following table details actions that are mapped to service access roles. Ser
 | Manager             | In addition to Writer actions, Managers can complete privileged actions that affect access control.                   | <ul><li>Configure retention policies</li><li>Configure bucket firewalls</li><li>Block public ACLs</li></ul> |
 {: caption="Table 3. IAM service access roles and actions"}
 
-
 For information about assigning user roles in the UI, see [Managing IAM access](/docs/account?topic=account-assign-access-resources).
- 
+
 ## Identity and Access Management actions
+
 {: #iam-actions}
 
 | Action                                                           | Description                                                                         |
