@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-03-16"
+lastupdated: "2023-05-12"
 
 keywords: updates, releases, news, object storage
 
@@ -19,6 +19,13 @@ content-type: release-note
 
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
+
+## XX XXXXX 2023
+{: #cloud-object-storage-mon0023}
+{: release-note}
+
+New feature!
+:   It is now possible to select [Madrid](/docs/cloud-object-storage?topic=cloud-object-storage-services)  as a region where services and the different kinds of availability that are supported.
 
 ## 16 March 2023
 {: #cloud-object-storage-mar1623}
