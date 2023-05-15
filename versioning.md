@@ -13,7 +13,6 @@ subcollection: cloud-object-storage
 {{site.data.keyword.attribute-definition-list}}
 
 # Versioning object
-
 {: #versioning}
 
 Versioning allows multiple revisions of a single object to exist in the same bucket. Each version of an object can be queried, read, restored from an archived state, or deleted. Enabling versioning on a bucket can mitigate data loss from user error or inadvertent deletion. When an object is overwritten, a new version is created, and the previous version of the object is automatically preserved.  Therefore, in a versioning-enabled bucket, objects that are deleted as a result of accidental deletion or overwrite can easily be recovered by restoring a previous version of the object.  If an object is deleted, it is replaced by a _delete marker_ and the previous version is saved (nothing is permanently deleted). To permanently delete individual versions of an object, a delete request must specify a _version ID_. A `GET` request for an object will retrieve the most recently stored version.  If the current version is a delete marker, IBM COS returns a `404 Not Found` error.
@@ -39,7 +38,6 @@ Then create a versioned object.
 ![View versions](images/versioning_objects.png){: caption="Figure 2. View versions"}
 
 ## Terminology
-
 {: #versioning-terminology}
 
 **Delete marker**: An 'invisible' object that allows for accessing versions of the deleted object.
@@ -49,13 +47,11 @@ Then create a versioned object.
 **'null'**: A special version ID assigned to objects that existed when versioning was enabled on a bucket.
 
 ## Consistency and data integrity
-
 {: #versioning-consistency}
 
 While IBM COS provides strong consistency for all data IO operations, bucket configuration is eventually consistent. After enabling versioning for the first time on a bucket, it may take a few moments for the configuration to propagate across the system. Although versioning may appear to be enabled, it is recommended to wait 15 minutes after enabling versioning to make any requests that are expected to create versions or delete markers.
 
 ## IAM actions
-
 {: #versioning-iam}
 
 There are new IAM actions associated with versioning.
@@ -77,7 +73,6 @@ There are new IAM actions associated with versioning.
 {: caption="Table 1. IAM actions associated with versioning" caption-side="top"}
 
 ## Activity Tracker events
-
 {: #versioning-at}
 
 Versioning will generate new events.
@@ -93,7 +88,6 @@ The basic `HEAD`, `GET`, `PUT`, and `DELETE` actions that act on or create versi
 A `responseData.deleteMarker.created` field is present when an object is deleted and a delete marker is created.
 
 ## Usage and accounting
-
 {: #versioning-usage}
 
 All versions are metered as if they were equal objects.  This means that if a bucket contains a single object with five previous versions, the `object_count` field returned by the [Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration) will be `6`, even though it will appear as if there is only a single object in the bucket.  Likewise, accumulated versions contribute to total usage and are billable. In addition to the `object_count` field returned by the [Read Bucket Metadata API](https://cloud.ibm.com/apidocs/cos/cos-configuration), the API response body contains several new fields associated with versioning:
@@ -105,13 +99,11 @@ All versions are metered as if they were equal objects.  This means that if a bu
 As mentioned, versioning can only be enabled or suspended. If for any reason there is a desire to completely disable versioning, then it is necessary to migrate the contents of the bucket to a new bucket that does not have versioning enabled.
 
 ## Interactions
-
 {: #versioning-limitations}
 
 The IBM COS implementation of the S3 APIs for versioning is identical to the AWS S3 APIs for versioning, with a few differences.
 
 ### Archiving and expiring versioned objects
-
 {: #versioning-archive}
 
 Lifecycle configurations are permitted in a version-enabled bucket.  However, unlike Amazon S3, new versions are subject to the archive rule in the same manner as regular objects. Objects are given a transition date when they are created, and are archived on their individual transition date, regardless of whether they are current or non-current versions.  Overwriting an object does not affect the transition date of the previous version, and the new (current) version will be assigned a transition date.
@@ -119,13 +111,11 @@ Lifecycle configurations are permitted in a version-enabled bucket.  However, un
 It is not possible to use `NoncurrentVersionTransition` rules to archive _only_ non-current versions of objects in a lifecycle configuration.
 
 ### Immutable Object Storage (WORM)
-
 {: #versioning-worm}
 
 The IBM COS implementation of Immutable Object Storage (i.e. retention policies) is not permitted in buckets with versioning enabled. Attempts to create a retention policy will fail, as will attempts to enable versioning on a bucket with an retention policy.  IBM COS does not support AWS S3 APIs for object locking, retention, or legal holds.
 
 ## Supported S3 APIs
-
 {: #versioning-apis}
 
 The following set of REST APIs can interact with versioning in some way:
@@ -153,13 +143,11 @@ The following set of REST APIs can interact with versioning in some way:
 - `DELETE Bucket Lifecycle`
 
 ## REST API examples
-
 {: #versioning-apis-examples}
 
 The following examples are shown using cURL for ease of use. Environment variables are used to represent user specific elements such as `$BUCKET`, `$TOKEN`, and `$REGION`.  Note that `$REGION` would also include any network type specifications, so sending a request to a bucket in `us-south` using the private network would require setting the variable to `private.us-south`.
 
 ### Enable versioning on a bucket
-
 {: #versioning-apis-enable}
 
 ```sh
@@ -177,7 +165,6 @@ curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?
 A successful request returns a `200` response.
 
 ### Suspend versioning on a bucket
-
 {: #versioning-apis-suspend}
 
 ```sh
@@ -195,7 +182,6 @@ curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?
 A successful request returns a `200` response.
 
 ### List versions of objects in a bucket
-
 {: #versioning-apis-list}
 
 ```sh
@@ -264,7 +250,6 @@ This returns an XML response body:
 **`version-id-marker`**: Specifies the object version you want to start listing from.
 
 ### Operations on specific versions of objects
-
 {: #versioning-apis-objects}
 
 Several APIs make use of a new query parameter (`?versionId=<VersionId>`) that indicates which version of the object you are requesting. This parameter is used in the same manner for reading, deleting, checking metadata and tags, and restoring archived objects. For example, to read a version of an object `foo` with a version ID of `L4kqtJlcpXroDVBH40Nr8X8gdRQBpUMLUo`, the request might look like the following:
@@ -305,7 +290,6 @@ curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/<
 ```
 
 ## CLI examples
-
 {: #versioning-cli-examples}
 
 You can use the IBM Cloud CLI with the `cos` plug-in to enable versioning on a bucket.
@@ -323,13 +307,11 @@ In this case, `vers.json` is a simple document:
 ```
 
 ## SDK examples
-
 {: #versioning-sdks}
 
 The following examples make use of the IBM COS SDKs for Python and Node.js, although the implementation of object versioning should be fully compatible with any S3-compatible library or tool that allows for the setting of custom endpoints.  Using third-party tools requires HMAC credentials in order to calculate AWS V4 signatures.  For more information on HMAC credentials, [see the documentation](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main).
 
 ### Python
-
 {: #versioning-sdks-python}
 
 Enabling versioning using the IBM COS SDK for Python can be done using either the [high-level resource](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#service-resource) or [low-level client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client) syntax.
@@ -343,14 +325,14 @@ import ibm_boto3
 from ibm_botocore.config import Config
 from ibm_botocore.exceptions import ClientError
 
-# Define constants
+#Define constants
 API_KEY = os.environ.get('IBMCLOUD_API_KEY')
 SERVICE_INSTANCE = os.environ.get('SERVICE_INSTANCE_ID')
 ENDPOINT = os.environ.get('ENDPOINT')
 
 BUCKET = "my-versioning-bucket" # The bucket that will enable versioning.
 
-# Create resource client with configuration info pulled from environment variables.
+#Create resource client with configuration info pulled from environment variables.
 cos = ibm_boto3.resource("s3",
                          ibm_api_key_id=API_KEY,
                          ibm_service_instance_id=SERVICE_INSTANCE,
@@ -385,14 +367,14 @@ import ibm_boto3
 from ibm_botocore.config import Config
 from ibm_botocore.exceptions import ClientError
 
-# Define constants
+#Define constants
 API_KEY = os.environ.get('IBMCLOUD_API_KEY')
 SERVICE_INSTANCE = os.environ.get('SERVICE_INSTANCE_ID')
 ENDPOINT = os.environ.get('ENDPOINT')
 
 BUCKET = "my-versioning-bucket" # The bucket that will enable versioning.
 
-# Create resource client with configuration info pulled from environment variables.
+#Create resource client with configuration info pulled from environment variables.
 cosClient = ibm_boto3.client("s3",
                          ibm_api_key_id=API_KEY,
                          ibm_service_instance_id=SERVICE_INSTANCE,
@@ -417,7 +399,6 @@ resp = cosClient.list_object_versions(Prefix='some-prefix', Bucket=BUCKET)
 Note that the Python APIs are very flexible, and there are many different ways to accomplish the same task.
 
 ### Node.js
-
 {: #versioning-sdks-node}
 
 Enabling versioning using the [IBM COS SDK for Node.js](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#putBucketVersioning-property):
@@ -434,14 +415,14 @@ var config = {
 var cos = new IBM.S3(config);
 
 var params = {
-  Bucket: 'my-versioning-bucket', /* required */
-  VersioningConfiguration: { /* required */
+    Bucket: 'my-versioning-bucket', /* required */
+    VersioningConfiguration: { /* required */
     Status: 'Enabled'
-  },
+   },
 };
 
 s3.putBucketVersioning(params, function(err, data) {
-  if (err) console.log(err, err.stack); // an error occurred
-  else     console.log(data);           // successful response
+   if (err) console.log(err, err.stack); // an error occurred
+   else     console.log(data);           // successful response
 });
 ```

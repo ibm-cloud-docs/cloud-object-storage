@@ -114,7 +114,6 @@ toc:
           - aspera.md
           - classes.md
           - static-websites-options.md
-          - versioning.md
           - link:
               label: Connect to resources using a CDN
               href: https://cloud.ibm.com/docs/CDN/CDN-configure-cdn-with-ibm-cloud-object-storage
