@@ -18,9 +18,10 @@ subcollection: cloud-object-storage
 
 Versioning allows multiple revisions of a single object to exist in the same bucket. Each version of an object can be queried, read, restored from an archived state, or deleted. Enabling versioning on a bucket can mitigate data loss from user error or inadvertent deletion. When an object is overwritten, a new version is created, and the previous version of the object is automatically preserved.  Therefore, in a versioning-enabled bucket, objects that are deleted as a result of accidental deletion or overwrite can easily be recovered by restoring a previous version of the object.  If an object is deleted, it is replaced by a _delete marker_ and the previous version is saved (nothing is permanently deleted). To permanently delete individual versions of an object, a delete request must specify a _version ID_. A `GET` request for an object will retrieve the most recently stored version.  If the current version is a delete marker, IBM COS returns a `404 Not Found` error.
 
-After a bucket has enabled versioning, all the objects in the bucket are versioned.  All new objects (created after enabling versioning on a bucket) will receive a permanently assigned version ID. Objects created before versioning was enabled (on the bucket) are assigned a version of `null`.  When an object with a `null` version ID is overwritten or deleted it is assigned a new version ID. Suspending versioning does not alter any existing objects, but will change the way future requests are handled by IBM COS. Once enabled, versioning can only be suspended, and not fully disabled.  Therefore, a bucket can have three states related to versioning: 1) Default (unversioned), 2) Enabled, or 3) Suspended.
+After a bucket has enabled versioning, all the objects in the bucket are versioned.  All new objects (created after enabling versioning on a bucket) will receive a permanently assigned version ID. Objects created before versioning was enabled (on the bucket) are assigned a version of `null`.  When an object with a `null` version ID is overwritten or deleted it is assigned a new version ID. Suspending versioning does not alter any existing objects, but will change the way future requests are handled by IBM COS. Once enabled, versioning can only be suspended, and not fully disabled.  Therefore, a bucket can have three states related to versioning: 1. Default (unversioned), 2. Enabled, or 3. Suspended.
 
 ## Getting started with versioning
+{: #versioning-getting-started}
 
 First, create a new bucket with object versioning enabled.
 
@@ -73,6 +74,7 @@ There are new IAM actions associated with versioning.
 | cloud-object-storage.object.put_tagging_version |  Manager, Writer, Object Writer |
 | cloud-object-storage.object.get_tagging_version |  Manager, Writer, Reader |
 | cloud-object-storage.object.delete_tagging_version |  Manager, Writer |
+{: caption="Table 1. IAM actions associated with versioning" caption-side="top"}
 
 ## Activity Tracker events
 
@@ -160,6 +162,8 @@ The following examples are shown using cURL for ease of use. Environment variabl
 
 {: #versioning-apis-enable}
 
+```sh
+=======
 ```curl
 curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?versioning" \
      -H 'Authorization: bearer $TOKEN' \
@@ -176,6 +180,8 @@ A successful request returns a `200` response.
 
 {: #versioning-apis-suspend}
 
+```sh
+=======
 ```curl
 curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?versioning" \
      -H 'Authorization: bearer $TOKEN' \
@@ -192,6 +198,8 @@ A successful request returns a `200` response.
 
 {: #versioning-apis-list}
 
+```sh
+=======
 ```curl
 curl -X "GET" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?versions" \
      -H 'Authorization: bearer $TOKEN'
@@ -261,6 +269,8 @@ This returns an XML response body:
 
 Several APIs make use of a new query parameter (`?versionId=<VersionId>`) that indicates which version of the object you are requesting. This parameter is used in the same manner for reading, deleting, checking metadata and tags, and restoring archived objects. For example, to read a version of an object `foo` with a version ID of `L4kqtJlcpXroDVBH40Nr8X8gdRQBpUMLUo`, the request might look like the following:
 
+```sh
+=======
 ```curl
 curl -X "GET" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/foo?versionId=L4kqtJlcpXroDVBH40Nr8X8gdRQBpUMLUo" \
      -H 'Authorization: bearer $TOKEN'
@@ -268,6 +278,8 @@ curl -X "GET" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/f
 
 Deleting that object is done in the same manner.
 
+```sh
+=======
 ```curl
 curl -X "DELETE" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/foo?versionId=L4kqtJlcpXroDVBH40Nr8X8gdRQBpUMLUo" \
      -H 'Authorization: bearer $TOKEN'
@@ -275,6 +287,8 @@ curl -X "DELETE" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.clou
 
 For requests that already make use of a query parameter, the `versionId` parameter can be added to the end.
 
+```sh
+=======
 ```curl
 curl -X "GET" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/foo?tagging&versionId=L4kqtJlcpXroDVBH40Nr8X8gdRQBpUMLUo" \
      -H 'Authorization: bearer $TOKEN'
@@ -282,6 +296,8 @@ curl -X "GET" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/f
 
 Server-side copying of object versions is supported, but uses a slightly different syntax.  The query parameter is not added to the URL itself, but instead is appended to the `x-amz-copy-source` header. This is the same syntax as creating a part for a multipart part from a source object.
 
+```sh
+=======
 ```curl
 curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/<new-object-key>"
  -H "Authorization: bearer $TOKEN"
