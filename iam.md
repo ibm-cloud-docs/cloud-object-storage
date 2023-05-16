@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-05-05"
+lastupdated: "2023-05-16"
 
 keywords: authorization, iam, basics
 
@@ -14,19 +14,17 @@ subcollection: cloud-object-storage
 {{site.data.keyword.attribute-definition-list}}
 
 # Getting Started with IAM
-
 {: #iam}
 
 Access to {{site.data.keyword.cos_full}} service instances for users in your account is controlled by {{site.data.keyword.cloud_notm}} Identity and Access Management (IAM).
 {: shortdesc}
 
 ## Identity and Access Management roles
-
 {: #iam-roles}
 
 Every user that accesses the {{site.data.keyword.cos_full}} service in your account must be assigned an access policy with an IAM user role defined. That policy determines what actions the user can perform within the context of the service or instance you select. The allowable actions are customized and defined by the {{site.data.keyword.cloud_notm}} service as operations that are allowed to be performed on the service. The actions are then mapped to IAM user roles.
 
-Policies enable access to be granted at different levels. Some of the options include the following: 
+Policies enable access to be granted at different levels. Some of the options include the following:
 
 * Access across all instances of the service in your account
 * Access to an individual service instance in your account
@@ -61,7 +59,6 @@ The following table details actions that are mapped to service access roles. Ser
 For information about assigning user roles in the UI, see [Managing IAM access](/docs/account?topic=account-assign-access-resources).
 
 ## Identity and Access Management actions
-
 {: #iam-actions}
 
 | Action                                                           | Description                                                                         |

@@ -52,7 +52,7 @@ toc:
               label: Provisioning storage
               topics:
                 - order-storage.md
-                - onerate.md 
+                - onerate.md
           - topicgroup:
               label: Choose regions and connect services
               topics:
@@ -71,7 +71,7 @@ toc:
                 - about-satellite.md
                 - satellite-provisioning.md
                 - satellite-billing.md
-                - satellite-apis.md     
+                - satellite-apis.md
           - topicgroup:
               label: Managing access
               topics:
@@ -103,17 +103,17 @@ toc:
           - topicgroup:
               label: Managing data immutability
               topics:
-                - immutable.md 
-                - object-lock.md 
+                - immutable.md
+                - object-lock.md
           - upload.md
-          - versioning.md
           - replication.md
           - closures.md
           - object-tagging.md
           - cos-region-copy.md
-          - aspera.md        
+          - aspera.md
           - classes.md
           - static-websites-options.md
+          - versioning.md
           - link:
               label: Connect to resources using a CDN
               href: https://cloud.ibm.com/docs/CDN/CDN-configure-cdn-with-ibm-cloud-object-storage

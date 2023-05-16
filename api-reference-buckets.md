@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-03-09"
+lastupdated: "2023-05-16"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -41,7 +41,7 @@ When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [usi
 
 A `GET` request sent to the endpoint root returns a list of buckets that are associated with the specified service instance. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 Header                    | Type   | Required? | Description
@@ -194,7 +194,7 @@ A `PUT` request sent to the endpoint root followed by a string will create a buc
 Bucket names must be unique because all buckets in the public cloud share a global namespace. This allows for access to a bucket without needing to provide any service instance or account information. It is also not possible to create a bucket with a name beginning with `cosv1-` or `account-` as these prefixes are reserved by the system.
 {: important}
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 | Header                             | Type    | Required? | Description                                                                                                          |
@@ -203,7 +203,7 @@ Not all operations are supported in Satellite environments. For details, see [su
 | `x-amz-bucket-object-lock-enabled` | Boolean | No        | Specifies whether you want to enable Object Lock on the new bucket.  This will automatically enable versioning. |
 
 When setting Object Lock on a new bucket, ensure that there are no typos in the `x-amz-bucket-object-lock-enabled` header. If either the header or value are mispelled, the bucket will still be created, but Object Lock and Versioning will **not** be enabled.
-{:tip}
+{: tip}
 
 Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means in the name of the bucket or object.
 {: note}
@@ -262,7 +262,7 @@ Content-Length: 0
 
 To create a bucket with a different storage class, send an XML block specifying a bucket configuration with a `LocationConstraint` of `{provisioning code}` in the body of a `PUT` request to a bucket endpoint. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints). Note that standard bucket [naming rules](#compatibility-api-new-bucket) apply. This operation does not make use of operation specific query parameters.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 Header                    | Type   | Description
@@ -350,7 +350,7 @@ For more information on {{site.data.keyword.hscrypto}}, [see the documentation](
 Note that managed encryption for a Cross Region bucket **must** use a root key from a Key Protect instance in the nearest [high-availability location](/docs/key-protect?topic=key-protect-ha-dr) (`us-south` or `jp-tok`).
 {: important}
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 Header                             | Type   | Description
@@ -420,7 +420,7 @@ A `HEAD` issued to a bucket will return the headers for that bucket.
 `HEAD` requests don't return a body and thus can't return specific error messages such as `NoSuchBucket`, only `NotFound`.
 {: tip}
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
@@ -518,7 +518,7 @@ ibm-sse-kp-crk-id: {customer-root-key-id}
 
 A `GET` request addressed to a bucket returns a list of objects, limited to 1,000 at a time and returned in non-lexographical order. The `StorageClass` value that is returned in the response is a default value as storage class operations are not implemented in COS. This operation does not make use of operation specific headers or payload elements.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
@@ -740,7 +740,7 @@ Content-Length: 604
 *This API is included for backwards compatibility.*  See [Version 2](#compatibility-api-list-objects-v2) for the recommended method of retrieving objects in a bucket.
 {: note}
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 A `GET` request addressed to a bucket returns a list of objects, limited to 1,000 at a time and returned in non-lexographical order. The `StorageClass` value that is returned in the response is a default value as storage class operations are not implemented in COS. This operation does not make use of operation specific headers or payload elements.
@@ -857,7 +857,7 @@ A `DELETE` issued to an empty bucket deletes the bucket. The name of the bucket 
 
 If the {{site.data.keyword.cos_short}} service instance is deleted, all bucket names in that instance will be held in reserve by the system for 7 days. After 7 days the names will be released for re-use.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
@@ -917,7 +917,7 @@ If a non-empty bucket is requested for deletion, the server responds with `409 C
 {: #compatibility-api-object-lock-configuration}
 
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 A `PUT` request addressed to an empty bucket with the `?object-lock` query parameter will set a new object lock configuration on a bucket.
@@ -994,7 +994,7 @@ Content-Length: 909
 
 A `GET` issued to a bucket with the proper parameters retrieves information about any canceled or incomplete multipart uploads for a bucket.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
@@ -1102,7 +1102,7 @@ Content-Length: 374
 
 A `GET` issued to a bucket with the proper parameters retrieves information about cross-origin resource sharing (CORS) configuration for a bucket.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
@@ -1170,7 +1170,7 @@ Content-Length: 123
 
 A `PUT` issued to a bucket with the proper parameters creates or replaces a cross-origin resource sharing (CORS) configuration for a bucket.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
@@ -1261,7 +1261,7 @@ Content-Length: 0
 
 A `DELETE` issued to a bucket with the proper parameters creates or replaces a cross-origin resource sharing (CORS) configuration for a bucket.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
@@ -1302,10 +1302,11 @@ The server responds with `204 No Content`.
 ----
 
 ## List the location constraint for a bucket
+{: #compatibility-api-list-constraint}
 
 A `GET` issued to a bucket with the proper parameter retrieves the location information for a bucket.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
@@ -1368,7 +1369,7 @@ Content-Length: 161
 
 A `PUT` operation uses the lifecycle query parameter to set lifecycle settings for the bucket. A `Content-MD5` header is required as an integrity check for the payload.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
@@ -1683,7 +1684,7 @@ For more about using lifecycle configuration to delete objects, check out the [d
 
 This implementation of the `PUT` operation uses the `lifecycle` query parameter to set lifecycle settings for the bucket. This operation allows for a single lifecycle policy definition for a bucket. The policy is defined as a set of rules consisting of the following parameters: `ID`, `Status`, `Filter`, and `Expiration`.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 |Header                    | Type   | Description|
@@ -1830,7 +1831,7 @@ This operation does not make use of extra query parameters. The required `Conten
 Policies are enforced until the end of a retention period, and can not be altered until the retention period has expired. While {{site.data.keyword.cos_full_notm}} makes use of the S3 API for most operations, the APIs used for configuring retention policies is not the same as the S3 API, although some terminology may be shared. Read this documentation carefully to prevent any users in your organization from creating objects that can not be deleted, even by IBM Cloud administrators.  
 {: important}
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 ```
@@ -1906,7 +1907,7 @@ Content-Length: 0
 
 A `PUT` issued to a bucket with the proper parameters creates or replaces a static website configuration for a bucket.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
@@ -1993,7 +1994,7 @@ Content-Length: 0
 
 A `DELETE` issued to a bucket with the proper parameters removes the website configuration for a bucket.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
@@ -2038,7 +2039,7 @@ The server responds with `204 No Content`.
 
 A `PUT` issued to a bucket with the proper parameters prevents adding public access ACLs on a bucket. It can be set either to fail new ACL requests, or to ignore them.  `BlockPublicAcls` does not affect existing ACLs, but `IgnorePublicAcls` will ignore existing ACLs.  **This operation does not affect IAM Public Access policies.**
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
@@ -2160,7 +2161,7 @@ Content-Length: 248
 
 A `DELETE` issued to a bucket with the proper parameters removes the public ACL block from a bucket.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=apis-satellite-supported)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
