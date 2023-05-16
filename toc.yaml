@@ -106,7 +106,6 @@ toc:
                 - immutable.md
                 - object-lock.md
           - upload.md
-          - versioning.md
           - replication.md
           - closures.md
           - object-tagging.md
