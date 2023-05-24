@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-12-15"
+  years: 2017, 2023
+lastupdated: "2023-05-23"
 
 keywords: cloud services, integration, sql, query, analytics
 
@@ -27,7 +27,7 @@ Select the card detailing the options and offering for {{site.data.keyword.sqlqu
 
 ![Integrate SQL Query](images/integrate-with-sql.jpg){: caption="Figure 2. Select the SQL Query card to integrate"}
 
-Figure 3 shows the panel that opens when the card is selected. This panel give you control over the location and costs regarding your new instance of {{site.data.keyword.sqlquery_notm}}. Select the region appropriate for your buckets and the plan suitable for your projects. If you want more information you can use the documentation to [get started](/docs/sql-query?topic=sql-query-gettingstarted).
+Figure 3 shows the panel that opens when the card is selected. This panel give you control over the location and costs regarding your new instance of {{site.data.keyword.sqlquery_notm}}. Select the region appropriate for your buckets and the plan suitable for your projects. If you want more information you can use the documentation to [get started](https://cloud.ibm.com/docs/sql-query?topic=sql-query-overview).
 
 ![Create SQL Instance](images/create-sql-instance-cos.jpg){: caption="Figure 3. Fill out form fields to configure your instance"}
 
@@ -71,11 +71,11 @@ The entry representing the job of the `SELECT` statement run previously is shown
 
 ![SQL Query Results](images/results-from-sql.jpg){: caption="Figure 8. Access with SQL query jobs"}
 
-The entry representing the details of running the `SELECT` statement run previously is shown in Figure 9. 
+The entry representing the details of running the `SELECT` statement run previously is shown in Figure 9.
 
 ![SQL Query Details](images/details-from-sql.jpg){: caption="Figure 9. Access with SQL query jobs"}
 
 ## Next Steps
 {: #sql-query-next-steps}
 
-For more information on using {{site.data.keyword.sqlquery_short}} see the [{{site.data.keyword.sqlquery_short}} documentation](/docs/sql-query?topic=sql-query-overview) and [Analyzing Data with IBM Cloud SQL Query](https://medium.com/codait/analyzing-data-with-ibm-cloud-sql-query-bc53566a59f5?linkId=49971053).
+For more information on using {{site.data.keyword.sqlquery_short}} see the [{{site.data.keyword.sqlquery_short}} documentation](/docs/sql-query?topic=sql-query-overview) and [Analyzing Data with IBM Cloud SQL Query](https://www.ibm.com/cloud/blog/analyzing-data-with-ibm-cloud-sql-query).

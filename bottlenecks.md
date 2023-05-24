@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2020
-lastupdated: "2020-08-25"
+  years: 2020, 2023
+lastupdated: "2023-05-24"
 
 keywords: developer, best practices, object storage
 
@@ -16,7 +16,7 @@ subcollection: cloud-object-storage
 # Client-side bottlenecks
 {: #performance-bottlenecks}
 
-Often, poor performance is investigated and there is no indication of any lag or bottlenecks on the server side. These issues are resolved by making improvements to other aspects of the application architecture.  
+Often, poor performance is investigated and there is no indication of any lag or bottlenecks on the server side. These issues are resolved by making improvements to other aspects of the application architecture.
 {: shortdesc}
 
 ## Application design
@@ -36,4 +36,3 @@ NIC speeds can determine the limits of data throughput. It is possible to config
 
 If encountering network errors, it is useful to provide the specific endpoint where requests are being sent when opening a support ticket. This allows the support team to efficiently investigate the networking to see if there are errors on IBM's network hops.
 
-For very large migrations from an on-premise system to the IBM Cloud, the Mass Data Migration Service (MDMS) is recommended. For more information, see the [MDMS documentation](/docs/mass-data-migration?topic=mass-data-migration-getting-started-tutorial).
