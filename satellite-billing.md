@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021
-lastupdated: "2021-12-01"
+  years: 2021, 2023
+lastupdated: "2023-05-26"
 
 keywords:  object storage, satellite, local
 
@@ -23,11 +23,12 @@ Instead, storage is allocated at a fixed capacity using a "T-shirt size" model. 
 
 | Object Storage capacity | Raw storage required | Monthly price |
 |-------------------------|----------------------|---------------|
-| Small (12 TB)           | 18 TB                | $480          |
-| Medium (24 TB)          | 36 TB                | $840          |
-| Large (48 TB)           | 72 TB                | $1200         |
-| Extra Large (96 TB)     | 144 TB               | $1920         |
-  
+| Small (12 TB)           | 18 TB                | $502          |
+| Medium (24 TB)          | 36 TB                | $878          |
+| Large (48 TB)           | 72 TB                | $1254         |
+| Extra Large (96 TB)     | 144 TB               | $2006         |
+{: caption="Table 1. Available sizes" caption-side="top"}
+
 The total cost for using {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} is a combination of:
 
 1. Cost of infrastructure
@@ -44,4 +45,4 @@ As each application has unique storage needs, it is not possible to provide much
 ## Adding capacity
 {: #billing-satellite-adding}
 
-At this point, it is not possible to extend capacity once an instance is provisioned.  Instead, you will need to provision an additional instance and create a new bucket for the overflow.  
+At this point, it is not possible to extend capacity once an instance is provisioned.  Instead, you will need to provision an additional instance and create a new bucket for the overflow.

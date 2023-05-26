@@ -1,7 +1,7 @@
 ---
 
 copyright:
-  years: 2017, 2021, 2023
+  years: 2017, 2023
 lastupdated: "2023-05-04"
 
 keywords: administration, billing, platform
@@ -64,6 +64,7 @@ Deleting buckets or objects from the system does not incur a charge. For charges
 |--- |--- |--- |
 | Class A | PUT, COPY, and POST requests, as well as GET requests used to list buckets and objects | Creating buckets, uploading or copying objects, listing buckets, listing contents of buckets, setting ACLs, and setting CORS configurations |
 | Class B | GET (excluding listing), HEAD, and OPTIONS requests | Retrieving objects and metadata |
+{: caption="Table 1. Request classes" caption-side="top"}
 
 Requests made using the Resource Configuration API are not charged for requests and do not accrue usage for billing purposes.
 {: note}
@@ -80,20 +81,21 @@ Not all data that is stored needs to be accessed frequently, and some archival d
 
 There are six classes:
 
-*  **Smart Tier** can be used for any workload, especially dynamic workloads where access patterns are unknown or difficult to predict.  Smart Tier provides a simplified pricing structure and automatic cost optimization by classifying the data into "hot", "cool", and "cold" tiers based on monthly usage patterns. All data in the bucket is then billed at the lowest applicable rate.  There are no threshold object sizes or storage periods, and there are no retrieval fees. 
+*  **Smart Tier** can be used for any workload, especially dynamic workloads where access patterns are unknown or difficult to predict.  Smart Tier provides a simplified pricing structure and automatic cost optimization by classifying the data into "hot", "cool", and "cold" tiers based on monthly usage patterns. All data in the bucket is then billed at the lowest applicable rate.  There are no threshold object sizes or storage periods, and there are no retrieval fees.
 *  **Standard** is used for active workloads, with no charge for data retrieved (other than the cost of the operational request itself).
 *  **Vault** is used for cool workloads where data is accessed less than once a month - an extra retrieval charge ($/GB) is applied each time data is read. The service includes a minimum threshold for object size and storage period consistent with the intended use of this service for cooler, less-active data.
 *  **Cold Vault** is used for cold workloads where data is accessed every 90 days or less - a larger extra retrieval charge ($/GB) is applied each time data is read. The service includes a longer minimum threshold for object size and storage period consistent with the intended use of this service for cold, inactive data.
 *  **Active** is specifically and solely used by One Rate plan instances, and can not be used in Standard or Lite plan instances.
 
 **Flex** has been replaced by Smart Tier for dynamic workloads. Flex users can continue to manage their data in existing Flex buckets, although no new Flex buckets may be created.  Existing users can reference pricing information [here](/docs/cloud-object-storage?topic=cloud-object-storage-flex-pricing).
-{:note}
+{: note}
 
 For more information about pricing, see [the pricing table at ibm.com](https://cloud.ibm.com/objectstorage/create#pricing){: external}.
 
 For more information about creating buckets with different storage classes, see the [API reference](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
 
 ### Smart Tier pricing details
+{: #smart-tier-pricing}
 
 Based on monthly averages, data in a Smart Tier bucket is classified into one of three tiers based on the following variables:
 
@@ -101,7 +103,8 @@ Based on monthly averages, data in a Smart Tier bucket is classified into one of
 | --- | --- |
 | `storage` | Total volume of data stored in GB |
 | `retrievals` | Total volume of data retrieved in GB |
-| `requests` | Sum of the number of Class A (write) requests plus 1/10 of the number of Class B (read) requests | 
+| `requests` | Sum of the number of Class A (write) requests plus 1/10 of the number of Class B (read) requests |
+{: caption="Table 2. Smart Tier bucket classification" caption-side="top"}
 
 - Data is classified **hot** if the total `requests > 1000 x (storage - retrievals)`.
 - Data is classified **cold** if the total `requests < (storage - retrievals)`.
@@ -121,21 +124,22 @@ Let's see how the costs might compare to the other storage classes.
 | 2     | 1,000 GB  | 4,000      | 200 GB      | Cool           | $21      | $14   | $16        | **$12**    |
 | 3     | 1,000 GB  | 400        | 10 GB       | Cold           | $21      | $12   | $7         | **$8**     |
 | Total | -         | -          | -           | -              | $83      | $79   | $134       | **$61**    |
+{: caption="Table 3. Cost comparison" caption-side="top"}
 
-Note that in situations where data is very cold, it is possible to get a lower rate with a Cold Vault bucket, although unexpected spikes in access could accrue significant costs.  In this scenario, if the data doesn't require on-demand access, it might be better to archive the objects instead.  
+Note that in situations where data is very cold, it is possible to get a lower rate with a Cold Vault bucket, although unexpected spikes in access could accrue significant costs.  In this scenario, if the data doesn't require on-demand access, it might be better to archive the objects instead.
 
 ## Get bucket metadata
 {: #billing-get-bucket-metadata}
 
 In order to determine your current usage, you may wish to query a bucket to see `bytes_used` and `object_count`. Use of this command returns metadata containing that information for the specified bucket.
- 
+
 ```
 curl https://config.cloud-object-storage.cloud.ibm.com/v1/b/{my-bucket} \
-                        -H 'authorization: bearer <IAM_token>' 
+                        -H 'authorization: bearer <IAM_token>'
 ```
 {: codeblock}
 
-The appropriate response to the request should contain `bytes_used` and `object_count`. 
+The appropriate response to the request should contain `bytes_used` and `object_count`.
 ```
 {
   "name": "{my-bucket}",
@@ -155,11 +159,11 @@ The appropriate response to the request should contain `bytes_used` and `object_
 The resource controller is the next-generation {{site.data.keyword.cloud_notm}} Platform provisioning layer that manages the lifecycle of {{site.data.keyword.cos_short}} resources in a customer account. The API can provide actual billable metrics, such as types of requests and charges for storage, to get you started. More information can be found at the [documentation](https://cloud.ibm.com/apidocs/resource-controller){: external}
 
 ```bash
-curl -X GET https://resource-controller.cloud.ibm.com/v2/resource_instances -H 'Authorization: Bearer <IAM_TOKEN>' 
+curl -X GET https://resource-controller.cloud.ibm.com/v2/resource_instances -H 'Authorization: Bearer <IAM_TOKEN>'
 ```
 {: codeblock}
 
-An appropriate response should list metadata for your resources as shown in the example. 
+An appropriate response should list metadata for your resources as shown in the example.
 
 ```
 {
