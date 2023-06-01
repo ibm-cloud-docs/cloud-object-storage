@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-05-23"
+lastupdated: "2023-06-01"
 
 keywords: updates, releases, news, object storage
 
@@ -25,7 +25,7 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 {: release-note}
 
 New location!
-:   Buckets can now be created in a Regional configuration in Madrid, Spain. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+:   Buckets can now be created in a Regional (MZR) configuration in Madrid, Spain. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
 
 ## 16 March 2023
 {: #cloud-object-storage-mar1623}
