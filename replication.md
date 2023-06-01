@@ -24,7 +24,7 @@ Replication allows users to define rules for automatic, asynchronous copying of 
 
 Replication copies newly created objects and object updates from a source bucket to a target bucket.
 
-- Only new objects or new versions of the existing objects (created after the replication rule was added to the bucket) are copied to the target bucket. Existing objects can be replicated [by copying them onto themselves](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview#replicating-existing-objects), creating a new version that is replicated.
+- Only new objects or new versions of the existing objects (created after the replication rule was added to the bucket) are copied to the target bucket. Existing objects can be replicated [by copying them onto themselves](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview#replication-existing), creating a new version that is replicated.
 - The metadata of the source object is applied to the replicated object.
 - Bi-directional replication between two buckets requires rules to be active on both buckets.
 - Filters (composed of prefixes and/or tags) can be used to scope the replication rule to only apply to a subset of objects. Multiple rules can be defined in a single policy and these rules can specify different destinations. In this manner, different objects in the same bucket can be replicated to different destinations.
@@ -40,10 +40,10 @@ Replication copies newly created objects and object updates from a source bucket
 ## Getting started with replication
 {: #replication-gs}
 
-In order to get started, there are some some prerequisites:
+To get started, there are some some prerequisites:
 
-- You'll need the `Writer` or `Manager` platform role on the source bucket, or a custom role with the appropriate replication actions (such as  `cloud-object-storage.bucket.put_replication`) assigned.
-- You don't need to have access to the target bucket, but do need to have sufficient platform roles to create [new IAM policies](/docs/account?topic=account-iamoverview#iamoverview) that allow the source bucket to write to the target bucket.
+- Set the the `Writer` or `Manager` platform role on the source bucket, or a custom role with the appropriate replication actions (such as  `cloud-object-storage.bucket.put_replication`) assigned.
+- You do not need to have access to the target bucket, but do need to have sufficient platform roles to create [new IAM policies](/docs/account?topic=account-iamoverview#iamoverview) that allow the source bucket to write to the target bucket.
 - Both the source and target buckets must have [versioning enabled](/docs/cloud-object-storage?topic=cloud-object-storage-versioning).
 - The target bucket must not have a legacy bucket firewall enabled, but can use [context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall).
 - Objects encrypted [using SSE-C](/docs/cloud-object-storage?topic=cloud-object-storage-sse-c) cannot be replicated, although [managed encryption (SSE-KMS) like Key Protect](/docs/cloud-object-storage?topic=cloud-object-storage-kp) is fully compatible with replication.
@@ -82,7 +82,7 @@ Now you'll create a replication rule.
 ## What is replicated?
 {: #replication-what}
 
-New objects created via `CopyObject`, `PutObject` or `CompleteMultipartUpload` will be replicated from the source bucket to the target bucket. The replicated objects will inherit the following MD fields from the source object: `Etag, Last Modified Time, Version ID, user-attributes, Tags`
+New objects created via `CopyObject`, `PutObject` or `CompleteMultipartUpload` will be replicated from the source bucket to the target bucket. The replicated objects will inherit the following metadata fields from the source object: Etag, Last Modified Time, Version ID, user-attributes, and Tags.
 
 Delete markers will be replicated if configured by the replication policy.
 
@@ -103,13 +103,13 @@ The following are not replicated:
 Replication can be used to provide continuity of service in the event of an outage:
 
 - Ensure that the source and target buckets are in different locations.
-- Verify that the latest versions of objects are in sync between both buckets.  A tool such as [Rclone can be useful](/docs/cloud-object-storage?topic=cloud-object-storage-rclone) (the `rclone check` command) for checking synchronicity from the command line.
+- Verify that the latest versions of objects are in sync between both buckets.  A tool such as [Rclone](/docs/cloud-object-storage?topic=cloud-object-storage-rclone) (the `rclone check` command) can be useful for checking synchronicity from the command line.
 - In the event of an outage, an application's traffic can be redirected to the target bucket.
 
 ## Consistency and data integrity
 {: #replication-consistency}
 
-While IBM Cloud Object Storage provides strong consistency for all data IO operations, bucket configuration is eventually consistent. After enabling replication rules for the first time on a bucket, it may take a few moments for the configuration to propagate across the system and new objects to start being replicated. 
+While IBM Cloud Object Storage provides strong consistency for all data IO operations, bucket configuration is eventually consistent. After enabling replication rules for the first time on a bucket, it may take a few moments for the configuration to propagate across the system and new objects to start being replicated.
 
 ## IAM actions
 {: #replication-iam}
@@ -157,9 +157,9 @@ When replication is active, operations on objects may generate the following ext
 
 You can trace an object from when it is written to the source until it is written on the target. Search for the request ID associated with the object write and three events should appear:
 
-1. The original `PUT`,
-2. The sync request from the source,
-3. The PUT request on the target.
+- The original `PUT`.
+- The sync request from the source.
+- The `PUT` request on the target.
 
 Any of these three missing indicates a failure.
 
