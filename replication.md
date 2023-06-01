@@ -4,7 +4,7 @@ copyright:
   years: 2022, 2023
 lastupdated: "2023-05-31"
 
-keywords: data, replication, loss prevention, iam, activity tracker, disaster recovery
+keywords: data, replication, loss prevention, iam, activity tracker, disaster recovery, versioning, key protect
 
 subcollection: cloud-object-storage
 
