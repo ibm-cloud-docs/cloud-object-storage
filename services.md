@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2023
 
-lastupdated: "2023-05-12"
+lastupdated: "2023-06-01"
 
 keywords: aspera, key protect, archive, worm
 
@@ -49,24 +49,20 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 ## Regional
 {: #service-availability-region}
 
-| Region     | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Object Lock | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring | Replication | One Rate |
-|------------|--------|-------------|--------------------------------|--------------|-------------|--------------------------|------------------|-----------|------------|------------|-------------|----------|
-| `au-syd`   | Yes    | Yes         | Yes (see note)                 | Yes          | Yes         | Yes                      | `au-syd`         | Yes       | Yes        | `au-syd`   | Yes         | Yes      |
-| `jp-tok`   | Yes    | Yes         | Yes (see note)                 | Yes          | Yes         | Yes                      | `ap-tok`         | Yes       | Yes        | `ap-tok`   | Yes         | Yes      |
-| `jp-osa`   | No     | Yes         | No                             | Yes          | Yes         | Yes                      | `ap-osa`         | Yes       | Yes        | `ap-osa`   | Yes         | Yes      |
-| `eu-gb`    | Yes    | Yes         | Yes (see note)                 | Yes          | Yes         | Yes                      | `eu-gb`          | Yes       | Yes        | `eu-gb`    | Yes         | Yes      |
-| `eu-de`    | Yes    | Yes         | Yes (see note)                 | Yes          | Yes         | Yes                      | `eu-de`          | Yes       | Yes        | `eu-de`    | Yes         | Yes      |
-| `us-south` | Yes    | Yes         | Yes (see note)                 | Yes          | Yes         | Yes                      | `us-south`       | Yes       | Yes        | `us-south` | Yes         | Yes      |
-| `us-east`  | Yes    | Yes         | Yes (see note)                 | Yes          | Yes         | Yes                      | `us-east`        | Yes       | Yes        | `us-east`  | Yes         | Yes      |
-| `ca-tor`   | No     | Yes         | Yes (see note)                 | Yes          | Yes         | Yes                      | `ca-tor`         | Yes       | Yes        | `ca-tor`   | Yes         | Yes      |
-| `br-sao`   | No     | Yes         | Yes (see note)                 | Yes          | Yes         | Yes                      | `br-sao`         | Yes       | Yes        | `br-sao`   | Yes         | Yes      |
-| `eu-es`    | No     | Yes-`eu-de`    | No                             | Yes          | Yes         | Yes                      | `eu-de`          | No        | Yes        | `eu-de`    | Yes         | Yes      |
+| Region     | Aspera | Key Protect   | {{site.data.keyword.hscrypto}} | Archive Data | Object Lock | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring | Replication | One Rate |
+|------------|--------|---------------|--------------------------------|--------------|-------------|--------------------------|------------------|-----------|------------|------------|-------------|----------|
+| `au-syd`   | Yes    | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `au-syd`         | Yes       | Yes        | `au-syd`   | Yes         | Yes      |
+| `jp-tok`   | Yes    | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `ap-tok`         | Yes       | Yes        | `ap-tok`   | Yes         | Yes      |
+| `jp-osa`   | No     | Yes           | No                             | Yes          | Yes         | Yes                      | `ap-osa`         | Yes       | Yes        | `ap-osa`   | Yes         | Yes      |
+| `eu-gb`    | Yes    | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `eu-gb`          | Yes       | Yes        | `eu-gb`    | Yes         | Yes      |
+| `eu-de`    | Yes    | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `eu-de`          | Yes       | Yes        | `eu-de`    | Yes         | Yes      |
+| `us-south` | Yes    | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `us-south`       | Yes       | Yes        | `us-south` | Yes         | Yes      |
+| `us-east`  | Yes    | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `us-east`        | Yes       | Yes        | `us-east`  | Yes         | Yes      |
+| `ca-tor`   | No     | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `ca-tor`         | Yes       | Yes        | `ca-tor`   | Yes         | Yes      |
+| `br-sao`   | No     | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `br-sao`         | Yes       | Yes        | `br-sao`   | Yes         | Yes      |
+| `eu-es`    | No     | Yes (see note)| No                             | Yes          | Yes         | Yes                      | `eu-de`          | No        | Yes        | `eu-de`    | Yes         | Yes      |
 
-It is possible to create a bucket and associate any available Key Protect or Hyper Protect Crypto Services instance with any of the listed Cloud Object Storage locations. Hyper Protect Crypto Services is only available in selected locations and it is your responsibility to ensure the location/region you select meets any pertinent requirements. Please refer to [Hyper Protect Crypto Services documentation](/docs/hs-crypto?topic=hs-crypto-regions) for a list of regions/locations currently available.
-{: note}
-
-
-Add new note (see KP)
+It is possible to create a bucket and associate any available Key Protect or Hyper Protect Crypto Services instance with any of the listed Cloud Object Storage locations. Hyper Protect Crypto Services is only available in selected locations and it is your responsibility to ensure the location/region you select meets any pertinent requirements. Please refer to [Hyper Protect Crypto Services documentation](/docs/hs-crypto?topic=hs-crypto-regions) and [IBM Key Protect](/docs/key-protect?topic=key-protect-about) for a list of regions/locations currently available.
 {: note}
 
 ## Single Data Centers
