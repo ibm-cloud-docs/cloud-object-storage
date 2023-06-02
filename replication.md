@@ -82,11 +82,11 @@ Now you'll create a replication rule.
 ## What is replicated?
 {: #replication-what}
 
-New objects created via `CopyObject`, `PutObject` or `CompleteMultipartUpload` will be replicated from the source bucket to the target bucket. The replicated objects will inherit the following metadata fields from the source object: Etag, Last Modified Time, Version ID, user-attributes, and Tags.
+New objects created via `CopyObject`, `PutObject`, or `CompleteMultipartUpload` will be replicated from the source bucket to the target bucket. The replicated objects will inherit the following metadata fields from the source object: Etag, Last Modified Time, Version ID, user-attributes, and Tags.
 
 Delete markers will be replicated if configured by the replication policy.
 
-The updates to a version's tags will be replicated from the source bucket to the target bucket.
+Updates to a version's tags will be replicated from the source bucket to the target bucket.
 
 The following are not replicated:
 
