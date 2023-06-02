@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2023
-lastupdated: "2023-05-31"
+lastupdated: "2023-06-02"
 
 keywords: data, replication, loss prevention, iam, activity tracker, disaster recovery, versioning, key protect
 
@@ -40,7 +40,7 @@ Replication copies newly created objects and object updates from a source bucket
 ## Getting started with replication
 {: #replication-gs}
 
-To get started, there are some some prerequisites:
+To get started, here are some prerequisites that must be met:
 
 - Set the the `Writer` or `Manager` platform role on the source bucket, or a custom role with the appropriate replication actions (such as  `cloud-object-storage.bucket.put_replication`) assigned.
 - You do not need to have access to the target bucket, but do need to have sufficient platform roles to create [new IAM policies](/docs/account?topic=account-iamoverview#iamoverview) that allow the source bucket to write to the target bucket.
