@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-12-19"
+  years: 2017, 2023
+lastupdated: "2023-06-23"
 
 keywords: authorization, aws, hmac, signature
 
@@ -27,11 +27,11 @@ The {{site.data.keyword.cos_full}} API is a REST-based API for reading and writi
 ### Create HMAC credentials in the console
 {: #uhc-create-hmac-credentials-console}
 
-Users can create a set of HMAC credentials as part of a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) with the use of the advanced configuration parameter `{"HMAC":true}` during credential creation in the console. Figure 1 shows the option for setting the HMAC parameter by choosing "Advanced options."
+Users can create a set of HMAC credentials as part of a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) by switching the `Include HMAC Credential` to `On`  during credential creation in the console. Figure 1 shows the option for setting the HMAC parameter by choosing "Advanced options."
 
 ![advanced options](images/hmac-credential-dialog.jpg){: caption="Figure 1. HMAC setting from advanced options"}
 
-After the Service Credential is created, the HMAC Key is included in the `cos_hmac_keys` field. These HMAC keys are then associated with a [Service ID](/docs/account?topic=account-serviceids#serviceids) and can be used to access any resources or operations that are allowed by the Service ID's role. 
+After the Service Credential is created, the HMAC Key is included in the `cos_hmac_keys` field. These HMAC keys are then associated with a [Service ID](/docs/account?topic=account-serviceids#serviceids) and can be used to access any resources or operations that are allowed by the Service ID's role.
 
 When creating a service credential, it is possible to provide a value of `None` for the role.  This will prevent the creation of unintended or unnecessary IAM access policies. Any access policies for the associated service ID will need to be managed using the IAM console or APIs.
 {: tip}
