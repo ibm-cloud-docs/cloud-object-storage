@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021, 2023
-lastupdated: "2023-04-17"
+lastupdated: "2023-06-09"
 
 keywords: faq, frequently asked questions, object storage
 
@@ -45,7 +45,7 @@ ibmcloud resource search "service_name:cloud-object-storage AND 2fdf0c08-2d32-4f
 {: #faq-instance-upgrade}
 {: faq}
 
-Typically, this is easily done from the {{site.data.keyword.cos_full_notm}} console by clicking on **Plan** in the navigation menu, located after **Connections**.
+Typically, this is easily done from the {{site.data.keyword.cos_full_notm}} console found here https://cloud.ibm.com/objectstorage/, select the correct name of Cloud Object Storage Instance you wish to upgrade,click on **Plan** in the navigation menu, located after **Instance Usage**. Select the "standard" plan and hit save.
 
 In cases where the instance has been locked due to exceeding the maximum allowed size of a Lite instance it may be necessary to use the CLI. The plan ID for a standard {{site.data.keyword.cos_short}} instance is `744bfc56-d12c-4866-88d5-dac9139e0e5d` (if curious, this can be found by issuing the CLI command `ic catalog service cloud-object-storage`).  You'll need to know the name of the instance you are trying to upgrade.  For example, to upgrade the instance "My Object Storage", you can issue the command:
 

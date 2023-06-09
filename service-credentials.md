@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-04-27"
+lastupdated: "2023-06-07"
 
 keywords: authorization, iam, basics, credentials
 
@@ -14,10 +14,9 @@ subcollection: cloud-object-storage
 {{site.data.keyword.attribute-definition-list}}
 
 # Service credentials
-
 {: #service-credentials}
 
-A [service credential](/docs/account?topic=account-service_credentials&interface=ui) provides the necessary information to connect an application to {{site.data.keyword.cos_short}} packaged in a JSON document. 
+A [service credential](/docs/account?topic=account-service_credentials&interface=ui) provides the necessary information to connect an application to {{site.data.keyword.cos_short}} packaged in a JSON document.
 {: shortdesc}
 
 Service credentials are always associated with a Service ID, and new Service IDs can be created along with a new credential.
@@ -29,7 +28,7 @@ Use the following steps to create a service credential:
 
 1. Log in to the {{site.data.keyword.cloud_notm}} console and navigate to your instance of {{site.data.keyword.cos_short}}.
 1. In the side navigation, click **Service Credentials**.
-1. Click **New credential** and provide the necessary information. If you want to generate HMAC credentials, click on `Advanced Options` to reveal the 'Include HMAC Credential' option. Verify the option is selected before continuing.
+1. Click **New credential** and provide the necessary information. If you want to generate HMAC credentials, switch the `Include HMAC Credential` to `On`. Verify the option is switched to `On` before continuing.
 1. Click **Add** to generate service credential.
 
 When creating a service credential, it is possible to provide a value of `None` for the role.  This will prevent the creation of unintended or unnecessary IAM access policies. Any access policies for the associated service ID will need to be managed using the IAM console or APIs.

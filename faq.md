@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021, 2023
-lastupdated: "2023-05-04"
+  years: 2017, 2023
+lastupdated: "2023-06-07"
 
 keywords: faq, frequently asked questions, object storage
 
@@ -454,3 +454,11 @@ It isn't possible to delete an instance if the API key or Service ID being used 
 > An error occurred during an attempt to complete the operation. Try fixing the issue or try the operation again later. Description: 400
 
 This is intentionally vague to prevent any useful information from being conveyed to a possible attacker.  For more information on locking API keys or Service IDs, [see the IAM documentation](/docs/account?topic=account-serviceids&interface=ui#lock_serviceid).
+
+## How do I download the Root CA certificate for {{site.data.keyword.cos_short}}?
+{: #faq-download-root-ca-cert}
+{: faq}
+
+{{site.data.keyword.cos_short}} root CA certificates can be downloaded from https://www.digicert.com/kb/digicert-root-certificates.htm. Please download PEM or DER/CRT format from "DigiCert TLS RSA SHA256 2020 CA1" that is located  under "Other intermediate certificates."
+
+
