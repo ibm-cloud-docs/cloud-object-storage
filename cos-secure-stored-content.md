@@ -16,8 +16,8 @@ completion-time: 15m
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Limiting access to a single {{site.data.keyword.cos_short}} bucket
-{: #limit-access}
+# Securing stored content with {{site.data.keyword.cos_short}}
+{: #secure-stored-content}
 {: toc-content-type="tutorial"}
 {: toc-completion-time="15m"}
 
