@@ -1,9 +1,9 @@
 ---
 
 copyright:
-  years: 2017, 2022, 2023
+  years: 2017, 2023
 
-lastupdated: "2023-04-14"
+lastupdated: "2023-05-12"
 
 keywords: endpoint, location, object storage
 
@@ -60,6 +60,7 @@ Buckets that are created at a regional endpoint distribute data across three dat
 | `jp-osa`   | Public | `s3.jp-osa.cloud-object-storage.appdomain.cloud`   |
 | `ca-tor`   | Public | `s3.ca-tor.cloud-object-storage.appdomain.cloud`   |
 | `br-sao`   | Public | `s3.br-sao.cloud-object-storage.appdomain.cloud`   |
+| `eu-es`    | Public | `s3.eu-es.cloud-object-storage.appdomain.cloud`    |
 {: class="simple-tab-table"}
 {: caption="Table 1. Regional Endpoints" caption-side="top"}
 {: #regionalendpointtable1}
@@ -77,6 +78,7 @@ Buckets that are created at a regional endpoint distribute data across three dat
 | `jp-osa`   | Private | `s3.private.jp-osa.cloud-object-storage.appdomain.cloud`   |
 | `ca-tor`   | Private | `s3.private.ca-tor.cloud-object-storage.appdomain.cloud`   |
 | `br-sao`   | Private | `s3.private.br-sao.cloud-object-storage.appdomain.cloud`   |
+| `eu-es`    | Private | `s3.private.eu-es.cloud-object-storage.appdomain.cloud`    |
 {: class="simple-tab-table"}
 {: caption="Table 1. Regional Endpoints" caption-side="top"}
 {: #regionalendpointtable2}
@@ -94,6 +96,7 @@ Buckets that are created at a regional endpoint distribute data across three dat
 | `jp-osa`   | Direct | `s3.direct.jp-osa.cloud-object-storage.appdomain.cloud`   |
 | `ca-tor`   | Direct | `s3.direct.ca-tor.cloud-object-storage.appdomain.cloud`   |
 | `br-sao`   | Direct | `s3.direct.br-sao.cloud-object-storage.appdomain.cloud`   |
+| `eu-es`    | Direct | `s3.direct.eu-es.cloud-object-storage.appdomain.cloud`    |
 {: class="simple-tab-table"}
 {: caption="Table 1. Regional Endpoints" caption-side="top"}
 {: #regionalendpointtable3}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-03-16"
+lastupdated: "2023-06-01"
 
 keywords: updates, releases, news, object storage
 
@@ -20,6 +20,13 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
+## 14 June 2023
+{: #cloud-object-storage-mon0023}
+{: release-note}
+
+New location!
+:   Buckets can now be created in a Regional (MZR) configuration in Madrid, Spain. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+
 ## 16 March 2023
 {: #cloud-object-storage-mar1623}
 {: release-note}
@@ -32,14 +39,14 @@ New feature!
 {: release-note}
 
 New feature!
-:   It is now possible to create instances [using a One Rate plan](/docs/cloud-object-storage?topic=cloud-object-storage-onerate) to lower costs and simplify billing for workloads with high levels of egress. 
+:   It is now possible to create instances [using a One Rate plan](/docs/cloud-object-storage?topic=cloud-object-storage-onerate) to lower costs and simplify billing for workloads with high levels of egress.
 
 ## 21 June 2022
 {: #cloud-object-storage-jun2122}
 {: release-note}
 
 New feature!
-:   It is now possible to configure buckets for automated [replication of objects to a destination bucket](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview). 
+:   It is now possible to configure buckets for automated [replication of objects to a destination bucket](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview).
 
 ## 7 June 2022
 {: #cloud-object-storage-jun0722}
