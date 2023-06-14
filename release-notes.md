@@ -20,7 +20,7 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
-## XX XXXXX 2023
+## 14 June 2023
 {: #cloud-object-storage-mon0023}
 {: release-note}
 
