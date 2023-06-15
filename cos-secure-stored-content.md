@@ -85,22 +85,21 @@ IBM Cloud is offering a $500 promotional credit to quickly get started with our 
 {: #navigate-cos-instance}
 {: step}
 
-## Click **Create bucket**.
+## Click Create bucket.
 {: #create-cos-bucket}
 {: step}
 
 - Select **Customize your bucket**.
    - Name the new bucket.
-   - Choose your desired region and storage class, based on your activity (hot, cold, variable, etc.)
-     - [Using storage classes](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes)
+   - Choose your desired region and [storage class](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes), based on your activity (hot, cold, variable...etc.)
 
 - Add the following services during bucket creation.
    - Activity Tracker
-      - Scroll down to the Monitoring and activity tracking section and toggle the radio button to Enable activity tracking. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (e.g. us-east) you could name the instance something like “US East AT” so that you can easily find it later.
+      - Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Enable activity tracking**. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (e.g. `us-east`) you could name the instance something like `US East AT` so that you can easily find it later.
       - Track data events for both reading and writing.
 
 - Monitoring
-   - Scroll down to the Monitoring and activity tracking section and toggle the radio button to Enable metrics monitoring. Select an appropriate plan, and give the new instance a memorable name. For example, if you are creating the instance in the same region as the bucket (e.g. us-east) you could name the instance “US East MM” so that you can easily find it later.
+   - Scroll down to the Monitoring and activity tracking section and toggle the radio button to Enable metrics monitoring. Select an appropriate plan, and give the new instance a memorable name. For example, if you are creating the instance in the same region as the bucket (e.g. `us-east`) you could name the instance `US East MM` so that you can easily find it later.
    - Enable monitoring for both **usage and request metrics**.
 
 - Key Protect
@@ -112,23 +111,22 @@ IBM Cloud is offering a $500 promotional credit to quickly get started with our 
 {: #verify-cos-bucket}
 {: step}
 
-## Click Create bucket.
+## Click ok to Create bucket.
 {: #click-cos-bucket}
 {: step}
 
 You are now ready to store data in a secure content store with encryption, monitoring, and audit observability!
 
-## Get started by uploading data
+## Get started by [uploading data](/docs/cloud-object-storage?topic=cloud-object-storage-upload)
 {: #upload-data}
 
-Upload data
 
 ## Add additional capabilities to protect from ransomware and accidental deletion such as versioning and immutable retention polices for supporting immutable storage and immutable backup and archive data.
 {: #add-capabilities}
 
-Locking objects
-Versioning objects
+[Locking objects](/docs/cloud-object-storage?topic=cloud-object-storage-object-lock)
+[Versioning objects](/docs/cloud-object-storage?topic=cloud-object-storage-versioning)
 
-## Check out the IBM Cloud Tutorials library for additional tutorials for deploying solutions with Cloud Object Storage.
+## Check out the IBM Cloud Tutorials library for additional tutorials for deploying solutions with [Cloud Object Storage](https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage).
 {: #cos-tutorials}
 
