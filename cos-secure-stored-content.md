@@ -16,15 +16,47 @@ completion-time: 15m
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Securing stored content with {{site.data.keyword.cos_short}}
-{: #secure-stored-content}
+# Store content securely with {{site.data.keyword.cos_short}}
+{: #secure-content-store}
 {: toc-content-type="tutorial"}
 {: toc-completion-time="15m"}
 
-IBM Cloud IAM resource groups and access groups allow administrators to restrict users access to various service instances, but what if a user needs to only access a limited number of buckets within a service instance? This can be accomplished using a custom role and a narrowly tailored IAM policy.
-{: shortdesc}
+Are you looking to store content securely (locally or globally) at an affordable cost​, for things like **cloud native apps**, **media storage**, **backup storage** and **archive data**? IBM Secure Content Store with {{site.data.keyword.cos_full}} provides agility in supporting fast, highly consistent deployment across locations for business-critical data, immutable storage, immutable backup, and archive data with industry-leading security and controls for regulatory/compliance requirements​.
 
-This tutorial provides an introduction to granting access to a single {{site.data.keyword.cos_short}} bucket. 
+- Gain security and control over your data with encryption options, governance policies, access permissions, and context-based restrictions​.
+- Have immediate consistency across regions or locations for cloud-native apps, disaster recovery, storage backup, video content and delivery. etc. ​
+- Leverage your own encryption keys (BYOK) with Key Protect
+- Monitor and retain your account & data activity with Activity Tracker and IBM Monitoring
+- APIs & SDKs, Static Web Hosting, High Speed Transfer, Tagging, Replication
+
+## Promotion for new customers!
+{: #promotion}
+
+IBM Cloud is offering a $500 promotional credit to quickly get started with our Secure Content Store with {{site.data.keyword.cos_short}}. The credit has a duration of 90 days against your metered consumption of {{site.data.keyword.cos_short}}. See instructions below for applying your promo code. To qualify for this offer you must be a new paid user of {{site.data.keyword.cos_short}}.
+IBM Cloud IAM resource groups and access groups allow administrators to restrict users access to various service instances, but what if a user needs to only access a limited number of buckets within a service instance? This can be accomplished using a custom role and a narrowly tailored IAM policy.
+{: important}
+
+## Overview
+{: #overview-secure-stored-content}
+
+This tutorial is for customers looking to set up a Secure Content Store using {{site.data.keyword.cos_short}}, Activity Tracker, and Key Protect. In this tutorial, you are guided through the process of quickly getting started with these essential services to ensure the security and integrity of your content. Secure Content Store is comprised of the following services:
+
+- {{site.data.keyword.cos_short}}: a scalable and flexible storage solution that allows you to store and manage your data securely.
+- Activity Tracker: a powerful tool that provides comprehensive visibility into the activities happening within your IBM Cloud environment and allows for ease of audit observability.
+- Monitoring: to provide insights and information about what is happening with your data in your Secure Content Store.
+- Key Protect: a Key Management Service that enables you to manage and protect your encryption keys in a secure and centralized manner.
+
+Throughout the tutorial, you are provided with step-by-step instructions, along with helpful tips and best practices, which help you set up a Secure Content Store efficiently. So, let's get started!
+
+### High level steps for the tutorial
+{: #high-level-steps}
+{: steps}
+
+1. Set up {{site.data.keyword.cos_short}} to store and manage your data securely.
+2. Configure Activity Tracker for audit observability of relevant events.
+3. Add Monitoring for insights and information about what is happening with your data.
+4. Finally, use Key Protect to manage encryption keys to secure your data stored in {{site.data.keyword.cos_short}}.
+
 
 If you're not familiar with {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). Also, if you're not familiar with IAM, you may wish to check out how to [get started with IAM](/docs/account?topic=account-iamoverview#iamoverview).
 
