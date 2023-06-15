@@ -81,121 +81,54 @@ IBM Cloud is offering a $500 promotional credit to quickly get started with our 
 ## Create a new Object Storage bucket
 {: #create-cos-bucket}
 
-1. Navigate to your [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage).
-2. Click **Create bucket**.
+## Navigate to your [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage).
+{: #navigate-cos-instance}
+{: step}
+
+## Click **Create bucket**.
+{: #create-cos-bucket}
+{: step}
+
 - Select **Customize your bucket**.
    - Name the new bucket.
    - Choose your desired region and storage class, based on your activity (hot, cold, variable, etc.)
-     - [Using storage classes | IBM Cloud Docs](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes)
+     - [Using storage classes](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes)
 
 - Add the following services during bucket creation.
    - Activity Tracker
       - Scroll down to the Monitoring and activity tracking section and toggle the radio button to Enable activity tracking. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (e.g. us-east) you could name the instance something like “US East AT” so that you can easily find it later.
       - Track data events for both reading and writing.
 
-Monitoring
+- Monitoring
+   - Scroll down to the Monitoring and activity tracking section and toggle the radio button to Enable metrics monitoring. Select an appropriate plan, and give the new instance a memorable name. For example, if you are creating the instance in the same region as the bucket (e.g. us-east) you could name the instance “US East MM” so that you can easily find it later.
+   - Enable monitoring for both **usage and request metrics**.
 
-Scroll down to the Monitoring and activity tracking section and toggle the radio button to Enable metrics monitoring. Select an appropriate plan, and give the new instance a memorable name. For example, if you are creating the instance in the same region as the bucket (e.g. us-east) you could name the instance “US East MM” so that you can easily find it later.
+- Key Protect
+   - Scroll down to **Service integrations** (optional), toggle **Key management disabled** to **enable encryption key management** and **click** on **Create new instance**.
+   - Choose a region that corresponds with the bucket, give it a memorable name, and click Create and continue.
+   - Give the `root key` a name and click **Create and continue**.
 
-Enable monitoring for both usage and request metrics.
-
-Key Protect
-
-Scroll down to Service integrations (optional), toggle Key management disabled to enable encryption key management and click on Create new instance.
-
-Choose a region that corresponds with the bucket, give it a memorable name, and click Create and continue.
-
-Give the root key a name and click Create and continue.
-
-3. Verify the information is correct.
-
-4. Click Create bucket.
-
-You are now ready to store data in a secure content store with encryption, monitoring, and audit observability! 
-
-Get started by uploading data
-
-Upload data | IBM Cloud Docs
-
-`
-
-Add additional capabilities to protect from ransomware and accidental deletion such as versioning and immutable retention polices for supporting immutable storage and immutable backup and archive data. 
-
-Locking objects | IBM Cloud Docs
-
-Versioning objects | IBM Cloud Docs
-
-Check out the IBM Cloud Tutorials library for additional tutorials for deploying solutions with Cloud Object Storage. 
-
-IBM Cloud Docs | Tutorial library | Cloud Object Storage
-
-If you are already managing instances of {{site.data.keyword.cos_short}} or IAM, you do not need to create more. However, as this tutorial will modify and configure the instance we are working with, make sure that any accounts or services are not being used in a production environment. 
-
-This tutorial will create a new access policy and a new custom role in the process. 
-
-For this tutorial, you need:
-- An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com){: external}
-- An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage)
-- A bucket to which a user should be constrained
-- To complete the steps to manage access to the service, your user ID needs **administrator platform permissions** to use the IAM service. You may have to contact or work with an account administrator. 
-
-## Create a custom role 
-{: #single-bucket-create-role}
+## Verify the information is correct.
+{: #verify-cos-bucket}
 {: step}
 
-First, we need to create a role that allows a user to view a list of buckets, but not to access them or be able to create new buckets.
-
-1. Navigate to IAM by following the **Manage** drop-down menu, and selecting **Access (IAM)**.
-2. Select **Roles** from the navigation menu.
-3. Click the **Create** button to create a new role.
-
-  ![Create a new role](images/tut-iam-1-roles.png){: caption="Figure 1: Creating a custom role."}
-
-4. We can call this role "List Buckets Only".  Give it a name, ID, and brief description, and then select **Cloud Object Storage** from the drop down.
-
-  ![Create a new role](images/tut-iam-2-custom.png)
-
-5. Scroll down until you see the list of actions.  Click **Clear all** to remove all actions from the new role.
-   
-   ![Create a new role](images/tut-iam-3-clear.png)
-
-6. Look for the `cloud-object-storage.account.get_account_buckets` action and click **Add**.
-
-  ![Create a new role](images/tut-iam-4-list.png)
-
-7. Click **Create** to finish creating the custom role.
-
-## Create a new user access policy 
-{: #single-bucket-create-policy}
+## Click Create bucket.
+{: #click-cos-bucket}
 {: step}
 
-Now that we have our new role, we can apply it to a user.
+You are now ready to store data in a secure content store with encryption, monitoring, and audit observability!
 
-1. Follow the **Users** link in the navigation menu, and select the user requiring limited access.
-2. Click on the **Assign access** button.
+## Get started by uploading data
+{: #upload-data}
 
-  ![Create a new policy](images/tut-iam-5-user.png)
+Upload data
 
-3. Select the **Access policy** tile and select **Cloud Object Storage**.
+## Add additional capabilities to protect from ransomware and accidental deletion such as versioning and immutable retention polices for supporting immutable storage and immutable backup and archive data.
+{: #add-capabilities}
 
-  ![Create a new policy](images/tut-iam-6-policy.png)
+Locking objects
+Versioning objects
 
-4. Scroll down and assign the new role by checking the box next to **List Buckets Only**.
-5. Click **Add**.
+## Check out the IBM Cloud Tutorials library for additional tutorials for deploying solutions with Cloud Object Storage.
+{: #cos-tutorials}
 
-  ![Create a new policy](images/tut-iam-7-list-only.png)
-
-6. Repeat step 3, but this time we'll limit the scope.  Select the radio toggle next to **Specific resources**.
-7. Select **Resource ID** from the _Attribute type_ drop-down menu.
-8. Type in the name of the bucket that the user should be able to access in the _Value_ field.  In this case, it's a bucket called `diagnostics`. 
-
-  ![Create a new policy](images/tut-iam-8-bucket.png)
-
-9.  In the _Roles and access_ section, select the roles **Content Reader** and **Object Writer** roles.  You'll also need the Platform **Viewer** role, if you don't already have it, in order to view the UI.
-
-  ![Create a new policy](images/tut-iam-9-access.png)
-
-## Next steps
-{: #single-bucket-next-steps}
-
-Congratulations, you've just set up a policy to limit access to a single bucket. 
