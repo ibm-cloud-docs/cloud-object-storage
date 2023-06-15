@@ -78,7 +78,7 @@ IBM Cloud is offering a $500 promotional credit to quickly get started with our 
 4. Click **Apply a promo code**.
 5. Enter **Promo Code SECUREDCS**, click **verify** and then apply.
 
-## Create a new Object Storage bucket
+## Create a new {{site.data.keyword.cos_short}} bucket
 {: #create-cos-bucket}
 
 ## Navigate to your [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage).
@@ -93,27 +93,33 @@ IBM Cloud is offering a $500 promotional credit to quickly get started with our 
    - Name the new bucket.
    - Choose your desired region and [storage class](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes), based on your activity (hot, cold, variable...etc.)
 
-- Add the following services during bucket creation.
+- Add the following services during bucket creation by scrolling down to **Service integrations (optional)**.
    - Activity Tracker
-      - Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Enable activity tracking**. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (e.g. `us-east`) you could name the instance something like `US East AT` so that you can easily find it later.
-      - Track data events for both reading and writing.
+      1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Activity tracking enabled**. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (e.g. `us-east`) you could name the instance something like `US East AT` so that you can easily find it later.
+      2. Click to enable **Track data events** and select both **read & write** from the drop-down list.
 
-- Monitoring
-   - Scroll down to the Monitoring and activity tracking section and toggle the radio button to Enable metrics monitoring. Select an appropriate plan, and give the new instance a memorable name. For example, if you are creating the instance in the same region as the bucket (e.g. `us-east`) you could name the instance `US East MM` so that you can easily find it later.
-   - Enable monitoring for both **usage and request metrics**.
+   - Monitoring Metrics
+      1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Monitoring enabled**. Select an appropriate plan, and give the new instance a memorable name. For example, if you are creating the instance in the same region as the bucket (e.g. `us-east`) you could name the instance `US East MM` so that you can easily find it later.
+      2. Enable monitoring for both **usage and request metrics**.
 
-- Key Protect
-   - Scroll down to **Service integrations** (optional), toggle **Key management disabled** to **enable encryption key management** and **click** on **Create new instance**.
-   - Choose a region that corresponds with the bucket, give it a memorable name, and click Create and continue.
-   - Give the `root key` a name and click **Create and continue**.
+   - Key Protect Encryption
+     1. Scroll down to the **Encryption** section and toggle **Key management disabled** to **Key management enabled** and **click** on **Create new instance**.
+     2. Choose a region that corresponds with the bucket, give it a memorable name, and click Create and continue.
+     3. Give the `root key` a name and click **Create and continue**.
 
 ## Verify the information is correct.
 {: #verify-cos-bucket}
 {: step}
 
-## Click ok to Create bucket.
+## Click Create bucket to add the new bucket to your instance of {{site.data.keyword.cos_short}}.
 {: #click-cos-bucket}
 {: step}
+
+After your bucket is created with Activity Tracker it may take a few minutes for the activity tracker rules to take effect.
+{: #note}
+
+After your bucket is created with Monitoring it may take a few minutes for IBM Cloud Monitoring rules to take effect.
+{: #note}
 
 You are now ready to store data in a secure content store with encryption, monitoring, and audit observability!
 
