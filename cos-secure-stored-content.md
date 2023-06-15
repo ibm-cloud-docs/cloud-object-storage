@@ -34,7 +34,7 @@ Are you looking to store content securely (locally or globally) at an affordable
 
 IBM Cloud is offering a $500 promotional credit to quickly get started with our Secure Content Store with {{site.data.keyword.cos_short}}. The credit has a duration of 90 days against your metered consumption of {{site.data.keyword.cos_short}}. See instructions below for applying your promo code. To qualify for this offer you must be a new paid user of {{site.data.keyword.cos_short}}.
 IBM Cloud IAM resource groups and access groups allow administrators to restrict users access to various service instances, but what if a user needs to only access a limited number of buckets within a service instance? This can be accomplished using a custom role and a narrowly tailored IAM policy.
-{: important}
+{: promotion}
 
 ## Overview
 {: #overview-secure-stored-content}
@@ -61,7 +61,80 @@ Throughout the tutorial, you are provided with step-by-step instructions, along 
 If you're not familiar with {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). Also, if you're not familiar with IAM, you may wish to check out how to [get started with IAM](/docs/account?topic=account-iamoverview#iamoverview).
 
 ## Before you begin
-{: #single-bucket-cos-prereqs}
+{: #secure-content-prereqs}
+
+For this tutorial, you need:
+- An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com){: external}
+- An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage) (must be a paid Standard Plan instance)
+
+Apply the applicable promotional code that is included below.
+
+IBM Cloud is offering a $500 promotional credit to quickly get started with our Secure Content Store with IBM Cloud Object Storage. The credit has a duration of 90 days against your metered consumption of Cloud Object Storage. To qualify for this offer you must be a new paid user of Cloud Object Storage.
+{: promotion}
+
+1. Create or log into a IBM Cloud Paygo, Subscription account.
+2. Within IBM Cloud console click **Manage** then **Billing & Usage** from the drop-down list.
+3. Select **Promotions and Credits** from the navigation bar on the left.
+4. Click **Apply a promo code**.
+5. Enter **Promo Code SECUREDCS**, click **verify** and then apply.
+
+## Create a new Object Storage bucket
+{: #create-cos-bucket}
+
+1. Navigate to your [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage).
+2. Click Create bucket.
+
+Select Customize your bucket.
+
+Name the new bucket.
+
+Choose your desired region and storage class, based on your activity (hot, cold, variable, etc.)
+
+Using storage classes | IBM Cloud Docs
+
+Add the following services during bucket creation.
+
+Activity Tracker
+
+Scroll down to the Monitoring and activity tracking section and toggle the radio button to Enable activity tracking. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (e.g. us-east) you could name the instance something like “US East AT” so that you can easily find it later.
+
+Track data events for both reading and writing.
+
+Monitoring
+
+Scroll down to the Monitoring and activity tracking section and toggle the radio button to Enable metrics monitoring. Select an appropriate plan, and give the new instance a memorable name. For example, if you are creating the instance in the same region as the bucket (e.g. us-east) you could name the instance “US East MM” so that you can easily find it later.
+
+Enable monitoring for both usage and request metrics.
+
+Key Protect
+
+Scroll down to Service integrations (optional), toggle Key management disabled to enable encryption key management and click on Create new instance.
+
+Choose a region that corresponds with the bucket, give it a memorable name, and click Create and continue.
+
+Give the root key a name and click Create and continue.
+
+3. Verify the information is correct.
+
+4. Click Create bucket.
+
+You are now ready to store data in a secure content store with encryption, monitoring, and audit observability! 
+
+Get started by uploading data
+
+Upload data | IBM Cloud Docs
+
+`
+
+Add additional capabilities to protect from ransomware and accidental deletion such as versioning and immutable retention polices for supporting immutable storage and immutable backup and archive data. 
+
+Locking objects | IBM Cloud Docs
+
+Versioning objects | IBM Cloud Docs
+
+Check out the IBM Cloud Tutorials library for additional tutorials for deploying solutions with Cloud Object Storage. 
+
+IBM Cloud Docs | Tutorial library | Cloud Object Storage
 
 If you are already managing instances of {{site.data.keyword.cos_short}} or IAM, you do not need to create more. However, as this tutorial will modify and configure the instance we are working with, make sure that any accounts or services are not being used in a production environment. 
 
