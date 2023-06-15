@@ -82,23 +82,16 @@ IBM Cloud is offering a $500 promotional credit to quickly get started with our 
 {: #create-cos-bucket}
 
 1. Navigate to your [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage).
-2. Click Create bucket.
+2. Click **Create bucket**.
+- Select **Customize your bucket**.
+   - Name the new bucket.
+   - Choose your desired region and storage class, based on your activity (hot, cold, variable, etc.)
+     - [Using storage classes | IBM Cloud Docs](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes)
 
-Select Customize your bucket.
-
-Name the new bucket.
-
-Choose your desired region and storage class, based on your activity (hot, cold, variable, etc.)
-
-Using storage classes | IBM Cloud Docs
-
-Add the following services during bucket creation.
-
-Activity Tracker
-
-Scroll down to the Monitoring and activity tracking section and toggle the radio button to Enable activity tracking. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (e.g. us-east) you could name the instance something like “US East AT” so that you can easily find it later.
-
-Track data events for both reading and writing.
+- Add the following services during bucket creation.
+   - Activity Tracker
+      - Scroll down to the Monitoring and activity tracking section and toggle the radio button to Enable activity tracking. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (e.g. us-east) you could name the instance something like “US East AT” so that you can easily find it later.
+      - Track data events for both reading and writing.
 
 Monitoring
 
