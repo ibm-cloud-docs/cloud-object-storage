@@ -33,7 +33,6 @@ Are you looking to store content securely (locally or globally) at an affordable
 {: #promotion}
 
 IBM Cloud is offering a $500 promotional credit to quickly get started with our Secure Content Store with {{site.data.keyword.cos_short}}. The credit has a duration of 90 days against your metered consumption of {{site.data.keyword.cos_short}}. See instructions below for applying your promo code. To qualify for this offer you must be a new paid user of {{site.data.keyword.cos_short}}.
-IBM Cloud IAM resource groups and access groups allow administrators to restrict users access to various service instances, but what if a user needs to only access a limited number of buckets within a service instance? This can be accomplished using a custom role and a narrowly tailored IAM policy.
 {: important}
 
 ## Overview
@@ -57,9 +56,6 @@ Throughout the tutorial, you are provided with step-by-step instructions, along 
 3. Add Monitoring for insights and information about what is happening with your data.
 4. Finally, use Key Protect to manage encryption keys to secure your data stored in {{site.data.keyword.cos_short}}.
 
-
-If you're not familiar with {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). Also, if you're not familiar with IAM, you may wish to check out how to [get started with IAM](/docs/account?topic=account-iamoverview#iamoverview).
-
 ## Before you begin
 {: #secure-content-prereqs}
 
@@ -67,10 +63,10 @@ For this tutorial, you need:
 - An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com){: external}
 - An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage) (must be a paid Standard Plan instance)
 
-Apply the applicable promotional code that is included below.
+Apply promotional code that is included below.
 
 IBM Cloud is offering a $500 promotional credit to quickly get started with our Secure Content Store with {{site.data.keyword.cos_full}}. The credit has a duration of 90 days against your metered consumption of {{site.data.keyword.cos_short}}. To qualify for this offer you must be a new paid user of Cloud Object Storage.
-{: important}
+{: remember}
 
 1. Create or log into a IBM Cloud Paygo, Subscription account.
 2. Within IBM Cloud console click **Manage** then **Billing & Usage** from the drop-down list.
@@ -91,7 +87,7 @@ IBM Cloud is offering a $500 promotional credit to quickly get started with our 
 {: #create-cos-bucket}
 {: step}
 
-- Select **Customize your bucket** by clicking the right arrow.
+- Select the **Customize your bucket** tile, and click the right arrow.
     1. Name the new bucket.  It must start and end in alphanumeric characters (from 3 to 63) that is limited to using lowercase, numbers and nonconsecutive dots, and hyphens.
     2. Choose your desired region and [storage class](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes), based on your activity (hot, cold, variable...etc.)
 
@@ -121,10 +117,10 @@ IBM Cloud is offering a $500 promotional credit to quickly get started with our 
 {: step}
 
 After your bucket is created with Activity Tracker it may take a few minutes for the activity tracker rules to take effect.
-{: note}
+{: attention}
 
 After your bucket is created with Monitoring it may take a few minutes for IBM Cloud Monitoring rules to take effect.
-{: note}
+{: attention}
 
 You are now ready to store data in a secure content store with encryption, monitoring, and audit observability!
 
