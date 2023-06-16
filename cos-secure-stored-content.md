@@ -9,7 +9,7 @@ keywords: object storage, tutorial, secure stored content, store, content, secur
 subcollection: cloud-object-storage
 
 content-type: tutorial
-account-plan: lite
+account-plan: standard
 completion-time: 15m
 
 ---
@@ -96,7 +96,7 @@ IBM Cloud is offering a $500 promotional credit to quickly get started with our 
 - Add the following services during the bucket creation by scrolling down to **Service integrations (optional)**.
 
     [Key Protect](/docs/cloud-object-storage?topic=cloud-object-storage-tutorial-kp-encrypt-bucket)
-     1. Switch **Key management disabled** to **Key management enabled** and **click** on **Create new instance**.
+     1. Toggle **Key management disabled** to enable encryption and **click** on **Create new instance**.
      2. Choose a region that corresponds with the bucket, give it a memorable name, and click **Create and continue**.
      3. Give the `root key` a name and click **Create and continue**.
 
