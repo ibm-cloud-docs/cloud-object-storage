@@ -34,7 +34,7 @@ Are you looking to store content securely (locally or globally) at an affordable
 
 IBM Cloud is offering a $500 promotional credit to quickly get started with our Secure Content Store with {{site.data.keyword.cos_short}}. The credit has a duration of 90 days against your metered consumption of {{site.data.keyword.cos_short}}. See instructions below for applying your promo code. To qualify for this offer you must be a new paid user of {{site.data.keyword.cos_short}}.
 IBM Cloud IAM resource groups and access groups allow administrators to restrict users access to various service instances, but what if a user needs to only access a limited number of buckets within a service instance? This can be accomplished using a custom role and a narrowly tailored IAM policy.
-{: promotion}
+{: inportant}
 
 ## Overview
 {: #overview-secure-stored-content}
@@ -137,6 +137,7 @@ You are now ready to store data in a secure content store with encryption, monit
 - See [Locking objects](/docs/cloud-object-storage?topic=cloud-object-storage-ol-overview) for more information.
 - See [Versioning objects](/docs/cloud-object-storage?topic=cloud-object-storage-versioning) for more information.
 
-## Check out the IBM Cloud Tutorials library for additional tutorials for deploying solutions with [Cloud Object Storage](https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage).
+## Check out the IBM Cloud Tutorials library for additional tutorials for deploying solutions with {{site.data.keyword.cos_short}}.
 {: #cos-tutorials}
 
+- See [Cloud Object Storage](https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage) in the tutorials library for more information.
