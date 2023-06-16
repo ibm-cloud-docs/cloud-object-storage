@@ -126,14 +126,15 @@ After your bucket is created with Monitoring it may take a few minutes for IBM C
 
 You are now ready to store data in a secure content store with encryption, monitoring, and audit observability!
 
-## Get started by [uploading data](/docs/cloud-object-storage?topic=cloud-object-storage-upload)
+## Get started by uploading data.
 {: #upload-data}
 
+- See [uploading data](/docs/cloud-object-storage?topic=cloud-object-storage-upload) for more information.
 
 ## Add additional capabilities to protect from ransomware and accidental deletion such as versioning and immutable retention polices for supporting immutable storage and immutable backup and archive data.
 {: #add-capabilities}
 
-- See [Locking objects](/docs/cloud-object-storage?topic=cloud-object-storage-object-lock) for more information.
+- See [Locking objects](/docs/cloud-object-storage?topic=cloud-object-storage-ol-overview) for more information.
 - See [Versioning objects](/docs/cloud-object-storage?topic=cloud-object-storage-versioning) for more information.
 
 ## Check out the IBM Cloud Tutorials library for additional tutorials for deploying solutions with [Cloud Object Storage](https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage).
