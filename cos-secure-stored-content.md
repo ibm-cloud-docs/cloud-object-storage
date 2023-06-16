@@ -34,7 +34,7 @@ Are you looking to store content securely (locally or globally) at an affordable
 
 IBM Cloud is offering a $500 promotional credit to quickly get started with our Secure Content Store with {{site.data.keyword.cos_short}}. The credit has a duration of 90 days against your metered consumption of {{site.data.keyword.cos_short}}. See instructions below for applying your promo code. To qualify for this offer you must be a new paid user of {{site.data.keyword.cos_short}}.
 IBM Cloud IAM resource groups and access groups allow administrators to restrict users access to various service instances, but what if a user needs to only access a limited number of buckets within a service instance? This can be accomplished using a custom role and a narrowly tailored IAM policy.
-{: promotion}
+{: inportant}
 
 ## Overview
 {: #overview-secure-stored-content}
@@ -89,24 +89,24 @@ IBM Cloud is offering a $500 promotional credit to quickly get started with our 
 {: #create-cos-bucket}
 {: step}
 
-- Select **Customize your bucket** by clicking the -->.
-   - Name the new bucket.  It must start and end in alphanumeric characters (from 3 to 63) that is limited to using lowercase, numbers and nonconsecutive dots, and hyphens.
-   - Choose your desired region and [storage class](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes), based on your activity (hot, cold, variable...etc.)
+- Select **Customize your bucket** by clicking the right arrow.
+    1. Name the new bucket.  It must start and end in alphanumeric characters (from 3 to 63) that is limited to using lowercase, numbers and nonconsecutive dots, and hyphens.
+    2. Choose your desired region and [storage class](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes), based on your activity (hot, cold, variable...etc.)
 
 - Add the following services during the bucket creation by scrolling down to **Service integrations (optional)**.
 
-   - Encryption using Key Protect
+    Encryption using Key Protect
      1. Switch **Key management disabled** to **Key management enabled** and **click** on **Create new instance**.
      2. Choose a region that corresponds with the bucket, give it a memorable name, and click **Create and continue**.
      3. Give the `root key` a name and click **Create and continue**.
 
-   - Activity Tracker
-      1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Activity tracking enabled**. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (e.g. `us-east`) you could name the instance something like `US East AT` so that you can easily find it later.
-      2. Click to enable **Track data events** and select both **read & write** from the drop-down list.
+    Activity Tracker
+      4. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Activity tracking enabled**. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (e.g. `us-east`) you could name the instance something like `US East AT` so that you can easily find it later.
+      5. Click to enable **Track data events** and select both **read & write** from the drop-down list.
 
-   - Monitoring for Metrics
-      1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Monitoring enabled**. Select an appropriate plan, and give the new instance a memorable name. For example, if you are creating the instance in the same region as the bucket (e.g. `us-east`) you could name the instance `US East MM` so that you can easily find it later.
-      2. Enable monitoring for both **usage and request metrics**.
+    Monitoring for Metrics
+      6. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Monitoring enabled**. Select an appropriate plan, and give the new instance a memorable name. For example, if you are creating the instance in the same region as the bucket (e.g. `us-east`) you could name the instance `US East MM` so that you can easily find it later.
+      7. Enable monitoring for both **usage and request metrics**.
 
 
 
@@ -119,23 +119,25 @@ IBM Cloud is offering a $500 promotional credit to quickly get started with our 
 {: step}
 
 After your bucket is created with Activity Tracker it may take a few minutes for the activity tracker rules to take effect.
-{: #note}
+{: note}
 
 After your bucket is created with Monitoring it may take a few minutes for IBM Cloud Monitoring rules to take effect.
-{: #note}
+{: note}
 
 You are now ready to store data in a secure content store with encryption, monitoring, and audit observability!
 
-## Get started by [uploading data](/docs/cloud-object-storage?topic=cloud-object-storage-upload)
+## Get started by uploading data.
 {: #upload-data}
 
+- See [uploading data](/docs/cloud-object-storage?topic=cloud-object-storage-upload) for more information.
 
 ## Add additional capabilities to protect from ransomware and accidental deletion such as versioning and immutable retention polices for supporting immutable storage and immutable backup and archive data.
 {: #add-capabilities}
 
-[Locking objects](/docs/cloud-object-storage?topic=cloud-object-storage-object-lock)
-[Versioning objects](/docs/cloud-object-storage?topic=cloud-object-storage-versioning)
+- See [Locking objects](/docs/cloud-object-storage?topic=cloud-object-storage-ol-overview) for more information.
+- See [Versioning objects](/docs/cloud-object-storage?topic=cloud-object-storage-versioning) for more information.
 
-## Check out the IBM Cloud Tutorials library for additional tutorials for deploying solutions with [Cloud Object Storage](https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage).
+## Check out the IBM Cloud Tutorials library for additional tutorials for deploying solutions with {{site.data.keyword.cos_short}}.
 {: #cos-tutorials}
 
+- See [Cloud Object Storage](https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage) in the tutorials library for more information.
