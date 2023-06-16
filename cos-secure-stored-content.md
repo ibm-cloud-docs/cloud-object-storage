@@ -34,7 +34,7 @@ Are you looking to store content securely (locally or globally) at an affordable
 
 IBM Cloud is offering a $500 promotional credit to quickly get started with our Secure Content Store with {{site.data.keyword.cos_short}}. The credit has a duration of 90 days against your metered consumption of {{site.data.keyword.cos_short}}. See instructions below for applying your promo code. To qualify for this offer you must be a new paid user of {{site.data.keyword.cos_short}}.
 IBM Cloud IAM resource groups and access groups allow administrators to restrict users access to various service instances, but what if a user needs to only access a limited number of buckets within a service instance? This can be accomplished using a custom role and a narrowly tailored IAM policy.
-{: inportant}
+{: important}
 
 ## Overview
 {: #overview-secure-stored-content}
@@ -70,7 +70,7 @@ For this tutorial, you need:
 Apply the applicable promotional code that is included below.
 
 IBM Cloud is offering a $500 promotional credit to quickly get started with our Secure Content Store with {{site.data.keyword.cos_full}}. The credit has a duration of 90 days against your metered consumption of {{site.data.keyword.cos_short}}. To qualify for this offer you must be a new paid user of Cloud Object Storage.
-{: inportant}
+{: important}
 
 1. Create or log into a IBM Cloud Paygo, Subscription account.
 2. Within IBM Cloud console click **Manage** then **Billing & Usage** from the drop-down list.
