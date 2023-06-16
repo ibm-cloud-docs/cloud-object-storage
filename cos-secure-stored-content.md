@@ -16,7 +16,7 @@ completion-time: 15m
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Store content securely with {{site.data.keyword.cos_short}}
+# Store content securely
 {: #secure-content-store}
 {: toc-content-type="tutorial"}
 {: toc-completion-time="15m"}
@@ -29,7 +29,7 @@ Are you looking to store content securely (locally or globally) at an affordable
 - Monitor and retain your account & data activity with Activity Tracker and IBM Monitoring
 - APIs & SDKs, Static Web Hosting, High Speed Transfer, Tagging, Replication
 
-## Promotion for new customers!
+## *Promotion for new customers:exclamation:*
 {: #promotion}
 
 IBM Cloud is offering a $500 promotional credit to quickly get started with our Secure Content Store with {{site.data.keyword.cos_short}}. The credit has a duration of 90 days against your metered consumption of {{site.data.keyword.cos_short}}. See instructions below for applying your promo code. To qualify for this offer you must be a new paid user of {{site.data.keyword.cos_short}}.
@@ -46,7 +46,7 @@ This tutorial is for customers looking to set up a Secure Content Store using {{
 - **Monitoring**: to provide insights and information about what is happening with your data in your Secure Content Store.
 - **Key Protect**: a Key Management Service that enables you to manage and protect your encryption keys in a secure and centralized manner.
 
-Throughout the tutorial, you are provided with step-by-step instructions, along with helpful tips and best practices, which help you set up a Secure Content Store efficiently. So, let's get started!
+Throughout the tutorial, you are provided with step-by-step instructions, along with helpful tips and best practices, which can help you set up a Secure Content Store more efficiently.  So, let's get started!
 
 ### High level steps for the tutorial
 {: #high-level-steps}
@@ -95,18 +95,18 @@ IBM Cloud is offering a $500 promotional credit to quickly get started with our 
 
 - Add the following services during the bucket creation by scrolling down to **Service integrations (optional)**.
 
-    Encryption using Key Protect
+    [Key Protect](/docs/cloud-object-storage?topic=cloud-object-storage-tutorial-kp-encrypt-bucket)
      1. Switch **Key management disabled** to **Key management enabled** and **click** on **Create new instance**.
      2. Choose a region that corresponds with the bucket, give it a memorable name, and click **Create and continue**.
      3. Give the `root key` a name and click **Create and continue**.
 
-    Activity Tracker
-      4. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Activity tracking enabled**. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (e.g. `us-east`) you could name the instance something like `US East AT` so that you can easily find it later.
-      5. Click to enable **Track data events** and select both **read & write** from the drop-down list.
+    [Activity Tracker](/docs/cloud-object-storage?topic=cloud-object-storage-tracking-cos-events)
+      1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Activity tracking enabled**. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (e.g. `us-east`) you could name the instance something like `US East AT` so that you can easily find it later.
+      2. Click to enable **Track data events** and select both **read & write** from the drop-down list.
 
-    Monitoring for Metrics
-      6. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Monitoring enabled**. Select an appropriate plan, and give the new instance a memorable name. For example, if you are creating the instance in the same region as the bucket (e.g. `us-east`) you could name the instance `US East MM` so that you can easily find it later.
-      7. Enable monitoring for both **usage and request metrics**.
+    [Monitoring](/docs/cloud-object-storage?topic=cloud-object-storage-monitoring-cos)
+      1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Monitoring enabled**. Select an appropriate plan, and give the new instance a memorable name. For example, if you are creating the instance in the same region as the bucket (e.g. `us-east`) you could name the instance `US East MM` so that you can easily find it later.
+      2. Enable monitoring for both **usage and request metrics**.
 
 
 
