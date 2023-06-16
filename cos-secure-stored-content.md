@@ -29,7 +29,7 @@ Are you looking to store content securely (locally or globally) at an affordable
 - Monitor and retain your account & data activity with Activity Tracker and IBM Monitoring
 - APIs & SDKs, Static Web Hosting, High Speed Transfer, Tagging, Replication
 
-## *Promotion for new customers:exclamation:*
+## *Promotion for new customers!*
 {: #promotion}
 
 IBM Cloud is offering a $500 promotional credit to quickly get started with our Secure Content Store with {{site.data.keyword.cos_short}}. The credit has a duration of 90 days against your metered consumption of {{site.data.keyword.cos_short}}. See instructions below for applying your promo code. To qualify for this offer you must be a new paid user of {{site.data.keyword.cos_short}}.
@@ -81,13 +81,13 @@ IBM Cloud is offering a $500 promotional credit to quickly get started with our 
 ## Create a new {{site.data.keyword.cos_short}} bucket
 {: #create-cos-bucket}
 
-## Navigate to your instance of {{site.data.keyword.cos_short}}.
+## Navigate to your instance of {{site.data.keyword.cos_short}}
 {: #navigate-cos-instance}
 {: step}
 
 - Go to your [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage).
 
-## Click Create bucket.
+## Click Create bucket
 {: #create-cos-bucket}
 {: step}
 
@@ -103,20 +103,20 @@ IBM Cloud is offering a $500 promotional credit to quickly get started with our 
      3. Give the `root key` a name and click **Create and continue**.
 
     [Activity Tracker](/docs/cloud-object-storage?topic=cloud-object-storage-tracking-cos-events)
-      1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Activity tracking enabled**. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (e.g. `us-east`) you could name the instance something like `US East AT` so that you can easily find it later.
-      2. Click to enable **Track data events** and select both **read & write** from the drop-down list.
+     1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Activity tracking enabled**. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (e.g. `us-east`) you could name the instance something like `US East AT` so that you can easily find it later.
+     2. Click to enable **Track data events** and select both **read & write** from the drop-down list.
 
     [Monitoring](/docs/cloud-object-storage?topic=cloud-object-storage-monitoring-cos)
-      1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Monitoring enabled**. Select an appropriate plan, and give the new instance a memorable name. For example, if you are creating the instance in the same region as the bucket (e.g. `us-east`) you could name the instance `US East MM` so that you can easily find it later.
-      2. Enable monitoring for both **usage and request metrics**.
+     1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Monitoring enabled**. Select an appropriate plan, and give the new instance a memorable name. For example, if you are creating the instance in the same region as the bucket (e.g. `us-east`) you could name the instance `US East MM` so that you can easily find it later.
+     2. Enable monitoring for both **usage and request metrics**.
 
 
 
-## Verify the information is correct.
+## Verify the information is correct
 {: #verify-cos-bucket}
 {: step}
 
-## Click Create bucket to add the new bucket to your instance of {{site.data.keyword.cos_short}}.
+## Click Create bucket to add the new bucket to your instance of {{site.data.keyword.cos_short}}
 {: #click-cos-bucket}
 {: step}
 
@@ -128,18 +128,18 @@ After your bucket is created with Monitoring it may take a few minutes for IBM C
 
 You are now ready to store data in a secure content store with encryption, monitoring, and audit observability!
 
-## Get started by uploading data.
+## Get started by uploading data
 {: #upload-data}
 
 - See [uploading data](/docs/cloud-object-storage?topic=cloud-object-storage-upload) for more information.
 
-## Add additional capabilities to protect from ransomware and accidental deletion such as versioning and immutable retention polices for supporting immutable storage and immutable backup and archive data.
+## Add capabilities
 {: #add-capabilities}
 
-- See [Locking objects](/docs/cloud-object-storage?topic=cloud-object-storage-ol-overview) for more information.
-- See [Versioning objects](/docs/cloud-object-storage?topic=cloud-object-storage-versioning) for more information.
+Add capabilities to protect objects from ransomware and accidental deletion such as [versioning](/docs/cloud-object-storage?topic=cloud-object-storage-versioning) and [immutable retention polices](/docs/cloud-object-storage?topic=cloud-object-storage-ol-overview) for supporting immutable storage, and immutable backup and archive data.
 
-## Check out the IBM Cloud Tutorials library for additional tutorials for deploying solutions with {{site.data.keyword.cos_short}}.
+## Library of {{site.data.keyword.cos_short}} tutorials
 {: #cos-tutorials}
 
-- See [Cloud Object Storage](https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage) in the tutorials library for more information.
+Check out the IBM Cloud Tutorials library for more tutorials when deploying solutions with [Cloud Object Storage](https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage){{site.data.keyword.cos_short}}.
+
