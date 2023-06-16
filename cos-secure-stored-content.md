@@ -69,8 +69,8 @@ For this tutorial, you need:
 
 Apply the applicable promotional code that is included below.
 
-IBM Cloud is offering a $500 promotional credit to quickly get started with our Secure Content Store with IBM Cloud Object Storage. The credit has a duration of 90 days against your metered consumption of Cloud Object Storage. To qualify for this offer you must be a new paid user of Cloud Object Storage.
-{: promotion}
+IBM Cloud is offering a $500 promotional credit to quickly get started with our Secure Content Store with {{site.data.keyword.cos_full}}. The credit has a duration of 90 days against your metered consumption of {{site.data.keyword.cos_short}}. To qualify for this offer you must be a new paid user of Cloud Object Storage.
+{: inportant}
 
 1. Create or log into a IBM Cloud Paygo, Subscription account.
 2. Within IBM Cloud console click **Manage** then **Billing & Usage** from the drop-down list.
@@ -81,9 +81,11 @@ IBM Cloud is offering a $500 promotional credit to quickly get started with our 
 ## Create a new {{site.data.keyword.cos_short}} bucket
 {: #create-cos-bucket}
 
-## Navigate to your [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage).
+## Navigate to your instance of {{site.data.keyword.cos_short}}.
 {: #navigate-cos-instance}
 {: step}
+
+- Go to your [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage).
 
 ## Click Create bucket.
 {: #create-cos-bucket}
