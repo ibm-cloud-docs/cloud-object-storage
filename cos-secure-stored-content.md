@@ -25,9 +25,9 @@ Are you looking to store content securely (locally or globally) at an affordable
 
 - Gain security and control over your data with encryption options, governance policies, access permissions, and context-based restrictions​.
 - Have immediate consistency across regions or locations for cloud-native apps, disaster recovery, storage backup, video content and delivery. etc. ​
-- Leverage your own encryption keys (BYOK) with Key Protect
-- Monitor and retain your account & data activity with Activity Tracker and IBM Monitoring
-- APIs & SDKs, Static Web Hosting, High Speed Transfer, Tagging, Replication
+- Leverage your own encryption keys (BYOK) with Key Protect.
+- Monitor and retain your account & data activity with Activity Tracker and IBM Monitoring.
+- APIs & SDKs, Static Web Hosting, High Speed Transfer, Tagging, Replication.
 
 ## *Promotion for new customers!*
 {: #promotion}
@@ -72,7 +72,7 @@ IBM Cloud is offering a $500 promotional credit to quickly get started with our 
 2. Within IBM Cloud console click **Manage** then **Billing & Usage** from the drop-down list.
 3. Select **Promotions and Credits** from the navigation bar on the left.
 4. Click **Apply a promo code**.
-5. Enter **Promo Code SECUREDCS**, click **verify** and then apply.
+5. Enter **Promo Code SECUREDCS**, click **verify** and then **apply**.
 
 ## Create a new {{site.data.keyword.cos_short}} bucket
 {: #create-cos-bucket}
