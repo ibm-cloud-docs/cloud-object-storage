@@ -2,9 +2,9 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-06-16"
+lastupdated: "2023-06-20"
 
-keywords: object storage, tutorial, secure stored content, store, content, secure
+keywords: object storage, tutorial, secure stored content, store, content, secure, secure content store
 
 subcollection: cloud-object-storage
 
@@ -16,7 +16,7 @@ completion-time: 15m
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Store content securely
+# Create a Secure Content Store
 {: #secure-content-store}
 {: toc-content-type="tutorial"}
 {: toc-completion-time="15m"}
