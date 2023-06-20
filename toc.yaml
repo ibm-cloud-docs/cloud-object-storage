@@ -36,6 +36,7 @@ toc:
           - link:
               label: Tutorials library for Object Storage
               href: https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage
+          - cos-secure-stored-content.md
           - migrate.md
           - cos-single-bucket.md
           - kp-encrypt-bucket.md
@@ -45,7 +46,6 @@ toc:
           - static-website.md
           - web-application.md
           - /direct-link/direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage
-          - cos-secure-stored-content.md
     - navgroup:
         id: howto
         topics:
