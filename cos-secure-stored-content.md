@@ -134,5 +134,5 @@ Add capabilities to protect objects from ransomware and accidental deletion such
 ## Library of {{site.data.keyword.cos_short}} tutorials
 {: #cos-tutorials}
 
-Check out the IBM Cloud Tutorials library for more tutorials when deploying solutions with [Cloud Object Storage](https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage){{site.data.keyword.cos_short}}.
+Check out the IBM Cloud Tutorials library for more tutorials when deploying solutions with [Cloud Object Storage](https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage).
 
