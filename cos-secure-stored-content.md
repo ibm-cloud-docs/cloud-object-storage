@@ -116,10 +116,7 @@ IBM Cloud is offering a $500 promotional credit to quickly get started with our 
 {: #click-cos-bucket}
 {: step}
 
-After your bucket is created with Activity Tracker it may take a few minutes for the activity tracker rules to take effect.
-{: attention}
-
-After your bucket is created with Monitoring it may take a few minutes for IBM Cloud Monitoring rules to take effect.
+After your bucket is created with Activity Tracker and Monitoring, it may take a few minutes for the rules to take effect.
 {: attention}
 
 You are now ready to store data in a secure content store with encryption, monitoring, and audit observability!
@@ -137,5 +134,5 @@ Add capabilities to protect objects from ransomware and accidental deletion such
 ## Library of {{site.data.keyword.cos_short}} tutorials
 {: #cos-tutorials}
 
-Check out the IBM Cloud Tutorials library for more tutorials when deploying solutions with [Cloud Object Storage](https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage){{site.data.keyword.cos_short}}.
+Check out the IBM Cloud Tutorials library for more tutorials when deploying solutions with [Cloud Object Storage](https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage).
 
