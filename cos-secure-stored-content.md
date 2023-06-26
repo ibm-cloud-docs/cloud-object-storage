@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-06-20"
+lastupdated: "2023-06-26"
 
 keywords: object storage, tutorial, secure stored content, store, content, secure, secure content store
 
@@ -21,7 +21,7 @@ completion-time: 15m
 {: toc-content-type="tutorial"}
 {: toc-completion-time="15m"}
 
-Are you looking to store content securely (locally or globally) at an affordable cost​, for things like **cloud native apps**, **media storage**, **backup storage** and **archive data**? IBM Secure Content Store with {{site.data.keyword.cos_full}} provides agility in supporting fast, highly consistent deployment across locations for business-critical data, immutable storage, immutable backup, and archive data with industry-leading security and controls for regulatory/compliance requirements​.
+Are you looking to store content securely (locally or globally) at an affordable cost​, for things like **cloud native apps**, **media storage**, **backup storage** and **archive data**? IBM Secure Content Store powered by {{site.data.keyword.cos_full}} provides unparalleled agility in supporting fast, highly consistent application deployment around the worled to help customers securely expand their business into new regions, from business-critical data to video archive solutions.  It also offers immutable storage, immutable backup, and archive data with industry-leading security and controls for regulatory/compliance requirements​.
 
 - Gain security and control over your data with encryption options, governance policies, access permissions, and context-based restrictions​.
 - Have immediate consistency across regions or locations for cloud-native apps, disaster recovery, storage backup, video content and delivery. etc. ​
@@ -72,7 +72,7 @@ IBM Cloud is offering a $500 promotional credit to quickly get started with our 
 2. Within IBM Cloud console click **Manage** then **Billing & Usage** from the drop-down list.
 3. Select **Promotions and Credits** from the navigation bar on the left.
 4. Click **Apply a promo code**.
-5. Enter **Promo Code SECUREDCS**, click **verify** and then **apply**.
+5. Enter **Promo Code SECURECS**, click **verify** and then **apply**.
 
 ## Create a new {{site.data.keyword.cos_short}} bucket
 {: #create-cos-bucket}
