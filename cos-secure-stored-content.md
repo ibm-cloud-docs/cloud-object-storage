@@ -21,7 +21,7 @@ completion-time: 15m
 {: toc-content-type="tutorial"}
 {: toc-completion-time="15m"}
 
-Are you looking to store content securely (locally or globally) at an affordable cost​, for things like **cloud native apps**, **media storage**, **backup storage** and **archive data**? IBM Secure Content Store powered by {{site.data.keyword.cos_full}} provides unparalleled agility in supporting fast, highly consistent application deployment around the worled to help customers securely expand their business into new regions, from business-critical data to video archive solutions.  It also offers immutable storage, immutable backup, and archive data with industry-leading security and controls for regulatory/compliance requirements​.
+Are you looking to store content securely (locally or globally) at an affordable cost​, for things like **cloud native apps**, **media storage**, **backup storage** and **archive data**? IBM Secure Content Store powered by {{site.data.keyword.cos_full}} provides unparalleled agility in supporting fast, highly consistent application deployment around the world to help customers securely expand their business into new regions, from business-critical data to video archive solutions.  It also offers immutable storage, immutable backup, and archive data with industry-leading security and controls for regulatory/compliance requirements​.
 
 - Gain security and control over your data with encryption options, governance policies, access permissions, and context-based restrictions​.
 - Have immediate consistency across regions or locations for cloud-native apps, disaster recovery, storage backup, video content and delivery. etc. ​
