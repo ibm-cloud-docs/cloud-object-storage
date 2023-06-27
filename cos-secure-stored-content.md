@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-06-26"
+lastupdated: "2023-06-27"
 
 keywords: object storage, tutorial, secure stored content, store, content, secure, secure content store
 
@@ -74,6 +74,9 @@ IBM Cloud is offering a $500 promotional credit to quickly get started with our 
 4. Click **Apply a promo code**.
 5. Enter **Promo Code SECURECS**, click **verify** and then **apply**.
 
+Once the credit has been successfully applied, you can review your credit balance at any time by following steps 1-3.
+{: note}
+
 ## Create a new {{site.data.keyword.cos_short}} bucket
 {: #create-cos-bucket}
 
@@ -89,7 +92,7 @@ IBM Cloud is offering a $500 promotional credit to quickly get started with our 
 
 - Select the **Customize your bucket** tile, and click the right arrow.
     1. Name the new bucket.  It must start and end in alphanumeric characters (from 3 to 63) that is limited to using lowercase, numbers and nonconsecutive dots, and hyphens.
-    2. Choose your desired region and [storage class](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes), based on your activity (hot, cold, variable...etc.)
+    2. Choose your desired region and [storage class](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes), based on your activity (for example, chose “Standard” storage class for hot data, “Vault” or “Cold Vault” for cold data, or “Smart Tier” for blended or variable data activity.)
 
 - Add the following services during the bucket creation by scrolling down to **Service integrations (optional)**.
 
