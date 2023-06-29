@@ -64,7 +64,7 @@ IBM COS SDKs are available for [Python](/docs/cloud-object-storage/libraries?top
 The [Cloud Native Computing Foundation](https://www.cncf.io) fostered [Kubernetes](https://kubernetes.io) container orchestration framework, which forms the foundation for the {{site.data.keyword.cloud}} Kubernetes Service. Developers who want to use Object Storage for persistent storage in their Kubernetes applications can learn more at the following links:
 
  * [Choosing a storage solution](/docs/containers?topic=containers-storage_planning#choose_storage_solution)
- * [Comparison table for persistent storage options](/docs/containers?topic=containers-storage_planning#persistent_storage_overview)
+ * [Comparison table for persistent storage options](/docs/containers?topic=containers-storage-plan)
  * [Main COS page](/docs/containers?topic=containers-object_storage)
  * [Installing COS](/docs/containers?topic=containers-object_storage#install_cos)
  * [Creating COS service instance](/docs/containers?topic=containers-object_storage#create_cos_service)
