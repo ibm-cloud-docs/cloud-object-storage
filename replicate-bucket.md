@@ -8,10 +8,8 @@ keywords: tutorials
 
 subcollection: cloud-object-storage
 
-content-type: tutorial
 services: 
 account-plan: lite 
-completion-time: 10m 
 
 ---
 
