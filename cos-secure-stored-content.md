@@ -98,7 +98,8 @@ Once the credit has been successfully applied, you can review your credit balanc
 
     [Key Protect](/docs/cloud-object-storage?topic=cloud-object-storage-tutorial-kp-encrypt-bucket)
 
-    Prerequisites to adding this service:
+    Before you get started, you need:
+
     - An instance of [IBM Cloud™ Key Protect](/docs/key-protect?topic=key-protect-getting-started-tutorial)
     - [Grant service authorization](/docs/cloud-object-storage?topic=cloud-object-storage-kp#kp-sa) to {{site.data.keyword.cos_short}} in IBM Key Protect.
 
@@ -109,7 +110,8 @@ Once the credit has been successfully applied, you can review your credit balanc
 
     [Activity Tracker](/docs/cloud-object-storage?topic=cloud-object-storage-tracking-cos-events)
 
-    Prerequisites to adding this service:
+    Before you get started, you need:
+
     - An instance of [Activity Tracker](/docs/activity-tracker?topic=activity-tracker-getting-started)
     - A user ID with [administrator platform permissions](/docs/account?topic=account-userroles) and the service access [writer role](/docs/account?topic=account-userroles#service_access_roles).
 
@@ -119,7 +121,8 @@ Once the credit has been successfully applied, you can review your credit balanc
 
     [Monitoring](/docs/cloud-object-storage?topic=cloud-object-storage-monitoring-cos)
 
-    Prerequisites to adding this service:
+    Before you get started, you need:
+
     - An instance of [IBM Cloud™ Monitoring](/docs/monitoring?topic=monitoring-getting-started)
     - A user ID with [administrator platform permissions](/docs/account?topic=account-userroles) and the service access [writer role](/docs/account?topic=account-userroles#service_access_roles).
 
