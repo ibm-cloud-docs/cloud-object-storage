@@ -61,7 +61,7 @@ Throughout the tutorial, you are provided with step-by-step instructions, along 
 
 For this tutorial, you need:
 - An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com){: external}
-- An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage) (must be a paid Standard Plan instance)
+- An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage) (must be a paid service plan instance)
 
 Apply promotional code that is included below.
 
@@ -108,6 +108,7 @@ Once the credit has been successfully applied, you can review your credit balanc
      3. Give the `root key` a name and click **Create and continue**.
 
 
+
     [Activity Tracker](/docs/cloud-object-storage?topic=cloud-object-storage-tracking-cos-events)
 
     Before you get started, you need:
@@ -117,6 +118,7 @@ Once the credit has been successfully applied, you can review your credit balanc
 
      1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Activity tracking enabled**. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (e.g. `us-east`) you could name the instance something like `US East AT` so that you can easily find it later.
      2. Click to enable **Track data events** and select both **read & write** from the drop-down list.
+
 
 
     [Monitoring](/docs/cloud-object-storage?topic=cloud-object-storage-monitoring-cos)
