@@ -12,7 +12,7 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Assigning access to an individual bucket
+# Assigning access to an individual object
 {: #iam-bucket-permissions}
 
 Assign access roles for users and Service IDs against buckets, by using either the UI or the CLI to create policies.
