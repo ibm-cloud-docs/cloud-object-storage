@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-07-11"
+lastupdated: "2023-08-01"
 
 keywords: access control, iam, basics, buckets
 
@@ -15,7 +15,7 @@ subcollection: cloud-object-storage
 # Assigning access to an individual object
 {: #iam-bucket-permissions}
 
-Assign access roles for users and Service IDs against buckets, by using either the UI or the CLI to create policies.
+Assign access roles for users and Service IDs against objects, by using either the UI or the CLI to create policies.
 {: shortdesc}
 
 | Access role    | Example actions                                              |
