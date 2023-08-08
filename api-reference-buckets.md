@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-05-16"
+lastupdated: "2023-08-08"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -201,6 +201,7 @@ Not all operations are supported in Satellite environments. For details, see [su
 |------------------------------------|---------|-----------|----------------------------------------------------------------------------------------------------------------------|
 | `ibm-service-instance-id`          | String  | Yes       | This header references the service instance where the bucket will be created and to which data usage will be billed. |
 | `x-amz-bucket-object-lock-enabled` | Boolean | No        | Specifies whether you want to enable Object Lock on the new bucket.  This will automatically enable versioning. |
+{: caption="Table 1. Headers" caption-side="top"}
 
 When setting Object Lock on a new bucket, ensure that there are no typos in the `x-amz-bucket-object-lock-enabled` header. If either the header or value are mispelled, the bucket will still be created, but Object Lock and Versioning will **not** be enabled.
 {: tip}
@@ -268,6 +269,7 @@ Not all operations are supported in Satellite environments. For details, see [su
 Header                    | Type   | Description
 --------------------------|--------|---------------------------------------------------------------------------------------------------------------------
 `ibm-service-instance-id` | String | This header references the service instance where the bucket will be created and to which data usage will be billed.
+{: caption="Table 2. Header" caption-side="top"}
 
 **Syntax**
 
@@ -282,6 +284,7 @@ The body of the request must contain an XML block with the following schema:
 |---------------------------|-----------|--------------------|---------------------------|---------------------|
 | CreateBucketConfiguration | Container | LocationConstraint | -                         | -                   |
 | LocationConstraint        | String    | -                  | CreateBucketConfiguration | Valid location code |
+{: caption="Table 3. Body of the request schema" caption-side="top"}
 
 ```xml
 <CreateBucketConfiguration>
@@ -358,6 +361,7 @@ Header                             | Type   | Description
 `ibm-service-instance-id`          | String | This header references the service instance where the bucket will be created and to which data usage will be billed.
 `ibm-sse-kp-encryption-algorithm`  | String | This header is used to specify the algorithm and key size to use with the encryption key stored by using Key Protect. This value must be set to the string `AES256`.
 `ibm-sse-kp-customer-root-key-crn` | String | This header is used to reference the specific root key used by Key Protect or {{site.data.keyword.hscrypto}} to encrypt this bucket. This value must be the full CRN of the root key.
+{: caption="Table 4. Header" caption-side="top"}
 
 **Syntax**
 
@@ -410,7 +414,6 @@ x-amz-request-id: dca204eb-72b5-4e2a-a142-808d2a5c2a87
 Content-Length: 0
 ```
 
----
 
 ## Retrieve a bucket's headers
 {: #compatibility-api-head-bucket}
@@ -542,6 +545,7 @@ Name                 | Type   | Description
 `fetch-owner`        | String | Version 2 of the API does not include the `Owner` information by default. Set this parameter to `true` if `Owner` information is desired in the response.
 `continuation-token` | String | Specifies the next set of objects to be returned when your response is truncated (`IsTruncated` element returns `true`).<br/><br/>Your initial response will include the `NextContinuationToken` element. Use this token in the next request as the value for `continuation-token`.
 `start-after`        | String | Returns key names after a specific key object.<br/><br/>*This parameter is only valid in your initial request.*  If a `continuation-token` parameter is included in your request, this parameter is ignored.
+{: caption="Table 5. Optional query parameters" caption-side="top"}
 
 **Example request (simple)**
 
@@ -763,6 +767,7 @@ Name            | Type   | Description
 `encoding-type` | String | If unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.
 `max-keys`      | String | Restricts the number of objects to display in the response. Default and maximum is 1,000.
 `marker`        | String | Specifies the object from where the listing should begin, in UTF-8 binary order.
+{: caption="Table 6. Optional query parameters" caption-side="top"}
 
 **Example request**
 {: token}
@@ -869,11 +874,12 @@ DELETE https://{bucket-name}.{endpoint} # virtual host style
 {: codeblock}
 
 ### Optional headers
+{: #optional-headers}
 
 Name                  | Type   | Description
 ----------------------|--------|-----------------------------------------------------------------------------------
 `aspera-ak-max-tries` | String | Specifies the number of times to attempt the delete operation. Default value is 2.
-
+{: caption="Table 7. Optional headers" caption-side="top"}
 
 **Example request**
 {: token}
@@ -949,6 +955,7 @@ The body of the request must contain an XML block with the following schema:
 | `Days`                    | Integer   | None                        | `DefaultRetention`        | The number of days that you want to specify for the default retention period. Cannot be combined with `Years`. |
 | `Mode`                    | String    | None                        | `DefaultRetention`        | Only `COMPLIANCE` is supported at this time.                                                                   |
 | `Years`                   | Integer   | None                        | `DefaultRetention`        | The number of years that you want to specify for the default retention period. Cannot be combined with `Days`. |
+{: caption="Table 8. Body of the request schema" caption-side="top"}
 
 **Example request**
 
@@ -1015,6 +1022,7 @@ Name               | Type    | Description
 `max-uploads`      | integer | Restricts the number of objects to display in the response. Default and maximum is 1,000.
 `key-marker`       | String  | Specifies from where the listing should begin.
 `upload-id-marker` | String  | Ignored if `key-marker` is not specified, otherwise sets a point at which to begin listing parts above `upload-id-marker`.
+{: caption="Table 9. Parameters" caption-side="top"}
 
 **Example request**
 {: token}
@@ -1191,6 +1199,7 @@ The body of the request must contain an XML block with the following schema:
 | CORSRule          | Container | AllowedOrigin, AllowedMethod | Delete   | -                   |
 | AllowedOrigin     | String    | -                            | CORSRule | Valid origin string |
 | AllowedMethod     | String    | -                            | CORSRule | Valid method string |
+{: caption="Table 10. Body of the request schema" caption-side="top"}
 
 The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. The following snippet shows one way to achieve the content for that particular header.
 
@@ -1401,9 +1410,10 @@ NoncurrentVersionExpiration           | Container               | NoncurrentDays
 NoncurrentDays           | Positive Integer               | None                           | Transition             | **Must** be a value greater than 0.
 AbortIncompleteMultipartUpload           | Container                  | DaysAfterInitiation                          | Rule             | Limit 1
 DaysAfterInitiation           | Non-negative Integer               | None                           | AbortIncompleteMultipartUpload            | **Must** be a value greater than 0.
+{: caption="Table 11. Body of the request schema" caption-side="top"}
 
 {{site.data.keyword.cos_full_notm}} IaaS (non-IAM) accounts are unable to set the transition storage class to `ACCELERATED`.
-{: note} 
+{: note}
 
 ```xml
 <LifecycleConfiguration>
@@ -1437,7 +1447,7 @@ Content-Type: text/plain
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Authorization: {authorization-string}
 Content-Type: text/plain
-Content-MD5: M625BaNwd/OytcM7O5gIaQ== 
+Content-MD5: M625BaNwd/OytcM7O5gIaQ==
 Content-Length: 305
 ```
 {: codeblock}
@@ -1451,7 +1461,7 @@ PUT /apiary?lifecycle HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
 Content-Type: text/plain
-Content-MD5: M625BaNwd/OytcM7O5gIaQ== 
+Content-MD5: M625BaNwd/OytcM7O5gIaQ==
 Content-Length: 305
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
@@ -1544,7 +1554,7 @@ Server: Cleversafe/3.14.9.53
 X-Clv-S3-Version: 2.5
 x-amz-request-id: 587d909f-4939-41ef-8c16-80aea16a0587
 Content-Length: 0
- 
+
  **Example request**
 {: token}
 
@@ -1677,7 +1687,7 @@ Content-Length: 276
 ## Delete stale data with expiration rules
 {: #compatibility-api-expiry}
 
-Objects that are subject to a bucket's Immutable Object Storage retention policy will have any expiration actions deferred until the retention policy is no longer enforced. 
+Objects that are subject to a bucket's Immutable Object Storage retention policy will have any expiration actions deferred until the retention policy is no longer enforced.
 {: note}
 
 For more about using lifecycle configuration to delete objects, check out the [documentation](/docs/cloud-object-storage?topic=cloud-object-storage-expiry).
@@ -1688,12 +1698,13 @@ Not all operations are supported in Satellite environments. For details, see [su
 {: note}
 
 |Header                    | Type   | Description|
---------------------------|--------|----------------------------------------------------------------------------------------------------------------------
-`Content-MD5` | String | **Required**: The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.
+|--------------------------|--------|----------------------------------------------------------------------------------------------------------------------|
+|`Content-MD5` | String | **Required**: The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.|
+{: caption="Table 12. Body of the request schema" caption-side="top"}
 
 The following snippet shows one way to achieve the content for that particular header.
 
-```
+```sh
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 ```
 {: codeblock}
@@ -1710,6 +1721,7 @@ The body of the request must contain an XML block with the following schema:
 | `Expiration`             | `Container`          | `Days` or `Date`                       | `Rule`                   | Limit 1.                                                                                  |
 | `Days`                   | Non-negative integer | None                                   | `Expiration`             | Must be a value greater than 0.                                                           |
 | `Date`                   | Date                 | None                                   | `Expiration`             | Must be in ISO 8601 Format.                            |
+{: caption="Table 13. Body of the request schema" caption-side="top"}
 
 **Syntax**
 {: http}
@@ -1822,19 +1834,19 @@ The server responds with `204 No Content`.
 Immutable Object Storage is available in certain regions only, see [Integrated Services](/docs/cloud-object-storage/basics?topic=cloud-object-storage-service-availability#service-availability) for details. The service also requires a Standard pricing plan. See [pricing](https://www.ibm.com/cloud/object-storage) for details.
 {:note}
 
-Find out more about Immutable Object Storage in the [documentation](/docs/cloud-object-storage?topic=cloud-object-storage-immutable). 
+Find out more about Immutable Object Storage in the [documentation](/docs/cloud-object-storage?topic=cloud-object-storage-immutable).
 
-The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are a minimum of 0 days and a maximum of 365243 days (1000 years). 
+The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are a minimum of 0 days and a maximum of 365243 days (1000 years).
 
 This operation does not make use of extra query parameters. The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. The following snippet shows one way to achieve the content for that particular header.
 
-Policies are enforced until the end of a retention period, and can not be altered until the retention period has expired. While {{site.data.keyword.cos_full_notm}} makes use of the S3 API for most operations, the APIs used for configuring retention policies is not the same as the S3 API, although some terminology may be shared. Read this documentation carefully to prevent any users in your organization from creating objects that can not be deleted, even by IBM Cloud administrators.  
+Policies are enforced until the end of a retention period, and can not be altered until the retention period has expired. While {{site.data.keyword.cos_full_notm}} makes use of the S3 API for most operations, the APIs used for configuring retention policies is not the same as the S3 API, although some terminology may be shared. Read this documentation carefully to prevent any users in your organization from creating objects that can not be deleted, even by IBM Cloud administrators.
 {: important}
 
 Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
-```
+```sh
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 ```
 {: codeblock}
@@ -1857,6 +1869,7 @@ The body of the request must contain an XML block with the following schema:
 | MaximumRetention        | Container | Days                                                         | ProtectionConfiguration                              | -                       |
 | DefaultRetention        | Container | Days                                                         | ProtectionConfiguration                              | -                       |
 | Days                    | Integer   | -                                                            | MinimumRetention, MaximumRetention, DefaultRetention | Valid retention integer |
+{: caption="Table 14. Body of the request schema" caption-side="top"}
 
 **Example request**
 {: token}
@@ -1889,7 +1902,7 @@ Content-Length: 299
 
 **Example response**
 
-```
+```http
 HTTP/1.1 200 OK
 Date: Wed, 5 Oct 2018 15:39:38 GMT
 X-Clv-Request-Id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
@@ -1943,6 +1956,7 @@ The body of the request must contain an XML block with the following schema:
 | Protocol                    | String    | -                                                                          | Redirect              | -                                        |
 | ReplaceKeyPrefixWith        | String    | -                                                                          | Redirect              | -                                        |
 | ReplaceKeyWith              | String    | -                                                                          | Redirect              | -                                        |
+{: caption="Table 15. Body of the request schema" caption-side="top"}
 
 **Example request**
 
@@ -2059,6 +2073,7 @@ The body of the request must contain an XML block with the following schema:
 | PublicAccessBlockConfiguration | Container | BlockPublicAcls, IgnorePublicAcls | -                              | Required |
 | BlockPublicAcls                | Boolean   | -                                 | PublicAccessBlockConfiguration | -        |
 | IgnorePublicAcls               | Boolean   | -                                 | PublicAccessBlockConfiguration | -        |
+{: caption="Table 16. Body of the request schema" caption-side="top"}
 
 **Example request**
 
