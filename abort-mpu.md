@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2023
-lastupdated: "2023-08-07"
+lastupdated: "2023-08-08"
 
 keywords: lifecycle, multipart, cleanup
 
@@ -106,7 +106,7 @@ You can also combine rules.  This configuration cancels inactive uploads after 5
 ## Using the API and SDKs
 {: #mpu-cleanup-using-api-sdks}
 
-You can programmatically manage lifecycle rules by using the REST API or the IBM COS SDKs. 
+You can programmatically manage lifecycle rules by using the REST API or the IBM COS SDKs.
 {: #lifecycle-mpu-api-put}
 
 **REST API reference**
@@ -120,6 +120,7 @@ Classic Infrastructure Users must have `Owner` permissions on the bucket to add 
 | Header        | Type   | Description                                                                                                                                                 |
 | ------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `Content-MD5` | String | **Required**: The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit. |
+{: caption="Table 1. Header" caption-side="top"}
 
 The body of the request must contain an XML block with the following schema:
 
@@ -132,6 +133,7 @@ The body of the request must contain an XML block with the following schema:
 | `Prefix`                         | String               | None                                                       | `Filter`                         | The rule applies to any objects with keys that match this prefix.                          |
 | `AbortIncompleteMultipartUpload` | `Container`          | `DaysAfterInitiation`                                      | `Rule`                           | Limit 1.                                                                                   |
 | `DaysAfterInitiation`            | Non-negative integer | None                                                       | `AbortIncompleteMultipartUpload` | Must be a value greater than 0.                                                            |
+{: caption="Table 2. Body of the request schema" caption-side="top"}
 
 The body of the request must contain an XML block with the schema that is addressed in the table (see Example 1).
 
@@ -186,7 +188,7 @@ Content-Length: 305
 
 **Code sample for use with NodeJS COS SDK**
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration.
 
 ```js
 var aws = require('ibm-cos-sdk');
@@ -224,7 +226,7 @@ s3.putBucketLifecycleConfiguration(params, function(err, data) {
 
 **Code sample for use with Python COS SDK**
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration.
 
 ```python
 import sys
@@ -264,7 +266,7 @@ print("Bucket lifecyle: {0}".format(response))
 
 **Code sample for use with Java COS SDK**
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration.
 
 ```java
 package com.ibm.cloud;
@@ -430,7 +432,7 @@ print("Bucket lifecyle: {0}".format(response))
 ```
 {: codeblock}
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration.
 
 ```java
 package com.ibm.cloud;
@@ -539,7 +541,7 @@ Content-Length: 305
 {: codeblock}
 {: caption="Example 8. Request header samples for creating an object lifecycle configuration." caption-side="bottom"}
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration.
 
 ```js
 var aws = require('ibm-cos-sdk');
@@ -590,7 +592,7 @@ print("Bucket lifecyle: {0}".format(response))
 ```
 {: codeblock}
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration.
 
 ```java
 package com.ibm.cloud;
