@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-01-19"
+  years: 2017, 2023
+lastupdated: "2023-08-08"
 
 keywords: rest, s3, compatibility, api, error
 
@@ -17,7 +17,7 @@ subcollection: cloud-object-storage
 # About the {{site.data.keyword.cos_full_notm}} S3 API
 {: #compatibility-api}
 
-The {{site.data.keyword.cos_full}} API is a REST-based API for reading and writing objects. 
+The {{site.data.keyword.cos_full}} API is a REST-based API for reading and writing objects.
 {: shortdesc}
 
 It uses {{site.data.keyword.iamlong}} for authentication and authorization, and supports a subset of the S3 API for easy migration of applications to {{site.data.keyword.cloud_notm}}.
@@ -45,7 +45,7 @@ These operations create, delete, get information about, and control behavior of 
 | `GET` Multipart Uploads | Lists multipart uploads that aren't completed or canceled.                     |
 | `PUT` Bucket            | Buckets have naming restrictions. Accounts are limited to 100 buckets.         |
 | `PUT` Bucket CORS       | Creates a CORS configuration for a bucket.                                     |
-
+{: caption="Table 1. Bucket operation" caption-side="top"}
 
 ## Object operations
 {: #compatibility-api-object}
@@ -67,6 +67,6 @@ These operations create, delete, get information about, and control behavior of 
 | Complete Multipart Upload | Assembles an object from parts that are associated with an upload ID.              |
 | Cancel Multipart Upload   | Cancels upload and deletes outstanding parts that are associated with an upload ID. |
 | List Parts                | Returns a list of parts that are associated with an upload ID                       |
-
+{: caption="Table 1. Object operation" caption-side="top"}
 
 Some additional operations, such as tagging and versioning, are supported in private cloud implementations of {{site.data.keyword.cos_short}}, but not in public or dedicated clouds currently. More information custom Object Storage solutions can be found at [ibm.com](https://www.ibm.com/cloud/object-storage).
