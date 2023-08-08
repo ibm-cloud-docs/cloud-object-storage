@@ -45,7 +45,9 @@ toc:
           - cbr-tutorial.md
           - static-website.md
           - web-application.md
-          - /direct-link/direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage
+          - link:
+              label: Connect to IBM COS using IBM Cloud Direct Link
+              href: https://cloud.ibm.com/docs/dl?topic=dl-get-started-with-ibm-cloud-dl
     - navgroup:
         id: howto
         topics:
