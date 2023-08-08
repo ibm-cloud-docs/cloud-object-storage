@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021, 2022
-lastupdated: "2022-01-19"
+  years: 2021, 2023
+lastupdated: "2023-08-07"
 
 keywords: lifecycle, multipart, cleanup
 
@@ -21,8 +21,8 @@ This lifecycle rule stops any multipart uploads if the uploads are not completed
 
 You can set lifecycle rules for objects by using the web console, REST API, and third-party tools that are integrated with {{site.data.keyword.cos_full_notm}}. 
 
-* A new rule can be added to a new or existing bucket at any time. 
-* An existing rule can be modified or disabled. 
+* A new rule can be added to a new or existing bucket at any time.
+* An existing rule can be modified or disabled.
 
 These incomplete uploads do not appear in the console, but the uploaded parts continue to accrue usage and billing charges. Setting up lifecycle rules to automatically delete incomplete uploads is the user's responsibility.
 
@@ -32,18 +32,27 @@ These incomplete uploads do not appear in the console, but the uploaded parts co
 Each expiration rule has the following attributes:
 
 ### ID
+{: #lifecycle-cleanup-mpu-id}
+
 A rule's ID must be unique within the bucket's lifecycle configuration.
 
 ### AbortIncompleteMultipartUpload
+{: #lifecycle-cleanup-mpu-incomplete}
+
 The `AbortIncompleteMultipartUpload` block contains the details that govern the automatic cancellation of uploads. The block contains a single field: `DaysAfterInitiation`.
 
 ### Prefix
-An optional string that will be matched to the prefix of the object name in the bucket. A rule with a prefix will only apply to the objects that match. You can use multiple rules for different actions for different prefixes within the same bucket. 
+{: #lifecycle-cleanup-mpu-prefix}
+
+An optional string that will be matched to the prefix of the object name in the bucket. A rule with a prefix will only apply to the objects that match. You can use multiple rules for different actions for different prefixes within the same bucket.
 
 ### Status
+{: #lifecycle-cleanup-mpu-status}
+
 A rule can either be enabled or disabled. A rule is active only when enabled.
 
 ## Sample lifecycle configurations
+{: #lifecycle-cleanup-mpu-configs}
 
 This configuration expires any uploads that haven't completed after 3 days.
 
@@ -103,7 +112,7 @@ You can programmatically manage lifecycle rules by using the REST API or the IBM
 **REST API reference**
 
 This implementation of the `PUT` operation uses the `lifecycle` query parameter to set lifecycle settings for the bucket. This operation allows for a single lifecycle policy definition for a bucket. The policy is defined as a set of rules consisting of the following parameters: `ID`, `Status`, `Filter`, and `Expiration`.
- 
+
 Cloud IAM users must have the `Writer` role to add a lifecycle policy from a bucket.
 
 Classic Infrastructure Users must have `Owner` permissions on the bucket to add a lifecycle policy from a bucket.
@@ -293,27 +302,27 @@ package com.ibm.cloud;
             String service_instance_id = "85SAMPLE-eDOb-4NOT-bUSE-86nnnb31eaxx"
             String endpoint_url = "https://s3.us-south.cloud-object-storage.appdomain.cloud";
             String storageClass = "us-south";
-            String location = "us"; 
- 
+            String location = "us";
+
             _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
-            
+
             // Define a rule for expiring items in a bucket
             int days_to_delete = 10;
             BucketLifecycleConfiguration.Rule rule = new BucketLifecycleConfiguration.Rule()
                     .withId("Delete rule")
                     .withExpirationInDays(days_to_delete)
                     .withStatus(BucketLifecycleConfiguration.ENABLED);
-                    
+
                     rule.setFilter(new LifecycleFilter());
 
             // Add the rule to a new BucketLifecycleConfiguration.
             BucketLifecycleConfiguration configuration = new BucketLifecycleConfiguration()
                     .withRules(Arrays.asList(rule));
-            
+
             // Use the client to set the LifecycleConfiguration on the bucket.
-            _cosClient.setBucketLifecycleConfiguration(bucketName, configuration);   
+            _cosClient.setBucketLifecycleConfiguration(bucketName, configuration);
         }
-        
+
         /**
          * @param bucketName
          * @param clientNum
@@ -443,7 +452,7 @@ package com.ibm.cloud;
     import com.ibm.cloud.objectstorage.services.s3.model.ObjectListing;
     import com.ibm.cloud.objectstorage.services.s3.model.S3ObjectSummary;
     import com.ibm.cloud.objectstorage.oauth.BasicIBMOAuthCredentials;
-    
+
     public class App
     {
         private static AmazonS3 _cosClient;
@@ -458,18 +467,18 @@ package com.ibm.cloud;
             String api_key = "ZRZDoNoUseOLL7bRO8SAMPLEHPUzUL_-fsampleyYE";
             String service_instance_id = "85SAMPLE-eDOb-4NOT-bUSE-86nnnb31eaxx"
             String endpoint_url = "https://s3.us-south.cloud-object-storage.appdomain.cloud";
-            
+
             String storageClass = "us-south";
-            String location = "us"; 
- 
+            String location = "us";
+
             _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
-            
+
             // Use the client to read the configuration
             BucketLifecycleConfiguration config = _cosClient.getBucketLifecycleConfiguration(bucketName);
-            
+
             System.out.println(config.toString());
         }
-        
+
         /**
          * @param bucketName
          * @param clientNum
@@ -492,7 +501,7 @@ package com.ibm.cloud;
                     .withClientConfiguration(clientConfig).build();
             return cosClient;
         }
-        
+
     }
 ```
 {: codeblock}
@@ -603,7 +612,7 @@ package com.ibm.cloud;
     import com.ibm.cloud.objectstorage.services.s3.model.ObjectListing;
     import com.ibm.cloud.objectstorage.services.s3.model.S3ObjectSummary;
     import com.ibm.cloud.objectstorage.oauth.BasicIBMOAuthCredentials;
-    
+
     public class App
     {
         private static AmazonS3 _cosClient;
@@ -618,21 +627,21 @@ package com.ibm.cloud;
             String api_key = "ZRZDoNoUseOLL7bRO8SAMPLEHPUzUL_-fsampleyYE";
             String service_instance_id = "85SAMPLE-eDOb-4NOT-bUSE-86nnnb31eaxx"
             String endpoint_url = "https://s3.us-south.cloud-object-storage.appdomain.cloud";
-            
+
             String storageClass = "us-south";
-            String location = "us"; 
- 
+            String location = "us";
+
             _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
-            
+
             // Delete the configuration.
             _cosClient.deleteBucketLifecycleConfiguration(bucketName);
-            
+
             // Verify that the configuration has been deleted by attempting to retrieve it.
             config = _cosClient.getBucketLifecycleConfiguration(bucketName);
             String s = (config == null) ? "Configuration has been deleted." : "Configuration still exists.";
             System.out.println(s);
         }
-        
+
         /**
          * @param bucketName
          * @param clientNum
@@ -655,7 +664,7 @@ package com.ibm.cloud;
                     .withClientConfiguration(clientConfig).build();
             return cosClient;
         }
-        
+
     }
 
 ```
@@ -666,6 +675,6 @@ package com.ibm.cloud;
 {: #lifecycle-mpu-next-steps}
 
 Expiration is just one of many lifecycle concepts available for {{site.data.keyword.cos_full_notm}}.
-Each of the concepts we've covered in this overview can be explored further at the 
+Each of the concepts we've covered in this overview can be explored further at the
 [{{site.data.keyword.cloud_notm}} Platform](https://cloud.ibm.com/).
 
