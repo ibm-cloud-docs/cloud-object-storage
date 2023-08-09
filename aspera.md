@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-01-31"
+  years: 2017, 2023
+lastupdated: "2023-08-09"
 
 keywords: aspera, high speed, big data, packet loss
 
@@ -17,7 +17,7 @@ subcollection: cloud-object-storage
 
 Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP transfers to improve data transfer performance under most conditions, especially in networks with high latency and packet loss.
 {: shortdesc}
- 
+
 This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
 {: note}
 
@@ -32,10 +32,10 @@ Instead of the standard HTTP `PUT` operation, Aspera high-speed transfer uploads
 Aspera high-speed transfer is available in the {{site.data.keyword.cloud_notm}} [console](#aspera-console) and can also be used programmatically by using an [SDK](#aspera-sdk). 
 
 Aspera high-speed transfer is available in certain regions only. See [Integrated Services](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability) for more details.
-{:tip}
+{: tip}
 
 It isn't possible to use Aspera high-speed transfer if a targeted bucket has an [Immutable Object Storage](/docs/cloud-object-storage?topic=cloud-object-storage-immutable) policy.
-{:important}
+{: important}
 
 ## Using the console
 {: #aspera-console}
@@ -56,7 +56,7 @@ After the plug-in is installed, you have the option to set Aspera high-speed tra
 Typically, using the IBM Cloud Object Storage web-based console isn't the most common way to use {{site.data.keyword.cos_short}}. The Standard transfer option limits objects size to 200 MB and the file name and key will be the same. Support for larger object sizes and improved performance (depending on network factors) is provided by Aspera high-speed transfer.
 
 An Aspera server runs one SSH server on a configurable TCP port (22 by default, but often customers use port 33001). The firewall on the server side must allow this one TCP port to reach the Aspera server. No servers are listening on UDP ports. When a transfer is initiated by an Aspera client, the client opens an SSH session to the SSH server on the designated TCP port and negotiates the UDP port over which the data will travel. By default, Aspera clients and servers are configured to use UDP port 33001. After the session initiation step, both the client and the server will send and receive UDP traffic on the negotiated port. To allow the UDP session to start, the firewall on the Aspera server side must allow port UDP 33001 to reach the Aspera server.WFor For more information, see [Firewall Considerations](https://www.ibm.com/support/pages/firewall-considerations).
-{:important}
+{: important}
 
 ### Transfer status
 {: #aspera-console-transfer-status}
@@ -68,7 +68,7 @@ An Aspera server runs one SSH server on a configurable TCP port (22 by default, 
 **Preferences:** You can set the default for uploads and downloads to High speed.
 
 Downloads that use Aspera high-speed transfer incur egress charges. For more information, see the [pricing page](https://cloud.ibm.com/objectstorage/create#pricing).
-{:tip}
+{: tip}
 
 **Advanced Preferences:** You can set bandwidth for uploads and downloads.
 

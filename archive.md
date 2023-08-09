@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-11-01"
+  years: 2017, 2023
+lastupdated: "2023-08-09"
 
 keywords: archive, accelerated, access, glacier
 
@@ -12,7 +12,7 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Archiving and accessing cold data 
+# Archiving and accessing cold data
 {: #archive}
 
 {{site.data.keyword.cos_full}} "Archive" and "Accelerated Archive" are [low cost](https://www.ibm.com/cloud/object-storage) options for data that is rarely accessed. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option. With the new "Accelerated Archive" feature you can quickly access dormant data with restoration occurring in less than two hours.
@@ -24,15 +24,15 @@ This feature is not currently supported in {{site.data.keyword.cos_short}} for {
 You can archive objects using the web console, REST API, and 3rd party tools that are integrated with IBM Cloud Object Storage. 
 
 For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
-{:tip}
+{: tip}
 
 ## Add or manage an archive policy on a bucket
 {: #archive-add}
 
 When creating or modifying an archive policy for a bucket, consider the following:
 
-* An archive policy can be added to a new or existing bucket at any time. 
-* An existing archive policy can be modified or disabled. 
+* An archive policy can be added to a new or existing bucket at any time.
+* An existing archive policy can be modified or disabled.
 * A newly added or modified archive policy applies to new objects uploaded and does not affect existing objects.
 
 Create a bucket in the console after you've logged in, and you can configure your archive policy using the fields shown in Figure 1.
@@ -40,18 +40,18 @@ Create a bucket in the console after you've logged in, and you can configure you
 ![Create an archive policy](images/bucket-create-ui-archive-rule.png){: caption="Figure 1. Create an archive policy"}
 
 To immediately archive new objects uploaded to a bucket, enter 0 days on the archive policy.
-{:tip}
+{: tip}
 
 Archive is available in certain regions only. See [Integrated Services](/docs/cloud-object-storage/basics?topic=cloud-object-storage-service-availability) for more details.
-{:tip}
+{: tip}
 
 ## Restore an archived object
 {: #archive-restore}
 
-In order to access an archived object, you must restore it to the original storage tier. When restoring an object, you can specify the number of days you want the object to be available. At the end of the specified period, the restored copy is deleted. 
+In order to access an archived object, you must restore it to the original storage tier. When restoring an object, you can specify the number of days you want the object to be available. At the end of the specified period, the restored copy is deleted.
 
 The restoration process for "Accelerated Archive" takes up to 2 hours, while the restoration process for Archive takes up to 12 hours.
-{:tip}
+{: tip}
 
 The archived object sub-states are:
 
@@ -65,7 +65,7 @@ The archived object sub-states are:
 The following examples uses environment variables for clarity. These must be set to the desired values, for example `$ENDPOINT` would be set to `https://s3.us.cloud-object-storage.appdomain.cloud`, or `https://s3.eu-de.private.cloud-object-storage.appdomain.cloud`, or any other required value.
 
 1. Check object status: `aws --endpoint-url $ENDPOINT s3api head-object --bucket $BUCKET --key $KEY`
-  The storage class will be shown as `("StorageClass": "GLACIER")`
+   The storage class will be shown as `("StorageClass": "GLACIER")`
 2. Restore the object: `aws --endpoint-url $ENDPOINT s3api restore-object ---bucket $BUCKET --key $KEY --restore-request '{"Days":25,"GlacierJobParameters":{"Tier":"Bulk"}}'`
 3. Check the status: `aws --endpoint-url $ENDPOINT s3api head-object --bucket $BUCKET --key $KEY`
 
@@ -79,7 +79,7 @@ Supported functionality includes:
 * Setting [expiration rules](/docs/cloud-object-storage?topic=cloud-object-storage-expiry) for objects.
 
 Policies specifying a date in the past may take up to a few days to complete.
-{: note} 
+{: note}
 
 Unsupported functionality includes:
 * Multiple transition rules per bucket.
@@ -87,13 +87,13 @@ Unsupported functionality includes:
 * Tiering between storage classes.
 
 Classic Infrastructure (non-IAM) users are unable to set the transition storage class to `ACCELERATED`.
-{: note} 
+{: note}
 
 ## Using the REST API and SDKs
-{: #archive-api} 
+{: #archive-api}
 
 ### Create a bucket lifecycle configuration
-{: #archive-api-create} 
+{: #archive-api-create}
 
 This implementation of the `PUT` operation uses the `lifecycle` query parameter to set lifecycle settings for the bucket. This operation allows for a single lifecycle policy definition for a given bucket. The policy is defined as a rule consisting of the following parameters: `ID`, `Status`, and `Transition`.
 {: http}
@@ -131,7 +131,7 @@ Element                  | Type                 | Children                      
 __Syntax__
 {: http}
 
-```
+```http
 PUT https://{endpoint}/{bucket}?lifecycle # path style
 PUT https://{bucket}.{endpoint}?lifecycle # virtual host style
 ```
@@ -193,7 +193,7 @@ Content-Length: 305
 
 _Sample Response_
 
-```
+```http
 HTTP/1.1 200 OK
 Date: Wed, 7 Feb 2018 17:51:00 GMT
 Connection: close
@@ -277,7 +277,7 @@ Method |  Description
 ---
 
 ### Retrieve a bucket lifecycle configuration
-{: #archive-api-retrieve} 
+{: #archive-api-retrieve}
 
 This implementation of the `GET` operation uses the `lifecycle` query parameter to retrieve the lifecycle settings for the bucket. 
 
@@ -290,19 +290,19 @@ This operation does not make use of additional operation specific headers, query
 __Syntax__
 {: http}
 
-```
+```http
 GET https://{endpoint}/{bucket}?lifecycle # path style
 GET https://{bucket}.{endpoint}?lifecycle # virtual host style
 ```
 {: codeblock}
 {: http}
 
-__Examples__ 
+__Examples__
 {: http}
 
 _Sample Request_
 
-```
+```http
 GET /images?lifecycle HTTP/1.1
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 17:50:00 GMT
@@ -313,7 +313,7 @@ Authorization: authorization string
 
 _Sample Response_
 
-```
+```http
 HTTP/1.1 200 OK
 Date: Wed, 7 Feb 2018 17:51:00 GMT
 Connection: close
@@ -364,9 +364,9 @@ public GetBucketLifecycleConfigurationRequest(String bucketName)
 ---
 
 ### Delete a bucket lifecycle configuration
-{: #archive-api-delete} 
+{: #archive-api-delete}
 
-This implementation of the `DELETE` operation uses the `lifecycle` query parameter to remove any lifecycle settings for the bucket. Transitions defined by the rules will no longer take place for new objects. 
+This implementation of the `DELETE` operation uses the `lifecycle` query parameter to remove any lifecycle settings for the bucket. Transitions defined by the rules will no longer take place for new objects.
 
 **Note:** Existing transition rules will be maintained for objects that were already written to the bucket before the rules were deleted.
 
@@ -379,7 +379,7 @@ This operation does not make use of additional operation specific headers, query
 __Syntax__
 {: http}
 
-```
+```http
 DELETE https://{endpoint}/{bucket}?lifecycle # path style
 DELETE https://{bucket}.{endpoint}?lifecycle # virtual host style
 ```
@@ -391,7 +391,7 @@ __Examples__
 
 _Sample Request_
 
-```
+```http
 DELETE /images?lifecycle HTTP/1.1
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 18:50:00 GMT
@@ -403,7 +403,7 @@ Authorization: authorization string
 _Sample Response_
 {: http}
 
-```
+```http
 HTTP/1.1 204 No Content
 Date: Wed, 7 Feb 2018 18:51:00 GMT
 Connection: close
@@ -437,7 +437,7 @@ public DeleteBucketLifecycleConfigurationRequest(String bucketName)
 
 ---
 
-### Temporarily restore an archived object 
+### Temporarily restore an archived object
 {: #archive-api-restore}
 
 This implementation of the `POST` operation uses the `restore` query parameter to request temporary restoration of an archived object. The user must first restore an archived object before downloading or modifying the object. When restoring an object, the user must specify a period after which the temporary copy of the object will be deleted. The object maintains the storage class of the bucket.
@@ -471,7 +471,7 @@ A successful response returns a `202` if the object is in the archived state and
 __Syntax__
 {: http}
 
-```
+```http
 POST https://{endpoint}/{bucket}/{object}?restore # path style
 POST https://{bucket}.{endpoint}/{object}?restore # virtual host style
 ```
@@ -480,7 +480,7 @@ POST https://{bucket}.{endpoint}/{object}?restore # virtual host style
 
 ```xml
 <RestoreRequest>
-	<Days>{integer}</Days> 
+	<Days>{integer}</Days>
 	<GlacierJobParameters>
 		<Tier>Bulk</Tier>
 	</GlacierJobParameters>
@@ -495,7 +495,7 @@ __Examples__
 _Sample Request_
 {: http}
 
-```
+```http
 POST /images/backup?restore HTTP/1.1
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Date: Wed, 7 Feb 2018 19:50:00 GMT
@@ -509,7 +509,7 @@ Content-Length: 305
 
 ```xml
 <RestoreRequest>
-	<Days>3</Days> 
+	<Days>3</Days>
 	<GlacierJobParameters>
 		<Tier>Bulk</Tier>
 	</GlacierJobParameters>
@@ -520,7 +520,7 @@ Content-Length: 305
 
 _Sample Response_
 
-```
+```http
 HTTP/1.1 202 Accepted
 Date: Wed, 7 Feb 2018 19:51:00 GMT
 Connection: close
@@ -663,7 +663,7 @@ var params = {
 };
 s3.headObject(params, function(err,data) {
   if (err) console.log(err, err.stack); // an error occurred
-  else   
+  else
     console.log(data);           // successful response
 });
 ```

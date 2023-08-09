@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-08-08"
+lastupdated: "2023-08-09"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -1436,7 +1436,7 @@ The required `Content-MD5` header needs to be the binary representation of a bas
 ```
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 ```
-{:codeblock}
+{: codeblock}
 
 **Example request**
 {: token}
@@ -1508,7 +1508,7 @@ The required `Content-MD5` header needs to be the binary representation of a bas
 ```
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 ```
-{:codeblock}
+{: codeblock}
 
 **Example request**
 {: expiration}
@@ -1582,8 +1582,7 @@ Content-Length: 123
 ```
 {: hmac}
 
-```
-----
+
 ## Retrieve a bucket lifecycle configuration
 {: #compatibility-api-get-config}
 
@@ -1669,7 +1668,7 @@ Content-Length: 276
 
 ```xml
 <LifecycleConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-  <Rule>
+   <Rule>
     <ID>ID1</ID>
     <Status>Enabled</Status>
     <Filter>
@@ -1678,7 +1677,7 @@ Content-Length: 276
     <Expiration>
       <Days>270</Days>
     </Expiration>
-  </Rule>
+   </Rule>
 </LifecycleConfiguration>
 
 ```
@@ -1832,7 +1831,7 @@ The server responds with `204 No Content`.
 {: #compatibility-api-add-retention-policy}
 
 Immutable Object Storage is available in certain regions only, see [Integrated Services](/docs/cloud-object-storage/basics?topic=cloud-object-storage-service-availability#service-availability) for details. The service also requires a Standard pricing plan. See [pricing](https://www.ibm.com/cloud/object-storage) for details.
-{:note}
+{: note}
 
 Find out more about Immutable Object Storage in the [documentation](/docs/cloud-object-storage?topic=cloud-object-storage-immutable).
 
@@ -1907,7 +1906,7 @@ HTTP/1.1 200 OK
 Date: Wed, 5 Oct 2018 15:39:38 GMT
 X-Clv-Request-Id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
 Accept-Ranges: bytes
-Server: Cleversafe/3.14.1 
+Server: Cleversafe/3.14.1
 X-Clv-S3-Version: 2.5
 x-amz-request-id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
 Content-Length: 0
