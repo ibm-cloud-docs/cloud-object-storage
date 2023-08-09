@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-05-16"
+lastupdated: "2023-08-09"
 
 keywords: rest, s3, compatibility, api, objects
 
@@ -42,7 +42,7 @@ When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [usi
 
 A `PUT` given a path to an object uploads the request body as an object. All objects uploaded in a single thread should be smaller than 500 MB to minimize the risk of network disruptions. (objects that are [uploaded in multiple parts](/docs/cloud-object-storage?topic=cloud-object-storage-large-objects) can be as large as 10 TB).
 
-Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means. 
+Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means.
 {: note}
 
 Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
@@ -331,16 +331,17 @@ Multiple object deletes involve a `POST operation` that is charged as Class A. T
 |Header|Type|Description|
 |---|---|---|
 |`Quiet`|Boolean|Enable quiet mode for the request.|
+{: caption="Table 1. Header" caption-side="top"}
 
 The request can contain a maximum of 1000 keys that you want to delete. While this is useful in reducing the number of requests, be mindful when deleting many keys. Also, take into account the sizes of the objects to ensure suitable performance.
-{:tip}
+{: tip}
 
 The following code shows one example of how to create the necessary representation of the header content:
 
-```
+```sh
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 ```
-{:codeblock}
+{: codeblock}
 
 **Syntax**
 
@@ -357,6 +358,7 @@ The body of the request must contain an XML block with the following schema:
 |Delete | Container | Object | - | - |
 |Object| Container | Key | Delete | - |
 |Key| String | - | Object | Valid key string |
+{: caption="Table 2. Body of the request schema" caption-side="top"}
 
 **Example request**
 {: token}
@@ -436,13 +438,14 @@ The body of the request must contain an XML block with the following schema:
 | Retention | Container | Mode, RetainUntilDate     | -        | Required |
 | Mode  | String | -        | Retention  | Required - valid value is COMPLIANCE |
 | RetainUntilDate     | Timestamp    | - | Retention   | Required |
+{: caption="Table 3. Body of the request schema" caption-side="top"}
 
 The following code shows one example of how to create the necessary representation of the header content:
 
-```
+```sh
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 ```
-{:codeblock}
+{: codeblock}
 
 **Example request**
 
@@ -478,6 +481,7 @@ Content-Length: 0
 ----
 
 ----
+
 ## Add tags to an object
 {: #object-operations-add-tags}
 
@@ -505,6 +509,7 @@ The body of the request must contain an XML block with the following schema:
 | Tag     | String    | Key, Value | TagSet   | Required |
 | Key     | Container | -          | Tag      | Required |
 | Value   | String    | -          | Tag      | Required |
+{: caption="Table 4. Body of the request schema" caption-side="top"}
 
 Tags must comply with the following restrictions:
 * An object can have a maximum of 10 tags
@@ -679,7 +684,7 @@ The server responds with `204 No Content`.
 
 A `PUT` given a path to a new object creates a new copy of another object that is specified by the `x-amz-copy-source` header. Unless otherwise altered the metadata remains the same.
 
-Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means. 
+Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means.
 {: note}
 
 Copying objects (even across locations) does not incur the public outbound bandwidth charges. All data remains inside the COS internal network.
@@ -984,6 +989,7 @@ GET https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId} # virtual
 | `uploadId`          | Required  | string | Upload ID returned when initializing a multipart upload. |
 | `max-parts`         | Optional  | string | Defaults to 1,000.                                       |
 | `part-number​-marker` | Optional  | string | Defines where the list of parts begins.                  |
+{: caption="Table 5. Parameters" caption-side="top"}
 
 **Example request**
 {: token}
@@ -1070,6 +1076,7 @@ The body of the request must contain an XML block with the following schema:
 |Part| Container | PartNumber, ETag | Delete | - |
 |PartNumber| String | - | Object | Valid part number |
 |ETag| String | - | Object | Valid ETag value string |
+{: caption="Table 6. Body of the request schema" caption-side="top"}
 
 ```xml
 <CompleteMultipartUpload>
@@ -1240,7 +1247,7 @@ Tier                 | String    | None                       | GlacierJobParame
 POST /apiary/queenbee?restore HTTP/1.1
 Authorization: {authorization-string}
 Content-Type: text/plain
-Content-MD5: rgRRGfd/OytcM7O5gIaQ== 
+Content-MD5: rgRRGfd/OytcM7O5gIaQ==
 Content-Length: 305
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
@@ -1253,7 +1260,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 POST /apiary/queenbee?restore HTTP/1.1
 Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
 x-amz-date: {timestamp}
-Content-MD5: rgRRGfd/OytcM7O5gIaQ== 
+Content-MD5: rgRRGfd/OytcM7O5gIaQ==
 Content-Length: 305
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
