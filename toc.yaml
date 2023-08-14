@@ -161,9 +161,7 @@ toc:
           - topicgroup:
               label: Use the command line
               topics:
-                - link:
-                    label: Cloud Object Storage CLI
-                    href: https://cloud.ibm.com/docs/cloud-object-storage-cli-plugin?topic=cloud-object-storage-cli-plugin-ic-cos-cli
+                - cloud-object-storage-cli-reference.md
                 - curl.md
                 - aws-cli.md
                 - s3fs.md
