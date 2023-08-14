@@ -1237,6 +1237,7 @@ ibmcloud cos object-legal-hold-put --bucket bucket-name --key file-name.txt --le
 				}
 			}
 			```
+
 Example:
 
 ```sh
@@ -1261,22 +1262,22 @@ Setup for configuring a replicated bucket.
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
 
-			```json
-{
-    "Rules": [
-        {
-            "Status": "Enabled",
-            "Priority": 1,
-            "Filter" : { "Prefix": ""},
-            "DeleteMarkerReplication": {
-                "Status": "Disabled"
-            },
-            "Destination": {
-                "Bucket": "DEST-BUCKET-NAME"
-            }
-        }
-    ]
-}
+			```sh
+			{
+				"Rules": [
+					{
+						"Status": "Enabled",
+						"Priority": 1,
+						"Filter" : { "Prefix": ""},
+						"DeleteMarkerReplication": {
+							"Status": "Disabled"
+						},
+						"Destination": {
+							"Bucket": "DEST-BUCKET-NAME"
+						}
+					}
+				]
+			}
 			```
 
 Example:
@@ -1298,21 +1299,21 @@ ibmcloud cos bucket-replication-put --bucket SOURCE-BUCKET-NAME --replication-co
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
 
-			```json
-{
-    "ReplicationConfiguration": {
-        "Rules": [
-            {
-                "Status": "Enabled",
-                "Prefix": "",
-                "Destination": {
-                    "Bucket": "DEST-BUCKET-NAME",
-                    "StorageClass": "STANDARD"
-                },
-            }
-        ],
-    }
-}
+			```sh
+			{
+				"ReplicationConfiguration": {
+					"Rules": [
+						{
+							"Status": "Enabled",
+							"Prefix": "",
+							"Destination": {
+								"Bucket": "DEST-BUCKET-NAME",
+								"StorageClass": "STANDARD"
+							},
+						}
+					],
+				}
+			}
 			```
 
 Example:
