@@ -1248,7 +1248,6 @@ ibmcloud cos object-retention-get --bucket bucket-name --key file-name.txt --reg
 
 Setup for configuring a replicated bucket.
 
-
 ### Put bucket replication
 {: #ic-config-put-bucket-replication}
 
@@ -1321,10 +1320,11 @@ Example:
 ```sh
  ibmcloud cos bucket-replication-get --bucket SOURCE-BUCKET-NAME
 ```
+
 ### Delete bucket replication
 {: #ic-config-delete-bucket-replication}
 
-* **Action:** Get the replication configuration for a bucket.
+* **Action:** Delete the replication configuration from a bucket.
 * **Usage:** `bucket-replication-delete --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
 * **Parameters to provide:**
  	* The name of the bucket.
