@@ -3,7 +3,7 @@
 copyright:
 
   years: 2017, 2023
-lastupdated: "2023-08-11"
+lastupdated: "2023-08-14"
 
 
 keywords: cli, command line reference, object storage
@@ -1241,6 +1241,90 @@ Example:
 
 ```sh
 ibmcloud cos object-retention-get --bucket bucket-name --key file-name.txt --region us-south
+```
+
+## Configure bucket replication
+{: #ic-config-bucket-replication}
+
+Setup for configuring a replicated bucket.
+
+
+### Put bucket replication
+{: #ic-config-put-bucket-replication}
+
+* **Action:** Set the replication configuration on a bucket.
+* **Usage:** `bucket-replication-put --bucket BUCKET_NAME [--replication-configuration STRUCTURE] [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+ 	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* The KEY of the object.
+		* Flag: `--key KEY`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+			```json
+{
+    "Rules": [
+        {
+            "Status": "Enabled",
+            "Priority": 1,
+            "Filter" : { "Prefix": ""},
+            "DeleteMarkerReplication": {
+                "Status": "Disabled"
+            },
+            "Destination": {
+                "Bucket": "DEST-BUCKET-NAME"
+            }
+        }
+    ]
+}
+			```
+
+Example:
+
+```sh
+ibmcloud cos bucket-replication-put --bucket SOURCE-BUCKET-NAME --replication-configuration file://replication.json
+```
+
+### Get bucket replication
+{: #ic-config-put-bucket-replication}
+
+* **Action:** Get the replication configuration for a bucket.
+* **Usage:** `bucket-replication-put --bucket BUCKET_NAME [--replication-configuration STRUCTURE] [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+ 	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* The KEY of the object.
+		* Flag: `--key KEY`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+			```json
+{
+    "Rules": [
+        {
+            "Status": "Enabled",
+            "Priority": 1,
+            "Filter" : { "Prefix": ""},
+            "DeleteMarkerReplication": {
+                "Status": "Disabled"
+            },
+            "Destination": {
+                "Bucket": "DEST-BUCKET-NAME"
+            }
+        }
+    ]
+}
+			```
+
+Example:
+
+```sh
+ibmcloud cos bucket-replication-put --bucket SOURCE-BUCKET-NAME --replication-configuration file://replication.json
 ```
 
 ## Next Steps
