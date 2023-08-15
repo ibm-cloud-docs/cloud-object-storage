@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2020
-lastupdated: "2020-11-07"
+  years: 2020, 2023
+lastupdated: "2023-08-15"
 
-keywords: static website, hosting, tutorial 
+keywords: static website, hosting, tutorial
 
 subcollection: cloud-object-storage
 
@@ -41,14 +41,14 @@ The scenario for this tutorial simplifies web hosting to its essentials in order
 
 Ensure that you have what you need to start:
 
-- {: hide-dashboard} An account for the {{site.data.keyword.cloud_notm}} Platform 
+- {: hide-dashboard} An account for the {{site.data.keyword.cloud_notm}} Platform
 - An instance of {{site.data.keyword.cos_full_notm}}
 - Content in fixed form, like text (HTML would be perfect), and image files
 
-Check that you have the access as appropriate to either the instance of {{site.data.keyword.cos_full_notm}} you will be using or the proper [permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions) for the buckets you will be using for this tutorial. 
+Check that you have the access as appropriate to either the instance of {{site.data.keyword.cos_full_notm}} you will be using or the proper [permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions) for the buckets you will be using for this tutorial.
 {: ui}
 
-For use of the [IBM Cloud CLI](/docs/cloud-object-storage?topic=cloud-object-storage-cli-plugin-ic-cos-cli) with this tutorial, you will need to [configure the Object Storage plug-in](/docs/cloud-object-storage?topic=cloud-object-storage-cli-plugin-ic-cos-cli#ic-config) to specify the service instance you want to use and the default region where you want your new bucket to be created. 
+For use of the [IBM Cloud CLI](/docs/cloud-object-storage?topic=cloud-object-storage-cli-reference-ic-cos-cli) with this tutorial, you will need to [configure the Object Storage plug-in](/docs/cloud-object-storage?topic=cloud-object-storage-cli-reference-ic-cos-cli#ic-config) to specify the service instance you want to use and the default region where you want your new bucket to be created.
 {: cli}
 
 ## Create a bucket configured for public access
@@ -136,7 +136,7 @@ Create a JSON file with the appropriate configuration information:
 Replace the placeholder content as shown in the example command to configure the website:
 {: cli}
 
-```
+```sh
 ibmcloud cos bucket-website-put --bucket BUCKET_NAME --website-configuration file://<filename.json>
 ```
 {: pre}
@@ -152,7 +152,7 @@ You may have completed this step during the creation of your bucket, as the basi
 
 Once you have configured your bucket to provide HTTP headers using the example command, all you have to do to test your new site is visit the URL for the site. Please note the protocol shown (http), after replacing the placeholders with your own choices made previously in this tutorial:
 
-```
+```http
 http://<bucketname>.s3-web.<endpoint>/
 ```
 {: screen}

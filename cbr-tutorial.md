@@ -1,11 +1,11 @@
 ---
 
 copyright:
-   years: 2022
-lastupdated: "2022-05-02"
+   years: 2022, 2023
+lastupdated: "2023-08-09"
 
 keywords: tutorials, cbr, firewall, allowlist
-subcollection: cloud-object-storage 
+subcollection: cloud-object-storage
 content-type: tutorial
 account-plan: lite
 completion-time: 10m
@@ -16,8 +16,8 @@ completion-time: 10m
 
 # Securing data using context-based restrictions
 {: #cos-tutorial-cbr}
-{: toc-content-type="tutorial"} 
-{: toc-completion-time="10m"} 
+{: toc-content-type="tutorial"}
+{: toc-completion-time="10m"}
 
 In this tutorial, you will establish [context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall) that prevent any access to object storage data unless the request originates from a trusted network zone.
 {: shortdesc}
@@ -54,7 +54,7 @@ From the **Manage** menu, select **Context-based restrictions**.
 {: #cos-tutorial-cbr-scope}
 {: step}
 
-Now you can choose the specific object storage resources to which you would like to apply the context-based restrictions. This can become as specific or generic as you wish - you could apply the rule to all object storage instances and buckets, a specific service instance, or even a specific bucket.  Additionally, you can choose which networks (public, private, or direct) you wish to be included. 
+Now you can choose the specific object storage resources to which you would like to apply the context-based restrictions. This can become as specific or generic as you wish - you could apply the rule to all object storage instances and buckets, a specific service instance, or even a specific bucket.  Additionally, you can choose which networks (public, private, or direct) you wish to be included.
 
 In this example, we will choose a service instance.
 
@@ -62,11 +62,12 @@ In this example, we will choose a service instance.
 2. Choose **Cloud Object Storage** from the drop down menu.
 3. Select the **Resources based on specific attributes** radio button.
 4. Check the **Service instance** box.
-5. Select the service instance you want the rule to affect. 
- 
-![Scope the rule](../images/cbr_4.png)
+5. Select the service instance you want the rule to affect.
 
-If you want to instead only limit access to a specific bucket, you can select the **Resource ID** checkbox instead.  Provide the name of the bucket in the field - nothing else is necessary.  
+![Scope the rule](../images/cbr_4.png){: caption="Figure 1. Scope the rule"}
+
+
+If you want to instead only limit access to a specific bucket, you can select the **Resource ID** checkbox instead.  Provide the name of the bucket in the field - nothing else is necessary.
 {: tip}
 
 ## Create a network zone
@@ -77,19 +78,19 @@ Now that we know what the rule will affect, we need to decide what the rule will
 
 1. Click on **Create +**.
 
-![Scope the rule](../images/cbr_5.png)
+![Scope the rule](../images/cbr_5.png){: caption="Figure 2. Scope the rule"}
 
 2. Give the network zone a helpful name and description.
 3. Add some IP ranges to the **Allowed IP addresses** text box.
 4. Click **Next**.
 
-![Scope the rule](../images/cbr_6.png)
+![Scope the rule](../images/cbr_6.png){: caption="Figure 3. Scope the rule"}
 
 ## Finish the rule and verify that it works
 {: #cos-tutorial-cbr-network}
 {: step}
 
-Finally, all you need to do is click **Create** and your new rule will be active.  
+Finally, all you need to do is click **Create** and your new rule will be active.
 
 An easy way to check that it works is to [send a simple CLI command] from outside of the allowed network zone, such as a bucket listing (`ic cos buckets`).  It will fail with a `403` error code.
 
