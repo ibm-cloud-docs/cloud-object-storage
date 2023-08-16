@@ -3,9 +3,9 @@
 copyright:
   years: 2023
 
-lastupdated: "2023-03-16"
+lastupdated: "2023-08-16"
 
-keywords: worm, immutable, policy, retention, compliance
+keywords: object, policy, fine grained access control, prefix
 
 subcollection: cloud-object-storage
 
@@ -14,16 +14,16 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Locking objects
-{: #ol-overview}
+# Folder level (prefix) fine grained access control
+{: #fgac-overview}
 
-Object Lock preserves electronic records and maintains data integrity by ensuring that individual object versions are stored in a WORM (Write-Once-Read-Many), non-erasable and non-rewritable manner. This policy is enforced until a specified date or the removal of any legal holds. 
+Object Lock preserves electronic records and maintains data integrity by ensuring that individual object versions are stored in a WORM (Write-Once-Read-Many), non-erasable and non-rewritable manner. This policy is enforced until a specified date or the removal of any legal holds.
 {: shortdesc}
 
-## Why use Object Lock?
+## Why use fine grained access control?
 {: #ol-why}
 
-Object Lock helps customers govern data preservation and retention requirements by enforcing data immutability for their backup, disaster recovery, and cyber resiliency workloads. 
+Object Lock helps customers govern data preservation and retention requirements by enforcing data immutability for their backup, disaster recovery, and cyber resiliency workloads.
 
 Object Lock ensures that **data cannot be deleted by anyone** and there is **no way to suspend retention on an object**. Read the documentation carefully before locking objects with a retention period.
 {:attention}
