@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-08-16"
+lastupdated: "2023-09-01"
 
 keywords: access control, iam, basics, objects
 
@@ -12,11 +12,14 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Assigning access to an individual object
+# Assigning access to objects within a bucket using IAM access conditions
 {: #iam-object-permissions}
 
-Assign access roles for users and Service IDs against objects, by using either the UI or the CLI to create policies.
+IAM access policies allow granting permissions in a COS bucket to specific groups of objects. This approach allows for fine-grained access control over data access, making it useful in scenarios where different parts of a bucket need to be accessed by different users or applications.
 {: shortdesc}
+
+If access is required for the entire bucket, when fine grained access control is not required, follow the information on [assinging access to an individual bucket the guide](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions&interface=ui).
+{: tip}
 
 | Access role    | Example actions                                              |
 |:---------------|--------------------------------------------------------------|
