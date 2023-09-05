@@ -42,11 +42,11 @@ Key Concepts: The following items are key components of building an IAM access p
 **Resource**: IBM COS supports the following resource targets: a resource group ID, a service instance, a resource type with value of “bucket”, and a resource ID (bucket name).
 
 **Role**: IBM Cloud access roles are groups of actions. Access roles allow the subject to complete specific tasks within the context of the target resources that are defined in the policy. COS supports several pre-defined service roles that makes assigning permissions easier. COS also allows the creation of custom roles. See [Identity and Access Management roles](/docs/cloud-object-storage?topic=cloud-object-storage-iam&interface=ui#iam-roles) for more information on the supported roles for COS. Only the following roles are recommended for assigning individual object access:
-- Object Writer
-- Object Deleter
-- Object Lister
-- Object Reader
-- WriterNoConditions
+- `Object Writer`
+- `Object Deleter`
+- `Object Lister`
+- `Object Reader`
+- `WriterNoConditions`
 
 See this table for the list of COS roles and their interaction with conditions.
 
