@@ -35,15 +35,15 @@ The first step to granting access to individual objects within a bucket is to co
 
 Key Concepts: The following items are key components of building an IAM access policy for your Cloud Object Storage resources.
 
-Subject: The subject of an access policy can be an individual user, an access group, a Service ID, or a Trusted Profile. See here for more information on the types of subjects you can apply to a policy.
+**Subject**: The subject of an access policy can be an individual user, an access group, a Service ID, or a Trusted Profile. See here for more information on the types of subjects you can apply to a policy.
 
-Service: The service is the IBM Cloud Service that contains the resource you are trying to assign access to. For assigning access to individual objects use the Cloud Object Storage service.
+**Service**: The service is the IBM Cloud Service that contains the resource you are trying to assign access to. For assigning access to individual objects use the Cloud Object Storage service.
 
-Resource: IBM COS supports the following resource targets: a resource group ID, a service instance, a resource type with value of “bucket”, and a resource ID (bucket name).
+**Resource**: IBM COS supports the following resource targets: a resource group ID, a service instance, a resource type with value of “bucket”, and a resource ID (bucket name).
 
-Role: IBM Cloud access roles are groups of actions. Access roles allow the subject to complete specific tasks within the context of the target resources that are defined in the policy. COS supports several pre-defined service roles that makes assigning permissions easier. COS also allows the creation of custom roles. See here for more information on the supported roles for COS. Only the following roles are recommended for assigning individual object access: Object Writer, Object Deleter, Object Lister, Object Reader and WriterNoConditions. See this table for the list of COS roles and their interaction with conditions. 
+**Role**: IBM Cloud access roles are groups of actions. Access roles allow the subject to complete specific tasks within the context of the target resources that are defined in the policy. COS supports several pre-defined service roles that makes assigning permissions easier. COS also allows the creation of custom roles. See here for more information on the supported roles for COS. Only the following roles are recommended for assigning individual object access: Object Writer, Object Deleter, Object Lister, Object Reader and WriterNoConditions. See this table for the list of COS roles and their interaction with conditions.
 
-Condition: Once a resource is identified, a condition can be used to further scope access for a subject to individual objects in a bucket. This is referred to as fine-grained access control. Use a policy with no condition attributes to give full access to the target resource. A single IAM Policy can have more than one condition by using an OR or AND statement to combine the conditions. The condition statement (containing one or more conditions) should evaluate to TRUE for the user request to be permitted to perform the action. IAM Policy will deny any action that does not get evaluated to be TRUE/allowed by condition. 
+**Condition**: Once a resource is identified, a condition can be used to further scope access for a subject to individual objects in a bucket. This is referred to as fine-grained access control. Use a policy with no condition attributes to give full access to the target resource. A single IAM Policy can have more than one condition by using an OR or AND statement to combine the conditions. The condition statement (containing one or more conditions) should evaluate to TRUE for the user request to be permitted to perform the action. IAM Policy will deny any action that does not get evaluated to be TRUE/allowed by condition.
 
 | Access role    | Example actions                                              |
 |:---------------|--------------------------------------------------------------|
