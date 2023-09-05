@@ -125,14 +125,21 @@ Prefix of "folder1/*" AND Delimiter of "/"
 
 - For a user list request with prefix set to “folder1/” and no Delimiter, the user request will not be permitted 
 
-| Access role    | Example actions                                              |
-|:---------------|--------------------------------------------------------------|
-| Manager        | Make objects public, create, and destroy buckets and objects |
-| Writer         | Create and destroy buckets and objects                       |
-| Reader         | List buckets, list objects, and download objects.            |
-| Content Reader | List and download objects                                    |
-| Object Reader  | Download objects                                             |
-| Object Writer  | Upload objects                                               |
+| Access role         | Example actions                                              | Supported with Conditions                            |
+|:--------------------|--------------------------------------------------------------|------------------------------------------------------|
+| Manager             | Make objects public, create, and destroy buckets and objects | Not Recommended |
+| Writer              | Create and destroy buckets and objects                       | Not Recommended |
+| Reader              | List buckets, list objects, and download objects.            | Not Recommended |
+| Content Reader      | List and download objects                                    | Not Recommended |
+| Object Reader       | Download objects                                             | Yes |
+| Object Writer       | Upload objects                                               | Yes |
+| Object Deleter      | Upload objects                                               | Yes |
+| WriterNoConditions  | Upload objects                                               | Yes |
+{: caption="Table 1. Use of Conditions with COS Service Roles"}
+
+See [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) for the full list of Actions that each role supports.
+
+**Actions that Don’t Support Conditions**: There are some COS APIs that do not support condition attributes. These include bucket level actions and other actions that don’t apply to one specific object. To see a list of these actions, see [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions). A condition statement in a policy will apply to all the actions defined by the role. When a condition is configured in a policy with a role that contains actions that do not support conditions, the sub-set of actions that do not support conditions will be denied. Manager, Writer, Reader and Content Reader are examples of roles that contain a combination of actions that support conditions and actions that do not support conditions, these roles are not recommended for use with fine-grained access control for both object listing and object management (read/write/configuration).
 
 ## Granting access to a user
 {: #iam-user-access}
