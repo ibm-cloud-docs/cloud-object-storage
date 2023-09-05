@@ -13,13 +13,37 @@ subcollection: cloud-object-storage
 {{site.data.keyword.attribute-definition-list}}
 
 # Assigning access to objects within a bucket using IAM access conditions
-{: #iam-object-permissions}
+{: #fgac-iam-access-conditions}
 
 IAM access policies allow granting permissions in a COS bucket to specific groups of objects. This approach allows for fine-grained access control over data access, making it useful in scenarios where different parts of a bucket need to be accessed by different users or applications.
 {: shortdesc}
 
-If access is required for the entire bucket, when fine grained access control is not required, follow the information on [assinging access to an individual bucket the guide](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions&interface=ui).
+If access is required for the entire bucket, when fine grained access control is not required, follow the information on [assinging access to an individual bucket](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions&interface=ui).
 {: tip}
+
+Each object stored in a COS bucket has a unique key, and these keys often follow a hierarchical structure similar to a file system. For example, an individual object with the key "folder1/subfolder1/file.txt" can simulate a folder or directory hierarchy, where the directory  “folder1” contains a sub-directory named “subfolder1” containing a file “file.txt”. Access can be assigned at any folder level. For example, an access policy can be created for all objects and subfolders in the folder named “folder1”, or access can be assigned for just objects in the subdirectory named “subfolder1”.
+
+A policy administrator can assign access to individual objects and folders by configuring conditions when creating IAM access policies. The next section describes how to construct these types of policies
+
+## Constructing a Fine-Grained Access Policy
+{: #fgac-construct-policy}
+
+The first step to granting access to individual objects within a bucket is to construct an IAM policy. You can find more information on constructing an IAM access policy for Cloud Object Storage in the COS tutorial [Limiting access to a single Object Storage bucket](/docs/cloud-object-storage?topic=cloud-object-storage-limit-access&interface=ui#single-bucket-create-policy). For more general information on building IAM policies, please go to [How IBM Cloud IAM works](/docs/account?topic=account-iamoverview). Let’s define some of the key concepts for an access policy.
+
+## Terminology
+{: #fgac-terminology}
+
+Key Concepts: The following items are key components of building an IAM access policy for your Cloud Object Storage resources.
+
+Subject: The subject of an access policy can be an individual user, an access group, a Service ID, or a Trusted Profile. See here for more information on the types of subjects you can apply to a policy.
+
+Service: The service is the IBM Cloud Service that contains the resource you are trying to assign access to. For assigning access to individual objects use the Cloud Object Storage service.
+
+Resource: IBM COS supports the following resource targets: a resource group ID, a service instance, a resource type with value of “bucket”, and a resource ID (bucket name).
+
+Role: IBM Cloud access roles are groups of actions. Access roles allow the subject to complete specific tasks within the context of the target resources that are defined in the policy. COS supports several pre-defined service roles that makes assigning permissions easier. COS also allows the creation of custom roles. See here for more information on the supported roles for COS. Only the following roles are recommended for assigning individual object access: Object Writer, Object Deleter, Object Lister, Object Reader and WriterNoConditions. See this table for the list of COS roles and their interaction with conditions. 
+
+Condition: Once a resource is identified, a condition can be used to further scope access for a subject to individual objects in a bucket. This is referred to as fine-grained access control. Use a policy with no condition attributes to give full access to the target resource. A single IAM Policy can have more than one condition by using an OR or AND statement to combine the conditions. The condition statement (containing one or more conditions) should evaluate to TRUE for the user request to be permitted to perform the action. IAM Policy will deny any action that does not get evaluated to be TRUE/allowed by condition. 
 
 | Access role    | Example actions                                              |
 |:---------------|--------------------------------------------------------------|
