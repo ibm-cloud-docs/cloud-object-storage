@@ -21,11 +21,13 @@ IAM access policies allow granting permissions in a COS bucket to specific group
 If access is required for the entire bucket, when fine grained access control is not required, follow the information on [assinging access to an individual bucket](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions&interface=ui).
 {: tip}
 
-Each object stored in a COS bucket has a unique key, and these keys often follow a hierarchical structure similar to a file system. For example, an individual object with the key "folder1/subfolder1/file.txt" can simulate a folder or directory hierarchy, where the directory  “folder1” contains a sub-directory named “subfolder1” containing a file “file.txt”. Access can be assigned at any folder level. For example, an access policy can be created for all objects and subfolders in the folder named “folder1”, or access can be assigned for just objects in the subdirectory named “subfolder1”.
+Each object stored in a COS bucket has a unique key, and these keys often follow a hierarchical structure similar to a file system. For example, an individual object with the key **folder1/subfolder1/file.txt** can simulate a folder or directory hierarchy, where the directory  **folder1** contains a sub-directory named **subfolder1** containing a file **file.txt**. Access can be assigned at any folder level.
+
+**Example**: An access policy can be created for all objects and subfolders in the folder named **folder1**, or access can be assigned for just objects in the subdirectory named **subfolder1**.
 
 A policy administrator can assign access to individual objects and folders by configuring conditions when creating IAM access policies. The next section describes how to construct these types of policies
 
-## Constructing a Fine-Grained Access Policy
+## Constructing a Fine-Grained Access Control Policy
 {: #fgac-construct-policy}
 
 The first step to granting access to individual objects within a bucket is to construct an IAM policy. You can find more information on constructing an IAM access policy for Cloud Object Storage in the COS tutorial [Limiting access to a single Object Storage bucket](/docs/cloud-object-storage?topic=cloud-object-storage-limit-access&interface=ui#single-bucket-create-policy). For more general information on building IAM policies, please go to [How IBM Cloud IAM works](/docs/account?topic=account-iamoverview). Let’s define some of the key concepts for an access policy.
@@ -48,7 +50,7 @@ Key Concepts: The following items are key components of building an IAM access p
 - `Object Reader`
 - `WriterNoConditions`
 
-See this table for the list of COS roles and their interaction with conditions.
+See table 1. for the list of COS roles and their interaction with conditions.
 
 **Condition**: Once a resource is identified, a condition can be used to further scope access for a subject to individual objects in a bucket. This is referred to as fine-grained access control. Use a policy with no condition attributes to give full access to the target resource. A single IAM Policy can have more than one condition by using an OR or AND statement to combine the conditions. The condition statement (containing one or more conditions) should evaluate to TRUE for the user request to be permitted to perform the action. IAM Policy will deny any action that does not get evaluated to be TRUE/allowed by condition.
 
@@ -139,7 +141,23 @@ Prefix of "folder1/*" AND Delimiter of "/"
 
 See [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) for the full list of Actions that each role supports.
 
-**Actions that Don’t Support Conditions**: There are some COS APIs that do not support condition attributes. These include bucket level actions and other actions that don’t apply to one specific object. To see a list of these actions, see [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions). A condition statement in a policy will apply to all the actions defined by the role. When a condition is configured in a policy with a role that contains actions that do not support conditions, the sub-set of actions that do not support conditions will be denied. Manager, Writer, Reader and Content Reader are examples of roles that contain a combination of actions that support conditions and actions that do not support conditions, these roles are not recommended for use with fine-grained access control for both object listing and object management (read/write/configuration).
+**Actions that Don’t Support Conditions**: There are some COS APIs that do not support condition attributes. These include bucket level actions and other actions that don’t apply to one specific object. To see a list of these actions, go to [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions). A condition statement in a policy will apply to all the actions defined by the role. When a condition is configured in a policy with a role that contains actions that do not support conditions, the sub-set of actions that do not support conditions will be denied. Manager, Writer, Reader and Content Reader are examples of roles that contain a combination of actions that support conditions and actions that do not support conditions, these roles are not recommended for use with fine-grained access control for both object listing and object management (`read/write/configuration`).
+
+`WriterNoConditions` is a new IAM role created to be used for certain use cases when assigning access to individual objects. This service role contains actions that do not support condition attributes. If you want to give a user permission to perform actions that do not support conditions while providing fine-grained access control, then you will need to create two separate IAM policies:
+- one that grants the subject “WriterNoConditions” role
+- and another policy that contains the role and condition for fine-grained access
+
+**Example**: If a user should be allowed to use HEAD bucket to determine that the bucket exists as well as write objects to folder1/subfolder1/in the bucket,then two policies are required: one with `WriterNoConditions` role with no conditions specified, and a second policy with `ObjectWriter` role where the condition contains the path set to folder1/subfolder1.
+
+It is recommended that you define both a Prefix/Delimiter condition and a Path condition when granting Read/Write AND LIST actions to a user in the same policy. A condition specifying Prefix/Delimiter and a condition specifying Path should be logically ORed in the IAM Policy statement to permit both types of operations (Read/Write/Management of objects OR LIST objects). Failure to include either condition statement will result in the subject having Read/Write/Management OR LIST actions on all objects in the resource, not just on the target path or prefix.
+{: note}
+
+If a COS custom role supports actions that both support and do not support conditions, and a condition is assigned in the policy, all those actions will not be permitted.
+{: note}
+
+All IAM policies with conditions are subject to the IAM policy limits. See [IBM Cloud IAM limits](https://cloud.ibm.com/docs/account?topic=account-known-issues#iam_limits) for more info on the IAM policy limits .
+
+COS does not support CBR rules that only apply to a specific prefix/delimiter or path.
 
 ## Granting access to a user
 {: #iam-user-access}
