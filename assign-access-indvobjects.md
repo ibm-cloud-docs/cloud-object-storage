@@ -18,8 +18,8 @@ subcollection: cloud-object-storage
 IAM access policies allow granting permissions in a COS bucket to specific groups of objects. This approach allows for fine-grained access control over data access, making it useful in scenarios where different parts of a bucket need to be accessed by different users or applications.
 {: shortdesc}
 
-If access is required for the entire bucket, when fine grained access control is not required, follow the information on [assinging access to an individual bucket](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions&interface=ui).
-{: tip}
+If access is required for the entire bucket, when fine grained access control is not required, then follow the information on [assinging access to an individual bucket](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions&interface=ui).
+{: important}
 
 Each object stored in a COS bucket has a unique key, and these keys often follow a hierarchical structure similar to a file system. For example, an individual object with the key **folder1/subfolder1/file.txt** can simulate a folder or directory hierarchy, where the directory  **folder1** contains a sub-directory named **subfolder1** containing a file **file.txt**. Access can be assigned at any folder level.
 
@@ -158,6 +158,11 @@ If a COS custom role supports actions that both support and do not support condi
 All IAM policies with conditions are subject to the IAM policy limits. See [IBM Cloud IAM limits](https://cloud.ibm.com/docs/account?topic=account-known-issues#iam_limits) for more info on the IAM policy limits .
 
 COS does not support CBR rules that only apply to a specific prefix/delimiter or path.
+
+## Create a new policy for a user with Conditions
+{: #fgac-new-policy-conditions}
+
+These examples provide list access to the full object hierarchy within folder named **folder1/subfolder1** and provide object `read/write/delete` access to all objects in folder named **subfolder1**.
 
 ## Granting access to a user
 {: #iam-user-access}
