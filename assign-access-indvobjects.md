@@ -159,10 +159,22 @@ All IAM policies with conditions are subject to the IAM policy limits. See [IBM 
 
 COS does not support CBR rules that only apply to a specific prefix/delimiter or path.
 
-## Create a new policy for a user with Conditions
+## Create a new policy for a user with conditions
 {: #fgac-new-policy-conditions}
 
 These examples provide list access to the full object hierarchy within folder named **folder1/subfolder1** and provide object `read/write/delete` access to all objects in folder named **subfolder1**.
+
+### UI
+{: #fgac-new-policy-conditions-ui}
+
+Update this section after IAM has released UI feature for condition building. Use "folder1/subfolder1/file.txt" as example. 
+Roles: Object Lister, Object Writer, Object Deleter, Object Reader
+Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”}
+OR
+{Path StringMatch “folder1/subfolder1/*”}
+
+### CLI
+{: #fgac-new-policy-conditions-cli}
 
 ## Granting access to a user
 {: #iam-user-access}
