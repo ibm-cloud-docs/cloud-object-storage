@@ -123,9 +123,9 @@ Prefix of "folder1/*" AND Delimiter of "/"
 
 - For a user list request with prefix set to “folder1/” and Delimiter of “/”, the request will return a view of the objects and folders just in the first level of folder1 
 
-- For a user list request with prefix set to “folder1/subfolder1/” and Delimiter of “/”, the request will return the objects (and any subfolders) in folder1/subfolder1 
+- For a user list request with prefix set to “folder1/subfolder1/” and Delimiter of “/”, the request will return the objects (and any subfolders) in folder1/subfolder1
 
-- For a user list request with prefix set to “folder1/” and no Delimiter, the user request will not be permitted 
+- For a user list request with prefix set to “folder1/” and no Delimiter, the user request will not be permitted
 
 | Access role         | Example actions                                              | Supported with Conditions                            |
 |:--------------------|--------------------------------------------------------------|------------------------------------------------------|
@@ -159,7 +159,7 @@ All IAM policies with conditions are subject to the IAM policy limits. See [IBM 
 
 COS does not support CBR rules that only apply to a specific prefix/delimiter or path.
 
-## Create a new policy for a user with conditions
+## Create a new policy for a user with Conditions<!--needs updating with conditions-->
 {: #fgac-new-policy-conditions}
 
 These examples provide list access to the full object hierarchy within folder named **folder1/subfolder1** and provide object `read/write/delete` access to all objects in folder named **subfolder1**.
@@ -167,15 +167,241 @@ These examples provide list access to the full object hierarchy within folder na
 ### UI
 {: #fgac-new-policy-conditions-ui}
 
-Update this section after IAM has released UI feature for condition building. Use "folder1/subfolder1/file.txt" as example. 
+<!--Update this section after IAM has released UI feature for condition building.--> Use "folder1/subfolder1/file.txt" as example.
 Roles: Object Lister, Object Writer, Object Deleter, Object Reader
 Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”}
 OR
 {Path StringMatch “folder1/subfolder1/*”}
 
-### CLI
+### CLI<!--needs updating with conditions-->
 {: #fgac-new-policy-conditions-cli}
 
+Create user policy with CLI [ibmcloud iam user-policy-create](https://cloud.ibm.com/docs/cli?topic=cli-ibmcloud_commands_iam#ibmcloud_iam_user_policy_create)
+
+Include an example construction using the CLI of an IAM policy with a condition. Use "folder1/subfolder1/file.txt" as example
+Roles: Object Lister, Object Writer, Object Deleter, Object Reader
+Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”}
+OR
+{Path StringMatch “folder1/subfolder1/*”}
+
+### API<!--needs updating with conditions-->
+{: #fgac-new-policy-conditions-api}
+
+Create user policy with CLI [ibmcloud iam user-policy-create](https://cloud.ibm.com/docs/cli?topic=cli-ibmcloud_commands_iam#ibmcloud_iam_user_policy_create)
+
+Include an example construction using the CLI of an IAM policy with a condition. Use "folder1/subfolder1/file.txt" as example
+Roles: Object Lister, Object Writer, Object Deleter, Object Reader
+Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”}
+OR
+{Path StringMatch “folder1/subfolder1/*”}
+
+Request
+```sh
+curl -X POST 'https://iam.cloud.ibm.com/v2/policies' \
+-H 'Authorization: Bearer $TOKEN' \
+-H 'Content-Type: application/json' \
+-d '{
+  "type": "access",
+  "description": "access control for RESOURCE_NAME",
+  "resource": {
+    "attributes": [
+      {
+        "key": "serviceName",
+        "operator": "stringEquals",
+        "value": "cloud-object-storage"
+      },
+      {
+        "key": "serviceInstance",
+        "operator": "stringEquals",
+        "value": "$SERVICE_INSTANCE"
+      },
+      {
+        "key": "accountId",
+        "operator": "stringEquals",
+        "value": "$ACCOUNT_ID"
+      },
+      {
+        "key": "resourceType",
+        "operator": "stringEquals",
+        "value": "bucket"
+      },
+      {
+        "key": "resource",
+        "operator": "stringEquals",
+        "value": "$RESOURCE_NAME"
+      }
+    ]
+  },
+  "subject": {
+    "attributes": [
+      {
+        "key": "iam_id",
+        "operator": "stringEquals",
+        "value": "IBMid-123453user"
+      }
+    ]
+  },
+  "control": {
+    "grant": {
+      "roles": [
+        {
+          "role_id": "crn:v1:bluemix:public:cloud-object-storage::::serviceRole:ObjectWriter"
+        },
+        {
+          "role_id": "crn:v1:bluemix:public:cloud-object-storage::::serviceRole:ObjectReader"
+        },
+        {
+          "role_id": "crn:v1:bluemix:public:cloud-object-storage::::serviceRole:ObjectLister"
+        },
+        {
+          "role_id": "crn:v1:bluemix:public:cloud-object-storage::::serviceRole:ObjectDeleter"
+        }
+
+      ]
+    }
+  },
+  "rule": {
+    "operator": "or",
+    "conditions": [
+      {
+        "key": "{{resource.attributes.path}}",
+        "operator": "stringMatch",
+        "value": "folder1/subfolder1/*"
+      },
+      {
+        "operator": "and",
+        "conditions": [
+          {
+            "key": "{{resource.attributes.prefix}}",
+            "operator": "stringMatch",
+            "value": "folder1/subfolder1/*"
+          },
+          {
+            "key": "{{resource.attributes.delimiter}}",
+            "operator": "stringEqualsAnyOf",
+            "value": [
+              "/",
+              ""
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "pattern": "attribute-based-condition:resource:literal-and-wildcard"
+}'
+```
+
+Response
+```sh
+{
+    "id": "25f6fd1b-44d0-4922-b185-14fee771d3ee",
+    "description": "access control for RESOURCE_NAME",
+    "type": "access",
+    "subject": {
+        "attributes": [
+            {
+                "key": "iam_id",
+                "operator": "stringEquals",
+                "value": "IBMid-123453user"
+            }
+        ]
+    },
+    "resource": {
+        "attributes": [
+            {
+                "key": "serviceName",
+                "operator": "stringEquals",
+                "value": "cloud-object-storage"
+            },
+            {
+                "key": "serviceInstance",
+                "operator": "stringEquals",
+                "value": "$SERVICE_INSTANCE"
+            },
+            {
+                "key": "accountId",
+                "operator": "stringEquals",
+                "value": "$ACCOUNT_ID"
+            },
+            {
+                "key": "resourceType",
+                "operator": "stringEquals",
+                "value": "bucket"
+            },
+            {
+                "key": "resource",
+                "operator": "stringEquals",
+                "value": "$RESOURCE_NAME"
+            }
+        ]
+    },
+    "pattern": "attribute-based-condition:resource:literal-and-wildcard",
+    "rule": {
+        "operator": "or",
+        "conditions": [
+            {
+                "key": "{{resource.attributes.path}}",
+                "operator": "stringMatch",
+                "value": "folder1/subfolder1/*"
+            },
+            {
+                "operator": "and",
+                "conditions": [
+                    {
+                        "key": "{{resource.attributes.prefix}}",
+                        "operator": "stringMatch",
+                        "value": "folder1/subfolder1/*"
+                    },
+                    {
+                        "key": "{{resource.attributes.delimiter}}",
+                        "operator": "stringEqualsAnyOf",
+                        "value": [
+                            "/",
+                            ""
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "control": {
+        "grant": {
+            "roles": [
+                {
+                    "role_id": "crn:v1:bluemix:public:cloud-object-storage::::serviceRole:ObjectWriter"
+                },
+                {
+                    "role_id": "crn:v1:bluemix:public:cloud-object-storage::::serviceRole:ObjectReader"
+                },
+                {
+                    "role_id": "crn:v1:bluemix:public:cloud-object-storage::::serviceRole:ObjectLister"
+                },
+                {
+                    "role_id": "crn:v1:bluemix:public:cloud-object-storage::::serviceRole:ObjectDeleter"
+                }
+            ]
+        }
+    },
+    "href": "https://iam.test.cloud.ibm.com/v2/policies/25f6fd1b-44d0-4922-b185-14fee771d3ee",
+    "created_at": "2023-09-01T18:52:09.209Z",
+    "created_by_id": "IBMid-1234user",
+    "last_modified_at": "2023-09-01T18:52:09.209Z",
+    "last_modified_by_id": "IBMid-1234user",
+    "counts": {
+        "account": {
+            "current": 776,
+            "limit": 4020
+        },
+        "subject": {
+            "current": 6,
+            "limit": 1000
+        }
+    },
+    "state": "active",
+    "version": "v1.0"
+}
+```
 ## Granting access to a user
 {: #iam-user-access}
 
