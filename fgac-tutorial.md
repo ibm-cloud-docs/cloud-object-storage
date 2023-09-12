@@ -1,8 +1,8 @@
 ---
 
 copyright:
-   years: 2022
-lastupdated: "2022-05-02"
+   years: 2023
+lastupdated: "2023-09-12"
 
 keywords: tutorials, cbr, firewall, allowlist
 subcollection: cloud-object-storage 
@@ -15,11 +15,11 @@ completion-time: 10m
 {{site.data.keyword.attribute-definition-list}}
 
 # Securing data using context-based restrictions
-{: #cos-tutorial-cbr}
-{: toc-content-type="tutorial"} 
-{: toc-completion-time="10m"} 
+{: #cos-tutorial-fgac}
+{: toc-content-type="tutorial"}
+{: toc-completion-time="10m"}
 
-In this tutorial, you will establish [context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall) that prevent any access to object storage data unless the request originates from a trusted network zone.
+In this tutorial, you will assign access to objects within a bucket using IAM access conditions for Fine Grain Access Control [context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall) that prevent any access to object storage data unless the request originates from a trusted network zone.
 {: shortdesc}
 
 ## Before you begin
