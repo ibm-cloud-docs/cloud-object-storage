@@ -176,6 +176,257 @@ OR
 ### CLI<!--needs updating with conditions-->
 {: #fgac-new-policy-conditions-cli}
 
+Create an access policy for the specified user in the current account [ibmcloud iam user-policy-create](/docs/cli?topic=cli-ibmcloud_commands_iam#ibmcloud_iam_user_policy_create).
+
+Include an example construction using the CLI of an IAM policy with a condition. Use "folder1/subfolder1/file.txt" as example
+Roles: Object Lister, Object Writer, Object Deleter, Object Reader
+Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”}
+OR
+{Path StringMatch “folder1/subfolder1/*”}
+
+### API
+{: #fgac-new-policy-conditions-api}
+
+Include an example construction using the API of an IAM policy with a condition. Use "folder1/subfolder1/file.txt" as example.
+Roles: Object Lister, Object Writer, Object Deleter, Object Reader
+Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”}
+OR
+{Path StringMatch “folder1/subfolder1/*”}
+
+
+Request
+```sh
+curl -X POST 'https://iam.cloud.ibm.com/v2/policies' \
+-H 'Authorization: Bearer $TOKEN' \
+-H 'Content-Type: application/json' \
+-d '{
+  "type": "access",
+  "description": "access control for RESOURCE_NAME",
+  "resource": {
+    "attributes": [
+      {
+        "key": "serviceName",
+        "operator": "stringEquals",
+        "value": "cloud-object-storage"
+      },
+      {
+        "key": "serviceInstance",
+        "operator": "stringEquals",
+        "value": "$SERVICE_INSTANCE"
+      },
+      {
+        "key": "accountId",
+        "operator": "stringEquals",
+        "value": "$ACCOUNT_ID"
+      },
+      {
+        "key": "resourceType",
+        "operator": "stringEquals",
+        "value": "bucket"
+      },
+      {
+        "key": "resource",
+        "operator": "stringEquals",
+        "value": "$RESOURCE_NAME"
+      }
+    ]
+  },
+  "subject": {
+    "attributes": [
+      {
+        "key": "iam_id",
+        "operator": "stringEquals",
+        "value": "IBMid-123453user"
+      }
+    ]
+  },
+  "control": {
+    "grant": {
+      "roles": [
+        {
+          "role_id": "crn:v1:bluemix:public:cloud-object-storage::::serviceRole:ObjectWriter"
+        },
+        {
+          "role_id": "crn:v1:bluemix:public:cloud-object-storage::::serviceRole:ObjectReader"
+        },
+        {
+          "role_id": "crn:v1:bluemix:public:cloud-object-storage::::serviceRole:ObjectLister"
+        },
+        {
+          "role_id": "crn:v1:bluemix:public:cloud-object-storage::::serviceRole:ObjectDeleter"
+        }
+
+      ]
+    }
+  },
+  "rule": {
+    "operator": "or",
+    "conditions": [
+      {
+        "key": "{{resource.attributes.path}}",
+        "operator": "stringMatch",
+        "value": "folder1/subfolder1/*"
+      },
+      {
+        "operator": "and",
+        "conditions": [
+          {
+            "key": "{{resource.attributes.prefix}}",
+            "operator": "stringMatch",
+            "value": "folder1/subfolder1/*"
+          },
+          {
+            "key": "{{resource.attributes.delimiter}}",
+            "operator": "stringEqualsAnyOf",
+            "value": [
+              "/",
+              ""
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "pattern": "attribute-based-condition:resource:literal-and-wildcard"
+}'
+```
+
+Response
+```sh
+{
+    "id": "25f6fd1b-44d0-4922-b185-14fee771d3ee",
+    "description": "access control for RESOURCE_NAME",
+    "type": "access",
+    "subject": {
+        "attributes": [
+            {
+                "key": "iam_id",
+                "operator": "stringEquals",
+                "value": "IBMid-123453user"
+            }
+        ]
+    },
+    "resource": {
+        "attributes": [
+            {
+                "key": "serviceName",
+                "operator": "stringEquals",
+                "value": "cloud-object-storage"
+            },
+            {
+                "key": "serviceInstance",
+                "operator": "stringEquals",
+                "value": "$SERVICE_INSTANCE"
+            },
+            {
+                "key": "accountId",
+                "operator": "stringEquals",
+                "value": "$ACCOUNT_ID"
+            },
+            {
+                "key": "resourceType",
+                "operator": "stringEquals",
+                "value": "bucket"
+            },
+            {
+                "key": "resource",
+                "operator": "stringEquals",
+                "value": "$RESOURCE_NAME"
+            }
+        ]
+    },
+    "pattern": "attribute-based-condition:resource:literal-and-wildcard",
+    "rule": {
+        "operator": "or",
+        "conditions": [
+            {
+                "key": "{{resource.attributes.path}}",
+                "operator": "stringMatch",
+                "value": "folder1/subfolder1/*"
+            },
+            {
+                "operator": "and",
+                "conditions": [
+                    {
+                        "key": "{{resource.attributes.prefix}}",
+                        "operator": "stringMatch",
+                        "value": "folder1/subfolder1/*"
+                    },
+                    {
+                        "key": "{{resource.attributes.delimiter}}",
+                        "operator": "stringEqualsAnyOf",
+                        "value": [
+                            "/",
+                            ""
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "control": {
+        "grant": {
+            "roles": [
+                {
+                    "role_id": "crn:v1:bluemix:public:cloud-object-storage::::serviceRole:ObjectWriter"
+                },
+                {
+                    "role_id": "crn:v1:bluemix:public:cloud-object-storage::::serviceRole:ObjectReader"
+                },
+                {
+                    "role_id": "crn:v1:bluemix:public:cloud-object-storage::::serviceRole:ObjectLister"
+                },
+                {
+                    "role_id": "crn:v1:bluemix:public:cloud-object-storage::::serviceRole:ObjectDeleter"
+                }
+            ]
+        }
+    },
+    "href": "https://iam.test.cloud.ibm.com/v2/policies/25f6fd1b-44d0-4922-b185-14fee771d3ee",
+    "created_at": "2023-09-01T18:52:09.209Z",
+    "created_by_id": "IBMid-1234user",
+    "last_modified_at": "2023-09-01T18:52:09.209Z",
+    "last_modified_by_id": "IBMid-1234user",
+    "counts": {
+        "account": {
+            "current": 776,
+            "limit": 4020
+        },
+        "subject": {
+            "current": 6,
+            "limit": 1000
+        }
+    },
+    "state": "active",
+    "version": "v1.0"
+}
+```
+### Terraform<!--needs updating with conditions-->
+{: #fgac-new-policy-conditions-terraform}
+
+Include an example construction using the Terraform of an IAM policy with a condition. Use "folder1/subfolder1/file.txt" as example.
+Roles: Object Lister, Object Writer, Object Deleter, Object Reader
+Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”}
+OR
+{Path StringMatch “folder1/subfolder1/*”}
+
+## Create a new policy for a ServiceID with Conditions<!--needs updating with conditions-->
+{: #fgac-new-policy-serviceid-conditions}
+
+Create an access policy and assign it to a [service ID](/docs/cli?topic=cli-ibmcloud_commands_iam#ibmcloud_iam_service_policy_create).
+
+### UI
+{: #fgac-new-policy-serviceid-conditions-ui}
+
+<!--Update this section after IAM has released UI feature for condition building.--> Use "folder1/subfolder1/file.txt" as example.
+Roles: Object Lister, Object Writer, Object Deleter, Object Reader
+Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”}
+OR
+{Path StringMatch “folder1/subfolder1/*”}
+
+### CLI<!--needs updating with conditions-->
+{: #fgac-new-policy-serviceid-conditions-cli}
+
 Create user policy with CLI [ibmcloud iam user-policy-create](https://cloud.ibm.com/docs/cli?topic=cli-ibmcloud_commands_iam#ibmcloud_iam_user_policy_create)
 
 Include an example construction using the CLI of an IAM policy with a condition. Use "folder1/subfolder1/file.txt" as example
@@ -185,7 +436,7 @@ OR
 {Path StringMatch “folder1/subfolder1/*”}
 
 ### API<!--needs updating with conditions-->
-{: #fgac-new-policy-conditions-api}
+{: #fgac-new-policy-serviceid-conditions-api}
 
 Create user policy with CLI [ibmcloud iam user-policy-create](https://cloud.ibm.com/docs/cli?topic=cli-ibmcloud_commands_iam#ibmcloud_iam_user_policy_create)
 
@@ -402,6 +653,7 @@ Response
     "version": "v1.0"
 }
 ```
+
 ## Granting access to a user
 {: #iam-user-access}
 
