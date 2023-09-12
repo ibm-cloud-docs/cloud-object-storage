@@ -436,9 +436,7 @@ OR
 ### API<!--needs updating with conditions-->
 {: #fgac-new-policy-serviceid-conditions-api}
 
-Create user policy with CLI [ibmcloud iam user-policy-create](https://cloud.ibm.com/docs/cli?topic=cli-ibmcloud_commands_iam#ibmcloud_iam_user_policy_create)
-
-Include an example construction using the CLI of an IAM policy with a condition. Use "folder1/subfolder1/file.txt" as example
+Include an example construction using the API of an IAM policy with a condition. Use "folder1/subfolder1/file.txt" as example
 Roles: `Object Lister`, `Object Writer`, `Object Deleter`, `Object Reader`
 Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”}
 OR
@@ -486,7 +484,7 @@ curl -X POST 'https://iam.cloud.ibm.com/v2/policies' \
       {
         "key": "iam_id",
         "operator": "stringEquals",
-        "value": "IBMid-123453user"
+        "value": "iam-ServiceId-123453service"
       }
     ]
   },
@@ -528,7 +526,7 @@ curl -X POST 'https://iam.cloud.ibm.com/v2/policies' \
           {
             "key": "{{resource.attributes.delimiter}}",
             "operator": "stringEqualsAnyOf",
-            "value": [
+            "value": [	
               "/",
               ""
             ]
@@ -552,7 +550,7 @@ Response
             {
                 "key": "iam_id",
                 "operator": "stringEquals",
-                "value": "IBMid-123453user"
+                "value": "iam-ServiceId-123453service"
             }
         ]
     },
