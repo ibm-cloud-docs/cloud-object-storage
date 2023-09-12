@@ -168,7 +168,7 @@ These examples provide list access to the full object hierarchy within folder na
 {: #fgac-new-policy-conditions-ui}
 
 <!--Update this section after IAM has released UI feature for condition building.--> Use "folder1/subfolder1/file.txt" as example.
-Roles: Object Lister, Object Writer, Object Deleter, Object Reader
+Roles: `Object Lister`, `Object Writer`, `Object Deleter`, `Object Reader`
 Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”}
 OR
 {Path StringMatch “folder1/subfolder1/*”}
@@ -179,7 +179,7 @@ OR
 Create an access policy for the specified user in the current account [ibmcloud iam user-policy-create](/docs/cli?topic=cli-ibmcloud_commands_iam#ibmcloud_iam_user_policy_create).
 
 Include an example construction using the CLI of an IAM policy with a condition. Use "folder1/subfolder1/file.txt" as example
-Roles: Object Lister, Object Writer, Object Deleter, Object Reader
+Roles: `Object Lister`, `Object Writer`, `Object Deleter`, `Object Reader`
 Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”}
 OR
 {Path StringMatch “folder1/subfolder1/*”}
@@ -188,7 +188,7 @@ OR
 {: #fgac-new-policy-conditions-api}
 
 Include an example construction using the API of an IAM policy with a condition. Use "folder1/subfolder1/file.txt" as example.
-Roles: Object Lister, Object Writer, Object Deleter, Object Reader
+Roles: `Object Lister`, `Object Writer`, `Object Deleter`, `Object Reader`
 Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”}
 OR
 {Path StringMatch “folder1/subfolder1/*”}
@@ -405,7 +405,7 @@ Response
 {: #fgac-new-policy-conditions-terraform}
 
 Include an example construction using the Terraform of an IAM policy with a condition. Use "folder1/subfolder1/file.txt" as example.
-Roles: Object Lister, Object Writer, Object Deleter, Object Reader
+Roles: `Object Lister`, `Object Writer`, `Object Deleter`, `Object Reader`
 Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”}
 OR
 {Path StringMatch “folder1/subfolder1/*”}
@@ -419,7 +419,7 @@ Create an access policy and assign it to a [service ID](/docs/cli?topic=cli-ibmc
 {: #fgac-new-policy-serviceid-conditions-ui}
 
 <!--Update this section after IAM has released UI feature for condition building.--> Use "folder1/subfolder1/file.txt" as example.
-Roles: Object Lister, Object Writer, Object Deleter, Object Reader
+Roles: `Object Lister`, `Object Writer`, `Object Deleter`, `Object Reader`
 Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”}
 OR
 {Path StringMatch “folder1/subfolder1/*”}
@@ -427,10 +427,8 @@ OR
 ### CLI<!--needs updating with conditions-->
 {: #fgac-new-policy-serviceid-conditions-cli}
 
-Create user policy with CLI [ibmcloud iam user-policy-create](https://cloud.ibm.com/docs/cli?topic=cli-ibmcloud_commands_iam#ibmcloud_iam_user_policy_create)
-
 Include an example construction using the CLI of an IAM policy with a condition. Use "folder1/subfolder1/file.txt" as example
-Roles: Object Lister, Object Writer, Object Deleter, Object Reader
+Roles: `Object Lister`, `Object Writer`, `Object Deleter`, `Object Reader`
 Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”}
 OR
 {Path StringMatch “folder1/subfolder1/*”}
@@ -441,7 +439,7 @@ OR
 Create user policy with CLI [ibmcloud iam user-policy-create](https://cloud.ibm.com/docs/cli?topic=cli-ibmcloud_commands_iam#ibmcloud_iam_user_policy_create)
 
 Include an example construction using the CLI of an IAM policy with a condition. Use "folder1/subfolder1/file.txt" as example
-Roles: Object Lister, Object Writer, Object Deleter, Object Reader
+Roles: `Object Lister`, `Object Writer`, `Object Deleter`, `Object Reader`
 Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”}
 OR
 {Path StringMatch “folder1/subfolder1/*”}
