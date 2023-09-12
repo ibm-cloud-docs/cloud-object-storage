@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-09-01"
+lastupdated: "2023-09-12"
 
 keywords: access control, iam, basics, objects
 
@@ -63,13 +63,13 @@ Use IAM v2 policy to construct IAM policy containing resource attribute-based co
   Prefix/Delimiter: Prefix and Delimiter are used together to scope all listing permissions for specific objects.
     If you want to provide listing access to all objects in the bucket, then do not use a Prefix and Delimiter condition.
     {: tip}
-    
+
     The Prefix condition attribute defines the prefix for the set of object keys that this condition should allow for listing of objects or folders. For example, in the object named "folder1/subfolder1/file.txt", both “folder1/” and “folder1/subfolder1/” are possible prefixes. Using the prefix “folder1/” will grant list access to see the objects directly in “folder1” as well as the names of any possible subfolders directly in “folder1”.
-    
+
     A Delimiter helps the user navigate the bucket as if it was a file hierarchy. Assigning a Delimiter condition statement restricts the type of folder structure the user can generate in the listing. In object named "folder1/subfolder1/file.txt", the delimiter “/” can be used to simulate a folder hierarchy where each folder is separated by a “/”. If a condition statement allows only a delimiter of “/”, then a list request with any other delimiter value is not permitted.
-    
+
     Typically the prefix and delimiter are used together in a condition statement with an AND operator. It is possible to use a prefix without a delimiter in a condition statement. If the policy is configured with only a prefix and not a delimiter condition statement, the user can use any or no delimiter to list the objects.
-    
+
     Examples of using Prefix and Delimiter Condition Statements:
     Consider the object named "folder1/subfolder1/file.txt":
     Prefix of "folder1/" AND no Delimiter
@@ -93,23 +93,24 @@ Use IAM v2 policy to construct IAM policy containing resource attribute-based co
   Path: Path is used to scope all read, write and management access on specific objects.
     If you want to provide such access to ALL objects in the bucket, do NOT specify a Path condition.
     {: tip}
+
     For an object named "folder1/subfolder1/file.txt", the full object key is the path. To restrict Read/Write/Management actions to this object, define a condition with Path of "folder1/subfolder1/file.txt".
 
-All COS APIs that act directly on an object are subject to Path conditions. See here for the list of COS API actions that support Path. 
+All COS APIs that act directly on an object are subject to Path conditions. See here for the list of COS API actions that support Path.
 
-Operators used with Condition Attributes: The full list of operators that can be used for prefix, delimiter, and path condition attributes can be found here. IAM policy supports the configuration of multiple values for an attribute by using stringMatchAnyOf and stringEqualsAnyOf. 
+Operators used with Condition Attributes: The full list of operators that can be used for prefix, delimiter, and path condition attributes can be found here. IAM policy supports the configuration of multiple values for an attribute by using stringMatchAnyOf and stringEqualsAnyOf.
 
-Use of Wildcards: A condition attribute’s values can include a wildcard when the operator is stringMatch or stringMatchAnyOf. For information on the use of wildcards in a policy see here.  
+Use of Wildcards: A condition attribute’s values can include a wildcard when the operator is stringMatch or stringMatchAnyOf. For information on the use of wildcards in a policy see here.
 
-Consider the object named "folder1/subfolder1/file.txt": 
+Consider the object named "folder1/subfolder1/file.txt":
 
-Path of “folder1/*” 
+Path of “folder1/*”
 
     User will get Read/Write/Management access, as defined by the role, to all objects that start with “folder1/” 
 
- 
 
-Prefix of "folder1/*" AND no Delimiter 
+
+Prefix of "folder1/*" AND no Delimiter
 
 - For a user list request with prefix set to “folder1/” and no Delimiter, the user request will return all objects that start with “folder1/” 
 
@@ -117,9 +118,9 @@ Prefix of "folder1/*" AND no Delimiter
 
 - For a user list request with prefix set to “folder1/subfolder1/” and Delimiter of “/”, the request will return the objects (and any subfolders) in folder1/subfolder1 
 
- 
 
-Prefix of "folder1/*" AND Delimiter of "/" 
+
+Prefix of "folder1/*" AND Delimiter of "/"
 
 - For a user list request with prefix set to “folder1/” and Delimiter of “/”, the request will return a view of the objects and folders just in the first level of folder1 
 
@@ -526,7 +527,7 @@ curl -X POST 'https://iam.cloud.ibm.com/v2/policies' \
           {
             "key": "{{resource.attributes.delimiter}}",
             "operator": "stringEqualsAnyOf",
-            "value": [	
+            "value": [
               "/",
               ""
             ]
@@ -649,133 +650,18 @@ Response
     "version": "v1.0"
 }
 ```
+### Terraform<!--needs updating with conditions-->
+{: #fgac-new-policy-serviceid-conditions-terraform}
 
-## Granting access to a user
-{: #iam-user-access}
+Include an example construction using the Terraform of an IAM policy with a condition. Use "folder1/subfolder1/file.txt" as example.
+Roles: `Object Lister`, `Object Writer`, `Object Deleter`, `Object Reader`
+Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”}
+OR
+{Path StringMatch “folder1/subfolder1/*”}
 
-If the user needs to be able to use the console and is able to see the list of all buckets within an instance, it is possible to use a custom platform access role. This allows them to view only the contents of specific buckets. If it is not appropriate for a user to read the names of other buckets then it is necessary to design and implement a custom portal or other user interface using the API.
+## Additional information
+{: #fgac-additional-info}
 
-If the user interacts with data by using the API and doesn't require console access, _and_ they are a member of your account, you can grant access to a single bucket without any access to the parent instance using the default roles.
+For additional examples of how to use prefix, delimiter, and path condition attributes, see the tutorial on using Fine Grain Access Control.
 
-## Policy enforcement
-{: #iam-policy-enforcement}
 
-IAM policies are enforced hierarchically from greatest level of access to most restricted. Conflicts are resolved to the more permissive policy. For example, if a user has both the `Writer` and `Reader` service access role on a bucket, the policy granting the `Reader` role is ignored.
-
-This is also applicable to service instance and bucket level policies.
-
-- If a user has a policy granting the `Writer` role on a service instance and the `Reader` role on a single bucket, the bucket-level policy is ignored.
-- If a user has a policy granting the `Reader` role on a service instance and the `Writer` role on a single bucket, both policies are enforced and the more permissive `Writer` role will take precedence for the individual bucket.
-
-If it is necessary to restrict access to a single bucket (or set of buckets), ensure that the user or Service ID doesn't have any other instance level policies by using either the console or CLI.
-
-### Create a new policy for a user
-{: #iam-policy-enforcement-console}
-{: ui}
-
-To create a new bucket-level policy:
-
-1. Navigate to the **Access IAM** console from the **Manage** menu.
-2. Select **Users** from the left navigation menu.
-3. Select a user.
-4. Select the **Access Policies** tab to view the user's existing policies, assign a new policy, or edit an existing policy.
-5. Click **Assign access** to create a new policy.
-6. Choose **Assign access to resources**.
-7. First, select **Cloud Object Storage** from the services menu.
-8. Then, select the appropriate service instance. Enter `bucket` in the **Resource type** field and the bucket name in the **Resource ID**field.
-9. Select the wanted service access role. Selecting the lozenge with the number of actions show the actions available to the role, asexemplified for "Content Reader" in Figure 1.
-10. Click **Assign**
-
-![Role_information](images/console-iam-changes-role-cos.png){: caption="Figure 1. Example actions per Content Reader role"}
-
-Note that leaving the **Resource Type** or **Resource** fields blank will create an instance-level policy.
-{: tip}
-
-### Create a new policy for a user
-{: #iam-policy-enforcement-cli}
-{: cli}
-
-From a terminal run the following command:
-
-```bash
-ibmcloud iam user-policy-create <user-name> \
-      --roles <role> \
-      --service-name cloud-object-storage \
-      --service-instance <resource-instance-id> \
-      --resource-type bucket \
-      --resource <bucket-name>
-```
-{: codeblock}
-
-To list existing policies:
-
-```bash
-ibmcloud iam user-policies <user-name>
-```
-{: codeblock}
-
-To edit an existing policy:
-
-```bash
-ibmcloud iam user-policy-update <user-name> <policy-id> \
-      --roles <role> \
-      --service-name cloud-object-storage \
-      --service-instance <resource-instance-id> \
-      --resource-type bucket \
-      --resource <bucket-name>
-```
-{:codeblock}
-
-## Granting access to a Service ID
-{: #iam-service-id}
-
-If you need to grant access to a bucket for an application or other non-human entity, use a Service ID. The Service ID can be created specifically for this purpose, or can be an existing Service ID already in use.
-
-### Create a new policy for a user
-{: #iam-service-id-console}
-{: ui}
-
-1. Navigate to the **Access (IAM)** console from the **Manage** menu.
-2. Select **Service IDs** from the left navigation menu.
-3. Select a Service ID to view any existing policies, and assign a new policy or edit an existing policy.
-4. Select the service instance, service ID, and desired role.
-5. Enter `bucket` in the **Resource Type** field and the bucket name in the **Resource** field.
-6. Click **Submit**
-
-Note that leaving the **Resource Type** or **Resource** fields blank will create an instance-level policy.
-{: tip}
-
-### Create a new policy for a Service ID
-{: #iam-service-id-cli}
-{: cli}
-
-From a terminal run the following command:
-
-```bash
-ibmcloud iam service-policy-create <service-id-name> \
-      --roles <role> \
-      --service-name cloud-object-storage \
-      --service-instance <resource-instance-id> \
-      --resource-type bucket \
-      --resource <bucket-name>
-```
-{:codeblock}
-
-To list existing policies:
-
-```bash
-ibmcloud iam service-policies <service-id-name>
-```
-{:codeblock}
-
-To edit an existing policy:
-
-```bash
-ibmcloud iam service-policy-update <service-id-name> <policy-id> \
-      --roles <role> \
-      --service-name cloud-object-storage \
-      --service-instance <resource-instance-id>
-      --resource-type bucket \
-      --resource <bucket-name>
-```
-{:codeblock}
