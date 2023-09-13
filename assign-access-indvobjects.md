@@ -662,6 +662,6 @@ OR
 ## Additional information
 {: #fgac-additional-info}
 
-For additional examples of how to use prefix, delimiter, and path condition attributes, see the tutorial on using Fine Grain Access Control.
+For additional examples of how to use prefix, delimiter, and path condition attributes, see the [tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-tutorial) on using Fine Grain Access Control.
 
 
