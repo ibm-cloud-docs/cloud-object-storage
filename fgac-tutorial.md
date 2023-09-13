@@ -14,7 +14,7 @@ completion-time: 10m
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Securing data using context-based restrictions
+# Assign access to objects within a bucket using IAM access conditions for Fine Grain Access Control
 {: #cos-tutorial-fgac}
 {: toc-content-type="tutorial"}
 {: toc-completion-time="10m"}
