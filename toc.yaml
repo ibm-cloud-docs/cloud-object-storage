@@ -45,6 +45,7 @@ toc:
           - cbr-tutorial.md
           - static-website.md
           - web-application.md
+          - fgac-tutorial.md
     - navgroup:
         id: howto
         topics:
@@ -90,6 +91,7 @@ toc:
                 - buckets.md
                 - public-access.md
                 - firewall.md
+                - assign-access-indvobjects.md
           - topicgroup:
               label: Managing encryption
               topics:
