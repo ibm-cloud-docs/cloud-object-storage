@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022, 2023
-lastupdated: "2023-04-27"
+  years: 2017, 2023
+lastupdated: "2023-08-09"
 
 keywords: access control, iam, basics, buckets
 
@@ -26,6 +26,7 @@ Assign access roles for users and Service IDs against buckets, by using either t
 | Content Reader | List and download objects                                    |
 | Object Reader  | Download objects                                             |
 | Object Writer  | Upload objects                                               |
+{: caption="Table 1. Buckets" caption-side="top"}
 
 ## Granting access to a user
 {: #iam-user-access}
@@ -68,7 +69,7 @@ To create a new bucket-level policy:
 Note that leaving the **Resource Type** or **Resource** fields blank will create an instance-level policy.
 {: tip}
 
-### Create a new policy for a user
+### Create a new policy for a user CLI command
 {: #iam-policy-enforcement-cli}
 {: cli}
 
@@ -101,7 +102,7 @@ ibmcloud iam user-policy-update <user-name> <policy-id> \
       --resource-type bucket \
       --resource <bucket-name>
 ```
-{:codeblock}
+{: codeblock}
 
 ## Granting access to a Service ID
 {: #iam-service-id}
@@ -136,14 +137,14 @@ ibmcloud iam service-policy-create <service-id-name> \
       --resource-type bucket \
       --resource <bucket-name>
 ```
-{:codeblock}
+{: codeblock}
 
 To list existing policies:
 
 ```bash
 ibmcloud iam service-policies <service-id-name>
 ```
-{:codeblock}
+{: codeblock}
 
 To edit an existing policy:
 
@@ -155,4 +156,4 @@ ibmcloud iam service-policy-update <service-id-name> <policy-id> \
       --resource-type bucket \
       --resource <bucket-name>
 ```
-{:codeblock}
+{: codeblock}

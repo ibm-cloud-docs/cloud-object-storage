@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-10-26"
+  years: 2017, 2023
+lastupdated: "2023-08-09"
 
 keywords: cli, command line interface, object storage, s3
 
@@ -47,7 +47,7 @@ This creates two files:
 aws_access_key_id = {Access Key ID}
 aws_secret_access_key = {Secret Access Key}
 ```
-{:codeblock}
+{: codeblock}
 
 `~/.aws/config`:
 
@@ -56,7 +56,7 @@ aws_secret_access_key = {Secret Access Key}
 region = {Provisioning Code}
 output = json
 ```
-{:codeblock}
+{: codeblock}
 
 
 You can also use environment variables to set HMAC credentials:
@@ -65,7 +65,7 @@ You can also use environment variables to set HMAC credentials:
 export AWS_ACCESS_KEY_ID="{Access Key ID}"
 export AWS_SECRET_ACCESS_KEY="{Secret Access Key}"
 ```
-{:codeblock}
+{: codeblock}
 
 
 The IBM COS endpoint must be sourced by using the `--endpoint-url` option, and can't be set in the credentials file.
@@ -99,7 +99,7 @@ aws --endpoint-url {endpoint} s3 ls s3://bucket-1
 ### Make a new bucket
 {: #aws-cli-high-level-new-bucket}
 
-**Note**: Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means. 
+**Note**: Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means.
 {:tip}
 
 If the default region in the `~/.aws/config` file corresponds the same location as the chosen endpoint, then bucket creation is straightforward.
@@ -136,6 +136,7 @@ copy: s3://bucket-1/new-file to s3://bucket-2/new-file
 
 ### Delete an object from a bucket
 {: #aws-cli-high-level-delete-object}
+
 ```sh
 aws --endpoint-url {endpoint} s3 rm s3://mybucket/argparse-1.2.1.tar.gz
 delete: s3://mybucket/argparse-1.2.1.tar.gz

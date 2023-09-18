@@ -1,8 +1,8 @@
 ---
- 
+
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-12-09"
+  years: 2017, 2023
+lastupdated: "2023-08-09"
 
 keywords: object storage, endpoints, access points, manual failover
 
@@ -19,7 +19,7 @@ subcollection: cloud-object-storage
 When deciding how to configure your {{site.data.keyword.cos_full}} instance, consider how the endpoints reflect your needs for resiliency and access.
 {: shortdesc}
 
-When you use a Cross Region bucket, it is possible to direct your accesses to a tethered endpoint associated with a specific Cross Region metropolitan area, rather than connecting to the nearest available Cross Region metropolitan area.  In contrast to the `geo` endpoint, when you send requests to a tethered end point **there is no automated failover if that region becomes unavailable**. Applications that direct traffic to a tethered endpoint **must** implement appropriate failover logic internally to achieve the availability advantages of the Cross Region storage. 
+When you use a Cross Region bucket, it is possible to direct your accesses to a tethered endpoint associated with a specific Cross Region metropolitan area, rather than connecting to the nearest available Cross Region metropolitan area.  In contrast to the `geo` endpoint, when you send requests to a tethered end point **there is no automated failover if that region becomes unavailable**. Applications that direct traffic to a tethered endpoint **must** implement appropriate failover logic internally to achieve the availability advantages of the Cross Region storage.
 
 One reason for using a tethered endpoint is to control where data ingress and egress occurs while still distributing the data across the widest possible area. Imagine an application running in the `us-south` region that wants to store data in a US cross-region bucket but wants to ensure that all read and write requests remain in the Dallas area:
 
@@ -54,7 +54,7 @@ For contrast, imagine another application using the normal US cross-region endpo
 | AP: Sydney           | Public (Tethered) | `s3.syd.ap.cloud-object-storage.appdomain.cloud` |
 | AP: Osaka            | Public (Tethered) | `s3.osa.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 1. Cross Region Endpoints" caption-side="top"}
+{: caption="Table 1. Cross Region Public Endpoints" caption-side="top"}
 {: #tether1}
 {: tab-title="Public"}
 {: tab-group="Cross-regional-endpoints"}
@@ -71,7 +71,7 @@ For contrast, imagine another application using the normal US cross-region endpo
 | AP: Sydney           | Private (Tethered) | `s3.private.syd.ap.cloud-object-storage.appdomain.cloud` |
 | AP: Osaka        | Private (Tethered) | `s3.private.osa.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 1. Cross Region Endpoints" caption-side="top"}
+{: caption="Table 1. Cross Region Private Endpoints" caption-side="top"}
 {: #tether2}
 {: tab-title="Private"}
 {: tab-group="Cross-regional-endpoints"}
@@ -88,13 +88,13 @@ For contrast, imagine another application using the normal US cross-region endpo
 | AP: Sydney           | Direct (Tethered) | `s3.direct.syd.ap.cloud-object-storage.appdomain.cloud` |
 | AP: Osaka            | Direct (Tethered) | `s3.direct.osa.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 1. Cross Region Endpoints" caption-side="top"}
+{: caption="Table 1. Cross Region Direct Endpoints" caption-side="top"}
 {: #tether3}
 {: tab-title="Direct"}
 {: tab-group="Cross-regional-endpoints"}
 
-## Tethered endpoint reference
-{: #static-web-tethered-endpoint-reference}
+## Hosted static website endpoint reference
+{: #static-web-endpoint-reference}
 
 | Region               | Hosted Static Website Endpoint                       |
 |----------------------|------------------------------------------------------|
@@ -108,7 +108,7 @@ For contrast, imagine another application using the normal US cross-region endpo
 | AP: Sydney           | `s3-web.syd.ap.cloud-object-storage.appdomain.cloud` |
 | AP: Osaka        | `s3-web.osa.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 2. Cross Region Static Web Endpoints" caption-side="top"}
+{: caption="Table 2. Cross Region Static Web Public Endpoints" caption-side="top"}
 {: #swtether1}
 {: tab-title="Public"}
 {: tab-group="Cross-regional-endpoints-tether"}
@@ -125,7 +125,7 @@ For contrast, imagine another application using the normal US cross-region endpo
 | AP: Sydney            | `s3-web.private.syd.ap.cloud-object-storage.appdomain.cloud` |
 | AP: Osaka        | `s3-web.private.osa.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 2. Cross Region Static Web Endpoints" caption-side="top"}
+{: caption="Table 2. Cross Region Static Web Private Endpoints" caption-side="top"}
 {: #swtether2}
 {: tab-title="Private"}
 {: tab-group="Cross-regional-endpoints-tether"}
@@ -142,7 +142,7 @@ For contrast, imagine another application using the normal US cross-region endpo
 | AP: Sydney            | `s3-web.direct.syd.ap.cloud-object-storage.appdomain.cloud` |
 | AP: Osaka        | `s3-web.direct.osa.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 2. Cross Region Static Web Endpoints" caption-side="top"}
+{: caption="Table 2. Cross Region Static Web Direct Endpoints" caption-side="top"}
 {: #swtether3}
 {: tab-title="Direct"}
 {: tab-group="Cross-regional-endpoints-tether"}

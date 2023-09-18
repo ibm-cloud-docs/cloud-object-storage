@@ -49,6 +49,9 @@ toc:
     - navgroup:
         id: howto
         topics:
+          - link:
+              label: Connect to IBM COS using IBM Cloud Direct Link
+              href: https://cloud.ibm.com/docs/dl?topic=dl-get-started-with-ibm-cloud-dl
           - topicgroup:
               label: Provisioning storage
               topics:
@@ -160,7 +163,7 @@ toc:
           - topicgroup:
               label: Use the command line
               topics:
-                - /cloud-object-storage-cli-plugin/cloud-object-storage-cli-plugin-ic-cos-cli
+                - cloud-object-storage-cli-reference.md
                 - curl.md
                 - aws-cli.md
                 - s3fs.md
