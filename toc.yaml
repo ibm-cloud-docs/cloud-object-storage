@@ -45,7 +45,6 @@ toc:
           - cbr-tutorial.md
           - static-website.md
           - web-application.md
-          - /direct-link/direct-link-using-ibm-cloud-direct-link-to-connect-to-ibm-cloud-object-storage
           - fgac-tutorial.md
     - navgroup:
         id: howto
