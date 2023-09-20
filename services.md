@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2023
 
-lastupdated: "2023-06-13"
+lastupdated: "2023-09-20"
 
 keywords: aspera, key protect, archive, worm
 
@@ -62,7 +62,7 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | `br-sao`   | No     | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `br-sao`         | Yes       | Yes        | `br-sao`   | Yes         | Yes      |
 | `eu-es`    | No     | Yes           | No                             | Yes          | Yes         | Yes                      | `eu-de`          | No        | Yes        | `eu-de`    | Yes         | Yes      |
 
-It is possible to create a bucket and associate any available Key Protect or Hyper Protect Crypto Services instance with any of the listed Cloud Object Storage locations. Hyper Protect Crypto Services is only available in selected locations and it is your responsibility to ensure the location/region you select meets any pertinent requirements. Please refer to [Hyper Protect Crypto Services documentation](/docs/hs-crypto?topic=hs-crypto-regions) and [IBM Key Protect](/docs/key-protect?topic=key-protect-about) for a list of regions/locations currently available.
+It is possible to create a bucket and associate any available Key Protect or Hyper Protect Crypto Services instance with any of the listed Cloud Object Storage locations. Hyper Protect Crypto Services is only available in selected locations and it is your responsibility to ensure the location/region you select meets any pertinent requirements. Please refer to [Hyper Protect Crypto Services documentation](/docs/hs-crypto?topic=hs-crypto-regions) and [IBM Key Protect](/docs/key-protect?topic=key-protect-regions) for a list of regions/locations currently available.
 {: note}
 
 ## Single Data Centers
