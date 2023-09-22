@@ -55,6 +55,9 @@ The following table details actions that are mapped to service access roles. Ser
 | Reader              | In addition to Content Reader actions, Readers can list buckets and read bucket metadata, but not make modifications. | <ul><li>List buckets</li></ul>                                                                              |
 | Writer              | In addition to Reader actions, Writers can create buckets and upload objects.                                         | <ul><li>Create new buckets and objects</li><li>Remove buckets and objects</li></ul>                         |
 | Manager             | In addition to Writer actions, Managers can complete privileged actions that affect access control.                   | <ul><li>Configure retention policies</li><li>Configure bucket firewalls</li><li>Block public ACLs</li></ul> |
+| Object Lister       | Download and list objects.                                                                                            | <ul><li>List objects</li></ul>                                                                          |
+| Object Deleter      | Download and delete objects.                                                                                          | <ul><li>Delete objects</li></ul>                                                                 |
+| WriterNoConditions  | Management actions that don't support conditions.                                                                     | <ul><li>Management actions that don't support conditions</li></ul>                                                                              |
 {: caption="Table 3. IAM service access roles and actions"}
 
 For information about assigning user roles in the UI, see [Managing IAM access](/docs/account?topic=account-assign-access-resources).
@@ -62,8 +65,8 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 ## Identity and Access Management actions
 {: #iam-actions}
 
-| Action                                                           | Description                                                                         |
-| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Action                                                           | Description                                                                         | Conditions supported                               |
+| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- |--------------------------------------------------- |
 | `cloud-object-storage.account.get_account_buckets`               | List all buckets in a service instance.                                             |
 | `cloud-object-storage.bucket.put_bucket`                         | Create a bucket.                                                                    |
 | `cloud-object-storage.bucket.post_bucket`                        | Internal use only - unsupported for users.                                          |
@@ -128,4 +131,67 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 | `cloud-object-storage.bucket.put_public_access_block`            | Add a public ACL block configuration                                                |
 | `cloud-object-storage.bucket.get_public_access_block`            | Read a public ACL block configuration                                               |
 | `cloud-object-storage.bucket.delete_public_access_block`         | Delete a public ACL block configuration                                             |
+| `cloud-object-storage.service.get_accounts`                      |                                                                                     | No                                                            |
+| `cloud-object-storage.provide_ibm_client_originating_ip_address` |                                                                                     | No                                                            |
+| `cloud-object-storage.account.put`
+| `cloud-object-storage.account.post`
+| `cloud-object-storage.account.enable`
+| `cloud-object-storage.account.disable`
+| `cloud-object-storage.account.delete`
+| `cloud-object-storage.account.patch_credential`
+cloud-object-storage.account.get_credential
+cloud-object-storage.account.get_credentials
+cloud-object-storage.account.post_credentials
+cloud-object-storage.account.delete_credential
+cloud-object-storage.account.get
+cloud-object-storage.account.head
+cloud-object-storage.account.get_account_buckets
+cloud-object-storage.account.get_account_buckets
+cloud-object-storage.bucket.put_quota
+cloud-object-storage.bucket.get_acl
+cloud-object-storage.bucket.put_acl
+cloud-object-storage.bucket.get_request_payment
+cloud-object-storage.bucket.put_request_payment
+cloud-object-storage.bucket.put_protection
+cloud-object-storage.bucket.put_firewall
+cloud-object-storage.bucket.get_firewall
+cloud-object-storage.bucket.put_public_access_block
+cloud-object-storage.bucket.delete_public_access_block
+cloud-object-storage.bucket.get_public_access_block
+cloud-object-storage.bucket.put_bucket
+cloud-object-storage.bucket.delete_bucket
+cloud-object-storage.bucket.list_crk_id
+cloud-object-storage.bucket.put_cors
+cloud-object-storage.bucket.delete_cors
+cloud-object-storage.bucket.put_versioning
+cloud-object-storage.account.delete_fasp_connection_info
+cloud-object-storage.bucket.put_logging
+cloud-object-storage.bucket.put_website
+cloud-object-storage.bucket.delete_website
+cloud-object-storage.bucket.put_lifecycle
+cloud-object-storage.bucket.put_replication
+cloud-object-storage.bucket.delete_replication
+cloud-object-storage.bucket.put_activity_tracking
+cloud-object-storage.bucket.put_metrics_monitoring
+cloud-object-storage.bucket.put_object_lock_configuration
+cloud-object-storage.bucket.get_cors
+cloud-object-storage.bucket.get_versioning
+cloud-object-storage.bucket.get_fasp_connection_info
+cloud-object-storage.bucket.get_quota
+cloud-object-storage.bucket.get_logging
+cloud-object-storage.bucket.get_website
+cloud-object-storage.bucket.get_lifecycle
+cloud-object-storage.bucket.get_replication
+cloud-object-storage.bucket.get_protection
+cloud-object-storage.bucket.get_activity_tracking
+cloud-object-storage.bucket.get_metrics_monitoring
+cloud-object-storage.bucket.list_bucket_crn
+cloud-object-storage.bucket.get_object_lock_configuration
+cloud-object-storage.bucket.head
+cloud-object-storage.bucket.get_location
+cloud-object-storage.bucket.get_basic
+cloud-object-storage.bucket.get_notifications
+cloud-object-storage.bucket.put_notifications
+cloud-object-storage.object.post_multi_delete
+cloud-object-storage.object.get_uploads
 {: caption="Table 4. Granular IAM action descriptions"}
