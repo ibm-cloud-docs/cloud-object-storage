@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-06-01"
+lastupdated: "2023-09-22"
 
 keywords: updates, releases, news, object storage
 
@@ -19,6 +19,13 @@ content-type: release-note
 
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
+
+## 22 September 2023
+{: #cloud-object-storage-sept2223}
+{: release-note}
+
+Encryption update
+:   Buckets created using Key Protect managed encryption can now use Key Protect in Madrid regional. Check out [KP Regions and Endpoints](/docs/key-protect?topic=key-protect-regions).
 
 ## 14 June 2023
 {: #cloud-object-storage-mon0023}
