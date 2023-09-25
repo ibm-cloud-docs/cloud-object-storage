@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-09-12"
+lastupdated: "2023-09-25"
 
 keywords: access control, iam, basics, objects
 
@@ -60,7 +60,7 @@ Use IAM v2 policy to construct IAM policy containing resource attribute-based co
 ### COS supports the following attributes to specify conditions for assigning fine-grained access on COS resources:
 {: #fgac-attributes-supported}
 
-  Prefix/Delimiter: Prefix and Delimiter are used together to scope all listing permissions for specific objects.
+Prefix/Delimiter: Prefix and Delimiter are used together to scope all listing permissions for specific objects.
     If you want to provide listing access to all objects in the bucket, then do not use a Prefix and Delimiter condition.
     {: tip}
 
@@ -90,39 +90,39 @@ Use IAM v2 policy to construct IAM policy containing resource attribute-based co
     To give a fine-grained user access to navigate to their folder in the UI, the user will need access to list the root folder of the bucket. See here for how to construct the policy to enable this.
     {: tip}
 
-  Path: Path is used to scope all read, write and management access on specific objects.
+Path: Path is used to scope all read, write and management access on specific objects.
     If you want to provide such access to ALL objects in the bucket, do NOT specify a Path condition.
     {: tip}
 
     For an object named "folder1/subfolder1/file.txt", the full object key is the path. To restrict Read/Write/Management actions to this object, define a condition with Path of "folder1/subfolder1/file.txt".
 
-All COS APIs that act directly on an object are subject to Path conditions. See here for the list of COS API actions that support Path.
+All COS APIs that act directly on an object are subject to Path conditions. See [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) for the list of COS API actions that support Path.
 
-Operators used with Condition Attributes: The full list of operators that can be used for prefix, delimiter, and path condition attributes can be found here. IAM policy supports the configuration of multiple values for an attribute by using stringMatchAnyOf and stringEqualsAnyOf.
+Operators used with Condition Attributes: The full list of operators that can be used for prefix, delimiter, and path condition attributes can be found here. IAM policy supports the configuration of multiple values for an attribute by using `stringMatchAnyOf` and `stringEqualsAnyOf`.
 
-Use of Wildcards: A condition attribute’s values can include a wildcard when the operator is stringMatch or stringMatchAnyOf. For information on the use of wildcards in a policy see here.
+Use of Wildcards: A condition attribute’s values can include a wildcard when the operator is `stringMatch` or `stringMatchAnyOf`. For information on the use of wildcards in a policy see [Assigning access by using wildcard policies](/docs/account?topic=account-wildcard).
 
 Consider the object named "folder1/subfolder1/file.txt":
 
 Path of “folder1/*”
 
-    User will get Read/Write/Management access, as defined by the role, to all objects that start with “folder1/” 
+    User will get Read/Write/Management access, as defined by the role, to all objects that start with “folder1/”
 
 
 
 Prefix of "folder1/*" AND no Delimiter
 
-- For a user list request with prefix set to “folder1/” and no Delimiter, the user request will return all objects that start with “folder1/” 
+- For a user list request with prefix set to “folder1/” and no Delimiter, the user request will return all objects that start with “folder1/”
 
-- For a user list request with prefix set to “folder1/” and Delimiter of “/”, the request will return a view of the objects and folders just in the first level of folder1 
+- For a user list request with prefix set to “folder1/” and Delimiter of “/”, the request will return a view of the objects and folders just in the first level of folder1
 
-- For a user list request with prefix set to “folder1/subfolder1/” and Delimiter of “/”, the request will return the objects (and any subfolders) in folder1/subfolder1 
+- For a user list request with prefix set to “folder1/subfolder1/” and Delimiter of “/”, the request will return the objects (and any subfolders) in folder1/subfolder1
 
 
 
 Prefix of "folder1/*" AND Delimiter of "/"
 
-- For a user list request with prefix set to “folder1/” and Delimiter of “/”, the request will return a view of the objects and folders just in the first level of folder1 
+- For a user list request with prefix set to “folder1/” and Delimiter of “/”, the request will return a view of the objects and folders just in the first level of folder1
 
 - For a user list request with prefix set to “folder1/subfolder1/” and Delimiter of “/”, the request will return the objects (and any subfolders) in folder1/subfolder1
 
