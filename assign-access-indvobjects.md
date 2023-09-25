@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-09-12"
+lastupdated: "2023-09-25"
 
 keywords: access control, iam, basics, objects
 
@@ -100,7 +100,7 @@ All COS APIs that act directly on an object are subject to Path conditions. See 
 
 Operators used with Condition Attributes: The full list of operators that can be used for prefix, delimiter, and path condition attributes can be found here. IAM policy supports the configuration of multiple values for an attribute by using stringMatchAnyOf and stringEqualsAnyOf.
 
-Use of Wildcards: A condition attribute’s values can include a wildcard when the operator is stringMatch or stringMatchAnyOf. For information on the use of wildcards in a policy see here.
+Use of Wildcards: A condition attribute’s values can include a wildcard when the operator is stringMatch or stringMatchAnyOf. For information on the use of wildcards in a policy see [Assigning access by using wildcard policies](/docs/account?topic=account-wildcard).
 
 Consider the object named "folder1/subfolder1/file.txt":
 
