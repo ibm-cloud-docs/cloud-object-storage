@@ -141,6 +141,7 @@ Encryption update
 
 New location!
 :   Buckets can now be created in a Regional configuration in São Paulo, Brazil. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+
 ## 12 August 2021
 {: #cloud-object-storage-aug1221}
 {: release-note}
@@ -381,6 +382,7 @@ New location!
 
 New feature!
 :   Users can run `SELECT` SQL queries directly against structured data objects using {{site.data.keyword.sqlquery_full}}. More information can be found in the [{{site.data.keyword.sqlquery_short}} documentation](/docs/sql-query?topic=sql-query-overview).
+
 ## 7 March 2018
 {: #cloud-object-storage-mar718}
 {: release-note}
