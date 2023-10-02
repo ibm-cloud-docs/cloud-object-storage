@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-09-22"
+lastupdated: "2023-10-02"
 
 keywords: updates, releases, news, object storage
 
@@ -60,14 +60,14 @@ New feature!
 {: release-note}
 
 Encryption update
-:   Buckets created with [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-cr) managed encryption can now use [Immutable Object Storage](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable) to create retention policies that prevent object deletion or modification.
+:   Buckets created with [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs) managed encryption can now use [Immutable Object Storage](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable) to create retention policies that prevent object deletion or modification.
 
 ## 23 May 2022
 {: #cloud-object-storage-may2322}
 {: release-note}
 
 Encryption update
-:   Buckets created using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-cr) managed encryption can now use .
+:   Buckets created using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs) managed encryption can now use .
 
 ## 2 May 2022
 {: #cloud-object-storage-may0222}
@@ -81,7 +81,7 @@ New feature!
 {: release-note}
 
 Encryption update
-:   Buckets can be created in the `eu-gb` region using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-cr) managed encryption.
+:   Buckets can be created in the `eu-gb` region using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs) managed encryption.
 
 ## 9 March 2022
 {: #cloud-object-storage-mar0922}
@@ -102,7 +102,7 @@ Encryption update
 {: release-note}
 
 Encryption update
-:   Buckets can be created in a US cross-region configuration using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-cr) managed encryption.
+:   Buckets can be created in a US cross-region configuration using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs) managed encryption.
 
 ## 11 November 2021
 {: #cloud-object-storage-nov1121}
@@ -127,6 +127,7 @@ Encryption update
 
 New location!
 :   Buckets can now be created in a Regional configuration in São Paulo, Brazil. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+
 ## 12 August 2021
 {: #cloud-object-storage-aug1221}
 {: release-note}
@@ -205,15 +206,15 @@ New feature!
 {: release-note}
 
 IAM updates
-:   Users and Service IDs can now be granted a new `ObjectWriter` role that allows access to writing objects, but without permissions to download objects or to list the contents of a bucket. 
-:   Public Access can now be granted to a new `ObjectReader` role that allows anonymous access to reading objects, but without permissions to list the contents of a bucket. 
+:   Users and Service IDs can now be granted a new `ObjectWriter` role that allows access to writing objects, but without permissions to download objects or to list the contents of a bucket.
+:   Public Access can now be granted to a new `ObjectReader` role that allows anonymous access to reading objects, but without permissions to list the contents of a bucket.
 
 ## 10 February 2020
 {: #cloud-object-storage-feb1020}
 {: release-note}
 
 New feature!
-:   Buckets can now be created in a new [Smart Tier storage class](/docs/cloud-object-storage?topic=cloud-object-storage-billing#smart-tier-pricing-details) that optimizes costs based on usage patterns. 
+:   Buckets can now be created in a new [Smart Tier storage class](/docs/cloud-object-storage?topic=cloud-object-storage-billing#smart-tier-pricing-details) that optimizes costs based on usage patterns.
 
 ## 6 December 2019
 {: #cloud-object-storage-dec620}
@@ -367,6 +368,7 @@ New location!
 
 New feature!
 :   Users can run `SELECT` SQL queries directly against structured data objects using {{site.data.keyword.sqlquery_full}}. More information can be found in the [{{site.data.keyword.sqlquery_short}} documentation](/docs/sql-query?topic=sql-query-overview).
+
 ## 7 March 2018
 {: #cloud-object-storage-mar718}
 {: release-note}
@@ -386,4 +388,4 @@ New location!
 {: release-note}
 
 Introducing {{site.data.keyword.cos_full_notm}}
-:  Object Storage is a highly available, durable, and secure platform for storing unstructured data. Unstructured data (sometimes called binary or "blob" data) refers to data that is not highly structured in the manner of a database. Object storage is the most efficient way to store PDFs, media files, database backups, disk images, or even large structured datasets. 
+:  Object Storage is a highly available, durable, and secure platform for storing unstructured data. Unstructured data (sometimes called binary or "blob" data) refers to data that is not highly structured in the manner of a database. Object storage is the most efficient way to store PDFs, media files, database backups, disk images, or even large structured datasets.
