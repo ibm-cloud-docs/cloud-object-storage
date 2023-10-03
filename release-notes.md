@@ -68,14 +68,14 @@ New feature!
 {: release-note}
 
 Encryption update
-:   Buckets created with [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-cr) managed encryption can now use [Immutable Object Storage](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable) to create retention policies that prevent object deletion or modification.
+:   Buckets created with [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs) managed encryption can now use [Immutable Object Storage](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable) to create retention policies that prevent object deletion or modification.
 
 ## 23 May 2022
 {: #cloud-object-storage-may2322}
 {: release-note}
 
 Encryption update
-:   Buckets created using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-cr) managed encryption can now use .
+:   Buckets created using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs) managed encryption can now use .
 
 ## 2 May 2022
 {: #cloud-object-storage-may0222}
@@ -89,7 +89,7 @@ New feature!
 {: release-note}
 
 Encryption update
-:   Buckets can be created in the `eu-gb` region using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-cr) managed encryption.
+:   Buckets can be created in the `eu-gb` region using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs) managed encryption.
 
 ## 9 March 2022
 {: #cloud-object-storage-mar0922}
@@ -110,7 +110,7 @@ Encryption update
 {: release-note}
 
 Encryption update
-:   Buckets can be created in a US cross-region configuration using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-cr) managed encryption.
+:   Buckets can be created in a US cross-region configuration using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs) managed encryption.
 
 ## 11 November 2021
 {: #cloud-object-storage-nov1121}
@@ -135,6 +135,7 @@ Encryption update
 
 New location!
 :   Buckets can now be created in a Regional configuration in São Paulo, Brazil. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+
 ## 12 August 2021
 {: #cloud-object-storage-aug1221}
 {: release-note}
@@ -375,6 +376,7 @@ New location!
 
 New feature!
 :   Users can run `SELECT` SQL queries directly against structured data objects using {{site.data.keyword.sqlquery_full}}. More information can be found in the [{{site.data.keyword.sqlquery_short}} documentation](/docs/sql-query?topic=sql-query-overview).
+
 ## 7 March 2018
 {: #cloud-object-storage-mar718}
 {: release-note}
