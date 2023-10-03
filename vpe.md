@@ -50,6 +50,9 @@ Following the previous steps results in a service instance with a VPC local endp
 If you want to restrict your bucket(s) to be accessible from only your VPC(s), or ranges of IP addresses, configure context-based restrictions.
 {: .important}
 
+If you want to find the IP addresss for the VPE look in the [IBM Cloud UI](https://cloud.ibm.com/vpc-ext/network/endpointGateways).
+{: .tip}
+
 For more information, see [Secure access to services by using service endpoints](/docs/account?topic=account-service-endpoints-overview).
 {: .tip}
 
