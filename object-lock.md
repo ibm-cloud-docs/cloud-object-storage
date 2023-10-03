@@ -3,7 +3,7 @@
 copyright:
   years: 2023
 
-lastupdated: "2023-03-16"
+lastupdated: "2023-10-02"
 
 keywords: worm, immutable, policy, retention, compliance
 
@@ -368,19 +368,19 @@ The body of the request must contain an XML block with the following schema:
 
 | Element     | Type      | Children | Ancestor    | Constraint                                          |
 |-------------|-----------|----------|-------------|-----------------------------------------------------|
-| `LegalHold` | Container | `Status` | None        | Limit 1.                                            |
-| `Status`    | String    | None     | `LegalHold` | Supported values are `ON` or `OFF` (case-sensitive) |
+| `legal-hold` | Container | `Status` | None        | Limit 1.                                            |
+| `Status`    | String    | None     | `legal-hold` | Supported values are `ON` or `OFF` (case-sensitive) |
 
 This example will retain any new objects for at least until March 12, 2023.  
 
 ```
-curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?legalHold&versionId=$VERSION_ID" \
+curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?legal-hold&versionId=$VERSION_ID" \
      -H 'Authorization: Bearer $TOKEN' \
      -H 'Content-MD5: FMh6GxizXUBRaiDuB0vtgQ==' \
      -H 'Content-Type: text/plain; charset=utf-8' \
-     -d $'<LegalHold>
+     -d $'<legal-hold>
             <Status>ON</Status>
-          </LegalHold>'
+          </legal-hold>'
 
 ```
 
@@ -445,13 +445,13 @@ def objectlock_retention(bucket_name,object_name):
         print(response.Retention)
 
 
-def objectlock_legalhold(bucket_name,object_name):
-        # Setting the objectlock legalhold status to ON.
-        cos_cli.put_object_legal_hold(Bucket=bucket_name, Key=object_name, LegalHold={'Status': 'ON'})
+def objectlock_legal-hold(bucket_name,object_name):
+        # Setting the objectlock legal-hold status to ON.
+        cos_cli.put_object_legal_hold(Bucket=bucket_name, Key=object_name, legal-hold={'Status': 'ON'})
         # Get objectlock retention of the above object.
         response = cos_cli.get_object_legal_hold(Bucket=bucket_name, Key=object_name)
-        print("Objectlock Legalhold for {0}=>".format(object_name))
-        print(response.LegalHold)
+        print("Objectlock legal-hold for {0}=>".format(object_name))
+        print(response.legal-hold)
        
 
 COS_ENDPOINT = "" #Current list avaiable at https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints -> Ex:https://s3.us-south.cloud-object-storage.appdomain.cloud
@@ -476,7 +476,7 @@ def main():
        objectlock_configuration_on_bucket(new_bucket_name) # Put objectlock configuration(i.e. default retention) on COS bucket and get the configuration.
        upload_object(new_bucket_name,new_text_file_name,new_text_file_contents) # Upload an object to cos bucket.
        objectlock_retention(new_bucket_name,new_text_file_name) # Put objectlock retention(i.e. retain until date) on the object and get the configured retention.
-       objectlock_legalhold(new_bucket_name,new_text_file_name)  # Put objectlock legalhold on the object and get the legalhold status.
+       objectlock_legal-hold(new_bucket_name,new_text_file_name)  # Put objectlock legal-hold on the object and get the legal-hold status.
        
 if __name__ == "__main__":
     main()
@@ -622,32 +622,32 @@ function getObjectLockRetention(bucketName,keyName) {
 
 }
 
-function putObjectLockLegalhold(bucketName,keyName) {
-    console.log(`Putting Objectlock Legalhold status ON for  : ${keyName}`);
-     // Putting objectlock legalhold status
-    return cos.putObjectLegalHold({
+function putObjectLocklegal-hold(bucketName,keyName) {
+    console.log(`Putting Objectlock legal-hold status ON for  : ${keyName}`);
+     // Putting objectlock legal-hold status
+    return cos.putObjectlegal-hold({
         Bucket: bucketName,
         Key: keyName,
-        LegalHold: {Status: 'ON'}
+        legal-hold: {Status: 'ON'}
     }).promise()
     .then(() => {
-        console.log(`Object lock legalhold added!!`);
+        console.log(`Object lock legal-hold added!!`);
         logDone();
     })
     .catch(logError);
 
 }
 
-function getObjectLockLegalhold(bucketName,keyName) {
-    console.log(`Getting Objectlock legalhold for : ${keyName}`);
-    // Getting objectlock legalhold
-    return cos.getObjectLegalHold({
+function getObjectLocklegal-hold(bucketName,keyName) {
+    console.log(`Getting Objectlock legal-hold for : ${keyName}`);
+    // Getting objectlock legal-hold
+    return cos.getObjectlegal-hold({
         Bucket: bucketName,
         Key: keyName
     }).promise()
     .then((data) => {
-        console.log(`Objectlock legalhold for : ${keyName} `);
-        console.log( JSON.stringify(data.LegalHold, null, "    ") );
+        console.log(`Objectlock legal-hold for : ${keyName} `);
+        console.log( JSON.stringify(data.legal-hold, null, "    ") );
         logDone();
     })
     .catch(logError);
@@ -668,8 +668,8 @@ function main() {
         .then(() => createTextFile(newBucketName, newTextFileName, newTextFileContents)) // Upload an object to cos bucket.
         .then(() => putObjectLockRetention(newBucketName, newTextFileName)) // Put objectlock retention(i.e. retain until date) on the object.
         .then(() => getObjectLockRetention(newBucketName, newTextFileName)) // Get the configured retention.
-        .then(() => putObjectLockLegalhold(newBucketName,newTextFileName)) // Put objectlock legalhold on the object.
-        .then(() => getObjectLockLegalhold(newBucketName,newTextFileName)); // Get the legalhold status.
+        .then(() => putObjectLocklegal-hold(newBucketName,newTextFileName)) // Put objectlock legal-hold on the object.
+        .then(() => getObjectLocklegal-hold(newBucketName,newTextFileName)); // Get the legal-hold status.
     }
     catch(ex) {
         logError(ex);
@@ -785,26 +785,26 @@ func objectLockRetention(bucketName string, client *s3.S3, keyName string) {
 	}
 }
 
-func objectLockLegalHold(bucketName string, client *s3.S3, keyName string) {
+func objectLocklegal-hold(bucketName string, client *s3.S3, keyName string) {
 
-	// Setting the objectlock legalhold status to ON.
-	putObjectLegalHoldInput := &s3.PutObjectLegalHoldInput{
+	// Setting the objectlock legal-hold status to ON.
+	putObjectlegal-holdInput := &s3.PutObjectlegal-holdInput{
 		Bucket: aws.String(bucketName),
 		Key:    aws.String(keyName),
-		LegalHold: &s3.ObjectLockLegalHold{
+		legal-hold: &s3.ObjectLocklegal-hold{
 			Status: aws.String("ON"),
 		},
 	}
-	_, e := client.PutObjectLegalHold(putObjectLegalHoldInput)
+	_, e := client.PutObjectlegal-hold(putObjectlegal-holdInput)
 	// Get objectlock retention of the above object.
-	getObjectLegalHoldInput := new(s3.GetObjectLegalHoldInput)
-	getObjectLegalHoldInput.Bucket = aws.String(bucketName)
-	getObjectLegalHoldInput.Key = aws.String(keyName)
-	response, e := client.GetObjectLegalHold(getObjectLegalHoldInput)
+	getObjectlegal-holdInput := new(s3.GetObjectlegal-holdInput)
+	getObjectlegal-holdInput.Bucket = aws.String(bucketName)
+	getObjectlegal-holdInput.Key = aws.String(keyName)
+	response, e := client.GetObjectlegal-hold(getObjectlegal-holdInput)
 	if e != nil {
 		fmt.Println(e)
 	} else {
-		fmt.Println("Object Lock legalhold =>", response.LegalHold)
+		fmt.Println("Object Lock legal-hold =>", response.legal-hold)
 	}
 }
 
@@ -825,7 +825,7 @@ func main() {
 	objectLockConfiguration(bucketName, client)                      // Put objectlock configuration(i.e. default retention) on COS bucket and get the configuration.
 	uploadObject(bucketName, client, textFileName, textFileContents) // Upload an object to cos bucket.
 	objectLockRetention(bucketName, client, textFileName)            // Put objectlock retention(i.e. retain until date) on the object and get the configured retention.
-	objectLockLegalHold(bucketName, client, textFileName)            // Put objectlock legalhold on the object and get the legalhold status.
+	objectLocklegal-hold(bucketName, client, textFileName)            // Put objectlock legal-hold on the object and get the legal-hold status.
 
 }
 ```
@@ -873,7 +873,7 @@ resource ibm_cos_bucket_objectlock_configuration "objectlock" {
   }
 }
 
-// Upload an object to the COS bucket with objectlock retention and objectlock legalhold.
+// Upload an object to the COS bucket with objectlock retention and objectlock legal-hold.
 resource "ibm_cos_bucket_object" "object_object_lock" {
   bucket_crn      = ibm_cos_bucket.bucket.crn
   bucket_location = ibm_cos_bucket.bucket.region_location
