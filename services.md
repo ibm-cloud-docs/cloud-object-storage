@@ -71,7 +71,7 @@ It is possible to create a bucket and associate any available Key Protect or Hyp
 | Region  | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Object Lock  | Immutable Object Storage | Activity Tracker | Functions | Smart Tier | Monitoring | Replication | One Rate |
 |---------|--------|-------------|--------------------------------|--------------|--------------|--------------------------|------------------|-----------|------------|------------|-------------| -----------|
 | `ams03` | No     | No          | No                             | No           | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    | Yes         | Yes        |
-| `che01` | No     | No          | No                             | No           | No           | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   | Yes         | Yes        |
+| `che01` | No     | No          | No                             | No           | Yes          | No                       | `ap-tok`         | No        | Yes        | `ap-tok`   | Yes         | Yes        |
 | `mil01` | No     | No          | No                             | No           | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    | Yes         | Yes        |
 | `mon01` | No     | No          | No                             | No           | No           | No                       | `us-south`       | No        | Yes        | `us-south` | Yes         | Yes        |
 | `par01` | No     | No          | No                             | No           | No           | No                       | `eu-de`          | No        | Yes        | `eu-de`    | Yes         | Yes        |

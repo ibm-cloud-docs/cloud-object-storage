@@ -26,9 +26,11 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 {: #cloud-object-storage-oct0323}
 {: release-note}
 
+Object Lock available in the Chennai Single Site
+:   It is now possible to [lock objects](/docs/cloud-object-storage?topic=cloud-object-storage-ol-overview) to ensure individual object versions are stored in a WORM (Write-Once-Read-Many), non-erasable and non-rewritable manner in the CHE01 single site.
+
 Encryption update
 :   Buckets can be created in the `eu-es` region using [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs) managed encryption.
-
 
 ## 22 September 2023
 {: #cloud-object-storage-sept2223}
