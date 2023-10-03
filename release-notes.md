@@ -2,7 +2,9 @@
 
 copyright:
   years: 2017, 2023
+
 lastupdated: "2023-10-03"
+
 
 keywords: updates, releases, news, object storage
 
@@ -216,15 +218,15 @@ New feature!
 {: release-note}
 
 IAM updates
-:   Users and Service IDs can now be granted a new `ObjectWriter` role that allows access to writing objects, but without permissions to download objects or to list the contents of a bucket. 
-:   Public Access can now be granted to a new `ObjectReader` role that allows anonymous access to reading objects, but without permissions to list the contents of a bucket. 
+:   Users and Service IDs can now be granted a new `ObjectWriter` role that allows access to writing objects, but without permissions to download objects or to list the contents of a bucket.
+:   Public Access can now be granted to a new `ObjectReader` role that allows anonymous access to reading objects, but without permissions to list the contents of a bucket.
 
 ## 10 February 2020
 {: #cloud-object-storage-feb1020}
 {: release-note}
 
 New feature!
-:   Buckets can now be created in a new [Smart Tier storage class](/docs/cloud-object-storage?topic=cloud-object-storage-billing#smart-tier-pricing-details) that optimizes costs based on usage patterns. 
+:   Buckets can now be created in a new [Smart Tier storage class](/docs/cloud-object-storage?topic=cloud-object-storage-billing#smart-tier-pricing-details) that optimizes costs based on usage patterns.
 
 ## 6 December 2019
 {: #cloud-object-storage-dec620}
@@ -398,4 +400,4 @@ New location!
 {: release-note}
 
 Introducing {{site.data.keyword.cos_full_notm}}
-:  Object Storage is a highly available, durable, and secure platform for storing unstructured data. Unstructured data (sometimes called binary or "blob" data) refers to data that is not highly structured in the manner of a database. Object storage is the most efficient way to store PDFs, media files, database backups, disk images, or even large structured datasets. 
+:  Object Storage is a highly available, durable, and secure platform for storing unstructured data. Unstructured data (sometimes called binary or "blob" data) refers to data that is not highly structured in the manner of a database. Object storage is the most efficient way to store PDFs, media files, database backups, disk images, or even large structured datasets.
