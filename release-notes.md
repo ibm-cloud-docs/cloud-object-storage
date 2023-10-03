@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-10-04"
+lastupdated: "2023-10-03"
 
 keywords: updates, releases, news, object storage
 
@@ -20,8 +20,8 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
-## 4 October 2023
-{: #cloud-object-storage-sept2223}
+## 3 October 2023
+{: #cloud-object-storage-oct0323}
 {: release-note}
 
 Encryption update
