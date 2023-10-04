@@ -89,9 +89,9 @@ toc:
                       - hmac-signature.md
                       - presigned-urls.md
                 - buckets.md
+                - assign-access-indvobjects.md
                 - public-access.md
                 - firewall.md
-                - assign-access-indvobjects.md
           - topicgroup:
               label: Managing encryption
               topics:
