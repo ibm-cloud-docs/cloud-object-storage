@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-09-27"
+lastupdated: "2023-10-04"
 
 keywords: access control, iam, basics, objects
 
@@ -18,12 +18,12 @@ subcollection: cloud-object-storage
 IAM access policies allow granting permissions in a COS bucket to specific groups of objects. This approach allows for fine-grained access control over data access, making it useful in scenarios where different parts of a bucket need to be accessed by different users or applications.
 {: shortdesc}
 
-If access is required for the entire bucket, when fine grained access control is not required, then follow the information on [assinging access to an individual bucket](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions&interface=ui).
+If access is required to the entire bucket (i.e. when fine grained access control is not required) then follow the information on [Assigning access to an individual bucket](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions&interface=ui).
 {: important}
 
-Each object stored in a COS bucket has a unique key, and these keys often follow a hierarchical structure similar to a file system. For example, an individual object with the key **folder1/subfolder1/file.txt** can simulate a folder or directory hierarchy, where the directory  **folder1** contains a sub-directory named **subfolder1** containing a file **file.txt**. Access can be assigned at any folder level.
+Each object stored in a COS bucket has a unique key, and these keys often follow a hierarchical structure similar to a file system. For example, an individual object with the key "folder1/subfolder1/file.txt" can simulate a folder or directory hierarchy, where the directory  "folder1" contains a sub-directory named "subfolder1" containing a file "file.txt". Access can be assigned at any folder level.
 
-**Example**: An access policy can be created for all objects and subfolders in the folder named **folder1**, or access can be assigned for just objects in the subdirectory named **subfolder1**.
+**Example**: An access policy can be created for all objects and subfolders in the folder named "folder1", or access can be assigned for just objects in the subdirectory named "subfolder1".
 
 A policy administrator can assign access to individual objects and folders by configuring conditions when creating IAM access policies. The next section describes how to construct these types of policies
 
@@ -54,7 +54,7 @@ See table 1. for the list of COS roles and their interaction with conditions.
 
 **Condition**: Once a resource is identified, a condition can be used to further scope access for a subject to individual objects in a bucket. This is referred to as fine-grained access control. Use a policy with no condition attributes to give full access to the target resource. A single IAM Policy can have more than one condition by using an OR or AND statement to combine the conditions. The condition statement (containing one or more conditions) should evaluate to TRUE for the user request to be permitted to perform the action. IAM Policy will deny any action that does not get evaluated to be TRUE/allowed by condition.
 
-Use IAM v2 policy to construct IAM policy containing resource attribute-based conditions using API.
+Use [IAM v2 policy](/apidocs/iam-policy-management#create-v2-policy) to construct IAM policy containing resource attribute-based conditions using API.
 {: tip}
 
 ### COS supports the following attributes to specify conditions for assigning fine-grained access on COS resources:
@@ -64,7 +64,7 @@ Prefix/Delimiter: Prefix and Delimiter are used together to scope all listing pe
     If you want to provide listing access to all objects in the bucket, then do not use a Prefix and Delimiter condition.
     {: tip}
 
-    The Prefix condition attribute defines the prefix for the set of object keys that this condition should allow for listing of objects or folders. For example, in the object named "folder1/subfolder1/file.txt", both “folder1/” and “folder1/subfolder1/” are possible prefixes. Using the prefix “folder1/” will grant list access to see the objects directly in “folder1” as well as the names of any possible subfolders directly in “folder1”.
+    The Prefix condition attribute defines the prefix for the set of object keys that this condition should allow for listing of objects or folders. For example, in the object named "folder1/subfolder1/file.txt", both "folder1/" and “folder1/subfolder1/” are possible prefixes. Using the prefix “folder1/” will grant list access to see the objects directly in “folder1” as well as the names of any possible subfolders directly in “folder1”.
 
     A Delimiter helps the user navigate the bucket as if it was a file hierarchy. Assigning a Delimiter condition statement restricts the type of folder structure the user can generate in the listing. In object named "folder1/subfolder1/file.txt", the delimiter “/” can be used to simulate a folder hierarchy where each folder is separated by a “/”. If a condition statement allows only a delimiter of “/”, then a list request with any other delimiter value is not permitted.
 
@@ -163,7 +163,7 @@ COS does not support CBR rules that only apply to a specific prefix/delimiter or
 ## Create a new policy for a user with Conditions<!--needs updating with conditions-->
 {: #fgac-new-policy-conditions}
 
-These examples provide list access to the full object hierarchy within folder named **folder1/subfolder1** and provide object `read/write/delete` access to all objects in folder named **subfolder1**.
+These examples provide list access to the full object hierarchy within folder named "folder1/subfolder1" and provide object `read/write/delete` access to all objects in folder named "subfolder1".
 
 ### UI
 {: #fgac-new-policy-conditions-ui}

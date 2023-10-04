@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-09-22"
+lastupdated: "2023-10-03"
 
 keywords: authorization, iam, basics
 
@@ -30,7 +30,7 @@ Policies enable access to be granted at different levels. Some of the options in
 * Access to an individual service instance in your account
 * Access to a specific bucket within an instance (see [Bucket permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions))
 * Access to all IAM-enabled services in your account
-* Access to a specific object or group of objects (see [Assigning access to objects within a bucket using IAM access conditions](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions))
+* [Access to a specific object or group of objects within a bucket](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions))
 
 After you define the scope of the access policy, you assign a role. Review the following tables which outline what actions each role allows within the {{site.data.keyword.cos_short}} service.
 
@@ -65,8 +65,8 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 ## Identity and Access Management actions
 {: #iam-actions}
 
-| Action                                                           | Description                                                                         | Conditions supported                               |
-| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- |--------------------------------------------------- |
+| Action                                                           | Description                                                                         |
+| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | `cloud-object-storage.account.get_account_buckets`               | List all buckets in a service instance.                                             |
 | `cloud-object-storage.bucket.put_bucket`                         | Create a bucket.                                                                    |
 | `cloud-object-storage.bucket.post_bucket`                        | Internal use only - unsupported for users.                                          |
@@ -131,67 +131,5 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 | `cloud-object-storage.bucket.put_public_access_block`            | Add a public ACL block configuration                                                |
 | `cloud-object-storage.bucket.get_public_access_block`            | Read a public ACL block configuration                                               |
 | `cloud-object-storage.bucket.delete_public_access_block`         | Delete a public ACL block configuration                                             |
-| `cloud-object-storage.service.get_accounts`                      |                                                                                     | No                                                            |
-| `cloud-object-storage.provide_ibm_client_originating_ip_address` |                                                                                     | No                                                            |
-| `cloud-object-storage.account.put`
-| `cloud-object-storage.account.post`
-| `cloud-object-storage.account.enable`
-| `cloud-object-storage.account.disable`
-| `cloud-object-storage.account.delete`
-| `cloud-object-storage.account.patch_credential`
-cloud-object-storage.account.get_credential
-cloud-object-storage.account.get_credentials
-cloud-object-storage.account.post_credentials
-cloud-object-storage.account.delete_credential
-cloud-object-storage.account.get
-cloud-object-storage.account.head
-cloud-object-storage.account.get_account_buckets
-cloud-object-storage.account.get_account_buckets
-cloud-object-storage.bucket.put_quota
-cloud-object-storage.bucket.get_acl
-cloud-object-storage.bucket.put_acl
-cloud-object-storage.bucket.get_request_payment
-cloud-object-storage.bucket.put_request_payment
-cloud-object-storage.bucket.put_protection
-cloud-object-storage.bucket.put_firewall
-cloud-object-storage.bucket.get_firewall
-cloud-object-storage.bucket.put_public_access_block
-cloud-object-storage.bucket.delete_public_access_block
-cloud-object-storage.bucket.get_public_access_block
-cloud-object-storage.bucket.put_bucket
-cloud-object-storage.bucket.delete_bucket
-cloud-object-storage.bucket.list_crk_id
-cloud-object-storage.bucket.put_cors
-cloud-object-storage.bucket.delete_cors
-cloud-object-storage.bucket.put_versioning
-cloud-object-storage.account.delete_fasp_connection_info
-cloud-object-storage.bucket.put_logging
-cloud-object-storage.bucket.put_website
-cloud-object-storage.bucket.delete_website
-cloud-object-storage.bucket.put_lifecycle
-cloud-object-storage.bucket.put_replication
-cloud-object-storage.bucket.delete_replication
-cloud-object-storage.bucket.put_activity_tracking
-cloud-object-storage.bucket.put_metrics_monitoring
-cloud-object-storage.bucket.put_object_lock_configuration
-cloud-object-storage.bucket.get_cors
-cloud-object-storage.bucket.get_versioning
-cloud-object-storage.bucket.get_fasp_connection_info
-cloud-object-storage.bucket.get_quota
-cloud-object-storage.bucket.get_logging
-cloud-object-storage.bucket.get_website
-cloud-object-storage.bucket.get_lifecycle
-cloud-object-storage.bucket.get_replication
-cloud-object-storage.bucket.get_protection
-cloud-object-storage.bucket.get_activity_tracking
-cloud-object-storage.bucket.get_metrics_monitoring
-cloud-object-storage.bucket.list_bucket_crn
-cloud-object-storage.bucket.get_object_lock_configuration
-cloud-object-storage.bucket.head
-cloud-object-storage.bucket.get_location
-cloud-object-storage.bucket.get_basic
-cloud-object-storage.bucket.get_notifications
-cloud-object-storage.bucket.put_notifications
-cloud-object-storage.object.post_multi_delete
-cloud-object-storage.object.get_uploads
 {: caption="Table 4. Granular IAM action descriptions"}
+
