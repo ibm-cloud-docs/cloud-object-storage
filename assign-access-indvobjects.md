@@ -105,7 +105,6 @@ Operators used with Condition Attributes: The full list of operators that can be
 Use of Wildcards: A condition attribute’s values can include a wildcard when the operator is `stringMatch` or `stringMatchAnyOf`. For information on the use of wildcards in a policy see [Assigning access by using wildcard policies](/docs/account?topic=account-wildcard).
 
 Consider the object named "folder1/subfolder1/file.txt":
-
 Path of “folder1/*”
 - User will get Read/Write/Management access, as defined by the role, to all objects that start with “folder1/”
 
