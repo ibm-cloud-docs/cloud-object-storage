@@ -434,6 +434,154 @@ Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringM
 OR
 {Path StringMatch “folder1/subfolder1/*”}
 
+Example of creation of FGAC Policy with Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”} for Reader role:
+
+```sh
+policy.json
+{
+"type": "access",
+  "subject": {
+    "attributes": [
+      {
+        "value": "user_iam_id",
+        "operator": "stringEquals",
+        "key": "iam_id"
+      }
+    ]
+  },
+  "resource": {
+    "attributes": [
+      {
+        "value": "cloud-object-storage",
+        "operator": "stringEquals",
+        "key": "serviceName"
+      },
+      {
+        "value": "COS instance GUID",
+        "operator": "stringEquals",
+        "key": "serviceInstance"
+      },
+      {
+        "value": "bucket",
+        "operator": "stringEquals",
+        "key": "resourceType"
+      },
+      {
+        "value": "bucket-name",
+        "operator": "stringEquals",
+        "key": "resource"
+      }
+    ]
+  },
+  "control": {
+    "grant": {
+      "roles": [
+        {
+          "role_id": "crn:v1:bluemix:public:iam::::serviceRole:Reader"
+        }      ]
+    }
+  },
+  "rule": {
+  "operator": "and",
+  "conditions": [
+    {
+      "key": "{{resource.attributes.prefix}}",
+      "operator": "stringMatchAnyOf",
+      "value": ["folder/subfolder/*"]
+    },
+    {
+      "key": "{{resource.attributes.delimiter}}",
+      "operator": "stringMatchAnyOf",
+      "value":'[ "/”, “”]
+    }
+  ]
+},
+  "pattern": "attribute-based-condition:resource:literal-and-wildcard"
+}
+```
+
+Example of creation of FGAC Policy with Conditions: {Path StringMatch “folder1/subfolder1/*”} for Reader role:
+
+```sh
+policy.json:
+{
+"type": "access",
+  "subject": {
+    "attributes": [
+      {
+        "value": "user_iam_id",
+        "operator": "stringEquals",
+        "key": "iam_id"
+      }
+    ]
+  },
+  "resource": {
+    "attributes": [
+      {
+        "value": "cloud-object-storage",
+        "operator": "stringEquals",
+        "key": "serviceName"
+      },
+      {
+        "value": "COS instance GUID",
+        "operator": "stringEquals",
+        "key": "serviceInstance"
+      },
+      {
+        "value": "bucket",
+        "operator": "stringEquals",
+        "key": "resourceType"
+      },
+      {
+        "value": "bucket-name",
+        "operator": "stringEquals",
+        "key": "resource"
+      }
+    ]
+  },
+  "control": {
+    "grant": {
+      "roles": [
+        {
+          "role_id": "crn:v1:bluemix:public:iam::::serviceRole:Reader"
+        }      ]
+    }
+  },
+  "rule": {
+  "operator": "and",
+  "conditions": [
+    {
+      "key": "{{resource.attributes.path}}",
+      "operator": "stringMatchAnyOf",
+      "value": ["folder/subfolder/*"]
+    },
+    {
+      "key": "{{resource.attributes.prefix}}",
+      "operator": "stringMatchAnyOf",
+      "value":'[ “”]
+    }
+  ]
+},
+  "pattern": "attribute-based-condition:resource:literal-and-wildcard"
+}
+```
+
+Commands to create a IAM Policy using ibmcloudcli :
+* ibmcloud iam  user-policy-create   user_email_id --file policy.json --api-version v2
+
+Commands to update a IAM Policy using ibmcloudcli :
+* ibmcloud iam user-policy-update  user_email_id  policy_id  --file policy.json --api-version v2
+
+Commands to list a IAM Policy using ibmcloudcli :
+* ibmcloud iam user-policy  user_email_id  policy_id  --file policy.json --api-version v2
+
+Commands to delete a IAM Policy using ibmcloudcli :
+* ibmcloud iam user-policy-delete  user_email_id  policy_id  --file policy.json --api-version v2
+
+If --api-version v2  is not provided the commands will return with error saying the policy does not exists.
+{: note}
+
+
 ### API<!--needs updating with conditions-->
 {: #fgac-new-policy-serviceid-conditions-api}
 
@@ -729,13 +877,13 @@ Commands to create IAM policy using TF:
 * terraform init
 * terraform apply
 
-Commands to update IAM policy using TF:
+Command to update IAM policy using TF:
 * terraform apply
 
-Commands to read IAM policy using TF:
+Command to read IAM policy using TF:
 * terraform import ibm_iam_user_policy.example user_email_id/policy_id
 
-Commands to delete IAM policy using TF:
+Command to delete IAM policy using TF:
 * terraform destroy
 
 
