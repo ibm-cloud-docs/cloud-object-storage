@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-10-04"
+lastupdated: "2023-10-05"
 
 keywords: access control, iam, basics, objects
 
@@ -434,6 +434,154 @@ Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringM
 OR
 {Path StringMatch “folder1/subfolder1/*”}
 
+Example of creation of FGAC Policy with Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”} for Reader role:
+
+```sh
+policy.json
+{
+"type": "access",
+  "subject": {
+    "attributes": [
+      {
+        "value": "user_iam_id",
+        "operator": "stringEquals",
+        "key": "iam_id"
+      }
+    ]
+  },
+  "resource": {
+    "attributes": [
+      {
+        "value": "cloud-object-storage",
+        "operator": "stringEquals",
+        "key": "serviceName"
+      },
+      {
+        "value": "COS instance GUID",
+        "operator": "stringEquals",
+        "key": "serviceInstance"
+      },
+      {
+        "value": "bucket",
+        "operator": "stringEquals",
+        "key": "resourceType"
+      },
+      {
+        "value": "bucket-name",
+        "operator": "stringEquals",
+        "key": "resource"
+      }
+    ]
+  },
+  "control": {
+    "grant": {
+      "roles": [
+        {
+          "role_id": "crn:v1:bluemix:public:iam::::serviceRole:Reader"
+        }      ]
+    }
+  },
+  "rule": {
+  "operator": "and",
+  "conditions": [
+    {
+      "key": "{{resource.attributes.prefix}}",
+      "operator": "stringMatchAnyOf",
+      "value": ["folder/subfolder/*"]
+    },
+    {
+      "key": "{{resource.attributes.delimiter}}",
+      "operator": "stringMatchAnyOf",
+      "value":'[ "/”, “”]
+    }
+  ]
+},
+  "pattern": "attribute-based-condition:resource:literal-and-wildcard"
+}
+```
+
+Example of creation of FGAC Policy with Conditions: {Path StringMatch “folder1/subfolder1/*”} for Reader role:
+
+```sh
+policy.json:
+{
+"type": "access",
+  "subject": {
+    "attributes": [
+      {
+        "value": "user_iam_id",
+        "operator": "stringEquals",
+        "key": "iam_id"
+      }
+    ]
+  },
+  "resource": {
+    "attributes": [
+      {
+        "value": "cloud-object-storage",
+        "operator": "stringEquals",
+        "key": "serviceName"
+      },
+      {
+        "value": "COS instance GUID",
+        "operator": "stringEquals",
+        "key": "serviceInstance"
+      },
+      {
+        "value": "bucket",
+        "operator": "stringEquals",
+        "key": "resourceType"
+      },
+      {
+        "value": "bucket-name",
+        "operator": "stringEquals",
+        "key": "resource"
+      }
+    ]
+  },
+  "control": {
+    "grant": {
+      "roles": [
+        {
+          "role_id": "crn:v1:bluemix:public:iam::::serviceRole:Reader"
+        }      ]
+    }
+  },
+  "rule": {
+  "operator": "and",
+  "conditions": [
+    {
+      "key": "{{resource.attributes.path}}",
+      "operator": "stringMatchAnyOf",
+      "value": ["folder/subfolder/*"]
+    },
+    {
+      "key": "{{resource.attributes.prefix}}",
+      "operator": "stringMatchAnyOf",
+      "value":'[ “”]
+    }
+  ]
+},
+  "pattern": "attribute-based-condition:resource:literal-and-wildcard"
+}
+```
+
+Commands to create a IAM Policy using ibmcloudcli :
+* ibmcloud iam  user-policy-create   user_email_id --file policy.json --api-version v2
+
+Commands to update a IAM Policy using ibmcloudcli :
+* ibmcloud iam user-policy-update  user_email_id  policy_id  --file policy.json --api-version v2
+
+Commands to list a IAM Policy using ibmcloudcli :
+* ibmcloud iam user-policy  user_email_id  policy_id  --file policy.json --api-version v2
+
+Commands to delete a IAM Policy using ibmcloudcli :
+* ibmcloud iam user-policy-delete  user_email_id  policy_id  --file policy.json --api-version v2
+
+If --api-version v2  is not provided the commands will return with error saying the policy does not exists.
+{: note}
+
+
 ### API<!--needs updating with conditions-->
 {: #fgac-new-policy-serviceid-conditions-api}
 
@@ -658,6 +806,87 @@ Roles: `Object Lister`, `Object Writer`, `Object Deleter`, `Object Reader`
 Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”}
 OR
 {Path StringMatch “folder1/subfolder1/*”}
+
+**Example of creation of FGAC Policy with Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”} for Reader role:**
+
+```sh
+data "ibm_resource_group" "cos_group" {
+name = "Default"
+}
+
+resource "ibm_iam_user_policy" "example" {
+ibm_id = “user_email_id”
+roles = ["Reader"]
+resources {
+service = "cloud-object-storage"
+resource_type = "bucket"
+resource_instance_id = "cos instance guid"
+resource = "bucket-name"
+}
+
+
+rule_conditions {
+key = "{{resource.attributes.prefix}}"
+operator = "stringMatchAnyOf"
+value = ["folder1/subfolder1/*"]
+}
+rule_conditions {
+key = "{{resource.attributes.delimiter}}"
+operator = "stringMatchAnyOf"
+value = ["/", “"”]
+}
+rule_operator = "and"
+pattern = "attribute-based-condition:resource:literal-and-wildcard"
+}
+```
+
+**Example of creation of FGAC Policy with Conditions: {Path StringMatch “folder1/subfolder1/*”} for Reader role:**
+
+```sh
+data "ibm_resource_group" "cos_group" {
+name = "Default"
+}
+
+resource "ibm_iam_user_policy" "example" {
+ibm_id = “ibm_id”
+roles = ["Reader"]
+resources {
+service = "cloud-object-storage"
+resource_type = "bucket"
+resource_instance_id = "cos instance guid"
+resource = "bucket-name"
+}
+
+
+rule_conditions {
+key = "{{resource.attributes.path}}"
+operator = "stringMatch"
+value = ["folder1/subfolder1/*"]
+}
+rule_conditions {
+key = "{{resource.attributes.prefix}}"
+operator = "stringMatch"
+value = “”
+}
+rule_operator = "or"
+pattern = "attribute-based-condition:resource:literal-and-wildcard"
+}
+```
+
+Commands to create IAM policy using TF:
+* terraform init
+* terraform apply
+
+Command to update IAM policy using TF:
+* terraform apply
+
+Command to read IAM policy using TF:
+* terraform import ibm_iam_user_policy.example user_email_id/policy_id
+
+Command to delete IAM policy using TF:
+* terraform destroy
+
+
 
 ## Additional information
 {: #fgac-additional-info}
