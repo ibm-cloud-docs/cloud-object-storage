@@ -32,10 +32,24 @@ A policy administrator can assign access to individual objects and folders by co
 
 The first step to granting access to individual objects within a bucket is to construct an IAM policy. You can find more information on constructing an IAM access policy for Cloud Object Storage in the COS tutorial [Limiting access to a single Object Storage bucket](/docs/cloud-object-storage?topic=cloud-object-storage-limit-access&interface=ui#single-bucket-create-policy). For more general information on building IAM policies, please go to [How IBM Cloud IAM works](/docs/account?topic=account-iamoverview). Let’s define some of the key concepts for an access policy.
 
-## Terminology
+### Access Policy terminology
 {: #fgac-terminology}
 
 Key Concepts: The following items are key components of building an IAM access policy for your Cloud Object Storage resources.
+
+| Term | Description |
+| --------- | ------------------- |
+| Subject | The subject of an access policy can be an individual user, an access group, a Service ID, or a Trusted Profile. See [What are IAM policies and who can assign them?](docs/account?topic=account-iamusermanpol) for more information on the types of subjects you can apply to a policy. |
+| Service | The service is the IBM Cloud Service that contains the resource you are trying to assign access to. For assigning access to individual objects use the Cloud Object Storage service. |
+| Resource | IBM COS supports the following resource targets: a resource group ID, a service instance, a resource type with value of “bucket”, and a resource ID (bucket name). |
+| Role | IBM Cloud access roles are groups of actions. Access roles allow the subject to complete specific tasks within the context of the target resources that are defined in the policy. COS supports several pre-defined service roles that makes assigning permissions easier. COS also allows the creation of custom roles. See [Identity and Access Management roles](/docs/cloud-object-storage?topic=cloud-object-storage-iam&interface=ui#iam-roles) for more information on the supported roles for COS. Only the following roles are recommended for assigning individual object access:
+- `Object Writer`
+- `Object Deleter`
+- `Object Lister`
+- `Object Reader`
+- `WriterNoConditions` |
+{: caption="Table 1. {{site.data.keyword.openwhisk_short}} Terms" caption-side="bottom"}
+
 
 **Subject**: The subject of an access policy can be an individual user, an access group, a Service ID, or a Trusted Profile. See [What are IAM policies and who can assign them?](docs/account?topic=account-iamusermanpol) for more information on the types of subjects you can apply to a policy.
 
@@ -60,7 +74,7 @@ Use [IAM v2 policy](/apidocs/iam-policy-management#create-v2-policy) to construc
 ### COS supports the following attributes to specify conditions for assigning fine-grained access on COS resources:
 {: #fgac-attributes-supported}
 
-**Prefix/Delimiter:** Prefix and Delimiter are used together to scope all listing permissions for specific objects.
+**Prefix and Delimiter**are used together to scope all listing permissions for specific objects.
 
 If you want to provide listing access to all objects in the bucket, then do not use a Prefix and Delimiter condition.
 {: tip}
@@ -91,7 +105,7 @@ The following APIs are subject to Prefix/Delimiter conditions:
 To give a fine-grained user access to navigate to their folder in the UI, the user will need access to list the root folder of the bucket. See here for how to construct the policy to enable this.
 {: tip}
 
-**Path:** Path is used to scope all read, write and management access on specific objects.
+**Path**is used to scope all read, write and management access on specific objects.
 
 If you want to provide such access to ALL objects in the bucket, do NOT specify a Path condition.
 {: tip}
