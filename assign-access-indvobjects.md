@@ -659,6 +659,87 @@ Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringM
 OR
 {Path StringMatch “folder1/subfolder1/*”}
 
+**Example of creation of FGAC Policy with Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter StringMatchAnyOf  “/”, “”} for Reader role:**
+
+```sh
+data "ibm_resource_group" "cos_group" {
+name = "Default"
+}
+
+resource "ibm_iam_user_policy" "example" {
+ibm_id = “user_email_id”
+roles = ["Reader"]
+resources {
+service = "cloud-object-storage"
+resource_type = "bucket"
+resource_instance_id = "cos instance guid"
+resource = "bucket-name"
+}
+
+
+rule_conditions {
+key = "{{resource.attributes.prefix}}"
+operator = "stringMatchAnyOf"
+value = ["folder1/subfolder1/*"]
+}
+rule_conditions {
+key = "{{resource.attributes.delimiter}}"
+operator = "stringMatchAnyOf"
+value = ["/", “"”]
+}
+rule_operator = "and"
+pattern = "attribute-based-condition:resource:literal-and-wildcard"
+}
+```
+
+**Example of creation of FGAC Policy with Conditions: {Path StringMatch “folder1/subfolder1/*”} for Reader role:**
+
+```sh
+data "ibm_resource_group" "cos_group" {
+name = "Default"
+}
+
+resource "ibm_iam_user_policy" "example" {
+ibm_id = “ibm_id”
+roles = ["Reader"]
+resources {
+service = "cloud-object-storage"
+resource_type = "bucket"
+resource_instance_id = "cos instance guid"
+resource = "bucket-name"
+}
+
+
+rule_conditions {
+key = "{{resource.attributes.path}}"
+operator = "stringMatch"
+value = ["folder1/subfolder1/*"]
+}
+rule_conditions {
+key = "{{resource.attributes.prefix}}"
+operator = "stringMatch"
+value = “”
+}
+rule_operator = "or"
+pattern = "attribute-based-condition:resource:literal-and-wildcard"
+}
+```
+
+Commands to create IAM policy using TF:
+* terraform init
+* terraform apply
+
+Commands to update IAM policy using TF:
+* terraform apply
+
+Commands to read IAM policy using TF:
+* terraform import ibm_iam_user_policy.example user_email_id/policy_id
+
+Commands to delete IAM policy using TF:
+* terraform destroy
+
+
+
 ## Additional information
 {: #fgac-additional-info}
 
