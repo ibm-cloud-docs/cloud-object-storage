@@ -60,41 +60,43 @@ Use [IAM v2 policy](/apidocs/iam-policy-management#create-v2-policy) to construc
 ### COS supports the following attributes to specify conditions for assigning fine-grained access on COS resources:
 {: #fgac-attributes-supported}
 
-Prefix/Delimiter: Prefix and Delimiter are used together to scope all listing permissions for specific objects.
-    If you want to provide listing access to all objects in the bucket, then do not use a Prefix and Delimiter condition.
-    {: tip}
+**Prefix/Delimiter:** Prefix and Delimiter are used together to scope all listing permissions for specific objects.
 
-    The Prefix condition attribute defines the prefix for the set of object keys that this condition should allow for listing of objects or folders. For example, in the object named "folder1/subfolder1/file.txt", both "folder1/" and “folder1/subfolder1/” are possible prefixes. Using the prefix “folder1/” will grant list access to see the objects directly in “folder1” as well as the names of any possible subfolders directly in “folder1”.
+If you want to provide listing access to all objects in the bucket, then do not use a Prefix and Delimiter condition.
+{: tip}
 
-    A Delimiter helps the user navigate the bucket as if it was a file hierarchy. Assigning a Delimiter condition statement restricts the type of folder structure the user can generate in the listing. In object named "folder1/subfolder1/file.txt", the delimiter “/” can be used to simulate a folder hierarchy where each folder is separated by a “/”. If a condition statement allows only a delimiter of “/”, then a list request with any other delimiter value is not permitted.
+The **Prefix** condition attribute defines the prefix for the set of object keys that this condition should allow for listing of objects or folders. For example, in the object named "folder1/subfolder1/file.txt", both "folder1/" and “folder1/subfolder1/” are possible prefixes.
 
-    Typically the prefix and delimiter are used together in a condition statement with an AND operator. It is possible to use a prefix without a delimiter in a condition statement. If the policy is configured with only a prefix and not a delimiter condition statement, the user can use any or no delimiter to list the objects.
+A **Delimiter** helps the user navigate the bucket as if it was a file hierarchy. Assigning a Delimiter condition statement restricts the type of folder structure the user can generate in the listing. In object named "folder1/subfolder1/file.txt", the delimiter “/” can be used to simulate a folder hierarchy where each folder is separated by a “/”. If a condition statement allows only a delimiter of “/”, then a list request with any other delimiter value is not permitted.
 
-    Examples of using Prefix and Delimiter Condition Statements:
-    Consider the object named "folder1/subfolder1/file.txt":
-    Prefix of "folder1/" AND no Delimiter
-      - user can return a list of every objects that starts with folder1/ by doing a list request on folder1/ and not providing a delimiter
-      - if user uses delimiter of "/" in the list request, they'd be restricted to only seeing the first level of objects and subfolders in folder1/
-      - if user tries to list the subfolder (requests to list prefix = “folder1/subfolder1/”), access is denied
+Typically the prefix and delimiter are used together in a condition statement with an AND operator. It is possible to use a prefix without a delimiter in a condition statement. If the policy is configured with only a prefix and not a delimiter condition statement, the user can use any or no delimiter to list the objects.
 
-    Prefix of "folder1/" AND Delimiter of "/"
-      - user can only list the objects and subfolders in the 1st level of folder1
-      - user can only do list requests that specify delimiter of "/"
-      - if user tries to list the contents of subfolder1, access is denied (user would need to have a condition allowing Prefix = “folder1/subfolder1/ for this) 
+**Examples of using Prefix and Delimiter Condition Statements**
+Consider the object named "folder1/subfolder1/file.txt":
+Prefix of "folder1/" AND no Delimiter
+   - user can return a list of every objects that starts with folder1/ by doing a list request on folder1/ and not providing a delimiter
+   - if user uses delimiter of "/" in the list request, they'd be restricted to only seeing the first level of objects and subfolders in folder1/
+   - if user tries to list the subfolder (requests to list prefix = “folder1/subfolder1/”), access is denied
 
-    The following APIs are subject to Prefix/Delimiter conditions:
-   [GET Bucket (List Objects)](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets)
-   [GET Bucket Object Versions (List Object Versions)]()
-   [List Multipart Uploads](/apidocs/cos/cos-compatibility?code=node#listmultipartuploads)
+Prefix of "folder1/" AND Delimiter of "/"
+   - user can only list the objects and subfolders in the 1st level of folder1
+   - user can only do list requests that specify delimiter of "/"
+   - if user tries to list the contents of subfolder1, access is denied (user would need to have a condition allowing Prefix = “folder1/subfolder1/ for this) 
 
-    To give a fine-grained user access to navigate to their folder in the UI, the user will need access to list the root folder of the bucket. See here for how to construct the policy to enable this.
-    {: tip}
+The following APIs are subject to Prefix/Delimiter conditions:
+[GET Bucket (List Objects)](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets)
+[GET Bucket Object Versions (List Object Versions)]()
+[List Multipart Uploads](/apidocs/cos/cos-compatibility?code=node#listmultipartuploads)
 
-Path: Path is used to scope all read, write and management access on specific objects.
-    If you want to provide such access to ALL objects in the bucket, do NOT specify a Path condition.
-    {: tip}
+To give a fine-grained user access to navigate to their folder in the UI, the user will need access to list the root folder of the bucket. See here for how to construct the policy to enable this.
+{: tip}
 
-    For an object named "folder1/subfolder1/file.txt", the full object key is the path. To restrict Read/Write/Management actions to this object, define a condition with Path of "folder1/subfolder1/file.txt".
+**Path:** Path is used to scope all read, write and management access on specific objects.
+
+If you want to provide such access to ALL objects in the bucket, do NOT specify a Path condition.
+{: tip}
+
+For an object named "folder1/subfolder1/file.txt", the full object key is the path. To restrict Read/Write/Management actions to this object, define a condition with Path of "folder1/subfolder1/file.txt".
 
 All COS APIs that act directly on an object are subject to Path conditions. See [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) for the list of COS API actions that support Path.
 
@@ -103,30 +105,21 @@ Operators used with Condition Attributes: The full list of operators that can be
 Use of Wildcards: A condition attribute’s values can include a wildcard when the operator is `stringMatch` or `stringMatchAnyOf`. For information on the use of wildcards in a policy see [Assigning access by using wildcard policies](/docs/account?topic=account-wildcard).
 
 Consider the object named "folder1/subfolder1/file.txt":
-
 Path of “folder1/*”
-
-    User will get Read/Write/Management access, as defined by the role, to all objects that start with “folder1/”
-
-
+- User will get Read/Write/Management access, as defined by the role, to all objects that start with “folder1/”
 
 Prefix of "folder1/*" AND no Delimiter
-
 - For a user list request with prefix set to “folder1/” and no Delimiter, the user request will return all objects that start with “folder1/”
-
 - For a user list request with prefix set to “folder1/” and Delimiter of “/”, the request will return a view of the objects and folders just in the first level of folder1
-
 - For a user list request with prefix set to “folder1/subfolder1/” and Delimiter of “/”, the request will return the objects (and any subfolders) in folder1/subfolder1
-
-
 
 Prefix of "folder1/*" AND Delimiter of "/"
-
 - For a user list request with prefix set to “folder1/” and Delimiter of “/”, the request will return a view of the objects and folders just in the first level of folder1
-
 - For a user list request with prefix set to “folder1/subfolder1/” and Delimiter of “/”, the request will return the objects (and any subfolders) in folder1/subfolder1
-
 - For a user list request with prefix set to “folder1/” and no Delimiter, the user request will not be permitted
+
+## Use of Conditions with COS Service Roles
+{: #fgac-conditions-service-roles}
 
 | Access role         | Example actions                                              | Supported with Conditions                            |
 |:--------------------|--------------------------------------------------------------|------------------------------------------------------|
