@@ -120,18 +120,18 @@ Operators used with Condition Attributes: The full list of operators that can be
 Use of Wildcards: A condition attribute’s values can include a wildcard when the operator is `stringMatch` or `stringMatchAnyOf`. For information on the use of wildcards in a policy see [Assigning access by using wildcard policies](/docs/account?topic=account-wildcard).
 
 Consider the object named **"folder1/subfolder1/file.txt"**:
-Path of “folder1/*”
-- User will get Read/Write/Management access, as defined by the role, to all objects that start with “folder1/”
+Path of **“folder1/*”**
+- User will get Read/Write/Management access, as defined by the role, to all objects that start with **“folder1/”**
 
-Prefix of "folder1/*" AND no Delimiter
-- For a user list request with prefix set to “folder1/” and no Delimiter, the user request will return all objects that start with “folder1/”
-- For a user list request with prefix set to “folder1/” and Delimiter of **“/”**, the request will return a view of the objects and folders just in the first level of folder1
+Prefix of **"folder1/*"** AND no Delimiter
+- For a user list request with prefix set to **“folder1/”** and no Delimiter, the user request will return all objects that start with **“folder1/”**
+- For a user list request with prefix set to **“folder1/”** and Delimiter of **“/”**, the request will return a view of the objects and folders just in the first level of folder1
 - For a user list request with prefix set to “folder1/subfolder1/” and Delimiter of **“/”**, the request will return the objects (and any subfolders) in folder1/subfolder1
 
-Prefix of "folder1/*" AND Delimiter of "/"
-- For a user list request with prefix set to “folder1/” and Delimiter of **“/”**, the request will return a view of the objects and folders just in the first level of folder1
+Prefix of **"folder1/*"** AND Delimiter of **"/"**
+- For a user list request with prefix set to **“folder1/”** and Delimiter of **“/”**, the request will return a view of the objects and folders just in the first level of folder1
 - For a user list request with prefix set to “folder1/subfolder1/” and Delimiter of **“/”**, the request will return the objects (and any subfolders) in folder1/subfolder1
-- For a user list request with prefix set to “folder1/” and no Delimiter, the user request will not be permitted
+- For a user list request with prefix set to **“folder1/”** and no Delimiter, the user request will not be permitted
 
 ## Use of Conditions with COS Service Roles
 {: #fgac-conditions-service-roles}
@@ -150,9 +150,9 @@ Prefix of "folder1/*" AND Delimiter of "/"
 
 See [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) for the full list of Actions that each role supports.
 
-**Actions that Don’t Support Conditions**: There are some COS APIs that do not support condition attributes. These include bucket level actions and other actions that don’t apply to one specific object. To see a list of these actions, go to [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions). A condition statement in a policy will apply to all the actions defined by the role. When a condition is configured in a policy with a role that contains actions that do not support conditions, the sub-set of actions that do not support conditions will be denied. Manager, Writer, Reader and Content Reader are examples of roles that contain a combination of actions that support conditions and actions that do not support conditions, these roles are not recommended for use with fine-grained access control for both object listing and object management (`read/write/configuration`).
+**Actions that Don’t Support Conditions**: There are some COS APIs that do not support condition attributes. These include bucket level actions and other actions that don’t apply to one specific object. To see a list of these actions, go to [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions). A condition statement in a policy will apply to all the actions defined by the role. When a condition is configured in a policy with a role that contains actions that do not support conditions, the sub-set of actions that do not support conditions will be denied. Manager, Writer, Reader and Content Reader are examples of roles that contain a combination of actions that support conditions and actions that do not support conditions, these roles are not recommended for use with Fine-Grained Access Control for both object listing and object management (`read/write/configuration`).
 
-`WriterNoConditions` is a new IAM role created to be used for certain use cases when assigning access to individual objects. This service role contains actions that do not support condition attributes. If you want to give a user permission to perform actions that do not support conditions while providing fine-grained access control, then you will need to create two separate IAM policies:
+`WriterNoConditions` is a new IAM role created to be used for certain use cases when assigning access to individual objects. This service role contains actions that do not support condition attributes. If you want to give a user permission to perform actions that do not support conditions while providing Fine-Grained Access Control, then you will need to create two separate IAM policies:
 - one that grants the subject “WriterNoConditions” role
 - and another policy that contains the role and condition for fine-grained access
 
