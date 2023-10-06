@@ -53,7 +53,7 @@ The service is the IBM Cloud Service that contains the resource you are trying t
 {{site.data.keyword.cos_full}} supports the following resource targets:
 - Resource group ID
 - Service instance
-- Resource type with value of **“bucket”**
+- Resource type with value of *“bucket”*
 - Resource ID (bucket name).
 
 #### Role
@@ -91,7 +91,7 @@ A **Delimiter** helps the user navigate the bucket as if it was a file hierarchy
 Typically the prefix and delimiter are used together in a condition statement with an AND operator. It is possible to use a prefix without a delimiter in a condition statement. If the policy is configured with only a prefix and not a delimiter condition statement, the user can use any or no delimiter to list the objects.
 
 **Examples of using Prefix and Delimiter Condition Statements**
-Consider the object named *"folder1/subfolder1/file.txt"*:
+(Consider the object named *"folder1/subfolder1/file.txt"*):
 Prefix of *"folder1/"* AND no Delimiter
    - User can return a list of every objects that starts with folder1/ by doing a list request on folder1/ and not providing a delimiter
    - If user uses delimiter of *"/"* in the list request, they'd be restricted to only seeing the first level of objects and subfolders in folder1/
