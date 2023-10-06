@@ -50,7 +50,11 @@ The service is the IBM Cloud Service that contains the resource you are trying t
 #### Resource
 {: #fgac-key-concepts-resource}
 
-{{site.data.keyword.cos_full}} supports the following resource targets: a resource group ID, a service instance, a resource type with value of **“bucket”**, and a resource ID (bucket name).
+{{site.data.keyword.cos_full}} supports the following resource targets:
+- resource group ID
+- service instance
+- resource type with value of **“bucket”**
+- resource ID (bucket name).
 
 #### Role
 {: #fgac-key-concepts-role}
@@ -75,12 +79,12 @@ Use [IAM v2 policy](/apidocs/iam-policy-management#create-v2-policy) to construc
 ### COS supports the following attributes to specify conditions for assigning fine-grained access on COS resources:
 {: #fgac-attributes-supported}
 
-**Prefix and Delimiter**are used together to scope all listing permissions for specific objects.
+**Prefix and Delimiter** are used together to scope all listing permissions for specific objects.
 
 If you want to provide listing access to all objects in the bucket, then do not use a Prefix and Delimiter condition.
 {: tip}
 
-The **Prefix** condition attribute defines the prefix for the set of object keys that this condition should allow for listing of objects or folders. For example, in the object named **"folder1/subfolder1/file.txt"**, both "folder1/" and “folder1/subfolder1/” are possible prefixes.
+The **Prefix** condition attribute defines the prefix for the set of object keys that this condition should allow for listing of objects or folders. For example, in the object named **"folder1/subfolder1/file.txt"**, both **"folder1/"** and **“folder1/subfolder1/”** are possible prefixes.
 
 A **Delimiter** helps the user navigate the bucket as if it was a file hierarchy. Assigning a Delimiter condition statement restricts the type of folder structure the user can generate in the listing. In object named **"folder1/subfolder1/file.txt"**, the delimiter **“/”** can be used to simulate a folder hierarchy where each folder is separated by a **“/”**. If a condition statement allows only a delimiter of **“/”**, then a list request with any other delimiter value is not permitted.
 
@@ -88,12 +92,12 @@ Typically the prefix and delimiter are used together in a condition statement wi
 
 **Examples of using Prefix and Delimiter Condition Statements**
 Consider the object named **"folder1/subfolder1/file.txt"**:
-Prefix of "folder1/" AND no Delimiter
+Prefix of **"folder1/"** AND no Delimiter
    - user can return a list of every objects that starts with folder1/ by doing a list request on folder1/ and not providing a delimiter
    - if user uses delimiter of **"/"** in the list request, they'd be restricted to only seeing the first level of objects and subfolders in folder1/
-   - if user tries to list the subfolder (requests to list prefix = “folder1/subfolder1/”), access is denied
+   - if user tries to list the subfolder (requests to list prefix = **“folder1/subfolder1/”**), access is denied
 
-Prefix of "folder1/" AND Delimiter of **"/"**
+Prefix of **"folder1/"** AND Delimiter of **"/"**
    - user can only list the objects and subfolders in the 1st level of folder1
    - user can only do list requests that specify delimiter of **"/"**
    - if user tries to list the contents of subfolder1, access is denied (user would need to have a condition allowing Prefix = “folder1/subfolder1/ for this)
@@ -106,12 +110,12 @@ The following APIs are subject to Prefix/Delimiter conditions:
 To give a fine-grained user access to navigate to their folder in the UI, the user will need access to list the root folder of the bucket. See here for how to construct the policy to enable this.
 {: tip}
 
-**Path**is used to scope all read, write and management access on specific objects.
+**Path** is used to scope all read, write and management access on specific objects.
 
 If you want to provide such access to ALL objects in the bucket, do NOT specify a Path condition.
 {: tip}
 
-For an object named **"folder1/subfolder1/file.txt"**, the full object key is the path. To restrict Read/Write/Management actions to this object, define a condition with Path of **"folder1/subfolder1/file.txt"**.
+For an object named **"folder1/subfolder1/file.txt"**, the full object key is the path. To restrict `Read/Write/Management` actions to this object, define a condition with Path of **"folder1/subfolder1/file.txt"**.
 
 All COS APIs that act directly on an object are subject to Path conditions. See [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) for the list of COS API actions that support Path.
 
@@ -158,7 +162,7 @@ See [Identity and Access Management actions](/docs/cloud-object-storage?topic=cl
 
 **Example**: If a user should be allowed to use HEAD bucket to determine that the bucket exists as well as write objects to folder1/subfolder1/in the bucket,then two policies are required: one with `WriterNoConditions` role with no conditions specified, and a second policy with `ObjectWriter` role where the condition contains the path set to folder1/subfolder1.
 
-It is recommended that you define both a Prefix/Delimiter condition and a Path condition when granting Read/Write AND LIST actions to a user in the same policy. A condition specifying Prefix/Delimiter and a condition specifying Path should be logically ORed in the IAM Policy statement to permit both types of operations (Read/Write/Management of objects OR LIST objects). Failure to include either condition statement will result in the subject having Read/Write/Management OR LIST actions on all objects in the resource, not just on the target path or prefix.
+It is recommended that you define both a Prefix/Delimiter condition and a Path condition when granting Read/Write AND LIST actions to a user in the same policy. A condition specifying Prefix/Delimiter and a condition specifying Path should be logically ORed in the IAM Policy statement to permit both types of operations (`Read/Write/Management` of objects OR `LIST` objects). Failure to include either condition statement will result in the subject having `Read/Write/Management` OR `LIST` actions on all objects in the resource, not just on the target path or prefix.
 {: note}
 
 If a COS custom role supports actions that both support and do not support conditions, and a condition is assigned in the policy, all those actions will not be permitted.
@@ -171,16 +175,16 @@ COS does not support CBR rules that only apply to a specific prefix/delimiter or
 ## Create a new policy for a user with Conditions<!--needs updating with conditions-->
 {: #fgac-new-policy-conditions}
 
-These examples provide list access to the full object hierarchy within folder named "folder1/subfolder1" and provide object `read/write/delete` access to all objects in folder named **"subfolder1"**.
+These examples provide list access to the full object hierarchy within folder named **"folder1/subfolder1"** and provide object `read/write/delete` access to all objects in folder named **"subfolder1"**.
 
 ### UI
 {: #fgac-new-policy-conditions-ui}
 
 <!--Update this section after IAM has released UI feature for condition building.--> Use **"folder1/subfolder1/file.txt"** as example.
 Roles: `Object Lister`, `Object Writer`, `Object Deleter`, `Object Reader`
-Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter `stringMatchAnyOf`  **“/”**, “”}
+Conditions: {Prefix StringMatch **“folder1/subfolder1/*” AND Delimiter** `stringMatchAnyOf`  **“/”**, **“”**}
 OR
-{Path StringMatch “folder1/subfolder1/*”}
+{Path StringMatch **“folder1/subfolder1/*”**}
 
 ### CLI<!--needs updating with conditions-->
 {: #fgac-new-policy-conditions-cli}
@@ -189,7 +193,7 @@ Create an access policy for the specified user in the current account [ibmcloud 
 
 Include an example construction using the CLI of an IAM policy with a condition. Use **"folder1/subfolder1/file.txt"** as example
 Roles: `Object Lister`, `Object Writer`, `Object Deleter`, `Object Reader`
-Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter `stringMatchAnyOf`  **“/”**, “”}
+Conditions: {Prefix StringMatch **“folder1/subfolder1/*”** AND Delimiter `stringMatchAnyOf`  **“/”**, **“”**}
 OR
 {Path StringMatch “folder1/subfolder1/*”}
 
@@ -198,9 +202,9 @@ OR
 
 Include an example construction using the API of an IAM policy with a condition. Use **"folder1/subfolder1/file.txt"** as example.
 Roles: `Object Lister`, `Object Writer`, `Object Deleter`, `Object Reader`
-Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter `stringMatchAnyOf`  **“/”**, “”}
+Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter `stringMatchAnyOf`  **“/”**, **“”**}
 OR
-{Path StringMatch “folder1/subfolder1/*”}
+{Path StringMatch **“folder1/subfolder1/*”**}
 
 
 Request
@@ -415,7 +419,7 @@ Response
 
 Include an example construction using the Terraform of an IAM policy with a condition. Use **"folder1/subfolder1/file.txt"** as example.
 Roles: `Object Lister`, `Object Writer`, `Object Deleter`, `Object Reader`
-Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter `stringMatchAnyOf`  **“/”**, “”}
+Conditions: {Prefix StringMatch **“folder1/subfolder1/*”** AND Delimiter `stringMatchAnyOf`  **“/”**, **“”**}
 OR
 {Path StringMatch “folder1/subfolder1/*”}
 
@@ -429,21 +433,21 @@ Create an access policy and assign it to a [service ID](/docs/cli?topic=cli-ibmc
 
 <!--Update this section after IAM has released UI feature for condition building.--> Use **"folder1/subfolder1/file.txt"** as example.
 Roles: `Object Lister`, `Object Writer`, `Object Deleter`, `Object Reader`
-Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter `stringMatchAnyOf`  **“/”**, “”}
+Conditions: {Prefix StringMatch **“folder1/subfolder1/*”** AND Delimiter `stringMatchAnyOf`  **“/”**, **“”**}
 OR
-{Path StringMatch “folder1/subfolder1/*”}
+{Path `StringMatch` **“folder1/subfolder1/*”**}
 
 ### CLI<!--needs updating with conditions-->
 {: #fgac-new-policy-serviceid-conditions-cli}
 
 Include an example construction using the CLI of an IAM policy with a condition. Use **"folder1/subfolder1/file.txt"** as example
 Roles: `Object Lister`, `Object Writer`, `Object Deleter`, `Object Reader`
-Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter `stringMatchAnyOf`  **“/”**, “”}
+Conditions: {Prefix StringMatch **“folder1/subfolder1/*”** AND Delimiter `stringMatchAnyOf`  **“/”**, **“”**}
 OR
-{Path StringMatch “folder1/subfolder1/*”}
+{Path StringMatch **“folder1/subfolder1/*”**}
 
 **Example**
-Creation of FGAC Policy with Conditions: {Prefix StringMatch “folder1/subfolder1/*” AND Delimiter `stringMatchAnyOf`  **“/”**, “”} for Reader role:
+Creation of FGAC Policy with Conditions: {Prefix StringMatch **“folder1/subfolder1/*”** AND Delimiter `stringMatchAnyOf`  **“/”**, **“”**} for Reader role:
 
 ```sh
 policy.json
