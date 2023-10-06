@@ -100,7 +100,7 @@ Prefix of *"folder1/"* AND no Delimiter
 Prefix of *"folder1/"* AND Delimiter of *"/"*
    - user can only list the objects and subfolders in the 1st level of folder1
    - user can only do list requests that specify delimiter of *"/"*
-   - if user tries to list the contents of subfolder1, access is denied (user would need to have a condition allowing Prefix = “folder1/subfolder1/ for this)
+   - if user tries to list the contents of subfolder1, access is denied (user would need to have a condition allowing Prefix = “folder1/subfolder1/ for this to work)
 
 The following APIs are subject to Prefix/Delimiter conditions:
 - [GET Bucket (List Objects)](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets)
