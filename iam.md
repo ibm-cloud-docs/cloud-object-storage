@@ -65,9 +65,10 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 ## Identity and Access Management actions
 {: #iam-actions}
 
-| Action                                                           | Description                                                                         | Are conditions supported |
-| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- |--------------------------|
+| Action                                                           | Description                                                                         | Condition supported |
+| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- |------------------------------------|
 | `cloud-object-storage.account.get_account_buckets`               | List all buckets in a service instance.                                             |
+| `cloud-object-storage.account.patch_credential`                  |                                              |
 | `cloud-object-storage.bucket.put_bucket`                         | Create a bucket.                                                                    |
 | `cloud-object-storage.bucket.post_bucket`                        | Internal use only - unsupported for users.                                          |
 | `cloud-object-storage.bucket.delete_bucket`                      | Delete a bucket.                                                                    |
