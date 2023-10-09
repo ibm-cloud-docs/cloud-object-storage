@@ -76,6 +76,9 @@ Once a resource is identified, a condition can be used to further scope access f
 Use [IAM v2 policy](/apidocs/iam-policy-management#create-v2-policy) to construct IAM policy containing resource attribute-based conditions using API.
 {: tip}
 
+## Using conditions in an IAM policy
+{: #fgac-conditions}
+
 ### COS supports the following attributes to specify conditions for assigning fine-grained access on COS resources:
 {: #fgac-attributes-supported}
 
