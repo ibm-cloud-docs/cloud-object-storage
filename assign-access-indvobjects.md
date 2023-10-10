@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-10-09"
+lastupdated: "2023-10-10"
 
 keywords: IAM, policy, fine-grained access control
 
@@ -82,7 +82,10 @@ Use [IAM v2 policy](/apidocs/iam-policy-management#create-v2-policy) to construc
 ### COS supports the following attributes to specify conditions for assigning fine-grained access on COS resources:
 {: #fgac-attributes-supported}
 
-**Prefix and Delimiter** are used together to scope all listing permissions for specific objects.
+#### Prefix and Delimiter
+{: #fgac-attributes-prefix-delimeter}
+
+Prefix and Delimeter are used together to scope all listing permissions for specific objects.
 
 If you want to provide listing access to all objects in the bucket, then do not use a Prefix and Delimiter condition.
 {: tip}
@@ -113,7 +116,10 @@ The following APIs are subject to Prefix/Delimiter conditions:
 To give a fine-grained user access to navigate to their folder in the UI, the user will need access to list the root folder of the bucket. See here for how to construct the policy to enable this.
 {: tip}
 
-**Path** is used to scope all read, write and management access on specific objects.
+#### Path
+{: #fgac-attributes-path}
+
+Path is used to scope all read, write and management access on specific objects.
 
 If you want to provide such access to ALL objects in the bucket, do NOT specify a Path condition.
 {: tip}
