@@ -72,7 +72,7 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 | `cloud-object-storage.bucket.put_bucket`                         | Create a bucket.                                                                    |
 | `cloud-object-storage.bucket.post_bucket`                        | Internal use only - unsupported for users.                                          |
 | `cloud-object-storage.bucket.delete_bucket`                      | Delete a bucket.                                                                    |
-| `cloud-object-storage.bucket.get`                                | List all the objects in a bucket.                                                   | prefix, delimeter       |
+| `cloud-object-storage.bucket.get`                                | List all the objects in a bucket.                                                   | [prefix, delimeter](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-prefix-delimeter)       |
 | `cloud-object-storage.bucket.list_crk_id`                        | List the IDs of encryption root keys associated with a bucket.                      |
 | `cloud-object-storage.bucket.head`                               | View bucket metadata.                                                               |
 | `cloud-object-storage.bucket.get_versions`                       | List object versions.                                                               | prefix, delimeter       |
@@ -102,7 +102,7 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 | `cloud-object-storage.bucket.list_bucket_crn`                    | View a bucket CRN.                                                                  |
 | `cloud-object-storage.bucket.get_notifications`                  | Internal use only - unsupported for users.                                          |
 | `cloud-object-storage.bucket.put_notifications`                  | Internal use only - unsupported for users.                                          |
-| `cloud-object-storage.object.get`                                | View and download objects.                                                          | path           |
+| `cloud-object-storage.object.get`                                | View and download objects.                                                          | (path)[]           |
 | `cloud-object-storage.object.head`                               | Read an object's metadata.                                                          | path           |
 | `cloud-object-storage.object.head_torrent`                       | Get headers for a specific torrent of an object.                                    | path           |
 | `cloud-object-storage.object.get_version`                        | Read a specified version of an object.                                              |
