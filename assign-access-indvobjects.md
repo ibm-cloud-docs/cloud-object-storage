@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-10-10"
+lastupdated: "2023-10-11"
 
 keywords: IAM, policy, fine-grained access control
 
@@ -59,21 +59,22 @@ The service is the IBM Cloud Service that contains the resource you are trying t
 #### Role
 {: #fgac-key-concepts-role}
 
-IBM Cloud access roles are groups of actions. Access roles allow the subject to complete specific tasks within the context of the target resources that are defined in the policy. COS supports several pre-defined service roles that makes assigning permissions easier. COS also allows the creation of custom roles. See [Identity and Access Management roles](/docs/cloud-object-storage?topic=cloud-object-storage-iam&interface=ui#iam-roles) for more information on the supported roles for COS. Only the following roles are recommended for assigning individual object access:
-- `Object Writer`
-- `Object Deleter`
-- `Object Lister`
-- `Object Reader`
-- `WriterNoConditions`
+IBM Cloud access roles are groups of actions. Access roles allow the subject to complete specific tasks within the context of the target resources that are defined in the policy. COS supports several pre-defined service roles that makes assigning permissions easier. COS also allows the creation of custom roles. See [Identity and Access Management roles](/docs/cloud-object-storage?topic=cloud-object-storage-iam&interface=ui#iam-roles) for more information on the supported roles for COS. 
 
 See table 1. for the list of COS roles and their interaction with conditions.
 
 #### Condition
 {: #fgac-key-concepts-condition}
 
-Once a resource is identified, a condition can be used to further scope access for a subject to individual objects in a bucket. This is referred to as fine-grained access control. Use a policy with no condition attributes to give full access to the target resource. A single IAM Policy can have more than one condition by using an `OR` or `AND` statement to combine the conditions. The condition statement (containing one or more conditions) should evaluate to TRUE for the user request to be permitted to perform the action. IAM Policy will deny any action that does not get evaluated to be TRUE/allowed by condition.
+Once a resource is identified, a condition can be used to further scope access for a subject to individual objects in a bucket. This is referred to as fine-grained access control.
 
-Use [IAM v2 policy](/apidocs/iam-policy-management#create-v2-policy) to construct IAM policy containing resource attribute-based conditions using API.
+
+A single IAM Policy can have more than one condition by using an `OR` or `AND` statement to combine the conditions. The condition statement (containing one or more conditions) should evaluate to `TRUE` for the user request to be permitted to perform the action. IAM Policy will deny any action that does not get evaluated to be `TRUE`.  The policy statement should contain all condition11 attributes required by the role. If the policy statement does not contain all condition attributes12 required by the role, the actions subject to the omitted condition attributes will be denied
+
+Use a policy with no condition attributes to give full access, as defined by the role, to the target resource.
+{: important}
+
+Use [IAM v2 policy](/apidocs/iam-policy-management#create-v2-policy) to construct IAM policy with attribute-based conditions.
 {: tip}
 
 ## Using conditions in an IAM policy
@@ -85,10 +86,7 @@ Use [IAM v2 policy](/apidocs/iam-policy-management#create-v2-policy) to construc
 #### Prefix and Delimiter
 {: #fgac-attributes-prefix-delimeter}
 
-Prefix and Delimeter are used together to scope all listing permissions for specific objects.
-
-If you want to provide listing access to all objects in the bucket, then do not use a Prefix and Delimiter condition.
-{: tip}
+Prefix and Delimeter are used together to scope all listing permissions to specific objects in a bucket.
 
 The **Prefix** condition attribute defines the prefix for the set of object keys that this condition should allow for listing of objects or folders. For example, in the object named *"folder1/subfolder1/file.txt"*, both *"folder1/"* and *“folder1/subfolder1/”* are possible prefixes.
 
@@ -104,14 +102,17 @@ Prefix of *"folder1/"* AND no Delimiter
    - If user tries to list the subfolder (requests to list prefix = *“folder1/subfolder1/”*), access is denied
 
 Prefix of *"folder1/"* AND Delimiter of *"/"*
-   - User can only list the objects and subfolders in the 1st level of folder1
+   - User can only list the objects and subfolders in the first level of folder1
    - User can only do list requests that specify delimiter of *"/"*
-   - If user tries to list the contents of subfolder1, access is denied (user would need to have a condition allowing Prefix = “folder1/subfolder1/ for this to work)
+   - If user tries to list the contents of subfolder1, access is denied (user would need to have a condition of allowing Prefix = “folder1/subfolder1/ to allow listing the contents of subfolder1)
 
 The following APIs are subject to Prefix/Delimiter conditions:
 - [GET Bucket (List Objects)](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets)
 - GET Bucket Object Versions (List Object Versions)
 - [List Multipart Uploads](/apidocs/cos/cos-compatibility?code=node#listmultipartuploads)
+
+To see the full list of actions and the supported condition attributes, see Identity and [Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions).
+{: tip}
 
 To give a fine-grained user access to navigate to their folder in the UI, the user will need access to list the root folder of the bucket. See here for how to construct the policy to enable this.
 {: tip}
@@ -121,30 +122,32 @@ To give a fine-grained user access to navigate to their folder in the UI, the us
 
 Path is used to scope all read, write and management access on specific objects.
 
-If you want to provide such access to ALL objects in the bucket, do NOT specify a Path condition.
-{: tip}
-
 For an object named *"folder1/subfolder1/file.txt"*, the full object key is the path. To restrict `Read/Write/Management` actions to this object, define a condition with Path of *"folder1/subfolder1/file.txt"*.
 
 All COS APIs that act directly on an object are subject to Path conditions. See [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) for the list of COS API actions that support Path.
 
-Operators used with Condition Attributes: The full list of operators that can be used for prefix, delimiter, and path condition attributes can be found here. IAM policy supports the configuration of multiple values for an attribute by using `stringMatchAnyOf` and `stringEqualsAnyOf`.
+It is recommended that you define both a Prefix/Delimiter condition and a Path condition when granting Read/Write AND List actions to a user in the same policy. Manager, Writer, Reader, and Content Reader are examples of roles where it is recommended to define both a Prefix/Delimiter and Path condition. A condition specifying Prefix/Delimiter and a condition specifying Path should be logically ORed in the IAM Policy statement to permit both types of operations (Read/Write/Management of objects OR LIST objects)
+{: note}
 
-Use of Wildcards: A condition attribute’s values can include a wildcard when the operator is `stringMatch` or `stringMatchAnyOf`. For information on the use of wildcards in a policy see [Assigning access by using wildcard policies](/docs/account?topic=account-wildcard).
+Operators used with Condition Attributes: There are several operators that can be used when defining condition attributes. The full list of operators that can be used for prefix,delimiter, and path condition attributes can be found in [I]AM condition properties](/docs/account?topic=account-iam-condition-properties&interface=ui).
+
+Use of Wildcards: A condition attribute’s values can include a wildcard when the operator is `stringMatch` or `stringMatchAnyOf`.
+
+**Examples of using Wildcards in Condition Statements:**
 
 Consider the object named *"folder1/subfolder1/file.txt"*:
 Path of *“folder1/*”*
 - User will get Read/Write/Management access, as defined by the role, to all objects that start with *“folder1/”*
 
 Prefix of *"folder1/*"* AND no Delimiter
-- For a user list request with prefix set to *“folder1/”* and no Delimiter, the user request will return all objects that start with *“folder1/”*
-- For a user list request with prefix set to *“folder1/”* and Delimiter of *“/”*, the request will return a view of the objects and folders just in the first level of folder1
-- For a user list request with prefix set to “folder1/subfolder1/” and Delimiter of *“/”*, the request will return the objects (and any subfolders) in folder1/subfolder1
+- For an object list request with prefix set to *“folder1/”* and no Delimiter, the user request will return all objects that start with *“folder1/”*
+- For an object list request with prefix set to *“folder1/”* and Delimiter of *“/”*, the request will return a view of the objects and folders just in the first level of folder1
+- For an object list request with prefix set to “folder1/subfolder1/” and Delimiter of *“/”*, the request will return a view of the objects and folders just in the first level of folder1/subfolder1
 
 Prefix of *"folder1/*"* AND Delimiter of *"/"*
-- For a user list request with prefix set to *“folder1/”* and Delimiter of *“/”*, the request will return a view of the objects and folders just in the first level of folder1
-- For a user list request with prefix set to “folder1/subfolder1/” and Delimiter of *“/”*, the request will return the objects (and any subfolders) in folder1/subfolder1
-- For a user list request with prefix set to *“folder1/”* and no Delimiter, the user request will not be permitted
+- For an object list request with prefix set to *“folder1/”* and Delimiter of *“/”*, the request will return a view of the objects and folders just in the first level of folder1
+- For an object list request with prefix set to “folder1/subfolder1/” and Delimiter of *“/”*, the request will return the objects (and any subfolders) in folder1/subfolder1
+- For an object list request with prefix set to *“folder1/”* and no Delimiter, the request will not be permitted since a delimiter of *“/”* must be used in the list request for this policy to evaluate to true.
 
 ## Use of Conditions with COS Service Roles
 {: #fgac-conditions-service-roles}
@@ -164,18 +167,6 @@ Prefix of *"folder1/*"* AND Delimiter of *"/"*
 See [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) for the full list of Actions that each role supports.
 
 **Actions that Don’t Support Conditions**: There are some COS APIs that do not support condition attributes. These include bucket level actions and other actions that don’t apply to one specific object. To see a list of these actions, go to [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions). A condition statement in a policy will apply to all the actions defined by the role. When a condition is configured in a policy with a role that contains actions that do not support conditions, the sub-set of actions that do not support conditions will be denied. Manager, Writer, Reader and Content Reader are examples of roles that contain a combination of actions that support conditions and actions that do not support conditions, these roles are not recommended for use with fine-grained access control for both object listing and object management (`read/write/configuration`).
-
-`WriterNoConditions` is a new IAM role created to be used for certain use cases when assigning access to individual objects. This service role contains actions that do not support condition attributes. If you want to give a user permission to perform actions that do not support conditions while providing fine-grained access control, then you will need to create two separate IAM policies:
-- one that grants the subject “`WriterNoConditions`” role
-- and another policy that contains the role and condition for fine-grained access
-
-**Example**: If a user should be allowed to use HEAD bucket to determine that the bucket exists as well as write objects to folder1/subfolder1/in the bucket,then two policies are required: one with `WriterNoConditions` role with no conditions specified, and a second policy with ObjectWriter role where the condition contains the path set to folder1/subfolder1.
-
-It is recommended that you define both a Prefix/Delimiter condition and a Path condition when granting Read/Write AND LIST actions to a user in the same policy. A condition specifying Prefix/Delimiter and a condition specifying Path should be logically ORed in the IAM Policy statement to permit both types of operations (`Read/Write/Management` of objects OR `LIST` objects). Failure to include either condition statement will result in the subject having `Read/Write/Management` OR `LIST` actions on all objects in the resource, not just on the target path or prefix.
-{: note}
-
-If a COS custom role supports actions that both support and do not support conditions, and a condition is assigned in the policy, all those actions will not be permitted.
-{: note}
 
 All IAM policies with conditions are subject to the [IBM Cloud IAM limits](https://cloud.ibm.com/docs/account?topic=account-known-issues#iam_limits).
 
