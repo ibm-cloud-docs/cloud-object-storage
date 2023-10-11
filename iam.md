@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-10-10"
+lastupdated: "2023-10-11"
 
 keywords: authorization, iam, basics
 
@@ -55,10 +55,7 @@ The following table details actions that are mapped to service access roles. Ser
 | Reader              | In addition to Content Reader actions, Readers can list buckets and read bucket metadata, but not make modifications. | <ul><li>List buckets</li></ul>                                                                              |
 | Writer              | In addition to Reader actions, Writers can create buckets and upload objects.                                         | <ul><li>Create new buckets and objects</li><li>Remove buckets and objects</li></ul>                         |
 | Manager             | In addition to Writer actions, Managers can complete privileged actions that affect access control.                   | <ul><li>Configure retention policies</li><li>Configure bucket firewalls</li><li>Block public ACLs</li></ul> |
-| Object Lister       | Download and list objects.                                                                                            | <ul><li>Download and list objects</li></ul>                                                                          |
-| Object Deleter      | Download and delete objects.                                                                                          | <ul><li>Download and delete objects</li></ul>                                                                 |
-| WriterNoConditions  | Management actions that don't support conditions.                                                                     | <ul><li>Management actions that don't support conditions</li></ul>                                                                              |
-{: caption="Table 3. IAM service access roles and actions"}
+{: caption="Table 2. IAM service access roles and actions"}
 
 For information about assigning user roles in the UI, see [Managing IAM access](/docs/account?topic=account-assign-access-resources).
 
@@ -154,5 +151,5 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 | `cloud-object-storage.bucket.put_public_access_block`            | Add a public ACL block configuration                                                |
 | `cloud-object-storage.bucket.get_public_access_block`            | Read a public ACL block configuration                                               |
 | `cloud-object-storage.bucket.delete_public_access_block`         | Delete a public ACL block configuration                                             |
-{: caption="Table 4. Granular IAM action descriptions"}
+{: caption="Table 3. Granular IAM action descriptions"}
 
