@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-10-11"
+lastupdated: "2023-10-13"
 
 keywords: IAM, policy, fine-grained access control
 
@@ -129,7 +129,7 @@ All COS APIs that act directly on an object are subject to Path conditions. See 
 It is recommended that you define both a Prefix/Delimiter condition and a Path condition when granting Read/Write AND List actions to a user in the same policy. Manager, Writer, Reader, and Content Reader are examples of roles where it is recommended to define both a Prefix/Delimiter and Path condition. A condition specifying Prefix/Delimiter and a condition specifying Path should be logically ORed in the IAM Policy statement to permit both types of operations (Read/Write/Management of objects OR LIST objects)
 {: note}
 
-Operators used with Condition Attributes: There are several operators that can be used when defining condition attributes. The full list of operators that can be used for prefix,delimiter, and path condition attributes can be found in [I]AM condition properties](/docs/account?topic=account-iam-condition-properties&interface=ui).
+Operators used with Condition Attributes: There are several operators that can be used when defining condition attributes. The full list of operators that can be used for prefix,delimiter, and path condition attributes can be found in [IAM condition properties](/docs/account?topic=account-iam-condition-properties&interface=ui).
 
 Use of Wildcards: A condition attribute’s values can include a wildcard when the operator is `stringMatch` or `stringMatchAnyOf`.
 
@@ -149,28 +149,35 @@ Prefix of *"folder1/*"* AND Delimiter of *"/"*
 - For an object list request with prefix set to “folder1/subfolder1/” and Delimiter of *“/”*, the request will return the objects (and any subfolders) in folder1/subfolder1
 - For an object list request with prefix set to *“folder1/”* and no Delimiter, the request will not be permitted since a delimiter of *“/”* must be used in the list request for this policy to evaluate to true.
 
+### Actions that Don’t Support Conditions
+{: #fgac-conditions-actions-not-supported}
+
+There are some COS APIs that do not specify a path or prefix/delimiter in the request. The COS Service roles: `Manager`, `Writer`, `Reader` and `Content Reader` contain some
+actions that do not support conditions. This also applies to custom roles. To allow these actions when using a prefix/delimiter or path condition, the following condition statement is needed in the IAM policy:
+
+```sh
+((path stringExists = true) AND (prefix stringExists = true) AND (delimiter stringExists21= true))"
+```
+
+See the [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) table for the full list of API actions that do not support Path, Prefix, or Delimiter conditions and require the statement above when using fine-grained access.
+
+Refer to the example for using this clause in an IAM policy.
+
 ## Use of Conditions with COS Service Roles
 {: #fgac-conditions-service-roles}
 
-| Access role         | Example actions                                              | Supported with Conditions                            |
+| Access role         | Description of actions                                              | Supported Condition Attributes                            |
 |:--------------------|--------------------------------------------------------------|------------------------------------------------------|
-| Manager             | Make objects public, create, and destroy buckets and objects | Not Recommended |
-| Writer              | Create and destroy buckets and objects                       | Not Recommended |
-| Reader              | List buckets, list objects, and download objects.            | Not Recommended |
-| Content Reader      | List and download objects                                    | Not Recommended |
-| Object Reader       | Download objects                                             | Yes |
-| Object Writer       | Upload objects                                               | Yes |
-| Object Deleter      | Upload objects                                               | Yes |
-| WriterNoConditions  | Upload objects                                               | Yes |
+| Manager             | Make objects public, create, and destroy buckets and objects | Note 1 |
+| Writer              | Create and destroy buckets and objects                       | Note 1 |
+| Reader              | List buckets, list objects, and download objects.            | Note 1 |
+| Content Reader      | List and download objects                                    | Note 1 |
+| Object Reader       | Download objects                                             | Path |
+| Object Writer       | Upload objects                                               | Path |
+| Note 1: These roles support Prefix/Delimiter and Path condition attributes. The roles also include actions that do not support condition attributes. Use the `StringExists` clause in the condition statement to allow these actions. |
 {: caption="Table 1. Use of Conditions with COS Service Roles"}
 
-See [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) for the full list of Actions that each role supports.
-
-**Actions that Don’t Support Conditions**: There are some COS APIs that do not support condition attributes. These include bucket level actions and other actions that don’t apply to one specific object. To see a list of these actions, go to [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions). A condition statement in a policy will apply to all the actions defined by the role. When a condition is configured in a policy with a role that contains actions that do not support conditions, the sub-set of actions that do not support conditions will be denied. Manager, Writer, Reader and Content Reader are examples of roles that contain a combination of actions that support conditions and actions that do not support conditions, these roles are not recommended for use with fine-grained access control for both object listing and object management (`read/write/configuration`).
-
-All IAM policies with conditions are subject to the [IBM Cloud IAM limits](https://cloud.ibm.com/docs/account?topic=account-known-issues#iam_limits).
-
-COS does not support CBR rules that only apply to a specific prefix/delimiter or path.
+See [Cloud Object Storage](/docs/account?topic=account-iam-service-roles-actions&interface=ui#cloud-object-storage-roles) for the full list of actions for each COS service role and the list of condition attributes supported by each action.
 
 ## Create a new policy for a user with Conditions<!--needs updating with conditions-->
 {: #fgac-new-policy-conditions}

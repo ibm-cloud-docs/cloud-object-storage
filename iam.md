@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-10-11"
+lastupdated: "2023-10-13"
 
 keywords: authorization, iam, basics
 
@@ -101,11 +101,8 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 | `cloud-object-storage.bucket.put_notifications`                  | Internal use only - unsupported for users.                                          |
 | `cloud-object-storage.object.get`                                | View and download objects.                                                          | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
 | `cloud-object-storage.object.head`                               | Read an object's metadata.                                                          | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
-| `cloud-object-storage.object.get_torrent`                        | Get headers for a specific torrent of an object.                                    | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
 | `cloud-object-storage.object.get_version`                        | Read a specified version of an object.                                              | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
 | `cloud-object-storage.object.head_version`                       | Get headers for a specific version of an object.                                    | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
-| `cloud-object-storage.object.get_torrent_version`                |                                                                                     | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
-| `cloud-object-storage.object.get_torrent_version_id`             |                                                                                     | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
 | `cloud-object-storage.object.put`                                | Write and upload objects.                                                           | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
 | `cloud-object-storage.object.post`                               | Upload an object using HTML forms [deprecated].                                     | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
 | `cloud-object-storage.object.post_md`                            | Update object metadata using HTML forms [deprecated].                               | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
