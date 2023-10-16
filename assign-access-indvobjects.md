@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-10-13"
+lastupdated: "2023-10-16"
 
 keywords: IAM, policy, fine-grained access control
 
@@ -69,7 +69,7 @@ See table 1. for the list of COS roles and their interaction with conditions.
 Once a resource is identified, a condition can be used to further scope access for a subject to individual objects in a bucket. This is referred to as fine-grained access control.
 
 
-A single IAM Policy can have more than one condition by using an `OR` or `AND` statement to combine the conditions. The condition statement (containing one or more conditions) should evaluate to `TRUE` for the user request to be permitted to perform the action. IAM Policy will deny any action that does not get evaluated to be `TRUE`.  The policy statement should contain all condition11 attributes required by the role. If the policy statement does not contain all condition attributes12 required by the role, the actions subject to the omitted condition attributes will be denied
+A single IAM Policy can have more than one condition by using an `OR` or `AND` statement to combine the conditions. The condition statement (containing one or more conditions) should evaluate to `TRUE` for the user request to be permitted to perform the action. IAM Policy will deny any action that does not get evaluated to be `TRUE`.  The policy statement should contain all condition11 attributes required by the role. If the policy statement does not contain all condition attributes12 required by the role, the actions subject to the omitted condition attributes will be denied.
 
 Use a policy with no condition attributes to give full access, as defined by the role, to the target resource.
 {: important}
