@@ -38,7 +38,7 @@ Virtual Private Endpoints (VPEs) are generally available in all regions.
 
 1. Find the [location and the corresponding direct endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) where your bucket is located.
 
-1. In the {{site.data.keyword.cloud_notm}} console, click the menu icon and select -> VPC Infrastructure -> Network -> Virtual private endpoint gateways. Create a VPE for your {{site.data.keyword.cloud_notm}} instances with the [following instruction](/docs/vpc?topic=vpc-about-vpe).
+1. In the {{site.data.keyword.cloud_notm}} console, click the menu icon and select VPC Infrastructure -> Network -> Virtual private endpoint gateways. Create a VPE for your {{site.data.keyword.cloud_notm}} instances with the [following instruction](/docs/vpc?topic=vpc-about-vpe).
 
 1. After you create your VPE, it may take a few minutes for the new VPE and DNS to complete the process and begin working for your VPC. Completion is confirmed when you see an IP address set in the [details view](/docs/vpc?topic=vpc-vpe-viewing-details-of-an-endpoint-gateway) of the VPE.
 
@@ -50,7 +50,7 @@ Following the previous steps results in a service instance with a VPC local endp
 If you want to restrict your bucket(s) to be accessible from only your VPC(s), or ranges of IP addresses, configure context-based restrictions.
 {: .important}
 
-If you want to find the IP addresss for the VPE look in the [IBM Cloud UI](https://cloud.ibm.com/vpc-ext/network/endpointGateways).
+The [VPE details](https://cloud.ibm.com/docs/vpc?topic=vpc-vpe-viewing-details-of-an-endpoint-gateway&interface=ui) page will provide you with more information, including IP address, after creation.
 {: .tip}
 
 For more information, see [Secure access to services by using service endpoints](/docs/account?topic=account-service-endpoints-overview).
