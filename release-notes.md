@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2023
 
-lastupdated: "2023-10-03"
+lastupdated: "2023-10-16"
 
 
 keywords: updates, releases, news, object storage
@@ -21,6 +21,13 @@ content-type: release-note
 
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
+
+## 16 October 2023
+{: #cloud-object-storage-oct1623}
+{: release-note}
+
+Archive available in the Chennai Single Site
+:   It is now possible to [archive data](/docs/cloud-object-storage/basics?topic=cloud-object-storage-archive).
 
 ## 3 October 2023
 {: #cloud-object-storage-oct0323}
