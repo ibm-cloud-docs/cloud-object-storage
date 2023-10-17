@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-10-16"
+lastupdated: "2023-10-17"
 
 keywords: IAM, policy, fine-grained access control
 
@@ -303,16 +303,16 @@ policy.json:
 }
 ```
 
-Commands to create a IAM Policy using ibmcloudcli :
+Commands to **create** a IAM Policy using ibmcloudcli :
 * `ibmcloud iam  user-policy-create user_email_id --file policy.json --api-version v2`
 
-Commands to update a IAM Policy using ibmcloudcli :
+Commands to **update** a IAM Policy using ibmcloudcli :
 * `ibmcloud iam user-policy-update user_email_id  policy_id  --file policy.json --api-version v2`
 
-Commands to list a IAM Policy using ibmcloudcli :
+Commands to **list** a IAM Policy using ibmcloudcli :
 * `ibmcloud iam user-policy  user_email_id  policy_id  --output json --api-version v2`
 
-Commands to delete a IAM Policy using ibmcloudcli :
+Commands to **delete** a IAM Policy using ibmcloudcli :
 * `ibmcloud iam user-policy-delete  user_email_id  policy_id  policy_id --api-version v2`
 
 If --api-version v2 is not provided the commands will return with error saying the policy does not exists.
