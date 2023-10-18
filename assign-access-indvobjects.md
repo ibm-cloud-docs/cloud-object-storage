@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-10-17"
+lastupdated: "2023-10-18"
 
 keywords: IAM, policy, fine-grained access control
 
@@ -54,14 +54,14 @@ The service is the IBM Cloud Service that contains the resource you are trying t
 - Resource group ID
 - Service instance
 - Resource type with value of *“bucket”*
-- Resource ID (bucket name).
+- Resource ID (bucket name)
 
 #### Role
 {: #fgac-key-concepts-role}
 
-IBM Cloud access roles are groups of actions. Access roles allow the subject to complete specific tasks within the context of the target resources that are defined in the policy. COS supports several pre-defined service roles that makes assigning permissions easier. COS also allows the creation of custom roles. See [Identity and Access Management roles](/docs/cloud-object-storage?topic=cloud-object-storage-iam&interface=ui#iam-roles) for more information on the supported roles for COS. 
+IBM Cloud access roles are groups of actions. Access roles allow the subject to complete specific tasks within the context of the target resources that are defined in the policy. COS supports several pre-defined service roles that makes assigning permissions easier. COS also allows the creation of custom roles. See [Identity and Access Management roles](/docs/cloud-object-storage?topic=cloud-object-storage-iam&interface=ui#iam-roles) for more information on the supported roles for COS.
 
-See table 1. for the list of COS roles and their interaction with conditions.
+See the [table below](#fgac-conditions-service-roles) for the list of COS roles and their interaction with conditions.
 
 #### Condition
 {: #fgac-key-concepts-condition}
@@ -179,7 +179,7 @@ Refer to the example for using this clause in an IAM policy.
 
 See [Cloud Object Storage](/docs/account?topic=account-iam-service-roles-actions&interface=ui#cloud-object-storage-roles) for the full list of actions for each COS service role and the list of condition attributes supported by each action.
 
-## Create a new policy for a User with Conditions<!--needs updating with conditions-->
+## Create a new policy for a User with Conditions
 {: #fgac-new-policy-conditions}
 
 The following examples provide a user with the `“Writer”` COS Service Role with the ability to:
