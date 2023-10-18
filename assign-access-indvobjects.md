@@ -126,7 +126,7 @@ For an object named *"folder1/subfolder1/file.txt"*, the full object key is the 
 
 All COS APIs that act directly on an object are subject to Path conditions. See [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) for the list of COS API actions that support Path.
 
-It is recommended that you define both a Prefix/Delimiter condition and a Path condition when granting `Read/Write` `AND` `List` actions to a user in the same policy. `Manager`, `Writer`, `Reader`, and `Content Reader` are examples of roles where it is recommended to define both a Prefix/Delimiter and Path condition. A condition specifying Prefix/Delimiter and a condition specifying Path should be logically ORed in the IAM Policy statement to permit both types of operations (`Read/Write/Management` of objects `OR` `List` objects)
+It is recommended that you define both a Prefix/Delimiter condition and a Path condition when granting `Read/Write` `AND` `List` actions to a user in the same policy. `Manager`, `Writer`, `Reader`, and `Content Reader` are examples of roles where it is recommended to define both a Prefix/Delimiter and Path condition. A condition specifying Prefix/Delimiter and a condition specifying Path should be logically `ORed` in the IAM Policy statement to permit both types of operations (`Read/Write/Management` of objects `OR` `List` objects)
 {: note}
 
 Operators used with Condition Attributes: There are several operators that can be used when defining condition attributes. The full list of operators that can be used for **Prefix**, **Delimiter** and **Path** condition attributes can be found in [IAM condition properties](/docs/account?topic=account-iam-condition-properties&interface=ui).
