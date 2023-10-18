@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-10-17"
+lastupdated: "2023-10-18"
 
 keywords: IAM, policy, fine-grained access control
 
@@ -54,14 +54,14 @@ The service is the IBM Cloud Service that contains the resource you are trying t
 - Resource group ID
 - Service instance
 - Resource type with value of *“bucket”*
-- Resource ID (bucket name).
+- Resource ID (bucket name)
 
 #### Role
 {: #fgac-key-concepts-role}
 
-IBM Cloud access roles are groups of actions. Access roles allow the subject to complete specific tasks within the context of the target resources that are defined in the policy. COS supports several pre-defined service roles that makes assigning permissions easier. COS also allows the creation of custom roles. See [Identity and Access Management roles](/docs/cloud-object-storage?topic=cloud-object-storage-iam&interface=ui#iam-roles) for more information on the supported roles for COS. 
+IBM Cloud access roles are groups of actions. Access roles allow the subject to complete specific tasks within the context of the target resources that are defined in the policy. COS supports several pre-defined service roles that makes assigning permissions easier. COS also allows the creation of custom roles. See [Identity and Access Management roles](/docs/cloud-object-storage?topic=cloud-object-storage-iam&interface=ui#iam-roles) for more information on the supported roles for COS.
 
-See table 1. for the list of COS roles and their interaction with conditions.
+See the [table below](#fgac-conditions-service-roles) for the list of COS roles and their interaction with conditions.
 
 #### Condition
 {: #fgac-key-concepts-condition}
@@ -86,27 +86,27 @@ Use [IAM v2 policy](/apidocs/iam-policy-management#create-v2-policy) to construc
 #### Prefix and Delimiter
 {: #fgac-attributes-prefix-delimeter}
 
-Prefix and Delimeter are used together to scope all listing permissions to specific objects in a bucket.
+**Prefix** and **Delimeter** are used together to scope all listing permissions to specific objects in a bucket.
 
 The **Prefix** condition attribute defines the prefix for the set of object keys that this condition should allow for listing of objects or folders. For example, in the object named *"folder1/subfolder1/file.txt"*, both *"folder1/"* and *“folder1/subfolder1/”* are possible prefixes.
 
-A **Delimiter** helps the user navigate the bucket as if it was a file hierarchy. Assigning a Delimiter condition statement restricts the type of folder structure the user can generate in the listing. In object named *"folder1/subfolder1/file.txt"*, the delimiter *“/”* can be used to simulate a folder hierarchy where each folder is separated by a *“/”*. If a condition statement allows only a delimiter of *“/”*, then a list request with any other delimiter value is not permitted.
+A **Delimiter** helps the user navigate the bucket as if it was a file hierarchy. Assigning a **Delimiter** condition statement restricts the type of folder structure the user can generate in the listing. In object named *"folder1/subfolder1/file.txt"*, the delimiter *“/”* can be used to simulate a folder hierarchy where each folder is separated by a *“/”*. If a condition statement allows only a delimiter of *“/”*, then a list request with any other delimiter value is not permitted.
 
-Typically the prefix and delimiter are used together in a condition statement with an AND operator. It is possible to use a prefix without a delimiter in a condition statement. If the policy is configured with only a prefix and not a delimiter condition statement, the user can use any or no delimiter to list the objects.
+Typically the prefix and delimiter are used together in a condition statement with an `AND` operator. It is possible to use a prefix without a delimiter in a condition statement. If the policy is configured with only a prefix and not a delimiter condition statement, the user can use any or no delimiter to list the objects.
 
 **Examples of using Prefix and Delimiter Condition Statements**
 (Consider the object named *"folder1/subfolder1/file.txt"*):
-Prefix of *"folder1/"* AND no Delimiter
+**Prefix** of *"folder1/"* `AND` no **Delimiter**
    - User can return a list of every objects that starts with folder1/ by doing a list request on folder1/ and not providing a delimiter
    - If user uses delimiter of *"/"* in the list request, they'd be restricted to only seeing the first level of objects and subfolders in folder1/
    - If user tries to list the subfolder (requests to list prefix = *“folder1/subfolder1/”*), access is denied
 
-Prefix of *"folder1/"* AND Delimiter of *"/"*
+Prefix of *"folder1/"* `AND` Delimiter of *"/"*
    - User can only list the objects and subfolders in the first level of folder1
    - User can only do list requests that specify delimiter of *"/"*
-   - If user tries to list the contents of subfolder1, access is denied (user would need to have a condition of allowing Prefix = “folder1/subfolder1/ to allow listing the contents of subfolder1)
+   - If user tries to list the contents of subfolder1, access is denied (user would need to have a condition of allowing Prefix = *“folder1/subfolder1/"* to allow listing the contents of subfolder1)
 
-The following APIs are subject to Prefix/Delimiter conditions:
+The following APIs are subject to **Prefix/Delimiter** conditions:
 - [GET Bucket (List Objects)](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets)
 - GET Bucket Object Versions (List Object Versions)
 - [List Multipart Uploads](/apidocs/cos/cos-compatibility?code=node#listmultipartuploads)
@@ -126,10 +126,10 @@ For an object named *"folder1/subfolder1/file.txt"*, the full object key is the 
 
 All COS APIs that act directly on an object are subject to Path conditions. See [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) for the list of COS API actions that support Path.
 
-It is recommended that you define both a Prefix/Delimiter condition and a Path condition when granting Read/Write AND List actions to a user in the same policy. Manager, Writer, Reader, and Content Reader are examples of roles where it is recommended to define both a Prefix/Delimiter and Path condition. A condition specifying Prefix/Delimiter and a condition specifying Path should be logically ORed in the IAM Policy statement to permit both types of operations (Read/Write/Management of objects OR LIST objects)
+It is recommended that you define both a Prefix/Delimiter condition and a Path condition when granting `Read/Write` `AND` `List` actions to a user in the same policy. `Manager`, `Writer`, `Reader`, and `Content Reader` are examples of roles where it is recommended to define both a Prefix/Delimiter and Path condition. A condition specifying Prefix/Delimiter and a condition specifying Path should be logically ORed in the IAM Policy statement to permit both types of operations (`Read/Write/Management` of objects `OR` `List` objects)
 {: note}
 
-Operators used with Condition Attributes: There are several operators that can be used when defining condition attributes. The full list of operators that can be used for prefix,delimiter, and path condition attributes can be found in [IAM condition properties](/docs/account?topic=account-iam-condition-properties&interface=ui).
+Operators used with Condition Attributes: There are several operators that can be used when defining condition attributes. The full list of operators that can be used for **Prefix**, **Delimiter** and **Path** condition attributes can be found in [IAM condition properties](/docs/account?topic=account-iam-condition-properties&interface=ui).
 
 Use of Wildcards: A condition attribute’s values can include a wildcard when the operator is `stringMatch` or `stringMatchAnyOf`.
 
@@ -153,13 +153,13 @@ Prefix of *"folder1/*"* AND Delimiter of *"/"*
 {: #fgac-conditions-actions-not-supported}
 
 There are some COS APIs that do not specify a path or prefix/delimiter in the request. The COS Service roles: `Manager`, `Writer`, `Reader` and `Content Reader` contain some
-actions that do not support conditions. This also applies to custom roles. To allow these actions when using a prefix/delimiter or path condition, the following condition statement is needed in the IAM policy:
+actions that do not support conditions. This also applies to custom roles. To allow these actions when using a **Prefix/Delimiter** or **Path** condition, the following condition statement is needed in the IAM policy:
 
 ```sh
 ((path stringExists = true) AND (prefix stringExists = true) AND (delimiter stringExists21= true))"
 ```
 
-See the [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) table for the full list of API actions that do not support Path, Prefix, or Delimiter conditions and require the statement above when using fine-grained access.
+See the [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) table for the full list of API actions that do not support **Path**, **Prefix**, or **Delimiter** conditions and require the statement above when using fine-grained access.
 
 Refer to the example for using this clause in an IAM policy.
 
@@ -179,13 +179,13 @@ Refer to the example for using this clause in an IAM policy.
 
 See [Cloud Object Storage](/docs/account?topic=account-iam-service-roles-actions&interface=ui#cloud-object-storage-roles) for the full list of actions for each COS service role and the list of condition attributes supported by each action.
 
-## Create a new policy for a User with Conditions<!--needs updating with conditions-->
+## Create a new policy for a User with Conditions
 {: #fgac-new-policy-conditions}
 
 The following examples provide a user with the `“Writer”` COS Service Role with the ability to:
 
 1. List access to the full object hierarchy within folder named *"folder1/subfolder1"*.
-2. `read/write/delete` access to all objects in folder named *"subfolder1"*.
+2. `Read/Write/Delete` access to all objects in folder named *"subfolder1"*.
 3. Perform bucket configuration management such as `HEAD Bucket` and `GET/PUT Bucket Versioning`.
 
 
@@ -292,8 +292,8 @@ policy.json:
           },
           {
             "key": "{{resource.attributes.path}}",
-            "operator": "stringMatch",
-            "value": "folder1/subfolder1/*"
+            "operator": "stringExists",
+            "value": false
           }
         ]
       }
