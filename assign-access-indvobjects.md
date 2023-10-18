@@ -627,6 +627,6 @@ rule_operator = "or"
 ## Additional information
 {: #fgac-additional-info}
 
-For additional examples of how to use prefix, delimiter, and path condition attributes, see the [tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-cos-tutorial-fgac) on using Fine Grain Access Control.
+For additional examples of how to use **Prefix**, **Delimiter**, and **Path** condition attributes, see the [tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-cos-tutorial-fgac) on using fine-grained access control.
 
 
