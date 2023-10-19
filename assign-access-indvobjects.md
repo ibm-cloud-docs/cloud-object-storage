@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-10-18"
+lastupdated: "2023-10-19"
 
 keywords: IAM, policy, fine-grained access control
 
@@ -80,10 +80,9 @@ Use [IAM v2 policy](/apidocs/iam-policy-management#create-v2-policy) to construc
 ## Using conditions in an IAM policy
 {: #fgac-conditions}
 
-### COS supports the following attributes to specify conditions for assigning fine-grained access on COS resources:
-{: #fgac-attributes-supported}
+COS supports the following attributes to specify conditions for assigning fine-grained access on COS resources:
 
-#### Prefix and Delimiter
+### Prefix and Delimiter
 {: #fgac-attributes-prefix-delimeter}
 
 **Prefix** and **Delimeter** are used together to scope all listing permissions to specific objects in a bucket.
