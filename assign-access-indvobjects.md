@@ -560,8 +560,10 @@ Response
 ### Terraform of an IAM policy with a condition
 {: #fgac-new-policy-conditions-terraform}
 
-**Example**
-Creation of FGAC Policy with Conditions: {Prefix StringMatch *“folder1/subfolder1/*”* AND Delimiter StringMatchAnyOf  *“/”*, *“”*} for `Writer` role:
+_Examples_
+{: http}
+
+_Creation of FGAC Policy with Conditions: {Prefix StringMatch *“folder1/subfolder1/*”* AND Delimiter StringMatchAnyOf  *“/”*, *“”*} for `Writer` role:_
 
 ```sh
 data "ibm_resource_group" "cos_group" {
@@ -594,8 +596,7 @@ rule_operator = "and"
 }
 ```
 
-**Example**
-Creation of FGAC Policy with Conditions: {Path StringMatch *“folder1/subfolder1/*”*} for `Writer` role:
+_Creation of FGAC Policy with Conditions: {Path StringMatch *“folder1/subfolder1/*”*} for `Writer` role:_
 
 ```sh
 data "ibm_resource_group" "cos_group" {
