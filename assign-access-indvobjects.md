@@ -93,8 +93,8 @@ COS supports the following attributes to specify conditions for assigning fine-g
 
 Typically the prefix and delimiter are used together in a condition statement with an `AND` operator. It is possible to use a prefix without a delimiter in a condition statement. If the policy is configured with only a prefix and not a delimiter condition statement, the user can use any or no delimiter to list the objects.
 
-**Examples of using Prefix and Delimiter Condition Statements**
-(Consider the object named *"folder1/subfolder1/file.txt"*):
+**Examples of using Prefix and Delimiter Condition Statements** (Consider the object named *"folder1/subfolder1/file.txt"*):
+
 Prefix of *"folder1/"* `AND` no Delimiter
    - User can return a list of every objects that starts with folder1/ by doing a list request on folder1/ and not providing a delimiter
    - If user uses delimiter of *"/"* in the list request, they'd be restricted to only seeing the first level of objects and subfolders in folder1/
@@ -141,6 +141,7 @@ A condition attribute’s values can include a wildcard when the operator is `st
 **Examples of using Wildcards in Condition Statements:**
 
 Consider the object named *"folder1/subfolder1/file.txt"*:
+
 Path of *“folder1/*”*
 - User will get Read/Write/Management access, as defined by the role, to all objects that start with *“folder1/”*
 
