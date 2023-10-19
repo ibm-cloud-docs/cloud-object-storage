@@ -102,7 +102,7 @@ The following table list the locations where platform metrics are collected when
 | `South America`       | `Sao Paulo (br-sao)`     | `Sao Paulo (br-sao)` | |
 {: caption="Table 9. Location where platform metrics are available for regional buckets" caption-side="bottom"}
 
-`(*)` On October 30th, platform metrics that you opt-in for a bucket that is provisioned in Madrid will be sent to Madrid. Currently, these platform metrics are sent to Frankfurt. In order to collect these metrics in Madrid on October 30th, you must use the API to reconfigure the {{site.data.keyword.mon_short}} instance to the one located in Madrid. Otherwise, these events will continue to go to Frankfurt.
+`(*)` On October 30th, platform metrics that you opt-in for a bucket that is provisioned in Madrid will be sent to Madrid. Currently, these platform metrics are sent to Frankfurt. In order to collect these metrics in Madrid on October 30th, you must use the API to reconfigure the {{site.data.keyword.mon_short}} instance to the one located in Madrid. Otherwise, these metrics will continue to go to Frankfurt.
 
 The following table list the locations where platform metrics are collected when you configure a cross-regional bucket to collect metrics:
 
