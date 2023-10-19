@@ -89,7 +89,7 @@ COS supports the following attributes to specify conditions for assigning fine-g
 
 The **Prefix** condition attribute defines the prefix for the set of object keys that this condition should allow for listing of objects or folders. For example, in the object named *"folder1/subfolder1/file.txt"*, both *"folder1/"* and *“folder1/subfolder1/”* are possible prefixes.
 
-A **Delimiter** helps the user navigate the bucket as if it was a file hierarchy. Assigning a **Delimiter** condition statement restricts the type of folder structure the user can generate in the listing. In object named *"folder1/subfolder1/file.txt"*, the delimiter *“/”* can be used to simulate a folder hierarchy where each folder is separated by a *“/”*. If a condition statement allows only a delimiter of *“/”*, then a list request with any other delimiter value is not permitted.
+A **Delimiter** helps the user navigate the bucket as if it was a file hierarchy. Assigning a delimiter condition statement restricts the type of folder structure the user can generate in the listing. In object named *"folder1/subfolder1/file.txt"*, the delimiter *“/”* can be used to simulate a folder hierarchy where each folder is separated by a *“/”*. If a condition statement allows only a delimiter of *“/”*, then a list request with any other delimiter value is not permitted.
 
 Typically the prefix and delimiter are used together in a condition statement with an `AND` operator. It is possible to use a prefix without a delimiter in a condition statement. If the policy is configured with only a prefix and not a delimiter condition statement, the user can use any or no delimiter to list the objects.
 
@@ -116,7 +116,7 @@ To see the full list of actions and the supported condition attributes, see Iden
 To give a fine-grained user access to navigate to their folder in the UI, the user will need access to list the root folder of the bucket. See here for how to construct the policy to enable this.
 {: tip}
 
-#### Path
+### Path
 {: #fgac-attributes-path}
 
 Path is used to scope all read, write and management access on specific objects.
@@ -128,9 +128,15 @@ All COS APIs that act directly on an object are subject to Path conditions. See 
 It is recommended that you define both a Prefix/Delimiter condition and a Path condition when granting `Read/Write` `AND` `List` actions to a user in the same policy. `Manager`, `Writer`, `Reader`, and `Content Reader` are examples of roles where it is recommended to define both a Prefix/Delimiter and Path condition. A condition specifying Prefix/Delimiter and a condition specifying Path should be logically `ORed` in the IAM Policy statement to permit both types of operations (`Read/Write/Management` of objects `OR` `List` objects)
 {: note}
 
-Operators used with Condition Attributes: There are several operators that can be used when defining condition attributes. The full list of operators that can be used for **Prefix**, **Delimiter** and **Path** condition attributes can be found in [IAM condition properties](/docs/account?topic=account-iam-condition-properties&interface=ui).
+### Operators used with Condition Attributes
+{: #fgac-attributes-operators}
 
-Use of Wildcards: A condition attribute’s values can include a wildcard when the operator is `stringMatch` or `stringMatchAnyOf`.
+There are several operators that can be used when defining condition attributes. The full list of operators that can be used for **Prefix**, **Delimiter** and **Path** condition attributes can be found in [IAM condition properties](/docs/account?topic=account-iam-condition-properties&interface=ui).
+
+### Use of Wildcards
+{: #fgac-attributes-wildcards}
+
+A condition attribute’s values can include a wildcard when the operator is `stringMatch` or `stringMatchAnyOf`.
 
 **Examples of using Wildcards in Condition Statements:**
 
