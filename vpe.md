@@ -67,8 +67,11 @@ Virtual Private Endpoints (VPEs) are a feature associated with {{site.data.keywo
    Address:	127.0.0.53#53
    Non-authoritative answer:
    Name:	host-2.direct.cloud-object-storage.appdomain.cloud
-   Address: 10.240.64.6    < ---- Your VPE IP address which appears in the COS Activity Tracker logs as the originating IP address.
+   Address: 10.240.64.6
    ```
+
+The second ```Address:``` in each example above is the VPE IP address that appears in your COS Activity Tracker logs as the originating IP address.
+{: .note}
 
 1. You can now use your instance in the VSI.
 
