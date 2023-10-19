@@ -168,13 +168,13 @@ Refer to the example for using this clause in an IAM policy.
 
 | Access role         | Description of actions                                              | Supported Condition Attributes                            |
 |:--------------------|--------------------------------------------------------------|------------------------------------------------------|
-| Manager             | Make objects public, create, and destroy buckets and objects | Note 1 |
-| Writer              | Create and destroy buckets and objects                       | Note 1 |
-| Reader              | List buckets, list objects, and download objects.            | Note 1 |
-| Content Reader      | List and download objects                                    | Note 1 |
+| Manager             | Make objects public, create, and destroy buckets and objects | See Note  |
+| Writer              | Create and destroy buckets and objects                       | See Note  |
+| Reader              | List buckets, list objects, and download objects.            | See Note  |
+| Content Reader      | List and download objects                                    | See Note  |
 | Object Reader       | Download objects                                             | Path |
 | Object Writer       | Upload objects                                               | Path |
-| Note 1: These roles support Prefix/Delimiter and Path condition attributes. The roles also include actions that do not support condition attributes. Use the `StringExists` clause in the condition statement to allow these actions. |
+| **Note:** These roles support Prefix/Delimiter and Path condition attributes. The roles also include actions that do not support condition attributes. Use the `StringExists` clause in the condition statement to allow these actions. |
 {: caption="Table 1. Use of Conditions with COS Service Roles"}
 
 See [Cloud Object Storage](/docs/account?topic=account-iam-service-roles-actions&interface=ui#cloud-object-storage-roles) for the full list of actions for each COS service role and the list of condition attributes supported by each action.
