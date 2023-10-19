@@ -563,7 +563,7 @@ Response
 _Examples_
 {: http}
 
-_Creation of FGAC Policy with Conditions: {Prefix StringMatch *“folder1/subfolder1/*”* AND Delimiter StringMatchAnyOf  *“/”*, *“”*} for `Writer` role:_
+Creation of FGAC Policy with Conditions: {Prefix StringMatch *“folder1/subfolder1/*”* AND Delimiter StringMatchAnyOf  *“/”*, *“”*} for `Writer` role:
 
 ```sh
 data "ibm_resource_group" "cos_group" {
@@ -596,7 +596,7 @@ rule_operator = "and"
 }
 ```
 
-_Creation of FGAC Policy with Conditions: {Path StringMatch *“folder1/subfolder1/*”*} for `Writer` role:_
+Creation of FGAC Policy with Conditions: {Path StringMatch *“folder1/subfolder1/*”*} for `Writer` role:
 
 ```sh
 data "ibm_resource_group" "cos_group" {
