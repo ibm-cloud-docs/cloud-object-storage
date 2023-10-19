@@ -39,13 +39,13 @@ toc:
           - cos-secure-stored-content.md
           - migrate.md
           - cos-single-bucket.md
+          - fgac-tutorial.md
           - kp-encrypt-bucket.md
           - cos-events-at.md
           - cos-mm.md
           - cbr-tutorial.md
           - static-website.md
           - web-application.md
-          - fgac-tutorial.md
     - navgroup:
         id: howto
         topics:
