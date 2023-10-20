@@ -119,7 +119,7 @@ To give a fine-grained user access to navigate to their folder in the UI, the us
 ### Path
 {: #fgac-attributes-path}
 
-Path is used to scope all read, write and management access on specific objects.
+Path is used to scope all Read, Write and Management access on specific objects.
 
 For an object named *"folder1/subfolder1/file.txt"*, the full object key is the path. To restrict Read/Write/Management actions to this object, define a condition with Path of *"folder1/subfolder1/file.txt"*.
 
