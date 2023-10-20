@@ -2,9 +2,9 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-10-19"
+lastupdated: "2023-10-20"
 
-keywords: IAM, policy, fine-grained access control
+keywords: IAM, policy, fine-grained access control, controls, conditions, prefix, delimiter, path, folder1/subfolder1/file.txt, folder1, subfolder1, wildcard, operator, stringMatchAnyOf, stringexists
 
 subcollection: cloud-object-storage
 
@@ -32,7 +32,7 @@ A policy administrator can assign access to individual objects and folders by co
 
 The first step to granting access to individual objects within a bucket is to construct an IAM policy. You can find more information on constructing an IAM access policy for {{site.data.keyword.cos_short}} in the COS tutorial [Limiting access to a single Object Storage bucket](/docs/cloud-object-storage?topic=cloud-object-storage-limit-access&interface=ui#single-bucket-create-policy). For more general information on building IAM policies, please go to [How IBM Cloud IAM works](/docs/account?topic=account-iamoverview). Let’s define some of the key concepts for an access policy.
 
-### Key Concepts
+### Key concepts
 {: #fgac-key-concepts}
 
 The following items are key components of building an IAM access policy for your {{site.data.keyword.cos_short}} resources.
@@ -93,7 +93,7 @@ COS supports the following attributes to specify conditions for assigning fine-g
 
 Typically the prefix and delimiter are used together in a condition statement with an `AND` operator. It is possible to use a prefix without a delimiter in a condition statement. If the policy is configured with only a prefix and not a delimiter condition statement, the user can use any or no delimiter to list the objects.
 
-**Examples of using Prefix and Delimiter Condition Statements** (Consider the object named *"folder1/subfolder1/file.txt"*):
+**Examples of using Prefix and Delimiter condition statements** (Consider the object named *"folder1/subfolder1/file.txt"*):
 
 Prefix of *"folder1/"* `AND` no Delimiter
    - User can return a list of every objects that starts with folder1/ by doing a list request on folder1/ and not providing a delimiter
@@ -128,17 +128,17 @@ All COS APIs that act directly on an object are subject to Path conditions. See 
 It is recommended that you define both a Prefix/Delimiter condition and a Path condition when granting Read/Write `AND` List actions to a user in the same policy. `Manager`, `Writer`, `Reader`, and `Content Reader` are examples of roles where it is recommended to define both a Prefix/Delimiter and Path condition. A condition specifying Prefix/Delimiter and a condition specifying Path should be logically `ORed` in the IAM Policy statement to permit both types of operations (Read/Write/Management of objects `OR` List objects)
 {: note}
 
-### Operators used with Condition Attributes
+### Operators used with condition attributes
 {: #fgac-attributes-operators}
 
 There are several operators that can be used when defining condition attributes. The full list of operators that can be used for **Prefix**, **Delimiter** and **Path** condition attributes can be found in [IAM condition properties](/docs/account?topic=account-iam-condition-properties&interface=ui).
 
-### Use of Wildcards
+### Use of wildcards
 {: #fgac-attributes-wildcards}
 
 A condition attribute’s values can include a wildcard when the operator is `stringMatch` or `stringMatchAnyOf`.
 
-**Examples of using Wildcards in Condition Statements:**
+**Examples of using wildcards in condition statements:**
 
 Consider the object named *"folder1/subfolder1/file.txt"*:
 
@@ -153,9 +153,9 @@ Prefix of *"folder1/*"* AND no Delimiter
 Prefix of *"folder1/*"* AND Delimiter of *"/"*
 - For an object list request with prefix set to *“folder1/”* and Delimiter of *“/”*, the request will return a view of the objects and folders just in the first level of folder1
 - For an object list request with prefix set to “folder1/subfolder1/” and Delimiter of *“/”*, the request will return the objects (and any subfolders) in folder1/subfolder1
-- For an object list request with prefix set to *“folder1/”* and no Delimiter, the request will not be permitted since a delimiter of *“/”* must be used in the list request for this policy to evaluate to true.
+- For an object list request with prefix set to *“folder1/”* and no Delimiter, the request will not be permitted since a delimiter of *“/”* must be used in the list request for this policy to evaluate to true
 
-### Actions that Don’t Support Conditions
+### Actions that do not support conditions
 {: #fgac-conditions-actions-not-supported}
 
 There are some COS APIs that do not specify a path or prefix/delimiter in the request. The COS Service roles: `Manager`, `Writer`, `Reader` and `Content Reader` contain some
@@ -169,7 +169,7 @@ See the [Identity and Access Management actions](/docs/cloud-object-storage?topi
 
 Refer to the example for using this clause in an IAM policy.
 
-## Use of Conditions with COS Service Roles
+## Use of conditions with COS service roles
 {: #fgac-conditions-service-roles}
 
 | Access role         | Description of actions                                              | Supported Condition Attributes                            |
@@ -185,7 +185,7 @@ Refer to the example for using this clause in an IAM policy.
 
 See [Cloud Object Storage](/docs/account?topic=account-iam-service-roles-actions&interface=ui#cloud-object-storage-roles) for the full list of actions for each COS service role and the list of condition attributes supported by each action.
 
-## Create a new policy for a User with Conditions
+## Create a new policy for a user with conditions
 {: #fgac-new-policy-conditions}
 
 The following examples provide a user with the `“Writer”` COS Service Role with the ability to:
@@ -564,7 +564,7 @@ Response
 _Examples_
 {: http}
 
-Creation of FGAC Policy with Conditions: {Prefix StringMatch *“folder1/subfolder1/*”* AND Delimiter StringMatchAnyOf  *“/”*, *“”*} for `Writer` role:
+Creation of a fine-grained access control with conditions: {Prefix StringMatch *“folder1/subfolder1/*”* AND Delimiter StringMatchAnyOf  *“/”*, *“”*} for `Writer` role:
 
 ```sh
 data "ibm_resource_group" "cos_group" {
@@ -597,7 +597,7 @@ rule_operator = "and"
 }
 ```
 
-Creation of FGAC Policy with Conditions: {Path StringMatch *“folder1/subfolder1/*”*} for `Writer` role:
+Creation of a fine-grained access control policy with conditions: {Path StringMatch *“folder1/subfolder1/*”*} for `Writer` role:
 
 ```sh
 data "ibm_resource_group" "cos_group" {
