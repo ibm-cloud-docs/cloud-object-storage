@@ -194,18 +194,9 @@ The following examples provide a user with the `“Writer”` COS Service Role w
 2. Read/Write/Delete access to all objects in folder named *"subfolder1"*.
 3. Perform bucket configuration management such as `HEAD Bucket` and `GET/PUT Bucket Versioning`.
 
-
-### UI
-{: #fgac-new-policy-conditions-ui}
-
-<!--Update this section after IAM has released UI feature for condition building.--> Use *"folder1/subfolder1/file.txt"* as example.
-Roles: `Object Lister`, `Object Writer`, `Object Deleter`, `Object Reader`
-Conditions: {Prefix StringMatch *“folder1/subfolder1/*”* AND Delimiter `stringMatchAnyOf`  *“/”*, *“”*}
-OR
-{Path StringMatch *“folder1/subfolder1/*”*}
-
 ### CLI of an IAM policy with a condition
 {: #fgac-new-policy-conditions-cli}
+{: cli}
 
 Create user policy over CLI general reference [link](/docs/cli?topic=cli-ibmcloud_commands_iam).
 
@@ -326,6 +317,7 @@ If --api-version v2 is not provided the commands will return with error saying t
 
 ### API of an IAM policy with a condition
 {: #fgac-new-policy-conditions-api}
+{: api}
 
 Example using *"folder1/subfolder1/file.txt"*.
 
@@ -560,6 +552,7 @@ Response
 
 ### Terraform of an IAM policy with a condition
 {: #fgac-new-policy-conditions-terraform}
+{: terraform}
 
 _Examples_
 {: http}
