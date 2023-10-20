@@ -4,7 +4,7 @@ copyright:
   years: 2023
 lastupdated: "2023-10-20"
 
-keywords: IAM, policy, fine-grained access control, controls, conditions, prefix, delimiter, path, folder1/subfolder1/file.txt, folder1, subfolder1, wildcard, operator
+keywords: IAM, policy, fine-grained access control, controls, conditions, prefix, delimiter, path, folder1/subfolder1/file.txt, folder1, subfolder1, wildcard, operator, stringMatchAnyOf, stringexists
 
 subcollection: cloud-object-storage
 
@@ -153,7 +153,7 @@ Prefix of *"folder1/*"* AND no Delimiter
 Prefix of *"folder1/*"* AND Delimiter of *"/"*
 - For an object list request with prefix set to *“folder1/”* and Delimiter of *“/”*, the request will return a view of the objects and folders just in the first level of folder1
 - For an object list request with prefix set to “folder1/subfolder1/” and Delimiter of *“/”*, the request will return the objects (and any subfolders) in folder1/subfolder1
-- For an object list request with prefix set to *“folder1/”* and no Delimiter, the request will not be permitted since a delimiter of *“/”* must be used in the list request for this policy to evaluate to true.
+- For an object list request with prefix set to *“folder1/”* and no Delimiter, the request will not be permitted since a delimiter of *“/”* must be used in the list request for this policy to evaluate to true
 
 ### Actions that do not support conditions
 {: #fgac-conditions-actions-not-supported}
