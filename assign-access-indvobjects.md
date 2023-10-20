@@ -25,7 +25,7 @@ Each object stored in a COS bucket has a unique key, and these keys often follow
 
 **Example**: An access policy can be created for all objects and subfolders in the folder named *"folder1"*, or access can be assigned for just objects in the subdirectory named *"subfolder1"*.
 
-A policy administrator can assign access to individual objects and folders by configuring conditions when creating IAM access policies. The next section describes how to construct these types of policies
+A policy administrator can assign access to individual objects and folders by configuring conditions when creating IAM access policies. The next section describes how to construct these types of policies.
 
 ## Constructing a fine-grained access control policy
 {: #fgac-construct-policy}
