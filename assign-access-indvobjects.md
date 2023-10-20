@@ -167,7 +167,7 @@ actions that do not support conditions. This also applies to custom roles. To al
 
 See the [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) table for the full list of API actions that do not support **Path**, **Prefix**, or **Delimiter** conditions and require the statement above when using fine-grained access.
 
-Refer to the example for using this clause in an IAM policy.
+Refer to the [example](#fgac-conditions-actions-not-supported) for using this clause in an IAM policy.
 
 ## Use of conditions with COS service roles
 {: #fgac-conditions-service-roles}
