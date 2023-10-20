@@ -42,7 +42,7 @@ You can configure request metrics and usage metrics.
 
     Any alert thresholds exceeded on usage metrics will not trigger until the next time the metrics are sent to the {{site.data.keyword.mon_short}} service.{: important}
 
-- Request metrics are sent immediately.
+- Request metrics are sent continuously.
 
 You can configure a bucket by using the UI or the API.
 
@@ -124,7 +124,7 @@ If you have configured your bucket to collect platform metrics, you can monitor 
 
     To identify the location, check the bucket UI configuration details for monitoring. {: tip}
 
-- You must access the web UI of the {{site.data.keyword.mon_short}} instance in that location. For more information, see [Launching the web UI through the IBM Cloud UI](/docs/activity-tracker?topic=activity-tracker-observe).
+- You must access the web UI of the {{site.data.keyword.mon_short}} instance in that location. For more information, see [Launching the web UI through the IBM Cloud UI](/docs/monitoring?topic=monitoring-launch).
 
 You can only provision 1 instance of the {{site.data.keyword.mon_short}} service per location to collect platform metrics. Therefore, you must launch the UI of the {{site.data.keyword.mon_short}} instance that is configured to collect platform metrics in the location that you need. 
 
