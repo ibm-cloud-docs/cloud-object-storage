@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2023
 
-lastupdated: "2022-05-11"
+lastupdated: "2023-10-24"
 
 keywords: worm, immutable, policy, retention, compliance
 
@@ -23,7 +23,7 @@ Immutable Object Storage preserves electronic records and maintains data integri
 This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
 {: note}
 
-Policies are enforced until the end of a retention period, and can not be altered until the retention period has expired. While {{site.data.keyword.cos_full_notm}} makes use of the S3 API for most operations, the APIs used for configuring retention policies is not the same as the S3 API, although some terminology may be shared. Read this documentation carefully to prevent any users in your organization from creating objects that can not be deleted, even by IBM Cloud administrators.  
+Policies are enforced until the end of a retention period, and can not be altered until the retention period has expired. While {{site.data.keyword.cos_full_notm}} makes use of the S3 API for most operations, the APIs used for configuring retention policies is not the same as the S3 API, although some terminology may be shared. Read this documentation carefully to prevent any users in your organization from creating objects that can not be deleted, even by IBM Cloud administrators.
 {:important}
 
 This feature can be used by any user that needs long-term data retention in their environment, including but not limited to organizations in the following industries:
@@ -66,7 +66,7 @@ A maximum retention period of 1000 years can be specified for the objects.
 To create a retention policy on a bucket, you need Manager role. See [Bucket permissions](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions) for more details.
 {:important}
 
-### Legal hold 
+### Legal hold
 {: #immutable-terminology-hold}
 
 Certain objects might need to be prevented from modification after a retention period expires. An example is an incomplete legal review, where records might need to be accessible for an extended duration beyond the retention period originally set. A legal hold flag can then be applied at the object level.
@@ -105,7 +105,7 @@ When using immutable Object Storage, it is the client's responsibility to check 
 * [Financial Industry Regulatory Authority (FINRA) Rule 4511(c)](https://www.finra.org/rules-guidance/rulebooks/finra-rules/4511){: external}, and
 * [Commodity Futures Trading Commission (CFTC) Rule 1.31(c)-(d)](https://www.ecfr.gov/cgi-bin/text-idx?SID=2404f765a6f79e0b7fcf05b6844046cb&mc=true&node=se17.1.1_131&rgn=div8){: external}
 
-To assist clients in making informed decisions, IBM engaged Cohasset Associates Inc. to conduct an independent assessment of IBM’s Immutable Object Storage. Review [Cohasset Associates Inc.’s report](images/immutable-cos.pdf){: external} that provides details on the assessment of the Immutable Object Storage feature of IBM Cloud Object Storage. 
+To assist clients in making informed decisions, IBM engaged Cohasset Associates Inc. to conduct an independent assessment of IBM’s Immutable Object Storage. Review [Cohasset Associates Inc.’s report](images/ibm-cohasset-assessment-2019-05-21.pdf){: external} that provides details on the assessment of the Immutable Object Storage feature of IBM Cloud Object Storage. 
 
 ### Audit of access and transactions
 {: #immutable-audit}
