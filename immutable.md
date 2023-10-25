@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2023
 
-lastupdated: "2023-10-24"
+lastupdated: "2023-10-25"
 
 keywords: worm, immutable, policy, retention, compliance
 
@@ -17,7 +17,7 @@ subcollection: cloud-object-storage
 # Using Immutable Object Storage to protect buckets
 {: #immutable}
 
-Immutable Object Storage preserves electronic records and maintains data integrity. Retention policies ensure that data is stored in a WORM (Write-Once-Read-Many), non-erasable and non-rewritable manner. This policy is enforced until the end of a retention period and the removal of any legal holds. 
+Immutable Object Storage preserves electronic records and maintains data integrity. Retention policies ensure that data is stored in a WORM (Write-Once-Read-Many), non-erasable and non-rewritable manner. This policy is enforced until the end of a retention period and the removal of any legal holds.
 {: shortdesc}
 
 This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
@@ -105,7 +105,7 @@ When using immutable Object Storage, it is the client's responsibility to check 
 * [Financial Industry Regulatory Authority (FINRA) Rule 4511(c)](https://www.finra.org/rules-guidance/rulebooks/finra-rules/4511){: external}, and
 * [Commodity Futures Trading Commission (CFTC) Rule 1.31(c)-(d)](https://www.ecfr.gov/cgi-bin/text-idx?SID=2404f765a6f79e0b7fcf05b6844046cb&mc=true&node=se17.1.1_131&rgn=div8){: external}
 
-To assist clients in making informed decisions, IBM engaged Cohasset Associates Inc. to conduct an independent assessment of IBM’s Immutable Object Storage. Review [Cohasset Associates Inc.’s report](/docs/images/ibm-cohasset-assessment-2019-05-21.pdf){: external} that provides details on the assessment of the Immutable Object Storage feature of IBM Cloud Object Storage. 
+To assist clients in making informed decisions, IBM engaged Cohasset Associates Inc. to conduct an independent assessment of IBM’s Immutable Object Storage. Review [Cohasset Associates Inc.’s report](https://cloud.ibm.com/media/docs/downloads/cos/immutable-cos.pdf){: external} that provides details on the assessment of the Immutable Object Storage feature of IBM Cloud Object Storage. 
 
 ### Audit of access and transactions
 {: #immutable-audit}
