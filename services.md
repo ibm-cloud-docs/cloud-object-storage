@@ -60,7 +60,7 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | `us-east`  | Yes    | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `us-east`        | Yes       | Yes        | `us-east`  | Yes         | Yes      |
 | `ca-tor`   | No     | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `ca-tor`         | Yes       | Yes        | `ca-tor`   | Yes         | Yes      |
 | `br-sao`   | No     | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `br-sao`         | Yes       | Yes        | `br-sao`   | Yes         | Yes      |
-| `eu-es`    | No     | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `eu-de`          | No        | Yes        | `eu-de`    | Yes         | Yes      |
+| `eu-es`    | No     | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `eu-es`          | No        | Yes        | `eu-es`    | Yes         | Yes      |
 
 It is possible to create a bucket and associate any available Key Protect or Hyper Protect Crypto Services instance with any of the listed Cloud Object Storage locations. Hyper Protect Crypto Services is only available in selected locations and it is your responsibility to ensure the location/region you select meets any pertinent requirements. Please refer to [Hyper Protect Crypto Services documentation](/docs/hs-crypto?topic=hs-crypto-regions) and [IBM Key Protect](/docs/key-protect?topic=key-protect-regions) for a list of regions/locations currently available.
 {: note}

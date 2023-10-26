@@ -22,6 +22,13 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
+## 30 October 2023
+{: #cloud-object-storage-oct1623}
+{: release-note}
+
+Encryption update
+:   Buckets can be created in the `eu-es` region for Madrid regional using [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started) and [{{site.data.keyword.mon_full}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started).
+
 ## 16 October 2023
 {: #cloud-object-storage-oct1623}
 {: release-note}
