@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2022
-lastupdated: "2020-04-27"
+  years: 2019, 2023
+lastupdated: "2023-10-27"
 
 keywords: metrics, monitoring, object storage, tutorial
 
@@ -18,20 +18,20 @@ completion-time: 30m
 
 # Monitoring {{site.data.keyword.cos_short}} activity in {{site.data.keyword.mon_short}}
 {: #monitoring-cos}
-{: toc-content-type="tutorial"} 
-{: toc-completion-time="30m"} 
+{: toc-content-type="tutorial"}
+{: toc-completion-time="30m"}
 
-Tracking {{site.data.keyword.cos_full}} events with {{site.data.keyword.at_full}} provides insights and information about what is happening with your data. 
+Tracking {{site.data.keyword.cos_full}} events with {{site.data.keyword.at_full}} provides insights and information about what is happening with your data.
 {: shortdesc}
 
-This tutorial provides an introduction to finding usage information regarding your {{site.data.keyword.cos_short}} instance using {{site.data.keyword.mon_short}}. 
+This tutorial provides an introduction to finding usage information regarding your {{site.data.keyword.cos_short}} instance using {{site.data.keyword.mon_short}}.
 
-If you're not familiar with {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). Also, if you're not familiar with {{site.data.keyword.mon_full}}, you may wish to check out how to [get started with {{site.data.keyword.mon_short}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started).
+If you're not familiar with {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). Also, if you're not familiar with {{site.data.keyword.mon_full}}, you may wish to see [Using IBM Cloud Monitoring with IBM Cloud Storage {{site.data.keyword.mon_short}}](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration).
 
 ## Before you begin
 {: #monitor-cos-prereqs}
 
-If you are already managing instances of {{site.data.keyword.cos_short}} or {{site.data.keyword.mon_short}}, you do not need to create more. However, as this tutorial will modify and configure the instance we are working with, make sure that any accounts or services are not being used in a production environment. 
+If you are already managing instances of {{site.data.keyword.cos_short}} or {{site.data.keyword.mon_short}}, you do not need to create more. However, as this tutorial will modify and configure the instance we are working with, make sure that any accounts or services are not being used in a production environment.
 
 This tutorial will create a new bucket and a new instance of {{site.data.keyword.mon_short}} in the process.  It is, of course, possible to associate an new or existing instance of {{site.data.keyword.mon_short}} with an existing bucket through the bucket's configuration panel, but we'll start fresh in this case.
 
@@ -44,7 +44,7 @@ For this tutorial, you need:
 When naming buckets or objects, be sure to avoid the use of Personally Identifiable Information (PII). PII is information that can identify any user (natural person) by name, location, or any other means.
 {: note}
 
-## Create a new bucket 
+## Create a new bucket
 {: #mon-tut-create-bucket}
 {: step}
 
@@ -52,7 +52,7 @@ Navigate to your {{site.data.keyword.cos_short}} instance, and click on the **Cr
 
 ![Navigate to COS](images/mon-tut-1-create-bucket.png)
 
-## Create a custom bucket 
+## Create a custom bucket
 {: #mon-tut-custom-bucket}
 {: step}
 
@@ -60,11 +60,11 @@ We're going to want to create a custom bucket in order to provision our new {{si
 
 ![Create a custom bucket](images/mon-tut-2-custom-bucket.png)
 
-## Name the new bucket 
+## Name the new bucket
 {: #mon-tut-name-bucket}
 {: step}
 
-Give the bucket a memorable name.  In this case the new bucket will be called `monitored-files` and it's being created in the `us-east` region. 
+Give the bucket a memorable name.  In this case the new bucket will be called `monitored-files` and it's being created in the `us-east` region.
 
 ![Name the bucket](images/mon-tut-3-name-bucket.png)
 
