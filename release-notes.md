@@ -26,8 +26,8 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 {: #cloud-object-storage-oct3023}
 {: release-note}
 
-Activity Tracker update
-:   Buckets can be created in the `eu-es` region for Madrid regional using [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started).
+Activity Tracker and Monitoring update
+:   Buckets can be created in the `eu-es` region for Madrid regional using [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started) and [{{site.data.keyword.mon_full}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started).
 
 ## 16 October 2023
 {: #cloud-object-storage-oct1623}
