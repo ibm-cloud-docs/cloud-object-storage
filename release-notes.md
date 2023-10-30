@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2023
 
-lastupdated: "2023-10-16"
+lastupdated: "2023-10-30"
 
 
 keywords: updates, releases, news, object storage
@@ -21,6 +21,13 @@ content-type: release-note
 
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
+
+## 30 October 2023
+{: #cloud-object-storage-oct3023}
+{: release-note}
+
+Activity Tracker update
+:   Buckets can be created in the `eu-es` region for Madrid regional using [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started).
 
 ## 16 October 2023
 {: #cloud-object-storage-oct1623}
