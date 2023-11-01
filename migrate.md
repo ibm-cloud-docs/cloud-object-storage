@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2020
-lastupdated: "2020-06-19"
+  years: 2020, 2023
+lastupdated: "2023-11-01"
 
 keywords: migrate, amazon, aws
 
@@ -37,12 +37,12 @@ Documentation for any project will help keep you keep track of your resources as
 ## Determine your solution
 {: migrate-options}
 
-It is true that a massively complex [migration](https://www.ibm.com/cloud/mass-data-migration){: external} requires a complete service to plan and implement migrating your data to {{site.data.keyword.cos_full_notm}}. But whatever the size of your data, your goals and timetable take precedence. Once you have provisioned and set your target, it is time to choose a process to achieve your goals on your time. 
+It is true that a massively complex [migration](https://www.ibm.com/cloud/mass-data-migration){: external} requires a complete service to plan and implement migrating your data to {{site.data.keyword.cos_full_notm}}. But whatever the size of your data, your goals and timetable take precedence. Once you have provisioned and set your target, it is time to choose a process to achieve your goals on your time.
 
 There are many ways to achieve the goal of migrating your AWS data. Integrated solutions provide comprehensive guides to migration, as shown in the [{{site.data.keyword.icp4i_full_notm}}](https://www.ibm.com/cloud/cloud-pak-for-integration/high-speed-data-transfer){: external}. In addition to full-featured migration services, you may also want to investigate third party migration tools as part of your investigation. But don't forget that there are many CLI and GUI tools readily available for use as part of your migration.
 
-* [COS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-cli-plugin-ic-cos-cli) can be used for many operations. For example, you may wish to use the CLI to configure your {{site.data.keyword.cos_full_notm}} instances, and to create and configure buckets.
-* [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) can be used to list your current bucket's contents to prepare for migrating from AWS, among other operations: 
+* [COS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli) can be used for many operations. For example, you may wish to use the CLI to configure your {{site.data.keyword.cos_full_notm}} instances, and to create and configure buckets.
+* [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) can be used to list your current bucket's contents to prepare for migrating from AWS, among other operations:
 
 ```bash
 aws s3 ls --recursive s3://<BUCKET_NAME> --summarize > bucket-contents-source.txt
@@ -53,10 +53,10 @@ aws s3 ls --recursive s3://<BUCKET_NAME> --summarize > bucket-contents-source.tx
 ### Migrate your data
 {: migrate-data-strategy}
 
-Based on the process and tools you've chosen, you will want to choose a strategy for migrating your data. We can take a look at a simplified process using the command line and the Go-based `rclone` executable as an example. 
+Based on the process and tools you've chosen, you will want to choose a strategy for migrating your data. We can take a look at a simplified process using the command line and the Go-based `rclone` executable as an example.
 
 1. Install `rclone` from [either a package manager or precompiled binary](https://rclone.org/install/){: external}. There are more configuration options available with explanations at the {{site.data.keyword.cos_full_notm}} [documentation](/docs/cloud-object-storage?topic=cloud-object-storage-rclone).
-   
+
    ```bash
    curl https://rclone.org/install.sh | sudo bash
    ```
@@ -81,9 +81,9 @@ You may start by creating 'profiles' for your source and destination of the migr
    type = s3
    provider = AWS
    env_auth = false
-   access_key_id = 
-   secret_access_key = 
-   region = 
+   access_key_id =
+   secret_access_key =
+   region =
    ```
    {: codeblock}
 
@@ -101,17 +101,17 @@ To complement the credentials of the source, we look at configuring the destinat
    type = s3
    provider = IBMCOS
    env_auth = false
-   region = 
-   access_key_id = 
-   secret_access_key = 
-   endpoint = 
+   region =
+   access_key_id =
+   secret_access_key =
+   endpoint =
 
    ```
    {: codeblock}
 
 1. Paste your [HMAC](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) `access_key_id` and `secret_access_key` into the appropriate fields of your configuration as shown in the first step. As noted in the beginning of the guide, you will want to enter the appropriate values for your instance regarding your [region and endpoint](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
 
-#### Verify your configurations 
+#### Verify your configurations
 {: #migrate-verify-config}
 
 1. List the buckets from your source to verify `rclone` is properly configured for retrieval.
@@ -156,4 +156,4 @@ Integrated query-in-place dashboards allows you to see analytics based directly 
 ## Next Steps
 {: #migrate-next-steps}
 
-Get started by visiting the [catalog](https://cloud.ibm.com){: external}, and creating the resources to begin your journey from AWS to {{site.data.keyword.cos_full_notm}} with confidence and efficiency. 
+Get started by visiting the [catalog](https://cloud.ibm.com){: external}, and creating the resources to begin your journey from AWS to {{site.data.keyword.cos_full_notm}} with confidence and efficiency.
