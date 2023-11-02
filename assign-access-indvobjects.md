@@ -164,7 +164,7 @@ There are some COS APIs that do not specify a path or prefix/delimiter in the re
 actions that do not support conditions. This also applies to custom roles. To allow these actions when using a **Prefix/Delimiter** or **Path** condition, the following condition statement is needed in the IAM policy:
 
 ```sh
-((path stringExists = true) AND (prefix stringExists = true) AND (delimiter stringExists21= true))"
+((path stringExists = true) AND (prefix stringExists = true) AND (delimiter stringExists= true))"
 ```
 
 See the [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) table for the full list of API actions that do not support **Path**, **Prefix**, or **Delimiter** conditions and require the statement above when using fine-grained access.
@@ -182,8 +182,9 @@ Refer to the [example](#fgac-conditions-actions-not-supported) for using this cl
 | Content Reader      | List and download objects                                    | See Note  |
 | Object Reader       | Download objects                                             | Path |
 | Object Writer       | Upload objects                                               | Path |
-| **Note:** These roles support Prefix/Delimiter and Path condition attributes. The roles also include actions that do not support condition attributes. Use the [`StringExists`](#fgac-conditions-actions-not-supported) clause in the condition statement to allow these actions. |
 {: caption="Table 1. Use of Conditions with COS Service Roles"}
+
+**Note:** These roles support Prefix/Delimiter and Path condition attributes. The roles also include actions that do not support condition attributes. Use the [`stringExists`](#fgac-conditions-actions-not-supported) clause in the condition statement to allow these actions.
 
 See [Cloud Object Storage](/docs/account?topic=account-iam-service-roles-actions&interface=ui#cloud-object-storage-roles) for the full list of actions for each COS service role and the list of condition attributes supported by each action.
 
