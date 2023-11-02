@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-10-30"
+lastupdated: "2023-11-02"
 
 keywords: object, bucket, iam, policy, role, tutorial
 
@@ -20,7 +20,7 @@ completion-time: 15m
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Controling access to individual objects in a bucket
+# Controlling access to individual objects in a bucket
 {: #object-access-tutorial}
 {: toc-content-type="tutorial"}
 {: toc-services="cloud-object-storage"}
