@@ -74,19 +74,19 @@ You can change the storage class by manually moving or copying the data from one
 ## Can the location of a bucket be changed?
 {: #faq-change-loc}
 {: faq}
- 
+
 To change a location, create a new bucket in the desired location and move existing data to the new bucket.
 
 ## Does data consistency in {{site.data.keyword.cos_short}} come with a performance impact?
 {: #faq-consistency}
 {: faq}
- 
+
 Consistency with any distributed system comes with a cost, because the efficiency of the {{site.data.keyword.cos_full_notm}} dispersed storage system is not trivial, but is lower compared to systems with multiple synchronous copies.
 
 ## Aren't there performance implications if my application needs to manipulate large objects?
 {: #faq-large}
 {: faq}
- 
+
 For performance optimization, objects can be uploaded and downloaded in multiple parts, in parallel.
 
 
@@ -402,7 +402,7 @@ You can use IBM Cloud CLI or the API to download large objects. Alternatively, p
 {: faq}
 
 The data are spread immediately without delay and the uploaded files are available once the write is successful.
-   
+
 ## How do I access the reclaimed resources?
 {: #faq-reclaimed-resource}
 {: faq}
@@ -461,4 +461,10 @@ This is intentionally vague to prevent any useful information from being conveye
 
 {{site.data.keyword.cos_short}} root CA certificates can be downloaded from https://www.digicert.com/kb/digicert-root-certificates.htm. Please download PEM or DER/CRT format from "DigiCert TLS RSA SHA256 2020 CA1" that is located  under "Other intermediate certificates."
 
+## How do I delete a non-empty bucket when I do not see any objects in it?
+(: #faq-delete-nonempty-bucket)
+{: faq}
 
+There may be versioned objects or incomplete multipart uploads that are still within the bucket but aren't being displayed. Both of these can be cleaned up by setting an [expiry policy](/docs/cloud-object-storage?topic=cloud-object-storage-expiry) to delete stale data.
+
+Also, you can delete multipart uploads directly using the [Minio client](/docs/cloud-object-storage?topic=cloud-object-storage-minio) command: ```mc rm s3/ -I -r --force```

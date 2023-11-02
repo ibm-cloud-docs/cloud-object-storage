@@ -20,6 +20,7 @@ completion-time: 15m
 
 {{site.data.keyword.attribute-definition-list}}
 
+
 # Controlling access to individual objects in a bucket
 {: #object-access-tutorial}
 {: toc-content-type="tutorial"}
