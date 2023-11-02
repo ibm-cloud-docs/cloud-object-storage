@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-10-20"
+lastupdated: "2023-11-02"
 
 keywords: IAM, policy, fine-grained access control, controls, conditions, prefix, delimiter, path, folder1/subfolder1/file.txt, folder1, subfolder1, wildcard, operator, stringMatchAnyOf, stringexists
 
@@ -629,6 +629,6 @@ rule_operator = "or"
 ## Additional information
 {: #fgac-additional-info}
 
-For additional examples of how to use **Prefix**, **Delimiter**, and **Path** condition attributes, see the [tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-cos-tutorial-fgac) on using fine-grained access control.
+For additional examples of how to use **Prefix**, **Delimiter**, and **Path** condition attributes, see the [tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-object-access-tutorial) on using fine-grained access control.
 
 
