@@ -39,7 +39,7 @@ toc:
           - cos-secure-stored-content.md
           - migrate.md
           - cos-single-bucket.md
-          - fgac-tutorial.md
+          - object-access.md
           - kp-encrypt-bucket.md
           - cos-events-at.md
           - cos-mm.md

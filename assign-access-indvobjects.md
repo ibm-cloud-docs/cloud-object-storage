@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-10-20"
+lastupdated: "2023-11-02"
 
 keywords: IAM, policy, fine-grained access control, controls, conditions, prefix, delimiter, path, folder1/subfolder1/file.txt, folder1, subfolder1, wildcard, operator, stringMatchAnyOf, stringexists
 
@@ -21,9 +21,11 @@ IAM access policies allow granting permissions in a COS bucket to specific group
 If access is required to the entire bucket (i.e. when fine-grained access control is not required) then follow the information on [Assigning access to an individual bucket](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions&interface=ui).
 {: important}
 
-Each object stored in a COS bucket has a unique key, and these keys often follow a hierarchical structure similar to a file system. For example, an individual object with the key *"folder1/subfolder1/file.txt"* can simulate a folder or directory hierarchy, where the directory  *"folder1"* contains a sub-directory named *"subfolder1"* containing a file *"file.txt"*. Access can be assigned at any folder level.
+Each object stored in a COS bucket has a unique key, and these keys often follow a hierarchical structure similar to a file system.
 
-**Example**: An access policy can be created for all objects and subfolders in the folder named *"folder1"*, or access can be assigned for just objects in the subdirectory named *"subfolder1"*.
+**Example**
+- An individual object with the key *"folder1/subfolder1/file.txt"* can simulate a folder or directory hierarchy, where the directory *“folder1”* contains a sub-directory named *“subfolder1”* containing a file *“file.txt”*. Access can be assigned at any folder level.
+- An access policy can be created for all objects and subfolders in the folder named *“folder1”*, or access can be assigned for just objects in the subdirectory named *“subfolder1”*.
 
 A policy administrator can assign access to individual objects and folders by configuring conditions when creating IAM access policies. The next section describes how to construct these types of policies.
 
@@ -69,7 +71,7 @@ See the [table below](#fgac-conditions-service-roles) for the list of COS roles 
 Once a resource is identified, a condition can be used to further scope access for a subject to individual objects in a bucket. This is referred to as fine-grained access control.
 
 
-A single IAM Policy can have more than one condition by using an `OR` or `AND` statement to combine the conditions. The condition statement (containing one or more conditions) should evaluate to `TRUE` for the user request to be permitted to perform the action. IAM Policy will deny any action that does not get evaluated to be `TRUE`.  The policy statement should contain all condition11 attributes required by the role. If the policy statement does not contain all condition attributes12 required by the role, the actions subject to the omitted condition attributes will be denied.
+A single IAM Policy can have more than one condition by using an `OR` or `AND` statement to combine the conditions. The condition statement (containing one or more conditions) should evaluate to `TRUE` for the user request to be permitted to perform the action. IAM Policy will deny any action that does not get evaluated to be `TRUE`.  The policy statement should contain all condition attributes required by the role. If the policy statement does not contain all condition attributes required by the role, the actions subject to the omitted condition attributes will be denied.
 
 Use a policy with no condition attributes to give full access, as defined by the role, to the target resource.
 {: important}
@@ -627,6 +629,6 @@ rule_operator = "or"
 ## Additional information
 {: #fgac-additional-info}
 
-For additional examples of how to use **Prefix**, **Delimiter**, and **Path** condition attributes, see the [tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-cos-tutorial-fgac) on using fine-grained access control.
+For additional examples of how to use **Prefix**, **Delimiter**, and **Path** condition attributes, see the [tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-object-access-tutorial) on using fine-grained access control.
 
 
