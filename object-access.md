@@ -2,9 +2,9 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-11-02"
+lastupdated: "2023-11-03"
 
-keywords: object, bucket, iam, policy, role, tutorial
+keywords: object, bucket, iam, policy, role, tutorial, fine grained access control, prefix, list objects, path, delimiter
 
 subcollection: cloud-object-storage
 
@@ -19,7 +19,6 @@ completion-time: 15m
 ---
 
 {{site.data.keyword.attribute-definition-list}}
-
 
 # Controlling access to individual objects in a bucket
 {: #object-access-tutorial}
@@ -136,7 +135,7 @@ This will give Adam the ability to read and list all objects that start with the
 ### Scenario 3: Grant Samantha accesss to list, read, and replicate files in only the ```2023``` and ```2024``` subdirectories under the ```Product``` folder.
 {: #object-access-scenario-3}
 
-These sets of actions will require Samantha to have at least the Writer role. The Writer role also contains some actions that do not specify a ```Path``` or a ```Prefix``` or ```Delimiter``` such as ```cloud-object-storage.bucket.put_replication```. To allow these actions, use the [StringExists](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-conditions-actions-not-supported) operator with the resource attributes based conditions.
+These sets of actions will require Samantha to have at least the ```Writer``` role. The ```Writer``` role also contains some actions that do not specify a ```Path``` or a ```Prefix``` or ```Delimiter``` such as ```cloud-object-storage.bucket.put_replication```. To allow these actions, use the [StringExists](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-conditions-actions-not-supported) operator with the resource attributes based conditions.
 
 Samantha will not have access to navigate the UI from the root folder. This situation is shown in [Scenario 4](#object-access-scenario-4).
 
@@ -185,7 +184,7 @@ Samantha will not have access to navigate the UI from the root folder. This situ
         {
           "key": "{{resource.attributes.delimiter}}",
           "operator": "stringExists",
-          "value": false1
+          "value": false
         },
         {
           "key": "{{resource.attributes.prefix}}",
@@ -208,7 +207,7 @@ Samantha will not have access to navigate the UI from the root folder. This situ
 ### Scenario 4: Grant Samantha access to navigate the UI to the files in the ```2023``` and ```2024``` folders in addition to list, read and replicate files in ```2023``` and ```2024```
 {: #object-access-scenario-4}
 
-To navigate the UI to ```MyBucket```, Samantha needs the Platform role. In addition, Samantha is given access to any directories above the target folder. In this case, Samantha needs access to list the root level (defined by the prefix of the empty string) and the ```Product/``` folder. This allows Samantha to see all root level folders and objects.
+To navigate the UI to ```MyBucket```, Samantha needs the platform role ```Viewer```. In addition, Samantha is given access to any directories above the target folder. In this case, Samantha needs access to list the root level (defined by the prefix of the empty string) and the ```Product/``` folder. This allows Samantha to see all root-level folders and objects.
 
 ```sh
 "control": {
