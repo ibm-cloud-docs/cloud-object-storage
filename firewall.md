@@ -40,7 +40,7 @@ Any Activity Tracker or audit log events generated will come from the context-ba
 If no rules are applicable to a particular resource, access is determined by IAM policies and the presence of a legacy bucket firewall.
 {: important}
 
-Context-based restrictions only applies its rules at the bucket level and not to specific objects or folders.
+Context-based restrictions are only applied at the bucket level and not to specific objects or folders.
 {: important}
 
 An account is limited in the [number of rules and network zones that can be supported](/docs/account?topic=account-known-issues#context-based-restrictions-limits).
