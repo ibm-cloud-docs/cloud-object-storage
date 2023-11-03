@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-11-02"
+lastupdated: "2023-11-03"
 
 keywords: IAM, policy, fine-grained access control, controls, conditions, prefix, delimiter, path, folder1/subfolder1/file.txt, folder1, subfolder1, wildcard, operator, stringMatchAnyOf, stringexists
 
@@ -32,24 +32,19 @@ A policy administrator can assign access to individual objects and folders by co
 ## Constructing a fine-grained access control policy
 {: #fgac-construct-policy}
 
-The first step to granting access to individual objects within a bucket is to construct an IAM policy. You can find more information on constructing an IAM access policy for {{site.data.keyword.cos_short}} in the COS tutorial [Limiting access to a single Object Storage bucket](/docs/cloud-object-storage?topic=cloud-object-storage-limit-access&interface=ui#single-bucket-create-policy). For more general information on building IAM policies, please go to [How IBM Cloud IAM works](/docs/account?topic=account-iamoverview). Let’s define some of the key concepts for an access policy.
+The first step to granting access to individual objects within a bucket is to construct an IAM policy. You can find more information on constructing an IAM access policy for {{site.data.keyword.cos_short}} in the COS tutorial [Limiting access to a single Object Storage bucket](/docs/cloud-object-storage?topic=cloud-object-storage-limit-access&interface=ui#single-bucket-create-policy). For more general information on building IAM policies, please go to [How IBM Cloud IAM works](/docs/account?topic=account-iamoverview). The following items are key components of building an IAM access policy for your {{site.data.keyword.cos_short}} resources.
 
-### Key concepts
-{: #fgac-key-concepts}
-
-The following items are key components of building an IAM access policy for your {{site.data.keyword.cos_short}} resources.
-
-#### Subject
+### Subject
 {: #fgac-key-concepts-subjects}
 
-The subject of an access policy can be an individual user, an access group, a Service ID, or a Trusted Profile. See [What are IAM policies and who can assign them?](docs/account?topic=account-iamusermanpol) for more information on the types of subjects you can apply to a policy.
+The subject of an access policy can be an individual user, an access group, a Service ID, or a Trusted Profile. See [What are IAM policies and who can assign them?](/docs/account?topic=account-iamusermanpol) for more information on the types of subjects you can apply to a policy.
 
-#### Service
+### Service
 {: #fgac-key-concepts-service}
 
 The service is the IBM Cloud Service that contains the resource you are trying to assign access to. For assigning access to individual objects use the {{site.data.keyword.cos_short}} service.
 
-#### Resource
+### Resource
 {: #fgac-key-concepts-resource}
 
 {{site.data.keyword.cos_full}} supports the following resource targets:
@@ -58,14 +53,14 @@ The service is the IBM Cloud Service that contains the resource you are trying t
 - Resource type with value of *“bucket”*
 - Resource ID (bucket name)
 
-#### Role
+### Role
 {: #fgac-key-concepts-role}
 
 IBM Cloud access roles are groups of actions. Access roles allow the subject to complete specific tasks within the context of the target resources that are defined in the policy. COS supports several pre-defined service roles that makes assigning permissions easier. COS also allows the creation of custom roles. See [Identity and Access Management roles](/docs/cloud-object-storage?topic=cloud-object-storage-iam&interface=ui#iam-roles) for more information on the supported roles for COS.
 
 See the [table below](#fgac-conditions-service-roles) for the list of COS roles and their interaction with conditions.
 
-#### Condition
+### Condition
 {: #fgac-key-concepts-condition}
 
 Once a resource is identified, a condition can be used to further scope access for a subject to individual objects in a bucket. This is referred to as fine-grained access control.
@@ -109,7 +104,7 @@ Prefix of *"folder1/"* `AND` Delimiter of *"/"*
 
 The following APIs are subject to Prefix/Delimiter conditions:
 - [GET Bucket (List Objects)](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets)
-- GET Bucket Object Versions (List Object Versions)
+- [GET Bucket Object Versions (List Object Versions)](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets-object-version)
 - [List Multipart Uploads](/apidocs/cos/cos-compatibility?code=node#listmultipartuploads)
 
 To see the full list of actions and the supported condition attributes, see Identity and [Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions).
