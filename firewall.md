@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-09-22"
+lastupdated: "2023-11-02"
 
 keywords: ip address, firewall, configuration, api
 
@@ -38,6 +38,9 @@ Any Activity Tracker or audit log events generated will come from the context-ba
 {: tip}
 
 If no rules are applicable to a particular resource, access is determined by IAM policies and the presence of a legacy bucket firewall.
+{: important}
+
+Context-based restrictions only applies its rules at the bucket level and not to specific objects or folders.
 {: important}
 
 An account is limited in the [number of rules and network zones that can be supported](/docs/account?topic=account-known-issues#context-based-restrictions-limits).
