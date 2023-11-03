@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-11-02"
+lastupdated: "2023-11-03"
 
 keywords: IAM, policy, fine-grained access control, controls, conditions, prefix, delimiter, path, folder1/subfolder1/file.txt, folder1, subfolder1, wildcard, operator, stringMatchAnyOf, stringexists
 
@@ -42,7 +42,7 @@ The following items are key components of building an IAM access policy for your
 #### Subject
 {: #fgac-key-concepts-subjects}
 
-The subject of an access policy can be an individual user, an access group, a Service ID, or a Trusted Profile. See [What are IAM policies and who can assign them?](docs/account?topic=account-iamusermanpol) for more information on the types of subjects you can apply to a policy.
+The subject of an access policy can be an individual user, an access group, a Service ID, or a Trusted Profile. See [What are IAM policies and who can assign them?](/docs/account?topic=account-iamusermanpol) for more information on the types of subjects you can apply to a policy.
 
 #### Service
 {: #fgac-key-concepts-service}
