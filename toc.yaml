@@ -46,7 +46,6 @@ toc:
           - cbr-tutorial.md
           - static-website.md
           - web-application.md
-          - object-access.md
     - navgroup:
         id: howto
         topics:
