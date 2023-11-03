@@ -109,7 +109,7 @@ Prefix of *"folder1/"* `AND` Delimiter of *"/"*
 
 The following APIs are subject to Prefix/Delimiter conditions:
 - [GET Bucket (List Objects)](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets)
-- GET Bucket Object Versions (List Object Versions)
+- [GET Bucket Object Versions (List Object Versions)](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets-object-version)
 - [List Multipart Uploads](/apidocs/cos/cos-compatibility?code=node#listmultipartuploads)
 
 To see the full list of actions and the supported condition attributes, see Identity and [Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions).

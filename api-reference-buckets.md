@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-08-09"
+lastupdated: "2023-11-03"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -116,6 +116,78 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 
 ### Getting an extended listing
 {: #compatibility-api-list-buckets-extended}
+
+**Syntax**
+
+```bash
+GET https://{endpoint}/?extended
+```
+{: codeblock}
+
+**Example request**
+{: token}
+
+```http
+GET /?extended HTTP/1.1
+Authorization: Bearer {token}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+ibm-service-instance-id: {ibm-service-instance-id}
+```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+GET /?extended HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
+
+**Example response**
+
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ListAllMyBucketsResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+    <Owner>
+        <ID>{account-id}</ID>
+        <DisplayName>{account-id}</DisplayName>
+    </Owner>
+    <IsTruncated>false</IsTruncated>
+    <MaxKeys>1000</MaxKeys>
+    <Prefix/>
+    <Marker/>
+    <Buckets>
+        <Bucket>
+            <Name>bucket-27200-lwx4cfvcue</Name>
+            <CreationDate>2016-08-18T14:21:36.593Z</CreationDate>
+            <LocationConstraint>us-south-standard</LocationConstraint>
+        </Bucket>
+        <Bucket>
+            <Name>bucket-27590-drqmydpfdv</Name>
+            <CreationDate>2016-08-18T14:22:32.366Z</CreationDate>
+            <LocationConstraint>us-standard</LocationConstraint>
+        </Bucket>
+        <Bucket>
+            <Name>bucket-27852-290jtb0n2y</Name>
+            <CreationDate>2016-08-18T14:23:03.141Z</CreationDate>
+            <LocationConstraint>eu-standard</LocationConstraint>
+        </Bucket>
+        <Bucket>
+            <Name>bucket-28731-k0o1gde2rm</Name>
+            <CreationDate>2016-08-18T14:25:09.599Z</CreationDate>
+            <LocationConstraint>us-cold</LocationConstraint>
+        </Bucket>
+    </Buckets>
+</ListAllMyBucketsResult>
+```
+
+### Getting a listing object version
+{: #compatibility-api-list-buckets-object-version}
 
 **Syntax**
 
