@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-10-13"
+lastupdated: "2023-11-05"
 
 keywords: authorization, iam, basics
 
@@ -64,41 +64,41 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 
 | Action                                                           | Description                                                                         | Condition attributes supported |
 | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- |------------------------------------|
-| `cloud-object-storage.account.get_account_buckets`               | List all buckets in a service instance.                                             |
-| `cloud-object-storage.account.patch_credential`                  |                                              |
-| `cloud-object-storage.bucket.put_bucket`                         | Create a bucket.                                                                    |
-| `cloud-object-storage.bucket.post_bucket`                        | Internal use only - unsupported for users.                                          |
-| `cloud-object-storage.bucket.delete_bucket`                      | Delete a bucket.                                                                    |
+| `cloud-object-storage.account.get_account_buckets`               | List all buckets in a service instance.                                             | none |
+| `cloud-object-storage.account.patch_credential`                  |                                              | none |
+| `cloud-object-storage.bucket.put_bucket`                         | Create a bucket.                                                                    | none |
+| `cloud-object-storage.bucket.post_bucket`                        | Internal use only - unsupported for users.                                          | none |
+| `cloud-object-storage.bucket.delete_bucket`                      | Delete a bucket.                                                                    | none |
 | `cloud-object-storage.bucket.get`                                | List all the objects in a bucket.                                                   | [prefix, delimiter](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-prefix-delimeter)       |
-| `cloud-object-storage.bucket.list_crk_id`                        | List the IDs of encryption root keys associated with a bucket.                      |
-| `cloud-object-storage.bucket.head`                               | View bucket metadata.                                                               |
+| `cloud-object-storage.bucket.list_crk_id`                        | List the IDs of encryption root keys associated with a bucket.                      | none
+| `cloud-object-storage.bucket.head`                               | View bucket metadata.                                                               | none
 | `cloud-object-storage.bucket.get_versions`                       | List object versions.                                                               | [prefix, delimiter](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-prefix-delimeter)       |
 | `cloud-object-storage.bucket.get_uploads`                        | List all active multipart uploads for a bucket.                                     | [prefix, delimiter](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-prefix-delimeter)       |
-| `cloud-object-storage.bucket.put_quota`                          | Unsupported operation - used for S3 API compatibility only.                         |
-| `cloud-object-storage.bucket.get_acl`                            | Read a bucket ACL [deprecated].                                                     |
-| `cloud-object-storage.bucket.put_acl`                            | Create a bucket ACL [deprecated].                                                   |
-| `cloud-object-storage.bucket.get_cors`                           | Read CORS rules.                                                                    |
-| `cloud-object-storage.bucket.put_cors`                           | Add CORS rules to a bucket.                                                         |
-| `cloud-object-storage.bucket.delete_cors`                        | Delete CORS rules.                                                                  |
-| `cloud-object-storage.bucket.get_versioning`                     | Check versioning status of a bucket.                                                |
-| `cloud-object-storage.bucket.put_versioning`                     | Enable versioning on a bucket.                                                      |
-| `cloud-object-storage.bucket.get_fasp_connection_info`           | View Aspera FASP connection information.                                            |
-| `cloud-object-storage.account.delete_fasp_connection_info`       | Delete Aspera FASP connection information.                                          |
-| `cloud-object-storage.bucket.get_location`                       | View the location and storage class of a bucket.                                    |
-| `cloud-object-storage.bucket.get_lifecycle`                      | Read a bucket lifecycle policy.                                                     |
-| `cloud-object-storage.bucket.put_lifecycle`                      | Create a bucket lifecycle policy.                                                   |
-| `cloud-object-storage.bucket.get_basic`                          | Read bucket metadata (number of objects, etc) using the Resource Configuration API. |
-| `cloud-object-storage.bucket.get_activity_tracking`              | Read activity tracking configuration.                                               |
-| `cloud-object-storage.bucket.put_activity_tracking`              | Add activity tracking configuration.                                                |
-| `cloud-object-storage.bucket.get_metrics_monitoring`             | Read metrics monitoring configuration.                                              |
-| `cloud-object-storage.bucket.put_metrics_monitoring`             | Add metrics monitoring configuration.                                               |
-| `cloud-object-storage.bucket.put_protection`                     | Add Immutable Object Storage policy.                                                |
-| `cloud-object-storage.bucket.get_protection`                     | Read Immutable Object Storage policy.                                               |
-| `cloud-object-storage.bucket.put_firewall`                       | Add a firewall configuration.                                                       |
-| `cloud-object-storage.bucket.get_firewall`                       | Read a firewall configuration.                                                      |
-| `cloud-object-storage.bucket.list_bucket_crn`                    | View a bucket CRN.                                                                  |
-| `cloud-object-storage.bucket.get_notifications`                  | Internal use only - unsupported for users.                                          |
-| `cloud-object-storage.bucket.put_notifications`                  | Internal use only - unsupported for users.                                          |
+| `cloud-object-storage.bucket.put_quota`                          | Unsupported operation - used for S3 API compatibility only.                         | none |
+| `cloud-object-storage.bucket.get_acl`                            | Read a bucket ACL [deprecated].                                                     | none |
+| `cloud-object-storage.bucket.put_acl`                            | Create a bucket ACL [deprecated].                                                   | none |
+| `cloud-object-storage.bucket.get_cors`                           | Read CORS rules.                                                                    | none |
+| `cloud-object-storage.bucket.put_cors`                           | Add CORS rules to a bucket.                                                         | none |
+| `cloud-object-storage.bucket.delete_cors`                        | Delete CORS rules.                                                                  | none |
+| `cloud-object-storage.bucket.get_versioning`                     | Check versioning status of a bucket.                                                | none |
+| `cloud-object-storage.bucket.put_versioning`                     | Enable versioning on a bucket.                                                      | none |
+| `cloud-object-storage.bucket.get_fasp_connection_info`           | View Aspera FASP connection information.                                            | none |
+| `cloud-object-storage.account.delete_fasp_connection_info`       | Delete Aspera FASP connection information.                                          | none |
+| `cloud-object-storage.bucket.get_location`                       | View the location and storage class of a bucket.                                    | none |
+| `cloud-object-storage.bucket.get_lifecycle`                      | Read a bucket lifecycle policy.                                                     | none |
+| `cloud-object-storage.bucket.put_lifecycle`                      | Create a bucket lifecycle policy.                                                   | none |
+| `cloud-object-storage.bucket.get_basic`                          | Read bucket metadata (number of objects, etc) using the Resource Configuration API. | none |
+| `cloud-object-storage.bucket.get_activity_tracking`              | Read activity tracking configuration.                                               | none |
+| `cloud-object-storage.bucket.put_activity_tracking`              | Add activity tracking configuration.                                                | none |
+| `cloud-object-storage.bucket.get_metrics_monitoring`             | Read metrics monitoring configuration.                                              | none |
+| `cloud-object-storage.bucket.put_metrics_monitoring`             | Add metrics monitoring configuration.                                               | none |
+| `cloud-object-storage.bucket.put_protection`                     | Add Immutable Object Storage policy.                                                | none |
+| `cloud-object-storage.bucket.get_protection`                     | Read Immutable Object Storage policy.                                               | none |
+| `cloud-object-storage.bucket.put_firewall`                       | Add a firewall configuration.                                                       | none |
+| `cloud-object-storage.bucket.get_firewall`                       | Read a firewall configuration.                                                      | none |
+| `cloud-object-storage.bucket.list_bucket_crn`                    | View a bucket CRN.                                                                  | none |
+| `cloud-object-storage.bucket.get_notifications`                  | Internal use only - unsupported for users.                                          | none |
+| `cloud-object-storage.bucket.put_notifications`                  | Internal use only - unsupported for users.                                          | none |
 | `cloud-object-storage.object.get`                                | View and download objects.                                                          | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
 | `cloud-object-storage.object.head`                               | Read an object's metadata.                                                          | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
 | `cloud-object-storage.object.get_version`                        | Read a specified version of an object.                                              | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
@@ -128,7 +128,7 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 | `cloud-object-storage.object.get_tagging`                        |                                                                                     | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
 | `cloud-object-storage.object.put_tagging`                        |                                                                                     | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
 | `cloud-object-storage.object.delete_tagging`                     |                                                                                     | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
-| `cloud-object-storage.object.post_multi_delete`                  | Delete multiple objects.                                                            |
+| `cloud-object-storage.object.post_multi_delete`                  | Delete multiple objects.                                                            | none |
 | `cloud-object-storage.object.post_legal_hold`                    | Add a legal hold to an object.                                                      | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
 | `cloud-object-storage.object.get_legal_hold`                     | View any legal holds on an object.                                                  | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
 | `cloud-object-storage.object.post_extend_retention`              | Extend a retention policy.                                                          | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
@@ -143,8 +143,8 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 | `cloud-object-storage.object.put_tagging_version`                |                                                                                     | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
 | `cloud-object-storage.object.get_tagging_version`                |                                                                                     | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
 | `cloud-object-storage.object.delete_tagging_version`             |                                                                                     | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
-| `cloud-object-storage.bucket.put_public_access_block`            | Add a public ACL block configuration                                                |
-| `cloud-object-storage.bucket.get_public_access_block`            | Read a public ACL block configuration                                               |
-| `cloud-object-storage.bucket.delete_public_access_block`         | Delete a public ACL block configuration                                             |
+| `cloud-object-storage.bucket.put_public_access_block`            | Add a public ACL block configuration                                                | none |
+| `cloud-object-storage.bucket.get_public_access_block`            | Read a public ACL block configuration                                               | none |
+| `cloud-object-storage.bucket.delete_public_access_block`         | Delete a public ACL block configuration                                             | none |
 {: caption="Table 3. Granular IAM action descriptions"}
 
