@@ -299,21 +299,11 @@ policy.json:
   },
   "pattern": "attribute-based-condition:resource:literal-and-wildcard"
 }
+ibmcloud iam  user-policy-create hello@ibm.com --file policy.json --api-version v2
 ```
 
-Commands to **create** a IAM Policy using ibmcloudcli :
-* `ibmcloud iam  user-policy-create user_email_id --file policy.json --api-version v2`
 
-Commands to **update** a IAM Policy using ibmcloudcli :
-* `ibmcloud iam user-policy-update user_email_id  policy_id  --file policy.json --api-version v2`
-
-Commands to **list** a IAM Policy using ibmcloudcli :
-* `ibmcloud iam user-policy  user_email_id  policy_id  --output json --api-version v2`
-
-Commands to **delete** a IAM Policy using ibmcloudcli :
-* `ibmcloud iam user-policy-delete  user_email_id  policy_id  policy_id --api-version v2`
-
-If --api-version v2 is not provided the commands will return with error saying the policy does not exists.
+Use --api-version v2 with resource based attribute conditions.
 {: note}
 
 ### API of an IAM policy with a condition
@@ -628,6 +618,6 @@ rule_operator = "or"
 ## Additional information
 {: #fgac-additional-info}
 
-For additional examples of how to use **Prefix**, **Delimiter**, and **Path** condition attributes, see the [tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-object-access-tutorial) on using fine-grained access control.
+For additional examples of how to use **Prefix**, **Delimiter**, and **Path** condition attributes, see the [tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-object-access-tutorial) on controlling access to individual objects in a bucket.
 
 
