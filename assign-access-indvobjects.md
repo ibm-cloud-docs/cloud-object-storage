@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-11-04"
+lastupdated: "2023-11-05"
 
 keywords: IAM, policy, fine-grained access control, controls, conditions, prefix, delimiter, path, folder1/subfolder1/file.txt, folder1, subfolder1, wildcard, operator, stringMatchAnyOf, stringexists
 
@@ -120,13 +120,13 @@ To give a fine-grained user access to navigate to their folder in the UI, the us
 ### Path
 {: #fgac-attributes-path}
 
-Path is used to scope all read, write and management access on specific objects.
+Path is used to scope all read, write or management access on specific objects.
 
-For an object named *"folder1/subfolder1/file.txt"*, the full object key is the path. To restrict read, write and management actions to this object, define a condition with Path of *"folder1/subfolder1/file.txt"*.
+For an object named *"folder1/subfolder1/file.txt"*, the full object key is the path. To restrict read, write or management actions to this object, define a condition with Path of *"folder1/subfolder1/file.txt"*.
 
 All COS APIs that act directly on an object are subject to Path conditions. See [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) for the list of COS API actions that support Path.
 
-It is recommended that you define both a Prefix/Delimiter condition and a Path condition when granting read, write and list actions to a user in the same policy. `Manager`, `Writer`, `Reader`, and `Content Reader` are examples of roles where it is recommended to define both a Prefix/Delimiter and Path condition. A condition specifying Prefix/Delimiter and a condition specifying Path should be logically `ORed` in the IAM Policy statement to permit both types of operations (read, write and management of objects or list objects).
+It is recommended that you define both a Prefix/Delimiter condition and a Path condition when granting read, write or list actions to a user in the same policy. `Manager`, `Writer`, `Reader`, and `Content Reader` are examples of roles where it is recommended to define both a Prefix/Delimiter and Path condition. A condition specifying Prefix/Delimiter and a condition specifying Path should be logically `ORed` in the IAM Policy statement to permit both types of operations (read, write or management of objects or list objects).
 {: note}
 
 ### Operators used with condition attributes
@@ -137,14 +137,14 @@ There are several operators that can be used when defining condition attributes.
 ### Use of wildcards
 {: #fgac-attributes-wildcards}
 
-A condition attribute’s values can include a wildcard when the operator is `stringMatch` or `stringMatchAnyOf`.
+A condition attribute’s values can include a [wildcard](/docs/account?topic=account-wildcard#string-comparisons) when the operator is `stringMatch` or `stringMatchAnyOf`.
 
 **Examples of using wildcards in condition statements:**
 
 Consider the object named *"folder1/subfolder1/file.txt"*:
 
 Path of *“folder1/*”*
-- User will get read, write and management access, as defined by the role, to all objects that start with *“folder1/”*
+- User will get read, write or management access, as defined by the role, to all objects that start with *“folder1/”*
 
 Prefix of *"folder1/*"* `AND` no Delimiter
 - For an object list request with prefix set to *“folder1/”* and no delimiter, the user request will return all objects that start with *“folder1/”*
@@ -156,19 +156,18 @@ Prefix of *"folder1/*"* `AND` Delimiter of *"/"*
 - For an object list request with prefix set to “folder1/subfolder1/” and delimiter of *“/”*, the request will return the objects (and any subfolders) in *folder1/subfolder1*
 - For an object list request with prefix set to *“folder1/”* and no delimiter, the request will not be permitted since a delimiter of *“/”* must be used in the list request for this policy to evaluate to true
 
-### Actions that do not support conditions
+### Actions that do not use a Prefix/Delimter or Path
 {: #fgac-conditions-actions-not-supported}
 
-There are some COS APIs that do not specify a path or prefix/delimiter in the request. The COS Service roles: `Manager`, `Writer`, `Reader` and `Content Reader` contain some
-actions that do not support conditions. This also applies to custom roles. To allow these actions when using a **Prefix/Delimiter** or **Path** condition, the following condition statement is needed in the IAM policy:
+There are some COS APIs that do not specify a path or prefix and delimiter. The COS Service roles: `Manager`, `Writer`, `Reader` and `Content Reader` are examples of roles that contain these actions. This also applies to custom roles. To allow these actions when using a **Prefix/Delimiter** or **Path** condition, the following condition statement is needed in the IAM policy:
 
 ```sh
-((path stringExists = true) AND (prefix stringExists = true) AND (delimiter stringExists= true))"
+((path stringExists = false) AND (prefix stringExists = false) AND (delimiter stringExists= false))"
 ```
 
 See the [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) table for the full list of API actions that do not support **Path**, **Prefix**, or **Delimiter** conditions and require the statement above when using fine-grained access.
 
-Refer to the [example](#fgac-conditions-actions-not-supported) for using this clause in an IAM policy.
+Refer to the [example](#fgac-additional-info) for using this clause in an IAM policy.
 
 ## Use of conditions with COS service roles
 {: #fgac-conditions-service-roles}
@@ -183,9 +182,9 @@ Refer to the [example](#fgac-conditions-actions-not-supported) for using this cl
 | Object Writer       | Upload objects                                               | Path |
 {: caption="Table 1. Use of Conditions with COS Service Roles"}
 
-**Note:** These roles support Prefix/Delimiter and Path condition attributes. The roles also include actions that do not support condition attributes. Use the [`stringExists`](#fgac-conditions-actions-not-supported) clause in the condition statement to allow these actions.
+**Note:** These roles support Prefix/Delimiter and Path condition attributes. The roles also include actions that do not specify a path or prefix and delimiter. Use the `stringExists` clause in the condition statement to allow these actions.
 
-See [Cloud Object Storage](/docs/account?topic=account-iam-service-roles-actions&interface=ui#cloud-object-storage-roles) for the full list of actions for each COS service role and the list of condition attributes supported by each action.
+See [link](/docs/account?topic=account-iam-service-roles-actions&interface=ui#cloud-object-storage-roles) for the full list of actions for each COS service role and the list of condition attributes supported by each action.
 
 ## Create a new policy for a user with conditions
 {: #fgac-new-policy-conditions}
