@@ -143,15 +143,15 @@ A condition attribute’s values can include a [wildcard](/docs/account?topic=ac
 
 Consider the object named *"folder1/subfolder1/file.txt"*:
 
-Path of *“folder1/*”*
+Path of _“folder1/*”_
 - User will get read, write or management access, as defined by the role, to all objects that start with *“folder1/”*
 
-Prefix of *"folder1/*"* `AND` no Delimiter
+Prefix of _"folder1/*"_ `AND` no Delimiter
 - For an object list request with prefix set to *“folder1/”* and no delimiter, the user request will return all objects that start with *“folder1/”*
 - For an object list request with prefix set to *“folder1/”* and delimiter of *“/”*, the request will return a view of the objects and folders just in the first level of *folder1*
 - For an object list request with prefix set to “folder1/subfolder1/” and delimiter of *“/”*, the request will return a view of the objects and folders just in the first level of *folder1/subfolder1*
 
-Prefix of *"folder1/*"* `AND` Delimiter of *"/"*
+Prefix of _"folder1/*"_ `AND` Delimiter of *"/"*
 - For an object list request with prefix set to *“folder1/”* and delimiter of *“/”*, the request will return a view of the objects and folders just in the first level of *folder1*
 - For an object list request with prefix set to “folder1/subfolder1/” and delimiter of *“/”*, the request will return the objects (and any subfolders) in *folder1/subfolder1*
 - For an object list request with prefix set to *“folder1/”* and no delimiter, the request will not be permitted since a delimiter of *“/”* must be used in the list request for this policy to evaluate to true
