@@ -545,7 +545,7 @@ Response
 {: #fgac-new-policy-conditions-terraform}
 {: terraform}
 
-_Examples_
+_Example_
 {: http}
 
 ```sh
