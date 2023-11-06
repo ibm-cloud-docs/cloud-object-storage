@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-11-05"
+lastupdated: "2023-11-06"
 
 keywords: IAM, policy, fine-grained access control, controls, conditions, prefix, delimiter, path, folder1/subfolder1/file.txt, folder1, subfolder1, wildcard, operator, stringMatchAnyOf, stringexists
 
@@ -165,7 +165,7 @@ There are some COS APIs that do not specify a path or prefix and delimiter. The 
 ((path stringExists = false) AND (prefix stringExists = false) AND (delimiter stringExists= false))"
 ```
 
-See the [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) table for the full list of API actions that do not support **Path**, **Prefix**, or **Delimiter** conditions and require the statement above when using fine-grained access.
+See the [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) table for the full list of API actions that do not support **Prefix/Delimiter** or **Path** conditions and require the statement above when using fine-grained access.
 
 Refer to the [example](#fgac-additional-info) for using this clause in an IAM policy.
 
@@ -192,7 +192,7 @@ See [link](/docs/account?topic=account-iam-service-roles-actions&interface=ui#cl
 The following examples provide a user with the `“Writer”` COS Service Role with the ability to:
 
 1. List access to the full object hierarchy within folder named *"folder1/subfolder1"*.
-2. Read/Write/Delete access to all objects in folder named *"subfolder1"*.
+2. Read, write or delete access to all objects in folder named *"subfolder1"*.
 3. Perform bucket configuration management such as `HEAD Bucket` and `GET/PUT Bucket Versioning`.
 
 ### CLI of an IAM policy with a condition
@@ -548,11 +548,9 @@ Response
 _Examples_
 {: http}
 
-Creation of a fine-grained access control with conditions: {Prefix StringMatch *“folder1/subfolder1/*”* AND Delimiter StringMatchAnyOf  *“/”*, *“”*} for `Writer` role:
-
 ```sh
 data "ibm_resource_group" "cos_group" {
-name = "Default"
+      name = "Default"
 }
 
 resource "ibm_iam_user_policy" "example" {
@@ -567,53 +565,46 @@ resource "ibm_iam_user_policy" "example" {
 
 
 rule_conditions {
- key = "{{resource.attributes.prefix}}"
- operator = "stringMatchAnyOf"
- value = ["folder1/subfolder1/*"]
-}
-rule_conditions {
- key = "{{resource.attributes.delimiter}}"
- operator = "stringMatchAnyOf"
- value = ["/", “"”]
-}
-rule_operator = "and"
- pattern = "attribute-based-condition:resource:literal-and-wildcard"
-}
-```
-
-Creation of a fine-grained access control policy with conditions: {Path StringMatch *“folder1/subfolder1/*”*} for `Writer` role:
-
-```sh
-data "ibm_resource_group" "cos_group" {
-name = "Default"
-}
-
-resource "ibm_iam_user_policy" "example" {
-  ibm_id = “ibm_id”
-  roles = ["Writer"]
-  resources {
-   service = "cloud-object-storage"
-   resource_type = "bucket"
-   resource_instance_id = "cos instance guid"
-   resource = "bucket-name"
+ operator = "and"
+ conditions {
+  key = "{{resource.attributes.prefix}}"
+  operator = "stringMatch"
+  value = ["folder1/subfolder1/*"]
  }
-
-
+ conditions {
+  key = "{{resource.attributes.delimiter}}"
+  operator = "stringEqualsAnyOf"
+  value = ["/",""]
+ }
+ }
 rule_conditions {
   key = "{{resource.attributes.path}}"
   operator = "stringMatch"
   value = ["folder1/subfolder1/*"]
  }
 rule_conditions {
-  key = "{{resource.attributes.prefix}}"
-  operator = "stringMatch"
-  value = “”
+ operator = "and"
+  conditions {
+   key = "{{resource.attributes.delimiter}}"
+   operator = "stringExists"
+   value = ["false"]
+  }
+  conditions {
+   key = "{{resource.attributes.prefix}}"
+   operator = "stringExists"
+   value = ["false"]
+  }
+  conditions {
+   key = "{{resource.attributes.path}}"
+   operator = "stringExists"
+   value = ["false"]
+  }
  }
 rule_operator = "or"
-  pattern = "attribute-based-condition:resource:literal-and-wildcard"
+ pattern = "attribute-based-condition:resource:literal-and-wildcard"
 }
-```
 
+```
 
 ## Additional information
 {: #fgac-additional-info}
