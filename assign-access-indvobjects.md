@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-11-06"
+lastupdated: "2023-11-07"
 
 keywords: IAM, policy, fine-grained access control, controls, conditions, prefix, delimiter, path, folder1/subfolder1/file.txt, folder1, subfolder1, wildcard, operator, stringMatchAnyOf, stringexists
 
@@ -156,13 +156,13 @@ Prefix of _"folder1/*"_ `AND` Delimiter of *"/"*
 - For an object list request with prefix set to “folder1/subfolder1/” and delimiter of *“/”*, the request returns the objects (and any subfolders) in *folder1/subfolder1*.
 - For an object list request with prefix set to *“folder1/”* and no delimiter, the request will not be permitted since a delimiter of *“/”* must be used in the list request for this policy to evaluate to true.
 
-### Actions that do not use a Prefix/Delimter or Path
+### Actions that do not use a Prefix/Delimiter or Path
 {: #fgac-conditions-actions-not-supported}
 
 There are some Cloud Object Storage APIs that do not specify a path or prefix and delimiter. The Cloud Object Storage Service roles: `Manager`, `Writer`, `Reader`, and `Content Reader` are examples of roles that contain these actions. This also applies to custom roles. To allow these actions when using a **Prefix/Delimiter** or **Path** condition, the following condition statement is needed in the IAM policy:
 
 ```sh
-((path stringExists = false) AND (prefix stringExists = false) AND (delimiter stringExists= false))"
+((path stringExists = false) AND (prefix stringExists = false) AND (delimiter stringExists= false))
 ```
 
 See the [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) table for the full list of API actions that do not support **Prefix/Delimiter** or **Path** conditions and require the statement above when using fine-grained access.
@@ -201,7 +201,7 @@ The following examples provide a user with the `“Writer”` Cloud Object Stora
 
 Create user policy over CLI general reference [link](/docs/cli?topic=cli-ibmcloud_commands_iam).
 
-Example that uses *"folder1/subfolder1/file.txt"*.
+Example
 
 ```sh
 policy.json:
@@ -310,7 +310,7 @@ Use --api-version v2 with resource-based attribute conditions.
 {: #fgac-new-policy-conditions-api}
 {: api}
 
-Example that uses *"folder1/subfolder1/file.txt"*.
+Example
 
 Request
 ```sh
