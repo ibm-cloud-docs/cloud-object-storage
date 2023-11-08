@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-11-07"
+lastupdated: "2023-11-08"
 
 keywords: IAM, policy, fine-grained access control, controls, conditions, prefix, delimiter, path, folder1/subfolder1/file.txt, folder1, subfolder1, wildcard, operator, stringMatchAnyOf, stringexists
 
@@ -114,7 +114,7 @@ The following APIs are subject to Prefix/Delimiter conditions:
 To see the full list of actions and the supported condition attributes, see [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions).
 {: tip}
 
-To give a fine-grained user access to navigate to their folder in the UI, the user needs access to list the root folder of the bucket. See [here](/docs/cloud-object-storage?topic=cloud-object-storage-object-access-tutorial) for how to construct the policy to enable this.
+To give a fine-grained user access to navigate to their folder in the UI, the user needs access to list the root folder of the bucket. See [Scenario 4](/docs-draft/cloud-object-storage?topic=cloud-object-storage-object-access-tutorial#object-access-scenario-4) for how to construct the policy to enable this.
 {: tip}
 
 ### Path
@@ -167,7 +167,7 @@ There are some Cloud Object Storage APIs that do not specify a path or prefix an
 
 See the [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) table for the full list of API actions that do not support **Prefix/Delimiter** or **Path** conditions and require the statement above when using fine-grained access.
 
-Refer to the [example](#fgac-additional-info) for using this clause in an IAM policy.
+Refer to the section on how to [Create a new policy for a user with conditions](fgac-new-policy-conditions) for using this clause in an IAM policy.
 
 ## Use of conditions with Cloud Object Storage service roles
 {: #fgac-conditions-service-roles}
@@ -199,7 +199,8 @@ The following examples provide a user with the `“Writer”` Cloud Object Stora
 {: #fgac-new-policy-conditions-cli}
 {: cli}
 
-Create user policy over CLI general reference [link](/docs/cli?topic=cli-ibmcloud_commands_iam).
+For general information on how to use the CLI, see the section on [using the IBM Cloud® Command Line Interface](/docs/cli?topic=cli-ibmcloud_commands_iam).
+{: tip}
 
 Example
 
