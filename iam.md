@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-11-07"
+lastupdated: "2023-11-08"
 
 keywords: authorization, iam, basics
 
@@ -30,7 +30,7 @@ Policies enable access to be granted at different levels. Some of the options in
 * Access to an individual service instance in your account
 * Access to a specific bucket within an instance (see [Bucket permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions))
 * Access to all IAM-enabled services in your account
-* [Access to a specific object or group of objects within a bucket](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions))
+* [Access to a specific object or group of objects within a bucket](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions)
 
 After you define the scope of the access policy, you assign a role. Review the following tables which outline what actions each role allows within the {{site.data.keyword.cos_short}} service.
 
@@ -79,13 +79,13 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 | `cloud-object-storage.bucket.get_cors`                           | Read CORS rules.                                                                    | [none](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
 | `cloud-object-storage.bucket.put_cors`                           | Add CORS rules to a bucket.                                                         | [none](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
 | `cloud-object-storage.bucket.delete_cors`                        | Delete CORS rules.                                                                  | [none](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.bucket.get_website`                        | Read bucket website configuration.                                                  |
-| `cloud-object-storage.bucket.put_website`                        | Add bucket website configuration.                                                   |
-| `cloud-object-storage.bucket.delete_website`                     | Delete bucket website configuration.                                                |
+| `cloud-object-storage.bucket.get_website`                        | Read bucket website configuration.                                                  | [none](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
+| `cloud-object-storage.bucket.put_website`                        | Add bucket website configuration.                                                   | [none](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
+| `cloud-object-storage.bucket.delete_website`                     | Delete bucket website configuration.                                                | [none](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
 | `cloud-object-storage.bucket.get_versioning`                     | Check versioning status of a bucket.                                                | [none](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
 | `cloud-object-storage.bucket.put_versioning`                     | Enable versioning on a bucket.                                                      | [none](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.bucket.get_object_lock_configuration`      | Get Object Lock Configuration from the bucket.                                      |
-| `cloud-object-storage.bucket.put_object_lock_configuration`      | Set Object Lock Configuration from the bucket.                                      |
+| `cloud-object-storage.bucket.get_object_lock_configuration`      | Get Object Lock Configuration from the bucket.                                      | [none](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
+| `cloud-object-storage.bucket.put_object_lock_configuration`      | Set Object Lock Configuration from the bucket.                                      | [none](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
 | `cloud-object-storage.bucket.get_fasp_connection_info`           | View Aspera FASP connection information.                                            | [none](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
 | `cloud-object-storage.account.delete_fasp_connection_info`       | Delete Aspera FASP connection information.                                          | [none](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
 | `cloud-object-storage.bucket.get_location`                       | View the location and storage class of a bucket.                                    | [none](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
@@ -106,9 +106,9 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 | `cloud-object-storage.bucket.list_bucket_crn`                    | View a bucket CRN.                                                                  | [none](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
 | `cloud-object-storage.bucket.get_notifications`                  | Internal use only - unsupported for users.                                          | [none](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
 | `cloud-object-storage.bucket.put_notifications`                  | Internal use only - unsupported for users.                                          | [none](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.bucket.get_replication`                    | Read replication configuration of a bucket.                                         |
-| `cloud-object-storage.bucket.put_replication`                    | Add replication configuration to a bucket.                                          |
-| `cloud-object-storage.bucket.delete_replication`                 | Delete replication configuration of a bucket.                                       |
+| `cloud-object-storage.bucket.get_replication`                    | Read replication configuration of a bucket.                                         | [none](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
+| `cloud-object-storage.bucket.put_replication`                    | Add replication configuration to a bucket.                                          | [none](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
+| `cloud-object-storage.bucket.delete_replication`                 | Delete replication configuration of a bucket.                                       | [none](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
 | `cloud-object-storage.object.get`                                | View and download objects.                                                          | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
 | `cloud-object-storage.object.head`                               | Read an object's metadata.                                                          | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
 | `cloud-object-storage.object.get_version`                        | Read a specified version of an object.                                              | [path](/docs-draft/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
