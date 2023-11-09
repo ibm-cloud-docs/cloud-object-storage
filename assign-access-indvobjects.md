@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-11-08"
+lastupdated: "2023-11-09"
 
 keywords: IAM, policy, fine-grained access control, controls, conditions, prefix, delimiter, path, folder1/subfolder1/file.txt, folder1, subfolder1, wildcard, operator, stringMatchAnyOf, stringexists
 
@@ -32,7 +32,7 @@ A policy administrator can assign access to individual objects and folders by co
 ## Constructing a fine-grained access control policy
 {: #fgac-construct-policy}
 
-The first step to granting access to individual objects within a bucket is to construct an IAM policy. You can find more information on constructing an IAM access policy for {{site.data.keyword.cos_short}} in the Cloud Object Storage tutorial [Limiting access to a single Object Storage bucket](/docs/cloud-object-storage?topic=cloud-object-storage-limit-access&interface=ui#single-bucket-create-policy). For more general information on building IAM policies, go to [How IBM Cloud IAM works](/docs/account?topic=account-iamoverview). The following items are key components of building an IAM access policy for your {{site.data.keyword.cos_short}} resources.
+The first step to granting access to individual objects within a bucket is to construct an IAM policy. You can find more information on constructing an IAM access policy for {{site.data.keyword.cos_short}} in the Cloud Object Storage tutorial [Limiting access to a single Object Storage bucket](/docs/cloud-object-storage?topic=cloud-object-storage-limit-access&interface=ui). For more general information on building IAM policies, go to [How IBM Cloud IAM works](/docs/account?topic=account-iamoverview). The following items are key components of building an IAM access policy for your {{site.data.keyword.cos_short}} resources.
 
 ### Subject
 {: #fgac-key-concepts-subjects}
@@ -42,7 +42,7 @@ The subject of an access policy can be an individual user, an access group, a Se
 ### Service
 {: #fgac-key-concepts-service}
 
-The service is the IBM Cloud Service that contains the resource you are trying to assign access to. For assigning access to individual objects, use the {{site.data.keyword.cos_short}} service.
+The service is the IBM Cloud Service that contains the resource you are trying to assign access to. For assigning access to individual objects, use the Cloud Object Storage service.
 
 ### Resource
 {: #fgac-key-concepts-resource}
@@ -126,7 +126,7 @@ For an object named *"folder1/subfolder1/file.txt"*, the full object key is the 
 
 All Cloud Object Storage APIs that act directly on an object are subject to Path conditions. See [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) for the list of Cloud Object Storage API actions that support Path.
 
-It is recommended that you define both a Prefix/Delimiter condition and a Path condition when granting read, write or list actions to a user in the same policy. `Manager`, `Writer`, `Reader`, and `Content Reader` are examples of roles where it is recommended to define both a Prefix/Delimiter and Path condition. A condition specifying Prefix/Delimiter and a condition specifying Path should be logically `ORed` in the IAM Policy statement to permit both types of operations (read, write or management of objects or list objects).
+It is recommended that you define both a Prefix/Delimiter condition and a Path condition when granting read, write or list actions to a user in the same policy. `Manager`, `Writer`, `Reader`, and `Content Reader` are examples of roles where it is recommended to define both a Prefix/Delimiter and Path condition. See [Scenario 4](/docs-draft/cloud-object-storage?topic=cloud-object-storage-object-access-tutorial#object-access-scenario-4) for how to construct the policy to enable this. A condition specifying Prefix/Delimiter and a condition specifying Path should be logically `ORed` in the IAM Policy statement to permit both types of operations (read, write or management of objects or list objects).
 {: note}
 
 ### Operators used with condition attributes
@@ -167,7 +167,7 @@ There are some Cloud Object Storage APIs that do not specify a path or prefix an
 
 See the [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) table for the full list of API actions that do not support **Prefix/Delimiter** or **Path** conditions and require the statement above when using fine-grained access.
 
-Refer to the section on how to [Create a new policy for a user with conditions](fgac-new-policy-conditions) for using this clause in an IAM policy.
+Refer to the section on how to [Create a new policy for a user with conditions](#create-a-new-policy-for-a-user-with-conditions) for using this clause in an IAM policy.
 
 ## Use of conditions with Cloud Object Storage service roles
 {: #fgac-conditions-service-roles}
@@ -189,7 +189,7 @@ See [link](/docs/account?topic=account-iam-service-roles-actions&interface=ui#cl
 ## Create a new policy for a user with conditions
 {: #fgac-new-policy-conditions}
 
-The following examples provide a user with the `“Writer”` Cloud Object Storage Service Role with the ability to:
+The following example provides a user with the `“Writer”` Cloud Object Storage Service Role with the ability to:
 
 1. List access to the full object hierarchy within a folder named *"folder1/subfolder1"*.
 2. Read, write, or delete access to all objects in a folder named *"subfolder1"*.
