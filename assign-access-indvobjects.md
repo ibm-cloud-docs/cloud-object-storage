@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-11-09"
+lastupdated: "2023-11-10"
 
 keywords: IAM, policy, fine-grained access control, controls, conditions, prefix, delimiter, path, folder1/subfolder1/file.txt, folder1, subfolder1, wildcard, operator, stringMatchAnyOf, stringexists
 
@@ -167,7 +167,7 @@ There are some Cloud Object Storage APIs that do not specify a path or prefix an
 
 See the [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) table for the full list of API actions that do not support **Prefix/Delimiter** or **Path** conditions and require the statement above when using fine-grained access.
 
-Refer to the section on how to [Create a new policy for a user with conditions](#create-a-new-policy-for-a-user-with-conditions) for using this clause in an IAM policy.
+Refer to the section on how to [Create a new policy for a user with conditions](#fgac-new-policy-conditions) for using this clause in an IAM policy.
 
 ## Use of conditions with Cloud Object Storage service roles
 {: #fgac-conditions-service-roles}
