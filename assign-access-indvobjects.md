@@ -80,7 +80,7 @@ Use [IAM v2 policy](/apidocs/iam-policy-management#create-v2-policy) to construc
 Cloud Object Storage supports the following attributes to specify conditions for assigning fine-grained access on Cloud Object Storage resources:
 
 ### Prefix and Delimiter
-{: #fgac-attributes-prefix-delimeter}
+{: #fgac-attributes-prefix-delimiter}
 
 **Prefix** and **Delimiter** are used together to scope all listing permissions to specific objects in a bucket.
 
@@ -137,7 +137,7 @@ There are several operators that can be used when defining condition attributes.
 ### Use of wildcards
 {: #fgac-attributes-wildcards}
 
-A condition attribute’s values can include a [wildcard](/docs/account?topic=account-wildcard#string-comparisons) when the operator is `stringMatch` or `stringMatchAnyOf`.
+A condition attribute’s values can include a [wildcard](/docs/account?topic=account-wildcard#) when the operator is `stringMatch` or `stringMatchAnyOf`.
 
 **Examples of using wildcards in condition statements:**
 
