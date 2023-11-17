@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2022-06-24"
+  years: 2017, 2023
+lastupdated: "2023-11-17"
 
 keywords: activity tracker, LogDNA, event, object storage, COS API calls, monitor COS events
 
@@ -22,16 +22,16 @@ Use the {{site.data.keyword.at_full}} service to track how users and application
 This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
 {: note}
 
-The {{site.data.keyword.at_full_notm}} service records user-initiated activities that change the state of a service in {{site.data.keyword.cloud_notm}}. 
-For more information, see [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started).  
+The {{site.data.keyword.at_full_notm}} service records user-initiated activities that change the state of a service in {{site.data.keyword.cloud_notm}}.
+For more information, see [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started).
 
 By default, COS events that report on global actions such as creation of a bucket are collected automatically. You can monitor global actions through the Activity Tracker instance that is located in the Frankfurt location.
 
-In {{site.data.keyword.cos_full_notm}}, you can also monitor management events and COS data events. 
-* Collection of these events in your account is optional. 
-* You must configure each bucket to enable management events, or management and data events. Notice that you cannot enable data events only for a bucket. 
+In {{site.data.keyword.cos_full_notm}}, you can also monitor management events and COS data events.
+* Collection of these events in your account is optional.
+* You must configure each bucket to enable management events, or management and data events. Notice that you cannot enable data events only for a bucket.
 * To monitor management events, you must configure a bucket and specify the Activity Tracker instance where those events will be collected and forwarded.
-* To monitor data events, you must select the option **Track data events**. 
+* To monitor data events, you must select the option **Track data events**.
 * Each action that a user performs on a COS resource has a unique ID that is included in the event in the `responseData.requestId` field.
 
 
@@ -107,7 +107,7 @@ For `cloud-object-storage.bucket-key-state.update` events, the following fields 
 | `responseData.eventID`           | The unique identifier associated with the key lifecycle event.            |
 | `responseData.adopterKeyState`   | The current state the key (enabled or disabled).                          |
 | `responseData.adopterKeyVersion` | The current version of the key.                                           |
-{: caption="Table 3a. Additional fields for `bucket-key-state.update` events"}
+{: caption="Table 3a. Additional fields for bucket-key-state.update events"}
 
 ### Object events
 {: #at-actions-mngt-3}
@@ -206,14 +206,14 @@ For `cloud-object-storage.bucket-versioning.create` events, the following fields
 | Field                                   | Description                                                |
 | --------------------------------------- | ---------------------------------------------------------- |
 | `requestData.newValue.versioning.state` | The versioning state of the bucket (enabled or suspended). |
-{: caption="Table 8a. Additional fields for `bucket-versioning.create` events"}
+{: caption="Table 8a. Additional fields for bucket-versioning.create events"}
 
 ## Viewing events
 {: #at-ui}
 
 You can view the Activity Tracker events that are associated with your {{site.data.keyword.cos_short}} instance by using [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started).
 
-You can only provision 1 instance of the {{site.data.keyword.at_full_notm}} service per location. 
+You can only provision 1 instance of the {{site.data.keyword.at_full_notm}} service per location.
 
 To view events, you must identify the location where events are collected and available for monitoring. Then, you must access the web UI of the {{site.data.keyword.at_full_notm}} instance in that location. For more information, see [Launching the web UI through the IBM Cloud UI](/docs/activity-tracker?topic=activity-tracker-observe).
 
