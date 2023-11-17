@@ -204,7 +204,7 @@ Samantha will not have access to navigate the UI from the root folder. This situ
 ```
 {: codeblock}
 
-### Scenario 4: Grant Samantha access to navigate the UI to the files in the ```2023``` and ```2024``` folders in addition to list, read and replicate files in ```2023``` and ```2024```
+### Scenario 4: Grant Samantha access to navigate the UI to the files in the ```2023``` and ```2024``` folders in addition to list, read and replicate files in ```2023``` and ```2024```.
 {: #object-access-scenario-4}
 
 To navigate the UI to ```MyBucket```, Samantha needs the platform role ```Viewer```. In addition, Samantha is given access to any directories above the target folder. In this case, Samantha needs access to list the root level (defined by the prefix of the empty string) and the ```Product/``` folder. This allows Samantha to see all root-level folders and objects.
@@ -294,18 +294,3 @@ To navigate the UI to ```MyBucket```, Samantha needs the platform role ```Viewer
   "pattern": "attribute-based-condition:resource:literal-and-wildcard"
 ```
 {: codeblock}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
