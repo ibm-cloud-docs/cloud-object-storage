@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-11-19"
+lastupdated: "2023-11-28"
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region
 
@@ -20,12 +20,12 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
-## 4 December 2023
-{: #cloud-object-storage-dec0423}
+## 30 November 2023
+{: #cloud-object-storage-nov3023}
 {: release-note}
 
 New feature!
-:   You can create an IAM policy to control access to objects within a bucket based on the prefix of the object [using fine grained access control](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-overview). It allows you to separate the object namespace within a bucket and avoid the need to create seperate buckets for different users or services.
+:   You can create IAM policies that control access to individual objects within your bucket using [fine grained access control](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-overview).
 
 ## 14 June 2023
 {: #cloud-object-storage-jun1423}
