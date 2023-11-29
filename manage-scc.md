@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2020, 2023
-lastupdated: "2023-02-23"
+lastupdated: "2023-11-29"
 
 keywords: security and compliance for cloud-object-storage, security for cloud-object-storage, compliance for cloud-object-storage
 
@@ -22,7 +22,7 @@ With the {{site.data.keyword.compliance_short}}, you can:
 * Define rules for {{site.data.keyword.cos_short}} that can help to standardize resource configuration.
 
 This service supports the ability to view  the results of your configuration scans in the Security and Compliance Center. It is not necessary to set up a collector to use configuration rules.
-{:note}
+{: note}
 
 ## Monitoring security and compliance posture with {{site.data.keyword.cos_short}}
 {: #monitor-cloud-object-storage}
@@ -38,25 +38,25 @@ To start monitoring your resources, check out [Getting started](/docs/security-c
 {: #cloud-object-storage-available-goals}
 
 * Check whether Cloud Object Storage bucket resiliency is set to cross region
-  * _This ensures that buckets are created in designated locations, resiliency levels, and storage classes._
+    _This ensures that buckets are created in designated locations, resiliency levels, and storage classes._
 * Check whether Cloud Object Storage buckets are enabled with IBM Cloud Monitoring
-  * _This ensures buckets are associated with specific instances of IBM Cloud Monitoring, as well as whether usage and/or request metrics are enabled._
+    _This ensures buckets are associated with specific instances of IBM Cloud Monitoring, as well as whether usage and/or request metrics are enabled._
 * Check whether Cloud Object Storage buckets are enabled with IBM Activity Tracker
-  * _This ensures buckets are associated with specific instances of IBM Activity Tracker, as well as whether read and/or write events are enabled._
+    _This ensures buckets are associated with specific instances of IBM Activity Tracker, as well as whether read and/or write events are enabled._
 * Check whether Cloud Object Storage public access is disabled in IAM settings (not applicable to ACLs managed using S3 APIs)
-  * _This ensures IAM policies to allow unauthenticated access to a bucket are disabled._
+    _This ensures IAM policies to allow unauthenticated access to a bucket are disabled._
 * Check whether Cloud Object Storage is enabled with customer-managed encryption and Keep Your Own Key (KYOK)
-  * _This ensures buckets are associated with specific encryption root keys in Key Protect or HPCS._
+    _This ensures buckets are associated with specific encryption root keys in Key Protect or HPCS._
 * Check whether Cloud Object Storage network access is restricted to a specific IP range
-  * _This ensures buckets are only accessible from designated IP addresses, or that designated IP addresses are blocked._
+    _This ensures buckets are only accessible from designated IP addresses, or that designated IP addresses are blocked._
 * Check whether Cloud Object Storage bucket access is restricted by using IAM and S3 access control
-  * _This ensures buckets are prevented from using legacy S3 Access Control Lists (ACLs) to allow unauthenticated access._
+    _This ensures buckets are prevented from using legacy S3 Access Control Lists (ACLs) to allow unauthenticated access._
 * Check whether Cloud Object Storage is accessible only by using private endpoints
-  * _This ensures requests can be restricted to any combination of public, private, or direct networks._
+    _This ensures requests can be restricted to any combination of public, private, or direct networks._
 * Check whether Cloud Object Storage is accessible only through HTTPS
-  * _All IAM token-based requests are required to use HTTPS._
+    _All IAM token-based requests are required to use HTTPS._
 * Check whether Cloud Object Storage is enabled with encryption
-  * _All data stored in Cloud Object Storage is encrypted by default._
+    _All data stored in Cloud Object Storage is encrypted by default._
 
 
 ## Governing {{site.data.keyword.cos_short}} resource configuration
@@ -78,23 +78,23 @@ Create rules to ensure that Cloud Object Storage buckets:
 
 [Configuration rules](x3084914){: term} are used to monitor configuration standards that you want to implement across your accounts. For more information about configuration rules, see [What makes up a rule](/docs/security-compliance?topic=security-compliance-what-is-rule).
 
-| Resource kind | Property                                               | Operator type | Template required | Description                                                                                                                                                                                                      |
-|---------------|--------------------------------------------------------|---------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| *bucket*      | *location*                                             | string        | No                | Cloud Object Storage bucket location.                                                                                                                              |
-| *bucket*      | *storage_class*                                        | string        | No                | Cloud Object Storage bucket storage class. This field is case-sensitive. The valid values are `standard`, `smart`, `vault`, or `cold`.  |
-| *bucket*      | *ibm_sse_kms_customer_root_key_crn*                    | string        | No                | SSE Key Protect or Hyper Protect Crypto Services Customer Root Key CRN associated with a Cloud Object Storage bucket. This maps to the bucket configuration parameter, `ibm-sse-kp-customer-root-key-crn`.                                              |
-| *bucket*      | *public_access_block_configuration.block_public_acls*  | boolean       | Yes               | Setting to prevent future configuration of ACLs that permit public access on the Cloud Object Storage bucket and its objects. Prior public access configuration for the bucket and its objects is unchanged.                          |
-| *bucket*      | *public_access_block_configuration.ignore_public_acls* | boolean       | Yes               | Setting to ignore configuration of public ACLs on the Cloud Object Storage bucket and its objects, rendering effective access as private. `GET Bucket ACL` and `GET Object ACL` return effective (enforced) permissions for the resource. |
-| *bucket*      | *firewall.allowed_network_type*                        | string list   | Yes               | List of network endpoint types (`public`, `private`, or `direct`) that are allowed.                                                                                           |
-| *bucket*      | *firewall.allowed_ip*                                  | IP list       | Yes               | List of allowed originating (source) IP addresses/ranges. The list can contain up to 1000 IPv4 or IPv6 addresses/ranges in CIDR notation.                                                                                 |
-| *bucket*      | *firewall.denied_ip*                                   | IP list       | Yes               | List of originating (source) IP addresses/ranges that are not permitted. The list can contain up to 1000 IPv4 or IPv6 addresses/ranges in CIDR notation.   |
-| *bucket*      | *activity_tracking.activity_tracker_crn*               | string        | Yes               | CRN of the Activity Tracker instance that receives both management (bucket-level) and data (object-level) events. Management events are sent automatically, but data events are opt-in.                                                                              |
-| *bucket*      | *activity_tracking.write_data_events*                  | boolean       | Yes               | If set to true, the Cloud Object Storage bucket's object write data events (i.e. uploads) will be sent to the activity tracking service.                                                                                                 |
-| *bucket*      | *activity_tracking.read_data_events*                   | boolean       | Yes               | If set to true, the Cloud Object Storage bucket's object read events (i.e. downloads) will be sent to the activity tracking service.                                                                                                     |
-| *bucket*      | *metrics_monitoring.metrics_monitoring_crn*            | string        | Yes               | CRN of the IBM Cloud Monitoring instance that receives the bucket metrics.                                                                              |
-| *bucket*      | *metrics_monitoring.usage_metrics_enabled*             | boolean       | Yes               | If set to true, the Cloud Object Storage bucket's usage metrics will be sent to the monitoring service.                                                                                                 |
-| *bucket*      | *metrics_monitoring.request_metrics_enabled*           | boolean       | Yes               | If set to true, the Cloud Object Storage bucket's request metrics will be sent to the monitoring service.                                                                                                 |
-| *bucket*      | *hard_quota*                                           | numeric       | Yes               | Maximum bytes allotted to the Cloud Object Storage bucket.                                                                                                     |
+| Resource kind | Property                                               | Operator type | Description                                                                                                                                                                                                      |
+|---------------|--------------------------------------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| *bucket*      | *location*                                             | string        | Cloud Object Storage bucket location.                                                                                                                              |
+| *bucket*      | *storage_class*                                        | string        | Cloud Object Storage bucket storage class. This field is case-sensitive. The valid values are `standard`, `smart`, `vault`, or `cold`.  |
+| *bucket*      | *ibm_sse_kms_customer_root_key_crn*                    | string        | SSE Key Protect or Hyper Protect Crypto Services Customer Root Key CRN associated with a Cloud Object Storage bucket. This maps to the bucket configuration parameter, `ibm-sse-kp-customer-root-key-crn`.                                              |
+| *bucket*      | *public_access_block_configuration.block_public_acls*  | boolean       | Setting to prevent future configuration of ACLs that permit public access on the Cloud Object Storage bucket and its objects. Prior public access configuration for the bucket and its objects is unchanged.                          |
+| *bucket*      | *public_access_block_configuration.ignore_public_acls* | boolean       | Setting to ignore configuration of public ACLs on the Cloud Object Storage bucket and its objects, rendering effective access as private. `GET Bucket ACL` and `GET Object ACL` return effective (enforced) permissions for the resource. |
+| *bucket*      | *firewall.allowed_network_type*                        | string list   | List of network endpoint types (`public`, `private`, or `direct`) that are allowed.                                                                                           |
+| *bucket*      | *firewall.allowed_ip*                                  | IP list       | List of allowed originating (source) IP addresses/ranges. The list can contain up to 1000 IPv4 or IPv6 addresses/ranges in CIDR notation.                                                                                 |
+| *bucket*      | *firewall.denied_ip*                                   | IP list       | List of originating (source) IP addresses/ranges that are not permitted. The list can contain up to 1000 IPv4 or IPv6 addresses/ranges in CIDR notation.   |
+| *bucket*      | *activity_tracking.activity_tracker_crn*               | string        | CRN of the Activity Tracker instance that receives both management (bucket-level) and data (object-level) events. Management events are sent automatically, but data events are opt-in.                                                                              |
+| *bucket*      | *activity_tracking.write_data_events*                  | boolean       | If set to true, the Cloud Object Storage bucket's object write data events (i.e. uploads) will be sent to the activity tracking service.                                                                                                 |
+| *bucket*      | *activity_tracking.read_data_events*                   | boolean       | If set to true, the Cloud Object Storage bucket's object read events (i.e. downloads) will be sent to the activity tracking service.                                                                                                     |
+| *bucket*      | *metrics_monitoring.metrics_monitoring_crn*            | string        | CRN of the IBM Cloud Monitoring instance that receives the bucket metrics.                                                                              |
+| *bucket*      | *metrics_monitoring.usage_metrics_enabled*             | boolean       | If set to true, the Cloud Object Storage bucket's usage metrics will be sent to the monitoring service.                                                                                                 |
+| *bucket*      | *metrics_monitoring.request_metrics_enabled*           | boolean       | If set to true, the Cloud Object Storage bucket's request metrics will be sent to the monitoring service.                                                                                                 |
+| *bucket*      | *hard_quota*                                           | numeric       | Maximum bytes allotted to the Cloud Object Storage bucket.                                                                                                     |
 {: caption="Table 1. Rule properties for {{site.data.keyword.cos_short}}" caption-side="top"}
 
 Although the operator types may indicate the values are numeric or boolean, all of the values in the rule are entered as strings or lists of strings, such as `'true'` or `'324342'`.  Additionally, even though an operator type might indicate a string, it is still possible to set an array of possible strings that comply with the rule.  For more information, see [What are the supported operators?](https://cloud.ibm.com/docs/security-compliance?topic=security-compliance-what-is-rule#rule-operators)
@@ -102,10 +102,10 @@ Although the operator types may indicate the values are numeric or boolean, all 
 
 To learn more about configuration rules and how they are evaluated, check out [What is a configuration rule?](/docs/security-compliance?topic=security-compliance-what-is-rule).
 
-After [rules are created and added to scopes](/docs/security-compliance?topic=security-compliance-rules), you can view the evaluation results in the {{site.data.keyword.compliance_short}}. Each rule is shown to be compliant or noncompliant - if a rule shows as being noncompliant then you can view the specific bucket that is in violation of the rule. 
+After [rules are created and added to scopes](/docs/security-compliance?topic=security-compliance-rules), you can view the evaluation results in the {{site.data.keyword.compliance_short}}. Each rule is shown to be compliant or noncompliant - if a rule shows as being noncompliant then you can view the specific bucket that is in violation of the rule.
 
 The evaluation results are only available for a limited period.  It is recommended that reports are downloaded and organized to maintain a history of compliance for audit purposes. For more information on reporting results, see [Viewing evaluation results](/docs/security-compliance?topic=security-compliance-results).
-{:note}
+{: note}
 
 For example, let's assume you want to evaluate a set of requirements on new buckets:
 
@@ -116,11 +116,11 @@ For example, let's assume you want to evaluate a set of requirements on new buck
 5. A firewall must be in place to only allow requests from inside the IBM Cloud.
 6. Only the IP addresses in the range `fe80:021b::0/64` will be allowed to make requests.
 7. Activity tracking must be enabled for both read and write requests.
-8. IBM Cloud Monitoring must be enabled for both usage and requests. 
+8. IBM Cloud Monitoring must be enabled for both usage and requests.
 9. The bucket cannot be allowed to grow past 10 TiB (10995116277760 bytes).
 
 For step-by-step instructions using the UI and API, see [Working with config rules](/docs/security-compliance?topic=security-compliance-rules).
-{:tip}
+{: tip}
 
 The rule would look like the following:
 
@@ -144,7 +144,7 @@ The rule would look like the following:
        "property": "storage_class",
        "operator": "string_equals",
        "value": [
-         "smart"    
+         "smart"
        ]
      },
      {
