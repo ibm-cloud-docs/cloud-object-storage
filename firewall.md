@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-05-02"
+  years: 2017, 2023
+lastupdated: "2023-11-02"
 
 keywords: ip address, firewall, configuration, api
 
@@ -26,19 +26,24 @@ This feature is not currently supported in {{site.data.keyword.cos_short}} for {
 ## Using context-based restrictions
 {: #setting-cbr}
 
-A [context-based restriction](/docs/account?topic=account-context-restrictions-whatis&interface=ui) is comprised of a **rule** and one or more **contexts** (network zones and/or endpoint type). These restrictions do not replace IAM policies, but simply check that a request is coming from an allowed context, such as a range of IP addresses, VPCs, or service references.  
+A [context-based restriction](/docs/account?topic=account-context-restrictions-whatis&interface=ui) is comprised of a **rule** and one or more **contexts** (network zones and/or endpoint type). These restrictions do not replace IAM policies, but simply check that a request is coming from an allowed context, such as a range of IP addresses, VPCs, or service references.
 
-A user must have the `Administrator` role on a service to create, update, or delete rules.  A user must have either the `Editor` or `Administrator` role to create, update, or delete network zones. 
+A user must have the `Administrator` role on a service to create, update, or delete rules.  A user must have either the `Editor` or `Administrator` role to create, update, or delete network zones.
 
-You can learn more about how context-based restrictions work in the [detailed documentation](/docs/account?topic=account-context-restrictions-create&interface=ui), or you can follow a [quick tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-cos-tutorial-cbr). 
+Context-based restrictions does not support applying context-based restrictions rules to specific objects or folders, only at the bucket level.
 
-Any Activity Tracker or audit log events generated will come from the context-based restrictions service, and not {{site.data.keyword.cos_short}}.  
+You can learn more about how context-based restrictions work in the [detailed documentation](/docs/account?topic=account-context-restrictions-create&interface=ui), or you can follow a [quick tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-cos-tutorial-cbr).
+
+Any Activity Tracker or audit log events generated will come from the context-based restrictions service, and not {{site.data.keyword.cos_short}}.
 {: tip}
 
-If no rules are applicable to a particular resource, access is determined by IAM policies and the presence of a legacy bucket firewall. 
+If no rules are applicable to a particular resource, access is determined by IAM policies and the presence of a legacy bucket firewall.
 {: important}
 
-An account is limited in the [number of rules and network zones that can be supported](/docs/account?topic=account-known-issues#context-based-restrictions-limits).  
+Context-based restrictions are only applied at the bucket level and not to specific objects or folders.
+{: important}
+
+An account is limited in the [number of rules and network zones that can be supported](/docs/account?topic=account-known-issues#context-based-restrictions-limits).
 
 ## Bucket firewalls versus context-based restrictions
 {: #firewall-precursors}
@@ -46,7 +51,7 @@ An account is limited in the [number of rules and network zones that can be supp
 Prior to the availability of context-based restrictions, {{site.data.keyword.cos_short}} itself would enforce access restrictions based on IP addresses. While this method is still supported, it is recommended to [use the newer context-based restrictions](/docs/account?topic=account-context-restrictions-create&interface=ui) instead of the legacy bucket firewall.
 {: important}
 
-Bucket firewalls and context-based restrictions operate independently of one another, which means it's possible to have a request permitted by one and denied by the other.  
+Bucket firewalls and context-based restrictions operate independently of one another, which means it's possible to have a request permitted by one and denied by the other.
 
 * Bucket creation requests **must** be permitted by any context-based restrictions.
 * For all other bucket or object requests, both the context-based restrictions _and_ the bucket firewall must allow the request.
@@ -59,7 +64,7 @@ An IP address that is allowed by context-based restrictions can still be denied 
 
 There are some rules around setting a firewall:
 
-* A user that sets or views a firewall must have the `Manager` role on the bucket. 
+* A user that sets or views a firewall must have the `Manager` role on the bucket.
 * A user with the `Manager` role on the bucket can view and edit the list of allowed IP addresses from any IP address to prevent accidental lockouts.
 * The {{site.data.keyword.cos_short}} Console can still access the bucket, provided the user's IP address is authorized.
 * Other {{site.data.keyword.cloud_notm}} services **are not authorized** to bypass the firewall. This limitation means that other services that rely on IAM policies for bucket access (such as Aspera, SQL Query, Security Advisor, Watson Studio, Cloud Functions, and others) will be unable to do so.
@@ -77,7 +82,7 @@ First, make sure that you have an instance of {{site.data.keyword.cos_short}} an
 
 1. Start by selecting **Storage** to view your resource list.
 1. Next, select the service instance with your bucket from within the **Storage** menu. This takes you to the {{site.data.keyword.cos_short}} Console.
-1. Choose the bucket that you want to limit access to authorized IP addresses. 
+1. Choose the bucket that you want to limit access to authorized IP addresses.
 1. Select **Access policies** from the navigation menu.
 1. Select the **Authorized IPs** tab.
 1. Click **Add IP addresses**, then choose **Add**.
@@ -101,7 +106,7 @@ If there are no authorized IP addresses listed this means that normal IAM polici
 #### Set a legacy firewall through an API
 {: #firewall-api}
 
-Firewalls are managed with the [COS Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration). This new REST API is used for configuring buckets. 
+Firewalls are managed with the [COS Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration). This new REST API is used for configuring buckets.
 
 Users with the `manager` role can view and edit the list of allowed IP addresses from any network in order to prevent accidental lockouts.
 {: tip}
