@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-08-08"
+lastupdated: "2023-11-02"
 
 keywords: rest, s3, compatibility, api, error
 
@@ -69,4 +69,4 @@ These operations create, delete, get information about, and control behavior of 
 | List Parts                | Returns a list of parts that are associated with an upload ID                       |
 {: caption="Table 1. Object operation" caption-side="top"}
 
-Some additional operations, such as tagging and versioning, are supported in private cloud implementations of {{site.data.keyword.cos_short}}, but not in public or dedicated clouds currently. More information custom Object Storage solutions can be found at [ibm.com](https://www.ibm.com/cloud/object-storage).
+More information about {{site.data.keyword.cos_full_notm}} features and use-cases can be found at [ibm.com](https://www.ibm.com/cloud/object-storage).

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-11-11"
+lastupdated: "2023-10-27"
 
 keywords: Object Storage, SysDig, monitoring, integration
 
@@ -12,14 +12,14 @@ subcollection: cloud-object-storage
 ---
 
 {{site.data.keyword.attribute-definition-list}}
-{:http: .ph data-hd-programlang='http'} 
-{:console: .ph data-hd-programlang='Console'} 
-{:cli: .ph data-hd-programlang='CLI'} 
+{:http: .ph data-hd-programlang='http'}
+{:console: .ph data-hd-programlang='Console'}
+{:cli: .ph data-hd-programlang='CLI'}
 
 # Using {{site.data.keyword.mon_full_notm}} with {{site.data.keyword.cos_full_notm}}
 {: #mm-cos-integration}
 
-Use the {{site.data.keyword.mon_full}} service to monitor your {{site.data.keyword.cos_full}} (COS) data in the {{site.data.keyword.cloud_notm}}. The results of the activity can be measured for compliance and other analysis through the web dashboard UI. 
+Use the {{site.data.keyword.mon_full}} service to monitor your {{site.data.keyword.cos_full}} (COS) data in the {{site.data.keyword.cloud_notm}}. The results of the activity can be measured for compliance and other analysis through the web dashboard UI.
 {: shortdesc}
 
 This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
@@ -45,7 +45,7 @@ Before you provision an instance of {{site.data.keyword.mon_full_notm}}, conside
 
 In this guide, we will examine using both the {{site.data.keyword.cloud_notm}} Console as well as the IBM Cloud Developer Tools (CLI) to integrate {{site.data.keyword.mon_short}} in your {{site.data.keyword.cos_short}} instance. For more information about IBM Cloud Developer Tools, check out the [documentation](/docs/cli?topic=cli-getting-started).
 
-Using either set of instructions, Console or CLI, you will be able to get started using this guide. If the instructions that you seek do not appear in this guide, click on the appropriate item using the context switcher. 
+Using either set of instructions, Console or CLI, you will be able to get started using this guide. If the instructions that you seek do not appear in this guide, click on the appropriate item using the context switcher.
 
 ### Instantiating and Provisioning {{site.data.keyword.cos_full_notm}}
 {: #mm-cos-instantiation}
@@ -55,9 +55,9 @@ If you have not already done so, [set up and provision](/docs/cloud-object-stora
 ## Manage User Access
 {: #mm-cos-manage-users}
 
-There are many ways to manage access to your {{site.data.keyword.cos_short}} instance, but for this guide we'll focus on how to access the dashboard you are going to create. 
+There are many ways to manage access to your {{site.data.keyword.cos_short}} instance, but for this guide we'll focus on how to access the dashboard you are going to create.
 
-**Users in an account [must be assigned a platform role](/docs/Monitoring-with-Sysdig?topic=Monitoring-with-Sysdig-iam) in order to manage instances as well as launching the IBM Cloud Monitoring UI from the {{site.data.keyword.cloud_notm}} console. In addition, users must have a service role that defines the permissions to work with {{site.data.keyword.mon_full_notm}}.** 
+**Users in an account [must be assigned a platform role](/docs/Monitoring-with-Sysdig?topic=Monitoring-with-Sysdig-iam) in order to manage instances as well as launching the IBM Cloud Monitoring UI from the {{site.data.keyword.cloud_notm}} console. In addition, users must have a service role that defines the permissions to work with {{site.data.keyword.mon_full_notm}}.**
 {: important}
 
 ## Provisioning an instance of {{site.data.keyword.mon_short}}
@@ -104,12 +104,13 @@ Complete the following steps to get an IAM token:
 
 1. From a terminal, log in to the {{site.data.keyword.cloud_notm}}.
 {: cli}
+
 2. Run the following command to get a token:
 {: cli}
 
-    ```
+   ```cli
     ibmcloud iam oauth-tokens
-    ```
+   ```
     {: codeblock}
     {: cli}
 
@@ -142,6 +143,7 @@ Note that if the {{site.data.keyword.mon_short}} instance is created by COS, Pla
 
 To set Platform metrics on the instance:
 {: console}
+
    1. Go to your [dashboard](https://cloud.ibm.com/observe/monitoring).
    2. Click on "Configure platform metrics."
    3. Select the region where the {{site.data.keyword.mon_short}} instance was created.
@@ -170,10 +172,10 @@ curl -X PATCH -k  \
 In the code sample, replace the placeholders with the appropriate values.
 {: cli}
 
-| Value	| Description | 
-| --- | --- | 
-| $TOKEN | The token for authentication created previously | 
-| $1 | The name of your bucket | 
+| Value	| Description |
+| --- | --- |
+| $TOKEN | The token for authentication created previously |
+| $1 | The name of your bucket |
 {: cli}
 
 ### Launch your instance of {{site.data.keyword.mon_short}}
@@ -193,7 +195,7 @@ This guide has skipped right past the installation of agents that is typical of 
 ### View your data in {{site.data.keyword.mon_short}}
 {: #mm-cos-connection-view-data}
 
-Once you've configured your dashboard, you can view your data. Figures 3-5 show different views of your usage. 
+Once you've configured your dashboard, you can view your data. Figures 3-5 show different views of your usage.
 
 ![View bucket metrics](images/SysDig-COS-metrics.jpg){: caption="Figure 3. View sample data showing space used and number of objects"}
 
@@ -202,10 +204,10 @@ Once you've configured your dashboard, you can view your data. Figures 3-5 show 
 ![View metrics by storage class](images/SysDig-COS-metrics-3.jpg){: caption="Figure 5. View used space by storage class"}
 
 ## Cloud Object Storage metrics details
-{: mm-cos-metrics-details}
+{: #mm-cos-metrics-details}
 
 ### Usage metrics
-{: mm-cos-metrics-usage}
+{: #mm-cos-metrics-usage}
 
 There are a set of basic metrics that track usage:
 
@@ -214,7 +216,7 @@ There are a set of basic metrics that track usage:
 - ibm_cos_bucket_hard_quota_bytes
 
 ### Request metrics
-{: mm-cos-metrics-request}
+{: #mm-cos-metrics-request}
 
 There are metrics that report the aggregates for different classes of HTTP requests:
 
@@ -276,12 +278,12 @@ Latency metrics (first byte and general) for requests are broken down by request
 All metrics are reported as `float64` numeric values:
 
 ## Attributes for Segmentation
-{: mm-cos-attributes}
+{: #mm-cos-attributes}
 
 You can filter your results by attributes. In this guide, we'll look at some general examples as well as those specific to {{site.data.keyword.cos_full_notm}}.
 
 ### Global Attributes
-{: mm-cos-global-attributes}
+{: #mm-cos-global-attributes}
 
 The following attributes are available for segmenting all of the metrics listed above
 
@@ -296,7 +298,7 @@ The following attributes are available for segmenting all of the metrics listed 
 {: caption="Table 4: IBM global attributes" caption-side="top"}
 
 ### Additional Attributes
-{: mm-cos-additional-attributes}
+{: #mm-cos-additional-attributes}
 
 The following attributes are available for segmenting one or more attributes as described in the reference above.  Please see the individual metrics for segmentation options.
 
