@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-06-07"
+lastupdated: "2023-09-22"
 
 keywords: authorization, iam, basics, credentials
 
@@ -366,6 +366,11 @@ When creating a client by using a library that requires an "auth" endpoint value
 
 When a service credential is created, the underlying Service ID is granted a role on the entire instance of {{site.data.keyword.cos_short}}. If the intention that the credential be used to grant,  access to a subset of buckets and not the entire instance, this policy needs to be edited. See the [Bucket permissions](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions) page for more details.
 
+## Using service credentials for single-object/folder access
+{: #service-credentials-fgac}
+
+When a service credential is created, the underlying Service ID is granted a role on the entire instance of {{site.data.keyword.cos_short}}. If the intention that the credential be used to grant,  access to a subset of buckets and not the entire instance, this policy needs to be edited. See the [Assigning access to objects within a bucket using IAM access conditions](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions) page for more details.
+
 ## API Key vs HMAC
 {: #service-credentials-iam-hmac}
 
@@ -375,3 +380,4 @@ In general IAM API Keys are the preferred method of authentication for {{site.da
 For more information about IAM visit - [Getting started with IAM](/docs/cloud-object-storage?topic=cloud-object-storage-iam)
 
 For more information about HMAC visit - [Using HMAC Credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main)
+

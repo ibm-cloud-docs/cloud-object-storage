@@ -39,6 +39,7 @@ toc:
           - cos-secure-stored-content.md
           - migrate.md
           - cos-single-bucket.md
+          - object-access.md
           - kp-encrypt-bucket.md
           - cos-events-at.md
           - cos-mm.md
@@ -88,6 +89,7 @@ toc:
                       - hmac-signature.md
                       - presigned-urls.md
                 - buckets.md
+                - assign-access-indvobjects.md
                 - public-access.md
                 - firewall.md
           - topicgroup:

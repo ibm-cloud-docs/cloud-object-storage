@@ -16,11 +16,12 @@ subcollection: cloud-object-storage
 {: #vpes}
 
 
-{{site.data.keyword.cloud}} Virtual Private Endpoint (VPE) for {{site.data.keyword.cos_full}} provides connection points to IBM services on the IBM private network from your VPC network.
+{{site.data.keyword.cloud}} Virtual Private Endpoint (VPE) for {{site.data.keyword.cos_full}} provides connection points to IBM services on the {{site.data.keyword.cloud}} internal network from your VPC network.
 
 
 ## Using Virtual Private Endpoints
 {: #using-vpes}
+
 
 Virtual Private Endpoints (VPEs) are generally available in all regions.
 {: .note}
@@ -45,15 +46,13 @@ Virtual Private Endpoints (VPEs) are generally available in all regions.
 ### VPE Discoverability
 {: #vpes-discoverability}
 
+
 Following the previous steps results in a service instance with a VPC local endpoint that is reachable with the Virtual Private Endpoints from your VPC network.
 
 If you want to restrict your bucket(s) to be accessible from only your VPC(s), or ranges of IP addresses, configure context-based restrictions.
 {: .important}
 
 The [VPE details](https://cloud.ibm.com/docs/vpc?topic=vpc-vpe-viewing-details-of-an-endpoint-gateway&interface=ui) page will provide you with more information, including IP address, after creation.
-{: .tip}
-
-For more information, see [Secure access to services by using service endpoints](/docs/account?topic=account-service-endpoints-overview).
 {: .tip}
 
 ### More resources
