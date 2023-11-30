@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-11-10"
+lastupdated: "2023-11-30"
 
 keywords: IAM, policy, fine-grained access control, controls, conditions, prefix, delimiter, path, folder1/subfolder1/file.txt, folder1, subfolder1, wildcard, operator, stringMatchAnyOf, stringexists
 
@@ -107,7 +107,7 @@ Prefix of *"folder1/"* `AND` Delimiter of *"/"*
 
 The following APIs are subject to Prefix/Delimiter conditions:
 - [GET Bucket (List Objects)](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets)
-- [GET Bucket Object Versions (List Object Versions)](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets-object-version)
+- GET Bucket Object Versions (List Object Versions)
 - [List Multipart Uploads](/apidocs/cos/cos-compatibility?code=node#listmultipartuploads)
 
 
