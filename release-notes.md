@@ -4,7 +4,6 @@ copyright:
   years: 2017, 2023
 
 lastupdated: "2023-11-30"
-=======
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region
 
