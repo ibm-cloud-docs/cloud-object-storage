@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-09-22"
+lastupdated: "2023-12-06"
 
 keywords: authorization, iam, basics, credentials
 
@@ -46,6 +46,8 @@ The credential has the following values:
 | `iam_role_crn`           | Unique identifier for the assigned role                                                                                                             |
 | `iam_serviceid_crn`      | Unique identifier for the Service ID                                                                                                                |
 | `resource_instance_id`   | Unique identifier for the instance of {{site.data.keyword.cos_short}} the credential accesses. This is also referred to as a service credential. |
+{: caption="Table 1. Credential values" caption-side="top"}
+
 This is an example of a service credential:
 
 ```json
@@ -359,7 +361,7 @@ The `endpoints` URL (`https://control.cloud-object-storage.cloud.ibm.com/v2/endp
 ```
 
 When creating a client by using a library that requires an "auth" endpoint value, you need to add `/oidc/token` to end of the `iam-token` URL provided above.
-{:tip}
+{: tip}
 
 ## Using service credentials for single-bucket access
 {: #service-credentials-bucket}
@@ -374,7 +376,7 @@ When a service credential is created, the underlying Service ID is granted a rol
 ## API Key vs HMAC
 {: #service-credentials-iam-hmac}
 
-In general IAM API Keys are the preferred method of authentication for {{site.data.keyword.cos_full}}. HMAC is supported primarily for compatibility with an earlier version with applications which migrated from IaaS {site.data.keyword.cos_short}} and legacy S3 applications. IAM is also natively supported when developing applications with the COS SDKs. Token expiration and refresh are handled automatically to simplify the process.
+In general IAM API Keys are the preferred method of authentication for {{site.data.keyword.cos_full}}. HMAC is supported primarily for compatibility with an earlier version with applications which migrated from IaaS {{site.data.keyword.cos_short}} and legacy S3 applications. IAM is also natively supported when developing applications with the COS SDKs. Token expiration and refresh are handled automatically to simplify the process.
 
 
 For more information about IAM visit - [Getting started with IAM](/docs/cloud-object-storage?topic=cloud-object-storage-iam)
