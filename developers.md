@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2023
-lastupdated: "2023-06-29"
+lastupdated: "2023-12-06"
 
 keywords: developer, getting started, command line interface, cli
 
