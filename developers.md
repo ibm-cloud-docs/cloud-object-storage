@@ -55,7 +55,7 @@ For managing data stored in {{site.data.keyword.cos_short}}, you can use S3 API 
 
 ## Using libraries and SDKs
 {: #gs-dev-sdk}
-IBM COS SDKs are available for [Python](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python), [Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java), [Go](/docs/cloud-object-storage?topic=cloud-object-storage-using-go), and [Node.js](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-node). These libraries are forked and modified versions of the AWS S3 SDKs that support [IAM token-based authentication](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview), as well as support for [Key Protect](/docs/cloud-object-storage/basics?topic=cloud-object-storage-encryption). 
+IBM COS SDKs are available for [Python](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python), [Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java), [Go](/docs/cloud-object-storage?topic=cloud-object-storage-using-go), and [Node.js](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-node). These libraries are forked and modified versions of the AWS S3 SDKs that support [IAM token-based authentication](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview), as well as support for [Key Protect](/docs/cloud-object-storage/basics?topic=cloud-object-storage-encryption).
 
 ## Building applications on IBM Cloud
 {: #gs-dev-apps}
