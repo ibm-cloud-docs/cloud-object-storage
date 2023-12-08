@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-01-19"
+  years: 2017, 2023
+lastupdated: "2023-12-23"
 
 keywords: IBM cloud object storage, cloud object storage, object storage, storage
 
@@ -82,7 +82,7 @@ Bringing in another user and allow them to act as an administrator for the insta
 
 1. Navigate to the **Manage** menu and follow the link at **Access(IAM)** > **Service IDs**.  Here you can create a _service ID_, which serves as an abstracted identity bound to the account. Service IDs can be assigned API keys and are used in situations where you don't want to tie a particular Developer's identity to a process or component of an application.
 	![IAM Service Ids](images/console_iam_serviceid.png){: caption="Figure 6: IAM Service Ids"}
-1. Repeat the above process but in step 3, choose a particular service instance, and enter "bucket" as the _Resource Type_ and the full CRN of an existing bucket as the _Resource ID_.
+1. Repeat the above process but in step 3, choose a particular service instance, and enter "bucket" as the _Resource Type_ and the [full CRN](/docs/cloud-object-storage?topic=cloud-object-storage-troubleshooting-cos#troubleshooting-cos-details) of an existing bucket as the _Resource ID_.
 1. Now the service ID can access that particular bucket, and no others.
 
 ## Next steps
