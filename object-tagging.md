@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2020
-lastupdated: "2020-12-15"
+  years: 2020, 2023
+lastupdated: "2023-11-01"
 
 keywords: tagging, objects, tags, metadata
 
@@ -15,7 +15,7 @@ subcollection: cloud-object-storage
 # Tagging objects in {{site.data.keyword.cos_full_notm}}
 {: #object-tagging}
 
-Your data can be expressly defined, categorized, and classified in {{site.data.keyword.cos_full}} using associated metadata, called "tags." This document will show you how to take full control in "tagging" the objects representing your data. 
+Your data can be expressly defined, categorized, and classified in {{site.data.keyword.cos_full}} using associated metadata, called "tags." This document will show you how to take full control in "tagging" the objects representing your data.
 {: shortdesc}
 
 ## Objects and metadata
@@ -86,7 +86,7 @@ Tags must comply with the following restrictions:
 * Minimum value length - 0 Unicode characters in UTF-8 (Tag Value can be empty)
 * Maximum value length - 256 Unicode characters in UTF-8
 * Maximum value byte size - 512 bytes
-* A Tag key and value may consist of US Alpha Numeric Characters (a-zA-Z0-9), and spaces representable in UTF-8, and the following symbols: `!`, `_`, `.`, `*`, `` ` ``, `(`, `)`, `-`, `:`
+* A Tag key and value may consist of US Alpha Numeric Characters (a-zA-Z0-9), and spaces representable in UTF-8, and the following symbols: `_`, `.`, `*`, `` ` ``, `-`, `:`
 * Tag keys and values are case-sensitive
 * `ibm:` cannot be used as a key prefix for tags
 
@@ -124,14 +124,14 @@ curl -X "PUT" "https://s3.test.cloud-object-storage.sample.appdomain.cloud/taggi
 ### Editing tags
 {: #object-tagging-edit-tags}
 
-Once your objects have been tagged, over time it may become necessary to modify them. 
+Once your objects have been tagged, over time it may become necessary to modify them.
 
 In order to edit the tags using the graphic interface, you will have to log into the console and access your objects as described previously. Once you've clicked on the "Manage Tags" option, simply change the contents of the form fields. Remember to press "Save" when complete.
 {: console}
 
 ![Save tags when complete](images/object-save-tags.jpg){: console}
 
-Your requests must be authenticated in order to tag your data. Also, you will have to programmatically keep any old tags while updating your objects with new information. The example shown repeats the tags from the previous examples while adding a new tag. 
+Your requests must be authenticated in order to tag your data. Also, you will have to programmatically keep any old tags while updating your objects with new information. The example shown repeats the tags from the previous examples while adding a new tag.
 {: http}
 
 Remember that performing "PUT" operations involving tags will overwrite any current tags.

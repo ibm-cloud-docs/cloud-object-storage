@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-08-31"
+  years: 2017, 2023
+lastupdated: "2023-12-08"
 
 keywords: troubleshooting, support, questions
 
@@ -17,7 +17,7 @@ subcollection: cloud-object-storage
 # Support
 {: #troubleshooting-cos}
 
-If you have problems or questions when you use {{site.data.keyword.cos_full}}, you can get help starting right here. 
+If you have problems or questions when you use {{site.data.keyword.cos_full}}, you can get help starting right here.
 {: shortdesc}
 
 Whether by searching for information or by asking questions through a forum, you can find what you need. If you don't, you can also open a support ticket.
@@ -35,12 +35,17 @@ Whether by searching for information or by asking questions through a forum, you
 
 To find a bucket’s name, go to the IBM Cloud console, select **Storage**, and then select the name of your Object Storage instance from within the **Storage** category. The Object Storage Console opens with a list of buckets, their names, locations, and other details. This name is the one you can use when prompted for a bucket name value by another service.
 
+## How do I find the details for a bucket?
+{: #troubleshooting-cos-details}
+
+To find the details for a bucket, go to the IBM Cloud console, select **Storage**, and then select the name of your Object Storage instance from within the **Storage** category. The Object Storage Console opens with a list of buckets.  Find the bucket you want to see the details, and go to the end of the row and select the options list represented by the three-dot colon.  Click the three-dot colon and select **Configuration** to see the details for the bucket.
+
 ## How do I find a bucket’s location and endpoint?
 {: #troubleshooting-cos-find}
 
 You can view the bucket location in the IBM Cloud console with these steps:
-1. From the IBM Cloud console, select **Storage** to view your resource list. 
-1. Next, select the service instance with your bucket from within the **Storage** category. This takes you to the Object Storage Console. 
+1. From the IBM Cloud console, select **Storage** to view your resource list.
+1. Next, select the service instance with your bucket from within the **Storage** category. This takes you to the Object Storage Console.
 1. Choose the bucket for which you want to see location and endpoints.
 1. Select **Configuration** from the navigation menu to view the page with Location and Endpoints data.
 

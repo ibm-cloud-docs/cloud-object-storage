@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-11-11"
+  years: 2017, 2023
+lastupdated: "2023-11-01"
 
 keywords: empty bucket, delete, multiple
 
@@ -18,14 +18,14 @@ subcollection: cloud-object-storage
 {:important: .important}
 {:note: .note}
 {:download: .download}
-{:javascript: .ph data-hd-programlang='javascript'} 
-{:java: .ph data-hd-programlang='java'} 
+{:javascript: .ph data-hd-programlang='javascript'}
+{:java: .ph data-hd-programlang='java'}
 {:python: .ph data-hd-programlang='python'}
 {:go: .ph data-hd-programlang='go'}
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Emptying a bucket 
+# Emptying a bucket
 {: #deleting-multiple-objects-patterns}
 
 This overview focuses on the steps that are needed to access a list of all items in a bucket within an instance of {{site.data.keyword.cos_full}} for the purpose of deleting each one sequentially.
@@ -34,7 +34,7 @@ This overview focuses on the steps that are needed to access a list of all items
 The process of emptying a bucket is familiar to anyone who has to delete buckets in their instance of {{site.data.keyword.cos_full_notm}} because a bucket has to be empty to be deleted. There may be other reasons you may wish to delete items, but want to avoid deleting every object individually. This code pattern for the supported SDKs will allow you to define your configuration, create a client, and then connect with that client in order to get a list of all the items in an identified bucket for in order to delete them.
 
 If versioning is enabled, then expiration rules create [delete markers](/docs/cloud-object-storage?topic=cloud-object-storage-versioning).
-{important}
+{: important}
 
 It is a best practice to avoid putting credentials in scripts. This example is for testing and educational purposes, and your specific setup should be informed by best practices and [Developer Guidance](/docs/cloud-object-storage?topic=cloud-object-storage-dev-guide).
 {: tip}
@@ -60,7 +60,7 @@ After logging in to {{site.data.keyword.cos_short}}, choose your storage instanc
   ![deleting_items](images/empty-bucket-rule-dialog.png){: caption="Figure 1. Add Expiration Rule to delete items"}
 
 The process for rule completion can take up to 24 hours, and is on a set schedule. Please take this into consideration when applying this technique.
-{: tip} 
+{: tip}
 
 ## CLI Client Examples
 {: #dmop-cli-example}
@@ -103,7 +103,7 @@ aws s3 rm s3://{bucket-name} --recursive
 ## Code Example
 {: #dmop-code-example}
 
-Deleting an entire directory or removing all the contents of a bucket can be time consuming deleting each object, one at a time. The ability to delete one item at a time can be leveraged to save time and effort by collecting a list of all the items before deletion. 
+Deleting an entire directory or removing all the contents of a bucket can be time consuming deleting each object, one at a time. The ability to delete one item at a time can be leveraged to save time and effort by collecting a list of all the items before deletion.
 
 The topic itself points out the danger of deletion: data **will** be lost. Of course, when that is the goal, caution should be exercised that only the targeted deletions should occur. Check&mdash;and double-check&mdash;instances, bucket names, and any prefixes or paths that need to be specified.
 {: tip}
@@ -150,7 +150,7 @@ function logError(e) {
 // Retrieve the list of contents from a bucket for deletion
 function deleteContents(bucketName) {
     var returnArr = new Array();
-		
+
     console.log(`Retrieving bucket contents from: ${bucketName}\n`);
     return cosClient.listObjects(
         {Bucket: bucketName},
@@ -165,7 +165,7 @@ function deleteContents(bucketName) {
             }
             deleteItem(bucketName, itemName);
             logDone();
-        }    
+        }
     })
     .catch(logError);
 }
@@ -186,7 +186,7 @@ function deleteItem(bucketName, itemName) {
 function main() {
 	try {
         var BucketName = "<BUCKET_NAME>";
-        
+
         deleteContents(BucketName);
     }
     catch(ex) {
@@ -231,7 +231,7 @@ def get_bucket_contents(bucket_name, max_keys):
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
         print("Unable to retrieve bucket contents: {0}".format(e))
-    
+
     return returnArray
 
 def delete_item(bucket_name, item_name):
@@ -257,7 +257,7 @@ main()
 
 ```java
 package com.cos;
-    
+
     import java.sql.Timestamp;
     import java.util.List;
 
@@ -297,12 +297,12 @@ package com.cos;
             String endpoint_url = "https://s3.us.cloud-object-storage.appdomain.cloud"; // this could be any service endpoint
 
             String storageClass = "us-geo";
-            String location = "us"; 
+            String location = "us";
 
             _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
-            
+
             contentsForDeletion(bucketName, 1000);
-            
+
             for(Int deletedItem: itemsForDeletion) {
                 deleteItem(bucketName, deletedItem.getKey());
                 System.out.printf("Deleted item: %s\n", deletedItem.getKey());
@@ -332,22 +332,22 @@ package com.cos;
 
         public static List contentsForDeletion(String bucketName, int maxKeys) {
             System.out.printf("Retrieving bucket contents (V2) from: %s\n", bucketName);
-        
+
             boolean moreResults = true;
             String nextToken = "";
-        
+
             while (moreResults) {
                 ListObjectsV2Request request = new ListObjectsV2Request()
                     .withBucketName(bucketName)
                     .withMaxKeys(maxKeys)
                     .withContinuationToken(nextToken);
-        
+
                 ListObjectsV2Result result = _cosClient.listObjectsV2(request);
                 for(S3ObjectSummary objectSummary : result.getObjectSummaries()) {
                     System.out.printf("Item: %s (%s bytes)\n", objectSummary.getKey(), objectSummary.getSize());
                     deleteItem(bucketName, objectSummary.getKey());
                 }
-                
+
                 if (result.isTruncated()) {
                     nextToken = result.getNextContinuationToken();
                     System.out.println("...More results in next batch!\n");
@@ -359,7 +359,7 @@ package com.cos;
             }
             System.out.println("...No more results!");
         }
-    
+
         public static void deleteItem(String bucketName, String itemName) {
             System.out.printf("Deleting item: %s\n", itemName);
             _cosClient.deleteObject(bucketName, itemName);
@@ -406,14 +406,14 @@ func main() {
     Input := &s3.ListObjectsV2Input{
             Bucket: aws.String(Bucket),
         }
-    
+
     res, _ := client.ListObjectsV2(Input)
 
     for _, item := range res.Contents {
         input := &s3.DeleteObjectInput{
                 Bucket: aws.String(Bucket),
                 Key:    aws.String(*item.Key),
-            } 
+            }
         d, _ := client.DeleteObject(input)
         fmt.Println(d)
     }
@@ -425,7 +425,7 @@ func main() {
 ## Next Steps
 {: #dmop-next-steps}
 
-Leveraging new and existing capabilities of the tools covered in this overview can be explored further at the 
-[{{site.data.keyword.cloud_notm}} Platform](https://cloud.ibm.com/){: external}. 
+Leveraging new and existing capabilities of the tools covered in this overview can be explored further at the
+[{{site.data.keyword.cloud_notm}} Platform](https://cloud.ibm.com/){: external}.
 
 

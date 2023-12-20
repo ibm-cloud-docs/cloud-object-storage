@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-11-10"
+lastupdated: "2023-11-30"
 
 keywords: IAM, policy, fine-grained access control, controls, conditions, prefix, delimiter, path, folder1/subfolder1/file.txt, folder1, subfolder1, wildcard, operator, stringMatchAnyOf, stringexists
 
@@ -107,14 +107,14 @@ Prefix of *"folder1/"* `AND` Delimiter of *"/"*
 
 The following APIs are subject to Prefix/Delimiter conditions:
 - [GET Bucket (List Objects)](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets)
-- [GET Bucket Object Versions (List Object Versions)](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets-object-version)
+- GET Bucket Object Versions (List Object Versions)
 - [List Multipart Uploads](/apidocs/cos/cos-compatibility?code=node#listmultipartuploads)
 
 
 To see the full list of actions and the supported condition attributes, see [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions).
 {: tip}
 
-To give a fine-grained user access to navigate to their folder in the UI, the user needs access to list the root folder of the bucket. See [Scenario 4](/docs-draft/cloud-object-storage?topic=cloud-object-storage-object-access-tutorial#object-access-scenario-4) for how to construct the policy to enable this.
+To give a fine-grained user access to navigate to their folder in the UI, the user needs access to list the root folder of the bucket. See [Scenario 4](/docs/cloud-object-storage?topic=cloud-object-storage-object-access-tutorial#object-access-scenario-4) for how to construct the policy to enable this.
 {: tip}
 
 ### Path
@@ -126,7 +126,7 @@ For an object named *"folder1/subfolder1/file.txt"*, the full object key is the 
 
 All Cloud Object Storage APIs that act directly on an object are subject to Path conditions. See [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) for the list of Cloud Object Storage API actions that support Path.
 
-It is recommended that you define both a Prefix/Delimiter condition and a Path condition when granting read, write or list actions to a user in the same policy. `Manager`, `Writer`, `Reader`, and `Content Reader` are examples of roles where it is recommended to define both a Prefix/Delimiter and Path condition. See [Scenario 4](/docs-draft/cloud-object-storage?topic=cloud-object-storage-object-access-tutorial#object-access-scenario-4) for how to construct the policy to enable this. A condition specifying Prefix/Delimiter and a condition specifying Path should be logically `ORed` in the IAM Policy statement to permit both types of operations (read, write or management of objects or list objects).
+It is recommended that you define both a Prefix/Delimiter condition and a Path condition when granting read, write or list actions to a user in the same policy. `Manager`, `Writer`, `Reader`, and `Content Reader` are examples of roles where it is recommended to define both a Prefix/Delimiter and Path condition. See [Scenario 4](/docs/cloud-object-storage?topic=cloud-object-storage-object-access-tutorial#object-access-scenario-4) for how to construct the policy to enable this. A condition specifying Prefix/Delimiter and a condition specifying Path should be logically `ORed` in the IAM Policy statement to permit both types of operations (read, write or management of objects or list objects).
 {: note}
 
 ### Operators used with condition attributes

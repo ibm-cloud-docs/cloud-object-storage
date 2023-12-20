@@ -3,7 +3,7 @@
 copyright:
 
   years: 2017, 2023
-lastupdated: "2023-08-14"
+lastupdated: "2023-09-26"
 
 
 keywords: cli, command line reference, object storage
@@ -793,6 +793,37 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 		* Flag: `--region REGION`
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
+
+## List objects v2
+{: #ic-list-objects-v2}
+
+* **Action:** List all objects in a specific bucket.
+* **Usage:** `list-objects-v2 --bucket BUCKET_NAME [--starting-token Starting Token] [--delimiter DELIMITER] [--encoding-type METHOD] [--fetch-owner Boolean] [--max-items NUMBER] [--prefix PREFIX] [--start-after Start After] [--page-size SIZE] [--region REGION] [--output FORMAT] [--json] `
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* _Optional_: A DELIMITER is a character that you use to group keys.
+		* Flag: `--delimiter DELIMITER`
+	* _Optional_: Requests to encode the object keys in the response and specifies the encoding METHOD to use.
+		* Flag: `--encoding-type METHOD`
+	* _Optional_: Limits the response to keys that begin with the specified PREFIX.
+		* Flag: `--prefix PREFIX`
+	* _Optional_: A TOKEN to specify where to start paginating. This is the NextToken from a previously truncated response.
+		* Flag: `--starting-token TOKEN`
+	* _Optional_: The SIZE of each page to get in the service call. This does not affect the number of items returned in the command's output. Setting a smaller page size results in more calls to the service, retrieving fewer items in each call. This can help prevent the service calls from timing out. (default: 1000)
+		* Flag: `--page-size SIZE`
+	* _Optional_: The total NUMBER of items to return in the command's output. If the total number of items available is more than the value specified, a NextToken is provided in the command's output. To resume pagination, provide the NextToken value in the starting-token argument of a subsequent command. (default: 0)
+		* Flag: `--max-items NUMBER`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+	* _Optional_: The Boolean is not present in listV2 by default, if you want to return owner field with each key in the result then set the fetch owner field to true.
+		* Flag: `--fetch-owner Boolean`
+	* _Optional_: Start After is where you want S3 to start listing from. S3 starts listing after this specified key. StartAfter can be any key in the bucket.
+		* Flag: `--start-after Start After`
+	* _Deprecated_: Output returned in raw JSON format.
+		* Flag: `--json`
 
 ## List parts
 {: #ic-list-parts}

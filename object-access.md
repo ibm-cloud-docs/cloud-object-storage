@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023
-lastupdated: "2023-11-03"
+lastupdated: "2023-12-07"
 
 keywords: object, bucket, iam, policy, role, tutorial, fine grained access control, prefix, list objects, path, delimiter
 
@@ -69,7 +69,7 @@ This will give Adam the ability to read all objects that start with the key name
     "grant": {
       "roles": [
          { "role_id":
-             "crn:v1:bluemix:public:iam::::serviceRole:ObjectReader"
+             "crn:v1:bluemix:public:cloud-object-storage::::serviceRole:ObjectReader"
          }
        ]
      }
@@ -98,7 +98,7 @@ This will give Adam the ability to read and list all objects that start with the
       "roles": [
         {
           "role_id":
-          "crn:v1:bluemix:public:iam::::serviceRole:ContentReader"
+          "crn:v1:bluemix:public:cloud-object-storage::::serviceRole:ContentReader"
         }
       ]
     }
@@ -169,14 +169,14 @@ Samantha will not have access to navigate the UI from the root folder. This situ
             "value": "/"
           }
         ]
-      },
-      {
-      "key": "{{resource.attributes.path}}",
-      "operator": "stringMatchAnyOf",
-      "value": [
-        "Product/2023/*",
-        "Product/2024/*"
-      ]
+         },
+         {
+            "key": "{{resource.attributes.path}}",
+            "operator": "stringMatchAnyOf",
+            "value": [
+              "Product/2023/*",
+              "Product/2024/*"
+        ]
     },
     {
       "operator": "and",
@@ -204,7 +204,7 @@ Samantha will not have access to navigate the UI from the root folder. This situ
 ```
 {: codeblock}
 
-### Scenario 4: Grant Samantha access to navigate the UI to the files in the ```2023``` and ```2024``` folders in addition to list, read and replicate files in ```2023``` and ```2024```
+### Scenario 4: Grant Samantha access to navigate the UI to the files in the ```2023``` and ```2024``` folders in addition to list, read and replicate files in ```2023``` and ```2024```.
 {: #object-access-scenario-4}
 
 To navigate the UI to ```MyBucket```, Samantha needs the platform role ```Viewer```. In addition, Samantha is given access to any directories above the target folder. In this case, Samantha needs access to list the root level (defined by the prefix of the empty string) and the ```Product/``` folder. This allows Samantha to see all root-level folders and objects.
@@ -294,18 +294,3 @@ To navigate the UI to ```MyBucket```, Samantha needs the platform role ```Viewer
   "pattern": "attribute-based-condition:resource:literal-and-wildcard"
 ```
 {: codeblock}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
