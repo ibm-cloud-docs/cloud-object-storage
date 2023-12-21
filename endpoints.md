@@ -3,9 +3,9 @@
 copyright:
   years: 2017, 2023
 
-lastupdated: "2023-05-12"
+lastupdated: "2023-12-20"
 
-keywords: endpoint, location, object storage
+keywords: endpoint, location, object storage, bucket, region
 
 subcollection: cloud-object-storage
 
@@ -36,7 +36,7 @@ All {{site.data.keyword.cos_full}} endpoints support TLS 1.2 encryption.
 {{site.data.keyword.cloud}} services are connected to a three-tiered network, segmenting public, private, and management traffic.
 
 * **Private endpoints** are available for most requests originating from within IBM Cloud. Private endpoints provide better performance and do not incur charges for any outgoing or incoming bandwidth even if the traffic is cross regions or across data centers. **Whenever possible, it is best to use a private endpoint.**
-* **Public endpoints** can accept requests from anywhere and charges are assessed on outgoing bandwidth. Incoming bandwidth is free. Public endpoints should be used for access not originating from an {{site.data.keyword.cloud_notm}} cloud computing resource. 
+* **Public endpoints** can accept requests from anywhere and charges are assessed on outgoing bandwidth. Incoming bandwidth is free. Public endpoints should be used for access not originating from an {{site.data.keyword.cloud_notm}} cloud computing resource.
 * **Direct endpoints** are used in Bring-Your-Own-IP scenarios, generally for requests originating from [resources within VPCs](/docs/vpc?topic=vpc-about-vpc). Like Private endpoints, Direct endpoints provide better performance over Public endpoints and do not incur charges for any outgoing or incoming bandwidth even if the traffic is cross regions or across data centers. Directions for connecting to {{site.data.keyword.cos_full_notm}} from VPC are available [here](/docs/vpc?topic=vpc-connecting-vpc-cos).
 
 Requests must be sent to the endpoint associated with a given bucket's location. If you aren't sure where a bucket is located, there is an [extension to the bucket listing API](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets-extended) that returns the location and storage class information for all buckets in a service instance.
@@ -104,12 +104,12 @@ Buckets that are created at a regional endpoint distribute data across three dat
 {: tab-group="Regional-endpoints"}
 
 
-## Cross Region Endpoints
+## Cross-Region Endpoints
 {: #endpoints-geo}
 
-Buckets that are created at a cross region endpoint distribute data across three regions. Any one of these regions can suffer an outage or even destruction without impacting availability. Requests are routed to the nearest Cross Region metropolitan area by using Border Gateway Protocol (BGP) routing. In an outage, requests are automatically rerouted to an active region. Advanced users who want to write their own failover logic can do so by sending requests to a [tethered endpoint](/docs/cloud-object-storage/info?topic=cloud-object-storage-advanced-endpoints) and bypassing the BGP routing.
+Buckets that are created at a cross-region endpoint distribute data across three regions in a geographical location. Any one of these regions can suffer an outage or even destruction without impacting availability. Requests are routed to the nearest cross-region metropolitan area by using Border Gateway Protocol (BGP) routing. In an outage, requests are automatically rerouted to an active region. Advanced users who want to write their own failover logic can do so by sending requests to a [tethered endpoint](/docs/cloud-object-storage/info?topic=cloud-object-storage-advanced-endpoints) and bypassing the BGP routing.
 
-| Region | Type   | Endpoint                                     |
+| Geo    | Type   | Endpoint                                     |
 | ------ | ------ | -------------------------------------------- |
 | `us`   | Public | `s3.us.cloud-object-storage.appdomain.cloud` |
 | `eu`   | Public | `s3.eu.cloud-object-storage.appdomain.cloud` |
@@ -120,7 +120,7 @@ Buckets that are created at a cross region endpoint distribute data across three
 {: tab-title="Public"}
 {: tab-group="Cross-regional-endpoints"}
 
-| Region | Type    | Endpoint                                             |
+| Geo    | Type    | Endpoint                                             |
 | ------ | ------- | ---------------------------------------------------- |
 | `us`   | Private | `s3.private.us.cloud-object-storage.appdomain.cloud` |
 | `eu`   | Private | `s3.private.eu.cloud-object-storage.appdomain.cloud` |
@@ -131,7 +131,7 @@ Buckets that are created at a cross region endpoint distribute data across three
 {: tab-title="Private"}
 {: tab-group="Cross-regional-endpoints"}
 
-| Region | Type   | Endpoint                                            |
+| Geo    | Type   | Endpoint                                            |
 | ------ | ------ | --------------------------------------------------- |
 | `us`   | Direct | `s3.direct.us.cloud-object-storage.appdomain.cloud` |
 | `eu`   | Direct | `s3.direct.eu.cloud-object-storage.appdomain.cloud` |
@@ -142,10 +142,15 @@ Buckets that are created at a cross region endpoint distribute data across three
 {: tab-title="Direct"}
 {: tab-group="Cross-regional-endpoints"}
 
+For example:
+- Data in `US` cross-region bucket is distributed only across regions (such as Dallas, WDC, and SJC) in the `US` geographical location.
+- Data in `EU` cross-region bucket is distributed only across regions (such as, Amsterdam, FRA, and Milan) in the `EU` geographical location.
+- Data in `AP` cross-region bucket is distributed only across regions (such as, TOK, SYD, and OSA) in the `AP` geographical location.
+
 ## Single Data Center Endpoints
 {: #endpoints-zone}
 
-Single data centers are not co-located with IBM Cloud services, such as IAM or Key Protect, and offer no resiliency in a site outage or destruction. 
+Single data centers are not co-located with IBM Cloud services, such as IAM or Key Protect, and offer no resiliency in a site outage or destruction.
 
 If a networking failure results in a partition where the data center is unable to access IAM, authentication and authorization information is read from a cache that might become stale. This cached data might result in a lack of enforcement of new or altered IAM policies for up to 24 hours.
 {: important}
@@ -210,7 +215,6 @@ The {{site.data.keyword.at_full_notm}} can archive to a bucket at specific {{sit
 | `par01`                                         | Single Site  | Paris                       |
 | `eu-geo`                                        | Cross Region | Amsterdam, Frankfurt, Milan |
 {: caption="Table 4. EU-managed Endpoints" caption-side="top"}
- 
 
 ## Resource Configuration Endpoints
 {: #endpoints-rc}
@@ -222,6 +226,7 @@ Requests made using the Resource Configuration API are sent to a global endpoint
 | Public  | `config.cloud-object-storage.cloud.ibm.com/v1`         |
 | Private | `config.private.cloud-object-storage.cloud.ibm.com/v1` |
 | Direct  | `config.direct.cloud-object-storage.cloud.ibm.com/v1`  |
+{: caption="Table 5. Resource Configuration Endpoints" caption-side="top"}
 
 ## Decommissioned locations
 {: #endpoints-decom}
@@ -248,4 +253,4 @@ Over time, it may be necessary for locations to transform from a Single Data Cen
 | `seo01` | Public | `s3.seo01.cloud-object-storage.appdomain.cloud` |
 | `seo01` | Private | `s3.private.seo01.cloud-object-storage.appdomain.cloud` |
 | `seo01` | Direct | `s3.direct.seo01.cloud-object-storage.appdomain.cloud` |
-{: caption="Table 5. Decommissioned Endpoints" caption-side="top"}
+{: caption="Table 6. Decommissioned Endpoints" caption-side="top"}
