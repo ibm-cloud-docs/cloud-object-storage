@@ -20,7 +20,6 @@ content-type: faq
 Frequently asked questions can produce helpful answers and insight into best practices for working with {{site.data.keyword.cos_full}}.
 {: shortdesc}
 
-
 ## How can I find out the total size of my bucket by using the API?
 {: #faq-bucket-size}
 {: faq}
@@ -165,11 +164,11 @@ A bucket name can be reused as soon as 15 minutes after the contents of the buck
 
 If you do not first empty and then delete the bucket, and instead [delete or schedule the {{site.data.keyword.cos_short}} service instance for deletion](/docs/cloud-object-storage?topic=cloud-object-storage-provision#deleting-a-service-instance), the bucket names will be held in reserve for a [default period of seven (7) days until the account reclamation process](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_reclamations) is completed. Until the reclamation process is complete, it is possible to restore the instance, along with the buckets and objects. After reclamation is complete, all buckets and objects will be irrevocably deleted and **can not** be restored, although the bucket names will be made available for new buckets to reuse.
 
-## Why do ```CredentialRetrievalError``` occur while uploading data to {{site.data.keyword.cos_short}} or while retrieving credentials? 
+## Why do `CredentialRetrievalError` occur while uploading data to {{site.data.keyword.cos_short}} or while retrieving credentials? 
 {: #faq-credret-error}
 {: faq}
 
-```CredentialRetrievalError``` can occur due to the following reasons:
+`CredentialRetrievalError` can occur due to the following reasons:
 
 * The API key is not valid.
 * The IAM endpoint is incorrect.
@@ -240,7 +239,7 @@ Yes, Object Storage has rate limiting. For details, see [COS support](https://cl
 
 Yes, Object Storage is HIPAA compliant.
 
-## Is there any option in Object Storage to enable ```accelerate data transfer```?
+## Is there any option in Object Storage to enable `accelerate data transfer`?
 {: #faq-accel-data}
 {: faq}
 
@@ -462,9 +461,9 @@ This is intentionally vague to prevent any useful information from being conveye
 {{site.data.keyword.cos_short}} root CA certificates can be downloaded from https://www.digicert.com/kb/digicert-root-certificates.htm. Please download PEM or DER/CRT format from "DigiCert TLS RSA SHA256 2020 CA1" that is located  under "Other intermediate certificates."
 
 ## How do I delete a non-empty bucket when I do not see any objects in it?
-(: #faq-delete-nonempty-bucket)
+{: #faq-delete-nonempty-bucket}
 {: faq}
 
 There may be versioned objects or incomplete multipart uploads that are still within the bucket but aren't being displayed. Both of these can be cleaned up by setting an [expiry policy](/docs/cloud-object-storage?topic=cloud-object-storage-expiry) to delete stale data.
 
-Also, you can delete multipart uploads directly using the [Minio client](/docs/cloud-object-storage?topic=cloud-object-storage-minio) command: ```mc rm s3/ -I -r --force```
+Also, you can delete multipart uploads directly using the [Minio client](/docs/cloud-object-storage?topic=cloud-object-storage-minio) command: `mc rm s3/ -I -r --force`
