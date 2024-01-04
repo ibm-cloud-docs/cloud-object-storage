@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2022
-lastupdated: "2022-06-24"
+  years: 2019, 2024
+lastupdated: "2024-01-05"
 
 keywords: activity, tracking, object storage, event, tutorial
 
@@ -18,20 +18,20 @@ completion-time: 30m
 
 # Tracking {{site.data.keyword.cos_short}} events in {{site.data.keyword.at_short}}
 {: #tracking-cos-events}
-{: toc-content-type="tutorial"} 
-{: toc-completion-time="30m"} 
+{: toc-content-type="tutorial"}
+{: toc-completion-time="30m"}
 
-Tracking {{site.data.keyword.cos_full}} events with {{site.data.keyword.at_full}} provides a record of what is happening with your data. 
+Tracking {{site.data.keyword.cos_full}} events with {{site.data.keyword.at_full}} provides a record of what is happening with your data.
 {: shortdesc}
 
-This tutorial provides an introduction to capturing information regarding the events of your {{site.data.keyword.cos_short}} instance using {{site.data.keyword.at_short}}. 
+This tutorial provides an introduction to capturing information regarding the events of your {{site.data.keyword.cos_short}} instance using {{site.data.keyword.at_short}}.
 
 If you're not familiar with {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). Also, if you're not familiar with {{site.data.keyword.at_full}}, you may wish to check out how to [get started with {{site.data.keyword.at_short}}](/docs/activity-tracker?topic=activity-tracker-getting-started).
 
 ## Before you begin
 {: #tracking-cos-events-prereqs}
 
-If you are already managing instances of {{site.data.keyword.cos_short}} or {{site.data.keyword.at_short}}, you do not need to create more. However, as this tutorial will modify and configure the instance we are working with, make sure that any accounts or services are not being used in a production environment. 
+If you are already managing instances of {{site.data.keyword.cos_short}} or {{site.data.keyword.at_short}}, you do not need to create more. However, as this tutorial will modify and configure the instance we are working with, make sure that any accounts or services are not being used in a production environment.
 
 This tutorial will create a new bucket and a new instance of {{site.data.keyword.at_short}} in the process.  It is, of course, possible to associate an new or existing instance of {{site.data.keyword.at_short}} with an existing bucket through the bucket's configuration panel, but we'll start fresh in this case.
 
@@ -44,7 +44,7 @@ For this tutorial, you need:
 When naming buckets or objects, be sure to avoid the use of Personally Identifiable Information (PII). PII is information that can identify any user (natural person) by name, location, or any other means.
 {: note}
 
-## Create a new bucket 
+## Create a new bucket
 {: #at-tut-create-bucket}
 {: step}
 
@@ -52,7 +52,7 @@ Navigate to your {{site.data.keyword.cos_short}} instance, and click on the **Cr
 
 ![Navigate to COS](images/at-tut-1-create-bucket.png)
 
-## Create a custom bucket 
+## Create a custom bucket
 {: #at-tut-custom-bucket}
 {: step}
 
@@ -60,11 +60,11 @@ We're going to want to create a custom bucket in order to provision our new {{si
 
 ![Create a custom bucket](images/at-tut-2-custom-bucket.png)
 
-## Name the new bucket 
+## Name the new bucket
 {: #at-tut-name-bucket}
 {: step}
 
-Give the bucket a memorable name.  In this case the new bucket will be called `tracked-files` and it's being created in the `us-east` region. 
+Give the bucket a memorable name.  In this case the new bucket will be called `tracked-files` and it's being created in the `us-east` region.
 
 ![Name the bucket](images/at-tut-3-name-bucket.png)
 
@@ -118,4 +118,4 @@ Now, assuming there has been enough time for the metadata to propagate, when we 
 ## Next steps
 {: #at-tut-next-steps}
 
-Congratulations, you've just set up a bucket with {{site.data.keyword.at_short}} enabled. Next, learn more about [how the {{site.data.keyword.at_short}} service itself routes events](/docs/activity-tracker?topic=activity-tracker-getting-started-routing), all of [the various events that {{site.data.keyword.cos_short}} can generate](/docs/cloud-object-storage?topic=cloud-object-storage-at-events), or how to integrate all of this to [provide end-to-end security for a cloud application](/docs/solution-tutorials?topic=solution-tutorials-cloud-e2e-security).
+Congratulations, you've just set up a bucket with {{site.data.keyword.at_short}} enabled. Next, learn more about [how the {{site.data.keyword.at_short}} service itself routes events](/docs/activity-tracker?topic=activity-tracker-getting-started), all of [the various events that {{site.data.keyword.cos_short}} can generate](/docs/cloud-object-storage?topic=cloud-object-storage-at-events), or how to integrate all of this to [provide end-to-end security for a cloud application](/docs/solution-tutorials?topic=solution-tutorials-cloud-e2e-security).
