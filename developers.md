@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2023
-lastupdated: "2023-12-06"
+  years: 2019, 2024
+lastupdated: "2024-01-04"
 
 keywords: developer, getting started, command line interface, cli
 
@@ -63,11 +63,11 @@ IBM COS SDKs are available for [Python](/docs/cloud-object-storage/libraries?top
 
 The [Cloud Native Computing Foundation](https://www.cncf.io) fostered [Kubernetes](https://kubernetes.io) container orchestration framework, which forms the foundation for the {{site.data.keyword.cloud}} Kubernetes Service. Developers who want to use Object Storage for persistent storage in their Kubernetes applications can learn more at the following links:
 
- * [Choosing a storage solution](/docs/containers?topic=containers-storage_planning#choose_storage_solution)
+ * [Choosing a storage solution](/docs/containers?topic=containers-storage-plan)
  * [Comparison table for persistent storage options](/docs/containers?topic=containers-storage-plan)
- * [Main COS page](/docs/containers?topic=containers-object_storage)
+ * [Main COS page](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage)
  * [Installing COS](/docs/containers?topic=containers-object_storage#install_cos)
- * [Creating COS service instance](/docs/containers?topic=containers-object_storage#create_cos_service)
+ * [Creating COS service instance](/docs/containers?topic=containers-storage-cos-understand#create_cos_service)
  * [Creating COS secret](/docs/containers?topic=containers-object_storage#create_cos_secret)
  * [Decide on the configuration](/docs/containers?topic=containers-object_storage#configure_cos)
  * [Create an instance of COS](/docs/containers?topic=containers-object_storage#add_cos)
