@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-01-04"
+lastupdated: "2024-01-05"
 
 keywords: developer, getting started, command line interface, cli
 
@@ -66,12 +66,12 @@ The [Cloud Native Computing Foundation](https://www.cncf.io) fostered [Kubernete
  * [Choosing a storage solution](/docs/containers?topic=containers-storage-plan)
  * [Comparison table for persistent storage options](/docs/containers?topic=containers-storage-plan)
  * [Main COS page](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage)
- * [Installing COS](/docs/containers?topic=containers-object_storage#install_cos)
+ * [Installing COS](/docs/containers?topic=containers-storage_cos_install)
  * [Creating COS service instance](/docs/containers?topic=containers-storage-cos-understand#create_cos_service)
  * [Creating COS secret](/docs/containers?topic=containers-object_storage#create_cos_secret)
- * [Decide on the configuration](/docs/containers?topic=containers-object_storage#configure_cos)
- * [Create an instance of COS](/docs/containers?topic=containers-object_storage#add_cos)
- * [Back up and restore information](/docs/containers?topic=containers-object_storage#cos_backup_restore)
- * [Storage Class reference](/docs/containers?topic=containers-object_storage#configure_cos)
+ * [Decide on the configuration](/docs/containers?topic=containers-storage_cos_install#configure_cos)
+ * [Create an instance of COS](/docs/cloud-object-storage/basics?topic=cloud-object-storage-provision)
+ * [Back up and restore information](/docs/containers?topic=containers-storage_br)
+ * [Storage Class reference](/docs/containers?topic=containers-storage_cos_reference)
 
 
