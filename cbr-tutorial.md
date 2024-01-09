@@ -1,10 +1,10 @@
 ---
 
 copyright:
-   years: 2022, 2023
-lastupdated: "2023-08-09"
+   years: 2022, 2024
+lastupdated: "2024-01-09"
 
-keywords: tutorials, cbr, firewall, allowlist
+keywords: tutorials, cbr, firewall, allowlist, rules
 subcollection: cloud-object-storage
 content-type: tutorial
 account-plan: lite
@@ -38,7 +38,7 @@ Before you plan on using [context-based restrictions](/docs/cloud-object-storage
 
 From the **Manage** menu, select **Context-based restrictions**.
 
-![Navigate to CBR](../images/cbr_1.png)
+![Navigate to CBR](/images/cbr_1.png){: caption="Figure 1. Navigate to CBR"}
 
 ## Create a new rule
 {: #cos-tutorial-cbr-new-rule}
@@ -48,7 +48,7 @@ From the **Manage** menu, select **Context-based restrictions**.
 1. Choose a name for the rule. This will help keep things organized if you end up with a lot of different rules across all of your cloud services.
 1. Click **Continue**.
 
-![Name the rule](../images/cbr_3.png)
+![Name the rule](/images/cbr_3.png){: caption="Figure 2. Name the rule"}
 
 ## Scope the rule
 {: #cos-tutorial-cbr-scope}
@@ -64,7 +64,7 @@ In this example, we will choose a service instance.
 4. Check the **Service instance** box.
 5. Select the service instance you want the rule to affect.
 
-![Scope the rule](../images/cbr_4.png){: caption="Figure 1. Scope the rule"}
+![Scope the rule](/images/cbr_4.png){: caption="Figure 3. Scope the rule"}
 
 
 If you want to instead only limit access to a specific bucket, you can select the **Resource ID** checkbox instead.  Provide the name of the bucket in the field - nothing else is necessary.
@@ -74,17 +74,17 @@ If you want to instead only limit access to a specific bucket, you can select th
 {: #cos-tutorial-cbr-network}
 {: step}
 
-Now that we know what the rule will affect, we need to decide what the rule will allow. To do this, we'll create a new _network zone_ and apply it to the new rule.  
+Now that we know what the rule will affect, we need to decide what the rule will allow. To do this, we'll create a new _network zone_ and apply it to the new rule.
 
 1. Click on **Create +**.
 
-![Scope the rule](../images/cbr_5.png){: caption="Figure 2. Scope the rule"}
+![Scope the rule](/images/cbr_5.png){: caption="Figure 4. Scope the rule"}
 
 2. Give the network zone a helpful name and description.
 3. Add some IP ranges to the **Allowed IP addresses** text box.
 4. Click **Next**.
 
-![Scope the rule](../images/cbr_6.png){: caption="Figure 3. Scope the rule"}
+![Scope the rule](/images/cbr_6.png){: caption="Figure 5. Scope the rule"}
 
 ## Finish the rule and verify that it works
 {: #cos-tutorial-cbr-network}

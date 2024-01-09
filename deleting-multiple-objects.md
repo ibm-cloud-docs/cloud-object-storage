@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2023
-lastupdated: "2023-11-01"
+  years: 2017, 2024
+lastupdated: "2024-01-09"
 
 keywords: empty bucket, delete, multiple
 
@@ -45,9 +45,9 @@ It is a best practice to avoid putting credentials in scripts. This example is f
 Specific instructions for downloading and installing SDKs are available for [Python](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python), [Node.js](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-node), [Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java), and [Go](/docs/cloud-object-storage?topic=cloud-object-storage-using-go). Also, when working with Command Line Instructions (CLI) and your CLI clients, please check out the pertinent information related to {{site.data.keyword.cos_short}} regarding [AWS](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) compatibility, [Minio](/docs/cloud-object-storage?topic=cloud-object-storage-minio), and [rClone](/docs/cloud-object-storage?topic=cloud-object-storage-rclone).
 
 For this code pattern you will need:
-  * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com)
-  * An instance of [{{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage/basics?topic=cloud-object-storage-provision)
-  * Configured and operational use of {{site.data.keyword.cos_full_notm}} SDKs for your choice of Java, Python, NodeJS, or Go; or, a configured and operational CLI client.
+* An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com)
+* An instance of [{{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage/basics?topic=cloud-object-storage-provision)
+* Configured and operational use of {{site.data.keyword.cos_full_notm}} SDKs for your choice of Java, Python, NodeJS, or Go; or, a configured and operational CLI client.
 {: #dmop-prereqs}
 
 ## Using the Console
@@ -57,7 +57,7 @@ Before getting to the examples, there is one way to empty a bucket via the GUI a
 
 After logging in to {{site.data.keyword.cos_short}}, choose your storage instance. Then, select your bucket from the list of your buckets. To set the rule to delete the items, select **Configuration** from the navigation menu and click **Add rule** under the *Expiration rule* section. Set the number of days to '1' to delete all the items after one day.
 
-  ![deleting_items](images/empty-bucket-rule-dialog.png){: caption="Figure 1. Add Expiration Rule to delete items"}
+![deleting_items](images/empty-bucket-rule-dialog.png){: caption="Figure 1. Add Expiration Rule to delete items"}
 
 The process for rule completion can take up to 24 hours, and is on a set schedule. Please take this into consideration when applying this technique.
 {: tip}
