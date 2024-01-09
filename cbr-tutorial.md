@@ -4,7 +4,7 @@ copyright:
    years: 2022, 2024
 lastupdated: "2024-01-09"
 
-keywords: tutorials, cbr, firewall, allowlist
+keywords: tutorials, cbr, firewall, allowlist, rules
 subcollection: cloud-object-storage
 content-type: tutorial
 account-plan: lite
