@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2022, 2023
-lastupdated: "2023-10-02"
+  years: 2022, 2024
+lastupdated: "2024-01-11"
 
 keywords: network, vpe, private, vpc, dns, buckets
 
@@ -46,7 +46,7 @@ Virtual Private Endpoints (VPEs) are generally available in all regions.
 ### VPE Discoverability
 {: #vpes-discoverability}
 
-Following the previous steps results in a {{site.data.keyword.vpe_full}} that that provides access over the internal {{site.data.keyword.cloud}} network from your VPC network to all of your buckets in a particular location.
+Following the previous steps results in a VPE that that provides access over the internal {{site.data.keyword.cloud}} network from your VPC network to all of your buckets in a particular location.
 
 Each access to your buckets from your {{site.data.keyword.vpc_short}} will require authorization at the S3 API level. To further restrict this access to specific IP addresses, or ranges of IP addresses, provide the {{site.data.keyword.vpc_short}} ID or name when configuring the context-based restrictions.
 {: .important}
