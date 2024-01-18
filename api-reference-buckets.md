@@ -2215,6 +2215,51 @@ The server responds with `204 No Content`.
 
 ----
 
+## Create a bucket inventory
+{: #compatibility-api-ceate-bucket}
+
+A `DELETE` issued to a bucket with the proper parameters removes the public ACL block from a bucket.
+
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
+{: note}
+
+**Syntax**
+
+```bash
+DELETE https://{endpoint}/{bucket-name}?publicAccessBlock # path style
+DELETE https://{bucket-name}.{endpoint}?publicAccessBlock # virtual host style
+```
+{: codeblock}
+
+**Example request**
+{: token}
+
+This is an example of deleting an ACL block for a bucket.
+{: token}
+
+```http
+DELETE /apiary?publicAccessBlock HTTP/1.1
+Authorization: Bearer {token}
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+DELETE /apiary?publicAccessBlock HTTP/1.1
+Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;,Signature={signature}'
+x-amz-date: {timestamp}
+Content-Type: text/plain
+Host: s3.us.cloud-object-storage.appdomain.cloud
+```
+{: hmac}
+
+The server responds with `204 No Content`.
+
+----
+
 ## Next Steps
 {: #api-ref-buckets-next-steps}
 
