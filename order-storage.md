@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022, 2023
-lastupdated: "2023-05-02"
+  years: 2017, 2024
+lastupdated: "2024-01-26"
 
 keywords: provision, create, service
 
@@ -29,9 +29,9 @@ IBM Public Cloud:
 2. **Standard plan** instances are the most common and are recommended for most workloads.  
 3. **One Rate plan** instances should be used for [workloads that involve large volumes of outbound bandwidth](/docs/cloud-object-storage?topic=cloud-object-storage-onerate) (data transferred on public networks outside of IBM Cloud) relative to the amount of total storage capacity.
 
-   IBM Cloud Satellite:
+IBM Cloud Satellite:
 
-4.  **Satellite** instances are [run on hardware outside of IBM Cloud](/docs/cloud-object-storage?topic=cloud-object-storage-provision-cos-satellite) and are typically used for edge computing or for strict data sovereignty requirements
+4. **Satellite** instances are [run on hardware outside of IBM Cloud](/docs/cloud-object-storage?topic=cloud-object-storage-provision-cos-satellite) and are typically used for edge computing or for strict data sovereignty requirements
 
 ## Creating a {{site.data.keyword.cloud_notm}} Platform account
 {: #provision-account}
@@ -51,7 +51,7 @@ Now that you have a platform account, you can create a new {{site.data.keyword.c
 1. Navigate to the catalog, by clicking **Catalog** in the navigation bar.
 
    ![IBM Cloud Catalog](images/catalog.jpg){: caption="Figure 1. Create an {{site.data.keyword.cloud_notm}} instance"}
-   
+
 1. Look for the **Object Storage** tile in the storage section and select it.
 
    ![github_desktop_setup](images/object-storage-card.jpg){: caption="Figure 2. Select {{site.data.keyword.cos_short}}"}
@@ -73,8 +73,8 @@ When a service instance is deleted, the data is not deleted immediately.  Instea
 
 It is possible to check the status of a reclamation, as well as force or cancel a scheduled reclamation using the [the {{site.data.keyword.cloud}} Platform CLI](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_reclamations).
 
-It is not possible to delete a Service Instance if there is a bucket with an active Immutable Object Storage policy or legal hold on any objects.  The policy will need to expire before the data can be deleted. It isn't possible to delete a Service Instance if there is a permanent retention policy in place. 
+It is not possible to delete a Service Instance if there is a bucket with an active Immutable Object Storage policy or legal hold on any objects.  The policy will need to expire before the data can be deleted. It isn't possible to delete a Service Instance if there is a permanent retention policy in place.
 {: important}
 
-Currently, the reclamation can be scheduled for {{site.data.keyword.cos_full_notm}} standard plan instances only.
+Currently, the reclamation can be scheduled for {{site.data.keyword.cos_full_notm}} Standard and One Rate plans' instances only.  A Lite plan is not elgible to participate.
 {: note}
