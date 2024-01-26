@@ -26,7 +26,7 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 {: release-note}
 
 New feature!
-:   You can configure a bucket into a state of Protection Management using the [Resource Configuration API](/apidocs/cos/cos-configuration) with approval from IBM Cloud support and Offering Management.
+:   You can configure a bucket into a state of Protection Management using the [Resource Configuration API](/apidocs/cos/cos-configuration) when you have approval from IBM Cloud support and Offering Management.
 
 ## 30 November 2023
 {: #cloud-object-storage-nov3023}
