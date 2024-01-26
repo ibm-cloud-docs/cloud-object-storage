@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-03-14"
+  years: 2017, 2024
+lastupdated: "2024-01-09"
 
 keywords: s3fs, open source, file system, gateway
 
@@ -15,7 +15,7 @@ subcollection: cloud-object-storage
 # Mounting a bucket using `s3fs`
 {: #s3fs}
 
-Applications that expect to read and write to a NFS-style filesystem can use `s3fs`, which can mount a bucket as directory while preserving the native object format for files. 
+Applications that expect to read and write to a NFS-style filesystem can use `s3fs`, which can mount a bucket as directory while preserving the native object format for files.
 {: shortdesc}
 
 This allows you to interact with your cloud storage using familiar shell commands, like `ls` for listing or `cp` to copy files, as well as providing access to legacy applications that rely on reading and writing from local files. For a more detailed overview, [visit the project's official README](https://github.com/s3fs-fuse/s3fs-fuse).
@@ -33,12 +33,12 @@ Looking for instructions for how to use {{site.data.keyword.cos_full}} in an {{s
 ## Installation
 {: #s3fs-install}
 
-On Debian or Ubuntu: 
+On Debian or Ubuntu:
 
 ```sh
 sudo apt-get install automake autotools-dev fuse g++ git libcurl4-openssl-dev libfuse-dev libssl-dev libxml2-dev make pkg-config
 ```
-{:codeblock}
+{: codeblock}
 
 The official `s3fs` documentation suggests using `libcurl4-gnutls-dev` instead of `libcurl4-openssl-dev`. Either work, but the OpenSSL version may result in better performance. 
 {:tip}
@@ -62,17 +62,17 @@ export LDFLAGS="-L/usr/local/opt/openssl@3/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl@3/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@3/lib/pkgconfig"
 ```
-{:screen}
+{: screen}
 
-Be aware that [macFUSE is closed-source software](https://osxfuse.github.io) containing a kernel extension, and may require a license for commercial use.   
-{:important}
+Be aware that [macFUSE is closed-source software](https://osxfuse.github.io) containing a kernel extension, and may require a license for commercial use.
+{: important}
 
 First clone the Github repository:
 
 ```sh
 git clone https://github.com/s3fs-fuse/s3fs-fuse.git 
 ```
-{:screen}
+{: screen}
 
 Then build `s3fs`:
 
@@ -82,14 +82,14 @@ cd s3fs-fuse
 ./configure
 make
 ```
-{:screen}
+{: screen}
 
 And install the binary:
 
 ```sh
 sudo make install
 ```
-{:screen}
+{: screen}
 
 ## Configuration
 {: #s3fs-config}
@@ -97,23 +97,23 @@ sudo make install
 Store your credentials in a file containing either `<access_key>:<secret_key>` or `:<api_key>`. This file needs to have limited access so run:
 
 ```sh
-chmod 0600 <credentials_file> 
+chmod 0600 <credentials_file>
 ```
-{:codeblock}
+{: codeblock}
 
 Now you can mount a bucket using:
 
 ```sh
-s3fs <bucket> <mountpoint> -o url=http{s}://<endpoint> –o passwd_file=<credentials_file>
+s3fs <bucket> <mountpoint> -o url=http{s}://<endpoint> -o passwd_file=<credentials_file>
 ```
-{:codeblock}
+{: codeblock}
 
 If the credentials file only has an API key (no HMAC credentials), you'll need to add the `ibm_iam_auth` flag as well:
 
 ```sh
-s3fs <bucket> <mountpoint> -o url=http{s}://<endpoint> –o passwd_file=<credentials_file> -o ibm_iam_auth
+s3fs <bucket> <mountpoint> -o url=http{s}://<endpoint> -o passwd_file=<credentials_file> -o ibm_iam_auth
 ```
-{:codeblock}
+{: codeblock}
 
 The `<bucket>` in the example refers to an existing bucket and the `<mountpoint>` is the local path where you want to mount the bucket. The `<endpoint>` must correspond to the [bucket's location](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints). The `credentials_file` is the file created with the API key or HMAC credentials.
 
@@ -135,7 +135,7 @@ s3fs <bucket_name> <mountpoint> -o url=http{s}://<COS_endpoint> –o passwd_file
 -o multireq_max=30 \
 -o dbglevel=warn
 ```
-{:codeblock}
+{: codeblock}
 
 1. `cipher_suites=AESGCM` is only relevant when using an HTTPS endpoint. By default, secure connections to IBM COS use the `AES256-SHA` cipher suite. Using an `AESGCM` suite instead greatly reduces the CPU load on your client machine, caused by the TLS crypto functions, while offering the same level of cryptographic security.
 2. `kernel_cache` enables the kernel buffer cache on your `s3fs` mountpoint. This means that objects will only be read once by `s3fs`, as repetitive reading of the same file can be served from the kernel’s buffer cache. The kernel buffer cache will only use free memory which is not in use by other processes. This option is not recommend if you expect the bucket objects to be overwritten from another process/machine while the bucket is mounted, and your use-case requires live accessing the most up-to-date content. 

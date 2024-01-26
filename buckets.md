@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2023
-lastupdated: "2023-08-09"
+  years: 2017, 2024
+lastupdated: "2024-01-19"
 
 keywords: access control, iam, basics, buckets
 
@@ -47,6 +47,8 @@ This is also applicable to service instance and bucket level policies.
 
 If it is necessary to restrict access to a single bucket (or set of buckets), ensure that the user or Service ID doesn't have any other instance level policies by using either the console or CLI.
 
+See [Best practices for organizing users, teams, applications](/docs/solution-tutorials?topic=solution-tutorials-users-teams-applications) to learn more.
+
 ### Create a new policy for a user
 {: #iam-policy-enforcement-console}
 {: ui}
@@ -60,8 +62,8 @@ To create a new bucket-level policy:
 5. Click **Assign access** to create a new policy.
 6. Choose **Assign access to resources**.
 7. First, select **Cloud Object Storage** from the services menu.
-8. Then, select the appropriate service instance. Enter `bucket` in the **Resource type** field and the bucket name in the **Resource ID**field.
-9. Select the wanted service access role. Selecting the lozenge with the number of actions show the actions available to the role, asexemplified for "Content Reader" in Figure 1.
+8. Then, select the appropriate service instance. Enter `bucket` in the **Resource type** field and the bucket name in the **Resource ID** field.
+9. Select the wanted service access role. Selecting the lozenge with the number of actions show the actions available to the role, as exemplified for "Content Reader" in Figure 1.
 10. Click **Assign**
 
 ![Role_information](images/console-iam-changes-role-cos.png){: caption="Figure 1. Example actions per Content Reader role"}
