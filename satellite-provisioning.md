@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021
-lastupdated: "2021-12-01"
+  years: 2024
+lastupdated: "2024-01-26"
 
 keywords:  object storage, satellite, local
 
@@ -24,8 +24,8 @@ You can provision {{site.data.keyword.cos_short}} for {{site.data.keyword.satell
 
 Before deploying {{site.data.keyword.cos_short}} in a Satellite location, you must first deploy [a {{site.data.keyword.satelliteshort}} location](/docs/satellite?topic=satellite-locations) with sufficient computing hosts and raw block storage allocated for provisioning {{site.data.keyword.cos_short}}. 
 
-{{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} requires OpenShift 4.7.
-{:note}
+{{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} only supports RHEL8.
+{: note}
 
 | Object Storage capacity | Raw storage required | Minimum host requirements            |
 |-------------------------|----------------------|--------------------------------------|
@@ -39,7 +39,7 @@ For more information on configuring hosts for storage, [see the {{site.data.keyw
 Unlike cloud storage which scales elastically, there may be negative performance impacts when an instance gets near capacity.  Workloads that demand higher performance may benefit from the additional computing power provided by the Extra Large plan, regardless of total storage required. 
 
 When provisioning block storage, is recommended to use a ["Silver" storage class at a minimum](/docs/satellite?topic=satellite-config-storage-ebs#sat-ebs-sc-reference) to ensure adequate performance.
-{:tip}
+{: tip}
 
 ## Configure a satellite location
 {: #provision-satellite-location}
@@ -69,7 +69,7 @@ When provisioning block storage, is recommended to use a ["Silver" storage class
 {: #provision-satellite-assign}
 
 To access the Storage UI for Satellite, you must be added to the allowlist. [Contact IBM](https://www.ibm.com/contact/us/en/) to learn more.
-{:important}
+{: important}
 
 If the location chosen for the new instance of {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} was correctly configured with the required hosts and storage available, they will be automatically queued for assignment.  This assignment requires acknowledgement from a Satellite administrator.
 
