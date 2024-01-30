@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-01-09"
+lastupdated: "2024-01-29"
 
 keywords: s3fs, open source, file system, gateway
 
@@ -20,7 +20,7 @@ Applications that expect to read and write to a NFS-style filesystem can use `s3
 
 This allows you to interact with your cloud storage using familiar shell commands, like `ls` for listing or `cp` to copy files, as well as providing access to legacy applications that rely on reading and writing from local files. For a more detailed overview, [visit the project's official README](https://github.com/s3fs-fuse/s3fs-fuse).
 
-Looking for instructions for how to use {{site.data.keyword.cos_full}} in an {{site.data.keyword.containerlong_notm}} cluster? Go to the [{{site.data.keyword.containerlong_notm}} documentation](/docs/containers?topic=containers-object_storage) instead. 
+Looking for instructions for how to use {{site.data.keyword.cos_full}} in an {{site.data.keyword.containerlong_notm}} cluster? Go to the [{{site.data.keyword.containerlong_notm}} documentation](/docs/containers?topic=containers-object_storage) instead.
 {: tip}
 
 ## Prerequisites
@@ -40,8 +40,19 @@ sudo apt-get install automake autotools-dev fuse g++ git libcurl4-openssl-dev li
 ```
 {: codeblock}
 
-The official `s3fs` documentation suggests using `libcurl4-gnutls-dev` instead of `libcurl4-openssl-dev`. Either work, but the OpenSSL version may result in better performance. 
-{:tip}
+On RHEL and CentOS 7 or newer by means of EPEL:
+
+```sh
+sudo yum install epel-release
+sudo yum install s3fs-fuse
+```
+{: codeblock}
+
+Your device must have public connection to pull this EPEL repo, as it is not available in IBM's private repo.  See [How to install EPEL on RHEL and CentOS Stream](https://www.redhat.com/sysadmin/install-epel-linux) for more information.
+{: important}
+
+The official `s3fs` documentation suggests using `libcurl4-gnutls-dev` instead of `libcurl4-openssl-dev`. Either work, but the OpenSSL version may result in better performance.
+{: tip}
 
 For macOS, you will need to build `s3fs` from source:
 
