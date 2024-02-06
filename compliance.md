@@ -62,7 +62,7 @@ After you enable HIPAA Supported setting in your IBM Cloud account, you cannot d
 ## General Data Protection Regulation (GDPR) readiness
 {: #compliance-gdpr}
 
-Please visit [IBM's commitment to GDPR readiness](https://www.ibm.com/data-responsibility/gdpr/) page to learn about IBM’s GDPR readiness journey and our GDPR capabilities and offerings to support your compliance journey.
+Please visit [IBM's commitment to GDPR readiness](https://www.ibm.com/cloud/compliance/gdpr-eu) page to learn about IBM’s GDPR readiness journey and our GDPR capabilities and offerings to support your compliance journey.
 
 - [IBM Data Processing Addendum (DPA)](https://www.ibm.com/support/customer/csol/terms/?cat=dpa)
 
