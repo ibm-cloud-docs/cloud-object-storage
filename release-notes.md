@@ -21,6 +21,13 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
+## 29 January 2024
+{: #cloud-object-storage-mar1521}
+{: release-note}
+
+New feature!
+:   You can configure a bucket into a state of Protection Management using the [Resource Configuration API](/apidocs/cos/cos-configuration) if you have approval from IBM Cloud support and Offering Management.
+
 ## 30 November 2023
 {: #cloud-object-storage-nov3023}
 {: release-note}
