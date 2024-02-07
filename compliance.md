@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2020
-lastupdated: "2021-08-10"
+  years: 2019, 2024
+lastupdated: "2024-02-06"
 
 keywords: compliance, object storage, gdpr
 
@@ -16,7 +16,7 @@ subcollection: cloud-object-storage
 # Compliance
 {: #compliance}
 
-{{site.data.keyword.cos_full}} actively participates in several industry compliance programs. 
+{{site.data.keyword.cos_full}} actively participates in several industry compliance programs.
 {: shortdesc}
 
 This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
@@ -32,19 +32,19 @@ For a listing of available certificates and instructions on obtaining pertinent 
 ## International Organization for Standardization (ISO)
 {: #compliance-iso}
 
-IBM Cloud Object Storage is certified for ISO 27001, ISO 27017, and ISO 27018. 
+IBM Cloud Object Storage is certified for ISO 27001, ISO 27017, and ISO 27018.
 
 For available certificates, please refer to listings titled “IBM Cloud Services (PaaS and SaaS) certificates” on the IBM Cloud Compliance page.
 
 ## System and Organization Controls (SOC)
 {: #compliance-soc}
 
-IBM Cloud Object Storage is certified for SOC 1 Type 2, SOC 2 Type 2, and SOC 3. 
+IBM Cloud Object Storage is certified for SOC 1 Type 2, SOC 2 Type 2, and SOC 3.
 
 ## Payment Card Industry (PCI) data security standards
 {: #compliance-pci}
 
-IBM Cloud Object Storage is compliant with the PCI data security standards. 
+IBM Cloud Object Storage is compliant with the PCI data security standards.
 
 ## HIPAA readiness
 {: #compliance-hipaa}
@@ -56,15 +56,15 @@ IBM Cloud Object Storage meets the required IBM controls that are commensurate w
 If you or your company is a covered entity as defined by HIPAA, you must enable the HIPAA Supported setting on your IBM Cloud account if you run sensitive workloads that are regulated under HIPAA and the HITECH Act. HIPAA support from IBM requires that you agree to the terms of the [Business Associate Addendum (BAA) agreement](http://www-03.ibm.com/software/sla/sladb.nsf/sla/baa?OpenDocument) with IBM for your IBM Cloud account.
 {: note}
 
-After you enable HIPAA Supported setting in your IBM Cloud account, you cannot disable it. See [IBM Cloud Docs: Enabling the HIPAA Supported setting](/docs/account?topic=account-eu-hipaa-supported#enabling-hipaa) for additional information. 
+After you enable HIPAA Supported setting in your IBM Cloud account, you cannot disable it. See [IBM Cloud Docs: Enabling the HIPAA Supported setting](/docs/account?topic=account-enabling-hipaa) for additional information.
 
 
 ## General Data Protection Regulation (GDPR) readiness
 {: #compliance-gdpr}
 
-Please visit [IBM's commitment to GDPR readiness](https://www.ibm.com/data-responsibility/gdpr/) page to learn about IBM’s GDPR readiness journey and our GDPR capabilities and offerings to support your compliance journey. 
+Please visit [IBM's commitment to GDPR readiness](https://www.ibm.com/cloud/compliance/gdpr-eu) page to learn about IBM’s GDPR readiness journey and our GDPR capabilities and offerings to support your compliance journey.
 
-- [IBM Data Processing Addendum (DPA)](https://www.ibm.com/support/customer/csol/terms/?cat=dpa) 
+- [IBM Data Processing Addendum (DPA)](https://www.ibm.com/support/customer/csol/terms/?cat=dpa)
 
 
 ## Privacy shield
