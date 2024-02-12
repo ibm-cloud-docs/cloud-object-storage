@@ -58,7 +58,7 @@ When creating buckets programmatically, it is necessary to specify a `LocationCo
 &emsp;&emsp;  **EU Geo** `eu-standard`                        / `eu-vault`      / `eu-cold`      / `eu-smart` <br>
 &emsp;&emsp;  **EU Great Britain** `eu-gb-standard`           / `eu-gb-vault`   / `eu-gb-cold`   / `eu-gb-smart` <br>
 &emsp;&emsp;  **EU Germany** `eu-de-standard`                 / `eu-de-vault`   / `eu-de-cold`   / `eu-de-smart` <br>
-&emsp;&emsp;  **EU Germany** `eu-es-standard`                 / `eu-es-vault`   / `eu-es-cold`   / `eu-es-smart` <br>
+&emsp;&emsp;  **EU Madrid**  `eu-es-standard`                 / `eu-es-vault`   / `eu-es-cold`   / `eu-es-smart` <br>
 &emsp;&emsp;  **AP Geo** `ap-standard`                        / `ap-vault`      / `ap-cold`      / `ap-smart` <br>
 &emsp;&emsp;  **AP Tokyo** `jp-tok-standard`                  / `jp-tok-vault`  / `jp-tok-cold`  / `jp-tok-smart`<br>
 &emsp;&emsp;  **AP Osaka** `jp-osa-standard`                  / `jp-osa-vault`  / `jp-osa-cold`  / `jp-osa-smart`<br>
