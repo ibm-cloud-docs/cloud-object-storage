@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2024
-lastupdated: "2024-02-07"
+lastupdated: "2024-02-12"
 
 keywords: network, vpe, private, vpc, dns, buckets
 
@@ -15,13 +15,10 @@ subcollection: cloud-object-storage
 # Using Virtual Private Endpoints
 {: #vpes}
 
-
 {{site.data.keyword.cloud}} Virtual Private Endpoint (VPE) for {{site.data.keyword.cos_full}} provides connection points to IBM services on the {{site.data.keyword.cloud}} internal network from your VPC network.
-
 
 ## Using Virtual Private Endpoints
 {: #using-vpes}
-
 
 Virtual Private Endpoints (VPEs) are generally available in all regions.
 {: .note}
