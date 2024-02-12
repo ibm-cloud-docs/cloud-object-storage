@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2022   
-lastupdated: "2022-08-31"
+  years: 2022, 2024
+lastupdated: "2024-02-12"
 
 keywords: data, cost, pricing, isv
 
@@ -24,8 +24,8 @@ The built-in allowances for outbound bandwidth and operational requests (Class A
 ## Why use a One Rate plan?
 {: #onerate-why}
 
-- Predictable and lower monthly TCO (total cost of ownership) for workloads with high levels of outbound bandwidth to capacity ratios (>20%). 
-- One Rate plans provide account-level billing that aggregates storage capacity across service instances by region. 
+- Predictable and lower monthly TCO (total cost of ownership) for workloads with high levels of outbound bandwidth to capacity ratios (>20%).
+- One Rate plans provide account-level billing that aggregates storage capacity across service instances by region.
 - A flat capacity rate with built-in allowances for data access and egress offers a more predictable cost regardless of fluctuating usage patterns.
 
 ## Terminology
@@ -79,7 +79,7 @@ Archive is supported but Restore charges are **not** included in the One Rate al
 ### How to provision a One Rate instance
 {: #onerate-provision}
 
-A One Rate instance is specified at the point of provisioning, similar to a Lite or Satellite instance.   
+A One Rate instance is specified at the point of provisioning, similar to a Lite or Satellite instance.
 
 1. Log in to [the console](https://cloud.ibm.com/){: external}.
 2. Navigate to the catalog, by clicking **Catalog** in the navigation bar.
@@ -89,7 +89,7 @@ A One Rate instance is specified at the point of provisioning, similar to a Lite
 6. Choose a name, resource group, and any desired tags.
 7. Click **Create** and you're automatically redirected to your new instance.
 
-### Special provisioning codes 
+### Special provisioning codes
 {: #onerate-codes}
 
 All buckets created in a One Rate plan must use a [specific provisioning code](/docs/cloud-object-storage?topic=cloud-object-storage-classes) (also known as a storage class or location constraint).
@@ -110,6 +110,7 @@ All buckets created in a One Rate plan must use a [specific provisioning code](/
 |----------|---------------------|
 | `eu-de`  | `eu-de-onerate_active`      |
 | `eu-gb`  | `eu-de-onerate_active`      |
+| `eu-es`  | `eu-es-onerate_active`      |
 | `ams03`  | `ams03-onerate_active`      |
 | `mil01`  | `mil01-onerate_active`      |
 | `par01`  | `par01-onerate_active`      |
@@ -147,7 +148,7 @@ These costs are examples provided to illustrate the mechanics of the billing and
 ### Predictable TCO pricing example
 {: #onerate-tco}
 
-Some workloads see steadily increasing traffic as business grows - which can create some billing surprises as egress charges grow as well.  A One Rate plan can cap those costs until thresholds are crossed.  For example, an account with 10 TB of storage might might see consistent growth until the amount of data being read outside of the IBM Cloud exceeds the amount of data being stored. 
+Some workloads see steadily increasing traffic as business grows - which can create some billing surprises as egress charges grow as well.  A One Rate plan can cap those costs until thresholds are crossed.  For example, an account with 10 TB of storage might might see consistent growth until the amount of data being read outside of the IBM Cloud exceeds the amount of data being stored.
 
 | Month | Capacity (GB) | Egress (GB) | Capacity:Egress ratio | Standard cost | One Rate cost |
 |-------|---------------|-------------|-----------------------|---------------|---------------|
@@ -162,7 +163,7 @@ Some workloads see steadily increasing traffic as business grows - which can cre
 ### Aggregation pricing example
 {: #onerate-aggregate}
 
-Imagine a large enterprise account called "Rainbow Co.".  It has a number of subsidiary accounts, such as "Blue", and "Green".  Each of these accounts has dozens (or more) Object Storage instances spread out across different regions.  Some have large volumes of storage that is rarely read, while others have smaller volumes but very high rates of egress.  
+Imagine a large enterprise account called "Rainbow Co.".  It has a number of subsidiary accounts, such as "Blue", and "Green".  Each of these accounts has dozens (or more) Object Storage instances spread out across different regions.  Some have large volumes of storage that is rarely read, while others have smaller volumes but very high rates of egress.
 
 Blue (`us-east`, `us-south`):
 | Metric     | Usage  | Standard Cost |
