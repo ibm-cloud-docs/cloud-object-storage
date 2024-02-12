@@ -1,9 +1,9 @@
 ---
 
 copyright:
-  years: 2017, 2022
+  years: 2017, 2024
 
-lastupdated: "2022-10-12"
+lastupdated: "2024-02-12"
 
 keywords: storage classes, tiers, cost, buckets, location constraint, provisioning code, locationconstraint
 
@@ -49,7 +49,7 @@ For each storage class, billing is based on aggregated usage across all buckets 
 ## How do I create a bucket with a different storage class?
 {: #classes-locationconstraint}
 
-When creating a bucket in the console, there is a menu that allows for storage class selection. 
+When creating a bucket in the console, there is a menu that allows for storage class selection.
 
 When creating buckets programmatically, it is necessary to specify a `LocationConstraint` that corresponds with the endpoint used. Valid provisioning codes for `LocationConstraint` are <br>
 &emsp;&emsp;  **US Geo** `us-standard`                        / `us-vault`      / `us-cold`      / `us-smart` <br>
@@ -58,6 +58,7 @@ When creating buckets programmatically, it is necessary to specify a `LocationCo
 &emsp;&emsp;  **EU Geo** `eu-standard`                        / `eu-vault`      / `eu-cold`      / `eu-smart` <br>
 &emsp;&emsp;  **EU Great Britain** `eu-gb-standard`           / `eu-gb-vault`   / `eu-gb-cold`   / `eu-gb-smart` <br>
 &emsp;&emsp;  **EU Germany** `eu-de-standard`                 / `eu-de-vault`   / `eu-de-cold`   / `eu-de-smart` <br>
+&emsp;&emsp;  **EU Germany** `eu-es-standard`                 / `eu-es-vault`   / `eu-es-cold`   / `eu-es-smart` <br>
 &emsp;&emsp;  **AP Geo** `ap-standard`                        / `ap-vault`      / `ap-cold`      / `ap-smart` <br>
 &emsp;&emsp;  **AP Tokyo** `jp-tok-standard`                  / `jp-tok-vault`  / `jp-tok-cold`  / `jp-tok-smart`<br>
 &emsp;&emsp;  **AP Osaka** `jp-osa-standard`                  / `jp-osa-vault`  / `jp-osa-cold`  / `jp-osa-smart`<br>
@@ -79,7 +80,7 @@ For more information about endpoints, see [Endpoints and storage locations](/doc
 ## Using the REST API, Libraries, and SDKs
 {: #classes-sdk}
 
-Several new APIs have been introduced to the IBM COS SDKs to provide support for applications working with retention policies. Select a language (curl, Java, JavaScript, Go, or Python) at the beginning of this page to view examples that use the appropriate COS SDK. 
+Several new APIs have been introduced to the IBM COS SDKs to provide support for applications working with retention policies. Select a language (curl, Java, JavaScript, Go, or Python) at the beginning of this page to view examples that use the appropriate COS SDK.
 
  All code examples assume the existence of a client object that is called `cos` that can call the different methods. For details on creating clients, see the specific SDK guides.
 
@@ -104,7 +105,7 @@ function createBucket(bucketName) {
         Bucket: bucketName,
         CreateBucketConfiguration: {
           LocationConstraint: 'us-standard'
-        },        
+        },
     }).promise()
     .then((() => {
         console.log(`Bucket: ${bucketName} created!`);
@@ -174,4 +175,4 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)"
 {:codeblock}
 {: curl}
 
-It isn't possible to change the storage class of a bucket once the bucket is created. If objects need to be reclassified, it's necessary to move the data to another bucket with the wanted storage class. 
+It isn't possible to change the storage class of a bucket once the bucket is created. If objects need to be reclassified, it's necessary to move the data to another bucket with the wanted storage class.
