@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2024
-lastupdated: "2024-02-12"
+lastupdated: "2024-02-13"
 
 keywords: data, cost, pricing, isv
 
@@ -49,7 +49,7 @@ Most workloads, such as for backups/long-term storage, data analysis using IBM C
 
 One Rate instances are available in Regional and Single Data Center locations, but are not available in Cross Region locations. There are four pricing tiers based on location:
 - North America: `us-south`, `us-east`, `ca-tor`, `mon01`, `sjc04`
-- Europe:  `eu-de`, `eu-gb`, `ams03`, `mil01`, `par01`
+- Europe:  `eu-de`, `eu-gb`, `eu-es`, `ams03`, `mil01`, `par01`
 - Asia: `au-syd`, `jp-osa`, `jp-tok`, `che01`, `sng01`
 - South America: `br-sao`
 

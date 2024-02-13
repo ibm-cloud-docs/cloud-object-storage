@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2024
 
-lastupdated: "2024-02-12"
+lastupdated: "2024-02-13"
 
 keywords: storage classes, tiers, cost, buckets, location constraint, provisioning code, locationconstraint
 
@@ -34,12 +34,12 @@ You can choose from four storage classes:
 *  **Cold Vault** is used for cold workloads where data is accessed every 90 days or less - a larger extra retrieval charge ($/GB) is applied each time data is read. The service includes a longer minimum threshold for object size and storage period consistent with the intended use of this service for cold, inactive data.
 
 **Flex** has been replaced by Smart Tier for dynamic workloads. Flex users can continue to manage their data in existing Flex buckets, although no new Flex buckets may be created.  Existing users can reference pricing information [here](/docs/cloud-object-storage?topic=cloud-object-storage-flex-pricing).
-{:note}
+{: note}
 
 For more information, see [the pricing table at ibm.com](https://cloud.ibm.com/objectstorage/create#pricing){: external}.
 
 The **Active** storage class is only used with [One Rate plans](/docs/cloud-object-storage?topic=cloud-object-storage-onerate), and can not be used in Standard or Lite plans.
-{:important}
+{: important}
 
 For more information about how to create buckets with different storage classes, see the [API reference](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
 
@@ -52,6 +52,7 @@ For each storage class, billing is based on aggregated usage across all buckets 
 When creating a bucket in the console, there is a menu that allows for storage class selection.
 
 When creating buckets programmatically, it is necessary to specify a `LocationConstraint` that corresponds with the endpoint used. Valid provisioning codes for `LocationConstraint` are <br>
+&emsp;&emsp;  **BR São Paulo** `br-sao-standard`              / `br-sao-vault`  / `br-sao-cold`  / `br-sao-smart` <br>
 &emsp;&emsp;  **US Geo** `us-standard`                        / `us-vault`      / `us-cold`      / `us-smart` <br>
 &emsp;&emsp;  **US East** `us-east-standard`                  / `us-east-vault` / `us-east-cold` / `us-east-smart` <br>
 &emsp;&emsp;  **US South** `us-south-standard`                / `us-south-vault`/ `us-south-cold`/ `us-south-smart` <br>
@@ -66,12 +67,10 @@ When creating buckets programmatically, it is necessary to specify a `LocationCo
 &emsp;&emsp;  **CA Toronto** `ca-tor-standard`                / `ca-tor-vault`  / `ca-tor-cold`  / `ca-tor-smart` <br>
 &emsp;&emsp;  **Amsterdam** `ams03-standard`                  / `ams03-vault`   / `ams03-cold`   / `ams03-smart` <br>
 &emsp;&emsp;  **Chennai** `che01-standard`                    / `che01-vault`   / `che01-cold`   / `che01-smart` <br>
-&emsp;&emsp;  **Mexico** `mex01-standard`                     / `mex01-vault`   / `mex01-cold`   / `mex01-smart` <br>
 &emsp;&emsp;  **Milan** `mil01-standard`                      / `mil01-vault`   / `mil01-cold`   / `mil01-smart` <br>
 &emsp;&emsp;  **Montréal** `mon01-standard`                   / `mon01-vault`   / `mon01-cold`   / `mon01-smart` <br>
 &emsp;&emsp;  **Paris** `par01-standard`                      / `par01-vault`   / `par01-cold`   / `par01-smart` <br>
 &emsp;&emsp;  **San Jose** `sjc04-standard`                   / `sjc04-vault`   / `sjc04-cold`   / `sjc04-smart` <br>
-&emsp;&emsp;  **São Paulo** `sao01-standard`                  / `sao01-vault`   / `sao01-cold`   / `sao01-smart` <br>
 &emsp;&emsp;  **Singapore** `sng01-standard`                  / `sng01-vault`   / `sng01-cold`   / `sng01-smart` <br>
 
 
@@ -86,6 +85,7 @@ Several new APIs have been introduced to the IBM COS SDKs to provide support for
 
 
 ### Create a bucket with a storage class
+{: #classes-sdk-create-bucket}
 
 ```java
 public static void createBucket(String bucketName) {
