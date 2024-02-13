@@ -52,6 +52,7 @@ For each storage class, billing is based on aggregated usage across all buckets 
 When creating a bucket in the console, there is a menu that allows for storage class selection.
 
 When creating buckets programmatically, it is necessary to specify a `LocationConstraint` that corresponds with the endpoint used. Valid provisioning codes for `LocationConstraint` are <br>
+&emsp;&emsp;  **BR São Paulo** `br-sao-standard`              / `br-sao-vault`  / `br-sao-cold`  / `br-sao-smart` <br>
 &emsp;&emsp;  **US Geo** `us-standard`                        / `us-vault`      / `us-cold`      / `us-smart` <br>
 &emsp;&emsp;  **US East** `us-east-standard`                  / `us-east-vault` / `us-east-cold` / `us-east-smart` <br>
 &emsp;&emsp;  **US South** `us-south-standard`                / `us-south-vault`/ `us-south-cold`/ `us-south-smart` <br>
@@ -70,7 +71,6 @@ When creating buckets programmatically, it is necessary to specify a `LocationCo
 &emsp;&emsp;  **Montréal** `mon01-standard`                   / `mon01-vault`   / `mon01-cold`   / `mon01-smart` <br>
 &emsp;&emsp;  **Paris** `par01-standard`                      / `par01-vault`   / `par01-cold`   / `par01-smart` <br>
 &emsp;&emsp;  **San Jose** `sjc04-standard`                   / `sjc04-vault`   / `sjc04-cold`   / `sjc04-smart` <br>
-&emsp;&emsp;  **São Paulo** `sao01-standard`                  / `sao01-vault`   / `sao01-cold`   / `sao01-smart` <br>
 &emsp;&emsp;  **Singapore** `sng01-standard`                  / `sng01-vault`   / `sng01-cold`   / `sng01-smart` <br>
 
 
