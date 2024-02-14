@@ -76,5 +76,5 @@ It is possible to check the status of a reclamation, as well as force or cancel 
 It is not possible to delete a Service Instance if there is a bucket with an active Immutable Object Storage policy or legal hold on any objects.  The policy will need to expire before the data can be deleted. It isn't possible to delete a Service Instance if there is a permanent retention policy in place.
 {: important}
 
-Currently, the reclamation can be scheduled for {{site.data.keyword.cos_full_notm}} Standard and One Rate plans' instances only.  A Lite plan is not elgible to participate.
+Currently, the reclamation can be scheduled only for instances of the {{site.data.keyword.cos_full_notm}} **Standard** and **One Rate** plans.  The **Lite** plan is not elgible to participate.
 {: note}
