@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-02-14"
+lastupdated: "2024-02-15"
 
 keywords: data migration, object storage, cli, rclone
 
@@ -149,7 +149,7 @@ The installation script checks the version of `rclone` installed first, and skip
 
 1. Select “s3” storage.
 
-   ``` sh
+   ``` txt
    Choose a number from below, or type in your own value
       1 / Alias for a existing remote
         \ "alias"
@@ -167,7 +167,7 @@ The installation script checks the version of `rclone` installed first, and skip
 
 1. Select IBM COS as the S3 Storage Provider.
 
-   ``` sh
+   ``` txt
    Choose the S3 provider.
    Enter a string value. Press Enter for the default ("")
    Choose a number from below, or type in your own value
@@ -187,7 +187,7 @@ The installation script checks the version of `rclone` installed first, and skip
 
 1. Enter **False** to enter your credentials.
 
-   ``` sh
+   ``` txt
    Get AWS credentials from the runtime (environment variables or EC2/ECS meta data if no env vars). 
    Only applies if access_key_id and secret_access_key is blank.
    Enter a boolean value (true or false). Please Enter for the default ("false").
@@ -201,7 +201,7 @@ The installation script checks the version of `rclone` installed first, and skip
 
 1. Enter the Access Key and Secret.
 
-   ``` sh
+   ``` txt
    AWS Access Key ID - leave blank for anonymous access or runtime credentials.
      access_key_id> <>
    AWS Secret Access Key (password) - leave blank for anonymous access or runtime credentials.
@@ -210,7 +210,7 @@ The installation script checks the version of `rclone` installed first, and skip
 
 1. Specify the endpoint for IBM COS. For Public IBM COS, choose from the provided options. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
-   ``` sh
+   ``` txt
    Endpoint for IBM COS S3 API.
    Choose a number from below, or type in your own value
       1 / US Cross Region Endpoint
@@ -231,7 +231,7 @@ The installation script checks the version of `rclone` installed first, and skip
 
 1. Specify an IBM COS Location Constraint. The location constraint must match the endpoint. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
-   ``` sh
+   ``` txt
       1 / US Cross Region Standard
         \ "us-standard"
       2 / US Cross Region Vault
@@ -250,7 +250,7 @@ The installation script checks the version of `rclone` installed first, and skip
 
 1. Specify an ACL. Only `public-read` and `private` are supported. 
 
-   ``` sh
+   ``` txt
    Canned ACL used when creating buckets or storing objects in S3.
    Choose a number from below, or type in your own value
       1 "private"
@@ -260,15 +260,15 @@ The installation script checks the version of `rclone` installed first, and skip
 
 1. Review the displayed configuration and accept to save the “remote” then quit. The config file should look like this
 
-   ``` sh
-      [YOUR NAME]
-      type = s3
-      Provider = IBMCOS
-      access_key_id = xxx
-      secret_access_key = yyy
-      endpoint = s3.us.cloud-object-storage.appdomain.cloud
-	  location_constraint = us-standard
-	  acl = private
+   ``` txt
+   [YOUR NAME]
+   type = s3
+   Provider = IBMCOS
+   access_key_id = xxx
+   secret_access_key = yyy
+   endpoint = s3.us.cloud-object-storage.appdomain.cloud
+   location_constraint = us-standard
+   acl = private
    ```
 
 ## Command reference
@@ -340,7 +340,7 @@ The _contents_ of the directory are synced, not the directory itself. When `sour
 
 If `dest:path` doesn’t exist, it is created and the `source:path` contents go there.
 
-```sh
+``` txt
 rclone sync source:path dest:path [flags]
 ```
 
@@ -356,7 +356,7 @@ Server B> rclone sync /tmp/whatever remote:ServerB
 
 If you `sync` to the same directory than you can use `rclone copy`, otherwise the two processes might delete each other's others files:
 
-```sh
+``` sh
 Server A> rclone copy /tmp/whatever remote:Backup
 Server B> rclone copy /tmp/whatever remote:Backup
 ```
@@ -370,7 +370,7 @@ If `--suffix` is set, then the moved files have the suffix added to them. If the
 
 The remote in use must support server-side move or copy and you must use the same remote as the destination of the sync. The backup directory must not overlap the destination directory.
 
-``` sh
+``` txt
 rclone sync /path/to/local remote:current --backup-dir remote:old
 ```
 
@@ -404,7 +404,7 @@ Before scheduling a job, make sure that you have done your initial upload and it
 
 1. Create a text file that is called `backup.bat` somewhere on your computer and paste in the command you used in the section about [syncing a directory](#rclone-sync-directory).  Specify the full path to the rclone.exe and don’t forget to save the file.
 
-   ``` sh
+   ``` txt
     C:\full\path\to\rclone.exe sync "C:\path\to\my\backup\directory" RemoteName:newbucket
    ```
 
@@ -416,7 +416,7 @@ Before scheduling a job, make sure that you have done your initial upload and it
 	* /TR – the path to the backup.bat file you created.
 	* /ST – the time to start the task. This is in the 24-hour time format. 01:05:00 is 1:05 AM. 13:05:00 would be 1:05 PM.
 
-   ```sh
+   ``` txt
    schtasks /Create /RU username /RP "password" /SC DAILY /TN Backup /TR C:\path\to\backup.bat /ST 01:05:00
    ```
 
@@ -425,7 +425,7 @@ Before scheduling a job, make sure that you have done your initial upload and it
 
 1. Create a text file called `backup.sh` somewhere on your computer, and paste the command that you used in the section [syncing a Directory](#rclone-sync-directory). It looks something like the following. Specify the full path to the `rclone` executable and don’t forget to save the file.
 
-   ```sh
+   ``` txt
    #!/bin/sh
    /full/path/to/rclone sync /path/to/my/backup/directory RemoteName:newbucket
    ```
