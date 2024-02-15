@@ -261,14 +261,14 @@ The installation script checks the version of `rclone` installed first, and skip
 1. Review the displayed configuration and accept to save the “remote” then quit. The config file should look like this
 
    ``` txt
-      [YOUR NAME]
-      type = s3
-      Provider = IBMCOS
-      access_key_id = xxx
-      secret_access_key = yyy
-      endpoint = s3.us.cloud-object-storage.appdomain.cloud
-	  location_constraint = us-standard
-	  acl = private
+   [YOUR NAME]
+   type = s3
+   Provider = IBMCOS
+   access_key_id = xxx
+   secret_access_key = yyy
+   endpoint = s3.us.cloud-object-storage.appdomain.cloud
+   location_constraint = us-standard
+   acl = private
    ```
 
 ## Command reference
