@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2019-11-11"
+lastupdated: "2024-02-14"
 
 keywords: data migration, object storage, cli, rclone
 
@@ -61,13 +61,13 @@ The installation script checks the version of `rclone` installed first, and skip
 ### Linux installation from precompiled binary
 {: #rclone-linux-binary}
 
-1. Fetch, and unpack the binary:
+1. Fetch and unpack the binary:
 
-``` sh
-curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip
-unzip rclone-current-linux-amd64.zip
-cd rclone-*-linux-amd64
-```
+   ``` sh
+   curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip
+   unzip rclone-current-linux-amd64.zip
+   cd rclone-*-linux-amd64
+   ```
 
 1. Copy the binary file to a sensible location:
 
