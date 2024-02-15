@@ -71,203 +71,205 @@ cd rclone-*-linux-amd64
 
 1. Copy the binary file to a sensible location:
 
-``` sh
-sudo cp rclone /usr/bin/
-sudo chown root:root /usr/bin/rclone
-sudo chmod 755 /usr/bin/rclone
-```
+   ``` sh
+   sudo cp rclone /usr/bin/
+   sudo chown root:root /usr/bin/rclone
+   sudo chmod 755 /usr/bin/rclone
+   ```
 
 1. Install the documentation:
 
-``` sh
-sudo mkdir -p /usr/local/share/man/man1
-sudo cp rclone.1 /usr/local/share/man/man1/
-sudo mandb
-```
+   ``` sh
+   sudo mkdir -p /usr/local/share/man/man1
+   sudo cp rclone.1 /usr/local/share/man/man1/
+   sudo mandb
+   ```
 
-1, Run `rclone config` to set up:
+1. Run `rclone config` to set up:
 
-``` sh
-rclone config
-```
+   ``` sh
+   rclone config
+   ```
 
 ### macOS installation from precompiled binary
 {: #rclone-osx-binary}
 
 1. Download the `rclone` package:
 
-``` sh
-cd && curl -O https://downloads.rclone.org/rclone-current-osx-amd64.zip
-```
+   ``` sh
+   cd && curl -O https://downloads.rclone.org/rclone-current-osx-amd64.zip
+   ```
 
 1. Extract the downloaded file and `cd` to the extracted folder:
 
-``` sh
-unzip -a rclone-current-osx-amd64.zip && cd rclone-*-osx-amd64
-```
+   ``` sh
+   unzip -a rclone-current-osx-amd64.zip && cd rclone-*-osx-amd64
+   ```
 
 1. Move `rclone` to your `$PATH` and enter your password when prompted:
 
-``` sh
-sudo mkdir -p /usr/local/bin
-sudo mv rclone /usr/local/bin/
-```
+   ``` sh
+   sudo mkdir -p /usr/local/bin
+   sudo mv rclone /usr/local/bin/
+   ```
 
-The `mkdir` command is safe to run, even if the directory exists.
-{: tip}
+   The `mkdir` command is safe to run, even if the directory exists.
+   {: tip}
 
 1. Remove the leftover files.
 
-``` sh
-cd .. && rm -rf rclone-*-osx-amd64 rclone-current-osx-amd64.zip
-```
+   ``` sh
+   cd .. && rm -rf rclone-*-osx-amd64 rclone-current-osx-amd64.zip
+   ```
 
 1. Run `rclone config` to set up:
 
-``` sh
-rclone config
-```
+   ``` sh
+   rclone config
+   ```
 
 ## Configure access to IBM COS
 {: #rclone-config}
 
 1. Run `rclone config` and select `n` for a new remote.
 
-``` sh
-No remotes found - make a new one
-   n) New remote
-   s) Set configuration password
-   q) Quit config
-   n/s/q> n
-```
+   ``` sh
+   No remotes found - make a new one
+      n) New remote
+      s) Set configuration password
+      q) Quit config
+      n/s/q> n
+   ```
 
 1. Enter the name for the configuration:
 
-``` sh
-	name> <YOUR NAME>
-```
+   ``` sh
+   name> <YOUR NAME>
+   ```
 
 1. Select “s3” storage.
 
-``` sh
-Choose a number from below, or type in your own value
-   1 / Alias for a existing remote
-     \ "alias"
-   2 / Amazon Drive
-     \ "amazon cloud drive"
-   3 / Amazon S3 Complaint Storage Providers (Dreamhost, Ceph, Minio, IBM COS)
-     \ "s3"
-   4 / Backblaze B2
-     \ "b2"
-[snip]
-   23 / http Connection
-     \ "http"
-	Storage> 3
-```
+   ``` sh
+   Choose a number from below, or type in your own value
+      1 / Alias for a existing remote
+        \ "alias"
+      2 / Amazon Drive
+        \ "amazon cloud drive"
+      3 / Amazon S3 Complaint Storage Providers (Dreamhost, Ceph, Minio, IBM COS)
+        \ "s3"
+      4 / Backblaze B2
+        \ "b2"
+   [snip]
+      23 / http Connection
+        \ "http"
+      Storage> 3
+   ```
 
- 4. Select IBM COS as the S3 Storage Provider.
+1. Select IBM COS as the S3 Storage Provider.
 
-``` sh
-Choose the S3 provider.
-Enter a string value. Press Enter for the default ("")
-Choose a number from below, or type in your own value
-   1 / Amazon Web Services (AWS) S3
-     \ "AWS"
-   2 / Ceph Object Storage
-	 \ "Ceph"
-   3 / Digital Ocean Spaces
-     \ "Digital Ocean"
-   4 / Dreamhost DreamObjects
-     \ "Dreamhost"
-   5 / IBM COS S3
-     \ "IBMCOS"
-[snip]
-     Provider>5
-```
+   ``` sh
+   Choose the S3 provider.
+   Enter a string value. Press Enter for the default ("")
+   Choose a number from below, or type in your own value
+      1 / Amazon Web Services (AWS) S3
+        \ "AWS"
+      2 / Ceph Object Storage
+        \ "Ceph"
+      3 / Digital Ocean Spaces
+        \ "Digital Ocean"
+      4 / Dreamhost DreamObjects
+        \ "Dreamhost"
+      5 / IBM COS S3
+        \ "IBMCOS"
+   [snip]
+        Provider>5
+   ```
 
- 1. Enter **False** to enter your credentials.
+1. Enter **False** to enter your credentials.
 
-``` sh
-Get AWS credentials from the runtime (environment variables or EC2/ECS meta data if no env vars). 
-Only applies if access_key_id and secret_access_key is blank.
-Enter a boolean value (true or false). Please Enter for the default ("false").
-Choose a number from below, or type in your own value
-   1 / Enter AWS credentials in the next step
-     \ "false"
-   2 / Get AWS credentials from the environment (env vars or IAM)
-     \ "true"
-   env_auth>false
-```
+   ``` sh
+   Get AWS credentials from the runtime (environment variables or EC2/ECS meta data if no env vars). 
+   Only applies if access_key_id and secret_access_key is blank.
+   Enter a boolean value (true or false). Please Enter for the default ("false").
+   Choose a number from below, or type in your own value
+      1 / Enter AWS credentials in the next step
+        \ "false"
+      2 / Get AWS credentials from the environment (env vars or IAM)
+        \ "true"
+      env_auth>false
+   ```
 
 1. Enter the Access Key and Secret.
 
-``` sh
-AWS Access Key ID - leave blank for anonymous access or runtime credentials.
-	access_key_id> <>
-AWS Secret Access Key (password) - leave blank for anonymous access or runtime credentials.
-	secret_access_key> <>
-```
+   ``` sh
+   AWS Access Key ID - leave blank for anonymous access or runtime credentials.
+     access_key_id> <>
+   AWS Secret Access Key (password) - leave blank for anonymous access or runtime credentials.
+     secret_access_key> <>
+   ```
 
 1. Specify the endpoint for IBM COS. For Public IBM COS, choose from the provided options. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
-``` sh
-Endpoint for IBM COS S3 API.
-Choose a number from below, or type in your own value
-   1 / US Cross Region Endpoint
-     \ "s3.us.cloud-object-storage.appdomain.cloud"
-   2 / US Cross Region Dallas Endpoint
-     \ "s3-api.dal.us-geo.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net"
-   3 / US Cross Region Washington DC Endpoint
-     \ "s3-api.wdc-us-geo.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net"
-   4 / US Cross Region San Jose Endpoint
-     \ "s3-api.sjc-us-geo.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net"
-   5 / US Cross Region Private Endpoint
-     \ "s3-api.us-geo.objectstorage.service.networklayer.com"
-[snip]
-	34 / Toronto Single Site Private Endpoint
-	   \ "s3.tor01.objectstorage.service.networklayer.com"
-	endpoint>1
-```
+   ``` sh
+   Endpoint for IBM COS S3 API.
+   Choose a number from below, or type in your own value
+      1 / US Cross Region Endpoint
+        \ "s3.us.cloud-object-storage.appdomain.cloud"
+      2 / US Cross Region Dallas Endpoint
+        \ "s3-api.dal.us-geo.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net"
+      3 / US Cross Region Washington DC Endpoint
+        \ "s3-api.wdc-us-geo.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net"
+      4 / US Cross Region San Jose Endpoint
+        \ "s3-api.sjc-us-geo.objectstorage.s3.us-south.cloud-object-storage.appdomain.cloud.net"
+      5 / US Cross Region Private Endpoint
+        \ "s3-api.us-geo.objectstorage.service.networklayer.com"
+   [snip]
+      34 / Toronto Single Site Private Endpoint
+        \ "s3.tor01.objectstorage.service.networklayer.com"
+   endpoint>1
+   ```
 
 1. Specify an IBM COS Location Constraint. The location constraint must match the endpoint. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
-``` sh
-   1 / US Cross Region Standard
-     \ "us-standard"
-   2 / US Cross Region Vault
-     \ "us-vault"
-   3 / US Cross Region Cold
-     \ "us-cold"
-   4 / US Cross Region Flex
-     \ "us-flex"
-   5 / US East Region Standard
-     \ "us-east-standard"
-[snip]
-   32 / Toronto Flex
+   ``` sh
+      1 / US Cross Region Standard
+        \ "us-standard"
+      2 / US Cross Region Vault
+        \ "us-vault"
+      3 / US Cross Region Cold
+        \ "us-cold"
+      4 / US Cross Region Flex
+        \ "us-flex"
+      5 / US East Region Standard
+        \ "us-east-standard"
+   [snip]
+     32 / Toronto Flex
      \ "tor01-flex"
-   location_constraint>1
-```
+     location_constraint>1
+   ```
+
 1. Specify an ACL. Only `public-read` and `private` are supported. 
 
-``` sh
-Canned ACL used when creating buckets or storing objects in S3.
-Choose a number from below, or type in your own value
-   1 "private"
-   2 "public-read"
-acl>1
-```
+   ``` sh
+   Canned ACL used when creating buckets or storing objects in S3.
+   Choose a number from below, or type in your own value
+      1 "private"
+      2 "public-read"
+   acl>1
+   ```
+
 1. Review the displayed configuration and accept to save the “remote” then quit. The config file should look like this
 
-``` sh
-    [YOUR NAME]
-	type = s3
-	Provider = IBMCOS
-	access_key_id = xxx
-	secret_access_key = yyy
-	endpoint = s3.us.cloud-object-storage.appdomain.cloud
-	location_constraint = us-standard
-	acl = private
-```
+   ``` sh
+      [YOUR NAME]
+      type = s3
+      Provider = IBMCOS
+      access_key_id = xxx
+      secret_access_key = yyy
+      endpoint = s3.us.cloud-object-storage.appdomain.cloud
+	  location_constraint = us-standard
+	  acl = private
+   ```
 
 ## Command reference
 {: #rclone-reference}
@@ -402,9 +404,9 @@ Before scheduling a job, make sure that you have done your initial upload and it
 
 1. Create a text file that is called `backup.bat` somewhere on your computer and paste in the command you used in the section about [syncing a directory](#rclone-sync-directory).  Specify the full path to the rclone.exe and don’t forget to save the file.
 
-``` sh
- C:\full\path\to\rclone.exe sync "C:\path\to\my\backup\directory" RemoteName:newbucket
-```
+   ``` sh
+    C:\full\path\to\rclone.exe sync "C:\path\to\my\backup\directory" RemoteName:newbucket
+   ```
 
 1. Use `schtasks` to schedule a job. This utility takes a number of parameters.
 	* /RU – the user to run the job as. This is needed if the user you want to use is logged out.
@@ -414,36 +416,36 @@ Before scheduling a job, make sure that you have done your initial upload and it
 	* /TR – the path to the backup.bat file you created.
 	* /ST – the time to start the task. This is in the 24-hour time format. 01:05:00 is 1:05 AM. 13:05:00 would be 1:05 PM.
 
-```sh
-schtasks /Create /RU username /RP "password" /SC DAILY /TN Backup /TR C:\path\to\backup.bat /ST 01:05:00
-```
+   ```sh
+   schtasks /Create /RU username /RP "password" /SC DAILY /TN Backup /TR C:\path\to\backup.bat /ST 01:05:00
+   ```
 
 #### Mac and Linux
 {: #rclone-sync-nix}
 
 1. Create a text file called `backup.sh` somewhere on your computer, and paste the command that you used in the section [syncing a Directory](#rclone-sync-directory). It looks something like the following. Specify the full path to the `rclone` executable and don’t forget to save the file.
 
-```sh
-#!/bin/sh
-/full/path/to/rclone sync /path/to/my/backup/directory RemoteName:newbucket
-```
+   ```sh
+   #!/bin/sh
+   /full/path/to/rclone sync /path/to/my/backup/directory RemoteName:newbucket
+   ```
 
 1. Make the script executable with `chmod`.
 
-```sh
-chmod +x backup.sh
-```
+   ```sh
+   chmod +x backup.sh
+   ```
 
 1. Edit crontabs.
 
-```sh
-sudo crontab -e
-```
+   ```sh
+   sudo crontab -e
+   ```
 
 1. Add an entry to the bottom of the crontabs file. Crontabs are straight forward: the first five fields describe in order minutes, hours, days, months, and weekdays. Using * denotes all. To make the `backup.sh` run at Daily at 1:05 AM, use something that looks like this:
 
-```sh
-5 1 * * * /full/path/to/backup.sh
-```
+   ```sh
+   5 1 * * * /full/path/to/backup.sh
+   ```
 
 1. Save the crontabs and you’re ready to go.
