@@ -34,7 +34,7 @@ To identify your impacted resources, take advantage of special offers, or learn 
 To avoid any disruption to your service, please complete the following steps **before any announced deadlines**:
 
 1. Identify your buckets in the data centers that are set to close through viewing your COS UI buckets page. Also, [Extended listing](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets-extended) can be used for this purpose, as it will return 'LocationConstraint' values that indicate the location in addition to the storage class of a bucket. For more information, contact the Client Success team [Live chat](https://www.ibm.com/cloud/data-centers/?focusArea=WCP%20-%20Pooled%20CSM&contactmodule){: external}.
-2. Migrate your data to the new destination bucket [using Rclone](/docs/services/cloud-object-storage?topic=cloud-object-storage-region-copy).
+2. Migrate your data to the new destination bucket [using Rclone](/docs/cloud-object-storage?topic=cloud-object-storage-region-copy).
 3. To avoid being double billed for data in your old and new buckets, [empty your old buckets](/docs/cloud-object-storage?topic=cloud-object-storage-deleting-multiple-objects-patterns) and delete them.
 
 ### Identifying buckets that require migration
