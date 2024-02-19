@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2023
-lastupdated: "2023-06-23"
+  years: 2017, 2024
+lastupdated: "2024-02-19"
 
 keywords: authorization, aws, hmac, signature
 
@@ -27,7 +27,7 @@ The {{site.data.keyword.cos_full}} API is a REST-based API for reading and writi
 ### Create HMAC credentials in the console
 {: #uhc-create-hmac-credentials-console}
 
-Users can create a set of HMAC credentials as part of a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) by switching the `Include HMAC Credential` to `On`  during credential creation in the console. Figure 1 shows the option for setting the HMAC parameter by choosing "Advanced options."
+Users can create a set of HMAC credentials as part of a [Service Credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) by switching the `Include HMAC Credential` to `On`  during credential creation in the console. Figure 1 shows the option for setting the HMAC parameter by choosing "Advanced options."
 
 ![include HMAC credential](images/hmac-credential-dialog.jpg){: caption="Figure 1. HMAC setting from advanced options"}
 
@@ -73,7 +73,7 @@ export COS_HMAC_SECRET_ACCESS_KEY="8not8ed850cddbece407exampledonotuse43r2d2586"
 ## Next steps
 {: #uhc-next-steps}
 
-Note that when using HMAC credentials to create signatures to use with direct [REST API](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api) calls that extra headers are required:
+Note that when using HMAC credentials to create signatures to use with direct [REST API](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#bucket-operations-hmac) calls that extra headers are required:
 1. All requests must have an `x-amz-date` header with the date in `%Y%m%dT%H%M%SZ` format.
 2. Any request that has a payload (object uploads, deleting several objects, etc.) must provide a `x-amz-content-sha256` header with an SHA256 hash of the payload contents.
 3. ACLs (other than `public-read`) are unsupported.
