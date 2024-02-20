@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2022, 2023
-lastupdated: "2023-05-01"
+  years: 2018, 2022, 2023, 2024
+lastupdated: "2024-02-20"
 
 keywords: encryption, security, {{site.data.keyword.hscrypto}}
 
@@ -15,7 +15,7 @@ subcollection: cloud-object-storage
 
 {:help: data-hd-content-type='help'}
 
-# Server-Side Encryption with {{site.data.keyword.hscrypto}} 
+# Server-Side Encryption with {{site.data.keyword.hscrypto}}
 {: #hpcs}
 
 You can use [{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-crypto-overview) to create, add, and manage keys, which you can then associate with your instance of IBM® Cloud Object Storage to encrypt buckets.
@@ -136,7 +136,7 @@ If the Cross Region bucket creation in US Cross Region with a {{site.data.keywor
 
 Key rotation is an important part of mitigating the risk of a data breach. Periodically changing keys reduces the potential data loss if the key is lost or compromised. The frequency of key rotations varies by organization and depends on a number of variables, such as the environment, the amount of encrypted data, classification of the data, and compliance laws. The [National Institute of Standards and Technology (NIST)](https://www.nist.gov/topics/cryptography){: external} provides definitions of appropriate key lengths and provides guidelines for how long keys should be used.
 
-For more information, see the documentation for rotating keys in [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-key-root-key-rotation-intro).
+For more information, see the documentation for rotating keys in [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-root-key-rotation-intro).
 
 ### Disabling and re-enabling keys
 {: #hpcs-disable}
