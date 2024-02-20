@@ -1,9 +1,9 @@
 ---
 
 copyright:
-  years: 2017, 2023
+  years: 2017, 2024
 
-lastupdated: "2023-10-30"
+lastupdated: "2024-02-20"
 
 keywords: aspera, key protect, archive, worm
 
@@ -91,4 +91,4 @@ It is possible to create a bucket and associate any available Key Protect or Hyp
 ## More information
 {: #service-availability-more-info}
 
-Learn more about how locations are represented by [endpoints](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints) for users of {{site.data.keyword.cos_full_notm}}.
+Learn more about how locations are represented by [endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) for users of {{site.data.keyword.cos_full_notm}}.

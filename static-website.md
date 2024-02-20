@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2020, 2023
-lastupdated: "2023-08-15"
+  years: 2020, 2024
+lastupdated: "2024-02-20"
 
 keywords: static website, hosting, tutorial
 
@@ -48,7 +48,7 @@ Ensure that you have what you need to start:
 Check that you have the access as appropriate to either the instance of {{site.data.keyword.cos_full_notm}} you will be using or the proper [permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions) for the buckets you will be using for this tutorial.
 {: ui}
 
-For use of the [IBM Cloud CLI](/docs/cloud-object-storage?topic=cloud-object-storage-cli-reference-ic-cos-cli) with this tutorial, you will need to [configure the Object Storage plug-in](/docs/cloud-object-storage?topic=cloud-object-storage-cli-reference-ic-cos-cli#ic-config) to specify the service instance you want to use and the default region where you want your new bucket to be created.
+For use of the [IBM Cloud CLI](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli&interface=ui) with this tutorial, you will need to [configure the Object Storage plug-in](https://test.cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli&interface=ui#ic-installation) to specify the service instance you want to use and the default region where you want your new bucket to be created.
 {: cli}
 
 ## Create a bucket configured for public access
@@ -142,7 +142,7 @@ ibmcloud cos bucket-website-put --bucket BUCKET_NAME --website-configuration fil
 {: pre}
 {: cli}
 
-You may have completed this step during the creation of your bucket, as the basic configuration for your hosted static website determines when and how content is shown. For visitors to your website who fail to provide a key, or webpage, the default file will be shown instead. When your users encounter an error, the key for the error page determines what content visitors will receive. The configuration options for the default and error pages are repeated for reference.  
+You may have completed this step during the creation of your bucket, as the basic configuration for your hosted static website determines when and how content is shown. For visitors to your website who fail to provide a key, or webpage, the default file will be shown instead. When your users encounter an error, the key for the error page determines what content visitors will receive. The configuration options for the default and error pages are repeated for reference.
 {: ui}
 
 ![Configure options](images/cos-sw-ui-complete-config.jpg){: ui}
