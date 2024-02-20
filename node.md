@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-19"
+  years: 2017, 2024
+lastupdated: "2024-02-20"
 
 keywords: object storage, node, javascript, sdk
 
@@ -22,7 +22,7 @@ The {{site.data.keyword.cos_full}} SDK for Node.js provides modern capabilities 
 ## Installing the SDK
 {: #node-install}
 
-[Node.js](/docs/node?topic=node-getting-started) is an excellent way to build [web applications](/docs/solution-tutorials?topic=solution-tutorials-mean-stack), and customize your instance of {{site.data.keyword.cos_short}} for your end users. The preferred way to install the {{site.data.keyword.cos_short}} SDK for Node.js is to use the [`npm`](https://www.npmjs.com){: external} package manager for Node.js. Type the following command into a command line:
+[Node.js](/docs/cloud-object-storage?topic=cloud-object-storage-node) is an excellent way to build [web applications](/docs/solution-tutorials?topic=solution-tutorials-mean-stack), and customize your instance of {{site.data.keyword.cos_short}} for your end users. The preferred way to install the {{site.data.keyword.cos_short}} SDK for Node.js is to use the [`npm`](https://www.npmjs.com){: external} package manager for Node.js. Type the following command into a command line:
 
 ```sh
 npm install ibm-cos-sdk
@@ -46,7 +46,7 @@ To run the SDK, you need **Node 4.x+**.
 
 To connect to COS, a client is created and configured by providing credential information (API Key, Service Instance ID, and IBM Authentication Endpoint). These values can also be automatically sourced from a credentials file or from environment variables.
 
-After generating a [Service Credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client authenticates with a signature, otherwise the client uses the provided API key to authenticate with a bearer token.
+After generating a [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client authenticates with a signature, otherwise the client uses the provided API key to authenticate with a bearer token.
 
 The `default` section heading specifies a default profile and associated values for credentials. You can create more profiles in the same shared configuration file, each with its own credential information. The following example shows a configuration file with the default profile:
 ```
@@ -71,7 +71,7 @@ If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_creden
 {: #node-examples}
 
 In your code, you must remove the angled brackets or any other excess characters that are provided here as illustration.
-{: note} 
+{: note}
 
 Getting started with [Node.js](https://nodejs.org/en/about/){: external}&mdash;once it's installed&mdash;usually involves configuration and invocation, like in [this example from Nodejs.org](https://nodejs.org/en/docs/guides/getting-started-guide/){: external}. We'll follow a similar model
 
@@ -91,14 +91,14 @@ var config = {
 var cos = new IBM.S3(config);
 ```
 *Key Values*
-* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){: external}). For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+* `<endpoint>` - public endpoint for your cloud object storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){: external}). For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `<api-key>` - API key generated when creating the service credentials (write access is required for creation and deletion examples)
 * `<resource-instance-id>` - resource ID for your cloud object storage (available through [IBM Cloud CLI](/resources?topic=resources-crn) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){: external})
 
 ### Creating a bucket
 {: #node-examples-new-bucket}
 
-A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes).
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes).
 
 ```javascript
 function createBucket(bucketName) {
@@ -107,7 +107,7 @@ function createBucket(bucketName) {
         Bucket: bucketName,
         CreateBucketConfiguration: {
           LocationConstraint: 'us-standard'
-        },        
+        },
     }).promise()
     .then((() => {
         console.log(`Bucket: ${bucketName} created!`);
@@ -130,8 +130,8 @@ function createBucket(bucketName) {
 function createTextFile(bucketName, itemName, fileText) {
     console.log(`Creating new item: ${itemName}`);
     return cos.putObject({
-        Bucket: bucketName, 
-        Key: itemName, 
+        Bucket: bucketName,
+        Key: itemName,
         Body: fileText
     }).promise()
     .then(() => {
@@ -190,7 +190,7 @@ function getBucketContents(bucketName) {
                 var itemSize = data.Contents[i].Size;
                 console.log(`Item: ${itemKey} (${itemSize} bytes).`)
             }
-        }    
+        }
     })
     .catch((e) => {
         console.error(`ERROR: ${e.code} - ${e.message}\n`);
@@ -210,13 +210,13 @@ function getBucketContents(bucketName) {
 function getItem(bucketName, itemName) {
     console.log(`Retrieving item from bucket: ${bucketName}, key: ${itemName}`);
     return cos.getObject({
-        Bucket: bucketName, 
+        Bucket: bucketName,
         Key: itemName
     }).promise()
     .then((data) => {
         if (data != null) {
             console.log('File Contents: ' + Buffer.from(data.Body).toString());
-        }    
+        }
     })
     .catch((e) => {
         console.error(`ERROR: ${e.code} - ${e.message}\n`);
@@ -268,7 +268,7 @@ function deleteItems(bucketName) {
             { "Key": "deletetest/testfile3.txt" },
             { "Key": "deletetest/testfile4.txt" },
             { "Key": "deletetest/testfile5.txt" }
-        ]        
+        ]
     }
     return cos.deleteObjects({
         Bucket: bucketName,
@@ -280,7 +280,7 @@ function deleteItems(bucketName) {
     })
     .catch((e) => {
         console.log(`ERROR: ${e.code} - ${e.message}\n`);
-    });    
+    });
 }
 ```
 {: codeblock}
@@ -333,19 +333,19 @@ function multiPartUpload(bucketName, itemName, filePath) {
     .then((data) => {
         uploadID = data.UploadId;
 
-        //begin the file upload        
+        //begin the file upload
         fs.readFile(filePath, (e, fileData) => {
             //min 5MB part
             var partSize = 1024 * 1024 * 5;
             var partCount = Math.ceil(fileData.length / partSize);
-    
+
             async.timesSeries(partCount, (partNum, next) => {
                 var start = partNum * partSize;
                 var end = Math.min(start + partSize, fileData.length);
-    
+
                 partNum++;
 
-                console.log(`Uploading to ${itemName} (part ${partNum} of ${partCount})`);  
+                console.log(`Uploading to ${itemName} (part ${partNum} of ${partCount})`);
 
                 cos.uploadPart({
                     Body: fileData.slice(start, end),
@@ -413,6 +413,7 @@ Key Protect can be added to a storage bucket to manage encryption keys. All data
 
 ### Before You Begin
 {: #node-examples-kp-prereqs}
+
 The following items are necessary in order to create a bucket with Key-Protect enabled:
 
 * A Key Protect service [provisioned](/docs/services/key-protect?topic=key-protect-provision#provision)
@@ -423,7 +424,7 @@ The following items are necessary in order to create a bucket with Key-Protect e
 
 1. Retrieve the [instance ID](/docs/services/key-protect?topic=key-protect-retrieve-instance-ID#retrieve-instance-ID) for your Key Protect service
 2. Use the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
-    * You can either use `curl` commands or an API REST Client such as [Postman](/docs/services/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api).
+    * You can either use `curl` commands or an API REST Client such as [Postman](/docs/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api).
 3. Retrieve the CRN of the root key you will use to enabled Key Protect on the your bucket. The CRN will look similar to below:
 
 `crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
@@ -453,7 +454,7 @@ function createBucketKP(bucketName) {
 {: javascript}
 
 *Key Values*
-* `<bucket-location>` - Region or location for your bucket (Key Protect is only available in certain regions. Ensure your location matches the Key Protect service) A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/services/cloud-object-storage?topic=cloud-object-storage-classes#classes)..
+* `<bucket-location>` - Region or location for your bucket (Key Protect is only available in certain regions. Ensure your location matches the Key Protect service) A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes)..
 * `<algorithm>` - The encryption algorithm used for new objects added to the bucket (Default is AES256).
 * `<root-key-crn>` - CRN of the Root Key that is obtained from the Key Protect service.
 
@@ -493,28 +494,28 @@ function getLifecycleConfiguration(bucketName) {
 *SDK References*
 * [getBucketLifecycleConfiguration](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){: external}
 
-### Create a lifecycle configuration 
+### Create a lifecycle configuration
 {: #node-examples-put-lifecycle}
 
-Detailed information about structuring the lifecycle configuration rules are available in the [API Reference](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-new-bucket)
+Detailed information about structuring the lifecycle configuration rules are available in the [API Reference](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-new-bucket)
 
 ```javascript
 function createLifecycleConfiguration(bucketName) {
     //
     var config = {
         Rules: [{
-            Status: 'Enabled', 
+            Status: 'Enabled',
             ID: '<policy-id>',
             Filter: {
                 Prefix: ''
             },
             Transitions: [{
-                Days: <number-of-days>, 
+                Days: <number-of-days>,
                 StorageClass: 'GLACIER'
             }]
         }]
     };
-    
+
     return cos.putBucketLifecycleConfiguration({
         Bucket: bucketName,
         LifecycleConfiguration: config
@@ -562,21 +563,21 @@ function deleteLifecycleConfiguration(bucketName) {
 ### Temporarily restore an object
 {: #node-examples-restore-object}
 
-Detailed information about the restore request parameters are available in the [API Reference](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-object-operations#object-operations-archive-restore)
+Detailed information about the restore request parameters are available in the [API Reference](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-object-operations#object-operations-archive-restore)
 
 ```javascript
 function restoreItem(bucketName, itemName) {
     var params = {
-        Bucket: bucketName, 
-        Key: itemName, 
+        Bucket: bucketName,
+        Key: itemName,
         RestoreRequest: {
-            Days: <number-of-days>, 
+            Days: <number-of-days>,
             GlacierJobParameters: {
-                Tier: 'Bulk' 
+                Tier: 'Bulk'
             },
-        } 
+        }
     };
-    
+
     return cos.restoreObject(params).promise()
     .then(() => {
         console.log(`Restoring item: ${itemName} from bucket: ${bucketName}`);
@@ -637,7 +638,7 @@ function updateMetadataPut(bucketName, itemName, metaValue) {
 
     //retrieve the existing item to reload the contents
     return cos.getObject({
-        Bucket: bucketName, 
+        Bucket: bucketName,
         Key: itemName
     }).promise()
     .then((data) => {
@@ -680,7 +681,7 @@ function updateMetadataCopy(bucketName, itemName, metaValue) {
     };
 
     return cos.copyObject({
-        Bucket: bucketName, 
+        Bucket: bucketName,
         Key: itemName,
         CopySource: copySource,
         Metadata: newMetadata,
@@ -703,9 +704,9 @@ function updateMetadataCopy(bucketName, itemName, metaValue) {
 ### Add a protection configuration to an existing bucket
 {: #node-examples-immutable-add}
 
-Objects written to a protected bucket cannot be deleted until the protection period has expired and all legal holds on the object are removed. The bucket's default retention value is given to an object unless an object specific value is provided when the object is created. Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object. 
+Objects written to a protected bucket cannot be deleted until the protection period has expired and all legal holds on the object are removed. The bucket's default retention value is given to an object unless an object specific value is provided when the object is created. Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
 
-The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are 0 days and 365243 days (1000 years) respectively. 
+The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are 0 days and 365243 days (1000 years) respectively.
 
 
 ```js
@@ -758,7 +759,7 @@ function getProtectionConfigurationOnBucket(bucketName) {
 Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
 
 |Value	| Type	| Description |
-| --- | --- | --- | 
+| --- | --- | --- |
 |`Retention-Period` | Non-negative integer (seconds) | Retention period to store on the object in seconds. The object can be neither overwritten nor deleted until the amount of time specified in the retention period has elapsed. If this field and `Retention-Expiration-Date` are specified a `400`  error is returned. If neither is specified the bucket's `DefaultRetention` period will be used. Zero (`0`) is a legal value assuming the bucket's minimum retention period is also `0`. |
 | `Retention-expiration-date` | Date (ISO 8601 Format) | Date on which it will be legal to delete or modify the object. You can only specify this or the Retention-Period header. If both are specified a `400`  error will be returned. If neither is specified the bucket's DefaultRetention period will be used. |
 | `Retention-legal-hold-id` | string | A single legal hold to apply to the object. A legal hold is a Y character long string. The object cannot be overwritten or deleted until all legal holds associated with the object are removed. |
@@ -921,11 +922,11 @@ This operation requires permissions, as only the bucket owner is typically permi
 
 ```js
 var websiteParams = {
-  Bucket: "bucketName", 
+  Bucket: "bucketName",
   WebsiteConfiguration: {
     ErrorDocument: {
       Key: "error.html"
-    }, 
+    },
     IndexDocument: {
       Suffix: "index.html"
     }
@@ -948,4 +949,3 @@ function putBucketWebsiteConfiguration(websiteParams) {
 {: #node-guide-next-steps}
 
 More detail on individual methods and classes can be found in [the SDK's API documentation](https://ibm.github.io/ibm-cos-sdk-js/){: external}. Check out the source code on [GitHub](https://github.com/IBM/ibm-cos-sdk-js){: external}.
- 
