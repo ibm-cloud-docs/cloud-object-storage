@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-09-09"
+  years: 2017, 2024
+lastupdated: "2024-02-20"
 
 keywords: upload, getting started, basics, ingest
 
@@ -16,13 +16,13 @@ subcollection: cloud-object-storage
 # Upload data
 {: #upload}
 
-After getting your storage organized into buckets, it's time to add some objects by uploading data. 
+After getting your storage organized into buckets, it's time to add some objects by uploading data.
 {: shortdesc}
 
 Depending on how you want to use your storage, there are different ways to get data into the system. A data scientist has a few large files that are used for analytics, a systems administrator needs to keep database backups synchronized with local files, and a developer is writing software that needs to read and write millions of files. Each of these scenarios is best served by different methods of data ingest.
 
-Some applications may wish to restrict a user or Service ID to only uploading data, without any access to reading data in a bucket.  This is possible through the Object Writer [IAM role](/docs/cloud-object-storage?topic=cloud-object-storage-iam). 
-{:tip}
+Some applications may wish to restrict a user or Service ID to only uploading data, without any access to reading data in a bucket.  This is possible through the Object Writer [IAM role](/docs/cloud-object-storage?topic=cloud-object-storage-iam).
+{: tip}
 
 ## Using the console
 {: #upload-console}
@@ -39,7 +39,7 @@ Some examples include file explorers like [Cyberduck](https://cyberduck.io/) or 
 ## Using the API
 {: #upload-api}
 
-Most programmatic applications of Object Storage use an SDK (such as [Java](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-java), [node.js](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node), or [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python)) or the [Cloud Object Storage API](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api). Typically objects are uploaded in [multiple parts](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-large-objects), with part size and number of parts configured by a Transfer Manager class.
+Most programmatic applications of Object Storage use an SDK (such as [Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java), [node.js](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node), or [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python)) or the [Cloud Object Storage API](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api). Typically objects are uploaded in [multiple parts](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-large-objects), with part size and number of parts configured by a Transfer Manager class.
 
 ## Conditional requests
 {: #upload-conditional}
