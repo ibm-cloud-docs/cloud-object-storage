@@ -27,12 +27,14 @@ subcollection: cloud-object-storage-cli-plugin
 {:support: data-reuse='support'}
 
 # IBM Cloud Object Storage CLI
+
 {: #ic-cos-cli}
 
 The {{site.data.keyword.cos_full}} plug-in extends the {{site.data.keyword.cloud_notm}} command line interface (CLI) with an API wrapper for working with object storage resources.
 {: shortdesc}
 
 ## Installation and configuration
+
 {: #ic-installation}
 
 The plug-in is compatible with linux64, ppc64le, Windows&reg;, and macOS&reg; platforms that run on 64-bit processors.
@@ -43,7 +45,7 @@ Install the plug-in by using the `plugin install` command.
 ibmcloud plugin install cloud-object-storage
 ```
 
-Once the plug-in is installed, you can configure the plug-in by using the `ibmcloud cos config`(#ic-config) command. This can be used to populate the plug-in with your credentials, default download location, choosing your authentication, etc.
+Once the plug-in is installed, you can configure the plug-in by using the [`ibmcloud cos config`](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli#ic-config) command. This can be used to populate the plug-in with your credentials, default download location, choosing your authentication, etc.
 
 For optimal performance, ensure that tracing is disabled by setting the `IBMCLOUD_TRACE` environment variable to `false`.
 {: important}
@@ -66,6 +68,7 @@ URL Style               VHost
 ```
 
 ### IAM Authentication
+
 {: #ic-iam-authentication}
 
 If you are using IAM authentication, then you then you must configure your client with an instance ID to use some of the commands.  To retrieve the instance ID you can type `ibmcloud resource service-instance <INSTANCE_NAME> --id`, replace `<INSTANCE_NAME>` with the unique alias that you assigned to your service instance.  In the below examples, the `8f275e7b-c076-49e2-b9c5-f985704cf678` value is an example instance ID.
@@ -99,6 +102,7 @@ CRN   8f275e7b-c076-49e2-b9c5-f985704cf678
 Alternatively, you might open the web-based console, select **Service credentials** in the sidebar, and create a new set of credentials (or view an existing credential file that you already created).
 
 ### HMAC Credentials
+
 {: #ic-hmac-credentials}
 
 If preferred, a [Service ID's HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) can be used instead of your API key. Run `ibmcloud cos config hmac` to input the HMAC credentials, and then switch the authorization method by using `ibmcloud cos config auth`.
@@ -109,6 +113,7 @@ If you choose to use token authentication with your own API key, you don't need 
 At any time, to switch between HMAC and IAM authentication, you can type `ibmcloud cos config auth`. For more information about authentication and authorization in IBM Cloud, see the [Identity and Access Management documentation](/docs/account?topic=account-iamoverview).
 
 ## Enable tracing in the command line interface
+
 {: #ic-tracing}
 
 Tracing can be enabled by setting `IBMCLOUD_TRACE` environment variable to `true` (case ignored). When trace is enabled, additional debugging information is printed to the terminal.
@@ -128,6 +133,7 @@ SET IBMCLOUD_TRACE=true
 To disable tracing, set the `IBMCLOUD_TRACE` environment variable to `false` (case ignored).
 
 ## Command index
+
 {: #ic-command-index}
 
 Each operation has an explanation of what it does, how to use it, and any optional or required parameters. Unless specified as optional, any listed parameters are mandatory.
@@ -136,6 +142,7 @@ The CLI plug-in doesn't yet support the full suite of features available in Obje
 {: note}
 
 ## Abort a multipart upload
+
 {: #ic-abort-multipart-upload}
 
 * **Action:** Abort a multipart upload instance by ending the upload to the bucket in the user's IBM Cloud Object Storage account.
@@ -153,6 +160,7 @@ The CLI plug-in doesn't yet support the full suite of features available in Obje
     * Flag: `--output FORMAT`
 
 ## Configure a static website
+
 {: #ic-put-bucket-website}
 
 * **Action:** Configures a bucket to host a static website.
@@ -207,6 +215,7 @@ The CLI plug-in doesn't yet support the full suite of features available in Obje
     * Flag: `--output FORMAT`
 
 ## Copy object from bucket
+
 {: #ic-copy-object}
 
 If you want to add metadata to an object during the copying (using the `--metadata` feature), you must add the attribute `--metadata-directive REPLACE` as metadata is copied during the operation by default (an implicit `--metadata-directive COPY`).
@@ -254,18 +263,19 @@ If you want to add metadata to an object during the copying (using the `--metada
     ```
 
   * _Optional_: Specifies whether the metadata is copied from the source object or replaced with metadata provided in the request. DIRECTIVE values: COPY,REPLACE.
-    * Flag: ` --metadata-directive DIRECTIVE`
+    * Flag: `--metadata-directive DIRECTIVE`
   * _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
     * Flag: `--region REGION`
   * _Optional_: Output FORMAT can be only json or text.
     * Flag: `--output FORMAT`
 
 ## Create a new bucket
+
 {: #ic-create-bucket}
 
 * **Action:** Create a bucket in an IBM Cloud Object Storage instance.
 * **Usage:** `ibmcloud cos bucket-create --bucket BUCKET_NAME [--class CLASS_NAME][--class onerate_active] [--ibm-service-instance-id ID] [--region REGION] [--output FORMAT]`
-  * Note that you must provide a CRN if you are using IAM authentication. This can be set by using the [`ibmcloud cos config crn`](# ic-config) command.
+  * Note that you must provide a CRN if you are using IAM authentication. This can be set by using the [`ibmcloud cos config crn`](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli#ic-config) command.
 * **Parameters to provide:**
   * The name of the bucket.
     * Flag: `--bucket BUCKET_NAME`
@@ -281,11 +291,12 @@ If you want to add metadata to an object during the copying (using the `--metada
     * Flag: `--output FORMAT`
 
 ### Create a new bucket with Key Protect
+
 {: #ic-create-bucket-kp}
 
 * **Action:** Create a bucket with Key Protect in an IBM Cloud Object Storage instance.
 * **Usage:** `bucket-create --bucket BUCKET_NAME [--ibm-service-instance-id ID] [--class CLASS_NAME] [--region REGION] --kms-root-key-crn CUSTOMERROOTKEYCRN --kms-encryption-algorithm ALGORITHM [--output FORMAT] [--json]`
-  * Note that you must provide a CRN if you are using IAM authentication. This can be set by using the [`ibmcloud cos config crn`](# ic-config) command.
+  * Note that you must provide a CRN if you are using IAM authentication. This can be set by using the [`ibmcloud cos config crn`](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli#ic-config) command.
 * **Parameters to provide:**
   * The name of the bucket.
     * Flag: `--bucket BUCKET_NAME`
@@ -311,6 +322,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:stagin
 ```
 
 ### Create a new bucket with Hyper Protect Crypto Services
+
 {: #ic-create-a-new-bucket-hpcs}
 
 * **Action:** Create a new bucket with Hyper Protect Cryto Services.
@@ -340,6 +352,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 ```
 
 ## Create a new multipart upload
+
 {: #ic-create-multipart-upload}
 
 * **Action:** Begin the multipart file upload process by creating a new multipart upload instance.
@@ -378,6 +391,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Flag: `--output FORMAT`
 
 ## Delete an existing bucket
+
 {: #ic-delete-bucket}
 
 * **Action:** Delete an existing bucket in an IBM Cloud Object Storage instance.
@@ -393,6 +407,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Flag: `--output FORMAT`
 
 ## Delete bucket CORS
+
 {: #ic-delete-bucket-cors}
 
 * **Action:** Delete CORS configuration on a bucket in a user's IBM Cloud Object Storage account.
@@ -406,6 +421,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Flag: `--output FORMAT`
 
 ## Delete a static website configuration
+
 {: #ic-delete-bucket-website}
 
 * **Action:** Removes a bucket's static website configuration.
@@ -418,8 +434,8 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
   * _Optional_: Output FORMAT can be only json or text.
     * Flag: `--output FORMAT`
 
-
 ## Delete an object
+
 {: #ic-delete-object}
 
 * **Action:** Delete an object from a bucket in a user's IBM Cloud Object Storage account.
@@ -437,6 +453,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Flag: `--output FORMAT`
 
 ## Delete multiple objects
+
 {: #ic-delete-objects}
 
 * **Action:** Delete multiple objects from a bucket in a user's IBM Cloud Object Storage account.
@@ -468,6 +485,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Flag: `--output FORMAT`
 
 ## Download an object
+
 {: #ic-download-object}
 
 * **Action:** Download an object from a bucket in a user's IBM Cloud Object Storage account.
@@ -507,6 +525,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Parameter: `OUTFILE`
 
 ### Download objects by using S3Manager
+
 {: #ic-download-s3manager}
 
 * **Action:** Download objects from S3 concurrently.
@@ -550,6 +569,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Parameter: `OUTFILE`
 
 ## Find a bucket
+
 {: #ic-find-bucket}
 
 * **Action:** Determine the region and class of a bucket in an IBM Cloud Object Storage instance.
@@ -561,6 +581,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Flag: `--output FORMAT`
 
 ## Get a bucket's class
+
 {: #ic-bucket-class}
 
 * **Action:** Determine the class of a bucket in an IBM Cloud Object Storage instance.
@@ -572,6 +593,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Flag: `--output FORMAT`
 
 ## Get bucket CORS
+
 {: #ic-get-bucket-cors}
 
 * **Action:** Returns the CORS configuration for the bucket in a user's IBM Cloud Object Storage account.
@@ -585,6 +607,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Flag: `--output FORMAT`
 
 ## Get a bucket's headers
+
 {: #ic-bucket-header}
 
 * **Action:** Determine if a bucket exists in an IBM Cloud Object Storage instance.
@@ -597,8 +620,8 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
   * _Optional_: Output FORMAT can be only json or text.
     * Flag: `--output FORMAT`
 
-
 ## Complete a multipart upload
+
 {: #ic-complete-multipart-upload}
 
 * **Action:** Complete a multipart upload instance by assembling the currently uploaded parts and uploading the file to the bucket in the user's IBM Cloud Object Storage account.
@@ -612,8 +635,8 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Flag: `--upload-id ID`
   * The STRUCTURE of MultipartUpload to set.
     * Flag: `--multipart-upload STRUCTURE`
-    * Shorthand Syntax: 		`--multipart-upload 'Parts=[{ETag=string,PartNumber=integer},{ETag=string,PartNumber=integer}]'`
-    * JSON Syntax: 	`--multipart-upload file://<filename.json>` ======= The `--multipart-upload` command takes a JSON structure that describes the parts of the multipart upload that should be reassembled into the complete file. In this example, the `file://` prefix is used to load the JSON structure from the specified file.
+    * Shorthand Syntax:   `--multipart-upload 'Parts=[{ETag=string,PartNumber=integer},{ETag=string,PartNumber=integer}]'`
+    * JSON Syntax:  `--multipart-upload file://<filename.json>` ======= The `--multipart-upload` command takes a JSON structure that describes the parts of the multipart upload that should be reassembled into the complete file. In this example, the `file://` prefix is used to load the JSON structure from the specified file.
 
     ``` sh
     {
@@ -634,6 +657,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Flag: `--output FORMAT`
 
 ## Configure the Program
+
 {: #ic-config}
 
 * **Action:** Configure the program's preferences.
@@ -661,6 +685,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
         * `--clear` removes the default Service Endpoint URL that has been set.
 
 ## Get a static website configuration
+
 {: #ic-get-bucket-website}
 
 * **Action:** Gets a bucket's static website configuration.
@@ -674,6 +699,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Flag: `--output FORMAT`
 
 ## Get an object's headers
+
 {: #ic-object-header}
 
 * **Action:** Determine if a file exists in a bucket in a user's IBM Cloud Object Storage account.
@@ -699,11 +725,12 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Flag: `--output FORMAT`
 
 ## List all buckets
+
 {: #ic-list-buckets}
 
 * **Action:** Print a list of all the buckets in a user's IBM Cloud Object Storage account. Buckets might be located in different regions.
 * **Usage:** `ibmcloud cos buckets [--ibm-service-instance-id ID] [--output FORMAT]`
-  * Note that you must provide a CRN if you are using IAM authentication. This can be set by using the [`ibmcloud cos config crn`](# ic-config) command.
+  * Note that you must provide a CRN if you are using IAM authentication. This can be set by using the [`ibmcloud cos config crn`](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli#ic-config) command.
 * **Parameters to provide:**
   * No parameters to provide.
   * _Optional_: Sets the IBM Service Instance ID in the request.
@@ -712,11 +739,12 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Flag: `--output FORMAT`
 
 ### Extended Bucket Listing
+
 {: #ic-extended-bucket-listing}
 
 * **Action:** Print a list of all the buckets in a user's IBM Cloud Object Storage account. Buckets might be located in different regions.
 * **Usage:** `ibmcloud cos buckets-extended [--ibm-service-instance-id ID] [--marker KEY] [--prefix PREFIX] [--page-size SIZE] [--max-items NUMBER] [--output FORMAT]`
-  * Note that you must provide a CRN if you are using IAM authentication. This can be set by using the [`ibmcloud cos config crn`](# ic-config) command.
+  * Note that you must provide a CRN if you are using IAM authentication. This can be set by using the [`ibmcloud cos config crn`](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli#ic-config) command.
 * **Parameters to provide:**
   * No parameters to provide.
   * _Optional_: Sets the IBM Service Instance ID in the request.
@@ -733,6 +761,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Flag: `--output FORMAT`
 
 ## List in-progress multipart uploads
+
 {: #ic-list-multipart-uploads}
 
 * **Action:** Lists in-progress multipart uploads.
@@ -760,6 +789,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Flag: `--output FORMAT`
 
 ## List objects
+
 {: #ic-list-objects}
 
 * **Action:** List files present in a bucket in a user's IBM Cloud Object Storage Account.  This operation is currently limited to the 1000 most recently created objects and can't be filtered.
@@ -785,6 +815,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Flag: `--output FORMAT`
 
 ## List objects v2
+
 {: #ic-list-objects-v2}
 
 * **Action:** List all objects in a specific bucket.
@@ -816,6 +847,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Flag: `--json`
 
 ## List parts
+
 {: #ic-list-parts}
 
 * **Action:** Print out information about an in progress multipart upload instance.
@@ -839,6 +871,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Flag: `--output FORMAT`
 
 ## Set bucket CORS
+
 {: #ic-set-bucket-cors}
 
 * **Action:** Sets the CORS configuration for a bucket in the user's IBM Cloud Object Storage account.
@@ -871,6 +904,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Flag: `--output FORMAT`
 
 ## Put object
+
 {: #ic-upload-object}
 
 * **Action:** Upload an object to a bucket in a user's IBM Cloud Object Storage account.
@@ -916,6 +950,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
   * Flag: `--output FORMAT`
 
 ### Upload objects by using S3Manager
+
 {: #ic-upload-s3manager}
 
 * **Action:** Upload objects to COS concurrently.
@@ -969,6 +1004,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Flag: `--output FORMAT`
 
 ## Manually controlling multipart uploads
+
 {: #ic-manual-multipart-uploads}
 
 The IBM Cloud Object Storage CLI provides the ability for users to upload large files in multiple parts by using the AWS multipart upload functions. To initiate a new multipart upload, run the `multipart-upload-create` command, which returns the new upload instance's upload ID. To continue with the upload process, you must save the upload ID for each subsequent command. This command requires you to generate an MD5 hash:
@@ -1001,6 +1037,7 @@ Add more entries to this JSON template as necessary.
 To see the status of your multipart upload instance, you can always run the `part-list` command, providing the bucket name, key, and the upload ID. This print raw information about your multipart upload instance. Once you have completed uploading each part of the file, run the `multipart-upload-complete` command with the necessary parameters. If all goes well, you receive a confirmation that the file uploaded successfully to the wanted bucket.
 
 ### Upload a part
+
 {: #ic-upload-part}
 
 * **Action:** Upload a part of a file in an existing multipart upload instance.
@@ -1023,6 +1060,7 @@ To see the status of your multipart upload instance, you can always run the `par
     * Flag: `--output FORMAT`
 
 ### Upload a part copy
+
 {: #ic-upload-a-part-copy}
 
 * **Action:** Upload a part by copying data from an existing object.
@@ -1054,11 +1092,12 @@ To see the status of your multipart upload instance, you can always run the `par
   * _Optional_: Output FORMAT can be only json or text.
     * Flag: `--output FORMAT`
 
-
 ## Object Lock configuration
+
 {: #ic-obj-lock-config}
 
 ### Put Object Lock configuration
+
 {: #ic-put-obj-lock-config}
 
 In default retention Days and Years cannot be provided at the same time.
@@ -1097,6 +1136,7 @@ ibmcloud cos object-lock-configuration-put --bucket bucket-name --object-lock-co
 ```
 
 ### Get Object Lock configuration
+
 {: #ic-get-obj-lock-config}
 
 * **Action:** Get the object lock configuration on a bucket.
@@ -1145,9 +1185,11 @@ ibmcloud cos object-lock-configuration-get --bucket bucket-name --region us-sout
 ```
 
 ## Object Retention
+
 {: #ic-obj-retention}
 
 ### Put Object Retention
+
 {: #ic-put-obj-retention}
 
 * **Action:** Set retention on a object.
@@ -1179,6 +1221,7 @@ ibmcloud cos object-retention-put --bucket bucket-name --key file-name.txt --ret
 ```
 
 ### Get Object Retention
+
 {: #ic-get-obj-retention}
 
 * **Action:** Get retention on a object.
@@ -1209,9 +1252,11 @@ ibmcloud cos object-retention-put --bucket bucket-name --key file-name.txt --reg
 ```
 
 ## Object Legal Hold
+
 {: #ic-obj-legal-hold}
 
 ### Put Object Legal Hold
+
 {: #ic-put-obj-legal-hold}
 
 * **Action:** Set the legal hold on a object.
@@ -1242,6 +1287,7 @@ ibmcloud cos object-legal-hold-put --bucket bucket-name --key file-name.txt --le
 ```
 
 ### Get Object Legal Hold
+
 {: #ic-get-obj-legal-hold}
 
 * **Action:** Get legal hold for a object.
@@ -1271,11 +1317,13 @@ ibmcloud cos object-retention-get --bucket bucket-name --key file-name.txt --reg
 ```
 
 ## Configure bucket replication
+
 {: #ic-config-bucket-replication}
 
 Setup for configuring a replicated bucket.
 
 ### Put bucket replication
+
 {: #ic-config-put-bucket-replication}
 
 * **Action:** Set the replication configuration on a bucket.
@@ -1313,6 +1361,7 @@ ibmcloud cos bucket-replication-put --bucket SOURCE-BUCKET-NAME --replication-co
 ```
 
 ### Get bucket replication
+
 {: #ic-config-get-bucket-replication}
 
 * **Action:** Get the replication configuration for a bucket.
@@ -1349,6 +1398,7 @@ Example:
 ```
 
 ### Delete bucket replication
+
 {: #ic-config-delete-bucket-replication}
 
 * **Action:** Delete the replication configuration from a bucket.
@@ -1368,6 +1418,7 @@ Example:
 ```
 
 ## Next Steps
+
 {: #cli-ref-next-steps}
 
 As every procedure always goes exactly as planned, you might not have seen any of the [common header and error codes](/docs/services/cloud-object-storage?topic=cloud-object-storage-compatibility-common). For more reference, check the [API reference](/apidocs/cos/cos-compatibility).
