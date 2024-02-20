@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-10-22"
+  years: 2017, 2024
+lastupdated: "2024-02-19"
 
 keywords: encryption, security, object storage
 
@@ -16,7 +16,7 @@ subcollection: cloud-object-storage
 # Data security
 {: #security}
 
-{{site.data.keyword.cos_full}} uses an innovative approach for cost-effectively storing large volumes of unstructured data that ensures security, availability, and reliability. 
+{{site.data.keyword.cos_full}} uses an innovative approach for cost-effectively storing large volumes of unstructured data that ensures security, availability, and reliability.
 {: shortdesc}
 
 This level of security is accomplished by using Information Dispersal Algorithms (IDAs) to separate data into unrecognizable “slices”. The system distributes these slices across a network of data centers, making transmission and storage of data inherently private and secure. No complete copy of the data resides in any single storage node, and only a subset of nodes needs to be available in order to fully retrieve the data on the network.
@@ -45,7 +45,7 @@ Access control lists (often referred to as ACLs) are an outdated method for cont
 Cross regional and regional resiliency buckets distribute information across multiple data centers.  For single site resiliency, data is dispersed to the same number of storage devices but they are all located in the same data center.
 {: note}
 
-Data can be made more secure by using one of several available methods to protect the encryption keys including SSE-C, Key Protect or Hyper Protect Crypto Services. Please visit the [manage encryption](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-encryption) topic to learn more about the encryption methods.
+Data can be made more secure by using one of several available methods to protect the encryption keys including SSE-C, Key Protect or Hyper Protect Crypto Services. Please visit the [manage encryption](/docs/cloud-object-storage/basics?topic=cloud-object-storage-encryption) topic to learn more about the encryption methods.
 
 ## Tenant isolation
 {: #security-isolation}
