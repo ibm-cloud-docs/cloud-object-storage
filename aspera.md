@@ -49,7 +49,7 @@ If you add objects by using the console in a [supported region](/docs/cloud-obje
 2. Follow the installation instructions for your operating system and browser.
 3. Resume file or folder upload.
 
-The Aspera Connect plug-in can also be installed from the [Aspera website](https://www.ibm.com/aspera/connect/) directly. For help troubleshooting issues with the Aspera Connect plug-in, [see the documentation](/docs/aspera-connect).
+The Aspera Connect plug-in can also be installed from the [Aspera website](https://www.ibm.com/aspera/connect/) directly. For help troubleshooting issues with the Aspera Connect plug-in, [see the documentation](https://www.ibm.com/docs/aspera-connect).
 
 After the plug-in is installed, you have the option to set Aspera high-speed transfer as the default for any uploads to the target bucket that use the same browser. Select **Remember my browser preferences**. Options are also available in the bucket configuration page under **Transfer options**. These options allow you to choose between Standard and High speed as the default transport for uploads and downloads.
 
