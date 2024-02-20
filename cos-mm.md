@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2023
-lastupdated: "2023-10-27"
+  years: 2019, 2024
+lastupdated: "2024-02-20"
 
 keywords: metrics, monitoring, object storage, tutorial
 
@@ -98,4 +98,4 @@ We'll quickly see that there's nothing here.  It will take a little while for th
 ## Next steps
 {: #mon-tut-next-steps}
 
-Congratulations, you've just set up a bucket with {{site.data.keyword.mon_short}} enabled. Next, learn more about [how the {{site.data.keyword.mon_short}} service itself routes events](/docs/activity-tracker?topic=activity-tracker-getting-started-routing), all of [the various events that {{site.data.keyword.cos_short}} can generate](/docs/cloud-object-storage?topic=cloud-object-storage-at-events), or how to integrate all of this to [provide end-to-end security for a cloud application](/docs/solution-tutorials?topic=solution-tutorials-cloud-e2e-security).
+Congratulations, you've just set up a bucket with {{site.data.keyword.mon_short}} enabled. Next, learn more about [how the {{site.data.keyword.mon_short}} service itself routes events](/docs/atracker?topic=atracker-about), all of [the various events that {{site.data.keyword.cos_short}} can generate](/docs/cloud-object-storage?topic=cloud-object-storage-at-events), or how to integrate all of this to [provide end-to-end security for a cloud application](/docs/solution-tutorials?topic=solution-tutorials-cloud-e2e-security).
