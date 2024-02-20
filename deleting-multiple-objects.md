@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-01-09"
+lastupdated: "2024-02-20"
 
 keywords: empty bucket, delete, multiple
 
@@ -36,7 +36,7 @@ The process of emptying a bucket is familiar to anyone who has to delete buckets
 If versioning is enabled, then expiration rules create [delete markers](/docs/cloud-object-storage?topic=cloud-object-storage-versioning).
 {: important}
 
-It is a best practice to avoid putting credentials in scripts. This example is for testing and educational purposes, and your specific setup should be informed by best practices and [Developer Guidance](/docs/cloud-object-storage?topic=cloud-object-storage-dev-guide).
+It is a best practice to avoid putting credentials in scripts. This example is for testing and educational purposes, and your specific setup should be informed by best practices and [Developer Guidance](/docs/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev).
 {: tip}
 
 ## Before you begin
