@@ -1,9 +1,9 @@
 ---
 
 copyright:
-  years: 2017, 2023
+  years: 2017, 2024
 
-lastupdated: "2023-12-20"
+lastupdated: "2024-02-20"
 
 keywords: endpoint, location, object storage, bucket, region
 
@@ -231,7 +231,7 @@ Requests made using the Resource Configuration API are sent to a global endpoint
 ## Decommissioned locations
 {: #endpoints-decom}
 
-Over time, it may be necessary for locations to transform from a Single Data Center to a Regional configuration, or for a location to be decommissioned entirely. These situations will require users to migrate data from one bucket to another. Please consult this [guide for migrating a bucket using Rclone](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-region-copy).
+Over time, it may be necessary for locations to transform from a Single Data Center to a Regional configuration, or for a location to be decommissioned entirely. These situations will require users to migrate data from one bucket to another. Please consult this [guide for migrating a bucket using Rclone](/docs/cloud-object-storage/iam?topic=cloud-object-storage-region-copy).
 
 | Region  | Type    | Endpoint                                                |
 |---------|---------|---------------------------------------------------------|
