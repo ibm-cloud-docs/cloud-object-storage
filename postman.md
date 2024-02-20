@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-01-19"
+  years: 2017, 2024
+lastupdated: "2024-02-20"
 
 keywords: rest, s3, compatibility, api, postman, client, object storage
 
@@ -17,29 +17,31 @@ subcollection: cloud-object-storage
 # Using `Postman`
 {: #postman}
 
-Here's a basic `Postman` setup for the {{site.data.keyword.cos_full}} REST API. More detail can be found in the API reference for [buckets](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations) or [objects](/docs/services/cloud-object-storage?topic=cloud-object-storage-object-operations).
+Here's a basic `Postman` setup for the {{site.data.keyword.cos_full}} REST API. More detail can be found in the API reference for [buckets](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations) or [objects](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations).
 
-Using `Postman` assumes a certain amount of familiarity with Object Storage and the necessary information from a [service credential](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) or the console as shown in the [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). If any terms or variables are unfamiliar, they can be found in the [FAQ](/docs/cloud-object-storage?topic=cloud-object-storage-faq).
+Using `Postman` assumes a certain amount of familiarity with Object Storage and the necessary information from a [service credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) or the console as shown in the [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). If any terms or variables are unfamiliar, they can be found in the [FAQ](/docs/cloud-object-storage?topic=cloud-object-storage-faq).
 
-Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means. 
-{:tip}
+Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means.
+{: tip}
 
 ## REST API client overview
 {: #postman-rest}
 
-Interacting with a REST API isn't as simple as using a standard internet browser. Simple browsers do not allow any manipulation of the URL request. A REST API client can help quickly put together both simple and complex HTTP requests.  
+Interacting with a REST API isn't as simple as using a standard internet browser. Simple browsers do not allow any manipulation of the URL request. A REST API client can help quickly put together both simple and complex HTTP requests.
 
 ## Prerequisites
 {: #postman-prereqs}
+
 * IBM Cloud account
 * [Cloud Storage resource created](https://cloud.ibm.com/catalog/){: external} (lite plan works fine)
-* [IBM Cloud COS CLI installed and configured](/docs/cloud-object-storage?topic=cloud-object-storage-cli-plugin-ic-cos-cli)
-* [Service Instance ID for your Cloud Storage](/docs/services/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials)
-* [IAM (Identity and Access Management) Token](/docs/services/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials) 
-* [Endpoint for your COS bucket](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints)
+* [IBM Cloud COS CLI installed and configured](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli&interface=ui#ic-installation)
+* [Service Instance ID for your Cloud Storage](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials)
+* [IAM (Identity and Access Management) Token](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials)
+* [Endpoint for your COS bucket](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints)
 
 ### Create a bucket
 {: #postman-create-bucket}
+
 1.	Start Postman
 2.	In the **New** tab, select `PUT`.
 3.	Enter the endpoint in the address bar and add the name for your new bucket.
@@ -1323,7 +1325,7 @@ This Postman collection is provided as a starting point for experimenting with t
 6. Edit the variables to match your Cloud Storage environment
     * `bucket` - Enter the name for the new bucket you want to create (bucket names must be unique across Cloud Storage).
     * `serviceid` - Enter the CRN of your Cloud Storage service. Instructions to obtain your CRN are available [here](/docs/account?topic=account-crn#service-instance-crn).
-    * `iamtoken` - Enter the OAUTH token for your Cloud Storage service. Instructions to obtain your OAUTH token are available [here](/docs/services/key-protect?topic=key-protect-retrieve-access-token).
+    * `iamtoken` - Enter the OAUTH token for your Cloud Storage service. Instructions to obtain your OAUTH token are available [here](/docs/key-protect?topic=key-protect-retrieve-access-token).
     * `endpoint` - Enter the regional endpoint for your Cloud Storage service. Obtain the available endpoints from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources/){: external}
         * *Ensure that your selected endpoint matches your key protect service to ensure that the samples run correctly*
     * `rootkeycrn` - The CRN of the Root Key created in your primary Key Protect service.
@@ -1338,6 +1340,7 @@ This Postman collection is provided as a starting point for experimenting with t
 
 ### Running the samples
 {: #postman-samples}
+
 The API sample requests are fairly straightforward and easy to use. They're designed to run in order and demonstrate how to interact with Cloud Storage. You can also run a functional test against your Cloud Storage service to ensure proper operation.
 
 | Request                                                    | Expected Result                                                                                                                                                                               | Test Results                                                                                       |
@@ -1367,7 +1370,7 @@ The API sample requests are fairly straightforward and easy to use. They're desi
 ## Using the Postman Collection Runner
 {: #postman-runner}
 
-The Postman Collection Runner provides a user interface for testing a collection and allows you to run all requests in a Collection at once. 
+The Postman Collection Runner provides a user interface for testing a collection and allows you to run all requests in a Collection at once.
 
 1. Click the Runner button in the upper right corner on the main Postman window.
 2. In the Runner window, select the IBM COS collection and click the big blue **run IBM COS** button at the bottom of the screen.
