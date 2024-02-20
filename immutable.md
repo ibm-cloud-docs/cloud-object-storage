@@ -1,9 +1,9 @@
 ---
 
 copyright:
-  years: 2017, 2023
+  years: 2017, 2024
 
-lastupdated: "2023-10-25"
+lastupdated: "2024-02-20"
 
 keywords: worm, immutable, policy, retention, compliance
 
@@ -24,7 +24,7 @@ This feature is not currently supported in {{site.data.keyword.cos_short}} for {
 {: note}
 
 Policies are enforced until the end of a retention period, and can not be altered until the retention period has expired. While {{site.data.keyword.cos_full_notm}} makes use of the S3 API for most operations, the APIs used for configuring retention policies is not the same as the S3 API, although some terminology may be shared. Read this documentation carefully to prevent any users in your organization from creating objects that can not be deleted, even by IBM Cloud administrators.
-{:important}
+{: important}
 
 This feature can be used by any user that needs long-term data retention in their environment, including but not limited to organizations in the following industries:
 
@@ -35,11 +35,11 @@ This feature can be used by any user that needs long-term data retention in thei
 
 Retention policies can also be used by organizations that deal with financial records management, such as broker-dealer transactions, and might need to store data in a non-rewritable and non-erasable format. 
 
-Immutable Object Storage is available in certain regions only, see [Integrated Services](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability#service-availability) for details. It also requires a Standard pricing plan. See [pricing](https://www.ibm.com/cloud/object-storage) for details.
-{:note}
+Immutable Object Storage is available in certain regions only, see [Integrated Services](/docs/cloud-object-storage/basics?topic=cloud-object-storage-service-availability#service-availability) for details. It also requires a Standard pricing plan. See [pricing](https://www.ibm.com/cloud/object-storage) for details.
+{: note}
 
 It isn't possible to use Aspera high-speed transfer with buckets with a retention policy.
-{:important}
+{: important}
 
 ## Terminology and usage
 {: #immutable-terminology}
@@ -61,10 +61,10 @@ Maximum retention period is the maximum duration of time an object can be kept u
 If an object is stored in the bucket without specifying a custom retention period, the default retention period is used. The minimum retention period must be less than or equal to the default retention period, which in turn must be less than or equal to the maximum retention period.
 
 A maximum retention period of 1000 years can be specified for the objects.
-{:tip}
+{: tip}
 
-To create a retention policy on a bucket, you need Manager role. See [Bucket permissions](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions) for more details.
-{:important}
+To create a retention policy on a bucket, you need Manager role. See [Bucket permissions](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions) for more details.
+{: important}
 
 ### Legal hold
 {: #immutable-terminology-hold}
@@ -88,13 +88,13 @@ Immutable Object Storage allows users to set indefinite retention on the object 
 ### Permanent retention
 {: #immutable-terminology-permanent}
 
-Permanent retention ensures that data can not be deleted, ever, by anyone. Read the documentation carefully and do not use permanent retention unless there is a compelling regulatory or compliance need for **permanent** data storage. 
-{:important}
+Permanent retention ensures that data can not be deleted, ever, by anyone. Read the documentation carefully and do not use permanent retention unless there is a compelling regulatory or compliance need for **permanent** data storage.
+{: important}
 
 Permanent retention can only be enabled at a {{site.data.keyword.cos_full_notm}} bucket level with retention policy enabled and users are able to select the permanent retention period option during object uploads. Once enabled, this process can't be reversed and objects uploaded that use a permanent retention period **cannot be deleted**. It's the responsibility of the users to validate at their end if there's a legitimate need to **permanently** store objects by using {{site.data.keyword.cos_short}} buckets with a retention policy. 
 
 When using Immutable Object Storage, you are responsible for ensuring that your IBM Cloud Account is kept in good standing per IBM Cloud policies and guidelines for as long as the data is subject to a retention policy. Refer to IBM Cloud Service terms for more information.
-{:important}
+{: important}
 
 ## Immutable Object Storage and considerations for various regulations
 {: #immutable-regulation}
@@ -109,35 +109,37 @@ To assist clients in making informed decisions, IBM engaged Cohasset Associates 
 
 ### Audit of access and transactions
 {: #immutable-audit}
+
 Access log data for Immutable Object Storage to review changes to retention parameters, object retention period, and application of legal holds is available on a case-by-case basis by opening a customer service ticket.
 
 ## Using the console
 {: #immutable-console}
 
-Retention policies can be added to new or existing empty buckets, and cannot be removed. For a new bucket, ensure that you are creating the bucket in a [supported region](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-service-availability#service-availability), and then choose the **Add retention policy** option. For an existing bucket, ensure that it has no objects and then navigate to configuration settings and click the **Create policy** button below the bucket retention policy section. In either case, set a minimum, maximum, and default retention periods.
+Retention policies can be added to new or existing empty buckets, and cannot be removed. For a new bucket, ensure that you are creating the bucket in a [supported region](/docs/cloud-object-storage/basics?topic=cloud-object-storage-service-availability#service-availability), and then choose the **Add retention policy** option. For an existing bucket, ensure that it has no objects and then navigate to configuration settings and click the **Create policy** button below the bucket retention policy section. In either case, set a minimum, maximum, and default retention periods.
 
 ## Using the REST API, Libraries, and SDKs
 {: #immutable-sdk}
 
-Several new APIs have been introduced to the {{site.data.keyword.cos_full_notm}} SDKs to provide support for applications working with retention policies. Select a language (HTTP, Java, JavaScript, or Python) at the beginning of this page to view examples that use the appropriate {{site.data.keyword.cos_short}} SDK. 
+Several new APIs have been introduced to the {{site.data.keyword.cos_full_notm}} SDKs to provide support for applications working with retention policies. Select a language (HTTP, Java, JavaScript, or Python) at the beginning of this page to view examples that use the appropriate {{site.data.keyword.cos_short}} SDK.
 
 All code examples assume the existence of a client object that is called `cos` that can call the different methods. For details on creating clients, see the specific SDK guides.
 
 All date values used to set retention periods are Greenwich mean time. A `Content-MD5` header is required to ensure data integrity, and is automatically sent when using an SDK.
-{:note}
+{: note}
 
 ### Add a retention policy on an existing bucket
 {: #immutable-sdk-add-policy}
-This implementation of the `PUT` operation uses the `protection` query parameter to set the retention parameters for an existing bucket. This operation allows you to set or change the minimum, default, and maximum retention period. This operation also allows you to change the protection state of the bucket. 
 
-Objects written to a protected bucket cannot be deleted until the protection period has expired and all legal holds on the object are removed. The bucket's default retention value is given to an object unless an object-specific value is provided when the object is created. Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object. 
+This implementation of the `PUT` operation uses the `protection` query parameter to set the retention parameters for an existing bucket. This operation allows you to set or change the minimum, default, and maximum retention period. This operation also allows you to change the protection state of the bucket.
 
-The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are a minimum of 0 days and a maximum of 365243 days (1000 years). 
+Objects written to a protected bucket cannot be deleted until the protection period has expired and all legal holds on the object are removed. The bucket's default retention value is given to an object unless an object-specific value is provided when the object is created. Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
+
+The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are a minimum of 0 days and a maximum of 365243 days (1000 years).
 
 A `Content-MD5` header is required. This operation does not make use of extra query parameters.
 
 For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
-{:tip}
+{: tip}
 
 {: http}
 
@@ -187,7 +189,7 @@ HTTP/1.1 200 OK
 Date: Wed, 5 Oct 2018 15:39:38 GMT
 X-Clv-Request-Id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
 Accept-Ranges: bytes
-Server: Cleversafe/3.14.1 
+Server: Cleversafe/3.14.1
 X-Clv-S3-Version: 2.5
 x-amz-request-id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
 Content-Length: 0
@@ -312,7 +314,7 @@ HTTP/1.1 200 OK
 Date: Wed, 5 Oct 2018 15:39:38 GMT
 X-Clv-Request-Id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
 Accept-Ranges: bytes
-Server: Cleversafe/3.13.1 
+Server: Cleversafe/3.13.1
 X-Clv-S3-Version: 2.5
 x-amz-request-id: 7afca6d8-e209-4519-8f2c-1af3f1540b42
 Content-Length: 299
@@ -413,7 +415,7 @@ These headers apply to POST object and multipart upload requests as well. If upl
 {: http}
 
 |Value	| Type	| Description |
-| --- | --- | --- | 
+| --- | --- | --- |
 |`Retention-Period` | Non-negative integer (seconds) | Retention period to store on the object in seconds. The object can be neither overwritten nor deleted until the amount of time that is specified in the retention period has elapsed. If this field and `Retention-Expiration-Date` are specified a `400`  error is returned. If neither is specified the bucket's `DefaultRetention` period will be used. Zero (`0`) is a legal value assuming the bucket's minimum retention period is also `0`. |
 | `Retention-expiration-date` | Date (ISO 8601 Format) | Date on which it is legal to delete or modify the object. You can only specify this or the Retention-Period header. If both are specified a `400`  error will be returned. If neither is specified the bucket's `DefaultRetention` period will be used. Supported ISO 8601 format is `[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss]Z` or `[YYYY][MM][DD]T[hh][mm][ss]Z` (for example, `2020-11-28T03:10:01Z` or `20201128T031001Z` are both valid).
 | `Retention-legal-hold-id` | String | A single legal hold to apply to the object. A legal hold is a Y character long string. The object cannot be overwritten or deleted until all legal holds associated with the object are removed. |
@@ -421,15 +423,15 @@ These headers apply to POST object and multipart upload requests as well. If upl
 ```py
 def put_object_add_legal_hold(bucket_name, object_name, file_text, legal_hold_id):
     print("Add legal hold {0} to {1} in bucket {2} with a putObject operation.\n".format(legal_hold_id, object_name, bucket_name))
-    
+
     cos.put_object(
         Bucket=bucket_name,
         Key=object_name,
-        Body=file_text, 
+        Body=file_text,
         RetentionLegalHoldId=legal_hold_id)
 
     print("Legal hold {0} added to object {1} in bucket {2}\n".format(legal_hold_id, object_name, bucket_name))
-  
+
 def copy_protected_object(source_bucket_name, source_object_name, destination_bucket_name, new_object_name):
     print("Copy protected object {0} from bucket {1} to {2}/{3}.\n".format(source_object_name, source_bucket_name, destination_bucket_name, new_object_name))
 
@@ -439,9 +441,9 @@ def copy_protected_object(source_bucket_name, source_object_name, destination_bu
     }
 
     cos.copy_object(
-        Bucket=destination_bucket_name, 
-        Key=new_object_name, 
-        CopySource=copy_source, 
+        Bucket=destination_bucket_name,
+        Key=new_object_name,
+        CopySource=copy_source,
         RetentionDirective="Copy"
     )
 
@@ -451,7 +453,7 @@ def complete_multipart_upload_with_retention(bucket_name, object_name, upload_id
     print("Completing multi-part upload for object {0} in bucket {1}\n".format(object_name, bucket_name))
 
     cos.complete_multipart_upload(
-        Bucket=bucket_name, 
+        Bucket=bucket_name,
         Key=object_name,
         MultipartUpload={
             "Parts":[{
@@ -467,7 +469,7 @@ def complete_multipart_upload_with_retention(bucket_name, object_name, upload_id
 
 def upload_file_with_retention(bucket_name, object_name, path_to_file, retention_period):
     print("Uploading file {0} to object {1} in bucket {2}\n".format(path_to_file, object_name, bucket_name))
-    
+
     args = {
         "RetentionPeriod": retention_period
     }
@@ -546,13 +548,13 @@ public static void copyProtectedObject(String sourceBucketName, String sourceObj
     System.out.printf("Copy protected object %s from bucket %s to %s/%s.\n", sourceObjectName, sourceBucketName, destinationBucketName, newObjectName);
 
     CopyObjectRequest req = new CopyObjectRequest(
-        sourceBucketName, 
-        sourceObjectName, 
-        destinationBucketName, 
+        sourceBucketName,
+        sourceObjectName,
+        destinationBucketName,
         newObjectName
     );
     req.setRetentionDirective(RetentionDirective.COPY);
-    
+
 
     cos.copyObject(req);
 
@@ -679,8 +681,8 @@ public static void addLegalHoldToObject(String bucketName, String objectName, St
     System.out.printf("Adding legal hold %s to object %s in bucket %s\n", legalHoldId, objectName, bucketName);
 
     cos.addLegalHold(
-        bucketName, 
-        objectName, 
+        bucketName,
+        objectName,
         legalHoldId
     );
 
@@ -691,8 +693,8 @@ public static void deleteLegalHoldFromObject(String bucketName, String objectNam
     System.out.printf("Deleting legal hold %s from object %s in bucket %s\n", legalHoldId, objectName, bucketName);
 
     cos.deleteLegalHold(
-        bucketName, 
-        objectName, 
+        bucketName,
+        objectName,
         legalHoldId
     );
 
@@ -796,7 +798,7 @@ public static void extendRetentionPeriodOnObject(String bucketName, String objec
     System.out.printf("Extend the retention period on %s in bucket %s by %s seconds.\n", objectName, bucketName, additionalSeconds);
 
     ExtendObjectRetentionRequest req = new ExtendObjectRetentionRequest(
-        bucketName, 
+        bucketName,
         objectName)
         .withAdditionalRetentionPeriod(additionalSeconds);
 
@@ -875,7 +877,7 @@ GMT</RetentionPeriodExpirationDate>
 {: codeblock}
 {: http}
 
-```py 
+```py
 def list_legal_holds_on_object(bucket_name, object_name):
     print("List all legal holds on object {0} in bucket {1}\n".format(object_name, bucket_name));
 
@@ -912,7 +914,7 @@ public static void listLegalHoldsOnObject(String bucketName, String objectName) 
     System.out.printf("List all legal holds on object %s in bucket %s\n", objectName, bucketName);
 
     ListLegalHoldsResult result = cos.listLegalHolds(
-        bucketName, 
+        bucketName,
         objectName
     );
 
