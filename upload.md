@@ -39,7 +39,7 @@ Some examples include file explorers like [Cyberduck](https://cyberduck.io/) or 
 ## Using the API
 {: #upload-api}
 
-Most programmatic applications of Object Storage use an SDK (such as [Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java), [node.js](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-node), or [Python](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-python)) or the [Cloud Object Storage API](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api). Typically objects are uploaded in [multiple parts](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-large-objects), with part size and number of parts configured by a Transfer Manager class.
+Most programmatic applications of Object Storage use an SDK (such as [Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java), [node.js](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-node), or [Python](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python)) or the [Cloud Object Storage API](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api). Typically objects are uploaded in [multiple parts](/docs/cloud-object-storage/basics?topic=cloud-object-storage-large-objects), with part size and number of parts configured by a Transfer Manager class.
 
 ## Conditional requests
 {: #upload-conditional}
