@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2022
-lastupdated: "2022-09-28"
+  years: 2022, 2024
+lastupdated: "2024-02-20"
 
-keywords: cos, object storage, copy, 
+keywords: cos, object storage, copy
 
 subcollection: cloud-object-storage
 
@@ -25,10 +25,10 @@ This guide provides instructions for copying data from one {{site.data.keyword.c
 
 You have the option of using your existing instance of {{site.data.keyword.cos_full_notm}} or creating a new instance. If you want to reuse your existing instance, skip to step #2.
 
-1. Create an instance of {{site.data.keyword.cos_full_notm}} from the [catalog](https://cloud.ibm.com/catalog/services/cloud-object-storage).
+1. Create an instance of {{site.data.keyword.cos_full_notm}} from the [catalog](https://cloud.ibm.com/catalog/cloud-object-storage).
 1. Create any buckets that you need to store your transferred data. Read through the [getting started guide](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) to familiarize yourself with key concepts such as [endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) and [storage classes](/docs/cloud-object-storage/basics?topic=cloud-object-storage-classes).
- 1. **The rclone utility will not copy any bucket configurations or object metadata**.  Therefore, if you are using any of the {{site.data.keyword.cos_short}} features such as expiration, archive, key protect, etc. be sure to configure them appropriately before migrating your data. To view which features are supported at your COS destination, please refer to the [feature matrix](https://cloud.ibm.com/docs/services/cloud-object-storage?topic=cloud-object-storage-service-availability).  
-  
+ 1. **The rclone utility will not copy any bucket configurations or object metadata**.  Therefore, if you are using any of the {{site.data.keyword.cos_short}} features such as expiration, archive, key protect, etc. be sure to configure them appropriately before migrating your data. To view which features are supported at your COS destination, please refer to the [feature matrix](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-service-availability).
+
 Feature configuration and access policies documentation can be viewed at the IBM Cloud portal pages listed below:
 
  * [IBM Cloud Identity and Access Management - IAM](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-iam)

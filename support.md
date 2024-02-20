@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2023
-lastupdated: "2023-12-08"
+  years: 2017, 2024
+lastupdated: "2024-02-20"
 
 keywords: troubleshooting, support, questions
 
@@ -89,9 +89,9 @@ You can view a bucket or object in the IBM Cloud console but the following error
 * Cloud CLI error: “The specified bucket was not found in your IBM Cloud account. This may be because you provided the wrong region. Provide the bucket's correct region and try again.”
 * AWS CLI error: “An error occurred (NoSuchBucket) when calling the ListObjectsV2 operation: The specified bucket does not exist.”
 
-The bucket’s location must correspond to the endpoint used by the CLI. This error occurs when the bucket or object cannot be found at the default endpoint for the CLI. 
+The bucket’s location must correspond to the endpoint used by the CLI. This error occurs when the bucket or object cannot be found at the default endpoint for the CLI.
 
-To avoid the error, make sure the bucket location matches the endpoint used by the CLI.  For the parameters to set a region or endpoint, refer to the documentation for [Cloud Object Storage CLI](/docs/cloud-object-storage?topic=cloud-object-storage-cli-plugin-ic-cos-cli) or [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli).
+To avoid the error, make sure the bucket location matches the endpoint used by the CLI.  For the parameters to set a region or endpoint, refer to the documentation for [Cloud Object Storage CLI](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli&interface=ui#ic-installation) or [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli).
 
 ## How do I copy or move files to another bucket in a different location?
 {: #troubleshooting-cos-move}

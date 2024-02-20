@@ -1382,4 +1382,4 @@ Example:
 ## Next Steps
 {: #cli-ref-next-steps}
 
-As every procedure always goes exactly as planned, you might not have seen any of the [common header and error codes](/docs/services/cloud-object-storage?topic=cloud-object-storage-compatibility-common). For more reference, check the [API reference](/apidocs/cos/cos-compatibility).
+As every procedure always goes exactly as planned, you might not have seen any of the [common header and error codes](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-common). For more reference, check the [API reference](/apidocs/cos/cos-compatibility).
