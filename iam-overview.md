@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-11"
+  years: 2017, 2024
+lastupdated: "2024-02-20"
 
 keywords: authorization, iam, basics
 
@@ -16,12 +16,12 @@ subcollection: cloud-object-storage
 # IAM overview
 {: #iam-overview}
 
-{{site.data.keyword.cloud_notm}} Identity and Access Management (IAM) service securely authenticates users and controls access to all resources consistently in the {{site.data.keyword.cloud_notm}} Platform. 
+{{site.data.keyword.cloud_notm}} Identity and Access Management (IAM) service securely authenticates users and controls access to all resources consistently in the {{site.data.keyword.cloud_notm}} Platform.
 {: shortdesc}
 
 For more information, see the [IAM account overview](/docs/account?topic=account-overview).
 
-## Identity  Management
+## Identity Management
 {: #iam-overview-identity}
 
 Identity  Management includes the interaction of users, services, and resources. Users are identified by their IBMid. Services are identified by their service IDs. And, resources are identified and addressed by using CRNs.
@@ -59,4 +59,4 @@ IAM Access Control enables the assignment of policies per service or service ins
 
 While roles are a collection of actions, the actions that are mapped to these roles are service specific. Each service determines this role to action mapping during the onboarding process and this mapping effects all users of the service. Roles and access policies are configured through the Policy Administration Point (PAP) and enforced through the Policy Enforcement Point (PEP) and Policy Decision Point (PDP).
 
-See [Best practices for organizing users, teams, applications](/docs/solution-tutorials?topic=solution-tutorials-users-teams-applications) to learn more.
+See [Best practices for organizing resources and assigning access](/docs/account?topic=account-account_setup) to learn more.
