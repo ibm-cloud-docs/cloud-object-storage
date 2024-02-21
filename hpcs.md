@@ -1,8 +1,9 @@
 ---
 
 copyright:
-  years: 2018, 2024
-lastupdated: "2024-02-20"
+  years: 2018, 2022, 2023, 2024
+
+lastupdated: "2024-02-21"
 
 keywords: encryption, security, {{site.data.keyword.hscrypto}}
 

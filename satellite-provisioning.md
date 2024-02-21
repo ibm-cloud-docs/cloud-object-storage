@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-01-26"
+lastupdated: "2024-02-21"
 
 keywords:  object storage, satellite, local
 
@@ -22,7 +22,7 @@ You can provision {{site.data.keyword.cos_short}} for {{site.data.keyword.satell
 ## Before you begin
 {: #pre-provision-satellite}
 
-Before deploying {{site.data.keyword.cos_short}} in a Satellite location, you must first deploy [a {{site.data.keyword.satelliteshort}} location](/docs/satellite?topic=satellite-locations) with sufficient computing hosts and raw block storage allocated for provisioning {{site.data.keyword.cos_short}}. 
+Before deploying {{site.data.keyword.cos_short}} in a Satellite location, you must first deploy [a {{site.data.keyword.satelliteshort}} location](/docs/satellite?topic=satellite-locations) with sufficient computing hosts and raw block storage allocated for provisioning {{site.data.keyword.cos_short}}.
 
 {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} only supports RHEL8.
 {: note}
@@ -36,15 +36,15 @@ Before deploying {{site.data.keyword.cos_short}} in a Satellite location, you mu
 
 For more information on configuring hosts for storage, [see the {{site.data.keyword.satelliteshort}} documentation](/docs/satellite?topic=satellite-host-reqs#reqs-host-storage).
 
-Unlike cloud storage which scales elastically, there may be negative performance impacts when an instance gets near capacity.  Workloads that demand higher performance may benefit from the additional computing power provided by the Extra Large plan, regardless of total storage required. 
+Unlike cloud storage which scales elastically, there may be negative performance impacts when an instance gets near capacity.  Workloads that demand higher performance may benefit from the additional computing power provided by the Extra Large plan, regardless of total storage required.
 
-When provisioning block storage, is recommended to use a ["Silver" storage class at a minimum](/docs/satellite?topic=satellite-config-storage-ebs#sat-ebs-sc-reference) to ensure adequate performance.
+When provisioning block storage, is recommended to use a ["Silver" storage class at a minimum](/docs/satellite?topic=satellite-storage-class-ref) to ensure adequate performance.
 {: tip}
 
 ## Configure a satellite location
 {: #provision-satellite-location}
 
-1. Follow the documentation to [create a new Satellite location](/docs/satellite?topic=satellite-locations) with [the necessary hosts](/docs/satellite?topic=satellite-attach-hosts) and [storage resources](/docs/satellite?topic=satellite-sat-storage-template-ov).
+1. Follow the documentation to [create a new Satellite location](/docs/satellite?topic=satellite-locations) with [the necessary hosts](/docs/satellite?topic=satellite-attach-hosts) and [storage resources](/docs/satellite?topic=satellite-storage-template-features).
 2. Grant the necessary service authorizations.
    1. Configure your IAM Authorizations under the Manage tab.
    2. Choose the **Authorizations** tab from the left hand menu.
