@@ -19,12 +19,12 @@ completion-time: 1h
 ---
 
 {{site.data.keyword.attribute-definition-list}}
-{:step: data-tutorial-type='step'}
-{:hide-dashboard: .hide-dashboard}
-{:apikey: `data-credential-placeholder`='apikey'}
-{:url: data-credential-placeholder='url'}
-{:username: data-credential-placeholder='username'}
-{:password: data-credential-placeholder='password'}
+{{:step: data-tutorial-type='step'}}
+{{:hide-dashboard: .hide-dashboard}}
+{{:apikey: `data-credential-placeholder`='apikey'}}
+{{:url: data-credential-placeholder='url'}}
+{{:username: data-credential-placeholder='username'}}
+{{:password: data-credential-placeholder='password'}}
 
 # Developing a web application
 {: #web-application}
