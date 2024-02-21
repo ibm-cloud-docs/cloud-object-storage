@@ -2,12 +2,12 @@
 
 copyright:
   years: 2018, 2022, 2023, 2024
-lastupdated: "2024-02-20"
+
+lastupdated: "2024-02-21"
 
 keywords: encryption, security, {{site.data.keyword.hscrypto}}
 
 subcollection: cloud-object-storage
-
 
 ---
 
@@ -30,7 +30,7 @@ Before you plan on using {{site.data.keyword.hscrypto}} with Cloud Object Storag
 - An [IBM Cloud™ Platform account](http://cloud.ibm.com/)
 - An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage) with a *standard* pricing plan.
 
-You will need to ensure that a service instance is created by using the [IBM Cloud catalog](https://cloud.ibm.com/catalog) and appropriate permissions are granted. This section outlines step-by-step instructions to help you get started. 
+You will need to ensure that a service instance is created by using the [IBM Cloud catalog](https://cloud.ibm.com/catalog) and appropriate permissions are granted. This section outlines step-by-step instructions to help you get started.
 
 
 ## Provisioning an instance of {{site.data.keyword.hscrypto}}
@@ -41,7 +41,7 @@ Refer to the service-specific product pages for instructions on how to provision
 
 Once you have an instance of {{site.data.keyword.hscrypto}}, you need to create a root key and note the CRN ([Cloud Resource Name](/docs/account?topic=account-crn)) of that key. The CRN is sent in a header during bucket creation.
 
-Before creating the bucket for use with {{site.data.keyword.hscrypto}}, review the [relevant guidance around availability and disaster recovery](/docs/hs-crypto?hs-crypto-ha-dr).  
+Before creating the bucket for use with {{site.data.keyword.hscrypto}}, review the [relevant guidance around availability and disaster recovery](/docs/hs-crypto?hs-crypto-ha-dr).
 
 ## Create or add a key in {{site.data.keyword.hscrypto}}
 {: #hpcs-keys}
@@ -126,7 +126,7 @@ If the Cross Region bucket creation in US Cross Region with a {{site.data.keywor
 {:important}
 
 
-## Key lifecycle management 
+## Key lifecycle management
 {: #hpcs-lifecycle}
 
 {{site.data.keyword.hscrypto}} offers various ways to manage the lifecycle of encryption keys.  For more details, see [the {{site.data.keyword.hscrypto}} documentation](/docs/services/hs-crypto?topic=hs-crypto-overview).
@@ -151,7 +151,7 @@ Cryptographic erasure (or crypto-shredding) is a method of rendering encrypted d
 Although objects in a crypto-shredded bucket can not be read, and new object can not be written, existing objects will continue to consume storage until they are deleted by a user.
 {: tip}
 
-### Restoring a deleted key 
+### Restoring a deleted key
 {: #hpcs-restore}
 
 As an admin, you might need to [restore a root key that you imported](/docs/hs-crypto?topic=hs-crypto-restore-keys) to {{site.data.keyword.hscrypto}} so that you can access data that the key previously protected. When you restore a key, you move the key from the Destroyed to the Active key state, and you restore access to any data that was previously encrypted with the key. This must occur within 30 days of deleting a key.
@@ -162,7 +162,7 @@ If a key that was originally uploaded by a user is deleted, and then restored us
 ## Activity Tracking
 {: #hpcs-at}
 
-When {{site.data.keyword.hscrypto}} root keys are deleted, rotated, suspended, enabled, or restored, an [Activity Tracker management event](/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global) (`cloud-object-storage.bucket-key-state.update`) is generated in addition to any events logged by {{site.data.keyword.hscrypto}}. 
+When {{site.data.keyword.hscrypto}} root keys are deleted, rotated, suspended, enabled, or restored, an [Activity Tracker management event](/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global) (`cloud-object-storage.bucket-key-state.update`) is generated in addition to any events logged by {{site.data.keyword.hscrypto}}.
 
 In the event of a server-side failure in a lifecycle action on a key, that failure is not logged by COS.  If {{site.data.keyword.hscrypto}} does not receive a success from COS for the event handling within four hours of the event being sent, {{site.data.keyword.hscrypto}} will log a failure.
 {:note}
