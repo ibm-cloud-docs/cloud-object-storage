@@ -1,11 +1,11 @@
 ---
 
 copyright:
-  years: 2017, 2023
+  years: 2017, 2024
 
-lastupdated: "2023-11-30"
+lastupdated: "2024-02-21"
 
-keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region
+keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning
 
 subcollection: cloud-object-storage
 
@@ -33,7 +33,7 @@ New feature!
 {: release-note}
 
 Activity Tracker and Monitoring update
-:   Buckets can be created in the `eu-es` region for Madrid regional using [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started) and [{{site.data.keyword.mon_full}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started).
+:   Buckets can be created in the `eu-es` region for Madrid regional using [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started) and [{{site.data.keyword.mon_full}}](/docs/monitoring?topic=monitoring-getting-started/).
 
 ## 16 October 2023
 {: #cloud-object-storage-oct1623}
@@ -223,7 +223,7 @@ New feature!
 {: release-note}
 
 Encryption updates
-:   Lifecycle actions on [Key Protect](/docs/cloud-object-storage?topic=cloud-object-storage-kp#kp-lifecycle) and [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs-lifecycle) encryption keys can now generate bucket events in Activity Tracker.
+:   Lifecycle actions on [Key Protect](/docs/cloud-object-storage?topic=cloud-object-storage-kp#kp-lifecycle) and [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-key-states) encryption keys can now generate bucket events in Activity Tracker.
 :   Buckets can now be encrypted using {{site.data.keyword.hscrypto}} in the US East region.
 
 ## 18 August 2020
@@ -309,7 +309,7 @@ New feature!
 {: release-note}
 
 New CLI plug-in!
-:   Users can access and interact with object storage [using the IBM Cloud CLI](/docs/cloud-object-storage?topic=cloud-object-storage-cli-plugin-ic-cos-cli).
+:   Users can access and interact with object storage [using the IBM Cloud CLI](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli).
 
 ## 26 April 2019
 {: #cloud-object-storage-apr2619}
