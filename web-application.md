@@ -381,7 +381,7 @@ We're going to start the specifics of working on the image gallery in Node.js. F
 
 Follow this process:
 
-1. Download the sample here: [download](https://cloud.ibm.com/media/docs/downloads/cos/image-gallery-tutorial.zip){: external}. Download the template for your app to your local development environment using your browser. Rather than cloning the sample app from {{site.data.keyword.cloud_notm}} Platform, use the command in the example to obtain the starter template for the {{site.data.keyword.cos_full_notm}} Web Gallery app. After cloning the repo you will find the starter app in the COS-WebGalleryStart directory. Open a Git CMD window and change to a directory where you want to clone Github repo. Once there, use the command shown in the first example of this tutorial to start adding your new files.
+1. Download the sample here: [download](https://cloud.ibm.com/media/docs/downloads/cos/image-gallery-tutorial.zip){: external download="image-gallery-tutorial.zip"}. Download the template for your app to your local development environment using your browser. Rather than cloning the sample app from {{site.data.keyword.cloud_notm}} Platform, use the command in the example to obtain the starter template for the {{site.data.keyword.cos_full_notm}} Web Gallery app. After cloning the repo you will find the starter app in the COS-WebGalleryStart directory. Open a Git CMD window and change to a directory where you want to clone Github repo. Once there, use the command shown in the first example of this tutorial to start adding your new files.
 
    ```bash
    curl images/image-gallery-tutorial.zip -o image-gallery-tutorial.zip
