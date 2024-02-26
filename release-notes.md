@@ -5,7 +5,7 @@ copyright:
 
 lastupdated: "2024-02-21"
 
-keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region
+keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning
 
 subcollection: cloud-object-storage
 
