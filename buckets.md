@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-01-19"
+lastupdated: "2024-02-20"
 
 keywords: access control, iam, basics, buckets
 
@@ -47,7 +47,7 @@ This is also applicable to service instance and bucket level policies.
 
 If it is necessary to restrict access to a single bucket (or set of buckets), ensure that the user or Service ID doesn't have any other instance level policies by using either the console or CLI.
 
-See [Best practices for organizing users, teams, applications](/docs/solution-tutorials?topic=solution-tutorials-users-teams-applications) to learn more.
+See [Best practices for organizing resources and assigning access](/docs/account?topic=account-account_setup) to learn more.
 
 ### Create a new policy for a user
 {: #iam-policy-enforcement-console}

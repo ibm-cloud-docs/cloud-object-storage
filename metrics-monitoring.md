@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2020
-lastupdated: "2023-10-27"
+  years: 2020,2024
+lastupdated: "2024-02-20"
 
 keywords: Object Storage, SysDig, monitoring, integration
 
@@ -311,4 +311,4 @@ The following attributes are available for segmenting one or more attributes as 
 ## Next Steps
 {: #mm-cos-next-steps}
 
-You will want to manage the data the {{site.data.keyword.mon_short}} instance is collecting for you. From management to setting alerts, you can [get started](/docs/Monitoring-with-Sysdig?topic=Monitoring-with-Sysdig-getting-started) monitoring your data quickly and efficiently.
+You will want to manage the data the {{site.data.keyword.mon_short}} instance is collecting for you. From management to setting alerts, see [Monitoring Availability metrics](/docs/dev-event-data-broker?topic=dev-event-data-broker-monitoring-availability-metrics) to monitor your data quickly and efficiently.

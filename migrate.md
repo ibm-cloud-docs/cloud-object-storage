@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2020, 2023
-lastupdated: "2023-11-01"
+  years: 2020, 2024
+lastupdated: "2024-02-21"
 
 keywords: migrate, amazon, aws
 
@@ -20,7 +20,7 @@ Migrating your data is a complex and daunting task, but don't let it stop you fr
 {: shortdesc}
 
 ## Before you begin
-{: migrate-preparation}
+{: #migrate-preparation}
 
 Determine your goals and process for your migration before starting your migration. You may also consider training and partnerships to be beneficial. Your planning and assessment stage will consider many possibilities, including security and technical capabilities.
 
@@ -35,7 +35,7 @@ Documentation for any project will help keep you keep track of your resources as
 4. Managing [encryption](/docs/cloud-object-storage?topic=cloud-object-storage-encryption) provides insights into security. Refer to product documentation on [{{site.data.keyword.keymanagementservicefull}}](/docs/key-protect?topic=key-protect-about) and [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-overview) for more information.
 
 ## Determine your solution
-{: migrate-options}
+{: #migrate-options}
 
 It is true that a massively complex [migration](https://www.ibm.com/cloud/mass-data-migration){: external} requires a complete service to plan and implement migrating your data to {{site.data.keyword.cos_full_notm}}. But whatever the size of your data, your goals and timetable take precedence. Once you have provisioned and set your target, it is time to choose a process to achieve your goals on your time.
 
@@ -51,7 +51,7 @@ aws s3 ls --recursive s3://<BUCKET_NAME> --summarize > bucket-contents-source.tx
 * [`rclone`](/docs/cloud-object-storage?topic=cloud-object-storage-rclone) has many uses, and we'll look at it specifically, next.
 
 ### Migrate your data
-{: migrate-data-strategy}
+{: #migrate-data-strategy}
 
 Based on the process and tools you've chosen, you will want to choose a strategy for migrating your data. We can take a look at a simplified process using the command line and the Go-based `rclone` executable as an example.
 
