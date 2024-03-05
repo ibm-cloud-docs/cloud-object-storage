@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2024
 
-lastupdated: "2024-02-21"
+lastupdated: "2024-03-05"
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning
 
@@ -26,7 +26,7 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 {: release-note}
 
 Support available for Code Engine in Madrid
-:   Buckets can be created in the `eu-es` region for Madrid regional using [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started) and [{{site.data.keyword.mon_full}}](/docs/monitoring?topic=monitoring-getting-started/).
+:   Code Engine is supported in the `eu-es` region for Madrid regional using [{{site.data.keyword.at_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability).
 
 ## 30 November 2023
 {: #cloud-object-storage-nov3023}
