@@ -26,7 +26,7 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 {: release-note}
 
 Support available for Code Engine in Madrid
-:   Code Engine is supported in the `eu-es` region for Madrid regional using [{{site.data.keyword.at_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability).
+:   Code Engine is supported in the `eu-es` region for Madrid regional using [{{site.data.keyword.cos_full}}](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability).
 
 ## 30 November 2023
 {: #cloud-object-storage-nov3023}
