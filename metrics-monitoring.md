@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2020,2024
-lastupdated: "2024-02-20"
+  years: 2020, 2024
+lastupdated: "2024-03-05"
 
 keywords: Object Storage, SysDig, monitoring, integration
 
@@ -40,8 +40,8 @@ According to the [{{site.data.keyword.mon_short}} documentation](/docs/monitorin
 
 Before you provision an instance of {{site.data.keyword.mon_full_notm}}, consider the following guidance:
 
-   * The account owner can create, view, and delete an instance of a service in the {{site.data.keyword.cloud_notm}}. This user can also grant permissions to other users to work with the {{site.data.keyword.mon_full_notm}} service.
-   * Other {{site.data.keyword.cloud_notm}} users with `administrator` or `editor` permissions can manage the {{site.data.keyword.mon_full_notm}} service in the {{site.data.keyword.cloud_notm}}. These users must also have platform permissions to create resources within the context of the resource group where they plan to provision the instance.
+* The account owner can create, view, and delete an instance of a service in the {{site.data.keyword.cloud_notm}}. This user can also grant permissions to other users to work with the {{site.data.keyword.mon_full_notm}} service.
+* Other {{site.data.keyword.cloud_notm}} users with `administrator` or `editor` permissions can manage the {{site.data.keyword.mon_full_notm}} service in the {{site.data.keyword.cloud_notm}}. These users must also have platform permissions to create resources within the context of the resource group where they plan to provision the instance.
 
 In this guide, we will examine using both the {{site.data.keyword.cloud_notm}} Console as well as the IBM Cloud Developer Tools (CLI) to integrate {{site.data.keyword.mon_short}} in your {{site.data.keyword.cos_short}} instance. For more information about IBM Cloud Developer Tools, check out the [documentation](/docs/cli?topic=cli-getting-started).
 
@@ -57,7 +57,7 @@ If you have not already done so, [set up and provision](/docs/cloud-object-stora
 
 There are many ways to manage access to your {{site.data.keyword.cos_short}} instance, but for this guide we'll focus on how to access the dashboard you are going to create.
 
-**Users in an account [must be assigned a platform role](/docs/Monitoring-with-Sysdig?topic=Monitoring-with-Sysdig-iam) in order to manage instances as well as launching the IBM Cloud Monitoring UI from the {{site.data.keyword.cloud_notm}} console. In addition, users must have a service role that defines the permissions to work with {{site.data.keyword.mon_full_notm}}.**
+**Users in an account [must be assigned a platform role](/docs/account?topic=account-userroles) in order to manage instances as well as launching the IBM Cloud Monitoring UI from the {{site.data.keyword.cloud_notm}} console. In addition, users must have a service role that defines the permissions to work with {{site.data.keyword.mon_full_notm}}.**
 {: important}
 
 ## Provisioning an instance of {{site.data.keyword.mon_short}}
@@ -69,16 +69,14 @@ From the [catalog](https://cloud.ibm.com/login){: external} choose {{site.data.k
 ![Instance creation](images/SysDig-instance-creation.png){: console}
 
 After you [login](/docs/cli?topic=cli-ibmcloud_cli#ibmcloud_login) using IBM Cloud Developer Tools and target both the region and resource group for your account, create a new resource using the command as shown.
-{: cli}
 
 ```bash
 ibmcloud resource service-instance-create <INSTANCE_NAME> <SERVICE_NAME> <SERVICE_PLAN_NAME> <LOCATION>
 ```
+
 {: codeblock}
-{: cli}
 
 In the code sample, replace the placeholders with the [appropriate values](/docs/monitoring?topic=monitoring-pricing_plans).
-{: cli}
 
 | Value	| Description | Sample |
 | --- | --- | --- |
@@ -86,13 +84,12 @@ In the code sample, replace the placeholders with the [appropriate values](/docs
 | &lt;SERVICE_NAME&gt; | The name of the service | `sysdig-monitor` |
 | &lt;SERVICE_PLAN_NAME&gt; | The name of the plan | `Lite` |
 | &lt;LOCATION&gt; | The region of your buckets | `us-east` |
-{: cli}
 
 ```bash
 ibmcloud resource service-instance-update <INSTANCE_NAME> -p '{"default_receiver": true}'
 ```
+
 {: codeblock}
-{: cli}
 
 ## Connect {{site.data.keyword.cos_short}} to {{site.data.keyword.mon_short}}
 {: #mm-cos-connection}
@@ -100,22 +97,18 @@ ibmcloud resource service-instance-update <INSTANCE_NAME> -p '{"default_receiver
 Most of the work you will do with {{site.data.keyword.mon_short}} will be in specific dashboards to be discussed later. But first, there are a couple of ways in which you can get started.
 
 Complete the following steps to get an IAM token:
-{: cli}
 
 1. From a terminal, log in to the {{site.data.keyword.cloud_notm}}.
-{: cli}
 
 2. Run the following command to get a token:
-{: cli}
 
    ```cli
     ibmcloud iam oauth-tokens
    ```
-    {: codeblock}
-    {: cli}
+
+   {: codeblock}
 
 Keep the token handy for later if you are using the Dev Tools CLI.
-{: cli}
 
 ### Configure a bucket for metrics
 {: #mm-cos-connection-console}
@@ -133,7 +126,7 @@ You can also configure an existing bucket to use the {{site.data.keyword.mon_sho
 
 ![Bucket modification](images/SysDig-COS-UI-bucket-modification.png){: console}
 
-Note that in each case the `region` for your new instance of {{site.data.keyword.mon_short}} is automatically tied to the region of the bucket. 
+Note that in each case the `region` for your new instance of {{site.data.keyword.mon_short}} is automatically tied to the region of the bucket.
 {: important}
 {: console}
 
@@ -152,7 +145,6 @@ To set Platform metrics on the instance:
    {: console}
 
 We will use cURL to connect to the Resource Configuration API and modify our bucket's configuration.
-{: cli}
 
 ```bash
 curl -X PATCH -k  \
@@ -166,17 +158,16 @@ curl -X PATCH -k  \
     }
    }'
 ```
+
 {: codeblock}
-{: cli}
+
 
 In the code sample, replace the placeholders with the appropriate values.
-{: cli}
 
 | Value	| Description |
 | --- | --- |
 | $TOKEN | The token for authentication created previously |
 | $1 | The name of your bucket |
-{: cli}
 
 ### Launch your instance of {{site.data.keyword.mon_short}}
 {: #mm-cos-connection-launch}
@@ -211,69 +202,69 @@ Once you've configured your dashboard, you can view your data. Figures 3-5 show 
 
 There are a set of basic metrics that track usage:
 
-- ibm_cos_bucket_used_bytes
-- ibm_cos_bucket_object_count
-- ibm_cos_bucket_hard_quota_bytes
+* ibm_cos_bucket_used_bytes
+* ibm_cos_bucket_object_count
+* ibm_cos_bucket_hard_quota_bytes
 
 ### Request metrics
 {: #mm-cos-metrics-request}
 
 There are metrics that report the aggregates for different classes of HTTP requests:
 
-- ibm_cos_bucket_all_requests
-- ibm_cos_bucket_get_requests
-- ibm_cos_bucket_put_requests
-- ibm_cos_bucket_delete_requests
-- ibm_cos_bucket_post_requests
-- ibm_cos_bucket_list_requests
-- ibm_cos_bucket_head_requests
+* ibm_cos_bucket_all_requests
+* ibm_cos_bucket_get_requests
+* ibm_cos_bucket_put_requests
+* ibm_cos_bucket_delete_requests
+* ibm_cos_bucket_post_requests
+* ibm_cos_bucket_list_requests
+* ibm_cos_bucket_head_requests
 
 Errors are also collected, with server-side (5xx) errors broken out:
 
-- ibm_cos_bucket_4xx_errors
-- ibm_cos_bucket_5xx_errors
+* ibm_cos_bucket_4xx_errors
+* ibm_cos_bucket_5xx_errors
 
 The minimum, maximum, and average bytes transferred by network type are reported:
 
-- ibm_cos_bucket_bytes_download_public_min
-- ibm_cos_bucket_bytes_download_public_max
-- ibm_cos_bucket_bytes_download_public_avg
-- ibm_cos_bucket_bytes_download_private_min
-- ibm_cos_bucket_bytes_download_private_max
-- ibm_cos_bucket_bytes_download_private_avg
-- ibm_cos_bucket_bytes_download_direct_min
-- ibm_cos_bucket_bytes_download_direct_max
-- ibm_cos_bucket_bytes_download_direct_avg
-- ibm_cos_bucket_bytes_upload_public_min
-- ibm_cos_bucket_bytes_upload_public_max
-- ibm_cos_bucket_bytes_upload_public_avg
-- ibm_cos_bucket_bytes_upload_private_min
-- ibm_cos_bucket_bytes_upload_private_max
-- ibm_cos_bucket_bytes_upload_private_avg
-- ibm_cos_bucket_bytes_upload_direct_min
-- ibm_cos_bucket_bytes_upload_direct_max
-- ibm_cos_bucket_bytes_upload_direct_avg
+* ibm_cos_bucket_bytes_download_public_min
+* ibm_cos_bucket_bytes_download_public_max
+* ibm_cos_bucket_bytes_download_public_avg
+* ibm_cos_bucket_bytes_download_private_min
+* ibm_cos_bucket_bytes_download_private_max
+* ibm_cos_bucket_bytes_download_private_avg
+* ibm_cos_bucket_bytes_download_direct_min
+* ibm_cos_bucket_bytes_download_direct_max
+* ibm_cos_bucket_bytes_download_direct_avg
+* ibm_cos_bucket_bytes_upload_public_min
+* ibm_cos_bucket_bytes_upload_public_max
+* ibm_cos_bucket_bytes_upload_public_avg
+* ibm_cos_bucket_bytes_upload_private_min
+* ibm_cos_bucket_bytes_upload_private_max
+* ibm_cos_bucket_bytes_upload_private_avg
+* ibm_cos_bucket_bytes_upload_direct_min
+* ibm_cos_bucket_bytes_upload_direct_max
+* ibm_cos_bucket_bytes_upload_direct_avg
 
 Latency metrics (first byte and general) for requests are broken down by request type:
 
-- ibm_cos_bucket_first_byte_latency_read_min
-- ibm_cos_bucket_first_byte_latency_read_max
-- ibm_cos_bucket_first_byte_latency_read_avg
-- ibm_cos_bucket_first_byte_latency_write_min
-- ibm_cos_bucket_first_byte_latency_write_max
-- ibm_cos_bucket_first_byte_latency_write_avg
-- ibm_cos_bucket_first_byte_latency_misc_min
-- ibm_cos_bucket_first_byte_latency_misc_max
-- ibm_cos_bucket_first_byte_latency_misc_avg
-- ibm_cos_bucket_request_latency_read_min
-- ibm_cos_bucket_request_latency_read_max
-- ibm_cos_bucket_request_latency_read_avg
-- ibm_cos_bucket_request_latency_write_min
-- ibm_cos_bucket_request_latency_write_max
-- ibm_cos_bucket_request_latency_write_avg
-- ibm_cos_bucket_request_latency_misc_min
-- ibm_cos_bucket_request_latency_misc_max
-- ibm_cos_bucket_request_latency_misc_avg
+* ibm_cos_bucket_first_byte_latency_read_min
+* ibm_cos_bucket_first_byte_latency_read_max
+* ibm_cos_bucket_first_byte_latency_read_avg
+* ibm_cos_bucket_first_byte_latency_write_min
+* ibm_cos_bucket_first_byte_latency_write_max
+* ibm_cos_bucket_first_byte_latency_write_avg
+* ibm_cos_bucket_first_byte_latency_misc_min
+* ibm_cos_bucket_first_byte_latency_misc_max
+* ibm_cos_bucket_first_byte_latency_misc_avg
+* ibm_cos_bucket_request_latency_read_min
+* ibm_cos_bucket_request_latency_read_max
+* ibm_cos_bucket_request_latency_read_avg
+* ibm_cos_bucket_request_latency_write_min
+* ibm_cos_bucket_request_latency_write_max
+* ibm_cos_bucket_request_latency_write_avg
+* ibm_cos_bucket_request_latency_misc_min
+* ibm_cos_bucket_request_latency_misc_max
+* ibm_cos_bucket_request_latency_misc_avg
 
 All metrics are reported as `float64` numeric values:
 
@@ -311,4 +302,4 @@ The following attributes are available for segmenting one or more attributes as 
 ## Next Steps
 {: #mm-cos-next-steps}
 
-You will want to manage the data the {{site.data.keyword.mon_short}} instance is collecting for you. From management to setting alerts, see [Monitoring Availability metrics](/docs/dev-event-data-broker?topic=dev-event-data-broker-monitoring-availability-metrics) to monitor your data quickly and efficiently.
+You will want to manage the data the {{site.data.keyword.mon_short}} instance is collecting for you. From management to setting alerts, see [Managing data](/docs/monitoring?topic=monitoring-mng-data) to monitor your data quickly and efficiently.
