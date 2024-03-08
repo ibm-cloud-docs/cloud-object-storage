@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2023
-lastupdated: "2023-06-07"
+  years: 2017, 2024
+lastupdated: "2024-03-07"
 
 keywords: faq, frequently asked questions, object storage
 
@@ -467,3 +467,11 @@ This is intentionally vague to prevent any useful information from being conveye
 There may be versioned objects or incomplete multipart uploads that are still within the bucket but aren't being displayed. Both of these can be cleaned up by setting an [expiry policy](/docs/cloud-object-storage?topic=cloud-object-storage-expiry) to delete stale data.
 
 Also, you can delete multipart uploads directly using the [Minio client](/docs/cloud-object-storage?topic=cloud-object-storage-minio) command: `mc rm s3/ -I -r --force`
+
+## How to I find my current active {{site.data.keyword.cos_short}} instance/resources?
+{: #faq-shell-cloud-instance}
+{: faq}
+
+Login to the IBM Cloud shell: https://cloud.ibm.com/shell and enter at the prompt `ibmcloud resource search "service_name:cloud-object-storage AND type:resource-instance"`.
+
+The response you receive includes information for the name of your instance, location, family, resource type, resource group ID, CRN, tags, service tags, and access tags.
