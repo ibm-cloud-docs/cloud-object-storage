@@ -57,4 +57,3 @@ The [VPE details](https://cloud.ibm.com/docs/vpc?topic=vpc-vpe-viewing-details-o
 - [Planning for virtual private endpoint gateways](/docs/vpc?topic=vpc-planning-considerations)
 - [Creating an endpoint gateway](/docs/vpc?topic=vpc-ordering-endpoint-gateway)
 - For further assistance, see the [FAQs for virtual private endpoints here](/docs/vpc?topic=vpc-faqs-vpe), and the `Troubleshooting VPE gateways` documentation that includes [how to fix communications issues here](/docs/vpc?topic=vpc-troubleshoot-cannot-communicate).
-
