@@ -129,6 +129,7 @@ toc:
           - quota.md
           - metrics-monitoring.md
           - functions.md
+          - code-engine.md
           - ftp.md
           - file-gateway.md
     - navgroup:
