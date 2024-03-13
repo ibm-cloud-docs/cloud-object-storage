@@ -12,8 +12,8 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Using Code Engine
-{: #functions}
+# Using {{site.data.keyword.codeenginefull_notm}}
+{: #code-engine}
 
 With [{{site.data.keyword.openwhisk}}](/docs/openwhisk?topic=openwhisk-getting-started), you can use your favorite programming language to write lightweight code that runs app logic in a scalable way. You can run code on-demand with HTTP-based API requests from applications or run code in response to {{site.data.keyword.cloud_notm}} services and third-party events, like updates made to a bucket. The Function-as-a-Service (FaaS) programming platform is based on the open source project Apache OpenWhisk. 
 {: shortdesc}
