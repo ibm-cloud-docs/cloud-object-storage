@@ -28,6 +28,13 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 Support available for Code Engine in Madrid
 :   Code Engine is supported in the `eu-es` region for Madrid regional using [{{site.data.keyword.cos_full}}](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability).
 
+## 29 January 2024
+{: #cloud-object-storage-mar1521}
+{: release-note}
+
+New feature!
+:   You can configure a bucket into a state of Protection Management using the [Resource Configuration API](/apidocs/cos/cos-configuration) if you have approval from IBM Cloud support and Offering Management.
+
 ## 30 November 2023
 {: #cloud-object-storage-nov3023}
 {: release-note}
