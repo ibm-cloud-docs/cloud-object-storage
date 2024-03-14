@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2024
 
-lastupdated: "2024-03-05"
+lastupdated: "2024-02-21"
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning
 
@@ -40,7 +40,7 @@ New feature!
 {: release-note}
 
 Activity Tracker and Monitoring update
-:   Buckets can be created in the `eu-es` region for Madrid regional using [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started) and [{{site.data.keyword.mon_full}}](/docs/monitoring?topic=monitoring-getting-started/).
+:   Buckets can be created in the `eu-es` region for Madrid regional using [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started) and [{{site.data.keyword.mon_full}}](/docs/monitoring?topic=monitoring-getting-started).
 
 ## 16 October 2023
 {: #cloud-object-storage-oct1623}
