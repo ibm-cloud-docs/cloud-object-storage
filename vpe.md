@@ -2,9 +2,9 @@
 
 copyright:
   years: 2022, 2024
-lastupdated: "2024-02-12"
+lastupdated: "2024-03-14"
 
-keywords: network, vpe, private, vpc, dns, buckets
+keywords: network, vpe, private, vpc, dns, buckets, gateway
 
 subcollection: cloud-object-storage
 
@@ -54,6 +54,7 @@ The [VPE details](https://cloud.ibm.com/docs/vpc?topic=vpc-vpe-viewing-details-o
 ### More resources
 {: #vpes-resources}
 
+- [About virtual private endpoint gateways](/docs/vpc?topic=vpc-about-vpe)
 - [Planning for virtual private endpoint gateways](/docs/vpc?topic=vpc-planning-considerations)
 - [Creating an endpoint gateway](/docs/vpc?topic=vpc-ordering-endpoint-gateway)
 - For further assistance, see the [FAQs for virtual private endpoints here](/docs/vpc?topic=vpc-faqs-vpe), and the `Troubleshooting VPE gateways` documentation that includes [how to fix communications issues here](/docs/vpc?topic=vpc-troubleshoot-cannot-communicate).
