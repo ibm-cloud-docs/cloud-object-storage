@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-03-19"
+lastupdated: "2024-03-20"
 
 keywords: cloud services, integration, sql, query, analytics
 
@@ -16,7 +16,7 @@ subcollection: cloud-object-storage
 # Using {{site.data.keyword.sqlquery_full}}
 {: #sql-query}
 
-{{site.data.keyword.sqlquery_full}} (formerly SQL Query) is now end of market. No new instances of {{site.data.keyword.sqlquery_short}} can be created. Existing instances can still be used until deprecation. See [Deprecation of {{site.data.keyword.sqlquery_short}}](/docs/sql-query?topic=sql-query-deprecation) for more information.
+{{site.data.keyword.sqlquery_full}} (formerly SQL Query) is now end of market. No new instances of {{site.data.keyword.sqlquery_short}} can be created. Existing instances can still be used until end of support. See [Deprecation of {{site.data.keyword.sqlquery_short}}](/docs/sql-query?topic=sql-query-deprecation) for more information.
 {: deprecated}
 
 {{site.data.keyword.sqlquery_full}} is a fully-managed service that lets you run SQL queries (that is, `SELECT` statements) to analyze, transform, or clean up rectangular data using the full ANSI SQL standard.
