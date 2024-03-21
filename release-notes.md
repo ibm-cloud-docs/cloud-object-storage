@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2024
 
-lastupdated: "2024-03-05"
+lastupdated: "2024-03-21"
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning
 
@@ -20,6 +20,13 @@ content-type: release-note
 
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
+
+## 21 March 2024
+{: #cloud-object-storage-mar2124}
+{: release-note}
+
+Cloud Functions update
+:   {{site.data.keyword.openwhisk}} is deprecated. Existing Functions entities such as actions, triggers, or sequences will continue to run, but as of 28 December 2023, you can’t create new Functions entities. Existing Functions entities are supported until October 2024. Any Functions entities that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
 
 ## 05 March 2024
 {: #cloud-object-storage-mar0524}
