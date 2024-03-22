@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2023
-lastupdated: "2023-06-29"
+  years: 2023, 2024
+lastupdated: "2024-03-22"
 
 keywords: object storage, tutorial, secure stored content, store, content, secure, secure content store
 
@@ -87,7 +87,7 @@ Once the credit has been successfully applied, you can review your credit balanc
 - Go to your [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage).
 
 ## Click Create bucket
-{: #create-cos-bucket}
+{: #create-cos-bucket-step}
 {: step}
 
 - Select the **Customize your bucket** tile, and click the right arrow.
