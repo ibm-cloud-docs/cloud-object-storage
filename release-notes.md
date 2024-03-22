@@ -3,7 +3,10 @@
 copyright:
   years: 2017, 2024
 
+
 lastupdated: "2024-03-21"
+=======
+
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning
 
@@ -35,6 +38,13 @@ Cloud Functions update
 Support available for Code Engine in Madrid
 :   Code Engine is supported in the `eu-es` region for Madrid regional using [{{site.data.keyword.cos_full}}](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability).
 
+## 29 January 2024
+{: #cloud-object-storage-mar1521}
+{: release-note}
+
+New feature!
+:   You can configure a bucket into a state of Protection Management using the [Resource Configuration API](/apidocs/cos/cos-configuration) if you have approval from IBM Cloud support and Offering Management.
+
 ## 30 November 2023
 {: #cloud-object-storage-nov3023}
 {: release-note}
@@ -47,7 +57,7 @@ New feature!
 {: release-note}
 
 Activity Tracker and Monitoring update
-:   Buckets can be created in the `eu-es` region for Madrid regional using [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started) and [{{site.data.keyword.mon_full}}](/docs/monitoring?topic=monitoring-getting-started/).
+:   Buckets can be created in the `eu-es` region for Madrid regional using [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started) and [{{site.data.keyword.mon_full}}](/docs/monitoring?topic=monitoring-getting-started).
 
 ## 16 October 2023
 {: #cloud-object-storage-oct1623}
