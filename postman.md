@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-02-20"
+lastupdated: "2024-03-25"
 
 keywords: rest, s3, compatibility, api, postman, client, object storage
 
@@ -34,7 +34,7 @@ Interacting with a REST API isn't as simple as using a standard internet browser
 
 * IBM Cloud account
 * [Cloud Storage resource created](https://cloud.ibm.com/catalog/){: external} (lite plan works fine)
-* [IBM Cloud COS CLI installed and configured](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli&interface=ui#ic-installation)
+* [IBM Cloud COS CLI installed and configured](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli#ic-installation)
 * [Service Instance ID for your Cloud Storage](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials)
 * [IAM (Identity and Access Management) Token](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials)
 * [Endpoint for your COS bucket](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints)
