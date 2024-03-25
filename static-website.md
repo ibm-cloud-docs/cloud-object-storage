@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020, 2024
-lastupdated: "2024-02-20"
+lastupdated: "2024-03-25"
 
 keywords: static website, hosting, tutorial
 
@@ -48,7 +48,7 @@ Ensure that you have what you need to start:
 Check that you have the access as appropriate to either the instance of {{site.data.keyword.cos_full_notm}} you will be using or the proper [permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions) for the buckets you will be using for this tutorial.
 {: ui}
 
-For use of the [IBM Cloud CLI](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli&interface=ui) with this tutorial, you will need to [configure the Object Storage plug-in](https://test.cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli&interface=ui#ic-installation) to specify the service instance you want to use and the default region where you want your new bucket to be created.
+For use of the [IBM Cloud CLI](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli) with this tutorial, you will need to [configure the Object Storage plug-in](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli#ic-installation) to specify the service instance you want to use and the default region where you want your new bucket to be created.
 {: cli}
 
 ## Create a bucket configured for public access
