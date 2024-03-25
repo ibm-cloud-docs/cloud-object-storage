@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2024
 
-lastupdated: "2024-02-20"
+lastupdated: "2024-03-25"
 
 keywords: worm, immutable, policy, retention, compliance
 
@@ -138,7 +138,7 @@ The minimum and maximum supported values for the retention period settings `Mini
 
 A `Content-MD5` header is required. This operation does not make use of extra query parameters.
 
-For more information about endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
+For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
 {: tip}
 
 {: http}
