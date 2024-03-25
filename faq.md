@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-03-07"
+lastupdated: "2024-03-22"
 
 keywords: faq, frequently asked questions, object storage
 
@@ -225,7 +225,7 @@ The Object Storage Activity Tracker service records user-initiated activities th
 {: #faq-notification-setup}
 {: faq}
 
-Use [Cloud Functions for object storage](/docs/cloud-object-storage?topic=cloud-object-storage-functions) to setup an Event Source (notification).
+Use [{{site.data.keyword.codeengineshort}}](/docs/codeengine?topic=codeengine-getting-started) to setup an Event Source (notification).
 
 ## Does Object Storage have rate limits when writing to or reading from buckets?
 {: #faq-rate-limit}
@@ -305,11 +305,11 @@ Yes, by default, all objects stored in {{site.data.keyword.cos_short}} are encry
 
 The IAM feature creates a report at the instance level which may extend to their buckets. It does not specifically report at the bucket level. For details, see [Account Access Report](/docs/account?topic=account-access-report).
 
-## How can I monitor bucket changes in the public cloud without using the cloud functions?
+## How can I monitor bucket changes in the public cloud without using the {{site.data.keyword.codeengineshort}}?
 {: #faq-Cloud-Function}
 {: faq}
 
-You must use cloud functions to get notifications for object changes.
+You must use {{site.data.keyword.codeengineshort}} to get notifications for object changes.
 
 ## How can I monitor {{site.data.keyword.cos_short}} resources?
 {: #faq-monitor-cos-res}
@@ -364,7 +364,7 @@ Yes, the {{site.data.keyword.cos_short}} instance is a global service. Once an i
 {: faq}
 
 No, the files are not scanned when uploading to {{site.data.keyword.cos_short}}.
-When an object is uploaded, you get upload events by using the Activity Tracker or by using the cloud functions. Then, you can download, scan, and re-upload the object.
+When an object is uploaded, you get upload events by using the Activity Tracker or by using the {{site.data.keyword.codeengineshort}}. Then, you can download, scan, and re-upload the object.
 
 ## Is it possible to form a Hadoop cluster using {{site.data.keyword.cos_short}}?
 {: #faq-hadoop-cluster}
