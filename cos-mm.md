@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-02-20"
+lastupdated: "2024-03-27"
 
 keywords: metrics, monitoring, object storage, tutorial
 
@@ -16,15 +16,13 @@ completion-time: 30m
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Monitoring {{site.data.keyword.cos_short}} activity in {{site.data.keyword.mon_short}}
+# Monitoring the activity of an {{site.data.keyword.cos_full}} account
 {: #monitoring-cos}
 {: toc-content-type="tutorial"}
 {: toc-completion-time="30m"}
 
-Tracking {{site.data.keyword.cos_full}} events with {{site.data.keyword.at_full}} provides insights and information about what is happening with your data.
-{: shortdesc}
-
 This tutorial provides an introduction to finding usage information regarding your {{site.data.keyword.cos_short}} instance using {{site.data.keyword.mon_short}}.
+{: shortdesc}
 
 If you're not familiar with {{site.data.keyword.cos_full}}, you can quickly get an overview by [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). Also, if you're not familiar with {{site.data.keyword.mon_full}}, you may wish to see [Using IBM Cloud Monitoring with IBM Cloud Storage {{site.data.keyword.mon_short}}](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration).
 
