@@ -16,7 +16,7 @@ subcollection: cloud-object-storage
 # Replicating objects
 {: #replication-overview}
 
-Replication allows you to define rules for automatic, asynchronous copying of objects from a source bucket to a target bucket in the [same account](/docs/cloud-object-storage/replication#replication-one-acct). Also, you can copy objects from a bucket to another bucket in [different accounts](/docs/cloud-object-storage/replication#replication-diff-accts).
+Replication allows you to define rules for automatic, asynchronous copying of objects from a source bucket to a target bucket in the [same account](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview#replication-one-acct). Also, you can copy objects from a bucket to another bucket in [different accounts](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview#replication-diff-accts).
 {: shortdesc}
 
 ## What is replication?
