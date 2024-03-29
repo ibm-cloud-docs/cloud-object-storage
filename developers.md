@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-02-19"
+lastupdated: "2024-03-25"
 
 keywords: developer, getting started, command line interface, cli
 
@@ -55,11 +55,13 @@ For managing data stored in {{site.data.keyword.cos_short}}, you can use S3 API 
 
 ## Using libraries and SDKs
 {: #gs-dev-sdk}
+
 IBM COS SDKs are available for [Python](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python), [Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java), [Go](/docs/cloud-object-storage?topic=cloud-object-storage-using-go), and [Node.js](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-node). These libraries are forked and modified versions of the AWS S3 SDKs that support [IAM token-based authentication](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview), as well as support for [Key Protect](/docs/cloud-object-storage/basics?topic=cloud-object-storage-encryption).
 
 ## Building applications on IBM Cloud
 {: #gs-dev-apps}
-{{site.data.keyword.cloud}} provides flexibility to developers in choosing the right architectural and deployment options for a given application. Run your code on [bare metal](https://cloud.ibm.com/catalog/infrastructure/bare-metal), in [virtual machines](https://cloud.ibm.com/catalog/infrastructure/virtual-server-group), by using a [serverless framework](https://cloud.ibm.com/openwhisk), in [containers](https://cloud.ibm.com/kubernetes/catalog/cluster), or by using [Cloud Foundry](https://cloud.ibm.com/catalog/starters/sdk-for-nodejs). 
+
+{{site.data.keyword.cloud}} provides flexibility to developers in choosing the right architectural and deployment options for a given application. Run your code on [bare metal](https://cloud.ibm.com/catalog/infrastructure/bare-metal), in [virtual machines](https://cloud.ibm.com/catalog/infrastructure/virtual-server-group), by using a [serverless framework](/docs/solution-tutorials?topic=solution-tutorials-serverless-webapp), in [containers](https://cloud.ibm.com/kubernetes/catalog/cluster), or by using [Cloud Foundry](https://cloud.ibm.com/catalog/starters/sdk-for-nodejs).
 
 The [Cloud Native Computing Foundation](https://www.cncf.io) fostered [Kubernetes](https://kubernetes.io) container orchestration framework, which forms the foundation for the {{site.data.keyword.cloud}} Kubernetes Service. Developers who want to use Object Storage for persistent storage in their Kubernetes applications can learn more at the following links:
 
