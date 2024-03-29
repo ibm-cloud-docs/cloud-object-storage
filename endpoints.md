@@ -5,7 +5,8 @@ copyright:
 
 lastupdated: "2024-03-25"
 
-keywords: endpoint, location, object storage, bucket, region
+
+keywords: endpoint, location, object storage, bucket, region, vpe, gateway
 
 subcollection: cloud-object-storage
 
@@ -35,9 +36,9 @@ All {{site.data.keyword.cos_full}} endpoints support TLS 1.2 encryption.
 
 {{site.data.keyword.cloud}} services are connected to a three-tiered network, segmenting public, private, and management traffic.
 
-* **Private endpoints** are available for most requests originating from within IBM Cloud. Private endpoints provide better performance and do not incur charges for any outgoing or incoming bandwidth even if the traffic is cross regions or across data centers. **Whenever possible, it is best to use a private endpoint.**
+* **Private endpoints** are not available from a VPC, but are available for most requests originating from within IBM Cloud. Private endpoints provide better performance and do not incur charges for any outgoing or incoming bandwidth even if the traffic is cross regions or across data centers. **Whenever possible, it is best to use a private endpoint.**
 * **Public endpoints** can accept requests from anywhere and charges are assessed on outgoing bandwidth. Incoming bandwidth is free. Public endpoints should be used for access not originating from an {{site.data.keyword.cloud_notm}} cloud computing resource.
-* **Direct endpoints** are used in Bring-Your-Own-IP scenarios, generally for requests originating from [resources within VPCs](/docs/vpc?topic=vpc-about-vpc). Like Private endpoints, Direct endpoints provide better performance over Public endpoints and do not incur charges for any outgoing or incoming bandwidth even if the traffic is cross regions or across data centers. Directions for connecting to {{site.data.keyword.cos_full_notm}} from VPC are available [here](/docs/vpc?topic=vpc-connecting-vpc-cos).
+* **Direct endpoints** are used for requests originating from [resources within VPCs](/docs/vpc?topic=vpc-about-vpc). Like Private endpoints, Direct endpoints provide better performance over Public endpoints and do not incur charges for any outgoing or incoming bandwidth even if the traffic is cross regions or across data centers. Direct endpoints can be accessed through Virtual Private Endpoint gateways as described [here](/docs/cloud-object-storage?topic=cloud-object-storage-vpes).
 
 Requests must be sent to the endpoint associated with a given bucket's location. If you aren't sure where a bucket is located, there is an [extension to the bucket listing API](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets-extended) that returns the location and storage class information for all buckets in a service instance. Another place to find an endpoint is to open the Bucket configuration tab in the IBM Cloud Console.
 
@@ -143,9 +144,10 @@ Buckets that are created at a cross-region endpoint distribute data across three
 {: tab-group="Cross-regional-endpoints"}
 
 For example:
-- Data in `US` cross-region bucket is distributed only across regions (such as Dallas, WDC, and SJC) in the `US` geographical location.
-- Data in `EU` cross-region bucket is distributed only across regions (such as, Amsterdam, FRA, and Milan) in the `EU` geographical location.
-- Data in `AP` cross-region bucket is distributed only across regions (such as, TOK, SYD, and OSA) in the `AP` geographical location.
+
+* Data in `US` cross-region bucket is distributed only across regions (such as Dallas, WDC, and SJC) in the `US` geographical location.
+* Data in `EU` cross-region bucket is distributed only across regions (such as, Amsterdam, FRA, and Milan) in the `EU` geographical location.
+* Data in `AP` cross-region bucket is distributed only across regions (such as, TOK, SYD, and OSA) in the `AP` geographical location.
 
 ## Single Data Center Endpoints
 {: #endpoints-zone}
