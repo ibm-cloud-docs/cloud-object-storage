@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2022, 2023
-lastupdated: "2023-06-02"
+  years: 2022, 2024
+lastupdated: "2024-03-29"
 
-keywords: data, replication, loss prevention, iam, activity tracker, disaster recovery, versioning, key protect
+keywords: data, replication, loss prevention, iam, activity tracker, disaster recovery, versioning, key protect, accounts, buckets
 
 subcollection: cloud-object-storage
 
@@ -16,7 +16,7 @@ subcollection: cloud-object-storage
 # Replicating objects
 {: #replication-overview}
 
-Replication allows users to define rules for automatic, asynchronous copying of objects from a source bucket to a target bucket in the same or different location.
+Replication allows you to define rules for automatic, asynchronous copying of objects from a source bucket to a target bucket in the [same account](/docs/cloud-object-storage/replication#replication-one-acct). Also, you can copy objects from a bucket to another bucket in [different accounts](/docs/cloud-object-storage/replication#replication-diff-accts).
 {: shortdesc}
 
 ## What is replication?
@@ -48,27 +48,57 @@ To get started, here are some prerequisites that must be met:
 - The target bucket must not have a legacy bucket firewall enabled, but can use [context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall).
 - Objects encrypted [using SSE-C](/docs/cloud-object-storage?topic=cloud-object-storage-sse-c) cannot be replicated, although [managed encryption (SSE-KMS) like Key Protect](/docs/cloud-object-storage?topic=cloud-object-storage-kp) is fully compatible with replication.
 - Objects in an archived state cannot be replicated.
+- If the source and target buckets are in different IBM accounts, be sure to create the buckets in each account.
+- Enable [Versioning](/docs/cloud-object-storage?topic-versioning) on each bucket.
 
 As versioning is a requirement for replication, it is not possible to replicate objects in buckets configured with an [Immutable Object Storage policy](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable).
 {: note}
 
+## Using one IBM account
+{: #replication-one-acct}
+
+To replicate objects between buckets in the same IBM account, do the following:
+
 1. After navigating to your chosen source bucket, click the **Configuration** tab.
-2. Look for **Bucket replication** and click the **Setup replication** button.
-3. Select **Replication source** and click **Next**.
-4. Assuming the target bucket is in the same IBM Cloud account, select the instance and bucket from the drop-down menus.  Alternatively, toggle the radio button to **No** and paste in the CRN of the target bucket.
-5. Click on the **Check permissions** button.
+1. Look for **Bucket replication** and click the **Setup replication** button.
+1. Select **Replication source** and click **Next**.
+1. Select the instance and bucket from the drop-down menus.  Alternatively, toggle the radio button to **No** and paste in the CRN of the target bucket.
+1. Click on the **Check permissions** button.
 
 Now, you'll need to grant the source bucket `Writer` permissions on the target bucket. There are several ways to do this, but the easiest is to use the IBM Cloud Shell and the IBM Cloud CLI.
 
 1. Open an IBM Cloud Shell in a new window or tab.
-2. Copy the IBM Cloud CLI command shown in the Object storage console, and paste it into the new shell.
-3. Return to the bucket configuration window or tab, and click on the **Check permissions** button again.
+1. Copy the IBM Cloud CLI command shown in the Object storage console, and paste it into the new shell.
+1. Return to the bucket configuration window or tab, and click on the **Check permissions** button again.
 
 Now you'll create a replication rule.
 
 1. Ensure the rule status radio button is set to **Enabled**.
-2. Give the rule a name and a priority, as well as any prefix or tag filters that will limit the objects subject to the replication rule.
-3. Click **Done**.
+1. Give the rule a name and a priority, as well as any prefix or tag filters that will limit the objects subject to the replication rule.
+1. Click **Done**.
+
+## Using different IBM accounts
+{: #replication-diff-accts}
+
+To replicate objects between buckets in different IBM accounts, do the following:
+
+1. Set up an IAM policy on the destination IBM account. See: [IAM account overview](/docs/account?topic=account-overview).
+1. Find the account ID and the Service instance ID in CRN format on the Bucket Configuration page.
+1. Using the IBM Cloud UI of the destination account, click **Manage**>**Access(IAM)**.
+1. Click **Authentication** in the left panel.
+1. Click **Create** to create a new IAM policy.
+1. Grant a service authorization page configuration. This is the page where you will land after creating a new IAM policy.
+1. Select **Another account** and provide the Account ID of the source account.
+1. Provide service access as **Cloud Object Storage**.
+1. In the Scope of Access, select **Specific Resources**.
+1. Select **Source Service Instance** and enter the service instance ID for the source bucket.
+1. Under Target, select **Cloud Object Storage** for the source bucket access.
+1. For Taget Scope, select **Specific resources**>**Service Instance.
+1. Select the destination accouint's service instance ID from the drop down menu.
+1. Select the role **Object Writer** or **Writer** as required.
+
+  The **Object writer** role is sufficient to enable replication.
+  {: note}
 
 ## Terminology
 {: #replication-terminology}
