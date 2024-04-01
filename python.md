@@ -162,10 +162,8 @@ def create_bucket(bucket_name):
 {: python}
 
 *SDK References*
-* Classes
-  * [`Bucket`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){: external}
 * Methods
-    * [`create`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.create){: external}
+    * [`create_bucket`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.create_bucket){: external}
 
 ### Creating a new text file
 {: #python-examples-new-file}
@@ -189,10 +187,8 @@ def create_text_file(bucket_name, item_name, file_text):
 {: python}
 
 *SDK References*
-* Classes
-    * [`Object`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){: external}
 * Methods
-    * [`put`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.put){: external}
+    * [`put_object`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.put_object){: external}
 
 ### List available buckets
 {: #python-examples-list-buckets}
@@ -213,11 +209,8 @@ def get_buckets():
 {: python}
 
 *SDK References*
-* Classes
-    * [`Bucket`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){: external}
-    * [`ServiceResource`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#service-resource){: external}
-* Collections
-    * [`buckets`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.ServiceResource.buckets){: external}
+* Methods
+    * [`list_buckets`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_buckets){: external}
 
 ### List items in a bucket
 {: #python-examples-list-objects}
@@ -238,11 +231,8 @@ def get_bucket_contents(bucket_name):
 {: python}
 
 *SDK References*
-* Classes
-    * [`Bucket`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){: external}
-    * [`ObjectSummary`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#objectsummary){: external}
-* Collections
-    * [`objects`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.objects){: external}
+* Methods
+    * [`list_objects`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects){: external}
 
 ### Get file contents of particular item
 {: #python-examples-get-file-contents}
@@ -262,10 +252,8 @@ def get_item(bucket_name, item_name):
 {: python}
 
 *SDK References*
-* Classes
-    * [`Object`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){: external}
 * Methods
-    * [`get`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.get){: external}
+    * [`get_object`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.get_object){: external}
 
 ### Delete an item from a bucket
 {: #python-examples-delete-object}
@@ -284,10 +272,8 @@ def delete_item(bucket_name, object_name):
 {: python}
 
 *SDK References*
-* Classes
-    * [Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){: external}
 * Methods
-    * [delete](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.delete){: external}
+    * [delete_object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_object){: external}
 
 ### Delete multiple items from a bucket
 {: #python-examples-delete-multiple-objects}
@@ -324,8 +310,6 @@ def delete_items(bucket_name):
 {: python}
 
 *SDK References*
-* Classes
-    * [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){: external}
 * Methods
     * [delete_objects](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_objects){: external}
 
@@ -347,10 +331,8 @@ def delete_bucket(bucket_name):
 {: python}
 
 *SDK References*
-* Classes
-    * [Bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){: external}
 * Methods
-    * [delete](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.delete){: external}
+    * [delete_bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_bucket){: external}
 
 ### Run a multi-part upload
 {: #python-examples-multipart}
@@ -358,7 +340,7 @@ def delete_bucket(bucket_name):
 #### Upload binary file (preferred method)
 {: #python-examples-multipart-binary}
 
-The [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.upload_fileobj){: external} method of the [S3.Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){: external} class automatically runs a multi-part upload when necessary. The [TransferConfig](https://ibm.github.io/ibm-cos-sdk-python/reference/customizations/s3.html#s3-transfers){: external} class is used to determine the threshold for using the multi-part upload.
+The [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.upload_fileobj){: external} method of the S3 Object automatically runs a multi-part upload when necessary. The [TransferConfig](https://ibm.github.io/ibm-cos-sdk-python/reference/customizations/s3.html#s3-transfers){: external} class is used to determine the threshold for using the multi-part upload.
 
 ```python
 def multi_part_upload(bucket_name, item_name, file_path):
@@ -396,11 +378,8 @@ def multi_part_upload(bucket_name, item_name, file_path):
 {: python}
 
 *SDK References*
-* Classes
-    * [Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){: external}
-    * [TransferConfig](https://ibm.github.io/ibm-cos-sdk-python/reference/customizations/s3.html#s3-transfers){: external}
 * Methods
-    * [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.upload_fileobj){: external}
+    * [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.upload_fileobj){: external}
 
 #### Manually run a multi-part upload
 {: #python-examples-multipart-manual}
@@ -585,8 +564,6 @@ def get_bucket_contents_v2(bucket_name, max_keys):
 {: python}
 
 *SDK References*
-* Classes
-    * [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){: external}
 * Methods
     * [list_objects_v2](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){: external}
 
@@ -645,10 +622,8 @@ def create_bucket_kp(bucket_name):
 * `<root-key-crn>` - CRN of the Root Key that is obtained from the Key Protect service.
 
 *SDK References*
-* Classes
-    * [Bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){: external}
 * Methods
-    * [create](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.create){: external}
+    * [create_bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.create_bucket){: external}
 
 ## Using Aspera High-Speed Transfer
 {: #python-examples-aspera}
