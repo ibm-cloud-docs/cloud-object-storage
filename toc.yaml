@@ -128,7 +128,6 @@ toc:
           - quota.md
           - metrics-monitoring.md
           - functions.md
-          - file-gateway.md
     - navgroup:
         id: reference
         topics:
