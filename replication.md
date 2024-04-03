@@ -2,12 +2,11 @@
 
 copyright:
   years: 2022, 2024
-lastupdated: "2024-03-29"
+lastupdated: "2024-04-03"
 
 keywords: data, replication, loss prevention, iam, activity tracker, disaster recovery, versioning, key protect, accounts, buckets
 
 subcollection: cloud-object-storage
-
 
 ---
 
@@ -82,7 +81,7 @@ Now you'll create a replication rule.
 
 To replicate objects between buckets in different IBM accounts, do the following:
 
-1. Set up an IAM policy on the destination IBM account. See: [IAM account overview](/docs/account?topic=account-overview).
+1. Set up an IAM policy on the destination IBM account. For information about creating an IAM policy, see [What are IAM policies and who can assign them](/docs/secure-enterprise?topic=secure-enterprise-iamusermanpol).
 1. Find the account ID and the Service instance ID in CRN format on the Bucket Configuration page.
 1. Using the IBM Cloud UI of the destination account, click **Manage**>**Access(IAM)**.
 1. Click **Authentication** in the left panel.
