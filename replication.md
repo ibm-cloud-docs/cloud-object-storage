@@ -163,7 +163,6 @@ Replication generates additional events.
 - `cloud-object-storage.object-replication.sync` (generated at the source)
 - `cloud-object-storage.object-replication.create` (generated at the target)
 
-
 For `cloud-object-storage.bucket-replication.create` events, the following fields provide extra information:
 
 | Field                                             | Description                                                                  |
