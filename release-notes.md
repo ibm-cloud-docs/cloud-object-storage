@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2024
 
-lastupdated: "2024-03-25"
+lastupdated: "2024-04-04"
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning
 
@@ -20,6 +20,13 @@ content-type: release-note
 
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
+
+## 04 April 2024
+{: #cloud-object-storage-apr0424}
+{: release-note}
+
+Aspera available in the Chennai Single Site
+:   It is now possible to use [Aspera high-speed transfer](/docs/cloud-object-storage?topic=cloud-object-storage-aspera).
 
 ## 05 March 2024
 {: #cloud-object-storage-mar0524}
