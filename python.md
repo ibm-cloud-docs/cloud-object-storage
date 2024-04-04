@@ -760,7 +760,7 @@ To get the highest throughput, split the transfer into a specified number of par
 
 The typical configuration for using multi-session should be:
 
-* 2500 MBps target rate
+* 2500 Mbps target rate
 * 100 MB threshold (*this is the recommended value for most applications*)
 
 ```python
@@ -772,7 +772,7 @@ ms_transfer_config = AsperaConfig(multi_session="all",
 {: codeblock}
 {: python}
 
-In the above example, the sdk spawns enough sessions to attempt to reach the target rate of 2500 MBps.
+In the above example, the sdk spawns enough sessions to attempt to reach the target rate of 2500 Mbps.
 
 Session management can also be explicitly configured in the SDK. This is useful in cases where more precise control over network utilization is wanted.
 
