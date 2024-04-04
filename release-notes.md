@@ -25,7 +25,7 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 {: #cloud-object-storage-apr0424}
 {: release-note}
 
-Aspera available in the Chennai Single Site
+Aspera available in the Chennai Single Data Center
 :   It is now possible to use [Aspera high-speed transfer](/docs/cloud-object-storage?topic=cloud-object-storage-aspera).
 
 ## 05 March 2024
