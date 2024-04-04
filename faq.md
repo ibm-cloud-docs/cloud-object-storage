@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-03-07"
+lastupdated: "2024-04-04"
 
 keywords: faq, frequently asked questions, object storage
 
@@ -475,3 +475,11 @@ Also, you can delete multipart uploads directly using the [Minio client](/docs/c
 Login to the IBM Cloud shell: https://cloud.ibm.com/shell and enter at the prompt `ibmcloud resource search "service_name:cloud-object-storage AND type:resource-instance"`.
 
 The response you receive includes information for the name of your instance, location, family, resource type, resource group ID, CRN, tags, service tags, and access tags.
+
+## Why do I receive an error when I try to create a bucket?
+{: #faq-create-bucket-error}
+{: faq}
+
+Check [IAM permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam) because a user must have "Writer" permissions to create buckets.
+
+[Content-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-cos-tutorial-cbr) may be preventing the user from acting on the service.
