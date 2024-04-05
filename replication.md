@@ -42,7 +42,7 @@ Replication copies newly created objects and object updates from a source bucket
 To get started, here are some prerequisites that must be met:
 
 - Set the the `Writer` or `Manager` platform role on the source bucket, or a custom role with the appropriate replication actions (such as  `cloud-object-storage.bucket.put_replication`) assigned.
-- You do not need to have access to the target bucket, but do need to have sufficient platform roles to create [new IAM policies](/docs/account?topic=account-iamoverview#iamoverview) that allow the source bucket to write to the target bucket.
+- You do not need to have access to the target bucket, but do need to have sufficient platform roles to create [new IAM policies](/docs/secure-enterprise?topic=secure-enterprise-iamusermanpol) that allow the source bucket to write to the target bucket.
 - Both the source and target buckets must have [versioning enabled](/docs/cloud-object-storage?topic=cloud-object-storage-versioning).
 - The target bucket must not have a legacy bucket firewall enabled, but can use [context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall).
 - Objects encrypted [using SSE-C](/docs/cloud-object-storage?topic=cloud-object-storage-sse-c) cannot be replicated, although [managed encryption (SSE-KMS) like Key Protect](/docs/cloud-object-storage?topic=cloud-object-storage-kp) is fully compatible with replication.
@@ -162,7 +162,6 @@ Replication generates additional events.
 - `cloud-object-storage.bucket-replication.delete`
 - `cloud-object-storage.object-replication.sync` (generated at the source)
 - `cloud-object-storage.object-replication.create` (generated at the target)
-
 
 For `cloud-object-storage.bucket-replication.create` events, the following fields provide extra information:
 
