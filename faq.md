@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-04"
+lastupdated: "2024-04-05"
 
-keywords: faq, frequently asked questions, object storage
+keywords: faq, frequently asked questions, object storage, S3, HMAC
 
 subcollection: cloud-object-storage
 
@@ -40,11 +40,11 @@ For example, the CLI command `ibmcloud cos buckets` will list all buckets associ
 
 Yes, you can use your existing tools to read and write data into {{site.data.keyword.cos_full_notm}}. You need to configure HMAC credentials allow your tools to authenticate. Not all S3-compatible tools are currently unsupported. For details, see [Using HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main).
 
-## Can I use AWS S3 SDKs with IBM Cloud Object Storage?
+## Can I use AWS S3 SDKs with {{site.data.keyword.cos_full_notm}}?
 {: #faq-aws-sdk}
 {: faq}
 
-Yes, IBM COS SDKs are based on the official AWS S3 API SDKs, but are modified to use IBM Cloud features, such as IAM, Key Protect, Immutable Object Storage, and others. When using these SDKs, use HMAC authorization and an explicit endpoint. For details, see [About IBM COS SDKs](/docs/cloud-object-storage/basics?topic=cloud-object-storage-sdk-about).
+{{site.data.keyword.cos_full_notm}} supports the most commonly used subset of Amazon S3 API operations. IBM makes a sustained best effort to ensure that the {{site.data.keyword.cos_full_notm}} APIs stay compatible with the industry standard S3 API. {{site.data.keyword.cos_full_notm}} also produces several native core COS SDKs that are derivatives of publicly available AWS SDKs. These core COS SDKs are explicitly tested on each new {{site.data.keyword.cos_full_notm}} upgrade. When using AWS SDKs, use HMAC authorization and an explicit endpoint. For details, see [About IBM COS SDKs](/docs/cloud-object-storage/basics?topic=cloud-object-storage-sdk-about).
 
 ## Is there a 100-bucket limit to an account? What happens if I need more?
 {: #faq-bucket-limit}
