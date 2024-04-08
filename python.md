@@ -55,7 +55,7 @@ aws_secret_access_key = {SERVICE_INSTANCE_ID}
 ```
 {: codeblock}
 
-If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` takes preference.
+**Note**: If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` takes preference.
 
 ### Gather required information
 {: #python-prereqs}
