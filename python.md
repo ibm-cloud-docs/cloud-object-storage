@@ -83,6 +83,8 @@ In your code, you must remove the angled brackets or any other excess characters
 This example creates a `resource` object. A resource provides an object-oriented interface to COS. This allows for a higher level of abstraction than the low-level calls provided by a client object. 
 
 Note that some operations (such as Aspera high-speed transfer) require a `client` object. Aspera itself requires Python version 3.6.
+
+**Legacy Notice**: Support for Aspera is considered legacy. Users are recommended to use Aspera Transfer SDK [https://developer.ibm.com/apis/catalog/aspera--aspera-transfer-sdk/API%20Reference].
 {:important}
   
 ```python
@@ -333,6 +335,8 @@ def delete_bucket(bucket_name):
 *SDK References*
 * Methods
     * [delete_bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_bucket){: external}
+
+**Note** : The bucket names are reserved for 10 - 15 minutes after deletion.
 
 ### Run a multi-part upload
 {: #python-examples-multipart}
@@ -626,6 +630,8 @@ def create_bucket_kp(bucket_name):
     * [create_bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.create_bucket){: external}
 
 ## Using Aspera High-Speed Transfer
+**Legacy Notice**: Support for Aspera is considered legacy. Users are recommended to use Aspera Transfer SDK[https://developer.ibm.com/apis/catalog/aspera--aspera-transfer-sdk/API%20Reference].
+
 {: #python-examples-aspera}
 
 By installing the [Aspera high-speed transfer library](/docs/cloud-object-storage/basics?topic=cloud-object-storage-aspera#aspera-packaging), you can use high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license).
