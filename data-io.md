@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2020
-lastupdated: "2020-08-25"
+  years: 2020, 2024
+lastupdated: "2024-03-20"
 
 keywords: developer, best practices, object storage
 
@@ -16,7 +16,7 @@ subcollection: cloud-object-storage
 # Data IO and encryption
 {: #performance-io}
 
-Object size can have significant impacts on {{site.data.keyword.cos_full}} performance. Choose the right approach for your workload.  
+Object size can have significant impacts on {{site.data.keyword.cos_full}} performance. Choose the right approach for your workload.
 {: shortdesc}
 
 ## Multipart transfers
@@ -30,7 +30,7 @@ As with AWS S3, using multipart transfers provides the following advantages: 
 - Pause and resume object uploads — Upload object parts over time. Once a multipart  upload is initiated a multipart upload there is no expiry; it must explicitly complete or the multipart upload has to be aborted. 
 - Begin an upload before the final object size is known — An object can be uploaded as it is being created.  
 
-Due to the additional complexity of multipart transfers, it is recommended to use appropriate S3 libraries, tools, or SDKs that offer support for managed multipart transfers: 
+Due to the additional complexity of multipart transfers, it is recommended to use appropriate S3 libraries, tools, or SDKs that offer support for managed multipart transfers:
 - [IBM COS SDK for Java](https://github.com/IBM/ibm-cos-sdk-java)
 - [IBM COS SDK for Python](https://github.com/IBM/ibm-cos-sdk-python)
 - [IBM COS SDK for Javascript (Node.js)](https://github.com/IBM/ibm-cos-sdk-js)
@@ -40,7 +40,7 @@ Due to the additional complexity of multipart transfers, it is recommended to us
 
 While there is no dedicated API for a multipart download, it is possible to use a `Range` header in a `GET` request to read only a specific part of an object, and many ranged reads can be issued in parallel, just like when uploading parts. After all parts have been downloaded, they can be concatenated and the complete object can be checked for integrity. As mentioned previously, use of SDKs or other tooling is recommended to avoid the complexities of manually managing these transfers.
 
-Workflows that need to store large numbers of very small objects may be better served by aggregating the small files into a larger data structure (such as [Parquet](https://parquet.apache.org/)) that can allow for access using [{{site.data.keyword.sqlquery_full}}](/docs/cloud-object-storage?topic=cloud-object-storage-sql-query).
+Workflows that need to store large numbers of very small objects may be better served by aggregating the small files into a larger data structure (such as [Parquet].
 
 For objects greater than 200mb in size, especially in less stable networks or over very long distances where packet loss is a concern, Aspera High-Speed Transfer can deliver excellent performance.  Aspera transfers can also upload nested directory structures efficiently within a single request.
 
@@ -70,6 +70,7 @@ It is generally preferable to use `If-Match` because the granularity of the `Las
 
 ### Using If-Match
 {: #performance-io-conditional-if-match}
+
 On an object `PUT`, `HEAD`, or `GET` request, the `If-Match` header will check to see if a provided Etag (MD5 hash of the object content) matches the provided Etag value. If this value matches, the operation will proceed. If the match fails, the system will return a `412 Precondition Failed` error.
 
 > If-Match is most often used with state-changing methods (e.g., POST, PUT, DELETE) to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource (i.e., to prevent the "lost update" problem).
@@ -101,6 +102,8 @@ On an object `PUT`, `HEAD`, or `GET` request, the `If-Unmodified-Since` header w
 While most libraries and SDKs will automatically handle retry logic, care must be taken when writing software that uses the API directly to properly handle transient errors. Most importantly, it is critical to provide appropriate retry logic that implements exponential back-off when receiving 503 errors. 
 
 ## Cypher tuning
+{: #performance-io-tuning}
+
 IBM COS supports a variety of Cipher settings to encrypt data in transit. Not all cipher settings yield the same level performance and using TLS in general leads to small performance degradation. The following cipher settings are recommended (in descending order of priority): 
 - `TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384` 
 - `TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256` 

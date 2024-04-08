@@ -2,9 +2,10 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-03-07"
 
-keywords: faq, frequently asked questions, object storage
+lastupdated: "2024-04-05"
+
+keywords: faq, frequently asked questions, object storage, S3, HMAC
 
 subcollection: cloud-object-storage
 
@@ -40,11 +41,11 @@ For example, the CLI command `ibmcloud cos buckets` will list all buckets associ
 
 Yes, you can use your existing tools to read and write data into {{site.data.keyword.cos_full_notm}}. You need to configure HMAC credentials allow your tools to authenticate. Not all S3-compatible tools are currently unsupported. For details, see [Using HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main).
 
-## Can I use AWS S3 SDKs with IBM Cloud Object Storage?
+## Can I use AWS S3 SDKs with {{site.data.keyword.cos_full_notm}}?
 {: #faq-aws-sdk}
 {: faq}
 
-Yes, IBM COS SDKs are based on the official AWS S3 API SDKs, but are modified to use IBM Cloud features, such as IAM, Key Protect, Immutable Object Storage, and others. When using these SDKs, use HMAC authorization and an explicit endpoint. For details, see [About IBM COS SDKs](/docs/cloud-object-storage/basics?topic=cloud-object-storage-sdk-about).
+{{site.data.keyword.cos_full_notm}} supports the most commonly used subset of Amazon S3 API operations. IBM makes a sustained best effort to ensure that the {{site.data.keyword.cos_full_notm}} APIs stay compatible with the industry standard S3 API. {{site.data.keyword.cos_full_notm}} also produces several native core COS SDKs that are derivatives of publicly available AWS SDKs. These core COS SDKs are explicitly tested on each new {{site.data.keyword.cos_full_notm}} upgrade. When using AWS SDKs, use HMAC authorization and an explicit endpoint. For details, see [About IBM COS SDKs](/docs/cloud-object-storage/basics?topic=cloud-object-storage-sdk-about).
 
 ## Is there a 100-bucket limit to an account? What happens if I need more?
 {: #faq-bucket-limit}
@@ -225,7 +226,7 @@ The Object Storage Activity Tracker service records user-initiated activities th
 {: #faq-notification-setup}
 {: faq}
 
-Use [Cloud Functions for object storage](/docs/cloud-object-storage?topic=cloud-object-storage-functions) to setup an Event Source (notification).
+Use [{{site.data.keyword.codeengineshort}}](/docs/codeengine?topic=codeengine-getting-started) to setup an Event Source (notification).
 
 ## Does Object Storage have rate limits when writing to or reading from buckets?
 {: #faq-rate-limit}
@@ -305,11 +306,11 @@ Yes, by default, all objects stored in {{site.data.keyword.cos_short}} are encry
 
 The IAM feature creates a report at the instance level which may extend to their buckets. It does not specifically report at the bucket level. For details, see [Account Access Report](/docs/account?topic=account-access-report).
 
-## How can I monitor bucket changes in the public cloud without using the cloud functions?
+## How can I monitor bucket changes in the public cloud without using the {{site.data.keyword.codeengineshort}}?
 {: #faq-Cloud-Function}
 {: faq}
 
-You must use cloud functions to get notifications for object changes.
+You must use {{site.data.keyword.codeengineshort}} to get notifications for object changes.
 
 ## How can I monitor {{site.data.keyword.cos_short}} resources?
 {: #faq-monitor-cos-res}
@@ -364,7 +365,7 @@ Yes, the {{site.data.keyword.cos_short}} instance is a global service. Once an i
 {: faq}
 
 No, the files are not scanned when uploading to {{site.data.keyword.cos_short}}.
-When an object is uploaded, you get upload events by using the Activity Tracker or by using the cloud functions. Then, you can download, scan, and re-upload the object.
+When an object is uploaded, you get upload events by using the Activity Tracker or by using the {{site.data.keyword.codeengineshort}}. Then, you can download, scan, and re-upload the object.
 
 ## Is it possible to form a Hadoop cluster using {{site.data.keyword.cos_short}}?
 {: #faq-hadoop-cluster}
@@ -475,3 +476,11 @@ Also, you can delete multipart uploads directly using the [Minio client](/docs/c
 Login to the IBM Cloud shell: https://cloud.ibm.com/shell and enter at the prompt `ibmcloud resource search "service_name:cloud-object-storage AND type:resource-instance"`.
 
 The response you receive includes information for the name of your instance, location, family, resource type, resource group ID, CRN, tags, service tags, and access tags.
+
+## Why do I receive an error when I try to create a bucket?
+{: #faq-create-bucket-error}
+{: faq}
+
+Check [IAM permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam) because a user must have "Writer" permissions to create buckets.
+
+[Content-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-cos-tutorial-cbr) may be preventing the user from acting on the service.
