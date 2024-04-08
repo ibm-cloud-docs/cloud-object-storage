@@ -111,7 +111,7 @@ COS_ENDPOINT = "<endpoint>" # Current list avaiable at https://control.cloud-obj
 COS_API_KEY_ID = "<api-key>" # eg "W00YixxxxxxxxxxMB-odB-2ySfTrFBIQQWanc--P3byk"
 COS_INSTANCE_CRN = "<service-instance-id>" # eg "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003xxxxxxxxxx1c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
 
-# Create client 
+# Create client
 cos_client = ibm_boto3.client("s3",
     ibm_api_key_id=COS_API_KEY_ID,
     ibm_service_instance_id=COS_INSTANCE_CRN,
@@ -161,8 +161,7 @@ def create_bucket(bucket_name):
 {: codeblock}
 {: python}
 
-<<<<<<
-< python-updates-032024*SDK References*
+*SDK References*
 * Methods
     * [`create_bucket`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.create_bucket){: external}
 
