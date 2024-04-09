@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-03-22"
+lastupdated: "2024-04-09"
 
 keywords: faq, frequently asked questions, object storage
 
@@ -225,7 +225,7 @@ The Object Storage Activity Tracker service records user-initiated activities th
 {: #faq-notification-setup}
 {: faq}
 
-Use [{{site.data.keyword.codeengineshort}}](/docs/codeengine?topic=codeengine-getting-started) to setup an Event Source (notification).
+You can use [{{site.data.keyword.codeengineshort}}](/docs/codeengine?topic=codeengine-getting-started) to receive events about actions taken on your bucket.
 
 ## Does Object Storage have rate limits when writing to or reading from buckets?
 {: #faq-rate-limit}
