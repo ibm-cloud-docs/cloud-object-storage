@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-09"
+lastupdated: "2024-04-10"
 
 keywords: faq, frequently asked questions, object storage
 
@@ -304,12 +304,6 @@ Yes, by default, all objects stored in {{site.data.keyword.cos_short}} are encry
 {: faq}
 
 The IAM feature creates a report at the instance level which may extend to their buckets. It does not specifically report at the bucket level. For details, see [Account Access Report](/docs/account?topic=account-access-report).
-
-## How can I monitor bucket changes in the public cloud without using the {{site.data.keyword.codeengineshort}}?
-{: #faq-Cloud-Function}
-{: faq}
-
-You must use {{site.data.keyword.codeengineshort}} to get notifications for object changes.
 
 ## How can I monitor {{site.data.keyword.cos_short}} resources?
 {: #faq-monitor-cos-res}
