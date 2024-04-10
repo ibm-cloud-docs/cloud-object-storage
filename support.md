@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-02-20"
+lastupdated: "2024-03-25"
 
 keywords: troubleshooting, support, questions
 
@@ -91,7 +91,7 @@ You can view a bucket or object in the IBM Cloud console but the following error
 
 The bucket’s location must correspond to the endpoint used by the CLI. This error occurs when the bucket or object cannot be found at the default endpoint for the CLI.
 
-To avoid the error, make sure the bucket location matches the endpoint used by the CLI.  For the parameters to set a region or endpoint, refer to the documentation for [Cloud Object Storage CLI](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli&interface=ui#ic-installation) or [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli).
+To avoid the error, make sure the bucket location matches the endpoint used by the CLI.  For the parameters to set a region or endpoint, refer to the documentation for [Cloud Object Storage CLI](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli#ic-installation) or [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli).
 
 ## How do I copy or move files to another bucket in a different location?
 {: #troubleshooting-cos-move}

@@ -3,7 +3,8 @@
 copyright:
   years: 2017, 2024
 
-lastupdated: "2024-03-14"
+lastupdated: "2024-03-25"
+
 
 keywords: endpoint, location, object storage, bucket, region, vpe, gateway
 
@@ -39,7 +40,7 @@ All {{site.data.keyword.cos_full}} endpoints support TLS 1.2 encryption.
 * **Public endpoints** can accept requests from anywhere and charges are assessed on outgoing bandwidth. Incoming bandwidth is free. Public endpoints should be used for access not originating from an {{site.data.keyword.cloud_notm}} cloud computing resource.
 * **Direct endpoints** are used for requests originating from [resources within VPCs](/docs/vpc?topic=vpc-about-vpc). Like Private endpoints, Direct endpoints provide better performance over Public endpoints and do not incur charges for any outgoing or incoming bandwidth even if the traffic is cross regions or across data centers. Direct endpoints can be accessed through Virtual Private Endpoint gateways as described [here](/docs/cloud-object-storage?topic=cloud-object-storage-vpes).
 
-Requests must be sent to the endpoint associated with a given bucket's location. If you aren't sure where a bucket is located, there is an [extension to the bucket listing API](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets-extended) that returns the location and storage class information for all buckets in a service instance.
+Requests must be sent to the endpoint associated with a given bucket's location. If you aren't sure where a bucket is located, there is an [extension to the bucket listing API](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets-extended) that returns the location and storage class information for all buckets in a service instance. Another place to find an endpoint is to open the Bucket configuration tab in the IBM Cloud Console.
 
 When using Virtual Private Endpoints in an application that makes requests to IBM COS, it may be necessary to add some additional configuration for authentication. The IBM COS SDKs will automatically attempt to fetch an IAM token from `https://iam.cloud.ibm.com/identity/token`.  If you are using a virtualized endpoint for token acquisition you will need alter the IAM endpoint appropriately.
 {: note}

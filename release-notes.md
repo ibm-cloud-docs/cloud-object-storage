@@ -3,10 +3,7 @@
 copyright:
   years: 2017, 2024
 
-
-lastupdated: "2024-03-21"
-=======
-
+lastupdated: "2024-03-25"
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning
 

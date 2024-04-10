@@ -27,7 +27,6 @@ toc:
                 - data-io.md
                 - bottlenecks.md
           - cos-responsibilities.md
-          - quick-facts.md
           - topic: release-notes.md
             navtitle: Release notes
     - navgroup:
