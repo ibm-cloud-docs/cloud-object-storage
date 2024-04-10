@@ -2,7 +2,6 @@
 
 copyright:
   years: 2017, 2024
-
 lastupdated: "2024-04-05"
 
 keywords: faq, frequently asked questions, object storage, S3, HMAC
@@ -88,8 +87,6 @@ Consistency with any distributed system comes with a cost, because the efficienc
 {: faq}
 
 For performance optimization, objects can be uploaded and downloaded in multiple parts, in parallel.
-
-
 
 ## How does {{site.data.keyword.cos_full}} delete expired data?
 {: #faq-expired}
@@ -197,6 +194,10 @@ Yes, You can achieve the same by creating a bucket in the target Object Storage 
 {: faq}
 
 Exceeding the data limit for the Lite account is one of the reasons why your account is locked or deactived. The [COS support](https://cloud.ibm.com/unifiedsupport/cases/form) team can help to unlock your account.
+
+* The lite plan account can be activated only once.
+
+* Upon enablement, reduce your storage to less than 25GB within a week to prevent it from getting disabled again.
 
 ## After deleting a Object Storage instance, is it possible to reuse the same bucket names that were part of the deleted COS instance?
 {: #faq-resue-bucketname}
