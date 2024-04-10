@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2024
 
-lastupdated: "2024-03-11"
+lastupdated: "2024-03-13"
 
 keywords: aspera, key protect, archive, worm
 
@@ -30,6 +30,7 @@ For more information about the following services, be sure to check out the resp
 * [Immutable Object Storage](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable)
 * [Activity Tracker](/docs/activity-tracker?topic=activity-tracker-getting-started)
 * [Functions](/docs/cloud-object-storage?topic=cloud-object-storage-functions)
+* [Code Engine](/docs/cloud-object-storage?topic=cloud-object-storage-code-engine)
 * [Smart Tier](/docs/cloud-object-storage?topic=cloud-object-storage-billing#smart-tier-pricing-details)
 * [Monitoring](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration)
 
