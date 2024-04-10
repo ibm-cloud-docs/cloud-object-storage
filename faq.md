@@ -357,7 +357,7 @@ Yes, the {{site.data.keyword.cos_short}} instance is a global service. Once an i
 {: #faq-file-scan}
 {: faq}
 
-While there is no built in antivirus scanning in {{site.data.keyword.cos_short}}, customers could enable a scanning workflow employing their own anti-virus technology that is deployed on Code Engine.
+While there is no built in antivirus scanning in {{site.data.keyword.cos_short}}, customers could enable a scanning workflow employing their own anti-virus technology that is deployed on {{site.data.keyword.codeengineshort}}(/docs/codeengine?topic=codeengine-getting-started).
 
 ## Is it possible to form a Hadoop cluster using {{site.data.keyword.cos_short}}?
 {: #faq-hadoop-cluster}
