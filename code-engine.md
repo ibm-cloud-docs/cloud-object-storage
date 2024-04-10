@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-03-21"
+lastupdated: "2024-04-10"
 
 keywords: events, serverless, whisk, code engine
 
@@ -20,6 +20,5 @@ subcollection: cloud-object-storage
 
 See [Working with the IBM Cloud Object Storage event producer](/docs/codeengine?topic=codeengine-eventing-cosevent-producer) for more information.
 
-{{site.data.keyword.openwhisk}} is deprecated. Existing Functions entities such as actions, triggers, or sequences will continue to run, but as of 28 December 2023, you can’t create new Functions entities. Existing Functions entities are supported until October 2024. Any Functions entities that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview). {: deprecated}
 
 

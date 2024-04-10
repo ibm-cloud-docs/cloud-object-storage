@@ -357,8 +357,7 @@ Yes, the {{site.data.keyword.cos_short}} instance is a global service. Once an i
 {: #faq-file-scan}
 {: faq}
 
-No, the files are not scanned when uploading to {{site.data.keyword.cos_short}}.
-When an object is uploaded, you get upload events by using the Activity Tracker or by using the {{site.data.keyword.codeengineshort}}. Then, you can download, scan, and re-upload the object.
+While there is no built in antivirus scanning in {{site.data.keyword.cos_short}}, customers could enable a scanning workflow employing their own anti-virus technology that is deployed on Code Engine.
 
 ## Is it possible to form a Hadoop cluster using {{site.data.keyword.cos_short}}?
 {: #faq-hadoop-cluster}
