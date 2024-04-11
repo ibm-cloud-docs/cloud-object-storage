@@ -682,7 +682,7 @@ Methods
 * [create_bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.create_bucket){: external}
 
 ## Using Aspera High-Speed Transfer
-**Legacy Notice**: Support for Aspera is considered legacy. Users are recommended to use Aspera Transfer SDK[https://developer.ibm.com/apis/catalog/aspera--aspera-transfer-sdk/API%20Reference].
+**Legacy Notice**: Support for Aspera is considered legacy. Users are recommended to use [Aspera Transfer SDK](https://developer.ibm.com/apis/catalog/aspera--aspera-transfer-sdk){: external}.
 
 {: #python-examples-aspera}
 
@@ -1201,7 +1201,7 @@ def upload_file_with_retention(bucket_name, object_name, path_to_file, retention
 
 The object can support 100 legal holds:
 
-* A legal hold identifier is a string of maximum length 64 characters and a minimum length of 1 character. Valid characters are letters, numbers, `!`, `_`, `.`, `*`, `(`, `)`, `-` and `.
+* A legal hold identifier is a string of maximum length 64 characters and a minimum length of 1 character. Valid characters are letters, numbers, and the symbols `!`, `_`, `.`, `*`, `(`, `)`, and `-`.
 * If the addition of the given legal hold exceeds 100 total legal holds on the object, the new legal hold will not be added, a `400` error is returned.
 * If an identifier is too long, it will not be added to the object and a `400` error is returned.
 * If an identifier contains invalid characters, it will not be added to the object and a `400` error is returned.
