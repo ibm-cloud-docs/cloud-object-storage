@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-08"
+lastupdated: "2024-04-11"
 
 keywords: object storage, python, sdk, aspera, apache, asperatransfermanager
 
