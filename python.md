@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-08"
+lastupdated: "2024-04-11"
 
-keywords: object storage, python, sdk
+keywords: object storage, python, sdk, aspera, apache, asperatransfermanager
 
 subcollection: cloud-object-storage
 
@@ -74,8 +74,9 @@ In your code, you must remove the angled brackets or any other excess characters
 This example creates a `resource` object. A resource provides an object-oriented interface to COS. This allows for a higher level of abstraction than the low-level calls provided by a client object. 
 
 Note that some operations (such as Aspera high-speed transfer) require a `client` object. Aspera itself requires Python version 3.6.
+{:important}
 
-**Legacy Notice**: Support for Aspera is considered legacy. Users are recommended to use Aspera Transfer SDK [https://developer.ibm.com/apis/catalog/aspera--aspera-transfer-sdk/API%20Reference].
+**Legacy Notice**: Support for Aspera is considered legacy. Instead, use the [Aspera Transfer SDK](https://developer.ibm.com/apis/catalog/aspera--aspera-transfer-sdk/API%20Reference).
 {:important}
 
 ```python
@@ -161,9 +162,12 @@ def create_bucket(bucket_name):
 {: codeblock}
 {: python}
 
-*SDK References*
-* Methods
-    * [`create_bucket`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.create_bucket){: external}
+#### SDK References
+{: #create-bucket-sdk-refs}
+
+Methods
+
+* [`create_bucket`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.create_bucket){: external}
 
 ### Creating a new text file
 {: #python-examples-new-file}
@@ -187,9 +191,12 @@ def create_text_file(bucket_name, item_name, file_text):
 {: codeblock}
 {: python}
 
-*SDK References*
-* Methods
-    * [`put_object`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.put_object){: external}
+#### SDK References
+{: #create-text-file-sdk-refs}
+
+Methods
+
+* [`put_object`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.put_object){: external}
 
 ### List available buckets
 {: #python-examples-list-buckets}
@@ -210,9 +217,12 @@ def get_buckets():
 {: codeblock}
 {: python}
 
-*SDK References*
-* Methods
-    * [`list_buckets`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_buckets){: external}
+#### SDK References
+{: #list-buckets-sdk-refs}
+
+Methods
+
+* [`list_buckets`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_buckets){: external}
 
 ### List items in a bucket
 {: #python-examples-list-objects}
@@ -233,9 +243,12 @@ def get_bucket_contents(bucket_name):
 {: codeblock}
 {: python}
 
-*SDK References*
-* Methods
-    * [`list_objects`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects){: external}
+#### SDK References
+{: #list-items-sdk-refs}
+
+Methods
+
+* [`list_objects`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects){: external}
 
 ### Get file contents of particular item
 {: #python-examples-get-file-contents}
@@ -255,9 +268,12 @@ def get_item(bucket_name, item_name):
 {: codeblock}
 {: python}
 
-*SDK References*
-* Methods
-    * [`get_object`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.get_object){: external}
+#### SDK References
+{: #get-contents-sdk-refs}
+
+Methods
+
+* [`get_object`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.get_object){: external}
 
 ### Delete an item from a bucket
 {: #python-examples-delete-object}
@@ -276,9 +292,12 @@ def delete_item(bucket_name, object_name):
 {: codeblock}
 {: python}
 
-*SDK References*
-* Methods
-    * [delete_object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_object){: external}
+#### SDK References
+{: #delete-item-sdk-refs}
+
+Methods
+
+* [delete_object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_object){: external}
 
 ### Delete multiple items from a bucket
 {: #python-examples-delete-multiple-objects}
@@ -315,9 +334,12 @@ def delete_items(bucket_name):
 {: codeblock}
 {: python}
 
-*SDK References*
-* Methods
-    * [delete_objects](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_objects){: external}
+#### SDK References
+{: #delete-mult-items-sdk-refs}
+
+Methods
+
+* [delete_objects](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_objects){: external}
 
 ### Delete a bucket
 {: #python-examples-delete-bucket}
@@ -337,11 +359,15 @@ def delete_bucket(bucket_name):
 {: codeblock}
 {: python}
 
-*SDK References*
-* Methods
-    * [delete_bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_bucket){: external}
+#### SDK References
+{: #delete-bucket-sdk-refs}
 
-**Note** : The bucket names are reserved for 10 - 15 minutes after deletion.
+Methods
+
+* [delete_bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_bucket){: external}
+
+The bucket names are reserved for 10 - 15 minutes after deletion.
+{:note}
 
 ### Run a multi-part upload
 {: #python-examples-multipart}
@@ -387,9 +413,12 @@ def multi_part_upload(bucket_name, item_name, file_path):
 {: codeblock}
 {: python}
 
-*SDK References*
-* Methods
-    * [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.upload_fileobj){: external}
+#### SDK References
+{: #multipart-upload-sdk-refs}
+
+Methods
+
+* [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.upload_fileobj){: external}
 
 #### Manually run a multi-part upload
 {: #python-examples-multipart-manual}
@@ -581,9 +610,12 @@ def get_bucket_contents_v2(bucket_name, max_keys):
 {: codeblock}
 {: python}
 
-*SDK References*
-* Methods
-    * [list_objects_v2](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){: external}
+#### SDK References
+{: #list-items-v2-sdk-refs}
+
+Methods
+
+* [list_objects_v2](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){: external}
 
 ## Using Key Protect
 {: #python-examples-kp}
@@ -642,9 +674,12 @@ def create_bucket_kp(bucket_name):
 * `<algorithm>` - The encryption algorithm that is used for new objects added to the bucket (Default is AES256).
 * `<root-key-crn>` - CRN of the Root Key that is obtained from the Key Protect service.
 
-*SDK References*
-* Methods
-    * [create_bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.create_bucket){: external}
+#### SDK References
+{: #create-bucket-kp-sdk-refs}
+
+Methods
+
+* [create_bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.create_bucket){: external}
 
 ## Using Aspera High-Speed Transfer
 **Legacy Notice**: Support for Aspera is considered legacy. Users are recommended to use Aspera Transfer SDK[https://developer.ibm.com/apis/catalog/aspera--aspera-transfer-sdk/API%20Reference].
@@ -1116,9 +1151,9 @@ def copy_protected_object(source_bucket_name, source_object_name, destination_bu
     }
 
     cos_client.copy_object(
-        Bucket=destination_bucket_name, 
-        Key=new_object_name, 
-        CopySource=copy_source, 
+        Bucket=destination_bucket_name,
+        Key=new_object_name,
+        CopySource=copy_source,
         RetentionDirective="Copy"
     )
 
@@ -1127,7 +1162,7 @@ def copy_protected_object(source_bucket_name, source_object_name, destination_bu
 def complete_multipart_upload_with_retention(bucket_name, object_name, upload_id, retention_period):
     print("Completing multi-part upload for object {0} in bucket {1}\n".format(object_name, bucket_name))
     cos_client.complete_multipart_upload(
-        Bucket=bucket_name, 
+        Bucket=bucket_name,
         Key=object_name,
         MultipartUpload={
             "Parts":[{
@@ -1173,7 +1208,7 @@ The object can support 100 legal holds:
 * If an identifier is already in use on an object, the existing legal hold is not modified and the response indicates that the identifier was already in use with a `409` error.
 * If an object does not have retention period metadata, a `400` error is returned and adding or removing a legal hold is not allowed.
 
-The user making adding or removing a legal hold must have `Manager` permissions for this bucket.
+To add or remove a legal hold, you must have `Manager` permissions for this bucket.
 
 ```py
 def add_legal_hold_to_object(bucket_name, object_name, legal_hold_id):
