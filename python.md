@@ -2,12 +2,11 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-02"
+lastupdated: "2024-04-11"
 
-keywords: object storage, python, sdk
+keywords: object storage, python, sdk, aspera, apache, asperatransfermanager
 
 subcollection: cloud-object-storage
-
 
 ---
 
@@ -47,7 +46,7 @@ aws_secret_access_key = {SERVICE_INSTANCE_ID}
 
 {: codeblock}
 
-If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` takes preference.
+**Note**: If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` takes preference.
 
 ### Gather required information
 {: #python-prereqs}
@@ -77,6 +76,9 @@ This example creates a `resource` object. A resource provides an object-oriented
 Note that some operations (such as Aspera high-speed transfer) require a `client` object. Aspera itself requires Python version 3.6.
 {:important}
 
+**Legacy Notice**: Support for Aspera is considered legacy. Instead, use the [Aspera Transfer SDK](https://developer.ibm.com/apis/catalog/aspera--aspera-transfer-sdk/API%20Reference).
+{:important}
+
 ```python
 import ibm_boto3
 from ibm_botocore.client import Config, ClientError
@@ -87,7 +89,7 @@ COS_API_KEY_ID = "<api-key>" # eg "W00YixxxxxxxxxxMB-odB-2ySfTrFBIQQWanc--P3byk"
 COS_INSTANCE_CRN = "<service-instance-id>" # eg "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003xxxxxxxxxx1c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
 
 # Create resource
-cos = ibm_boto3.resource("s3",
+cos_resource = ibm_boto3.resource("s3",
     ibm_api_key_id=COS_API_KEY_ID,
     ibm_service_instance_id=COS_INSTANCE_CRN,
     config=Config(signature_version="oauth"),
@@ -111,7 +113,7 @@ COS_API_KEY_ID = "<api-key>" # eg "W00YixxxxxxxxxxMB-odB-2ySfTrFBIQQWanc--P3byk"
 COS_INSTANCE_CRN = "<service-instance-id>" # eg "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003xxxxxxxxxx1c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
 
 # Create client
-cos = ibm_boto3.client("s3",
+cos_client = ibm_boto3.client("s3",
     ibm_api_key_id=COS_API_KEY_ID,
     ibm_service_instance_id=COS_INSTANCE_CRN,
     config=Config(signature_version="oauth"),
@@ -136,13 +138,16 @@ cos = ibm_boto3.client("s3",
 ### Creating a new bucket
 {: #python-examples-new-bucket}
 
+The examples below uses client which is a low level interface.
+
 A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes).
 
 ```python
 def create_bucket(bucket_name):
     print("Creating new bucket: {0}".format(bucket_name))
     try:
-        cos.Bucket(bucket_name).create(
+        cos_client.create_bucket(
+            Bucket=bucket_name,
             CreateBucketConfiguration={
                 "LocationConstraint":COS_BUCKET_LOCATION
             }
@@ -158,15 +163,11 @@ def create_bucket(bucket_name):
 {: python}
 
 #### SDK References
-{: #create-bucket-sdk refs}
-
-Classes
-
-* [`Bucket`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){: external}
+{: #create-bucket-sdk-refs}
 
 Methods
 
-* [`create`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.create){: external}
+* [`create_bucket`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.create_bucket){: external}
 
 ### Creating a new text file
 {: #python-examples-new-file}
@@ -175,7 +176,9 @@ Methods
 def create_text_file(bucket_name, item_name, file_text):
     print("Creating new item: {0}".format(item_name))
     try:
-        cos.Object(bucket_name, item_name).put(
+        cos_client.put_object(
+            Bucket=bucket_name
+            Key=item_name
             Body=file_text
         )
         print("Item: {0} created!".format(item_name))
@@ -189,15 +192,11 @@ def create_text_file(bucket_name, item_name, file_text):
 {: python}
 
 #### SDK References
-{: #create-text-sdk-refs}
-
-Classes
-
-* [`Object`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){: external}
+{: #create-text-file-sdk-refs}
 
 Methods
 
-* [`put`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.put){: external}
+* [`put_object`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.put_object){: external}
 
 ### List available buckets
 {: #python-examples-list-buckets}
@@ -206,9 +205,9 @@ Methods
 def get_buckets():
     print("Retrieving list of buckets")
     try:
-        buckets = cos.buckets.all()
-        for bucket in buckets:
-            print("Bucket Name: {0}".format(bucket.name))
+        buckets = cos_client.list_buckets()
+        for bucket in buckets["Buckets"]:
+            print("Bucket Name: {0}".format(bucket["Name"]))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
@@ -221,14 +220,9 @@ def get_buckets():
 #### SDK References
 {: #list-buckets-sdk-refs}
 
-Classes
+Methods
 
-* [`Bucket`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){: external}
-* [`ServiceResource`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#service-resource){: external}
-
-Collections
-
-* [`buckets`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.ServiceResource.buckets){: external}
+* [`list_buckets`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_buckets){: external}
 
 ### List items in a bucket
 {: #python-examples-list-objects}
@@ -237,9 +231,9 @@ Collections
 def get_bucket_contents(bucket_name):
     print("Retrieving bucket contents from: {0}".format(bucket_name))
     try:
-        files = cos.Bucket(bucket_name).objects.all()
-        for file in files:
-            print("Item: {0} ({1} bytes).".format(file.key, file.size))
+        files = cos_client.list_objects(Bucket=bucket_name)
+        for file in files.get("Contents", []):
+            print("Item: {0} ({1} bytes).".format(file["Key"], file["Size"]))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
@@ -252,14 +246,9 @@ def get_bucket_contents(bucket_name):
 #### SDK References
 {: #list-items-sdk-refs}
 
-Classes
+Methods
 
-* [`Bucket`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){: external}
-* [`ObjectSummary`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#objectsummary){: external}
-
-Collections
-
-* [`objects`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.objects){: external}
+* [`list_objects`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects){: external}
 
 ### Get file contents of particular item
 {: #python-examples-get-file-contents}
@@ -268,7 +257,7 @@ Collections
 def get_item(bucket_name, item_name):
     print("Retrieving item from bucket: {0}, key: {1}".format(bucket_name, item_name))
     try:
-        file = cos.Object(bucket_name, item_name).get()
+        file = cos_client.get_object(Bucket=bucket_name, Key=item_name)
         print("File Contents: {0}".format(file["Body"].read()))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
@@ -282,13 +271,9 @@ def get_item(bucket_name, item_name):
 #### SDK References
 {: #get-contents-sdk-refs}
 
-Classes
-
-* [`Object`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){: external}
-
 Methods
 
-* [`get`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.get){: external}
+* [`get_object`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.get_object){: external}
 
 ### Delete an item from a bucket
 {: #python-examples-delete-object}
@@ -296,7 +281,7 @@ Methods
 ```python
 def delete_item(bucket_name, object_name):
     try:
-        cos.delete_object(Bucket=bucket_name, Key=object_name)
+        cos_client.delete_object(Bucket=bucket_name, Key=object_name)
         print("Item: {0} deleted!\n".format(object_name))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
@@ -310,13 +295,9 @@ def delete_item(bucket_name, object_name):
 #### SDK References
 {: #delete-item-sdk-refs}
 
-Classes
-
-* [Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){: external}
-
 Methods
 
-* [delete](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.delete){: external}
+* [delete_object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_object){: external}
 
 ### Delete multiple items from a bucket
 {: #python-examples-delete-multiple-objects}
@@ -337,7 +318,7 @@ def delete_items(bucket_name):
             ]
         }
 
-        response = cos.delete_objects(
+        response = cos_client.delete_objects(
             Bucket=bucket_name,
             Delete=delete_request
         )
@@ -356,10 +337,6 @@ def delete_items(bucket_name):
 #### SDK References
 {: #delete-mult-items-sdk-refs}
 
-Classes
-
-* [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){: external}
-
 Methods
 
 * [delete_objects](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_objects){: external}
@@ -371,7 +348,7 @@ Methods
 def delete_bucket(bucket_name):
     print("Deleting bucket: {0}".format(bucket_name))
     try:
-        cos.Bucket(bucket_name).delete()
+        cos_client.delete_bucket(Bucket=bucket_name)
         print("Bucket: {0} deleted!".format(bucket_name))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
@@ -385,13 +362,12 @@ def delete_bucket(bucket_name):
 #### SDK References
 {: #delete-bucket-sdk-refs}
 
-Classes
-
-* [Bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){: external}
-
 Methods
 
-* [delete](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.delete){: external}
+* [delete_bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_bucket){: external}
+
+The bucket names are reserved for 10 - 15 minutes after deletion.
+{:note}
 
 ### Run a multi-part upload
 {: #python-examples-multipart}
@@ -399,7 +375,7 @@ Methods
 #### Upload binary file (preferred method)
 {: #python-examples-multipart-binary}
 
-The [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.upload_fileobj){: external} method of the [S3.Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){: external} class automatically runs a multi-part upload when necessary. The [TransferConfig](https://ibm.github.io/ibm-cos-sdk-python/reference/customizations/s3.html#s3-transfers){: external} class is used to determine the threshold for using the multi-part upload.
+The [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.upload_fileobj){: external} method of the S3 Object automatically runs a multi-part upload when necessary. The [TransferConfig](https://ibm.github.io/ibm-cos-sdk-python/reference/customizations/s3.html#s3-transfers){: external} class is used to determine the threshold for using the multi-part upload.
 
 ```python
 def multi_part_upload(bucket_name, item_name, file_path):
@@ -420,7 +396,9 @@ def multi_part_upload(bucket_name, item_name, file_path):
         # the upload_fileobj method will automatically execute a multi-part upload
         # in 5 MB chunks for all files over 15 MB
         with open(file_path, "rb") as file_data:
-            cos.Object(bucket_name, item_name).upload_fileobj(
+            cos_client.upload_fileobj(
+                Bucket=bucket_name,
+                Key=item_name,
                 Fileobj=file_data,
                 Config=transfer_config
             )
@@ -438,14 +416,9 @@ def multi_part_upload(bucket_name, item_name, file_path):
 #### SDK References
 {: #multipart-upload-sdk-refs}
 
-Classes
-
-* [Object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#object){: external}
-* [TransferConfig](https://ibm.github.io/ibm-cos-sdk-python/reference/customizations/s3.html#s3-transfers){: external}
-
 Methods
 
-* [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Object.upload_fileobj){: external}
+* [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.upload_fileobj){: external}
 
 #### Manually run a multi-part upload
 {: #python-examples-multipart-manual}
@@ -456,7 +429,7 @@ If wanted, the [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/se
 def multi_part_upload_manual(bucket_name, item_name, file_path):
     try:
         # create client object
-        cos_cli = ibm_boto3.client("s3",
+        cos_client = ibm_boto3.client("s3",
             ibm_api_key_id=COS_API_KEY_ID,
             ibm_service_instance_id=COS_SERVICE_CRN,
             config=Config(signature_version="oauth"),
@@ -466,7 +439,7 @@ def multi_part_upload_manual(bucket_name, item_name, file_path):
         print("Starting multi-part upload for {0} to bucket: {1}\n".format(item_name, bucket_name))
 
         # initiate the multi-part upload
-        mp = cos_cli.create_multipart_upload(
+        mp = cos_client.create_multipart_upload(
             Bucket=bucket_name,
             Key=item_name
         )
@@ -491,7 +464,7 @@ def multi_part_upload_manual(bucket_name, item_name, file_path):
 
                 file_data = file.read(part_size)
 
-                mp_part = cos_cli.upload_part(
+                mp_part = cos_client.upload_part(
                     Bucket=bucket_name,
                     Key=item_name,
                     PartNumber=part_num,
@@ -508,7 +481,7 @@ def multi_part_upload_manual(bucket_name, item_name, file_path):
                 position += part_size
 
         # complete upload
-        cos_cli.complete_multipart_upload(
+        cos_client.complete_multipart_upload(
             Bucket=bucket_name,
             Key=item_name,
             UploadId=upload_id,
@@ -519,7 +492,7 @@ def multi_part_upload_manual(bucket_name, item_name, file_path):
         print("Upload for {0} Complete!\n".format(item_name))
     except ClientError as be:
         # abort the upload
-        cos_cli.abort_multipart_upload(
+        cos_client.abort_multipart_upload(
             Bucket=bucket_name,
             Key=item_name,
             UploadId=upload_id
@@ -563,7 +536,7 @@ def upload_large_file(bucket_name, item_name, file_path):
     file_threshold = 1024 * 1024 * 5
 
     # Create client connection
-    cos_cli = ibm_boto3.client("s3",
+    cos_client = ibm_boto3.client("s3",
         ibm_api_key_id=COS_API_KEY_ID,
         ibm_service_instance_id=COS_SERVICE_CRN,
         config=Config(signature_version="oauth"),
@@ -577,7 +550,7 @@ def upload_large_file(bucket_name, item_name, file_path):
     )
 
     # create transfer manager
-    transfer_mgr = ibm_boto3.s3.transfer.TransferManager(cos_cli, config=transfer_config)
+    transfer_mgr = ibm_boto3.s3.transfer.TransferManager(cos_client, config=transfer_config)
 
     try:
         # initiate file upload
@@ -606,7 +579,7 @@ def get_bucket_contents_v2(bucket_name, max_keys):
     print("Retrieving bucket contents from: {0}".format(bucket_name))
     try:
         # create client object
-        cos_cli = ibm_boto3.client("s3",
+        cos_client = ibm_boto3.client("s3",
             ibm_api_key_id=COS_API_KEY_ID,
             ibm_service_instance_id=COS_SERVICE_CRN,
             config=Config(signature_version="oauth"),
@@ -616,7 +589,7 @@ def get_bucket_contents_v2(bucket_name, max_keys):
         next_token = ""
 
         while (more_results):
-            response = cos_cli.list_objects_v2(Bucket=bucket_name, MaxKeys=max_keys, ContinuationToken=next_token)
+            response = cos_client.list_objects_v2(Bucket=bucket_name, MaxKeys=max_keys, ContinuationToken=next_token)
             files = response["Contents"]
             for file in files:
                 print("Item: {0} ({1} bytes).".format(file["Key"], file["Size"]))
@@ -638,11 +611,7 @@ def get_bucket_contents_v2(bucket_name, max_keys):
 {: python}
 
 #### SDK References
-{: #list-items-sdk-refs}
-
-Classes
-
-* [S3.Client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){: external}
+{: #list-items-v2-sdk-refs}
 
 Methods
 
@@ -681,7 +650,8 @@ COS_KP_ROOTKEY_CRN = "<root-key-crn>"
 def create_bucket_kp(bucket_name):
     print("Creating new encrypted bucket: {0}".format(bucket_name))
     try:
-        cos.Bucket(bucket_name).create(
+        cos_client.create_bucket(
+            Bucket=bucket_name,
             CreateBucketConfiguration={
                 "LocationConstraint":COS_BUCKET_LOCATION
             },
@@ -707,15 +677,13 @@ def create_bucket_kp(bucket_name):
 #### SDK References
 {: #create-bucket-kp-sdk-refs}
 
-Classes
-
-* [Bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#bucket){: external}
-
 Methods
 
-* [create](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Bucket.create){: external}
+* [create_bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.create_bucket){: external}
 
 ## Using Aspera High-Speed Transfer
+**Legacy Notice**: Support for Aspera is considered legacy. Users are recommended to use [Aspera Transfer SDK](https://developer.ibm.com/apis/catalog/aspera--aspera-transfer-sdk){: external}.
+
 {: #python-examples-aspera}
 
 By installing the [Aspera high-speed transfer library](/docs/cloud-object-storage/basics?topic=cloud-object-storage-aspera#aspera-packaging), you can use high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license).
@@ -740,7 +708,7 @@ COS_RESOURCE_CRN = "<resource-instance-id>"
 COS_BUCKET_LOCATION = "<location>"
 
 # Create resource
-cos = ibm_boto3.client("s3",
+cos_client = ibm_boto3.client("s3",
     ibm_api_key_id=COS_API_KEY_ID,
     ibm_service_instance_id=COS_RESOURCE_CRN,
     config=Config(signature_version="oauth"),
@@ -1050,7 +1018,7 @@ There are two ways to update the metadata on an existing object:
 def update_metadata_put(bucket_name, item_name, key, value):
     try:
         # retrieve the existing item to reload the contents
-        response = cos_cli.get_object(Bucket=bucket_name, Key=item_name)
+        response = cos_client.get_object(Bucket=bucket_name, Key=item_name)
         existing_body = response.get("Body").read()
 
         # set the new metadata
@@ -1058,7 +1026,7 @@ def update_metadata_put(bucket_name, item_name, key, value):
             key: value
         }
 
-        cos_cli.put_object(Bucket=bucket_name, Key=item_name, Body=existing_body, Metadata=new_metadata)
+        cos_client.put_object(Bucket=bucket_name, Key=item_name, Body=existing_body, Metadata=new_metadata)
 
         print("Metadata update (PUT) for {0} Complete!\n".format(item_name))
     except ClientError as be:
@@ -1087,7 +1055,7 @@ def update_metadata_copy(bucket_name, item_name, key, value):
             "Key": item_name
         }
 
-        cos_cli.copy_object(Bucket=bucket_name, Key=item_name, CopySource=copy_source, Metadata=new_metadata, MetadataDirective="REPLACE")
+        cos_client.copy_object(Bucket=bucket_name, Key=item_name, CopySource=copy_source, Metadata=new_metadata, MetadataDirective="REPLACE")
 
         print("Metadata update (COPY) for {0} Complete!\n".format(item_name))
     except ClientError as be:
@@ -1119,7 +1087,7 @@ def add_protection_configuration_to_bucket(bucket_name):
             "MaximumRetention": {"Days": 1000}
         }
 
-        cos.put_bucket_protection_configuration(Bucket=bucket_name, ProtectionConfiguration=new_protection_config)
+        cos_client.put_bucket_protection_configuration(Bucket=bucket_name, ProtectionConfiguration=new_protection_config)
 
         print("Protection added to bucket {0}\n".format(bucket_name))
     except ClientError as be:
@@ -1137,7 +1105,7 @@ def add_protection_configuration_to_bucket(bucket_name):
 ```py
 def get_protection_configuration_on_bucket(bucket_name):
     try:
-        response = cos.get_bucket_protection_configuration(Bucket=bucket_name)
+        response = cos_client.get_bucket_protection_configuration(Bucket=bucket_name)
         protection_config = response.get("ProtectionConfiguration")
 
         print("Bucket protection config for {0}\n".format(bucket_name))
@@ -1167,13 +1135,11 @@ Objects in protected buckets that are no longer under retention (retention perio
 ```py
 def put_object_add_legal_hold(bucket_name, object_name, file_text, legal_hold_id):
     print("Add legal hold {0} to {1} in bucket {2} with a putObject operation.\n".format(legal_hold_id, object_name, bucket_name))
-
-    cos.put_object(
+    cos_client.put_object(
         Bucket=bucket_name,
         Key=object_name,
         Body=file_text,
         RetentionLegalHoldId=legal_hold_id)
-
     print("Legal hold {0} added to object {1} in bucket {2}\n".format(legal_hold_id, object_name, bucket_name))
 
 def copy_protected_object(source_bucket_name, source_object_name, destination_bucket_name, new_object_name):
@@ -1184,7 +1150,7 @@ def copy_protected_object(source_bucket_name, source_object_name, destination_bu
         "Key": source_object_name
     }
 
-    cos.copy_object(
+    cos_client.copy_object(
         Bucket=destination_bucket_name,
         Key=new_object_name,
         CopySource=copy_source,
@@ -1195,8 +1161,7 @@ def copy_protected_object(source_bucket_name, source_object_name, destination_bu
 
 def complete_multipart_upload_with_retention(bucket_name, object_name, upload_id, retention_period):
     print("Completing multi-part upload for object {0} in bucket {1}\n".format(object_name, bucket_name))
-
-    cos.complete_multipart_upload(
+    cos_client.complete_multipart_upload(
         Bucket=bucket_name,
         Key=object_name,
         MultipartUpload={
@@ -1218,7 +1183,7 @@ def upload_file_with_retention(bucket_name, object_name, path_to_file, retention
         "RetentionPeriod": retention_period
     }
 
-    cos.upload_file(
+    cos_client.upload_file(
         Filename=path_to_file,
         Bucket=bucket_name,
         Key=object_name,
@@ -1236,20 +1201,20 @@ def upload_file_with_retention(bucket_name, object_name, path_to_file, retention
 
 The object can support 100 legal holds:
 
-* A legal hold identifier is a string of maximum length 64 characters and a minimum length of 1 character. Valid characters are letters, numbers, `!`, `_`, `.`, `*`, `(`, `)`, `-` and `.
+* A legal hold identifier is a string of maximum length 64 characters and a minimum length of 1 character. Valid characters are letters, numbers, and the symbols `!`, `_`, `.`, `*`, `(`, `)`, and `-`.
 * If the addition of the given legal hold exceeds 100 total legal holds on the object, the new legal hold will not be added, a `400` error is returned.
 * If an identifier is too long, it will not be added to the object and a `400` error is returned.
 * If an identifier contains invalid characters, it will not be added to the object and a `400` error is returned.
 * If an identifier is already in use on an object, the existing legal hold is not modified and the response indicates that the identifier was already in use with a `409` error.
 * If an object does not have retention period metadata, a `400` error is returned and adding or removing a legal hold is not allowed.
 
-The user making adding or removing a legal hold must have `Manager` permissions for this bucket.
+To add or remove a legal hold, you must have `Manager` permissions for this bucket.
 
 ```py
 def add_legal_hold_to_object(bucket_name, object_name, legal_hold_id):
     print("Adding legal hold {0} to object {1} in bucket {2}\n".format(legal_hold_id, object_name, bucket_name))
 
-    cos.add_legal_hold(
+    cos_client.add_legal_hold(
         Bucket=bucket_name,
         Key=object_name,
         RetentionLegalHoldId=legal_hold_id
@@ -1260,7 +1225,7 @@ def add_legal_hold_to_object(bucket_name, object_name, legal_hold_id):
 def delete_legal_hold_from_object(bucket_name, object_name, legal_hold_id):
     print("Deleting legal hold {0} from object {1} in bucket {2}\n".format(legal_hold_id, object_name, bucket_name))
 
-    cos.delete_legal_hold(
+    cos_client.delete_legal_hold(
         Bucket=bucket_name,
         Key=object_name,
         RetentionLegalHoldId=legal_hold_id
@@ -1291,7 +1256,7 @@ Objects in protected buckets that are no longer under retention (retention perio
 def extend_retention_period_on_object(bucket_name, object_name, additional_seconds):
     print("Extend the retention period on {0} in bucket {1} by {2} seconds.\n".format(object_name, bucket_name, additional_seconds))
 
-    cos.extend_object_retention(
+    cos_client.extend_object_retention(
         Bucket=bucket_ame,
         Key=object_name,
         AdditionalRetentionPeriod=additional_seconds
@@ -1323,7 +1288,7 @@ If there is no retention period that is specified on the object, a `404` error i
 def list_legal_holds_on_object(bucket_name, object_name):
     print("List all legal holds on object {0} in bucket {1}\n".format(object_name, bucket_name));
 
-    response = cos.list_legal_holds(
+    response = cos_client.list_legal_holds(
         Bucket=bucket_name,
         Key=object_name
     )
@@ -1345,11 +1310,8 @@ def putBucketWebsiteConfiguration(bucket_name):
         'ErrorDocument': {'Key': 'error.html'},
         'IndexDocument': {'Suffix': 'index.html'},
     }
-
-    cos.put_bucket_website(Bucket=bucket_name, WebsiteConfiguration=website_defaults)
-
+    cos_client.put_bucket_website(Bucket=bucket_name, WebsiteConfiguration=website_defaults)
     print("Website configuration set on bucket {0}\n".format(bucket_name))
-
 ```
 
 {: codeblock}
