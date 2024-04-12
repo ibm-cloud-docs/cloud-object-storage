@@ -634,11 +634,11 @@ public static void deleteItems(String bucketName) {
 
 *SDK References*
 * Classes
-    * [DeleteObjectsRequest](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/DeleteObjectsRequest.html){: external}
-    * [DeleteObjectsResult](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/DeleteObjectsResult.html){: external}
-    * [DeleteObjectsResult.DeletedObject](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/DeleteObjectsResult.DeletedObject.html){: external}
+    * [`DeleteObjectsRequest`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/DeleteObjectsRequest.html){: external}
+    * [`DeleteObjectsResult`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/DeleteObjectsResult.html){: external}
+    * [`DeleteObjectsResult.DeletedObject`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/DeleteObjectsResult.DeletedObject.html){: external}
 * Methods
-    * [deleteObjects](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3Client.html#deleteObjects-com.ibm.cloud.objectstorage.services.s3.model.DeleteObjectsRequest-){: external}
+    * [`deleteObjects`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3Client.html#deleteObjects-com.ibm.cloud.objectstorage.services.s3.model.DeleteObjectsRequest-){: external}
 
 ### Delete a bucket
 {: #java-examples-delete-bucket}
@@ -653,7 +653,7 @@ public static void deleteBucket(String bucketName) {
 
 *SDK References*
 * Methods
-    * [deleteBucket](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#deleteBucket-java.lang.String-){: external}
+    * [`deleteBucket`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#deleteBucket-java.lang.String-){: external}
 
 
 ### Check if an object is publicly readable
@@ -677,7 +677,7 @@ public static void getItemACL(String bucketName, String itemName) {
 * Classes
     * [`AccessControlList`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/AccessControlList.html){: external}
     * [`Grant`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/Grant.html){: external}
-* Methods 
+* Methods
     * [`getObjectAcl`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#getObjectAcl-java.lang.String-java.lang.String-){: external}
 
 ### Execute a multi-part upload
@@ -708,7 +708,7 @@ public static void multiPartUpload(String bucketName, String itemName, String fi
         for (int partNum = 1; position < fileSize; partNum++) {
             partSize = Math.min(partSize, (fileSize - position));
 
-            System.out.printf("Uploading to %s (part %s of %s)\n", name, partNum, partCount);  
+            System.out.printf("Uploading to %s (part %s of %s)\n", name, partNum, partCount);
 
             UploadPartRequest upRequest = new UploadPartRequest()
                     .withBucketName(bucketName)
@@ -723,7 +723,7 @@ public static void multiPartUpload(String bucketName, String itemName, String fi
             dataPacks.add(upResult.getPartETag());
 
             position += partSize;
-        } 
+        }
 
         //complete upload
         _cos.completeMultipartUpload(new CompleteMultipartUploadRequest(bucketName, itemName, uploadID, dataPacks));
