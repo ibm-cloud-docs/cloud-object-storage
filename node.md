@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-02-20"
+lastupdated: "2024-04-12"
 
 keywords: object storage, node, javascript, sdk
 
@@ -287,7 +287,7 @@ function deleteItems(bucketName) {
 {: javascript}
 
 *SDK References*
-* [deleteObjects](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteObjects-property){: external}
+* [`deleteObjects`](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteObjects-property){: external}
 
 ### Delete a bucket
 {: #node-examples-delete-bucket}
@@ -310,7 +310,7 @@ function deleteBucket(bucketName) {
 {: javascript}
 
 *SDK References*
-* [deleteBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteBucket-property){: external}
+* [`deleteBucket`](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteBucket-property){: external}
 
 
 ### Execute a multi-part upload
@@ -558,7 +558,7 @@ function deleteLifecycleConfiguration(bucketName) {
 {: javascript}
 
 *SDK References*
-* [deleteBucketLifecycle](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){: external}
+* [`deleteBucketLifecycle`](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){: external}
 
 ### Temporarily restore an object
 {: #node-examples-restore-object}
