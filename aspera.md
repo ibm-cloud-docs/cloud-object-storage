@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-02-20"
+lastupdated: "2024-04-12"
 
-keywords: aspera, high speed, big data, packet loss
+keywords: aspera, high speed, big data, packet loss, sdk
 
 subcollection: cloud-object-storage
 
@@ -29,7 +29,7 @@ Instead of the standard HTTP `PUT` operation, Aspera high-speed transfer uploads
 - Customize transfer speeds and default preferences
 - Transfers can be viewed, paused, resumed, or cancelled independently
 
-Aspera high-speed transfer is available in the {{site.data.keyword.cloud_notm}} [console](#aspera-console) and can also be used programmatically by using an [SDK](#aspera-sdk).
+Aspera high-speed transfer is available in the {{site.data.keyword.cloud_notm}} [console](#aspera-console) and can also be used programmatically by using the [Aspera Transfer SDK](https://developer.ibm.com/apis/catalog/aspera--aspera-transfer-sdk){: external}.
 
 Aspera high-speed transfer is available in certain regions only. See [Integrated Services](/docs/cloud-object-storage/basics?topic=cloud-object-storage-service-availability) for more details.
 {: tip}

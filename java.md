@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-11-25"
+  years: 2017, 2024
+lastupdated: "2024-04-12"
 
 keywords: object storage, java, sdk
 
@@ -19,8 +19,8 @@ subcollection: cloud-object-storage
 {:tip: .tip}
 {:important: .important}
 {:note: .note}
-{:download: .download} 
-{:http: .ph data-hd-programlang='http'} 
+{:download: .download}
+{:http: .ph data-hd-programlang='http'}
 {:java: .ph data-hd-programlang='java'}
 {:go: .ph data-hd-programlang='go'}
 {:faq: data-hd-content-type='faq'}
@@ -57,7 +57,7 @@ Maven uses a file that is called `pom.xml` to specify the libraries (and their v
     </dependencies>
 </project>
 ```
-{:codeblock}
+{: codeblock}
 
 ## Migrating from 1.x.x
 {: #java-migrate}
@@ -91,7 +91,7 @@ If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_creden
 {: #java-examples}
 
 In your code, you must remove the angled brackets or any other excess characters that are provided here as illustration.
-{: note} 
+{: note}
 
 Let's start with an complete example class that will run through some basic functionality, then explore the classes individually. This `CosExample` class will list objects in an existing bucket, create a new bucket, and then list all buckets in the service instance. 
 
@@ -187,7 +187,7 @@ Let's start with an complete example class that will run through some basic func
     }
 
 ```
-{:codeblock}
+{: codeblock}
 
 ### Initializing configuration
 {: #java-examples-config}
@@ -250,8 +250,8 @@ The methods below can be used to determine the service endpoint based on the buc
 
 ```java
 /**
-* Returns a service endpoint based on the 
-* storage class location (i.e. us-standard, us-south-standard), 
+* Returns a service endpoint based on the
+* storage class location (i.e. us-standard, us-south-standard),
 * endpoint type (public or private)
 */
 public static String getEndpoint(String location, String endPointType) {
@@ -259,8 +259,8 @@ public static String getEndpoint(String location, String endPointType) {
 }
 
 /**
-* Returns a service endpoint based on the 
-* storage class location (i.e. us-standard, us-south-standard), 
+* Returns a service endpoint based on the
+* storage class location (i.e. us-standard, us-south-standard),
 * specific region if desired (i.e. sanjose, amsterdam) - only use if you want a specific regional endpoint,
 * endpoint type (public or private)
 */
@@ -319,7 +319,7 @@ cos.createBucket("sample", "us-vault"); // the name of the bucket, and the stora
 ```
 
 *SDK References*
-* [createBucket](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#createBucket-java.lang.String-){: external}
+* [`createBucket`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#createBucket-java.lang.String-){: external}
 
 
 
@@ -329,16 +329,16 @@ cos.createBucket("sample", "us-vault"); // the name of the bucket, and the stora
 ```java
 public static void createTextFile(String bucketName, String itemName, String fileText) {
     System.out.printf("Creating new item: %s\n", itemName);
-    
+
     byte[] arr = fileText.getBytes(StandardCharsets.UTF_8);
     InputStream newStream = new ByteArrayInputStream(arr);
-    
+
     ObjectMetadata metadata = new ObjectMetadata();
     metadata.setContentLength(arr.length);
-    
+
     PutObjectRequest req = new PutObjectRequest(bucketName, itemName, newStream, metadata);
     _cos.putObject(req);
-    
+
     System.out.printf("Item: %s created!\n", itemName);
 }
 ```
@@ -386,7 +386,7 @@ cos.putObject(
 Alternatively, you can use a `CipherInputStream` to more easily encrypt the data stream without needing to overload the existing `InputStream` object.
 
 ```java
-public CipherInputStream encryptStream(InputStream inputStream) { 
+public CipherInputStream encryptStream(InputStream inputStream) {
        // Generate key
        KeyGenerator kgen = KeyGenerator.getInstance("AES");
        kgen.init(128);
@@ -396,7 +396,7 @@ public CipherInputStream encryptStream(InputStream inputStream) {
        cipher.init(Cipher.ENCRYPT_MODE, aesKey);
        CipherInputStream cis = new CipherInputStream(inputStream, cipher);
        return cis;
-} 
+}
 ```
 
 ### Download object to a file
@@ -488,7 +488,7 @@ Caused by: java.lang.ClassNotFoundException: javax.xml.bind.JAXBException
     <artifactId>jaxb-api</artifactId>
     <version>2.3.0</version>
 </dependency>
-``` 
+```
 
 ### List available buckets
 {: #java-examples-list-buckets}
@@ -554,7 +554,6 @@ public static void getBucketContentsV2(String bucketName, int maxKeys) {
     * [getObjectSummaries](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html#getObjectSummaries--){: external}
     * [getNextContinuationToken](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html#getNextContinuationToken--){: external}
     * [listObjectsV2](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){: external}
-  
 
 ### Get file contents of particular item
 {: #java-examples-get-contents}
@@ -623,7 +622,7 @@ public static void deleteItems(String bucketName) {
     );
 
     DeleteObjectsResult res = _cos.deleteObjects(req);
-    
+
     System.out.printf("Deleted items for %s\n", bucketName);
 
     List<DeleteObjectsResult.DeletedObject> deletedItems = res.getDeletedObjects();
@@ -635,12 +634,12 @@ public static void deleteItems(String bucketName) {
 
 *SDK References*
 * Classes
-    * [DeleteObjectsRequest](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/DeleteObjectsRequest.html){: external}
-    * [DeleteObjectsResult](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/DeleteObjectsResult.html){: external}
-    * [DeleteObjectsResult.DeletedObject](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/DeleteObjectsResult.DeletedObject.html){: external}
+    * [`DeleteObjectsRequest`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/DeleteObjectsRequest.html){: external}
+    * [`DeleteObjectsResult`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/DeleteObjectsResult.html){: external}
+    * [`DeleteObjectsResult.DeletedObject`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/DeleteObjectsResult.DeletedObject.html){: external}
 * Methods
-    * [deleteObjects](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3Client.html#deleteObjects-com.ibm.cloud.objectstorage.services.s3.model.DeleteObjectsRequest-){: external}
-  
+    * [`deleteObjects`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3Client.html#deleteObjects-com.ibm.cloud.objectstorage.services.s3.model.DeleteObjectsRequest-){: external}
+
 ### Delete a bucket
 {: #java-examples-delete-bucket}
 
@@ -654,7 +653,7 @@ public static void deleteBucket(String bucketName) {
 
 *SDK References*
 * Methods
-    * [deleteBucket](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#deleteBucket-java.lang.String-){: external}
+    * [`deleteBucket`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#deleteBucket-java.lang.String-){: external}
 
 
 ### Check if an object is publicly readable
@@ -676,10 +675,10 @@ public static void getItemACL(String bucketName, String itemName) {
 
 *SDK References*
 * Classes
-    * [AccessControlList](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/AccessControlList.html){: external}
-    * [Grant](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/Grant.html){: external}
-* Methods 
-    * [getObjectAcl](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#getObjectAcl-java.lang.String-java.lang.String-){: external}
+    * [`AccessControlList`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/AccessControlList.html){: external}
+    * [`Grant`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/Grant.html){: external}
+* Methods
+    * [`getObjectAcl`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#getObjectAcl-java.lang.String-java.lang.String-){: external}
 
 ### Execute a multi-part upload
 {: #java-examples-multipart-object}
@@ -709,7 +708,7 @@ public static void multiPartUpload(String bucketName, String itemName, String fi
         for (int partNum = 1; position < fileSize; partNum++) {
             partSize = Math.min(partSize, (fileSize - position));
 
-            System.out.printf("Uploading to %s (part %s of %s)\n", name, partNum, partCount);  
+            System.out.printf("Uploading to %s (part %s of %s)\n", name, partNum, partCount);
 
             UploadPartRequest upRequest = new UploadPartRequest()
                     .withBucketName(bucketName)
@@ -724,7 +723,7 @@ public static void multiPartUpload(String bucketName, String itemName, String fi
             dataPacks.add(upResult.getPartETag());
 
             position += partSize;
-        } 
+        }
 
         //complete upload
         _cos.completeMultipartUpload(new CompleteMultipartUploadRequest(bucketName, itemName, uploadID, dataPacks));
@@ -768,7 +767,7 @@ public static void largeObjectUpload(String bucketName, String itemName, String 
 
     System.out.println("Starting large file upload with TransferManager");
 
-    //set the part size to 5 MB    
+    //set the part size to 5 MB
     long partSize = 1024 * 1024 * 5;
 
     //set the threshold size to 5 MB
@@ -791,7 +790,7 @@ public static void largeObjectUpload(String bucketName, String itemName, String 
         System.out.println("Large file upload complete!");
     }
     catch (SdkClientException e) {
-        System.out.printf("Upload error: %s\n", e.getMessage());            
+        System.out.printf("Upload error: %s\n", e.getMessage());
     }
     finally {
         transferManager.shutdownNow();
@@ -808,7 +807,6 @@ public static void largeObjectUpload(String bucketName, String itemName, String 
     * [shutdownNow](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html#shutdownNow--){: external}
     * [upload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html#upload-java.lang.String-java.lang.String-java.io.File-){: external}
     * [waitForCompletion](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/internal/AbstractTransfer.html#waitForCompletion--){: external}
-    
 
 ## Using Key Protect
 {: #java-examples-kp}
@@ -859,10 +857,10 @@ public static void createBucketKP(String bucketName) {
 
 *SDK References*
 * Classes
-    * [CreateBucketRequest](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/CreateBucketRequest.html){: external}
-    * [EncryptionType](https://ibm.github.io/ibm-cos-sdk-java/){: external}
+    * [`CreateBucketRequest`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/CreateBucketRequest.html){: external}
+    * [`EncryptionType`](https://ibm.github.io/ibm-cos-sdk-java/){: external}
 * Methods
-    * [createBucket](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#createBucket-com.ibm.cloud.objectstorage.services.s3.model.CreateBucketRequest-){: external}
+    * [`createBucket`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#createBucket-com.ibm.cloud.objectstorage.services.s3.model.CreateBucketRequest-){: external}
 
 ### New Headers for Key Protect
 {: #java-examples-kp-headers}
@@ -929,6 +927,7 @@ if (result instanceof ObjectListing) {
 
 #### HEAD bucket
 {: #java-examples-kp-head}
+
 The additional headers have been defined within Headers class:
 
 ```java
@@ -953,7 +952,7 @@ String crn = result.getIBMSSEKPCUSTOMERROOTKEYCRN();
 ## Using Aspera High-Speed Transfer
 {: #java-examples-aspera}
 
-By installing the [Aspera high-speed transfer library](/docs/cloud-object-storage/basics?topic=cloud-object-storage-aspera#aspera-packaging) you can utilize high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license). 
+By installing the [Aspera high-speed transfer library](/docs/cloud-object-storage/basics?topic=cloud-object-storage-aspera#aspera-packaging) you can utilize high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license).
 
 Each Aspera high-speed transfer session spawns an individual `ascp` process that runs on the client machine to perform the transfer. Ensure that your computing environment can allow this process to run.
 {:tip}
@@ -981,7 +980,7 @@ AsperaTransferManagerConfig transferConfig = new AsperaTransferManagerConfig()
 AsperaConfig asperaConfig = new AsperaConfig()
     .withTargetRateMbps(2500L)
     .withMultiSessionThresholdMb(100);
-    
+
 TokenManager tokenManager = new DefaultTokenManager(new DelegateTokenProvider(API_KEY));
 
 AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_KEY, s3Client)
@@ -1010,13 +1009,13 @@ AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_K
 ```
 
 For best performance in most scenarios, always make use of multiple sessions to minimize any processing associated with instantiating an Aspera high-speed transfer. **If your network capacity is at least 1 Gbps you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
-{:tip}
+{: tip}
 
 *Key Values*
 * `API_KEY` - An API key for a user or service ID with Writer or Manager roles
 
 You will need to provide an IAM API Key for constructing an `AsperaTransferManager`. [HMAC Credentials](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){: external} are **NOT** currently supported. For more information on IAM, [click here](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview).
-{:tip}
+{: tip}
 
 ### File Upload
 {: #java-examples-aspera-upload}
@@ -1244,7 +1243,7 @@ The SDK provides the ability to manage the progress of file/directory transfers 
 * `cancel()`
 
 There are no side-effects from calling either of the methods outlined above. Proper clean up and housekeeping is handled by the SDK.
-{:tip}
+{: tip}
 
 The following example shows a possible use for these methods:
 
@@ -1383,6 +1382,7 @@ uploadPart(UploadPartRequest request)
 -->
 ## Updating Metadata
 {: #java-examples-metadata}
+
 There are two ways to update the metadata on an existing object:
 * A `PUT` request with the new metadata and the original object contents
 * Executing a `COPY` request with the new metadata specifying the original object as the copy source
@@ -1415,14 +1415,14 @@ public static void updateMetadataPut(String bucketName, String itemName, String 
     HashMap<String, String> userMetadata = new HashMap<String, String>();
     userMetadata.put(key, value);
 
-    ObjectMetadata metadata = new ObjectMetadata();   
+    ObjectMetadata metadata = new ObjectMetadata();
     metadata.setContentLength(contentLength);
-    metadata.setUserMetadata(userMetadata);     
+    metadata.setUserMetadata(userMetadata);
 
     PutObjectRequest req = new PutObjectRequest(bucketName, itemName, itemCopy, metadata);
 
     _cos.putObject(req);
-    
+
     System.out.printf("Updated metadata for item %s from bucket %s\n", itemName, bucketName);
 }
 ```
@@ -1438,8 +1438,8 @@ public static void updateMetadataCopy(String bucketName, String itemName, String
     HashMap<String, String> userMetadata = new HashMap<String, String>();
     userMetadata.put(key, value);
 
-    ObjectMetadata metadata = new ObjectMetadata();   
-    metadata.setUserMetadata(userMetadata);     
+    ObjectMetadata metadata = new ObjectMetadata();
+    metadata.setUserMetadata(userMetadata);
 
     //set the copy source to itself
     CopyObjectRequest req = new CopyObjectRequest(bucketName, itemName, bucketName, itemName);
@@ -1457,9 +1457,9 @@ public static void updateMetadataCopy(String bucketName, String itemName, String
 ### Add a protection configuration to an existing bucket
 {: #java-examples-immutable-enable}
 
-This implementation of the `PUT` operation uses the `protection` query parameter to set the retention parameters for an existing bucket. This operation allows you to set or change the minimum, default, and maximum retention period. This operation also allows you to change the protection state of the bucket. 
+This implementation of the `PUT` operation uses the `protection` query parameter to set the retention parameters for an existing bucket. This operation allows you to set or change the minimum, default, and maximum retention period. This operation also allows you to change the protection state of the bucket.
 
-Objects written to a protected bucket cannot be deleted until the protection period has expired and all legal holds on the object are removed. The bucket's default retention value is given to an object unless an object specific value is provided when the object is created. Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object. 
+Objects written to a protected bucket cannot be deleted until the protection period has expired and all legal holds on the object are removed. The bucket's default retention value is given to an object unless an object specific value is provided when the object is created. Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
 
 The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are a minimum of 0 days and a maximum of 365243 days (1000 years). 
 
@@ -1526,7 +1526,7 @@ public static void getProtectionConfigurationOnBucket(String bucketName) {
 Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
 
 |Value	| Type	| Description |
-| --- | --- | --- | 
+| --- | --- | --- |
 |`Retention-Period` | Non-negative integer (seconds) | Retention period to store on the object in seconds. The object can be neither overwritten nor deleted until the amount of time specified in the retention period has elapsed. If this field and `Retention-Expiration-Date` are specified a `400`  error is returned. If neither is specified the bucket's `DefaultRetention` period will be used. Zero (`0`) is a legal value assuming the bucket's minimum retention period is also `0`. |
 | `Retention-expiration-date` | Date (ISO 8601 Format) | Date on which it will be legal to delete or modify the object. You can only specify this or the Retention-Period header. If both are specified a `400`  error will be returned. If neither is specified the bucket's DefaultRetention period will be used. |
 | `Retention-legal-hold-id` | string | A single legal hold to apply to the object. A legal hold is a Y character long string. The object cannot be overwritten or deleted until all legal holds associated with the object are removed. |
@@ -1557,13 +1557,13 @@ public static void copyProtectedObject(String sourceBucketName, String sourceObj
     System.out.printf("Copy protected object %s from bucket %s to %s/%s.\n", sourceObjectName, sourceBucketName, destinationBucketName, newObjectName);
 
     CopyObjectRequest req = new CopyObjectRequest(
-        sourceBucketName, 
-        sourceObjectName, 
-        destinationBucketName, 
+        sourceBucketName,
+        sourceObjectName,
+        destinationBucketName,
         newObjectName
     );
     req.setRetentionDirective(RetentionDirective.COPY);
-    
+
 
     cos.copyObject(req);
 
@@ -1593,8 +1593,8 @@ public static void addLegalHoldToObject(String bucketName, String objectName, St
     System.out.printf("Adding legal hold %s to object %s in bucket %s\n", legalHoldId, objectName, bucketName);
 
     cos.addLegalHold(
-        bucketName, 
-        objectName, 
+        bucketName,
+        objectName,
         legalHoldId
     );
 
@@ -1605,8 +1605,8 @@ public static void deleteLegalHoldFromObject(String bucketName, String objectNam
     System.out.printf("Deleting legal hold %s from object %s in bucket %s\n", legalHoldId, objectName, bucketName);
 
     cos.deleteLegalHold(
-        bucketName, 
-        objectName, 
+        bucketName,
+        objectName,
         legalHoldId
     );
 
@@ -1635,7 +1635,7 @@ public static void extendRetentionPeriodOnObject(String bucketName, String objec
     System.out.printf("Extend the retention period on %s in bucket %s by %s seconds.\n", objectName, bucketName, additionalSeconds);
 
     ExtendObjectRetentionRequest req = new ExtendObjectRetentionRequest(
-        bucketName, 
+        bucketName,
         objectName)
         .withAdditionalRetentionPeriod(additionalSeconds);
 
@@ -1666,7 +1666,7 @@ public static void listLegalHoldsOnObject(String bucketName, String objectName) 
     System.out.printf("List all legal holds on object %s in bucket %s\n", objectName, bucketName);
 
     ListLegalHoldsResult result = cos.listLegalHolds(
-        bucketName, 
+        bucketName,
         objectName
     );
 
@@ -1704,4 +1704,3 @@ cosClient.setBucketWebsiteConfiguration("<bucket_name>", new BucketWebsiteConfig
 {: #java-guide-next-steps}
 
  For more information, [see the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/){: external}. The source code for the project can be found in the [GitHub repository](https://github.com/ibm/ibm-cos-sdk-java){: external}.
- 
