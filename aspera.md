@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-02-20"
+lastupdated: "2024-04-12"
 
-keywords: aspera, high speed, big data, packet loss
+keywords: aspera, high speed, big data, packet loss, sdk
 
 subcollection: cloud-object-storage
 
