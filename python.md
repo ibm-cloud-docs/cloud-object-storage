@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-11"
+lastupdated: "2024-04-12"
 
 keywords: object storage, python, sdk, aspera, apache, asperatransfermanager
 
@@ -25,7 +25,7 @@ Source code can be found at [GitHub](https://github.com/ibm/ibm-cos-sdk-python/)
 The `ibm_boto3` library provides complete access to the {{site.data.keyword.cos_full}} API. Endpoints, an API key, and the instance ID must be specified during creation of a service resource or low-level client as shown in the following basic examples.
 
 The service instance ID is also referred to as a _resource instance ID_. The value can be found by creating a [service credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), or through the CLI.
-{:tip}
+{: tip}
 
 Detailed documentation can be found at [here](https://ibm.github.io/ibm-cos-sdk-python/){: external}.
 
@@ -74,10 +74,10 @@ In your code, you must remove the angled brackets or any other excess characters
 This example creates a `resource` object. A resource provides an object-oriented interface to COS. This allows for a higher level of abstraction than the low-level calls provided by a client object. 
 
 Note that some operations (such as Aspera high-speed transfer) require a `client` object. Aspera itself requires Python version 3.6.
-{:important}
+{: important}
 
 **Legacy Notice**: Support for Aspera is considered legacy. Instead, use the [Aspera Transfer SDK](https://developer.ibm.com/apis/catalog/aspera--aspera-transfer-sdk/API%20Reference).
-{:important}
+{: important}
 
 ```python
 import ibm_boto3
@@ -297,7 +297,7 @@ def delete_item(bucket_name, object_name):
 
 Methods
 
-* [delete_object](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_object){: external}
+* [`delete_object`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_object){: external}
 
 ### Delete multiple items from a bucket
 {: #python-examples-delete-multiple-objects}
@@ -339,7 +339,7 @@ def delete_items(bucket_name):
 
 Methods
 
-* [delete_objects](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_objects){: external}
+* [`delete_objects`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_objects){: external}
 
 ### Delete a bucket
 {: #python-examples-delete-bucket}
@@ -364,10 +364,10 @@ def delete_bucket(bucket_name):
 
 Methods
 
-* [delete_bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_bucket){: external}
+* [`delete_bucket`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.delete_bucket){: external}
 
 The bucket names are reserved for 10 - 15 minutes after deletion.
-{:note}
+{: note}
 
 ### Run a multi-part upload
 {: #python-examples-multipart}
@@ -375,7 +375,7 @@ The bucket names are reserved for 10 - 15 minutes after deletion.
 #### Upload binary file (preferred method)
 {: #python-examples-multipart-binary}
 
-The [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.upload_fileobj){: external} method of the S3 Object automatically runs a multi-part upload when necessary. The [TransferConfig](https://ibm.github.io/ibm-cos-sdk-python/reference/customizations/s3.html#s3-transfers){: external} class is used to determine the threshold for using the multi-part upload.
+The [`upload_fileobj`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.upload_fileobj){: external} method of the S3 Object automatically runs a multi-part upload when necessary. The [TransferConfig](https://ibm.github.io/ibm-cos-sdk-python/reference/customizations/s3.html#s3-transfers){: external} class is used to determine the threshold for using the multi-part upload.
 
 ```python
 def multi_part_upload(bucket_name, item_name, file_path):
@@ -418,7 +418,7 @@ def multi_part_upload(bucket_name, item_name, file_path):
 
 Methods
 
-* [upload_fileobj](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.upload_fileobj){: external}
+* [`upload_fileobj`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.upload_fileobj){: external}
 
 #### Manually run a multi-part upload
 {: #python-examples-multipart-manual}
@@ -506,7 +506,7 @@ def multi_part_upload_manual(bucket_name, item_name, file_path):
 {: codeblock}
 {: python}
 
-#### SDK References
+#### SDK References continued
 {: #manual-multipart-upload-sdk-refs}
 
 Classes
@@ -615,10 +615,11 @@ def get_bucket_contents_v2(bucket_name, max_keys):
 
 Methods
 
-* [list_objects_v2](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){: external}
+* [`list_objects_v2`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){: external}
 
 ## Using Key Protect
 {: #python-examples-kp}
+
 Key Protect can be added to a storage bucket to encrypt sensitive data at rest in the cloud.
 
 ### Before You Begin
@@ -679,23 +680,23 @@ def create_bucket_kp(bucket_name):
 
 Methods
 
-* [create_bucket](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.create_bucket){: external}
+* [`create_bucket`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.create_bucket){: external}
 
 ## Using Aspera High-Speed Transfer
-**Legacy Notice**: Support for Aspera is considered legacy. Users are recommended to use [Aspera Transfer SDK](https://developer.ibm.com/apis/catalog/aspera--aspera-transfer-sdk){: external}.
-
 {: #python-examples-aspera}
+
+**Legacy Notice**: Support for Aspera is considered legacy. Users are recommended to use [Aspera Transfer SDK](https://developer.ibm.com/apis/catalog/aspera--aspera-transfer-sdk){: external}.
 
 By installing the [Aspera high-speed transfer library](/docs/cloud-object-storage/basics?topic=cloud-object-storage-aspera#aspera-packaging), you can use high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license).
 
 Each Aspera session creates an individual `ascp` process that runs on the client machine to perform the transfer. Ensure that your computing environment can allow this process to run.
-{:tip}
+{: tip}
 
 ### Initializing the AsperaTransferManager
 {: #python-examples-aspera-init}
 
 Before initializing the `AsperaTransferManager`, make sure that you have a working [`client`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){: external} (not a `resource` or `session`) object.
-{:important}
+{: important}
 
 ```python
 import ibm_boto3
@@ -722,7 +723,7 @@ transfer_manager = AsperaTransferManager(cos)
 {: python}
 
 You need to provide an IAM API Key for Aspera high-speed transfers. [HMAC Credentials](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){: external} are **NOT** currently supported. For more information on IAM, [click here](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview).
-{:tip}
+{: tip}
 
 To get the highest throughput, split the transfer into a specified number of parallel **sessions** that send chunks of data whose size is defined by a **threshold** value.
 
@@ -966,7 +967,7 @@ The SDK provides the ability to manage the progress of file/directory transfers 
 * `cancel()`
 
 There are no side-effects from calling either of the methods outlined above. Proper clean up and housekeeping is handled by the SDK.
-{:tip}
+{: tip}
 
 ```python
 # Create Transfer manager
