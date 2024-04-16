@@ -459,7 +459,7 @@ Classes
 
 *Methods
 
-* [putObject](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#putObject-com.ibm.cloud.objectstorage.services.s3.model.PutObjectRequest-){: external}
+* [`putObject`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#putObject-com.ibm.cloud.objectstorage.services.s3.model.PutObjectRequest-){: external}
 
 #### `putObject` Exception
 {: #java-examples-put-exception}
@@ -513,7 +513,7 @@ Classes
 
 Methods
 
-* [listBuckets](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listBuckets--){: external}
+* [`listBuckets`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listBuckets--){: external}
 
 ### List items in a bucket (v2)
 {: #java-examples-list-objects-v2}
@@ -621,7 +621,7 @@ public static void deleteItem(String bucketName, String itemName) {
 
 Methods
 
-* [deleteObject](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#deleteObject-java.lang.String-java.lang.String-){: external}
+* [`deleteObject`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#deleteObject-java.lang.String-java.lang.String-){: external}
 
 ### Delete multiple items from a bucket
 {: #java-examples-delete-objects}
@@ -785,7 +785,7 @@ Methods
 * [abortMultipartUpload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#abortMultipartUpload-com.ibm.cloud.objectstorage.services.s3.model.AbortMultipartUploadRequest-){: external}
 * [completeMultipartUpload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#completeMultipartUpload-com.ibm.cloud.objectstorage.services.s3.model.CompleteMultipartUploadRequest-){: external}
 * [initiateMultipartUpload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#initiateMultipartUpload-com.ibm.cloud.objectstorage.services.s3.model.InitiateMultipartUploadRequest-){: external}
-* [uploadPart](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#uploadPart-com.ibm.cloud.objectstorage.services.s3.model.UploadPartRequest-){: external}
+* [`uploadPart`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#uploadPart-com.ibm.cloud.objectstorage.services.s3.model.UploadPartRequest-){: external}
 
 ## Upload larger objects using a Transfer Manager
 {: #java-examples-transfer-manager}
@@ -844,12 +844,13 @@ Classes
 
 Methods
 
-* [shutdownNow](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html#shutdownNow--){: external}
+* [`shutdownNow`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html#shutdownNow--){: external}
 * [upload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html#upload-java.lang.String-java.lang.String-java.io.File-){: external}
 * [waitForCompletion](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/internal/AbstractTransfer.html#waitForCompletion--){: external}
 
 ## Using Key Protect
 {: #java-examples-kp}
+
 Key Protect can be added to a storage bucket to encrypt sensitive data at rest in the cloud.
 
 ### Before You Begin
@@ -1004,14 +1005,14 @@ String crn = result.getIBMSSEKPCUSTOMERROOTKEYCRN();
 By installing the [Aspera high-speed transfer library](/docs/cloud-object-storage/basics?topic=cloud-object-storage-aspera#aspera-packaging) you can utilize high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license).
 
 Each Aspera high-speed transfer session spawns an individual `ascp` process that runs on the client machine to perform the transfer. Ensure that your computing environment can allow this process to run.
-{:tip}
+{: tip}
 
 You will need instances of the S3 Client and IAM Token Manager classes to initialize the `AsperaTransferManager`. The `s3Client` is required to get FASP connection information for the COS target bucket. The `tokenManager` is required to allow the Aspera high-speed transfer SDK to authenticate with the COS target bucket.
 
 ### Initializing the `AsperaTransferManager`
 {: #java-examples-aspera-init}
 
-Before initializing the `AsperaTransferManager`, make sure you've got working [`s3Client`](#java-examples-config) and [`tokenManager`](#java-examples-config) objects. 
+Before initializing the `AsperaTransferManager`, make sure you've got working [`s3Client`](#java-examples-config) and [`tokenManager`](#java-examples-config) objects.
 
 It is advised to use `TokenManager tokenManager = new DefaultTokenManager(new DelegateTokenProvider(apiKey));` and avoid `.withTokenManager(tokenManager)` when building `AsperaTransferManager` with `AsperaTransferManagerBuilder`.
 {: note}
