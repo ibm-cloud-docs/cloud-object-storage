@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-12"
+lastupdated: "2024-04-16"
 
 keywords: object storage, java, sdk
 
@@ -41,7 +41,6 @@ The easiest way to use the {{site.data.keyword.cos_full_notm}} Java SDK is to us
 
 Maven uses a file that is called `pom.xml` to specify the libraries (and their versions) needed for a Java project. Here is an example `pom.xml` file for using the {{site.data.keyword.cos_full_notm}} Java SDK to connect to {{site.data.keyword.cos_short}}.
 
-
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -57,16 +56,8 @@ Maven uses a file that is called `pom.xml` to specify the libraries (and their v
     </dependencies>
 </project>
 ```
+
 {: codeblock}
-
-## Migrating from 1.x.x
-{: #java-migrate}
-
-The 2.0 release of the SDK introduces a namespacing change that allows an application to make use of the original AWS library to connect to AWS resources within the same application or environment. To migrate from 1.x to 2.0 some changes are necessary:
-
-1. Update by using Maven by changing all  `ibm-cos-java-sdk` dependency version tags to  `2.0.0` in the pom.xml. Verify that there are no SDK module dependencies in the pom.xml with a version earlier than  `2.0.0`.
-2. Update any import declarations from `amazonaws` to `ibm.cloud.objectstorage`.
-
 
 ## Creating a client and sourcing credentials
 {: #java-credentials}
@@ -77,7 +68,7 @@ After generating a [Service Credential](/docs/cloud-object-storage/iam?topic=clo
 
 If migrating from AWS S3, you can also source credentials data from  `~/.aws/credentials` in the format:
 
-```
+``` sh
 [default]
 aws_access_key_id = {API_KEY}
 aws_secret_access_key = {SERVICE_INSTANCE_ID}
@@ -93,7 +84,7 @@ If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_creden
 In your code, you must remove the angled brackets or any other excess characters that are provided here as illustration.
 {: note}
 
-Let's start with an complete example class that will run through some basic functionality, then explore the classes individually. This `CosExample` class will list objects in an existing bucket, create a new bucket, and then list all buckets in the service instance. 
+Let's start with an complete example class that will run through some basic functionality, then explore the classes individually. This `CosExample` class will list objects in an existing bucket, create a new bucket, and then list all buckets in the service instance.
 
 ### Gather required information
 {: #java-examples-prereqs}
@@ -138,7 +129,6 @@ Let's start with an complete example class that will run through some basic func
 
             System.out.println("Current time: " + LocalDateTime.now());
             AmazonS3 cosClient = createClient(apiKey, serviceInstanceId, endpointUrl, location);
-            
             listObjects(cosClient, bucketName);
             createBucket(cosClient, newBucketName, storageClass);
             listBuckets(cosClient);
@@ -187,6 +177,7 @@ Let's start with an complete example class that will run through some basic func
     }
 
 ```
+
 {: codeblock}
 
 ### Initializing configuration
@@ -226,22 +217,27 @@ public static AmazonS3 createClient(String api_key, String service_instance_id, 
 }
 ```
 
-*Key Values*
+#### Key Values
+{: #java-init-config-key-values}
+
 * `<endpoint>` - public endpoint for your cloud Object Storage (available from the [IBM Cloud Dashboard](https://cloud.ibm.com/resources){: external}). For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `<api-key>` - api key generated when creating the service credentials (write access is required for creation and deletion examples)
 * `<resource-instance-id>` - resource ID for your cloud Object Storage (available through [IBM Cloud CLI](/docs/cli?topic=cli-idt-cli) or [IBM Cloud Dashboard](https://cloud.ibm.com/resources){: external})
 * `<location>` - default location for your cloud Object Storage (must match the region that is used for `<endpoint>`)
 
-*SDK References*
-* Classes
-    * [AmazonS3ClientBuilder](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3ClientBuilder.html){: external}
-    * [AWSCredentials](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/auth/AWSCredentials.html){: external}
-    * [AWSStaticCredentialsProvider](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/auth/AWSStaticCredentialsProvider.html){: external}
-    * [BasicAWSCredentials](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/auth/BasicAWSCredentials.html){: external}
-    * [BasicIBMOAuthCredentials](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/oauth/BasicIBMOAuthCredentials.html){: external}
-    * [ClientConfiguration](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/ClientConfiguration.html){: external}
-    * [EndpointConfiguration](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/client/builder/AwsClientBuilder.EndpointConfiguration.html){: external}
-    * [SdkClientException](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/SdkClientException.html){: external}
+#### SDK References
+{: #java-init-config-sdk-refs}
+
+Classes
+
+* [AmazonS3ClientBuilder](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3ClientBuilder.html){: external}
+* [AWSCredentials](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/auth/AWSCredentials.html){: external}
+* [AWSStaticCredentialsProvider](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/auth/AWSStaticCredentialsProvider.html){: external}
+* [BasicAWSCredentials](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/auth/BasicAWSCredentials.html){: external}
+* [BasicIBMOAuthCredentials](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/oauth/BasicIBMOAuthCredentials.html){: external}
+* [ClientConfiguration](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/ClientConfiguration.html){: external}
+* [EndpointConfiguration](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/client/builder/AwsClientBuilder.EndpointConfiguration.html){: external}
+* [SdkClientException](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/SdkClientException.html){: external}
 
 ### Determining Endpoint
 {: #java-examples-endpoint}
@@ -309,7 +305,7 @@ public static void createBucket(String bucketName) {
 }
 ```
 
-#### Create a bucket with a different storage class
+### Create a bucket with a different storage class
 {: #java-examples-storage-class}
 
 A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes).
@@ -318,10 +314,10 @@ A list of valid provisioning codes for `LocationConstraint` can be referenced in
 cos.createBucket("sample", "us-vault"); // the name of the bucket, and the storage class (LocationConstraint)
 ```
 
-*SDK References*
+#### SDK References
+{: #java-create-bucket-diff-class-sdk-refs}
+
 * [`createBucket`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#createBucket-java.lang.String-){: external}
-
-
 
 ### Creating a new text file
 {: #java-examples-text-file}
@@ -453,29 +449,33 @@ cos.copyObject( // copy the Object, passing…
 );
 ```
 
-*SDK References*
-* Classes
-    * [ObjectMetadata](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ObjectMetadata.html){: external}
-    * [PutObjectRequest](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/PutObjectRequest.html){: external}
-* Methods
-    * [putObject](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#putObject-com.ibm.cloud.objectstorage.services.s3.model.PutObjectRequest-){: external}
+#### SDK References
+{: #java-copy-obj-sdk-refs}
 
+Classes
+
+* [ObjectMetadata](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ObjectMetadata.html){: external}
+* [PutObjectRequest](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/PutObjectRequest.html){: external}
+
+*Methods
+
+* [putObject](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#putObject-com.ibm.cloud.objectstorage.services.s3.model.PutObjectRequest-){: external}
 
 #### `putObject` Exception
 {: #java-examples-put-exception}
 
 The `putObject` method might throw the following exception even if the new object upload was successful:
 
-```
+```java
 Exception in thread "main" java.lang.NoClassDefFoundError: javax/xml/bind/JAXBException
-	at com.ibm.cloud.objectstorage.services.s3.AmazonS3Client.putObject(AmazonS3Client.java:1597)
-	at ibmcos.CoSExample.createTextFile(CoSExample.java:174)
-	at ibmcos.CoSExample.main(CoSExample.java:65)
+    at com.ibm.cloud.objectstorage.services.s3.AmazonS3Client.putObject(AmazonS3Client.java:1597)
+    at ibmcos.CoSExample.createTextFile(CoSExample.java:174)
+    at ibmcos.CoSExample.main(CoSExample.java:65)
 Caused by: java.lang.ClassNotFoundException: javax.xml.bind.JAXBException
-	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:582)
-	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:190)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:499)
-	... 3 more
+    at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:582)
+    at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:190)
+    at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:499)
+    ... 3 more
 ```
 
 **Root Cause:** The JAXB APIs are considered to be Java EE APIs, and are no longer contained on the default class path in Java SE 9.
@@ -503,11 +503,17 @@ public static void getBuckets() {
     }
 }
 ```
-*SDK References*
-* Classes
-    * [Bucket](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/Bucket.html){: external}
-* Methods
-    * [listBuckets](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listBuckets--){: external}
+
+#### SDK References
+{: #list-example-buckets-sdk-refs}
+
+Classes
+
+* [Bucket](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/Bucket.html){: external}
+
+Methods
+
+* [listBuckets](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listBuckets--){: external}
 
 ### List items in a bucket (v2)
 {: #java-examples-list-objects-v2}
@@ -531,7 +537,6 @@ public static void getBucketContentsV2(String bucketName, int maxKeys) {
         for(S3ObjectSummary objectSummary : result.getObjectSummaries()) {
             System.out.printf("Item: %s (%s bytes)\n", objectSummary.getKey(), objectSummary.getSize());
         }
-        
         if (result.isTruncated()) {
             nextToken = result.getNextContinuationToken();
             System.out.println("...More results in next batch!\n");
@@ -545,15 +550,20 @@ public static void getBucketContentsV2(String bucketName, int maxKeys) {
 }
 ```
 
-*SDK References*
-* Classes
-    * [ListObjectsV2Request](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Request.html){: external}
-    * [ListObjectsV2Result](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html){: external}
-    * [S3ObjectSummary](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/S3ObjectSummary.html){: external}
-* Methods
-    * [getObjectSummaries](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html#getObjectSummaries--){: external}
-    * [getNextContinuationToken](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html#getNextContinuationToken--){: external}
-    * [listObjectsV2](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){: external}
+#### SDK References
+{: #list-items-v2-sdk-refs}
+
+Classes
+
+* [ListObjectsV2Request](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Request.html){: external}
+* [ListObjectsV2Result](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html){: external}
+* [S3ObjectSummary](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/S3ObjectSummary.html){: external}
+
+Methods
+
+* [getObjectSummaries](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html#getObjectSummaries--){: external}
+* [getNextContinuationToken](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/ListObjectsV2Result.html#getNextContinuationToken--){: external}
+* [listObjectsV2](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#listObjectsV2-com.ibm.cloud.objectstorage.services.s3.model.ListObjectsV2Request-){: external}
 
 ### Get file contents of particular item
 {: #java-examples-get-contents}
@@ -584,11 +594,16 @@ public static void getItem(String bucketName, String itemName) {
 }
 ```
 
-*SDK References*
-* Classes
-    * [GetObjectRequest](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/GetObjectRequest.html){: external}
-* Methods
-    * [getObject](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#getObject-com.ibm.cloud.objectstorage.services.s3.model.GetObjectRequest-java.io.File-){: external}
+#### SDK References
+{: #java-examples-get-contents-sdk-refs}
+
+Classes
+
+* [GetObjectRequest](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/GetObjectRequest.html){: external}
+
+Methods
+
+* [getObject](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#getObject-com.ibm.cloud.objectstorage.services.s3.model.GetObjectRequest-java.io.File-){: external}
 
 ### Delete an item from a bucket
 {: #java-examples-delete-object}
@@ -600,9 +615,13 @@ public static void deleteItem(String bucketName, String itemName) {
     System.out.printf("Item: %s deleted!\n", itemName);
 }
 ```
-*SDK References*
-* Methods
-    * [deleteObject](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#deleteObject-java.lang.String-java.lang.String-){: external}
+
+#### SDK References
+{: #java-examples-delete-object-sdk-refs}
+
+Methods
+
+* [deleteObject](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#deleteObject-java.lang.String-java.lang.String-){: external}
 
 ### Delete multiple items from a bucket
 {: #java-examples-delete-objects}
@@ -632,13 +651,18 @@ public static void deleteItems(String bucketName) {
 }
 ```
 
-*SDK References*
-* Classes
-    * [`DeleteObjectsRequest`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/DeleteObjectsRequest.html){: external}
-    * [`DeleteObjectsResult`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/DeleteObjectsResult.html){: external}
-    * [`DeleteObjectsResult.DeletedObject`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/DeleteObjectsResult.DeletedObject.html){: external}
-* Methods
-    * [`deleteObjects`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3Client.html#deleteObjects-com.ibm.cloud.objectstorage.services.s3.model.DeleteObjectsRequest-){: external}
+#### SDK References
+{: #java-examples-delete-objects-sdk-refs}
+
+Classes
+
+* [`DeleteObjectsRequest`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/DeleteObjectsRequest.html){: external}
+* [`DeleteObjectsResult`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/DeleteObjectsResult.html){: external}
+* [`DeleteObjectsResult.DeletedObject`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/DeleteObjectsResult.DeletedObject.html){: external}
+
+Methods
+
+* [`deleteObjects`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3Client.html#deleteObjects-com.ibm.cloud.objectstorage.services.s3.model.DeleteObjectsRequest-){: external}
 
 ### Delete a bucket
 {: #java-examples-delete-bucket}
@@ -651,10 +675,12 @@ public static void deleteBucket(String bucketName) {
 }
 ```
 
-*SDK References*
-* Methods
-    * [`deleteBucket`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#deleteBucket-java.lang.String-){: external}
+#### SDK References
+{: #java-examples-delete-bucket-sdk-refs}
 
+Methods
+
+* [`deleteBucket`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#deleteBucket-java.lang.String-){: external}
 
 ### Check if an object is publicly readable
 {: #java-examples-public-check}
@@ -673,12 +699,17 @@ public static void getItemACL(String bucketName, String itemName) {
 }
 ```
 
-*SDK References*
-* Classes
-    * [`AccessControlList`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/AccessControlList.html){: external}
-    * [`Grant`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/Grant.html){: external}
-* Methods
-    * [`getObjectAcl`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#getObjectAcl-java.lang.String-java.lang.String-){: external}
+#### SDK References
+{: #java-examples-public-check-sdk-refs}
+
+Classes
+
+* [`AccessControlList`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/AccessControlList.html){: external}
+* [`Grant`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/Grant.html){: external}
+
+Methods
+
+* [`getObjectAcl`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#getObjectAcl-java.lang.String-java.lang.String-){: external}
 
 ### Execute a multi-part upload
 {: #java-examples-multipart-object}
@@ -735,21 +766,26 @@ public static void multiPartUpload(String bucketName, String itemName, String fi
     }
 }
 ```
-*SDK References*
-* Classes
-    * [AbortMultipartUploadRequest](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/AbortMultipartUploadRequest.html){: external}
-    * [CompleteMultipartUploadRequest](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/CompleteMultipartUploadRequest.html){: external}
-    * [InitiateMultipartUploadRequest](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/InitiateMultipartUploadRequest.html){: external}
-    * [InitiateMultipartUploadResult](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/InitiateMultipartUploadResult.html){: external}
-    * [SdkClientException](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/SdkClientException.html){: external}
-    * [UploadPartRequest](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/UploadPartRequest.html){: external}
-    * [UploadPartResult](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/UploadPartResult.html){: external}
 
-* Methods
-    * [abortMultipartUpload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#abortMultipartUpload-com.ibm.cloud.objectstorage.services.s3.model.AbortMultipartUploadRequest-){: external}
-    * [completeMultipartUpload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#completeMultipartUpload-com.ibm.cloud.objectstorage.services.s3.model.CompleteMultipartUploadRequest-){: external}
-    * [initiateMultipartUpload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#initiateMultipartUpload-com.ibm.cloud.objectstorage.services.s3.model.InitiateMultipartUploadRequest-){: external}
-    * [uploadPart](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#uploadPart-com.ibm.cloud.objectstorage.services.s3.model.UploadPartRequest-){: external}
+#### SDK References
+{: #java-examples-multipart-object-sdk-refs}
+
+Classes
+
+* [AbortMultipartUploadRequest](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/AbortMultipartUploadRequest.html){: external}
+* [CompleteMultipartUploadRequest](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/CompleteMultipartUploadRequest.html){: external}
+* [InitiateMultipartUploadRequest](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/InitiateMultipartUploadRequest.html){: external}
+* [InitiateMultipartUploadResult](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/InitiateMultipartUploadResult.html){: external}
+* [SdkClientException](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/SdkClientException.html){: external}
+* [UploadPartRequest](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/UploadPartRequest.html){: external}
+* [UploadPartResult](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/UploadPartResult.html){: external}
+
+Methods
+
+* [abortMultipartUpload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#abortMultipartUpload-com.ibm.cloud.objectstorage.services.s3.model.AbortMultipartUploadRequest-){: external}
+* [completeMultipartUpload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#completeMultipartUpload-com.ibm.cloud.objectstorage.services.s3.model.CompleteMultipartUploadRequest-){: external}
+* [initiateMultipartUpload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#initiateMultipartUpload-com.ibm.cloud.objectstorage.services.s3.model.InitiateMultipartUploadRequest-){: external}
+* [uploadPart](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#uploadPart-com.ibm.cloud.objectstorage.services.s3.model.UploadPartRequest-){: external}
 
 ## Upload larger objects using a Transfer Manager
 {: #java-examples-transfer-manager}
@@ -797,16 +833,20 @@ public static void largeObjectUpload(String bucketName, String itemName, String 
     }
 ```
 
-*SDK References*
-* Classes
-    * [TransferManager](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html){: external}
-    * [TransferManagerBuilder](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManagerBuilder.html){: external}
-    * [Upload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/Upload.html){: external}
+#### SDK References
+{: #java-examples-transfer-manager-sdk-refs}
 
-* Methods
-    * [shutdownNow](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html#shutdownNow--){: external}
-    * [upload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html#upload-java.lang.String-java.lang.String-java.io.File-){: external}
-    * [waitForCompletion](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/internal/AbstractTransfer.html#waitForCompletion--){: external}
+Classes
+
+* [TransferManager](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html){: external}
+* [TransferManagerBuilder](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManagerBuilder.html){: external}
+* [Upload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/Upload.html){: external}
+
+Methods
+
+* [shutdownNow](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html#shutdownNow--){: external}
+* [upload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/TransferManager.html#upload-java.lang.String-java.lang.String-java.io.File-){: external}
+* [waitForCompletion](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/transfer/internal/AbstractTransfer.html#waitForCompletion--){: external}
 
 ## Using Key Protect
 {: #java-examples-kp}
@@ -824,9 +864,9 @@ The following items are necessary in order to create a bucket with Key-Protect e
 {: #java-examples-kp-root}
 
 1. Retrieve the [instance ID](/docs/key-protect?topic=key-protect-retrieve-instance-ID) for your Key Protect service
-2. Use the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
+1. Use the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
     * You can either use `curl` commands or an API REST Client such as [Postman](/docs/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api).
-3. Retrieve the CRN of the root key you will use to enabled Key Protect on the your bucket. The CRN will look similar to below:
+1. Retrieve the CRN of the root key you will use to enabled Key Protect on the your bucket. The CRN will look similar to below:
 
 `crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
 
@@ -851,16 +891,24 @@ public static void createBucketKP(String bucketName) {
     System.out.printf("Bucket: %s created!", bucketName);
 }
 ```
-*Key Values*
+
+#### Key Values
+{: #java-examples-kp-bucket-key-values}
+
 * `<algorithm>` - The encryption algorithm used for new objects added to the bucket (Default is AES256).
 * `<root-key-crn>` - CRN of the Root Key obtained from the Key Protect service.
 
-*SDK References*
-* Classes
-    * [`CreateBucketRequest`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/CreateBucketRequest.html){: external}
-    * [`EncryptionType`](https://ibm.github.io/ibm-cos-sdk-java/){: external}
-* Methods
-    * [`createBucket`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#createBucket-com.ibm.cloud.objectstorage.services.s3.model.CreateBucketRequest-){: external}
+#### SDK References
+{: #java-examples-kp-bucket-sdk-refs}
+
+Classes
+
+* [`CreateBucketRequest`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/model/CreateBucketRequest.html){: external}
+* [`EncryptionType`](https://ibm.github.io/ibm-cos-sdk-java/){: external}
+
+Methods
+
+* [`createBucket`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#createBucket-com.ibm.cloud.objectstorage.services.s3.model.CreateBucketRequest-){: external}
 
 ### New Headers for Key Protect
 {: #java-examples-kp-headers}
@@ -890,6 +938,7 @@ The `ObjectListing` and `HeadBucketResult` objects have been updated to include 
 
 #### GET bucket
 {: #java-examples-kp-list}
+
 ```java
 public ObjectListing listObjects(String bucketName)
 public ObjectListing listObjects(String bucketName, String prefix)
@@ -970,7 +1019,8 @@ It is advised to use `TokenManager tokenManager = new DefaultTokenManager(new De
 There isn't a lot of benefit to using a single session of Aspera high-speed transfer unless you expect to see significant noise or packet loss in the network. So we need to tell the `AsperaTransferManager` to use multiple sessions using the `AsperaConfig` class. This will split the transfer into a number of parallel **sessions** that send chunks of data whose size is defined by the **threshold** value.
 
 The typical configuration for using multi-session should be:
-* 2500 MBps target rate
+
+* 2500 Mbps target rate
 * 100 MB threshold (*this is the recommended value for most applications*)
 
 ```java
@@ -988,11 +1038,13 @@ AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_K
     .withAsperaConfig(asperaConfig)
     .build();
 ```
-In the above example, the sdk will spawn enough sessions to attempt to reach the target rate of 2500 MBps.
+
+In the above example, the sdk will spawn enough sessions to attempt to reach the target rate of 2500 Mbps.
 
 Alternatively, session management can be explicitly configured in the sdk. This is useful in cases where more precise control over network utilization is desired.
 
 The typical configuration for using explicit multi-session should be:
+
 * 2 or 10 sessions
 * 100 MB threshold (*this is the recommended value for most applications*)
 
@@ -1011,10 +1063,12 @@ AsperaTransferManager asperaTransferMgr = new AsperaTransferManagerBuilder(API_K
 For best performance in most scenarios, always make use of multiple sessions to minimize any processing associated with instantiating an Aspera high-speed transfer. **If your network capacity is at least 1 Gbps you should use 10 sessions.**  Lower bandwidth networks should use two sessions.
 {: tip}
 
-*Key Values*
+#### Key Values
+{: #java-examples-aspera-init-key-values}
+
 * `API_KEY` - An API key for a user or service ID with Writer or Manager roles
 
-You will need to provide an IAM API Key for constructing an `AsperaTransferManager`. [HMAC Credentials](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){: external} are **NOT** currently supported. For more information on IAM, [click here](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview).
+You need to provide an IAM API Key for constructing an `AsperaTransferManager`. [HMAC Credentials](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){: external} are **NOT** currently supported. For more information on IAM, [click here](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview).
 {: tip}
 
 ### File Upload
@@ -1036,7 +1090,9 @@ Future<AsperaTransaction> asperaTransactionFuture = asperaTransferMgr.upload(buc
 AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
 ```
 
-*Key Values*
+#### Key Values
+{: #java-examples-aspera-upload-key-values}
+
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
 * `<absolute-path-to-source-data>` - directory and file name to upload to Object Storage.
 * `<item-name>` - name of the new object added to the bucket.
@@ -1065,7 +1121,9 @@ AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
 
 ```
 
-*Key Values*
+#### Key Values
+{: #java-examples-aspera-download-key-values}
+
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
 * `<absolute-path-to-file>` - directory and file name to save from Object Storage.
 * `<item-name>` - name of the object in the bucket.
@@ -1093,7 +1151,9 @@ Future<AsperaTransaction> asperaTransactionFuture  = asperaTransferMgr.uploadDir
 AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
 ```
 
-*Key Values*
+#### Key Values
+{: #java-examples-aspera-upload-directory-key-values}
+
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
 * `<absolute-path-to-directory>` - directory of the files to be uploaded to Object Storage.
 * `<virtual-directory-prefix>` - name of the directory prefix to be added to each file upon upload. Use null or empty string to upload the files to the bucket root.
@@ -1121,7 +1181,9 @@ AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
 
 ```
 
-*Key Values*
+#### Key Values
+{: #java-examples-aspera-download-directory-key-values}
+
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled.
 * `<absolute-path-to-directory>` - directory to save downloaded files from Object Storage.
 * `<virtual-directory-prefix>` - name of the directory prefix of each file to download. Use null or empty string to download all files in the bucket.
@@ -1293,12 +1355,15 @@ System.out.println("Directory download complete!");
 *IBM&reg; JDK users or Microsoft&reg; Windows users are not affected.*
 
 **Solution:** Link and load the JVM's signal chaining library.
+
 * On Linux locate the `libjsig.so` shared library and set the following environment variable:
-    * `LD_PRELOAD=<PATH_TO_SHARED_LIB>/libjsig.so`
+
+  * `LD_PRELOAD=<PATH_TO_SHARED_LIB>/libjsig.so`
 
 * On Mac OS X locate the shared library `libjsig.dylib` and set the following environment variables:
-    * `DYLD_INSERT_LIBRARIES=<PATH_TO_SHARED_LIB>/libjsig.dylib` 
-    * `DYLD_FORCE_FLAT_NAMESPACE=0`
+
+  * `DYLD_INSERT_LIBRARIES=<PATH_TO_SHARED_LIB>/libjsig.dylib`
+  * `DYLD_FORCE_FLAT_NAMESPACE=0`
 
 Visit the [Oracle&reg; JDK documentation](https://docs.oracle.com/javase/10/vm/signal-chaining.htm){: external} for more information about signal chaining.
 
@@ -1306,7 +1371,7 @@ Visit the [Oracle&reg; JDK documentation](https://docs.oracle.com/javase/10/vm/s
 
 **Cause:** System unable to load dependent libraries. Errors such as the following may be seen in the application logs:
 
-```
+```sh
 libfaspmanager2.so: libawt.so: cannot open shared object file: No such file or directory
 ```
 
@@ -1384,6 +1449,7 @@ uploadPart(UploadPartRequest request)
 {: #java-examples-metadata}
 
 There are two ways to update the metadata on an existing object:
+
 * A `PUT` request with the new metadata and the original object contents
 * Executing a `COPY` request with the new metadata specifying the original object as the copy source
 
@@ -1461,7 +1527,7 @@ This implementation of the `PUT` operation uses the `protection` query parameter
 
 Objects written to a protected bucket cannot be deleted until the protection period has expired and all legal holds on the object are removed. The bucket's default retention value is given to an object unless an object specific value is provided when the object is created. Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
 
-The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are a minimum of 0 days and a maximum of 365243 days (1000 years). 
+The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are a minimum of 0 days and a maximum of 365243 days (1000 years).
 
 ```java
 public static void addProtectionConfigurationToBucket(String bucketName) {
@@ -1496,6 +1562,7 @@ public static void addProtectionConfigurationToBucketWithRequest(String bucketNa
     System.out.printf("Protection added to bucket %s\n", bucketName);
 }
 ```
+
 {: codeblock}
 
 ### Check protection on a bucket
@@ -1518,6 +1585,7 @@ public static void getProtectionConfigurationOnBucket(String bucketName) {
     }
 }
 ```
+
 {: codeblock}
 
 ### Upload a protected object
@@ -1570,6 +1638,7 @@ public static void copyProtectedObject(String sourceBucketName, String sourceObj
     System.out.printf("Protected object copied from %s/%s to %s/%s\n", sourceObjectName, sourceBucketName, destinationBucketName, newObjectName);
 }
 ```
+
 {: codeblock}
 
 ### Add or remove a legal hold to or from a protected object
@@ -1577,7 +1646,7 @@ public static void copyProtectedObject(String sourceBucketName, String sourceObj
 
 The object can support 100 legal holds:
 
-*  A legal hold identifier is a string of maximum length 64 characters and a minimum length of 1 character. Valid characters are letters, numbers, `!`, `_`, `.`, `*`, `(`, `)`, `-` and `.
+* A legal hold identifier is a string of maximum length 64 characters and a minimum length of 1 character. Valid characters are letters, numbers, `!`, `_`, `.`, `*`, `(`, `)`, `-` and `.
 * If the addition of the given legal hold exceeds 100 total legal holds on the object, the new legal hold will not be added, a `400` error will be returned.
 * If an identifier is too long it will not be added to the object and a `400` error is returned.
 * If an identifier contains invalid characters, it will not be added to the object and a `400` error is returned.
@@ -1613,6 +1682,7 @@ public static void deleteLegalHoldFromObject(String bucketName, String objectNam
     System.out.printf("Legal hold %s deleted from object %s in bucket %s!\n", legalHoldId, objectName, bucketName);
 }
 ```
+
 {: codeblock}
 
 ### Extend the retention period of a protected object
@@ -1644,6 +1714,7 @@ public static void extendRetentionPeriodOnObject(String bucketName, String objec
     System.out.printf("New retention period on %s is %s\n", objectName, additionalSeconds);
 }
 ```
+
 {: codeblock}
 
 ### List legal holds on a protected object
@@ -1678,6 +1749,7 @@ public static void listLegalHoldsOnObject(String bucketName, String objectName) 
     }
 }
 ```
+
 {: codeblock}
 
 ### Create a hosted static website
@@ -1688,6 +1760,7 @@ This operation requires an import statement to be added:
 ```java
 import com.ibm.cloud.objectstorage.services.s3.model.model.BucketWebsiteConfiguration;
 ```
+
 {: codeblock}
 
 This operation provides the following upon configuration and requires a correctly configured client:
@@ -1698,6 +1771,7 @@ This operation provides the following upon configuration and requires a correctl
 ```java
 cosClient.setBucketWebsiteConfiguration("<bucket_name>", new BucketWebsiteConfiguration("index.html", "error.html"));
 ```
+
 {: codeblock}
 
 ## Next Steps
