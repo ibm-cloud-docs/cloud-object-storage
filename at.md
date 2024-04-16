@@ -1,13 +1,12 @@
 ---
 
 copyright:
-  years: 2017, 2023
-lastupdated: "2023-11-17"
+  years: 2017, 2024
+lastupdated: "2024-04-16"
 
 keywords: activity tracker, LogDNA, event, object storage, COS API calls, monitor COS events
 
 subcollection: cloud-object-storage
-
 
 ---
 
@@ -28,21 +27,20 @@ For more information, see [{{site.data.keyword.at_full_notm}}](/docs/activity-tr
 By default, COS events that report on global actions such as creation of a bucket are collected automatically. You can monitor global actions through the Activity Tracker instance that is located in the Frankfurt location.
 
 In {{site.data.keyword.cos_full_notm}}, you can also monitor management events and COS data events.
+
 * Collection of these events in your account is optional.
 * You must configure each bucket to enable management events, or management and data events. Notice that you cannot enable data events only for a bucket.
 * To monitor management events, you must configure a bucket and specify the Activity Tracker instance where those events will be collected and forwarded.
 * To monitor data events, you must select the option **Track data events**.
 * Each action that a user performs on a COS resource has a unique ID that is included in the event in the `responseData.requestId` field.
 
-
-
 You can use this service to investigate abnormal activity and critical actions, and to comply with regulatory audit requirements. In addition, you can be alerted about actions as they happen. The events that are collected comply with the Cloud Auditing Data Federation (CADF) standard.
-
 
 ## Management events
 {: #at-actions-mngt}
 
 Management events are classified in the following categories:
+
 * Global events
 * Resource configuration events
 * Bucket events
@@ -100,7 +98,7 @@ For `cloud-object-storage.bucket-key-state.update` events, the following fields 
 
 | Field                            | Description                                                               |
 | -------------------------------- | ------------------------------------------------------------------------- |
-| `requestData.eventType`          | The type of lifecyle event that occured, such as deletion, rotation, etc. |
+| `requestData.eventType`          | The type of lifecyle event that occurred, such as deletion, rotation, and so on |
 | `requestData.requestedKeyState`  | The the requested state of the key (enabled or disabled).                 |
 | `requestData.requestKeyVersion`  | The requested version of the key.                                         |
 | `requestData.bucketLocation`     | The location of the bucket that uses the key.                             |
@@ -145,7 +143,6 @@ The following table lists the COS bucket access events:
 | `cloud-object-storage.bucket-metadata.read` | Get the metadata for the bucket |
 {: caption="Table 5. Bucket access events"}
 
-
 ### Object access events
 {: #at-actions-data-2}
 
@@ -165,7 +162,7 @@ The following table lists the COS object access events:
 | `cloud-object-storage.object-restore.create` | Create the target object from the restore |
 {: caption="Table 6. Object access events"}
 
-If versioning is enabled for a bucket, then `target.versionId` will be present for operations that make use of object versions. 
+If versioning is enabled for a bucket, then `target.versionId` will be present for operations that make use of object versions.
 
 For `cloud-object-storage.object.delete` and `cloud-object-storage.object-batch.delete` events, the following fields include extra information:
 
@@ -233,7 +230,6 @@ To view events, you must access the web UI of the {{site.data.keyword.at_full_no
 
 To view events, you must access the web UI of the {{site.data.keyword.at_full_notm}} instance in the location that is associated with the bucket.
 
-
 ## Analyzing events
 {: #at-events-analyze}
 
@@ -247,28 +243,29 @@ To quickly identify the COS instance ID in your account that has generated an ev
 ### Identifying the bucket location
 {: #at-events-analyze-2}
 
-To quickly identify the bucket location, check the field `responseData.bucketLocation` that is set in the **responseData** field.
+To quickly identify the bucket location, check the field `responseData.bucketLocation` that is set in the **`responseData`** field.
 
 ### Getting the unique ID of a request
 {: #at-events-analyze-3}
 
 Each action that a user performs on a COS resource has a unique ID.
 
-To get the unique ID of a request to a COS resource, check the field `responseData.requestId` that is set in the **responseData** field.
+To get the unique ID of a request to a COS resource, check the field `responseData.requestId` that is set in the **`responseData`** field.
 
 ### Getting all events for a multipart upload operations
 {: #at-events-analyze-4}
 
 When you upload a large object by using *multipart upload operations*, each operation generates an event. In each event, the field `responseData.uploadId` is set to the same value.
 
-To search for all events that are part of a multipart upload operation, you can search for a specific `responseData.uploadId` value. 
+To search for all events that are part of a multipart upload operation, you can search for a specific `responseData.uploadId` value.
 
 ### Getting all events that are generated for a restore request
 {: #at-events-analyze-5}
 
 A request to restore an object from an archive generates multiple events in COS:
-1. A read action of the source object. This action generates an event with action **cloud-object-storage.object-restore.read**. 
-2. A create action of the object into a bucket. This action generates an event with action **cloud-object-storage.object-restore.create**.  
+
+1. A read action of the source object. This action generates an event with action **cloud-object-storage.object-restore.read**.
+2. A create action of the object into a bucket. This action generates an event with action **cloud-object-storage.object-restore.create**.
 
 You can use the `responseData.requestId` field to identify the events that are generated when you restore an object.
 
@@ -276,10 +273,12 @@ You can use the `responseData.requestId` field to identify the events that are g
 {: #at-events-analyze-6}
 
 A request to copy an object from one bucket to a different one generates multiple events in COS:
-1. A read action of the source object. This action generates an event with action **cloud-object-storage.object-copy.read**. 
-2. A create action of the object into the new bucket. This action generates an event with action **cloud-object-storage.object-copy.create**.   
+
+1. A read action of the source object. This action generates an event with action **cloud-object-storage.object-copy.read**.
+2. A create action of the object into the new bucket. This action generates an event with action **cloud-object-storage.object-copy.create**.
 
 To collect and monitor all events that report on a copy action across buckets, consider configuring each bucket to collect and forward events to the same Activity Tracker instance in your account.
+
 * If one bucket is not enabled to collect management and data events, you will not receive the event that reports any copy action on that bucket.
 * If you configure different Activity Tracker instances for each bucket, you will have one event in 1 instance and the other event in a different instance.
 
@@ -290,4 +289,4 @@ You can use the `responseData.requestId` field to identify the events that are g
 
 Updating a bucket's firewall will generate a `cloud-object-storage.resource-configuration.update` event.
 
-To get the details of what was changed, check for fields `requestData.allowedIp`, `requestData.deniedIp`, and `requestData.allowedNetworkTypes` that appear in the **requestData** field.
+To get the details of what was changed, check for fields `requestData.allowedIp`, `requestData.deniedIp`, and `requestData.allowedNetworkTypes` that appear in the **`requestData`** field.
