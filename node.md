@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-12"
+lastupdated: "2024-04-15"
 
 keywords: object storage, node, javascript, sdk
 
@@ -121,7 +121,7 @@ function createBucket(bucketName) {
 {: javascript}
 
 *SDK References*
-* [createBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createBucket-property){: external}
+* [`createBucket`](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createBucket-property){: external}
 
 ### Creating a text object
 {: #node-examples-new-file}
@@ -146,7 +146,7 @@ function createTextFile(bucketName, itemName, fileText) {
 {: javascript}
 
 *SDK References*
-* [putObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#putObject-property){: external}
+* [`putObject`](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#putObject-property){: external}
 
 ### List buckets
 {: #node-examples-list-buckets}
@@ -172,7 +172,7 @@ function getBuckets() {
 {: javascript}
 
 *SDK References*
-* [listBuckets](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#listBuckets-property){: external}
+* [`listBuckets`](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#listBuckets-property){: external}
 
 ### List items in a bucket
 {: #node-examples-list-objects}
@@ -201,7 +201,7 @@ function getBucketContents(bucketName) {
 {: javascript}
 
 *SDK References*
-* [listObjects](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#listObjects-property){: external}
+* [`listObjects`](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#listObjects-property){: external}
 
 ### Get file contents of particular item
 {: #node-examples-get-contents}
@@ -227,7 +227,7 @@ function getItem(bucketName, itemName) {
 {: javascript}
 
 *SDK References*
-* [getObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#getObject-property){: external}
+* [`getObject`](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#getObject-property){: external}
 
 ### Delete an item from a bucket
 {: #node-examples-delete-object}
@@ -251,7 +251,7 @@ function deleteItem(bucketName, itemName) {
 {: javascript}
 
 *SDK References*
-* [deleteObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteObject-property){: external}
+* [`deleteObject`](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#deleteObject-property){: external}
 
 ### Delete multiple items from a bucket
 {: #node-examples-multidelete}
@@ -459,7 +459,7 @@ function createBucketKP(bucketName) {
 * `<root-key-crn>` - CRN of the Root Key that is obtained from the Key Protect service.
 
 *SDK References*
-* [createBucket](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createBucket-property){: external}
+* [`createBucket`](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createBucket-property){: external}
 
 ## Using Archive Feature
 {: #node-examples-archive}
@@ -594,7 +594,7 @@ function restoreItem(bucketName, itemName) {
 * `<number-of-days>` - Number of days to keep the restored file
 
 *SDK References*
-* [restoreObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){: external}
+* [`restoreObject`](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){: external}
 
 ### View HEAD information for an object
 {: #node-examples-lifecycle-head-object}
@@ -617,7 +617,7 @@ function getHEADItem(bucketName, itemName) {
 {: javascript}
 
 *SDK References*
-* [headObject](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){: external}
+* [`headObject`](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html){: external}
 
 ## Updating Metadata
 {: #node-examples-metadata}
