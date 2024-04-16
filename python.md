@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-12"
+lastupdated: "2024-04-16"
 
 keywords: object storage, python, sdk, aspera, apache, asperatransfermanager
 
@@ -515,10 +515,10 @@ Classes
 
 Methods
 
-* [abort_multipart_upload](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.abort_multipart_upload){: external}
-* [complete_multipart_upload](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.complete_multipart_upload){: external}
-* [create_multipart_upload](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.create_multipart_upload){: external}
-* [upload_part](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.upload_part){: external}
+* [`abort_multipart_upload`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.abort_multipart_upload){: external}
+* [`complete_multipart_upload`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.complete_multipart_upload){: external}
+* [`create_multipart_upload`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.create_multipart_upload){: external}
+* [`upload_part`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.upload_part){: external}
 
 ### Large Object Upload by using TransferManager
 {: #python-examples-multipart-transfer}
@@ -879,7 +879,7 @@ with AsperaTransferManager(client) as transfer_manager:
 {: #dir-download-key-values}
 
 * `<bucket-name>` - name of the bucket in your Object Storage service instance that has Aspera enabled
-* `<absolute-path-to-directory>` - local directory to save the downloaded files. Must have leading and trailing slash `/` (i.e. `/Users/testuser/Downloads/`)
+* `<absolute-path-to-directory>` - local directory to save the downloaded files. Must have leading and trailing slash `/` (that is `/Users/testuser/Downloads/`)
 * `<object prefix>` - name of the directory in the bucket to store the files. Must not have a leading slash `/` (that is, `todownload/`)
 
 ### Using Subscribers
