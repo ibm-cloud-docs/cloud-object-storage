@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-02-20"
+lastupdated: "2024-04-16"
 
 keywords: access control, iam, basics, buckets
 
@@ -66,7 +66,7 @@ To create a new bucket-level policy:
 9. Select the wanted service access role. Selecting the lozenge with the number of actions show the actions available to the role, as exemplified for "Content Reader" in Figure 1.
 10. Click **Assign**
 
-![Role_information](images/console-iam-changes-role-cos.png){: caption="Figure 1. Example actions per Content Reader role"}
+![Role information](images/console-iam-changes-role-cos.png){: caption="Figure 1. Example actions per Content Reader role"}
 
 Note that leaving the **Resource Type** or **Resource** fields blank will create an instance-level policy.
 {: tip}
