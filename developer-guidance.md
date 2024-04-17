@@ -1,13 +1,12 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-09-29"
+  years: 2017, 2024
+lastupdated: "2024-04-17"
 
 keywords: developer, best practices, object storage
 
 subcollection: cloud-object-storage
-
 
 ---
 
@@ -42,12 +41,12 @@ upload transaction.
 ## Using software development kits
 {: #dev-guide-sdks}
 
-It is not mandatory to use published S3 API SDKs; custom software can use the API to integrate directly with {{site.data.keyword.cos_short}}. However, using published S3 API libraries provide advantages such as authentication signature generation, automatic retry logic on `5xx` errors, and pre-signed url generation. Care must be taken when writing software that uses the API directly to handle transient errors, such as by providing retries with exponential backoff when receiving `503` errors.
+It is not mandatory to use published S3 API SDKs; custom software can use the API to integrate directly with {{site.data.keyword.cos_short}}. However, using published S3 API libraries provide advantages such as authentication signature generation, automatic retry logic on `5xx` errors, and pre-signed url generation. Care must be taken when writing software that uses the API directly to handle transient errors, such as by providing retries with exponential back-off when receiving `503` errors.
 
 ## Pagination
 {: #dev-guide-pagination}
 
-When dealing with many objects in a bucket, web applications can suffer performance degradation. Many applications employ a technique that is called **pagination** (*the process of dividing a large recordset into discrete pages*). Almost all development platforms provide objects or methods to accomplish pagination either by built-in functions or through 3rd party libraries.
+When dealing with many objects in a bucket, web applications can suffer performance degradation. Many applications employ a technique that is called **pagination** (*the process of dividing a large record set into discrete pages*). Nearly all development platforms provide objects or methods to accomplish pagination either by built-in functions or through 3rd party libraries.
 
 The {{site.data.keyword.cos_short}} SDKs provide support for pagination through a method that lists the objects within a specified bucket. This method provides a number of parameters that make it useful when breaking apart a large result set.
 
