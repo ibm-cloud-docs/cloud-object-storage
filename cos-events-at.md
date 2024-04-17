@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-01-05"
+lastupdated: "2024-04-17"
 
 keywords: activity, tracking, object storage, event, tutorial
 
@@ -33,7 +33,7 @@ If you're not familiar with {{site.data.keyword.cos_full}}, you can quickly get 
 
 If you are already managing instances of {{site.data.keyword.cos_short}} or {{site.data.keyword.at_short}}, you do not need to create more. However, as this tutorial will modify and configure the instance we are working with, make sure that any accounts or services are not being used in a production environment.
 
-This tutorial will create a new bucket and a new instance of {{site.data.keyword.at_short}} in the process.  It is, of course, possible to associate an new or existing instance of {{site.data.keyword.at_short}} with an existing bucket through the bucket's configuration panel, but we'll start fresh in this case.
+This tutorial will create a new bucket and a new instance of {{site.data.keyword.at_short}} in the process.  It is possible to associate an new or existing instance of {{site.data.keyword.at_short}} with an existing bucket through the bucket's configuration panel, but start fresh in this case.
 
 For this tutorial, you need:
 - An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com){: external}
@@ -48,7 +48,7 @@ When naming buckets or objects, be sure to avoid the use of Personally Identifia
 {: #at-tut-create-bucket}
 {: step}
 
-Navigate to your {{site.data.keyword.cos_short}} instance, and click on the **Create bucket** button.
+Navigate to your {{site.data.keyword.cos_short}} instance, and click the `Create bucket` button.
 
 ![Navigate to COS](images/at-tut-1-create-bucket.png)
 
@@ -56,7 +56,7 @@ Navigate to your {{site.data.keyword.cos_short}} instance, and click on the **Cr
 {: #at-tut-custom-bucket}
 {: step}
 
-We're going to want to create a custom bucket in order to provision our new {{site.data.keyword.at_short}} instance, so click on the **Customize your bucket** tile.
+To create a custom bucket to provision the new {{site.data.keyword.at_short}} instance, click the `Customize your bucket` tile.
 
 ![Create a custom bucket](images/at-tut-2-custom-bucket.png)
 
@@ -64,7 +64,7 @@ We're going to want to create a custom bucket in order to provision our new {{si
 {: #at-tut-name-bucket}
 {: step}
 
-Give the bucket a memorable name.  In this case the new bucket will be called `tracked-files` and it's being created in the `us-east` region.
+Give the bucket a memorable name.  In this case the new bucket will be called `tracked-files` and it is being created in the `us-east` region.
 
 ![Name the bucket](images/at-tut-3-name-bucket.png)
 
@@ -72,7 +72,7 @@ Give the bucket a memorable name.  In this case the new bucket will be called `t
 {: #at-tut-add-at}
 {: step}
 
-Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Enable activity tracking**.  Select an appropriate plan, and give the new instance a memorable name.  In this case, we're creating the instance in the same region as the bucket (`us-east`) so we'll name the instance `US East AT` so that we can easily find it later.
+Scroll down to the `Monitoring and activity tracking` section and toggle the radio button to `Enable activity tracking`.  Select an appropriate plan, and give the new instance a memorable name.  In this case, you are creating the instance in the same region as the bucket (`us-east`) so you should name the instance `US East AT` so you can easily find it later.
 
 Track data events for both reading and writing.
 
@@ -82,7 +82,7 @@ Track data events for both reading and writing.
 {: #at-tut-find-at}
 {: step}
 
-Navigate back to the dashboard, and look for the new instance. Click on it to open the {{site.data.keyword.at_short}} console.
+Navigate back to the dashboard, and look for the new instance. Click it to open the {{site.data.keyword.at_short}} console.
 
 ![Find AT](images/at-tut-5-find-at.png)
 
@@ -90,12 +90,12 @@ Navigate back to the dashboard, and look for the new instance. Click on it to op
 {: #at-tut-open-at}
 {: step}
 
-Now we can see some metadata about our new {{site.data.keyword.at_short}} instance (location, CRN, etc.).  Click on the *View IBM Cloud Activity Tracker** button to launch the interface.
+Now you can see some metadata about our new {{site.data.keyword.at_short}} instance (location, CRN, and so on).  Click on the ``View IBM Cloud Activity Tracker` button to launch the interface.
 
 ![Open AT](images/at-tut-6-open-at.png)
 
 
-We'll quickly see that there's nothing here.  It will take a little while for the new instance to be associated with the bucket - while data operations (like reading or writing objects) are immediately consistent, operations that update the bucket's metadata (such as adding an {{site.data.keyword.at_short}} association) are eventually consistent and may take 15 minutes or so to propagate across the system.
+Notice that there's nothing here.  It will take a little while for the new instance to be associated with the bucket - while data operations (like reading or writing objects) are immediately consistent, operations that update the bucket's metadata (such as adding an {{site.data.keyword.at_short}} association) are eventually consistent and may take 15 minutes or so to propagate across the system.
 
 ![View AT](images/at-tut-7-empty-at.png)
 
@@ -103,7 +103,7 @@ We'll quickly see that there's nothing here.  It will take a little while for th
 {: #at-tut-view-bucket}
 {: step}
 
-Let's navigate back to our bucket.  When we open the bucket in the console it will trigger a listing, even though the bucket is empty. Behind the scenes, the console is sending a `GET bucket` request to list the objects, and {{site.data.keyword.at_short}} is going to log this listing event.
+Navigate back to your bucket.  When you open the bucket in the console it will trigger a listing, even though the bucket is empty. Behind the scenes, the console is sending a `GET bucket` request to list the objects, and {{site.data.keyword.at_short}} is going to log this listing event.
 
 ![View bucket](images/at-tut-8-view-bucket.png)
 
@@ -111,11 +111,11 @@ Let's navigate back to our bucket.  When we open the bucket in the console it wi
 {: #at-tut-open-at}
 {: step}
 
-Now, assuming there has been enough time for the metadata to propagate, when we return to the {{site.data.keyword.at_short}} interface we will see some listing events.
+Now, assuming there has been enough time for the metadata to propagate, when you return to the {{site.data.keyword.at_short}} interface you will see some listing events.
 
 ![View AT](images/at-tut-9-view-at.png)
 
 ## Next steps
 {: #at-tut-next-steps}
 
-Congratulations, you've just set up a bucket with {{site.data.keyword.at_short}} enabled. Next, learn more about [how the {{site.data.keyword.at_short}} service itself routes events](/docs/activity-tracker?topic=activity-tracker-getting-started), all of [the various events that {{site.data.keyword.cos_short}} can generate](/docs/cloud-object-storage?topic=cloud-object-storage-at-events), or how to integrate all of this to [provide end-to-end security for a cloud application](/docs/solution-tutorials?topic=solution-tutorials-cloud-e2e-security).
+Congratulations, you've just set up a bucket with {{site.data.keyword.at_short}} enabled. Next, learn more about [how the {{site.data.keyword.at_short}} service itself routes events](/docs/activity-tracker?topic=activity-tracker-getting-started), all [the various events that {{site.data.keyword.cos_short}} can generate](/docs/cloud-object-storage?topic=cloud-object-storage-at-events), or how to integrate this to [provide end-to-end security for a cloud application](/docs/solution-tutorials?topic=solution-tutorials-cloud-e2e-security).
