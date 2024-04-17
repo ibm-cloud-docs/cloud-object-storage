@@ -2,12 +2,11 @@
 
 copyright:
   years: 2022, 2024
-lastupdated: "2024-02-20"
+lastupdated: "2024-04-17"
 
 keywords: cos, object storage, copy
 
 subcollection: cloud-object-storage
-
 
 ---
 
@@ -27,31 +26,32 @@ You have the option of using your existing instance of {{site.data.keyword.cos_f
 
 1. Create an instance of {{site.data.keyword.cos_full_notm}} from the [catalog](https://cloud.ibm.com/catalog/cloud-object-storage).
 1. Create any buckets that you need to store your transferred data. Read through the [getting started guide](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) to familiarize yourself with key concepts such as [endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) and [storage classes](/docs/cloud-object-storage/basics?topic=cloud-object-storage-classes).
- 1. **The rclone utility will not copy any bucket configurations or object metadata**.  Therefore, if you are using any of the {{site.data.keyword.cos_short}} features such as expiration, archive, key protect, etc. be sure to configure them appropriately before migrating your data. To view which features are supported at your COS destination, please refer to the [feature matrix](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-service-availability).
+ 1. **The `rclone` utility will not copy any bucket configurations or object metadata**.  Therefore, if you are using any of the {{site.data.keyword.cos_short}} features such as expiration, archive, key protect, and so on. be sure to configure them appropriately before migrating your data. To view which features are supported at your COS destination, please refer to the [feature matrix](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-service-availability).
 
 Feature configuration and access policies documentation can be viewed at the IBM Cloud portal pages listed below:
 
- * [IBM Cloud Identity and Access Management - IAM](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-iam)
- * [Activity Tracker](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-at)
- * [Metrics Monitoring](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration)
- * [Object Expiry](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-expiry)
- * [Cloud Object Storage Firewall](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall)
- * [Content Delivery Network - CDN](https://cloud.ibm.com/docs/cis?topic=cis-resolve-override-cos)
- * [Archive](/docs/cloud-object-storage?topic=cloud-object-storage-archive)
- * [Key Protect](https://cloud.ibm.com/docs/key-protect?topic=key-protect-integrate-cos)
- * [IBM Cloud Functions](https://cloud.ibm.com/docs/openwhisk?topic=openwhisk-pkg_obstorage)
+* [IBM Cloud Identity and Access Management - IAM](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-iam)
+* [Activity Tracker](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-at)
+* [Metrics Monitoring](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration)
+* [Object Expiry](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-expiry)
+* [Cloud Object Storage Firewall](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall)
+* [Content Delivery Network - CDN](https://cloud.ibm.com/docs/cis?topic=cis-resolve-override-cos)
+* [Archive](/docs/cloud-object-storage?topic=cloud-object-storage-archive)
+* [Key Protect](https://cloud.ibm.com/docs/key-protect?topic=key-protect-integrate-cos)
+* [IBM Cloud Functions](https://cloud.ibm.com/docs/openwhisk?topic=openwhisk-pkg_obstorage)
 
 ## Set up a compute resource to run the migration tool
 {: #region-copy-compute}
 
-1. Choose a Linux&trade;/macOS&trade;/BSD&trade; machine or an IBM Cloud Infrastructure Bare Metal or Virtual Server with the best proximity to your data. Selecting a data center in the same region as the destination bucket is generally the best choice (e.g. if moving data from mel01 to au-syd, use a VM or Bare Metal in au-syd). The recommended Server configuration is: 32 GB RAM, 2-4 core processor, and private network speed of 1000 Mbps.
+1. Choose a Linux&trade;/macOS&trade;/BSD&trade; machine or an IBM Cloud Infrastructure Bare Metal or Virtual Server with the best proximity to your data. Selecting a data center in the same region as the destination bucket is generally the best choice (for example, if moving data from `mel01` to `au-syd`, use a VM or Bare Metal in `au-syd`). The recommended Server configuration is: 32 GB RAM, 2-4 core processor, and private network speed of 1000 Mbps.
 1. If you are running the migration on an IBM Cloud Infrastructure Bare Metal or Virtual Server use the **private** COS endpoints to avoid network egress charges.
 1. Otherwise, use the **public** or **direct** COS endpoints.
-1. Install `rclone` from [either a package manager or precompiled binary](https://rclone.org/install/){: external}.
+1. Install `rclone` from [either a package manager or a pre-compiled binary](https://rclone.org/install/){: external}.
 
-```bash
+```sh
 curl https://rclone.org/install.sh | sudo bash
 ```
+
 {: pre}
 
 ## Configure `rclone` for COS source data
@@ -78,8 +78,8 @@ Create 'profiles' for your source and destination of the migration in `rclone`.
 1. Click **Configuration** in the navigation pane.
 1. Scroll down to the **Endpoints** section and choose the endpoint based on where you are running the migration tool.
 1. Create the COS destination by copying the following and pasting into `rclone.conf`.
-  
-```
+
+```sh
 [COS_SOURCE]
 type = s3
 provider = IBMCOS
@@ -88,17 +88,19 @@ access_key_id =
 secret_access_key =
 endpoint =
 ```
+
 {: codeblock}
 
 Use `[COS_DESTINATION]` as the name of the profile you need to create to configure the destination. Repeat the steps above,
 
 Using your credentials and desired endpoint, complete the following fields:
 
-```
+```sh
 access_key_id = <access_key_id>
 secret_access_key = <secret_access_key>
 endpoint = <bucket endpoint>
 ```
+
 {: codeblock}
 
 ## Configure `rclone` for COS destination data
@@ -109,37 +111,42 @@ Repeat the previous steps for the destination buckets.
 ## Verify that the source and destination are properly configured
 {: #region-copy-verify}
 
-+ List the buckets associated with the source to verify `rclone` is properly configured.
+* List the buckets associated with the source to verify `rclone` is properly configured.
 
-```bash
+```sh
 rclone lsd COS_SOURCE:
 ```
+
 {: pre}
 
-+ List the buckets associated with the destination to verify `rclone` is properly configured.
+* List the buckets associated with the destination to verify `rclone` is properly configured.
 
-```bash
+```sh
 rclone lsd COS_DESTINATION:
 ```
+
 {: pre}
 
-Note: If you are using the same COS instance for the source and destination, the bucket listings will match.
+If you are using the same COS instance for the source and destination, the bucket listings will match.
+{: note}
 
 ## Run `rclone`
 {: #region-copy-run}
 
 1. Test your configuration with a dry run (where no data is copied) of `rclone` to test the copy of the objects in your source bucket (for example, `source-test`) to target bucket (for example, `destination-test`).
 
-   ```bash
+   ```sh
    rclone --dry-run copy COS_SOURCE:source-test COS_DESTINATION:destination-test
    ```
+
    {: pre}
 
-2. Check that the files you want to migrate appear in the command output. If everything looks good, remove the `--dry-run` flag and, optionally add `-v` and/or `-P` flag to copy the data and track progress. Using the optional `--checksum` flag avoids updating any files that have the same MD5 hash and object size in both locations.
+1. Check that the files you want to migrate appear in the command output. If everything looks good, remove the `--dry-run` flag and, optionally add `-v` and/or `-P` flag to copy the data and track progress. Using the optional `--checksum` flag avoids updating any files that have the same MD5 hash and object size in both locations.
 
-   ```bash
+   ```sh
    rclone -v -P copy --checksum COS_SOURCE:source-test COS_DESTINATION:destination-test
    ```
+
    {: pre}
 
 Try to max out the CPU, memory, and network on the machine running `rclone` to get the fastest transfer time.
@@ -149,12 +156,12 @@ There are other parameters to consider when tuning `rclone`. Different combinati
 | Flag | Type | Description |
 | --- | --- | --- |
 | `--checkers` | `int` | Number of checkers to run in parallel (default 8). This is the number of checksums compare threads running. We recommend increasing this to 64 or more. |
-| `--transfers` | `int` | This is the number of objects to transfer in parallel (default 4). We recommend increasing this to 64 or 128 or higher when transferring a large number of small files. |
+| `--transfers` | `int` | This is the number of objects to transfer in parallel (default 4). We recommend increasing this to 64 or 128 or higher when transferring many small files. |
 | `--multi-thread-streams` | `int` | Download large files (> 250M) in multiple parts in parallel. This will improve the download time of large files (default 4). |
 | `--s3-upload-concurrency` | `int` | The number of parts of large files (> 200M) to upload in parallel. This will improve the upload time of large files (default 4). |
-{: caption="Table 1. Rclone options" caption-side="top"}
+{: caption="Table 1. `rclone` options" caption-side="top"}
 
 Migrating data using `rclone copy` only copies but does not delete the source data.
-{:tip}
+{: tip}
 
 The copy process should be repeated for all other source buckets that require migration/copy/backup.
