@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-09-09"
+  years: 2017, 2024
+lastupdated: "2024-04-17"
 
 keywords: object storage, sdk, guide
 
@@ -18,10 +18,10 @@ subcollection: cloud-object-storage
 {:tip: .tip}
 {:important: .important}
 {:note: .note}
-{:download: .download} 
-{:http: .ph data-hd-programlang='http'} 
-{:javascript: .ph data-hd-programlang='javascript'} 
-{:java: .ph data-hd-programlang='java'} 
+{:download: .download}
+{:http: .ph data-hd-programlang='http'}
+{:javascript: .ph data-hd-programlang='javascript'}
+{:java: .ph data-hd-programlang='java'}
 {:python: .ph data-hd-programlang='python'}
 {:go: .ph data-hd-programlang='go'}
 {:faq: data-hd-content-type='faq'}
@@ -33,7 +33,7 @@ subcollection: cloud-object-storage
 {{site.data.keyword.cos_full}} provides SDKs for Java, Python, NodeJS, and Go which can help you to make the most of {{site.data.keyword.cos_short}}.
 {: shortdesc}
 
-In this quickstart guide, you are provided a code example that demonstrates the following operations:
+This Quick Start guide provides a code example that demonstrates the following operations:
 
 * Create a new bucket
 * List the available buckets
@@ -64,7 +64,7 @@ Specific instructions for downloading and installing the SDK is available in [Us
 The code examples below provide introductory examples of running the basic operations with {{site.data.keyword.cos_short}}. For simplicity, the code example can be run multiple times as it uses Universally Unique Identifiers (UUIDs) for bucket/item names to prevent potential conflicts.
 
 In your code, you must remove the angled brackets or any other excess characters that are provided here as illustration.
-{: note} 
+{: note}
 
 To complete the code example, you need to replace the following values:
 
@@ -77,7 +77,7 @@ To complete the code example, you need to replace the following values:
 
 For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
-Code examples are tested on supported release versions of Python. 
+Code examples are tested on supported release versions of Python.
 {: python}
 
 ```python
@@ -111,7 +111,6 @@ def get_buckets():
         bucket_list = cos_cli.list_buckets()
         for bucket in bucket_list["Buckets"]:
             print("Bucket Name: {0}".format(bucket["Name"]))
-        
         log_done()
     except ClientError as be:
         log_client_error(be)
@@ -297,6 +296,7 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
 {: codeblock}
 {: python}
 
@@ -334,8 +334,8 @@ function generateBigRandomFile(fileName, size) {
                 else {
                     resolve();
                 }
-            });     
-        });      
+            });
+        });
     });
 }
 
@@ -369,7 +369,7 @@ function getBucketContents(bucketName) {
                 console.log(`Item: ${itemKey} (${itemSize} bytes).`)
             }
             logDone();
-        }    
+        }
     })
     .catch(logError);
 }
@@ -385,7 +385,7 @@ function getItem(bucketName, itemName) {
         if (data != null) {
             console.log('File Contents: ' + Buffer.from(data.Body).toString());
             logDone();
-        }    
+        }
     })
     .catch(logError);
 }
@@ -397,7 +397,7 @@ function createBucket(bucketName) {
         Bucket: bucketName,
         CreateBucketConfiguration: {
           LocationConstraint: COS_STORAGE_CLASS
-        },        
+        },
     }).promise()
     .then((() => {
         console.log(`Bucket: ${bucketName} created!`);
@@ -410,8 +410,8 @@ function createBucket(bucketName) {
 function createTextFile(bucketName, itemName, fileText) {
     console.log(`Creating new item: ${itemName}`);
     return cos.putObject({
-        Bucket: bucketName, 
-        Key: itemName, 
+        Bucket: bucketName,
+        Key: itemName,
         Body: fileText
     }).promise()
     .then(() => {
@@ -466,19 +466,17 @@ function multiPartUpload(bucketName, itemName, filePath) {
         .then((data) => {
             uploadID = data.UploadId;
 
-            //begin the file upload        
+            //begin the file upload
             fs.readFile(filePath, (e, fileData) => {
                 //min 5MB part
                 var partSize = 1024 * 1024 * 5;
                 var partCount = Math.ceil(fileData.length / partSize);
-        
                 async.timesSeries(partCount, (partNum, next) => {
                     var start = partNum * partSize;
                     var end = Math.min(start + partSize, fileData.length);
-        
                     partNum++;
 
-                    console.log(`Uploading to ${itemName} (part ${partNum} of ${partCount})`);  
+                    console.log(`Uploading to ${itemName} (part ${partNum} of ${partCount})`);
 
                     cos.uploadPart({
                         Body: fileData.slice(start, end),
@@ -581,6 +579,7 @@ function main() {
 
 main();
 ```
+
 {: codeblock}
 {: javascript}
 
@@ -784,92 +783,93 @@ public class JavaExampleCode {
 }
 
 ```
+
 {: codeblock}
 {: java}
 
 ``` Go
 package main
 import (
-	"bytes"
-	"fmt"
-	"github.com/IBM/ibm-cos-sdk-go/aws"
-	"github.com/IBM/ibm-cos-sdk-go/aws/credentials/ibmiam"
-	"github.com/IBM/ibm-cos-sdk-go/aws/session"
-	"github.com/IBM/ibm-cos-sdk-go/service/s3"
-	"io"
-	"math/rand"
-	"os"
-	"time"
+    "bytes"
+    "fmt"
+    "github.com/IBM/ibm-cos-sdk-go/aws"
+    "github.com/IBM/ibm-cos-sdk-go/aws/credentials/ibmiam"
+    "github.com/IBM/ibm-cos-sdk-go/aws/session"
+    "github.com/IBM/ibm-cos-sdk-go/service/s3"
+    "io"
+    "math/rand"
+    "os"
+    "time"
 )
 
 // Constants for IBM COS values
 const (
-	apiKey            = "<api-key>" // example: xxxd12V2QHXbjaM99G9tWyYDgF_0gYdlQ8aWALIQxXx4
-	serviceInstanceID = "<resource-instance-id>" // example: crn:v1:bluemix:public:cloud-object-storage:global:a/xx999cd94a0dda86fd8eff3191349999:9999b05b-x999-4917-xxxx-9d5b326a1111::
-	authEndpoint      = "https://iam.cloud.ibm.com/identity/token"
-	serviceEndpoint   = "<endpoint>" // example: https://s3.us-south.cloud-object-storage.appdomain.cloud
+    apiKey            = "<api-key>" // example: xxxd12V2QHXbjaM99G9tWyYDgF_0gYdlQ8aWALIQxXx4
+    serviceInstanceID = "<resource-instance-id>" // example: crn:v1:bluemix:public:cloud-object-storage:global:a/xx999cd94a0dda86fd8eff3191349999:9999b05b-x999-4917-xxxx-9d5b326a1111::
+    authEndpoint      = "https://iam.cloud.ibm.com/identity/token"
+    serviceEndpoint   = "<endpoint>" // example: https://s3.us-south.cloud-object-storage.appdomain.cloud
 )
 
 // UUID
 func random(min int, max int) int {
-	return rand.Intn(max-min) + min
+    return rand.Intn(max-min) + min
 }
 
 func main() {
 
-	// UUID
-	rand.Seed(time.Now().UnixNano())
-	UUID := random(10, 2000)
+    // UUID
+    rand.Seed(time.Now().UnixNano())
+    UUID := random(10, 2000)
 
-	// Variables
-	newBucket := fmt.Sprintf("%s%d", "go.bucket", UUID) // New bucket name
-	objectKey := fmt.Sprintf("%s%d%s", "go_file_", UUID, ".txt") // Object Key
-	content := bytes.NewReader([]byte("This is a test file from Go code sample!!!"))
-	downloadObjectKey := fmt.Sprintf("%s%d%s", "downloaded_go_file_", UUID, ".txt") // Downloaded Object Key
+    // Variables
+    newBucket := fmt.Sprintf("%s%d", "go.bucket", UUID) // New bucket name
+    objectKey := fmt.Sprintf("%s%d%s", "go_file_", UUID, ".txt") // Object Key
+    content := bytes.NewReader([]byte("This is a test file from Go code sample!!!"))
+    downloadObjectKey := fmt.Sprintf("%s%d%s", "downloaded_go_file_", UUID, ".txt") // Downloaded Object Key
 
-	//Setting up a new configuration
-	conf := aws.NewConfig().
-		WithRegion("<storage-class>"). // Enter your storage class (LocationConstraint) - example: us-standard
-		WithEndpoint(serviceEndpoint).
-		WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(), authEndpoint, apiKey, serviceInstanceID)).
-		WithS3ForcePathStyle(true)
+    //Setting up a new configuration
+    conf := aws.NewConfig().
+        WithRegion("<storage-class>"). // Enter your storage class (LocationConstraint) - example: us-standard
+        WithEndpoint(serviceEndpoint).
+        WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(), authEndpoint, apiKey, serviceInstanceID)).
+        WithS3ForcePathStyle(true)
 
-	// Create client connection
-	sess := session.Must(session.NewSession()) // Creating a new session
-	client := s3.New(sess, conf)               // Creating a new client
+    // Create client connection
+    sess := session.Must(session.NewSession()) // Creating a new session
+    client := s3.New(sess, conf)               // Creating a new client
 
-	// Create new bucket
-	_, err := client.CreateBucket(&s3.CreateBucketInput{
-		Bucket: aws.String(newBucket), // New Bucket Name
-	})
-	if err != nil {
-		exitErrorf("Unable to create bucket %q, %v", newBucket, err)
-	}
+    // Create new bucket
+    _, err := client.CreateBucket(&s3.CreateBucketInput{
+        Bucket: aws.String(newBucket), // New Bucket Name
+    })
+    if err != nil {
+        exitErrorf("Unable to create bucket %q, %v", newBucket, err)
+    }
 
-	// Wait until bucket is created before finishing
-	fmt.Printf("Waiting for bucket %q to be created...\n", newBucket)
+    // Wait until bucket is created before finishing
+    fmt.Printf("Waiting for bucket %q to be created...\n", newBucket)
 
-	err = client.WaitUntilBucketExists(&s3.HeadBucketInput{
-		Bucket: aws.String(newBucket),
-	})
-	if err != nil {
-		exitErrorf("Error occurred while waiting for bucket to be created, %v", newBucket)
-	}
+    err = client.WaitUntilBucketExists(&s3.HeadBucketInput{
+        Bucket: aws.String(newBucket),
+    })
+    if err != nil {
+        exitErrorf("Error occurred while waiting for bucket to be created, %v", newBucket)
+    }
 
-	fmt.Printf("Bucket %q successfully created\n", newBucket)
+    fmt.Printf("Bucket %q successfully created\n", newBucket)
 
-	// Retrieve the list of available buckets
-	bklist, err := client.ListBuckets(nil)
-	if err != nil {
-		exitErrorf("Unable to list buckets, %v", err)
-	}
+    // Retrieve the list of available buckets
+    bklist, err := client.ListBuckets(nil)
+    if err != nil {
+        exitErrorf("Unable to list buckets, %v", err)
+    }
 
-	fmt.Println("Buckets:")
+    fmt.Println("Buckets:")
 
-	for _, b := range bklist.Buckets {
-		fmt.Printf("* %s created on %s\n",
-			aws.StringValue(b.Name), aws.TimeValue(b.CreationDate))
-	}
+    for _, b := range bklist.Buckets {
+        fmt.Printf("* %s created on %s\n",
+            aws.StringValue(b.Name), aws.TimeValue(b.CreationDate))
+    }
 
 	// Uploading an object
 	input3 := s3.CreateMultipartUploadInput{
@@ -983,6 +983,7 @@ func exitErrorf(msg string, args ...interface{}) {
 	fmt.Fprintf(os.Stderr, msg+"\n", args...)
 	os.Exit(1)
 ```
+
 {: codeblock}
 {: go}
 
@@ -990,27 +991,32 @@ func exitErrorf(msg string, args ...interface{}) {
 {: #sdk-gs-run}
 
 To run the code sample, copy the code blocks above and run the following:
-```
+
+```sh
 python python-example.py
 ```
+
 {: codeblock}
 {: python}
 
-```
+```sh
 node node-example.js
 ```
+
 {: codeblock}
 {: javascript}
 
-```
+```sh
 java javaexamplecode
 ```
+
 {: codeblock}
 {: java}
 
-```
+``` sh
 go run go_example.go
 ```
+
 {: codeblock}
 {: go}
 
@@ -1019,7 +1025,7 @@ go run go_example.go
 
 The output from the Code Example should resemble the following:
 
-```
+```python
 Creating new bucket: py.bucket.779177bfe41945edb458294d0b25440a
 Bucket: py.bucket.779177bfe41945edb458294d0b25440a created!
 DONE!
@@ -1059,10 +1065,11 @@ Deleting bucket: py.bucket.779177bfe41945edb458294d0b25440a
 Bucket: py.bucket.779177bfe41945edb458294d0b25440a deleted!
 DONE!
 ```
+
 {: codeblock}
 {: python}
 
-```
+```java
 Creating new bucket: js.bucket.c697b4403f8211e9b1228597cf8e3a32
 Bucket: js.bucket.c697b4403f8211e9b1228597cf8e3a32 created!
 DONE!
@@ -1107,10 +1114,11 @@ Deleting bucket: js.bucket.c697b4403f8211e9b1228597cf8e3a32
 Bucket: js.bucket.c697b4403f8211e9b1228597cf8e3a32 deleted!
 DONE!
 ```
+
 {: codeblock}
 {: javascript}
 
-```
+```java
 Bucket: java.bucket71bd68d087b948f5a1f1cbdd86e4fda2 created!
 DONE!
 
@@ -1134,10 +1142,11 @@ Item: Sample5438677733541671254.tmp deleted!
 Deleting bucket: java.bucket71bd68d087b948f5a1f1cbdd86e4fda2
 Bucket: java.bucket71bd68d087b948f5a1f1cbdd86e4fda2 deleted!
 ```
+
 {: codeblock}
 {: java}
 
-```
+```go
 Waiting for bucket "go.bucket645" to be created...
 Bucket "go.bucket645" successfully created
 
@@ -1164,6 +1173,7 @@ Object "go_file_645.txt" successfully deleted
 Waiting for bucket "go.bucket645" to be deleted...
 Bucket "go.bucket645" successfully deleted
 ```
+
 {: codeblock}
 {: go}
 
