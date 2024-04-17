@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-09-29"
+  years: 2017, 2024
+lastupdated: "2024-04-17"
 
 keywords: faq, frequently asked questions, object storage
 
@@ -26,7 +26,7 @@ Frequently asked questions can produce helpful answers and insight into best pra
 
 * Standard plan is our most popular public Cloud pricing plan, that meets the requirements of majority of the enterprise workloads. The Standard plan is best suited for workloads that have large amount of storage and relatively small Outbound bandwidth (Outbound bandwidth < 20% of Storage capacity). The plan offers flexible choices for storage class based on data access patterns (lower the cost, the less frequently data is accessed). The Standard plan bills for every stored capacity ($/GB/month), Outbound bandwidth ($/GB), class A ($/1,000), class B ($/10,000) and retrieval ($/GB) metrics, where applicable.
 
-* One Rate plan is suited for active workloads with large amounts of Outbound bandwidth (or varying Outbound bandwidth) as a percent of their Storage capacity (Outbound bandwidth > 20% of Storage capacity). Typical workloads belong to large enterprises and ISVs which may have sub-accounts with multiple divisions/departments or end-users. The plan offers a predictable TCO with an all-inclusive flat monthly charge ($/GB/month) that includes capacity, and built-in allowances for Outbound bandwidth and Operational requests. The built-in allowances for Outbound bandwidth and Operational requests (Class A, Class B) depend on the monthly stored capacity. There is no data retrieval charge. 
+* One Rate plan is suited for active workloads with large amounts of Outbound bandwidth (or varying Outbound bandwidth) as a percentage of their Storage capacity (Outbound bandwidth > 20% of Storage capacity). Typical workloads belong to large enterprises and ISV's which may have sub-accounts with multiple divisions/departments or end-users. The plan offers a predictable TCO with an all-inclusive flat monthly charge ($/GB/month) that includes capacity, and built-in allowances for Outbound bandwidth and Operational requests. The built-in allowances for Outbound bandwidth and Operational requests (Class A, Class B) depend on the monthly stored capacity. There is no data retrieval charge.
 
 ## How are the allowance thresholds (for Outbound bandwidth, class A and class B) calculated for the One-Rate plan?
 {: #faq-onerate-what}
@@ -52,20 +52,24 @@ There is only one storage class available in the One-Rate plan: One-Rate Active
 
 There are four One-Rate pricing regions: North America, Europe, South America and Asia Pacific. The following Regional and Single Sites are included in the four One-Rate pricing regions:
 
-North America: 
-- Regional: `us-south`, `us-east`, `ca-tor`
-- Single Sites: `mon01`, `sjc04`
+North America:
 
-Europe:  	
-- Regional: `eu-gb`, `eu-de`
-- Single Sites: `ams03`, `mil01`, `par01`
+* Regional: `us-south`, `us-east`, `ca-tor`
+* Single Sites: `mon01`, `sjc04`
 
-South America: 
-- Regional: `br-sao`
+Europe:
 
-Asia Pacific:  	
-- Regional: `au-syd`, `jp-osa`, `jp-tok`
-- Single Sites: `che01`, `sng01`
+* Regional: `eu-gb`, `eu-de`
+* Single Sites: `ams03`, `mil01`, `par01`
+
+South America:
+
+* Regional: `br-sao`
+
+Asia Pacific:
+
+* Regional: `au-syd`, `jp-osa`, `jp-tok`
+* Single Sites: `che01`, `sng01`
 
 ## Is the pricing different for the four One-Rate pricing regions?
 {: #faq-onerate-price-diff}
@@ -77,7 +81,7 @@ The pricing rates are same for North America and Europe, similarly for South Ame
 {: #faq-onerate-features}
 {: faq}
 
-All Cloud Object Storage features (Versioning, Archive, Replication, WORM, Expiration, etc.) are available in the One-Rate Plan.
+All Cloud Object Storage features (Versioning, Archive, Replication, WORM, Expiration, and so on) are available in the One-Rate Plan.
 
 ## Is the One-Rate plan available in all Cloud Object Storage regions?
 {: #faq-onerate-avail-reg}

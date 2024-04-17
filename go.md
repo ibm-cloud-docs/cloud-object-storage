@@ -1,13 +1,12 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-19"
+  years: 2017, 2024
+lastupdated: "2024-04-17"
 
 keywords: object storage, go, sdk
 
 subcollection: cloud-object-storage
-
 
 ---
 {:new_window: target="_blank"}
@@ -19,10 +18,10 @@ subcollection: cloud-object-storage
 {:tip: .tip}
 {:important: .important}
 {:note: .note}
-{:download: .download} 
-{:http: .ph data-hd-programlang='http'} 
-{:javascript: .ph data-hd-programlang='javascript'} 
-{:java: .ph data-hd-programlang='java'} 
+{:download: .download}
+{:http: .ph data-hd-programlang='http'}
+{:javascript: .ph data-hd-programlang='javascript'}
+{:java: .ph data-hd-programlang='java'}
 {:python: .ph data-hd-programlang='python'}
 {:go: .ph data-hd-programlang='go'}
 {:faq: data-hd-content-type='faq'}
@@ -70,11 +69,11 @@ import (
 ## Creating a client and sourcing credentials
 {: #go-client-credentials}
 
-To connect to {{site.data.keyword.cos_full_notm}}, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables. 
+To connect to {{site.data.keyword.cos_full_notm}}, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
 
 The credentials can be found by creating a [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), or through the CLI.
 
-Figure 1 shows an example of how to define environment variables in an application runtime at the {{site.data.keyword.cos_full_notm}} portal. The required variables are `IBM_API_KEY_ID` containing your Service Credential 'apikey', `IBM_SERVICE_INSTANCE_ID` holding the 'resource_instance_id' also from your Service Credential, and an `IBM_AUTH_ENDPOINT` with a value appropriate to your account, like `https://iam.cloud.ibm.com/identity/token`. If using environment variables to define your application credentials, use `WithCredentials(ibmiam.NewEnvCredentials(aws.NewConfig())).`, replacing the similar method used in the configuration example.
+Figure 1 shows an example of how to define environment variables in an application runtime at the {{site.data.keyword.cos_full_notm}} portal. The required variables are `IBM_API_KEY_ID` containing your Service Credential `apikey`, `IBM_SERVICE_INSTANCE_ID` holding the `resource_instance_id` also from your Service Credential, and an `IBM_AUTH_ENDPOINT` with a value appropriate to your account, like `https://iam.cloud.ibm.com/identity/token`. If using environment variables to define your application credentials, use `WithCredentials(ibmiam.NewEnvCredentials(aws.NewConfig())).`, replacing the similar method used in the configuration example.
 
 ![environment variables](images/go-library-fig-1-env-vars.png)
 {: caption="Figure 1. Environment Variables"}
@@ -124,7 +123,6 @@ func main() {
     // Bucket Names
     newBucket := "<NEW_BUCKET_NAME>"
     newColdBucket := "<NEW_COLD_BUCKET_NAME>"
-        
     input := &s3.CreateBucketInput{
         Bucket: aws.String(newBucket),
     }
@@ -142,6 +140,7 @@ func main() {
     fmt.Println(d)
 }
 ```
+
 {: codeblock}
 
 ### List available buckets
@@ -160,6 +159,7 @@ func main() {
 }
 
 ```
+
 {: codeblock}
 
 ### Upload an object to a bucket
@@ -188,6 +188,7 @@ func main() {
     fmt.Println(result)
 }
 ```
+
 {: codeblock}
 
 ### List items in a bucket (List Objects V2)
@@ -237,6 +238,7 @@ func main() {
 //}
 
 ```
+
 {: codeblock}
 
 ### Get an object's contents
@@ -244,7 +246,6 @@ func main() {
 
 ```Go
 func main() {
-    
     // Create client
     sess := session.Must(session.NewSession())
     client := s3.New(sess, conf)
@@ -267,6 +268,7 @@ func main() {
 }
 
 ```
+
 {: codeblock}
 
 ### Delete an object from a bucket
@@ -274,23 +276,20 @@ func main() {
 
 ```Go
 func main() {
-
     // Create client
     sess := session.Must(session.NewSession())
     client := s3.New(sess, conf)
-    
     // Bucket Name
     bucket := "<BUCKET_NAME>"
-    
     input := &s3.DeleteObjectInput{
         Bucket: aws.String(bucket),
         Key:    aws.String("<OBJECT_KEY>"),
     }
-    
     d, _ := client.DeleteObject(input)
     fmt.Println(d)
 }
 ```
+
 {: codeblock}
 
 ### Delete multiple objects from a bucket
@@ -328,8 +327,8 @@ func main() {
     fmt.Println(d)
 }
 ```
-{: codeblock}
 
+{: codeblock}
 
 ### Delete a bucket
 {: #go-delete-bucket}
@@ -351,12 +350,13 @@ func main() {
     fmt.Println(d)
 }
 ```
+
 {: codeblock}
 
 ### Run a manual multi-part upload
 {: #go-multipart}
 
-```Go	
+```Go
 func main() {
 
     // Variables
@@ -372,7 +372,6 @@ func main() {
     // Create client
     sess := session.Must(session.NewSession())
     client := s3.New(sess, conf)
-        
     upload, _ := client.CreateMultipartUpload(&input)
 
     uploadPartInput := s3.UploadPartInput{
@@ -382,7 +381,7 @@ func main() {
         UploadId:   upload.UploadId,
         Body:          content,
     }
-    
+
     var completedParts []*s3.CompletedPart
     completedPart, _ := client.UploadPart(&uploadPartInput)
 
@@ -399,11 +398,12 @@ func main() {
         },
         UploadId: upload.UploadId,
     }
-    
+
     d, _ := client.CompleteMultipartUpload(&completeMPUInput)
     fmt.Println(d)
 }
 ```
+
 {: codeblock}
 
 ### Using Key Protect
@@ -414,7 +414,7 @@ Key Protect can be added to a storage bucket to manage encryption keys. All data
 ### Before You Begin
 {: #go-examples-kp-prereqs}
 
-The following items are necessary in order to create a bucket with Key-Protect enabled:
+The following items are necessary to create a bucket with Key-Protect enabled:
 
 * A Key Protect service [provisioned](/docs/key-protect?topic=key-protect-provision)
 * A Root key available (either [generated](/docs/key-protect?topic=key-protect-create-root-keys) or [imported](/docs/key-protect?topic=key-protect-import-root-keys))
@@ -423,9 +423,9 @@ The following items are necessary in order to create a bucket with Key-Protect e
 {: #go-examples-kp-root}
 
 1. Retrieve the [instance ID](/docs/key-protect?topic=key-protect-retrieve-instance-ID) for your Key Protect service
-2. Use the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
+1. Use the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
     * You can either use `curl` commands or an API REST Client such as [Postman](/docs/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api).
-3. Retrieve the CRN of the root key you use to enabled Key Protect on your bucket. The CRN looks similar to below:
+1. Retrieve the CRN of the root key you use to enabled Key Protect on your bucket. The CRN looks similar to below:
 
 `crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
 
@@ -441,13 +441,12 @@ func main() {
 
     // Bucket Names
     newBucket := "<NEW_BUCKET_NAME>"
-        
     fmt.Println("Creating new encrypted bucket:", newBucket)
 
-	input := &s3.CreateBucketInput{
-		Bucket: aws.String(newBucket),
-		IBMSSEKPCustomerRootKeyCrn: aws.String("<ROOT-KEY-CRN>"),
-		IBMSSEKPEncryptionAlgorithm:aws.String("<ALGORITHM>"),
+    input := &s3.CreateBucketInput{
+        Bucket: aws.String(newBucket),
+        IBMSSEKPCustomerRootKeyCrn: aws.String("<ROOT-KEY-CRN>"),
+        IBMSSEKPEncryptionAlgorithm:aws.String("<ALGORITHM>"),
     }
     client.CreateBucket(input)
 
@@ -456,9 +455,12 @@ func main() {
     fmt.Println(d)
 }
 ```
+
 {: codeblock}
 
-*Key Values*
+#### Key Values
+{: #go-examples-kp-new-bucket-key-values}
+
 * `<NEW_BUCKET_NAME>` - The name of the new bucket.
 * `<ROOT-KEY-CRN>` - CRN of the Root Key that is obtained from the Key Protect service.
 * `<ALGORITHM>` - The encryption algorithm that is used for new objects added to the bucket (Default is AES256).
@@ -497,7 +499,6 @@ func main() {
     // Perform an upload.
     d, _ := uploader.Upload(input)
     fmt.Println(d)
-    
     // Perform upload with options different than the those in the Uploader.
     f, _ := uploader.Upload(input, func(u *s3manager.Uploader) {
         u.PartSize = 10 * 1024 * 1024 // 10MB part size
@@ -506,29 +507,31 @@ func main() {
     fmt.Println(f)
 }
 ```
+
 {: codeblock}
 
 ### Getting an extended listing
 {: #go-list-buckets-extended}
 
-
 ```Go
 func main() {
 // Create client
-		sess := session.Must(session.NewSession())
-		client := s3.New(sess, conf)
+        sess := session.Must(session.NewSession())
+        client := s3.New(sess, conf)
 
+        input := new(s3.ListBucketsExtendedInput).SetMaxKeys(<MAX_KEYS>).SetMarker("<MARKER>").SetPrefix("<PREFIX>")
+        output, _ := client.ListBucketsExtended(input)
 
-		input := new(s3.ListBucketsExtendedInput).SetMaxKeys(<MAX_KEYS>).SetMarker("<MARKER>").SetPrefix("<PREFIX>")
-		output, _ := client.ListBucketsExtended(input)
-
-		jsonBytes, _ := json.MarshalIndent(output, " ", " ")
-		fmt.Println(string(jsonBytes))
+        jsonBytes, _ := json.MarshalIndent(output, " ", " ")
+        fmt.Println(string(jsonBytes))
 }
 ```
+
 {: codeblock}
 
-*Key Values*
+#### Key Values
+{: #go-list-buckets-extended-key-values}
+
 * `<MAX_KEYS>` - Maximum number of buckets to retrieve in the request.
 * `<MARKER>` - The bucket name to start the listing (Skip until this bucket).
 * `<PREFIX` - Only include buckets whose name start with this prefix.
@@ -555,7 +558,9 @@ func main() {
 ```
 {: codeblock}
 
-*Key Values*
+#### Key Values
+{: #go-list-buckets-extended-pagination-key-values}
+
 * `<MAX_KEYS>` - Maximum number of buckets to retrieve in the request.
 * `<MARKER>` - The bucket name to start the listing (Skip until this bucket).
 * `<PREFIX` - Only include buckets whose name start with this prefix.
@@ -563,9 +568,9 @@ func main() {
 ### Archive Tier Support
 {: #go-archive-tier-support}
 
-You can automatically archive objects after a specified length of time or after a specified date. Once archived, a temporary copy of an object can be restored for access as needed. Please note the time required to restore the temporary copy of the object(s) may take up to 12 hours. 
+You can automatically archive objects after a specified length of time or after a specified date. Once archived, a temporary copy of an object can be restored for access as needed. Please note the time required to restore the temporary copy of the object(s) may take up to 12 hours.
 
-To use the example provided, provide your own configuration&mdash;including replacing `<apikey>` and other bracketed `<...>` information&mdash;keeping in mind that using environment variables are more secure, and one should not put credentials in code that will be versioned.
+To use the example provided, provide your own configuration&mdash;including replacing `<apikey>` and other bracketed `<...>` information, while keeping in mind that using environment variables are more secure, and you should not put credentials in code that will be versioned.
 
 An archive policy is set at the bucket level by calling the `PutBucketLifecycleConfiguration` method on a client instance. A newly added or modified archive policy applies to new objects uploaded and does not affect existing objects.
 
@@ -576,7 +581,7 @@ func main() {
 	// Create Client
 	sess := session.Must(session.NewSession())
 	client := s3.New(sess, conf)
-	
+
 	// PUT BUCKET LIFECYCLE CONFIGURATION
 	// Replace <BUCKET_NAME> with the name of the bucket
 	lInput := &s3.PutBucketLifecycleConfigurationInput{
@@ -600,7 +605,7 @@ func main() {
 	l, e := client.PutBucketLifecycleConfiguration(lInput)
 	fmt.Println(l) // should print an empty bracket
 	fmt.Println(e) // should print <nil>
-	
+
 	// GET BUCKET LIFECYCLE CONFIGURATION
 	gInput := &s3.GetBucketLifecycleConfigurationInput{
 		Bucket: aws.String("<bucketname>"),
@@ -628,6 +633,7 @@ func main() {
 }
 
 ```
+
 {: codeblock}
 
 The typical response is exemplified here.
@@ -636,7 +642,7 @@ The typical response is exemplified here.
  {
    Rules: [{
        Filter: {
- 
+
        },
        ID: "id3",
        Status: "Enabled",
@@ -647,6 +653,7 @@ The typical response is exemplified here.
      }]
  }
 ```
+
 {: codeblock}
 
 ### Immutable Object Storage
@@ -657,14 +664,12 @@ Users can configure buckets with an Immutable Object Storage policy to prevent o
 Note: Immutable Object Storage does not support Aspera transfers via the SDK to upload objects or directories at this stage.
 
 ```Go
-
-
 func main() {
 
 	// Create Client
 	sess := session.Must(session.NewSession())
 	client := s3.New(sess, conf)
-	
+
 	// Create a bucket
 	input := &s3.CreateBucketInput{
 		Bucket: aws.String("<BUCKET_NAME>"),
@@ -703,11 +708,12 @@ func main() {
 }
 
 ```
+
 {: codeblock}
 
 The typical response is exemplified here.
 
-```
+```sh
  {
    ProtectionConfiguration: {
      DefaultRetention: {
@@ -722,7 +728,9 @@ The typical response is exemplified here.
      Status: "COMPLIANCE"
    }
  }
+
 ```
+
 {: codeblock}
 
 ### Create a hosted static website
@@ -730,13 +738,13 @@ The typical response is exemplified here.
 
 This operation requires permissions, as only the bucket owner is typically permitted to configure a bucket to host a static website. The parameters determine the default suffix for visitors to the site as well as an optional error document included here to complete the example.
 
-```
+```go
 func main() {
 
 	// Create Client
 	sess := session.Must(session.NewSession())
 	client := s3.New(sess, conf)
-	
+
 	// Create a bucket
 	input := &s3.CreateBucketInput{
 		Bucket: aws.String("<BUCKET_NAME>"),
@@ -765,9 +773,10 @@ func main() {
 
 }
 ```
+
 {: codeblock}
 
 ## Next Steps
 {: #go-next-steps}
 
-If you haven't already, please see the detailed class and method documentation available at the [Go API documentation](https://ibm.github.io/ibm-cos-sdk-go/).
+If you haven't already, please see the detailed class and method documentation available at the [Go API documentation](https://ibm.github.io/ibm-cos-sdk-go/){: external}.

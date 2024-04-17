@@ -1,10 +1,10 @@
 ---
- 
-copyright:
-  years: 2017, 2022, 2023
-lastupdated: "2023-05-02"
 
-keywords: endpoint, location, object storage
+copyright:
+  years: 2017, 2024
+lastupdated: "2024-04-17"
+
+keywords: endpoint, location, object storage, IAM, cross region, border gateway protocol
 
 subcollection: cloud-object-storage
 
@@ -17,8 +17,6 @@ subcollection: cloud-object-storage
 
 Over time the endpoint URLs used to access {{site.data.keyword.cos_short}} have changed, and older applications and workflows should be updated to use the newer addresses.
 {: shortdesc}
-
-
 
 ## Regional Endpoints
 {: #remap-endpoints-region}
@@ -163,7 +161,7 @@ Buckets that are created at a cross region endpoint distribute data across three
 ## Single Data Center Endpoints
 {: #remap-endpoints-zone}
 
-Single data centers are not colocated with IBM Cloud services, such as IAM or Key Protect, and offer no resiliency in a site outage or destruction.
+Single data centers are not co-located with IBM Cloud services, such as IAM or Key Protect, and offer no resiliency in a site outage or destruction.
 
 If a networking failure results in a partition where the data center is unable to access IAM, authentication and authorization information is read from a cache that might become stale. This cached data might result in a lack of enforcement of new or altered IAM policies for up to 24 hours.
 {: important}
@@ -215,4 +213,3 @@ If a networking failure results in a partition where the data center is unable t
 {: #sdcendpointtable3}
 {: tab-title="Direct"}
 {: tab-group="single-datacenter-endpoints"}
-

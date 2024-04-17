@@ -3,9 +3,9 @@
 copyright:
   years: 2017, 2024
 
-lastupdated: "2024-03-25"
+lastupdated: "2024-04-17"
 
-keywords: endpoint, location, object storage, bucket, region
+keywords: endpoint, location, object storage, bucket, region, rclone
 
 subcollection: cloud-object-storage
 
@@ -25,7 +25,7 @@ Compute workloads co-located with a Regional {{site.data.keyword.cos_short}} end
 
 Some workloads may benefit from using a Single Data Center endpoint. Data stored in a single site is still distributed across many physical storage appliances, but is contained within a single data center. This can improve performance for compute resources within the same site, but will not maintain availability in the case of a site outage. Single Data Center buckets do not provide automated backup in the case of site destruction, so any applications using a single site should consider [using replication for disaster recovery](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview) in their design.
 
-All requests must use SSL when using IAM, and the service will reject any plaintext requests.
+All requests must use SSL when using IAM, and the service will reject any plain-text requests.
 
 All {{site.data.keyword.cos_full}} endpoints support TLS 1.2 encryption.
 {: note}
@@ -103,7 +103,6 @@ Buckets that are created at a regional endpoint distribute data across three dat
 {: tab-title="Direct"}
 {: tab-group="Regional-endpoints"}
 
-
 ## Cross-Region Endpoints
 {: #endpoints-geo}
 
@@ -143,9 +142,10 @@ Buckets that are created at a cross-region endpoint distribute data across three
 {: tab-group="Cross-regional-endpoints"}
 
 For example:
-- Data in `US` cross-region bucket is distributed only across regions (such as Dallas, WDC, and SJC) in the `US` geographical location.
-- Data in `EU` cross-region bucket is distributed only across regions (such as, Amsterdam, FRA, and Milan) in the `EU` geographical location.
-- Data in `AP` cross-region bucket is distributed only across regions (such as, TOK, SYD, and OSA) in the `AP` geographical location.
+
+* Data in `US` cross-region bucket is distributed only across regions (such as Dallas, WDC, and SJC) in the `US` geographical location.
+* Data in `EU` cross-region bucket is distributed only across regions (such as, Amsterdam, FRA, and Milan) in the `EU` geographical location.
+* Data in `AP` cross-region bucket is distributed only across regions (such as, TOK, SYD, and OSA) in the `AP` geographical location.
 
 ## Single Data Center Endpoints
 {: #endpoints-zone}
@@ -219,7 +219,7 @@ The {{site.data.keyword.at_full_notm}} can archive to a bucket at specific {{sit
 ## Resource Configuration Endpoints
 {: #endpoints-rc}
 
-Requests made using the Resource Configuration API are sent to a global endpoint, regardless of the bucket's location.  
+Requests made using the Resource Configuration API are sent to a global endpoint, regardless of the bucket's location.
 
 | Type    | Endpoint                                               |
 | ------- | ------------------------------------------------------ |
@@ -231,7 +231,7 @@ Requests made using the Resource Configuration API are sent to a global endpoint
 ## Decommissioned locations
 {: #endpoints-decom}
 
-Over time, it may be necessary for locations to transform from a Single Data Center to a Regional configuration, or for a location to be decommissioned entirely. These situations will require users to migrate data from one bucket to another. Please consult this [guide for migrating a bucket using Rclone](/docs/cloud-object-storage/iam?topic=cloud-object-storage-region-copy).
+Over time, it may be necessary for locations to transform from a Single Data Center to a Regional configuration, or for a location to be decommissioned entirely. These situations will require users to migrate data from one bucket to another. Please consult this [guide for migrating a bucket using `rclone`](/docs/cloud-object-storage/iam?topic=cloud-object-storage-region-copy).
 
 | Region  | Type    | Endpoint                                                |
 |---------|---------|---------------------------------------------------------|
