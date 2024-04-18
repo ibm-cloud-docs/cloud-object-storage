@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-17"
+lastupdated: "2024-04-18"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -203,7 +203,7 @@ Not all operations are supported in Satellite environments. For details, see [su
 | `x-amz-bucket-object-lock-enabled` | Boolean | No        | Specifies whether you want to enable Object Lock on the new bucket.  This will automatically enable versioning. |
 {: caption="Table 1. Headers" caption-side="top"}
 
-When setting Object Lock on a new bucket, ensure that there are no typos in the `x-amz-bucket-object-lock-enabled` header. If either the header or value are mispelled, the bucket will still be created, but Object Lock and Versioning will **not** be enabled.
+When setting Object Lock on a new bucket, ensure that there are no typos in the `x-amz-bucket-object-lock-enabled` header. If either the header or value are misspelled, the bucket will still be created, but Object Lock and Versioning will **not** be enabled.
 {: tip}
 
 Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means in the name of the bucket or object.
