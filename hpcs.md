@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2024
-lastupdated: "2024-02-20"
+lastupdated: "2024-04-17"
 
 keywords: encryption, security, {{site.data.keyword.hscrypto}}
 
@@ -31,7 +31,6 @@ Before you plan on using {{site.data.keyword.hscrypto}} with Cloud Object Storag
 
 You will need to ensure that a service instance is created by using the [IBM Cloud catalog](https://cloud.ibm.com/catalog) and appropriate permissions are granted. This section outlines step-by-step instructions to help you get started.
 
-
 ## Provisioning an instance of {{site.data.keyword.hscrypto}}
 {: #hpcs-provision}
 Refer to the service-specific product pages for instructions on how to provision and setup appropriate service instances.
@@ -51,28 +50,28 @@ Navigate to your instance of {{site.data.keyword.hscrypto}} and [initialize the 
 Authorize {{site.data.keyword.hscrypto}} for use with IBM COS:
 
 1. Open your IBM Cloud dashboard.
-2. From the menu bar, click **Manage > Access (IAM)**.
-3. In the side navigation, click **Authorizations**.
-4. Click **Create** to create an authorization.
-5. In the **Source service** menu, select **Cloud Object Storage**.
-6. In the **Source service instance** menu, select the service instance to authorize.
-7. In the **Target service** menu, select **{{site.data.keyword.hscrypto}}**.
-8. In the **Target service instance** menu, select the service instance to authorize.
-9. Enable the **Reader** role.
-10. Click **Authorize**.
+1. From the menu bar, click **Manage > Access (IAM)**.
+1. In the side navigation, click **Authorizations**.
+1. Click **Create** to create an authorization.
+1. In the **Source service** menu, select **Cloud Object Storage**.
+1. In the **Source service instance** menu, select the service instance to authorize.
+1. In the **Target service** menu, select **{{site.data.keyword.hscrypto}}**.
+1. In the **Target service instance** menu, select the service instance to authorize.
+1. Enable the **Reader** role.
+1. Click **Authorize**.
 
 ## Create a bucket
 {: #hpcs-bucket}
 When your key exists in {{site.data.keyword.hscrypto}} and you authorized the service for use with IBM COS, you can now associate the key with a new bucket:
 
 1. Navigate to your instance of Object Storage.
-2. Click **Create bucket**.
-3. Select **Custom bucket**.
-3. Enter a bucket name, select the resiliency (only Regional and US Cross Region are currently supported), and choose a location and storage class.
-4. In **Service integrations**, toggle **Key management disabled** to enable encryption key management and click on **Use existing instance**.
-5. Select the associated service instance and key, and click **Associate key**.
-5. Verify the information is correct.
-6. Click **Create**.
+1. Click **Create bucket**.
+1. Select **Custom bucket**.
+1. Enter a bucket name, select the resiliency (only Regional and US Cross Region are currently supported), and choose a location and storage class.
+1. In **Service integrations**, toggle **Key management disabled** to enable encryption key management and click on **Use existing instance**.
+1. Select the associated service instance and key, and click **Associate key**.
+1. Verify the information is correct.
+1. Click **Create**.
 
 You can choose to use {{site.data.keyword.hscrypto}} to manage encryption for a bucket only at the time of creation. It isn't possible to change an existing bucket to use {{site.data.keyword.hscrypto}}.
 {:important}
@@ -80,7 +79,7 @@ You can choose to use {{site.data.keyword.hscrypto}} to manage encryption for a 
 If bucket creation fails with a `400 Bad Request` error with the message `The Key CRN could not be found`, ensure that the CRN is correct and that the service to service authorization policy exists.
 {:tip}
 
-In the **Buckets** listing, the bucket now has a _View_ link under **Attributes**, indicating that the bucket has a {{site.data.keyword.hscrypto}} key enabled. To view the key details (along with other object metadata), click _View_.
+In the `Buckets` listing, the bucket now has a _View_ link under `Attributes`, indicating that the bucket has a {{site.data.keyword.hscrypto}} key enabled. To view the key details (along with other object metadata), click `View`.
 
 Note that the `Etag` value returned for objects encrypted using {{site.data.keyword.hscrypto}} **will** be the actual MD5 hash of the original decrypted object.
 {:tip}
@@ -90,12 +89,12 @@ It is also possible to use [the REST API](/docs/cloud-object-storage?topic=cloud
 ### Creating Cross Region buckets
 {: #hpcs-cr}
 
-Creating COS Cross Region bucket with a root key from a {{site.data.keyword.hscrypto}} instance requires that instance to be [configured with failover configuration](https://cloud.ibm.com/docs/hs-crypto?topic=hs-crypto-enable-add-failover). 
+Creating COS Cross Region bucket with a root key from a {{site.data.keyword.hscrypto}} instance requires that instance to be [configured with failover configuration](https://cloud.ibm.com/docs/hs-crypto?topic=hs-crypto-enable-add-failover).
 
 You can confirm that failover is properly configured for the selected {{site.data.keyword.hscrypto}} instance correctly using either the IBM Cloud console or CLI.
 
 From IBM Cloud console, navigate to a {{site.data.keyword.hscrypto}} instance and click on **Overview**. A "Failover" section will indicate the status of crypto units in the corresponding failover regions.
- 
+
 Ensure the failover section is present, all validation checks are green and there are no warnings for that {{site.data.keyword.hscrypto}} instance.  If you see any errors or warnings, or if the failover section is not present, [refer to the {{site.data.keyword.hscrypto}} documentation for further guidance](https://cloud.ibm.com/docs/hs-crypto?topic=hs-crypto-enable-add-failover).
 
 You can also use the CLI to list all the crypto units for all instances belong to the targeted resource group:
@@ -103,7 +102,6 @@ You can also use the CLI to list all the crypto units for all instances belong t
 ```sh
 ibmcloud tke cryptounits
 ```
-{:screen}
 
 To get status of crypto units for the selected instance, create a list of crypto units associated with that instance and compare them:
 
@@ -117,13 +115,12 @@ After the units have been selected, you can check their verification patterns:
 ibmcloud tke cryptounit-compare
 ```
 
-Make sure all of them are valid and have same verification pattern.
+Make sure all are valid and have same verification pattern.
 
 Once the presence of the failover configuration is verified, you may proceed to create the Cross Region bucket using the key from that {{site.data.keyword.hscrypto}} instance.
 
 If the Cross Region bucket creation in US Cross Region with a {{site.data.keyword.hscrypto}} root key fails with a `500` error, then the user is advised to check if the status of failover configuration for that {{site.data.keyword.hscrypto}} instance (using the methods detailed above) before reattempting the bucket creation.
 {:important}
-
 
 ## Key lifecycle management
 {: #hpcs-lifecycle}
@@ -145,7 +142,7 @@ As an admin, you might need to [temporarily disable a root key](/docs/hs-crypto?
 ### Deleting keys and cryptographic erasure
 {: #hpcs-cryptoerasure}
 
-Cryptographic erasure (or crypto-shredding) is a method of rendering encrypted data  unreadable by [deleting the encryption keys](/docs/hs-crypto?topic=hs-crypto-security-and-compliance#data-deletion) rather than the data itself. When a [root key is deleted in {{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-delete-keys), it will affect all objects in any buckets created using that root key, effectively "shredding" the data and preventing any further reading or writing to the buckets. This process is not instantaneous, but occurs within approximatedly 90 seconds after the key is deleted.
+Cryptographic erasure (or crypto-shredding) is a method of rendering encrypted data  unreadable by [deleting the encryption keys](/docs/hs-crypto?topic=hs-crypto-security-and-compliance#data-deletion) rather than the data itself. When a [root key is deleted in {{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-delete-keys), it will affect all objects in any buckets created using that root key, effectively "shredding" the data and preventing any further reading or writing to the buckets. This process is not instantaneous, but occurs within about 90 seconds after the key is deleted.
 
 Although objects in a crypto-shredded bucket can not be read, and new object can not be written, existing objects will continue to consume storage until they are deleted by a user.
 {: tip}
@@ -155,7 +152,7 @@ Although objects in a crypto-shredded bucket can not be read, and new object can
 
 As an admin, you might need to [restore a root key that you imported](/docs/hs-crypto?topic=hs-crypto-restore-keys) to {{site.data.keyword.hscrypto}} so that you can access data that the key previously protected. When you restore a key, you move the key from the Destroyed to the Active key state, and you restore access to any data that was previously encrypted with the key. This must occur within 30 days of deleting a key.
 
-If a key that was originally uploaded by a user is deleted, and then restored using different key material, it **will result in a loss of data**. It is recommended to keep n-5 keys archived somewhere in order to ensure that the correct key material is available for restoration.
+If a key that was originally uploaded by a user is deleted, and then restored using different key material, it **will result in a loss of data**. It is recommended to keep n-5 keys archived somewhere to ensure that the correct key material is available for restoration.
 {: important}
 
 ## Activity Tracking
@@ -168,7 +165,7 @@ In the event of a server-side failure in a lifecycle action on a key, that failu
 
 The `cloud-object-storage.bucket-key-state.update` actions are triggered by events taking place in {{site.data.keyword.hscrypto}}, and require that the bucket is registered with the {{site.data.keyword.hscrypto}} service.  This registration happens automatically when a bucket is created with a {{site.data.keyword.hscrypto}} root key.
 
-Buckets created prior to February 26th, 2020 are not registered with the {{site.data.keyword.hscrypto}} service and will not receive notifications of encryption key lifecycle events at this time. These buckets can be identified by performing [a bucket listing operation](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets) and looking at the dates for bucket creation. To ensure that these buckets have the latest key state from {{site.data.keyword.hscrypto}}, it is recommended that [some data operation is performed](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations#object-operations-head), such as a `PUT`, `GET`, or `HEAD` on an object in each affected bucket.  It is recommended that an object operation is done twice, at least an hour apart, to ensure that the key state is properly in synchronization with the {{site.data.keyword.hscrypto}} state.
+Buckets created before February 26th, 2020 are not registered with the {{site.data.keyword.hscrypto}} service and will not receive notifications of encryption key lifecycle events at this time. These buckets can be identified by performing [a bucket listing operation](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets) and looking at the dates for bucket creation. To ensure that these buckets have the latest key state from {{site.data.keyword.hscrypto}}, it is recommended that [some data operation is performed](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations#object-operations-head), such as a `PUT`, `GET`, or `HEAD` on an object in each affected bucket.  It is recommended that an object operation is done twice, at least an hour apart, to ensure that the key state is properly in synchronization with the {{site.data.keyword.hscrypto}} state.
 {: important}
 
 For more information on Activity Tracker events for object storage, [see the reference topic](/docs/cloud-object-storage?topic=cloud-object-storage-at-events).
