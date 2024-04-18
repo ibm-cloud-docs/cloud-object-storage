@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2020
-lastupdated: "2020-10-27"
+  years: 2020, 2024
+lastupdated: "2024-04-18"
 
-keywords: object storage, static website, options 
+keywords: object storage, static website, options
 
 subcollection: cloud-object-storage
 
@@ -23,7 +23,7 @@ A new hosted static website can be created with {{site.data.keyword.cos_full}} i
 
 Modern web development requires modern tools and secure infrastructure. Static websites represent the latest developments in high-availability, SEO improvement, and increased security. While covering every available option is beyond the scope of this hands-on overview, the ease of serving static content on {{site.data.keyword.cos_full_notm}} allows for many possible strategies.
 
-Hosted static websites focus on the content your users desire: information and media. By removing the administration of webservers like Apache or Nginx, management of your website focuses directly on content, from generation to deployment. 
+Hosted static websites focus on the content your users desire: information and media. By removing the administration of web servers like Apache or Nginx, management of your website focuses directly on content, from generation to deployment.
 
 Static content differs substantially from dynamic web content. However, if you don't need to generate dynamic content on the web or if your workflow results in content saved to a fixed form, then the hosted static solution featured here presents the best choice.
 
@@ -49,7 +49,7 @@ When you create and configure a new hosted static website, you may also wish to 
 ### Routing
 {: #static-websites-options-adv-conf}
 
-Routing gives you control over the requests coming from your visitors. For example, you could globally redirect all of your traffic from using one protocol to another, like replacing HTTP with the secure HTTPS. Or, you can create individual rules that process incoming requests for specific files and provide responses to your visitors based on the rules you define.
+Routing gives you control over the requests coming from your visitors. For example, you could globally redirect all your traffic from using one protocol to another, like replacing HTTP with the secure HTTPS. Or, you can create individual rules that process incoming requests for specific files and provide responses to your visitors based on the rules you define.
 
 ![Global routing rule](images/cos-sw-ui-global-routing.jpg){: caption="Figure 2. Global routing rule"}
 
