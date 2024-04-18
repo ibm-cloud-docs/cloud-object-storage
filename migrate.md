@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020, 2024
-lastupdated: "2024-04-10"
+lastupdated: "2024-04-18"
 
 keywords: migrate, aws
 
@@ -56,7 +56,7 @@ aws s3 ls --recursive s3://<BUCKET_NAME> --summarize > bucket-contents-source.tx
 
 Based on the process and tools you've chosen, choose a strategy for migrating your data. Here is a simplified process using the command line and the Go-based `rclone` executable as an example.
 
-1. Install `rclone` from [either a package manager or precompiled binary](https://rclone.org/install/){: external}. There are more configuration options available with explanations at the {{site.data.keyword.cos_full_notm}} [documentation](/docs/cloud-object-storage?topic=cloud-object-storage-rclone).
+1. Install `rclone` from [either a package manager or pre-compiled binary](https://rclone.org/install/){: external}. There are more configuration options available with explanations at the {{site.data.keyword.cos_full_notm}} [documentation](/docs/cloud-object-storage?topic=cloud-object-storage-rclone).
 
    ```bash
    curl https://rclone.org/install.sh | sudo bash
