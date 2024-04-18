@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-15"
+lastupdated: "2024-04-18"
 
 keywords: object storage, node, javascript, sdk
 
@@ -404,7 +404,7 @@ function cancelMultiPartUpload(bucketName, itemName, uploadID) {
 * [abortMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#abortMultipartUpload-property){: external}
 * [completeMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#completeMultipartUpload-property){: external}
 * [createMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createMultipartUpload-property){: external}
-* [uploadPart](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#uploadPart-property){: external}
+* [`uploadPart`](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#uploadPart-property){: external}
 
 ## Using Key Protect
 {: #node-examples-kp}
