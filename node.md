@@ -532,7 +532,7 @@ function createLifecycleConfiguration(bucketName) {
 {: javascript}
 
 *Key Values*
-* `<policy-id>` - Name of the lifecycle policy (must be unqiue)
+* `<policy-id>` - Name of the lifecycle policy (must be unique)
 * `<number-of-days>` - Number of days to keep the restored file
 
 *SDK References*
