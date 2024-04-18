@@ -256,7 +256,7 @@ function deleteItem(bucketName, itemName) {
 ### Delete multiple items from a bucket
 {: #node-examples-multidelete}
 
-The delete request can contain a maximum of 1000 keys that you want to delete. While deleting objects in batches is very useful in reducing the per-request overhead, be mindful when deleting many keys that the request may take some time to complete. Also, take into account the sizes of the objects to ensure suitable performance.
+The delete request can contain a maximum of 1000 keys that you want to delete. While deleting objects in batches is very useful in reducing the per-request overhead, be mindful when deleting many keys that the request may take some time to complete. Also, consider the sizes of the objects to ensure suitable performance.
 {:tip}
 
 ```javascript
@@ -414,7 +414,7 @@ Key Protect can be added to a storage bucket to manage encryption keys. All data
 ### Before You Begin
 {: #node-examples-kp-prereqs}
 
-The following items are necessary in order to create a bucket with Key-Protect enabled:
+The following items are necessary to create a bucket with Key-Protect enabled:
 
 * A Key Protect service [provisioned](/docs/services/key-protect?topic=key-protect-provision#provision)
 * A Root key available (either [generated](/docs/services/key-protect?topic=key-protect-create-root-keys) or [imported](/docs/services/key-protect?topic=key-protect-import-root-keys))
