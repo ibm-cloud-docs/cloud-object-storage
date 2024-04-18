@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-02-22"
+lastupdated: "2024-04-18"
 
 keywords: web application, node, gallery, tutorial
 
@@ -81,6 +81,7 @@ Before you start, you might consider a version manager, like Node Version Manage
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ```
+
 {: pre}
 
 ...or `wget` (just one is necessary, but not both; use whichever is available on your system):
@@ -88,15 +89,17 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ```bash
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ```
+
 {: pre}
 
-Or, for Windows, you can use [nvm for Windows](https://github.com/coreybutler/nvm-windows){: external} with installers and source code at the link.
+Or, for Windows, you can use [`nvm` for Windows](https://github.com/coreybutler/nvm-windows){: external} with installers and source code at the link.
 
 Using `nvm`, install Node.
 
 ```bash
 nvm install v6.17.1
 ```
+
 {: pre}
 
 Whichever approach you use after you install Node.js and `npm` (included with Node) on your computer, congratulate yourself on a job well started!
@@ -343,6 +346,7 @@ That last statement means that if you view your current directory, a new subdire
 ```bash
 ibmcloud dev build
 ```
+
 {: pre}
 
 Now that the app is built, you can run the code locally with the `run` command. When finished, copy and paste the provided URL into your browser's address bar, typically, `http://localhost:3000`.
@@ -350,6 +354,7 @@ Now that the app is built, you can run the code locally with the `run` command. 
 ```bash
 ibmcloud dev run
 ```
+
 {: pre}
 
 Now that the app is created and defined, view your application to confirm it works. If you see the placeholder image as shown in Figure 2, well done! You've created a new Node.js web application and are ready to deploy it to the cloud.
@@ -380,6 +385,7 @@ Follow this process:
    ```bash
    curl images/image-gallery-tutorial.zip -o image-gallery-tutorial.zip
    ```
+
    {: pre}
 
 
@@ -388,13 +394,15 @@ Follow this process:
    ```bash
    npm install
    ```
+
    {: pre}
 
-1.  Run the app by using the command shown.
+1. Run the app by using the command shown.
 
    ```bash
    npm start
    ```
+
    {: pre}
 
    Open a browser and view your app on the address and port that is output to the console, `http://localhost:3000`.
@@ -402,7 +410,7 @@ Follow this process:
    To restart the app locally, kill the node process (Ctrl+C) to stop it, and use `npm start` again. Using `nodemon` instead restarts the app when it detects a change, and saves you time. Install `nodemon` globally like this: `npm install -g nodemon`. Run it from the command line in your app directory by using: `nodemon`, to start your app.
    {:tip}
 
-1.  Get ready to prepare the app for deployment! Update the application name property value in the `manifest.yml` file from COS-WebGallery, to the name you entered for your app on {{site.data.keyword.cloud_notm}} Platform and the other information as shown in the example, if necessary. The application `manifest.yml` looks like the following example. You can customize the `package.json` file that is located in the app root directory for your app with the name of your app and your name as the author.
+1. Get ready to prepare the app for deployment! Update the application name property value in the `manifest.yml` file from COS-WebGallery, to the name you entered for your app on {{site.data.keyword.cloud_notm}} Platform and the other information as shown in the example, if necessary. The application `manifest.yml` looks like the following example. You can customize the `package.json` file that is located in the app root directory for your app with the name of your app and your name as the author.
 
    ```yaml
    applications:
@@ -415,17 +423,17 @@ Follow this process:
      disk_quota: 1024M
      random-route: true
    ```
+
    {: screen}
 
    Now is the point where you might need to set up SSH keys to interactively push code to your remote origin. If you set a passphrase for your SSH key, you're required to enter this code each time you push your changes to the remote origin for your repository.
    {: tip}
 
-1.  Remove and replace the contents of your `webapplication` directory with the contents of the directory you modified, `COS-WebGalleryStart`.
+1. Remove and replace the contents of your `webapplication` directory with the contents of the directory you modified, `COS-WebGalleryStart`.
     Using your finely tuned Git skills, add the files that were deleted and added to the repository with either the CLI or
     GitHub Desktop. Then, push the changes to the repository origin. In the future, you can make changes to your
-    cloud-based web application just by pushing changes to Git. The CD toolchain will auto-magically restart the server process
+    cloud-based web application just by pushing changes to Git. The CD toolchain will automatically restart the server process
     after cloning your changes and stashing them on the server.
-
 
 In essence, we've recoded our application, so let's repeat the build process. But this time we use the new Image Gallery code.
 
@@ -440,6 +448,7 @@ To get the starter app with your changes
    ```bash
    ibmcloud login
    ```
+
    {: pre}
 
 1. Set the API Endpoint for your region by using the `api` command.
@@ -447,6 +456,7 @@ To get the starter app with your changes
    ```bash
    ibmcloud api cloud.ibm.com
    ```
+
    {: pre}
 
 1. Target the Cloud Foundry aspect of {{site.data.keyword.cloud_notm}} Platform by using the `target` command and the `--cf` option.
@@ -454,6 +464,7 @@ To get the starter app with your changes
    ```bash
    ibmcloud target --cf
    ```
+
    {: pre}
 
 1. Build the app for delivery that application with the build command (as in the example).
@@ -461,6 +472,7 @@ To get the starter app with your changes
    ```bash
    ibmcloud dev build
    ```
+
    {: pre}
 
    1. Let's go ahead and test the application locally. This allows you to run the same code locally with the `run` command.
@@ -468,6 +480,7 @@ To get the starter app with your changes
    ```bash
    ibmcloud dev run
    ```
+
    {: pre}
 
 1. Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the `deploy` command.
@@ -475,6 +488,7 @@ To get the starter app with your changes
    ```bash
    ibmcloud dev deploy
    ```
+
    {: pre}
 
    The code shows the sequence of commands that are used in this example to build, test, and deploy the initial web application.
@@ -488,13 +502,14 @@ To get the starter app with your changes
    ibmcloud dev run
    ibmcloud dev deploy
    ```
+
    {: pre}
 
    When the process finishes, the {{site.data.keyword.cloud_notm}} Platform reports that the app was uploaded, successfully deployed, and started. If you're also logged in to the {{site.data.keyword.cloud_notm}} Platform web console, you're notified there also of the status of your app. But, most importantly, you can verify that the app was deployed by visiting the app URL reported by {{site.data.keyword.cloud_notm}} Platform with a browser, or from the web console by clicking View App button.
 
    Test the app. The visible change from the default app template that was deployed at creation to the starter app shown in the following proved that deploying the app to {{site.data.keyword.cloud_notm}} Platform was successful.
 
-   ![verify_push](images/web-app-tutorial-007-congrats.jpg){: caption="Figure 3. Results of viewing your deployed app."}
+   ![`verify_push`](images/web-app-tutorial-007-congrats.jpg){: caption="Figure 3. Results of viewing your deployed app."}
 
 ### Create a Git branch
 {: #tutorial-create-branch}
@@ -502,13 +517,13 @@ To get the starter app with your changes
 Now, you need to create a branch for the local development environment
 to use for your {{site.data.keyword.cloud_notm}} Platform Delivery Pipeline Build Stage:
 
-1.  If using GitHub Desktop, click the branch icon; you're prompted to enter a name for the branch. This example uses `local-dev` as the name.
+1. If using GitHub Desktop, click the branch icon; you're prompted to enter a name for the branch. This example uses `local-dev` as the name.
 
-   ![new_git_branch](images/web-app-tutorial-014-dev-branch.jpg){: caption="Figure 4. Use GitHub Desktop to create a local dev branch"}
+   ![`new_git_branch`](images/web-app-tutorial-014-dev-branch.jpg){: caption="Figure 4. Use GitHub Desktop to create a local dev branch"}
 
-1.  After you create the branch, GitHub compares the local files on the Local-dev branch with the files in the repository on the default branch and reports No local changes. You can now click Publish to add the branch you created on your local repo to your GitHub repo (as shown in Figure 5).
+1. After you create the branch, GitHub compares the local files on the Local-dev branch with the files in the repository on the default branch and reports No local changes. You can now click Publish to add the branch you created on your local repo to your GitHub repo (as shown in Figure 5).
 
-   ![publish_branch](images/web-app-tutorial-015-git-push.jpg){: caption="Figure 5. Publish your git branch to your repo's remote origin"}
+   ![`publish_branch`](images/web-app-tutorial-015-git-push.jpg){: caption="Figure 5. Publish your git branch to your repo's remote origin"}
 
 Now that the Local-dev branch is published to the GitHub repo in your toolchain, the build stage of your {{site.data.keyword.cloud_notm}} Platform Delivery Pipeline will be triggered followed by the deployment stage anytime you push a commit to it. Deploying the app from the CLI is not necessary, as the deployment has been integrated directly into your workflow.
 
@@ -519,22 +534,23 @@ You need to configure {{site.data.keyword.cos_short}} credentials for your web a
 
 After you have completed creating an API key, downloaded, and then copied the HMAC credentials, complete the following steps:
 
-1.  On the local development environment, place the credentials in the Windows path `%USERPROFILE%\\.aws\\credentials` (for Mac/Linux users, the credentials should go into `~/.aws/credentials)`. The example shows the contents of a typical credentials file.
+1. On the local development environment, place the credentials in the Windows path `%USERPROFILE%\\.aws\\credentials` (for Mac/Linux users, the credentials should go into `~/.aws/credentials)`. The example shows the contents of a typical credentials file.
 
    ```bash
    [default]
    aws_access_key_id = {access_key_id}
    aws_secret_access_key = {secret_access_key}
    ```
+
    {: codeblock}
 
-1.  In the web page for the application you created by using the CLI command on the {{site.data.keyword.cloud_notm}} Platform, define your required credentials as environment variables per development best practices by logging in to {{site.data.keyword.cloud_notm}} Platform, and under Cloud Foundry Apps, select your app, `webapplication`. From the tabs, click **Runtime**.
+1. In the web page for the application you created by using the CLI command on the {{site.data.keyword.cloud_notm}} Platform, define your required credentials as environment variables per development best practices by logging in to {{site.data.keyword.cloud_notm}} Platform, and under Cloud Foundry Apps, select your app, `webapplication`. From the tabs, click **Runtime**.
 
-2.  In the Runtime window, click Environment variables at the beginning of the page and scroll to the User-defined section, which allows you to add the variables.
+1. In the Runtime window, click Environment variables at the beginning of the page and scroll to the User-defined section, which allows you to add the variables.
 
-3.  Add two variables: one with the value of your access_key_id, using `AWS_ACCESS_KEY_ID` as the name of the key, and another with the value of your secret access key, named `AWS_SECRET_ACCESS_KEY`. These variables and their respective values are what the app uses to authenticate to the {{site.data.keyword.cos_short}} instance when running on {{site.data.keyword.cloud_notm}} Platform (see Figure 6). When you finish with the entries, click Save, and {{site.data.keyword.cloud_notm}} Platform will automatically restart the app for you.
+1. Add two variables: one with the value of your `access_key_id`, using `AWS_ACCESS_KEY_ID` as the name of the key, and another with the value of your secret access key, named `AWS_SECRET_ACCESS_KEY`. These variables and their respective values are what the app uses to authenticate to the {{site.data.keyword.cos_short}} instance when running on {{site.data.keyword.cloud_notm}} Platform (see Figure 6). When you finish with the entries, click Save, and {{site.data.keyword.cloud_notm}} Platform will automatically restart the app for you.
 
-   ![ibm_cloud_env_var](images/web-app-tutorial-016-env-variables.jpg){: caption="Figure 6. Runtime Environment Variables defined for your app"}
+   ![`ibm_cloud_env_var`](images/web-app-tutorial-016-env-variables.jpg){: caption="Figure 6. Runtime Environment Variables defined for your app"}
 
 Next, over at the {{site.data.keyword.cos_short}} Portal for your service instance, add a bucket to contain your images. This scenario uses the bucket that is named `web-images`.
 
@@ -554,8 +570,8 @@ Because this example uses an MVC architecture, adjusting the directory structure
 
 These are the two main tasks that a user should be able to do with the simple image gallery web application:
 
-  - Upload images from a web browser to the {{site.data.keyword.cos_short}} bucket.
-  - View the images in the {{site.data.keyword.cos_short}} bucket in a web browser.
+- Upload images from a web browser to the {{site.data.keyword.cos_short}} bucket.
+- View the images in the {{site.data.keyword.cos_short}} bucket in a web browser.
 
 The next steps focus on how to accomplish these two demonstration functions rather than building a fully developed, production-grade app. Deploying this tutorial and leaving it exposed and running means that anyone who finds the app can perform the same actions: upload files to your {{site.data.keyword.cos_full_notm}} bucket and view any JPEG images already there in their browser.
 
@@ -571,6 +587,7 @@ In the `package.json` file, inside the scripts object, you see how "start" is de
     }
 }
 ```
+
 {: codeblock}
 
 Our `app.js` file uses node to load modules that are needed to get started. The Express framework creates the app as a singleton simply called `app`. The example ends (leaving out most of the code for now) telling the app to listen on the port that is assigned and an environment property, or 3000 by default. When successfully starting at the start, it prints a message with the server URL to the console.
@@ -589,10 +606,11 @@ app.listen(port, function() {
 });
 //...
 ```
+
 {: codeblock}
 {: javascript}
 
-Let's see how to define a path and views. The first line of code tells the Express framework to use the public directory to serve our static files, which include any static images and stylesheets we use. The lines that follow tell the app where to find the templates for our views in the `src/views` directory, and set our view engine to be EJS. In addition, the framework uses the body-parser middleware to expose incoming request data to the app as JSON. In the closing lines of the example, the express app responds to all incoming GET requests to our app URL by rendering the `index.ejs` view template.
+Let's see how to define a path and views. The first line of code tells the Express framework to use the public directory to serve our static files, which include any static images and style sheets we use. The lines that follow tell the app where to find the templates for our views in the `src/views` directory, and set our view engine to be EJS. In addition, the framework uses the body-parser middleware to expose incoming request data to the app as JSON. In the closing lines of the example, the express app responds to all incoming GET requests to our app URL by rendering the `index.ejs` view template.
 
 ```javascript
 //...
@@ -610,14 +628,15 @@ app.get('/', function (req, res) {
 
 //...
 ```
+
 {: codeblock}
 {: javascript}
 
 The following figure shows what the index view template when rendered and sent to the browser. If you are using ,`nodemon` you might have noticed that your browser refreshed when you saved your changes.
 
-![uploadimageview](images/web-app-tutorial-018-templates.jpg){: caption="Figure 8. Your updated web app by using templates and views for displays"}
+![`uploadimageview`](images/web-app-tutorial-018-templates.jpg){: caption="Figure 8. Your updated web app by using templates and views for displays"}
 
-Our view templates share HTML code between the `<head>...</head>`; tags, so we placed it into a separate include template. This template (`head-inc.ejs`) contains a scriptlet (a binding for a JavaScript variable) for the page title on line 1. The `title` variable is set in `app.js`, and passed in as data for our view template in the line below that. Otherwise, we are simply using some CDN addresses to pull in Bootstrap CSS, Bootstrap JavaScript, and JQuery. Finally, we add a custom static `styles.css` file from our `pubic/stylesheets` directory.
+Our view templates share HTML code between the `<head>...</head>`; tags, so we placed it into a separate include template. This template (`head-inc.ejs`) contains a scriptlet (a binding for a JavaScript variable) for the page title on line 1. The `title` variable is set in `app.js`, and passed in as data for our view template in the line below that. Otherwise, we are simply using some CDN addresses to pull in `Bootstrap CSS`, `Bootstrap JavaScript`, and `JQuery`. Finally, we add a custom static `styles.css` file from our `pubic/stylesheets` directory.
 
 ```html
 <title><%=title%></title>
@@ -640,21 +659,22 @@ Our view templates share HTML code between the `<head>...</head>`; tags, so we p
 <link rel="stylesheet" href="stylesheets/style.css">
 
 ```
+
 {: codeblock}
 
 The body of the index view contains our bootstrap styled navigation tabs, and our upload form in a basic layout that is provided by the CSS styles included with bootstrap.
 
 Consider these two specifications for our app:
 
--   We set our form method to `POST` and the form-data encoding type as
-    multipart/form-data on line 24. For the form action, we send the
-    data from our form to the app to the app route "/". Later, we do
-    extra work in our router logic to handle `POST` requests to
-    that route.
+- We set our form method to `POST` and the form-data encoding type as
+multipart/form-data on line 24. For the form action, we send the
+data from our form to the app to the app route "/". Later, we do
+extra work in our router logic to handle `POST` requests to
+that route.
 
--   We want to display feedback about the status of the attempted file
-    upload to the user. This feedback is passed to our view in a
-    variable named "status", and is displayed after the upload form.
+- We want to display feedback about the status of the attempted file
+upload to the user. This feedback is passed to our view in a
+variable named "status", and is displayed after the upload form.
 
 ```html
 <!DOCTYPE html>
@@ -698,6 +718,7 @@ Consider these two specifications for our app:
 
 </html>
 ```
+
 {: codeblock}
 
 Let's take a moment to return to `app.js`. The example sets up Express routes to handle extra requests that are made to our app. The code for these routing methods are in two files under the `./src/routes` directory in your project:
@@ -718,6 +739,7 @@ app.use('/', imageUploadRoutes);
 
 //...
 ```
+
 {: codeblock}
 {: javascript}
 
@@ -911,6 +933,7 @@ The last code example shows the body of the `galleryView` template with the code
 
 </html>
 ```
+
 {: codeblock}
 
 We test the app locally from `http://localhost:3000/gallery` and see our image.
@@ -926,7 +949,7 @@ Now that the basic features of the app are working, we commit our code to our lo
 
 When we click **sync**, our commit is sent to the remote `local-dev` branch. This action starts the Build and Deploy Stages in our Delivery Pipeline.
 
-![pipeline_triggled_aftersync](images/web-app-tutorial-022-final-pipeline.jpg){: caption="Figure 12. CD Delivery Pipeline"}
+![`pipeline_triggled_aftersync`](images/web-app-tutorial-022-final-pipeline.jpg){: caption="Figure 12. CD Delivery Pipeline"}
 
 ## Next Steps
 {: #webapp-next-steps}
