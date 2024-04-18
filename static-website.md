@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020, 2024
-lastupdated: "2024-03-25"
+lastupdated: "2024-04-18"
 
 keywords: static website, hosting, tutorial
 
@@ -34,7 +34,7 @@ Hosting static websites with {{site.data.keyword.cos_full_notm}} serves static c
 ## The Scenario
 {: #static-website-scenario}
 
-The scenario for this tutorial simplifies web hosting to its essentials in order to highlight the steps involved. While not every configuration option will be covered in this tutorial, correctly completing this tutorial results in web-accessible content.
+The scenario for this tutorial simplifies web hosting to its essentials to highlight the steps involved. While not every configuration option will be covered in this tutorial, correctly completing this tutorial results in web-accessible content.
 
 ## Before you start
 {: #static-website-before-you-start}
@@ -62,9 +62,10 @@ Creating a bucket for a static website will require public access. There are a n
 After configuring the CLI plug-in, replace the placeholder content as shown in the example command to create a bucket:
 {: cli}
 
-```
+```sh
 ibmcloud cos bucket-create --bucket <bucketname>
 ```
+
 {: pre}
 {: cli}
 
@@ -101,9 +102,10 @@ Other files, like images, PDFs, or videos, can also be uploaded to your bucket (
 For the purpose of this tutorial, place the HTML pages for the index and error handling in a local directory. Replace the placeholder content as shown in the example command to upload your html files:
 {: cli}
 
-```
+```sh
 ibmcloud cos object-put --bucket BUCKET_NAME --key KEY [--body FILE_PATH]
 ```
+
 {: pre}
 {: cli}
 
@@ -142,7 +144,7 @@ ibmcloud cos bucket-website-put --bucket BUCKET_NAME --website-configuration fil
 {: pre}
 {: cli}
 
-You may have completed this step during the creation of your bucket, as the basic configuration for your hosted static website determines when and how content is shown. For visitors to your website who fail to provide a key, or webpage, the default file will be shown instead. When your users encounter an error, the key for the error page determines what content visitors will receive. The configuration options for the default and error pages are repeated for reference.
+You may have completed this step during the creation of your bucket, as the basic configuration for your hosted static website determines when and how content is shown. For visitors to your website who fail to provide a key, or web page, the default file will be shown instead. When your users encounter an error, the key for the error page determines what content visitors will receive. The configuration options for the default and error pages are repeated for reference.
 {: ui}
 
 ![Configure options](images/cos-sw-ui-complete-config.jpg){: ui}
@@ -155,6 +157,7 @@ Once you have configured your bucket to provide HTTP headers using the example c
 ```http
 http://<bucketname>.s3-web.<endpoint>/
 ```
+
 {: screen}
 
 With the successful testing of your new site, you can now explore more options and add more content.
