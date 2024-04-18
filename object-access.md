@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2023
-lastupdated: "2023-12-07"
+  years: 2023, 2024
+lastupdated: "2024-04-18"
 
 keywords: object, bucket, iam, policy, role, tutorial, fine grained access control, prefix, list objects, path, delimiter
 
@@ -32,7 +32,7 @@ This tutorial provides examples for how to use IAM access policies with {{site.d
 ## Before you begin
 {: #object-access-before-you-begin}
 
-{{site.data.keyword.cos_full_notm}} stores data in a flat structure where one bucket can contain billions of distinctly-named objects. A folder hierarchy can be simulated by using identical prefixes in related object names. Also, an object name can be referred to as an object key. Here is an example:
+{{site.data.keyword.cos_full_notm}} stores data in a flat structure where one bucket can contain billions of distinctly named objects. A folder hierarchy can be simulated by using identical prefixes in related object names. Also, an object name can be referred to as an object key. Here is an example:
 
 ```text
 Bucket Name: MyBucket
@@ -130,9 +130,10 @@ This will give Adam the ability to read and list all objects that start with the
   },
   "pattern": "attribute-based-condition:resource:literal-and-wildcard
 ```
+
 {: codeblock}
 
-### Scenario 3: Grant Samantha accesss to list, read, and replicate files in only the ```2023``` and ```2024``` subdirectories under the ```Product``` folder.
+### Scenario 3: Grant Samantha access to list, read, and replicate files in only the ```2023``` and ```2024``` subdirectories under the ```Product``` folder.
 {: #object-access-scenario-3}
 
 These sets of actions will require Samantha to have at least the ```Writer``` role. The ```Writer``` role also contains some actions that do not specify a ```Path``` or a ```Prefix``` or ```Delimiter``` such as ```cloud-object-storage.bucket.put_replication```. To allow these actions, use the [StringExists](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-conditions-actions-not-supported) operator with the resource attributes based conditions.
@@ -202,6 +203,7 @@ Samantha will not have access to navigate the UI from the root folder. This situ
 },
 "pattern": "attribute-based-condition:resource:literal-and-wildcard"
 ```
+
 {: codeblock}
 
 ### Scenario 4: Grant Samantha access to navigate the UI to the files in the ```2023``` and ```2024``` folders in addition to list, read and replicate files in ```2023``` and ```2024```.
@@ -293,4 +295,5 @@ To navigate the UI to ```MyBucket```, Samantha needs the platform role ```Viewer
   },
   "pattern": "attribute-based-condition:resource:literal-and-wildcard"
 ```
+
 {: codeblock}
