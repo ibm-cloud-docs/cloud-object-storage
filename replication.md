@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2024
-lastupdated: "2024-04-03"
+lastupdated: "2024-04-18"
 
 keywords: data, replication, loss prevention, iam, activity tracker, disaster recovery, versioning, key protect, accounts, buckets
 
@@ -33,7 +33,7 @@ Replication copies newly created objects and object updates from a source bucket
 
 - Keep a copy of data in a bucket in a different geographic location.
 - Meet compliance regulations for data sovereignty by defining replication rules that store replicas only within the allowable locations.
-- Keep production and test data in sync, as replication retains object metadata such as last modified time, version ID, etc.
+- Keep production and test data in sync, as replication retains object metadata such as last modified time, version ID, and so on.
 - Manage the storage class and lifecycle policies for the replicated objects independent of the source, by defining a different storage class and/or lifecycle rules for the target bucket. Similarly, you can store replicas in a bucket in a separate service instance or even IBM Cloud account, and also independently control access to the replicas.
 
 ## Getting started with replication
@@ -50,7 +50,7 @@ To get started, here are some prerequisites that must be met:
 - If the source and target buckets are in different IBM accounts, be sure to create the buckets in each account.
 - Enable [Versioning](/docs/cloud-object-storage?topic-versioning) on each bucket.
 
-As versioning is a requirement for replication, it is not possible to replicate objects in buckets configured with an [Immutable Object Storage policy](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable).
+As versioning is a requirement for replication, it is impossible to replicate objects in buckets configured with an [Immutable Object Storage policy](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable).
 {: note}
 
 ## Using one IBM account
@@ -92,8 +92,8 @@ To replicate objects between buckets in different IBM accounts, do the following
 1. In the Scope of Access, select **Specific Resources**.
 1. Select **Source Service Instance** and enter the service instance ID for the source bucket.
 1. Under Target, select **Cloud Object Storage** for the source bucket access.
-1. For Taget Scope, select **Specific resources**>**Service Instance.
-1. Select the destination accouint's service instance ID from the drop down menu.
+1. For Target Scope, select **Specific resources**>**Service Instance.
+1. Select the destination account's service instance ID from the drop down menu.
 1. Select the role **Object Writer** or **Writer** as required.
 
   The **Object writer** role is sufficient to enable replication.
@@ -106,12 +106,12 @@ To replicate objects between buckets in different IBM accounts, do the following
 
 **Target bucket**: The bucket that is defined as the destination in the source bucket replication policy. It is the target of replicated objects. Also referred to as a 'destination' bucket.
 
-**Replica**: The new object created in a target bucket as a result of a request made to a source bucket.
+**Replica**: The new object created in a target bucket because of a request made to a source bucket.
 
 ## What is replicated?
 {: #replication-what}
 
-New objects created via `CopyObject`, `PutObject`, or `CompleteMultipartUpload` will be replicated from the source bucket to the target bucket. The replicated objects will inherit the following metadata fields from the source object: Etag, Last Modified Time, Version ID, user-attributes, and Tags.
+New objects created via `CopyObject`, `PutObject`, or `CompleteMultipartUpload` will be replicated from the source bucket to the target bucket. The replicated objects will inherit the following metadata fields from the source object: `Etag`, `Last Modified Time`, `Version ID`, `user-attributes`, and `Tags`.
 
 Delete markers will be replicated if configured by the replication policy.
 
@@ -132,7 +132,7 @@ The following are not replicated:
 Replication can be used to provide continuity of service in the event of an outage:
 
 - Ensure that the source and target buckets are in different locations.
-- Verify that the latest versions of objects are in sync between both buckets.  A tool such as [Rclone](/docs/cloud-object-storage?topic=cloud-object-storage-rclone) (the `rclone check` command) can be useful for checking synchronicity from the command line.
+- Verify that the latest versions of objects are in sync between both buckets.  A tool such as [`Rclone`](/docs/cloud-object-storage?topic=cloud-object-storage-rclone) (the `rclone check` command) can be useful for checking synchronicity from the command line.
 - In the event of an outage, an application's traffic can be redirected to the target bucket.
 
 ## Consistency and data integrity
@@ -208,7 +208,7 @@ Replication generates additional metrics for use with IBM Cloud Monitoring:
 ### Versioning
 {: #replication-interactions-versioning}
 
-Versioning is mandatory in order to enable replication. After you [enable versioning](/docs/cloud-object-storage?topic=cloud-object-storage-versioning) on both the source and target buckets and configure replication on the source bucket, you may encounter the following issues:
+Versioning is mandatory to enable replication. After you [enable versioning](/docs/cloud-object-storage?topic=cloud-object-storage-versioning) on both the source and target buckets and configure replication on the source bucket, you may encounter the following issues:
 
 - If you attempt to disable versioning on the source bucket, {{site.data.keyword.cos_short}} returns an error. You must remove the replication configuration before you can disable versioning on the source bucket.
 - If you disable versioning on the target bucket, replication fails.
@@ -221,12 +221,12 @@ Source objects will be [encrypted using the root key](/docs/key-protect?topic=ke
 ### Lifecycle configurations
 {: #replication-interactions-lifecycle}
 
-If a [lifecycle policy is enabled](/docs/cloud-object-storage?topic=cloud-object-storage-expiry#expiry-rules-attributes) on a target bucket, the lifecycle actions will be based on the original creation time of the object at the source, not the time that the replica becomes available in the target bucket. 
+If a [lifecycle policy is enabled](/docs/cloud-object-storage?topic=cloud-object-storage-expiry#expiry-rules-attributes) on a target bucket, the lifecycle actions will be based on the original creation time of the object at the source, not the time that the replica becomes available in the target bucket.
 
 ### Immutable Object Storage
 {: #replication-interactions-worm}
 
-Using retention policies is not possible on a bucket with [versioning enabled](/docs/cloud-object-storage?topic=cloud-object-storage-versioning), and as versioning is a requirement for replication, it is not possible to replicate objects to or from a bucket with Immutable Object Storage enabled.
+Using retention policies is impossible on a bucket with [versioning enabled](/docs/cloud-object-storage?topic=cloud-object-storage-versioning), and as versioning is a requirement for replication, it is impossible to replicate objects to or from a bucket with Immutable Object Storage enabled.
 
 ### Legacy bucket firewalls
 {: #replication-interactions-firewall}
@@ -381,7 +381,7 @@ Assume that the following four objects are added to the source bucket. They will
  3. `project_b/baz.pdf`
  4. `project_b/acme.pdf`.  This fourth object also has an object tag with the key `Client` and the value `ACME`.
 
-As a result of the following rules, objects 1 and 2 will be replicated to `$DESTINATION_CRN_A`.  Object 3 will be replicated to `$DESTINATION_CRN_B`.  Object 4 will only be replicated to `$DESTINATION_CRN_C` because the rule with the ID `AcmeCorp` has a higher priority value than the rule with the ID `ProjectB` and while it meets the requirements for both rules, will only be subject to the former.
+Because of the following rules, objects 1 and 2 will be replicated to `$DESTINATION_CRN_A`.  Object 3 will be replicated to `$DESTINATION_CRN_B`.  Object 4 will only be replicated to `$DESTINATION_CRN_C` because the rule with the ID `AcmeCorp` has a higher priority value than the rule with the ID `ProjectB` and while it meets the requirements for both rules, will only be subject to the former.
 
 ```sh
 curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?replication" \
@@ -472,7 +472,7 @@ This returns an XML response body with the appropriate schema:
 
 ```sh
 curl -X "DELETE" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?replication" \
-     -H 'Authorization: bearer $TOKEN' 
+     -H 'Authorization: bearer $TOKEN'
 ```
 
 A successful request returns a `204` response.
@@ -480,7 +480,7 @@ A successful request returns a `204` response.
 ## SDK examples
 {: #replication-sdks}
 
-The following examples make use of the IBM COS SDKs for Python and Node.js, although the implementation of object versioning should be fully compatible with any S3-compatible library or tool that allows for the setting of custom endpoints.  Using third-party tools requires HMAC credentials in order to calculate AWS V4 signatures.  For more information on HMAC credentials, [see the documentation](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main).
+The following examples make use of the IBM COS SDKs for Python and Node.js, although the implementation of object versioning should be fully compatible with any S3-compatible library or tool that allows for the setting of custom endpoints.  Using third-party tools requires HMAC credentials to calculate AWS V4 signatures.  For more information on HMAC credentials, [see the documentation](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main).
 
 ### Python
 {: #versioning-sdks-python}
