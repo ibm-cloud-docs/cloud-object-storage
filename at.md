@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-16"
+lastupdated: "2024-04-19"
 
 keywords: activity tracker, LogDNA, event, object storage, COS API calls, monitor COS events
 
@@ -98,7 +98,7 @@ For `cloud-object-storage.bucket-key-state.update` events, the following fields 
 
 | Field                            | Description                                                               |
 | -------------------------------- | ------------------------------------------------------------------------- |
-| `requestData.eventType`          | The type of lifecyle event that occurred, such as deletion, rotation, and so on |
+| `requestData.eventType`          | The type of lifecycle event that occurred, such as deletion, rotation, and so on |
 | `requestData.requestedKeyState`  | The the requested state of the key (enabled or disabled).                 |
 | `requestData.requestKeyVersion`  | The requested version of the key.                                         |
 | `requestData.bucketLocation`     | The location of the bucket that uses the key.                             |
@@ -236,21 +236,21 @@ To view events, you must access the web UI of the {{site.data.keyword.at_full_no
 ### Identifying the COS instance ID that generates the event
 {: #at-events-analyze-1}
 
-In the {{site.data.keyword.cloud_notm}}, you can have 1 or more COS instances. 
+In the {{site.data.keyword.cloud_notm}}, you can have 1 or more COS instances.
 
-To quickly identify the COS instance ID in your account that has generated an event, check the field `responseData.serviceInstanceId` that is set in the **responseData** field.
+To quickly identify the COS instance ID in your account that has generated an event, check the field `responseData.serviceInstanceId` that is set in the `responseData` field.
 
 ### Identifying the bucket location
 {: #at-events-analyze-2}
 
-To quickly identify the bucket location, check the field `responseData.bucketLocation` that is set in the **`responseData`** field.
+To quickly identify the bucket location, check the field `responseData.bucketLocation` that is set in the `responseData` field.
 
 ### Getting the unique ID of a request
 {: #at-events-analyze-3}
 
 Each action that a user performs on a COS resource has a unique ID.
 
-To get the unique ID of a request to a COS resource, check the field `responseData.requestId` that is set in the **`responseData`** field.
+To get the unique ID of a request to a COS resource, check the field `responseData.requestId` that is set in the `responseData` field.
 
 ### Getting all events for a multipart upload operations
 {: #at-events-analyze-4}
