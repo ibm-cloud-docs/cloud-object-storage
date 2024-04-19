@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-18"
+lastupdated: "2024-04-19"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -30,7 +30,7 @@ When authenticating to your instance of {{site.data.keyword.cos_full}} [using HM
 | Key          | Value                                                     | Example                                                          |
 |--------------|-----------------------------------------------------------|------------------------------------------------------------------|
 | {access_key} | Access key assigned to your Service Credential            | cf4965cebe074720a4929759f57e1214                                 |
-| {date}       | The formatted date of your request (yyyymmdd)             | 20180613                                                         |
+| {date}       | The formatted date of your request (`yyyymmdd`)             | 20180613                                                         |
 | {region}     | The location code for your endpoint                       | us-standard                                                      |
 | {signature}  | The hash created using the secret key, location, and date | ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e |
 | {timestamp}  | The formatted date and time of your request               | 20180614T001804Z                                                 |

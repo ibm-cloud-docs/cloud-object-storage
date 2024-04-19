@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2023
-lastupdated: "2023-08-09"
+  years: 2017, 2024
+lastupdated: "2024-04-19"
 
 keywords: cli, command line interface, object storage, s3
 
@@ -150,7 +150,7 @@ aws --endpoint-url {endpoint} s3 rb s3://bucket-1
 remove_bucket: s3://bucket-1/
 ```
 
-### Create presigned URLs
+### Create pre-signed URLs
 {: #aws-cli-high-level-presign}
 
 The CLI can create pre-signed URLs. These URLs allow for temporary public access to objects without changing any existing access controls.
