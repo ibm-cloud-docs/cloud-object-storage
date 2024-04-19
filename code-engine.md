@@ -22,7 +22,6 @@ subcollection: cloud-object-storage
 {: #code-engine-event-source}
 
 Using {{site.data.keyword.cos_short}} as an event source {{site.data.keyword.codeengineshort}} is an event-driven compute platform (also referred to as Serverless computing). Actions (small bits of code) run in response to triggers (some category of event), and rules associate certain actions with certain triggers. Configure {{site.data.keyword.cos_full}} to be an event source, and anytime an object in a particular bucket is written or deleted an action is triggered. You can further tailor the changes feed to only corral events for objects which match a particular prefix or suffix.
-
 See [Working with the IBM Cloud Object Storage event producer](/docs/codeengine?topic=codeengine-eventing-cosevent-producer) for more information.
 
 
