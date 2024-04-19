@@ -2215,6 +2215,236 @@ The server responds with `204 No Content`.
 
 ----
 
+## Configure a PUT bucket inventory
+{: #compatibility-api-put-bucket-inventory}
+
+A `PutBucketInventoryConfiguration` issued to a bucket with the proper parameters .
+
+
+
+**Syntax**
+
+```bash
+PUT {bucket}?inventory&id={id}
+```
+{: codeblock}
+
+**Example request**
+{: token}
+
+This is an example of PutBucketInventoryConfiguration for a bucket.
+{: token}
+
+```http
+
+```
+{: token}
+
+**Example request**
+{: hmac}
+
+```http
+PUT /mybucket?inventory&id=myid HTTP/1.1
+<?xml version="1.0" encoding="UTF-8"?>
+<InventoryConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+        <Id>myid</Id>
+    <IsEnabled>true</IsEnabled>
+    <Filter>
+      <Prefix>my-filter-prefix</Prefix>
+    </Filter>
+        <IncludedObjectVersions>Current</IncludedObjectVersions>
+    <Schedule>
+      <Frequency>Daily</Frequency>
+    </Schedule>
+    <OptionalFields>
+              <Field>Size</Field>
+            <Field>LastModifiedDate</Field>
+      <Field>ETag</Field>
+          <Field>IsMultipartUploaded</Field>
+          <Field>EncryptionStatus</Field>
+          <Field>ObjectOwner</Field>
+    </OptionalFields>
+        <Destination>
+            <S3BucketDestination>
+                <Bucket>mybucket</Bucket>
+                <Format>CSV</Format>
+                <Prefix>my-destination-prefix</Prefix>
+              </S3BucketDestination>
+        </Destination>
+</InventoryConfiguration>
+```
+{: hmac}
+
+The server responds with `204 No Content`.
+
+----
+
+## Configure a GET bucket inventory
+{: #compatibility-api-get-bucket-inventory}
+
+A `GetBucketInventoryConfiguration` issued to a bucket with the proper parameters .
+
+
+
+**Syntax**
+
+```bash
+GET {bucket}?inventory&id={id}
+```
+{: codeblock}
+
+**Example request**
+{: token}
+
+This is an example of GetBucketInventoryConfiguration for a bucket.
+{: token}
+
+```http
+GET mybucket?inventory&id=myid HTTP/1.1
+```
+{: token}
+
+**Example response**
+{: hmac}
+
+```http
+<?xml version="1.0" encoding="UTF-8"?>
+<InventoryConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+        <Id>myid</Id>
+    <IsEnabled>true</IsEnabled>
+    <Filter>
+      <Prefix>my-filter-prefix</Prefix>
+    </Filter>
+        <IncludedObjectVersions>Current</IncludedObjectVersions>
+    <Schedule>
+      <Frequency>Daily</Frequency>
+    </Schedule>
+    <OptionalFields>
+              <Field>Size</Field>
+            <Field>LastModifiedDate</Field>
+      <Field>ETag</Field>
+          <Field>IsMultipartUploaded</Field>
+          <Field>EncryptionStatus</Field>
+          <Field>ObjectOwner</Field>
+    </OptionalFields>
+        <Destination>
+            <S3BucketDestination>
+                <Bucket>mybucket</Bucket>
+                <Format>CSV</Format>
+                <Prefix>my-destination-prefix</Prefix>
+              </S3BucketDestination>
+        </Destination>
+</InventoryConfiguration>
+```
+{: hmac}
+
+
+
+----
+
+## Configure a LIST bucket inventory
+{: #compatibility-api-list-bucket-inventory}
+
+A `ListBucketInventoryConfigurations` issued to a bucket with the proper parameters .
+
+
+
+**Syntax**
+
+```bash
+GET {bucket}?inventory&continuation-token={continuation-token}
+```
+{: codeblock}
+
+**Example request**
+{: token}
+
+This is an example of ListBucketInventoryConfigurations for a bucket.
+{: token}
+
+```http
+GET /mybucket?inventory HTTP/1.1
+```
+{: token}
+
+**Example response**
+{: hmac}
+
+```http
+<?xml version="1.0" encoding="UTF-8"?>
+<ListInventoryConfigurationsResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+      <InventoryConfiguration>
+          <Id>goodinventoryid</Id>
+          <IsEnabled>true</IsEnabled>
+          <Filter>
+              <Prefix>goodFilterPrefix</Prefix>
+          </Filter>
+          <Destination>
+              <S3BucketDestination>
+                  <Format>CSV</Format>
+                  <Bucket>mybucketCRN</Bucket>
+                  <Prefix>goodPrefix</Prefix>
+              </S3BucketDestination>
+          </Destination>
+          <Schedule>
+              <Frequency>Daily</Frequency>
+          </Schedule>
+          <IncludedObjectVersions>All</IncludedObjectVersions>
+          <OptionalFields>
+              <Field>Size</Field>
+          </OptionalFields>
+      </InventoryConfiguration>
+      <InventoryConfiguration>
+          <Id>goodinventoryid1</Id>
+          ...
+      </InventoryConfiguration>
+      <IsTruncated>true</IsTruncated>
+          <NextContinuationToken>{continuation-token}</NextContinuationToken>
+</ListInventoryConfigurationsResult>
+```
+{: hmac}
+
+
+
+----
+
+## Configure a DELETE bucket inventory
+{: #compatibility-api-delete-bucket-inventory}
+
+A `DeleteBucketInventoryConfiguration` issued to a bucket with the proper parameters .
+
+
+
+**Syntax**
+
+```bash
+DELETE {bucket}?inventory&id={id}
+```
+{: codeblock}
+
+**Example request**
+{: token}
+
+This is an example of DeleteBucketInventoryConfiguration for a bucket.
+{: token}
+
+```http
+DELETE mybucket?inventory&id=myid HTTP/1.1
+```
+{: token}
+
+**Example response**
+{: hmac}
+
+```http
+204 No Content
+```
+{: hmac}
+
+
+
+----
+
 ## Next Steps
 {: #api-ref-buckets-next-steps}
 
