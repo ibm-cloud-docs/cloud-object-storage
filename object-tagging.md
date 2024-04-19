@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020, 2024
-lastupdated: "2024-04-18"
+lastupdated: "2024-04-19"
 
 keywords: tagging, objects, tags, metadata
 
@@ -48,7 +48,7 @@ Log in to the [console](https://cloud.ibm.com/){: external}, selecting your inst
 
 ![Manage your tags](images/object-manage-tags.jpg){: console}
 
-A properly formed and authenticated "GET" request with the `?tagging` query paramter is all that is required for accessing the tags for your objects using `curl`. The examples here use bearer tokens generated using [this example](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-token). In addition to the bucket identifier and object key, you will also need the correct [endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints). The resulting XML object is also shown, where the "Tag" element will be repeated for each tag assigned to the object. If there are no tags, the response will return XML with an empty element, `<TagSet />`.
+A properly formed and authenticated "GET" request with the `?tagging` query parameter is all that is required for accessing the tags for your objects using `curl`. The examples here use bearer tokens generated using [this example](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-token). In addition to the bucket identifier and object key, you will also need the correct [endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints). The resulting XML object is also shown, where the "Tag" element will be repeated for each tag assigned to the object. If there are no tags, the response will return XML with an empty element, `<TagSet />`.
 {: http}
 
 ```bash
