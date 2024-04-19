@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2024
 
-lastupdated: "2024-03-25"
+lastupdated: "2024-04-19"
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning
 
@@ -21,8 +21,8 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
-## 21 March 2024
-{: #cloud-object-storage-mar2124}
+## 19 April 2024
+{: #cloud-object-storage-apr1924}
 {: release-note}
 
 Cloud Functions update
