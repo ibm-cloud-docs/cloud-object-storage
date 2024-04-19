@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2023
-lastupdated: "2023-11-30"
+  years: 2023, 2024
+lastupdated: "2024-04-19"
 
 keywords: IAM, policy, fine-grained access control, controls, conditions, prefix, delimiter, path, folder1/subfolder1/file.txt, folder1, subfolder1, wildcard, operator, stringMatchAnyOf, stringexists
 
@@ -24,8 +24,9 @@ If access is required to the entire bucket (that is, when fine-grained access co
 Each object that is stored in a Cloud Object Storage bucket has a unique key, and these keys often follow a hierarchical structure similar to a file system.
 
 **Example**
-- An individual object with the key *"folder1/subfolder1/file.txt"* can simulate a folder or directory hierarchy, where the directory *“folder1”* contains a subdirectory that is named *“subfolder1”* containing a file *“file.txt”*. Access can be assigned at any folder level.
-- An access policy can be created for all objects and subfolders in the folder named *“folder1”*, or access can be assigned for just objects in the subdirectory named *“subfolder1”*.
+
+- An individual object with the key *"folder1/subfolder1/file.txt"* can simulate a folder or directory hierarchy, where the directory *“folder1”* contains a subdirectory that is named *“sub-folder1”* containing a file *“file.txt”*. Access can be assigned at any folder level.
+- An access policy can be created for all objects and - in the folder named *“folder1”*, or access can be assigned for just objects in the subdirectory named *“subfolder1”*.
 
 A policy administrator can assign access to individual objects and folders by configuring conditions when creating IAM access policies. The next section describes how to construct these types of policies.
 
@@ -48,6 +49,7 @@ The service is the IBM Cloud Service that contains the resource you are trying t
 {: #fgac-key-concepts-resource}
 
 {{site.data.keyword.cos_full}} supports the following resource targets:
+
 - Resource group ID
 - Service instance
 - Resource type with value of *“bucket”*
@@ -96,14 +98,16 @@ Typically the prefix and delimiter are used together in a condition statement wi
 Consider the object named *"folder1/subfolder1/file.txt"*:
 
 Prefix of *"folder1/"* `AND` no Delimiter
-   - The user can return a list of every object that starts with *folder1/* by doing a list request on *folder1/* and not providing a delimiter.
-   - If user uses delimiter of *"/"* in the list request, they'd be restricted to only seeing the first level of objects and subfolders in *folder1/*.
-   - If user tries to list the subfolder (requests to list prefix = *“folder1/subfolder1/”*), access is denied.
+
+- You can return a list of every object that starts with *folder1/* by doing a list request on *folder1/* and not providing a delimiter.
+- If you use a delimiter of *"/"* in the list request, they'd be restricted to only seeing the first level of objects and sub-folders in *folder1/*.
+- If user tries to list the subfolder (requests to list prefix = *“folder1/subfolder1/”*), access is denied.
 
 Prefix of *"folder1/"* `AND` Delimiter of *"/"*
-   - The user can only list the objects and subfolders in the first level of *folder1*.
-   - The user can only do list requests that specify a delimiter of *"/"*.
-   - If user tries to list the contents of *subfolder1*, access is denied (user would need to have a condition of allowing prefix = *“folder1/subfolder1/"* to allow listing the contents of *subfolder1*).
+
+- You can only list the objects and sub-folders in the first level of *folder1*.
+- You can only do list requests that specify a delimiter of *"/"*.
+- If you try to list the contents of *subfolder1*, access is denied (user would need to have a condition of allowing prefix = *“folder1/subfolder1/"* to allow listing the contents of *subfolder1*).
 
 The following APIs are subject to Prefix/Delimiter conditions:
 - [GET Bucket (List Objects)](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets)
@@ -144,16 +148,19 @@ A condition attribute’s values can include a [wildcard](/docs/account?topic=ac
 Consider the object named *"folder1/subfolder1/file.txt"*:
 
 Path of _“folder1/*”_
-- The user will get read, write, or management access, as defined by the role, to all objects that start with *“folder1/”*.
+
+- You will get read, write, or management access, as defined by the role, to all objects that start with *“folder1/”*.
 
 Prefix of _"folder1/*"_ `AND` no Delimiter
+
 - For an object list request with prefix set to *“folder1/”* and no delimiter, the user request returns all objects that start with *“folder1/”*.
 - For an object list request with prefix set to *“folder1/”* and delimiter of *“/”*, the request returns a view of the objects and folders just in the first level of *folder1*.
 - For an object list request with prefix set to “folder1/subfolder1/” and delimiter of *“/”*, the request returns a view of the objects and folders just in the first level of *folder1/subfolder1*.
 
 Prefix of _"folder1/*"_ `AND` Delimiter of *"/"*
+
 - For an object list request with prefix set to *“folder1/”* and delimiter of *“/”*, the request returns a view of the objects and folders just in the first level of *folder1*.
-- For an object list request with prefix set to “folder1/subfolder1/” and delimiter of *“/”*, the request returns the objects (and any subfolders) in *folder1/subfolder1*.
+- For an object list request with prefix set to “folder1/subfolder1/” and delimiter of *“/”*, the request returns the objects (and any sub-folders) in *folder1/subfolder1*.
 - For an object list request with prefix set to *“folder1/”* and no delimiter, the request will not be permitted since a delimiter of *“/”* must be used in the list request for this policy to evaluate to true.
 
 ### Actions that do not use a Prefix/Delimiter or Path
@@ -302,6 +309,7 @@ policy.json:
 }
 ibmcloud iam  user-policy-create hello@ibm.com --file policy.json --api-version v2
 ```
+{: codeblock}
 
 
 Use --api-version v2 with resource-based attribute conditions.
@@ -314,6 +322,7 @@ Use --api-version v2 with resource-based attribute conditions.
 Example
 
 Request
+
 ```sh
 curl -X POST 'https://iam.cloud.ibm.com/v2/policies' \
 -H 'Authorization: Bearer $TOKEN' \
@@ -419,8 +428,10 @@ curl -X POST 'https://iam.cloud.ibm.com/v2/policies' \
   "pattern": "attribute-based-condition:resource:literal-and-wildcard"
 }'
 ```
+{: codeblock}
 
 Response
+
 ```sh
 {
     "id": "d4078e99-d78a-4a50-95d6-b528e3c87dff",
@@ -541,6 +552,7 @@ Response
     "version": "v1.0"
 }
 ```
+{: codeblock}
 
 ### Terraform of an IAM policy with a condition
 {: #fgac-new-policy-conditions-terraform}
@@ -604,12 +616,10 @@ rule_conditions {
 rule_operator = "or"
  pattern = "attribute-based-condition:resource:literal-and-wildcard"
 }
-
 ```
+{: codeblock}
 
 ## Additional information
 {: #fgac-additional-info}
 
 For examples on how to use **Prefix/Delimiter**, or **Path** condition attributes, see the [tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-object-access-tutorial) on controlling access to individual objects in a bucket.
-
-
