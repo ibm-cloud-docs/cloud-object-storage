@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2020, 2023
-lastupdated: "2023-11-01"
+  years: 2020, 2024
+lastupdated: "2024-04-18"
 
 keywords: tagging, objects, tags, metadata
 
@@ -35,7 +35,7 @@ You need:
 
 * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com/login)
 * An [instance of {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage/basics?topic=cloud-object-storage-provision) and a bucket created for this purpose
-* An [IAM API key](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview) with Writer access to your {{site.data.keyword.cos_short}} bucket or instance 
+* An [IAM API key](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview) with Writer access to your {{site.data.keyword.cos_short}} bucket or instance
 * Either existing or new objects that will have tags applied to them.
 
 ### Reading tags
@@ -55,6 +55,7 @@ A properly formed and authenticated "GET" request with the `?tagging` query para
 curl 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
 -H 'Authorization: bearer <token>' \
 ```
+
 {: pre}
 {: http}
 
@@ -69,6 +70,7 @@ curl 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
   </TagSet>
 </Tagging>
 ```
+
 {: screen}
 {: http}
 
@@ -78,6 +80,7 @@ Of course, before tags can be viewed they must be created, which we will turn to
 {: #object-tagging-create-tags}
 
 Tags must comply with the following restrictions:
+
 * An object can have a maximum of 10 tags
 * For each object, each tag key must be unique, and each tag key can have only one value.
 * Minimum key length - 1 Unicode characters in UTF-8
@@ -100,7 +103,7 @@ If you do not click on "save" when completing your changes, a dialog box will re
 
 ![Unsaved changes are discarded](images/object-discard-changes.jpg){: console}
 
-As noted previously, you will have to authenticate in order to add tags to your data. If you have questions about bearer tokens, see [this example](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-token). Again, note the query string for working with tags: **`?tagging`**.
+As noted previously, you will have to authenticate to add tags to your data. If you have questions about bearer tokens, see [this example](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-token). Again, note the query string for working with tags: **`?tagging`**.
 {: http}
 
 ```bash
@@ -109,6 +112,7 @@ curl -X "PUT" 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
 -H "content-type: text/plain" \
 --data "<Tagging><TagSet><Tag><Key>your key</Key><Value>your text</Value></Tag></TagSet></Tagging>"
 ```
+
 {: pre}
 {: http}
 
@@ -118,6 +122,7 @@ The example describes as shown a tag with a `key` of 'source' and a `value` of '
 ```shell
 curl -X "PUT" "https://s3.test.cloud-object-storage.sample.appdomain.cloud/taggingtest/example-file.csv?tagging" -H "Authorization: bearer ...iOiIyMDIwMTIwNzE0NDkiLCJh..." -H "ibm-service-instance-id: 7nnnnn52-2nn0-nna9-bann-7nnnnn4cc4e7" --data "<Tagging><TagSet><Tag><Key>source</Key><Value>text</Value></Tag></TagSet></Tagging>"
 ```
+
 {: screen}
 {: http}
 
@@ -126,12 +131,12 @@ curl -X "PUT" "https://s3.test.cloud-object-storage.sample.appdomain.cloud/taggi
 
 Once your objects have been tagged, over time it may become necessary to modify them.
 
-In order to edit the tags using the graphic interface, you will have to log into the console and access your objects as described previously. Once you've clicked on the "Manage Tags" option, simply change the contents of the form fields. Remember to press "Save" when complete.
+To edit the tags using the graphic interface, you will have to log into the console and access your objects as described previously. Once you've clicked on the "Manage Tags" option, simply change the contents of the form fields. Remember to press "Save" when complete.
 {: console}
 
 ![Save tags when complete](images/object-save-tags.jpg){: console}
 
-Your requests must be authenticated in order to tag your data. Also, you will have to programmatically keep any old tags while updating your objects with new information. The example shown repeats the tags from the previous examples while adding a new tag.
+Your requests must be authenticated to tag your data. Also, you will have to programmatically keep any old tags while updating your objects with new information. The example shown repeats the tags from the previous examples while adding a new tag.
 {: http}
 
 Remember that performing "PUT" operations involving tags will overwrite any current tags.
@@ -144,6 +149,7 @@ curl -X "PUT" 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
 -H "content-type: text/plain" \
 --data "<Tagging><TagSet><Tag><Key>source</Key><Value>text</Value></Tag><Tag><Key>source1</Key><Value>text1</Value></Tag></TagSet></Tagging>"
 ```
+
 {: pre}
 {: http}
 
@@ -152,7 +158,7 @@ curl -X "PUT" 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
 
 After you have added tags to your objects, it may become necessary to remove them.
 
-In order to delete the tags using the graphic interface, you will have to log into the console and access your objects as previously described. Again, click on the "Manage tags" option, and in the panel that appears, choose either to "delete all" or delete one tag at a time by clicking on the "trash can" icon in the same row as the tag.
+To delete the tags using the graphic interface, you will have to log into the console and access your objects as previously described. Again, click on the "Manage tags" option, and in the panel that appears, choose either to "delete all" or delete one tag at a time by clicking on the "trash can" icon in the same row as the tag.
 {: console}
 
 Remember to press "Save" when complete.
@@ -160,7 +166,7 @@ Remember to press "Save" when complete.
 
 ![Delete one or all tags](images/object-edit-tags.jpg){: console}
 
-You will have to authenticate in order to delete tags from your data. Simply use the "DELETE" HTTP method with the `?tagging` query parameter to delete all tags. If you wish to delete one or more tags while simultaneously keeping one or more tags, use the "edit" instructions to make your changes.
+You will have to authenticate to delete tags from your data. Simply use the "DELETE" HTTP method with the `?tagging` query parameter to delete all tags. If you wish to delete one or more tags while simultaneously keeping one or more tags, use the "edit" instructions to make your changes.
 {: http}
 
 ```bash
