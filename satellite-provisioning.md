@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-02-21"
+lastupdated: "2024-04-19"
 
 keywords:  object storage, satellite, local
 
@@ -71,12 +71,12 @@ When provisioning block storage, is recommended to use a ["Silver" storage class
 To access the Storage UI for Satellite, you must be added to the allowlist. [Contact IBM](https://www.ibm.com/contact/us/en/) to learn more.
 {: important}
 
-If the location chosen for the new instance of {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} was correctly configured with the required hosts and storage available, they will be automatically queued for assignment.  This assignment requires acknowledgement from a Satellite administrator.
+If the location chosen for the new instance of {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} was correctly configured with the required hosts and storage available, they will be automatically queued for assignment.  This assignment requires confirmation from a Satellite administrator.
 
 1. Log in to [the console](https://cloud.ibm.com/){: external}.
 2. Navigate to Satellite, by clicking **Satellite** > **Locations** in the navigation bar.
 3. Select the **Services** tab.
-4. Look for the acknowledgement pop-up and approve the assignment.
+4. Look for the confirmation pop-up and approve the assignment.
 
 ![Assign storage](images/satellite-popup.png){: caption="Figure 1. Confirming host and storage assignment."}
 
