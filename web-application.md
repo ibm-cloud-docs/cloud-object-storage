@@ -81,7 +81,6 @@ Before you start, you might consider a version manager, like Node Version Manage
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ```
-
 {: pre}
 
 ...or `wget` (just one is necessary, but not both; use whichever is available on your system):
@@ -89,7 +88,6 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ```bash
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ```
-
 {: pre}
 
 Or, for Windows, you can use [`nvm` for Windows](https://github.com/coreybutler/nvm-windows){: external} with installers and source code at the link.
@@ -99,7 +97,6 @@ Using `nvm`, install Node.
 ```bash
 nvm install v6.17.1
 ```
-
 {: pre}
 
 Whichever approach you use after you install Node.js and `npm` (included with Node) on your computer, congratulate yourself on a job well started!
@@ -354,7 +351,6 @@ Now that the app is built, you can run the code locally with the `run` command. 
 ```bash
 ibmcloud dev run
 ```
-
 {: pre}
 
 Now that the app is created and defined, view your application to confirm it works. If you see the placeholder image as shown in Figure 2, well done! You've created a new Node.js web application and are ready to deploy it to the cloud.
@@ -385,7 +381,6 @@ Follow this process:
    ```bash
    curl images/image-gallery-tutorial.zip -o image-gallery-tutorial.zip
    ```
-
    {: pre}
 
 
@@ -394,7 +389,6 @@ Follow this process:
    ```bash
    npm install
    ```
-
    {: pre}
 
 1. Run the app by using the command shown.
@@ -402,7 +396,6 @@ Follow this process:
    ```bash
    npm start
    ```
-
    {: pre}
 
    Open a browser and view your app on the address and port that is output to the console, `http://localhost:3000`.
@@ -423,7 +416,6 @@ Follow this process:
      disk_quota: 1024M
      random-route: true
    ```
-
    {: screen}
 
    Now is the point where you might need to set up SSH keys to interactively push code to your remote origin. If you set a passphrase for your SSH key, you're required to enter this code each time you push your changes to the remote origin for your repository.
@@ -448,7 +440,6 @@ To get the starter app with your changes
    ```bash
    ibmcloud login
    ```
-
    {: pre}
 
 1. Set the API Endpoint for your region by using the `api` command.
@@ -456,7 +447,6 @@ To get the starter app with your changes
    ```bash
    ibmcloud api cloud.ibm.com
    ```
-
    {: pre}
 
 1. Target the Cloud Foundry aspect of {{site.data.keyword.cloud_notm}} Platform by using the `target` command and the `--cf` option.
@@ -464,7 +454,6 @@ To get the starter app with your changes
    ```bash
    ibmcloud target --cf
    ```
-
    {: pre}
 
 1. Build the app for delivery that application with the build command (as in the example).
@@ -472,7 +461,6 @@ To get the starter app with your changes
    ```bash
    ibmcloud dev build
    ```
-
    {: pre}
 
    1. Let's go ahead and test the application locally. This allows you to run the same code locally with the `run` command.
@@ -480,7 +468,6 @@ To get the starter app with your changes
    ```bash
    ibmcloud dev run
    ```
-
    {: pre}
 
 1. Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the `deploy` command.
@@ -488,7 +475,6 @@ To get the starter app with your changes
    ```bash
    ibmcloud dev deploy
    ```
-
    {: pre}
 
    The code shows the sequence of commands that are used in this example to build, test, and deploy the initial web application.
@@ -502,7 +488,6 @@ To get the starter app with your changes
    ibmcloud dev run
    ibmcloud dev deploy
    ```
-
    {: pre}
 
    When the process finishes, the {{site.data.keyword.cloud_notm}} Platform reports that the app was uploaded, successfully deployed, and started. If you're also logged in to the {{site.data.keyword.cloud_notm}} Platform web console, you're notified there also of the status of your app. But, most importantly, you can verify that the app was deployed by visiting the app URL reported by {{site.data.keyword.cloud_notm}} Platform with a browser, or from the web console by clicking View App button.
@@ -541,7 +526,6 @@ After you have completed creating an API key, downloaded, and then copied the HM
    aws_access_key_id = {access_key_id}
    aws_secret_access_key = {secret_access_key}
    ```
-
    {: codeblock}
 
 1. In the web page for the application you created by using the CLI command on the {{site.data.keyword.cloud_notm}} Platform, define your required credentials as environment variables per development best practices by logging in to {{site.data.keyword.cloud_notm}} Platform, and under Cloud Foundry Apps, select your app, `webapplication`. From the tabs, click **Runtime**.
@@ -587,7 +571,6 @@ In the `package.json` file, inside the scripts object, you see how "start" is de
     }
 }
 ```
-
 {: codeblock}
 
 Our `app.js` file uses node to load modules that are needed to get started. The Express framework creates the app as a singleton simply called `app`. The example ends (leaving out most of the code for now) telling the app to listen on the port that is assigned and an environment property, or 3000 by default. When successfully starting at the start, it prints a message with the server URL to the console.
@@ -606,7 +589,6 @@ app.listen(port, function() {
 });
 //...
 ```
-
 {: codeblock}
 {: javascript}
 
@@ -628,7 +610,6 @@ app.get('/', function (req, res) {
 
 //...
 ```
-
 {: codeblock}
 {: javascript}
 
@@ -659,7 +640,6 @@ Our view templates share HTML code between the `<head>...</head>`; tags, so we p
 <link rel="stylesheet" href="stylesheets/style.css">
 
 ```
-
 {: codeblock}
 
 The body of the index view contains our bootstrap styled navigation tabs, and our upload form in a basic layout that is provided by the CSS styles included with bootstrap.
@@ -718,7 +698,6 @@ variable named "status", and is displayed after the upload form.
 
 </html>
 ```
-
 {: codeblock}
 
 Let's take a moment to return to `app.js`. The example sets up Express routes to handle extra requests that are made to our app. The code for these routing methods are in two files under the `./src/routes` directory in your project:
@@ -739,7 +718,6 @@ app.use('/', imageUploadRoutes);
 
 //...
 ```
-
 {: codeblock}
 {: javascript}
 
@@ -858,6 +836,7 @@ originalname: 'Chrysanthemum.jpg',
 encoding: '7bit',
 mimetype: 'image/jpeg' }
 ```
+{: codeblock}
 
 The feedback from our callback declares the application has "uploaded file successfully" when tested.
 
@@ -933,7 +912,6 @@ The last code example shows the body of the `galleryView` template with the code
 
 </html>
 ```
-
 {: codeblock}
 
 We test the app locally from `http://localhost:3000/gallery` and see our image.
