@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-18"
+lastupdated: "2024-04-19"
 
 keywords: cloud services, integration, sql, query, analytics
 
@@ -33,16 +33,16 @@ Input data for your queries are read from ORC, CSV, JSON, or Parquet files locat
 You can use a custom `INTO` clause of a `SELECT` statement to control where and how result data from a `SELECT` statement is written to {{site.data.keyword.cos_full_notm}}.
 {: note}
 
-Getting started using SQL Query `SELECT` statements from inside your instance is as easy as creating an integration. Objects of data formats that can be querried, as well as folders with multiple objects of a consistent format that can be querried (when shown in the "folders" view) are labeled as shown in Figure 1.
+Getting started using SQL Query `SELECT` statements from inside your instance is as easy as creating an integration. Objects of data formats that can be queried, as well as folders with multiple objects of a consistent format that can be queried (when shown in the "folders" view) are labeled as shown in Figure 1.
 
-![Object with SQL label](images/accessible-using-sql.jpg){: caption="Figure 1. SQL label shows objects that can be querried"}
+![Object with SQL label](images/accessible-using-sql.jpg){: caption="Figure 1. SQL label shows objects that can be queried"}
 
-You can retrieve an SQL URL that can be querried for objects for a selected individual object (Object SQL URL) or for all objects currently displayed with an active prefix filter (Filtered SQL URL). You can use this URL inside the SQL statement as the table name.
+You can retrieve an SQL URL that can be queried for objects for a selected individual object (Object SQL URL) or for all objects currently displayed with an active prefix filter (Filtered SQL URL). You can use this URL inside the SQL statement as the table name.
 {: tip}
 
 Figure 1 shows how to access your data using {{site.data.keyword.sqlquery_short}}. When you click on the ellipses at the end of a row of an object that you can query, you will see a menu where you can "Access with SQL" by selecting that option.
 
-![Access with SQL](images/access-with-sql.jpg){: caption="Figure 2. Access with SQL shows objects that can be querried"}
+![Access with SQL](images/access-with-sql.jpg){: caption="Figure 2. Access with SQL shows objects that can be queried"}
 
 The panel shown in Figure 3 shows how to access your data using {{site.data.keyword.sqlquery_short}}. The location of your object appears in the panel for reference outside of the console. The instances to which you have access appear in the dropdown list in the panel. After you specify the instance, click on "Open in SQL Query" to launch your instance already pre-populated with a sample query written in the appropriate SQL.
 

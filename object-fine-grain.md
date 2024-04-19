@@ -153,7 +153,7 @@ Object Lock can be used in combination with several object storage features per 
 
 [Enabling versioning](/docs/cloud-object-storage?topic=cloud-object-storage-versioning) is a prerequisite for enabling Object Lock. If a bucket is created using the `x-amz-bucket-object-lock-enabled` header, versioning will automatically be enabled.
 
-Deleting a versioned object creates a _delete marker_.  The object may appear to be deleted, but if the object is protected it is impossible to delete the protected version. Delete markers themselves are improtected.
+Deleting a versioned object creates a _delete marker_.  The object may appear to be deleted, but if the object is protected it is impossible to delete the protected version. Delete markers themselves are unprotected.
 {:remember}
 
 ### Replication

@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2024
 
-lastupdated: "2024-03-25"
+lastupdated: "2024-04-19"
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning
 
@@ -21,12 +21,26 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
+## 19 April 2024
+{: #cloud-object-storage-apr1924}
+{: release-note}
+
+Cloud Functions update
+:   {{site.data.keyword.openwhisk}} is deprecated. Existing Functions entities such as actions, triggers, or sequences will continue to run, but as of 28 December 2023, you can’t create new Functions entities. Existing Functions entities are supported until October 2024. Any Functions entities that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+
 ## 05 March 2024
 {: #cloud-object-storage-mar0524}
 {: release-note}
 
 Support available for Code Engine in Madrid
 :   Code Engine is supported in the `eu-es` region for Madrid regional using [{{site.data.keyword.cos_full}}](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability).
+
+## 29 January 2024
+{: #cloud-object-storage-mar1521}
+{: release-note}
+
+New feature!
+:   You can configure a bucket into a state of Protection Management using the [Resource Configuration API](/apidocs/cos/cos-configuration) if you have approval from IBM Cloud support and Offering Management.
 
 ## 30 November 2023
 {: #cloud-object-storage-nov3023}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-02-20"
+lastupdated: "2024-04-19"
 
 keywords: authorization, iam, basics
 
@@ -50,7 +50,7 @@ API keys can be regularly rotated to prevent any security breaches caused by lea
 ## Access Management
 {: #iam-overview-access-management}
 
-IAM Access Control provides a common way to assign user roles for {{site.data.keyword.cloud_notm}} resources and controls the actions that the users can take on those resources. You can view and manage users across the account or organization, depending on the access options that you have been given. For example, account owners are automatically assigned the account Administrator role for Identity and Access Managemement, which enables them to assign and manage service policies for all members of their account.
+IAM Access Control provides a common way to assign user roles for {{site.data.keyword.cloud_notm}} resources and controls the actions that the users can take on those resources. You can view and manage users across the account or organization, depending on the access options that you have been given. For example, account owners are automatically assigned the account Administrator role for Identity and Access Management, which enables them to assign and manage service policies for all members of their account.
 
 ### Users, roles, resources, and policies
 {: #iam-overview-access-policies}
