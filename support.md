@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-03-25"
+lastupdated: "2024-04-19"
 
 keywords: troubleshooting, support, questions
 
@@ -86,6 +86,7 @@ Or you can list bucket information with a GET request that includes the “exten
 {: #troubleshooting-cos-error404}
 
 You can view a bucket or object in the IBM Cloud console but the following error occurs when you use a command line interface to access that same bucket:
+
 * Cloud CLI error: “The specified bucket was not found in your IBM Cloud account. This may be because you provided the wrong region. Provide the bucket's correct region and try again.”
 * AWS CLI error: “An error occurred (NoSuchBucket) when calling the ListObjectsV2 operation: The specified bucket does not exist.”
 
@@ -96,7 +97,7 @@ To avoid the error, make sure the bucket location matches the endpoint used by t
 ## How do I copy or move files to another bucket in a different location?
 {: #troubleshooting-cos-move}
 
-Refer to [Move data between buckets](/docs/cloud-object-storage?topic=cloud-object-storage-region-copy) for an example of how to use the rclone command line utility for copying data. If you use other 'sync' or 'clone' tools, be aware that you might need to implement a script to move files to a bucket in a different location because multiple endpoints are not allowed in a command.
+Refer to [Move data between buckets](/docs/cloud-object-storage?topic=cloud-object-storage-region-copy) for an example of how to use the `rclone` command line utility for copying data. If you use other 'sync' or 'clone' tools, be aware that you might need to implement a script to move files to a bucket in a different location because multiple endpoints are not allowed in a command.
 
 
 ## Other support options
