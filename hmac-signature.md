@@ -1,13 +1,12 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-08-10"
+  years: 2017, 2024
+lastupdated: "2024-04-17"
 
 keywords: authorization, hmac, signature, create
 
 subcollection: cloud-object-storage
-
 
 ---
 
@@ -16,12 +15,12 @@ subcollection: cloud-object-storage
 # Constructing an HMAC signature
 {: #hmac-signature}
 
-Instead of token-based authorization, it's possible to use [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main). 
+Instead of token-based authorization, it's possible to use [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main).
 {: shortdesc}
 
 These credentials are used to create an authorization header analogous to AWS Signature Version 4. Calculating signatures provides identity verification and in-transit data integrity. Each signature is tied to the time stamp of the request, so you can't reuse authorization headers. The header is composed of four components: an algorithm declaration, credential information, signed headers, and the calculated signature.
 
-```
+```sh
 AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;{other-required-headers},Signature={signature}
 ```
 
@@ -33,7 +32,7 @@ The date is provided in `YYYYMMDD` format, and the region corresponds to the loc
 First, we need to create a request in a standardized format.
 
 1. Declare which HTTP method we are using (for example, `PUT`)
-2. Define the resource that we are accessing in a standardized fashion. This is the part of the address in between `http(s)://` and the query string. For requests at the account level (such as listing buckets) this is simply `/`.
+2. Define the resource that we are accessing in a standardized fashion. This is the part of the address between `http(s)://` and the query string. For requests at the account level (such as listing buckets) this is simply `/`.
 3. If there are any request parameters, they must be standardized by being percent-encoded (for example, spaces are be represented as `%20`) and alphabetized.
 4. Headers need to be standardized by removing white space, converting to lowercase, and adding a newline to each, then they must be sorted in ASCII order.
 5. After being listed in a standard format, they must be 'signed'. This is taking just the header names, not their values, and listing them in alphabetical order, which is separated by semicolons. `Host` and `x-amz-date` are required for all requests.
@@ -42,7 +41,7 @@ First, we need to create a request in a standardized format.
 
 Next, we need to assemble a 'string-to-sign' that is combined with the signature key to form the final signature. The string-to-sign takes the following form:
 
-```
+```sh
 AWS4-HMAC-SHA256
 {time}
 {date}/{string}/s3/aws4_request
@@ -64,7 +63,7 @@ Now we need to calculate the signature.
 
 Now the only step left is assembling the `authorization` header as shown:
 
-```
+```sh
 AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4_request,SignedHeaders=host;x-amz-date;{other-required-headers},Signature={signature}
 ```
 
@@ -199,7 +198,7 @@ public class CosHMAC {
     private static final String bucket = ""; // add a '/' before the bucket name to list buckets
     private static final String objectKey = "";
     private static final String requestParameters = "";
-    
+
     public static void main(String[] args) {
         try {
             // assemble the standardized request
@@ -231,13 +230,13 @@ public class CosHMAC {
             // generate the signature
             byte[] signatureKey = createSignatureKey(secretKey, datestamp, region, "s3");
             String signature = hmacHex(signatureKey, sts);
-            
+
             // assemble all elements into the "authorization" header
             String v4auth_header = hashingAlgorithm + " " +
                 "Credential=" + accessKey + "/" + credentialScope + ", " +
                 "SignedHeaders=" + signedHeaders + ", " +
                 "Signature=" + signature;
-            
+
             // create and send the request
             String requestUrl = endpoint + standardizedResource + standardizedQuerystring;
             URL urlObj = new URL(requestUrl);
@@ -276,7 +275,7 @@ public class CosHMAC {
 
     private static String toHexString(byte[] bytes) {
 		Formatter formatter = new Formatter();
-		
+
 		for (byte b : bytes) {
 			formatter.format("%02x", b);
 		}
@@ -312,7 +311,7 @@ public class CosHMAC {
             return returnVal;
         }
     }
-    
+
     private static String hashHex(String msg) {
         String returnVal = null;
         try {
@@ -327,7 +326,7 @@ public class CosHMAC {
             return returnVal;
         }
     }
-    
+
     // region is a wildcard value that takes the place of the AWS region value
     // as COS doesn"t use the same conventions for regions, this parameter can accept any string
     private static byte[] createSignatureKey(String key, String datestamp, String region, String service) {
@@ -356,7 +355,7 @@ public class CosHMAC {
 const crypto = require('crypto');
 const moment = require('moment');
 const https = require('https');
-    
+
 // please don't store credentials directly in code
 const accessKey = process.env.COS_HMAC_ACCESS_KEY_ID;
 const secretKey = process.env.COS_HMAC_SECRET_ACCESS_KEY;
@@ -454,7 +453,7 @@ var options = {
 var request = https.request(options, function (response) {
     console.log('\nResponse from IBM COS ----------------------------------');
     console.log(`Response code: ${response.statusCode}\n`);
-    
+
     response.on('data', function (chunk) {
         console.log(chunk.toString());
     });

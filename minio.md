@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-11-19"
+  years: 2017, 2024
+lastupdated: "2024-04-18"
 
 keywords: cli, open source, minio
 
@@ -16,13 +16,13 @@ subcollection: cloud-object-storage
 # Using Minio Client
 {: #minio}
 
-The open source [Minio Client](https://min.io/download#/linux){: external} could be your solution for using UNIX-like commands (`ls`, `cp`, `cat`, etc.) with {{site.data.keyword.cos_full}}.
+The open source [Minio Client](https://min.io/download#/linux){: external} could be your solution for using UNIX-like commands (`ls`, `cp`, `cat`, and so on) with {{site.data.keyword.cos_full}}.
 {: shortdesc}
 
 ## Installation
 {: #minio-install}
 
-You can find installation instructions for each operating system is available in the [quickstart guide](https://docs.min.io/docs/minio-client-quickstart-guide.html){: external} on the Minio website.
+You can find installation instructions for each operating system is available in the [Quick Start guide](https://docs.min.io/docs/minio-client-quickstart-guide.html){: external} on the Minio website.
 
 ## Configuration
 {: #minio-config}

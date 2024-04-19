@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2023
-lastupdated: "2023-11-03"
+  years: 2017, 2024
+lastupdated: "2024-04-18"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -25,7 +25,7 @@ For more information about the permissions and access, see [Bucket permissions](
 ## A note regarding Access/Secret Key (HMAC) authentication
 {: #bucket-operations-hmac}
 
-When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [using HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main), you will need the information represented in Table 1 when [constructing an HMAC signature](/docs/cloud-object-storage?topic=cloud-object-storage-hmac-signature).
+When authenticating to your instance of {{site.data.keyword.cos_full}} [using HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main), you will need the information represented in Table 1 when [constructing an HMAC signature](/docs/cloud-object-storage?topic=cloud-object-storage-hmac-signature).
 
 | Key          | Value                                                     | Example                                                          |
 |--------------|-----------------------------------------------------------|------------------------------------------------------------------|
@@ -203,7 +203,7 @@ Not all operations are supported in Satellite environments. For details, see [su
 | `x-amz-bucket-object-lock-enabled` | Boolean | No        | Specifies whether you want to enable Object Lock on the new bucket.  This will automatically enable versioning. |
 {: caption="Table 1. Headers" caption-side="top"}
 
-When setting Object Lock on a new bucket, ensure that there are no typos in the `x-amz-bucket-object-lock-enabled` header. If either the header or value are mispelled, the bucket will still be created, but Object Lock and Versioning will **not** be enabled.
+When setting Object Lock on a new bucket, ensure that there are no typos in the `x-amz-bucket-object-lock-enabled` header. If either the header or value are misspelled, the bucket will still be created, but Object Lock and Versioning will **not** be enabled.
 {: tip}
 
 Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location or any other means in the name of the bucket or object.
@@ -1412,7 +1412,7 @@ AbortIncompleteMultipartUpload           | Container                  | DaysAfte
 DaysAfterInitiation           | Non-negative Integer               | None                           | AbortIncompleteMultipartUpload            | **Must** be a value greater than 0.
 {: caption="Table 11. Body of the request schema" caption-side="top"}
 
-{{site.data.keyword.cos_full_notm}} IaaS (non-IAM) accounts are unable to set the transition storage class to `ACCELERATED`.
+{{site.data.keyword.cos_full}} IaaS (non-IAM) accounts are unable to set the transition storage class to `ACCELERATED`.
 {: note}
 
 ```xml
@@ -1839,7 +1839,7 @@ The minimum and maximum supported values for the retention period settings `Mini
 
 This operation does not make use of extra query parameters. The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. The following snippet shows one way to achieve the content for that particular header.
 
-Policies are enforced until the end of a retention period, and can not be altered until the retention period has expired. While {{site.data.keyword.cos_full_notm}} makes use of the S3 API for most operations, the APIs used for configuring retention policies is not the same as the S3 API, although some terminology may be shared. Read this documentation carefully to prevent any users in your organization from creating objects that can not be deleted, even by IBM Cloud administrators.
+Policies are enforced until the end of a retention period, and can not be altered until the retention period has expired. While {{site.data.keyword.cos_full}} makes use of the S3 API for most operations, the APIs used for configuring retention policies is not the same as the S3 API, although some terminology may be shared. Read this documentation carefully to prevent any users in your organization from creating objects that can not be deleted, even by IBM Cloud administrators.
 {: important}
 
 Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)

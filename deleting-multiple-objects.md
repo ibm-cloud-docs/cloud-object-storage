@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-02-20"
+lastupdated: "2024-04-17"
 
 keywords: empty bucket, delete, multiple
 
@@ -31,7 +31,7 @@ subcollection: cloud-object-storage
 This overview focuses on the steps that are needed to access a list of all items in a bucket within an instance of {{site.data.keyword.cos_full}} for the purpose of deleting each one sequentially.
 {: shortdesc}
 
-The process of emptying a bucket is familiar to anyone who has to delete buckets in their instance of {{site.data.keyword.cos_full_notm}} because a bucket has to be empty to be deleted. There may be other reasons you may wish to delete items, but want to avoid deleting every object individually. This code pattern for the supported SDKs will allow you to define your configuration, create a client, and then connect with that client in order to get a list of all the items in an identified bucket for in order to delete them.
+The process of emptying a bucket is familiar to anyone who has to delete buckets in their instance of {{site.data.keyword.cos_full_notm}} because a bucket has to be empty to be deleted. There may be other reasons you may wish to delete items, but want to avoid deleting every object individually. This code pattern for the supported SDKs will allow you to define your configuration, create a client, and then connect with that client to get a list of all the items in an identified bucket to delete them.
 
 If versioning is enabled, then expiration rules create [delete markers](/docs/cloud-object-storage?topic=cloud-object-storage-versioning).
 {: important}
@@ -42,9 +42,10 @@ It is a best practice to avoid putting credentials in scripts. This example is f
 ## Before you begin
 {: #dmop-prereqs}
 
-Specific instructions for downloading and installing SDKs are available for [Python](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python), [Node.js](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-node), [Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java), and [Go](/docs/cloud-object-storage?topic=cloud-object-storage-using-go). Also, when working with Command Line Instructions (CLI) and your CLI clients, please check out the pertinent information related to {{site.data.keyword.cos_short}} regarding [AWS](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) compatibility, [Minio](/docs/cloud-object-storage?topic=cloud-object-storage-minio), and [rClone](/docs/cloud-object-storage?topic=cloud-object-storage-rclone).
+Specific instructions for downloading and installing SDKs are available for [Python](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python), [Node.js](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-node), [Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java), and [Go](/docs/cloud-object-storage?topic=cloud-object-storage-using-go). Also, when working with Command Line Instructions (CLI) and your CLI clients, please check out the pertinent information related to {{site.data.keyword.cos_short}} regarding [AWS](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) compatibility, [Minio](/docs/cloud-object-storage?topic=cloud-object-storage-minio), and [`rclone`](/docs/cloud-object-storage?topic=cloud-object-storage-rclone).
 
 For this code pattern you will need:
+
 * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com)
 * An instance of [{{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage/basics?topic=cloud-object-storage-provision)
 * Configured and operational use of {{site.data.keyword.cos_full_notm}} SDKs for your choice of Java, Python, NodeJS, or Go; or, a configured and operational CLI client.
@@ -57,7 +58,7 @@ Before getting to the examples, there is one way to empty a bucket via the GUI a
 
 After logging in to {{site.data.keyword.cos_short}}, choose your storage instance. Then, select your bucket from the list of your buckets. To set the rule to delete the items, select **Configuration** from the navigation menu and click **Add rule** under the *Expiration rule* section. Set the number of days to '1' to delete all the items after one day.
 
-![deleting_items](images/empty-bucket-rule-dialog.png){: caption="Figure 1. Add Expiration Rule to delete items"}
+![`deleting_items`](images/empty-bucket-rule-dialog.png){: caption="Figure 1. Add Expiration Rule to delete items"}
 
 The process for rule completion can take up to 24 hours, and is on a set schedule. Please take this into consideration when applying this technique.
 {: tip}
@@ -70,24 +71,26 @@ There are many tools available to help users make the most of {{site.data.keywor
 Sample instructions are provided for using a client application or command line once your CLI client has been configured and is operational.
 {: tip}
 
-### rClone example
+### `rclone` example
 {: #dmop-rclone-example}
 
-The `rclone` tool is typically used to keep directories synchronized and for migrating data between storage platforms. You can learn more from the documentation on [using rclone](/docs/cloud-object-storage?topic=cloud-object-storage-rclone).
+The `rclone` tool is typically used to keep directories synchronized and for migrating data between storage platforms. You can learn more from the documentation on [using `rclone`](/docs/cloud-object-storage?topic=cloud-object-storage-rclone).
 
 ```bash
 rclone purge {remote}:{path} [flags]
 ```
+
 {: pre}
 
 ### Minio example
 {: #dmop-minio-example}
 
-The open source Minio client allows you to use UNIX-like commands (`ls`, `cp`, `cat`, etc.) with {{site.data.keyword.cos_full}}. For more information, check out [using Minio](/docs/cloud-object-storage?topic=cloud-object-storage-minio).
+The open source Minio client allows you to use UNIX-like commands (`ls`, `cp`, `cat`, and so on) with {{site.data.keyword.cos_full}}. For more information, check out [using Minio](/docs/cloud-object-storage?topic=cloud-object-storage-minio).
 
 ```bash
 mc rm --recursive --force {instance-alias}/{bucket-name}
 ```
+
 {: pre}
 
 ### AWS example
@@ -98,6 +101,7 @@ The official command-line interface for AWS is compatible with the {{site.data.k
 ```bash
 aws s3 rm s3://{bucket-name} --recursive
 ```
+
 {: pre}
 
 ## Code Example
@@ -184,7 +188,7 @@ function deleteItem(bucketName, itemName) {
 }
 
 function main() {
-	try {
+    try {
         var BucketName = "<BUCKET_NAME>";
 
         deleteContents(BucketName);
@@ -196,6 +200,7 @@ function main() {
 
 main();
 ```
+
 {: codeblock}
 {: javascript}
 
@@ -252,6 +257,7 @@ def main():
 
 main()
 ```
+
 {: codeblock}
 {: python}
 
@@ -368,6 +374,7 @@ package com.cos;
 
     }
 ```
+
 {: codeblock}
 {: java}
 
@@ -419,6 +426,7 @@ func main() {
     }
 }
 ```
+
 {: codeblock}
 {: go}
 
@@ -427,5 +435,3 @@ func main() {
 
 Leveraging new and existing capabilities of the tools covered in this overview can be explored further at the
 [{{site.data.keyword.cloud_notm}} Platform](https://cloud.ibm.com/){: external}.
-
-

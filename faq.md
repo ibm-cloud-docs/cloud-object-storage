@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-10"
+lastupdated: "2024-04-17"
 
 
 keywords: faq, frequently asked questions, object storage, S3, HMAC
@@ -179,9 +179,10 @@ However, if the issue persists, contact IBM customer support.
 {: faq}
 
 You can check the communication with Object Storage by using one of the following:
+
 * Use a `COS API HEAD` call to a bucket that will return the headers for that bucket. See [api-head-bucket](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-head-bucket).
 
-* Use SDK : See [headbucket property](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#headBucket-property).
+* Use SDK : See [`headbucket` property](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#headBucket-property){: external}.
 
 ## Can I migrate a bucket from one COS instance to another?
 {: #faq-create-bucket}
@@ -194,7 +195,7 @@ Yes, You can achieve the same by creating a bucket in the target Object Storage 
 {: #faq-locked-account}
 {: faq}
 
-Exceeding the data limit for the Lite account is one of the reasons why your account is locked or deactived. The [COS support](https://cloud.ibm.com/unifiedsupport/cases/form) team can help to unlock your account.
+Exceeding the data limit for the Lite account is one of the reasons why your account is locked or deactivated. The [COS support](https://cloud.ibm.com/unifiedsupport/cases/form) team can help to unlock your account.
 
 * The lite plan account can be activated only once.
 
@@ -252,7 +253,7 @@ Yes, Object Storage is HIPAA compliant.
 {: #faq-comp-attributes}
 {: faq}
 
-Use [Rclone](https://rclone.org/commands/rclone_check). It enables you to compare various attributes.
+Use [`rclone`](https://rclone.org/commands/rclone_check){: external}. It enables you to compare various attributes.
 
 ## What is the default retention period for buckets?
 {: #faq-default-retention}
@@ -342,7 +343,7 @@ There may be an issue where the viewer does not have sufficient roles to view th
 {: #faq-bucket-keypro}
 {: faq}
 
-No, it is not possible to add Key Protect after creating a bucket. Key Protect can only be added while creating the bucket.
+No, it is impossible to add Key Protect after creating a bucket. Key Protect can only be added while creating the bucket.
 
 ## How can I move data into archive tier?
 {: #faq-archive tier}
@@ -368,17 +369,17 @@ While there is no built in antivirus scanning in {{site.data.keyword.cos_short}}
 
 No, {{site.data.keyword.cos_short}} is used for the object storage service. For a Hadoop cluster, you need the processing associated with each unit of storage. You may consider the Hadoop-as-a-Service setup.
 
-## Can I generate a "Presigned URL" to download a file and review?
+## Can I generate a "Pre-signed URL" to download a file and review?
 {: #faq-preassign-url}
 {: faq}
 
-A PreSigned URL is not generated using the IBM Cloud UI; however, you can use CyberDuck to generate the “pre-signed URL”. It is free. For details, see this [Slack channel](https://ibm-cloudplatform.slack.com/archives/C0VJSU370/p1606859253294800).
+A Pre-signed URL is not generated using the IBM Cloud UI; however, you can use CyberDuck to generate the “pre-signed URL”. It is free. For details, see this [Slack channel](https://ibm-cloudplatform.slack.com/archives/C0VJSU370/p1606859253294800){: external}.
 
 ## How can I generate a Auth Token using the IAM API Key using REST?
 {: #faq-genrt-auth-token}
 {: faq}
 
-For more information on working with the API, see [Creating IAM token for API Key](/docs/account?topic=account-iamtoken_from_apikey) and [Congfiguration Authentication](https://cloud.ibm.com/apidocs/cos/cos-configuration#authentication).
+For more information on working with the API, see [Creating IAM token for API Key](/docs/account?topic=account-iamtoken_from_apikey) and [Configuration Authentication](https://cloud.ibm.com/apidocs/cos/cos-configuration#authentication).
 
 ## How can I use the {{site.data.keyword.cos_short}} web console to download and upload large objects?
 {: #faq-large-object}

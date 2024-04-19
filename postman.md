@@ -2,12 +2,11 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-03-25"
+lastupdated: "2024-04-18"
 
 keywords: rest, s3, compatibility, api, postman, client, object storage
 
 subcollection: cloud-object-storage
-
 
 ---
 
@@ -1350,11 +1349,11 @@ The API sample requests are fairly straightforward and easy to use. They're desi
 | Create new text file                                       | Status Code 200 OK                                                                                                                                                                            | Request was successful. Response contains expected header                                          |
 | Create new binary file                                     | Click **Body** and click **Choose File** to select an image to upload.                                                                                                                                | Request was successful. Response contains expected header                                          |
 | Retrieve list of files from bucket                         | In the Body of the response you see the two files you created in the previous requests.                                                                                                | Request was successful. Response contains expected header                                          |
-| Retrieve list of files from bucket (filter by prefix)      | Change the querystring value to `prefix=<some text>`. In the body of the response you see the files with names that start with the prefix specified.                                   | Request was successful. Response contains expected header                                          |
+| Retrieve list of files from bucket (filter by prefix)      | Change the query string value to `prefix=<some text>`. In the body of the response you see the files with names that start with the prefix specified.                                   | Request was successful. Response contains expected header                                          |
 | Retrieve text file                                         | In the Body of the response you see the text you entered in the previous request                                                                                                       | Request was successful. Response contains expected body content. Response contains expected header |
 | Retrieve binary file                                       | In the Body of the response you see the image you chose in the previous request.                                                                                                       | Request was successful. Response contains expected header                                          |
 | Retrieve list of failed multipart uploads                  | In the Body of the response you see any failed multipart uploads for the bucket.                                                                                                       | Request was successful. Response contains expected content                                         |
-| Retrieve list of failed multipart uploads (filter by name) | Change the querystring value to `prefix=<some text>`. In the body of the response you see any failed multipart uploads for the bucket with names that start with the prefix specified. | Request was successful. Response contains expected content                                         |
+| Retrieve list of failed multipart uploads (filter by name) | Change the query string value to `prefix=<some text>`. In the body of the response you see any failed multipart uploads for the bucket with names that start with the prefix specified. | Request was successful. Response contains expected content                                         |
 | Set CORS enabled bucket                                    | Status Code 200 OK                                                                                                                                                                            | Request was successful                                                                             |
 | Retrieve bucket CORS config                                | In the body of the response you see the CORS configuration set for the bucket                                                                                                         | Request was successful. Response contains expected content                                         |
 | Delete bucket CORS config                                  | Status Code 200 OK                                                                                                                                                                            | Request was successful                                                                             |

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-02-20"
+lastupdated: "2024-04-18"
 
 keywords: upload, getting started, basics, ingest
 
@@ -52,14 +52,14 @@ It is generally preferable to use `If-Match` because the granularity of the `Las
 ### Using `If-Match`
 {: #upload-if-match}
 
-On an object PUT, HEAD, or GET request, [the `If-Match` header](https://tools.ietf.org/html/rfc7232#section-3.1) will check to see if a provided Etag (MD5 hash of the object content) matches the provided Etag value. If this value matches, the operation will proceed. If the match fails, the system will return a `412 Precondition Failed` error.
+On an object PUT, HEAD, or GET request, [the `If-Match` header](https://tools.ietf.org/html/rfc7232#section-3.1) will check to see if a provided `Etag` (MD5 hash of the object content) matches the provided `Etag` value. If this value matches, the operation will proceed. If the match fails, the system will return a `412 Precondition Failed` error.
 
->If-Match is most often used with state-changing methods (e.g., POST, PUT, DELETE) to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource (i.e., to prevent the "lost update" problem).
+>If-Match is most often used with state-changing methods (for example, POST, PUT, DELETE) to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource (that is, to prevent the "lost update" problem).
 
 ### Using `If-None-Match`
 {: #upload-if-none-match}
 
-On an object PUT, HEAD, or GET request, [the `If-None-Match` header](https://tools.ietf.org/html/rfc7232#section-3.2) will check to see if a provided Etag (MD5 hash of the object content) matches the provided Etag value. If this value does not match, the operation will proceed. If the match succeeds, the system will return a `412 Precondition Failed` error on a PUT and a `304 Not Modified` on GET or HEAD.
+On an object PUT, HEAD, or GET request, [the `If-None-Match` header](https://tools.ietf.org/html/rfc7232#section-3.2) will check to see if a provided `Etag` (MD5 hash of the object content) matches the provided `Etag` value. If this value does not match, the operation will proceed. If the match succeeds, the system will return a `412 Precondition Failed` error on a PUT and a `304 Not Modified` on GET or HEAD.
 
 >If-None-Match is primarily used in conditional GET requests to enable efficient updates of cached information with a minimum amount of transaction overhead.  When a client desires to update one or more stored responses that have entity-tags, the client SHOULD generate an If-None-Match header field containing a list of those entity-tags when making a GET request; this allows recipient servers to send a 304 (Not Modified) response to indicate when one of those stored responses matches the selected representation.
 
@@ -75,5 +75,5 @@ On an object HEAD or GET request, [the `If-Modified-Since` header](https://tools
 
 On an object PUT, HEAD, or GET request, [the `If-Unmodified-Since` header](https://tools.ietf.org/html/rfc7232#section-3.3) will check to see if the object's `Last-Modified` value (for example `Sat, 14 March 2020 19:43:31 GMT`) is equal to or earlier than a provided value. If the object has not been modified, the operation will proceed. If the `Last-Modified` value is more recent, the system will return a `412 Precondition Failed` error on a PUT and a `304 Not Modified` on GET or HEAD.
 
->   If-Unmodified-Since is most often used with state-changing methods (e.g., POST, PUT, DELETE) to prevent accidental overwrites when multiple user agents might be acting in parallel on a resource that does not supply entity-tags with its representations (i.e., to prevent the "lost update" problem).  It can also be used with safe methods to abort a request if the selected representation does not match one already stored (or partially stored) from a prior request.
+>   If-Unmodified-Since is most often used with state-changing methods (for example, POST, PUT, DELETE) to prevent accidental overwrites when multiple user agents might be acting in parallel on a resource that does not supply entity-tags with its representations (that is, to prevent the "lost update" problem).  It can also be used with safe methods to abort a request if the selected representation does not match one already stored (or partially stored) from a prior request.
 
