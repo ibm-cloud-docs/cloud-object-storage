@@ -36,7 +36,7 @@ In {{site.data.keyword.cos_full_notm}}, you can also monitor management events a
 
 You can use this service to investigate abnormal activity and critical actions, and to comply with regulatory audit requirements. In addition, you can be alerted about actions as they happen. The events that are collected comply with the Cloud Auditing Data Federation (CADF) standard.
 
-For guidance on how to use {{site.data.keyword.at_full}} with {{site.data.keyword.cos_short}} see [Tracking events using IBM Cloud Activity Tracker](/docs/cloud-object-storage?topic=cloud-object-storage-at) . 
+For guidance on how to use {{site.data.keyword.at_full}} with {{site.data.keyword.cos_short}} see [Tracking events using IBM Cloud Activity Tracker](/docs/cloud-object-storage?topic=cloud-object-storage-at) .  Below we list all of the events that are available.
 
 ## Management events
 {: #at-actions-mngt}
