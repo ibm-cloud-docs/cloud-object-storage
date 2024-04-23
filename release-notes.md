@@ -26,7 +26,7 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 {: release-note}
 
 New feature!
-:   You can configure a bucket into a state of Protection Management using the [Resource Configuration API](/apidocs/cos/cos-configuration) if you have approval from IBM Cloud support and Offering Management.
+:   Metrics Router and Activity Tracker Routing support for {{site.data.keyword.cos_full}} [Resource Configuration API](/apidocs/cos/cos-configuration) if you have approval from IBM Cloud support and Offering Management.
 
 ## 19 April 2024
 {: #cloud-object-storage-apr1924}
