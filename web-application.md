@@ -343,7 +343,6 @@ That last statement means that if you view your current directory, a new subdire
 ```bash
 ibmcloud dev build
 ```
-
 {: pre}
 
 Now that the app is built, you can run the code locally with the `run` command. When finished, copy and paste the provided URL into your browser's address bar, typically, `http://localhost:3000`.
