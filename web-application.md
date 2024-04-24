@@ -518,7 +518,7 @@ You need to configure {{site.data.keyword.cos_short}} credentials for your web a
 
 After you have completed creating an API key, downloaded, and then copied the HMAC credentials, complete the following steps:
 
-1. On the local development environment, place the credentials in the Windows path `%USERPROFILE%\\.aws\\credentials` (for Mac/Linux users), the credentials should go into `~/.aws/credentials)`. The example shows the contents of a typical credentials file.
+1. On the local development environment, place the credentials in the Windows path `%USERPROFILE%\\.aws\\credentials`. For Mac/Linux users, the credentials should go into `~/.aws/credentials)`. The example shows the contents of a typical credentials file.
 
    ```bash
    [default]
@@ -835,6 +835,7 @@ originalname: 'Chrysanthemum.jpg',
 encoding: '7bit',
 mimetype: 'image/jpeg' }
 ```
+{: codeblock}
 
 The feedback from our callback declares the application has "uploaded file successfully" when tested.
 
