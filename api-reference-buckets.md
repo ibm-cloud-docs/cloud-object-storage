@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-19"
+lastupdated: "2024-04-23"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -16,7 +16,7 @@ subcollection: cloud-object-storage
 # Bucket operations
 {: #compatibility-api-bucket-operations}
 
-The modern capabilities of {{site.data.keyword.cos_full}} are conveniently available through a RESTful API. Operations and methods concerning buckets (where objects are stored) are documented here.
+The modern capabilities of {{site.data.keyword.cos_full}} are conveniently available through a RESTful API. Operations and methods that are used to interact with buckets (where objects are stored) are documented here.
 {: shortdesc}
 
 For more information about the permissions and access, see [Bucket permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions).
@@ -27,13 +27,13 @@ For more information about the permissions and access, see [Bucket permissions](
 
 When authenticating to your instance of {{site.data.keyword.cos_full}} by [using HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main), you need the information that is represented in Table 1 when [constructing an HMAC signature](/docs/cloud-object-storage?topic=cloud-object-storage-hmac-signature).
 
-| Key          | Value                                                     | Example                                                          |
-|--------------|-----------------------------------------------------------|------------------------------------------------------------------|
-| {access_key} | Access key that is assigned to your Service Credential    | cf4965cebe074720a4929759f57e1214                                 |
-| {date}       | The formatted date of your request (`yyyymmdd`)           | 20180613                                                         |
-| {region}     | The location code for your endpoint                       | us-standard                                                      |
-| {signature}  | The hash that is created by using the secret key, location, and date | ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e |
-| {timestamp}  | The formatted date and time of your request               | 20180614T001804Z                                                 |
+| Key          | Value                                                     | Example                            |
+|--------------|-----------------------------------------------------------|------------------------------------|
+| {access_key} | Access key that is assigned to your Service Credential    | `cf4965cebe074720a4929759f57e1214` |
+| {date}       | The formatted date of your request (`yyyymmdd`)           | `20180613`                         |
+| {region}     | The location code for your endpoint                       | `us-standard`                      |     
+| {signature}  | The hash that is created by using the secret key, location, and date |`ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e`|
+| {timestamp}  | The formatted date and time of your request               | `20180614T001804Z`                 |
 {: caption="Table 1. HMAC signature components"}
 
 ## List buckets
@@ -44,18 +44,20 @@ A `GET` request that is sent to the endpoint root returns a list of buckets that
 Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
-Header                    | Type   | Required? | Description
---------------------------|--------|-----------|---------------------------------------------------------
-`ibm-service-instance-id` | String | Yes       | List buckets that were created in this service instance.
+|Header                    | Type   | Required? | Description
+|--------------------------|--------|-----------|---------------------------------------------------------
+|`ibm-service-instance-id` | String | Yes       | List buckets that were created in this service instance.
+{: caption="Table 2. Headers" caption-side="bottom"}
 {: token}
 
-Query Parameter | Value | Required? | Description
-----------------|-------|-----------|-------------------------------------------------------
-`extended`      | None  | No        | Provides `LocationConstraint` and `CreationTemplateId` metadata in the listing.
+|Query Parameter | Value | Required? | Description
+|----------------|-------|-----------|-------------------------------------------------------
+|`extended`      | None  | No        | Provides `LocationConstraint` and `CreationTemplateId` metadata in the listing.
+{: caption="Table 3. Query parameters" caption-side="bottom"}
 
 **Syntax**
 
-```bash
+```sh
 GET https://{endpoint}/
 ```
 {: codeblock}
@@ -119,7 +121,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 
 **Syntax**
 
-```bash
+```sh
 GET https://{endpoint}/?extended
 ```
 {: codeblock}
@@ -200,8 +202,8 @@ Not all operations are supported in Satellite environments. For more information
 | Header                             | Type    | Required? | Description                                                                                                          |
 |------------------------------------|---------|-----------|----------------------------------------------------------------------------------------------------------------------|
 | `ibm-service-instance-id`          | String  | Yes       | This header references the service instance where the bucket is to be created and to which data usage can be billed. |
-| `x-amz-bucket-object-lock-enabled` | Boolean | No        | Specifies whether you want to enable Object Lock on the new bucket. This automatically enables versioning. |
-{: caption="Table 1. Headers" caption-side="top"}
+| `x-amz-bucket-object-lock-enabled` | Boolean | No        | Specifies whether you want to enable Object Lock on the new bucket. This header automatically enables versioning. |
+{: caption="Table 4. Headers" caption-side="bottom"}
 
 When setting Object Lock on a new bucket, ensure that no typographical errors are in the `x-amz-bucket-object-lock-enabled` header. If either the header or the value is misspelled, the bucket is created, but Object Lock and Versioning is **not** enabled.
 {: tip}
@@ -266,10 +268,10 @@ To create a bucket with a different storage class, send an XML block that specif
 Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
-Header                    | Type   | Description
---------------------------|--------|---------------------------------------------------------------------------------------------------------------------
-`ibm-service-instance-id` | String | This header references the service instance where the bucket is to be created and to which data usage can be billed.
-{: caption="Table 2. Header" caption-side="top"}
+||Header                    | Type   | Description |
+|--------------------------|--------|---------------------------------------------------------------------------------------------------------------------
+|`ibm-service-instance-id` | String | This header references the service instance where the bucket is to be created and to which data usage can be billed.
+{: caption="Table 6. Headers" caption-side="bottom"}
 
 **Syntax**
 
@@ -280,11 +282,11 @@ PUT https://{bucket-name}.{endpoint} # virtual host style
 
 The body of the request must contain an XML block with the following schema:
 
-| Element                   | Type      | Children           | Ancestor                  | Constraint          |
-|---------------------------|-----------|--------------------|---------------------------|---------------------|
-| CreateBucketConfiguration | Container | LocationConstraint | -                         | -                   |
-| LocationConstraint        | String    | -                  | CreateBucketConfiguration | Valid location code |
-{: caption="Table 3. Body of the request schema" caption-side="top"}
+| Element                   | Type      | Children            | Ancestor                  | Constraint          |
+|---------------------------|-----------|---------------------|---------------------------|---------------------|
+|`CreateBucketConfiguration`| Container | `LocationConstraint`| -                         | -                   |
+|`LocationConstraint`       | String    | -                   |`CreateBucketConfiguration`| Valid location code |
+{: caption="Table 7. Body of the request schema" caption-side="bottom"}
 
 ```xml
 <CreateBucketConfiguration>
@@ -356,12 +358,12 @@ Managed encryption for a Cross Region bucket **must** use a root key from a Key 
 Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
-Header                             | Type   | Description
------------------------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-`ibm-service-instance-id`          | String | This header references the service instance where the bucket is to be created and to which data usage can be billed.
-`ibm-sse-kp-encryption-algorithm`  | String | This header is used to specify the algorithm and the key size to use with the encryption key that is stored by using Key Protect. This value must be set to the string `AES256`.
-`ibm-sse-kp-customer-root-key-crn` | String | This header is used to reference the specific root key that is used by Key Protect or {{site.data.keyword.hscrypto}} to encrypt this bucket. This value must be the full CRN of the root key.
-{: caption="Table 4. Header" caption-side="top"}
+|Header                             | Type   | Description
+|-----------------------------------|--------|---------------------------------------------------------|
+|`ibm-service-instance-id`          | String | This header references the service instance where the bucket is to be created and to which data usage can be billed.|
+|`ibm-sse-kp-encryption-algorithm`  | String | This header is used to specify the algorithm and the key size to use with the encryption key that is stored by using Key Protect. This value must be set to the string `AES256`.|
+|`ibm-sse-kp-customer-root-key-crn` | String | This header is used to reference the specific root key that is used by Key Protect or {{site.data.keyword.hscrypto}} to encrypt this bucket. This value must be the full CRN of the root key.|
+{: caption="Table 8. Headers" caption-side="bottom"}
 
 **Syntax**
 
@@ -428,7 +430,7 @@ Not all operations are supported in Satellite environments. For more information
 
 **Syntax**
 
-```bash
+```sh
 HEAD https://{endpoint}/{bucket-name} # path style
 HEAD https://{bucket-name}.{endpoint} # virtual host style
 ```
@@ -519,14 +521,14 @@ ibm-sse-kp-crk-id: {customer-root-key-id}
 ## List objects in a specific bucket (Version 2)
 {: #compatibility-api-list-objects-v2}
 
-A `GET` request addressed to a bucket returns a list of objects, limited to 1,000 at a time and returned in non-lexographical order. The `StorageClass` value that is returned in the response is a default value as storage class operations are not implemented in {{site.data.keyword.cos_short}}. This operation doesn't use operation-specific headers or payload elements.
+A `GET` request addressed to a bucket returns a list of objects, limited to 1,000 at a time and returned in non-lexicographical order. The `StorageClass` value that is returned in the response is a default value as storage class operations are not implemented in {{site.data.keyword.cos_short}}. This operation doesn't use operation-specific headers or payload elements.
 
 Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
 
-```bash
+```sh
 GET https://{endpoint}/{bucket-name}?list-type=2 # path style
 GET https://{bucket-name}.{endpoint}?list-type=2 # virtual host style
 ```
@@ -535,17 +537,17 @@ GET https://{bucket-name}.{endpoint}?list-type=2 # virtual host style
 ### Optional query parameters
 {: #compatibility-api-list-objects-v2-params}
 
-Name                 | Type   | Description
----------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-`list-type`          | String | Indicates version 2 of the API and the value must be 2.
-`prefix`             | String | Constrains response to object names beginning with `prefix`.
-`delimiter`          | String | Groups objects between the `prefix` and the `delimiter`.
-`encoding-type`      | String | If Unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.
-`max-keys`           | String | Restricts the number of objects to display in the response. The default and maximum valu is 1,000.
-`fetch-owner`        | String | Version 2 of the API does not include the `Owner` information by default. Set this parameter to `true` if `Owner` information is wanted in the response.
-`continuation-token` | String | Specifies the next set of objects to be returned when your response is truncated (`IsTruncated` element returns `true`). \n Your initial response includes the `NextContinuationToken` element. Use this token in the next request as the value for `continuation-token`.
-`start-after`        | String | Returns key names after a specific key object. \n *This parameter is only valid in your initial request.* If a `continuation-token` parameter is included in your request, this parameter is ignored.
-{: caption="Table 5. Optional query parameters" caption-side="top"}
+|Name                 | Type   | Description |
+|---------------------|--------|-------------------------------------------------|
+|`list-type`          | String | Indicates version 2 of the API and the value must be 2.|
+|`prefix`             | String | Constrains response to object names that begin with `prefix`.|
+|`delimiter`          | String | Groups objects between the `prefix` and the `delimiter`.|
+|`encoding-type`      | String | If Unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.|
+|`max-keys`           | String | Restricts the number of objects to display in the response. The default and maximum value is 1,000.|
+|`fetch-owner`        | String | Version 2 of the API does not include the `Owner` information by default. Set this parameter to `true` if `Owner` information is wanted in the response.|
+|`continuation-token` | String | Specifies the next set of objects to be returned when your response is truncated (`IsTruncated` element returns `true`). \n Your initial response includes the `NextContinuationToken` element. Use this token in the next request as the value for `continuation-token`.|
+|`start-after`        | String | Returns key names after a specific key object. \n *This parameter is only valid in your initial request.* If a `continuation-token` parameter is included in your request, this parameter is ignored.|
+{: caption="Table 9. Optional query parameters" caption-side="bottom"}
 
 **Example request (simple)**
 
@@ -747,11 +749,11 @@ Content-Length: 604
 Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
-A `GET` request addressed to a bucket returns a list of objects, limited to 1,000 at a time and returned in non-lexographical order. The `StorageClass` value that is returned in the response is a default value as storage class operations are not implemented in {{site.data.keyword.cos_short}}. This operation doesn't use operation-specific headers or payload elements.
+A `GET` request addressed to a bucket returns a list of objects, limited to 1,000 at a time and returned in non-lexicographical order. The `StorageClass` value that is returned in the response is a default value as storage class operations are not implemented in {{site.data.keyword.cos_short}}. This operation doesn't use operation-specific headers or payload elements.
 
 **Syntax**
 
-```bash
+```sh
 GET https://{endpoint}/{bucket-name} # path style
 GET https://{bucket-name}.{endpoint} # virtual host style
 ```
@@ -760,14 +762,14 @@ GET https://{bucket-name}.{endpoint} # virtual host style
 ### Optional query parameters
 {: #compatibility-api-list-objects-params}
 
-Name            | Type   | Description
-----------------|--------|----------------------------------------------------------------------------------------------------------------------------------------------------
-`prefix`        | String | Constrains response to object names beginning with `prefix`.
-`delimiter`     | String | Groups objects between the `prefix` and the `delimiter`.
-`encoding-type` | String | If Unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.
-`max-keys`      | String | Restricts the number of objects to display in the response. The default and maximum value is 1,000.
-`marker`        | String | Specifies the object from where the listing should begin, in UTF-8 binary order.
-{: caption="Table 6. Optional query parameters" caption-side="top"}
+| Name            | Type   | Description |
+|----------------|--------|------------------------------------------|
+|`prefix`        | String | Constrains response to object names that begin with `prefix`.|
+|`delimiter`     | String | Groups objects between the `prefix` and the `delimiter`.|
+|`encoding-type` | String | If Unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.|
+|`max-keys`      | String | Restricts the number of objects to display in the response. The default and maximum value is 1,000.|
+|`marker`        | String | Specifies the object from where the listing is to begin, in UTF-8 binary order.|
+{: caption="Table 10. Optional query parameters" caption-side="bottom"}
 
 **Example request**
 {: token}
@@ -858,16 +860,16 @@ Content-Length: 909
 ## Delete a bucket
 {: #compatibility-api-delete-bucket}
 
-A `DELETE` request that is issued to an empty bucket deletes the bucket. The name of the bucket is held in reserve by the system for 10 minutes after the deletion. After 10 minutes the name is released for re-use. *Only empty buckets can be deleted.*
+A `DELETE` request that is issued to an empty bucket deletes the bucket. The name of the bucket is held in reserve by the system for 10 minutes after the deletion. After 10 minutes, the name is released for re-use. *Only empty buckets can be deleted.*
 
-If the {{site.data.keyword.cos_short}} service instance is deleted, all bucket names in that instance are held in reserve by the system for 7 days. After 7 days the names are released for re-use.
+If the {{site.data.keyword.cos_short}} service instance is deleted, all bucket names in that instance are held in reserve by the system for 7 days. After 7 days, the names are released for re-use.
 
 Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
 
-```bash
+```sh
 DELETE https://{endpoint}/{bucket-name} # path style
 DELETE https://{bucket-name}.{endpoint} # virtual host style
 ```
@@ -876,10 +878,10 @@ DELETE https://{bucket-name}.{endpoint} # virtual host style
 ### Optional headers
 {: #optional-headers}
 
-Name                  | Type   | Description
-----------------------|--------|-----------------------------------------------------------------------------------
-`aspera-ak-max-tries` | String | Specifies the number of times to attempt the delete operation. The default value is 2.
-{: caption="Table 7. Optional headers" caption-side="top"}
+|Name                  | Type   | Description|
+|----------------------|--------|-----------------------------------------------------------------------------------|
+|`aspera-ak-max-tries` | String | Specifies the number of times to attempt the delete operation. The default value is 2.|
+{: caption="Table 11. Optional headers" caption-side="bottom"}
 
 **Example request**
 {: token}
@@ -922,7 +924,6 @@ If a non-empty bucket is requested for deletion, the server responds with `409 C
 ### Configure Object Lock on an existing bucket
 {: #compatibility-api-object-lock-configuration}
 
-
 Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
@@ -930,7 +931,7 @@ A `PUT` request that is addressed to an empty bucket with the `?object-lock` que
 
 **Syntax**
 
-```bash
+```sh
 PUT https://{endpoint}/{bucket-name}?object-lock # path style
 PUT https://{bucket-name}.{endpoint}?object-lock # virtual host style
 ```
@@ -940,9 +941,10 @@ The Object Lock configuration is provided as XML in the body of the request. New
 
 An Object Lock configuration must include one rule.
 
-Header                    | Type   | Description
---------------------------|--------|----------------------------------------------------------------------------------------------------------------------
-`Content-MD5` | String | **Required**: The Base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.
+|Header                    | Type   | Description |
+|--------------------------|--------|-------------------------------------------------------------|
+|`Content-MD5` | String | **Required**: The Base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.|
+{: caption="Table 12. Headers" caption-side="bottom"}
 
 The body of the request must contain an XML block with the following schema:
 
@@ -955,7 +957,7 @@ The body of the request must contain an XML block with the following schema:
 | `Days`                    | Integer   | None                        | `DefaultRetention`        | The number of days that you want to specify for the default retention period. It can't be combined with `Years`. |
 | `Mode`                    | String    | None                        | `DefaultRetention`        | Only `COMPLIANCE` is supported currently.                                                                   |
 | `Years`                   | Integer   | None                        | `DefaultRetention`        | The number of years that you want to specify for the default retention period. It can't be combined with `Days`. |
-{: caption="Table 8. Body of the request schema" caption-side="top"}
+{: caption="Table 13. Body of the request schema" caption-side="bottom"}
 
 **Example request**
 
@@ -996,7 +998,7 @@ Content-Length: 909
 
 ----
 
-## List canceled/incomplete multipart uploads for a bucket
+## List canceled or incomplete multipart uploads for a bucket
 {: #compatibility-api-list-canceled-multipart}
 
 A `GET` issued to a bucket with the proper parameters retrieves information about any canceled or incomplete multipart uploads for a bucket.
@@ -1006,7 +1008,7 @@ Not all operations are supported in Satellite environments. For more information
 
 **Syntax**
 
-```bash
+```sh
 GET https://{endpoint}/{bucket-name}?uploads= # path style
 GET https://{bucket-name}.{endpoint}?uploads= # virtual host style
 ```
@@ -1014,15 +1016,15 @@ GET https://{bucket-name}.{endpoint}?uploads= # virtual host style
 
 **Parameters**
 
-Name               | Type    | Description
--------------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------
-`prefix`           | String  | Constrains response to object names beginning with `{prefix}`.
-`delimiter`        | String  | Groups objects between the `prefix` and the `delimiter`.
-`encoding-type`    | String  | If Unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.
-`max-uploads`      | integer | Restricts the number of objects to display in the response. The default and maximum value is 1,000.
-`key-marker`       | String  | Specifies from where the listing should begin.
-`upload-id-marker` | String  | Ignored if `key-marker` is not specified, otherwise sets a point at which to begin listing the parts above `upload-id-marker`.
-{: caption="Table 9. Parameters" caption-side="top"}
+|Name               | Type    | Description |
+|-------------------|---------|------------------------------------------------------------------------|
+|`prefix`           | String  | Constrains response to object names that begin with `{prefix}`.|
+|`delimiter`        | String  | Groups objects between the `prefix` and the `delimiter`.|
+|`encoding-type`    | String  | If Unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.|
+|`max-uploads`      | Integer | Restricts the number of objects to display in the response. The default and maximum value is 1,000.|
+|`key-marker`       | String  | Specifies from where the listing is to begin.|
+|`upload-id-marker` | String  | Ignored if `key-marker` is not specified, otherwise sets a point at which to begin listing the parts above `upload-id-marker`.|
+{: caption="Table 14. Parameters" caption-side="bottom"}
 
 **Example request**
 {: token}
@@ -1115,7 +1117,7 @@ Not all operations are supported in Satellite environments. For more information
 
 **Syntax**
 
-```bash
+```sh
 GET https://{endpoint}/{bucket-name}?cors= # path style
 GET https://{bucket-name}.{endpoint}?cors= # virtual host style
 ```
@@ -1183,7 +1185,7 @@ Not all operations are supported in Satellite environments. For more information
 
 **Syntax**
 
-```bash
+```sh
 PUT https://{endpoint}/{bucket-name}?cors= # path style
 PUT https://{bucket-name}.{endpoint}?cors= # virtual host style
 ```
@@ -1193,17 +1195,17 @@ PUT https://{bucket-name}.{endpoint}?cors= # virtual host style
 
 The body of the request must contain an XML block with the following schema:
 
-| Element           | Type      | Children                     | Ancestor | Constraint          |
-|-------------------|-----------|------------------------------|----------|---------------------|
-| CORSConfiguration | Container | CORSRule                     | -        | -                   |
-| CORSRule          | Container | AllowedOrigin, AllowedMethod | Delete   | -                   |
-| AllowedOrigin     | String    | -                            | CORSRule | Valid origin string |
-| AllowedMethod     | String    | -                            | CORSRule | Valid method string |
-{: caption="Table 10. Body of the request schema" caption-side="top"}
+| Element             | Type      | Children                     | Ancestor | Constraint          |
+|---------------------|-----------|------------------------------|----------|---------------------|
+| `CORSConfiguration` | Container | `CORSRule`                 | -        | -                   |
+| `CORSRule`          | Container |`AllowedOrigin`, `AllowedMethod`| Delete | -                   |
+| `AllowedOrigin`     | String    | -                          | `CORSRule` | Valid origin string |
+| `AllowedMethod`     | String    | -                          | `CORSRule` | Valid method string |
+{: caption="Table 15. Body of the request schema" caption-side="bottom"}
 
 The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. The following snippet shows one way to achieve the content for that particular header.
 
-```
+```sh
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 ```
 {: codeblock}
@@ -1249,7 +1251,6 @@ Content-Length: 237
 </CORSConfiguration>
 ```
 
-
 **Example response**
 
 ```http
@@ -1275,7 +1276,7 @@ Not all operations are supported in Satellite environments. For more information
 
 **Syntax**
 
-```bash
+```sh
 DELETE https://{endpoint}/{bucket-name}?cors= # path style
 DELETE https://{bucket-name}.{endpoint}?cors= # virtual host style
 ```
@@ -1320,7 +1321,7 @@ Not all operations are supported in Satellite environments. For more information
 
 **Syntax**
 
-```bash
+```sh
 GET https://{endpoint}/{bucket-name}?location # path style
 GET https://{bucket-name}.{endpoint}?location # virtual host style
 ```
@@ -1383,7 +1384,7 @@ Not all operations are supported in Satellite environments. For more information
 
 **Syntax**
 
-```bash
+```sh
 PUT https://{endpoint}/{bucket-name}?lifecycle # path style
 PUT https://{bucket-name}.{endpoint}?lifecycle # virtual host style
 ```
@@ -1393,24 +1394,24 @@ PUT https://{bucket-name}.{endpoint}?lifecycle # virtual host style
 
 The body of the request must contain an XML block with the following schema:
 
-Element                | Type                 | Children                       | Ancestor               | Constraint
------------------------|----------------------|--------------------------------|------------------------|-------------------------------------------------------------------------------
-LifecycleConfiguration | Container            | Rule                           | None                   | Limit 1
-Rule                   | Container            | ID, Status, Filter, Transition | LifecycleConfiguration | Limit 1
-ID                     | String               | None                           | Rule                   | **Must** consist of `(a-z,A- Z0-9)` and the following symbols:`` !`_ .*'()- ``
-Filter                 | String               | Prefix                         | Rule                   | **Must** contain a `Prefix` element.
-Expiration             | Container            | Days, Date, ExpiredObjectDeleteMarker                   | Rule                   | Limit 1
-Prefix                 | String               | None                           | Filter                 | If using a transition (archive) rule, the value **must** be set to `<Prefix/>`.  This limitation does not apply to expiration rules.
-Transition             | Container            | Days, StorageClass             | Rule                   | Limit 1 transition rule, and 1000 rules in total.
-Days                   | Non-negative integer | None                           | Transition             | **Must** be a value equal to or greater than 0.
-Date                   | Date                 | None                           | Transition             | **Must** be in ISO 8601 Format and the date must be in the future.
-StorageClass           | String               | None                           | Transition             | **Must** be set to `GLACIER` or `ACCELERATED`.
-ExpiredObjectDeleteMarker          | Boolean               | None                           | Expiration             | **Must** be `true` or `false`.
-NoncurrentVersionExpiration           | Container               | NoncurrentDays                           | NoncurrentVersionExpiration             | Limit 1
-NoncurrentDays           | Positive Integer               | None                           | Transition             | **Must** be a value greater than 0.
-AbortIncompleteMultipartUpload           | Container                  | DaysAfterInitiation                          | Rule             | Limit 1
-DaysAfterInitiation           | Non-negative Integer               | None                           | AbortIncompleteMultipartUpload            | **Must** be a value greater than 0.
-{: caption="Table 11. Body of the request schema" caption-side="top"}
+|Element                 | Type                 | Children              | Ancestor                 | Constraint                          |
+|------------------------|----------------------|-----------------------|--------------------------|-------------------------------------|
+|`LifecycleConfiguration`| Container            | `Rule`                | None                     | Limit 1                             |
+|`Rule`                  | Container            | `ID`, `Status`, `Filter`, `Transition` | `LifecycleConfiguration` | Limit 1            |
+|`ID`                    | String               | None                  | `Rule`                   | **Must** consist of `(a-z,A- Z0-9)` and the following symbols:`` !`_ .*'()- `` |
+|`Filter`                | String               | `Prefix`              | `Rule`                   | **Must** contain a `Prefix` element.|
+|`Expiration`            | Container            | `Days`, `Date`, `ExpiredObjectDeleteMarker` | `Rule` | Limit 1                         |
+|`Prefix`                | String               | None                  | `Filter`                 | If using a transition (archive) rule, the value **must** be set to `<Prefix/>`. This limitation does not apply to expiration rules.|
+|`Transition`            | Container            | `Days`, `StorageClass`| `Rule`                   | Limit 1 transition rule, and 1000 rules in total. |
+| `Days`                 | Non-negative integer | None                  | `Transition`             | **Must** be a value equal to or greater than 0.|
+| `Date`                 | Date                 | None                  | `Transition`             | **Must** be in ISO 8601 Format and the date must be in the f future. |
+|`StorageClass`          | String               | None                  | `Transition`             | **Must** be set to `GLACIER` or `ACCELERATED`. |
+|`ExpiredObjectDeleteMarker`| Boolean           | None                  | `Expiration`             | **Must** be `true` or `false`.      |
+|`NoncurrentVersionExpiration`| Container       | `NoncurrentDays`      | `NoncurrentVersionExpiration`| Limit 1                         |
+| `NoncurrentDays`       | Positive Integer     | None                  | `Transition`             | **Must** be a value greater than 0. |
+| `AbortIncompleteMultipartUpload`| Container   | `DaysAfterInitiation` | `Rule`                   | Limit 1                             |
+|`DaysAfterInitiation`   | Non-negative Integer | None                  | `AbortIncompleteMultipartUpload` | **Must** be a value greater than 0. |
+{: caption="Table 16. Body of the request schema" caption-side="bottom"}
 
 {{site.data.keyword.cos_full}} IaaS (non-IAM) accounts are unable to set the transition storage class to `ACCELERATED`.
 {: note}
@@ -1433,7 +1434,7 @@ DaysAfterInitiation           | Non-negative Integer               | None       
 
 The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. The following snippet shows one way to achieve the content for that particular header.
 
-```
+```sh
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 ```
 {: codeblock}
@@ -1505,7 +1506,7 @@ The server responds with `200 OK`.
 
 The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. The following snippet shows one way to achieve the content for that particular header.
 
-```
+```sh
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 ```
 {: codeblock}
@@ -1591,7 +1592,7 @@ A `GET` operation uses the lifecycle query parameter to retrieve lifecycle setti
 
 **Syntax**
 
-```bash
+```sh
 GET https://{endpoint}/{bucket-name}?lifecycle # path style
 GET https://{bucket-name}.{endpoint}?lifecycle # virtual host style
 ```
@@ -1692,15 +1693,15 @@ Any expiration actions for objects that are subject to a bucket's Immutable Obje
 
 For more about using lifecycle configuration to delete objects, check out the [documentation](/docs/cloud-object-storage?topic=cloud-object-storage-expiry).
 
-This implementation of the `PUT` operation uses the `lifecycle` query parameter to set lifecycle settings for the bucket. This operation allows for a single lifecycle policy definition for a bucket. The policy is defined as a set of rules consisting of the following parameters: `ID`, `Status`, `Filter`, and `Expiration`.
+This implementation of the `PUT` operation uses the `lifecycle` query parameter to set lifecycle settings for the bucket. This operation allows for a single lifecycle policy definition for a bucket. The policy is defined as a set of rules that consists of the following parameters: `ID`, `Status`, `Filter`, and `Expiration`.
 
 Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
-|Header                    | Type   | Description|
-|--------------------------|--------|----------------------------------------------------------------------------------------------------------------------|
+| Header       | Type   | Description |
+|--------------|--------|----------------------------------------------------------------------------------------------------------------------|
 |`Content-MD5` | String | **Required**: The Base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.|
-{: caption="Table 12. Body of the request schema" caption-side="top"}
+{: caption="Table 17. Body of the request schema" caption-side="bottom"}
 
 The following snippet shows one way to achieve the content for that particular header.
 
@@ -1721,7 +1722,7 @@ The body of the request must contain an XML block with the following schema:
 | `Expiration`             | Container | `Days` or `Date`                       | `Rule`                   | Limit 1.   |
 | `Days`                   | Non-negative integer | None                        | `Expiration`             | Must be a value greater than 0. |
 | `Date`                   | Date                 | None                        | `Expiration`             | Must be in ISO 8601 Format. |
-{: caption="Table 13. Body of the request schema" caption-side="top"}
+{: caption="Table 18. Body of the request schema" caption-side="bottom"}
 
 **Syntax**
 {: http}
@@ -1767,7 +1768,7 @@ A `DELETE` issued to a bucket with the proper parameters removes any lifecycle c
 
 **Syntax**
 
-```bash
+```sh
 DELETE https://{endpoint}/{bucket-name}?lifecycle # path style
 DELETE https://{bucket-name}.{endpoint}?lifecycle # virtual host style
 ```
@@ -1859,15 +1860,15 @@ PUT https://{bucket-name}.{endpoint}?protection= # virtual host style
 
 The body of the request must contain an XML block with the following schema:
 
-| Element                 | Type      | Children                                                     | Ancestor                                             | Constraint              |
-|-------------------------|-----------|--------------------------------------------------------------|------------------------------------------------------|-------------------------|
-| ProtectionConfiguration | Container | Status, MinimumRetention, MaximumRetention, DefaultRetention | -                                                    | -                       |
-| Status                  | String    | -                                                            | ProtectionConfiguration                              | Valid status string     |
-| MinimumRetention        | Container | Days                                                         | ProtectionConfiguration                              | -                       |
-| MaximumRetention        | Container | Days                                                         | ProtectionConfiguration                              | -                       |
-| DefaultRetention        | Container | Days                                                         | ProtectionConfiguration                              | -                       |
-| Days                    | Integer   | -                                                            | MinimumRetention, MaximumRetention, DefaultRetention | Valid retention integer |
-{: caption="Table 14. Body of the request schema" caption-side="top"}
+| Element                 | Type      | Children              | Ancestor                                                   | Constraint              |
+|-------------------------|-----------|-----------------------|------------------------------------------------------------|-------------------------|
+|`ProtectionConfiguration`| Container | `Status`, `MinimumRetention`, `MaximumRetention`, `DefaultRetention` | -         | -                       |
+|`Status`                 | String    | -                   | `ProtectionConfiguration`                                  | Valid status string     |
+|`MinimumRetention`       | Container | `Days`              | `ProtectionConfiguration`                                  | -                       |
+|`MaximumRetention`       | Container | `Days`              | `ProtectionConfiguration`                                  | -                       |
+|`DefaultRetention`       | Container | `Days`              | `ProtectionConfiguration`                                  | -                       |
+|`Days`                   | Integer   | -                   | `MinimumRetention`, `MaximumRetention`, `DefaultRetention` | Valid retention integer |
+{: caption="Table 20. Body of the request schema" caption-side="bottom"}
 
 **Example request**
 {: token}
@@ -1923,7 +1924,7 @@ Not all operations are supported in Satellite environments. For more information
 
 **Syntax**
 
-```bash
+```sh
 PUT https://{endpoint}/{bucket-name}?website # path style
 PUT https://{bucket-name}.{endpoint}?website # virtual host style
 ```
@@ -1933,28 +1934,28 @@ PUT https://{bucket-name}.{endpoint}?website # virtual host style
 
 The body of the request must contain an XML block with the following schema:
 
-| Element                     | Type      | Children                                                                   | Ancestor              | Notes                                    |
-|-----------------------------|-----------|----------------------------------------------------------------------------|-----------------------|------------------------------------------|
-| WebsiteConfiguration        | Container | ErrorDocument, IndexDocument, RedirectAllRequestsTo, RoutingRule           | -                     | Required                                 |
-| ErrorDocument               | Container | Key                                                                        | WebsiteConfiguration  | -                                        |
-| Key                         | String    | -                                                                          | ErrorDocument         | -                                        |
-| IndexDocument               | Container | Suffix                                                                     | WebsiteConfiguration  | -                                        |
-| Suffix                      | String    | -                                                                          | IndexDocument         | -                                        |
-| RedirectAllRequestsTo       | Container | HostName, Protocol                                                         | WebsiteConfiguration  | If given, it must be the only element that is specified |
-| HostName                    | String    | -                                                                          | RedirectAllRequestsTo | -                                        |
-| Protocol                    | String    | -                                                                          | RedirectAllRequestsTo | -                                        |
-| RoutingRules                | Container | RoutingRule                                                                | WebsiteConfiguration  | -                                        |
-| RoutingRule                 | Container | Condition, Redirect                                                        | RoutingRules          | -                                        |
-| Condition                   | Container | HttpErrorCodeReturnedEquals, KeyPrefixEquals                               | RoutingRule           | -                                        |
-| HttpErrorCodeReturnedEquals | String    | -                                                                          | Condition             | -                                        |
-| KeyPrefixEquals             | String    | -                                                                          | Condition             | -                                        |
-| Redirect                    | Container | HostName, HttpRedirectCode, Protocol, ReplaceKeyPrefixWith, ReplaceKeyWith | RoutingRule           | -                                        |
-| HostName                    | String    | -                                                                          | Redirect              | -                                        |
-| HttpRedirectCode            | String    | -                                                                          | Redirect              | -                                        |
-| Protocol                    | String    | -                                                                          | Redirect              | -                                        |
-| ReplaceKeyPrefixWith        | String    | -                                                                          | Redirect              | -                                        |
-| ReplaceKeyWith              | String    | -                                                                          | Redirect              | -                                        |
-{: caption="Table 15. Body of the request schema" caption-side="top"}
+| Element                     | Type      | Children                       | Ancestor              | Notes                                    |
+|-----------------------------|-----------|--------------------------------|-----------------------|------------------------------------------|
+| `WebsiteConfiguration`      | Container | `ErrorDocument`, `IndexDocument`, `RedirectAllRequestsTo`, `RoutingRule`  | -      | Required     |
+| `ErrorDocument`             | Container | `Key`                          | `WebsiteConfiguration`  | -                                      |
+| `Key`                       | String    | -                              | `ErrorDocument`         | -                                      |
+| `IndexDocument`             | Container | `Suffix`                       | `WebsiteConfiguration`  | -                                      |
+| `Suffix`                    | String    | -                              | `IndexDocument`         | -                                      |
+| `RedirectAllRequestsTo`     | Container | `HostName`, `Protocol`         | `WebsiteConfiguration`  | If given, it must be the only element that is specified |
+| `HostName`                  | String    | -                              | `RedirectAllRequestsTo` | -                                      |
+| `Protocol`                  | String    | -                              | `RedirectAllRequestsTo` | -                                      |
+| `RoutingRules`              | Container | `RoutingRule`                  | `WebsiteConfiguration`  | -                                      |
+| `RoutingRule`               | Container | `Condition`, `Redirect`        | `RoutingRules`          | -                                      |
+| `Condition`                 | Container | `HttpErrorCodeReturnedEquals`, `KeyPrefixEquals` | `RoutingRule` | -                              |
+|`HttpErrorCodeReturnedEquals`| String    | -                              | `Condition`             | -                                      |
+| `KeyPrefixEquals`           | String    | -                              | `Condition`             | -                                      |
+| `Redirect`                  | Container | `HostName`, `HttpRedirectCode`, `Protocol`, `ReplaceKeyPrefixWith`, `ReplaceKeyWith` | `RoutingRule` | - |
+| `HostName`                  | String    | -                              | `Redirect`              | -                                      |
+| `HttpRedirectCode`          | String    | -                              | `Redirect`              | -                                      |
+| `Protocol`                  | String    | -                              | `Redirect`              | -                                      |
+| `ReplaceKeyPrefixWith`      | String    | -                              | `Redirect`              | -                                      |
+| `ReplaceKeyWith`            | String    | -                              | `Redirect`              | -                                      |
+{: caption="Table 21. Body of the request schema" caption-side="bottom"}
 
 **Example request**
 
@@ -2009,7 +2010,7 @@ Not all operations are supported in Satellite environments. For more information
 
 **Syntax**
 
-```bash
+```sh
 DELETE https://{endpoint}/{bucket-name}?website # path style
 DELETE https://{bucket-name}.{endpoint}?website # virtual host style
 ```
@@ -2054,7 +2055,7 @@ Not all operations are supported in Satellite environments. For more information
 
 **Syntax**
 
-```bash
+```sh
 PUT https://{endpoint}/{bucket-name}?publicAccessBlock # path style
 PUT https://{bucket-name}.{endpoint}?publicAccessBlock # virtual host style
 ```
@@ -2069,7 +2070,7 @@ The body of the request must contain an XML block with the following schema:
 | PublicAccessBlockConfiguration | Container | BlockPublicAcls, IgnorePublicAcls | -                              | Required |
 | BlockPublicAcls                | Boolean   | -                                 | PublicAccessBlockConfiguration | -        |
 | IgnorePublicAcls               | Boolean   | -                                 | PublicAccessBlockConfiguration | -        |
-{: caption="Table 16. Body of the request schema" caption-side="top"}
+{: caption="Table 22. Body of the request schema" caption-side="bottom"}
 
 **Example request**
 
@@ -2116,7 +2117,7 @@ A `GET` issued to a bucket with the proper parameters returns the ACL block conf
 
 **Syntax**
 
-```bash
+```sh
 GET https://{endpoint}/{bucket-name}?publicAccessBlock # path style
 GET https://{bucket-name}.{endpoint}?publicAccessBlock # virtual host style
 ```
@@ -2147,7 +2148,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
 {: hmac}
 
-```
+```http
 HTTP/1.1 200 OK
 Date: Mon, 02 Nov 2020 19:52:56 GMT
 X-Clv-Request-Id: 7c9079b1-2833-4abc-ba10-466ef06725b2
@@ -2175,7 +2176,7 @@ Not all operations are supported in Satellite environments. For more information
 
 **Syntax**
 
-```bash
+```sh
 DELETE https://{endpoint}/{bucket-name}?publicAccessBlock # path style
 DELETE https://{bucket-name}.{endpoint}?publicAccessBlock # virtual host style
 ```
@@ -2217,7 +2218,7 @@ A `PutBucketInventoryConfiguration` issued to a bucket with the proper parameter
 
 **Syntax**
 
-```bash
+```sh
 PUT {bucket}?inventory&id={id}
 ```
 {: codeblock}
@@ -2279,7 +2280,7 @@ A `GetBucketInventoryConfiguration` issued to a bucket with the proper parameter
 
 **Syntax**
 
-```bash
+```sh
 GET {bucket}?inventory&id={id}
 ```
 {: codeblock}
@@ -2338,7 +2339,7 @@ A `ListBucketInventoryConfigurations` issued to a bucket with the proper paramet
 
 **Syntax**
 
-```bash
+```sh
 GET {bucket}?inventory&continuation-token={continuation-token}
 ```
 {: codeblock}
@@ -2400,7 +2401,7 @@ A `DeleteBucketInventoryConfiguration` issued to a bucket with the proper parame
 
 **Syntax**
 
-```bash
+```sh
 DELETE {bucket}?inventory&id={id}
 ```
 {: codeblock}
