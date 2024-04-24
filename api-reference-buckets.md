@@ -2427,7 +2427,7 @@ DELETE mybucket?inventory&id=myid HTTP/1.1
 
 ----
 
-## Next Steps
+## Next steps
 {: #api-ref-buckets-next-steps}
 
 For more information, see [Object operations](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations).
