@@ -1313,7 +1313,7 @@ You can update the metadata on an existing object in two ways:
 * Making a `PUT` request with the new metadata and the original object contents
 * Running a `COPY` request with the new metadata specifying the original object as the copy source
 
-All metadata keys must be prefixed with `x-amz-meta-`
+All metadata keys must be prefixed with `x-amz-meta-`.
 {: tip}
 
 Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
