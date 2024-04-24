@@ -66,6 +66,9 @@ Deleting buckets or objects from the system does not incur a charge. For charges
 | Class B | GET (excluding listing), HEAD, and OPTIONS requests | Retrieving objects and metadata |
 {: caption="Table 1. Request classes" caption-side="top"}
 
+Requests made using the Resource Configuration API are not charged for requests and do not accrue usage for billing purposes.
+{: note}
+
 ## Aspera transfers
 {: #billing-aspera}
 
