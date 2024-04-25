@@ -158,6 +158,7 @@ The following table shows the Object Lock related actions that a user is authori
 {: caption="Table 1. IAM roles that are associated with Object Lock actions." caption-side="bottom"}
 
 Users with the **Writer** role can make an object undeletable for many years (possibly thousands of years). Consider crafting custom roles that do not allow most users to set a Retain Until Date.
+{: attention}
 
 ## Activity Tracker events
 {: #ol-at}
