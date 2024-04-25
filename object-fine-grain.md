@@ -45,7 +45,7 @@ It is possible to use any combination of these parameters - an object version ca
 ### Retain Until Date (Retention Period)
 {: #ol-terminology-retention-period}
 
-If you need to protect an object version for a fixed amount of time, you need to specify a *Retain Until Date, which determines the period in which it cannot be altered. The object version can be deleted after this date passes (assuming that no legal holds apply for the object version).
+If you need to protect an object version for a fixed amount of time, you need to specify a *Retain Until Date*, which determines the period in which it cannot be altered. The object version can be deleted after this date passes (assuming that no legal holds apply for the object version).
 
 The retention period for new objects can be inherited from the default value set on the bucket. The retention period can also be explicitly defined when the object is written by specifying a *Retain Until Date*.
 
