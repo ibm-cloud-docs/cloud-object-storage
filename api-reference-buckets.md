@@ -759,7 +759,7 @@ GET https://{bucket-name}.{endpoint} # virtual host style
 ```
 {: codeblock}
 
-### Optional query parameters
+### Optional query parameters for list object method
 {: #compatibility-api-list-objects-params}
 
 | Name            | Type   | Description |
