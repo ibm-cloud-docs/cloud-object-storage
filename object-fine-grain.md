@@ -49,12 +49,12 @@ If you need to protect an object version for a fixed amount of time, you need to
 
 The retention period for new objects can be inherited from the default value set on the bucket. The retention period can also be explicitly defined when the object is written by specifying a *Retain Until Date*.
 
-When you use bucket default settings, you don’t specify a Retain Until Date. Instead, you specify a duration, in either days or years, for which every object version that is placed in the bucket must be protected. When you place an object in the bucket, a Retain Until Date is calculated for the object version by adding the specified duration to the time of the object write.
+When you use bucket default settings, you don’t specify a *Retain Until Date*. Instead, you specify a duration, in either days or years, for which every object version that is placed in the bucket must be protected. When you place an object in the bucket, a *Retain Until Date* is calculated for the object version by adding the specified duration to the time of the object write.
 
-If your request to place an object version in a bucket contains an explicit retention mode and Retain Until Date, those settings override any bucket default settings for that object version.
+If your request to place an object version in a bucket contains an explicit retention mode and *Retain Until Date*, those settings override any bucket default settings for that object version.
 {: note}
 
-Like all other Object Lock settings, the Retain Until Date applies to individual object versions. Different versions of a single object can have different retention modes and periods.
+Like all other Object Lock settings, the *Retain Until Date* applies to individual object versions. Different versions of a single object can have different retention modes and periods.
 
 Imagine an object that is 60 days into a 90-day retention period, and you overwrite that object with the same name and a two-year retention period. The operation succeeds and a new version of the object with a two-year retention period is created. Meanwhile, after 30 more days the original version is eligible for deletion.
 
@@ -157,7 +157,7 @@ The following table shows the Object Lock related actions that a user is authori
 | `cloud-object-storage.object.put_object_lock_legal_hold_version` | Manager, Writer         |
 {: caption="Table 1. IAM roles that are associated with Object Lock actions." caption-side="bottom"}
 
-Users with the **Writer** role can make an object undeletable for many years (possibly thousands of years). Consider crafting custom roles that do not allow most users to set a Retain Until Date.
+Users with the **Writer** role can make an object undeletable for many years (possibly thousands of years). Consider crafting custom roles that do not allow most users to set a *Retain Until Date*.
 {: attention}
 
 ## Activity Tracker events
@@ -206,7 +206,7 @@ Before you can start working with this feature, ensure that the following prereq
 
 A maximum default retention period of 100 years (or 36500 days) is supported.
 
-The retention period for an object **cannot be decreased**. If you are using default retention for validation testing, use a shorter duration (such as 1 day) as the default retention, then increase it as needed. You can specify the retention period in days or years in the console, with the API, SDKs, or Terraform. In the console, it is also possible to set a Retain Until Date in months.
+The retention period for an object **cannot be decreased**. If you are using default retention for validation testing, use a shorter duration (such as 1 day) as the default retention, then increase it as needed. You can specify the retention period in days or years in the console, with the API, SDKs, or Terraform. In the console, it is also possible to set a *Retain Until Date* in months.
 {: tip}
 
 ## Working with Object Lock in the console
