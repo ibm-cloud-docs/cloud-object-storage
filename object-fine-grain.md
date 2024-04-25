@@ -61,7 +61,7 @@ Imagine an object that is 60 days into a 90-day retention period, and you overwr
 ### Extending a retention period
 {: #ol-terminology-retention-period-extend}
 
-To extend the retention period of an object, send a request to set a new, longer, retention period. The old value is overwritten with the new value, assuming the requester has the `cloud-object-storage.object.put_object_lock_retention` and `cloud-object-storage.object.put_object_lock_retention_version` actions.
+To extend the retention period of an object, send a request to set a longer retention period. The old value is overwritten with the new value, assuming the requester has the `cloud-object-storage.object.put_object_lock_retention` and `cloud-object-storage.object.put_object_lock_retention_version` actions.
 
 ### Legal hold
 {: #ol-terminology-legal-hold}
