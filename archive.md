@@ -15,7 +15,7 @@ subcollection: cloud-object-storage
 # Archiving and accessing cold data
 {: #archive}
 
-{{site.data.keyword.cos_full}} "Archive" and "Accelerated Archive" are [low cost](https://www.ibm.com/cloud/object-storage) options for data that is rarely accessed. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option. With the new "Accelerated Archive" feature you can quickly access dormant data with restoration occurring in less than two hours.
+{{site.data.keyword.cos_full}} "Archive" and "Accelerated Archive" are [low cost](https://www.ibm.com/products/cloud-object-storage) options for data that is rarely accessed. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option. With the new "Accelerated Archive" feature you can quickly access dormant data with restoration occurring in less than two hours.
 {: shortdesc}
 
 This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
@@ -42,7 +42,7 @@ Create a bucket in the console after you've logged in, and you can configure you
 To immediately archive new objects uploaded to a bucket, enter 0 days on the archive policy.
 {: tip}
 
-Archive is available in certain regions only. See [Integrated Services](/docs/cloud-object-storage/basics?topic=cloud-object-storage-service-availability) for more details.
+Archive is available in certain regions only. See [Integrated Services](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability) for more details.
 {: tip}
 
 ## Restore an archived object
@@ -593,7 +593,7 @@ A `HEAD` given a path to an object retrieves that object's headers. This operati
 __Syntax__
 {: http}
 
-```bash
+```sh
 HEAD https://{endpoint}/{bucket-name}/{object-name} # path style
 HEAD https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```

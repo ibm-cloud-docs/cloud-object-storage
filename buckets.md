@@ -77,7 +77,7 @@ Note that leaving the **Resource Type** or **Resource** fields blank will create
 
 From a terminal run the following command:
 
-```bash
+```sh
 ibmcloud iam user-policy-create <user-name> \
       --roles <role> \
       --service-name cloud-object-storage \
@@ -89,14 +89,14 @@ ibmcloud iam user-policy-create <user-name> \
 
 To list existing policies:
 
-```bash
+```sh
 ibmcloud iam user-policies <user-name>
 ```
 {: codeblock}
 
 To edit an existing policy:
 
-```bash
+```sh
 ibmcloud iam user-policy-update <user-name> <policy-id> \
       --roles <role> \
       --service-name cloud-object-storage \
@@ -131,7 +131,7 @@ Note that leaving the **Resource Type** or **Resource** fields blank will create
 
 From a terminal run the following command:
 
-```bash
+```sh
 ibmcloud iam service-policy-create <service-id-name> \
       --roles <role> \
       --service-name cloud-object-storage \
@@ -143,14 +143,14 @@ ibmcloud iam service-policy-create <service-id-name> \
 
 To list existing policies:
 
-```bash
+```sh
 ibmcloud iam service-policies <service-id-name>
 ```
 {: codeblock}
 
 To edit an existing policy:
 
-```bash
+```sh
 ibmcloud iam service-policy-update <service-id-name> <policy-id> \
       --roles <role> \
       --service-name cloud-object-storage \

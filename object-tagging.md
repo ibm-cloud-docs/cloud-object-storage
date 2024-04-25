@@ -24,7 +24,7 @@ Your data can be expressly defined, categorized, and classified in {{site.data.k
 Organizing your data can be a complex task. Basic methods, such as using key prefixes like organizational "folders" are a great start to hierarchical structures. But for more complex organization, you will need custom "[tags](#x2040924){: term}." Your metadata can describe the relationships inherent to your data, and provide more organization than titles or folders. Unlike mere labels, there are two parts to a tag: a `key` and a `value`, defined individually according to your needs.
 
 ### Tagging Objects
-{: #object-tagging-overview}
+{: #object-tagging-tags}
 
 Managing tags describing your objects can be performed through various interfaces and architectures. Using the [Console](https://cloud.ibm.com){: external} provides a graphical user interface. Using the command line requires tools like [`curl`](/docs/cloud-object-storage?topic=cloud-object-storage-curl) and the knowledge of how it interacts with {{site.data.keyword.cos_short}}.
 
@@ -34,8 +34,8 @@ Managing tags describing your objects can be performed through various interface
 You need:
 
 * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com/login)
-* An [instance of {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage/basics?topic=cloud-object-storage-provision) and a bucket created for this purpose
-* An [IAM API key](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview) with Writer access to your {{site.data.keyword.cos_short}} bucket or instance
+* An [instance of {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-provision) and a bucket created for this purpose
+* An [IAM API key](/docs/cloud-object-storage?topic=cloud-object-storage-iam-overview) with Writer access to your {{site.data.keyword.cos_short}} bucket or instance
 * Either existing or new objects that will have tags applied to them.
 
 ### Reading tags
@@ -51,11 +51,10 @@ Log in to the [console](https://cloud.ibm.com/){: external}, selecting your inst
 A properly formed and authenticated "GET" request with the `?tagging` query parameter is all that is required for accessing the tags for your objects using `curl`. The examples here use bearer tokens generated using [this example](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-token). In addition to the bucket identifier and object key, you will also need the correct [endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints). The resulting XML object is also shown, where the "Tag" element will be repeated for each tag assigned to the object. If there are no tags, the response will return XML with an empty element, `<TagSet />`.
 {: http}
 
-```bash
+```sh
 curl 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
 -H 'Authorization: bearer <token>' \
 ```
-
 {: pre}
 {: http}
 
@@ -70,7 +69,6 @@ curl 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
   </TagSet>
 </Tagging>
 ```
-
 {: screen}
 {: http}
 
@@ -106,13 +104,12 @@ If you do not click on "save" when completing your changes, a dialog box will re
 As noted previously, you will have to authenticate to add tags to your data. If you have questions about bearer tokens, see [this example](/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-token). Again, note the query string for working with tags: **`?tagging`**.
 {: http}
 
-```bash
+```sh
 curl -X "PUT" 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
 -H 'Authorization: bearer <token>' \
 -H "content-type: text/plain" \
 --data "<Tagging><TagSet><Tag><Key>your key</Key><Value>your text</Value></Tag></TagSet></Tagging>"
 ```
-
 {: pre}
 {: http}
 
@@ -122,7 +119,6 @@ The example describes as shown a tag with a `key` of 'source' and a `value` of '
 ```shell
 curl -X "PUT" "https://s3.test.cloud-object-storage.sample.appdomain.cloud/taggingtest/example-file.csv?tagging" -H "Authorization: bearer ...iOiIyMDIwMTIwNzE0NDkiLCJh..." -H "ibm-service-instance-id: 7nnnnn52-2nn0-nna9-bann-7nnnnn4cc4e7" --data "<Tagging><TagSet><Tag><Key>source</Key><Value>text</Value></Tag></TagSet></Tagging>"
 ```
-
 {: screen}
 {: http}
 
@@ -143,13 +139,12 @@ Remember that performing "PUT" operations involving tags will overwrite any curr
 {: important}
 {: http}
 
-```bash
+```sh
 curl -X "PUT" 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
 -H 'Authorization: bearer <token>' \
 -H "content-type: text/plain" \
 --data "<Tagging><TagSet><Tag><Key>source</Key><Value>text</Value></Tag><Tag><Key>source1</Key><Value>text1</Value></Tag></TagSet></Tagging>"
 ```
-
 {: pre}
 {: http}
 
@@ -169,7 +164,7 @@ Remember to press "Save" when complete.
 You will have to authenticate to delete tags from your data. Simply use the "DELETE" HTTP method with the `?tagging` query parameter to delete all tags. If you wish to delete one or more tags while simultaneously keeping one or more tags, use the "edit" instructions to make your changes.
 {: http}
 
-```bash
+```sh
 curl -X "DELETE" 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
 -H 'Authorization: bearer <token>' \
 -H "content-type: text/plain"

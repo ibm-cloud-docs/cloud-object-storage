@@ -366,7 +366,7 @@ A successful request returns a `200` response.
 If the `RetainUntilDate` value is not beyond any existing value, the operation fails with a `403 Access Denied`.
 
 ### Add or remove a legal hold for an object
-{: #ol-apis-object-add}
+{: #ol-apis-object-add-lh}
 
 The Object Lock configuration is provided as XML in the body of the request. New requests overwrite any existing replication rules that are present on the object, provided the `RetainUntilDate` is farther in the future than the current value.
 

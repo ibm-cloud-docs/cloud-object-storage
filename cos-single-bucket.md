@@ -37,7 +37,7 @@ This tutorial will create a new access policy and a new custom role in the proce
 
 For this tutorial, you need:
 - An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com){: external}
-- An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage)
+- An [instance of IBM Cloud Object Storage](/objectstorage/create)
 - A bucket to which a user should be constrained
 - To complete the steps to manage access to the service, your user ID needs **administrator platform permissions** to use the IAM service. You may have to contact or work with an account administrator. 
 

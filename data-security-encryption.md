@@ -44,9 +44,9 @@ Access control lists (often referred to as ACLs) are an outdated method for cont
 Cross regional and regional resiliency buckets distribute information across multiple data centers.  For single site resiliency, data is dispersed to the same number of storage devices but they are all located in the same data center.
 {: note}
 
-Data can be made more secure by using one of several available methods to protect the encryption keys including SSE-C, Key Protect or Hyper Protect Crypto Services. Please visit the [manage encryption](/docs/cloud-object-storage/basics?topic=cloud-object-storage-encryption) topic to learn more about the encryption methods.
+Data can be made more secure by using one of several available methods to protect the encryption keys including SSE-C, Key Protect or Hyper Protect Crypto Services. Please visit the [manage encryption](/docs/cloud-object-storage?topic=cloud-object-storage-encryption) topic to learn more about the encryption methods.
 
 ## Tenant isolation
 {: #security-isolation}
 
-{{site.data.keyword.cos_full_notm}} is a multi-tenant Object Storage product. If your workload requires dedicated or isolated storage, see [{{site.data.keyword.cloud}}](https://www.ibm.com/cloud/object-storage) for more information.
+{{site.data.keyword.cos_full_notm}} is a multi-tenant Object Storage product. If your workload requires dedicated or isolated storage, see [{{site.data.keyword.cloud}}](https://www.ibm.com/products/cloud-object-storage) for more information.

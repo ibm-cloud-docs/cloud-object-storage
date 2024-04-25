@@ -27,9 +27,9 @@ Successful implementation of a Cloud Foundry platform requires [proper planning 
 
 ### Regions
 {: #cloud-foundry-regions}
-[Regional endpoints](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-endpoints#endpoints-region) are an important part of the IBM Cloud Environment. You can create applications and service instances in different regions with the same IBM Cloud infrastructure for application management and the same usage details view for billing. By choosing an IBM Cloud region that is geographically close to you or your customers, you can reduce data latency in your applications as well as minimize costs. Regions can also be selected address any security concerns or regulatory requirements. 
+[Regional endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints-region) are an important part of the IBM Cloud Environment. You can create applications and service instances in different regions with the same IBM Cloud infrastructure for application management and the same usage details view for billing. By choosing an IBM Cloud region that is geographically close to you or your customers, you can reduce data latency in your applications as well as minimize costs. Regions can also be selected address any security concerns or regulatory requirements. 
 
-With {{site.data.keyword.cos_full}} you can choose to disperse data across a single data center, an entire region, or even a combination of regions by [selecting the endpoint](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) where your application sends API requests.
+With {{site.data.keyword.cos_full}} you can choose to disperse data across a single data center, an entire region, or even a combination of regions by [selecting the endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) where your application sends API requests.
 
 ### Resource Connections and Aliases
 {: #cloud-foundry-aliases}
@@ -94,9 +94,9 @@ var cos = new AWS.S3(config);
 
 For more information on how to use the SDK to access {{site.data.keyword.cos_short}} with code examples visit:
 
-* [Using Java](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-java)
-* [Using Python](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-python)
-* [Using Node.js](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-node)
+* [Using Java](/docs/cloud-object-storage?topic=cloud-object-storage-java)
+* [Using Python](/docs/cloud-object-storage?topic=cloud-object-storage-python)
+* [Using Node.js](/docs/cloud-object-storage?topic=cloud-object-storage-node)
 
 ## Creating Service Bindings 
 {: #cloud-foundry-bindings}

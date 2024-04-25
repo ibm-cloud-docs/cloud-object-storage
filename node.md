@@ -46,7 +46,7 @@ To run the SDK, you need **Node 4.x+**.
 
 To connect to COS, a client is created and configured by providing credential information (API Key, Service Instance ID, and IBM Authentication Endpoint). These values can also be automatically sourced from a credentials file or from environment variables.
 
-After generating a [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client authenticates with a signature, otherwise the client uses the provided API key to authenticate with a bearer token.
+After generating a [Service Credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client authenticates with a signature, otherwise the client uses the provided API key to authenticate with a bearer token.
 
 The `default` section heading specifies a default profile and associated values for credentials. You can create more profiles in the same shared configuration file, each with its own credential information. The following example shows a configuration file with the default profile:
 ```
@@ -416,15 +416,15 @@ Key Protect can be added to a storage bucket to manage encryption keys. All data
 
 The following items are necessary to create a bucket with Key-Protect enabled:
 
-* A Key Protect service [provisioned](/docs/services/key-protect?topic=key-protect-provision#provision)
-* A Root key available (either [generated](/docs/services/key-protect?topic=key-protect-create-root-keys) or [imported](/docs/services/key-protect?topic=key-protect-import-root-keys))
+* A Key Protect service [provisioned](/docs/key-protect?topic=key-protect-provision#provision)
+* A Root key available (either [generated](/docs/key-protect?topic=key-protect-create-root-keys) or [imported](/docs/key-protect?topic=key-protect-import-root-keys))
 
 ### Retrieving the Root Key CRN
 {: #node-examples-kp-root}
 
-1. Retrieve the [instance ID](/docs/services/key-protect?topic=key-protect-retrieve-instance-ID#retrieve-instance-ID) for your Key Protect service
-2. Use the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
-    * You can either use `curl` commands or an API REST Client such as [Postman](/docs/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/services/key-protect?topic=key-protect-set-up-api#set-up-api).
+1. Retrieve the [instance ID](/docs/key-protect?topic=key-protect-retrieve-instance-ID#retrieve-instance-ID) for your Key Protect service
+2. Use the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api#set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
+    * You can either use `curl` commands or an API REST Client such as [Postman](/docs/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api#set-up-api).
 3. Retrieve the CRN of the root key you will use to enabled Key Protect on the your bucket. The CRN will look similar to below:
 
 `crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
@@ -497,7 +497,7 @@ function getLifecycleConfiguration(bucketName) {
 ### Create a lifecycle configuration
 {: #node-examples-put-lifecycle}
 
-Detailed information about structuring the lifecycle configuration rules are available in the [API Reference](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-new-bucket)
+Detailed information about structuring the lifecycle configuration rules are available in the [API Reference](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-new-bucket)
 
 ```javascript
 function createLifecycleConfiguration(bucketName) {
@@ -563,7 +563,7 @@ function deleteLifecycleConfiguration(bucketName) {
 ### Temporarily restore an object
 {: #node-examples-restore-object}
 
-Detailed information about the restore request parameters are available in the [API Reference](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-object-operations#object-operations-archive-restore)
+Detailed information about the restore request parameters are available in the [API Reference](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations#object-operations-archive-restore)
 
 ```javascript
 function restoreItem(bucketName, itemName) {
