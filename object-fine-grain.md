@@ -250,7 +250,7 @@ A bucket can be set for Object Lock use by the following steps.
 {: #ol-apis-examples}
 {: api}
 
-The following examples are shown for using cURL for ease of use. Environment variables are used to represent user-specific elements such as `$BUCKET`, `$TOKEN`, and `$REGION`. The `$REGION` variable would also include any network type specifications, so sending a request to a bucket in `us-south` by using the private network would require setting the variable to `private.us-south`.
+The following examples are shown for using cURL for ease of use. Environment variables are used to represent user-specific elements such as `$BUCKET`, `$TOKEN`, and `$REGION`. The `$REGION` variable also includes any network type specifications, so sending a request to a bucket in `us-south` by using the private network would require setting the variable to `private.us-south`.
 
 ### Enable object lock on a bucket
 {: #ol-apis-enable}
