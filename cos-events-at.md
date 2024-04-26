@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-04-17"
+lastupdated: "2024-04-24"
 
 keywords: activity, tracking, object storage, event, tutorial
 
@@ -108,7 +108,7 @@ Navigate back to your bucket.  When you open the bucket in the console it will t
 ![View bucket](images/at-tut-8-view-bucket.png)
 
 ## View the {{site.data.keyword.at_short}} events
-{: #at-tut-open-at}
+{: #at-tut-open-at-events}
 {: step}
 
 Now, assuming there has been enough time for the metadata to propagate, when you return to the {{site.data.keyword.at_short}} interface you will see some listing events.
