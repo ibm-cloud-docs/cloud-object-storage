@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2024
-lastupdated: "2024-04-18"
+lastupdated: "2024-04-29"
 
 keywords: data, replication, loss prevention, iam, activity tracker, disaster recovery, versioning, key protect, accounts, buckets
 
@@ -109,7 +109,7 @@ To replicate objects between buckets in different IBM accounts, do the following
 **Replica**: The new object created in a target bucket because of a request made to a source bucket.
 
 ## What is replicated?
-{: #replication-what}
+{: #replication-what-replicated}
 
 New objects created via `CopyObject`, `PutObject`, or `CompleteMultipartUpload` will be replicated from the source bucket to the target bucket. The replicated objects will inherit the following metadata fields from the source object: `Etag`, `Last Modified Time`, `Version ID`, `user-attributes`, and `Tags`.
 
