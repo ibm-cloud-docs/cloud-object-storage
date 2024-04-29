@@ -2,7 +2,7 @@
 
 copyright:
    years: 2022, 2024
-lastupdated: "2024-01-09"
+lastupdated: "2024-04-24"
 
 keywords: tutorials, cbr, firewall, allowlist, rules
 subcollection: cloud-object-storage
@@ -87,7 +87,7 @@ Now that we know what the rule will affect, we need to decide what the rule will
 ![Scope the rule](/images/cbr_6.png){: caption="Figure 5. Scope the rule"}
 
 ## Finish the rule and verify that it works
-{: #cos-tutorial-cbr-network}
+{: #cos-tutorial-cbr-network-finish}
 {: step}
 
 Finally, all you need to do is click **Create** and your new rule will be active.

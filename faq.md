@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-17"
+lastupdated: "2024-04-24"
 
 
 keywords: faq, frequently asked questions, object storage, S3, HMAC
@@ -346,7 +346,7 @@ There may be an issue where the viewer does not have sufficient roles to view th
 No, it is impossible to add Key Protect after creating a bucket. Key Protect can only be added while creating the bucket.
 
 ## How can I move data into archive tier?
-{: #faq-archive tier}
+{: #faq-archive-tier}
 {: faq}
 
 You can archive objects using the web console, REST API, and third-party tools that are integrated with IBM Cloud Object Storage. For details, see [COS Archive](/docs/cloud-object-storage/basics?topic=cloud-object-storage-archive).

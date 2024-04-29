@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020, 2024
-lastupdated: "2024-04-19"
+lastupdated: "2024-04-29"
 
 keywords: tagging, objects, tags, metadata
 
@@ -24,7 +24,7 @@ Your data can be expressly defined, categorized, and classified in {{site.data.k
 Organizing your data can be a complex task. Basic methods, such as using key prefixes like organizational "folders" are a great start to hierarchical structures. But for more complex organization, you will need custom "[tags](#x2040924){: term}." Your metadata can describe the relationships inherent to your data, and provide more organization than titles or folders. Unlike mere labels, there are two parts to a tag: a `key` and a `value`, defined individually according to your needs.
 
 ### Tagging Objects
-{: #object-tagging-overview}
+{: #object-tagging-managing}
 
 Managing tags describing your objects can be performed through various interfaces and architectures. Using the [Console](https://cloud.ibm.com){: external} provides a graphical user interface. Using the command line requires tools like [`curl`](/docs/cloud-object-storage?topic=cloud-object-storage-curl) and the knowledge of how it interacts with {{site.data.keyword.cos_short}}.
 
