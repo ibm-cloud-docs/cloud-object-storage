@@ -42,7 +42,7 @@ One Rate plan instances are more expensive when it comes to storage capacity cos
 2. You are reading large files from outside of IBM Cloud - for example in post-production film editing, satellite imaging, or music production.
 
 Most workloads, such as for backups/long-term storage, data analysis using IBM Cloud resources, or for small files (such as PNGs for websites) are better served by a Standard plan. One Rate plans are generally best for workloads where more 20% of the total storage is consistently read over the public endpoints each month.
-{:note}
+{: note}
 
 ## Getting started with One Rate plans
 {: #onerate-gs}
@@ -55,12 +55,12 @@ One Rate instances are available in Regional and Single Data Center locations, b
 
 All buckets in a One Rate plan instance **must** use a new `active` storage class specific to One Rate instances.
 
-One Rate plan instances are aggregated and billed at the IBM Cloud account level based on average end-of-month usage. For detailed information and current pricing, [please review the detailed cost tables](https://cloud.ibm.com/objectstorage/create#pricing).
+One Rate plan instances are aggregated and billed at the IBM Cloud account level based on average end-of-month usage. For detailed information and current pricing, [please review the detailed cost tables](/objectstorage/create#pricing).
 
 Unlike Standard plan instances, One Rate instances provide allowances for [Class A and B request charges](/docs/cloud-object-storage?topic=cloud-object-storage-billing#billing-request-classes) as well as egress charges.  The thresholds for the allowances are dependant on total storage capacity.
 
 It is **not** possible to convert an instance created under a One Rate plan to a Standard plan, or vice-versa.
-{:important}
+{: important}
 
 ### How allowances are calculated
 {: #onerate-billing}
@@ -102,6 +102,7 @@ All buckets created in a One Rate plan must use a [specific provisioning code](/
 | `mon01`    | `mon01-onerate_active`      |
 | `sjc04`    | `sjc04-onerate_active`      |
 {: class="simple-tab-table"}
+{: caption="Table 1. Location constraint - North America" caption-side="bottom"}
 {: #oneratecodes1}
 {: tab-title="North America"}
 {: tab-group="One Rate Codes"}
@@ -115,6 +116,7 @@ All buckets created in a One Rate plan must use a [specific provisioning code](/
 | `mil01`  | `mil01-onerate_active`      |
 | `par01`  | `par01-onerate_active`      |
 {: class="simple-tab-table"}
+{: caption="Table 1. Location constraint - Europe" caption-side="bottom"}
 {: #oneratecodes2}
 {: tab-title="Europe"}
 {: tab-group="One Rate Codes"}
@@ -127,6 +129,7 @@ All buckets created in a One Rate plan must use a [specific provisioning code](/
 | `sng01`  | `sng01-onerate_active`      |
 | `che01`  | `che01-onerate_active`      |
 {: class="simple-tab-table"}
+{: caption="Table 1. Location constraint - Asia" caption-side="bottom"}
 {: #oneratecodes3}
 {: tab-title="Asia"}
 {: tab-group="One Rate Codes"}
@@ -135,15 +138,16 @@ All buckets created in a One Rate plan must use a [specific provisioning code](/
 |----------|---------------------|
 | `br-sao`  | `br-sao-onerate_active`      |
 {: class="simple-tab-table"}
+{: caption="Table 1. Location constraint - South America" caption-side="bottom"}
 {: #oneratecodes4}
 {: tab-title="South America"}
 {: tab-group="One Rate Codes"}
 
 ## Billing examples
-{: #onerate-billing}
+{: #onerate-billing-examples}
 
-These costs are examples provided to illustrate the mechanics of the billing and are not reflective of actual rates, which can [be found here](https://cloud.ibm.com/objectstorage/create#pricing).
-{:note}
+These costs are examples provided to illustrate the mechanics of the billing and are not reflective of actual rates, which can [be found here](/objectstorage/create#pricing).
+{: note}
 
 ### Predictable TCO pricing example
 {: #onerate-tco}
@@ -159,6 +163,7 @@ Some workloads see steadily increasing traffic as business grows - which can cre
 | 5     | 10 TB         | 10 TB       | 100%                  | $1,139        | $400          |
 | 6     | 10 TB         | 15 TB       | 150%                  | $1,591        | $652          |
 | Total |               |             |                       | **$4,438**    | **$2,652**    |
+{: caption="Table 2. Predictable TCO pricing" caption-side="bottom"}
 
 ### Aggregation pricing example
 {: #onerate-aggregate}
@@ -173,6 +178,7 @@ Blue (`us-east`, `us-south`):
 | Class B    | 100    | $0            |
 | Egress     | 100 GB | $9            |
 | Total cost |        | **$2,309**    |
+{: caption="Table 3. Pricing example for Blue region." caption-side="bottom"}
 
 Green (`eu-de`, `milO1`):
 | Metric     | Usage       | Standard Cost |
@@ -182,7 +188,7 @@ Green (`eu-de`, `milO1`):
 | Class B    | 110,000,000 | $44           |
 | Egress     | 120 TB      | $10,800       |
 | Total cost |             | **$10,901**   |
-
+{: caption="Table 4. Pricing example for Green region." caption-side="bottom"}
 
 Rainbow Co. (Blue and Green):
 | Metric     | Total usage | Total Standard Cost | Allowance   | Billable Quantity | One Rate Cost |
@@ -192,6 +198,7 @@ Rainbow Co. (Blue and Green):
 | Class B    | 110,000,100 | $44                 | 100,100,000 | 9,900,100         | $4            |
 | Egress     | 120 TB      | $10,809             | 100 TB      | 20 TB             | $1,000        |
 | Total cost |             | **$13,210**         |             |                   | **$5,013**    |
+{: caption="Table 5. Pricing example for the two regions combined." caption-side="bottom"}
 
 Note that the One Rate cost is significantly lower due to the reduced cost for egress.  Also note that rather than dozens of individual invoices (one for each service instance), there will only be four invoices - one for each location used.
 

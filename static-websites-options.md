@@ -47,7 +47,7 @@ When you create and configure a new hosted static website, you may also wish to 
 ![Configure options](images/cos-sw-ui-complete-config.jpg){: caption="Figure 1. Initial configuration options"}
 
 ### Routing
-{: #static-websites-options-adv-conf}
+{: #static-websites-options-adv-conf-routing}
 
 Routing gives you control over the requests coming from your visitors. For example, you could globally redirect all your traffic from using one protocol to another, like replacing HTTP with the secure HTTPS. Or, you can create individual rules that process incoming requests for specific files and provide responses to your visitors based on the rules you define.
 

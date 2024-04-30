@@ -31,7 +31,7 @@ While all data stored in Cloud Object Storage is automatically encrypted using r
 Before you plan on using Key Protect with Cloud Object Storage buckets, you need:
 
 - An [IBM Cloud™ Platform account](http://cloud.ibm.com/)
-- An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage)
+- An [instance of IBM Cloud Object Storage](/objectstorage/create)
 
 You will also need to ensure that a service instance is created by using the [IBM Cloud catalog](https://cloud.ibm.com/catalog) and appropriate permissions are granted. This tutorial does not outline the step-by-step instructions to help you get started.  This information is found in section  [Server-Side Encryption with IBM Key Protect (SSE-KP)](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-kp)
 

@@ -366,7 +366,7 @@ When creating a client by using a library that requires an "auth" endpoint value
 ## Using service credentials for single-bucket access
 {: #service-credentials-bucket}
 
-When a service credential is created, the underlying Service ID is granted a role on the entire instance of {{site.data.keyword.cos_short}}. If the intention that the credential be used to grant,  access to a subset of buckets and not the entire instance, this policy needs to be edited. See the [Bucket permissions](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions) page for more details.
+When a service credential is created, the underlying Service ID is granted a role on the entire instance of {{site.data.keyword.cos_short}}. If the intention that the credential be used to grant,  access to a subset of buckets and not the entire instance, this policy needs to be edited. See the [Bucket permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions) page for more details.
 
 ## Using service credentials for single-object/folder access
 {: #service-credentials-fgac}

@@ -57,7 +57,7 @@ To configure a cross-regional bucket, consider the following information:
 
 For example, you can run the following command to configure monitoring for a bucket:
 
-```bash
+```sh
 curl -X PATCH -k  \
   -H "authorization: Bearer $TOKEN" \
   https://config.cloud-object-storage.cloud.ibm.com/v1/b/$1 \

@@ -29,7 +29,7 @@ While all data stored in Cloud Object Storage is highly durable and highly avail
 Before you get started, you need:
 
 - An [IBM Cloud™ Platform account](http://cloud.ibm.com/)
-- An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage)
+- An [instance of IBM Cloud Object Storage](/objectstorage/create)
 
 You will also need to ensure that a service instance is created by using the [IBM Cloud catalog](https://cloud.ibm.com/catalog) and appropriate permissions are granted.
 

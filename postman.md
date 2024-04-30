@@ -16,9 +16,9 @@ subcollection: cloud-object-storage
 # Using `Postman`
 {: #postman}
 
-Here's a basic `Postman` setup for the {{site.data.keyword.cos_full}} REST API. More detail can be found in the API reference for [buckets](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations) or [objects](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations).
+Here's a basic `Postman` setup for the {{site.data.keyword.cos_full}} REST API. More detail can be found in the API reference for [buckets](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations) or [objects](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations).
 
-Using `Postman` assumes a certain amount of familiarity with Object Storage and the necessary information from a [service credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) or the console as shown in the [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). If any terms or variables are unfamiliar, they can be found in the [FAQ](/docs/cloud-object-storage?topic=cloud-object-storage-faq).
+Using `Postman` assumes a certain amount of familiarity with Object Storage and the necessary information from a [service credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) or the console as shown in the [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). If any terms or variables are unfamiliar, they can be found in the [FAQ](/docs/cloud-object-storage?topic=cloud-object-storage-faq).
 
 Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means.
 {: tip}
@@ -36,7 +36,7 @@ Interacting with a REST API isn't as simple as using a standard internet browser
 * [IBM Cloud COS CLI installed and configured](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli#ic-installation)
 * [Service Instance ID for your Cloud Storage](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials)
 * [IAM (Identity and Access Management) Token](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials)
-* [Endpoint for your COS bucket](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints)
+* [Endpoint for your COS bucket](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints)
 
 ### Create a bucket
 {: #postman-create-bucket}

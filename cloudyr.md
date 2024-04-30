@@ -34,9 +34,9 @@ We need to make sure that we have the prerequisites before continuing:
 ### Create HMAC credentials
 {: #cloudyr-hmac}
 
-Before we begin, we might need to create a set of [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) as part of a [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) by using the configuration parameter `{"HMAC":true}` when we create credentials. For example, use the {{site.data.keyword.cos_full_notm}} CLI as shown here. 
+Before we begin, we might need to create a set of [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) as part of a [Service Credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) by using the configuration parameter `{"HMAC":true}` when we create credentials. For example, use the {{site.data.keyword.cos_full_notm}} CLI as shown here. 
   
-```bash
+```sh
 ibmcloud resource service-key-create <key-name-without-spaces> Writer --instance-name "<instance name--use quotes if your instance name has spaces>" --parameters '{"HMAC":true}'
 ```
 {: pre}
@@ -52,7 +52,7 @@ To store the results of the generated key, append the text, ` > cos_credentials`
 
 While it is best practices to set credentials in environment variables, you can also set your credentials inside your local copy of your `R` script itself. Environment variables can alternatively be set before you start `R` using an `Renviron.site` or `.Renviron` file, used to set environment variables in `R` during startup.
 
-You will need to set the actual values for the `access_key_id` and `secret_access_key` in your code along with the {{site.data.keyword.cos_full_notm}} [endpoint](/docs/cloud-object-storage/iam?topic=cloud-object-storage-endpoints) for your instance.
+You will need to set the actual values for the `access_key_id` and `secret_access_key` in your code along with the {{site.data.keyword.cos_full_notm}} [endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) for your instance.
 {: note}
 
 ## Add credentials to your `R` project

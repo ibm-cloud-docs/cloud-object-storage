@@ -17,7 +17,7 @@ subcollection: cloud-object-storage
 # Server-Side Encryption with {{site.data.keyword.hscrypto}}
 {: #hpcs}
 
-You can use [{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-crypto-overview) to create, add, and manage keys, which you can then associate with your instance of IBM® Cloud Object Storage to encrypt buckets.
+You can use [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-overview) to create, add, and manage keys, which you can then associate with your instance of IBM® Cloud Object Storage to encrypt buckets.
 
 This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
 {: note}
@@ -27,7 +27,7 @@ This feature is not currently supported in {{site.data.keyword.cos_short}} for {
 Before you plan on using {{site.data.keyword.hscrypto}} with Cloud Object Storage buckets, you need:
 
 - An [IBM Cloud™ Platform account](http://cloud.ibm.com/)
-- An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage) with a *standard* pricing plan.
+- An [instance of IBM Cloud Object Storage](/objectstorage/create) with a *standard* pricing plan.
 
 You will need to ensure that a service instance is created by using the [IBM Cloud catalog](https://cloud.ibm.com/catalog) and appropriate permissions are granted. This section outlines step-by-step instructions to help you get started.
 
@@ -35,7 +35,7 @@ You will need to ensure that a service instance is created by using the [IBM Clo
 {: #hpcs-provision}
 Refer to the service-specific product pages for instructions on how to provision and setup appropriate service instances.
 
-- Getting started with [{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-crypto-get-started)
+- Getting started with [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-get-started)
 
 Once you have an instance of {{site.data.keyword.hscrypto}}, you need to create a root key and note the CRN ([Cloud Resource Name](/docs/account?topic=account-crn)) of that key. The CRN is sent in a header during bucket creation.
 
@@ -43,7 +43,7 @@ Before creating the bucket for use with {{site.data.keyword.hscrypto}}, review t
 
 ## Create or add a key in {{site.data.keyword.hscrypto}}
 {: #hpcs-keys}
-Navigate to your instance of {{site.data.keyword.hscrypto}} and [initialize the service instance](/docs/services/hs-crypto?topic=hs-crypto-initialize-hsm). Once a [master key](/docs/services/hs-crypto?topic=hs-crypto-initialize-hsm#step1-create-signature-keys) has been created, [generate or enter a root key](/docs/services/hs-crypto?topic=hs-crypto-create-root-keys).
+Navigate to your instance of {{site.data.keyword.hscrypto}} and [initialize the service instance](/docs/hs-crypto?topic=hs-crypto-initialize-hsm). Once a [master key](/docs/hs-crypto?topic=hs-crypto-initialize-hsm#step1-create-signature-keys) has been created, [generate or enter a root key](/docs/hs-crypto?topic=hs-crypto-create-root-keys).
 
 ## Grant service authorization
 {: #hpcs-auth}
@@ -74,7 +74,7 @@ When your key exists in {{site.data.keyword.hscrypto}} and you authorized the se
 1. Click **Create**.
 
 You can choose to use {{site.data.keyword.hscrypto}} to manage encryption for a bucket only at the time of creation. It isn't possible to change an existing bucket to use {{site.data.keyword.hscrypto}}.
-{:important}
+{: important}
 
 If bucket creation fails with a `400 Bad Request` error with the message `The Key CRN could not be found`, ensure that the CRN is correct and that the service to service authorization policy exists.
 {:tip}
@@ -120,17 +120,17 @@ Make sure all are valid and have same verification pattern.
 Once the presence of the failover configuration is verified, you may proceed to create the Cross Region bucket using the key from that {{site.data.keyword.hscrypto}} instance.
 
 If the Cross Region bucket creation in US Cross Region with a {{site.data.keyword.hscrypto}} root key fails with a `500` error, then the user is advised to check if the status of failover configuration for that {{site.data.keyword.hscrypto}} instance (using the methods detailed above) before reattempting the bucket creation.
-{:important}
+{: important}
 
 ## Key lifecycle management
 {: #hpcs-lifecycle}
 
-{{site.data.keyword.hscrypto}} offers various ways to manage the lifecycle of encryption keys.  For more details, see [the {{site.data.keyword.hscrypto}} documentation](/docs/services/hs-crypto?topic=hs-crypto-overview).
+{{site.data.keyword.hscrypto}} offers various ways to manage the lifecycle of encryption keys.  For more details, see [the {{site.data.keyword.hscrypto}} documentation](/docs/hs-crypto?topic=hs-crypto-overview).
 
 ### Rotating Keys
 {: #hpcs-rotate}
 
-Key rotation is an important part of mitigating the risk of a data breach. Periodically changing keys reduces the potential data loss if the key is lost or compromised. The frequency of key rotations varies by organization and depends on a number of variables, such as the environment, the amount of encrypted data, classification of the data, and compliance laws. The [National Institute of Standards and Technology (NIST)](https://www.nist.gov/topics/cryptography){: external} provides definitions of appropriate key lengths and provides guidelines for how long keys should be used.
+Key rotation is an important part of mitigating the risk of a data breach. Periodically changing keys reduces the potential data loss if the key is lost or compromised. The frequency of key rotations varies by organization and depends on a number of variables, such as the environment, the amount of encrypted data, classification of the data, and compliance laws. The [National Institute of Standards and Technology (NIST)](https://www.nist.gov/cryptography){: external} provides definitions of appropriate key lengths and provides guidelines for how long keys should be used.
 
 For more information, see the documentation for rotating keys in [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-root-key-rotation-intro).
 
@@ -161,7 +161,7 @@ If a key that was originally uploaded by a user is deleted, and then restored us
 When {{site.data.keyword.hscrypto}} root keys are deleted, rotated, suspended, enabled, or restored, an [Activity Tracker management event](/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global) (`cloud-object-storage.bucket-key-state.update`) is generated in addition to any events logged by {{site.data.keyword.hscrypto}}.
 
 In the event of a server-side failure in a lifecycle action on a key, that failure is not logged by COS.  If {{site.data.keyword.hscrypto}} does not receive a success from COS for the event handling within four hours of the event being sent, {{site.data.keyword.hscrypto}} will log a failure.
-{:note}
+{: note}
 
 The `cloud-object-storage.bucket-key-state.update` actions are triggered by events taking place in {{site.data.keyword.hscrypto}}, and require that the bucket is registered with the {{site.data.keyword.hscrypto}} service.  This registration happens automatically when a bucket is created with a {{site.data.keyword.hscrypto}} root key.
 

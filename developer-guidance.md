@@ -36,7 +36,7 @@ Incomplete multipart uploads do persist until the object is deleted or the multi
 
 The `AbortIncompleteMultipartUpload` lifecycle action expires incomplete multipart uploads based on the days that are specified in the policy. This is determined by the initiation timestamp of the multipart
 upload transaction. 
-{:important}
+{: important}
 
 ## Using software development kits
 {: #dev-guide-sdks}

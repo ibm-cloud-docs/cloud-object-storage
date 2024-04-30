@@ -78,14 +78,14 @@ The app that you build uses [Node.JS](https://nodejs.org/){: external} as the se
 
 Before you start, you might consider a version manager, like Node Version Manager, or `nvm`, to install Node. A version manager reduces the complexity of managing different versions of Node.js.
 
-```bash
+```sh
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ```
 {: pre}
 
 ...or `wget` (just one is necessary, but not both; use whichever is available on your system):
 
-```bash
+```sh
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ```
 {: pre}
@@ -94,7 +94,7 @@ Or, for Windows, you can use [`nvm` for Windows](https://github.com/coreybutler/
 
 Using `nvm`, install Node.
 
-```bash
+```sh
 nvm install v6.17.1
 ```
 {: pre}
@@ -120,14 +120,14 @@ Enter a name and email (this is displayed publicly) for any commits to your repo
 
 To start developing your application locally, begin by logging in to the {{site.data.keyword.cloud_notm}} Platform directly from the command line, as shown in the example. You can specify optional parameters, such as your organization with option `-o` and the space with option `-s`. If you're using a federated account use `--sso`.
 
-```bash
+```sh
 ibmcloud login
 ```
 {: pre}
 
 After logging in, when you are asked if you want to install any extensions, you may see an announcement regarding the Cloud Foundry plugin. Type the command as shown in order to download and install the CLI extension used in this tutorial.
 
-```bash
+```sh
 ibmcloud cf install
 ```
 {: pre}
@@ -136,21 +136,21 @@ When you log in you might be asked to choose a region. For this exercise, select
 
 Next, set the endpoint (if it isn't set already). Other endpoints are possible, and might be preferable for production use. For now, use the code as shown, if appropriate for your account.
 
-```bash
+```sh
 ibmcloud api cloud.ibm.com
 ```
 {: pre}
 
 Target the Cloud Foundry (`cf`) aspect of {{site.data.keyword.cloud_notm}} Platform by using the `target` command and the `--cf` option. The `cf` API is no longer embedded within the CLI Developer Tools and will have to be downloaded separately.
 
-```bash
+```sh
 ibmcloud target --cf
 ```
 {: pre}
 
 And now, time to create a web application. The `dev` space is a default option for your organization, but you might prefer to create others for isolating different efforts. For example, keeping 'finance' separate from 'development'.
 
-```bash
+```sh
 ibmcloud dev create
 ```
 {: pre}
@@ -340,14 +340,14 @@ current directory.
 
 That last statement means that if you view your current directory, a new subdirectory `webapplication` is now visible. This directory holds a scaffold of your new Node.js application. However, while the recipe might be present, the ingredients themselves are still wrapped up in a Docker image and must be combined. Docker is running on your local machine as a consequence of installation, but if you need to restart it do so. If you build your new web application without Docker running it fails, but that's not the only possible error. If you run into trouble, check the resulting error messages, which might have the appropriate link to view result logs in your online portal for your {{site.data.keyword.cloud_notm}} Platform account.
 
-```bash
+```sh
 ibmcloud dev build
 ```
 {: pre}
 
 Now that the app is built, you can run the code locally with the `run` command. When finished, copy and paste the provided URL into your browser's address bar, typically, `http://localhost:3000`.
 
-```bash
+```sh
 ibmcloud dev run
 ```
 {: pre}
@@ -358,7 +358,7 @@ Now that the app is created and defined, view your application to confirm it wor
 
 Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the `deploy` command (as shown in the example).
 
-```bash
+```sh
 ibmcloud dev deploy
 ```
 {: pre}
@@ -377,7 +377,7 @@ Follow this process:
 
 1. Download the sample here: [download](https://cloud.ibm.com/media/docs/downloads/cos/image-gallery-tutorial.zip){: external download="image-gallery-tutorial.zip"}. Download the template for your app to your local development environment using your browser. Rather than cloning the sample app from {{site.data.keyword.cloud_notm}} Platform, use the command in the example to obtain the starter template for the {{site.data.keyword.cos_full_notm}} Web Gallery app. After cloning the repo you will find the starter app in the COS-WebGalleryStart directory. Open a Git CMD window and change to a directory where you want to clone Github repo. Once there, use the command shown in the first example of this tutorial to start adding your new files.
 
-   ```bash
+   ```sh
    curl images/image-gallery-tutorial.zip -o image-gallery-tutorial.zip
    ```
    {: pre}
@@ -385,14 +385,14 @@ Follow this process:
 
 1. Run the app locally. Open your terminal and change your working directory to the `COS-WebGalleryStart directory`. Note the Node.js dependencies that are listed in the package.json file. Download them into place by using the command shown next.
 
-   ```bash
+   ```sh
    npm install
    ```
    {: pre}
 
 1. Run the app by using the command shown.
 
-   ```bash
+   ```sh
    npm start
    ```
    {: pre}
@@ -436,49 +436,49 @@ To get the starter app with your changes
 
 1. If you haven't already, or if you restarted or logged out, log in to {{site.data.keyword.cloud_notm}} Platform by using the `login` command.
 
-   ```bash
+   ```sh
    ibmcloud login
    ```
    {: pre}
 
 1. Set the API Endpoint for your region by using the `api` command.
 
-   ```bash
+   ```sh
    ibmcloud api cloud.ibm.com
    ```
    {: pre}
 
 1. Target the Cloud Foundry aspect of {{site.data.keyword.cloud_notm}} Platform by using the `target` command and the `--cf` option.
 
-   ```bash
+   ```sh
    ibmcloud target --cf
    ```
    {: pre}
 
 1. Build the app for delivery that application with the build command (as in the example).
 
-   ```bash
+   ```sh
    ibmcloud dev build
    ```
    {: pre}
 
    1. Let's go ahead and test the application locally. This allows you to run the same code locally with the `run` command.
 
-   ```bash
+   ```sh
    ibmcloud dev run
    ```
    {: pre}
 
 1. Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the `deploy` command.
 
-   ```bash
+   ```sh
    ibmcloud dev deploy
    ```
    {: pre}
 
    The code shows the sequence of commands that are used in this example to build, test, and deploy the initial web application.
 
-   ```bash
+   ```sh
    ibmcloud login --sso
    ibmcloud api cloud.ibm.com
    ibmcloud target --cf
@@ -514,13 +514,13 @@ Now that the Local-dev branch is published to the GitHub repo in your toolchain,
 ### Setting up {{site.data.keyword.cos_full_notm}} your storage credentials
 {: #tutorial-credentials}
 
-You need to configure {{site.data.keyword.cos_short}} credentials for your web application, as well as a 'bucket' where it will store and retrieve images. The API key that you will create will need {{site.data.keyword.cos_short}} HMAC credentials, as defined by your [Service Credentials](https://cloud.ibm.com/docs/cloud-object-storage/hmac?topic=cloud-object-storage-service-credentials). You might recognize the terms `access_key_id` and `secret_access_key` as you might have an AWS account, and use a credentials file that already has `aws_access_key_id` and `aws_secret_access_key` entries.
+You need to configure {{site.data.keyword.cos_short}} credentials for your web application, as well as a 'bucket' where it will store and retrieve images. The API key that you will create will need {{site.data.keyword.cos_short}} HMAC credentials, as defined by your [Service Credentials](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials). You might recognize the terms `access_key_id` and `secret_access_key` as you might have an AWS account, and use a credentials file that already has `aws_access_key_id` and `aws_secret_access_key` entries.
 
 After you have completed creating an API key, downloaded, and then copied the HMAC credentials, complete the following steps:
 
 1. On the local development environment, place the credentials in the Windows path `%USERPROFILE%\\.aws\\credentials`. For Mac/Linux users, the credentials should go into `~/.aws/credentials)`. The example shows the contents of a typical credentials file.
 
-   ```bash
+   ```sh
    [default]
    aws_access_key_id = {access_key_id}
    aws_secret_access_key = {secret_access_key}
@@ -637,7 +637,6 @@ Our view templates share HTML code between the `<head>...</head>`; tags, so we p
 </script>
 
 <link rel="stylesheet" href="stylesheets/style.css">
-
 ```
 {: codeblock}
 
@@ -931,6 +930,6 @@ When we click **sync**, our commit is sent to the remote `local-dev` branch. Thi
 ## Next Steps
 {: #webapp-next-steps}
 
-We went from beginning to end and built a basic web application image gallery by using the {{site.data.keyword.cloud_notm}} Platform. Each of the concepts we've covered in this basic introduction can be explored further at [{{site.data.keyword.cos_full_notm}}](https://www.ibm.com/cloud/object-storage){: external}.
+We went from beginning to end and built a basic web application image gallery by using the {{site.data.keyword.cloud_notm}} Platform. Each of the concepts we've covered in this basic introduction can be explored further at [{{site.data.keyword.cos_full_notm}}](https://www.ibm.com/products/cloud-object-storage){: external}.
 
 Good luck!
