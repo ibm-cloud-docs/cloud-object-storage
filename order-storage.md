@@ -55,16 +55,15 @@ Now that you have a platform account, you can create a new {{site.data.keyword.c
 
 It is also possible to manage resources using the [{{site.data.keyword.cloud}} Platform CLI](/docs/account?topic=account-manage_resource):
 
-```bash
+```sh
 ibmcloud resource service-instance-create <instance-name> cloud-object-storage <plan> global
 ```
-
 {: codeblock}
 
 ## Deleting a service instance
-{: delete-instance}
+{: #delete-instance}
 
-When a service instance is deleted, the data is not deleted immediately.  Instead, it is scheduled for reclamation (by default this is set to take 7 days), after which the data is irreversibly destroyed, and the bucket names will be made available for reuse. It is also possible to [restore a deleted resource](/docs/account?topic=account-resource-reclamation#restore-resource) that has not yet been reclaimed.
+When a service instance is deleted, the data is not deleted immediately.  Instead, it is scheduled for reclamation (by default this is set to take 7 days), after which the data is irreversibly destroyed, and the bucket names will be made available for reuse. It is also possible to [restore a deleted resource](docs/account?topic=account-resource-reclamation&interface=api#restore-resource-api) that has not yet been reclaimed.
 
 It is possible to check the status of a reclamation, as well as force or cancel a scheduled reclamation using the [the {{site.data.keyword.cloud}} Platform CLI](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_reclamations).
 

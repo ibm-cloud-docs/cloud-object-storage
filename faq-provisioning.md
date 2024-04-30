@@ -33,7 +33,7 @@ A user is required to have have at a minimum the platform role of `editor` for a
 
 An account is limited to a single instance of {{site.data.keyword.cos_full_notm}} that uses a Lite plan.  You can find this instance three different ways:
 
-1. Navigate to the [catalog](https://cloud.ibm.com/objectstorage/create) and attempt to make a new Lite instance.  An error will pop up prompting you to delete the existing instance, and provides a link to the current Lite instance.
+1. Navigate to the [catalog](/objectstorage/create) and attempt to make a new Lite instance.  An error will pop up prompting you to delete the existing instance, and provides a link to the current Lite instance.
 2. Navigate to the storage section of the resource list, and click on any area of blank space to select an instance of {{site.data.keyword.cos_short}}. An informational sidebar will appear and provide the plan name: either Lite or Standard.
 3. Use the CLI to search for the resource:
 

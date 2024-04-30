@@ -17,14 +17,14 @@ subcollection: cloud-object-storage
 # Server-Side Encryption with {{site.data.keyword.keymanagementservicelong_notm}} (SSE-KP)
 {: #kp}
 
-You can use [IBM Key Protect](/docs/services/key-protect?topic=key-protect-about) to create, add, and manage keys, which you can then associate with your instance of IBM® Cloud Object Storage to encrypt buckets.
+You can use [IBM Key Protect](/docs/key-protect?topic=key-protect-about) to create, add, and manage keys, which you can then associate with your instance of IBM® Cloud Object Storage to encrypt buckets.
 
 ## Before you begin
 {: #kp-begin}
 Before you plan on using Key Protect with Cloud Object Storage buckets, you need:
 
 - An [IBM Cloud™ Platform account](http://cloud.ibm.com/)
-- An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage)
+- An [instance of IBM Cloud Object Storage](/objectstorage/create)
 
 You will also need to ensure that a service instance is created by using the [IBM Cloud catalog](https://cloud.ibm.com/catalog) and appropriate permissions are granted. This section outlines step-by-step instructions to help you get started.
 
@@ -32,19 +32,19 @@ You will also need to ensure that a service instance is created by using the [IB
 {: #kp-provision}
 Refer to the service-specific product pages for instructions on how to provision and setup appropriate service instances.
 
-- Getting started with [IBM Key Protect](/docs/services/key-protect?topic=key-protect-getting-started-tutorial#getting-started-tutorial)
+- Getting started with [IBM Key Protect](/docs/key-protect?topic=key-protect-getting-started-tutorial#getting-started-tutorial)
 
 Once you have an instance of Key Protect, you need to create a root key and note the CRN ([Cloud Resource Name](/docs/account?topic=account-crn)) of that key. The CRN is sent in a header during bucket creation.
 
 Before creating the bucket for use with Key Protect, review the [relevant guidance around availability and disaster recovery](/docs/key-protect?key-protect-ha-dr).
 
 Note that managed encryption for a Cross Region bucket **must** use a root key from a Key Protect instance in the nearest [high-availability location](/docs/key-protect?topic=key-protect-ha-dr) (`us-south`, `eu-de`, or `jp-tok`).
-{:important}
+{: important}
 
 ## Create or add a key in Key Protect
 {: #kp-create}
 
-Navigate to your instance of Key Protect and [generate or enter a root key](/docs/services/key-protect?topic=key-protect-getting-started-tutorial).
+Navigate to your instance of Key Protect and [generate or enter a root key](/docs/key-protect?topic=key-protect-getting-started-tutorial).
 
 ## Grant service authorization
 {: #kp-sa}
@@ -78,7 +78,7 @@ When your key exists in Key Protect and you authorized the service for use with 
 1. Click **Create**.
 
 You can choose to use Key Protect to manage encryption for a bucket only at the time of creation. It isn't possible to change an existing bucket to use Key Protect.
-{:important}
+{: important}
 
 If bucket creation fails with a `400 Bad Request` error with the message `The Key CRN could not be found`, ensure that the CRN is correct and that the service to service authorization policy exists.
 {:tip}
@@ -99,7 +99,7 @@ Key Protect offers various ways to manage the lifecycle of encryption keys.  For
 ### Rotating Keys
 {: #kp-rotate}
 
-Key rotation is an important part of mitigating the risk of a data breach. Periodically changing keys reduces the potential data loss if the key is lost or compromised. The frequency of key rotations varies by organization and depends on a number of variables, such as the environment, the amount of encrypted data, classification of the data, and compliance laws. The [National Institute of Standards and Technology (NIST)](https://www.nist.gov/topics/cryptography){: external} provides definitions of appropriate key lengths and provides guidelines for how long keys should be used.
+Key rotation is an important part of mitigating the risk of a data breach. Periodically changing keys reduces the potential data loss if the key is lost or compromised. The frequency of key rotations varies by organization and depends on a number of variables, such as the environment, the amount of encrypted data, classification of the data, and compliance laws. The [National Institute of Standards and Technology (NIST)](https://www.nist.gov/cryptography){: external} provides definitions of appropriate key lengths and provides guidelines for how long keys should be used.
 
 For more information, see the documentation for rotating keys in [Key Protect](/docs/key-protect?topic=key-protect-set-rotation-policy).
 
@@ -109,13 +109,13 @@ For more information, see the documentation for rotating keys in [Key Protect](/
 As an admin, you might need to [temporarily disable a root key](/docs/key-protect?topic=key-protect-disable-keys) if you suspect a possible security exposure, compromise, or breach with your data. When you disable a root key, you suspend its encrypt and decrypt operations. After confirming that a security risk is no longer active, you can reestablish access to your data by enabling the disabled root key.
 
 If a key is disabled, and then re-enabled quickly, requests made to that bucket may be rejected for up to an hour before cached key information is refreshed.
-{:note}
+{: note}
 
 ### Deleting keys and cryptographic erasure
 {: #kp-cryptoerasure}
 
-It isn't possible to delete a root key associated with a bucket that has a [retention policy](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable) in place.  The bucket must be first emptied and destroyed before the root key can be deleted. For more information, [see the Key Protect documentation](/docs/key-protect?topic=key-protect-delete-purge-keys#delete-purge-keys-considerations).
-{:important}
+It isn't possible to delete a root key associated with a bucket that has a [retention policy](/docs/cloud-object-storage?topic=cloud-object-storage-immutable) in place.  The bucket must be first emptied and destroyed before the root key can be deleted. For more information, [see the Key Protect documentation](/docs/key-protect?topic=key-protect-delete-purge-keys#delete-purge-keys-considerations).
+{: important}
 
 Cryptographic erasure (or crypto-shredding) is a method of rendering encrypted data  unreadable by [deleting the encryption keys](/docs/key-protect?topic=key-protect-security-and-compliance#data-deletion) rather than the data itself. When a [root key is deleted in Key Protect](/docs/key-protect?topic=key-protect-delete-keys), it will affect all objects in any buckets created using that root key, effectively "shredding" the data and preventing any further reading or writing to the buckets. This process is not instantaneous, but occurs within about 90 seconds after the key is deleted.
 
@@ -133,7 +133,7 @@ As an admin, you might need to [restore a root key that you imported](/docs/key-
 When Key Protect root keys are deleted, rotated, suspended, enabled, or restored, an [Activity Tracker management event](/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global) (`cloud-object-storage.bucket-key-state.update`) is generated in addition to any events logged by Key Protect. 
 
 In the event of a server-side failure in a lifecycle action on a key, that failure is not logged by COS.  If Key Protect does not receive a success from COS for the event handling within four hours of the event being sent, Key Protect will log a failure.
-{:note}
+{: note}
 
 The `cloud-object-storage.bucket-key-state.update` actions are triggered by events taking place in Key Protect, and require that the bucket is registered with the Key Protect service.  This registration happens automatically when a bucket is created with a Key Protect root key.
 

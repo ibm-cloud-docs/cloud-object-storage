@@ -25,10 +25,10 @@ By default, all objects that are stored in {{site.data.keyword.cos_full_notm}} a
 
 With {{site.data.keyword.cos_short}} you also have a choice to use our integration capabilities with {{site.data.keyword.cloud}} Key Management Services like {{site.data.keyword.keymanagementservicelong}} and {{site.data.keyword.hscrypto}}. Depending on the security requirements, you can decide whether to use IBM Key Protect or IBM {{site.data.keyword.hscrypto}} for your IBM Cloud Object Storage buckets.
 
-[{{site.data.keyword.keymanagementservicefull}}](/docs/services/key-protect?topic=key-protect-about) helps you provision encrypted keys for apps across {{site.data.keyword.cloud}} services. As you manage the lifecycle of your keys, you can benefit from knowing that your keys are secured by FIPS 140-2 Level 3 certified cloud-based hardware security modules (HSMs) that protect against the theft of information.
+[{{site.data.keyword.keymanagementservicefull}}](/docs/key-protect?topic=key-protect-about) helps you provision encrypted keys for apps across {{site.data.keyword.cloud}} services. As you manage the lifecycle of your keys, you can benefit from knowing that your keys are secured by FIPS 140-2 Level 3 certified cloud-based hardware security modules (HSMs) that protect against the theft of information.
 
-[{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-crypto-overview) is a single-tenant, dedicated HSM that is controlled by you. The service is built on FIPS 140-2 Level 4-certified hardware, the highest offered by any cloud provider in the industry.
+[{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-overview) is a single-tenant, dedicated HSM that is controlled by you. The service is built on FIPS 140-2 Level 4-certified hardware, the highest offered by any cloud provider in the industry.
 
-Refer to product documentation on [{{site.data.keyword.keymanagementservicefull}}](/docs/services/key-protect?topic=key-protect-about) and [{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-crypto-overview) for a detailed overview of the two services.
+Refer to product documentation on [{{site.data.keyword.keymanagementservicefull}}](/docs/key-protect?topic=key-protect-about) and [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-overview) for a detailed overview of the two services.
 
 

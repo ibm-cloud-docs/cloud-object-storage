@@ -62,6 +62,7 @@ All resources allocated to an IBM Cloud Object Storage File Access Portal VM sho
 {: note}
 
 ## Installation and administration
+{: #fa-gateway-install-admin}
 
 For details on installation and administration, see the documentation [IBM Cloud Object Storage File Access](https://www.ibm.com/docs/en/cosfa/7.0?topic=gateway-cos-fa-administrator-guidepdf).
 

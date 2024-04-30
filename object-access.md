@@ -50,7 +50,7 @@ Orgchart.pdf
 In this example, the prefix ```User1```, ```Engineering```, and ```Product``` can resemble root
 level folders. In addition, ```2023``` and ```2024``` can represent subdirectories. Use the delimiter “/” to represent the file hierarchy. A delimiter can be any supported character. ```Orgchart.pdf``` is considered a root-level object.
 
-When running a list request on your bucket, you can specify a prefix for listing objects or list the content of the entire bucket. In addition, you can optionally pass a delimiter value in the listing request to simulate a folder structure in the response. For more information, see the examples of using [prefix and delimiter](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=cli#fgac-attributes-prefix-delimeter) condition statements.
+When running a list request on your bucket, you can specify a prefix for listing objects or list the content of the entire bucket. In addition, you can optionally pass a delimiter value in the listing request to simulate a folder structure in the response. For more information, see the examples of using [prefix and delimiter](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=cli#fgac-attributes-prefix-delimiter) condition statements.
 
 Read or write operations typically target a specific object name which is also referred to as the object [path](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=cli#fgac-attributes-path).
 
@@ -130,7 +130,6 @@ This will give Adam the ability to read and list all objects that start with the
   },
   "pattern": "attribute-based-condition:resource:literal-and-wildcard
 ```
-
 {: codeblock}
 
 ### Scenario 3: Grant Samantha access to list, read, and replicate files in only the ```2023``` and ```2024``` subdirectories under the ```Product``` folder.
@@ -203,7 +202,6 @@ Samantha will not have access to navigate the UI from the root folder. This situ
 },
 "pattern": "attribute-based-condition:resource:literal-and-wildcard"
 ```
-
 {: codeblock}
 
 ### Scenario 4: Grant Samantha access to navigate the UI to the files in the ```2023``` and ```2024``` folders in addition to list, read and replicate files in ```2023``` and ```2024```.
@@ -295,5 +293,4 @@ To navigate the UI to ```MyBucket```, Samantha needs the platform role ```Viewer
   },
   "pattern": "attribute-based-condition:resource:literal-and-wildcard"
 ```
-
 {: codeblock}

@@ -183,7 +183,7 @@ Object Lock is an alternative to the retention policies available when using Imm
 There are no restrictions on adding or modifying tags on a protected object.
 
 ### Other interactions
-{: #ol-interactions-worm}
+{: #ol-interactions-other}
 
 There should be no adverse interactions when using Object Lock with other Object Storage features, such as setting CORS policies, setting IP firewalls or condition based restrictions, bucket quotas, or Code Engine.
 
@@ -354,7 +354,7 @@ A successful request returns a `200` response.
 If the `RetainUntilDate` values is not beyond any existing value, the operation will fail with a `403 Access Denied`.
 
 ### Add or remove a legal hold for an object
-{: #ol-apis-object-add}
+{: #ol-apis-object-add-lh}
 
 The Object Lock configuration is provided as XML in the body of the request.  New requests will overwrite any existing replication rules that are present on the object, provided the `RetainUntilDate` is farther in the future than the current value.
 
@@ -481,6 +481,7 @@ if __name__ == "__main__":
     main()
 
 ```
+{: codeblock}
 
 {: codeblock}
 
@@ -679,6 +680,7 @@ function main() {
 
 main();
 ```
+{: codeblock}
 
 {: codeblock}
 
@@ -831,6 +833,7 @@ func main() {
 
 }
 ```
+{: codeblock}
 
 {: codeblock}
 

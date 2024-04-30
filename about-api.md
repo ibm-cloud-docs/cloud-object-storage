@@ -24,9 +24,9 @@ It uses {{site.data.keyword.iamlong}} for authentication and authorization, and 
 
 This reference documentation is being continuously improved. If you have technical questions about using the API in your application, post them on [StackOverflow](https://stackoverflow.com/). Add both `ibm-cloud-platform` and `object-storage` tags and help improve this documentation thanks to your feedback.
 
-As {{site.data.keyword.iamshort}} tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage. More information can be found in [the `curl` reference](/docs/cloud-object-storage/cli?topic=cloud-object-storage-curl).
+As {{site.data.keyword.iamshort}} tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage. More information can be found in [the `curl` reference](/docs/cloud-object-storage?topic=cloud-object-storage-curl).
 
-The following tables describe the complete set of operations of the {{site.data.keyword.cos_full_notm}} API. For more information, see [the API reference page for buckets](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations) or [objects](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations).
+The following tables describe the complete set of operations of the {{site.data.keyword.cos_full_notm}} API. For more information, see [the API reference page for buckets](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations) or [objects](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations).
 
 
 ## Bucket operations
@@ -69,4 +69,4 @@ These operations create, delete, get information about, and control behavior of 
 | List Parts                | Returns a list of parts that are associated with an upload ID                       |
 {: caption="Table 1. Object operation" caption-side="top"}
 
-More information about {{site.data.keyword.cos_full_notm}} features and use-cases can be found at [ibm.com](https://www.ibm.com/cloud/object-storage).
+More information about {{site.data.keyword.cos_full_notm}} features and use-cases can be found at [ibm.com](https://www.ibm.com/products/cloud-object-storage).

@@ -37,7 +37,7 @@ This tutorial will create a new bucket and a new instance of {{site.data.keyword
 
 For this tutorial, you need:
 - An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com){: external}
-- An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage)
+- An [instance of IBM Cloud Object Storage](/objectstorage/create)
 - To complete the steps to manage access to the service, your user ID needs **administrator platform permissions** to manage the {{site.data.keyword.at_full_notm}} service. You may have to contact a account administrator. The account owner can grant another user access to the account for the purposes of managing user access, and managing account resources. [Learn more](/docs/account?topic=account-userroles).
 - Your user ID needs to be configured with the **service access writer role** at a minimum to create and manipulate buckets.
 
@@ -108,7 +108,7 @@ Navigate back to your bucket.  When you open the bucket in the console it will t
 ![View bucket](images/at-tut-8-view-bucket.png)
 
 ## View the {{site.data.keyword.at_short}} events
-{: #at-tut-open-at}
+{: #at-tut-view-at}
 {: step}
 
 Now, assuming there has been enough time for the metadata to propagate, when you return to the {{site.data.keyword.at_short}} interface you will see some listing events.

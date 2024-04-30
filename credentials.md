@@ -73,7 +73,7 @@ export COS_HMAC_SECRET_ACCESS_KEY="8not8ed850cddbece407exampledonotuse43r2d2586"
 ## Next steps
 {: #uhc-next-steps}
 
-Note that when using HMAC credentials to create signatures to use with direct [REST API](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#bucket-operations-hmac) calls that extra headers are required:
+Note that when using HMAC credentials to create signatures to use with direct [REST API](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#bucket-operations-hmac) calls that extra headers are required:
 1. All requests must have an `x-amz-date` header with the date in `%Y%m%dT%H%M%SZ` format.
 2. Any request that has a payload (object uploads, deleting several objects, and so on) must provide a `x-amz-content-sha256` header with an SHA256 hash of the payload contents.
 3. ACLs (other than `public-read`) are unsupported.

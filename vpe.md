@@ -27,7 +27,7 @@ Virtual Private Endpoints (VPEs) are generally available in all regions.
 {: #vpes-before-begin}
 
 - You need to have an [{{site.data.keyword.cloud_notm}} account](https://cloud.ibm.com/registration){: .external}
-- You also need an [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage)
+- You also need an [instance of IBM Cloud Object Storage](/objectstorage/create)
 
 ### Setting up your VPE
 {: #vpes-setup}

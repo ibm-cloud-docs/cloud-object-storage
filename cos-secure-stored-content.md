@@ -61,7 +61,7 @@ Throughout the tutorial, you are provided with step-by-step instructions, along 
 
 For this tutorial, you need:
 - An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com){: external}
-- An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage) (must be a paid service plan instance)
+- An [instance of IBM Cloud Object Storage](/objectstorage/create) (must be a paid service plan instance)
 
 Apply promotional code that is included below.
 
@@ -84,7 +84,7 @@ Once the credit has been successfully applied, you can review your credit balanc
 {: #navigate-cos-instance}
 {: step}
 
-- Go to your [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage).
+- Go to your [instance of IBM Cloud Object Storage](/objectstorage/create).
 
 ## Click Create bucket
 {: #create-cos-bucket-step}
