@@ -4,22 +4,21 @@ copyright:
   years: 2023, 2024
 lastupdated: "2024-04-18"
 
-keywords: worm, immutable, policy, retention, compliance
+keywords: object, policy, fine grained access control, prefix
 
 subcollection: cloud-object-storage
-
 
 ---
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Locking objects
-{: #ol-overview}
+# Folder level (prefix) fine grained access control
+{: #fgac-overview}
 
 Object Lock preserves electronic records and maintains data integrity by ensuring that individual object versions are stored in a WORM (Write-Once-Read-Many), non-erasable and non-rewritable manner. This policy is enforced until a specified date or the removal of any legal holds.
 {: shortdesc}
 
-## Why use Object Lock?
+## Why use fine grained access control?
 {: #ol-why}
 
 Object Lock helps customers govern data preservation and retention requirements by enforcing data immutability for their backup, disaster recovery, and cyber resiliency workloads.
@@ -30,7 +29,7 @@ Object Lock ensures that **data cannot be deleted by anyone** and there is **no 
 When using Object Lock, it is your responsibility to ensure compliance with any regulations that you (your organization) may be subject to when it comes to preservation and storage of data for long term retention.
 {:remember}
 
-When using Object Lock, you are responsible for ensuring that your IBM Cloud Account is kept in good standing per IBM Cloud policies and guidelines for as long as the data is subject to a retention period. Refer to IBM Cloud Service terms for more information. 
+When using Object Lock, you are responsible for ensuring that your IBM Cloud Account is kept in good standing per IBM Cloud policies and guidelines for as long as the data is subject to a retention period. Refer to IBM Cloud Service terms for more information.
 {:important}
 
 ## Terminology
@@ -75,7 +74,7 @@ Legal holds and retention periods operate independently. Legal holds have no imp
 
 Imagine an object with both a legal hold and a retention period. When the retention period ends, the object version remains protected until the legal hold is removed. If you remove a legal hold while an object version is subject to a retention period it remains protected until the retention period is complete.
 
-Objects locked and stored with a retention period cannot be deleted until retention period expires and any associated legal hold is removed. 
+Objects locked and stored with a retention period cannot be deleted until retention period expires and any associated legal hold is removed.
 {:important}
 
 Locking objects with a Governance Mode is not supported.
@@ -105,7 +104,7 @@ The retention period for an object **cannot be decreased**. If you are using def
 4. Look for **Immutability**,  and under Object Lock click **Add**
 5. Set Object Lock to **Enabled**
 6. Optionally, set a default retention period.
-7. Click on Save 
+7. Click on Save
 8. Proceed with rest of the configuration settings and click **Create bucket**
 
 ### Enabling Object Lock on an existing bucket:
@@ -119,7 +118,7 @@ A bucket can be set for Object Lock use as follows:
 4. Navigate to _Object Lock_ section, click on **Add**
 5. Set _Object Lock_ to **Enabled**
 6. Optionally, set a default retention period.
-7. Click on **Save** 
+7. Click on **Save**
 
 ### Adding a Retain Until Date or Legal Hold to an object
 {: #ol-gs-object}
@@ -147,14 +146,14 @@ Locked objects (and their versions) contribute usage just like any other data an
 ## Interactions
 {: #ol-interactions}
 
-Object Lock can be used in combination with several object storage features as per your use case requirements.
+Object Lock can be used in combination with several object storage features per your use case requirements.
 
 ### Versioning
 {: #ol-interactions-versioning}
 
 [Enabling versioning](/docs/cloud-object-storage?topic=cloud-object-storage-versioning) is a prerequisite for enabling Object Lock. If a bucket is created using the `x-amz-bucket-object-lock-enabled` header, versioning will automatically be enabled.
 
-Deleting a versioned object creates a _delete marker_.  The object may appear to be deleted, but if the object is protected it is impossible to delete the protected version. Delete markers themselves are not protected.
+Deleting a versioned object creates a _delete marker_.  The object may appear to be deleted, but if the object is protected it is impossible to delete the protected version. Delete markers themselves are unprotected.
 {:remember}
 
 ### Replication
@@ -175,7 +174,7 @@ It is possible to enable lifecycle policies that [archive locked objects](/docs/
 ### Immutable Object Storage
 {: #ol-interactions-worm}
 
-Object Lock is an alternative to the retention policies available when using Immutable Object Storage.  As Object Lock requires versioning to be enabled, and Immutable Object Storage is not compatible with versioning, it is impossible to have both WORM solutions enabled on the same bucket. It is possible to have a mix of buckets in a Service Instance, each using either Immutable Object Storage or Object Lock.
+Object Lock is an alternative to the retention policies available when using Immutable Object Storage.  As Object Lock requires versioning to be enabled, and Immutable Object Storage is not compatible with versioning, it is not possible to have both WORM solutions enabled on the same bucket. It is possible to have a mix of buckets in a Service Instance, each using either Immutable Object Storage or Object Lock.
 
 ### Object Tagging
 {: #ol-interactions-tagging}
@@ -183,14 +182,14 @@ Object Lock is an alternative to the retention policies available when using Imm
 There are no restrictions on adding or modifying tags on a protected object.
 
 ### Other interactions
-{: #ol-interactions-other}
+{: #ol-interactions-worm}
 
 There should be no adverse interactions when using Object Lock with other Object Storage features, such as setting CORS policies, setting IP firewalls or condition based restrictions, bucket quotas, or Code Engine.
 
 ## IAM actions
 {: #ol-iam}
 
-There are new IAM actions associated with Object Lock. 
+There are new IAM actions associated with Object Lock.
 
 | IAM Action                                                       | Role                    |
 |------------------------------------------------------------------|-------------------------|
@@ -207,7 +206,7 @@ There are new IAM actions associated with Object Lock.
 
 Be advised that users with the Writer role are capable of making objects un-deletable for many years (possibly thousand of years).  Be careful, and consider crafting custom roles that do not allow most users to set a Retain Until Date.
 
-## Activity Tracker events 
+## Activity Tracker events
 {: #ol-at}
 
 Object Lock generates additional events.
@@ -269,7 +268,7 @@ The body of the request must contain an XML block with the following schema:
 | `Mode`                    | String    | None                        | `DefaultRetention`        | Only `COMPLIANCE` is supported at this time (case-sensitive).                                                                  |
 | `Years`                   | Integer   | None                        | `DefaultRetention`        | The number of years that you want to specify for the default retention period. Cannot be combined with `Days`. |
 
-This example will retain any new objects for at least 30 days.  
+This example will retain any new objects for at least 30 days.
 
 ```
 curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?object-lock" \
@@ -294,7 +293,7 @@ A successful request returns a `200` response.
 
 ```
 curl -X "GET" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?object-lock" \
-     -H 'Authorization: bearer $TOKEN' 
+     -H 'Authorization: bearer $TOKEN'
 ```
 
 This returns an XML response body with the appropriate schema:
@@ -354,7 +353,7 @@ A successful request returns a `200` response.
 If the `RetainUntilDate` values is not beyond any existing value, the operation will fail with a `403 Access Denied`.
 
 ### Add or remove a legal hold for an object
-{: #ol-apis-object-add-lh}
+{: #ol-apis-object-add}
 
 The Object Lock configuration is provided as XML in the body of the request.  New requests will overwrite any existing replication rules that are present on the object, provided the `RetainUntilDate` is farther in the future than the current value.
 
@@ -367,19 +366,19 @@ The body of the request must contain an XML block with the following schema:
 
 | Element     | Type      | Children | Ancestor    | Constraint                                          |
 |-------------|-----------|----------|-------------|-----------------------------------------------------|
-| `legal-hold` | Container | `Status` | None        | Limit 1.                                            |
-| `Status`    | String    | None     | `legal-hold` | Supported values are `ON` or `OFF` (case-sensitive) |
+| `LegalHold` | Container | `Status` | None        | Limit 1.                                            |
+| `Status`    | String    | None     | `LegalHold` | Supported values are `ON` or `OFF` (case-sensitive) |
 
-This example will retain any new objects for at least until March 12, 2023.
+This example will retain any new objects for at least until March 12, 2023.  
 
 ```
-curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?legal-hold&versionId=$VERSION_ID" \
+curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?legalHold&versionId=$VERSION_ID" \
      -H 'Authorization: Bearer $TOKEN' \
      -H 'Content-MD5: FMh6GxizXUBRaiDuB0vtgQ==' \
      -H 'Content-Type: text/plain; charset=utf-8' \
-     -d $'<legal-hold>
+     -d $'<LegalHold>
             <Status>ON</Status>
-          </legal-hold>'
+          </LegalHold>'
 
 ```
 
@@ -388,12 +387,12 @@ A successful request returns a `200` response.
 ## SDK examples
 {: #ol-sdks}
 
-The following examples make use of the IBM COS SDKs for Python, Node.js, and Go, as well as a Terraform script, although the implementation of object versioning should be fully compatible with any S3-compatible library or tool that allows for the setting of custom endpoints.  Using third-party tools requires HMAC credentials to calculate AWS V4 signatures.  For more information on HMAC credentials, [see the documentation](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main).
+The following examples make use of the IBM COS SDKs for Python, Node.js, and Go, as well as a Terraform script, although the implementation of object versioning should be fully compatible with any S3-compatible library or tool that allows for the setting of custom endpoints.  Using third-party tools requires HMAC credentials in order to calculate AWS V4 signatures.  For more information on HMAC credentials, [see the documentation](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main).
 
 ### Python
 {: #ol-sdks-python}
 
-Enabling Object Lock using the IBM COS SDK for Python can be done using the [low-level client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client) syntax.
+Enabling Object Lock using the IBM COS SDK for Python can be done using the [low-level client](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#client){: external} syntax.
 
 Using a client:
 
@@ -444,14 +443,14 @@ def objectlock_retention(bucket_name,object_name):
         print(response.Retention)
 
 
-def objectlock_legal-hold(bucket_name,object_name):
-        # Setting the objectlock legal-hold status to ON.
-        cos_cli.put_object_legal_hold(Bucket=bucket_name, Key=object_name, legal-hold={'Status': 'ON'})
+def objectlock_legalhold(bucket_name,object_name):
+        # Setting the objectlock legalhold status to ON.
+        cos_cli.put_object_legal_hold(Bucket=bucket_name, Key=object_name, LegalHold={'Status': 'ON'})
         # Get objectlock retention of the above object.
         response = cos_cli.get_object_legal_hold(Bucket=bucket_name, Key=object_name)
-        print("Objectlock legal-hold for {0}=>".format(object_name))
-        print(response.legal-hold)
-
+        print("Objectlock Legalhold for {0}=>".format(object_name))
+        print(response.LegalHold)
+       
 
 COS_ENDPOINT = "" #Current list avaiable at https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints -> Ex:https://s3.us-south.cloud-object-storage.appdomain.cloud
 COS_API_KEY_ID = "" #API Key of the cos instance created Ex: W00YixxxxxxxxxxMB-odB-2ySfTrFBIQQWanc--P3byk
@@ -475,15 +474,12 @@ def main():
        objectlock_configuration_on_bucket(new_bucket_name) # Put objectlock configuration(i.e. default retention) on COS bucket and get the configuration.
        upload_object(new_bucket_name,new_text_file_name,new_text_file_contents) # Upload an object to cos bucket.
        objectlock_retention(new_bucket_name,new_text_file_name) # Put objectlock retention(i.e. retain until date) on the object and get the configured retention.
-       objectlock_legal-hold(new_bucket_name,new_text_file_name)  # Put objectlock legal-hold on the object and get the legal-hold status.
-
+       objectlock_legalhold(new_bucket_name,new_text_file_name)  # Put objectlock legalhold on the object and get the legalhold status.
+       
 if __name__ == "__main__":
     main()
 
 ```
-{: codeblock}
-
-{: codeblock}
 
 ### Node.js
 {: #ol-sdks-node}
@@ -531,7 +527,7 @@ function createBucket(bucketName) {
         ObjectLockEnabledForBucket: true,
         CreateBucketConfiguration: {
             LocationConstraint: ''
-          },
+          },     
     }).promise()
     .then((() => {
         console.log(`Bucket: ${bucketName} created!`);
@@ -546,8 +542,8 @@ function createBucket(bucketName) {
 function createTextFile(bucketName, itemName, fileText) {
     console.log(`Creating new item: ${itemName}`);
     return cos.putObject({
-        Bucket: bucketName,
-        Key: itemName,
+        Bucket: bucketName, 
+        Key: itemName, 
         Body: fileText
     }).promise()
     .then(() => {
@@ -557,7 +553,7 @@ function createTextFile(bucketName, itemName, fileText) {
     .catch(logError);
 }
 
-function putObjectLockConfigurationonBucket(bucketName) {
+function putObjectLockConfigurationonBucket(bucketName) { 
     console.log(`Putting Objectlock Configuration on : ${bucketName}`);
     // Putting objectlock configuration
     var defaultRetention = {Mode: 'COMPLIANCE', Days: 1}
@@ -624,32 +620,32 @@ function getObjectLockRetention(bucketName,keyName) {
 
 }
 
-function putObjectLocklegal-hold(bucketName,keyName) {
-    console.log(`Putting Objectlock legal-hold status ON for  : ${keyName}`);
-     // Putting objectlock legal-hold status
-    return cos.putObjectlegal-hold({
+function putObjectLockLegalhold(bucketName,keyName) {
+    console.log(`Putting Objectlock Legalhold status ON for  : ${keyName}`);
+     // Putting objectlock legalhold status
+    return cos.putObjectLegalHold({
         Bucket: bucketName,
         Key: keyName,
-        legal-hold: {Status: 'ON'}
+        LegalHold: {Status: 'ON'}
     }).promise()
     .then(() => {
-        console.log(`Object lock legal-hold added!!`);
+        console.log(`Object lock legalhold added!!`);
         logDone();
     })
     .catch(logError);
 
 }
 
-function getObjectLocklegal-hold(bucketName,keyName) {
-    console.log(`Getting Objectlock legal-hold for : ${keyName}`);
-    // Getting objectlock legal-hold
-    return cos.getObjectlegal-hold({
+function getObjectLockLegalhold(bucketName,keyName) {
+    console.log(`Getting Objectlock legalhold for : ${keyName}`);
+    // Getting objectlock legalhold
+    return cos.getObjectLegalHold({
         Bucket: bucketName,
         Key: keyName
     }).promise()
     .then((data) => {
-        console.log(`Objectlock legal-hold for : ${keyName} `);
-        console.log( JSON.stringify(data.legal-hold, null, "    ") );
+        console.log(`Objectlock legalhold for : ${keyName} `);
+        console.log( JSON.stringify(data.LegalHold, null, "    ") );
         logDone();
     })
     .catch(logError);
@@ -670,8 +666,8 @@ function main() {
         .then(() => createTextFile(newBucketName, newTextFileName, newTextFileContents)) // Upload an object to cos bucket.
         .then(() => putObjectLockRetention(newBucketName, newTextFileName)) // Put objectlock retention(i.e. retain until date) on the object.
         .then(() => getObjectLockRetention(newBucketName, newTextFileName)) // Get the configured retention.
-        .then(() => putObjectLocklegal-hold(newBucketName,newTextFileName)) // Put objectlock legal-hold on the object.
-        .then(() => getObjectLocklegal-hold(newBucketName,newTextFileName)); // Get the legal-hold status.
+        .then(() => putObjectLockLegalhold(newBucketName,newTextFileName)) // Put objectlock legalhold on the object.
+        .then(() => getObjectLockLegalhold(newBucketName,newTextFileName)); // Get the legalhold status.
     }
     catch(ex) {
         logError(ex);
@@ -679,10 +675,8 @@ function main() {
 }
 
 main();
-```
-{: codeblock}
 
-{: codeblock}
+```
 
 ### Go
 {: #ol-sdks-go}
@@ -789,26 +783,26 @@ func objectLockRetention(bucketName string, client *s3.S3, keyName string) {
 	}
 }
 
-func objectLocklegal-hold(bucketName string, client *s3.S3, keyName string) {
+func objectLockLegalHold(bucketName string, client *s3.S3, keyName string) {
 
-	// Setting the objectlock legal-hold status to ON.
-	putObjectlegal-holdInput := &s3.PutObjectlegal-holdInput{
+	// Setting the objectlock legalhold status to ON.
+	putObjectLegalHoldInput := &s3.PutObjectLegalHoldInput{
 		Bucket: aws.String(bucketName),
 		Key:    aws.String(keyName),
-		legal-hold: &s3.ObjectLocklegal-hold{
+		LegalHold: &s3.ObjectLockLegalHold{
 			Status: aws.String("ON"),
 		},
 	}
-	_, e := client.PutObjectlegal-hold(putObjectlegal-holdInput)
+	_, e := client.PutObjectLegalHold(putObjectLegalHoldInput)
 	// Get objectlock retention of the above object.
-	getObjectlegal-holdInput := new(s3.GetObjectlegal-holdInput)
-	getObjectlegal-holdInput.Bucket = aws.String(bucketName)
-	getObjectlegal-holdInput.Key = aws.String(keyName)
-	response, e := client.GetObjectlegal-hold(getObjectlegal-holdInput)
+	getObjectLegalHoldInput := new(s3.GetObjectLegalHoldInput)
+	getObjectLegalHoldInput.Bucket = aws.String(bucketName)
+	getObjectLegalHoldInput.Key = aws.String(keyName)
+	response, e := client.GetObjectLegalHold(getObjectLegalHoldInput)
 	if e != nil {
 		fmt.Println(e)
 	} else {
-		fmt.Println("Object Lock legal-hold =>", response.legal-hold)
+		fmt.Println("Object Lock legalhold =>", response.LegalHold)
 	}
 }
 
@@ -829,18 +823,17 @@ func main() {
 	objectLockConfiguration(bucketName, client)                      // Put objectlock configuration(i.e. default retention) on COS bucket and get the configuration.
 	uploadObject(bucketName, client, textFileName, textFileContents) // Upload an object to cos bucket.
 	objectLockRetention(bucketName, client, textFileName)            // Put objectlock retention(i.e. retain until date) on the object and get the configured retention.
-	objectLocklegal-hold(bucketName, client, textFileName)            // Put objectlock legal-hold on the object and get the legal-hold status.
+	objectLockLegalHold(bucketName, client, textFileName)            // Put objectlock legalhold on the object and get the legalhold status.
 
 }
 ```
-{: codeblock}
-
-{: codeblock}
 
 ### Terraform
 {: #ol-sdks-terraform}
 
 ```json
+
+
 // Create COS instance.
 resource "ibm_resource_instance" "cos_instance" {
   name              = "cos-instance"
@@ -878,7 +871,7 @@ resource ibm_cos_bucket_objectlock_configuration "objectlock" {
   }
 }
 
-// Upload an object to the COS bucket with objectlock retention and objectlock legal-hold.
+// Upload an object to the COS bucket with objectlock retention and objectlock legalhold.
 resource "ibm_cos_bucket_object" "object_object_lock" {
   bucket_crn      = ibm_cos_bucket.bucket.crn
   bucket_location = ibm_cos_bucket.bucket.region_location
@@ -890,5 +883,3 @@ resource "ibm_cos_bucket_object" "object_object_lock" {
   force_delete = true
 }
 ```
-
-{: codeblock}

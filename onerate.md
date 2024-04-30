@@ -42,7 +42,7 @@ One Rate plan instances are more expensive when it comes to storage capacity cos
 2. You are reading large files from outside of IBM Cloud - for example in post-production film editing, satellite imaging, or music production.
 
 Most workloads, such as for backups/long-term storage, data analysis using IBM Cloud resources, or for small files (such as PNGs for websites) are better served by a Standard plan. One Rate plans are generally best for workloads where more 20% of the total storage is consistently read over the public endpoints each month.
-{: note}
+{:note}
 
 ## Getting started with One Rate plans
 {: #onerate-gs}
@@ -60,7 +60,7 @@ One Rate plan instances are aggregated and billed at the IBM Cloud account level
 Unlike Standard plan instances, One Rate instances provide allowances for [Class A and B request charges](/docs/cloud-object-storage?topic=cloud-object-storage-billing#billing-request-classes) as well as egress charges.  The thresholds for the allowances are dependant on total storage capacity.
 
 It is **not** possible to convert an instance created under a One Rate plan to a Standard plan, or vice-versa.
-{: important}
+{:important}
 
 ### How allowances are calculated
 {: #onerate-billing}
@@ -144,7 +144,7 @@ All buckets created in a One Rate plan must use a [specific provisioning code](/
 {: tab-group="One Rate Codes"}
 
 ## Billing examples
-{: #onerate-billing-examples}
+{: #onerate-billing}
 
 These costs are examples provided to illustrate the mechanics of the billing and are not reflective of actual rates, which can [be found here](/objectstorage/create#pricing).
 {: note}

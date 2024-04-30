@@ -49,6 +49,7 @@ For this code pattern you will need:
 * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com)
 * An instance of [{{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-provision)
 * Configured and operational use of {{site.data.keyword.cos_full_notm}} SDKs for your choice of Java, Python, NodeJS, or Go; or, a configured and operational CLI client.
+{: #dmop-prereqs}
 
 
 ## Using the Console

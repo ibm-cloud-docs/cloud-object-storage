@@ -50,7 +50,7 @@ IBM Cloud Object Storage File Access solution performance depends upon the under
 {: note}
 
 ### Software requirements
-{: #fa-gateway-requirements-software}
+{: #fa-gateway-requirements-hardware}
 
 Hypervisor requirements
 
