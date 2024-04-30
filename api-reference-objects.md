@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-24"
+lastupdated: "2024-04-19"
 
 keywords: rest, s3, compatibility, api, objects
 
@@ -16,49 +16,49 @@ subcollection: cloud-object-storage
 # Object operations
 {: #object-operations}
 
-The modern capabilities of {{site.data.keyword.cos_full}} are conveniently available through a RESTful API. Operations and methods for reading, writing, and configuring objects that are stored within a bucket are documented here.
+The modern capabilities of {{site.data.keyword.cos_full}} are conveniently available via a RESTful API. Operations and methods for reading, writing, and configuring objects (stored within a bucket), are documented here.
 {: shortdesc}
 
 For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 {: tip}
 
-## A note about Access/Secret Key (HMAC) authentication
+## A note regarding Access/Secret Key (HMAC) authentication
 {: #object-operations-hmac}
 
-When authenticating to your instance of {{site.data.keyword.cos_full_notm}} by [using HMAC credentials](/docs/cloud-object-storage/iam?topic=cloud-object-storage-uhc-hmac-credentials-main), you need the information that is represented in Table 1 when [constructing an HMAC signature](/docs/cloud-object-storage/iam?topic=cloud-object-storage-hmac-signature).
+When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [using HMAC credentials](/docs/cloud-object-storage/iam?topic=cloud-object-storage-uhc-hmac-credentials-main), you will need the information represented in Table 1 when [constructing an HMAC signature](/docs/cloud-object-storage/iam?topic=cloud-object-storage-hmac-signature).
 
 |Key|Value|Example|
 |---|---|---|
-|{access_key}|Access key that is assigned to your Service Credential|`cf4965cebe074720a4929759f57e1214`|
-|{date}|The formatted date of your request (`yyyymmdd`)|`20180613`|
-|{region}|The location code for your endpoint|`us-standard`|
-|{signature}|The hash that is created by using the secret key, location, and date|`ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e`|
-|{timestamp}|The formatted date and time of your request|`20180614T001804Z`|
+|{access_key}|Access key assigned to your Service Credential|cf4965cebe074720a4929759f57e1214|
+|{date}|The formatted date of your request (`yyyymmdd`)|20180613|
+|{region}|The location code for your endpoint|us-standard|
+|{signature}|The hash created using the secret key, location, and date|ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e|
+|{timestamp}|The formatted date and time of your request|20180614T001804Z|
 {: caption="Table 1. HMAC signature components"}
 
 ## Upload an object
 {: #object-operations-put}
 
-A `PUT` given a path to an object uploads the request body as an object. All objects that are uploaded in a single thread are to be smaller than 500 MB to minimize the risk of network disruptions. (Objects that are [uploaded in multiple parts](/docs/cloud-object-storage?topic=cloud-object-storage-large-objects) can be as large as 10 TB).
+A `PUT` given a path to an object uploads the request body as an object. All objects uploaded in a single thread should be smaller than 500 MB to minimize the risk of network disruptions. (objects that are [uploaded in multiple parts](/docs/cloud-object-storage?topic=cloud-object-storage-large-objects) can be as large as 10 TB).
 
-Personally Identifiable Information (PII): When you're _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means.
+Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means.
 {: note}
 
-Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
-It is possible to stream objects as large as 5 GB by using a single `PUT` request. Multipart uploads are more reliable and can upload more efficiently because they use multiple threads to upload parts in parallel. Uploading larger objects in a single `PUT` request results in the performance limitations of a single thread, and if any failures were to occur, single-threaded uploads would need to be retried in their entirety. In comparison, if any part of a multipart upload fails, only the specific part that failed needs to be retried. The precise throughput that can be achieved by a single thread varies depending on the network bandwidth from the client to the IBM Cloud endpoint, the rate of packet loss (if any) on that connection, the use of HTTP vs HTTPS, the specific ciphers that are used in the connection, specific TCP connection parameters (such as window size), and other factors. While these factors can be optimized for a single-threaded upload, the optimizations would apply equally to any multi-threaded (multipart) uploads as well.
+It is possible to stream objects as large as 5 GB using a single `PUT` request. Multipart uploads are more reliable and can upload more efficiently by using multiple threads to upload parts in parallel. Uploading larger objects in a single `PUT` request results in the performance limitations of a single thread, and in the event of any failures single-threaded uploads will need to be retried in their entirety (whereas with MPU only the specific part(s) that failed need to be retried). The precise throughput that can be achieved by a single thread varies depending on the network bandwidth from the client to the IBM Cloud endpoint, the rate of packet loss (if any) on that connection, the use of HTTP vs HTTPS, the specific ciphers used in the connection and specific TCP connection parameters (such as window size), as well as other factors. While these factors can be optimized for a single-threaded upload, the optimizations would apply equally to any multi-threaded (multipart) uploads as well.
 {: tip}
 
-Personally Identifiable Information (PII): When you're creating buckets or adding objects, do not use any information that can identify any user (natural person) by name, location, or any other means.
+Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
 {: note}
 
-Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
 
-```sh
+```bash
 PUT https://{endpoint}/{bucket-name}/{object-name} # path style
 PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
@@ -67,13 +67,12 @@ PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ### Optional headers
 {: #object-operations-put-options}
 
-|Header | Type | Description |
-|-------|------|-------------|
-|`x-amz-tagging` | String | A set of tags to apply to the object. It is formatted as query parameters (`"SomeKey=SomeValue"`).|
-|`x-amz-object-lock-mode` | String | The valid value is `COMPLIANCE` - required if `x-amz-object-lock-retain-until-date` is present.|
-|`x-amz-object-lock-retain-until-date` | ISO8601 Date and Time | Required if `x-amz-object-lock-mode` is present.|
-|`x-amz-object-lock-legal-hold` | String | Valid values are `ON` or `OFF`.|
-{: caption="Table 2. HMAC signature components" caption-side="bottom"}
+Header | Type | Description
+--- | ---- | ------------
+`x-amz-tagging` | string | A set of tags to apply to the object, formatted as query parameters (`"SomeKey=SomeValue"`).
+`x-amz-object-lock-mode` | string | Valid value is `COMPLIANCE` - required if `x-amz-object-lock-retain-until-date` is present.
+`x-amz-object-lock-retain-until-date` | ISO8601 Date and Time | Required if `x-amz-object-lock-mode` is present.
+`x-amz-object-lock-legal-hold` | string | Valid values are `ON` or `OFF`.
 
 **Example request**
 {: token}
@@ -90,6 +89,7 @@ Content-Length: 533
  substance referred to as 'royal jelly' to accelerate sexual maturity. After a
  short while the 'queen' is the mother of nearly every bee in the hive, and
  the colony will fight fiercely to protect her.
+
 ```
 {: token}
 
@@ -110,6 +110,7 @@ Content-Length: 533
  substance referred to as 'royal jelly' to accelerate sexual maturity. After a
  short while the 'queen' is the mother of nearly every bee in the hive, and
  the colony will fight fiercely to protect her.
+
 ```
 {: hmac}
 
@@ -135,15 +136,15 @@ Content-Length: 0
 
 A `HEAD` given a path to an object retrieves that object's headers.
 
-The `Etag` value that is returned for objects encrypted using SSE-KP **is** the MD5 hash of the original decrypted object.
+The `Etag` value returned for objects encrypted using SSE-KP **is** the MD5 hash of the original decrypted object.
 {: note}
 
-Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
 
-```sh
+```bash
 HEAD https://{endpoint}/{bucket-name}/{object-name} # path style
 HEAD https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
@@ -193,15 +194,15 @@ Content-Length: 11
 
 A `GET` given a path to an object downloads the object.
 
-The `Etag` value that is returned for objects encrypted by using SSE-C/SSE-KP is **not** the MD5 hash of the original decrypted object.
+The `Etag` value that is returned for objects encrypted using SSE-C/SSE-KP will **not** be the MD5 hash of the original decrypted object.
 {: note}
 
-Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
 
-```sh
+```bash
 GET https://{endpoint}/{bucket-name}/{object-name} # path style
 GET https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
@@ -210,10 +211,9 @@ GET https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ### Optional headers
 {: #object-operations-get-headers}
 
-| Header | Type   | Description |
-|--------|--------|-------------|
-|`range` | String | Returns the bytes of an object within the specified range.|
-{: caption="Table 3. Optional headers" caption-side="bottom"}
+Header | Type | Description
+--- | ---- | ------------
+`range` | String | Returns the bytes of an object within the specified range.
 
 **Example request**
 {: token}
@@ -265,12 +265,12 @@ Content-Length: 467
 
 A `DELETE` given a path to an object deletes an object.
 
-Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
 
-```sh
+```bash
 DELETE https://{endpoint}/{bucket-name}/{object-name} # path style
 DELETE https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
@@ -314,17 +314,17 @@ x-amz-request-id: 8ff4dc32-a6f0-447f-86cf-427b564d5855
 ## Delete multiple objects
 {: #object-operations-multidelete}
 
-A `POST` given a path to a bucket and proper parameters deletes a specified set of objects. A `Content-MD5` header that specifies the Base64 encoded MD5 hash of the request body is required.
+A `POST` given a path to a bucket and proper parameters deletes a specified set of objects. A `Content-MD5` header that specifies the base64 encoded MD5 hash of the request body is required.
 
-The required `Content-MD5` header needs to be the binary representation of a Base64 encoded MD5 hash.
+The required `Content-MD5` header needs to be the binary representation of a base64 encoded MD5 hash.
 
 When an object that is specified in the request is not found the result returns as deleted. 
 {: note}
 
-Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
-Multiple object deletes involve a `POST operation` that is charged as Class A. The cost of the `POST` request for multiple deletes varies depending on the storage class of the objects, and the amount of data that is deleted. For more information about pricing, see the [IBM Cloud Object Storage pricing page](https://cloud.ibm.com/objectstorage/create#pricing).
+Multiple object deletes involve a `POST operation` that is charged as Class A. The cost of the POST (class A) for multiple deletes vary depending on the storage class of the objects, and the amount of data being deleted. For more information on pricing, please refer to the [IBM Cloud Object Storage pricing page](https://cloud.ibm.com/objectstorage/create#pricing).
 {: note}
 
 ### Optional Elements
@@ -333,9 +333,9 @@ Multiple object deletes involve a `POST operation` that is charged as Class A. T
 |Header|Type|Description|
 |---|---|---|
 |`Quiet`|Boolean|Enable quiet mode for the request.|
-{: caption="Table 4. Header" caption-side="bottom"}
+{: caption="Table 1. Header" caption-side="top"}
 
-The request can contain a maximum of 1000 keys that you want to delete. While it can be useful in reducing the number of requests, be mindful when deleting many keys. Also, consider the sizes of the objects to ensure suitable performance.
+The request can contain a maximum of 1000 keys that you want to delete. While this is useful in reducing the number of requests, be mindful when deleting many keys. Also, take into account the sizes of the objects to ensure suitable performance.
 {: tip}
 
 The following code shows one example of how to create the necessary representation of the header content:
@@ -347,7 +347,7 @@ echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 
 **Syntax**
 
-```sh
+```bash
 POST https://{endpoint}/{bucket-name}?delete= # path style
 POST https://{bucket-name}.{endpoint}?delete= # virtual host style
 ```
@@ -357,10 +357,10 @@ The body of the request must contain an XML block with the following schema:
 
 |Element|Type|Children|Ancestor|Constraint|
 |---|---|---|---|---|
-|`Delete` | Container | `Object` | - | - |
-|`Object`| Container | `Key` | Delete | - |
-|`Key`| String | - | `Object` | Valid key string |
-{: caption="Table 5. Body of the request schema" caption-side="bottom"}
+|Delete | Container | Object | - | - |
+|Object| Container | Key | Delete | - |
+|Key| String | - | Object | Valid key string |
+{: caption="Table 2. Body of the request schema" caption-side="top"}
 
 **Example request**
 {: token}
@@ -418,14 +418,14 @@ Content-Length: 207
 ## Add or extend retention on an object
 {: #object-operations-add-retention}
 
-A `PUT` issued to an object with the proper parameters adds or extends the retention period of the object.
+A `PUT` issued to an object with the proper parameters adds or extends retention period of the object.
 
-Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
 
-```sh
+```bash
 PUT https://{endpoint}/{bucket-name}/{object-name}?retention # path style
 PUT https://{bucket-name}.{endpoint}/{object-name}?retention # virtual host style
 ```
@@ -437,10 +437,10 @@ The body of the request must contain an XML block with the following schema:
 
 | Element | Type      | Children   | Ancestor | Notes    |
 |---------|-----------|------------|----------|----------|
-| `Retention` | Container | `Mode`, `RetainUntilDate`     | -        | Required |
-| `Mode`  | String | -        | `Retention`  | Required - valid value is COMPLIANCE |
-| `RetainUntilDate`     | Timestamp    | - | `Retention`   | Required |
-{: caption="Table 6. Body of the request schema" caption-side="bottom"}
+| Retention | Container | Mode, RetainUntilDate     | -        | Required |
+| Mode  | String | -        | Retention  | Required - valid value is COMPLIANCE |
+| RetainUntilDate     | Timestamp    | - | Retention   | Required |
+{: caption="Table 3. Body of the request schema" caption-side="top"}
 
 The following code shows one example of how to create the necessary representation of the header content:
 
@@ -451,7 +451,7 @@ echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 
 **Example request**
 
-The following example adds or extends the retention on an object.
+This is an example of adding or extending retention on an object.
 
 ```http
 PUT /apiary/myObject?retention HTTP/1.1
@@ -469,6 +469,7 @@ Content-Length: 119
 </Retention>
 ```
 
+
 **Example response**
 
 ```http
@@ -481,17 +482,19 @@ Content-Length: 0
 
 ----
 
+----
+
 ## Add tags to an object
 {: #object-operations-add-tags}
 
-A `PUT` request that is issued to an object with the proper parameters creates or replaces a set of key-value tags that are associated with the object.
+A `PUT` issued to an object with the proper parameters creates or replaces a set of key-value tags associated with the object.
 
-Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
 
-```sh
+```bash
 PUT https://{endpoint}/{bucket-name}/{object-name}?tagging # path style
 PUT https://{bucket-name}.{endpoint}/{object-name}?tagging # virtual host style
 ```
@@ -503,12 +506,12 @@ The body of the request must contain an XML block with the following schema:
 
 | Element | Type      | Children   | Ancestor | Notes    |
 |---------|-----------|------------|----------|----------|
-| `Tagging` | Container | `TagSet`     | -        | Required |
-| `TagSet`  | Container | `Tag`        | `Tagging`  | Required |
-| `Tag`     | String    | `Key`, `Value` | `TagSet`   | Required |
-| `Key`     | Container | -          | `Tag`      | Required |
-| `Value`   | String    | -          | `Tag`      | Required |
-{: caption="Table 7. Body of the request schema" caption-side="bottom"}
+| Tagging | Container | TagSet     | -        | Required |
+| TagSet  | Container | Tag        | Tagging  | Required |
+| Tag     | String    | Key, Value | TagSet   | Required |
+| Key     | Container | -          | Tag      | Required |
+| Value   | String    | -          | Tag      | Required |
+{: caption="Table 4. Body of the request schema" caption-side="top"}
 
 Tags must comply with the following restrictions:
 * An object can have a maximum of 10 tags
@@ -519,13 +522,13 @@ Tags must comply with the following restrictions:
 * Minimum value length - 0 Unicode characters in UTF-8 (Tag Value can be empty)
 * Maximum value length - 256 Unicode characters in UTF-8
 * Maximum value byte size - 512 bytes
-* A Tag key and value can consist of US Alphanumeric Characters (`a-z`, `A-Z`, `0-9`), and spaces representable in UTF-8, and the following symbols: `!`, `_`, `.`, `*`, `` ` ``, `(`, `)`, `-`, `:`
+* A Tag key and value may consist of US Alpha Numeric Characters (a-zA-Z0-9), and spaces representable in UTF-8, and the following symbols: `!`, `_`, `.`, `*`, `` ` ``, `(`, `)`, `-`, `:`
 * Tag keys and values are case-sensitive
 * `ibm:` cannot be used as a key prefix for tags
 
 **Example request**
 
-The following example adds a set of tags to an object.
+This is an example of adding a set of tags to an object.
 
 ```http
 PUT /apiary/myObject?tagging HTTP/1.1
@@ -573,14 +576,14 @@ Content-Length: 0
 ## Read an object's tags
 {: #object-operations-get-tags}
 
-A `GET` request that is issued to an object with the proper parameters returns the set of key-value tags that are associated with the object.
+A `GET` issued to an object with the proper parameters returns the set of key-value tags associated with the object.
 
-Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
 
-```sh
+```bash
 GET https://{endpoint}/{bucket-name}/{object-name}?tagging # path style
 GET https://{bucket-name}.{endpoint}/{object-name}?tagging # virtual host style
 ```
@@ -589,7 +592,7 @@ GET https://{bucket-name}.{endpoint}/{object-name}?tagging # virtual host style
 
 **Example request**
 
-The following example reads a set of object tags.
+This is an example of reading a set of object tags.
 
 ```http
 GET /apiary/myObject?tagging HTTP/1.1
@@ -636,14 +639,14 @@ Content-Length: 128
 ## Delete an object's tags
 {: #object-operations-delete-tags}
 
-A `DELETE` request that is issued to a bucket with the proper parameters removes an object's tags.
+A `DELETE` issued to a bucket with the proper parameters removes an object's tags.
 
-Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
 
-```sh
+```bash
 DELETE https://{endpoint}/{bucket-name}{object-name}?tagging # path style
 DELETE https://{bucket-name}.{endpoint}{object-name}?tagging # virtual host style
 ```
@@ -652,7 +655,7 @@ DELETE https://{bucket-name}.{endpoint}{object-name}?tagging # virtual host styl
 **Example request**
 {: token}
 
-The following example deletes an object's tags.
+This is an example of deleting an object's tags.
 {: token}
 
 ```http
@@ -681,20 +684,20 @@ The server responds with `204 No Content`.
 ## Copy an object
 {: #object-operations-copy}
 
-A `PUT` request that is given a path to a new object creates a copy of another object that is specified by the `x-amz-copy-source` header. Unless otherwise altered, the metadata remains the same.
+A `PUT` given a path to a new object creates a new copy of another object that is specified by the `x-amz-copy-source` header. Unless otherwise altered the metadata remains the same.
 
-Personally Identifiable Information (PII): When you're _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means.
+Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means.
 {: note}
 
-Copying objects (even across locations) does not incur the public outbound bandwidth charges. All data remains inside the {{site.data.keyword.cos_short}} internal network.
+Copying objects (even across locations) does not incur the public outbound bandwidth charges. All data remains inside the COS internal network.
 {: note}
 
-Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
 
-```sh
+```bash
 PUT https://{endpoint}/{bucket-name}/{object-name} # path style
 PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
@@ -703,16 +706,15 @@ PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ### Optional headers
 {: #object-operations-copy-options}
 
-| Header | Type | Description |
-|--------|------|-------------|
-|`x-amz-metadata-directive` | String (`COPY` or `REPLACE`) | A `REPLACE` string overwrites the original metadata with new metadata that is provided.|
-|`x-amz-tagging` | String | A set of tags to apply to the object, which are formatted as query parameters (`"SomeKey=SomeValue"`).|
-|`x-amz-tagging-directive` | String (`COPY` or `REPLACE`) | A `REPLACE` string overwrites the original tags with new tags that is provided.|
-|`x-amz-copy-source-if-match` | String (`ETag`)| Creates a copy if the specified `ETag` matches the source object.|
-|`x-amz-copy-source-if-none-match` | String (`ETag`)| Creates a copy if the specified `ETag` is different from the source object.|
-|`x-amz-copy-source-if-unmodified-since` | String (timestamp)| Creates a copy if the source object has not been modified since the specified date. The date must be a valid HTTP date (for example, `Wed, 30 Nov 2016 20:21:38 GMT`).|
-|`x-amz-copy-source-if-modified-since` | String (timestamp)| Creates a copy if the source object has been modified since the specified date. The date must be a valid HTTP date (for example, `Wed, 30 Nov 2016 20:21:38 GMT`).|
-{: caption="Table 8. HMAC signature components" caption-side="bottom"}
+Header | Type | Description
+--- | ---- | ------------
+`x-amz-metadata-directive` | string (`COPY` or `REPLACE`) | A `REPLACE` overwrites original metadata with new metadata that is provided.
+`x-amz-tagging` | string | A set of tags to apply to the object, formatted as query parameters (`"SomeKey=SomeValue"`).
+`x-amz-tagging-directive` | string (`COPY` or `REPLACE`) | A `REPLACE` overwrites original tags with new tags that is provided.
+`x-amz-copy-source-if-match` | String (`ETag`)| Creates a copy if the specified `ETag` matches the source object.
+`x-amz-copy-source-if-none-match` | String (`ETag`)| Creates a copy if the specified `ETag` is different from the source object.
+`x-amz-copy-source-if-unmodified-since` | String (time stamp)| Creates a copy if the source object has not been modified since the specified date. Date must be a valid HTTP date (for example, `Wed, 30 Nov 2016 20:21:38 GMT`).
+`x-amz-copy-source-if-modified-since` | String (time stamp)| Creates a copy if the source object has been modified since the specified date. Date must be a valid HTTP date (for example, `Wed, 30 Nov 2016 20:21:38 GMT`).
 
 **Example request**
 {: token}
@@ -768,14 +770,14 @@ Content-Length: 240
 ## Check an object's CORS configuration
 {: #object-operations-options}
 
-An `OPTIONS` request that is given a path to an object along with an origin and request type checks to see whether that object is accessible from that origin by using that request type. Unlike all other requests, an OPTIONS request does not require the `authorization` or `x-amx-date` headers.
+An `OPTIONS` given a path to an object along with an origin and request type checks to see whether that object is accessible from that origin by using that request type. Unlike all other requests, an OPTIONS request does not require the `authorization` or `x-amx-date` headers.
 
-Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
 
-```sh
+```bash
 OPTIONS https://{endpoint}/{bucket-name}/{object-name} # path style
 OPTIONS https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
@@ -820,6 +822,7 @@ Access-Control-Allow-Methods: PUT
 Access-Control-Allow-Credentials: true
 Vary: Origin, Access-Control-Request-Headers, Access-Control-Allow-Methods
 Content-Length: 0
+
 ```
 
 ----
@@ -827,16 +830,16 @@ Content-Length: 0
 ## Uploading objects in multiple parts
 {: #object-operations-multipart}
 
-When you're working with larger objects, multipart upload operations are recommended to write objects into {{site.data.keyword.cos_full_notm}}. An upload of a single object can be performed as a set of parts and these parts can be uploaded independently in any order or in parallel. Upon upload completion, {{site.data.keyword.cos_short}} presents all parts as a single object. Uploading objects this way provides many benefits: network interruptions do not cause large uploads to fail, uploads can be paused and restarted over time, and objects can be uploaded as they are being created.
+When working with larger objects, multipart upload operations are recommended to write objects into {{site.data.keyword.cos_full}}. An upload of a single object can be performed as a set of parts and these parts can be uploaded independently in any order and in parallel. Upon upload completion, {{site.data.keyword.cos_short}} then presents all parts as a single object. This provides many benefits: network interruptions do not cause large uploads to fail, uploads can be paused and restarted over time, and objects can be uploaded as they are being created.
 
 Multipart uploads are only available for objects larger than 5 MB. For objects smaller than 50 GB, a part size of 20 MB to 100 MB is recommended for optimum performance. For larger objects, part size can be increased without significant performance impact. 
 
-Due to the additional complexity involved, it is recommended that developers use a library that provides multipart upload support.
+Due to the additional complexity involved, it is recommended that developers make use of a library that provides multipart upload support.
 
 Incomplete multipart uploads do persist until the object is deleted or the multipart upload is aborted with `AbortIncompleteMultipartUpload`. If an incomplete multipart upload is not aborted, the partial upload continues to use resources. Interfaces should be designed with this point in mind, and clean up incomplete multipart uploads.
 {: tip}
 
-Uploading an object in multiple parts has three phases:
+There are three phases to uploading an object in multiple parts:
 
 1. The upload is initiated and an `UploadId` is created.
 2. Individual parts are uploaded specifying their sequential part numbers and the `UploadId` for the object.
@@ -845,17 +848,17 @@ Uploading an object in multiple parts has three phases:
 ## Initiate a multipart upload
 {: #object-operations-multipart-initiate}
 
-A `POST` request that is issued to an object with the query parameter `upload` creates an `UploadId` value, which is then referenced by each part of the object that is being uploaded.
+A `POST` issued to an object with the query parameter `upload` creates a new `UploadId` value, which is then be referenced by each part of the object being uploaded.
 
-Personally Identifiable Information (PII): When you're _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means.
+Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means.
 {: note}
 
-Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
 
-```sh
+```bash
 POST https://{endpoint}/{bucket-name}/{object-name}?uploads= # path style
 POST https://{bucket-name}.{endpoint}/{object-name}?uploads= # virtual host style
 ```
@@ -908,17 +911,17 @@ Content-Length: 276
 ## Upload a part
 {: #object-operations-multipart-put-part}
 
-A `PUT` request that is issued to an object with query parameters `partNumber` and `uploadId` uploads one part of an object. The parts can be uploaded serially or in parallel, but must be numbered in order.
+A `PUT` request that is issued to an object with query parameters `partNumber` and `uploadId` will upload one part of an object. The parts can be uploaded serially or in parallel, but must be numbered in order.
 
-Personally Identifiable Information (PII): When you're _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means. 
+Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means. 
 {: note}
 
-Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
 
-```sh
+```bash
 PUT https://{endpoint}/{bucket-name}/{object-name}?partNumber={sequential-integer}&uploadId={uploadId}= # path style
 PUT https://{bucket-name}.{endpoint}/{object-name}?partNumber={sequential-integer}&uploadId={uploadId}= # virtual host style
 ```
@@ -973,12 +976,12 @@ Content-Length: 0
 
 A `GET` given a path to a multipart object with an active `UploadID` specified as a query parameter returns a list of all of the object's parts.
 
-Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
 
-```sh
+```bash
 GET https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId} # path style
 GET https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId} # virtual host style
 ```
@@ -986,13 +989,12 @@ GET https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId} # virtual
 
 ### Query parameters
 {: #object-operations-multipart-list-params}
-
 | Parameter           | Required? | Type   | Description                                              |
 |---------------------|-----------|--------|----------------------------------------------------------|
-| `uploadId`          | Required  | String | Upload ID returned when a multipart upload is initializing. |
-| `max-parts`         | Optional  | String | Defaults to 1,000.                                      |
-| `part-number​-marker` | Optional  | String | Defines where the list of parts begins.                |
-{: caption="Table 9. Parameters" caption-side="bottom"}
+| `uploadId`          | Required  | string | Upload ID returned when initializing a multipart upload. |
+| `max-parts`         | Optional  | string | Defaults to 1,000.                                       |
+| `part-number​-marker` | Optional  | string | Defines where the list of parts begins.                  |
+{: caption="Table 5. Parameters" caption-side="top"}
 
 **Example request**
 {: token}
@@ -1059,14 +1061,14 @@ Content-Length: 743
 ## Complete a multipart upload
 {: #object-operations-multipart-complete}
 
-A `POST` request that is issued to an object with query parameter `uploadId` and the appropriate XML block in the body completes a multipart upload.
+A `POST` request that is issued to an object with query parameter `uploadId` and the appropriate XML block in the body will complete a multipart upload.
 
-Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
 
-```sh
+```bash
 POST https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId}= # path style
 POST https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # virtual host style
 ```
@@ -1076,11 +1078,11 @@ The body of the request must contain an XML block with the following schema:
 
 |Element|Type|Children|Ancestor|Constraint|
 |---|---|---|---|---|
-|`CompleteMultipartUpload` | Container | `Part` | - | - |
-|`Part`| Container | `PartNumber`, `ETag` | Delete | - |
-|`PartNumber`| String | - | `Object` | Valid part number |
-|`ETag`| String | - | `Object` | Valid `ETag` value string |
-{: caption="Table 10. Body of the request schema" caption-side="bottom"}
+|CompleteMultipartUpload | Container | Part | - | - |
+|Part| Container | PartNumber, `ETag` | Delete | - |
+|PartNumber| String | - | Object | Valid part number |
+|`ETag`| String | - | Object | Valid `ETag` value string |
+{: caption="Table 6. Body of the request schema" caption-side="top"}
 
 ```xml
 <CompleteMultipartUpload>
@@ -1160,17 +1162,17 @@ Content-Length: 364
 
 ----
 
-## Cancel incomplete multipart uploads
+## Abort incomplete multipart uploads
 {: #object-operations-multipart-uploads}
 
 A `DELETE` request issued to an object with query parameter `uploadId` deletes all unfinished parts of a multipart upload.
 
-Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
 
-```sh
+```bash
 DELETE https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId}= # path style
 DELETE https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # virtual host style
 ```
@@ -1216,18 +1218,18 @@ X-Clv-S3-Version: 2.5
 
 A `POST` request that is issued to an object with query parameter `restore` to request temporary restoration of an archived object. A `Content-MD5` header is required as an integrity check for the payload.
 
-An archived object must be restored before it can be downloaded or modified. The lifetime of the object must be specified after which the temporary copy of the object can be deleted.
+An archived object must be restored before downloading or modifying the object. The lifetime of the object must be specified after which the temporary copy of the object will be deleted.
 
-For buckets with a lifecycle policy transition storage class of `GLACIER`, a delay of up to 12 hours can occur before the restored copy is available for access. If the transition storage class was set to `ACCELERATED`, a delay of up to two hours can occur before the restored object is available. A HEAD request can check whether the restored copy is available.
+For buckets with a lifecycle policy transition storage class of `GLACIER`, there can be a delay of up to 12 hours before the restored copy is available for access. If the transition storage class was set to `ACCELERATED`, there can be a delay of up to two (2) hours before the restored object is available.  A HEAD request can check whether the restored copy is available.
 
 To permanently restore the object, it must be copied to a bucket that doesn't have an active lifecycle configuration.
 
-Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 **Syntax**
 
-```sh
+```bash
 POST https://{endpoint}/{bucket-name}/{object-name}?restore # path style
 POST https://{bucket-name}.{endpoint}/{object-name}?restore # virtual host style
 ```
@@ -1237,13 +1239,12 @@ POST https://{bucket-name}.{endpoint}/{object-name}?restore # virtual host style
 
 The body of the request must contain an XML block with the following schema:
 
-|Element              | Type      | Children                   | Ancestor             | Constraint |
-|---------------------|-----------|----------------------------|----------------------|------------------------------------|
-|`RestoreRequest`       | Container | `Days`, `GlacierJobParameters` | None                 | None
-|`Days`                 | Integer   | None                       | `RestoreRequest`       | Specifies the lifetime of the temporarily restored object. The minimum number of days that a restored copy of the object can exist is 1. After the restore period has elapsed, the temporary copy of the object is removed.|
-|`GlacierJobParameters` | String    | `Tier`                       | `RestoreRequest`       | None
-|`Tier`                 | String    | None                       | `GlacierJobParameters` | Optional, and if it is left blank, it defaults to the value that is associated with the storage tier of the policy that was in place when the object was written. If this value is not left blank, it **must** be set to `Bulk` if the transition storage class for the bucket's lifecycle policy was set to `GLACIER`, and **must** be set to `Accelerated` if the transition storage class was set to `ACCELERATED`.|
-{: caption="Table 11. Payload elements" caption-side="bottom"}
+Element              | Type      | Children                   | Ancestor             | Constraint
+---------------------|-----------|----------------------------|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RestoreRequest       | Container | Days, GlacierJobParameters | None                 | None
+Days                 | Integer   | None                       | RestoreRequest       | Specified the lifetime of the temporarily restored object. The minimum number of days that a restored copy of the object can exist is 1. After the restore period has elapsed, temporary copy of the object will be removed.
+GlacierJobParameters | String    | Tier                       | RestoreRequest       | None
+Tier                 | String    | None                       | GlacierJobParameters | Optional, and if left blank will default to the value associated with the storage tier of the policy that was in place when the object was written. If this value is not left blank, it **must** be set to `Bulk` if the transition storage class for the bucket's lifecycle policy was set to `GLACIER`, and **must** be set to `Accelerated` if the transition storage class was set to `ACCELERATED`.
 
 ```xml
 <RestoreRequest>
@@ -1308,25 +1309,25 @@ X-Clv-S3-Version: 2.5
 ## Updating metadata
 {: #object-operations-metadata}
 
-You can update the metadata on an existing object in two ways:
+There are two ways to update the metadata on an existing object:
 
-* Making a `PUT` request with the new metadata and the original object contents
+* A `PUT` request with the new metadata and the original object contents
 * Running a `COPY` request with the new metadata specifying the original object as the copy source
 
-All metadata keys must be prefixed with `x-amz-meta-`.
+All metadata key must be prefixed with `x-amz-meta-`
 {: tip}
 
-Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
+Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
 ### Using PUT to update metadata
 {: #object-operations-metadata-put}
 
-The `PUT` request requires a copy of the existing object as the contents are overwritten. {: important}
+The `PUT` request requires a copy of existing object as the contents are overwritten. {: important}
 
 **Syntax**
 
-```sh
+```bash
 PUT https://{endpoint}/{bucket-name}/{object-name} # path style
 PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
@@ -1399,7 +1400,7 @@ The complete details about the `COPY` request are [here](#object-operations-copy
 
 **Syntax**
 
-```sh
+```bash
 PUT https://{endpoint}/{bucket-name}/{object-name} # path style
 PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```

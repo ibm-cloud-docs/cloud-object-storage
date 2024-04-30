@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-24"
+lastupdated: "2024-04-23"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -268,8 +268,8 @@ To create a bucket with a different storage class, send an XML block that specif
 Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
-|Header                    | Type   | Description |
-|--------------------------|--------|------------------------------------------------------------------------------------|
+||Header                    | Type   | Description |
+|--------------------------|--------|---------------------------------------------------------------------------------------------------------------------
 |`ibm-service-instance-id` | String | This header references the service instance where the bucket is to be created and to which data usage can be billed.
 {: caption="Table 6. Headers" caption-side="bottom"}
 
@@ -2427,7 +2427,7 @@ DELETE mybucket?inventory&id=myid HTTP/1.1
 
 ----
 
-## Next steps
+## Next Steps
 {: #api-ref-buckets-next-steps}
 
 For more information, see [Object operations](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations).
