@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020, 2024
-lastupdated: "2024-04-29"
+lastupdated: "2024-04-18"
 
 keywords: object storage, static website, options
 
@@ -37,7 +37,7 @@ Creating static website hosting in {{site.data.keyword.cos_full_notm}} can be ac
 
 Hosting a static website on {{site.data.keyword.cos_full}} starts with [creating a bucket](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial#static-website-create-public-bucket) and configuring it for public access. Then, [upload](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial#static-website-upload-content) your website content to your bucket. Finally, [configure the website](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial#static-website-configure-options) to use your documents as an index for the site and to potentially display errors.
 
-At minimum, your configuration should consist of a required index document for visitors to view by default, usually written in HTML and named `index.html`. An optional error document can help your visitors stay on track when they stray. Of course, you can always try for yourself using [this tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial).
+At minimum, your configuration should consist of a required index document for visitors to view by default, usually written in HTML and named `index.html`. An optional error document can help your visitors stay on track when they stray. Of course, you can always try for yourself using [this tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial). 
 
 ## Advanced Configuration
 {: #static-websites-options-adv-conf}
@@ -47,7 +47,7 @@ When you create and configure a new hosted static website, you may also wish to 
 ![Configure options](images/cos-sw-ui-complete-config.jpg){: caption="Figure 1. Initial configuration options"}
 
 ### Routing
-{: #static-websites-options-adv-conf-routing}
+{: #static-websites-options-adv-conf}
 
 Routing gives you control over the requests coming from your visitors. For example, you could globally redirect all your traffic from using one protocol to another, like replacing HTTP with the secure HTTPS. Or, you can create individual rules that process incoming requests for specific files and provide responses to your visitors based on the rules you define.
 
@@ -82,16 +82,16 @@ The same rule codified previously can be added as an individual rule using the C
 ### {{site.data.keyword.cloud_notm}} Internet, Domain, and Delivery Services
 {: #static-websites-options-cdn}
 
-One of the benefits of using {{site.data.keyword.cis_full_notm}} pertains to [setting up your own domains](/docs/cis?topic=cis-set-up-your-dns-for-cis). A "domain" is part of the overall web address, consisting of a Top Level Domain (TLD) and one or more unique words separated by dots, like `example.com` where the TLD is `com`. You can choose to skip this step, but if your DNS records are not configured properly using {{site.data.keyword.cis_short_notm}} (or other service providing domain name resolution), it might leave all or part of your website inaccessible.
+One of the benefits of using {{site.data.keyword.cis_full_notm}} pertains to [setting up your own domains](/docs/cis?topic=cis-set-up-your-dns-for-cis). A "domain" is part of the overall web address, consisting of a Top Level Domain (TLD) and one or more unique words separated by dots, like `example.com` where the TLD is `com`. You can choose to skip this step, but if your DNS records are not configured properly using {{site.data.keyword.cis_short_notm}} (or other service providing domain name resolution), it might leave all or part of your website inaccessible. 
 
-Static websites are meant to be fast and secure. Serving up static content is easy with the right tools that deliver the content to your customers. Many deployment tools have built-in support for CDN support. Getting started configuring your domains using [{{site.data.keyword.cis_full}}](/docs/cis?topic=cis-resolve-override-cos). When creating redirect rules, you will be adding a `CNAME`, a "canonical (domain) name", or alias. Just like files on an operating system can have an alias for convenience, your hosted static website can be just as convenient.
+Static websites are meant to be fast and secure. Serving up static content is easy with the right tools that deliver the content to your customers. Many deployment tools have built-in support for CDN support. Getting started configuring your domains using [{{site.data.keyword.cis_full}}](/docs/cis?topic=cis-resolve-override-cos). When creating redirect rules, you will be adding a `CNAME`, a "canonical (domain) name", or alias. Just like files on an operating system can have an alias for convenience, your hosted static website can be just as convenient. 
 
 The process for delivering static content through dedicated networks starts with this [overview of CDN options](https://www.ibm.com/cloud/cdn). Content Delivery moves your static content closer to your customer's own location, extending your reach without having to manage copies of your content.
 
 ## Endpoints for hosting static website content
 {: #static-websites-options-more-endpoints}
 
-The following tables match most of the regions, locations, and type of connections used in {{site.data.keyword.cos_full_notm}} to the new specific endpoints used for sourcing and testing hosted static websites. For tethered endpoints not listed here, find more information on [using tethered endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-advanced-endpoints).
+The following tables match most of the regions, locations, and type of connections used in {{site.data.keyword.cos_full_notm}} to the new specific endpoints used for sourcing and testing hosted static websites. For tethered endpoints not listed here, find more information on [using tethered endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-advanced-endpoints). 
 
 ### Regional endpoints
 {: #static-websites-options-regional-endpoints}

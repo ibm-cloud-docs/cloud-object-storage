@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-04-24"
+lastupdated: "2024-04-17"
 
 keywords: file system, gateway, file access
 
@@ -50,7 +50,7 @@ IBM Cloud Object Storage File Access solution performance depends upon the under
 {: note}
 
 ### Software requirements
-{: #fa-gateway-requirements-software}
+{: #fa-gateway-requirements-hardware}
 
 Hypervisor requirements
 
