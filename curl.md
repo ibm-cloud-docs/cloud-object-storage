@@ -19,9 +19,9 @@ subcollection: cloud-object-storage
 You can get the most out working with the command line in most environments with {{site.data.keyword.cos_full}} and `cURL`.  
 {: shortdesc}
 
-Here's a 'cheat sheet' of basic `curl` commands for the {{site.data.keyword.cos_full}} REST API. More detail can be found in the API reference for [buckets](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations) or [objects](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-object-operations).
+Here's a 'cheat sheet' of basic `curl` commands for the {{site.data.keyword.cos_full}} REST API. More detail can be found in the API reference for [buckets](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations) or [objects](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations).
 
-Using `curl` assumes a certain amount of familiarity with the command line and Object Storage, and have the necessary information from a [service credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the [endpoints reference](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints), or the [console](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). If any terms or variables are unfamiliar, they can be found in the [glossary](/docs/overview?topic=overview-glossary).
+Using `curl` assumes a certain amount of familiarity with the command line and Object Storage, and have the necessary information from a [service credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), the [endpoints reference](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints), or the [console](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). If any terms or variables are unfamiliar, they can be found in the [glossary](/docs/overview?topic=overview-glossary).
 
 **Note**: Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means. 
 {:tip}
@@ -88,7 +88,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)"
 ```
 {:codeblock}
 
-A list of valid codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/cloud-object-storage/iam?topic=cloud-object-storage-classes#classes-locationconstraint).
+A list of valid codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint).
 
 ## Create a bucket CORS
 {: #curl-new-cors}
@@ -355,7 +355,7 @@ curl -X "DELETE" "https://(endpoint)/(bucket-name)/(object-key)?uploadId"
 ## Configure a Static Website
 {: #curl-configure-static-web}
 
-```bash
+```sh
 curl --location --request PUT 'https://<endpoint>/<bucketname>?website' \
 --header 'Authorization: bearer <token>' --header 'ibm-service-instance-id: <resource_instance_id> \
 --header 'Content-MD5: <hashed-output>' --header 'Content-Type: text/plain' \

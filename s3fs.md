@@ -28,7 +28,7 @@ Looking for instructions for how to use {{site.data.keyword.cos_full}} in an {{s
 
 * IBM Cloud account and an instance of {{site.data.keyword.cos_full}}
 * A Linux or macOS environment
-* Credentials (either an [IAM API key](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview) or [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main))
+* Credentials (either an [IAM API key](/docs/cloud-object-storage?topic=cloud-object-storage-iam-overview) or [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main))
 
 ## Installation
 {: #s3fs-install}
@@ -117,7 +117,6 @@ Now you can mount a bucket using:
 ```sh
 s3fs <bucket> <mountpoint> -o url=http{s}://<endpoint> -o passwd_file=<credentials_file>
 ```
-
 {: codeblock}
 
 If the credentials file only has an API key (no HMAC credentials), you'll need to add the `ibm_iam_auth` flag as well:
@@ -125,10 +124,9 @@ If the credentials file only has an API key (no HMAC credentials), you'll need t
 ```sh
 s3fs <bucket> <mountpoint> -o url=http{s}://<endpoint> -o passwd_file=<credentials_file> -o ibm_iam_auth
 ```
-
 {: codeblock}
 
-The `<bucket>` in the example refers to an existing bucket and the `<mountpoint>` is the local path where you want to mount the bucket. The `<endpoint>` must correspond to the [bucket's location](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints). The `credentials_file` is the file created with the API key or HMAC credentials.
+The `<bucket>` in the example refers to an existing bucket and the `<mountpoint>` is the local path where you want to mount the bucket. The `<endpoint>` must correspond to the [bucket's location](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints). The `credentials_file` is the file created with the API key or HMAC credentials.
 
 Now, `ls <mountpoint>` will list the objects in that bucket as if they were local files (or in the case of object prefixes, as if they were nested directories).
 

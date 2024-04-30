@@ -58,7 +58,7 @@ A `POST` issued to an object with the query parameter `upload` creates a new `Up
 **Syntax**
 {: http}
 
-```bash
+```sh
 POST https://{endpoint}/{bucket-name}/{object-name}?uploads= # path style
 POST https://{bucket-name}.{endpoint}/{object-name}?uploads= # virtual host style
 ```
@@ -114,7 +114,7 @@ A `PUT` request that is issued to an object with query parameters `partNumber` a
 **Syntax**
 {: http}
 
-```bash
+```sh
 PUT https://{endpoint}/{bucket-name}/{object-name}?partNumber={sequential-integer}&uploadId={uploadId}= # path style
 PUT https://{bucket-name}.{endpoint}/{object-name}?partNumber={sequential-integer}&uploadId={uploadId}= # virtual host style
 ```
@@ -160,7 +160,7 @@ A `POST` request that is issued to an object with query parameter `uploadId` and
 **Syntax**
 {: http}
 
-```bash
+```sh
 POST https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId}= # path style
 POST https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # virtual host style
 ```
@@ -244,7 +244,7 @@ A `DELETE` request issued to an object with query parameter `uploadId` deletes a
 **Syntax**
 {: http}
 
-```bash
+```sh
 DELETE https://{endpoint}/{bucket-name}/{object-name}?uploadId={uploadId}= # path style
 DELETE https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # virtual host style
 ```
@@ -388,8 +388,8 @@ upload: 'bigfile.pdf' -> 's3://backuptest/bigfile.pdf'  [part 4 of 4, 4MB] [1 of
 The Java SDK provides two ways to run large object uploads:
 {: java}
 
-* [Multipart Uploads](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java#java-examples-multipart-object)
-* [TransferManager](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java#java-examples-transfer-manager)
+* [Multipart Uploads](/docs/cloud-object-storage?topic=cloud-object-storage-java#java-examples-multipart-object)
+* [TransferManager](/docs/cloud-object-storage?topic=cloud-object-storage-java#java-examples-transfer-manager)
 {: codeblock}
 {: java}
 
@@ -400,8 +400,8 @@ The Java SDK provides two ways to run large object uploads:
 The Python SDK provides two ways to run large object uploads:
 {: python}
 
-* [Multipart Uploads](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python#python-examples-multipart)
-* [TransferManager](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python#python-examples-multipart-transfer)
+* [Multipart Uploads](/docs/cloud-object-storage?topic=cloud-object-storage-python#python-examples-multipart)
+* [TransferManager](/docs/cloud-object-storage?topic=cloud-object-storage-python#python-examples-multipart-transfer)
 {: codeblock}
 {: python}
 
@@ -412,6 +412,6 @@ The Python SDK provides two ways to run large object uploads:
 The Node.js SDK provides a single way to run large object uploads:
 {: javascript}
 
-* [Multipart Uploads](/docs/cloud-object-storage/iam?topic=cloud-object-storage-node#node-examples-multipart)
+* [Multipart Uploads](/docs/cloud-object-storage?topic=cloud-object-storage-node#node-examples-multipart)
 {: codeblock}
 {: javascript}

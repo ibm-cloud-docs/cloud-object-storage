@@ -40,14 +40,14 @@ The {{site.data.keyword.cos_full_notm}} SDK for Go is comprehensive, with many f
 
 Use `go get` to retrieve the SDK to add it to your GOPATH workspace, or project's Go module dependencies. The SDK requires a minimum version of Go 1.10 and maximum version of Go 1.12. Future versions of Go will be supported once our quality control process has been completed.
 
-```bash
+```sh
 go get github.com/IBM/ibm-cos-sdk-go
 ```
 {: pre}
 
 To update the SDK use `go get -u` to retrieve the latest version of the SDK.
 
-```bash
+```sh
 go get -u github.com/IBM/ibm-cos-sdk-go
 ```
 {: pre}
@@ -71,7 +71,7 @@ import (
 
 To connect to {{site.data.keyword.cos_full_notm}}, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
 
-The credentials can be found by creating a [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), or through the CLI.
+The credentials can be found by creating a [Service Credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), or through the CLI.
 
 Figure 1 shows an example of how to define environment variables in an application runtime at the {{site.data.keyword.cos_full_notm}} portal. The required variables are `IBM_API_KEY_ID` containing your Service Credential `apikey`, `IBM_SERVICE_INSTANCE_ID` holding the `resource_instance_id` also from your Service Credential, and an `IBM_AUTH_ENDPOINT` with a value appropriate to your account, like `https://iam.cloud.ibm.com/identity/token`. If using environment variables to define your application credentials, use `WithCredentials(ibmiam.NewEnvCredentials(aws.NewConfig())).`, replacing the similar method used in the configuration example.
 
@@ -140,7 +140,6 @@ func main() {
     fmt.Println(d)
 }
 ```
-
 {: codeblock}
 
 ### List available buckets
@@ -159,7 +158,6 @@ func main() {
 }
 
 ```
-
 {: codeblock}
 
 ### Upload an object to a bucket
@@ -188,7 +186,6 @@ func main() {
     fmt.Println(result)
 }
 ```
-
 {: codeblock}
 
 ### List items in a bucket (List Objects V2)
@@ -238,7 +235,6 @@ func main() {
 //}
 
 ```
-
 {: codeblock}
 
 ### Get an object's contents
@@ -268,7 +264,6 @@ func main() {
 }
 
 ```
-
 {: codeblock}
 
 ### Delete an object from a bucket
@@ -289,7 +284,6 @@ func main() {
     fmt.Println(d)
 }
 ```
-
 {: codeblock}
 
 ### Delete multiple objects from a bucket
@@ -327,7 +321,6 @@ func main() {
     fmt.Println(d)
 }
 ```
-
 {: codeblock}
 
 ### Delete a bucket
@@ -350,7 +343,6 @@ func main() {
     fmt.Println(d)
 }
 ```
-
 {: codeblock}
 
 ### Run a manual multi-part upload
@@ -403,7 +395,6 @@ func main() {
     fmt.Println(d)
 }
 ```
-
 {: codeblock}
 
 ### Using Key Protect
@@ -455,7 +446,6 @@ func main() {
     fmt.Println(d)
 }
 ```
-
 {: codeblock}
 
 #### Key Values
@@ -507,7 +497,6 @@ func main() {
     fmt.Println(f)
 }
 ```
-
 {: codeblock}
 
 ### Getting an extended listing
@@ -526,7 +515,6 @@ func main() {
         fmt.Println(string(jsonBytes))
 }
 ```
-
 {: codeblock}
 
 #### Key Values
@@ -633,7 +621,6 @@ func main() {
 }
 
 ```
-
 {: codeblock}
 
 The typical response is exemplified here.
@@ -653,7 +640,6 @@ The typical response is exemplified here.
      }]
  }
 ```
-
 {: codeblock}
 
 ### Immutable Object Storage
@@ -708,7 +694,6 @@ func main() {
 }
 
 ```
-
 {: codeblock}
 
 The typical response is exemplified here.
@@ -730,7 +715,6 @@ The typical response is exemplified here.
  }
 
 ```
-
 {: codeblock}
 
 ### Create a hosted static website
@@ -773,7 +757,6 @@ func main() {
 
 }
 ```
-
 {: codeblock}
 
 ## Next Steps

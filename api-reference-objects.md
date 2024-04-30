@@ -25,7 +25,7 @@ For more information about endpoints, see [Endpoints and storage locations](/doc
 ## A note about Access/Secret Key (HMAC) authentication
 {: #object-operations-hmac}
 
-When authenticating to your instance of {{site.data.keyword.cos_full_notm}} by [using HMAC credentials](/docs/cloud-object-storage/iam?topic=cloud-object-storage-uhc-hmac-credentials-main), you need the information that is represented in Table 1 when [constructing an HMAC signature](/docs/cloud-object-storage/iam?topic=cloud-object-storage-hmac-signature).
+When authenticating to your instance of {{site.data.keyword.cos_full_notm}} by [using HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main), you need the information that is represented in Table 1 when [constructing an HMAC signature](/docs/cloud-object-storage?topic=cloud-object-storage-hmac-signature).
 
 |Key|Value|Example|
 |---|---|---|
@@ -324,7 +324,7 @@ When an object that is specified in the request is not found the result returns 
 Not all operations are supported in Satellite environments. For more information, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
-Multiple object deletes involve a `POST operation` that is charged as Class A. The cost of the `POST` request for multiple deletes varies depending on the storage class of the objects, and the amount of data that is deleted. For more information about pricing, see the [IBM Cloud Object Storage pricing page](https://cloud.ibm.com/objectstorage/create#pricing).
+Multiple object deletes involve a `POST operation` that is charged as Class A. The cost of the `POST` request for multiple deletes varies depending on the storage class of the objects, and the amount of data that is deleted. For more information about pricing, see the [IBM Cloud Object Storage pricing page](/objectstorage/create#pricing).
 {: note}
 
 ### Optional Elements

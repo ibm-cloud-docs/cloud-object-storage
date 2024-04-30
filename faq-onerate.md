@@ -75,7 +75,7 @@ Asia Pacific:
 {: #faq-onerate-price-diff}
 {: faq}
 
-The pricing rates are same for North America and Europe, similarly for South America and Asia Pacific. See [One Rate pricing plan details](https://cloud.ibm.com/objectstorage/create#pricing).
+The pricing rates are same for North America and Europe, similarly for South America and Asia Pacific. See [One Rate pricing plan details](/objectstorage/create#pricing).
 
 ## Are all Cloud Object Storage features available in the One-Rate Plan?
 {: #faq-onerate-features}
@@ -129,13 +129,13 @@ There is no data retrieval charge for the One Rate Active buckets.
 {: #faq-onerate-exceed-allowance}
 {: faq}
 
-For any usage (Outbound bandwidth or Operational requests) that exceeds the allowance determined by aggregated monthly capacity, a small overage fee applies based on the One Rate pricing regions. See [One Rate pricing plan details](https://cloud.ibm.com/objectstorage/create#pricing).
+For any usage (Outbound bandwidth or Operational requests) that exceeds the allowance determined by aggregated monthly capacity, a small overage fee applies based on the One Rate pricing regions. See [One Rate pricing plan details](/objectstorage/create#pricing).
 
 ## Is the overage pricing tiered for Outbound bandwidth and Operational requests?
 {: #faq-onerate-tiers}
 {: faq}
 
-No, the overage pricing for the One Rate plan has flat rates regardless of excess usage. See [One Rate pricing plan details](https://cloud.ibm.com/objectstorage/create#pricing).
+No, the overage pricing for the One Rate plan has flat rates regardless of excess usage. See [One Rate pricing plan details](/objectstorage/create#pricing).
 
 ## I already have a Cloud Object Storage Standard plan in my IBM Cloud account. Can I add a One Rate plan for my new workloads?
 {: #faq-onerate-new-workload}

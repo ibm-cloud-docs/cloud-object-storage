@@ -22,19 +22,19 @@ The document describes the regions where services and the different kinds of ava
 
 For more information about the following services, be sure to check out the respective links:
 
-* [Aspera high-speed transfer](/docs/cloud-object-storage/basics?topic=cloud-object-storage-aspera)
+* [Aspera high-speed transfer](/docs/cloud-object-storage?topic=cloud-object-storage-aspera)
 * [Key Protect (SSE-KP)](/docs/cloud-object-storage?topic=cloud-object-storage-kp)
 * [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs)
-* [Archive Data](/docs/cloud-object-storage/basics?topic=cloud-object-storage-archive)
-* [Object Lock](/docs/cloud-object-storage/basics?topic=cloud-object-storage-ol-overview)
-* [Immutable Object Storage](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable)
+* [Archive Data](/docs/cloud-object-storage?topic=cloud-object-storage-archive)
+* [Object Lock](/docs/cloud-object-storage?topic=cloud-object-storage-ol-overview)
+* [Immutable Object Storage](/docs/cloud-object-storage?topic=cloud-object-storage-immutable)
 * [Activity Tracker](/docs/activity-tracker?topic=activity-tracker-getting-started)
 * [Functions](/docs/cloud-object-storage?topic=cloud-object-storage-functions)
 * [Code Engine](/docs/cloud-object-storage?topic=cloud-object-storage-code-engine)
-* [Smart Tier](/docs/cloud-object-storage?topic=cloud-object-storage-billing#smart-tier-pricing-details)
+* [Smart Tier](/docs/cloud-object-storage?topic=cloud-object-storage-billing#smart-tier-pricing)
 * [Monitoring](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration)
 
-Downloads that use Aspera high-speed transfer incur extra egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage).
+Downloads that use Aspera high-speed transfer incur extra egress charges. For more information, see the [pricing page](https://www.ibm.com/products/cloud-object-storage).
 {: tip}
 
 ## Cross Region
