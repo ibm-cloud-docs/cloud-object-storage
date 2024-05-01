@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-02-20"
+lastupdated: "2024-04-12"
 
-keywords: aspera, high speed, big data, packet loss
+keywords: aspera, high speed, big data, packet loss, sdk
 
 subcollection: cloud-object-storage
 
@@ -21,7 +21,7 @@ Aspera high-speed transfer overcomes the limitations of traditional FTP and HTTP
 This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
 {: note}
 
-Instead of the standard HTTP `PUT` operation, Aspera high-speed transfer uploads the object by using the [FASP protocol](https://www.ibm.com/products/aspera/technology){: external}. Using Aspera high-speed transfer for uploads and downloads offers the following benefits:
+Instead of the standard HTTP `PUT` operation, Aspera high-speed transfer uploads the object by using the [FASP protocol](https://www.ibm.com/products/aspera){: external}. Using Aspera high-speed transfer for uploads and downloads offers the following benefits:
 
 - Faster transfer speeds
 - Transfer large object uploads over 200 MB in the console and 1 GB by using an SDK or library
@@ -29,9 +29,9 @@ Instead of the standard HTTP `PUT` operation, Aspera high-speed transfer uploads
 - Customize transfer speeds and default preferences
 - Transfers can be viewed, paused, resumed, or cancelled independently
 
-Aspera high-speed transfer is available in the {{site.data.keyword.cloud_notm}} [console](#aspera-console) and can also be used programmatically by using an [SDK](#aspera-sdk).
+Aspera high-speed transfer is available in the {{site.data.keyword.cloud_notm}} [console](#aspera-console) and can also be used programmatically by using the [Aspera Transfer SDK](https://developer.ibm.com/apis/catalog/aspera--aspera-transfer-sdk){: external}.
 
-Aspera high-speed transfer is available in certain regions only. See [Integrated Services](/docs/cloud-object-storage/basics?topic=cloud-object-storage-service-availability) for more details.
+Aspera high-speed transfer is available in certain regions only. See [Integrated Services](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability) for more details.
 {: tip}
 
 It isn't possible to use Aspera high-speed transfer if a targeted bucket has an [Immutable Object Storage](/docs/cloud-object-storage?topic=cloud-object-storage-immutable) policy.
@@ -40,7 +40,7 @@ It isn't possible to use Aspera high-speed transfer if a targeted bucket has an 
 ## Using the console
 {: #aspera-console}
 
-If you add objects by using the console in a [supported region](/docs/cloud-object-storage/basics?topic=cloud-object-storage-service-availability), you are prompted with an option to install the Aspera Connect client. This browser plug-in provides Aspera high-speed transfer to upload files or folders.
+If you add objects by using the console in a [supported region](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability), you are prompted with an option to install the Aspera Connect client. This browser plug-in provides Aspera high-speed transfer to upload files or folders.
 
 ### Install Aspera Connect
 {: #aspera-install}
@@ -67,7 +67,7 @@ An Aspera server runs one SSH server on a configurable TCP port (33001 by defaul
 
 **Preferences:** You can set the default for uploads and downloads to High speed.
 
-Downloads that use Aspera high-speed transfer incur egress charges. For more information, see the [pricing page](https://cloud.ibm.com/objectstorage/create#pricing).
+Downloads that use Aspera high-speed transfer incur egress charges. For more information, see the [pricing page](/objectstorage/create#pricing).
 {: tip}
 
 **Advanced Preferences:** You can set bandwidth for uploads and downloads.

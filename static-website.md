@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020, 2024
-lastupdated: "2024-03-25"
+lastupdated: "2024-04-18"
 
 keywords: static website, hosting, tutorial
 
@@ -34,7 +34,7 @@ Hosting static websites with {{site.data.keyword.cos_full_notm}} serves static c
 ## The Scenario
 {: #static-website-scenario}
 
-The scenario for this tutorial simplifies web hosting to its essentials in order to highlight the steps involved. While not every configuration option will be covered in this tutorial, correctly completing this tutorial results in web-accessible content.
+The scenario for this tutorial simplifies web hosting to its essentials to highlight the steps involved. While not every configuration option will be covered in this tutorial, correctly completing this tutorial results in web-accessible content.
 
 ## Before you start
 {: #static-website-before-you-start}
@@ -62,7 +62,7 @@ Creating a bucket for a static website will require public access. There are a n
 After configuring the CLI plug-in, replace the placeholder content as shown in the example command to create a bucket:
 {: cli}
 
-```
+```sh
 ibmcloud cos bucket-create --bucket <bucketname>
 ```
 {: pre}
@@ -91,7 +91,7 @@ When creating a bucket for hosting Static Website content, there is an option to
 ## Upload content to your bucket
 {: #static-website-upload-content}
 
-The content of your hosted static website files focuses naturally on information and media. A popular approach to creating content for static websites are open source generators listed at [StaticGen](https://www.staticgen.com){: external}. For the purpose of this tutorial, we only need two files:
+The content of your hosted static website files focuses naturally on information and media. A popular approach to creating content for static websites are open source generators listed at [StaticGen](https://jamstack.org/generators/){: external}. For the purpose of this tutorial, we only need two files:
 
 - An index page, typically written in HTML and named `index.html`, that loads by default for visitors to your site
 - An error page, also in HTML and here named `error.html`; typically the error page is loaded when a visitor tries to access an object that isn't present or doesn't have public access
@@ -101,7 +101,7 @@ Other files, like images, PDFs, or videos, can also be uploaded to your bucket (
 For the purpose of this tutorial, place the HTML pages for the index and error handling in a local directory. Replace the placeholder content as shown in the example command to upload your html files:
 {: cli}
 
-```
+```sh
 ibmcloud cos object-put --bucket BUCKET_NAME --key KEY [--body FILE_PATH]
 ```
 {: pre}
@@ -142,7 +142,7 @@ ibmcloud cos bucket-website-put --bucket BUCKET_NAME --website-configuration fil
 {: pre}
 {: cli}
 
-You may have completed this step during the creation of your bucket, as the basic configuration for your hosted static website determines when and how content is shown. For visitors to your website who fail to provide a key, or webpage, the default file will be shown instead. When your users encounter an error, the key for the error page determines what content visitors will receive. The configuration options for the default and error pages are repeated for reference.
+You may have completed this step during the creation of your bucket, as the basic configuration for your hosted static website determines when and how content is shown. For visitors to your website who fail to provide a key, or web page, the default file will be shown instead. When your users encounter an error, the key for the error page determines what content visitors will receive. The configuration options for the default and error pages are repeated for reference.
 {: ui}
 
 ![Configure options](images/cos-sw-ui-complete-config.jpg){: ui}

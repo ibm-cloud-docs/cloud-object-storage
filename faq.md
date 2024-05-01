@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-10"
+lastupdated: "2024-04-17"
 
 
 keywords: faq, frequently asked questions, object storage, S3, HMAC
@@ -45,7 +45,7 @@ Yes, you can use your existing tools to read and write data into {{site.data.key
 {: #faq-aws-sdk}
 {: faq}
 
-{{site.data.keyword.cos_full_notm}} supports the most commonly used subset of Amazon S3 API operations. IBM makes a sustained best effort to ensure that the {{site.data.keyword.cos_full_notm}} APIs stay compatible with the industry standard S3 API. {{site.data.keyword.cos_full_notm}} also produces several native core COS SDKs that are derivatives of publicly available AWS SDKs. These core COS SDKs are explicitly tested on each new {{site.data.keyword.cos_full_notm}} upgrade. When using AWS SDKs, use HMAC authorization and an explicit endpoint. For details, see [About IBM COS SDKs](/docs/cloud-object-storage/basics?topic=cloud-object-storage-sdk-about).
+{{site.data.keyword.cos_full_notm}} supports the most commonly used subset of Amazon S3 API operations. IBM makes a sustained best effort to ensure that the {{site.data.keyword.cos_full_notm}} APIs stay compatible with the industry standard S3 API. {{site.data.keyword.cos_full_notm}} also produces several native core COS SDKs that are derivatives of publicly available AWS SDKs. These core COS SDKs are explicitly tested on each new {{site.data.keyword.cos_full_notm}} upgrade. When using AWS SDKs, use HMAC authorization and an explicit endpoint. For details, see [About IBM COS SDKs](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-about).
 
 ## Is there a 100-bucket limit to an account? What happens if I need more?
 {: #faq-bucket-limit}
@@ -141,13 +141,13 @@ It is possible to overwrite an existing bucket. Restore options depend on the ca
 {: #faq-cos-web}
 {: faq}
 
-Web browsers can display web content in IBM Cloud Object Storage files, using the COS endpoint as the file location. To create a functioning website, however, you need to set up a web environment; for example, elements such as a CNAME record. IBM Cloud Object Storage does not support automatic static website hosting.  For information, see [Static websites](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-public-access#public-access-static-website) and this [tutorial](https://www.ibm.com/cloud/blog/static-websites-cloud-object-storage-cos).
+Web browsers can display web content in IBM Cloud Object Storage files, using the COS endpoint as the file location. To create a functioning website, however, you need to set up a web environment; for example, elements such as a CNAME record. IBM Cloud Object Storage does not support automatic static website hosting.  For information, see [Static websites](/docs/cloud-object-storage?topic=cloud-object-storage-iam-public-access#public-access-static-website) and this [tutorial](https://www.ibm.com/cloud/blog/static-websites-cloud-object-storage-cos).
 
 ## If I set an archive policy on an existing bucket, does the policy apply to existing files?
 {: #faq-archive}
 {: faq}
 
-The policy applies to the new objects uploaded but does not affect existing objects on a bucket. For details, see [Add or manage an archive policy on a bucket](/docs/cloud-object-storage/basics?topic=cloud-object-storage-archive#archive-add).
+The policy applies to the new objects uploaded but does not affect existing objects on a bucket. For details, see [Add or manage an archive policy on a bucket](/docs/cloud-object-storage?topic=cloud-object-storage-archive#archive-add).
 
 ## Can I unzip a file after I upload it?
 {: #faq-unzip}
@@ -179,9 +179,10 @@ However, if the issue persists, contact IBM customer support.
 {: faq}
 
 You can check the communication with Object Storage by using one of the following:
-* Use a `COS API HEAD` call to a bucket that will return the headers for that bucket. See [api-head-bucket](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-head-bucket).
 
-* Use SDK : See [headbucket property](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#headBucket-property).
+* Use a `COS API HEAD` call to a bucket that will return the headers for that bucket. See [api-head-bucket](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-head-bucket).
+
+* Use SDK : See [`headbucket` property](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#headBucket-property){: external}.
 
 ## Can I migrate a bucket from one COS instance to another?
 {: #faq-create-bucket}
@@ -194,7 +195,7 @@ Yes, You can achieve the same by creating a bucket in the target Object Storage 
 {: #faq-locked-account}
 {: faq}
 
-Exceeding the data limit for the Lite account is one of the reasons why your account is locked or deactived. The [COS support](https://cloud.ibm.com/unifiedsupport/cases/form) team can help to unlock your account.
+Exceeding the data limit for the Lite account is one of the reasons why your account is locked or deactivated. The [COS support](https://cloud.ibm.com/unifiedsupport/cases/form) team can help to unlock your account.
 
 * The lite plan account can be activated only once.
 
@@ -246,13 +247,13 @@ Yes, Object Storage is HIPAA compliant.
 {: #faq-accel-data}
 {: faq}
 
-{{site.data.keyword.cos_short}} offers [**Aspera**](https://www.ibm.com/cloud/object-storage/aspera) service for high speed data transfer.
+{{site.data.keyword.cos_short}} offers [**Aspera**](https://www.ibm.com/products/cloud-object-storage/aspera) service for high speed data transfer.
 
 ## How can I compare various attributes of an object in two different buckets?
 {: #faq-comp-attributes}
 {: faq}
 
-Use [Rclone](https://rclone.org/commands/rclone_check). It enables you to compare various attributes.
+Use [`rclone`](https://rclone.org/commands/rclone_check){: external}. It enables you to compare various attributes.
 
 ## What is the default retention period for buckets?
 {: #faq-default-retention}
@@ -282,19 +283,19 @@ Use {{site.data.keyword.cos_short}} [Direct Link Connection](/docs/direct-link?t
 {: #faq-access-price}
 {: faq}
 
-Storage cost for {{site.data.keyword.cos_short}} is determined by the total volume of data stored, the amount of public outbound bandwidth used, and the total number of operational requests processed by the system. For details, see [cloud-object-storage-billing](/docs/cloud-object-storage/iam?topic=cloud-object-storage-billing).
+Storage cost for {{site.data.keyword.cos_short}} is determined by the total volume of data stored, the amount of public outbound bandwidth used, and the total number of operational requests processed by the system. For details, see [cloud-object-storage-billing](/docs/cloud-object-storage?topic=cloud-object-storage-billing).
 
 ## What are the considerations for choosing the correct storage class in {{site.data.keyword.cos_short}}?  
 {: #faq-choose-storageclass}
 {: faq}
 
-You can choose the correct storage class based on your requirement. For details, see [billing-storage-classes](/docs/cloud-object-storage/iam?topic=cloud-object-storage-billing#billing-storage-classes).
+You can choose the correct storage class based on your requirement. For details, see [billing-storage-classes](/docs/cloud-object-storage?topic=cloud-object-storage-billing#billing-storage-classes).
 
 ## How to invoke IBM Cloud Object Storage bucket operations using cURL?
 {: #faq-using-curl}
 {: faq}
 
-You have the most power by using the command line in most environments with IBM Cloud Object Storage and cURL. However using cURL assumes a certain amount of familiarity with the command line and Object Storage. For details, see [Using cURL](/docs/cloud-object-storage/cli?topic=cloud-object-storage-curl).
+You have the most power by using the command line in most environments with IBM Cloud Object Storage and cURL. However using cURL assumes a certain amount of familiarity with the command line and Object Storage. For details, see [Using cURL](/docs/cloud-object-storage?topic=cloud-object-storage-curl).
 
 ## Is encryption applied to a bucket by default?
 {: #faq-default-enc}
@@ -342,13 +343,13 @@ There may be an issue where the viewer does not have sufficient roles to view th
 {: #faq-bucket-keypro}
 {: faq}
 
-No, it is not possible to add Key Protect after creating a bucket. Key Protect can only be added while creating the bucket.
+No, it is impossible to add Key Protect after creating a bucket. Key Protect can only be added while creating the bucket.
 
 ## How can I move data into archive tier?
 {: #faq-archive tier}
 {: faq}
 
-You can archive objects using the web console, REST API, and third-party tools that are integrated with IBM Cloud Object Storage. For details, see [COS Archive](/docs/cloud-object-storage/basics?topic=cloud-object-storage-archive).
+You can archive objects using the web console, REST API, and third-party tools that are integrated with IBM Cloud Object Storage. For details, see [COS Archive](/docs/cloud-object-storage?topic=cloud-object-storage-archive).
  
 ## Can I use the same {{site.data.keyword.cos_short}} instance across multiple regions?
 {: #faq-cosinstance-multiplereg}
@@ -368,17 +369,17 @@ While there is no built in antivirus scanning in {{site.data.keyword.cos_short}}
 
 No, {{site.data.keyword.cos_short}} is used for the object storage service. For a Hadoop cluster, you need the processing associated with each unit of storage. You may consider the Hadoop-as-a-Service setup.
 
-## Can I generate a "Presigned URL" to download a file and review?
+## Can I generate a "Pre-signed URL" to download a file and review?
 {: #faq-preassign-url}
 {: faq}
 
-A PreSigned URL is not generated using the IBM Cloud UI; however, you can use CyberDuck to generate the “pre-signed URL”. It is free. For details, see this [Slack channel](https://ibm-cloudplatform.slack.com/archives/C0VJSU370/p1606859253294800).
+A Pre-signed URL is not generated using the IBM Cloud UI; however, you can use CyberDuck to generate the “pre-signed URL”. It is free. For details, see this [Slack channel](https://ibm-cloudplatform.slack.com/archives/C0VJSU370/p1606859253294800){: external}.
 
 ## How can I generate a Auth Token using the IAM API Key using REST?
 {: #faq-genrt-auth-token}
 {: faq}
 
-For more information on working with the API, see [Creating IAM token for API Key](/docs/account?topic=account-iamtoken_from_apikey) and [Congfiguration Authentication](https://cloud.ibm.com/apidocs/cos/cos-configuration#authentication).
+For more information on working with the API, see [Creating IAM token for API Key](/docs/account?topic=account-iamtoken_from_apikey) and [Configuration Authentication](https://cloud.ibm.com/apidocs/cos/cos-configuration#authentication).
 
 ## How can I use the {{site.data.keyword.cos_short}} web console to download and upload large objects?
 {: #faq-large-object}

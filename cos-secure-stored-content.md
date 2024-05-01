@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023, 2024
-lastupdated: "2024-03-22"
+lastupdated: "2024-04-17"
 
 keywords: object storage, tutorial, secure stored content, store, content, secure, secure content store
 
@@ -23,8 +23,8 @@ completion-time: 15m
 
 Are you looking to store content securely (locally or globally) at an affordable cost​, for things like **cloud native apps**, **media storage**, **backup storage** and **archive data**? IBM Secure Content Store powered by {{site.data.keyword.cos_full}} provides unparalleled agility in supporting fast, highly consistent application deployment around the world to help customers securely expand their business into new regions, from business-critical data to video archive solutions.  It also offers immutable storage, immutable backup, and archive data with industry-leading security and controls for regulatory/compliance requirements​.
 
-- Gain security and control over your data with encryption options, governance policies, access permissions, and context-based restrictions​.
-- Have immediate consistency across regions or locations for cloud-native apps, disaster recovery, storage backup, video content and delivery. etc. ​
+- Gain security and control over your data with encryption options, governance policy, access permissions, and context-based restrictions​.
+- Have immediate consistency across regions or locations for cloud-native apps, disaster recovery, storage backup, video content and delivery, and so on. ​
 - Leverage your own encryption keys (BYOK) with Key Protect.
 - Monitor and retain your account & data activity with Activity Tracker and IBM Monitoring.
 - APIs & SDKs, Static Web Hosting, High Speed Transfer, Tagging, Replication.
@@ -52,27 +52,27 @@ Throughout the tutorial, you are provided with step-by-step instructions, along 
 {: steps}
 
 1. Set up {{site.data.keyword.cos_short}} to store and manage your data securely.
-2. Configure Activity Tracker for audit observability of relevant events.
-3. Add Monitoring for insights and information about what is happening with your data.
-4. Finally, use Key Protect to manage encryption keys to secure your data stored in {{site.data.keyword.cos_short}}.
+1. Configure Activity Tracker for audit observability of relevant events.
+1. Add Monitoring for insights and information about what is happening with your data.
+1. Finally, use Key Protect to manage encryption keys to secure your data stored in {{site.data.keyword.cos_short}}.
 
 ## Before you begin
 {: #secure-content-prereqs}
 
 For this tutorial, you need:
 - An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com){: external}
-- An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage) (must be a paid service plan instance)
+- An [instance of IBM Cloud Object Storage](/objectstorage/create) (must be a paid service plan instance)
 
 Apply promotional code that is included below.
 
 IBM Cloud is offering a $500 promotional credit to quickly get started with our Secure Content Store with {{site.data.keyword.cos_full}}. The credit has a duration of 90 days against your metered consumption of {{site.data.keyword.cos_short}}. To qualify for this offer you must be a new paid user of Cloud Object Storage.
 {: remember}
 
-1. Create or log into a IBM Cloud Paygo, Subscription account.
-2. Within IBM Cloud console click **Manage** then **Billing & Usage** from the drop-down list.
-3. Select **Promotions and Credits** from the navigation bar on the left.
-4. Click **Apply a promo code**.
-5. Enter **Promo Code SECURECS**, click **verify** and then **apply**.
+1. Create or log into an IBM Cloud Paygo, Subscription account.
+1. Within IBM Cloud console click **Manage** then **Billing & Usage** from the drop-down list.
+1. Select **Promotions and Credits** from the navigation bar on the left.
+1. Click **Apply a promo code**.
+1. Enter **Promo Code SECURECS**, click **verify** and then **apply**.
 
 Once the credit has been successfully applied, you can review your credit balance at any time by following steps 2-3.
 {: note}
@@ -84,7 +84,7 @@ Once the credit has been successfully applied, you can review your credit balanc
 {: #navigate-cos-instance}
 {: step}
 
-- Go to your [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage).
+- Go to your [instance of IBM Cloud Object Storage](/objectstorage/create).
 
 ## Click Create bucket
 {: #create-cos-bucket-step}
@@ -100,38 +100,32 @@ Once the credit has been successfully applied, you can review your credit balanc
 
     Before you get started, you need:
 
-    - An instance of [IBM Cloud™ Key Protect](/docs/key-protect?topic=key-protect-getting-started-tutorial)
-    - [Grant service authorization](/docs/cloud-object-storage?topic=cloud-object-storage-kp#kp-sa) to {{site.data.keyword.cos_short}} in IBM Key Protect.
+      - An instance of [IBM Cloud™ Key Protect](/docs/key-protect?topic=key-protect-getting-started-tutorial)
+      - [Grant service authorization](/docs/cloud-object-storage?topic=cloud-object-storage-kp#kp-sa) to {{site.data.keyword.cos_short}} in IBM Key Protect.
 
      1. Toggle **Key management disabled** to enable encryption and **click** on **Create new instance**.
-     2. Choose a region that corresponds with the bucket, give it a memorable name, and click **Create and continue**.
-     3. Give the `root key` a name and click **Create and continue**.
-
-
+     1. Choose a region that corresponds with the bucket, give it a memorable name, and click **Create and continue**.
+     1. Give the `root key` a name and click **Create and continue**.
 
     [Activity Tracker](/docs/cloud-object-storage?topic=cloud-object-storage-tracking-cos-events)
 
     Before you get started, you need:
 
-    - An instance of [Activity Tracker](/docs/activity-tracker?topic=activity-tracker-getting-started)
-    - A user ID with [administrator platform permissions](/docs/account?topic=account-userroles) and the service access [writer role](/docs/account?topic=account-userroles#service_access_roles).
+      - An instance of [Activity Tracker](/docs/activity-tracker?topic=activity-tracker-getting-started)
+      - A user ID with [administrator platform permissions](/docs/account?topic=account-userroles) and the service access [writer role](/docs/account?topic=account-userroles#service_access_roles).
 
-     1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Activity tracking enabled**. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (e.g. `us-east`) you could name the instance something like `US East AT` so that you can easily find it later.
-     2. Click to enable **Track data events** and select both **read & write** from the drop-down list.
-
-
+     1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Activity tracking enabled**. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (for example, `us-east`) you could name the instance something like `US East AT` so that you can easily find it later.
+     1. Click to enable **Track data events** and select both **read & write** from the drop-down list.
 
     [Monitoring](/docs/cloud-object-storage?topic=cloud-object-storage-monitoring-cos)
 
-    Before you get started, you need:
+    Before you start, you need:
 
-    - An instance of [IBM Cloud™ Monitoring](/docs/monitoring?topic=monitoring-getting-started)
-    - A user ID with [administrator platform permissions](/docs/account?topic=account-userroles) and the service access [writer role](/docs/account?topic=account-userroles#service_access_roles).
+      - An instance of [IBM Cloud™ Monitoring](/docs/monitoring?topic=monitoring-getting-started)
+      - A user ID with [administrator platform permissions](/docs/account?topic=account-userroles) and the service access [writer role](/docs/account?topic=account-userroles#service_access_roles).
 
-     1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Monitoring enabled**. Select an appropriate plan, and give the new instance a memorable name. For example, if you are creating the instance in the same region as the bucket (e.g. `us-east`) you could name the instance `US East MM` so that you can easily find it later.
-     2. Enable monitoring for both **usage and request metrics**.
-
-
+     1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Monitoring enabled**. Select an appropriate plan, and give the new instance a memorable name. For example, if you are creating the instance in the same region as the bucket (for example, `us-east`) you could name the instance `US East MM` so that you can easily find it later.
+     1. Enable monitoring for both **usage and request metrics**.
 
 ## Verify the information is correct
 {: #verify-cos-bucket}
@@ -154,7 +148,7 @@ You are now ready to store data in a secure content store with encryption, monit
 ## Add capabilities
 {: #add-capabilities}
 
-Add capabilities to protect objects from ransomware and accidental deletion such as [versioning](/docs/cloud-object-storage?topic=cloud-object-storage-versioning) and [immutable retention polices](/docs/cloud-object-storage?topic=cloud-object-storage-ol-overview) for supporting immutable storage, and immutable backup and archive data.
+Add capabilities to protect objects from ransom-ware and accidental deletion such as [versioning](/docs/cloud-object-storage?topic=cloud-object-storage-versioning) and [immutable retention polices](/docs/cloud-object-storage?topic=cloud-object-storage-ol-overview) for supporting immutable storage, and immutable backup and archive data.
 
 ## Library of {{site.data.keyword.cos_short}} tutorials
 {: #cos-tutorials}

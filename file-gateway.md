@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021
-lastupdated: "2021-04-20"
+  years: 2021, 2024
+lastupdated: "2024-04-17"
 
 keywords: file system, gateway, file access
 
@@ -30,19 +30,19 @@ IBM Cloud Object Storage File Access runs as a pair of active-passive gateway vi
 ### Hardware requirements
 {: #fa-gateway-requirements-hardware}
 
-Recommended minimum server hardware configuration for the VMware ESXi, Microsoft Hyper-V, or Red Hat® Enterprise Linux hypervisor that will run the IBM Cloud Object Storage File Access Gateway VM:
+Recommended minimum server hardware configuration for the `VMware ESXi`, `Microsoft Hyper-V`, or `Red Hat® Enterprise Linux` hypervisor that will run the IBM Cloud Object Storage File Access Gateway VM:
 
 - CPU	x64 (4+ cores)
 - RAM	8 GB
-- Cache disk	Up to 8 TB, SSD or NVMe preferred (2 TB minimum)
+- Cache disk up to 8 TB, SSD or NVMe preferred (2 TB minimum)
 - Network	10 Gigabit
 - Network switch (At least 2 for redundancy)
 
-Recommended minimum server hardware configuration for the VMware ESXi or Red Hat Enterprise Linux hypervisor that will run the IBM Cloud Object Storage File Access Portal VM:
+Recommended minimum server hardware configuration for the `VMware ESXi` or `Red Hat Enterprise Linux` hypervisor that will run the IBM Cloud Object Storage File Access Portal VM:
 
 - CPU	x64 (12+ cores)
 - RAM	40+ GB
-- Cache disk	3+ TB, SSD or NVMe preferred (1 TB minimum)
+- Cache disk 3+ TB, SSD or NVMe preferred (1 TB minimum)
 - Network	10 Gigabit
 - Network switch (At least 2 for redundancy)
 
@@ -53,14 +53,16 @@ IBM Cloud Object Storage File Access solution performance depends upon the under
 {: #fa-gateway-requirements-hardware}
 
 Hypervisor requirements
-- ESXi: VMware ESXi 6.5, or later. Cloud Object Storage File Access Gateway Portal can be managed in VMware vCenter and in VMware vCloud Director.
-- KVM and OpenStack: Linux machine with KVM virtualization and Red Hat Virtual Machine Manager (virt-manager) installed and running. Make sure that memory overcommitting is disabled.
+
+- ESXi: VMware ESXi 6.5, or later. Cloud Object Storage File Access Gateway Portal can be managed in `VMware vCenter` and in `VMware vCloud Director`.
+- KVM and OpenStack: Linux machine with KVM virtualization and Red Hat Virtual Machine Manager (virt-manager) installed and running. Make sure that `memory overcommitting` is disabled.
 - Hyper-V: Hyper-V for Microsoft Windows Servers 2012 R2, and higher.
 
 All resources allocated to an IBM Cloud Object Storage File Access Portal VM should be dedicated to that VM and not shared with other VMs. You must not run any other applications on the IBM Cloud Object Storage File Access Portal VMs.
 {: note}
 
 ## Installation and administration
+{: #fa-gateway-install-admin}
 
-For details on installation and administration, [see the IBM Cloud Object Storage File Access documentation](https://www.ibm.com/docs/en/cosfa/7.0?topic=gateway-cos-fa-administrator-guidepdf).
+For details on installation and administration, see the documentation [IBM Cloud Object Storage File Access](https://www.ibm.com/docs/en/cosfa/7.0?topic=gateway-cos-fa-administrator-guidepdf).
 

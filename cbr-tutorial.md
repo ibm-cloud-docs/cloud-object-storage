@@ -28,7 +28,7 @@ In this tutorial, you will establish [context-based restrictions](/docs/cloud-ob
 Before you plan on using [context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall) with Cloud Object Storage buckets, you need:
 
 - An [IBM Cloud™ Platform account](http://cloud.ibm.com/)
-- An [instance of IBM Cloud Object Storage](http://cloud.ibm.com/catalog/services/cloud-object-storage)
+- An [instance of IBM Cloud Object Storage](/objectstorage/create)
 - A role of `Administrator` for context-based restrictions
 - A bucket
 
@@ -87,7 +87,7 @@ Now that we know what the rule will affect, we need to decide what the rule will
 ![Scope the rule](/images/cbr_6.png){: caption="Figure 5. Scope the rule"}
 
 ## Finish the rule and verify that it works
-{: #cos-tutorial-cbr-network}
+{: #cos-tutorial-cbr-rule}
 {: step}
 
 Finally, all you need to do is click **Create** and your new rule will be active.

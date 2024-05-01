@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2023
-lastupdated: "2023-12-07"
+  years: 2023, 2024
+lastupdated: "2024-04-18"
 
 keywords: object, bucket, iam, policy, role, tutorial, fine grained access control, prefix, list objects, path, delimiter
 
@@ -32,7 +32,7 @@ This tutorial provides examples for how to use IAM access policies with {{site.d
 ## Before you begin
 {: #object-access-before-you-begin}
 
-{{site.data.keyword.cos_full_notm}} stores data in a flat structure where one bucket can contain billions of distinctly-named objects. A folder hierarchy can be simulated by using identical prefixes in related object names. Also, an object name can be referred to as an object key. Here is an example:
+{{site.data.keyword.cos_full_notm}} stores data in a flat structure where one bucket can contain billions of distinctly named objects. A folder hierarchy can be simulated by using identical prefixes in related object names. Also, an object name can be referred to as an object key. Here is an example:
 
 ```text
 Bucket Name: MyBucket
@@ -50,7 +50,7 @@ Orgchart.pdf
 In this example, the prefix ```User1```, ```Engineering```, and ```Product``` can resemble root
 level folders. In addition, ```2023``` and ```2024``` can represent subdirectories. Use the delimiter “/” to represent the file hierarchy. A delimiter can be any supported character. ```Orgchart.pdf``` is considered a root-level object.
 
-When running a list request on your bucket, you can specify a prefix for listing objects or list the content of the entire bucket. In addition, you can optionally pass a delimiter value in the listing request to simulate a folder structure in the response. For more information, see the examples of using [prefix and delimiter](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=cli#fgac-attributes-prefix-delimeter) condition statements.
+When running a list request on your bucket, you can specify a prefix for listing objects or list the content of the entire bucket. In addition, you can optionally pass a delimiter value in the listing request to simulate a folder structure in the response. For more information, see the examples of using [prefix and delimiter](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=cli#fgac-attributes-prefix-delimiter) condition statements.
 
 Read or write operations typically target a specific object name which is also referred to as the object [path](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=cli#fgac-attributes-path).
 
@@ -132,7 +132,7 @@ This will give Adam the ability to read and list all objects that start with the
 ```
 {: codeblock}
 
-### Scenario 3: Grant Samantha accesss to list, read, and replicate files in only the ```2023``` and ```2024``` subdirectories under the ```Product``` folder.
+### Scenario 3: Grant Samantha access to list, read, and replicate files in only the ```2023``` and ```2024``` subdirectories under the ```Product``` folder.
 {: #object-access-scenario-3}
 
 These sets of actions will require Samantha to have at least the ```Writer``` role. The ```Writer``` role also contains some actions that do not specify a ```Path``` or a ```Prefix``` or ```Delimiter``` such as ```cloud-object-storage.bucket.put_replication```. To allow these actions, use the [StringExists](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-conditions-actions-not-supported) operator with the resource attributes based conditions.

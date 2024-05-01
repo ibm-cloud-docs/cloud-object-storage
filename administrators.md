@@ -47,4 +47,4 @@ There is another concept, a _service credential_. A service credential is a coll
 
 You might want your development team to be able to use the console to view Object Storage instances and Kubernetes clusters. They would need `Viewer` roles on the Object Storage resources and `Administrator` roles on the Container Service. The `Viewer` role allows for the user to only see that the instance exists, and to view existing credentials, but **not** to view buckets and objects. When the service credentials were created, they were associated with a service ID. This service ID would need to have the `Manager` or `Writer` role on the instance to be able to create and delete buckets and objects.
 
-For more information on IAM roles and permissions, see [the IAM overview](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview).
+For more information on IAM roles and permissions, see [the IAM overview](/docs/cloud-object-storage?topic=cloud-object-storage-iam-overview).

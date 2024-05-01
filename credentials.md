@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-02-19"
+lastupdated: "2024-04-19"
 
 keywords: authorization, aws, hmac, signature
 
@@ -73,9 +73,9 @@ export COS_HMAC_SECRET_ACCESS_KEY="8not8ed850cddbece407exampledonotuse43r2d2586"
 ## Next steps
 {: #uhc-next-steps}
 
-Note that when using HMAC credentials to create signatures to use with direct [REST API](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#bucket-operations-hmac) calls that extra headers are required:
+Note that when using HMAC credentials to create signatures to use with direct [REST API](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#bucket-operations-hmac) calls that extra headers are required:
 1. All requests must have an `x-amz-date` header with the date in `%Y%m%dT%H%M%SZ` format.
-2. Any request that has a payload (object uploads, deleting several objects, etc.) must provide a `x-amz-content-sha256` header with an SHA256 hash of the payload contents.
+2. Any request that has a payload (object uploads, deleting several objects, and so on) must provide a `x-amz-content-sha256` header with an SHA256 hash of the payload contents.
 3. ACLs (other than `public-read`) are unsupported.
 
 Not all S3-compatible tools are currently supported. Some tools attempt to set ACLs other than `public-read` on bucket creation. Bucket creation through these tools will fail. If a `PUT bucket` request fails with an unsupported ACL error, first use the console as shown in the [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) to create the bucket, then configure the tool to read and write objects to that bucket. Tools that set ACLs on object writes are not currently supported.

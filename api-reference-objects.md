@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2023
-lastupdated: "2023-08-09"
+  years: 2017, 2024
+lastupdated: "2024-04-19"
 
 keywords: rest, s3, compatibility, api, objects
 
@@ -12,7 +12,6 @@ subcollection: cloud-object-storage
 ---
 
 {{site.data.keyword.attribute-definition-list}}
-
 
 # Object operations
 {: #object-operations}
@@ -26,12 +25,12 @@ For more information about endpoints, see [Endpoints and storage locations](/doc
 ## A note regarding Access/Secret Key (HMAC) authentication
 {: #object-operations-hmac}
 
-When authenticating to your instance of {{site.data.keyword.cos_full_notm}} [using HMAC credentials](/docs/cloud-object-storage/iam?topic=cloud-object-storage-uhc-hmac-credentials-main), you will need the information represented in Table 1 when [constructing an HMAC signature](/docs/cloud-object-storage/iam?topic=cloud-object-storage-hmac-signature).
+When authenticating to your instance of {{site.data.keyword.cos_full_notm}} by [using HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main), you need the information that is represented in Table 1 when [constructing an HMAC signature](/docs/cloud-object-storage?topic=cloud-object-storage-hmac-signature).
 
 |Key|Value|Example|
 |---|---|---|
 |{access_key}|Access key assigned to your Service Credential|cf4965cebe074720a4929759f57e1214|
-|{date}|The formatted date of your request (yyyymmdd)|20180613|
+|{date}|The formatted date of your request (`yyyymmdd`)|20180613|
 |{region}|The location code for your endpoint|us-standard|
 |{signature}|The hash created using the secret key, location, and date|ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e|
 |{timestamp}|The formatted date and time of your request|20180614T001804Z|
@@ -128,6 +127,7 @@ x-amz-request-id: 9f0ca49a-ae13-4d2d-925b-117b157cf5c3
 ETag: "3ca744fa96cb95e92081708887f63de5"
 Content-Length: 0
 ```
+{: codeblock}
 
 ----
 
@@ -185,6 +185,7 @@ Content-Type: text/plain; charset=UTF-8
 Last-Modified: Thu, 25 Aug 2016 17:49:06 GMT
 Content-Length: 11
 ```
+{: codeblock}
 
 ----
 
@@ -255,6 +256,7 @@ Content-Length: 467
  the ability to reproduce and instead ensure that the hive functions smoothly,
  acting almost as a single organism in fulfilling their purpose.
 ```
+{: codeblock}
 
 ----
 
@@ -322,7 +324,7 @@ When an object that is specified in the request is not found the result returns 
 Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
 {: note}
 
-Multiple object deletes involve a `POST operation` that is charged as Class A. The cost of the POST (class A) for multiple deletes vary depending on the storage class of the objects, and the amount of data being deleted. For more information on pricing, please refer to the [IBM Cloud Object Storage pricing page](https://cloud.ibm.com/objectstorage/create#pricing).
+Multiple object deletes involve a `POST operation` that is charged as Class A. The cost of the `POST` request for multiple deletes varies depending on the storage class of the objects, and the amount of data that is deleted. For more information about pricing, see the [IBM Cloud Object Storage pricing page](/objectstorage/create#pricing).
 {: note}
 
 ### Optional Elements
@@ -753,6 +755,7 @@ ETag: "853aab195ce770b0dfb294a4e9467e62"
 Content-Type: application/xml
 Content-Length: 240
 ```
+{: codeblock}
 
 ```xml
 <CopyObjectResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
@@ -760,6 +763,7 @@ Content-Length: 240
   <ETag>"853aab195ce770b0dfb294a4e9467e62"</ETag>
 </CopyObjectResult>
 ```
+{: codeblock}
 
 ----
 
@@ -846,7 +850,7 @@ There are three phases to uploading an object in multiple parts:
 
 A `POST` issued to an object with the query parameter `upload` creates a new `UploadId` value, which is then be referenced by each part of the object being uploaded.
 
-Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means. 
+Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means.
 {: note}
 
 Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
@@ -963,6 +967,7 @@ X-Clv-S3-Version: 2.5
 ETag: "7417ca8d45a71b692168f0419c17fe2f"
 Content-Length: 0
 ```
+{: codeblock}
 
 ----
 
@@ -1049,6 +1054,7 @@ Content-Length: 743
   </Part>
 </ListPartsResult>
 ```
+{: codeblock}
 
 ----
 
@@ -1073,9 +1079,9 @@ The body of the request must contain an XML block with the following schema:
 |Element|Type|Children|Ancestor|Constraint|
 |---|---|---|---|---|
 |CompleteMultipartUpload | Container | Part | - | - |
-|Part| Container | PartNumber, ETag | Delete | - |
+|Part| Container | PartNumber, `ETag` | Delete | - |
 |PartNumber| String | - | Object | Valid part number |
-|ETag| String | - | Object | Valid ETag value string |
+|`ETag`| String | - | Object | Valid `ETag` value string |
 {: caption="Table 6. Body of the request schema" caption-side="top"}
 
 ```xml
@@ -1086,6 +1092,7 @@ The body of the request must contain an XML block with the following schema:
   </Part>
 </CompleteMultipartUpload>
 ```
+{: codeblock}
 
 **Example request**
 {: token}
@@ -1097,6 +1104,7 @@ Content-Type: text/plain; charset=utf-8
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-Length: 257
 ```
+{: codeblock}
 {: token}
 
 **Example request**
@@ -1110,6 +1118,7 @@ Content-Type: text/plain; charset=utf-8
 Host: s3.us.cloud-object-storage.appdomain.cloud
 Content-Length: 257
 ```
+{: codeblock}
 {: hmac}
 
 ```xml
@@ -1124,6 +1133,7 @@ Content-Length: 257
   </Part>
 </CompleteMultipartUpload>
 ```
+{: codeblock}
 
 **Example response**
 
@@ -1138,6 +1148,7 @@ ETag: "765ba3df36cf24e49f67fc6f689dfc6e-2"
 Content-Type: application/xml
 Content-Length: 364
 ```
+{: codeblock}
 
 ```xml
 <CompleteMultipartUploadResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
@@ -1147,6 +1158,7 @@ Content-Length: 364
   <ETag>"765ba3df36cf24e49f67fc6f689dfc6e-2"</ETag>
 </CompleteMultipartUploadResult>
 ```
+{: codeblock}
 
 ----
 
@@ -1174,6 +1186,7 @@ DELETE /some-bucket/multipart-object-123?uploadId=0000015a-df89-51d0-2790-dee1ac
 Authorization: Bearer {token}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: codeblock}
 {: token}
 
 **Example request**
@@ -1185,6 +1198,7 @@ Authorization: 'AWS4-HMAC-SHA256 Credential={access-key}/{date}/{region}/s3/aws4
 x-amz-date: {timestamp}
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: codeblock}
 {: hmac}
 
 **Example response**
@@ -1197,6 +1211,7 @@ Accept-Ranges: bytes
 Server: Cleversafe/3.9.1.114
 X-Clv-S3-Version: 2.5
 ```
+{: codeblock}
 
 ## Temporarily restore an archived object
 {: #object-operations-archive-restore}
@@ -1239,6 +1254,7 @@ Tier                 | String    | None                       | GlacierJobParame
     </GlacierJobParameters>
 </RestoreRequest>
 ```
+{: codeblock}
 
 **Example request**
 {: token}
@@ -1251,6 +1267,7 @@ Content-MD5: rgRRGfd/OytcM7O5gIaQ==
 Content-Length: 305
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: codeblock}
 {: token}
 
 **Example request**
@@ -1264,6 +1281,7 @@ Content-MD5: rgRRGfd/OytcM7O5gIaQ==
 Content-Length: 305
 Host: s3.us.cloud-object-storage.appdomain.cloud
 ```
+{: codeblock}
 {: hmac}
 
 ```xml
@@ -1274,6 +1292,7 @@ Host: s3.us.cloud-object-storage.appdomain.cloud
     </GlacierJobParameters>
 </RestoreRequest>
 ```
+{: codeblock}
 
 **Example response**
 
@@ -1285,11 +1304,13 @@ Accept-Ranges: bytes
 Server: Cleversafe/3.9.1.114
 X-Clv-S3-Version: 2.5
 ```
+{: codeblock}
 
 ## Updating metadata
 {: #object-operations-metadata}
 
 There are two ways to update the metadata on an existing object:
+
 * A `PUT` request with the new metadata and the original object contents
 * Running a `COPY` request with the new metadata specifying the original object as the copy source
 
@@ -1331,6 +1352,7 @@ Content-Length: 533
  the colony will fight fiercely to protect her.
 
 ```
+{: codeblock}
 {: token}
 
 **Example request**
@@ -1353,6 +1375,7 @@ Content-Length: 533
  the colony will fight fiercely to protect her.
 
 ```
+{: codeblock}
 {: hmac}
 
 **Example response**
@@ -1368,6 +1391,7 @@ x-amz-request-id: 9f0ca49a-ae13-4d2d-925b-117b157cf5c3
 ETag: "3ca744fa96cb95e92081708887f63de5"
 Content-Length: 0
 ```
+{: codeblock}
 
 ### Using COPY to update metadata
 {: #object-operations-metadata-copy}
@@ -1395,6 +1419,7 @@ x-amz-metadata-directive: REPLACE
 x-amz-meta-key1: value1
 x-amz-meta-key2: value2
 ```
+{: codeblock}
 {: token}
 
 **Example request**
@@ -1411,6 +1436,7 @@ x-amz-metadata-directive: REPLACE
 x-amz-meta-key1: value1
 x-amz-meta-key2: value2
 ```
+{: codeblock}
 {: hmac}
 
 **Example response**
@@ -1426,6 +1452,7 @@ x-amz-request-id: 9f0ca49a-ae13-4d2d-925b-117b157cf5c3
 ETag: "3ca744fa96cb95e92081708887f63de5"
 Content-Length: 0
 ```
+{: codeblock}
 
 ## Next Steps
 {: #api-ref-objects-next-steps}

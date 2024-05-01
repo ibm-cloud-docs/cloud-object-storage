@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 # Billing
 {: #billing}
 
-Information on pricing can be found at [{{site.data.keyword.cloud}}](https://www.ibm.com/cloud/object-storage/pricing/){: external}.
+Information on pricing can be found at [{{site.data.keyword.cloud}}](https://www.ibm.com/products/cloud-object-storage/pricing/){: external}.
 {: shortdesc}
 
 ## Invoices
@@ -66,10 +66,13 @@ Deleting buckets or objects from the system does not incur a charge. For charges
 | Class B | GET (excluding listing), HEAD, and OPTIONS requests | Retrieving objects and metadata |
 {: caption="Table 1. Request classes" caption-side="top"}
 
+Requests made using the Resource Configuration API are not charged for requests and do not accrue usage for billing purposes.
+{: note}
+
 ## Aspera transfers
 {: #billing-aspera}
 
-[Aspera high-speed transfer](/docs/cloud-object-storage/basics?topic=cloud-object-storage-aspera) incurs extra egress charges. For more information, see the [pricing page](https://cloud.ibm.com/objectstorage/create#pricing){: external}.
+[Aspera high-speed transfer](/docs/cloud-object-storage?topic=cloud-object-storage-aspera) incurs extra egress charges. For more information, see the [pricing page](/objectstorage/create#pricing){: external}.
 
 ## Storage classes
 {: #billing-storage-classes}
@@ -87,9 +90,9 @@ There are six classes:
 **Flex** has been replaced by Smart Tier for dynamic workloads. Flex users can continue to manage their data in existing Flex buckets, although no new Flex buckets may be created.  Existing users can reference pricing information [here](/docs/cloud-object-storage?topic=cloud-object-storage-flex-pricing).
 {: note}
 
-For more information about pricing, see [the pricing table at ibm.com](https://cloud.ibm.com/objectstorage/create#pricing){: external}.
+For more information about pricing, see [the pricing table at ibm.com](/objectstorage/create#pricing){: external}.
 
-For more information about creating buckets with different storage classes, see the [API reference](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
+For more information about creating buckets with different storage classes, see the [API reference](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
 
 ### Smart Tier pricing details
 {: #smart-tier-pricing}
@@ -155,7 +158,7 @@ The appropriate response to the request should contain `bytes_used` and `object_
 
 The resource controller is the next-generation {{site.data.keyword.cloud_notm}} Platform provisioning layer that manages the lifecycle of {{site.data.keyword.cos_short}} resources in a customer account. The API can provide actual billable metrics, such as types of requests and charges for storage, to get you started. More information can be found at the [documentation](https://cloud.ibm.com/apidocs/resource-controller){: external}
 
-```bash
+```sh
 curl -X GET https://resource-controller.cloud.ibm.com/v2/resource_instances -H 'Authorization: Bearer <IAM_TOKEN>'
 ```
 {: codeblock}

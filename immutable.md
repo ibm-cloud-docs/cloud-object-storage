@@ -35,7 +35,7 @@ This feature can be used by any user that needs long-term data retention in thei
 
 Retention policies can also be used by organizations that deal with financial records management, such as broker-dealer transactions, and might need to store data in a non-rewritable and non-erasable format. 
 
-Immutable Object Storage is available in certain regions only, see [Integrated Services](/docs/cloud-object-storage/basics?topic=cloud-object-storage-service-availability#service-availability) for details. It also requires a Standard pricing plan. See [pricing](https://www.ibm.com/cloud/object-storage) for details.
+Immutable Object Storage is available in certain regions only, see [Integrated Services](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability#service-availability) for details. It also requires a Standard pricing plan. See [pricing](https://www.ibm.com/products/cloud-object-storage) for details.
 {: note}
 
 It isn't possible to use Aspera high-speed transfer with buckets with a retention policy.
@@ -63,7 +63,7 @@ If an object is stored in the bucket without specifying a custom retention perio
 A maximum retention period of 1000 years can be specified for the objects.
 {: tip}
 
-To create a retention policy on a bucket, you need Manager role. See [Bucket permissions](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions) for more details.
+To create a retention policy on a bucket, you need Manager role. See [Bucket permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions) for more details.
 {: important}
 
 ### Legal hold
@@ -115,7 +115,7 @@ Access log data for Immutable Object Storage to review changes to retention para
 ## Using the console
 {: #immutable-console}
 
-Retention policies can be added to new or existing empty buckets, and cannot be removed. For a new bucket, ensure that you are creating the bucket in a [supported region](/docs/cloud-object-storage/basics?topic=cloud-object-storage-service-availability#service-availability), and then choose the **Add retention policy** option. For an existing bucket, ensure that it has no objects and then navigate to configuration settings and click the **Create policy** button below the bucket retention policy section. In either case, set a minimum, maximum, and default retention periods.
+Retention policies can be added to new or existing empty buckets, and cannot be removed. For a new bucket, ensure that you are creating the bucket in a [supported region](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability#service-availability), and then choose the **Add retention policy** option. For an existing bucket, ensure that it has no objects and then navigate to configuration settings and click the **Create policy** button below the bucket retention policy section. In either case, set a minimum, maximum, and default retention periods.
 
 ## Using the REST API, Libraries, and SDKs
 {: #immutable-sdk}

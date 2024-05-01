@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-02-20"
+lastupdated: "2024-04-16"
 
 keywords: access control, iam, basics, buckets
 
@@ -66,7 +66,7 @@ To create a new bucket-level policy:
 9. Select the wanted service access role. Selecting the lozenge with the number of actions show the actions available to the role, as exemplified for "Content Reader" in Figure 1.
 10. Click **Assign**
 
-![Role_information](images/console-iam-changes-role-cos.png){: caption="Figure 1. Example actions per Content Reader role"}
+![Role information](images/console-iam-changes-role-cos.png){: caption="Figure 1. Example actions per Content Reader role"}
 
 Note that leaving the **Resource Type** or **Resource** fields blank will create an instance-level policy.
 {: tip}
@@ -77,7 +77,7 @@ Note that leaving the **Resource Type** or **Resource** fields blank will create
 
 From a terminal run the following command:
 
-```bash
+```sh
 ibmcloud iam user-policy-create <user-name> \
       --roles <role> \
       --service-name cloud-object-storage \
@@ -89,14 +89,14 @@ ibmcloud iam user-policy-create <user-name> \
 
 To list existing policies:
 
-```bash
+```sh
 ibmcloud iam user-policies <user-name>
 ```
 {: codeblock}
 
 To edit an existing policy:
 
-```bash
+```sh
 ibmcloud iam user-policy-update <user-name> <policy-id> \
       --roles <role> \
       --service-name cloud-object-storage \
@@ -131,7 +131,7 @@ Note that leaving the **Resource Type** or **Resource** fields blank will create
 
 From a terminal run the following command:
 
-```bash
+```sh
 ibmcloud iam service-policy-create <service-id-name> \
       --roles <role> \
       --service-name cloud-object-storage \
@@ -143,14 +143,14 @@ ibmcloud iam service-policy-create <service-id-name> \
 
 To list existing policies:
 
-```bash
+```sh
 ibmcloud iam service-policies <service-id-name>
 ```
 {: codeblock}
 
 To edit an existing policy:
 
-```bash
+```sh
 ibmcloud iam service-policy-update <service-id-name> <policy-id> \
       --roles <role> \
       --service-name cloud-object-storage \

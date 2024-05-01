@@ -43,7 +43,7 @@ If no rules are applicable to a particular resource, access is determined by IAM
 Context-based restrictions are only applied at the bucket level and not to specific objects or folders.
 {: important}
 
-An account is limited in the [number of rules and network zones that can be supported](/docs/account?topic=account-known-issues#context-based-restrictions-limits).
+An account is limited in the [number of rules and network zones that can be supported](/docs/account?topic=account-known-issues#cbr-limits).
 
 ## Bucket firewalls versus context-based restrictions
 {: #firewall-precursors}

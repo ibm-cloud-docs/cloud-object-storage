@@ -2,12 +2,11 @@
 
 copyright:
   years: 2020, 2024
-lastupdated: "2024-03-05"
+lastupdated: "2024-04-18"
 
 keywords: Object Storage, SysDig, monitoring, integration
 
 subcollection: cloud-object-storage
-
 
 ---
 
@@ -57,7 +56,7 @@ If you have not already done so, [set up and provision](/docs/cloud-object-stora
 
 There are many ways to manage access to your {{site.data.keyword.cos_short}} instance, but for this guide we'll focus on how to access the dashboard you are going to create.
 
-**Users in an account [must be assigned a platform role](/docs/account?topic=account-userroles) in order to manage instances as well as launching the IBM Cloud Monitoring UI from the {{site.data.keyword.cloud_notm}} console. In addition, users must have a service role that defines the permissions to work with {{site.data.keyword.mon_full_notm}}.**
+**Users in an account [must be assigned a platform role](/docs/account?topic=account-userroles) to manage instances as well as launching the IBM Cloud Monitoring UI from the {{site.data.keyword.cloud_notm}} console. In addition, users must have a service role that defines the permissions to work with {{site.data.keyword.mon_full_notm}}.**
 {: important}
 
 ## Provisioning an instance of {{site.data.keyword.mon_short}}
@@ -70,10 +69,9 @@ From the [catalog](https://cloud.ibm.com/login){: external} choose {{site.data.k
 
 After you [login](/docs/cli?topic=cli-ibmcloud_cli#ibmcloud_login) using IBM Cloud Developer Tools and target both the region and resource group for your account, create a new resource using the command as shown.
 
-```bash
+```sh
 ibmcloud resource service-instance-create <INSTANCE_NAME> <SERVICE_NAME> <SERVICE_PLAN_NAME> <LOCATION>
 ```
-
 {: codeblock}
 
 In the code sample, replace the placeholders with the [appropriate values](/docs/monitoring?topic=monitoring-pricing_plans).
@@ -85,10 +83,9 @@ In the code sample, replace the placeholders with the [appropriate values](/docs
 | &lt;SERVICE_PLAN_NAME&gt; | The name of the plan | `Lite` |
 | &lt;LOCATION&gt; | The region of your buckets | `us-east` |
 
-```bash
+```sh
 ibmcloud resource service-instance-update <INSTANCE_NAME> -p '{"default_receiver": true}'
 ```
-
 {: codeblock}
 
 ## Connect {{site.data.keyword.cos_short}} to {{site.data.keyword.mon_short}}
@@ -146,7 +143,7 @@ To set Platform metrics on the instance:
 
 We will use cURL to connect to the Resource Configuration API and modify our bucket's configuration.
 
-```bash
+```sh
 curl -X PATCH -k  \
   -H "authorization: Bearer $TOKEN" \
   https://config.cloud-object-storage.cloud.ibm.com/v1/b/$1 \
@@ -158,7 +155,6 @@ curl -X PATCH -k  \
     }
    }'
 ```
-
 {: codeblock}
 
 
@@ -202,69 +198,69 @@ Once you've configured your dashboard, you can view your data. Figures 3-5 show 
 
 There are a set of basic metrics that track usage:
 
-* ibm_cos_bucket_used_bytes
-* ibm_cos_bucket_object_count
-* ibm_cos_bucket_hard_quota_bytes
+* `ibm_cos_bucket_used_bytes`
+* `ibm_cos_bucket_object_count`
+* `ibm_cos_bucket_hard_quota_bytes`
 
 ### Request metrics
 {: #mm-cos-metrics-request}
 
 There are metrics that report the aggregates for different classes of HTTP requests:
 
-* ibm_cos_bucket_all_requests
-* ibm_cos_bucket_get_requests
-* ibm_cos_bucket_put_requests
-* ibm_cos_bucket_delete_requests
-* ibm_cos_bucket_post_requests
-* ibm_cos_bucket_list_requests
-* ibm_cos_bucket_head_requests
+* `ibm_cos_bucket_all_requests`
+* `ibm_cos_bucket_get_requests`
+* `ibm_cos_bucket_put_requests`
+* `ibm_cos_bucket_delete_requests`
+* `ibm_cos_bucket_post_requests`
+* `ibm_cos_bucket_list_requests`
+* `ibm_cos_bucket_head_requests`
 
 Errors are also collected, with server-side (5xx) errors broken out:
 
-* ibm_cos_bucket_4xx_errors
-* ibm_cos_bucket_5xx_errors
+* `ibm_cos_bucket_4xx_errors`
+* `ibm_cos_bucket_5xx_errors`
 
 The minimum, maximum, and average bytes transferred by network type are reported:
 
-* ibm_cos_bucket_bytes_download_public_min
-* ibm_cos_bucket_bytes_download_public_max
-* ibm_cos_bucket_bytes_download_public_avg
-* ibm_cos_bucket_bytes_download_private_min
-* ibm_cos_bucket_bytes_download_private_max
-* ibm_cos_bucket_bytes_download_private_avg
-* ibm_cos_bucket_bytes_download_direct_min
-* ibm_cos_bucket_bytes_download_direct_max
-* ibm_cos_bucket_bytes_download_direct_avg
-* ibm_cos_bucket_bytes_upload_public_min
-* ibm_cos_bucket_bytes_upload_public_max
-* ibm_cos_bucket_bytes_upload_public_avg
-* ibm_cos_bucket_bytes_upload_private_min
-* ibm_cos_bucket_bytes_upload_private_max
-* ibm_cos_bucket_bytes_upload_private_avg
-* ibm_cos_bucket_bytes_upload_direct_min
-* ibm_cos_bucket_bytes_upload_direct_max
-* ibm_cos_bucket_bytes_upload_direct_avg
+* `ibm_cos_bucket_bytes_download_public_min`
+* `ibm_cos_bucket_bytes_download_public_max`
+* `ibm_cos_bucket_bytes_download_public_avg`
+* `ibm_cos_bucket_bytes_download_private_min`
+* `ibm_cos_bucket_bytes_download_private_max`
+* `ibm_cos_bucket_bytes_download_private_avg`
+* `ibm_cos_bucket_bytes_download_direct_min`
+* `ibm_cos_bucket_bytes_download_direct_max`
+* `ibm_cos_bucket_bytes_download_direct_avg`
+* `ibm_cos_bucket_bytes_upload_public_min`
+* `ibm_cos_bucket_bytes_upload_public_max`
+* `ibm_cos_bucket_bytes_upload_public_avg`
+* `ibm_cos_bucket_bytes_upload_private_min`
+* `ibm_cos_bucket_bytes_upload_private_max`
+* `ibm_cos_bucket_bytes_upload_private_avg`
+* `ibm_cos_bucket_bytes_upload_direct_min`
+* `ibm_cos_bucket_bytes_upload_direct_max`
+* `ibm_cos_bucket_bytes_upload_direct_avg`
 
 Latency metrics (first byte and general) for requests are broken down by request type:
 
-* ibm_cos_bucket_first_byte_latency_read_min
-* ibm_cos_bucket_first_byte_latency_read_max
-* ibm_cos_bucket_first_byte_latency_read_avg
-* ibm_cos_bucket_first_byte_latency_write_min
-* ibm_cos_bucket_first_byte_latency_write_max
-* ibm_cos_bucket_first_byte_latency_write_avg
-* ibm_cos_bucket_first_byte_latency_misc_min
-* ibm_cos_bucket_first_byte_latency_misc_max
-* ibm_cos_bucket_first_byte_latency_misc_avg
-* ibm_cos_bucket_request_latency_read_min
-* ibm_cos_bucket_request_latency_read_max
-* ibm_cos_bucket_request_latency_read_avg
-* ibm_cos_bucket_request_latency_write_min
-* ibm_cos_bucket_request_latency_write_max
-* ibm_cos_bucket_request_latency_write_avg
-* ibm_cos_bucket_request_latency_misc_min
-* ibm_cos_bucket_request_latency_misc_max
-* ibm_cos_bucket_request_latency_misc_avg
+* `ibm_cos_bucket_first_byte_latency_read_min`
+* `ibm_cos_bucket_first_byte_latency_read_max`
+* `ibm_cos_bucket_first_byte_latency_read_avg`
+* `ibm_cos_bucket_first_byte_latency_write_min`
+* `ibm_cos_bucket_first_byte_latency_write_max`
+* `ibm_cos_bucket_first_byte_latency_write_avg`
+* `ibm_cos_bucket_first_byte_latency_misc_min`
+* `ibm_cos_bucket_first_byte_latency_misc_max`
+* `ibm_cos_bucket_first_byte_latency_misc_avg`
+* `ibm_cos_bucket_request_latency_read_min`
+* `ibm_cos_bucket_request_latency_read_max`
+* `ibm_cos_bucket_request_latency_read_avg`
+* `ibm_cos_bucket_request_latency_write_min`
+* `ibm_cos_bucket_request_latency_write_max`
+* `ibm_cos_bucket_request_latency_write_avg`
+* `ibm_cos_bucket_request_latency_misc_min`
+* `ibm_cos_bucket_request_latency_misc_max`
+* `ibm_cos_bucket_request_latency_misc_avg`
 
 All metrics are reported as `float64` numeric values:
 
@@ -276,7 +272,7 @@ You can filter your results by attributes. In this guide, we'll look at some gen
 ### Global Attributes
 {: #mm-cos-global-attributes}
 
-The following attributes are available for segmenting all of the metrics listed above
+The following attributes are available for segmenting all the metrics listed above
 
 | Attribute | Attribute Name | Attribute Description |
 |-----------|----------------|-----------------------|
@@ -296,7 +292,7 @@ The following attributes are available for segmenting one or more attributes as 
 | Attribute | Attribute Name | Attribute Description |
 |-----------|----------------|-----------------------|
 | `IBM COS Bucket storage class` | `ibm_cos_bucket_storage_class` | Storage class of the bucket |
-| `Service instance` | `ibm_service_instance` | The service instance segment identifies the guid of the instance the metric is associated with. |
+| `Service instance` | `ibm_service_instance` | The service instance segment identifies the guide of the instance the metric is associated with. |
 {: caption="Table 5: COS specific attributes" caption-side="top"}
 
 ## Next Steps

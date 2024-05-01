@@ -3,7 +3,7 @@
 copyright:
 
   years: 2017, 2024
-lastupdated: "2024-03-25"
+lastupdated: "2024-04-19"
 
 
 keywords: cli, command line reference, object storage
@@ -44,7 +44,7 @@ Install the plug-in by using the `plugin install` command.
 ibmcloud plugin install cloud-object-storage
 ```
 
-Once the plug-in is installed, you can configure the plug-in by using the [`ibmcloud cos config`](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli#ic-config) command. This can be used to populate the plug-in with your credentials, default download location, choosing your authentication, etc.
+Once the plug-in is installed, you can configure the plug-in by using the [`ibmcloud cos config`](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli#ic-config) command. This can be used to populate the plug-in with your credentials, default download location, choosing your authentication, and so on.
 
 For optimal performance, ensure that tracing is disabled by setting the `IBMCLOUD_TRACE` environment variable to `false`.
 {: important}
@@ -116,7 +116,7 @@ Tracing can be enabled by setting `IBMCLOUD_TRACE` environment variable to `true
 
 On Linux/macOS terminal:
 
-```bash
+```sh
 export IBMCLOUD_TRACE=true
 ```
 
@@ -218,51 +218,52 @@ If you want to add metadata to an object during the copying (using the `--metada
 * **Action:** Copy an object from source bucket to destination bucket.
 * **Usage:** `ibmcloud cos object-copy --bucket BUCKET_NAME --key KEY --copy-source SOURCE [--cache-control CACHING_DIRECTIVES] [--content-disposition DIRECTIVES] [--content-encoding CONTENT_ENCODING] [--content-language LANGUAGE] [--content-type MIME] [--copy-source-if-match ETAG] [--copy-source-if-modified-since TIMESTAMP] [--copy-source-if-none-match ETAG] [--copy-source-if-unmodified-since TIMESTAMP] [--metadata MAP] [--metadata-directive DIRECTIVE] [--region REGION] [--output FORMAT]`
 * **Parameters to provide:**
-    * The name of the destination bucket.
-		* Flag: `--bucket BUCKET_NAME`
-	* The KEY of the object.
-		* Flag: `--key KEY`
-	* (SOURCE) The name of the source bucket and key name of the source object, which is separated by a slash (/). Must be URL-encoded.
-		* Flag: `--copy-source SOURCE`
-	* _Optional_: Specifies `CACHING_DIRECTIVES` for the request and reply chain.
-		* Flag: `--cache-control CACHING_DIRECTIVES`
-	* _Optional_: Specifies presentation information (`DIRECTIVES`).
-		* Flag: `--content-disposition DIRECTIVES`
-	* _Optional_: Specifies what content encodings (CONTENT_ENCODING) are applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.
-		* Flag: `--content-encoding CONTENT_ENCODING`
-	* _Optional_: The LANGUAGE the content is in.
-		* Flag: `--content-language LANGUAGE`
-	* _Optional_: A standard MIME type describing the format of the object data.
-		* Flag: `--content-type MIME`
-	* _Optional_: Copies the object if its entity tag (Etag) matches the specified tag (ETAG).
-		* Flag: `--copy-source-if-match ETAG`
-	* _Optional_: Copies the object if it has been modified since the specified time (TIMESTAMP).
-		* Flag: `--copy-source-if-modified-since TIMESTAMP`
-	* _Optional_: Copies the object if its entity tag (ETag) is different than the specified tag (ETAG).
-		* Flag: `--copy-source-if-none-match ETAG`
-	* _Optional_: Copies the object if it hasn't been modified since the specified time (TIMESTAMP).
-		* Flag: `--copy-source-if-unmodified-since TIMESTAMP`
-	* _Optional_: A MAP of metadata to store.
-	    * Flag: `--metadata MAP`
+  * The name of the destination bucket.
+    * Flag: `--bucket BUCKET_NAME`
+  * The KEY of the object.
+    * Flag: `--key KEY`
+  * (SOURCE) The name of the source bucket and key name of the source object, which is separated by a slash (/). Must be URL-encoded.
+    * Flag: `--copy-source SOURCE`
+  * _Optional_: Specifies `CACHING_DIRECTIVES` for the request and reply chain.
+    * Flag: `--cache-control CACHING_DIRECTIVES`
+  * _Optional_: Specifies presentation information (`DIRECTIVES`).
+    * Flag: `--content-disposition DIRECTIVES`
+  * _Optional_: Specifies what content encodings (CONTENT_ENCODING) are applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.
+    * Flag: `--content-encoding CONTENT_ENCODING`
+  * _Optional_: The LANGUAGE the content is in.
+    * Flag: `--content-language LANGUAGE`
+  * _Optional_: A standard MIME type describing the format of the object data.
+    * Flag: `--content-type MIME`
+  * _Optional_: Copies the object if its entity tag (`Etag`) matches the specified tag (`ETAG`).
+    * Flag: `--copy-source-if-match ETAG`
+  * _Optional_: Copies the object if it has been modified since the specified time (TIMESTAMP).
+    * Flag: `--copy-source-if-modified-since TIMESTAMP`
+  * _Optional_: Copies the object if its entity tag (`ETag`) is different than the specified tag (`ETAG`).
+    * Flag: `--copy-source-if-none-match ETAG`
+  * _Optional_: Copies the object if it hasn't been modified since the specified time (TIMESTAMP).
+    * Flag: `--copy-source-if-unmodified-since TIMESTAMP`
+  * _Optional_: A MAP of metadata to store.
+    * Flag: `--metadata MAP`
     JSON Syntax:
-    The `--metadata` flag takes the `file://` prefix that is used to load the JSON structure from the specified file.
+     The `--metadata` flag takes the `file://` prefix that is used to load the JSON structure from the specified file.
 
-    ```sh
-    {
-      "file_name": "file_20xxxxxxxxxxxx45.zip",
-      "label": "texas",
-      "state": "Texas",
-      "Date_to": "2019-11-09T16:00:00.000Z",
-      "Sha256sum": "9e39dxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx8ce6b68ede3a47",
-      "Timestamp": "Thu, 17 Oct 2019 09:22:13 GMT"
-    }
-    ```
+```sh
+      {
+        "file_name": "file_20xxxxxxxxxxxx45.zip",
+        "label": "texas",
+        "state": "Texas",
+        "Date_to": "2019-11-09T16:00:00.000Z",
+        "Sha256sum": "9e39dxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx8ce6b68ede3a47",
+        "Timestamp": "Thu, 17 Oct 2019 09:22:13 GMT"
+      }
+      ```
+
    * _Optional_: Specifies whether the metadata is copied from the source object or replaced with metadata provided in the request. DIRECTIVE values: COPY,REPLACE.
-		* Flag: ` --metadata-directive DIRECTIVE`
-   * _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-		* Flag: `--region REGION`
-   * _Optional_: Output FORMAT can be only json or text.
-		* Flag: `--output FORMAT`
+        * Flag: ` --metadata-directive DIRECTIVE`
+    * _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+        * Flag: `--region REGION`
+    * _Optional_: Output FORMAT can be only json or text.
+        * Flag: `--output FORMAT`
 
 ## Create a new bucket
 {: #ic-create-bucket}
@@ -317,7 +318,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:stagin
 ### Create a new bucket with Hyper Protect Crypto Services
 {: #ic-create-a-new-bucket-hpcs}
 
-* **Action:** Create a new bucket with Hyper Protect Cryto Services.
+* **Action:** Create a new bucket with Hyper Protect Crypto Services.
 * **Usage:** `bucket-create --bucket BUCKET_NAME [--ibm-service-instance-id ID] [--class CLASS_NAME] [--region REGION] --kms-root-key-crn CUSTOMERROOTKEYCRN --kms-encryption-algorithm ALGORITHM [--output FORMAT] [--json]`
 * **Parameters to provide:**
 	* The name of the bucket.
@@ -487,11 +488,11 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 		* Flag: `--bucket BUCKET_NAME`
 	* The KEY of the object.
 		* Flag: `--key KEY`
-	* _Optional_: Return the object only if its entity tag (ETag) is the same as the ETAG specified, otherwise return a 412 (precondition failed).
+	* _Optional_: Return the object only if its entity tag (`ETag`) is the same as the `ETAG` specified, otherwise return a 412 (precondition failed).
 		* Flag: `--if-match ETAG`
 	* _Optional_: Return the object only if it has been modified since the specified TIMESTAMP, otherwise return a 304 (not modified).
 		* Flag: `--if-modified-since TIMESTAMP`
-	* _Optional_: Return the object only if its entity tag (ETag) is different from the ETAG specified, otherwise return a 304 (not modified).
+	* _Optional_: Return the object only if its entity tag (`ETag`) is different from the `ETAG` specified, otherwise return a 304 (not modified).
 		* Flag: `--if-none-match ETAG`
 	* _Optional_: Return the object only if it has not been modified since the specified TIMESTAMP, otherwise return a 412 (precondition failed).
 		* Flag: `--if-unmodified-since TIMESTAMP`
@@ -526,15 +527,15 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 		* Flag: `--bucket BUCKET_NAME`
 	* The KEY of the object.
 		* Flag: `--key KEY`
-	* _Optional_: The number of goroutines to spin up in parallel per call to download when sending parts. Default value is 5.
+	* _Optional_: The number of go routines to spin up in parallel per call to download when sending parts. Default value is 5.
 		* Flag: `--concurrency value`
 	* _Optional_: The buffer SIZE (in bytes) to use when buffering data into chunks and ending them as parts to S3. The minimum allowed part size is 5MB.
 		* Flag: `--part-size SIZE`
-	* _Optional_: Return the object only if its entitytag (ETag) is the same as the ETAG specified, otherwise return a 412 (precondition failed).
+	* _Optional_: Return the object only if its entity tag (`ETag`) is the same as the `ETAG` specified, otherwise return a 412 (precondition failed).
 		* Flag: `--if-match ETAG`
 	* _Optional_: Return the object only if it has been modified since the specified TIMESTAMP, otherwise return a 304 (not modified).
 		* Flag: `--if-modified-since TIMESTAMP`
-	* _Optional_: Return the object only if its entity tag(ETag) is different from the ETAG specified, otherwise return a 304 (not modified).
+	* _Optional_: Return the object only if its entity tag(`ETag`) is different from the `ETAG` specified, otherwise return a 304 (not modified).
 		* Flag: `--if-none-match ETAG`
 	* _Optional_: Return the object only if it has not been modified since the specified TIMESTAMP, otherwise return a 412 (precondition failed).
 		* Flag: `--if-unmodified-since TIMESTAMP`
@@ -562,7 +563,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 ## Find a bucket
 {: #ic-find-bucket}
 
-* **Action:** Determine the region and class of a bucket in an IBM Cloud Object Storage instance. 
+* **Action:** Determine the region and class of a bucket in an IBM Cloud Object Storage instance.
 * **Usage:** `ibmcloud cos bucket-location-get --bucket BUCKET_NAME [--output FORMAT]`
 * **Parameters to provide:**
 	* The name of the bucket.
@@ -663,7 +664,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 		* Command: `list`
 	* Store Default Region in the config.
 		* Command: `region`
-	* Switch between VHost and Path URL style.
+	* Switch between `VHost` and Path URL style.
 		* Command: `url-style`
     * Set Default Service Endpoint.
         * Command: `endpoint-url`
@@ -697,11 +698,11 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 		* Flag: `--bucket BUCKET_NAME`
 	* The KEY of the object.
 		* Flag: `--key KEY`
-	* _Optional_: Return the object only if its entity tag (ETag) is the same as the ETAG specified, otherwise return a 412 (precondition failed).
+	* _Optional_: Return the object only if its entity tag (`ETag`) is the same as the `ETAG` specified, otherwise return a 412 (precondition failed).
 		* Flag: `--if-match ETAG`
 	* _Optional_: Return the object only if it has been modified since the specified TIMESTAMP, otherwise return a 304 (not modified).
 		* Flag: `--if-modified-since TIMESTAMP`
-	* _Optional_: Return the object only if its entity tag (ETag) is different from the ETAG specified, otherwise return a 304 (not modified).
+	* _Optional_: Return the object only if its entity tag (`ETag`) is different from the `ETAG` specified, otherwise return a 304 (not modified).
 		* Flag: `--if-none-match ETAG`
 	* _Optional_: Return the object only if it has not been modified since the specified TIMESTAMP, otherwise return a 412 (precondition failed).
 		* Flag: `--if-unmodified-since TIMESTAMP`
@@ -944,7 +945,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 		* Flag: `--key KEY`
 	* The PATH to the file to upload.
 		* Flag: `--file PATH`
-	* _Optional_: The number of goroutines to spin up in parallel per call to Upload when sending parts. Default value is 5.
+	* _Optional_: The number of go routines to spin up in parallel per call to Upload when sending parts. Default value is 5.
 		* Flag: `--concurrency value`
 	* _Optional_: Max number of PARTS which will be uploaded to S3 that calculates the part size of the object to be uploaded.  Limit is 10,000 parts.
 		* Flag: `--max-upload-parts PARTS`
@@ -996,8 +997,8 @@ The IBM Cloud Object Storage CLI provides the ability for users to upload large 
 ```
 
 After running the `multipart-upload-complete` command, run `part-upload` for each file part you want to upload. **For multipart uploads, every file part (except for the last part) must be at least 5 MB.** To split a file into separate parts, you can run `split` in a terminal window. For example, if you have a 13 MB file that is named `TESTFILE` on your Desktop, and you would like to split it into file parts of 5 MB each, you can run `split -b 3m ~/Desktop/TESTFILE part-file-`. This command generates three file parts into two file parts of 5 MB each, and one file part of 3 MB, with the names `part-file-aa`, `part-file-ab`, and `part-file-ac`.
-
-As each file part is uploaded, the CLI print its ETag. You must save this ETag into a formatted JSON file, along with the part number. Use this template to create your own ETag JSON data file.
+`
+As each file part is uploaded, the CLI print its `ETag`. You must save this `ETag` into a formatted JSON file, along with the part number. Use this template to create your own `ETag JSON data file.
 
 ```sh
 {
@@ -1023,7 +1024,7 @@ To see the status of your multipart upload instance, you can always run the `par
 
 * **Action:** Upload a part of a file in an existing multipart upload instance.
 * **Usage:** `ibmcloud cos part-upload --bucket BUCKET_NAME --key KEY --upload-id ID --part-number NUMBER [--body FILE_PATH] [--region REGION] [--output FORMAT]`
-	* Note that you must save each uploaded file part's number and ETag (which the CLI will print for you) for each part into a JSON file. Refer to the "Multipart Upload Guide" below for more information.
+	* Note that you must save each uploaded file part's number and `ETag` (which the CLI will print for you) for each part into a JSON file. Refer to the "Multipart Upload Guide" below for more information.
 * **Parameters to provide:**
 	* The bucket name where the multipart upload is taking place.
 		* Flag: `--bucket BUCKET_NAME`
@@ -1045,7 +1046,7 @@ To see the status of your multipart upload instance, you can always run the `par
 
 * **Action:** Upload a part by copying data from an existing object.
 * **Usage:** `ibmcloud cos part-upload-copy --bucket BUCKET_NAME --key KEY --upload-id ID --part-number NUMBER --copy-source SOURCE [--copy-source-if-match ETAG] [--copy-source-if-modified-since TIMESTAMP] [--copy-source-if-none-match ETAG] [--copy-source-if-unmodified-since TIMESTAMP] [--copy-source-range value] [--region REGION] [--output FORMAT]`
-	* Note that you must save each uploaded file part's number and ETag (which the CLI will print for you) for each part into a JSON file. Refer to the "Multipart Upload Guide" for more information.
+	* Note that you must save each uploaded file part's number and `ETag` (which the CLI will print for you) for each part into a JSON file. Refer to the "Multipart Upload Guide" for more information.
 * **Parameters to provide:**
 	* The name of the bucket.
 		* Flag: `--bucket BUCKET_NAME`
@@ -1057,11 +1058,11 @@ To see the status of your multipart upload instance, you can always run the `par
 		* Flag: `--part-number PART_NUMBER`
 	* (SOURCE) The name of the source bucket and key name of the source object, which is separated by a slash (/). Must be URL-encoded.
 		* Flag: `--copy-source SOURCE`
-	* _Optional_: Copies the object if its entity tag (Etag) matches the specified tag (ETAG).
+	* _Optional_: Copies the object if its entity tag (`Etag`) matches the specified tag (`ETAG`).
 		* Flag: `--copy-source-if-match ETAG`
 	* _Optional_: Copies the object if it has been modified since the specified time (TIMESTAMP).
 		* Flag: `--copy-source-if-modified-since TIMESTAMP`
-	* _Optional_: Copies the object if its entity tag (ETag) is different than the specified tag (ETAG).
+	* _Optional_: Copies the object if its entity tag (`ETag`) is different than the specified tag (`ETAG`).
 		* Flag: `--copy-source-if-none-match ETAG`
 	* _Optional_: Copies the object if it hasn't been modified since the specified time (TIMESTAMP).
 		* Flag: `--copy-source-if-unmodified-since TIMESTAMP`

@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2020
-lastupdated: "2020-11-07"
+  years: 2020, 2024
+lastupdated: "2024-04-19"
 
-keywords: routing rules for cloud-object-storage, static website domains for cloud-object-storage, domains for cloud-object-storage 
+keywords: routing rules for cloud-object-storage, static website domains for cloud-object-storage, domains for cloud-object-storage
 
 subcollection: cloud-object-storage
 
@@ -18,7 +18,7 @@ subcollection: cloud-object-storage
 A static website hosted with {{site.data.keyword.cos_full}} can be configured using {{site.data.keyword.cis_full_notm}}. Configuring routing rules for domains hosted in {{site.data.keyword.cos_full_notm}} will be explored in this advanced "how to."
 {: shortdesc}
 
-These instructions are subject to change and are provided here for review. 
+These instructions are subject to change and are provided here for review.
 {: important}
 
 ## Overview
@@ -36,7 +36,7 @@ Prerequisites:
 - An instance of {{site.data.keyword.cos_short}} with a bucket configured as a hosted static website 
 - An Internet domain managed through {{site.data.keyword.cis_full_notm}}
 
-These instructions require an account with the correct [plan](/docs/cis?topic=cis-multi-domain-support) in order to access the services as described. 
+These instructions require an account with the correct [plan](/docs/cis?topic=cis-multi-domain-support) in order to access the services as described.
 {: note}
 
 ## {{site.data.keyword.cloud_notm}} Internet, Domain, and Delivery Services
@@ -60,19 +60,19 @@ Creating a "Page Rule" in your instance of {{site.data.keyword.cis_full_notm}} w
 1. Next, you will create the DNS CNAME record to forward traffic to your content in {{site.data.keyword.cos_full_notm}}.
 
 ### Create a domain alias to proxy your content
-{: #routing-rules-cos-page-rule}
+{: #routing-rules-cos-domain-alias}
 
-After you have directed your visitors to the right location using a "Page Rule," you will want to create an alias to guide your visitors to the location. For this example, we want to send your visitors to your new subdomain `web` to the existing domain, `example.com` that will point to 
+After you have directed your visitors to the right location using a "Page Rule," you will want to create an alias to guide your visitors to the location. For this example, we want to send your visitors to your new subdomain `web` to the existing domain, `example.com` that will point to
 
 1. Select Reliability from the Navigation
 1. Select the DNS Tab from the options.
-1. Add a new DNS record, substituting your configuration for the exemplified values shown. The desired subdomain should be added in the "name" field. in this example, we used `web` as a new subdomain value. The "alias domain name" is the same as entered earlier, which in this example comprised a bucket name followed by a dot and then the endpoint, e.g. `web-example-com.s3-web.us-east.cloud-object-storage.appdomain.cloud`.
+1. Add a new DNS record, substituting your configuration for the exemplified values shown. The desired subdomain should be added in the "name" field. in this example, we used `web` as a new subdomain value. The "alias domain name" is the same as entered earlier, which in this example comprised a bucket name followed by a dot and then the endpoint, for example, `web-example-com.s3-web.us-east.cloud-object-storage.appdomain.cloud`.
 
    - Type: CNAME
    - Name: `<sub-domain>`
    - TTL: Automatic
    - Alias Domain Name: `<bucket-name>.s3-web.<bucket-region>.cloud-object-storage.appdomain.cloud`
-   
+
 1. Click "Add" to save the DNS entry when you've completed the configuration.
 1. In the table of rules where your new entry appears, enable the Proxy option as "on."
 

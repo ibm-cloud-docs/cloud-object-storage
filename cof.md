@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-08-10"
+  years: 2017, 2024
+lastupdated: "2024-04-19"
 
 keywords: cloud foundry, compute, object storage
 
@@ -27,9 +27,9 @@ Successful implementation of a Cloud Foundry platform requires [proper planning 
 
 ### Regions
 {: #cloud-foundry-regions}
-[Regional endpoints](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-endpoints#endpoints-region) are an important part of the IBM Cloud Environment. You can create applications and service instances in different regions with the same IBM Cloud infrastructure for application management and the same usage details view for billing. By choosing an IBM Cloud region that is geographically close to you or your customers, you can reduce data latency in your applications as well as minimize costs. Regions can also be selected address any security concerns or regulatory requirements. 
+[Regional endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints-region) are an important part of the IBM Cloud Environment. You can create applications and service instances in different regions with the same IBM Cloud infrastructure for application management and the same usage details view for billing. By choosing an IBM Cloud region that is geographically close to you or your customers, you can reduce data latency in your applications as well as minimize costs. Regions can also be selected address any security concerns or regulatory requirements. 
 
-With {{site.data.keyword.cos_full}} you can choose to disperse data across a single data center, an entire region, or even a combination of regions by [selecting the endpoint](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) where your application sends API requests.
+With {{site.data.keyword.cos_full}} you can choose to disperse data across a single data center, an entire region, or even a combination of regions by [selecting the endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) where your application sends API requests.
 
 ### Resource Connections and Aliases
 {: #cloud-foundry-aliases}
@@ -94,9 +94,9 @@ var cos = new AWS.S3(config);
 
 For more information on how to use the SDK to access {{site.data.keyword.cos_short}} with code examples visit:
 
-* [Using Java](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-java)
-* [Using Python](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-python)
-* [Using Node.js](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-node)
+* [Using Java](/docs/cloud-object-storage?topic=cloud-object-storage-java)
+* [Using Python](/docs/cloud-object-storage?topic=cloud-object-storage-python)
+* [Using Node.js](/docs/cloud-object-storage?topic=cloud-object-storage-node)
 
 ## Creating Service Bindings 
 {: #cloud-foundry-bindings}
@@ -104,21 +104,21 @@ For more information on how to use the SDK to access {{site.data.keyword.cos_sho
 ### Dashboard
 {: #cloud-foundry-bindings-console}
 
-The simplest way to create a service binding is by using the [{{site.data.keyword.cloud}} Dashboard](https://cloud.ibm.com/resources). 
+The simplest way to create a service binding is by using the [{{site.data.keyword.cloud}} Dashboard](https://cloud.ibm.com/resources).
 
 1. Log in to the [Dashboard](https://cloud.ibm.com/resources)
-2. Click your Cloud Foundry application
-3. Click Connections in the menu on the left
-4. Click **Create Connection** on the right
-5. From the *Connect Existing Compatible Service* page hover over your {{site.data.keyword.cos_short}} service and click **Connect**.
-6. From the *Connect IAM-Enabled Service* popup screen select the Access Role, leave Auto Generate for the Service ID, and click **Connect**
-7. The Cloud Foundry application needs to be restaged in order to use the new service binding. Click **Restage** to start the process.
-8. Once restaging is complete your Cloud Object Storage service is available to your application.
+2. Click the Cloud Foundry application
+3. Click `Connections` in the menu on the left
+4. Click `Create Connection` on the right
+5. From the `Connect Existing Compatible Service` page hover over your {{site.data.keyword.cos_short}} service and click `Connect`.
+6. From the `Connect IAM-Enabled Service` screen, select the `Access Role`, leave `Auto Generate` for the Service ID, and click `Connect`
+7. The Cloud Foundry application needs to be re-staged to use the new service binding. Click `Restage` to start the process.
+8. Once re-staging is complete your Cloud Object Storage service is available to your application.
 
 The applications VCAP_SERVICES environment variable is automatically updated with the service information. To view the new variable:
 
-1. Click *Runtime* in the menu on the right
-2. Click *Environment variables*
+1. Click `Runtime` in the menu on the right
+2. Click `Environment variables`
 3. Verify that your COS service is now listed
 
 ### IBM Client Tools (CLI)
@@ -175,9 +175,9 @@ ibmcloud resource service-binding-create <service alias> <cf app name> <role> -p
 ### Binding to {{site.data.keyword.containershort_notm}}
 {: #cloud-foundry-k8s}
 
-Creating a service binding to {{site.data.keyword.containershort}} requires a slightly different procedure. 
+Creating a service binding to {{site.data.keyword.containershort}} requires a slightly different procedure.
 
-*For this section, you will also need to install [jq - a lightweight command-line JSON processor](https://stedolan.github.io/jq/){: external}.*
+For this section, you also need to install [`jq` - a lightweight command-line JSON processor](https://stedolan.github.io/jq/){: external}.
 
 You need the following information and substitute the key values in commands below:
 
@@ -188,39 +188,46 @@ You need the following information and substitute the key values in commands bel
 * `<cluster name>` - name of your existing Kubernetes cluster service
 * `<secret binding name>` - this value is generated when COS is bound to the cluster service
 
-
 1. Create a service alias for your COS Instance<br/><br/>* **Note:** COS Instance can only have one service alias*
-```
+
+```sh
 ibmcloud resource service-alias-create <service alias> --instance-name <cos instance name>
 ```
- 
+
 1. Create a new service key with permissions to the COS service alias
-```
+
+```sh
 ibmcloud resource service-key-create <service credential name> <role> --alias-name <service alias> --parameters '{"HMAC":true}’
 ```
 
 3. Bind the cluster service to COS
-```
+
+```sh
 ibmcloud cs cluster-service-bind --cluster <cluster name> --namespace default --service <service alias>
 ```
 
 4. Verify that COS service alias is bound to the cluster
-```
+
+```sh
 ibmcloud cs cluster-services --cluster <cluster name>
 ```
+
 The output will look like this:
-```
+
+```sh
 OK
 Service   Instance GUID                          Key             Namespace
 sv-cos    91e0XXXX-9982-4XXd-be60-ee328xxxacxx   cos-hmac        default
 ```
 
-5. Retrieve the list of Secrets in your cluster and find the secret for your COS service. Typically it will be `binding-` plus the `<service alias>` you specified in step 1 (i.e. `binding-sv-cos`). Use this value as `<secret binding name>` in step 6.
-```
+5. Retrieve the list of Secrets in your cluster and find the secret for your COS service. Typically it will be `binding-` plus the `<service alias>` you specified in step 1 (that is, `binding-sv-cos`). Use this value as `<secret binding name>` in step 6.
+
+```sh
 kubectl get secrets
 ```
-output should look like this:
-```
+
+Output should look like this:
+```sh
 NAME                                   TYPE                                  DATA      AGE
 binding-sv-cos                         Opaque                                1         18d
 default-token-8hncf                    kubernetes.io/service-account-token   3         20d
@@ -228,9 +235,13 @@ default-token-8hncf                    kubernetes.io/service-account-token   3  
 
 6. Verify that COS HMAC credentials are available in your cluster Secrets
 ```
+
+```sh
 kubectl get secret <secret binding name> -o json | jq .data.binding | sed -e 's/^"//' -e 's/"$//' | base64 -D | jq .cos_hmac_keys
 ```
-output should look like this:
+
+Output should look like this:
+
 ```json
 {
     "access_key_id": "9XX0adb9948c41eebb577bdce6709760",
