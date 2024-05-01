@@ -36,9 +36,13 @@ This tutorial takes a new user through the first steps with the {{site.data.keyw
    The terms 'resource instance' and 'service instance' refer to the same concept, and can be used interchangeably.
    {: tip}
 
+
 1. You will need a bucket before you can store data in your new _service instance_. To **Create a bucket**, start by choosing a unique name. All buckets in all regions across the globe share a single namespace. Ensure that you have the [correct permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions) to create a bucket.
 
    When you name buckets or objects, be sure to avoid the use of Personally Identifiable Information (PII). PII is information that can identify any user (natural person) by name, location, or any other means.
+   {: tip}
+
+   Bucket names are required to be DNS addressable and are not case-sensitive.
    {: tip}
 
 2. First, choose the [level of _resiliency_](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) you want. Then, choose a _location_ where you would like your data to be physically stored. Resiliency refers to the scope and scale of the geographic area across which your data is distributed. _Cross Region_ resiliency spreads your data across several metropolitan areas, while _Regional_ resiliency spreads data across a single metropolitan area. A _Single Data Center_ distributes data across devices within a single site only.
