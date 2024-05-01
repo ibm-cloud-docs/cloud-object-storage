@@ -184,6 +184,12 @@ You can check the communication with Object Storage by using one of the followin
 
 * Use SDK : See [`headbucket` property](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#headBucket-property){: external}.
 
+## Why can I not create or delete a service instance?
+{: #faq-instance-create-delete}
+{: faq}
+
+A user is required to have have at a minimum the platform role of `editor` for all IAM enabled services, or at least for Cloud Object Service. For more information, see the [IAM documentation on roles](/docs/account?topic=account-iam-service-roles-actions).
+
 ## Can I migrate a bucket from one COS instance to another?
 {: #faq-create-bucket}
 {: faq}
@@ -212,6 +218,18 @@ When an empty bucket is deleted, the name of the bucket is held in reserve by th
 {: faq}
 
 Archived objects must be restored before you can access them. While restoring, specify the time limit the objects should remain available before being re-archived. For details, see [archive-restore data](/docs/cloud-object-storage?topic=cloud-object-storage-archive).
+
+## What is the maximum number of characters that can be used in a key, or Object name?
+{: #faq-max-key}
+{: faq}
+
+Keys have a 1024-character limit.
+
+## What are some tools unable to render object names?
+{: #faq-xml-error}
+{: faq}
+
+Object names that contain unicode characters that are not allowed by the XML standard will result in "Malformed XML" messages. For more information, see [the XML reference documentation](https://www.w3.org/TR/xml/#charsets).
 
 ## Can I enable Object Storage replication between two different regions for DR purposes?
 {: #faq-cos-replication}
