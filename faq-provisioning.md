@@ -14,17 +14,18 @@ content-type: faq
 
 {{site.data.keyword.attribute-definition-list}}
 
-# FAQ - Provisioning, Plans, and Naming
+# FAQ - Plans
 {: #faq-provision}
 
 Frequently asked questions can produce helpful answers and insight into best practices for working with {{site.data.keyword.cos_full}}.
 {: shortdesc}
 
+<!-- Moved to faq.md 5-1-2024 PW
 ## Why can I not create or delete a service instance?
 {: #faq-instance-create-delete}
 {: faq}
 
-A user is required to have have at a minimum the platform role of `editor` for all IAM enabled services, or at least for Cloud Object Service. For more information, see the [IAM documentation on roles](/docs/account?topic=account-iam-service-roles-actions).
+A user is required to have have at a minimum the platform role of `editor` for all IAM enabled services, or at least for Cloud Object Service. For more information, see the [IAM documentation on roles](/docs/account?topic=account-iam-service-roles-actions).-->
 
 
 ## Which one of my instances uses a Lite plan?
@@ -61,17 +62,21 @@ ic resource service-instance-update "My Object Storage" --service-plan-id 744bfc
 Bucket names are required to be DNS addressable and are not case-sensitive.
 -->
 
+<!-- Moved to faq.md 5-1-2024 PW
 ## What is the maximum number of characters that can be used in a key, or Object name?
 {: #faq-max-key}
 {: faq}
 
 Keys have a 1024-character limit.
+-->
 
+<!-- Moved to faq.md 5-1-2024 PW
 ## What are some tools unable to render object names?
 {: #faq-xml-error}
 {: faq}
 
 Object names that contain unicode characters that are not allowed by the XML standard will result in "Malformed XML" messages. For more information, see [the XML reference documentation](https://www.w3.org/TR/xml/#charsets).
+-->
 
 ## Can I create more than one Object Storage service with a Lite account?
 {: #faq-lite-storage}
@@ -82,5 +87,5 @@ If you already have a Lite plan instance created, you may create other Standard 
 ## What happens if I exceed the maximum usage allowed for a Lite plan?
 {: #faq-lite-exceed}
 {: faq}
- 
+
 Once you exceed the allowed usage, the service instance associated with the Lite plan becomes inaccessible.  You will receive a warning notification email with corrective steps. If you do not take action, the instance is removed.
