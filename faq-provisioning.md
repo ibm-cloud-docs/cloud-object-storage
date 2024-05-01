@@ -53,11 +53,13 @@ In cases where the instance has been locked due to exceeding the maximum allowed
 ic resource service-instance-update "My Object Storage" --service-plan-id 744bfc56-d12c-4866-88d5-dac9139e0e5d
 ```
 
+<!-- information moved to a tip in Getting Started. 5-1-2024 PW
 ## Are bucket names case-sensitive?
 {: #faq-name-case}
 {: faq}
 
 Bucket names are required to be DNS addressable and are not case-sensitive.
+-->
 
 ## What is the maximum number of characters that can be used in a key, or Object name?
 {: #faq-max-key}
@@ -74,7 +76,7 @@ Object names that contain unicode characters that are not allowed by the XML sta
 ## Can I create more than one Object Storage service with a Lite account?
 {: #faq-lite-storage}
 {: faq}
- 
+
 If you already have a Lite plan instance created, you may create other Standard plan instances, but only one Lite plan instance is allowed.
 
 ## What happens if I exceed the maximum usage allowed for a Lite plan?
