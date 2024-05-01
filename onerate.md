@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2024
-lastupdated: "2024-02-13"
+lastupdated: "2024-05-01"
 
 keywords: data, cost, pricing, isv
 
@@ -144,7 +144,7 @@ All buckets created in a One Rate plan must use a [specific provisioning code](/
 {: tab-group="One Rate Codes"}
 
 ## Billing examples
-{: #onerate-billing}
+{: #onerate-billing-examples}
 
 These costs are examples provided to illustrate the mechanics of the billing and are not reflective of actual rates, which can [be found here](/objectstorage/create#pricing).
 {: note}
