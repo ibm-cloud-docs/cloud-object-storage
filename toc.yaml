@@ -130,7 +130,6 @@ toc:
           - functions.md
           - code-engine.md
           - ftp.md
-          - file-gateway.md
     - navgroup:
         id: reference
         topics:
