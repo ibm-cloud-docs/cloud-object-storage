@@ -94,6 +94,7 @@ toc:
                   label: Connect to resources using a CDN
                   href: https://cloud.ibm.com/docs/CDN/CDN-configure-cdn-with-ibm-cloud-object-storage
               - sql.md
+              - functions.md
           - topicgroup:
               label: Using IBM Cloud Satellite
               topics:
@@ -139,7 +140,6 @@ toc:
           - multipart.md
           - deleting-multiple-objects.md
           - quota.md
-          - functions.md
           - ftp.md
     - navgroup:
         id: reference
