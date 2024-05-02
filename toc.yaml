@@ -85,6 +85,15 @@ toc:
                     - hpcs.md
               - activity-tracker.md
               - metrics-monitoring.md
+              - code-engine.md
+              - aspera.md
+              - link:
+                  label: Connect to IBM COS using IBM Cloud Direct Link
+                  href: https://cloud.ibm.com/docs/dl?topic=dl-get-started-with-ibm-cloud-dl
+              - link:
+                  label: Connect to resources using a CDN
+                  href: https://cloud.ibm.com/docs/CDN/CDN-configure-cdn-with-ibm-cloud-object-storage
+              - sql.md
           - topicgroup:
               label: Using IBM Cloud Satellite
               topics:
@@ -124,23 +133,14 @@ toc:
           - closures.md
           - object-tagging.md
           - cos-region-copy.md
-          - aspera.md
           - classes.md
           - static-websites-options.md
           - versioning.md
-          - link:
-              label: Connect to resources using a CDN
-              href: https://cloud.ibm.com/docs/CDN/CDN-configure-cdn-with-ibm-cloud-object-storage
           - multipart.md
           - deleting-multiple-objects.md
-          - sql.md
           - quota.md
           - functions.md
-          - code-engine.md
           - ftp.md
-          - link:
-              label: Connect to IBM COS using IBM Cloud Direct Link
-              href: https://cloud.ibm.com/docs/dl?topic=dl-get-started-with-ibm-cloud-dl
     - navgroup:
         id: reference
         topics:
