@@ -72,7 +72,11 @@ toc:
           - topicgroup:
               label: Data management
               topics:
-                - endpoints.md
+                - upload.md
+                - multipart.md
+                - replication.md
+                - object-tagging.md
+                - versioning.md
           - topicgroup:
               label: Integrated services
               topics:
@@ -129,15 +133,10 @@ toc:
               topics:
                 - immutable.md
                 - object-lock.md
-          - upload.md
-          - replication.md
           - closures.md
-          - object-tagging.md
           - cos-region-copy.md
           - classes.md
           - static-websites-options.md
-          - versioning.md
-          - multipart.md
           - deleting-multiple-objects.md
           - quota.md
           - ftp.md
