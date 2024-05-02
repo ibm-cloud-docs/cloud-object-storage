@@ -57,6 +57,18 @@ toc:
                 - order-storage.md
                 - onerate.md
           - topicgroup:
+              label: Bucket management
+              topics:
+                - endpoints.md
+          - topicgroup:
+              label: Data management
+              topics:
+                - endpoints.md
+          - topicgroup:
+              label: Integrated services
+              topics:
+                - endpoints.md
+          - topicgroup:
               label: Choose regions and connect services
               topics:
                 - endpoints.md
