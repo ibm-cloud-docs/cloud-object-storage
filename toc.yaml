@@ -76,7 +76,25 @@ toc:
           - topicgroup:
               label: Integrated services
               topics:
-                - endpoints.md
+              - topicgroup:
+                  label: Managing encryption
+                  topics:
+                    - encryption-overview.md
+                    - sse-c.md
+                    - kp.md
+                    - hpcs.md
+              - activity-tracker.md
+              - metrics-monitoring.md
+              - code-engine.md
+              - aspera.md
+              - link:
+                  label: Connect to IBM COS using IBM Cloud Direct Link
+                  href: https://cloud.ibm.com/docs/dl?topic=dl-get-started-with-ibm-cloud-dl
+              - link:
+                  label: Connect to resources using a CDN
+                  href: https://cloud.ibm.com/docs/CDN/CDN-configure-cdn-with-ibm-cloud-object-storage
+              - sql.md
+              - functions.md
           - topicgroup:
               label: Using IBM Cloud Satellite
               topics:
@@ -101,13 +119,6 @@ toc:
                 - public-access.md
                 - firewall.md
           - topicgroup:
-              label: Managing encryption
-              topics:
-                - encryption-overview.md
-                - sse-c.md
-                - kp.md
-                - hpcs.md
-          - topicgroup:
               label: Managing a bucket's lifecycle configurations
               topics:
                 - archive.md
@@ -123,25 +134,13 @@ toc:
           - closures.md
           - object-tagging.md
           - cos-region-copy.md
-          - aspera.md
           - classes.md
           - static-websites-options.md
           - versioning.md
-          - link:
-              label: Connect to resources using a CDN
-              href: https://cloud.ibm.com/docs/CDN/CDN-configure-cdn-with-ibm-cloud-object-storage
           - multipart.md
           - deleting-multiple-objects.md
-          - sql.md
-          - activity-tracker.md
           - quota.md
-          - metrics-monitoring.md
-          - functions.md
-          - code-engine.md
           - ftp.md
-          - link:
-              label: Connect to IBM COS using IBM Cloud Direct Link
-              href: https://cloud.ibm.com/docs/dl?topic=dl-get-started-with-ibm-cloud-dl
     - navgroup:
         id: reference
         topics:
