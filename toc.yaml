@@ -48,26 +48,11 @@ toc:
     - navgroup:
         id: howto
         topics:
-          - link:
-              label: Connect to IBM COS using IBM Cloud Direct Link
-              href: https://cloud.ibm.com/docs/dl?topic=dl-get-started-with-ibm-cloud-dl
           - topicgroup:
               label: Provisioning storage
               topics:
                 - order-storage.md
                 - onerate.md
-          - topicgroup:
-              label: Bucket management
-              topics:
-                - endpoints.md
-          - topicgroup:
-              label: Data management
-              topics:
-                - endpoints.md
-          - topicgroup:
-              label: Integrated services
-              topics:
-                - endpoints.md
           - topicgroup:
               label: Choose regions and connect services
               topics:
@@ -80,6 +65,18 @@ toc:
                 - link:
                     label: Connect from VPC
                     href: https://cloud.ibm.com/docs/vpc?topic=vpc-connecting-vpc-cos
+          - topicgroup:
+              label: Bucket management
+              topics:
+                - endpoints.md
+          - topicgroup:
+              label: Data management
+              topics:
+                - endpoints.md
+          - topicgroup:
+              label: Integrated services
+              topics:
+                - endpoints.md
           - topicgroup:
               label: Using IBM Cloud Satellite
               topics:
@@ -142,6 +139,9 @@ toc:
           - functions.md
           - code-engine.md
           - ftp.md
+          - link:
+              label: Connect to IBM COS using IBM Cloud Direct Link
+              href: https://cloud.ibm.com/docs/dl?topic=dl-get-started-with-ibm-cloud-dl
     - navgroup:
         id: reference
         topics:
