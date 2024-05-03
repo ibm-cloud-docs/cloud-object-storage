@@ -67,41 +67,41 @@ toc:
                     label: Connect from VPC
                     href: https://cloud.ibm.com/docs/vpc?topic=vpc-connecting-vpc-cos
           - topicgroup:
-              label: Bucket management
+            label: Bucket management
+            topics:
+            - topicgroup:
+              label: Managing a bucket's lifecycle configurations
               topics:
+              - archive.md
+              - expiry.md
+              - abort-mpu.md
+            - topicgroup:
+              label: Managing access
+              topics:
+                - iam.md
+                - iam-overview.md
+                - service-credentials.md
                 - topicgroup:
-                  label: Managing a bucket's lifecycle configurations
+                  label: Using Access/Secret Key (HMAC) authentication
                   topics:
-                  - archive.md
-                  - expiry.md
-                  - abort-mpu.md
-                - topicgroup:
-                  label: Managing access
-                  topics:
-                    - iam.md
-                    - iam-overview.md
-                    - service-credentials.md
-                    - topicgroup:
-                      label: Using Access/Secret Key (HMAC) authentication
-                      topics:
-                        - credentials.md
-                        - hmac-signature.md
-                        - presigned-urls.md
-                    - buckets.md
-                    - assign-access-indvobjects.md
-                    - public-access.md
-                    - firewall.md
-                - topicgroup:
-                  label: Managing data immutability
-                  topics:
-                  - immutable.md
-                  - object-lock.md
-                - quota.md
-                - classes.md
-                - cos-region-copy.md
-                - deleting-multiple-objects.md
-                - static-websites-options.md
-                - ftp.md
+                    - credentials.md
+                    - hmac-signature.md
+                    - presigned-urls.md
+                - buckets.md
+                - assign-access-indvobjects.md
+                - public-access.md
+                - firewall.md
+            - topicgroup:
+              label: Managing data immutability
+              topics:
+              - immutable.md
+              - object-lock.md
+            - quota.md
+            - classes.md
+            - cos-region-copy.md
+            - deleting-multiple-objects.md
+            - static-websites-options.md
+            - ftp.md
           - topicgroup:
               label: Data management
               topics:
