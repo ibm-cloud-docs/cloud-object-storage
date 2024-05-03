@@ -61,6 +61,7 @@ toc:
                 - endpoint-remap.md
                 - services.md
                 - vpe.md
+                - closures.md
               links:
                 - link:
                     label: Connect from VPC
@@ -68,7 +69,39 @@ toc:
           - topicgroup:
               label: Bucket management
               topics:
-                - endpoints.md
+                - topicgroup:
+                  label: Managing a bucket's lifecycle configurations
+                  topics:
+                  - archive.md
+                  - expiry.md
+                  - abort-mpu.md
+                - topicgroup:
+                  label: Managing access
+                  topics:
+                    - iam.md
+                    - iam-overview.md
+                    - service-credentials.md
+                    - topicgroup:
+                      label: Using Access/Secret Key (HMAC) authentication
+                      topics:
+                        - credentials.md
+                        - hmac-signature.md
+                        - presigned-urls.md
+                    - buckets.md
+                    - assign-access-indvobjects.md
+                    - public-access.md
+                    - firewall.md
+                - topicgroup:
+                  label: Managing data immutability
+                  topics:
+                  - immutable.md
+                  - object-lock.md
+                - quota.md
+                - classes.md
+                - cos-region-copy.md
+                - deleting-multiple-objects.md
+                - static-websites-options.md
+                - ftp.md
           - topicgroup:
               label: Data management
               topics:
@@ -106,40 +139,6 @@ toc:
                 - satellite-provisioning.md
                 - satellite-billing.md
                 - satellite-apis.md
-          - topicgroup:
-              label: Managing access
-              topics:
-                - iam.md
-                - iam-overview.md
-                - service-credentials.md
-                - topicgroup:
-                    label: Using Access/Secret Key (HMAC) authentication
-                    topics:
-                      - credentials.md
-                      - hmac-signature.md
-                      - presigned-urls.md
-                - buckets.md
-                - assign-access-indvobjects.md
-                - public-access.md
-                - firewall.md
-          - topicgroup:
-              label: Managing a bucket's lifecycle configurations
-              topics:
-                - archive.md
-                - expiry.md
-                - abort-mpu.md
-          - topicgroup:
-              label: Managing data immutability
-              topics:
-                - immutable.md
-                - object-lock.md
-          - closures.md
-          - cos-region-copy.md
-          - classes.md
-          - static-websites-options.md
-          - deleting-multiple-objects.md
-          - quota.md
-          - ftp.md
     - navgroup:
         id: reference
         topics:
