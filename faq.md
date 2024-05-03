@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-05-02"
+lastupdated: "2024-05-03"
 
 
 keywords: faq, frequently asked questions, object storage, S3, HMAC
@@ -579,3 +579,15 @@ The response you receive includes information for the name of your instance, loc
 Check [IAM permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam) because a user must have "Writer" permissions to create buckets.
 
 [Content-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-cos-tutorial-cbr) may be preventing the user from acting on the service.
+
+## How do cross-origin resource sharing (CORS) and a bucket firewall differ in limiting access to data?
+{: #faq-cors}
+{: faq}
+
+CORS allows interactions between resources from different origins that are normally prohibited. A bucket firewall allows access only to requests from a list of allowed IP addresses. For more information on CORS, see [What is CORS?](/docs/CDN?topic=CDN-cors-and-cors-requests-through-your-cdn#what-is-cors).
+
+## How do I allow Aspera High-Speed Transfer through a bucket with context-based restrictions or a firewall?
+{: #faq-aspera-ip}
+{: faq}
+
+The full list (in JSON) of Aspera High-Speed Transfer IP addresses that are used with {{site.data.keyword.cos_full_notm}} can be found [using this API endpoint](https://ats.aspera.io/pub/v1/servers/softlayer).
