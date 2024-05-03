@@ -132,6 +132,7 @@ toc:
                   href: https://cloud.ibm.com/docs/CDN/CDN-configure-cdn-with-ibm-cloud-object-storage
               - sql.md
               - functions.md
+              - cis-routing-rules-for-cos.md
           - topicgroup:
               label: Using IBM Cloud Satellite
               topics:
@@ -184,7 +185,6 @@ toc:
                 - data-security-encryption.md
                 - compliance.md
                 - eu.md
-          - cis-routing-rules-for-cos.md
           - at.md
           - iam-at.md
     - navgroup:
