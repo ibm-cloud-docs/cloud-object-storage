@@ -12,7 +12,7 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Serving static websites with {{site.data.keyword.cos_full_notm}}
+# Serving static websites
 {: #static-website-options}
 
 A new hosted static website can be created with {{site.data.keyword.cos_full}} in minutes using [this simple tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial). This topic contains the details and some advanced configuration options for hosting static websites.
