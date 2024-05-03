@@ -12,7 +12,7 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Domain Routing for {{site.data.keyword.cos_full_notm}} static website hosting
+# Domain routing for static website hosting
 {: #routing-rules-cos}
 
 A static website hosted with {{site.data.keyword.cos_full}} can be configured using {{site.data.keyword.cis_full_notm}}. Configuring routing rules for domains hosted in {{site.data.keyword.cos_full_notm}} will be explored in this advanced "how to."
