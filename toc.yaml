@@ -100,7 +100,6 @@ toc:
             - classes.md
             - cos-region-copy.md
             - deleting-multiple-objects.md
-            - static-websites-options.md
             - ftp.md
           - topicgroup:
               label: Data management
@@ -132,6 +131,7 @@ toc:
                   href: https://cloud.ibm.com/docs/CDN/CDN-configure-cdn-with-ibm-cloud-object-storage
               - sql.md
               - functions.md
+              - static-websites-options.md
               - cis-routing-rules-for-cos.md
           - topicgroup:
               label: Using IBM Cloud Satellite
