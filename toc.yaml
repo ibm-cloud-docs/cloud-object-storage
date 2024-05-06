@@ -198,6 +198,7 @@ toc:
                 - faq-onerate.md
                 - faq-encryption.md
                 - faq-bucket.md
+                - faq-data.md
           - support.md
           - topicgroup:
               label: Billing and pricing
