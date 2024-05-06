@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-01-10"
+lastupdated: "2024-05-06"
 
 keywords: faq, frequently asked questions, object storage
 
@@ -89,3 +89,26 @@ If you already have a Lite plan instance created, you may create other Standard 
 {: faq}
 
 Once you exceed the allowed usage, the service instance associated with the Lite plan becomes inaccessible.  You will receive a warning notification email with corrective steps. If you do not take action, the instance is removed.
+
+## My COS service is locked. How do I reactivate the COS service?
+{: #faq-locked-account}
+{: faq}
+
+Exceeding the data limit for the Lite account is one of the reasons why your account is locked or deactivated. The [COS support](https://cloud.ibm.com/unifiedsupport/cases/form) team can help to unlock your account.
+
+* The lite plan account can be activated only once.
+
+* Upon enablement, reduce your storage to less than 25GB within a week to prevent it from getting disabled again.
+
+## How does frequency of data access impact the pricing of {{site.data.keyword.cos_short}}?
+{: #faq-access-price}
+{: faq}
+
+Storage cost for {{site.data.keyword.cos_short}} is determined by the total volume of data stored, the amount of public outbound bandwidth used, and the total number of operational requests processed by the system. For details, see [cloud-object-storage-billing](/docs/cloud-object-storage?topic=cloud-object-storage-billing).
+
+## What are the considerations for choosing the correct storage class in {{site.data.keyword.cos_short}}?  
+{: #faq-choose-storageclass}
+{: faq}
+
+You can choose the correct storage class based on your requirement. For details, see [billing-storage-classes](/docs/cloud-object-storage?topic=cloud-object-storage-billing#billing-storage-classes).
+
