@@ -82,3 +82,7 @@ Yes, the IBM COS Federal offering is approved for FedRAMP Moderate Security cont
 {: faq}
 
 Yes, client-key encryption is supported by using SSE-C, Key Protect, or HPCS.
+
+## Is encryption applied to a bucket by default?
+{: #faq-default-enc}
+{: faq}
