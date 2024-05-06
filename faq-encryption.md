@@ -86,3 +86,5 @@ Yes, client-key encryption is supported by using SSE-C, Key Protect, or HPCS.
 ## Is encryption applied to a bucket by default?
 {: #faq-default-enc}
 {: faq}
+
+Yes, by default, all objects stored in {{site.data.keyword.cos_short}} are encrypted using randomly generated keys and an all-or-nothing-transform (AONT). You can get the encryption details using IBM Cloud UI/CLI. For details, see [Cloud Storage Encryption](/docs/cloud-object-storage?topic=cloud-object-storage-encryption).

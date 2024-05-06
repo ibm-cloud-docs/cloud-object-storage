@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-05-03"
+lastupdated: "2024-05-06"
 
 
 keywords: faq, frequently asked questions, object storage, S3, HMAC
@@ -376,11 +376,11 @@ You can choose the correct storage class based on your requirement. For details,
 
 You have the most power by using the command line in most environments with IBM Cloud Object Storage and cURL. However using cURL assumes a certain amount of familiarity with the command line and Object Storage. For details, see [Using cURL](/docs/cloud-object-storage?topic=cloud-object-storage-curl).
 
-## Is encryption applied to a bucket by default?
+<!-- ## Is encryption applied to a bucket by default? Moved to FAQ - Encryption  05062024
 {: #faq-default-enc}
 {: faq}
 
-Yes, by default, all objects stored in {{site.data.keyword.cos_short}} are encrypted using randomly generated keys and an all-or-nothing-transform (AONT). You can get the encryption details using IBM Cloud UI/CLI. For details, see [Cloud Storage Encryption](/docs/cloud-object-storage?topic=cloud-object-storage-encryption).
+Yes, by default, all objects stored in {{site.data.keyword.cos_short}} are encrypted using randomly generated keys and an all-or-nothing-transform (AONT). You can get the encryption details using IBM Cloud UI/CLI. For details, see [Cloud Storage Encryption](/docs/cloud-object-storage?topic=cloud-object-storage-encryption).-->
 
 ## How can I list all permissions of a bucket? 
 {: #faq-bucket-permison}
