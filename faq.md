@@ -382,26 +382,6 @@ You have the most power by using the command line in most environments with IBM 
 
 Yes, by default, all objects stored in {{site.data.keyword.cos_short}} are encrypted using randomly generated keys and an all-or-nothing-transform (AONT). You can get the encryption details using IBM Cloud UI/CLI. For details, see [Cloud Storage Encryption](/docs/cloud-object-storage?topic=cloud-object-storage-encryption).
 
-## How do I encrypt my data?
-{: #troubleshooting-cos-encryption}
-{: faq}
-
-1. Go to the {{site.data.keyword.cos_full_notm}} documentation for [managing encryption](/docs/cloud-object-storage?topic=cloud-object-storage-encryption) to research the encryption topic.
-1. Choose between [{{site.data.keyword.keymanagementservicefull}}](/docs/key-protect?topic=key-protect-about) and [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-overview) for your encryption needs.
-1. Remember that customer-provided keys are enforced on objects.
-1. Use [IBM Key Protect](/docs/key-protect?topic=key-protect-about) or [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-overview) to create, add, and manage keys, which you can then associate with your instance of {{site.data.keyword.cos_full_notm}}.
-1. Grant service authorization
-     1. Open your IBM Cloud dashboard.
-     1. From the menu bar, click **Manage > Access**.
-     1. In the side navigation, click **Authorizations**.
-     1. Click **Create authorization**.
-     1. In the **Source service** menu, select **Cloud Object Storage**.
-     1. In the **Source service instance** menu, select the service instance to authorize.
-     1. In the **Target service** menu, select **IBM Key Protect** or **{{site.data.keyword.hscrypto}}**.
-     1. In the **Target service instance** menu, select the service instance to authorize.
-     1. Enable the **Reader** role.
-     1. Click **Authorize**.
-
 ## How can I list all permissions of a bucket? 
 {: #faq-bucket-permison}
 {: faq}
