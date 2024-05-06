@@ -67,8 +67,8 @@ toc:
                     label: Connect from VPC
                     href: https://cloud.ibm.com/docs/vpc?topic=vpc-connecting-vpc-cos
           - topicgroup:
-            label: Bucket management
-            topics:
+              label: Bucket management
+              topics:
               - topicgroup:
                   label: Managing a bucket's lifecycle configurations
                   topics:
