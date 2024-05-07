@@ -24,7 +24,7 @@ Source code can be found at [GitHub](https://github.com/ibm/ibm-cos-sdk-python/)
 
 The `ibm_boto3` library provides complete access to the {{site.data.keyword.cos_full}} API. Endpoints, an API key, and the instance ID must be specified during creation of a service resource or low-level client as shown in the following basic examples.
 
-The service instance ID is also referred to as a _resource instance ID_. The value can be found by creating a [service credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), or through the CLI.
+The service instance ID is also referred to as a _resource instance ID_. The value can be found by creating a [service credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), or through the CLI.
 {: tip}
 
 Detailed documentation can be found at [here](https://ibm.github.io/ibm-cos-sdk-python/){: external}.
@@ -34,7 +34,7 @@ Detailed documentation can be found at [here](https://ibm.github.io/ibm-cos-sdk-
 
 To connect to COS, a client is created and configured using credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
 
-After generating a [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client authenticates with a signature, otherwise the client uses the provided API key to authenticate by using a bearer token (using an API key still requires the `config=Config(signature_version="oauth")` to be included during client creation).
+After generating a [Service Credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client authenticates with a signature, otherwise the client uses the provided API key to authenticate by using a bearer token (using an API key still requires the `config=Config(signature_version="oauth")` to be included during client creation).
 
 If migrating from AWS S3, you can also source credentials data from `~/.aws/credentials` in the format:
 
@@ -43,7 +43,6 @@ If migrating from AWS S3, you can also source credentials data from `~/.aws/cred
 aws_access_key_id = {API_KEY}
 aws_secret_access_key = {SERVICE_INSTANCE_ID}
 ```
-
 {: codeblock}
 
 **Note**: If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_credentials` takes preference.
@@ -53,10 +52,10 @@ aws_secret_access_key = {SERVICE_INSTANCE_ID}
 
 The following variables appear in the examples:
 
-* `bucket_name` must be a [unique and DNS-safe](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-new-bucket) string. Because bucket names are unique across the entire system, these values need to be changed if this example is run multiple times. Note that names are reserved for 10 - 15 minutes after deletion.
-* `ibm_api_key_id` is the value found in the [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) as `apikey`.
-* `ibm_service_instance_id` is the value found in the [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) as `resource_instance_id`. 
-* `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol. This value is **not** the `endpoints` value that is found in the [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials). For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+* `bucket_name` must be a [unique and DNS-safe](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-new-bucket) string. Because bucket names are unique across the entire system, these values need to be changed if this example is run multiple times. Note that names are reserved for 10 - 15 minutes after deletion.
+* `ibm_api_key_id` is the value found in the [Service Credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) as `apikey`.
+* `ibm_service_instance_id` is the value found in the [Service Credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) as `resource_instance_id`. 
+* `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol. This value is **not** the `endpoints` value that is found in the [Service Credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials). For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `LocationConstraint` is a [valid provisioning code](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint) that corresponds to the `endpoint` value.
 
 
@@ -96,7 +95,6 @@ cos_resource = ibm_boto3.resource("s3",
     endpoint_url=COS_ENDPOINT
 )
 ```
-
 {: codeblock}
 {: python}
 
@@ -158,7 +156,6 @@ def create_bucket(bucket_name):
     except Exception as e:
         print("Unable to create bucket: {0}".format(e))
 ```
-
 {: codeblock}
 {: python}
 
@@ -187,7 +184,6 @@ def create_text_file(bucket_name, item_name, file_text):
     except Exception as e:
         print("Unable to create text file: {0}".format(e))
 ```
-
 {: codeblock}
 {: python}
 
@@ -213,7 +209,6 @@ def get_buckets():
     except Exception as e:
         print("Unable to retrieve list buckets: {0}".format(e))
 ```
-
 {: codeblock}
 {: python}
 
@@ -239,7 +234,6 @@ def get_bucket_contents(bucket_name):
     except Exception as e:
         print("Unable to retrieve bucket contents: {0}".format(e))
 ```
-
 {: codeblock}
 {: python}
 
@@ -264,7 +258,6 @@ def get_item(bucket_name, item_name):
     except Exception as e:
         print("Unable to retrieve file contents: {0}".format(e))
 ```
-
 {: codeblock}
 {: python}
 
@@ -288,7 +281,6 @@ def delete_item(bucket_name, object_name):
     except Exception as e:
         print("Unable to delete object: {0}".format(e))
 ```
-
 {: codeblock}
 {: python}
 
@@ -330,7 +322,6 @@ def delete_items(bucket_name):
     except Exception as e:
         print("Unable to copy item: {0}".format(e))
 ```
-
 {: codeblock}
 {: python}
 
@@ -355,7 +346,6 @@ def delete_bucket(bucket_name):
     except Exception as e:
         print("Unable to delete bucket: {0}".format(e))
 ```
-
 {: codeblock}
 {: python}
 
@@ -409,7 +399,6 @@ def multi_part_upload(bucket_name, item_name, file_path):
     except Exception as e:
         print("Unable to complete multi-part upload: {0}".format(e))
 ```
-
 {: codeblock}
 {: python}
 
@@ -502,7 +491,6 @@ def multi_part_upload_manual(bucket_name, item_name, file_path):
     except Exception as e:
         print("Unable to complete multi-part upload: {0}".format(e))
 ```
-
 {: codeblock}
 {: python}
 
@@ -565,7 +553,6 @@ def upload_large_file(bucket_name, item_name, file_path):
     finally:
         transfer_mgr.shutdown()
 ```
-
 {: codeblock}
 {: python}
 
@@ -606,7 +593,6 @@ def get_bucket_contents_v2(bucket_name, max_keys):
     except Exception as e:
         print("Unable to retrieve bucket contents: {0}".format(e))
 ```
-
 {: codeblock}
 {: python}
 
@@ -665,7 +651,6 @@ def create_bucket_kp(bucket_name):
     except Exception as e:
         print("Unable to create encrypted bucket: {0}".format(e))
 ```
-
 {: codeblock}
 {: python}
 
@@ -689,7 +674,7 @@ Methods
 
 **Legacy Notice**: Support for Aspera is considered legacy. Users are recommended to use [Aspera Transfer SDK](https://developer.ibm.com/apis/catalog/aspera--aspera-transfer-sdk){: external}.
 
-By installing the [Aspera high-speed transfer library](/docs/cloud-object-storage/basics?topic=cloud-object-storage-aspera#aspera-packaging), you can use high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license).
+By installing the [Aspera high-speed transfer library](/docs/cloud-object-storage?topic=cloud-object-storage-aspera#aspera-packaging), you can use high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license).
 
 Each Aspera session creates an individual `ascp` process that runs on the client machine to perform the transfer. Ensure that your computing environment can allow this process to run.
 {: tip}
@@ -720,11 +705,10 @@ cos_client = ibm_boto3.client("s3",
 
 transfer_manager = AsperaTransferManager(cos)
 ```
-
 {: codeblock}
 {: python}
 
-You need to provide an IAM API Key for Aspera high-speed transfers. [HMAC Credentials](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){: external} are **NOT** currently supported. For more information on IAM, [click here](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview).
+You need to provide an IAM API Key for Aspera high-speed transfers. [HMAC Credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){: external} are **NOT** currently supported. For more information on IAM, [click here](/docs/cloud-object-storage?topic=cloud-object-storage-iam-overview).
 {: tip}
 
 To get the highest throughput, split the transfer into a specified number of parallel **sessions** that send chunks of data whose size is defined by a **threshold** value.
@@ -739,7 +723,6 @@ ms_transfer_config = AsperaConfig(multi_session="all",
                                   target_rate_mbps=2500,
                                   multi_session_threshold_mb=100)
 ```
-
 {: codeblock}
 {: python}
 
@@ -762,7 +745,6 @@ ms_transfer_config = AsperaConfig(multi_session=2,
 transfer_manager = AsperaTransferManager(client=client,
                                          transfer_config=ms_transfer_config)
 ```
-
 {: codeblock}
 {: python}
 
@@ -786,7 +768,6 @@ with AsperaTransferManager(client) as transfer_manager:
     # Wait for upload to complete
     future.result()
 ```
-
 {: codeblock}
 {: python}
 
@@ -814,7 +795,6 @@ with AsperaTransferManager(client) as transfer_manager:
     # Wait for download to complete
     future.result()
 ```
-
 {: codeblock}
 {: python}
 
@@ -844,7 +824,6 @@ with AsperaTransferManager(client) as transfer_manager:
     # Wait for upload to complete
     future.result()
 ```
-
 {: codeblock}
 {: python}
 
@@ -873,7 +852,6 @@ with AsperaTransferManager(client) as transfer_manager:
     # Wait for download to complete
     future.result()
 ```
-
 {: codeblock}
 {: python}
 
@@ -936,7 +914,6 @@ future = transfer_manager.download_directory(bucket_name, remote_directory, loca
 # Wait for download to complete
 future.result()
 ```
-
 {: codeblock}
 {: python}
 
@@ -991,7 +968,6 @@ with AsperaTransferManager(client) as transfer_manager:
     # cancel the transfer
     future.cancel()
 ```
-
 {: codeblock}
 {: python}
 
@@ -1037,7 +1013,6 @@ def update_metadata_put(bucket_name, item_name, key, value):
     except Exception as e:
         log_error("Unable to update metadata: {0}".format(e))
 ```
-
 {: codeblock}
 {: python}
 
@@ -1066,7 +1041,6 @@ def update_metadata_copy(bucket_name, item_name, key, value):
     except Exception as e:
         log_error("Unable to update metadata: {0}".format(e))
 ```
-
 {: codeblock}
 {: python}
 
@@ -1098,7 +1072,6 @@ def add_protection_configuration_to_bucket(bucket_name):
     except Exception as e:
         print("Unable to set bucket protection config: {0}".format(e))
 ```
-
 {: codeblock}
 {: python}
 
@@ -1119,7 +1092,6 @@ def get_protection_configuration_on_bucket(bucket_name):
     except Exception as e:
         print("Unable to get bucket protection config: {0}".format(e))
 ```
-
 {: codeblock}
 {: python}
 
@@ -1195,7 +1167,6 @@ def upload_file_with_retention(bucket_name, object_name, path_to_file, retention
 
     print("File upload complete to object {0} in bucket {1}\n".format(object_name, bucket_name))
 ```
-
 {: codeblock}
 {: python}
 
@@ -1236,7 +1207,6 @@ def delete_legal_hold_from_object(bucket_name, object_name, legal_hold_id):
 
     print("Legal hold {0} deleted from object {1} in bucket {2}!\n".format(legal_hold_id, object_name, bucket_name))
 ```
-
 {: codeblock}
 {: python}
 
@@ -1267,7 +1237,6 @@ def extend_retention_period_on_object(bucket_name, object_name, additional_secon
 
     print("New retention period on {0} is {1}\n".format(object_name, additional_seconds))
 ```
-
 {: codeblock}
 {: python}
 
@@ -1298,7 +1267,6 @@ def list_legal_holds_on_object(bucket_name, object_name):
 
     print("Legal holds on bucket {0}: {1}\n".format(bucket_name, response))
 ```
-
 {: codeblock}
 {: python}
 
@@ -1316,7 +1284,6 @@ def putBucketWebsiteConfiguration(bucket_name):
     cos_client.put_bucket_website(Bucket=bucket_name, WebsiteConfiguration=website_defaults)
     print("Website configuration set on bucket {0}\n".format(bucket_name))
 ```
-
 {: codeblock}
 {: python}
 

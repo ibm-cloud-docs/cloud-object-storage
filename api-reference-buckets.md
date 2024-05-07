@@ -759,7 +759,7 @@ GET https://{bucket-name}.{endpoint} # virtual host style
 ```
 {: codeblock}
 
-### Optional query parameters
+### Optional query parameters for list object method
 {: #compatibility-api-list-objects-params}
 
 | Name            | Type   | Description |
@@ -1830,7 +1830,7 @@ The server responds with `204 No Content`.
 ## Add a retention policy on an existing bucket
 {: #compatibility-api-add-retention-policy}
 
-Immutable Object Storage is available in certain regions only, see [Integrated Services](/docs/cloud-object-storage/basics?topic=cloud-object-storage-service-availability#service-availability) for details. The service also requires a Standard pricing plan. See [pricing](https://www.ibm.com/cloud/object-storage) for details.
+Immutable Object Storage is available in certain regions only, see [Integrated Services](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability#service-availability) for details. The service also requires a Standard pricing plan. See [pricing](https://www.ibm.com/products/cloud-object-storage) for details.
 {: note}
 
 Find out more about Immutable Object Storage in the [documentation](/docs/cloud-object-storage?topic=cloud-object-storage-immutable).

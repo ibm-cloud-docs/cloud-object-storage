@@ -49,7 +49,7 @@ You can view the bucket location in the IBM Cloud console with these steps:
 1. Choose the bucket for which you want to see location and endpoints.
 1. Select **Configuration** from the navigation menu to view the page with Location and Endpoints data.
 
-Or you can list bucket information with a GET request that includes the “extended” parameter as shown in [Getting an extended listing](/docs/cloud-object-storage/basics?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets-extended).
+Or you can list bucket information with a GET request that includes the “extended” parameter as shown in [Getting an extended listing](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets-extended).
 
 ## How do I encrypt my data?
 {: #troubleshooting-cos-encryption}
@@ -104,9 +104,8 @@ Refer to [Move data between buckets](/docs/cloud-object-storage?topic=cloud-obje
 {: #troubleshooting-cos-other-options}
 
 * If you have technical questions about {{site.data.keyword.cos_short}}, post your question on [Stack Overflow](https://stackoverflow.com/search?q=object-storage+ibm) and tag your question with `ibm` and `object-storage`.
-* For questions about the service and getting started instructions, use the [IBM Developer dW Answers forum](https://developer.ibm.com/answers/topics/objectstorage/){: external}. Include the  `objectstorage` tag.
 
-## Next Steps
+## Next steps
 {: #troubleshooting-cos-next-steps}
 
 For more information about asking questions, see [Contacting support](https://cloud.ibm.com/docs/get-support?topic=get-support-using-avatar#asking-a-question).

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-17"
+lastupdated: "2024-05-01"
 
 keywords: empty bucket, delete, multiple
 
@@ -36,20 +36,21 @@ The process of emptying a bucket is familiar to anyone who has to delete buckets
 If versioning is enabled, then expiration rules create [delete markers](/docs/cloud-object-storage?topic=cloud-object-storage-versioning).
 {: important}
 
-It is a best practice to avoid putting credentials in scripts. This example is for testing and educational purposes, and your specific setup should be informed by best practices and [Developer Guidance](/docs/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev).
+It is a best practice to avoid putting credentials in scripts. This example is for testing and educational purposes, and your specific setup should be informed by best practices and [Developer Guidance](/docs/cloud-object-storage?topic=cloud-object-storage-gs-dev).
 {: tip}
 
 ## Before you begin
 {: #dmop-prereqs}
 
-Specific instructions for downloading and installing SDKs are available for [Python](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python), [Node.js](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-node), [Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java), and [Go](/docs/cloud-object-storage?topic=cloud-object-storage-using-go). Also, when working with Command Line Instructions (CLI) and your CLI clients, please check out the pertinent information related to {{site.data.keyword.cos_short}} regarding [AWS](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) compatibility, [Minio](/docs/cloud-object-storage?topic=cloud-object-storage-minio), and [`rclone`](/docs/cloud-object-storage?topic=cloud-object-storage-rclone).
+Specific instructions for downloading and installing SDKs are available for [Python](/docs/cloud-object-storage?topic=cloud-object-storage-python), [Node.js](/docs/cloud-object-storage?topic=cloud-object-storage-node), [Java](/docs/cloud-object-storage?topic=cloud-object-storage-java), and [Go](/docs/cloud-object-storage?topic=cloud-object-storage-using-go). Also, when working with Command Line Instructions (CLI) and your CLI clients, please check out the pertinent information related to {{site.data.keyword.cos_short}} regarding [AWS](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) compatibility, [Minio](/docs/cloud-object-storage?topic=cloud-object-storage-minio), and [`rclone`](/docs/cloud-object-storage?topic=cloud-object-storage-rclone).
 
 For this code pattern you will need:
 
 * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com)
-* An instance of [{{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage/basics?topic=cloud-object-storage-provision)
+* An instance of [{{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-provision)
 * Configured and operational use of {{site.data.keyword.cos_full_notm}} SDKs for your choice of Java, Python, NodeJS, or Go; or, a configured and operational CLI client.
-{: #dmop-prereqs}
+
+
 
 ## Using the Console
 {: #dmop-using-console}
@@ -76,10 +77,9 @@ Sample instructions are provided for using a client application or command line 
 
 The `rclone` tool is typically used to keep directories synchronized and for migrating data between storage platforms. You can learn more from the documentation on [using `rclone`](/docs/cloud-object-storage?topic=cloud-object-storage-rclone).
 
-```bash
+```sh
 rclone purge {remote}:{path} [flags]
 ```
-
 {: pre}
 
 ### Minio example
@@ -87,10 +87,9 @@ rclone purge {remote}:{path} [flags]
 
 The open source Minio client allows you to use UNIX-like commands (`ls`, `cp`, `cat`, and so on) with {{site.data.keyword.cos_full}}. For more information, check out [using Minio](/docs/cloud-object-storage?topic=cloud-object-storage-minio).
 
-```bash
+```sh
 mc rm --recursive --force {instance-alias}/{bucket-name}
 ```
-
 {: pre}
 
 ### AWS example
@@ -98,10 +97,9 @@ mc rm --recursive --force {instance-alias}/{bucket-name}
 
 The official command-line interface for AWS is compatible with the {{site.data.keyword.cos_full_notm}} S3 API and you can find out more on how to [use the AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli).
 
-```bash
+```sh
 aws s3 rm s3://{bucket-name} --recursive
 ```
-
 {: pre}
 
 ## Code Example
@@ -200,7 +198,6 @@ function main() {
 
 main();
 ```
-
 {: codeblock}
 {: javascript}
 
@@ -257,7 +254,6 @@ def main():
 
 main()
 ```
-
 {: codeblock}
 {: python}
 
@@ -374,7 +370,6 @@ package com.cos;
 
     }
 ```
-
 {: codeblock}
 {: java}
 
@@ -426,7 +421,6 @@ func main() {
     }
 }
 ```
-
 {: codeblock}
 {: go}
 

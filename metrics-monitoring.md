@@ -69,10 +69,9 @@ From the [catalog](https://cloud.ibm.com/login){: external} choose {{site.data.k
 
 After you [login](/docs/cli?topic=cli-ibmcloud_cli#ibmcloud_login) using IBM Cloud Developer Tools and target both the region and resource group for your account, create a new resource using the command as shown.
 
-```bash
+```sh
 ibmcloud resource service-instance-create <INSTANCE_NAME> <SERVICE_NAME> <SERVICE_PLAN_NAME> <LOCATION>
 ```
-
 {: codeblock}
 
 In the code sample, replace the placeholders with the [appropriate values](/docs/monitoring?topic=monitoring-pricing_plans).
@@ -84,10 +83,9 @@ In the code sample, replace the placeholders with the [appropriate values](/docs
 | &lt;SERVICE_PLAN_NAME&gt; | The name of the plan | `Lite` |
 | &lt;LOCATION&gt; | The region of your buckets | `us-east` |
 
-```bash
+```sh
 ibmcloud resource service-instance-update <INSTANCE_NAME> -p '{"default_receiver": true}'
 ```
-
 {: codeblock}
 
 ## Connect {{site.data.keyword.cos_short}} to {{site.data.keyword.mon_short}}
@@ -145,7 +143,7 @@ To set Platform metrics on the instance:
 
 We will use cURL to connect to the Resource Configuration API and modify our bucket's configuration.
 
-```bash
+```sh
 curl -X PATCH -k  \
   -H "authorization: Bearer $TOKEN" \
   https://config.cloud-object-storage.cloud.ibm.com/v1/b/$1 \
@@ -157,7 +155,6 @@ curl -X PATCH -k  \
     }
    }'
 ```
-
 {: codeblock}
 
 

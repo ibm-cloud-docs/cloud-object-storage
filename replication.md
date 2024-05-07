@@ -48,9 +48,9 @@ To get started, here are some prerequisites that must be met:
 - Objects encrypted [using SSE-C](/docs/cloud-object-storage?topic=cloud-object-storage-sse-c) cannot be replicated, although [managed encryption (SSE-KMS) like Key Protect](/docs/cloud-object-storage?topic=cloud-object-storage-kp) is fully compatible with replication.
 - Objects in an archived state cannot be replicated.
 - If the source and target buckets are in different IBM accounts, be sure to create the buckets in each account.
-- Enable [Versioning](/docs/cloud-object-storage?topic-versioning) on each bucket.
+- Enable [Versioning](/docs/cloud-object-storage?topic=/docs/cloud-object-storage?topic=cloud-object-storage-versioning) on each bucket.
 
-As versioning is a requirement for replication, it is impossible to replicate objects in buckets configured with an [Immutable Object Storage policy](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable).
+As versioning is a requirement for replication, it is impossible to replicate objects in buckets configured with an [Immutable Object Storage policy](/docs/cloud-object-storage?topic=cloud-object-storage-immutable).
 {: note}
 
 ## Using one IBM account
@@ -109,7 +109,7 @@ To replicate objects between buckets in different IBM accounts, do the following
 **Replica**: The new object created in a target bucket because of a request made to a source bucket.
 
 ## What is replicated?
-{: #replication-what}
+{: #replication-what-objects}
 
 New objects created via `CopyObject`, `PutObject`, or `CompleteMultipartUpload` will be replicated from the source bucket to the target bucket. The replicated objects will inherit the following metadata fields from the source object: `Etag`, `Last Modified Time`, `Version ID`, `user-attributes`, and `Tags`.
 

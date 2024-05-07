@@ -60,7 +60,7 @@ Creating a "Page Rule" in your instance of {{site.data.keyword.cis_full_notm}} w
 1. Next, you will create the DNS CNAME record to forward traffic to your content in {{site.data.keyword.cos_full_notm}}.
 
 ### Create a domain alias to proxy your content
-{: #routing-rules-cos-page-rule}
+{: #routing-rules-cos-domain-alias}
 
 After you have directed your visitors to the right location using a "Page Rule," you will want to create an alias to guide your visitors to the location. For this example, we want to send your visitors to your new subdomain `web` to the existing domain, `example.com` that will point to
 

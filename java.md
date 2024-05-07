@@ -56,7 +56,6 @@ Maven uses a file that is called `pom.xml` to specify the libraries (and their v
     </dependencies>
 </project>
 ```
-
 {: codeblock}
 
 ## Creating a client and sourcing credentials
@@ -64,7 +63,7 @@ Maven uses a file that is called `pom.xml` to specify the libraries (and their v
 
 In the following example, a client `cos` is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
 
-After generating a [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client authenticates with a signature, otherwise the client uses the provided API key to authenticate by using a bearer token.
+After generating a [Service Credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), the resulting JSON document can be saved to `~/.bluemix/cos_credentials`. The SDK will automatically source credentials from this file unless other credentials are explicitly set during client creation. If the `cos_credentials` file contains HMAC keys the client authenticates with a signature, otherwise the client uses the provided API key to authenticate by using a bearer token.
 
 If migrating from AWS S3, you can also source credentials data from  `~/.aws/credentials` in the format:
 
@@ -89,10 +88,10 @@ Let's start with an complete example class that will run through some basic func
 ### Gather required information
 {: #java-examples-prereqs}
 
-* `bucketName` and `newBucketName` are [unique and DNS-safe](/docs/cloud-object-storage/api-reference?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-new-bucket) strings. Because bucket names are unique across the entire system, these values need to be changed if this example is run multiple times. Note that names are reserved for 10 - 15 minutes after deletion.
-* `apiKey` is the value found in the [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) as `apikey`.
-* `serviceInstanceId` is the value found in the [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) as `resource_instance_id`.
-* `endpointUrl` is a service endpoint URL, inclusive of the `https://` protocol. This is **not** the `endpoints` value found in the [Service Credential](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials). For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+* `bucketName` and `newBucketName` are [unique and DNS-safe](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-new-bucket) strings. Because bucket names are unique across the entire system, these values need to be changed if this example is run multiple times. Note that names are reserved for 10 - 15 minutes after deletion.
+* `apiKey` is the value found in the [Service Credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) as `apikey`.
+* `serviceInstanceId` is the value found in the [Service Credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) as `resource_instance_id`.
+* `endpointUrl` is a service endpoint URL, inclusive of the `https://` protocol. This is **not** the `endpoints` value found in the [Service Credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials). For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `storageClass` is a [valid provisioning code](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint) that corresponds to the `endpoint` value. This is then used as the S3 API `LocationConstraint` variable.
 * `location` should be set to the location portion of the `storageClass`. For `us-south-standard`, this would be `us-south`. This variable is used only for the calculation of [HMAC signatures](/docs/cloud-object-storage?topic=cloud-object-storage-hmac-signature), but is required for any client, including this example that uses an IAM API key.
 
@@ -177,7 +176,6 @@ Let's start with an complete example class that will run through some basic func
     }
 
 ```
-
 {: codeblock}
 
 ### Initializing configuration
@@ -1002,7 +1000,7 @@ String crn = result.getIBMSSEKPCUSTOMERROOTKEYCRN();
 ## Using Aspera High-Speed Transfer
 {: #java-examples-aspera}
 
-By installing the [Aspera high-speed transfer library](/docs/cloud-object-storage/basics?topic=cloud-object-storage-aspera#aspera-packaging) you can utilize high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license).
+By installing the [Aspera high-speed transfer library](/docs/cloud-object-storage?topic=cloud-object-storage-aspera#aspera-packaging) you can utilize high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license).
 
 Each Aspera high-speed transfer session spawns an individual `ascp` process that runs on the client machine to perform the transfer. Ensure that your computing environment can allow this process to run.
 {: tip}
@@ -1069,7 +1067,7 @@ For best performance in most scenarios, always make use of multiple sessions to 
 
 * `API_KEY` - An API key for a user or service ID with Writer or Manager roles
 
-You need to provide an IAM API Key for constructing an `AsperaTransferManager`. [HMAC Credentials](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){: external} are **NOT** currently supported. For more information on IAM, [click here](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview).
+You need to provide an IAM API Key for constructing an `AsperaTransferManager`. [HMAC Credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac){: external} are **NOT** currently supported. For more information on IAM, [click here](/docs/cloud-object-storage?topic=cloud-object-storage-iam-overview).
 {: tip}
 
 ### File Upload
@@ -1563,7 +1561,6 @@ public static void addProtectionConfigurationToBucketWithRequest(String bucketNa
     System.out.printf("Protection added to bucket %s\n", bucketName);
 }
 ```
-
 {: codeblock}
 
 ### Check protection on a bucket
@@ -1586,7 +1583,6 @@ public static void getProtectionConfigurationOnBucket(String bucketName) {
     }
 }
 ```
-
 {: codeblock}
 
 ### Upload a protected object
@@ -1639,7 +1635,6 @@ public static void copyProtectedObject(String sourceBucketName, String sourceObj
     System.out.printf("Protected object copied from %s/%s to %s/%s\n", sourceObjectName, sourceBucketName, destinationBucketName, newObjectName);
 }
 ```
-
 {: codeblock}
 
 ### Add or remove a legal hold to or from a protected object
@@ -1683,7 +1678,6 @@ public static void deleteLegalHoldFromObject(String bucketName, String objectNam
     System.out.printf("Legal hold %s deleted from object %s in bucket %s!\n", legalHoldId, objectName, bucketName);
 }
 ```
-
 {: codeblock}
 
 ### Extend the retention period of a protected object
@@ -1715,7 +1709,6 @@ public static void extendRetentionPeriodOnObject(String bucketName, String objec
     System.out.printf("New retention period on %s is %s\n", objectName, additionalSeconds);
 }
 ```
-
 {: codeblock}
 
 ### List legal holds on a protected object
@@ -1750,7 +1743,6 @@ public static void listLegalHoldsOnObject(String bucketName, String objectName) 
     }
 }
 ```
-
 {: codeblock}
 
 ### Create a hosted static website
@@ -1761,7 +1753,6 @@ This operation requires an import statement to be added:
 ```java
 import com.ibm.cloud.objectstorage.services.s3.model.model.BucketWebsiteConfiguration;
 ```
-
 {: codeblock}
 
 This operation provides the following upon configuration and requires a correctly configured client:
@@ -1772,7 +1763,6 @@ This operation provides the following upon configuration and requires a correctl
 ```java
 cosClient.setBucketWebsiteConfiguration("<bucket_name>", new BucketWebsiteConfiguration("index.html", "error.html"));
 ```
-
 {: codeblock}
 
 ## Next Steps

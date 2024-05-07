@@ -27,9 +27,9 @@ Frequently asked questions can produce helpful answers and insight into best pra
 You can use an OAuth 2 token or an HMAC key for authentication. The HMAC key can be used for S3-compatible tools such as `rclone`, `Cyberduck`, and others.
 
 * For instructions to obtain an OAuth token, see [Generating an IBM Cloud IAM token by using an API key](/docs/account?topic=account-iamtoken_from_apikey).
-* For instructions to obtain the HMAC credentials, see [Using HMAC Credentials](/docs/cloud-object-storage/hmac?topic=cloud-object-storage-uhc-hmac-credentials-main).
+* For instructions to obtain the HMAC credentials, see [Using HMAC Credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main).
 
-Also, see [API Key vs HMAC](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac).
+Also, see [API Key vs HMAC](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac).
 
 ## How do cross-origin resource sharing (CORS) and a bucket firewall differ in limiting access to data?
 {: #faq-cors}

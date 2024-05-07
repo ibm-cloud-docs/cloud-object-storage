@@ -116,7 +116,7 @@ Tracing can be enabled by setting `IBMCLOUD_TRACE` environment variable to `true
 
 On Linux/macOS terminal:
 
-```bash
+```sh
 export IBMCLOUD_TRACE=true
 ```
 

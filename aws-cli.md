@@ -129,7 +129,7 @@ upload: ./large-dataset.tar.gz to s3://bucket-1/large-dataset-for-project-x
 ### Copying an object from one bucket to another within the same region:
 {: #aws-cli-high-level-copy}
 
-```bash
+```sh
 $ aws --endpoint-url {endpoint} s3 cp s3://bucket-1/new-file s3://bucket-2/
 copy: s3://bucket-1/new-file to s3://bucket-2/new-file
 ```
@@ -155,13 +155,13 @@ remove_bucket: s3://bucket-1/
 
 The CLI can create pre-signed URLs. These URLs allow for temporary public access to objects without changing any existing access controls.
 
-```bash
+```sh
 $ aws --endpoint-url {endpoint} s3 presign s3://bucket-1/new-file
 ```
 
 It's also possible to set a time-to-live for the URL in seconds (default is 3600):
 
-```bash
+```sh
 $ aws --endpoint-url {endpoint} s3 presign s3://bucket-1/new-file --expires-in 600
 ```
 
@@ -173,7 +173,7 @@ The AWS CLI also allows direct API calls that provide the same responses as dire
 ### Listing buckets:
 {: #aws-cli-low-level-list-buckets}
 
-```bash
+```sh
 $ aws --endpoint-url {endpoint} s3api list-buckets
 {
     "Owner": {

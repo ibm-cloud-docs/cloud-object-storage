@@ -43,7 +43,7 @@ Support available for Code Engine in Madrid
 :   Code Engine is supported in the `eu-es` region for Madrid regional using [{{site.data.keyword.cos_full}}](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability).
 
 ## 29 January 2024
-{: #cloud-object-storage-mar1521}
+{: #cloud-object-storage-jan2925}
 {: release-note}
 
 New feature!
@@ -68,7 +68,7 @@ Activity Tracker and Monitoring update
 {: release-note}
 
 Archive available in the Chennai Single Site
-:   It is now possible to [archive data](/docs/cloud-object-storage/basics?topic=cloud-object-storage-archive).
+:   It is now possible to [archive data](/docs/cloud-object-storage?topic=cloud-object-storage-archive).
 
 ## 3 October 2023
 {: #cloud-object-storage-oct0323}
@@ -92,7 +92,7 @@ Encryption update
 {: release-note}
 
 New location!
-:   Buckets can now be created in a Regional (MZR) configuration in Madrid, Spain. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+:   Buckets can now be created in a Regional (MZR) configuration in Madrid, Spain. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints).
 
 ## 16 March 2023
 {: #cloud-object-storage-mar1623}
@@ -120,7 +120,7 @@ New feature!
 {: release-note}
 
 Encryption update
-:   Buckets created with [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs) managed encryption can now use [Immutable Object Storage](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable) to create retention policies that prevent object deletion or modification.
+:   Buckets created with [{{site.data.keyword.hscrypto}}](/docs/cloud-object-storage?topic=cloud-object-storage-hpcs) managed encryption can now use [Immutable Object Storage](/docs/cloud-object-storage?topic=cloud-object-storage-immutable) to create retention policies that prevent object deletion or modification.
 
 ## 23 May 2022
 {: #cloud-object-storage-may2322}
@@ -179,14 +179,14 @@ Lifecycle update
 {: release-note}
 
 Encryption update
-:   Buckets created using [Key Protect managed encryption](/docs/cloud-object-storage?topic=cloud-object-storage-kp) can now also use [Immutable Object Storage](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable) to create retention policies that prevent object deletion or modification.
+:   Buckets created using [Key Protect managed encryption](/docs/cloud-object-storage?topic=cloud-object-storage-kp) can now also use [Immutable Object Storage](/docs/cloud-object-storage?topic=cloud-object-storage-immutable) to create retention policies that prevent object deletion or modification.
 
 ## 30 August 2021
 {: #cloud-object-storage-aug3021}
 {: release-note}
 
 New location!
-:   Buckets can now be created in a Regional configuration in São Paulo, Brazil. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+:   Buckets can now be created in a Regional configuration in São Paulo, Brazil. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints).
 
 ## 12 August 2021
 {: #cloud-object-storage-aug1221}
@@ -200,7 +200,7 @@ Encryption update
 {: release-note}
 
 New location!
-:   Buckets can now be created in a Regional configuration in Toronto, Canada. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+:   Buckets can now be created in a Regional configuration in Toronto, Canada. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints).
 
 Metrics update
 :   In addition to [usage metrics](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration#mm-cos-metrics-usage), IBM Cloud Monitoring can now track [request metrics](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration#mm-cos-metrics-usage) for buckets.
@@ -259,7 +259,7 @@ Encryption updates
 {: release-note}
 
 New feature!
-:   Data can now be [archived](/docs/cloud-object-storage?topic=cloud-object-storage-archive) using an Accelerated class that allows restoration of archived objects in under two hours for an [additional cost](https://www.ibm.com/cloud/object-storage/pricing).
+:   Data can now be [archived](/docs/cloud-object-storage?topic=cloud-object-storage-archive) using an Accelerated class that allows restoration of archived objects in under two hours for an [additional cost](https://www.ibm.com/products/cloud-object-storage/pricing).
 
 ## 30 April 2020
 {: #cloud-object-storage-apr3020}
@@ -274,14 +274,14 @@ IAM updates
 {: release-note}
 
 New feature!
-:   Buckets can now be created in a new [Smart Tier storage class](/docs/cloud-object-storage?topic=cloud-object-storage-billing#smart-tier-pricing-details) that optimizes costs based on usage patterns.
+:   Buckets can now be created in a new [Smart Tier storage class](/docs/cloud-object-storage?topic=cloud-object-storage-billing#smart-tier-pricing) that optimizes costs based on usage patterns.
 
 ## 6 December 2019
 {: #cloud-object-storage-dec620}
 {: release-note}
 
 New location!
-:   Buckets can now be created in a Single Data Center configuration in Singapore. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+:   Buckets can now be created in a Single Data Center configuration in Singapore. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints).
 
 ## 15 November 2019
 {: #cloud-object-storage-nov1920}
@@ -302,7 +302,7 @@ Compliance update
 {: release-note}
 
 New location!
-:   Buckets can now be created in a Single Data Center configuration in Paris, France. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+:   Buckets can now be created in a Single Data Center configuration in Paris, France. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints).
 
 ## 11 September 2019
 {: #cloud-object-storage-sep1119}
@@ -354,77 +354,77 @@ New feature!
 :   User can use [COS Firewall](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall#setting-a-firewall) to restrict access to the data in COS only if request originates from a list of allowed IP addresses.
 
 IAM update
-:   IAM policies can now grant [public access](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-public-access) to entire buckets.
+:   IAM policies can now grant [public access](/docs/cloud-object-storage?topic=cloud-object-storage-iam-public-access) to entire buckets.
 
 New location!
-:   Buckets can now be created in a Single Data Center configuration in Milan, Italy. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+:   Buckets can now be created in a Single Data Center configuration in Milan, Italy. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints).
 
 ## 28 February 2019
 {: #cloud-object-storage-feb2819}
 {: release-note}
 
 New location!
-:   Buckets can now be created in a Single Data Center configuration in San Jose, USA. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+:   Buckets can now be created in a Single Data Center configuration in San Jose, USA. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints).
 
 ## 18 January 2019
 {: #cloud-object-storage-jan1819}
 {: release-note}
 
 New location!
-:   Buckets can now be created in AP Australia region. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+:   Buckets can now be created in AP Australia region. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints).
 
 ## 14 December 2018
 {: #cloud-object-storage-dec1418}
 {: release-note}
 
 New feature!
-:   Users can use [Immutable Object Storage](/docs/cloud-object-storage/basics?topic=cloud-object-storage-immutable) to create retention policies that prevent object deletion or modification.
+:   Users can use [Immutable Object Storage](/docs/cloud-object-storage?topic=cloud-object-storage-immutable) to create retention policies that prevent object deletion or modification.
 
 New location!
-:   Buckets can now be created in a Single Data Center configuration in Mexico City, Mexico. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+:   Buckets can now be created in a Single Data Center configuration in Mexico City, Mexico. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints).
 
 ## 12 November 2018
 {: #cloud-object-storage-nov1218}
 {: release-note}
 
 New location!
-:   Buckets can now be created in a Single Data Center configuration in Montréal, Canada. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+:   Buckets can now be created in a Single Data Center configuration in Montréal, Canada. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints).
 
 ## 12 October 2018
 {: #cloud-object-storage-oct1218}
 {: release-note}
 
 New location!
-:   Buckets can now be created in a Single Data Center configuration in Seoul, South Korea. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+:   Buckets can now be created in a Single Data Center configuration in Seoul, South Korea. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints).
 
 ## 20 September 2018
 {: #cloud-object-storage-sep2018}
 {: release-note}
 
 New feature!
-:   Users can [archive cold data](/docs/cloud-object-storage/basics?topic=cloud-object-storage-archive) by setting the proper parameters in a bucket lifecycle configuration policy, either using the console, REST API, or a language-specific SDK.
+:   Users can [archive cold data](/docs/cloud-object-storage?topic=cloud-object-storage-archive) by setting the proper parameters in a bucket lifecycle configuration policy, either using the console, REST API, or a language-specific SDK.
 
 ## 18 August 2018
 {: #cloud-object-storage-aug1818}
 {: release-note}
 
 New locations!
-:   Buckets can now be created in a Single Data Center configuration in Sao Paolo, Brazil and Oslo, Norway. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+:   Buckets can now be created in a Single Data Center configuration in Sao Paolo, Brazil and Oslo, Norway. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints).
 
 ## 22 June 2018
 {: #cloud-object-storage-jun2218}
 {: release-note}
 
 New locations!
-:   Buckets can now be created in the EU Germany region. Data stored in these buckets is distributed across three availability zones in the EU Germany region. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) documentation.
-:   Buckets can now be created in a Single Data Center configuration in Chennai, India and Amsterdam, Netherlands. This allows for lower latency when accessing storage from compute resources co-located within the same data center, or for data requiring a specific geographic location. More information can be found in [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+:   Buckets can now be created in the EU Germany region. Data stored in these buckets is distributed across three availability zones in the EU Germany region. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) documentation.
+:   Buckets can now be created in a Single Data Center configuration in Chennai, India and Amsterdam, Netherlands. This allows for lower latency when accessing storage from compute resources co-located within the same data center, or for data requiring a specific geographic location. More information can be found in [Select Regions and Endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints).
 
 ## 16 March 2018
 {: #cloud-object-storage-mar1618}
 {: release-note}
 
 New location!
-:   Buckets can now be created in an AP Cross Region configuration. Data stored in these buckets is distributed across the Seoul, Tokyo, and Hong Kong data centers. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+:   Buckets can now be created in an AP Cross Region configuration. Data stored in these buckets is distributed across the Seoul, Tokyo, and Hong Kong data centers. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints).
 
 New feature!
 :   Users can run `SELECT` SQL queries directly against structured data objects using {{site.data.keyword.sqlquery_full}}. More information can be found in the [{{site.data.keyword.sqlquery_short}} documentation](/docs/sql-query?topic=sql-query-overview).
@@ -434,14 +434,14 @@ New feature!
 {: release-note}
 
 New feature!
-:   Users who upload or download files using the web-based console have the option to use Aspera high-speed transfer for these operations via a browser plug-in. This allows for transfers of objects larger than 200MB, and also allows for greater control and visibility of uploads and downloads. Additional information can be found in the [Uploading Data](/docs/cloud-object-storage/basics?topic=cloud-object-storage-aspera) documentation. Downloads using Aspera high-speed incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/cloud/object-storage).
+:   Users who upload or download files using the web-based console have the option to use Aspera high-speed transfer for these operations via a browser plug-in. This allows for transfers of objects larger than 200MB, and also allows for greater control and visibility of uploads and downloads. Additional information can be found in the [Uploading Data](/docs/cloud-object-storage?topic=cloud-object-storage-aspera) documentation. Downloads using Aspera high-speed incur additional egress charges. For more information, see the [pricing page](https://www.ibm.com/products/cloud-object-storage).
 
 ## 11 February 2018
 {: #cloud-object-storage-feb1118}
 {: release-note}
 
 New location!
-:   Buckets can now be created in a Single Data Center configuration in Toronto, Canada and Melbourne, Australia. This allows for lower latency when accessing storage from compute resources co-located within the same data center, or for data requiring a specific geographic location. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage/basics?topic=cloud-object-storage-endpoints) documentation.
+:   Buckets can now be created in a Single Data Center configuration in Toronto, Canada and Melbourne, Australia. This allows for lower latency when accessing storage from compute resources co-located within the same data center, or for data requiring a specific geographic location. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) documentation.
 
 ## 8 August 2017
 {: #cloud-object-storage-aug817}

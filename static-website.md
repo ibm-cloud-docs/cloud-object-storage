@@ -65,7 +65,6 @@ After configuring the CLI plug-in, replace the placeholder content as shown in t
 ```sh
 ibmcloud cos bucket-create --bucket <bucketname>
 ```
-
 {: pre}
 {: cli}
 
@@ -92,7 +91,7 @@ When creating a bucket for hosting Static Website content, there is an option to
 ## Upload content to your bucket
 {: #static-website-upload-content}
 
-The content of your hosted static website files focuses naturally on information and media. A popular approach to creating content for static websites are open source generators listed at [StaticGen](https://www.staticgen.com){: external}. For the purpose of this tutorial, we only need two files:
+The content of your hosted static website files focuses naturally on information and media. A popular approach to creating content for static websites are open source generators listed at [StaticGen](https://jamstack.org/generators/){: external}. For the purpose of this tutorial, we only need two files:
 
 - An index page, typically written in HTML and named `index.html`, that loads by default for visitors to your site
 - An error page, also in HTML and here named `error.html`; typically the error page is loaded when a visitor tries to access an object that isn't present or doesn't have public access
@@ -105,7 +104,6 @@ For the purpose of this tutorial, place the HTML pages for the index and error h
 ```sh
 ibmcloud cos object-put --bucket BUCKET_NAME --key KEY [--body FILE_PATH]
 ```
-
 {: pre}
 {: cli}
 
@@ -157,7 +155,6 @@ Once you have configured your bucket to provide HTTP headers using the example c
 ```http
 http://<bucketname>.s3-web.<endpoint>/
 ```
-
 {: screen}
 
 With the successful testing of your new site, you can now explore more options and add more content.

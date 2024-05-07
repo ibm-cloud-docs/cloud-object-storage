@@ -53,7 +53,7 @@ These SDKs are based on the official AWS S3 API SDKs, but are modified to use IB
 ## IAM API key support
 {: #sdk-about-iam}
 
-Allows for creating clients with an [API key](/docs/account?topic=account-iamoverview#iamoverview) instead of a [pair of Access and Secret](/docs/cloud-object-storage/hmac?topic=cloud-object-storage-uhc-hmac-credentials-main) keys.
+Allows for creating clients with an [API key](/docs/account?topic=account-iamoverview#iamoverview) instead of a [pair of Access and Secret](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) keys.
 Token management is handled automatically, and tokens are automatically refreshed during long-running operations.
 
 ## Managed multipart uploads
@@ -80,7 +80,7 @@ Version 2 listing allows for more powerful scoping of object listings.
 ## Key Protect
 {: #sdk-about-kp}
 
-[{{site.data.keyword.keymanagementservicefull}}](/docs/services/key-protect?topic=key-protect-about) helps you create encrypted keys for apps across {{site.data.keyword.cloud}} services. Keys are secured by FIPS 140-2 Level 3 cloud-based hardware security modules (HSMs) that protect against the theft of information. [{{site.data.keyword.hscrypto}}](/docs/services/hs-crypto?topic=hs-crypto-overview) is a single-tenant, dedicated HSM that is controlled by you. The service is built on FIPS 140-2 Level 4 hardware, the highest offered by any cloud provider in the industry.
+[{{site.data.keyword.keymanagementservicefull}}](/docs/key-protect?topic=key-protect-about) helps you create encrypted keys for apps across {{site.data.keyword.cloud}} services. Keys are secured by FIPS 140-2 Level 3 cloud-based hardware security modules (HSMs) that protect against the theft of information. [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-overview) is a single-tenant, dedicated HSM that is controlled by you. The service is built on FIPS 140-2 Level 4 hardware, the highest offered by any cloud provider in the industry.
 
 ## SSE-C
 {: #sdk-about-sse-c}
@@ -100,4 +100,4 @@ Immutable Object Storage maintains data integrity in a WORM (Write-Once-Read-Man
 ## Aspera high-speed transfer
 {: #sdk-about-aspera}
 
-Aspera high-speed transfer improves data transfer performance under most conditions, especially in networks with high latency or packet loss. Instead of the standard HTTP `PUT`, Aspera high-speed transfer uploads the object by using the [FASP protocol](https://www.ibm.com/products/aspera/technology){: external}.
+Aspera high-speed transfer improves data transfer performance under most conditions, especially in networks with high latency or packet loss. Instead of the standard HTTP `PUT`, Aspera high-speed transfer uploads the object by using the [FASP protocol](https://www.ibm.com/products/aspera){: external}.

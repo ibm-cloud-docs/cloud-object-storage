@@ -50,13 +50,13 @@ This Quick Start guide provides a code example that demonstrates the following o
 You need:
 
 * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com/login)
-* An [instance of {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage/basics?topic=cloud-object-storage-provision)
-* An [IAM API key](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-overview) with Writer access to your {{site.data.keyword.cos_short}}
+* An [instance of {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-provision)
+* An [IAM API key](/docs/cloud-object-storage?topic=cloud-object-storage-iam-overview) with Writer access to your {{site.data.keyword.cos_short}}
 
 ## Getting the SDK
 {: #sdk-gs-install}
 
-Specific instructions for downloading and installing the SDK is available in [Using Python](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-python){: external}{: python}[Using Node.js](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-node){: external}{: javascript}[Using Java](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-java){: external}{: java}[Using Go](/docs/cloud-object-storage?topic=cloud-object-storage-using-go){: external}{: go}. 
+Specific instructions for downloading and installing the SDK is available in [Using Python](/docs/cloud-object-storage?topic=cloud-object-storage-python){: external}{: python}[Using Node.js](/docs/cloud-object-storage?topic=cloud-object-storage-node){: external}{: javascript}[Using Java](/docs/cloud-object-storage?topic=cloud-object-storage-java){: external}{: java}[Using Go](/docs/cloud-object-storage?topic=cloud-object-storage-using-go){: external}{: go}. 
 
 ## Code Example
 {: #sdk-gs-example}
@@ -296,7 +296,6 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-
 {: codeblock}
 {: python}
 
@@ -579,7 +578,6 @@ function main() {
 
 main();
 ```
-
 {: codeblock}
 {: javascript}
 
@@ -783,7 +781,6 @@ public class JavaExampleCode {
 }
 
 ```
-
 {: codeblock}
 {: java}
 
@@ -983,7 +980,6 @@ func exitErrorf(msg string, args ...interface{}) {
 	fmt.Fprintf(os.Stderr, msg+"\n", args...)
 	os.Exit(1)
 ```
-
 {: codeblock}
 {: go}
 
@@ -995,28 +991,24 @@ To run the code sample, copy the code blocks above and run the following:
 ```sh
 python python-example.py
 ```
-
 {: codeblock}
 {: python}
 
 ```sh
 node node-example.js
 ```
-
 {: codeblock}
 {: javascript}
 
 ```sh
 java javaexamplecode
 ```
-
 {: codeblock}
 {: java}
 
 ``` sh
 go run go_example.go
 ```
-
 {: codeblock}
 {: go}
 
@@ -1065,7 +1057,6 @@ Deleting bucket: py.bucket.779177bfe41945edb458294d0b25440a
 Bucket: py.bucket.779177bfe41945edb458294d0b25440a deleted!
 DONE!
 ```
-
 {: codeblock}
 {: python}
 
@@ -1114,7 +1105,6 @@ Deleting bucket: js.bucket.c697b4403f8211e9b1228597cf8e3a32
 Bucket: js.bucket.c697b4403f8211e9b1228597cf8e3a32 deleted!
 DONE!
 ```
-
 {: codeblock}
 {: javascript}
 
@@ -1142,7 +1132,6 @@ Item: Sample5438677733541671254.tmp deleted!
 Deleting bucket: java.bucket71bd68d087b948f5a1f1cbdd86e4fda2
 Bucket: java.bucket71bd68d087b948f5a1f1cbdd86e4fda2 deleted!
 ```
-
 {: codeblock}
 {: java}
 
@@ -1173,7 +1162,6 @@ Object "go_file_645.txt" successfully deleted
 Waiting for bucket "go.bucket645" to be deleted...
 Bucket "go.bucket645" successfully deleted
 ```
-
 {: codeblock}
 {: go}
 
