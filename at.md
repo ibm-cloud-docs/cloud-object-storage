@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-19"
+lastupdated: "2024-04-22"
 
 keywords: activity tracker, LogDNA, event, object storage, COS API calls, monitor COS events
 
@@ -35,6 +35,8 @@ In {{site.data.keyword.cos_full_notm}}, you can also monitor management events a
 * Each action that a user performs on a COS resource has a unique ID that is included in the event in the `responseData.requestId` field.
 
 You can use this service to investigate abnormal activity and critical actions, and to comply with regulatory audit requirements. In addition, you can be alerted about actions as they happen. The events that are collected comply with the Cloud Auditing Data Federation (CADF) standard.
+
+For guidance on how to use {{site.data.keyword.at_full}} with {{site.data.keyword.cos_short}} see [Tracking events using IBM Cloud Activity Tracker](/docs/cloud-object-storage?topic=cloud-object-storage-at) .  Below we list all of the events that are available.
 
 ## Management events
 {: #at-actions-mngt}
