@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-17"
+lastupdated: "2024-05-06"
 
-keywords: faq, frequently asked questions, object storage, rclone
+keywords: faq, frequently asked questions, object storage, rclone, encryption, Cyberduck, key protect, FedRAMP, AES, SHA
 
 subcollection: cloud-object-storage
 
@@ -14,7 +14,7 @@ content-type: faq
 
 {{site.data.keyword.attribute-definition-list}}
 
-# FAQ - Access Control and Encryption
+# FAQ - Encryption
 {: #faq-encryption}
 
 Frequently asked questions can produce helpful answers and insight into best practices for working with {{site.data.keyword.cos_full}}.
@@ -30,18 +30,6 @@ You can use an OAuth 2 token or an HMAC key for authentication. The HMAC key can
 * For instructions to obtain the HMAC credentials, see [Using HMAC Credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main).
 
 Also, see [API Key vs HMAC](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials-iam-hmac).
-
-## How do cross-origin resource sharing (CORS) and a bucket firewall differ in limiting access to data?
-{: #faq-cors}
-{: faq}
-
-CORS allows interactions between resources from different origins that are normally prohibited. A bucket firewall allows access only to requests from a list of allowed IP addresses. For more information on CORS, see [What is CORS?](/docs/CDN?topic=CDN-cors-and-cors-requests-through-your-cdn#what-is-cors).
-
-## How do I allow Aspera High-Speed Transfer through a bucket with context-based restrictions or a firewall?
-{: #faq-aspera-ip}
-{: faq}
-
-The full list (in JSON) of Aspera High-Speed Transfer IP addresses that are used with {{site.data.keyword.cos_full_notm}} can be found [using this API endpoint](https://ats.aspera.io/pub/v1/servers/softlayer).
 
 ## Does {{site.data.keyword.cos_short}} provide encryption at rest and in motion?
 {: #faq-encrypt-basics}
@@ -63,6 +51,26 @@ Server-side encryption is always on for customer data. Compared to the hashing r
 
 Yes, {{site.data.keyword.cos_short}} encrypts all data.
 
+## How do I encrypt my data?
+{: #troubleshooting-cos-encryption}
+{: faq}
+
+1. Go to the {{site.data.keyword.cos_full_notm}} documentation for [managing encryption](/docs/cloud-object-storage?topic=cloud-object-storage-encryption) to research the encryption topic.
+1. Choose between [{{site.data.keyword.keymanagementservicefull}}](/docs/key-protect?topic=key-protect-about) and [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-overview) for your encryption needs.
+1. Remember that customer-provided keys are enforced on objects.
+1. Use [IBM Key Protect](/docs/key-protect?topic=key-protect-about) or [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-overview) to create, add, and manage keys, which you can then associate with your instance of {{site.data.keyword.cos_full_notm}}.
+1. Grant service authorization
+     1. Open your IBM Cloud dashboard.
+     1. From the menu bar, click **Manage > Access**.
+     1. In the side navigation, click **Authorizations**.
+     1. Click **Create authorization**.
+     1. In the **Source service** menu, select **Cloud Object Storage**.
+     1. In the **Source service instance** menu, select the service instance to authorize.
+     1. In the **Target service** menu, select **IBM Key Protect** or **{{site.data.keyword.hscrypto}}**.
+     1. In the **Target service instance** menu, select the service instance to authorize.
+     1. Enable the **Reader** role.
+     1. Click **Authorize**
+
 ## Does {{site.data.keyword.cos_short}} have FIPS 140-2 compliance for the encryption algorithms?
 {: #faq-encrypt-fips}
 {: faq}
@@ -74,3 +82,9 @@ Yes, the IBM COS Federal offering is approved for FedRAMP Moderate Security cont
 {: faq}
 
 Yes, client-key encryption is supported by using SSE-C, Key Protect, or HPCS.
+
+## Is encryption applied to a bucket by default?
+{: #faq-default-enc}
+{: faq}
+
+Yes, by default, all objects stored in {{site.data.keyword.cos_short}} are encrypted using randomly generated keys and an all-or-nothing-transform (AONT). You can get the encryption details using IBM Cloud UI/CLI. For details, see [Cloud Storage Encryption](/docs/cloud-object-storage?topic=cloud-object-storage-encryption).

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020, 2024
-lastupdated: "2024-04-18"
+lastupdated: "2024-05-02"
 
 keywords: Object Storage, SysDig, monitoring, integration
 
@@ -15,7 +15,7 @@ subcollection: cloud-object-storage
 {:console: .ph data-hd-programlang='Console'}
 {:cli: .ph data-hd-programlang='CLI'}
 
-# Using {{site.data.keyword.mon_full_notm}} with {{site.data.keyword.cos_full_notm}}
+# Using {{site.data.keyword.mon_full_notm}}
 {: #mm-cos-integration}
 
 Use the {{site.data.keyword.mon_full}} service to monitor your {{site.data.keyword.cos_full}} (COS) data in the {{site.data.keyword.cloud_notm}}. The results of the activity can be measured for compliance and other analysis through the web dashboard UI.

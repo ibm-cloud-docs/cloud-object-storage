@@ -48,9 +48,6 @@ toc:
     - navgroup:
         id: howto
         topics:
-          - link:
-              label: Connect to IBM COS using IBM Cloud Direct Link
-              href: https://cloud.ibm.com/docs/dl?topic=dl-get-started-with-ibm-cloud-dl
           - topicgroup:
               label: Provisioning storage
               topics:
@@ -64,10 +61,78 @@ toc:
                 - endpoint-remap.md
                 - services.md
                 - vpe.md
+                - closures.md
               links:
                 - link:
                     label: Connect from VPC
                     href: https://cloud.ibm.com/docs/vpc?topic=vpc-connecting-vpc-cos
+          - topicgroup:
+              label: Bucket management
+              topics:
+              - topicgroup:
+                  label: Managing a bucket's lifecycle configurations
+                  topics:
+                    - archive.md
+                    - expiry.md
+                    - abort-mpu.md
+              - topicgroup:
+                  label: Managing access
+                  topics:
+                    - iam.md
+                    - iam-overview.md
+                    - service-credentials.md
+                    - buckets.md
+                    - assign-access-indvobjects.md
+                    - public-access.md
+                    - firewall.md
+              - topicgroup:
+                  label: Managing access using Access/Secret Key (HMAC) authentication
+                  topics:
+                    - credentials.md
+                    - hmac-signature.md
+                    - presigned-urls.md
+              - topicgroup:
+                  label: Managing data immutability
+                  topics:
+                    - immutable.md
+                    - object-lock.md
+              - quota.md
+              - classes.md
+              - cos-region-copy.md
+              - deleting-multiple-objects.md
+              - ftp.md
+          - topicgroup:
+              label: Data management
+              topics:
+                - upload.md
+                - multipart.md
+                - replication.md
+                - object-tagging.md
+                - versioning.md
+          - topicgroup:
+              label: Integrated services
+              topics:
+              - topicgroup:
+                  label: Managing encryption
+                  topics:
+                    - encryption-overview.md
+                    - sse-c.md
+                    - kp.md
+                    - hpcs.md
+              - activity-tracker.md
+              - metrics-monitoring.md
+              - code-engine.md
+              - aspera.md
+              - link:
+                  label: Connect to IBM COS using IBM Cloud Direct Link
+                  href: https://cloud.ibm.com/docs/dl?topic=dl-get-started-with-ibm-cloud-dl
+              - link:
+                  label: Connect to resources using a CDN
+                  href: https://cloud.ibm.com/docs/CDN/CDN-configure-cdn-with-ibm-cloud-object-storage
+              - sql.md
+              - functions.md
+              - static-websites-options.md
+              - cis-routing-rules-for-cos.md
           - topicgroup:
               label: Using IBM Cloud Satellite
               topics:
@@ -75,61 +140,6 @@ toc:
                 - satellite-provisioning.md
                 - satellite-billing.md
                 - satellite-apis.md
-          - topicgroup:
-              label: Managing access
-              topics:
-                - iam.md
-                - iam-overview.md
-                - service-credentials.md
-                - topicgroup:
-                    label: Using Access/Secret Key (HMAC) authentication
-                    topics:
-                      - credentials.md
-                      - hmac-signature.md
-                      - presigned-urls.md
-                - buckets.md
-                - assign-access-indvobjects.md
-                - public-access.md
-                - firewall.md
-          - topicgroup:
-              label: Managing encryption
-              topics:
-                - encryption-overview.md
-                - sse-c.md
-                - kp.md
-                - hpcs.md
-          - topicgroup:
-              label: Managing a bucket's lifecycle configurations
-              topics:
-                - archive.md
-                - expiry.md
-                - abort-mpu.md
-          - topicgroup:
-              label: Managing data immutability
-              topics:
-                - immutable.md
-                - object-lock.md
-          - upload.md
-          - replication.md
-          - closures.md
-          - object-tagging.md
-          - cos-region-copy.md
-          - aspera.md
-          - classes.md
-          - static-websites-options.md
-          - versioning.md
-          - link:
-              label: Connect to resources using a CDN
-              href: https://cloud.ibm.com/docs/CDN/CDN-configure-cdn-with-ibm-cloud-object-storage
-          - multipart.md
-          - deleting-multiple-objects.md
-          - sql.md
-          - activity-tracker.md
-          - quota.md
-          - metrics-monitoring.md
-          - functions.md
-          - code-engine.md
-          - ftp.md
     - navgroup:
         id: reference
         topics:
@@ -175,7 +185,6 @@ toc:
                 - data-security-encryption.md
                 - compliance.md
                 - eu.md
-          - cis-routing-rules-for-cos.md
           - at.md
           - iam-at.md
     - navgroup:
@@ -188,6 +197,8 @@ toc:
                 - faq-provisioning.md
                 - faq-onerate.md
                 - faq-encryption.md
+                - faq-bucket.md
+                - faq-data.md
           - support.md
           - topicgroup:
               label: Billing and pricing
