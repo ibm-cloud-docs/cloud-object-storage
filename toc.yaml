@@ -81,16 +81,16 @@ toc:
                     - iam.md
                     - iam-overview.md
                     - service-credentials.md
-                    - topicgroup:
-                        label: Using Access/Secret Key (HMAC) authentication
-                        topics:
-                          - credentials.md
-                          - hmac-signature.md
-                          - presigned-urls.md
                     - buckets.md
                     - assign-access-indvobjects.md
                     - public-access.md
                     - firewall.md
+              - topicgroup:
+                  label: Managing access using Access/Secret Key (HMAC) authentication
+                  topics:
+                    - credentials.md
+                    - hmac-signature.md
+                    - presigned-urls.md
               - topicgroup:
                   label: Managing data immutability
                   topics:
