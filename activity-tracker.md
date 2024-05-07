@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2022
-lastupdated: "2022-06-24"
+  years: 2022, 2024
+lastupdated: "2024-05-07"
 
 keywords: events, activity, logging, api
 
@@ -13,7 +13,7 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Tracking events using {{site.data.keyword.at_full_notm}}
+# Tracking events using {{site.data.keyword.cos_full_notm}}
 {: #at}
 
 [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started) allows you to [audit the requests](/docs/cloud-object-storage?topic=cloud-object-storage-at-events) made against a bucket and the objects it contains.
@@ -25,7 +25,7 @@ This feature is not currently supported in {{site.data.keyword.cos_short}} for {
 ## Using the console
 {: #at-console}
 
-First, make sure that you have a bucket. If not, follow the [getting started tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) to become familiar with the console. 
+First, make sure that you have a bucket. If not, follow the [getting started tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) to become familiar with the console.
 
 ### Enable activity tracking
 {: #at-console-enable}
