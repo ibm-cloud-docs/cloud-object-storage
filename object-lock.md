@@ -93,7 +93,7 @@ To get started, there are some some prerequisites:
 - When using the console, it is also possible to set a Retain Until Date in months, in addition to days or years.
 
 The retention period for an object **cannot be decreased**. If you are using default retention for validation testing please use a lower duration (such as 1 day) as the default retention, increasing it to your desired setting as needed.
-{:tip}
+{: tip}
 
 ### Creating and setting up your new bucket for use with Object Lock
 {: #ol-gs-new}
@@ -154,7 +154,7 @@ Object Lock can be used in combination with several object storage features as p
 [Enabling versioning](/docs/cloud-object-storage?topic=cloud-object-storage-versioning) is a prerequisite for enabling Object Lock. If a bucket is created using the `x-amz-bucket-object-lock-enabled` header, versioning will automatically be enabled.
 
 Deleting a versioned object creates a _delete marker_.  The object may appear to be deleted, but if the object is protected it is impossible to delete the protected version. Delete markers themselves are not protected.
-{:remember}
+{: remember}
 
 ### Replication
 {: #ol-interactions-replication}
@@ -189,7 +189,7 @@ There should be no adverse interactions when using Object Lock with other Object
 ## IAM actions
 {: #ol-iam}
 
-There are new IAM actions associated with Object Lock. 
+There are new IAM actions associated with Object Lock.
 
 | IAM Action                                                       | Role                    |
 |------------------------------------------------------------------|-------------------------|
@@ -203,6 +203,7 @@ There are new IAM actions associated with Object Lock.
 | `cloud-object-storage.object.put_object_lock_legal_hold`         | Manager, Writer         |
 | `cloud-object-storage.object.get_object_lock_legal_hold_version` | Manager, Writer, Reader |
 | `cloud-object-storage.object.put_object_lock_legal_hold_version` | Manager, Writer         |
+{: caption="IAM Actions"}
 
 Be advised that users with the Writer role are capable of making objects un-deletable for many years (possibly thousand of years).  Be careful, and consider crafting custom roles that do not allow most users to set a Retain Until Date.
 
@@ -228,7 +229,7 @@ For `cloud-object-storage.bucket-object-lock.create` events, the following field
 | `object_lock_configuration.defaultRetention.days`             | The default retention period in days.                                           |
 
 Only `object_lock_configuration.defaultRetention.years` or `object_lock_configuration.defaultRetention.days` will be present, but not both at the same time.
-{:note}
+{: note}
 
 For operations on protected objects, the following fields may be present:
 
@@ -267,7 +268,7 @@ The body of the request must contain an XML block with the following schema:
 | `Mode`                    | String    | None                        | `DefaultRetention`        | Only `COMPLIANCE` is supported at this time (case-sensitive).                                                                  |
 | `Years`                   | Integer   | None                        | `DefaultRetention`        | The number of years that you want to specify for the default retention period. Cannot be combined with `Days`. |
 
-This example will retain any new objects for at least 30 days.  
+This example will retain any new objects for at least 30 days.
 
 ```sh
 curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?object-lock" \
@@ -284,7 +285,6 @@ curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?
             </Rule>
           </ObjectLockConfiguration>'
 ```
-
 A successful request returns a `200` response.
 
 ### View Object Lock configuration for a bucket
@@ -292,9 +292,8 @@ A successful request returns a `200` response.
 
 ```sh
 curl -X "GET" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?object-lock" \
-     -H 'Authorization: bearer $TOKEN' 
+     -H 'Authorization: bearer $TOKEN'
 ```
-
 This returns an XML response body with the appropriate schema:
 
 ```xml
@@ -347,7 +346,6 @@ curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?
             <RetainUntilDate>2023-03-12T23:01:00.000Z</RetainUntilDate>
           </Retention>'
 ```
-
 A successful request returns a `200` response.
 
 If the `RetainUntilDate` values is not beyond any existing value, the operation will fail with a `403 Access Denied`.
@@ -379,13 +377,12 @@ curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?
             <Status>ON</Status>
           </legal-hold>'
 ```
-
 A successful request returns a `200` response.
 
 ## SDK examples
 {: #ol-sdks}
 
-The following examples make use of the IBM COS SDKs for Python, Node.js, and Go, as well as a Terraform script, although the implementation of object versioning should be fully compatible with any S3-compatible library or tool that allows for the setting of custom endpoints.  Using third-party tools requires HMAC credentials to calculate AWS V4 signatures.  For more information on HMAC credentials, [see the documentation](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main).
+The following examples make use of the IBM COS SDKs for Python, Node.js, and Go, as well as a Terraform script, although the implementation of object versioning should be fully compatible with any S3-compatible library or tool that allows for the setting of custom endpoints.  Using third-party tools requires [HMAC credentials](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) to calculate AWS V4 signatures.
 
 ### Python
 {: #ol-sdks-python}
@@ -419,7 +416,6 @@ def objectlock_configuration_on_bucket(bucket_name):
     response = cos_cli.get_object_lock_configuration(Bucket=bucket_name)
     print("Objectlock Configuration for {0} =>".format(bucket_name))
     print(response.ObjectLockConfiguration)
-
 
 def upload_object(bucket_name,object_name,object_content):
         cos_cli.put_object(
@@ -474,7 +470,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 ```
 {: codeblock}
 
