@@ -2,12 +2,11 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-19"
+lastupdated: "2024-05-08"
 
 keywords: authorization, aws, hmac, signature
 
 subcollection: cloud-object-storage
-
 
 ---
 
@@ -41,7 +40,7 @@ When creating a service credential, it is possible to provide a value of `None` 
 
 You can also use the {{site.data.keyword.cos_full}} CLI to create your credentials. You must have the already installed the [{{site.data.keyword.cloud_notm}} Platform Command Line Instructions](/docs/cli?topic=cli-install-ibmcloud-cli) before you can use the example.
 
-```
+```sh
 ibmcloud resource service-key-create <key-name-without-spaces> Writer --instance-name "<instance name--use quotes if your instance name has spaces>" --parameters '{"HMAC":true}'
 ```
 {: pre}
@@ -51,7 +50,7 @@ ibmcloud resource service-key-create <key-name-without-spaces> Writer --instance
 
 If you want to store the results of the generated key, you can append ` > file.skey` to the end of the example. For the purposes of this instruction set, you need only find the `cos_hmac_keys` heading with child keys, `access_key_id`, and `secret_access_key`.
 
-```
+```sh
     cos_hmac_keys:
         access_key_id:      7exampledonotusea6440da12685eee02
         secret_access_key:  8not8ed850cddbece407exampledonotuse43r2d2586
@@ -63,7 +62,7 @@ If you want to store the results of the generated key, you can append ` > file.s
 
 Once you have created your credentials, you can set them as environment variables (the instructions for which are specific to the operating system involved). For instance, in Example 3, a `.bash_profile` script contains `COS_HMAC_ACCESS_KEY_ID` and `COS_HMAC_SECRET_ACCESS_KEY` that is exported upon starting a shell and used in development.
 
-```
+```sh
 export COS_HMAC_ACCESS_KEY_ID="7exampledonotusea6440da12685eee02"
 export COS_HMAC_SECRET_ACCESS_KEY="8not8ed850cddbece407exampledonotuse43r2d2586"
 
@@ -75,8 +74,8 @@ export COS_HMAC_SECRET_ACCESS_KEY="8not8ed850cddbece407exampledonotuse43r2d2586"
 
 Note that when using HMAC credentials to create signatures to use with direct [REST API](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#bucket-operations-hmac) calls that extra headers are required:
 1. All requests must have an `x-amz-date` header with the date in `%Y%m%dT%H%M%SZ` format.
-2. Any request that has a payload (object uploads, deleting several objects, and so on) must provide a `x-amz-content-sha256` header with an SHA256 hash of the payload contents.
-3. ACLs (other than `public-read`) are unsupported.
+1. Any request that has a payload (object uploads, deleting several objects, and so on) must provide a `x-amz-content-sha256` header with an SHA256 hash of the payload contents.
+1. ACLs (other than `public-read`) are unsupported.
 
 Not all S3-compatible tools are currently supported. Some tools attempt to set ACLs other than `public-read` on bucket creation. Bucket creation through these tools will fail. If a `PUT bucket` request fails with an unsupported ACL error, first use the console as shown in the [getting started with {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) to create the bucket, then configure the tool to read and write objects to that bucket. Tools that set ACLs on object writes are not currently supported.
-{:tip}
+{: tip}

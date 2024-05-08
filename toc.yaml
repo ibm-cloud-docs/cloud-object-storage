@@ -70,12 +70,6 @@ toc:
               label: Bucket management
               topics:
               - topicgroup:
-                  label: Managing a bucket's lifecycle configurations
-                  topics:
-                    - archive.md
-                    - expiry.md
-                    - abort-mpu.md
-              - topicgroup:
                   label: Managing access
                   topics:
                     - iam.md
@@ -86,11 +80,11 @@ toc:
                     - public-access.md
                     - firewall.md
               - topicgroup:
-                  label: Managing access using Access/Secret Key (HMAC) authentication
+                  label: Managing a bucket's lifecycle configurations
                   topics:
-                    - credentials.md
-                    - hmac-signature.md
-                    - presigned-urls.md
+                    - archive.md
+                    - expiry.md
+                    - abort-mpu.md
               - topicgroup:
                   label: Managing data immutability
                   topics:
@@ -100,6 +94,12 @@ toc:
               - classes.md
               - cos-region-copy.md
               - deleting-multiple-objects.md
+              - topicgroup:
+                  label: Managing access using Access/Secret Key (HMAC) authentication
+                  topics:
+                    - credentials.md
+                    - hmac-signature.md
+                    - presigned-urls.md
               - ftp.md
           - topicgroup:
               label: Data management
