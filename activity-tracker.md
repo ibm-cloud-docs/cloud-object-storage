@@ -62,18 +62,15 @@ Note: This feature supports SCC monitoring
 By default, COS events that report on global actions, such as bucket creation, are collected automatically. You can monitor global actions through the Activity Tracker instance located in the Frankfurt location.
 
 IBM COS also optionally supports enabling tracking on three categories of events:
-
-Management Events – Requests related to managing bucket and object configuration 
-
-Read Data Events – Requests related to object list and read requests
-
-Write Data Events – These are all events related to writing and deleting objects 
+- Management Events – Requests related to managing bucket and object configuration
+- Read Data Events – Requests related to object list and read requests
+- Write Data Events – These are all events related to writing and deleting objects
 
 Refer to the COS API events to see the full list of Management, Read Data, and Write Data actions that produce events.
 
 Use the COS Resource Configuration API to configure tracking of these events on your bucket
 
-When event tracking is enabled, all events will be sent to the default receiving location for IBM Cloud Activity Tracker Event Router based on the location of the bucket. Refer to IBM COS Service Integration to see this default mapping. Use Activity Tracker Event Router rules to route events to an alternative location or target service. See Managing Rules to learn more.
+When event tracking is enabled, all events are sent to the default receiving location for IBM Cloud Activity Tracker Event Router based on the location of the bucket. Refer to IBM COS Service Integration to see this default mapping. Use Activity Tracker Event Router rules to route events to an alternative location or target service. See Managing Rules to learn more.
 
 
 ## Enabling Activity Tracking  Events on your IBM Cloud Object Storage Bucket (Legacy)
