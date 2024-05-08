@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-17"
+lastupdated: "2024-05-01"
 
 keywords: empty bucket, delete, multiple
 
@@ -49,7 +49,7 @@ For this code pattern you will need:
 * An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com)
 * An instance of [{{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-provision)
 * Configured and operational use of {{site.data.keyword.cos_full_notm}} SDKs for your choice of Java, Python, NodeJS, or Go; or, a configured and operational CLI client.
-{: #dmop-prereqs}
+
 
 
 ## Using the Console

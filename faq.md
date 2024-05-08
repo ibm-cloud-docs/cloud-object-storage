@@ -2,10 +2,10 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-05-06"
+lastupdated: "2024-05-08"
 
 
-keywords: faq, frequently asked questions, object storage, S3, HMAC
+keywords: faq, frequently asked questions, object storage, S3, HMAC, general
 
 subcollection: cloud-object-storage
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-05-03"
+lastupdated: "2024-05-08"
 
 
 keywords: faq, frequently asked questions, object storage, S3, HMAC, bucket management
@@ -16,7 +16,7 @@ content-type: faq
 {{site.data.keyword.attribute-definition-list}}
 
 # FAQ - Bucket management
-{: #faq}
+{: #faq-bucket}
 
 Frequently asked questions can produce helpful answers and insight into best practices for working with {{site.data.keyword.cos_full}}.
 {: shortdesc}
