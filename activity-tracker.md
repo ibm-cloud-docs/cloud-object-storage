@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2024
-lastupdated: "2024-05-07"
+lastupdated: "2024-05-08"
 
 keywords: events, activity, logging, api
 
