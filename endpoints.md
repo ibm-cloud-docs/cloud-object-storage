@@ -31,7 +31,7 @@ All {{site.data.keyword.cos_full}} endpoints support TLS 1.2 encryption.
 {: note}
 
 A bucket's resiliency and location that you selected during bucket creation and provisioning cannot be modified thereafter.
-{: warning}
+{: important}
 
 ## Endpoint Types
 {: #advanced-endpoint-types}
