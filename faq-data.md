@@ -2,10 +2,10 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-05-06"
+lastupdated: "2024-05-08"
 
 
-keywords: faq, frequently asked questions, object storage, S3, HMAC
+keywords: faq, frequently asked questions, object storage, S3, HMAC, data management
 
 subcollection: cloud-object-storage
 
@@ -16,7 +16,7 @@ content-type: faq
 {{site.data.keyword.attribute-definition-list}}
 
 # FAQ - Data management
-{: #faq}
+{: #faq-data}
 
 Frequently asked questions can produce helpful answers and insight into best practices for working with {{site.data.keyword.cos_full}}.
 {: shortdesc}
