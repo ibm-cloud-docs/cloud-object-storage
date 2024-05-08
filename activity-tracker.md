@@ -16,20 +16,20 @@ subcollection: cloud-object-storage
 # Tracking events using {{site.data.keyword.cos_full_notm}} buckets
 {: #at}
 
-IBM Cloud offers centralized logging services to track events performed on your resources. You can use these services to investigate abnormal activity and critical actions, and comply with regulatory audit requirements.
+{{site.data.keyword.cloud_full}} offers centralized logging services to track events performed on your resources. You can use these services to investigate abnormal activity and critical actions, and comply with regulatory audit requirements.
 
-These services can be used to track events on your IBM Cloud Object Storage buckets to provide a record of what is happening with your data. Enable these services on your bucket to receive detailed logs about data access and bucket configuration events.
+These services can be used to track events on your {{site.data.keyword.cos_full}} buckets to provide a record of what is happening with your data. Enable these services on your bucket to receive detailed logs about data access and bucket configuration events.
 
-## IBM Cloud Activity Tracker
+## {{site.data.keyword.cloud_notm}} Activity Tracker
 {: #at-at}
 
-Insert Note with link to Activity Tracker Deprecation Announcement
+{{../log-analysis/_include-segments/deprecation_notice.md}}
 
-Tracking IBM Cloud® Object Storage events with IBM Cloud® Activity Tracker provides a record of what is happening with your data. The IBM Cloud Activity Tracker service provides the framework and functionality to monitor API calls to services on the IBM Cloud and produces the evidence to comply with corporate policies and market industry-specific regulations.
+Tracking {{site.data.keyword.cos_short}} events with {{site.data.keyword.at_full}} provides a record of what is happening with your data. The {{site.data.keyword.at_full_notm}} service provides the framework and functionality to monitor API calls to services on the IBM Cloud and produces the evidence to comply with corporate policies and market industry-specific regulations.
 
-See Getting started with IBM Cloud Activity Tracker to learn more.
+See Getting started with {{site.data.keyword.at_full_notm}} to learn more.
 
-Migrate from IBM Cloud Activity Tracker to IBM Cloud Logs to avoid any disruption in event tracking.
+Migrate from {{site.data.keyword.at_full_notm}} to IBM Cloud Logs to avoid any disruption in event tracking.
 
 ## IBM Cloud Logs (Coming Soon)
 {: #at-logs}
