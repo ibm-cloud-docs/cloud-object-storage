@@ -80,6 +80,12 @@ toc:
                     - public-access.md
                     - firewall.md
               - topicgroup:
+                  label: Managing access using Access/Secret Key (HMAC) authentication
+                  topics:
+                    - credentials.md
+                    - hmac-signature.md
+                    - presigned-urls.md
+              - topicgroup:
                   label: Managing a bucket's lifecycle configurations
                   topics:
                     - archive.md
@@ -94,12 +100,6 @@ toc:
               - classes.md
               - cos-region-copy.md
               - deleting-multiple-objects.md
-              - topicgroup:
-                  label: Managing access using Access/Secret Key (HMAC) authentication
-                  topics:
-                    - credentials.md
-                    - hmac-signature.md
-                    - presigned-urls.md
               - ftp.md
           - topicgroup:
               label: Data management
