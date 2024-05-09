@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-18"
+lastupdated: "2024-05-09"
 
 keywords: web application, node, gallery, tutorial
 
@@ -10,7 +10,7 @@ subcollection: cloud-object-storage
 
 content-type: tutorial
 
-services: cloud-object-storage, cloud-foundry-public
+services: cloud-object-storage
 
 account-plan: lite
 
@@ -23,7 +23,7 @@ completion-time: 1h
 # Developing a web application
 {: #web-application}
 {: toc-content-type="tutorial"}
-{: toc-services="cloud-object-storage, cloud-foundry-public"}
+{: toc-services="cloud-object-storage"}
 {: toc-completion-time="1h"}
 
 This tutorial shows you how to build a simple image gallery using {{site.data.keyword.cos_full}}, bringing together many different concepts and practices key to web development.
@@ -58,7 +58,7 @@ Ensure that you have what you need to start:
 ### Using the Command Line
 {: #tutorial-wa-command-line}
 
-Let's start by opening a tool familiar to experienced developers, and a new best friend to those just getting started: the command line. For many, the graphic user interface (GUI) relegated your computer's command-line interface to second-class status. But now, it's time to bring it back (although the GUI isn't going away anytime soon, especially when we need to browse the web to download instructions for the command-line toolset).
+Let's start by opening a tool familiar to experienced developers, and a new best friend to those just getting started: the command line. For many, the graphic user interface (GUI) relegated your computer's command-line interface to second-class status. But now, it's time to bring it back (although the GUI isn't going away anytime soon, especially when you need to browse the web to download instructions for the command-line toolset).
 
 Open a shell and create a directory. Change your own reference directory to the new one you created. When created, your application has its own subdirectory with the starter code and configuration needed to get up and running.
 
@@ -69,7 +69,7 @@ Leave the command line and return to your browser so you can follow the instruct
 
 Using containers, like Docker, speeds up development and eases testing and supports automated deployment. A container is a lightweight structure that doesn't need an operating system, just your code and configuration for everything from dependencies to settings.
 
-[Docker](https://www.docker.com){: external} is installed as part of the Developer Tools, and we need it. Its work takes place mostly in the background within routines that scaffold your new app. Docker must be running for the build commands to work. Go ahead and create a Docker account online at [Docker hub](https://hub.docker.com){: external}, run the Docker app, and sign in.
+[Docker](https://www.docker.com){: external} is installed as part of the Developer Tools, and you need it. Its work takes place mostly in the background within routines that scaffold your new app. Docker must be running for the build commands to work. Go ahead and create a Docker account online at [Docker hub](https://hub.docker.com){: external}, run the Docker app, and sign in.
 
 ### Installing Node.js
 {: #tutorial-wa-install-node}
@@ -104,9 +104,9 @@ Whichever approach you use after you install Node.js and `npm` (included with No
 ### Installing Git
 {: #tutorial-wa-install-git}
 
-You're probably already familiar with Git, as it's the most widely used source code versioning system. We use Git later when we create a Continuous Deployment (CD) Toolchain in the {{site.data.keyword.cloud_notm}} Platform for continuous delivery and deployment. If you don't have a GitHub account, create a free public personal account at the [GitHub](https://github.com/join) website; otherwise, feel free to log in with any other account you might have.
+You're probably already familiar with Git, as it's the most widely used source code versioning system. You use Git later when you create a Continuous Deployment (CD) Toolchain in the {{site.data.keyword.cloud_notm}} Platform for continuous delivery and deployment. If you don't have a GitHub account, create a free public personal account at the [GitHub](https://github.com/join) website; otherwise, feel free to log in with any other account you might have.
 
-We need to generate and upload SSH keys to your [GitHub profile](https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) for secure access to GitHub from the command line. However, doing that now provides good practice, as you repeat the steps for the instance of GitHub used for the {{site.data.keyword.cloud_notm}} Platform later.
+You need to generate and upload SSH keys to your [GitHub profile](https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) for secure access to GitHub from the command line. However, doing that now provides good practice, as you repeat the steps for the instance of GitHub used for the {{site.data.keyword.cloud_notm}} Platform later.
 
 For now, download the [GitHub Desktop](https://desktop.github.com/) and run the installer. When the installer finishes, log in to GitHub with your account.
 
@@ -125,7 +125,7 @@ ibmcloud login
 ```
 {: pre}
 
-After logging in, when you are asked if you want to install any extensions, you may see an announcement regarding the Cloud Foundry plugin. Type the command as shown in order to download and install the CLI extension used in this tutorial.
+Type the command as shown in order to download and install the CLI extension used in this tutorial.
 
 ```sh
 ibmcloud cf install
@@ -141,14 +141,7 @@ ibmcloud api cloud.ibm.com
 ```
 {: pre}
 
-Target the Cloud Foundry (`cf`) aspect of {{site.data.keyword.cloud_notm}} Platform by using the `target` command and the `--cf` option. The `cf` API is no longer embedded within the CLI Developer Tools and will have to be downloaded separately.
-
-```sh
-ibmcloud target --cf
-```
-{: pre}
-
-And now, time to create a web application. The `dev` space is a default option for your organization, but you might prefer to create others for isolating different efforts. For example, keeping 'finance' separate from 'development'.
+Next, create a web application. The `dev` space is a default option for your organization, but you might prefer to create others for isolating different efforts. For example, keeping 'finance' separate from 'development'.
 
 ```sh
 ibmcloud dev create
@@ -159,7 +152,7 @@ With that command, you're asked a series of questions. You can go back at many p
 
 Note the option for creating a 'Web App'. That's the one you want.
 
-```
+```sh
 ===============================================================================
 Select an application type:
 
@@ -173,9 +166,9 @@ Select an application type:
 ```
 {: screen}
 
-A number of options are provided, but we want 'Node'. Type '4' and press enter.
+A number of options are provided, but you want 'Node'. Type '4' and press enter.
 
-```
+```sh
 ===============================================================================
 Select a language:
 
@@ -194,9 +187,9 @@ Select a language:
 ```
 {: screen}
 
-After you make your selection for the programming language and framework, the next selection will have so many options, it might scroll past your wanted service. As you can see in the example, we wish to use a simple Node.js Web App with Express.js. Type '3' and press enter.
+After you make your selection for the programming language and framework, the next selection will have so many options, it might scroll past your wanted service. As you can see in the example, you wish to use a simple Node.js Web App with Express.js. Type '3' and press enter.
 
-```
+```sh
 ===============================================================================
 Select a Starter Kit:
 
@@ -239,14 +232,14 @@ WATSON
 
 The hardest option for developers everywhere is still required: naming your app. Follow the example and type `webapplication`, then press enter.
 
-```
+```sh
 ? Enter a name for your application> webapplication
 ```
 {: screen}
 
 Later, you can add as many services, like data stores or compute functions, as needed or wanted through the web console. However, type 'n' for no when asked if you want to add services now. Also, if you haven't already set a resource group, you may be prompted at this time. You may skip this by typing 'n' at this prompt.
 
-```
+```sh
 Using the resource group Default (default) of your account
 
 ? Do you want to select a service to add to this application? [Y/n]> n
@@ -254,11 +247,11 @@ Using the resource group Default (default) of your account
 ```
 {: screen}
 
-One way to manage a containerized application is with orchestration software, like Kubernetes, which is a _de facto_ standard in development. But for this tutorial, we can let the Cloud Foundry service manage a single Docker container that holds the code, libraries, and configuration needed by your app.
+One way to manage a containerized application is with orchestration software, like Kubernetes, which is a _de facto_ standard in development.
 
 Type '4' and press enter to use 'IBM DevOps' for integrating CD within your project lifecycle.
- 
-```
+
+```sh
 ===============================================================================
 Select from the following DevOps toolchain and target runtime environment
 options:
@@ -266,17 +259,16 @@ options:
  1. IBM DevOps, deploy to Knative-based Kubernetes containers
  2. IBM DevOps, deploy to Helm-based Kubernetes containers
  3. IBM DevOps, deploy to Helm-based Red Hat OpenShift containers
- 4. IBM DevOps, deploy to Cloud Foundry buildpacks
- 5. No DevOps, with manual deployment
+ 4. No DevOps, with manual deployment
 
 ===============================================================================
 ? Enter selection number:> 4
 ```
 {: screen}
 
-We must choose a region for our automated deployment CD toolchain. Select the option referencing the same region as chosen earlier, '5'.
+You must choose a region for your automated deployment CD toolchain. Select the option referencing the same region as chosen earlier, '5'.
 
-```
+```sh
 --------------------------------------------------------------------------------
 Select a region for your toolchain from the following options:
 --------------------------------------------------------------------------------
@@ -294,7 +286,7 @@ Select a region for your toolchain from the following options:
 
 Generating a new application reminds us that the toolchain used to deploy your app needs some additional configuration. As mentioned earlier, uploading your public key to GitHub (at the CD Toolchain instance on the {{site.data.keyword.cloud_notm}} Platform), is required to deliver the deployed application by using GitHub.
 
-```
+```sh
 Note: For successful connection to the DevOps toolchain, this machine
 must be configured for SSH access to your IBM Cloud GitLab account at
 https://git.cloud.ibm.com/profile/keys in order to download the
@@ -304,7 +296,7 @@ application code.
 
 Further prompts confirm the application and toolchain name that you defined earlier. The example shows how you can alter the host and toolchain names, if you want. The hostname must be unique for the service endpoint of your application, but barring a conflict, you can simply press return when asked for confirmation.
 
-```
+```sh
 The DevOps toolchain for this app will be: webapplication
 ? Press [Enter] to accept this, or enter a new value now>
 
@@ -322,7 +314,7 @@ https://cloud.ibm.com/devops/toolchains/6ffb568a-e48f-4e27-aed0-00ca931dde66?env
 
 If you copy and paste the link that is returned by the `ibmcloud dev create` command, you can also access your CD Toolchain. You can access that from the console later, in case you missed capturing the link. Further information follows, as the process continues creating application entries online, as well as a directory with the sample code.
 
-```
+```sh
 Cloning repository
 https://git.cloud.ibm.com/Organization.Name/webapplication...
 Cloning into 'webapplication'...
@@ -369,9 +361,9 @@ The URL again is displayed by `ibmcloud dev deploy` based on the regional endpoi
 {: #tutorial-create-app}
 {: step}
 
-Let's recall the prerequisites that you needed for developing a Node.js app on {{site.data.keyword.cloud_notm}} Platform. You already created your {{site.data.keyword.cloud_notm}} Platform account as well as installed the Developer Tools, which installed Docker. Then, you installed Node.js. The last item listed as a prerequisite for this tutorial was Git, which we dive into now.
+Let's recall the prerequisites that you needed for developing a Node.js app on {{site.data.keyword.cloud_notm}} Platform. You already created your {{site.data.keyword.cloud_notm}} Platform account as well as installed the Developer Tools, which installed Docker. Then, you installed Node.js. The last item listed as a prerequisite for this tutorial was Git, which you dive into now.
 
-We're going to start the specifics of working on the image gallery in Node.js. For now, we use GitHub Desktop for this scenario, but you might also use the Git command-line client to complete the same tasks. To get started, let's clone a starter template for your new web application.
+We're going to start the specifics of working on the image gallery in Node.js. For now, use GitHub Desktop for this scenario, but you might also use the Git command-line client to complete the same tasks. To get started, clone a starter template for your new web application.
 
 Follow this process:
 
@@ -400,7 +392,7 @@ Follow this process:
    Open a browser and view your app on the address and port that is output to the console, `http://localhost:3000`.
 
    To restart the app locally, kill the node process (Ctrl+C) to stop it, and use `npm start` again. Using `nodemon` instead restarts the app when it detects a change, and saves you time. Install `nodemon` globally like this: `npm install -g nodemon`. Run it from the command line in your app directory by using: `nodemon`, to start your app.
-   {:tip}
+   {: tip}
 
 1. Get ready to prepare the app for deployment! Update the application name property value in the `manifest.yml` file from COS-WebGallery, to the name you entered for your app on {{site.data.keyword.cloud_notm}} Platform and the other information as shown in the example, if necessary. The application `manifest.yml` looks like the following example. You can customize the `package.json` file that is located in the app root directory for your app with the name of your app and your name as the author.
 
@@ -420,19 +412,15 @@ Follow this process:
    Now is the point where you might need to set up SSH keys to interactively push code to your remote origin. If you set a passphrase for your SSH key, you're required to enter this code each time you push your changes to the remote origin for your repository.
    {: tip}
 
-1. Remove and replace the contents of your `webapplication` directory with the contents of the directory you modified, `COS-WebGalleryStart`.
-    Using your finely tuned Git skills, add the files that were deleted and added to the repository with either the CLI or
-    GitHub Desktop. Then, push the changes to the repository origin. In the future, you can make changes to your
-    cloud-based web application just by pushing changes to Git. The CD toolchain will automatically restart the server process
-    after cloning your changes and stashing them on the server.
+1. Remove and replace the contents of your `webapplication` directory with the contents of the directory you modified, `COS-WebGalleryStart`. Using your finely tuned Git skills, add the files that were deleted and added to the repository with either the CLI or GitHub Desktop. Then, push the changes to the repository origin. In the future, you can make changes to your cloud-based web application just by pushing changes to Git. The CD toolchain will automatically restart the server process after cloning your changes and stashing them on the server.
 
-In essence, we've recoded our application, so let's repeat the build process. But this time we use the new Image Gallery code.
+In essence, you've recoded your application, so repeat the build process. But this time use the new Image Gallery code.
 
 ### Deploy the app to {{site.data.keyword.cloud_notm}} Platform.
 {: #wb-app-deploy}
 
 To get the starter app with your changes
-    to {{site.data.keyword.cloud_notm}} Platform, deploy it using the Developer Tools by repeating the same steps that we performed earlier.
+    to {{site.data.keyword.cloud_notm}} Platform, deploy it using the Developer Tools by repeating the same steps that you performed earlier.
 
 1. If you haven't already, or if you restarted or logged out, log in to {{site.data.keyword.cloud_notm}} Platform by using the `login` command.
 
@@ -445,13 +433,6 @@ To get the starter app with your changes
 
    ```sh
    ibmcloud api cloud.ibm.com
-   ```
-   {: pre}
-
-1. Target the Cloud Foundry aspect of {{site.data.keyword.cloud_notm}} Platform by using the `target` command and the `--cf` option.
-
-   ```sh
-   ibmcloud target --cf
    ```
    {: pre}
 
@@ -511,7 +492,7 @@ to use for your {{site.data.keyword.cloud_notm}} Platform Delivery Pipeline Buil
 
 Now that the Local-dev branch is published to the GitHub repo in your toolchain, the build stage of your {{site.data.keyword.cloud_notm}} Platform Delivery Pipeline will be triggered followed by the deployment stage anytime you push a commit to it. Deploying the app from the CLI is not necessary, as the deployment has been integrated directly into your workflow.
 
-### Setting up {{site.data.keyword.cos_full_notm}} your storage credentials
+### Setting up your storage credentials
 {: #tutorial-credentials}
 
 You need to configure {{site.data.keyword.cos_short}} credentials for your web application, as well as a 'bucket' where it will store and retrieve images. The API key that you will create will need {{site.data.keyword.cos_short}} HMAC credentials, as defined by your [Service Credentials](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials). You might recognize the terms `access_key_id` and `secret_access_key` as you might have an AWS account, and use a credentials file that already has `aws_access_key_id` and `aws_secret_access_key` entries.
@@ -527,7 +508,7 @@ After you have completed creating an API key, downloaded, and then copied the HM
    ```
    {: codeblock}
 
-1. In the web page for the application you created by using the CLI command on the {{site.data.keyword.cloud_notm}} Platform, define your required credentials as environment variables per development best practices by logging in to {{site.data.keyword.cloud_notm}} Platform, and under Cloud Foundry Apps, select your app, `webapplication`. From the tabs, click **Runtime**.
+1. In the web page for the application you created by using the CLI command on the {{site.data.keyword.cloud_notm}} Platform, define your required credentials as environment variables per development best practices by logging in to {{site.data.keyword.cloud_notm}} Platform, and select your app, `webapplication`. From the tabs, click **Runtime**.
 
 1. In the Runtime window, click Environment variables at the beginning of the page and scroll to the User-defined section, which allows you to add the variables.
 
@@ -561,7 +542,7 @@ The next steps focus on how to accomplish these two demonstration functions rath
 ### Developing the app
 {: #tutorial-develop-app}
 
-In the `package.json` file, inside the scripts object, you see how "start" is defined. This file is what {{site.data.keyword.cloud_notm}} Platform uses to tell node to run app.js each time the app starts. Also, use it when testing the app locally. Look at the main application file, which is called `app.js`. This is the code that we have told Node.js to process first when you start your app with the `npm start` command (or `nodemon`).
+In the `package.json` file, inside the scripts object, you see how "start" is defined. This file is what {{site.data.keyword.cloud_notm}} Platform uses to tell node to run app.js each time the app starts. Also, use it when testing the app locally. Look at the main application file, which is called `app.js`. This is the code that you told Node.js to process first when you start your app with the `npm start` command (or `nodemon`).
 
 ```json
 {
@@ -591,11 +572,11 @@ app.listen(port, function() {
 {: codeblock}
 {: javascript}
 
-Let's see how to define a path and views. The first line of code tells the Express framework to use the public directory to serve our static files, which include any static images and style sheets we use. The lines that follow tell the app where to find the templates for our views in the `src/views` directory, and set our view engine to be EJS. In addition, the framework uses the body-parser middleware to expose incoming request data to the app as JSON. In the closing lines of the example, the express app responds to all incoming GET requests to our app URL by rendering the `index.ejs` view template.
+Let's see how to define a path and views. The first line of code tells the Express framework to use the public directory to serve your static files, which include any static images and style sheets you use. The lines that follow tell the app where to find the templates for your views in the `src/views` directory, and set your view engine to be EJS. In addition, the framework uses the body-parser middleware to expose incoming request data to the app as JSON. In the closing lines of the example, the express app responds to all incoming GET requests to your app URL by rendering the `index.ejs` view template.
 
 ```javascript
 //...
-// serve the files out of ./public as our main files
+// serve the files out of ./public as your main files
 app.use(express.static('public'));
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
@@ -616,7 +597,7 @@ The following figure shows what the index view template when rendered and sent t
 
 ![`uploadimageview`](images/web-app-tutorial-018-templates.jpg){: caption="Figure 8. Your updated web app by using templates and views for displays"}
 
-Our view templates share HTML code between the `<head>...</head>`; tags, so we placed it into a separate include template. This template (`head-inc.ejs`) contains a scriptlet (a binding for a JavaScript variable) for the page title on line 1. The `title` variable is set in `app.js`, and passed in as data for our view template in the line below that. Otherwise, we are simply using some CDN addresses to pull in `Bootstrap CSS`, `Bootstrap JavaScript`, and `JQuery`. Finally, we add a custom static `styles.css` file from our `pubic/stylesheets` directory.
+Our view templates share HTML code between the `<head>...</head>`; tags, so you placed it into a separate include template. This template (`head-inc.ejs`) contains a scriptlet (a binding for a JavaScript variable) for the page title on line 1. The `title` variable is set in `app.js`, and passed in as data for your view template in the line below that. Otherwise, you are simply using some CDN addresses to pull in `Bootstrap CSS`, `Bootstrap JavaScript`, and `JQuery`. Finally, add a custom static `styles.css` file from your `pubic/stylesheets` directory.
 
 ```html
 <title><%=title%></title>
@@ -640,19 +621,13 @@ Our view templates share HTML code between the `<head>...</head>`; tags, so we p
 ```
 {: codeblock}
 
-The body of the index view contains our bootstrap styled navigation tabs, and our upload form in a basic layout that is provided by the CSS styles included with bootstrap.
+The body of the index view contains your bootstrap styled navigation tabs, and your upload form in a basic layout that is provided by the CSS styles included with bootstrap.
 
-Consider these two specifications for our app:
+Consider these two specifications for your app:
 
-- We set our form method to `POST` and the form-data encoding type as
-multipart/form-data on line 24. For the form action, we send the
-data from our form to the app to the app route "/". Later, we do
-extra work in our router logic to handle `POST` requests to
-that route.
+- Set your form method to `POST` and the form-data encoding type as multipart/form-data on line 24. For the form action, send the data from your form to the app to the app route "/". Later, do extra work in your router logic to handle `POST` requests to that route.
 
-- We want to display feedback about the status of the attempted file
-upload to the user. This feedback is passed to our view in a
-variable named "status", and is displayed after the upload form.
+- Display feedback about the status of the attempted file upload to the user. This feedback is passed to your view in a variable named "status", and is displayed after the upload form.
 
 ```html
 <!DOCTYPE html>
@@ -698,7 +673,7 @@ variable named "status", and is displayed after the upload form.
 ```
 {: codeblock}
 
-Let's take a moment to return to `app.js`. The example sets up Express routes to handle extra requests that are made to our app. The code for these routing methods are in two files under the `./src/routes` directory in your project:
+Let's take a moment to return to `app.js`. The example sets up Express routes to handle extra requests that are made to your app. The code for these routing methods are in two files under the `./src/routes` directory in your project:
 
 - `imageUploadRoutes.js`: This file handles what happens when the user
     selects an image and clicks Upload.
@@ -722,9 +697,9 @@ app.use('/', imageUploadRoutes);
 #### Image upload
 {: #tutorial-develop-image-upload}
 
-See the code from `imageUploadRoutes.js`. We must create an instance of a new express router and name it `imageUploadRoutes` at the start. Later, we create a function that returns `imageUploadRoutes`, and assign it to a variable called `router`. When completed, the function must be exported as a module to make it accessible to the framework and our main code in `app.js`. Separating our routing logic from the upload logic requires a controller file named `galleryController.js`. Because that logic is dedicated to processing the incoming request and providing the appropriate response, we put that logic in that function and save it in the `./src/controllers` directory.
+See the code from `imageUploadRoutes.js`. You must create an instance of a new express router and name it `imageUploadRoutes` at the start. Later, create a function that returns `imageUploadRoutes`, and assign it to a variable called `router`. When completed, the function must be exported as a module to make it accessible to the framework and your main code in `app.js`. Separating your routing logic from the upload logic requires a controller file named `galleryController.js`. Because that logic is dedicated to processing the incoming request and providing the appropriate response, put that logic in that function and save it in the `./src/controllers` directory.
 
-The instance of the Router from the Express framework is where our `imageUploadRoutes` is designed to route requests for the root app route ("/") when the HTTP `POST` method is used. Inside the `post` method of our `imageUploadRoutes`, we use middleware from the `multer` and `multer-s3` modules that is exposed by the `galleryController` as `upload`. The middleware takes the data and file from our upload form `POST`, processes it, and runs a callback function. In the callback function we check that we get an HTTP status code of `200`, and that we had at least one file in our request object to upload. Based on those conditions, we set the feedback in our `status` variable and render the index view template with the new status.
+The instance of the Router from the Express framework is where your `imageUploadRoutes` is designed to route requests for the root app route ("/") when the HTTP `POST` method is used. Inside the `post` method of your `imageUploadRoutes`, use middleware from the `multer` and `multer-s3` modules that is exposed by the `galleryController` as `upload`. The middleware takes the data and file from your upload form `POST`, processes it, and runs a callback function. In the callback function, check that you get an HTTP status code of `200`, and that you had at least one file in your request object to upload. Based on those conditions, set the feedback in your `status` variable and render the index view template with the new status.
 
 ```javascript
 var express = require('express');
@@ -756,7 +731,7 @@ module.exports = router;
 {: codeblock}
 {: javascript}
 
-In comparison, the code for the `galleryRouter` is a model of simplicity. We follow the same pattern that we did with `imageUploadRouter` and require `galleryController` on the first line of the function, then set up our route. The main difference is we are routing HTTP `GET` requests rather than `POST`, and sending all the output in the response from `getGalleryImages`, which is exposed by the `galleryController` on the last line of the example.
+In comparison, the code for the `galleryRouter` is a model of simplicity. Follow the same pattern that you did with `imageUploadRouter` and require `galleryController` on the first line of the function, then set up your route. The main difference is that you are routing HTTP `GET` requests rather than `POST`, and sending all the output in the response from `getGalleryImages`, which is exposed by the `galleryController` on the last line of the example.
 
 ```javascript
 var express = require('express');
@@ -778,14 +753,14 @@ module.exports = router;
 {: codeblock}
 {: javascript}
 
-We next turn our attention to the controller for the gallery.
+Next, look at the controller for the gallery.
 
-Note how we set up the `multer` upload, which truncates some code we ignore for now. We require modules `ibm-cos-sdk`, `multer`, and `multer-s3`. The code shows how to configure an S3 object that points to an {{site.data.keyword.cos_short}} server endpoint. We are statically setting values such as the endpoint address, region, and bucket for simplicity, but they might easily be referenced from an environment variable or JSON configuration file.
+Note how you set up the `multer` upload, which truncates some code you ignore for now. You require modules `ibm-cos-sdk`, `multer`, and `multer-s3`. The code shows how to configure an S3 object that points to an {{site.data.keyword.cos_short}} server endpoint. You are statically setting values such as the endpoint address, region, and bucket for simplicity, but they might easily be referenced from an environment variable or JSON configuration file.
 
-We define `upload` in the `imageUploadRouter` by creating a new `multer` instance with `storage` as its only property. This property tells the `multer` where to send the file from our `multipart/form-data`. Since the {{site.data.keyword.cloud_notm}} Platform uses an implementation of the S3 API, we set storage to be an `s3-multer` object. This `s3-multer` object contains an `s3` property that is assigned to our `s3` object. There is also a `bucket` property that is assigned to the `myBucket` variable, which in turn is assigned a value of `web-images`. The `s3-multer` object now has all the data necessary to upload files to our {{site.data.keyword.cos_short}} bucket when it receives data from the upload form. The name (or key) of the uploaded object is the original file name.
+Define `upload` in the `imageUploadRouter` by creating a new `multer` instance with `storage` as its only property. This property tells the `multer` where to send the file from your `multipart/form-data`. Since the {{site.data.keyword.cloud_notm}} Platform uses an implementation of the S3 API, set storage to be an `s3-multer` object. This `s3-multer` object contains an `s3` property that is assigned to your `s3` object. There is also a `bucket` property that is assigned to the `myBucket` variable, which in turn is assigned a value of `web-images`. The `s3-multer` object now has all the data necessary to upload files to your {{site.data.keyword.cos_short}} bucket when it receives data from the upload form. The name (or key) of the uploaded object is the original file name.
 
 Use a time stamp as part of the file name to maintain file name uniqueness.
-{:tip}
+{: tip}
 
 ```javascript
 var galleryController = function(title) {
@@ -826,9 +801,9 @@ module.exports = galleryController;
 {: codeblock}
 {: javascript}
 
-For local testing, a helpful task is to print the file object to the console, `console.log(file)`. We perform a local test of the upload form and show the output from the console log of the file.
+For local testing, a helpful task is to print the file object to the console, `console.log(file)`. Perform a local test of the upload form and show the output from the console log of the file.
 
-```
+```sh
 { fieldname: 'img-file',
 originalname: 'Chrysanthemum.jpg',
 encoding: '7bit',
@@ -836,16 +811,16 @@ mimetype: 'image/jpeg' }
 ```
 {: codeblock}
 
-The feedback from our callback declares the application has "uploaded file successfully" when tested.
+The feedback from your callback declares the application has "uploaded file successfully" when tested.
 
 ![localtest1](images/web-app-tutorial-019-success.jpg){: caption="Figure 9. Success!"}
 
 #### Image retrieval and display
 {: #tutorial-image-display}
 
-Remember back in `app.js`, the line of code `app.use('/gallery', galleryRouter);` tells the express framework to use that router when the `/gallery` route is requested. That router, if you recall, uses `galleryController.js` , we define the `getGalleryImages` function, the signature of which we have seen previously. Using the same `s3` object that we set up for our image upload function, we call the function that is named `listObjectsV2`. This function returns the index data defining each of the objects in our bucket. To display images within HTML, we need an image URL for each JPEG image in our `web-images` bucket to display in our view template. The closure with the data object returned by `listObjectsV2` contains metadata about each object in our bucket.
+Remember back in `app.js`, the line of code `app.use('/gallery', galleryRouter);` tells the express framework to use that router when the `/gallery` route is requested. That router uses `galleryController.js` , define the `getGalleryImages` function, the signature of which you have seen previously. Using the same `s3` object that you set up for your image upload function, call the function that is named `listObjectsV2`. This function returns the index data defining each of the objects in your bucket. To display images within HTML, you need an image URL for each JPEG image in your `web-images` bucket to display in your view template. The closure with the data object returned by `listObjectsV2` contains metadata about each object in your bucket.
 
-The code loops through the `bucketContents` searching for any object key ending in ".jpg," and create a parameter to pass to the S3 `getSignedUrl` function. This function returns a signed URL for any object when we provide the object’s bucket name and key. In the callback function, we save each URL in an array, and pass it to the HTTP Server response method `res.render` as the value to a property named `imageUrls`.
+The code loops through the `bucketContents` searching for any object key ending in ".jpg," and create a parameter to pass to the S3 `getSignedUrl` function. This function returns a signed URL for any object when you provide the object’s bucket name and key. In the callback function, save each URL in an array, and pass it to the HTTP Server response method `res.render` as the value to a property named `imageUrls`.
 
 ```javascript
 //...
@@ -878,7 +853,7 @@ The code loops through the `bucketContents` searching for any object key ending 
 {: codeblock}
 {: javascript}
 
-The last code example shows the body of the `galleryView` template with the code that is needed to display our images. We get the `imageUrls` array from the `res.render()` method and iterate over a pair of nested `<div>...</div>` tags. Each sends a `GET` request for the image when the `/gallery` route is requested.
+The last code example shows the body of the `galleryView` template with the code that is needed to display your images. Get the `imageUrls` array from the `res.render()` method and iterate over a pair of nested `<div>...</div>` tags. Each sends a `GET` request for the image when the `/gallery` route is requested.
 
 ```html
 <!DOCTYPE html>
@@ -912,24 +887,24 @@ The last code example shows the body of the `galleryView` template with the code
 ```
 {: codeblock}
 
-We test the app locally from `http://localhost:3000/gallery` and see our image.
+Test the app locally from `http://localhost:3000/gallery` and see your image.
 
 ![localtest2](images/web-app-tutorial-020-image-display.jpg){: caption="Figure 10. Images uploaded to the bucket are on display"}
 
 ### Committing to Git
 {: #tutorial-develop-commit}
 
-Now that the basic features of the app are working, we commit our code to our local repo, and then push it to GitHub. Using GitHub Desktop, we click Changes (see Figure 11), type a summary of the changes in the Summary field, and then click Commit to Local-dev.
+Now that the basic features of the app are working, commit your code to your local repo, and then push it to GitHub. Using GitHub Desktop, click Changes (see Figure 11), type a summary of the changes in the Summary field, and then click Commit to Local-dev.
 
 ![Commit updates](images/web-app-tutorial-021-changes-in-git.jpg){: caption="Figure 11. Changes ready for commit in Git"}
 
-When we click **sync**, our commit is sent to the remote `local-dev` branch. This action starts the Build and Deploy Stages in our Delivery Pipeline.
+When you click **sync**, your commit is sent to the remote `local-dev` branch. This action starts the Build and Deploy Stages in your Delivery Pipeline.
 
 ![`pipeline_triggled_aftersync`](images/web-app-tutorial-022-final-pipeline.jpg){: caption="Figure 12. CD Delivery Pipeline"}
 
 ## Next Steps
 {: #webapp-next-steps}
 
-We went from beginning to end and built a basic web application image gallery by using the {{site.data.keyword.cloud_notm}} Platform. Each of the concepts we've covered in this basic introduction can be explored further at [{{site.data.keyword.cos_full_notm}}](https://www.ibm.com/products/cloud-object-storage){: external}.
+You went from beginning to end and built a basic web application image gallery by using the {{site.data.keyword.cloud_notm}} Platform. Each of the concepts you've covered in this basic introduction can be explored further at [{{site.data.keyword.cos_full_notm}}](https://www.ibm.com/products/cloud-object-storage){: external}.
 
 Good luck!

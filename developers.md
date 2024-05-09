@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-03-25"
+lastupdated: "2024-05-09"
 
 keywords: developer, getting started, command line interface, cli
 
@@ -28,14 +28,14 @@ First, ensure that you have the [{{site.data.keyword.cloud}} Platform CLI](https
 1. First, make sure that you have an API key. Get it from [IBM Cloud Identity and Access Management](https://cloud.ibm.com/iam/apikeys).
 2. Log in to {{site.data.keyword.cloud_notm}} Platform by using the CLI. It's also possible to store the API key in a file or set it as an environment variable.
 
-    ```
+    ```sh
     ibmcloud login --apikey <value>
     ```
     {: pre}
 
 3. Next, create an instance of {{site.data.keyword.cos_full_notm}} specifying the name for the instance, the ID, and the wanted plan (`lite` or `standard`). Now we have a CRN for the instance. If you have an upgraded account, specify the `standard` plan. Otherwise, specify `lite`.
 
-    ```
+    ```sh
     ibmcloud resource service-instance-create <instance-name> cloud-object-storage <plan> global
     ```
     {: pre}
@@ -46,7 +46,6 @@ Some users may encounter the error `No resource group targeted` when trying to c
 The [Getting Started guide](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) walks through the basic steps of creating buckets and objects, as well as inviting users and creating policies. A list of basic 'curl' commands can be found [here](/docs/cloud-object-storage?topic=cloud-object-storage-curl).
 
 Learn more about using the {{site.data.keyword.cloud_notm}} CLI to create applications, manage Kubernetes clusters, and more [in the documentation](/docs/cli?topic=cli-ibmcloud_cli).
-
 
 ## Using the API
 {: #gs-dev-api}
@@ -61,7 +60,7 @@ IBM COS SDKs are available for [Python](/docs/cloud-object-storage?topic=cloud-o
 ## Building applications on IBM Cloud
 {: #gs-dev-apps}
 
-{{site.data.keyword.cloud}} provides flexibility to developers in choosing the right architectural and deployment options for a given application. Run your code on [bare metal](https://cloud.ibm.com/catalog/infrastructure/bare-metal), in [virtual machines](https://cloud.ibm.com/catalog/infrastructure/virtual-server-group), by using a [serverless framework](/docs/solution-tutorials?topic=solution-tutorials-serverless-webapp), in [containers](https://cloud.ibm.com/kubernetes/catalog/cluster), or by using [Cloud Foundry](https://cloud.ibm.com/catalog/starters/sdk-for-nodejs).
+{{site.data.keyword.cloud}} provides flexibility to developers in choosing the right architectural and deployment options for a given application. Run your code on [bare metal](https://cloud.ibm.com/catalog/infrastructure/bare-metal), in [virtual machines](https://cloud.ibm.com/catalog/infrastructure/virtual-server-group), in [containers](https://cloud.ibm.com/kubernetes/catalog/cluster), or by using a [serverless framework](/docs/solution-tutorials?topic=solution-tutorials-serverless-webapp).
 
 The [Cloud Native Computing Foundation](https://www.cncf.io) fostered [Kubernetes](https://kubernetes.io) container orchestration framework, which forms the foundation for the {{site.data.keyword.cloud}} Kubernetes Service. Developers who want to use Object Storage for persistent storage in their Kubernetes applications can learn more at the following links:
 
