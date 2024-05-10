@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2024
-lastupdated: "2024-05-09"
+lastupdated: "2024-05-10"
 
 keywords: events, activity, logging, api, buckets, tracking
 
@@ -16,15 +16,11 @@ subcollection: cloud-object-storage
 # Tracking events on your {{site.data.keyword.cos_full_notm}} buckets
 {: #at}
 
-{{site.data.keyword.cloud_full}} offers centralized logging services to track events performed on your resources. You can use these services to investigate abnormal activity and critical actions, and comply with regulatory audit requirements.
+{{site.data.keyword.cloud_full}} offers centralized logging services to track events performed on your resources. You can use these services to investigate abnormal activity and critical actions and comply with regulatory audit requirements.
 
-These services can be used to track events on your {{site.data.keyword.cos_full}} buckets to provide a record of what is happening with your data. Enable these services on your bucket to receive detailed logs about data access and bucket configuration events.
+Use these services to track events on your {{site.data.keyword.cos_full}} buckets to provide a record of what is happening with your data. Enable these services on your bucket to receive detailed logs about data access and bucket configuration events.
 
-IBM Cloud offers centralized logging services to track events performed on your resources. You can use these services to investigate abnormal activity and critical actions and comply with regulatory audit requirements.
-
-Use these services to track events on your IBM Cloud Object Storage buckets to provide a record of what is happening with your data. Enable these services on your bucket to receive detailed logs about data access and bucket configuration events.
-
-When event tracking is enabled on your bucket, the default target service that captures these events is IBM Cloud Activity Tracker (<- Make this link to section below on Activity Tracker). Ensure that you have an instance of Activity Tracker at the receiving location corresponding to your bucket location as specified in COS Service Integration. 
+When event tracking is enabled on your bucket, the default target service that captures these events is IBM Cloud Activity Tracker (<- Make this link to section below on Activity Tracker). Ensure that you have an instance of Activity Tracker at the receiving location corresponding to your bucket location as specified in COS Service Integration.
 
 Alternatively, use IBM Cloud Activity Tracker Event Routing (<- Make this link to section below on Event Routing) to send events to other target services or to send events to Activity Tracker instances in locations other than the bucket location.
 
