@@ -2,9 +2,9 @@
 
 copyright:
   years: 2022, 2024
-lastupdated: "2024-05-08"
+lastupdated: "2024-05-10"
 
-keywords: events, activity, logging, api
+keywords: events, activity, logging, api, buckets, tracking
 
 subcollection: cloud-object-storage
 
@@ -13,14 +13,18 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Tracking events using {{site.data.keyword.cos_full_notm}} buckets
+# Tracking events on your {{site.data.keyword.cos_full_notm}} buckets
 {: #at}
 
-{{site.data.keyword.cloud_full}} offers centralized logging services to track events performed on your resources. You can use these services to investigate abnormal activity and critical actions, and comply with regulatory audit requirements.
+{{site.data.keyword.cloud_full}} offers centralized logging services to track events performed on your resources. You can use these services to investigate abnormal activity and critical actions and comply with regulatory audit requirements.
 
-These services can be used to track events on your {{site.data.keyword.cos_full}} buckets to provide a record of what is happening with your data. Enable these services on your bucket to receive detailed logs about data access and bucket configuration events.
+Use these services to track events on your {{site.data.keyword.cos_full}} buckets to provide a record of what is happening with your data. Enable these services on your bucket to receive detailed logs about data access and bucket configuration events.
 
-## {{site.data.keyword.cloud_notm}} Activity Tracker
+When event tracking is enabled on your bucket, the default target service that captures these events is [{{site.data.keyword.at_full}}](#at-title). Ensure that you have an instance of Activity Tracker at the receiving location corresponding to your bucket location as specified in [{{site.data.keyword.cos_short}} Service Integration](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability).
+
+Alternatively, use IBM Cloud Activity Tracker Event Routing (<- Make this link to section below on Event Routing) to send events to other target services or to send events to Activity Tracker instances in locations other than the bucket location.
+
+## {{site.data.keyword.cloud_notm}} Activity Tracker{{#at-title}}
 {: #at-at}
 
 {{../log-analysis/_include-segments/deprecation_notice.md}}
