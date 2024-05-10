@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-05-06"
+lastupdated: "2024-05-10"
 
 keywords: faq, frequently asked questions, object storage
 
@@ -78,7 +78,7 @@ Keys have a 1024-character limit.
 Object names that contain unicode characters that are not allowed by the XML standard will result in "Malformed XML" messages. For more information, see [the XML reference documentation](https://www.w3.org/TR/xml/#charsets).
 -->
 
-## Can I create more than one Object Storage service with a Lite account?
+## Can I create more than one Object Storage service with a Lite plan?
 {: #faq-lite-storage}
 {: faq}
 
