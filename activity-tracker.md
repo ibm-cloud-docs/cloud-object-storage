@@ -24,49 +24,52 @@ When event tracking is enabled on your bucket, the default target service that c
 
 Alternatively, use IBM Cloud Activity Tracker Event Routing (<- Make this link to section below on Event Routing) to send events to other target services or to send events to Activity Tracker instances in locations other than the bucket location.
 
-## {{site.data.keyword.cloud_notm}} Activity Tracker
+## {{site.data.keyword.cloud_notm}} Activity Tracker{#a-title}
 {: #at-at}
 
 As of 28 March 2024 the IBM Log Analysis and IBM Cloud Activity Tracker services are deprecated and will no longer be supported as of 30 March 2025. Customers will need to migrate to IBM Cloud Logs, which replaces these two services, prior to 30 March 2025.
 {: deprecated}
 
-Tracking {{site.data.keyword.cos_short}} events with {{site.data.keyword.at_full}} provides a record of what is happening with your data. The {{site.data.keyword.at_full_notm}} service provides the framework and functionality to monitor API calls to services on the IBM Cloud and produces the evidence to comply with corporate policies and market industry-specific regulations.{{#at-title}}
+Tracking {{site.data.keyword.cos_short}} events with {{site.data.keyword.at_full}} provides a record of what is happening with your data. The {{site.data.keyword.at_full_notm}} service provides the framework and functionality to monitor API calls to services on the IBM Cloud and produces the evidence to comply with corporate policies and market industry-specific regulations.
 
-See Getting started with {{site.data.keyword.at_full_notm}} to learn more.
+See Getting started with [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started) to learn more.
 
-Migrate from {{site.data.keyword.at_full_notm}} to IBM Cloud Logs to avoid any disruption in event tracking.
 
 ## IBM Cloud Logs (Coming Soon)
 {: #at-logs}
 
-IBM Cloud Logs will replace IBM Cloud Activity Tracker hosted event search. See the IBM Announcement to learn more.
+IBM Cloud Logs will replace IBM Cloud Activity Tracker hosted event search. See the [IBM Announcement](/blog/announcement/ibm-cloud-logs-observability/) to learn more.
 
-IBM Cloud Logs gives you flexibility in how your data is processed for insights and trends, and where data is stored for high-speed search and long-term trend analysis. It provides the tools for you to maximize the value obtained while maintaining control on the total cost at all times
+IBM Cloud Logs gives you flexibility in how your data is processed for insights and trends, and where data is stored for high-speed search and long-term trend analysis. It provides the tools for you to maximize the value obtained while maintaining control on the total cost.
+
+[Migrate from IBM Cloud Activity Tracker to IBM Cloud Logs](/docs/activity-tracker?topic=activity-tracker-deprecation_migration) once available to avoid any disruption in event tracking.
 
 ## Route Logs with IBM Cloud Activity Tracker Event Routing
 {: #at-route-logs}
 
-Get started with IBM Cloud Activity Tracker Event Routing to configure routing for your IBM Cloud Object Storage auditing events. You can use Activity Tracker Event Routing, a platform service, to manage auditing events at the account-level by configuring targets and routes that define where auditing data is routed.
+[Get started with IBM Cloud Activity Tracker Event Routing](/docs/atracker?topic=atracker-getting-started) to configure routing for your IBM Cloud Object Storage auditing events. You can use Activity Tracker Event Routing, a platform service, to manage auditing events at the account-level by configuring targets and routes that define where auditing data is routed.
 
 Activity Tracker Event Routing supports routing IBM COS bucket logs to the following targets
--	Another COS Bucket
--	Activity Tracker Instance (Deprecated)
--	Event Streams
--	IBM Cloud Logs (Coming Soon)
+-	[Another COS Bucket](/docs/atracker?topic=atracker-getting-started-target-cos)
+-	[Activity Tracker Instance](/docs/atracker?topic=atracker-getting-started-target-logdna) (Deprecated)
+-	[Event Streams](/docs/atracker?topic=atracker-getting-started-target-event-streams)
+-	[IBM Cloud Logs](/docs/activity-tracker?topic=activity-tracker-deprecation#cloud-logs-intro) (Coming Soon)
 
 
-## Enabling Activity Tracking Events on your IBM Cloud Object Storage Bucket (Recommended)
+## Configure Activity Tracking Events on your IBM Cloud Object Storage Bucket (Recommended)
 {: #at-enable}
 
-Event tracking can be enabled on your IBM Cloud Object Storage bucket at the time of bucket provisioning or by updating the bucket configuration after bucket creation. Event tracking will only apply to COS requests made after enablement.
+Enable event tracking can be enabled on your IBM Cloud Object Storage bucket at the time of bucket provisioning, or by updating the bucket configuration after bucket creation. Event tracking will only apply to COS requests made after enablement.
 
-Note: This feature is not currently supported in Object Storage for Satellite. Learn more.
+This feature is not currently supported in [Object Storage for Satellite](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite).
+{: note}
 
-Note: This feature supports SCC monitoring
+This feature supports [SCC monitoring](/docs/security-compliance).
+{: note}
 
 By default, COS events that report on global actions, such as bucket creation, are collected automatically. You can monitor global actions through the Activity Tracker instance located in the Frankfurt location.
 
-IBM COS also optionally supports enabling tracking on three categories of events:
+IBM COS also optionally supports tracking on these event types:
 - Management Events – Requests related to managing bucket and object configuration
 - Read Data Events – Requests related to object list and read requests
 - Write Data Events – These are all events related to writing and deleting objects
