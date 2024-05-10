@@ -90,15 +90,15 @@ If you already have a Lite plan instance created, you may create other Standard 
 
 Once you exceed the allowed usage, the service instance associated with the Lite plan becomes inaccessible.  You will receive a warning notification email with corrective steps. If you do not take action, the instance is removed.
 
-## My COS service is locked. How do I reactivate the COS service?
+## What if my Lite Plan instance is locked?
 {: #faq-locked-account}
 {: faq}
 
-Exceeding the data limit for the Lite account is one of the reasons why your account is locked or deactivated. The [COS support](https://cloud.ibm.com/unifiedsupport/cases/form) team can help to unlock your account.
+In cases where a Lite Plan instance has exceeded the size limit, and your account is locked or deactivated:
 
-* The lite plan account can be activated only once.
+* The [COS support](https://cloud.ibm.com/unifiedsupport/cases/form) team can help to unlock your account.
 
-* Upon enablement, reduce your storage to less than 25GB within a week to prevent it from getting disabled again.
+* Upon enablement, reduce your storage to less than 25GB within a week to prevent it from getting disabled again. Your Lite Plan instance can be reactivated only once. If your usage quota is violated a second time, conversion to a paid plan is required.
 
 ## How does frequency of data access impact the pricing of {{site.data.keyword.cos_short}}?
 {: #faq-access-price}
