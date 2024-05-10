@@ -57,7 +57,7 @@ Activity Tracker Event Routing supports routing IBM COS bucket logs to the follo
 
 
 ## Configure Activity Tracking Events on your IBM Cloud Object Storage Bucket (Recommended)
-{: #at-enable}
+{: #at-configure}
 
 Enable event tracking can be enabled on your IBM Cloud Object Storage bucket at the time of bucket provisioning, or by updating the bucket configuration after bucket creation. Event tracking will only apply to COS requests made after enablement.
 
@@ -76,13 +76,32 @@ IBM COS also optionally supports tracking on these event types:
 
 Refer to the COS API events to see the full list of Management, Read Data, and Write Data actions that produce events.
 
-Use the COS Resource Configuration API to configure tracking of these events on your bucket
+Use the [COS Resource Configuration API](/apidocs/cos/cos-configuration) to configure tracking of these events on your bucket
 
-When event tracking is enabled, all events are sent to the default receiving location for IBM Cloud Activity Tracker Event Router based on the location of the bucket. Refer to IBM COS Service Integration to see this default mapping. Use Activity Tracker Event Router rules to route events to an alternative location or target service. See Managing Rules to learn more.
+When event tracking is enabled, all events are sent to the default receiving location for IBM Cloud Activity Tracker Event Router that are based on the location of the bucket. Refer to [IBM COS Service Integration](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability) to see this default mapping. Use Activity Tracker Event Router rules to route events to an alternative location or target service. See [Managing Rules](/docs/atracker?topic=atracker-route_v2) to learn more.
 
+Select the UI, API or Terraform tab at the top of this topic to display the examples that show how to enable tracking of management, data read, and data write events in your bucket.
 
-## Enabling Activity Tracking  Events on your IBM Cloud Object Storage Bucket (Legacy)
-{: #at-enable-legacy}
+### UI example for how to enable tracking of events in your bucket
+{: #at-ui-example}
+{: ui}
+
+1.	From the IBM Cloud console [resource list](https://cloud.ibm.com/resources), select the service instance that contains the bucket you are interested in adding event tracking. This takes you to the Object Storage Console
+2.	Choose the bucket for which you want to enable event tracking.
+3.	Navigate to the configuration tab.
+4.	Scroll down to the advanced configuration section and toggle on the events you want to track for this bucket.
+5.	After a few minutes, any activity will be visible in the Activity Tracker web UI.
+
+### API example for how to enable tracking of events in your bucket
+{: #at-api-example}
+{: api}
+
+### terraform example for how to enable tracking of events in your bucket
+{: #at-terraform-example}
+{: terraform}
+
+## Configure Activity Tracking  Events on your IBM Cloud Object Storage Bucket (Legacy)
+{: #at-configure-legacy}
 
 Enable IBM Activity Tracking on your COS bucket by specifying the target CRN of the Activity Tracker instance in the COS Resource Configuration API. Specify the CRN to define the route for COS events.
 
