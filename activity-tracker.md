@@ -27,7 +27,8 @@ Alternatively, use IBM Cloud Activity Tracker Event Routing (<- Make this link t
 ## {{site.data.keyword.cloud_notm}} Activity Tracker
 {: #at-at}
 
-{{../log-analysis/_include-segments/deprecation_notice.md}}
+As of 28 March 2024 the IBM Log Analysis and IBM Cloud Activity Tracker services are deprecated and will no longer be supported as of 30 March 2025. Customers will need to migrate to IBM Cloud Logs, which replaces these two services, prior to 30 March 2025.
+{: deprecated}
 
 Tracking {{site.data.keyword.cos_short}} events with {{site.data.keyword.at_full}} provides a record of what is happening with your data. The {{site.data.keyword.at_full_notm}} service provides the framework and functionality to monitor API calls to services on the IBM Cloud and produces the evidence to comply with corporate policies and market industry-specific regulations.{{#at-title}}
 
