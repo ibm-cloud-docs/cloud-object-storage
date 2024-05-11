@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2023
-lastupdated: "2023-05-04"
+  years: 2017, 2024
+lastupdated: "2024-05-09"
 
 keywords: administration, billing, platform
 
@@ -48,7 +48,7 @@ For each storage class, billing is based on aggregated usage across all buckets 
 
 Storage costs for {{site.data.keyword.cos_full}} are determined by the average monthly stored volume of data, the amount of public outbound bandwidth used, and the total number of operational requests processed by the system.
 
-Infrastructure offerings are connected to a three-tiered network, segmenting public, private, and management traffic. Infrastructure services can transfer data between one another across the private network at no cost. Infrastructure offerings (such as bare metal servers, virtual servers, and cloud storage) connect to other applications and services in the {{site.data.keyword.cloud_notm}} Platform catalog (such as Watson services and Cloud Foundry runtimes) across the public network, so data transfer between those two types of offerings is metered and charged at standard public network bandwidth rates.
+Infrastructure offerings are connected to a three-tiered network, segmenting public, private, and management traffic. Infrastructure services can transfer data between one another across the private network at no cost. Infrastructure offerings (such as bare metal servers, virtual servers, and cloud storage) connect to other applications and services in the {{site.data.keyword.cloud_notm}} Platform catalog (such as Watson services) across the public network, so data transfer between those two types of offerings is metered and charged at standard public network bandwidth rates.
 {: tip}
 
 ## Request classes
