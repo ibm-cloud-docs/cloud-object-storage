@@ -4,7 +4,7 @@ copyright:
   years: 2022, 2024
 lastupdated: "2024-05-13"
 
-keywords: events, activity, logging, api, buckets, tracking
+keywords: events, activity, logging, api, buckets, tracking, legacy, python, java, node, go
 
 subcollection: cloud-object-storage
 
@@ -20,14 +20,13 @@ subcollection: cloud-object-storage
 
 Use these services to track events on your {{site.data.keyword.cos_full}} buckets to provide a record of what is happening with your data. Enable these services on your bucket to receive detailed logs about data access and bucket configuration events.
 
-When event tracking is enabled on your bucket, the default target service that captures these events is [{{site.data.keyword.at_full}}]({#at-attitle}). Ensure that you have an instance of Activity Tracker at the receiving location corresponding to your bucket location as specified in [{{site.data.keyword.cos_short}} Service Integration](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability).
+When event tracking is enabled on your bucket, the default target service that captures these events is [{{site.data.keyword.at_full}}](/docs/cloud-object-storage?topic=cloud-object-storage-at#at-at). Ensure that you have an instance of Activity Tracker at the receiving location corresponding to your bucket location as specified in [{{site.data.keyword.cos_short}} Service Integration](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability).
 
-Alternatively, use IBM Cloud Activity Tracker Event Routing (<- Make this link to section below on Event Routing) to send events to other target services or to send events to Activity Tracker instances in locations other than the bucket location.
+Alternatively, use [IBM Cloud Activity Tracker Event Routing](/docs/cloud-object-storage?topic=cloud-object-storage-at#at-route-logs) to send events to other target services or to send events to Activity Tracker instances in locations other than the bucket location.
 
 ## {{site.data.keyword.cloud_notm}} Activity Tracker
 {: #at-at}
 
-{#a-attitle}
 As of 28 March 2024 the IBM Log Analysis and IBM Cloud Activity Tracker services are deprecated and will no longer be supported as of 30 March 2025. Customers will need to migrate to IBM Cloud Logs, which replaces these two services, prior to 30 March 2025.
 {: deprecated}
 
@@ -96,13 +95,168 @@ Select the UI, API or Terraform tab at the top of this topic to display the exam
 4.	Scroll down to the advanced configuration section and toggle on the events you want to track for this bucket.
 5.	After a few minutes, any activity will be visible in the Activity Tracker web UI.
 
-### API example for how to enable tracking of events in your bucket
+### JAVA, Node, Python and GO SDK examples for how to enable tracking of events in your bucket
 {: #at-api-example-recommended}
 {: api}
 
-### Terraform example for how to enable tracking of events in your bucket
+JAVA SDK example
+
+    ```sh
+    import com.ibm.cloud.objectstorage.config.resource_configuration.v1.ResourceConfiguration;
+    import com.ibm.cloud.objectstorage.config.resource_configuration.v1.model.BucketPatch;
+    import com.ibm.cloud.sdk.core.security.IamAuthenticator;
+
+    public class ActivityTrackerExample {
+        private static final String BUCKET_NAME = <BUCKET_NAME>;
+        private static final String API_KEY = <API_KEY>;
+
+        public static void main(String[] args) {
+            IamAuthenticator authenticator = new IamAuthenticator.Builder()
+                    .apiKey(API_KEY)
+                    .build();
+            ResourceConfiguration RC_CLIENT = new ResourceConfiguration("resource-configuration", authenticator);
+            ActivityTracking activityTrackingConfig = new ActivityTracking().Builder()
+                    .readDataEvents(true)
+                    .writeDataEvents(true)
+                    .managementEvents(true)
+                    .build();
+            BucketPatch bucketPatch = new BucketPatch.Builder().activityTracking(activityTrackingConfig).build();
+            UpdateBucketConfigOptions update = new UpdateBucketConfigOptions
+                    .Builder(BUCKET_NAME)
+                    .bucketPatch(bucketPatch.asPatch())
+                    .build();
+
+            RC_CLIENT.updateBucketConfig(update).execute();
+            GetBucketConfigOptions bucketOptions = new GetBucketConfigOptions.Builder(BUCKET_NAME).build();
+            Bucket bucket = RC_CLIENT.getBucketConfig(bucketOptions).execute().getResult();
+
+            ActivityTracking activityTrackingResponse = bucket.getActivityTracking();
+            System.out.println("Read Data Events : " + activityTrackingResponse.readDataEvents());
+            System.out.println("Write Data Events : " + activityTrackingResponse.writeDataEvents());
+            System.out.println("Management Events : " + activityTrackingResponse.managementEvents());
+        }
+    }
+    ```
+    {: codeblock}
+
+NodeJS SDK example
+
+    ```sh
+    const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1');
+    IamAuthenticator      = require('ibm-cos-sdk-config/auth');
+
+    var apiKey = "<API_KEY>"
+    var bucketName = "<BUCKET_NAME>"
+
+    authenticator = new IamAuthenticator({apikey: apiKey})
+    rcConfig = {authenticator: authenticator}
+    const client = new ResourceConfigurationV1(rcConfig);
+
+    function addAT() {
+        console.log('Updating bucket metadata...');
+
+        var params = {
+            bucket: bucketName,
+            activityTracking: {
+              "read_data_events": true,
+              "write_data_events": true,
+              "management_events": true
+              }
+        };
+
+        client.updateBucketConfig(params, function (err, response) {
+            if (err) {
+                console.log("ERROR: " + err);
+            } else {
+                console.log(response.result);
+            }
+        });
+    }
+
+    addAT()
+    ```
+    {: codeblock}
+
+Python SDK example
+
+      ```sh
+      from ibm_cos_sdk_config.resource_configuration_v1 import ResourceConfigurationV1
+      from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+
+      api_key = "<API_KEY>"
+      bucket_name = "<BUCKET_NAME>"
+
+      authenticator = IAMAuthenticator(apikey=api_key)
+      client = ResourceConfigurationV1(authenticator=authenticator)
+      activity_tracking_config = {
+                                  'activity_tracking':
+                                    {
+                                      'read_data_events':True,
+                                      'write_data_events':True,
+                                      'management_events':True
+                                    }
+                                  }
+      client.update_bucket_config(bucket_name, bucket_patch=activity_tracking_config)
+      ```
+      {: codeblock}
+
+GO SDK example
+
+    ```sh
+    import (
+    "github.com/IBM/go-sdk-core/core"
+    rc "github.com/IBM/ibm-cos-sdk-go-config/v2/resourceconfigurationv1"
+    )
+
+    apiKey := "<ApiKey>"
+    bucketName := "<BucketName>"
+
+    authenticator := new(core.IamAuthenticator)
+    authenticator.ApiKey = apiKey
+    optionsRC := new(rc.ResourceConfigurationV1Options)
+    optionsRC.Authenticator = authenticator
+    rcClient, _ := rc.NewResourceConfigurationV1(optionsRC)
+
+    patchNameMap := make(map[string]interface{})
+    patchNameMap["activity_tracking"] = &rc.ActivityTracking{
+      ReadDataEvents:     core.BoolPtr(true),
+      WriteDataEvents:    core.BoolPtr(true),
+      ManagementEvents:    core.BoolPtr(true)
+    }
+    updateBucketConfigOptions := &rc.UpdateBucketConfigOptions{
+      Bucket:      core.StringPtr(bucketName),
+      BucketPatch: patchNameMap,
+    }
+    rcClient.UpdateBucketConfig(updateBucketConfigOptions)
+    ```
+    {: codeblock}
+
+### Terraform example for how to create a {{site.data.keyword.cos_full_notm}} instance and then creating a COS bucket with Activity Tracker
 {: #at-terraform-example-recommended}
 {: terraform}
+
+    ```sh
+    resource "ibm_resource_instance" "cos_instance" {
+      name              = "cos-instance"
+      resource_group_id = data.ibm_resource_group.cos_group.id
+      service           = "cloud-object-storage"
+      plan              = "standard"
+      location          = "global"
+    }
+
+    resource "ibm_cos_bucket" "activity_tracker_bucket" {
+      bucket_name          = “bucket_name”
+      resource_instance_id = ibm_resource_instance.cos_instance.id
+      region_location      = “us-south”
+      storage_class        = “standard”
+      activity_tracking {
+      read_data_events     = true
+        write_data_events    = true
+        management_events    = true
+          }
+    }
+    ```
+    {: codeblock}
 
 ### SDK example patch to transition from the Legacy to Recommend event tracking configuration on your COS bucket
 {: #at-sdk-example-recommended}
@@ -153,7 +307,7 @@ Select the SDK, API, UI, Terraform tab at the top of this topic to see examples 
 {: #at-api-example-legacy}
 {: api}
 
-### example patch to transition from the Legacy to Recommend event tracking configuration on your COS bucket
+### Terraform example patch to transition from the Legacy to Recommend event tracking configuration on your COS bucket
 {: #at-terraform-example-legacy}
 {: terraform}
 
@@ -161,36 +315,4 @@ Select the SDK, API, UI, Terraform tab at the top of this topic to see examples 
 {: #at-sdk-example-legacy}
 {: sdk}
 
-[{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started) allows you to [audit the requests](/docs/cloud-object-storage?topic=cloud-object-storage-at-events) made against a bucket and the objects it contains.
-{: shortdesc}
 
-This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
-{: note}
-
-## Using the console
-{: #at-console}
-
-First, make sure that you have a bucket. If not, follow the [getting started tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) to become familiar with the console.
-
-### Enable activity tracking
-{: #at-console-enable}
-
-1. From the {{site.data.keyword.cloud_notm}} [console dashboard](https://cloud.ibm.com/), select **Storage** to view your resource list.
-2. Next, select the service instance with your bucket from within the **Storage** menu. This takes you to the {{site.data.keyword.cos_short}} Console.
-3. Choose the bucket for which you want to enable logging.
-4. Select **Configuration** from the navigation menu.
-5. Navigate to the **Activity Tracker** tab.
-6. Click **Create**.
-7. If you already have an instance of {{site.data.keyword.at_full_notm}}, you can select it here.  If not, select the appropriate configuration, and click **Create**.
-8. After a few minutes, any activity will be [visible in the web UI](/docs/activity-tracker?topic=activity-tracker-observe).
-
-### Archive events to object storage.
-{: #at-archive}
-
-It is possible to have all data collected in an instance of {{site.data.keyword.at_full_notm}} be archived and written to a bucket.  For more information, [see the Activity Tracker documentation](/docs/activity-tracker?topic=activity-tracker-archiving-ov).
-
-
-## Using an API
-{: #at-api}
-
-Enabling activity tracking is managed with the [COS Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration). This new REST API is used for configuring buckets.
