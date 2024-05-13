@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2024
-lastupdated: "2024-05-11"
+lastupdated: "2024-05-13"
 
 keywords: events, activity, logging, api, buckets, tracking
 
@@ -103,6 +103,10 @@ Select the UI, API or Terraform tab at the top of this topic to display the exam
 ### Terraform example for how to enable tracking of events in your bucket
 {: #at-terraform-example-recommended}
 {: terraform}
+
+### SDK example patch to transition from the Legacy to Recommend event tracking configuration on your COS bucket
+{: #at-sdk-example-recommended}
+{: sdk}
 
 ## Configure Activity Tracking Events on your IBM Cloud Object Storage Bucket (Legacy)
 {: #at-configure-legacy}
