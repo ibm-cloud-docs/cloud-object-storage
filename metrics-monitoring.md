@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020, 2024
-lastupdated: "2024-05-08"
+lastupdated: "2024-05-02"
 
 keywords: Object Storage, SysDig, monitoring, integration
 
@@ -15,123 +15,8 @@ subcollection: cloud-object-storage
 {:console: .ph data-hd-programlang='Console'}
 {:cli: .ph data-hd-programlang='CLI'}
 
-# Configure Metrics for IBM Cloud Object Storage Using {{site.data.keyword.mon_full_notm}}
+# Using {{site.data.keyword.mon_full_notm}}
 {: #mm-cos-integration}
-
-Configure Metrics for IBM Cloud Object Storage
-
-Use the IBM Cloud® Monitoring service to monitor your IBM Cloud® Object Storage (COS) data. IBM Cloud Monitoring is a cloud-native management system. The metrics produced by your COS buckets can be displayed in dashboards built in IBM Monitoring. Documentation from Monitoring can guide you in how to use the comprehensive dashboards. Additionally, specify the conditions when a metrics alert is trigged to set notifications when custom thresholds are exceeded.
-
-Metrics monitoring can be enabled on your bucket via the Resource Configuration API or through the UI directly. This can be done during bucket provisioning for afterwards by updating the bucket configuration.
-
-IBM COS supports enabling metrics tracking on the following types of metrics:
-
-Usage Metrics – These are metrics related to the overall usage of your COS bucket such as total storage consumed in bytes. 
-
-Request Metrics – The metrics report the counts for certain types of API requests made to your bucket
-
-See the Cloud Object Storage metrics details section below for the full list of metrics that can be sent to IBM Monitoring. 
-
-Route Logs with IBM Cloud Metrics Routing
-
-Use IBM Cloud® Metrics Routing to configure how to route metrics for your IBM Cloud Object Storage resources. You can use Metrics Routing, a platform service, to manage targets and routes that define where metrics data is routed.
-
-When enabling monitoring on your IBM COS buckets, metrics are sent to a default receiving location as defined in COS Service Integration. You must have an instance of IBM Monitoring at this location, or configure a routing rule to another location with a Monitoring instance, to ensure metrics are received.
-
-See Getting started with IBM Cloud Metrics Routing to learn more
-
-
-Configure Metrics on your IBM Cloud Object Storage Bucket (Recommended)
-
-Metrics tracking can be enabled on your IBM Cloud Object Storage bucket at the time of bucket provisioning or by updating the bucket configuration after bucket creation. Metrics monitoring will only apply to COS metrics produced after enablement.
-
-Note: This feature is not currently supported in Object Storage for Satellite. Learn more.
-
-Note: This feature supports SCC monitoring
-
-Note: COS metrics can only be consumed by IBM Monitoring platform instances. If a platform instance does not exist at the final receiving location, ensure one is created.
-
-Refer to the COS API events to see the full list of Management, Read Data, and Write Data actions that produce events.
-
-Use the COS Resource Configuration API to configure tracking of these metrics for your bucket
-
-When metrics tracking is enabled, all events will be sent to the default receiving location for IBM Cloud Metrics Router based on the location of the bucket. Refer to IBM COS Service Integration to see this default mapping. Use Metrics Router rules to route events to an alternative location or target service. See Managing Routes to learn more.
-
-
-Configure Metrics on your IBM Cloud Object Storage Bucket (Legacy)
-
-Enable IBM Metrics Monitoring on your COS bucket by specifying the target CRN of the Monitoring instance in the COS Resource Configuration API. Specify the CRN to define the route for COS metrics
-
-{Note:  IBM Cloud observability routing services are the standardized way for customers to manage routing of platform observability data.  Service-specific routing configurations like COS are being deprecated.
-
-It is recommended that customers remove these legacy routing configurations (make this a link to upgrade section below) that use CRNs and instead use the IBM Metrics Router service to route metrics to other locations.
-
-IBM COS will continue to support legacy configurations where a CRN was specified that differs from the default location.}
-
-
-Upgrading from Legacy to the Recommended Metrics Monitoring on your COS bucket:
-
-To upgrade from the legacy configuration using the Resource Configuration API, remove the target Metrics Monitoring instance CRN. Metrics will now route to the default Metrics Router receiving location as described in COS Service Integration. Provision an instance of Monitoring at this location or define a routing rule prior to upgrading to ensure there’s no interruption in metrics monitoring.
-
-Cloud Object Storage metrics details
-
-Usage metrics
-There are a set of basic metrics that track usage:
-•	ibm_cos_bucket_used_bytes
-•	ibm_cos_bucket_object_count
-•	ibm_cos_bucket_hard_quota_bytes
-Request metrics
-There are metrics that report the aggregates for different classes of HTTP requests:
-•	ibm_cos_bucket_all_requests
-•	ibm_cos_bucket_get_requests
-•	ibm_cos_bucket_put_requests
-•	ibm_cos_bucket_delete_requests
-•	ibm_cos_bucket_post_requests
-•	ibm_cos_bucket_list_requests
-•	ibm_cos_bucket_head_requests
-Errors are also collected, with server-side (5xx) errors broken out:
-•	ibm_cos_bucket_4xx_errors
-•	ibm_cos_bucket_5xx_errors
-The minimum, maximum, and average bytes transferred by network type are reported:
-•	ibm_cos_bucket_bytes_download_public_min
-•	ibm_cos_bucket_bytes_download_public_max
-•	ibm_cos_bucket_bytes_download_public_avg
-•	ibm_cos_bucket_bytes_download_private_min
-•	ibm_cos_bucket_bytes_download_private_max
-•	ibm_cos_bucket_bytes_download_private_avg
-•	ibm_cos_bucket_bytes_download_direct_min
-•	ibm_cos_bucket_bytes_download_direct_max
-•	ibm_cos_bucket_bytes_download_direct_avg
-•	ibm_cos_bucket_bytes_upload_public_min
-•	ibm_cos_bucket_bytes_upload_public_max
-•	ibm_cos_bucket_bytes_upload_public_avg
-•	ibm_cos_bucket_bytes_upload_private_min
-•	ibm_cos_bucket_bytes_upload_private_max
-•	ibm_cos_bucket_bytes_upload_private_avg
-•	ibm_cos_bucket_bytes_upload_direct_min
-•	ibm_cos_bucket_bytes_upload_direct_max
-•	ibm_cos_bucket_bytes_upload_direct_avg
-Latency metrics (first byte and general) for requests are broken down by request type:
-•	ibm_cos_bucket_first_byte_latency_read_min
-•	ibm_cos_bucket_first_byte_latency_read_max
-•	ibm_cos_bucket_first_byte_latency_read_avg
-•	ibm_cos_bucket_first_byte_latency_write_min
-•	ibm_cos_bucket_first_byte_latency_write_max
-•	ibm_cos_bucket_first_byte_latency_write_avg
-•	ibm_cos_bucket_first_byte_latency_misc_min
-•	ibm_cos_bucket_first_byte_latency_misc_max
-•	ibm_cos_bucket_first_byte_latency_misc_avg
-•	ibm_cos_bucket_request_latency_read_min
-•	ibm_cos_bucket_request_latency_read_max
-•	ibm_cos_bucket_request_latency_read_avg
-•	ibm_cos_bucket_request_latency_write_min
-•	ibm_cos_bucket_request_latency_write_max
-•	ibm_cos_bucket_request_latency_write_avg
-•	ibm_cos_bucket_request_latency_misc_min
-•	ibm_cos_bucket_request_latency_misc_max
-•	ibm_cos_bucket_request_latency_misc_avg
-All metrics are reported as float64 numeric values:
-
 
 Use the {{site.data.keyword.mon_full}} service to monitor your {{site.data.keyword.cos_full}} (COS) data in the {{site.data.keyword.cloud_notm}}. The results of the activity can be measured for compliance and other analysis through the web dashboard UI.
 {: shortdesc}
