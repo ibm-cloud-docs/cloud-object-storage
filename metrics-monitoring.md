@@ -56,11 +56,15 @@ COS metrics can only be consumed by IBM Monitoring platform instances. If a plat
 
 Refer to the COS Metrics Details to see the full list of Usage and Request metrics available for tracking.
 
-Use the COS Resource Configuration API to configure tracking of these metrics for your bucket.
+Use the [COS Resource Configuration API](/apidocs/cos/cos-configuration) to configure tracking of these metrics for your bucket.
 
-When metrics tracking is enabled, all metrics are sent to the default receiving location for IBM Cloud Metrics Router based on the location of the bucket. Refer to IBM COS Service Integration to see this default mapping. Use Metrics Router rules to route metrics to a location other than the bucket location or to another target service. See Managing Routes to learn more.
+When metrics tracking is enabled, all metrics are sent to the default receiving location for IBM Cloud Metrics Router based on the location of the bucket. Refer to [IBM COS Service Integration](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability) to see this default mapping. Use Metrics Router rules to route metrics to a location other than the bucket location or to another target service. See [Managing Routes](/docs/metrics-router?topic=metrics-router-route-manage) for more information.
 
-The example below shows how to configure metrics monitoring to track both usage and request metrics on your bucket (Insert Examples – UI, API, Terraform):
+### Recommended examples
+{: #mm-examples-recommended}
+
+Select the UI, API or Terraform tab at the top of this topic to display the examples that show how to configure metrics monitoring to track both usage and request metrics on your bucket.
+
 
 UI
 
