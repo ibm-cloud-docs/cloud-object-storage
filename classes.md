@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2024
 
-lastupdated: "2024-03-25"
+lastupdated: "2024-05-13"
 
 keywords: storage classes, tiers, cost, buckets, location constraint, provisioning code, locationconstraint
 
@@ -26,20 +26,18 @@ This feature is not currently supported in {{site.data.keyword.cos_short}} for {
 ## What are the classes?
 {: #classes-about}
 
-You can choose from four storage classes:
+You can choose from five storage classes:
 
 *  **Smart Tier** can be used for any workload, especially dynamic workloads where access patterns are unknown or difficult to predict.  Smart Tier provides a simplified pricing structure and automatic cost optimization by classifying the data into "hot", "cool", and "cold" tiers based on monthly usage patterns. All data in the bucket is then billed at the lowest applicable rate.  There are no threshold object sizes or storage periods, and there are no retrieval fees. For a detailed explanation of how it works, see the [billing topic](/docs/cloud-object-storage?topic=cloud-object-storage-billing#billing-storage-classes).
 *  **Standard** is used for active workloads, with no charge for data retrieved (other than the cost of the operational request itself).
 *  **Vault** is used for cool workloads where data is accessed less than once a month - an extra retrieval charge ($/GB) is applied each time data is read. The service includes a minimum threshold for object size and storage period consistent with the intended use of this service for cooler, less-active data.
 *  **Cold Vault** is used for cold workloads where data is accessed every 90 days or less - a larger extra retrieval charge ($/GB) is applied each time data is read. The service includes a longer minimum threshold for object size and storage period consistent with the intended use of this service for cold, inactive data.
+*  **Active** is specifically and solely used by One Rate plan instances, and can not be used in Standard, Lite, or Free plan instances.
 
 **Flex** has been replaced by Smart Tier for dynamic workloads. Flex users can continue to manage their data in existing Flex buckets, although no new Flex buckets may be created.  Existing users can reference pricing information [here](/docs/cloud-object-storage?topic=cloud-object-storage-flex-pricing).
 {: note}
 
 For more information, see [the pricing table at ibm.com](/objectstorage/create#pricing){: external}.
-
-The **Active** storage class is only used with [One Rate plans](/docs/cloud-object-storage?topic=cloud-object-storage-onerate), and can not be used in Standard or Lite plans.
-{: important}
 
 For more information about how to create buckets with different storage classes, see the [API reference](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
 
