@@ -65,16 +65,19 @@ When metrics tracking is enabled, all metrics are sent to the default receiving 
 
 Select the UI, API or Terraform tab at the top of this topic to display the examples that show how to configure metrics monitoring to track both usage and request metrics on your bucket.
 
+### UI example for how to enable tracking of events in your bucket
+{: #mm-ui-example-recommended}
+{: ui}
 
-UI
-
-1.	From the IBM Cloud console resource list, select the service instance that contains the bucket you are interested in adding metrics monitoring. This takes you to the Object Storage Console
+1.	From the IBM Cloud console [resource list](https://cloud.ibm.com/resources), select the service instance that contains the bucket you are interested in adding metrics monitoring. This takes you to the Object Storage Console
 2.	Choose the bucket for which you want to enable monitoring.
 3.	Navigate to the configuration tab.
 4.	Scroll down to the advanced configuration section and toggle on the metrics you want to monitor for this bucket.
 5.	After a few minutes, any activity will be visible in the IBM Cloud Monitoring web UI.
 
-
+### JAVA, Node, Python and GO SDK examples for how to enable tracking of events in your bucket
+{: #mm-api-example-recommended}
+{: api}
 
 Configure Metrics on your IBM Cloud Object Storage Bucket (Legacy)
 
