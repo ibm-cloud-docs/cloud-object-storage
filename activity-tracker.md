@@ -95,9 +95,87 @@ Select the UI, API or Terraform tab at the top of this topic to display the exam
 4.	Scroll down to the advanced configuration section and toggle on the events you want to track for this bucket.
 5.	After a few minutes, any activity will be visible in the Activity Tracker web UI.
 
-### API example for how to enable tracking of events in your bucket
+### JAVA, Node, Python and GO SDK examples for how to enable tracking of events in your bucket
 {: #at-api-example-recommended}
 {: api}
+
+JAVA SDK example
+
+    ```sh
+    import com.ibm.cloud.objectstorage.config.resource_configuration.v1.ResourceConfiguration;
+    import com.ibm.cloud.objectstorage.config.resource_configuration.v1.model.BucketPatch;
+    import com.ibm.cloud.sdk.core.security.IamAuthenticator;
+
+    public class ActivityTrackerExample {
+        private static final String BUCKET_NAME = <BUCKET_NAME>;
+        private static final String API_KEY = <API_KEY>;
+
+        public static void main(String[] args) {
+            IamAuthenticator authenticator = new IamAuthenticator.Builder()
+                    .apiKey(API_KEY)
+                    .build();
+            ResourceConfiguration RC_CLIENT = new ResourceConfiguration("resource-configuration", authenticator);
+            ActivityTracking activityTrackingConfig = new ActivityTracking().Builder()
+                    .readDataEvents(true)
+                    .writeDataEvents(true)
+                    .managementEvents(true)
+                    .build();
+            BucketPatch bucketPatch = new BucketPatch.Builder().activityTracking(activityTrackingConfig).build();
+            UpdateBucketConfigOptions update = new UpdateBucketConfigOptions
+                    .Builder(BUCKET_NAME)
+                    .bucketPatch(bucketPatch.asPatch())
+                    .build();
+
+            RC_CLIENT.updateBucketConfig(update).execute();
+            GetBucketConfigOptions bucketOptions = new GetBucketConfigOptions.Builder(BUCKET_NAME).build();
+            Bucket bucket = RC_CLIENT.getBucketConfig(bucketOptions).execute().getResult();
+
+            ActivityTracking activityTrackingResponse = bucket.getActivityTracking();
+            System.out.println("Read Data Events : " + activityTrackingResponse.readDataEvents());
+            System.out.println("Write Data Events : " + activityTrackingResponse.writeDataEvents());
+            System.out.println("Management Events : " + activityTrackingResponse.managementEvents());
+        }
+    }
+    ```
+
+NodeJS SDK example
+
+    ```sh
+    const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1');
+    IamAuthenticator      = require('ibm-cos-sdk-config/auth');
+
+    var apiKey = "<API_KEY>"
+    var bucketName = "<BUCKET_NAME>"
+
+    authenticator = new IamAuthenticator({apikey: apiKey})
+    rcConfig = {authenticator: authenticator}
+    const client = new ResourceConfigurationV1(rcConfig);
+
+    function addAT() {
+        console.log('Updating bucket metadata...');
+
+        var params = {
+            bucket: bucketName,
+            activityTracking: {
+              "read_data_events": true,
+              "write_data_events": true,
+              "management_events": true
+              }
+        };
+
+        client.updateBucketConfig(params, function (err, response) {
+            if (err) {
+                console.log("ERROR: " + err);
+            } else {
+                console.log(response.result);
+            }
+        });
+    }
+
+    addAT()
+    ```
+
+Python SDK example
 
 
 
