@@ -24,26 +24,24 @@ When metrics monitoring is enabled on your bucket, the default target service th
 
 Alternatively, use IBM Cloud Metrics Routing (<- Make this link to section below on Metrics Routing) rules to send metrics to other target services or to IBM Cloud Monitoring instances in locations other than the bucket location.
 
-Enable metrics monitoring on your bucket via the COS Resource Configuration API or through the UI directly. This is done during bucket provisioning or afterwards by updating the bucket configuration.
+Enable metrics monitoring on your bucket via the [COS Resource Configuration API](/apidocs/cos/cos-configuration) or through the UI directly. This is done during bucket provisioning or afterwards by updating the bucket configuration.
 
 IBM COS supports enabling metrics tracking on the following metric types:
+- Usage Metrics – These are metrics related to the overall usage of your COS bucket such as total storage consumed in bytes.
+- Request Metrics – The metrics report the counts for certain types of API requests made to your bucket
 
-Usage Metrics – These are metrics related to the overall usage of your COS bucket such as total storage consumed in bytes. 
+See the Cloud Object Storage metrics details section below for the full list of metrics sent to IBM Monitoring.
 
-Request Metrics – The metrics report the counts for certain types of API requests made to your bucket
-
-See the Cloud Object Storage metrics details section below for the full list of metrics sent to IBM Monitoring. 
-
-Route Metrics with IBM Cloud Metrics Routing
+## Route Metrics with IBM Cloud Metrics Routing
 
 Use IBM Cloud® Metrics Routing to route metrics for your IBM Cloud Object Storage buckets to locations different from the bucket location or to other target services. You can use Metrics Routing, a platform service, to manage targets and routes that define where metrics data is routed.
 
 When enabling monitoring on your IBM COS buckets, metrics are sent to a default receiving location as defined in COS Service Integration. You must have an instance of IBM Monitoring at this location or configure a routing rule to another location with a Monitoring instance, to ensure metrics are received.
 
-See Getting started with IBM Cloud Metrics Routing to learn more
+See [Getting started with IBM Cloud Metrics Routing](/docs/metrics-router?topic=metrics-router-getting-started) for more information.
 
 
-Configure Metrics on your IBM Cloud Object Storage Bucket (Recommended)
+## Configure Metrics on your IBM Cloud Object Storage Bucket (Recommended)
 
 Enable metrics tracking on your IBM Cloud Object Storage bucket at the time of bucket provisioning or by updating the bucket configuration after bucket creation. Metrics monitoring will only apply to COS metrics produced after enablement.
 
