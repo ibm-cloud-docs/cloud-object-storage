@@ -20,14 +20,13 @@ subcollection: cloud-object-storage
 
 Use these services to track events on your {{site.data.keyword.cos_full}} buckets to provide a record of what is happening with your data. Enable these services on your bucket to receive detailed logs about data access and bucket configuration events.
 
-When event tracking is enabled on your bucket, the default target service that captures these events is [{{site.data.keyword.at_full}}]({#at-attitle}). Ensure that you have an instance of Activity Tracker at the receiving location corresponding to your bucket location as specified in [{{site.data.keyword.cos_short}} Service Integration](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability).
+When event tracking is enabled on your bucket, the default target service that captures these events is [{{site.data.keyword.at_full}}](/docs/cloud-object-storage?topic=cloud-object-storage-at#at-at). Ensure that you have an instance of Activity Tracker at the receiving location corresponding to your bucket location as specified in [{{site.data.keyword.cos_short}} Service Integration](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability).
 
-Alternatively, use IBM Cloud Activity Tracker Event Routing (<- Make this link to section below on Event Routing) to send events to other target services or to send events to Activity Tracker instances in locations other than the bucket location.
+Alternatively, use [IBM Cloud Activity Tracker Event Routing](/docs/cloud-object-storage?topic=cloud-object-storage-at#at-route-logs) to send events to other target services or to send events to Activity Tracker instances in locations other than the bucket location.
 
 ## {{site.data.keyword.cloud_notm}} Activity Tracker
 {: #at-at}
 
-{#a-attitle}
 As of 28 March 2024 the IBM Log Analysis and IBM Cloud Activity Tracker services are deprecated and will no longer be supported as of 30 March 2025. Customers will need to migrate to IBM Cloud Logs, which replaces these two services, prior to 30 March 2025.
 {: deprecated}
 
@@ -100,9 +99,33 @@ Select the UI, API or Terraform tab at the top of this topic to display the exam
 {: #at-api-example-recommended}
 {: api}
 
-### Terraform example for how to enable tracking of events in your bucket
+
+
+### Terraform example for how to create a {{site.data.keyword.cos_full_notm}} instance and then creating a COS bucket with Activity Tracker
 {: #at-terraform-example-recommended}
 {: terraform}
+
+    ```sh
+    resource "ibm_resource_instance" "cos_instance" {
+      name              = "cos-instance"
+      resource_group_id = data.ibm_resource_group.cos_group.id
+      service           = "cloud-object-storage"
+      plan              = "standard"
+      location          = "global"
+    }
+
+    resource "ibm_cos_bucket" "activity_tracker_bucket" {
+      bucket_name          = “bucket_name”
+      resource_instance_id = ibm_resource_instance.cos_instance.id
+      region_location      = “us-south”
+      storage_class        = “standard”
+      activity_tracking {
+      read_data_events     = true
+        write_data_events    = true
+        management_events    = true
+          }
+    }
+    ```
 
 ### SDK example patch to transition from the Legacy to Recommend event tracking configuration on your COS bucket
 {: #at-sdk-example-recommended}
@@ -161,36 +184,4 @@ Select the SDK, API, UI, Terraform tab at the top of this topic to see examples 
 {: #at-sdk-example-legacy}
 {: sdk}
 
-[{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started) allows you to [audit the requests](/docs/cloud-object-storage?topic=cloud-object-storage-at-events) made against a bucket and the objects it contains.
-{: shortdesc}
 
-This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
-{: note}
-
-## Using the console
-{: #at-console}
-
-First, make sure that you have a bucket. If not, follow the [getting started tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) to become familiar with the console.
-
-### Enable activity tracking
-{: #at-console-enable}
-
-1. From the {{site.data.keyword.cloud_notm}} [console dashboard](https://cloud.ibm.com/), select **Storage** to view your resource list.
-2. Next, select the service instance with your bucket from within the **Storage** menu. This takes you to the {{site.data.keyword.cos_short}} Console.
-3. Choose the bucket for which you want to enable logging.
-4. Select **Configuration** from the navigation menu.
-5. Navigate to the **Activity Tracker** tab.
-6. Click **Create**.
-7. If you already have an instance of {{site.data.keyword.at_full_notm}}, you can select it here.  If not, select the appropriate configuration, and click **Create**.
-8. After a few minutes, any activity will be [visible in the web UI](/docs/activity-tracker?topic=activity-tracker-observe).
-
-### Archive events to object storage.
-{: #at-archive}
-
-It is possible to have all data collected in an instance of {{site.data.keyword.at_full_notm}} be archived and written to a bucket.  For more information, [see the Activity Tracker documentation](/docs/activity-tracker?topic=activity-tracker-archiving-ov).
-
-
-## Using an API
-{: #at-api}
-
-Enabling activity tracking is managed with the [COS Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration). This new REST API is used for configuring buckets.
