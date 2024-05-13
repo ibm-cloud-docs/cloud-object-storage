@@ -36,7 +36,7 @@ See the Cloud Object Storage metrics details section below for the full list of 
 
 Use IBM Cloud® Metrics Routing to route metrics for your IBM Cloud Object Storage buckets to locations different from the bucket location or to other target services. You can use Metrics Routing, a platform service, to manage targets and routes that define where metrics data is routed.
 
-When enabling monitoring on your IBM COS buckets, metrics are sent to a default receiving location as defined in COS Service Integration. You must have an instance of IBM Monitoring at this location or configure a routing rule to another location with a Monitoring instance, to ensure metrics are received.
+When enabling monitoring on your IBM COS buckets, metrics are sent to a default receiving location as defined in [COS Service Integration](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability). You must have an instance of IBM Monitoring at this location or configure a routing rule to another location with a Monitoring instance, to ensure metrics are received.
 
 See [Getting started with IBM Cloud Metrics Routing](/docs/metrics-router?topic=metrics-router-getting-started) for more information.
 
@@ -45,11 +45,14 @@ See [Getting started with IBM Cloud Metrics Routing](/docs/metrics-router?topic=
 
 Enable metrics tracking on your IBM Cloud Object Storage bucket at the time of bucket provisioning or by updating the bucket configuration after bucket creation. Metrics monitoring will only apply to COS metrics produced after enablement.
 
-Note: This feature is not currently supported in Object Storage for Satellite. Learn more.
+This feature is not currently supported in [Object Storage for Satellite](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite).
+{: note}
 
-Note: This feature supports SCC monitoring
+This feature supports [SCC monitoring](/docs/security-compliance).
+{: note}
 
-Note: COS metrics can only be consumed by IBM Monitoring platform instances. If a platform instance does not exist at the final receiving location, ensure one is created.
+COS metrics can only be consumed by IBM Monitoring platform instances. If a platform instance does not exist at the final receiving location, ensure one is created.
+{: note}
 
 Refer to the COS Metrics Details to see the full list of Usage and Request metrics available for tracking.
 
