@@ -85,7 +85,7 @@ There are six classes:
 *  **Standard** is used for active workloads, with no charge for data retrieved (other than the cost of the operational request itself).
 *  **Vault** is used for cool workloads where data is accessed less than once a month - an extra retrieval charge ($/GB) is applied each time data is read. The service includes a minimum threshold for object size and storage period consistent with the intended use of this service for cooler, less-active data.
 *  **Cold Vault** is used for cold workloads where data is accessed every 90 days or less - a larger extra retrieval charge ($/GB) is applied each time data is read. The service includes a longer minimum threshold for object size and storage period consistent with the intended use of this service for cold, inactive data.
-*  **Active** is specifically and solely used by One Rate plan instances, and can not be used in Standard or Lite plan instances.
+*  **Active** is specifically and solely used by One Rate plan instances, and can not be used in Standard, Lite, or Free plan instances.
 
 **Flex** has been replaced by Smart Tier for dynamic workloads. Flex users can continue to manage their data in existing Flex buckets, although no new Flex buckets may be created.  Existing users can reference pricing information [here](/docs/cloud-object-storage?topic=cloud-object-storage-flex-pricing).
 {: note}
