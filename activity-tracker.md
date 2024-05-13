@@ -4,7 +4,7 @@ copyright:
   years: 2022, 2024
 lastupdated: "2024-05-13"
 
-keywords: events, activity, logging, api, buckets, tracking
+keywords: events, activity, logging, api, buckets, tracking, legacy, python, java, node, go
 
 subcollection: cloud-object-storage
 
@@ -137,6 +137,7 @@ JAVA SDK example
         }
     }
     ```
+    {: codeblock}
 
 NodeJS SDK example
 
@@ -174,10 +175,61 @@ NodeJS SDK example
 
     addAT()
     ```
+    {: codeblock}
 
 Python SDK example
 
+      ```sh
+      from ibm_cos_sdk_config.resource_configuration_v1 import ResourceConfigurationV1
+      from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 
+      api_key = "<API_KEY>"
+      bucket_name = "<BUCKET_NAME>"
+
+      authenticator = IAMAuthenticator(apikey=api_key)
+      client = ResourceConfigurationV1(authenticator=authenticator)
+      activity_tracking_config = {
+                                  'activity_tracking':
+                                    {
+                                      'read_data_events':True,
+                                      'write_data_events':True,
+                                      'management_events':True
+                                    }
+                                  }
+      client.update_bucket_config(bucket_name, bucket_patch=activity_tracking_config)
+      ```
+      {: codeblock}
+
+GO SDK example
+
+    ```sh
+    import (
+    "github.com/IBM/go-sdk-core/core"
+    rc "github.com/IBM/ibm-cos-sdk-go-config/v2/resourceconfigurationv1"
+    )
+
+    apiKey := "<ApiKey>"
+    bucketName := "<BucketName>"
+
+    authenticator := new(core.IamAuthenticator)
+    authenticator.ApiKey = apiKey
+    optionsRC := new(rc.ResourceConfigurationV1Options)
+    optionsRC.Authenticator = authenticator
+    rcClient, _ := rc.NewResourceConfigurationV1(optionsRC)
+
+    patchNameMap := make(map[string]interface{})
+    patchNameMap["activity_tracking"] = &rc.ActivityTracking{
+      ReadDataEvents:     core.BoolPtr(true),
+      WriteDataEvents:    core.BoolPtr(true),
+      ManagementEvents:    core.BoolPtr(true)
+    }
+    updateBucketConfigOptions := &rc.UpdateBucketConfigOptions{
+      Bucket:      core.StringPtr(bucketName),
+      BucketPatch: patchNameMap,
+    }
+    rcClient.UpdateBucketConfig(updateBucketConfigOptions)
+    ```
+    {: codeblock}
 
 ### Terraform example for how to create a {{site.data.keyword.cos_full_notm}} instance and then creating a COS bucket with Activity Tracker
 {: #at-terraform-example-recommended}
@@ -204,6 +256,7 @@ Python SDK example
           }
     }
     ```
+    {: codeblock}
 
 ### SDK example patch to transition from the Legacy to Recommend event tracking configuration on your COS bucket
 {: #at-sdk-example-recommended}
@@ -254,7 +307,7 @@ Select the SDK, API, UI, Terraform tab at the top of this topic to see examples 
 {: #at-api-example-legacy}
 {: api}
 
-### example patch to transition from the Legacy to Recommend event tracking configuration on your COS bucket
+### Terraform example patch to transition from the Legacy to Recommend event tracking configuration on your COS bucket
 {: #at-terraform-example-legacy}
 {: terraform}
 
