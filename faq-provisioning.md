@@ -48,7 +48,13 @@ ibmcloud resource search "service_name:cloud-object-storage AND 2fdf0c08-2d32-4f
 
 * Using the CLI
 
-   1. Use the plan ID for a standard Object Storage instance: `744bfc56-d12c-4866-88d5-dac9139e0e5d`
+   1. Use the plan ID for a standard Object Storage instance: 
+
+      744bfc56-d12c-4866-88d5-dac9139e0e5d
+      {: codeblock}
+
+      <!-- codeblock used above because Dev wants the user to copy the ID via a click. -->
+
    1. Using the name of the instance that you are trying to upgrade (for example, to upgrade the instance “"My Object Storage"), issue the command:
 
       ```sh
