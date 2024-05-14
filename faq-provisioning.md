@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-05-10"
+lastupdated: "2024-05-14"
 
 keywords: faq, frequently asked questions, object storage, Lite Plan, Standard Plan
 
