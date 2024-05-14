@@ -79,6 +79,83 @@ Select the UI, API or Terraform tab at the top of this topic to display the exam
 {: #mm-api-example-recommended}
 {: api}
 
+JAVA SDK example
+
+   ```sh
+   import com.ibm.cloud.objectstorage.config.resource_configuration.v1.ResourceConfiguration;
+   import com.ibm.cloud.objectstorage.config.resource_configuration.v1.model.BucketPatch;
+   import com.ibm.cloud.sdk.core.security.IamAuthenticator;
+
+   public class MetricsMonitoringExample {
+
+      private static final String BUCKET_NAME = <BUCKET_NAME>;
+      private static final String API_KEY = <API_KEY>;
+
+      public static void main(String[] args) {
+         IamAuthenticator authenticator = new IamAuthenticator.Builder()
+                  .apiKey(API_KEY)
+                  .build();
+         ResourceConfiguration RC_CLIENT = new ResourceConfiguration("resource-configuration", authenticator);
+         MetricsMonitoring metricsMonitoringConfig = new MetricsMonitoring().Builder()
+               .requestMetricsEnabled(true)
+               .usageMetricsEnabled(true)
+               .build();
+         BucketPatch bucketPatch = new BucketPatch.Builder().metricsMonitoring(metricsMonitoringConfig).build();
+         UpdateBucketConfigOptions update = new UpdateBucketConfigOptions
+                  .Builder(BUCKET_NAME)
+                  .bucketPatch(bucketPatch.asPatch())
+                  .build();
+         RC_CLIENT.updateBucketConfig(update).execute();
+
+         GetBucketConfigOptions bucketOptions = new GetBucketConfigOptions.Builder(BUCKET_NAME).build();
+         Bucket bucket = RC_CLIENT.getBucketConfig(bucketOptions).execute().getResult();
+         MetricsMonitoring metricsMonitoringResponse = bucket.getMetricsMonitoring();
+         System.out.println("Usage Metrics Enabled  : " + metricsMonitoringResponse.usageMetricsEnabled());
+         System.out.println("Request Metrics Enabled : " + metricsMonitoringResponse.requestMetricsEnabled());
+      }
+   }
+   ```
+   {: codeblock}
+
+NodeJS SDK example
+
+   ```sh
+   const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1');
+   IamAuthenticator      = require('ibm-cos-sdk-config/auth');
+
+   var apiKey = "<API_KEY>"
+   var bucketName = "<BUCKET_NAME>"
+
+   authenticator = new IamAuthenticator({apikey: apiKey})
+   rcConfig = {authenticator: authenticator}
+   const client = new ResourceConfigurationV1(rcConfig);
+
+   function addMM() {
+      console.log('Updating bucket metadata...');
+
+      var params = {
+         bucket: bucketName,
+         metricsMonitoring: {
+            "request_metrics_enabled": true,
+            "usage_metrics_enabled": true
+            }
+      };
+
+      client.updateBucketConfig(params, function (err, response) {
+         if (err) {
+               console.log("ERROR: " + err);
+         } else {
+               console.log(response.result);
+         }
+      });
+   }
+
+   addMM()
+   ```
+   {: codeblock}
+
+
+
 ## Configure Metrics on your IBM Cloud Object Storage Bucket (Legacy)
 
 Enable IBM Metrics Monitoring on your COS bucket by specifying the target CRN of the Monitoring instance in the COS Resource Configuration API. Specify the CRN to define the route for COS metrics.
