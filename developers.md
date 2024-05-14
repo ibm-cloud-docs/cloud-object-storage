@@ -2,12 +2,11 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-05-09"
+lastupdated: "2024-05-14"
 
 keywords: developer, getting started, command line interface, cli
 
 subcollection: cloud-object-storage
-
 
 ---
 
@@ -33,7 +32,7 @@ First, ensure that you have the [{{site.data.keyword.cloud}} Platform CLI](https
     ```
     {: pre}
 
-3. Next, create an instance of {{site.data.keyword.cos_full_notm}} specifying the name for the instance, the ID, and the wanted plan (`lite` or `standard`). Now we have a CRN for the instance. If you have an upgraded account, specify the `standard` plan. Otherwise, specify `lite`.
+3. Next, create an instance of {{site.data.keyword.cos_full_notm}} specifying the name for the instance, the ID, and the wanted plan (`lite`, `free`, or `standard`). Now we have a CRN for the instance. If you have an upgraded account, specify the `standard` plan. Otherwise, specify `lite`.
 
     ```sh
     ibmcloud resource service-instance-create <instance-name> cloud-object-storage <plan> global
