@@ -65,7 +65,7 @@ When metrics tracking is enabled, all metrics are sent to the default receiving 
 
 Select the UI, API or Terraform tab at the top of this topic to display the examples that show how to configure metrics monitoring to track both usage and request metrics on your bucket.
 
-### UI example for how to enable tracking of events in your bucket
+### UI example for how to configure metrics monitoring on your bucket
 {: #mm-ui-example-recommended}
 {: ui}
 
@@ -75,7 +75,7 @@ Select the UI, API or Terraform tab at the top of this topic to display the exam
 4.	Scroll down to the advanced configuration section and toggle on the metrics you want to monitor for this bucket.
 5.	After a few minutes, any activity will be visible in the IBM Cloud Monitoring web UI.
 
-### JAVA, Node, Python and GO SDK examples for how to enable tracking of events in your bucket
+### JAVA, Node, Python and GO SDK examples for how to configure metrics monitoring on your bucket
 {: #mm-api-example-recommended}
 {: api}
 
@@ -154,22 +154,81 @@ NodeJS SDK example
    ```
    {: codeblock}
 
+Python SDK example
 
+   ```sh
+   from ibm_cos_sdk_config.resource_configuration_v1 import ResourceConfigurationV1
+   from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+
+   api_key = "<API_KEY>"
+   bucket_name = "<BUCKET_NAME>"
+
+   authenticator = IAMAuthenticator(apikey=api_key)
+   client = ResourceConfigurationV1(authenticator=authenticator)
+   metrics_monitoring_config = {'metrics_monitoring': 
+                              {
+                                 'request_metrics_enabled':True, 
+                                 'usage_metrics_enabled':True
+                                 }
+                              }
+   client.update_bucket_config(bucket_name, bucket_patch=metrics_monitoring_config
+   ```
+   {: codeblock}
+
+GO SDK example
+
+   ```sh
+   import (
+   "github.com/IBM/go-sdk-core/core"
+   rc "github.com/IBM/ibm-cos-sdk-go-config/v2/resourceconfigurationv1"
+   )
+
+   apiKey := "<ApiKey>"
+   bucketName := "<BucketName>"
+
+   authenticator := new(core.IamAuthenticator)
+   authenticator.ApiKey = apiKey
+   optionsRC := new(rc.ResourceConfigurationV1Options)
+   optionsRC.Authenticator = authenticator
+   rcClient, _ := rc.NewResourceConfigurationV1(optionsRC)
+
+   patchNameMap := make(map[string]interface{})
+   patchNameMap["metrics_monitoring"] = &rc.MetricsMonitoring{
+   RequestMetricsEnabled:     core.BoolPtr(true),
+   UsageMetricsEnabled:    core.BoolPtr(true)
+   }
+   updateBucketConfigOptions := &rc.UpdateBucketConfigOptions{
+   Bucket:      core.StringPtr(bucketName),
+   BucketPatch: patchNameMap,
+   }
+   rcClient.UpdateBucketConfig(updateBucketConfigOptions)
+   ```
+   {: codeblock}
 
 ## Configure Metrics on your IBM Cloud Object Storage Bucket (Legacy)
 
 Enable IBM Metrics Monitoring on your COS bucket by specifying the target CRN of the Monitoring instance in the COS Resource Configuration API. Specify the CRN to define the route for COS metrics.
 
-{Note:  IBM Cloud Metrics Routing is the standardized way for customers to manage routing of platform observability data.  Service-specific routing configurations like COS are being deprecated.
+IBM Cloud Metrics Routing is the standardized way for customers to manage routing of platform observability data.  Service-specific routing configurations like COS are being deprecated.
+{: note}
 
 It is recommended that customers remove these legacy routing configurations (make this a link to upgrade section below) that use CRNs and instead use the IBM Metrics Router service to route metrics to other locations.
 
-IBM COS will continue to support legacy configurations where a CRN was specified that differs from the default location.}
+IBM COS will continue to support legacy configurations where a CRN was specified that differs from the default location.
 
 
-Upgrading from Legacy to the Recommended Metrics Monitoring on your COS bucket:
+### Upgrading from Legacy to the Recommended Metrics Monitoring on your COS bucket:
 
-To upgrade from the legacy configuration using the Resource Configuration API, remove the target Metrics Monitoring instance CRN. Metrics will now route to the default Metrics Router receiving location as described in COS Service Integration. Provision an instance of Monitoring at this location or define a routing rule prior to upgrading to ensure there’s no interruption in metrics monitoring.
+To upgrade from the legacy configuration using the Resource Configuration API, remove the target Metrics Monitoring instance CRN. Metrics will now route to the default Metrics Router receiving location as described in [COS Service Integration](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability). Provision an instance of Monitoring at this location or define a routing rule prior to upgrading to ensure there’s no interruption in metrics monitoring.
+
+### Example patch to transition from the Legacy to Recommend event tracking configuration on your COS bucket
+{: #mm-legacy-upgrade-examples}
+
+Select the SDK, API, UI, Terraform tab at the top of this topic to see examples of patchs.
+
+### UI example patch to transition from the Legacy to Recommend event tracking configuration on your COS bucket
+{: #mm-ui-example-legacy}
+{: ui}
 
 Example patch to transition from the Legacy to Recommend metrics monitoring configuration on your COS bucket (SDK, RC API, UI, Terraform)
 
