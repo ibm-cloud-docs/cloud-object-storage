@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2024
-lastupdated: "2024-05-13"
+lastupdated: "2024-05-14"
 
 keywords: events, activity, logging, api, buckets, tracking, legacy, python, java, node, go
 
@@ -258,9 +258,6 @@ GO SDK example
     ```
     {: codeblock}
 
-### SDK example patch to transition from the Legacy to Recommend event tracking configuration on your COS bucket
-{: #at-sdk-example-recommended}
-{: sdk}
 
 ## Configure Activity Tracking Events on your IBM Cloud Object Storage Bucket (Legacy)
 {: #at-configure-legacy}
@@ -289,7 +286,7 @@ To upgrade from the legacy configuration using the Resource Configuration API, r
 ### Example patch to transition from the Legacy to Recommend event tracking configuration on your COS bucket
 {: #at-legacy-upgrade-examples}
 
-Select the SDK, API, UI, Terraform tab at the top of this topic to see examples of patchs.
+Select the UI, API, or Terraform tab at the top of this topic to see examples of patchs.
 
 ### UI example patch to transition from the Legacy to Recommend event tracking configuration on your COS bucket
 {: #at-ui-example-legacy}
@@ -311,8 +308,5 @@ Select the SDK, API, UI, Terraform tab at the top of this topic to see examples 
 {: #at-terraform-example-legacy}
 {: terraform}
 
-### SDK example patch to transition from the Legacy to Recommend event tracking configuration on your COS bucket
-{: #at-sdk-example-legacy}
-{: sdk}
 
 
