@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020, 2024
-lastupdated: "2024-05-13"
+lastupdated: "2024-05-14"
 
 keywords: Object Storage, SysDig, monitoring, integration, metrics
 
@@ -79,7 +79,7 @@ Select the UI, API or Terraform tab at the top of this topic to display the exam
 {: #mm-api-example-recommended}
 {: api}
 
-Configure Metrics on your IBM Cloud Object Storage Bucket (Legacy)
+## Configure Metrics on your IBM Cloud Object Storage Bucket (Legacy)
 
 Enable IBM Metrics Monitoring on your COS bucket by specifying the target CRN of the Monitoring instance in the COS Resource Configuration API. Specify the CRN to define the route for COS metrics.
 
