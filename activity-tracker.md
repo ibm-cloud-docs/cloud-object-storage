@@ -141,7 +141,7 @@ JAVA SDK example
 
 NodeJS SDK example
 
-    ```sh
+   ```sh
     const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1');
     IamAuthenticator      = require('ibm-cos-sdk-config/auth');
 
@@ -174,35 +174,35 @@ NodeJS SDK example
     }
 
     addAT()
-    ```
+   ```
     {: codeblock}
 
 Python SDK example
 
-      ```sh
-      from ibm_cos_sdk_config.resource_configuration_v1 import ResourceConfigurationV1
-      from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+   ```sh
+    from ibm_cos_sdk_config.resource_configuration_v1 import ResourceConfigurationV1
+    from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 
-      api_key = "<API_KEY>"
-      bucket_name = "<BUCKET_NAME>"
+    api_key = "<API_KEY>"
+    bucket_name = "<BUCKET_NAME>"
 
-      authenticator = IAMAuthenticator(apikey=api_key)
-      client = ResourceConfigurationV1(authenticator=authenticator)
-      activity_tracking_config = {
-                                  'activity_tracking':
-                                    {
-                                      'read_data_events':True,
-                                      'write_data_events':True,
-                                      'management_events':True
-                                    }
+    authenticator = IAMAuthenticator(apikey=api_key)
+    client = ResourceConfigurationV1(authenticator=authenticator)
+    activity_tracking_config = {
+                                'activity_tracking':
+                                  {
+                                    'read_data_events':True,
+                                    'write_data_events':True,
+                                    'management_events':True
                                   }
-      client.update_bucket_config(bucket_name, bucket_patch=activity_tracking_config)
-      ```
-      {: codeblock}
+                                }
+    client.update_bucket_config(bucket_name, bucket_patch=activity_tracking_config)
+   ```
+    {: codeblock}
 
 GO SDK example
 
-    ```sh
+   ```sh
     import (
     "github.com/IBM/go-sdk-core/core"
     rc "github.com/IBM/ibm-cos-sdk-go-config/v2/resourceconfigurationv1"
@@ -228,14 +228,14 @@ GO SDK example
       BucketPatch: patchNameMap,
     }
     rcClient.UpdateBucketConfig(updateBucketConfigOptions)
-    ```
+   ```
     {: codeblock}
 
 ### Terraform example for how to create a {{site.data.keyword.cos_full_notm}} instance and then creating a COS bucket with Activity Tracker
 {: #at-terraform-example-recommended}
 {: terraform}
 
-    ```sh
+   ```sh
     resource "ibm_resource_instance" "cos_instance" {
       name              = "cos-instance"
       resource_group_id = data.ibm_resource_group.cos_group.id
@@ -255,7 +255,7 @@ GO SDK example
         management_events    = true
           }
     }
-    ```
+   ```
     {: codeblock}
 
 
