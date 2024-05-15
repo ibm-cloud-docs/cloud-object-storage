@@ -101,12 +101,12 @@ Select the UI, API or Terraform tab at the top of this topic to display the exam
 
 JAVA SDK example
 
-  ```sh
-  import com.ibm.cloud.objectstorage.config.resource_configuration.v1.ResourceConfiguration;
-  import com.ibm.cloud.objectstorage.config.resource_configuration.v1.model.BucketPatch;
-  import com.ibm.cloud.sdk.core.security.IamAuthenticator;
+   ```sh
+   import com.ibm.cloud.objectstorage.config.resource_configuration.v1.ResourceConfiguration;
+   import com.ibm.cloud.objectstorage.config.resource_configuration.v1.model.BucketPatch;
+   import com.ibm.cloud.sdk.core.security.IamAuthenticator;
 
-  public class ActivityTrackerExample {
+   public class ActivityTrackerExample {
       private static final String BUCKET_NAME = <BUCKET_NAME>;
       private static final String API_KEY = <API_KEY>;
 
@@ -135,9 +135,9 @@ JAVA SDK example
           System.out.println("Write Data Events : " + activityTrackingResponse.writeDataEvents());
           System.out.println("Management Events : " + activityTrackingResponse.managementEvents());
       }
-  }
-  ```
-  {: codeblock}
+   }
+   ```
+   {: codeblock}
 
 NodeJS SDK example
 
