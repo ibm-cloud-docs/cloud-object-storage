@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2024
-lastupdated: "2024-05-14"
+lastupdated: "2024-05-15"
 
 keywords: events, activity, logging, api, buckets, tracking, legacy, python, java, node, go
 
@@ -101,43 +101,43 @@ Select the UI, API or Terraform tab at the top of this topic to display the exam
 
 JAVA SDK example
 
-    ```sh
-    import com.ibm.cloud.objectstorage.config.resource_configuration.v1.ResourceConfiguration;
-    import com.ibm.cloud.objectstorage.config.resource_configuration.v1.model.BucketPatch;
-    import com.ibm.cloud.sdk.core.security.IamAuthenticator;
+  ```sh
+  import com.ibm.cloud.objectstorage.config.resource_configuration.v1.ResourceConfiguration;
+  import com.ibm.cloud.objectstorage.config.resource_configuration.v1.model.BucketPatch;
+  import com.ibm.cloud.sdk.core.security.IamAuthenticator;
 
-    public class ActivityTrackerExample {
-        private static final String BUCKET_NAME = <BUCKET_NAME>;
-        private static final String API_KEY = <API_KEY>;
+  public class ActivityTrackerExample {
+      private static final String BUCKET_NAME = <BUCKET_NAME>;
+      private static final String API_KEY = <API_KEY>;
 
-        public static void main(String[] args) {
-            IamAuthenticator authenticator = new IamAuthenticator.Builder()
-                    .apiKey(API_KEY)
-                    .build();
-            ResourceConfiguration RC_CLIENT = new ResourceConfiguration("resource-configuration", authenticator);
-            ActivityTracking activityTrackingConfig = new ActivityTracking().Builder()
-                    .readDataEvents(true)
-                    .writeDataEvents(true)
-                    .managementEvents(true)
-                    .build();
-            BucketPatch bucketPatch = new BucketPatch.Builder().activityTracking(activityTrackingConfig).build();
-            UpdateBucketConfigOptions update = new UpdateBucketConfigOptions
-                    .Builder(BUCKET_NAME)
-                    .bucketPatch(bucketPatch.asPatch())
-                    .build();
+      public static void main(String[] args) {
+          IamAuthenticator authenticator = new IamAuthenticator.Builder()
+                  .apiKey(API_KEY)
+                  .build();
+          ResourceConfiguration RC_CLIENT = new ResourceConfiguration("resource-configuration", authenticator);
+          ActivityTracking activityTrackingConfig = new ActivityTracking().Builder()
+                  .readDataEvents(true)
+                  .writeDataEvents(true)
+                  .managementEvents(true)
+                  .build();
+          BucketPatch bucketPatch = new BucketPatch.Builder().activityTracking(activityTrackingConfig).build();
+          UpdateBucketConfigOptions update = new UpdateBucketConfigOptions
+                  .Builder(BUCKET_NAME)
+                  .bucketPatch(bucketPatch.asPatch())
+                  .build();
 
-            RC_CLIENT.updateBucketConfig(update).execute();
-            GetBucketConfigOptions bucketOptions = new GetBucketConfigOptions.Builder(BUCKET_NAME).build();
-            Bucket bucket = RC_CLIENT.getBucketConfig(bucketOptions).execute().getResult();
+          RC_CLIENT.updateBucketConfig(update).execute();
+          GetBucketConfigOptions bucketOptions = new GetBucketConfigOptions.Builder(BUCKET_NAME).build();
+          Bucket bucket = RC_CLIENT.getBucketConfig(bucketOptions).execute().getResult();
 
-            ActivityTracking activityTrackingResponse = bucket.getActivityTracking();
-            System.out.println("Read Data Events : " + activityTrackingResponse.readDataEvents());
-            System.out.println("Write Data Events : " + activityTrackingResponse.writeDataEvents());
-            System.out.println("Management Events : " + activityTrackingResponse.managementEvents());
-        }
-    }
-    ```
-    {: codeblock}
+          ActivityTracking activityTrackingResponse = bucket.getActivityTracking();
+          System.out.println("Read Data Events : " + activityTrackingResponse.readDataEvents());
+          System.out.println("Write Data Events : " + activityTrackingResponse.writeDataEvents());
+          System.out.println("Management Events : " + activityTrackingResponse.managementEvents());
+      }
+  }
+  ```
+  {: codeblock}
 
 NodeJS SDK example
 
