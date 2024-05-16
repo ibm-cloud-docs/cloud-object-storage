@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-05-10"
+lastupdated: "2024-05-16"
 
-keywords: faq, frequently asked questions, object storage
+keywords: faq, frequently asked questions, object storage, Lite Plan, Standard Plan
 
 subcollection: cloud-object-storage
 
@@ -42,17 +42,36 @@ An account is limited to a single instance of {{site.data.keyword.cos_full_notm}
 ibmcloud resource search "service_name:cloud-object-storage AND 2fdf0c08-2d32-4f46-84b5-32e0c92fffd8"
 ```
 
-## How do I upgrade a service instance from Lite to Standard?
+## How do I upgrade a service instance from a Lite Plan to a Standard Plan?
 {: #faq-instance-upgrade}
 {: faq}
 
-Typically, this is easily done from the {{site.data.keyword.cos_full_notm}} console found here https://cloud.ibm.com/objectstorage/, select the correct name of Cloud Object Storage Instance you wish to upgrade,click on **Plan** in the navigation menu, located after **Instance Usage**. Select the "standard" plan and hit save.
+* Using the Console
 
-In cases where the instance has been locked due to exceeding the maximum allowed size of a Lite instance it may be necessary to use the CLI. The plan ID for a standard {{site.data.keyword.cos_short}} instance is `744bfc56-d12c-4866-88d5-dac9139e0e5d` (if curious, this can be found by issuing the CLI command `ic catalog service cloud-object-storage`).  You'll need to know the name of the instance you are trying to upgrade.  For example, to upgrade the instance "My Object Storage", you can issue the command:
+   1. Upgrade your account to a [Pay-As-You-Go account](https://cloud.ibm.com/docs/account?topic=account-upgrading-account).
+   1. Go to the [IBM Cloud Object Storage console](https://cloud.ibm.com/objectstorage).
+   1. Using the left navigation panel, select the name of the Cloud Object Storage instance you want to upgrade.
+   1. Click `Plan` in the navigation menu, located after `Instance Usage`. The `Plan` tab for a Lite Plan instance displays a `Change Pricing Plan` section.
+   1. Select the "Standard" plan and click `Save`.
 
-```sh
-ic resource service-instance-update "My Object Storage" --service-plan-id 744bfc56-d12c-4866-88d5-dac9139e0e5d
-```
+* Using the CLI
+
+   1. Use the plan ID for a standard Object Storage instance: 
+
+      744bfc56-d12c-4866-88d5-dac9139e0e5d
+      {: codeblock}
+
+      <!-- codeblock used above because Dev wants the user to copy the ID via a click. -->
+
+   1. Using the name of the instance that you are trying to upgrade (for example, to upgrade the instance “"My Object Storage"), issue the command:
+
+      ```sh
+      ic resource service-instance-update "My Object Storage" --service-plan-id 744bfc56-d12c-4866-88d5-dac9139e0e5d
+      ```
+
+<!--* Upgrading a Lite Plan instance that is Locked to a Standard Plan via Console
+Pending steps to be provided by Yash 05-10-2024
+-->
 
 <!-- information moved to a tip in Getting Started. 5-1-2024 PW
 ## Are bucket names case-sensitive?
@@ -90,15 +109,15 @@ If you already have a Lite plan instance created, you may create other Standard 
 
 Once you exceed the allowed usage, the service instance associated with the Lite plan becomes inaccessible.  You will receive a warning notification email with corrective steps. If you do not take action, the instance is removed.
 
-## My COS service is locked. How do I reactivate the COS service?
+## What if my Lite Plan instance is locked?
 {: #faq-locked-account}
 {: faq}
 
-Exceeding the data limit for the Lite account is one of the reasons why your account is locked or deactivated. The [COS support](https://cloud.ibm.com/unifiedsupport/cases/form) team can help to unlock your account.
+In cases where a Lite Plan instance has exceeded the size limit, and your account is locked or deactivated:
 
-* The lite plan account can be activated only once.
+* The [COS support](https://cloud.ibm.com/unifiedsupport/cases/form) team can help to unlock your account.
 
-* Upon enablement, reduce your storage to less than 25GB within a week to prevent it from getting disabled again.
+* Upon enablement, reduce your storage to less than 25GB within a week to prevent it from getting disabled again. Your Lite Plan instance can be reactivated only once. If your usage quota is violated a second time, conversion to a paid plan is required.
 
 ## How does frequency of data access impact the pricing of {{site.data.keyword.cos_short}}?
 {: #faq-access-price}
@@ -111,4 +130,3 @@ Storage cost for {{site.data.keyword.cos_short}} is determined by the total volu
 {: faq}
 
 You can choose the correct storage class based on your requirement. For details, see [billing-storage-classes](/docs/cloud-object-storage?topic=cloud-object-storage-billing#billing-storage-classes).
-
