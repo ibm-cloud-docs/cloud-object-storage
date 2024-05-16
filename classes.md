@@ -3,12 +3,11 @@
 copyright:
   years: 2017, 2024
 
-lastupdated: "2024-03-25"
+lastupdated: "2024-05-14"
 
 keywords: storage classes, tiers, cost, buckets, location constraint, provisioning code, locationconstraint
 
 subcollection: cloud-object-storage
-
 
 ---
 
@@ -163,7 +162,7 @@ func main() {
 {: go}
 
 
-```
+```sh
 curl -X "PUT" "https://(endpoint)/(bucket-name)"
  -H "Content-Type: text/plain; charset=utf-8"
  -H "Authorization: Bearer (token)"
@@ -172,7 +171,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)"
        <LocationConstraint>(provisioning-code)</LocationConstraint>
      </CreateBucketConfiguration>"
 ```
-{:codeblock}
+{: codeblock}
 {: curl}
 
 It isn't possible to change the storage class of a bucket once the bucket is created. If objects need to be reclassified, it's necessary to move the data to another bucket with the wanted storage class.

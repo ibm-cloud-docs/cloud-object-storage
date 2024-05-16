@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-05-09"
+lastupdated: "2024-05-15"
 
 keywords: administration, billing, platform
 
@@ -85,12 +85,14 @@ There are six classes:
 *  **Standard** is used for active workloads, with no charge for data retrieved (other than the cost of the operational request itself).
 *  **Vault** is used for cool workloads where data is accessed less than once a month - an extra retrieval charge ($/GB) is applied each time data is read. The service includes a minimum threshold for object size and storage period consistent with the intended use of this service for cooler, less-active data.
 *  **Cold Vault** is used for cold workloads where data is accessed every 90 days or less - a larger extra retrieval charge ($/GB) is applied each time data is read. The service includes a longer minimum threshold for object size and storage period consistent with the intended use of this service for cold, inactive data.
-*  **Active** is specifically and solely used by One Rate plan instances, and can not be used in Standard or Lite plan instances.
 
 **Flex** has been replaced by Smart Tier for dynamic workloads. Flex users can continue to manage their data in existing Flex buckets, although no new Flex buckets may be created.  Existing users can reference pricing information [here](/docs/cloud-object-storage?topic=cloud-object-storage-flex-pricing).
 {: note}
 
 For more information about pricing, see [the pricing table at ibm.com](/objectstorage/create#pricing){: external}.
+
+The **Active** storage class is only used with [One Rate plans](/docs/cloud-object-storage?topic=cloud-object-storage-onerate), and cannot be used in Standard or Lite plan instances.
+{: important}
 
 For more information about creating buckets with different storage classes, see the [API reference](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
 
@@ -133,14 +135,15 @@ Note that in situations where data is very cold, it is possible to get a lower r
 
 In order to determine your current usage, you may wish to query a bucket to see `bytes_used` and `object_count`. Use of this command returns metadata containing that information for the specified bucket.
 
-```
+```sh
 curl https://config.cloud-object-storage.cloud.ibm.com/v1/b/{my-bucket} \
                         -H 'authorization: bearer <IAM_token>'
 ```
 {: codeblock}
 
 The appropriate response to the request should contain `bytes_used` and `object_count`.
-```
+
+```sh
 {
   "name": "{my-bucket}",
   "crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903:bucket:my-new-bucket",
@@ -152,6 +155,7 @@ The appropriate response to the request should contain `bytes_used` and `object_
   "bytes_used": 28198745752445144
 }
 ```
+{: codeblock}
 
 ## Get resource information from an API
 {: #resource-api-metadata}
@@ -165,7 +169,7 @@ curl -X GET https://resource-controller.cloud.ibm.com/v2/resource_instances -H '
 
 An appropriate response should list metadata for your resources as shown in the example.
 
-```
+```sh
 {
   "rows_count": 1,
   "next_url": "/v2/resource_instances?next_docid=g1AAAACkeJzLYWBgYMpgTmFQSklKzi9KdUhJMtTLTMrVTSouNjAw1EvOyS9NScwr0ctLLckBqc1jAZIMC4DU____92eBxdycyiQ6O2sOMCQxMLHnZKEaZ0qEcQ8gxv2HG-fo9M_-Asg4-TVZWQCZcDI1&limit=2&account_id=d86af7367f70fba4f306d3c19c7344b2",
@@ -205,3 +209,4 @@ An appropriate response should list metadata for your resources as shown in the 
   ]
 }
 ```
+{: codeblock}

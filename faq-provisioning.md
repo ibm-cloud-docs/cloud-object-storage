@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-05-10"
+lastupdated: "2024-05-14"
 
 keywords: faq, frequently asked questions, object storage, Lite Plan, Standard Plan
 
@@ -48,7 +48,13 @@ ibmcloud resource search "service_name:cloud-object-storage AND 2fdf0c08-2d32-4f
 
 * Using the CLI
 
-   1. Use the plan ID for a standard Object Storage instance: `744bfc56-d12c-4866-88d5-dac9139e0e5d`
+   1. Use the plan ID for a standard Object Storage instance: 
+
+      744bfc56-d12c-4866-88d5-dac9139e0e5d
+      {: codeblock}
+
+      <!-- codeblock used above because Dev wants the user to copy the ID via a click. -->
+
    1. Using the name of the instance that you are trying to upgrade (for example, to upgrade the instance “"My Object Storage"), issue the command:
 
       ```sh
@@ -59,19 +65,17 @@ ibmcloud resource search "service_name:cloud-object-storage AND 2fdf0c08-2d32-4f
 Pending steps to be provided by Yash 05-10-2024
 -->
 
-<!--## Can I create more than one Object Storage service with a Lite plan?
-Removed as per github issue #1515 5/10/2024 PW
+## Can I create more than one Object Storage service with a Lite plan?
 {: #faq-lite-storage}
 {: faq}
 
-If you already have a Lite plan instance created, you may create other Standard plan instances, but only one Lite plan instance is allowed.-->
+If you already have a Lite plan instance created, you may create other Standard plan instances, but only one Lite plan instance is allowed.
 
-<!--## What happens if I exceed the maximum usage allowed for a Lite plan?
-Removed as per github issue #1515 5/10/2024 PW
+## What happens if I exceed the maximum usage allowed for a Lite plan?
 {: #faq-lite-exceed}
 {: faq}
 
-Once you exceed the allowed usage, the service instance associated with the Lite plan becomes inaccessible.  You will receive a warning notification email with corrective steps. If you do not take action, the instance is removed.-->
+Once you exceed the allowed usage, the service instance associated with the Lite plan becomes inaccessible.  You will receive a warning notification email with corrective steps. If you do not take action, the instance is removed.
 
 ## What if my Lite Plan instance is locked?
 {: #faq-locked-account}
