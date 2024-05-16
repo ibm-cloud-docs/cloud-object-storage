@@ -2,9 +2,9 @@
 
 copyright:
   years: 2022, 2024
-lastupdated: "2024-05-15"
+lastupdated: "2024-05-16"
 
-keywords: events, activity, logging, api, buckets, tracking, legacy, python, java, node, go
+keywords: events, activity, logging, api, buckets, tracking, legacy, python, java, node, go, logs
 
 subcollection: cloud-object-storage
 
@@ -38,16 +38,16 @@ See Getting started with [{{site.data.keyword.at_full_notm}}](/docs/activity-tra
 ## IBM Cloud Logs (Coming Soon)
 {: #at-logs}
 
-IBM Cloud Logs will replace IBM Cloud Activity Tracker hosted event search. See the [IBM Announcement](/blog/announcement/ibm-cloud-logs-observability/) to learn more.
+IBM Cloud Logs will replace {{site.data.keyword.at_full_notm}} hosted event search. See the [IBM Announcement](/blog/announcement/ibm-cloud-logs-observability/) to learn more.
 
 IBM Cloud Logs gives you flexibility in how your data is processed for insights and trends, and where data is stored for high-speed search and long-term trend analysis. It provides the tools for you to maximize the value obtained while maintaining control on the total cost.
 
-[Migrate from IBM Cloud Activity Tracker to IBM Cloud Logs](/docs/activity-tracker?topic=activity-tracker-deprecation_migration) once available to avoid any disruption in event tracking.
+[Migrate from {{site.data.keyword.at_full_notm}} to IBM Cloud Logs](/docs/activity-tracker?topic=activity-tracker-deprecation_migration) once available to avoid any disruption in event tracking.
 
-## Route Logs with IBM Cloud Activity Tracker Event Routing
+## Route Logs with {{site.data.keyword.at_full_notm}} Event Routing
 {: #at-route-logs}
 
-[Get started with IBM Cloud Activity Tracker Event Routing](/docs/atracker?topic=atracker-getting-started) to configure routing for your IBM Cloud Object Storage auditing events. You can use Activity Tracker Event Routing, a platform service, to manage auditing events at the account-level by configuring targets and routes that define where auditing data is routed.
+[Get started with {{site.data.keyword.at_full_notm}} Event Routing](/docs/atracker?topic=atracker-getting-started) to configure routing for your IBM Cloud Object Storage auditing events. You can use Activity Tracker Event Routing, a platform service, to manage auditing events at the account-level by configuring targets and routes that define where auditing data is routed.
 
 Activity Tracker Event Routing supports routing IBM COS bucket logs to the following targets
 -	[Another COS Bucket](/docs/atracker?topic=atracker-getting-started-target-cos)
@@ -304,9 +304,164 @@ Select the UI, API, or Terraform tab at the top of this topic to see examples of
 {: #at-api-example-legacy}
 {: api}
 
+JAVA SDK example
+
+   ```sh
+   import com.ibm.cloud.objectstorage.config.resource_configuration.v1.ResourceConfiguration;
+   import com.ibm.cloud.objectstorage.config.resource_configuration.v1.model.BucketPatch;
+   import com.ibm.cloud.sdk.core.security.IamAuthenticator;
+
+   public class ActivityTrackerExample {
+      private static final String BUCKET_NAME = <BUCKET_NAME>;
+      private static final String API_KEY = <API_KEY>;
+
+      public static void main(String[] args) {
+          IamAuthenticator authenticator = new IamAuthenticator.Builder()
+                  .apiKey(API_KEY)
+                  .build();
+          ResourceConfiguration RC_CLIENT = new ResourceConfiguration("resource-configuration", authenticator);
+          ActivityTracking activityTrackingConfig = new ActivityTracking().Builder()
+                .activityTrackerCrn(AT_CRN)
+                .readDataEvents(true)
+                .writeDataEvents(true)
+                .build();
+          BucketPatch bucketPatch = new BucketPatch.Builder().activityTracking(activityTrackingConfig).build();
+          UpdateBucketConfigOptions update = new UpdateBucketConfigOptions
+                  .Builder(BUCKET_NAME)
+                  .bucketPatch(bucketPatch.asPatch())
+                  .build();
+
+          RC_CLIENT.updateBucketConfig(update).execute();
+          GetBucketConfigOptions bucketOptions = new GetBucketConfigOptions.Builder(BUCKET_NAME).build();
+          Bucket bucket = RC_CLIENT.getBucketConfig(bucketOptions).execute().getResult();
+
+          ActivityTracking activityTrackingResponse = bucket.getActivityTracking();
+          System.out.println("Read Data Events : " + activityTrackingResponse.readDataEvents());
+          System.out.println("Write Data Events : " + activityTrackingResponse.writeDataEvents());
+          System.out.println("Management Events : " + activityTrackingResponse.managementEvents());
+      }
+   }
+   ```
+   {: codeblock}
+
+NodeJS SDK example
+
+   ```sh
+    const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1');
+    IamAuthenticator      = require('ibm-cos-sdk-config/auth');
+
+    var apiKey = "<API_KEY>"
+    var bucketName = "<BUCKET_NAME>"
+
+    authenticator = new IamAuthenticator({apikey: apiKey})
+    rcConfig = {authenticator: authenticator}
+    const client = new ResourceConfigurationV1(rcConfig);
+
+    function addAT() {
+        console.log('Updating bucket metadata...');
+
+        };
+        var params = {
+            bucket: bucketName,
+            activityTracking: {
+              "activity_tracker_crn": at_crn,
+              "read_data_events": true,
+              "write_data_events": true
+              }
+        };
+
+        client.updateBucketConfig(params, function (err, response) {
+            if (err) {
+                console.log("ERROR: " + err);
+            } else {
+                console.log(response.result);
+            }
+        });
+    }
+
+    addAT()
+   ```
+    {: codeblock}
+
+Python SDK example
+
+   ```sh
+    from ibm_cos_sdk_config.resource_configuration_v1 import ResourceConfigurationV1
+    from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+
+    api_key = "<API_KEY>"
+    bucket_name = "<BUCKET_NAME>"
+
+    authenticator = IAMAuthenticator(apikey=api_key)
+    client = ResourceConfigurationV1(authenticator=authenticator)
+    activity_tracking_config = {
+                                'activity_tracking':
+                                  {
+                                    'activity_tracker_crn':at_crn,
+                                    'read_data_events':True,
+                                    'write_data_events':True,
+                                  }
+                                }
+
+    client.update_bucket_config(bucket_name, bucket_patch=activity_tracking_config)
+   ```
+    {: codeblock}
+
+GO SDK example
+
+   ```sh
+    import (
+    "github.com/IBM/go-sdk-core/core"
+    rc "github.com/IBM/ibm-cos-sdk-go-config/v2/resourceconfigurationv1"
+    )
+
+    apiKey := "<ApiKey>"
+    bucketName := "<BucketName>"
+
+    authenticator := new(core.IamAuthenticator)
+    authenticator.ApiKey = apiKey
+    optionsRC := new(rc.ResourceConfigurationV1Options)
+    optionsRC.Authenticator = authenticator
+    rcClient, _ := rc.NewResourceConfigurationV1(optionsRC)
+
+    patchNameMap := make(map[string]interface{})
+    patchNameMap["activity_tracking"] = &rc.ActivityTracking{
+      ActivityTrackerCrn: core.StringPtr(activityTrackerCrn),
+      ReadDataEvents:     core.BoolPtr(true),
+      WriteDataEvents:    core.BoolPtr(true),
+    }
+    updateBucketConfigOptions := &rc.UpdateBucketConfigOptions{
+      Bucket:      core.StringPtr(bucketName),
+      BucketPatch: patchNameMap,
+    }
+    rcClient.UpdateBucketConfig(updateBucketConfigOptions)
+   ```
+    {: codeblock}
+
 ### Terraform example patch to transition from the Legacy to Recommend event tracking configuration on your COS bucket
 {: #at-terraform-example-legacy}
 {: terraform}
 
+   ```sh
+    resource "ibm_resource_instance" "cos_instance" {
+      name              = "cos-instance"
+      resource_group_id = data.ibm_resource_group.cos_group.id
+      service           = "cloud-object-storage"
+      plan              = "standard"
+      location          = "global"
+    }
 
+    resource "ibm_cos_bucket" "activity_tracker_bucket" {
+      bucket_name          = “bucket_name”
+      resource_instance_id = ibm_resource_instance.cos_instance.id
+      region_location      = “us-south”
+      storage_class        = “standard”
+      activity_tracking {
+      read_data_events     = true
+        write_data_events    = true
+        activity_tracker_crn = “crn:v1:bluemix:public:logdnaat:us-south:a/2xxxxxxxxxxxxxxxxxxxxxxxxf:3xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxec::”
+          }
+    }
+   ```
+    {: codeblock}
 
