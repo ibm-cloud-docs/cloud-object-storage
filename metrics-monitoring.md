@@ -267,6 +267,168 @@ Example patch to transition from the Legacy to Recommend metrics monitoring conf
 5.	Click on the top right corner of the panel and select upgrade.
 6.	Confirm you would like to upgrade metrics monitoring for this bucket.
 
+### JAVA, Node, Python and GO SDK examples for how to configure metrics monitoring on your bucket
+{: #mm-api-example-legacy}
+{: api}
+
+JAVA SDK example
+
+   ```sh
+   import com.ibm.cloud.objectstorage.config.resource_configuration.v1.ResourceConfiguration;
+   import com.ibm.cloud.objectstorage.config.resource_configuration.v1.model.BucketPatch;
+   import com.ibm.cloud.sdk.core.security.IamAuthenticator;
+
+   public class MetricsMonitoringExample {
+
+      private static final String BUCKET_NAME = <BUCKET_NAME>;
+      private static final String API_KEY = <API_KEY>;
+
+      public static void main(String[] args) {
+         IamAuthenticator authenticator = new IamAuthenticator.Builder()
+                  .apiKey(API_KEY)
+                  .build();
+         ResourceConfiguration RC_CLIENT = new ResourceConfiguration("resource-configuration", authenticator);
+         MetricsMonitoring metricsMonitoringConfig = new MetricsMonitoring().Builder()
+               .metricsMonitoringCrn(MM_CRN)
+               .requestMetricsEnabled(true)
+               .usageMetricsEnabled(true)
+               .build();
+         BucketPatch bucketPatch = new BucketPatch.Builder().metricsMonitoring(metricsMonitoringConfig).build();
+         UpdateBucketConfigOptions update = new UpdateBucketConfigOptions
+                  .Builder(BUCKET_NAME)
+                  .bucketPatch(bucketPatch.asPatch())
+                  .build();
+         RC_CLIENT.updateBucketConfig(update).execute();
+
+         GetBucketConfigOptions bucketOptions = new GetBucketConfigOptions.Builder(BUCKET_NAME).build();
+         Bucket bucket = RC_CLIENT.getBucketConfig(bucketOptions).execute().getResult();
+         MetricsMonitoring metricsMonitoringResponse = bucket.getMetricsMonitoring();
+         System.out.println("Usage Metrics Enabled  : " + metricsMonitoringResponse.usageMetricsEnabled());
+         System.out.println("Request Metrics Enabled : " + metricsMonitoringResponse.requestMetricsEnabled());
+      }
+   }
+   ```
+   {: codeblock}
+
+NodeJS SDK example
+
+   ```sh
+   const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1');
+   IamAuthenticator      = require('ibm-cos-sdk-config/auth');
+
+   var apiKey = "<API_KEY>"
+   var bucketName = "<BUCKET_NAME>"
+
+   authenticator = new IamAuthenticator({apikey: apiKey})
+   rcConfig = {authenticator: authenticator}
+   const client = new ResourceConfigurationV1(rcConfig);
+
+   function addMM() {
+      console.log('Updating bucket metadata...');
+
+      var params = {
+         bucket: bucketName,
+         metricsMonitoring: {
+                  "metrics_monitoring_crn": metricsCrn,
+            "request_metrics_enabled": true,
+            "usage_metrics_enabled": true
+            }
+      };
+
+      client.updateBucketConfig(params, function (err, response) {
+         if (err) {
+               console.log("ERROR: " + err);
+         } else {
+               console.log(response.result);
+         }
+      });
+   }
+
+   addMM()
+   ```
+   {: codeblock}
+
+Python SDK example
+
+   ```sh
+   from ibm_cos_sdk_config.resource_configuration_v1 import ResourceConfigurationV1
+   from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+
+   api_key = "<API_KEY>"
+   bucket_name = "<BUCKET_NAME>"
+
+   authenticator = IAMAuthenticator(apikey=api_key)
+   client = ResourceConfigurationV1(authenticator=authenticator)
+   metrics_monitoring_config = {'metrics_monitoring': 
+                              {
+                           'metrics_monitoring_crn': mm_crn, 
+                                 'request_metrics_enabled':True, 
+                                 'usage_metrics_enabled':True
+                                 }
+                              }
+
+   client.update_bucket_config(bucket_name, bucket_patch=metrics_monitoring_config
+   ```
+   {: codeblock}
+
+GO SDK example
+
+   ```sh
+   import (
+   "github.com/IBM/go-sdk-core/core"
+   rc "github.com/IBM/ibm-cos-sdk-go-config/v2/resourceconfigurationv1"
+   )
+
+   apiKey := "<ApiKey>"
+   bucketName := "<BucketName>"
+
+   authenticator := new(core.IamAuthenticator)
+   authenticator.ApiKey = apiKey
+   optionsRC := new(rc.ResourceConfigurationV1Options)
+   optionsRC.Authenticator = authenticator
+   rcClient, _ := rc.NewResourceConfigurationV1(optionsRC)
+
+   patchNameMap["metrics_monitoring"] = &rc.MetricsMonitoring{
+   MetricsMonitoringCrn: core.StringPtr(MMCrn),
+   RequestMetricsEnabled:     core.BoolPtr(true),
+   UsageMetricsEnabled:    core.BoolPtr(true)
+   }
+
+   updateBucketConfigOptions := &rc.UpdateBucketConfigOptions{
+   Bucket:      core.StringPtr(bucketName),
+   BucketPatch: patchNameMap,
+   }
+   rcClient.UpdateBucketConfig(updateBucketConfigOptions)
+   ```
+   {: codeblock}
+
+### Terraform example for how to create a {{site.data.keyword.cos_full_notm}} instance and then creating a {{site.data.keyword.cos_full}} bucket with Metrics Monitoring
+{: #mm-terraform-example-legacy}
+{: terraform}
+
+   ```sh
+   resource "ibm_resource_instance" "cos_instance" {
+      name              = "cos-instance"
+      resource_group_id = data.ibm_resource_group.cos_group.id
+      service           = "cloud-object-storage"
+      plan              = "standard"
+      location          = "global"
+   }
+
+   resource "ibm_cos_bucket" "metric_monitoring_bucket" {
+      bucket_name          = “bucket_name”
+      resource_instance_id = ibm_resource_instance.cos_instance.id
+      region_location      = “us-south”
+      storage_class        = “standard”
+      metrics_monitoring {
+         usage_metrics_enabled   = true
+         request_metrics_enabled = true
+         metrics_monitoring_crn = "crn:v1:bluemix:public:sysdig-monitor:us-east:a/xxxxxxxxxxxxxxxxxxxxxxxxx:4xxxxxxxx-xxxx-xxxx-xxxx-fxxxxxxxxx4c::"
+   }
+   }
+   ```
+   {: codeblock}
+
 ## Cloud Object Storage metrics details
 {: #mm-cos-metrics-details}
 
