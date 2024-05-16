@@ -2,9 +2,9 @@
 
 copyright:
   years: 2020, 2024
-lastupdated: "2024-05-14"
+lastupdated: "2024-05-16"
 
-keywords: Object Storage, SysDig, monitoring, integration, metrics, legacy
+keywords: Object Storage, SysDig, monitoring, integration, metrics, legacy, recommended, routing
 
 subcollection: cloud-object-storage
 
@@ -372,7 +372,4 @@ The following attributes are available for segmenting one or more attributes as 
 | `Service instance` | `ibm_service_instance` | The service instance segment identifies the guide of the instance the metric is associated with. |
 {: caption="Table 5: COS specific attributes" caption-side="top"}
 
-## Next Steps
-{: #mm-cos-next-steps}
 
-You will want to manage the data the {{site.data.keyword.mon_short}} instance is collecting for you. From management to setting alerts, see [Managing data](/docs/monitoring?topic=monitoring-mng-data) to monitor your data quickly and efficiently.
