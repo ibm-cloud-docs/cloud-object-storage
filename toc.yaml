@@ -68,12 +68,6 @@ toc:
               label: Bucket management
               topics:
               - topicgroup:
-                  label: Managing a bucket's lifecycle configurations
-                  topics:
-                    - archive.md
-                    - expiry.md
-                    - abort-mpu.md
-              - topicgroup:
                   label: Managing access
                   topics:
                     - iam.md
@@ -89,6 +83,12 @@ toc:
                     - credentials.md
                     - hmac-signature.md
                     - presigned-urls.md
+              - topicgroup:
+                  label: Managing a bucket's lifecycle configurations
+                  topics:
+                    - archive.md
+                    - expiry.md
+                    - abort-mpu.md
               - topicgroup:
                   label: Managing data immutability
                   topics:

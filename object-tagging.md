@@ -12,7 +12,7 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Tagging objects in {{site.data.keyword.cos_full_notm}}
+# Tagging objects
 {: #object-tagging}
 
 Your data can be expressly defined, categorized, and classified in {{site.data.keyword.cos_full}} using associated metadata, called "tags." This document will show you how to take full control in "tagging" the objects representing your data.
