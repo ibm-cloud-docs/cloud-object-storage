@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2024
-lastupdated: "2024-05-16"
+lastupdated: "2024-05-21"
 
 keywords: events, activity, logging, api, buckets, tracking, legacy, python, java, node, go, logs
 
@@ -273,14 +273,13 @@ The legacy model also supports optionally enabling tracking on the following eve
 IBM Cloud observability routing services are the standardized way for customers to manage routing of platform observability data.  Service-specific routing configurations like COS are being deprecated.
 {: note}
 
-It is recommended that customers [remove these legacy routing configurations]({#a-atlegacy}) that use CRNs and instead use the IBM Activity Tracker Event Routing service to route events to other locations.
+It is recommended that customers [remove these legacy routing configurations](/docs/cloud-object-storage?topic=cloud-object-storage-at&interface=ui#at-legacy-upgrade) that use CRNs and instead use the IBM Activity Tracker Event Routing service to route events to other locations.
 
 IBM COS will continue to support legacy configurations where a CRN was specified that differs from the default location.
 
 ## Upgrading from Legacy to the Recommended Event Tracking on your COS bucket
 {: #at-legacy-upgrade}
 
-{#a-atlegacy}
 To upgrade from the legacy configuration using the Resource Configuration API, remove the target Activity Tracker instance CRN. Events will now route to the default Activity Tracker Event Router receiving location as described in [COS Service Integration](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability). Provision an instance of Activity Tracker hosted event search at this location or define a routing rule prior to upgrading to ensure there’s no interruption in event logging.
 
 ### Example patch to transition from the Legacy to Recommend event tracking configuration on your COS bucket
