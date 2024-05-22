@@ -8,6 +8,7 @@ keywords: activity, tracking, object storage, event, tutorial
 
 subcollection: cloud-object-storage
 
+content-type: tutorial
 account-plan: lite
 completion-time: 30m
 
