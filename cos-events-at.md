@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-04-17"
+lastupdated: "2024-05-21"
 
 keywords: activity, tracking, object storage, event, tutorial
 
