@@ -64,7 +64,7 @@ For this tutorial, you need:
 {: #navigate-cos-instance}
 {: step}
 
-- Go to your [instance of IBM Cloud Object Storage](/objectstorage/create).
+1. Go to your [instance of IBM Cloud Object Storage](/objectstorage/create).
 
 ## Click Create bucket
 {: #create-cos-bucket-step}
