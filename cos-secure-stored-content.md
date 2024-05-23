@@ -81,9 +81,11 @@ For this tutorial, you need:
       - An instance of [IBM Cloud™ Key Protect](/docs/key-protect?topic=key-protect-getting-started-tutorial)
       - [Grant service authorization](/docs/cloud-object-storage?topic=cloud-object-storage-kp#kp-sa) to {{site.data.keyword.cos_short}} in IBM Key Protect.
 
-      1. Toggle **Key management disabled** to enable encryption and **click** on **Create new instance**.
-      1. Choose a region that corresponds with the bucket, give it a memorable name, and click **Create and continue**.
-      1. Give the `root key` a name and click **Create and continue**.
+   Follow these steps:
+
+   1. Toggle **Key management disabled** to enable encryption and **click** on **Create new instance**.
+   1. Choose a region that corresponds with the bucket, give it a memorable name, and click **Create and continue**.
+   1. Give the `root key` a name and click **Create and continue**.
 
 1. If required, add the [Activity Tracker](/docs/cloud-object-storage?topic=cloud-object-storage-tracking-cos-events) service during the bucket creation by scrolling down to **Service integrations (optional)**.
 
@@ -92,8 +94,10 @@ For this tutorial, you need:
      - An instance of [Activity Tracker](/docs/activity-tracker?topic=activity-tracker-getting-started)
      - A user ID with [administrator platform permissions](/docs/account?topic=account-userroles) and the service access [writer role](/docs/account?topic=account-userroles#service_access_roles).
 
-     1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Activity tracking enabled**. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (for example, `us-east`) you could name the instance something like `US East AT` so that you can easily find it later.
-     1. Click to enable **Track data events** and select both **read & write** from the drop-down list.
+   Follow these steps:
+
+   1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Activity tracking enabled**. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (for example, `us-east`) you could name the instance something like `US East AT` so that you can easily find it later.
+   1. Click to enable **Track data events** and select both **read & write** from the drop-down list.
 
 1. If required, add the [Monitoring](/docs/cloud-object-storage?topic=cloud-object-storage-monitoring-cos) service during the bucket creation by scrolling down to **Service integrations (optional)**.
 
@@ -102,8 +106,10 @@ For this tutorial, you need:
      - An instance of [IBM Cloud™ Monitoring](/docs/monitoring?topic=monitoring-getting-started)
      - A user ID with [administrator platform permissions](/docs/account?topic=account-userroles) and the service access [writer role](/docs/account?topic=account-userroles#service_access_roles).
 
-     1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Monitoring enabled**. Select an appropriate plan, and give the new instance a memorable name. For example, if you are creating the instance in the same region as the bucket (for example, `us-east`) you could name the instance `US East MM` so that you can easily find it later.
-     1. Enable monitoring for both **usage and request metrics**.
+   Follow these steps:
+
+   1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Monitoring enabled**. Select an appropriate plan, and give the new instance a memorable name. For example, if you are creating the instance in the same region as the bucket (for example, `us-east`) you could name the instance `US East MM` so that you can easily find it later.
+   1. Enable monitoring for both **usage and request metrics**.
 
 ## Verify the information is correct
 {: #verify-cos-bucket}
