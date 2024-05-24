@@ -15,14 +15,6 @@ subcollection: cloud-object-storage
 {:console: .ph data-hd-programlang='Console'}
 {:cli: .ph data-hd-programlang='CLI'}
 
-# Using {{site.data.keyword.mon_full_notm}}
-{: #mm-cos-integration}
-
-Use the {{site.data.keyword.mon_full}} service to monitor your {{site.data.keyword.cos_full}} (COS) data in the {{site.data.keyword.cloud_notm}}. The results of the activity can be measured for compliance and other analysis through the web dashboard UI.
-{: shortdesc}
-
-This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
-=======
 # Configure Metrics for {{site.data.keyword.cos_full}}
 {: #mm-cos-integration}
 
