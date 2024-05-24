@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020, 2024
-lastupdated: "2024-05-16"
+lastupdated: "2024-05-24"
 
 keywords: Object Storage, SysDig, monitoring, integration, metrics, legacy, recommended, routing
 
