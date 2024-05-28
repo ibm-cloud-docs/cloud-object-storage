@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020, 2024
-lastupdated: "2024-05-24"
+lastupdated: "2024-05-28"
 
 keywords: Object Storage, SysDig, monitoring, integration, metrics, legacy, recommended, routing
 
@@ -18,7 +18,7 @@ subcollection: cloud-object-storage
 # Configure Metrics for {{site.data.keyword.cos_full}}
 {: #mm-cos-integration}
 
-Use the IBM Cloud® Monitoring service to monitor your {{site.data.keyword.cos_full}} data. IBM Cloud Monitoring is a cloud-native management system. The metrics produced by your COS buckets can be displayed in dashboards built in IBM Monitoring. Documentation from [Monitoring](/docs/monitoring?topic=monitoring-dashboards) can guide you in how to use the comprehensive dashboards. Additionally, [specify the conditions when a metrics alert is trigged](/docs/monitoring?topic=monitoring-alert-metric#alert_metrics_trigger) to set notifications when custom thresholds are exceeded.
+Use the [IBM Cloud® Monitoring](/docs-draft/monitoring?topic=monitoring-getting-started) service to monitor your {{site.data.keyword.cos_full}} data. IBM Cloud Monitoring is a cloud-native management system. The metrics produced by your COS buckets can be displayed in dashboards built in IBM Monitoring. Documentation from [Monitoring](/docs/monitoring?topic=monitoring-dashboards) can guide you in how to use the comprehensive dashboards. Additionally, [specify the conditions when a metrics alert is trigged](/docs/monitoring?topic=monitoring-alert-metric#alert_metrics_trigger) to set notifications when custom thresholds are exceeded.
 
 When metrics monitoring is enabled on your bucket, the default target service that captures these metrics is [IBM Cloud Monitoring](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration#mm-configure). Ensure that you have a platform instance of IBM Cloud Monitoring at the receiving location corresponding to your bucket location as specified in COS Service Integration.
 
@@ -31,6 +31,15 @@ IBM COS supports enabling metrics tracking on the following metric types:
 - Request Metrics – The metrics report the counts for certain types of API requests made to your bucket
 
 See the {{site.data.keyword.cos_full}} metrics details section below for the full list of metrics sent to IBM Monitoring.
+
+This feature is not currently supported in [Object Storage for Satellite](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite).
+{: note}
+
+This feature supports [SCC monitoring](/docs/security-compliance).
+{: note}
+
+{{site.data.keyword.cos_full}} metrics can only be consumed by IBM Monitoring platform instances. If a platform instance does not exist at the final receiving location, ensure one is created.
+{: note}
 
 ## Route Metrics with IBM Cloud Metrics Routing
 {: #mm-route-metrics}
@@ -46,27 +55,18 @@ See [Getting started with IBM Cloud Metrics Routing](/docs/metrics-router?topic=
 
 Enable metrics tracking on your {{site.data.keyword.cos_full}} bucket at the time of bucket provisioning or by updating the bucket configuration after bucket creation. Metrics monitoring will only apply to {{site.data.keyword.cos_full}} metrics produced after enablement.
 
-This feature is not currently supported in [Object Storage for Satellite](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite).
-{: note}
-
-This feature supports [SCC monitoring](/docs/security-compliance).
-{: note}
-
-{{site.data.keyword.cos_full}} metrics can only be consumed by IBM Monitoring platform instances. If a platform instance does not exist at the final receiving location, ensure one is created.
-{: note}
-
 Refer to the [{{site.data.keyword.cos_full}} Metrics Details](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration#mm-cos-metrics-details) to see the full list of Usage and Request metrics available for tracking.
 
 Use the [{{site.data.keyword.cos_full}} Resource Configuration API](/apidocs/cos/cos-configuration) to configure tracking of these metrics for your bucket.
 
 When metrics tracking is enabled, all metrics are sent to the default receiving location for IBM Cloud Metrics Router based on the location of the bucket. Refer to [{{site.data.keyword.cos_full}} Service Integration](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability) to see this default mapping. Use Metrics Router rules to route metrics to a location other than the bucket location or to another target service. See [Managing Routes](/docs/metrics-router?topic=metrics-router-route-manage) for more information.
 
-### Recommended examples
+### How to configure Metrics for {{site.data.keyword.cos_full}} (Recommended)
 {: #mm-examples-recommended}
 
 Select the UI, API or Terraform tab at the top of this topic to display the examples that show how to configure metrics monitoring to track both usage and request metrics on your bucket.
 
-### UI example for how to configure metrics monitoring on your bucket
+### UI example for how to configure Metrics Monitoring on your bucket
 {: #mm-ui-example-recommended}
 {: ui}
 
@@ -76,7 +76,7 @@ Select the UI, API or Terraform tab at the top of this topic to display the exam
 4.	Scroll down to the advanced configuration section and toggle on the metrics you want to monitor for this bucket.
 5.	After a few minutes, any activity will be visible in the IBM Cloud Monitoring web UI.
 
-### JAVA, Node, Python and GO SDK examples for how to configure metrics monitoring on your bucket
+### JAVA, Node, Python and GO SDK examples for how to configure Metrics Monitoring on your bucket
 {: #mm-api-example-recommended}
 {: api}
 
@@ -267,7 +267,7 @@ Example patch to transition from the Legacy to Recommend metrics monitoring conf
 5.	Click on the top right corner of the panel and select upgrade.
 6.	Confirm you would like to upgrade metrics monitoring for this bucket.
 
-### JAVA, Node, Python and GO SDK examples for how to configure metrics monitoring on your bucket
+### JAVA, Node, Python and GO SDK examples for how to configure Metrics Monitoring on your bucket
 {: #mm-api-example-legacy}
 {: api}
 
@@ -359,10 +359,10 @@ Python SDK example
 
    authenticator = IAMAuthenticator(apikey=api_key)
    client = ResourceConfigurationV1(authenticator=authenticator)
-   metrics_monitoring_config = {'metrics_monitoring': 
+   metrics_monitoring_config = {'metrics_monitoring':
                               {
-                           'metrics_monitoring_crn': mm_crn, 
-                                 'request_metrics_enabled':True, 
+                           'metrics_monitoring_crn': mm_crn,
+                                 'request_metrics_enabled':True,
                                  'usage_metrics_enabled':True
                                  }
                               }
