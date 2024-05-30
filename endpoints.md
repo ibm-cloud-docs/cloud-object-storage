@@ -3,9 +3,9 @@
 copyright:
   years: 2017, 2024
 
-lastupdated: "2024-04-17"
+lastupdated: "2024-05-08"
 
-keywords: endpoint, location, object storage, bucket, region, rclone
+keywords: endpoint, location, object storage, bucket, region, rclone, resiliency
 
 subcollection: cloud-object-storage
 
@@ -29,6 +29,9 @@ All requests must use SSL when using IAM, and the service will reject any plain-
 
 All {{site.data.keyword.cos_full}} endpoints support TLS 1.2 encryption.
 {: note}
+
+A bucket's resiliency and location that you selected during bucket creation and provisioning cannot be modified thereafter.
+{: important}
 
 ## Endpoint Types
 {: #advanced-endpoint-types}

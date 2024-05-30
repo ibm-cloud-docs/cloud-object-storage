@@ -2,7 +2,8 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-05-16"
+lastupdated: "2024-05-30"
+
 
 keywords: faq, frequently asked questions, object storage, Lite Plan, Standard Plan
 
@@ -19,14 +20,6 @@ content-type: faq
 
 Frequently asked questions can produce helpful answers and insight into best practices for working with {{site.data.keyword.cos_full}}.
 {: shortdesc}
-
-<!-- Moved to faq.md 5-1-2024 PW
-## Why can I not create or delete a service instance?
-{: #faq-instance-create-delete}
-{: faq}
-
-A user is required to have have at a minimum the platform role of `editor` for all IAM enabled services, or at least for Cloud Object Service. For more information, see the [IAM documentation on roles](/docs/account?topic=account-iam-service-roles-actions).-->
-
 
 ## Which one of my instances uses a Lite plan?
 {: #faq-instance-find-lite}
@@ -68,33 +61,25 @@ ibmcloud resource search "service_name:cloud-object-storage AND 2fdf0c08-2d32-4f
       ```sh
       ic resource service-instance-update "My Object Storage" --service-plan-id 744bfc56-d12c-4866-88d5-dac9139e0e5d
       ```
-
 <!--* Upgrading a Lite Plan instance that is Locked to a Standard Plan via Console
 Pending steps to be provided by Yash 05-10-2024
 -->
 
-<!-- information moved to a tip in Getting Started. 5-1-2024 PW
-## Are bucket names case-sensitive?
-{: #faq-name-case}
-{: faq}
+   1. Use the plan ID for a standard Object Storage instance: 
 
-Bucket names are required to be DNS addressable and are not case-sensitive.
--->
+      744bfc56-d12c-4866-88d5-dac9139e0e5d
+      {: codeblock}
 
-<!-- Moved to faq.md 5-1-2024 PW
-## What is the maximum number of characters that can be used in a key, or Object name?
-{: #faq-max-key}
-{: faq}
+      <!-- codeblock used above because Dev wants the user to copy the ID via a click. -->
 
-Keys have a 1024-character limit.
--->
+   1. Using the name of the instance that you are trying to upgrade (for example, to upgrade the instance “"My Object Storage"), issue the command:
 
-<!-- Moved to faq.md 5-1-2024 PW
-## What are some tools unable to render object names?
-{: #faq-xml-error}
-{: faq}
+      ```sh
+      ic resource service-instance-update "My Object Storage" --service-plan-id 744bfc56-d12c-4866-88d5-dac9139e0e5d
+      ```
 
-Object names that contain unicode characters that are not allowed by the XML standard will result in "Malformed XML" messages. For more information, see [the XML reference documentation](https://www.w3.org/TR/xml/#charsets).
+<!--* Upgrading a Lite Plan instance that is Locked to a Standard Plan via Console
+Pending steps to be provided by Yash 05-10-2024
 -->
 
 ## Can I create more than one Object Storage service with a Lite plan?

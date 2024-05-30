@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-05-14"
+lastupdated: "2024-05-30"
 
 keywords: developer, getting started, command line interface, cli
 
@@ -32,14 +32,14 @@ First, ensure that you have the [{{site.data.keyword.cloud}} Platform CLI](https
     ```
     {: pre}
 
-3. Next, create an instance of {{site.data.keyword.cos_full_notm}} specifying the name for the instance, the ID, and the wanted plan (`lite`, `free`, or `standard`). Now we have a CRN for the instance. If you have an upgraded account, specify the `standard` plan. Otherwise, specify `lite`.
+3. Next, create an instance of {{site.data.keyword.cos_full_notm}} specifying the name for the instance, the ID, and the wanted Standard plan. Now you have a CRN for the instance.
 
     ```sh
     ibmcloud resource service-instance-create <instance-name> cloud-object-storage <plan> global
     ```
     {: pre}
 
-Some users may encounter the error `No resource group targeted` when trying to create a new instance. This indicates that the default resource group is not available and that a resource group must be explicitly set. A list of available resource groups can be found using `ibmcloud resource groups` and the target can be set with `ibmcloud target -g <resource-group>`.
+If you encounter the error `No resource group targeted` when trying to create a new instance. This indicates that the default resource group is not available and that a resource group must be explicitly set. A list of available resource groups can be found using `ibmcloud resource groups` and the target can be set with `ibmcloud target -g <resource-group>`.
 {: tip}
 
 The [Getting Started guide](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) walks through the basic steps of creating buckets and objects, as well as inviting users and creating policies. A list of basic 'curl' commands can be found [here](/docs/cloud-object-storage?topic=cloud-object-storage-curl).
