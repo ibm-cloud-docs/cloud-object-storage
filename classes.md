@@ -2,8 +2,7 @@
 
 copyright:
   years: 2017, 2024
-
-lastupdated: "2024-05-14"
+lastupdated: "2024-05-30"
 
 keywords: storage classes, tiers, cost, buckets, location constraint, provisioning code, locationconstraint
 

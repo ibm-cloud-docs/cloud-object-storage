@@ -8,7 +8,6 @@ keywords: developer, getting started, command line interface, cli
 
 subcollection: cloud-object-storage
 
-
 ---
 
 {{site.data.keyword.attribute-definition-list}}
