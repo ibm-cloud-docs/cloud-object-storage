@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-05-09"
+lastupdated: "2024-05-30"
 
 keywords: administration, billing, platform
 
@@ -91,7 +91,7 @@ There are six classes:
 
 For more information about pricing, see [the pricing table at ibm.com](/objectstorage/create#pricing){: external}.
 
-The **Active** storage class is only used with [One Rate plans](/docs/cloud-object-storage?topic=cloud-object-storage-onerate), and cannot be used in Standard or Lite plan instances.
+The **Active** storage class is only used with [One Rate plans](/docs/cloud-object-storage?topic=cloud-object-storage-onerate), and cannot be used in a Standard plan instance.
 {: important}
 
 For more information about creating buckets with different storage classes, see the [API reference](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
