@@ -66,10 +66,13 @@ import (
 ```
 {: codeblock}
 
-## Creating a client and sourcing credentials
+## Creating a client and sourcing Service credentials
 {: #go-client-credentials}
 
-To connect to {{site.data.keyword.cos_full_notm}}, a client is created and configured by providing credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
+A client can be created by provding service credentials or trusted profile credentials. This section provides information to
+create a client using service credentials.
+
+To connect to {{site.data.keyword.cos_full_notm}}, a client is created and can be configured by providing service credential information (API key and service instance ID). These values can also be automatically sourced from a credentials file or from environment variables.
 
 The credentials can be found by creating a [Service Credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials), or through the CLI.
 
@@ -93,7 +96,6 @@ const (
 )
 
 // Create config
-
 conf := aws.NewConfig().
     WithRegion("us-standard").
     WithEndpoint(serviceEndpoint).
@@ -102,6 +104,50 @@ conf := aws.NewConfig().
 
 ```
 {: codeblock}
+
+## Creating a client and sourcing Trusted Profile credentials
+{: #go-client-credentials}
+
+A client can be created by provding service credentials or trusted profile credentials. This section provides information to
+create a client using trusted profile credentials.
+
+To connect to {{site.data.keyword.cos_full_notm}}, a client is created and can also be configured by providing trusted profile credential information (Trusted Profile Id and CR Token file path). These values can also be automatically sourced from environment variables.
+
+To create Trusted Profile, establishing trust with compute resources based on specific attributes, and define a policy to assign access to resources, see [Managing access for apps in compute resources](docs/account?topic=account-trustedprofile-compute-tutorial).
+
+To learn more about establishing trust with a Kubernetes cluster, see [Using Trusted Profiles in your Kubernetes and OpenShift Clusters](https://www.ibm.com/blog/using-trusted-profiles-in-your-kubernetes-and-openshift-clusters/)
+
+Note: GO SDK supports authentication using trusted profile only in kubernetes and openshift clusters.
+
+To define trusted profile environment variables in an application runtime at the {{site.data.keyword.cos_full_notm}} portal. The required variables are `TRUSTED_PROFILE_ID` containing your Trusted profile Id `trusted profile id`, `CR_TOKEN_FILE_PATH` holding the `service account token file path`, `IBM_SERVICE_INSTANCE_ID` holding the `resource_instance_id` from your Service Credential, and an `IBM_AUTH_ENDPOINT` with a value appropriate to your account, like `https://iam.cloud.ibm.com/identity/token`. If using environment variables to define your application credentials, use `WithCredentials(ibmiam.NewEnvCredentials(aws.NewConfig())).`, replacing the similar method used in the configuration example.
+
+### Initializing configuration
+{: #go-init-config}
+
+```Go
+
+// Constants for IBM COS values
+const (
+    trustedProfileID  = "<TRUSTED_PROFILE_ID>"  // eg "Profile-5790481a-8fc5-46a4-bae3-d0e64ff6e0ad"
+    crTokenFilePath   = "<SERVICE_ACCOUNT_TOKEN_FILE_PATH>" // "/var/run/secrets/tokens/service-account-token"
+    serviceInstanceID = "<RESOURCE_INSTANCE_ID>" // "crn:v1:bluemix:public:cloud-object-storage:global:a/<CREDENTIAL_ID_AS_GENERATED>:<SERVICE_ID_AS_GENERATED>::"
+    authEndpoint      = "https://iam.cloud.ibm.com/identity/token"
+    serviceEndpoint   = "<SERVICE_ENDPOINT>" // eg "https://s3.us.cloud-object-storage.appdomain.cloud"
+    bucketLocation    = "<LOCATION>" // eg "us-standard"
+)
+
+// Create config
+conf := aws.NewConfig().
+    WithRegion(bucketLocation).
+    WithEndpoint(serviceEndpoint).
+    WithCredentials(ibmiam.NewTrustedProfileCredentialsCR(aws.NewConfig(), authEndpoint, trustedProfileID, crtokenFilePath, serviceInstanceID)).
+    WithS3ForcePathStyle(true)
+
+```
+{: codeblock}
+
+NOTE: Both API-Key and Trusted-Profile-Id can't be set as environmental variables. Only one of them should be set, otherwise GO sdk
+throws an error.
 
 For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
