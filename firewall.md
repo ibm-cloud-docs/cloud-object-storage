@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2023
-lastupdated: "2023-11-02"
+  years: 2017, 2024
+lastupdated: "2024-06-05"
 
 keywords: ip address, firewall, configuration, api
 
@@ -34,7 +34,7 @@ Context-based restrictions does not support applying context-based restrictions 
 
 You can learn more about how context-based restrictions work in the [detailed documentation](/docs/account?topic=account-context-restrictions-create&interface=ui), or you can follow a [quick tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-cos-tutorial-cbr).
 
-Any Activity Tracker or audit log events generated will come from the context-based restrictions service, and not {{site.data.keyword.cos_short}}.
+Audit log events generated will come from the context-based restrictions service, and not {{site.data.keyword.cos_short}}.
 {: tip}
 
 If no rules are applicable to a particular resource, access is determined by IAM policies and the presence of a legacy bucket firewall.
