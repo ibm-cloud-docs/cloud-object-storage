@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023, 2024
-lastupdated: "2024-04-17"
+lastupdated: "2024-06-06"
 
 keywords: object storage, tutorial, secure stored content, store, content, secure, secure content store
 
@@ -107,7 +107,7 @@ Once the credit has been successfully applied, you can review your credit balanc
      1. Choose a region that corresponds with the bucket, give it a memorable name, and click **Create and continue**.
      1. Give the `root key` a name and click **Create and continue**.
 
-    [Activity Tracker](/docs/cloud-object-storage?topic=cloud-object-storage-tracking-cos-events)
+    Activity Tracker
 
     Before you get started, you need:
 
@@ -117,7 +117,7 @@ Once the credit has been successfully applied, you can review your credit balanc
      1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Activity tracking enabled**. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (for example, `us-east`) you could name the instance something like `US East AT` so that you can easily find it later.
      1. Click to enable **Track data events** and select both **read & write** from the drop-down list.
 
-    [Monitoring](/docs/cloud-object-storage?topic=cloud-object-storage-monitoring-cos)
+    Monitoring
 
     Before you start, you need:
 
