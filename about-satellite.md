@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021, 2023
-lastupdated: "2023-08-08"
+  years: 2021, 2024
+lastupdated: "2024-06-05"
 
 keywords:  object storage, satellite, local
 
@@ -73,7 +73,7 @@ Keep in mind that requests made to {{site.data.keyword.cos_short}} for {{site.da
 Any Key Protect instances must be in {{site.data.keyword.cloud_notm}} and must be located in the same IBM Cloud region from where the Satellite location is managed.
 {: important}
 
-Activity Tracker will log service instance creation and deletion, but not any actions specific to object storage, such as listing buckets or reading/writing data.
+Activity Tracking events are produced for service instance creation and deletion, but not any actions specific to object storage, such as listing buckets or reading/writing data.
 {: important}
 
 Other features that are currently not supported (such as Activity Tracking, Metrics Monitoring, [Compliance](/docs/cloud-object-storage?topic=cloud-object-storage-compliance), Security and Compliance Center) will be added in the future.
