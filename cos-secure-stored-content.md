@@ -90,11 +90,11 @@ Once the credit has been successfully applied, you can review your credit balanc
 {: #create-cos-bucket-step}
 {: step}
 
-- Select the **Customize your bucket** tile, and click the right arrow.
+1. Select the **Customize your bucket** tile, and click the right arrow.
     1. Name the new bucket.  It must start and end in alphanumeric characters (from 3 to 63) that is limited to using lowercase, numbers and nonconsecutive dots, and hyphens.
     2. Choose your desired region and [storage class](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes), based on your activity (for example, chose “Standard” storage class for hot data, “Vault” or “Cold Vault” for cold data, or “Smart Tier” for blended or variable data activity.)
 
-- Add the following services during the bucket creation by scrolling down to **Service integrations (optional)**.
+2. Add the following services during the bucket creation by scrolling down to **Service integrations (optional)**.
 
     [Key Protect](/docs/cloud-object-storage?topic=cloud-object-storage-tutorial-kp-encrypt-bucket)
 
