@@ -100,8 +100,8 @@ Once the credit has been successfully applied, you can review your credit balanc
 
     Before you get started, you need:
 
-      - An instance of [IBM Cloud™ Key Protect](/docs/key-protect?topic=key-protect-getting-started-tutorial)
-      - [Grant service authorization](/docs/cloud-object-storage?topic=cloud-object-storage-kp#kp-sa) to {{site.data.keyword.cos_short}} in IBM Key Protect.
+    - An instance of [IBM Cloud™ Key Protect](/docs/key-protect?topic=key-protect-getting-started-tutorial)
+    - [Grant service authorization](/docs/cloud-object-storage?topic=cloud-object-storage-kp#kp-sa) to {{site.data.keyword.cos_short}} in IBM Key Protect.
 
      1. Toggle **Key management disabled** to enable encryption and **click** on **Create new instance**.
      1. Choose a region that corresponds with the bucket, give it a memorable name, and click **Create and continue**.
