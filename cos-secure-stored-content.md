@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023, 2024
-lastupdated: "2024-06-06"
+lastupdated: "2024-06-07"
 
 keywords: object storage, tutorial, secure stored content, store, content, secure, secure content store
 
@@ -28,12 +28,6 @@ Are you looking to store content securely (locally or globally) at an affordable
 - Leverage your own encryption keys (BYOK) with Key Protect.
 - Monitor and retain your account & data activity with Activity Tracker and IBM Monitoring.
 - APIs & SDKs, Static Web Hosting, High Speed Transfer, Tagging, Replication.
-
-## *Promotion for new customers!*
-{: #promotion}
-
-IBM Cloud is offering a $500 promotional credit to quickly get started with our Secure Content Store with {{site.data.keyword.cos_short}}. The credit has a duration of 90 days against your metered consumption of {{site.data.keyword.cos_short}}. See instructions below for how to apply your promo code. To qualify for this offer you must be a new paid user of {{site.data.keyword.cos_short}}. There is a limit of one promotion code per customer account. *The USD 500 credit is for use with this offer only and cannot to be applied to other offers. Offer is subject to availability.*
-{: important}
 
 ## Overview
 {: #overview-secure-stored-content}
@@ -62,20 +56,6 @@ Throughout the tutorial, you are provided with step-by-step instructions, along 
 For this tutorial, you need:
 - An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com){: external}
 - An [instance of IBM Cloud Object Storage](/objectstorage/create) (must be a paid service plan instance)
-
-Apply promotional code that is included below.
-
-IBM Cloud is offering a $500 promotional credit to quickly get started with our Secure Content Store with {{site.data.keyword.cos_full}}. The credit has a duration of 90 days against your metered consumption of {{site.data.keyword.cos_short}}. To qualify for this offer you must be a new paid user of Cloud Object Storage.
-{: remember}
-
-1. Create or log into an IBM Cloud Paygo, Subscription account.
-1. Within IBM Cloud console click **Manage** then **Billing & Usage** from the drop-down list.
-1. Select **Promotions and Credits** from the navigation bar on the left.
-1. Click **Apply a promo code**.
-1. Enter **Promo Code SECURECS**, click **verify** and then **apply**.
-
-Once the credit has been successfully applied, you can review your credit balance at any time by following steps 2-3.
-{: note}
 
 ## Create a new {{site.data.keyword.cos_short}} bucket
 {: #create-cos-bucket}
