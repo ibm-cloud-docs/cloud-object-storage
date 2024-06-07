@@ -111,8 +111,8 @@ Once the credit has been successfully applied, you can review your credit balanc
 
     Before you get started, you need:
 
-      - An instance of [Activity Tracker](/docs/activity-tracker?topic=activity-tracker-getting-started)
-      - A user ID with [administrator platform permissions](/docs/account?topic=account-userroles) and the service access [writer role](/docs/account?topic=account-userroles#service_access_roles).
+    - An instance of [Activity Tracker](/docs/activity-tracker?topic=activity-tracker-getting-started)
+    - A user ID with [administrator platform permissions](/docs/account?topic=account-userroles) and the service access [writer role](/docs/account?topic=account-userroles#service_access_roles).
 
      1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Activity tracking enabled**. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (for example, `us-east`) you could name the instance something like `US East AT` so that you can easily find it later.
      1. Click to enable **Track data events** and select both **read & write** from the drop-down list.
@@ -121,8 +121,8 @@ Once the credit has been successfully applied, you can review your credit balanc
 
     Before you start, you need:
 
-      - An instance of [IBM Cloud™ Monitoring](/docs/monitoring?topic=monitoring-getting-started)
-      - A user ID with [administrator platform permissions](/docs/account?topic=account-userroles) and the service access [writer role](/docs/account?topic=account-userroles#service_access_roles).
+    - An instance of [IBM Cloud™ Monitoring](/docs/monitoring?topic=monitoring-getting-started)
+    - A user ID with [administrator platform permissions](/docs/account?topic=account-userroles) and the service access [writer role](/docs/account?topic=account-userroles#service_access_roles).
 
      1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Monitoring enabled**. Select an appropriate plan, and give the new instance a memorable name. For example, if you are creating the instance in the same region as the bucket (for example, `us-east`) you could name the instance `US East MM` so that you can easily find it later.
      1. Enable monitoring for both **usage and request metrics**.
