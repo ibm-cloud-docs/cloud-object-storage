@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-06-04"
+lastupdated: "2024-05-31"
 
-keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning
+keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning, metrics router, activity tracker routing, routing, monitoring
 
 subcollection: cloud-object-storage
 
@@ -20,12 +20,19 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
-## 04 June 2024
-{: #cloud-object-storage-june0424}
+## 01 July 2024
+{: #cloud-object-storage-jun0624}
 {: release-note}
 
-Aspera available in the Chennai Single Data Center
-:   It is now possible to use [Aspera high-speed transfer](/docs/cloud-object-storage?topic=cloud-object-storage-aspera).
+Free tier update
+:   IBM Cloud Object Storage currently offers a free trial to new clients using the Lite Plan. Effective July 1st, 2024, IBM Cloud will replace the Lite Plan with a new Free Tier available within the Standard (paid) plan.  See [Cloud Object Storage Lite Plan will be replaced by Free Tier announcement](https://cloud.ibm.com/status/announcement?query=Cloud+Object+Storage+Lite+Plan+will+be+replaced+by+Free+Tier).
+
+## 06 June 2024
+{: #cloud-object-storage-jun0624}
+{: release-note}
+
+New feature!
+:   Metrics Router and Activity Tracker Routing support for {{site.data.keyword.cos_full}} [Resource Configuration API](/apidocs/cos/cos-configuration) if you have approval from IBM Cloud support and Offering Management.
 
 ## 19 April 2024
 {: #cloud-object-storage-apr1924}
