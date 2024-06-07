@@ -107,7 +107,7 @@ Once the credit has been successfully applied, you can review your credit balanc
      1. Choose a region that corresponds with the bucket, give it a memorable name, and click **Create and continue**.
      1. Give the `root key` a name and click **Create and continue**.
 
-    Activity Tracking Events
+    **Activity Tracking Events**
 
     Before you get started, you need:
 
@@ -117,7 +117,7 @@ Once the credit has been successfully applied, you can review your credit balanc
      1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Activity tracking enabled**. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (for example, `us-east`) you could name the instance something like `US East AT` so that you can easily find it later.
      1. Click to enable **Track data events** and select both **read & write** from the drop-down list.
 
-    Metrics Monitoring
+    **Metrics Monitoring**
 
     Before you start, you need:
 
