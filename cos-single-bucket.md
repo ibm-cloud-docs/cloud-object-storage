@@ -4,7 +4,7 @@ copyright:
   years: 2019, 2024
 lastupdated: "2024-06-06"
 
-keywords: object storage, tutorial, IAM,
+keywords: object storage, tutorial, IAM, 
 
 subcollection: cloud-object-storage
 
@@ -49,7 +49,7 @@ For this tutorial, you need:
 1. In that new access group, create an instance-level access policy for instance `COS-BUCKET-LIMIT-EX`, and assign the platform role Viewer and the custom role you just created, `COS ListBucketsInAccount`.
 1. In the same access group, create a bucket-level access policy for the bucket named `group1-users-can-access` and assign the COS service roles, `Content Reader` and `Object Writer`.
 
-   What levels of access you want here are going to determine the roles you specify. This example is for a minimal object list, and upload and download in one bucket. For more information see: [Assigning access to an individual bucket](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions)
+What levels of access you want here are going to determine the roles you specify. This example is for a minimal object list, and upload and download in one bucket. For more information see: [Assigning access to an individual bucket](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions)
 {: note}
 
 1. Invite a user to the account.
