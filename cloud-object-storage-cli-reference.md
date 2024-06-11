@@ -3,7 +3,7 @@
 copyright:
 
   years: 2017, 2024
-lastupdated: "2024-04-19"
+lastupdated: "2024-06-11"
 
 
 keywords: cli, command line reference, object storage
@@ -36,7 +36,7 @@ The {{site.data.keyword.cos_full}} plug-in extends the {{site.data.keyword.cloud
 ## Installation and configuration
 {: #ic-installation}
 
-The plug-in is compatible with linux64, ppc64le, Windows&reg;, and macOS&reg; platforms that run on 64-bit processors.
+The plugin is compatible with Linux (x86_64, arm64, ppc64le, s390x), Windows&reg; (x64), and macOS&reg; (amd64, arm64) platforms that run on 64-bit processors.
 
 Install the plug-in by using the `plugin install` command.
 
