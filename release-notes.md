@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2024
 
-lastupdated: "2024-05-21"
+lastupdated: "2024-06-11"
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning, metrics router, activity tracker routing, routing, monitoring
 
@@ -21,12 +21,12 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
-## 06 June 2024
+## 15 June 2024
 {: #cloud-object-storage-jun0624}
 {: release-note}
 
 New feature!
-:   Metrics Router and Activity Tracker Routing support for {{site.data.keyword.cos_full}} [Resource Configuration API](/apidocs/cos/cos-configuration) if you have approval from IBM Cloud support and Offering Management.
+:   You can now do full integration with [{{site.data.keyword.cloud_notm}} Metrics Routing](/docs-draft/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration) and [{{site.data.keyword.cloud_notm}} Activity Tracker Event Routing](/docs-draft/cloud-object-storage?topic=cloud-object-storage-at) for {{site.data.keyword.cos_full}} buckets.
 
 ## 19 April 2024
 {: #cloud-object-storage-apr1924}
