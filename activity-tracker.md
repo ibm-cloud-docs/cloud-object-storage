@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2024
-lastupdated: "2024-05-28"
+lastupdated: "2024-06-12"
 
 keywords: events, activity, logging, api, buckets, tracking, legacy, python, java, node, go, logs
 
@@ -95,11 +95,11 @@ Select the UI, API or Terraform tab at the top of this topic to display the exam
 4.	Scroll down to the advanced configuration section and toggle on the events you want to track for this bucket.
 5.	After a few minutes, any activity will be visible in the Activity Tracker web UI.
 
-### JAVA, Node, Python and GO SDK examples for how to enable tracking of events in your bucket
+### Examples
 {: #at-api-example-recommended}
 {: api}
 
-JAVA SDK example
+JAVA SDK
 
    ```sh
    import com.ibm.cloud.objectstorage.config.resource_configuration.v1.ResourceConfiguration;
@@ -139,7 +139,7 @@ JAVA SDK example
    ```
    {: codeblock}
 
-NodeJS SDK example
+NodeJS SDK
 
    ```sh
     const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1');
@@ -177,7 +177,7 @@ NodeJS SDK example
    ```
     {: codeblock}
 
-Python SDK example
+Python SDK
 
    ```sh
     from ibm_cos_sdk_config.resource_configuration_v1 import ResourceConfigurationV1
@@ -231,7 +231,7 @@ GO SDK example
    ```
     {: codeblock}
 
-### Terraform example for how to create a {{site.data.keyword.cos_full_notm}} instance and then creating a COS bucket with Activity Tracker
+### Example
 {: #at-terraform-example-recommended}
 {: terraform}
 
@@ -245,7 +245,7 @@ GO SDK example
     }
 
     resource "ibm_cos_bucket" "activity_tracker_bucket" {
-      bucket_name          = “bucket_name”
+      bucket_name          = “Name-of-the-bucket”
       resource_instance_id = ibm_resource_instance.cos_instance.id
       region_location      = “us-south”
       storage_class        = “standard”
@@ -282,12 +282,12 @@ IBM COS will continue to support legacy configurations where a CRN was specified
 
 To upgrade from the legacy configuration using the Resource Configuration API, remove the target Activity Tracker instance CRN. Events will now route to the default Activity Tracker Event Router receiving location as described in [COS Service Integration](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability). Provision an instance of Activity Tracker hosted event search at this location or define a routing rule prior to upgrading to ensure there’s no interruption in event logging.
 
-### Example patch to transition from the Legacy to Recommend event tracking configuration on your COS bucket
+### Example patch to transition from the Legacy to Recommended event tracking configuration on your COS bucket
 {: #at-legacy-upgrade-examples}
 
 Select the UI, API, or Terraform tab at the top of this topic to see examples of patchs.
 
-### UI example patch to transition from the Legacy to Recommend event tracking configuration on your COS bucket
+### UI example patch to transition from the Legacy to Recommended event tracking configuration on your COS bucket
 {: #at-ui-example-legacy}
 {: ui}
 
@@ -299,11 +299,11 @@ Select the UI, API, or Terraform tab at the top of this topic to see examples of
 6.	Confirm you would like to upgrade event tracking for this bucket.
 
 
-### API example patch to transition from the Legacy to Recommend event tracking configuration on your COS bucket
+### Examples
 {: #at-api-example-legacy}
 {: api}
 
-JAVA SDK example
+JAVA SDK
 
    ```sh
    import com.ibm.cloud.objectstorage.config.resource_configuration.v1.ResourceConfiguration;
@@ -343,7 +343,7 @@ JAVA SDK example
    ```
    {: codeblock}
 
-NodeJS SDK example
+NodeJS SDK
 
    ```sh
     const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1');
@@ -382,7 +382,7 @@ NodeJS SDK example
    ```
     {: codeblock}
 
-Python SDK example
+Python SDK
 
    ```sh
     from ibm_cos_sdk_config.resource_configuration_v1 import ResourceConfigurationV1
@@ -406,7 +406,7 @@ Python SDK example
    ```
     {: codeblock}
 
-GO SDK example
+GO SDK
 
    ```sh
     import (
@@ -437,7 +437,7 @@ GO SDK example
    ```
     {: codeblock}
 
-### Terraform example patch to transition from the Legacy to Recommend event tracking configuration on your COS bucket
+### Example
 {: #at-terraform-example-legacy}
 {: terraform}
 
