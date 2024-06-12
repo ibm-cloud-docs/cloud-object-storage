@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-06-10"
+lastupdated: "2024-06-12"
 
 keywords: object storage, go, sdk
 
@@ -121,7 +121,7 @@ create a client using trusted profile credentials.
 
 To connect to {{site.data.keyword.cos_full_notm}}, a client is created and can also be configured by providing trusted profile credential information (Trusted Profile Id and CR Token file path). These values can also be automatically sourced from environment variables.
 
-To create a Trusted Profile, establishing trust with compute resources based on specific attributes, and to define a policy to assign access to resources, see [Managing access for apps in compute resources](/account?topic=account-trustedprofile-compute-tutorial).
+To create a Trusted Profile, establishing trust with compute resources based on specific attributes, and to define a policy to assign access to resources, see [Managing access for apps in compute resources](/docs/account?topic=account-trustedprofile-compute-tutorial).
 
 To learn more about establishing trust with a Kubernetes cluster, see [Using Trusted Profiles in your Kubernetes and OpenShift Clusters](https://www.ibm.com/blog/using-trusted-profiles-in-your-kubernetes-and-openshift-clusters/)
 
