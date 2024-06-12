@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020, 2024
-lastupdated: "2024-05-28"
+lastupdated: "2024-06-12"
 
 keywords: Object Storage, SysDig, monitoring, integration, metrics, legacy, recommended, routing
 
@@ -76,11 +76,11 @@ Select the UI, API or Terraform tab at the top of this topic to display the exam
 4.	Scroll down to the advanced configuration section and toggle on the metrics you want to monitor for this bucket.
 5.	After a few minutes, any activity will be visible in the IBM Cloud Monitoring web UI.
 
-### JAVA, Node, Python and GO SDK examples for how to configure Metrics Monitoring on your bucket
+### Examples
 {: #mm-api-example-recommended}
 {: api}
 
-JAVA SDK example
+JAVA SDK
 
    ```sh
    import com.ibm.cloud.objectstorage.config.resource_configuration.v1.ResourceConfiguration;
@@ -118,7 +118,7 @@ JAVA SDK example
    ```
    {: codeblock}
 
-NodeJS SDK example
+NodeJS SDK
 
    ```sh
    const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1');
@@ -155,7 +155,7 @@ NodeJS SDK example
    ```
    {: codeblock}
 
-Python SDK example
+Python SDK
 
    ```sh
    from ibm_cos_sdk_config.resource_configuration_v1 import ResourceConfigurationV1
@@ -176,7 +176,7 @@ Python SDK example
    ```
    {: codeblock}
 
-GO SDK example
+GO SDK
 
    ```sh
    import (
@@ -206,7 +206,7 @@ GO SDK example
    ```
    {: codeblock}
 
-### Terraform example for how to create a {{site.data.keyword.cos_full_notm}} instance and then creating a {{site.data.keyword.cos_full}} bucket with Metrics Monitoring
+### Example
 {: #mm-terraform-example-recommended}
 {: terraform}
 
@@ -267,11 +267,11 @@ Example patch to transition from the Legacy to Recommend metrics monitoring conf
 5.	Click on the top right corner of the panel and select upgrade.
 6.	Confirm you would like to upgrade metrics monitoring for this bucket.
 
-### JAVA, Node, Python and GO SDK examples for how to configure Metrics Monitoring on your bucket
+### Examples
 {: #mm-api-example-legacy}
 {: api}
 
-JAVA SDK example
+JAVA SDK
 
    ```sh
    import com.ibm.cloud.objectstorage.config.resource_configuration.v1.ResourceConfiguration;
@@ -310,7 +310,7 @@ JAVA SDK example
    ```
    {: codeblock}
 
-NodeJS SDK example
+NodeJS SDK
 
    ```sh
    const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1');
@@ -348,7 +348,7 @@ NodeJS SDK example
    ```
    {: codeblock}
 
-Python SDK example
+Python SDK
 
    ```sh
    from ibm_cos_sdk_config.resource_configuration_v1 import ResourceConfigurationV1
@@ -371,7 +371,7 @@ Python SDK example
    ```
    {: codeblock}
 
-GO SDK example
+GO SDK
 
    ```sh
    import (
@@ -402,7 +402,7 @@ GO SDK example
    ```
    {: codeblock}
 
-### Terraform example for how to create a {{site.data.keyword.cos_full_notm}} instance and then creating a {{site.data.keyword.cos_full}} bucket with Metrics Monitoring
+### Example
 {: #mm-terraform-example-legacy}
 {: terraform}
 
