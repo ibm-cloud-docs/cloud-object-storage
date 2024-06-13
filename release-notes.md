@@ -29,6 +29,13 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 New feature!
 :   You can now do full integration with [{{site.data.keyword.cloud_notm}} Metrics Routing](/docs-draft/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration) and [{{site.data.keyword.cloud_notm}} Activity Tracker Event Routing](/docs-draft/cloud-object-storage?topic=cloud-object-storage-at) for {{site.data.keyword.cos_full}} buckets.
 
+## 04 June 2024
+{: #cloud-object-storage-june0424}
+{: release-note}
+
+Aspera available in the Chennai Single Data Center
+:   It is now possible to use [Aspera high-speed transfer](/docs/cloud-object-storage?topic=cloud-object-storage-aspera).
+
 ## 19 April 2024
 {: #cloud-object-storage-apr1924}
 {: release-note}
