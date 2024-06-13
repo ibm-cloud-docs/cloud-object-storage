@@ -2,13 +2,11 @@
 
 copyright:
   years: 2017, 2024
-
-lastupdated: "2024-03-25"
+lastupdated: "2024-05-30"
 
 keywords: storage classes, tiers, cost, buckets, location constraint, provisioning code, locationconstraint
 
 subcollection: cloud-object-storage
-
 
 ---
 
@@ -38,7 +36,7 @@ You can choose from four storage classes:
 
 For more information, see [the pricing table at ibm.com](/objectstorage/create#pricing){: external}.
 
-The **Active** storage class is only used with [One Rate plans](/docs/cloud-object-storage?topic=cloud-object-storage-onerate), and can not be used in Standard or Lite plans.
+The **Active** storage class is only used with [One Rate plans](/docs/cloud-object-storage?topic=cloud-object-storage-onerate), and cannot be used in a Standard plan instance.
 {: important}
 
 For more information about how to create buckets with different storage classes, see the [API reference](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
@@ -163,7 +161,7 @@ func main() {
 {: go}
 
 
-```
+```sh
 curl -X "PUT" "https://(endpoint)/(bucket-name)"
  -H "Content-Type: text/plain; charset=utf-8"
  -H "Authorization: Bearer (token)"
@@ -172,7 +170,7 @@ curl -X "PUT" "https://(endpoint)/(bucket-name)"
        <LocationConstraint>(provisioning-code)</LocationConstraint>
      </CreateBucketConfiguration>"
 ```
-{:codeblock}
+{: codeblock}
 {: curl}
 
 It isn't possible to change the storage class of a bucket once the bucket is created. If objects need to be reclassified, it's necessary to move the data to another bucket with the wanted storage class.

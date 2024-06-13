@@ -2,7 +2,8 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-05-10"
+lastupdated: "2024-05-30"
+
 
 keywords: faq, frequently asked questions, object storage, Lite Plan, Standard Plan
 
@@ -48,7 +49,29 @@ ibmcloud resource search "service_name:cloud-object-storage AND 2fdf0c08-2d32-4f
 
 * Using the CLI
 
-   1. Use the plan ID for a standard Object Storage instance: `744bfc56-d12c-4866-88d5-dac9139e0e5d`
+   1. Use the plan ID for a standard Object Storage instance: 
+
+      744bfc56-d12c-4866-88d5-dac9139e0e5d
+      {: codeblock}
+      
+      <!-- codeblock used above because Dev wants the user to copy the ID via a click. -->
+      
+   1. Using the name of the instance that you are trying to upgrade (for example, to upgrade the instance “"My Object Storage"), issue the command:
+
+      ```sh
+      ic resource service-instance-update "My Object Storage" --service-plan-id 744bfc56-d12c-4866-88d5-dac9139e0e5d
+      ```
+<!--* Upgrading a Lite Plan instance that is Locked to a Standard Plan via Console
+Pending steps to be provided by Yash 05-10-2024
+-->
+
+   1. Use the plan ID for a standard Object Storage instance: 
+
+      744bfc56-d12c-4866-88d5-dac9139e0e5d
+      {: codeblock}
+
+      <!-- codeblock used above because Dev wants the user to copy the ID via a click. -->
+
    1. Using the name of the instance that you are trying to upgrade (for example, to upgrade the instance “"My Object Storage"), issue the command:
 
       ```sh
@@ -59,8 +82,7 @@ ibmcloud resource search "service_name:cloud-object-storage AND 2fdf0c08-2d32-4f
 Pending steps to be provided by Yash 05-10-2024
 -->
 
-<!--## Can I create more than one Object Storage service with a Lite plan?
-Removed as per github issue #1515 5/10/2024 PW
+## Can I create more than one Object Storage service with a Lite plan?
 {: #faq-lite-storage}
 {: faq}
 
@@ -94,4 +116,3 @@ Storage cost for {{site.data.keyword.cos_short}} is determined by the total volu
 {: faq}
 
 You can choose the correct storage class based on your requirement. For details, see [billing-storage-classes](/docs/cloud-object-storage?topic=cloud-object-storage-billing#billing-storage-classes).
-
