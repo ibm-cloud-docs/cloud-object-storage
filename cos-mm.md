@@ -2,13 +2,12 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-04-17"
+lastupdated: "2024-05-21"
 
 keywords: metrics, monitoring, object storage, tutorial
 
 subcollection: cloud-object-storage
 
-content-type: tutorial
 account-plan: lite
 completion-time: 30m
 

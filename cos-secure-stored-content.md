@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023, 2024
-lastupdated: "2024-05-23"
+lastupdated: "2024-06-07"
 
 keywords: object storage, tutorial, secure stored content, store, content, secure, secure content store
 
@@ -64,52 +64,48 @@ For this tutorial, you need:
 {: #navigate-cos-instance}
 {: step}
 
-1. Go to your [instance of IBM Cloud Object Storage](/objectstorage/create).
+- Go to your [instance of IBM Cloud Object Storage](/objectstorage/create).
 
 ## Click Create bucket
 {: #create-cos-bucket-step}
 {: step}
 
 1. Select the **Customize your bucket** tile, and click the right arrow.
-    1. Name the new bucket.  It must start and end in alphanumeric characters (from 3 to 63) that is limited to using lowercase, numbers, and nonconsecutive dots, and hyphens.
-    1. Choose a region and [storage class](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes), based on your activity (for example, chose “Standard” storage class for hot data, “Vault” or “Cold Vault” for cold data, or “Smart Tier” for blended or variable data activity.)
+    1. Name the new bucket.  It must start and end in alphanumeric characters (from 3 to 63) that is limited to using lowercase, numbers and nonconsecutive dots, and hyphens.
+    2. Choose your desired region and [storage class](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes), based on your activity (for example, chose “Standard” storage class for hot data, “Vault” or “Cold Vault” for cold data, or “Smart Tier” for blended or variable data activity.)
 
-1. If required, add the [Key Protect](/docs/cloud-object-storage?topic=cloud-object-storage-tutorial-kp-encrypt-bucket) service during the bucket creation by scrolling down to **Service integrations (optional)**.
+2. Add the following services during the bucket creation by scrolling down to **Service integrations (optional)**.
 
-   Before you get started, you need:
+    [Key Protect](/docs/cloud-object-storage?topic=cloud-object-storage-tutorial-kp-encrypt-bucket)
 
-      - An instance of [IBM Cloud™ Key Protect](/docs/key-protect?topic=key-protect-getting-started-tutorial)
-      - [Grant service authorization](/docs/cloud-object-storage?topic=cloud-object-storage-kp#kp-sa) to {{site.data.keyword.cos_short}} in IBM Key Protect.
+    Before you get started, you need:
 
-   Follow these steps:
+    - An instance of [IBM Cloud™ Key Protect](/docs/key-protect?topic=key-protect-getting-started-tutorial)
+    - [Grant service authorization](/docs/cloud-object-storage?topic=cloud-object-storage-kp#kp-sa) to {{site.data.keyword.cos_short}} in IBM Key Protect.
 
-   1. Toggle **Key management disabled** to enable encryption and **click** on **Create new instance**.
-   1. Choose a region that corresponds with the bucket, give it a memorable name, and click **Create and continue**.
-   1. Give the `root key` a name and click **Create and continue**.
+     1. Toggle **Key management disabled** to enable encryption and **click** on **Create new instance**.
+     1. Choose a region that corresponds with the bucket, give it a memorable name, and click **Create and continue**.
+     1. Give the `root key` a name and click **Create and continue**.
 
-1. If required, add the [Activity Tracker](/docs/cloud-object-storage?topic=cloud-object-storage-tracking-cos-events) service during the bucket creation by scrolling down to **Service integrations (optional)**.
+    **Activity Tracker**
 
-   Before you get started, you need:
+    Before you get started, you need:
 
-     - An instance of [Activity Tracker](/docs/activity-tracker?topic=activity-tracker-getting-started)
-     - A user ID with [administrator platform permissions](/docs/account?topic=account-userroles) and the service access [writer role](/docs/account?topic=account-userroles#service_access_roles).
+    - An instance of [Activity Tracker](/docs/activity-tracker?topic=activity-tracker-getting-started)
+    - A user ID with [administrator platform permissions](/docs/account?topic=account-userroles) and the service access [writer role](/docs/account?topic=account-userroles#service_access_roles).
 
-   Follow these steps:
+     1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Activity tracking enabled**. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (for example, `us-east`) you could name the instance something like `US East AT` so that you can easily find it later.
+     1. Click to enable **Track data events** and select both **read & write** from the drop-down list.
 
-   1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Activity tracking enabled**. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (for example, `us-east`) you could name the instance something like `US East AT` so that you can easily find it later.
-   1. Click to enable **Track data events** and select both **read & write** from the drop-down list.
+    **Monitoring**
 
-1. If required, add the [Monitoring](/docs/cloud-object-storage?topic=cloud-object-storage-monitoring-cos) service during the bucket creation by scrolling down to **Service integrations (optional)**.
+    Before you start, you need:
 
-   Before you start, you need:
+    - An instance of [IBM Cloud™ Monitoring](/docs/monitoring?topic=monitoring-getting-started)
+    - A user ID with [administrator platform permissions](/docs/account?topic=account-userroles) and the service access [writer role](/docs/account?topic=account-userroles#service_access_roles).
 
-     - An instance of [IBM Cloud™ Monitoring](/docs/monitoring?topic=monitoring-getting-started)
-     - A user ID with [administrator platform permissions](/docs/account?topic=account-userroles) and the service access [writer role](/docs/account?topic=account-userroles#service_access_roles).
-
-   Follow these steps:
-
-   1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Monitoring enabled**. Select an appropriate plan, and give the new instance a memorable name. For example, if you are creating the instance in the same region as the bucket (for example, `us-east`) you could name the instance `US East MM` so that you can easily find it later.
-   1. Enable monitoring for both **usage and request metrics**.
+     1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Monitoring enabled**. Select an appropriate plan, and give the new instance a memorable name. For example, if you are creating the instance in the same region as the bucket (for example, `us-east`) you could name the instance `US East MM` so that you can easily find it later.
+     1. Enable monitoring for both **usage and request metrics**.
 
 ## Verify the information is correct
 {: #verify-cos-bucket}
@@ -137,5 +133,4 @@ Add capabilities to protect objects from ransom-ware and accidental deletion suc
 ## Library of {{site.data.keyword.cos_short}} tutorials
 {: #cos-tutorials}
 
-Check out the IBM Cloud Tutorials Library for more tutorials when deploying solutions with [Cloud Object Storage](https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage).
-
+Check out the IBM Cloud Tutorials library for more tutorials when deploying solutions with [Cloud Object Storage](https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage).
