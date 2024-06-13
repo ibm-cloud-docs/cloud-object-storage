@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2024
 
-lastupdated: "2024-06-04"
+lastupdated: "2024-06-13"
 
 keywords: aspera, key protect, archive, worm
 
@@ -72,9 +72,9 @@ It is possible to create a bucket and associate any available Key Protect or Hyp
 | Region  | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Object Lock  | Immutable Object Storage | Activity Tracker Routing | Code Engine | Smart Tier | Metrics Routing | Replication | One Rate   |
 |---------|--------|-------------|--------------------------------|--------------|--------------|--------------------------|--------------------------|-------------|------------|-----------------|-------------| -----------|
 | `ams03` | No     | No          | No                             | No           | No           | No                       | `eu-de`                  | No          | Yes        | `eu-de`         | Yes         | Yes        |
-| `che01` | Yes    | No          | No                             | Yes          | Yes          | No                       | `ap-tok`                 | No          | Yes        | `ap-tok`        | Yes         | Yes        |
+| `che01` | Yes    | No          | No                             | Yes          | Yes          | No                       | `che01`                  | No          | Yes        | `jp-tok`        | Yes         | Yes        |
 | `mil01` | No     | No          | No                             | No           | No           | No                       | `eu-de`                  | No          | Yes        | `eu-de`         | Yes         | Yes        |
-| `mon01` | No     | No          | No                             | No           | No           | No                       | `us-south`               | No          | Yes        | `us-south`      | Yes         | Yes        |
+| `mon01` | No     | No          | No                             | No           | No           | No                       | `ca-tor`                 | No          | Yes        | `ca-tor`        | Yes         | Yes        |
 | `par01` | No     | No          | No                             | No           | No           | No                       | `eu-de`                  | No          | Yes        | `eu-de`         | Yes         | Yes        |
 | `sjc01` | No     | No          | No                             | No           | No           | No                       | `us-south`               | No          | Yes        | `us-south`      | Yes         | Yes        |
 | `sng01` | No     | No          | No                             | No           | No           | No                       | `ap-tok`                 | No          | Yes        | `ap-tok`        | Yes         | Yes        |
