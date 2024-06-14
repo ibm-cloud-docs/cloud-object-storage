@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020, 2024
-lastupdated: "2024-06-12"
+lastupdated: "2024-06-14"
 
 keywords: Object Storage, SysDig, monitoring, integration, metrics, legacy, recommended, routing
 
@@ -18,7 +18,7 @@ subcollection: cloud-object-storage
 # Configure Metrics for {{site.data.keyword.cos_full}}
 {: #mm-cos-integration}
 
-Use the [IBM Cloud® Monitoring](/docs-draft/monitoring?topic=monitoring-getting-started) service to monitor your {{site.data.keyword.cos_full}} data. IBM Cloud Monitoring is a cloud-native management system. The metrics produced by your COS buckets can be displayed in dashboards built in IBM Monitoring. Documentation from [Monitoring](/docs/monitoring?topic=monitoring-dashboards) can guide you in how to use the comprehensive dashboards. Additionally, [specify the conditions when a metrics alert is trigged](/docs/monitoring?topic=monitoring-alert-metric#alert_metrics_trigger) to set notifications when custom thresholds are exceeded.
+Use the [IBM Cloud® Monitoring](/docs/monitoring?topic=monitoring-getting-started) service to monitor your {{site.data.keyword.cos_full}} data. IBM Cloud Monitoring is a cloud-native management system. The metrics produced by your COS buckets can be displayed in dashboards built in IBM Monitoring. Documentation from [Monitoring](/docs/monitoring?topic=monitoring-dashboards) can guide you in how to use the comprehensive dashboards. Additionally, [specify the conditions when a metrics alert is trigged](/docs/monitoring?topic=monitoring-alert-metric#alert_metrics_trigger) to set notifications when custom thresholds are exceeded.
 
 When metrics monitoring is enabled on your bucket, the default target service that captures these metrics is [IBM Cloud Monitoring](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration#mm-configure). Ensure that you have a platform instance of IBM Cloud Monitoring at the receiving location corresponding to your bucket location as specified in COS Service Integration.
 
