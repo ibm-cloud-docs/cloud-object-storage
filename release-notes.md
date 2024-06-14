@@ -27,7 +27,7 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 {: release-note}
 
 New feature!
-:   You can now do full integration with [{{site.data.keyword.cloud_notm}} Metrics Routing](/docs-draft/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration) and [{{site.data.keyword.cloud_notm}} Activity Tracker Event Routing](/docs-draft/cloud-object-storage?topic=cloud-object-storage-at) for {{site.data.keyword.cos_full}} buckets.
+:   You can now do full integration with [{{site.data.keyword.cloud_notm}} Metrics Routing](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration) and [{{site.data.keyword.cloud_notm}} Activity Tracker Event Routing](/docs/cloud-object-storage?topic=cloud-object-storage-at) for {{site.data.keyword.cos_full}} buckets.
 
 ## 04 June 2024
 {: #cloud-object-storage-june0424}
