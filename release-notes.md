@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2024
 
-lastupdated: "2024-06-13"
+lastupdated: "2024-06-14"
 
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning, metrics router, activity tracker routing, routing, monitoring
@@ -27,7 +27,7 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 {: release-note}
 
 New feature!
-:   You can now do full integration with [{{site.data.keyword.cloud_notm}} Metrics Routing](/docs-draft/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration) and [{{site.data.keyword.cloud_notm}} Activity Tracker Event Routing](/docs-draft/cloud-object-storage?topic=cloud-object-storage-at) for {{site.data.keyword.cos_full}} buckets.
+:   You can now do full integration with [{{site.data.keyword.cloud_notm}} Metrics Routing](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration) and [{{site.data.keyword.cloud_notm}} Activity Tracker Event Routing](/docs/cloud-object-storage?topic=cloud-object-storage-at) for {{site.data.keyword.cos_full}} buckets.
 
 ## 04 June 2024
 {: #cloud-object-storage-june0424}
