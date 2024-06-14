@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-22"
+lastupdated: "2024-06-11"
 
 keywords: activity tracker, LogDNA, event, object storage, COS API calls, monitor COS events
 
@@ -29,14 +29,12 @@ By default, COS events that report on global actions such as creation of a bucke
 In {{site.data.keyword.cos_full_notm}}, you can also monitor management events and COS data events.
 
 * Collection of these events in your account is optional.
-* You must configure each bucket to enable management events, or management and data events. Notice that you cannot enable data events only for a bucket.
-* To monitor management events, you must configure a bucket and specify the Activity Tracker instance where those events will be collected and forwarded.
-* To monitor data events, you must select the option **Track data events**.
+* You must configure each bucket to enable management events, or data events, or both.
 * Each action that a user performs on a COS resource has a unique ID that is included in the event in the `responseData.requestId` field.
 
 You can use this service to investigate abnormal activity and critical actions, and to comply with regulatory audit requirements. In addition, you can be alerted about actions as they happen. The events that are collected comply with the Cloud Auditing Data Federation (CADF) standard.
 
-For guidance on how to use {{site.data.keyword.at_full}} with {{site.data.keyword.cos_short}} see [Tracking events using IBM Cloud Activity Tracker](/docs/cloud-object-storage?topic=cloud-object-storage-at) .  Below we list all of the events that are available.
+For guidance on how to use {{site.data.keyword.at_full}} with {{site.data.keyword.cos_short}} see [Tracking events on your {{site.data.keyword.cos_full_notm}} buckets](/docs/cloud-object-storage?topic=cloud-object-storage-at) .  Below we list all of the events that are available.
 
 ## Management events
 {: #at-actions-mngt}

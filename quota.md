@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021
-lastupdated: "2021-03-16"
+lastupdated: "2021-06-06"
 
 keywords: events, activity, logging, api
 
@@ -16,13 +16,13 @@ subcollection: cloud-object-storage
 # Setting a quota on a bucket
 {: #quota}
 
-A hard quota sets a maximum amount of storage (in bytes) available for a bucket.  Once reached, the limit prevents adding any additional objects to the bucket until existing objects are moved or deleted to free up space, or the quota is raised. 
+A hard quota sets a maximum amount of storage (in bytes) available for a bucket.  Once reached, the limit prevents adding any additional objects to the bucket until existing objects are moved or deleted to free up space, or the quota is raised.
 {: shortdesc}
 
 This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
 {: note}
 
-There are two types of usage quota: a "hard" quota described above, and a "soft" quota that alerts a user that usage has crossed a threshold, but does not prevent any further object writes. To configure a soft quota, make use of [{{site.data.keyword.mon_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration) to set [usage alerts](https://docs.sysdig.com/en/event-alerts.html).
+There are two types of usage quota: a "hard" quota described above, and a "soft" quota that alerts a user that usage has crossed a threshold, but does not prevent any further object writes. To configure a soft quota, make use of [Configure Metrics for {{site.data.keyword.cos_full}}](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration) to set [usage alerts](https://docs.sysdig.com/en/event-alerts.html).
 
 ## Using the console
 {: #quota-console}
@@ -46,7 +46,7 @@ First, make sure that you have a bucket. If not, follow the [getting started tut
 2. Under _Advanced configurations_, look for **Quota enforcement** and toggle the selector to **Enabled**.
 3. Now raise or lower the value and choose the appropriate storage unit. Then, click **Save**.
 
-### Disabling or editing a quota 
+### Disabling or editing a quota
 {: #quota-console-disable}
 
 1. Navigate to the bucket where you want to change the quota, so that you are looking at a list of objects. Select **Configuration** from the navigational menu.

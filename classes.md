@@ -2,8 +2,7 @@
 
 copyright:
   years: 2017, 2024
-
-lastupdated: "2024-05-14"
+lastupdated: "2024-05-30"
 
 keywords: storage classes, tiers, cost, buckets, location constraint, provisioning code, locationconstraint
 
@@ -37,7 +36,7 @@ You can choose from four storage classes:
 
 For more information, see [the pricing table at ibm.com](/objectstorage/create#pricing){: external}.
 
-The **Active** storage class is only used with [One Rate plans](/docs/cloud-object-storage?topic=cloud-object-storage-onerate), and can not be used in Standard or Lite plans.
+The **Active** storage class is only used with [One Rate plans](/docs/cloud-object-storage?topic=cloud-object-storage-onerate), and cannot be used in a Standard plan instance.
 {: important}
 
 For more information about how to create buckets with different storage classes, see the [API reference](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
