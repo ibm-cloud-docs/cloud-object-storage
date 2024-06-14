@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-06-03"
+lastupdated: "2024-05-15"
 
 keywords: administration, billing, platform
 
@@ -91,7 +91,7 @@ There are six classes:
 
 For more information about pricing, see [the pricing table at ibm.com](/objectstorage/create#pricing){: external}.
 
-The **Active** storage class is only used with [One Rate plans](/docs/cloud-object-storage?topic=cloud-object-storage-onerate), and cannot be used in a Standard plan instance.
+The **Active** storage class is only used with [One Rate plans](/docs/cloud-object-storage?topic=cloud-object-storage-onerate), and cannot be used in Standard or Lite plan instances.
 {: important}
 
 For more information about creating buckets with different storage classes, see the [API reference](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).
@@ -129,15 +129,6 @@ Let's see how the costs might compare to the other storage classes.
 {: caption="Table 3. Cost comparison" caption-side="top"}
 
 Note that in situations where data is very cold, it is possible to get a lower rate with a Cold Vault bucket, although unexpected spikes in access could accrue significant costs.  In this scenario, if the data doesn't require on-demand access, it might be better to archive the objects instead.
-
-Free Tier allowances:
-* Up to 5 GB of Smart Tier storage capacity, 2,000 Class A (PUT, COPY, POST, and LIST) requests
-* 20,000 Class B (GET and all others) requests
-* 10 GB of data retrieval
-* 5GB of egress (public outbound bandwidth) each month.
-
-The limitations of the Free Tier allowances apply to the total usage across all Smart Tier buckets in the Standard Plan
-{:restriction: .restriction}
 
 ## Get bucket metadata
 {: #billing-get-bucket-metadata}
