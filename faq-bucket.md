@@ -2,10 +2,10 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-05-08"
+lastupdated: "2024-06-17"
 
 
-keywords: faq, frequently asked questions, object storage, S3, HMAC, bucket management
+keywords: faq, frequently asked questions, object storage, S3, HMAC, bucket management, IPv6. endpoints
 
 subcollection: cloud-object-storage
 
@@ -122,6 +122,12 @@ You can view the bucket location in the IBM Cloud console with these steps:
 1. Select **Configuration** from the navigation menu to view the page with Location and Endpoints data.
 
 Or you can list bucket information with a GET request that includes the “extended” parameter as shown in [Getting an extended listing](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets-extended).
+
+## Do {{site.data.keyword.cos_short}} endpoints support IPv6 connections?
+{: #faq-ipv6-not-supported}
+{: faq}
+
+No.
 
 ## How do I restrict access to a single bucket using IAM?
 {: #troubleshooting-cos-access-iam}
