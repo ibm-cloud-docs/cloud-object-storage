@@ -179,7 +179,6 @@ toc:
           - topicgroup:
               label: Security and compliance
               topics:
-                - manage-scc.md
                 - data-security-encryption.md
                 - compliance.md
                 - eu.md
