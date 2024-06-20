@@ -5,7 +5,8 @@ copyright:
 lastupdated: "2024-05-30"
 
 
-keywords: faq, frequently asked questions, object storage, Lite Plan, Standard Plan
+keywords: faq, frequently asked questions, object storage, Lite Plan, Standard Plan, Free Tier, Smart Tier, storage class, console, cli
+
 
 subcollection: cloud-object-storage
 
@@ -53,9 +54,9 @@ ibmcloud resource search "service_name:cloud-object-storage AND 2fdf0c08-2d32-4f
 
       744bfc56-d12c-4866-88d5-dac9139e0e5d
       {: codeblock}
+
       
-      
-      
+
    1. Using the name of the instance that you are trying to upgrade (for example, to upgrade the instance “"My Object Storage"), issue the command:
 
       ```sh
