@@ -113,7 +113,7 @@ It is not possible to use `NoncurrentVersionTransition` rules to archive _only_ 
 ### Immutable Object Storage (WORM)
 {: #versioning-worm}
 
-The IBM COS implementation of Immutable Object Storage (that is, retention policies) is not permitted in buckets with versioning enabled. Attempts to create a retention policy will fail, as will attempts to enable versioning on a bucket with an retention policy.  <!--IBM COS does not support AWS S3 APIs for object locking, retention, or legal holds. Removed for issue #988 09252023 PWREmoved-->
+The IBM COS implementation of Immutable Object Storage (that is, retention policies) is not permitted in buckets with versioning enabled. Attempts to create a retention policy will fail, as will attempts to enable versioning on a bucket with an retention policy.  
 
 ## Supported S3 APIs
 {: #versioning-apis}
