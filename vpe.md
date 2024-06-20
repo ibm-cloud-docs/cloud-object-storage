@@ -32,7 +32,7 @@ Virtual Private Endpoints (VPEs) are generally available in all regions.
 ### Setting up your VPE
 {: #vpes-setup}
 
-1. Create a {{site.data.keyword.vpc_full}} to host the applications that need to access your {{site.data.keyword.cos_full_notm}} buckets. See [Getting started with VPC](/docs/vpc?topic=vpc-getting-started).
+1. Create an {{site.data.keyword.vpc_full}} to host the applications that need to access your {{site.data.keyword.cos_full_notm}} buckets. See [Getting started with VPC](/docs/vpc?topic=vpc-getting-started).
 
 1. Find the [location and the corresponding direct endpoint](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) where your bucket is located.
 
