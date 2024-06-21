@@ -20,29 +20,29 @@ subcollection: cloud-object-storage
 An expiration rule deletes objects after a defined period (from the object creation date).
 {: shortdesc}
 
-You can set the lifecycle for objects by using the web console, REST API, and third-party tools that are integrated with {{site.data.keyword.cos_full_notm}}. 
+You can set the lifecycle for objects by using the web console, REST API, and third-party tools that are integrated with {{site.data.keyword.cos_full_notm}}.
 
 * An expiration rule can be added to a new or existing bucket.
 * An existing expiration rule can be modified or disabled.
 * A newly added or modified Expiration rule applies to all new and existing objects in the bucket.
-* Adding or modifying lifecycle policies requires the `Writer` role. 
+* Adding or modifying lifecycle policies requires the `Writer` role.
 * Up to 1000 lifecycle rules (archive + expiration) can be defined per bucket.
 * Allow up to 24 hours for any changes in Expiration rules to take effect.
 * The scope of each expiration rule can be limited by defining an optional prefix filter to apply to only a subset of objects with names that match the prefix.
 * An expiration rule without a prefix filter will apply to all objects in the bucket.
-* The expiration period for an object, specified in number(s) of days, is calculated from the time the object was created, and is rounded off to the next day's midnight UTC. For example, if you have an expiration rule for a bucket to expire a set of objects ten days after the creation date, an object that was created on 15 April 2019 05:10 UTC will expire on 26 April 2019 00:00 UTC. 
+* The expiration period for an object, specified in number(s) of days, is calculated from the time the object was created, and is rounded off to the next day's midnight UTC. For example, if you have an expiration rule for a bucket to expire a set of objects ten days after the creation date, an object that was created on 15 April 2019 05:10 UTC will expire on 26 April 2019 00:00 UTC.
 * The expiration rules for each bucket are evaluated once every 24 hours. Any object that qualifies for expiration (based on the objects' expiration date) will be queued for deletion. The deletion of expired objects begins the following day and will typically take less than 24 hours. You will not be billed for any associated storage for objects once they are deleted.
-* In [versioning enabled or suspended buckets](/docs/cloud-object-storage?topic=cloud-object-storage-versioning), a regular <Expiration> rule retains the current version and creates a delete marker rather than permanently deleting data. 
+* In [versioning enabled or suspended buckets](/docs/cloud-object-storage?topic=cloud-object-storage-versioning), a regular <Expiration> rule retains the current version and creates a delete marker rather than permanently deleting data.
 * The expiration time of non-current versions is determined by its successor's last modified time, rounded to the next day at midnight UTC.
 * If versions are manually deleted from an object that has versions expected to be expired the next day, those expirations may not occur.
 
 Policies specifying a date in the past may take up to a few days to complete.
-{: note} 
+{: note}
 
 Without caution, data might be permanently lost with when using [expiration rules on a versioned bucket](/docs/cloud-object-storage?topic=cloud-object-storage-versioning). In cases where **versioning is suspended** and there is a null version present for the expired object, data might be permanently lost. In this case, a `null` delete marker is overwritten, permanently deleting the object.
 {: important}
 
-Objects that are subject to a bucket's Immutable Object Storage retention policy will have any expiration actions deferred until the retention policy is no longer enforced. 
+Objects that are subject to a bucket's Immutable Object Storage retention policy will have any expiration actions deferred until the retention policy is no longer enforced.
 {: important}
 
 ## Attributes of expiration rules
@@ -60,7 +60,7 @@ The expiration block contains the details that govern the automatic deletion of 
 The number of days after which non-current versions of objects are automatically deleted.
 
 ### Prefix
-An optional string that will be matched to the prefix of the object name in the bucket. A rule with a prefix will only apply to the objects that match. You can use multiple rules for different expiration actions for different prefixes within the same bucket. For example, within the same lifecycle configuration, one rule could delete all objects that begin with `logs/` after 30 days, and a second rule could delete objects that begin with `video/` after 365 days.  
+An optional string that will be matched to the prefix of the object name in the bucket. A rule with a prefix will only apply to the objects that match. You can use multiple rules for different expiration actions for different prefixes within the same bucket. For example, within the same lifecycle configuration, one rule could delete all objects that begin with `logs/` after 30 days, and a second rule could delete objects that begin with `video/` after 365 days.
 
 ### Status
 A rule can either be enabled or disabled. A rule is active only when enabled.
@@ -160,7 +160,7 @@ You can programmatically manage expiration rules by using the REST API or the IB
 
 This implementation of the `PUT` operation uses the `lifecycle` query parameter to set lifecycle settings for the bucket. This operation allows for a single lifecycle policy definition for a bucket. The policy is defined as a set of rules consisting of the following parameters: `ID`, `Status`, `Filter`, and `Expiration`.
 {: http}
- 
+
 Cloud IAM users must have the `Writer` role to add a lifecycle policy from a bucket.
 
 Classic Infrastructure Users must have `Owner` permissions on the bucket to add a lifecycle policy from a bucket.
@@ -177,7 +177,7 @@ The body of the request must contain an XML block with the following schema:
 |-------------------------------|----------------------|----------------------------------------|-------------------------------|--------------------------------------------------------------------------------------------|
 | `LifecycleConfiguration`      | Container            | `Rule`                                 | None                          | Limit 1.                                                                                   |
 | `Rule`                        | Container            | `ID`, `Status`, `Filter`, `Expiration` | `LifecycleConfiguration`      | Limit 1000.                                                                                |
-| `ID`                          | String               | None                                   | `Rule`                        | Must consist of (`a-z,`A-Z0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-` |
+| `ID`                          | String               | None                                   | `Rule`                        | Must consist of (`a-z`,`A-Z`,`0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-` |
 | `Filter`                      | String               | `Prefix`                               | `Rule`                        | Must contain a `Prefix` element                                                            |
 | `Prefix`                      | String               | None                                   | `Filter`                      | The rule applies to any objects with keys that match this prefix.                          |
 | `Expiration`                  | `Container`          | `Days` or `Date`                       | `Rule`                        | Limit 1.                                                                                   |
@@ -248,7 +248,7 @@ Content-Length: 305
 **Code sample for use with NodeJS COS SDK**
 {: javascript}
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration.
 {: javascript}
 
 ```js
@@ -291,7 +291,7 @@ s3.putBucketLifecycleConfiguration(params, function(err, data) {
 **Code sample for use with Python COS SDK**
 {: python}
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration.
 {: python}
 
 ```python
@@ -335,7 +335,7 @@ print("Bucket lifecyle: {0}".format(response))
 **Code sample for use with Java COS SDK**
 {: java}
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration.
 {: java}
 
 ```java
@@ -374,27 +374,26 @@ package com.ibm.cloud;
             String service_instance_id = "85SAMPLE-eDOb-4NOT-bUSE-86nnnb31eaxx"
             String endpoint_url = "https://s3.us-south.cloud-object-storage.appdomain.cloud";
             String storageClass = "us-south";
-            String location = "us"; 
- 
+            String location = "us";
+
             _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
-            
+
             // Define a rule for expiring items in a bucket
             int days_to_delete = 10;
             BucketLifecycleConfiguration.Rule rule = new BucketLifecycleConfiguration.Rule()
                     .withId("Delete rule")
                     .withExpirationInDays(days_to_delete)
                     .withStatus(BucketLifecycleConfiguration.ENABLED);
-                    
                     rule.setFilter(new LifecycleFilter());
 
             // Add the rule to a new BucketLifecycleConfiguration.
             BucketLifecycleConfiguration configuration = new BucketLifecycleConfiguration()
                     .withRules(Arrays.asList(rule));
-            
+
             // Use the client to set the LifecycleConfiguration on the bucket.
-            _cosClient.setBucketLifecycleConfiguration(bucketName, configuration);   
+            _cosClient.setBucketLifecycleConfiguration(bucketName, configuration);
         }
-        
+
         /**
          * @param bucketName
          * @param clientNum
@@ -539,7 +538,7 @@ package com.ibm.cloud;
     import com.ibm.cloud.objectstorage.services.s3.model.ObjectListing;
     import com.ibm.cloud.objectstorage.services.s3.model.S3ObjectSummary;
     import com.ibm.cloud.objectstorage.oauth.BasicIBMOAuthCredentials;
-    
+
     public class App
     {
         private static AmazonS3 _cosClient;
@@ -554,18 +553,18 @@ package com.ibm.cloud;
             String api_key = "ZRZDoNoUseOLL7bRO8SAMPLEHPUzUL_-fsampleyYE";
             String service_instance_id = "85SAMPLE-eDOb-4NOT-bUSE-86nnnb31eaxx"
             String endpoint_url = "https://s3.us-south.cloud-object-storage.appdomain.cloud";
-            
+
             String storageClass = "us-south";
-            String location = "us"; 
- 
+            String location = "us";
+
             _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
-            
+
             // Use the client to read the configuration
             BucketLifecycleConfiguration config = _cosClient.getBucketLifecycleConfiguration(bucketName);
-            
+
             System.out.println(config.toString());
         }
-        
+
         /**
          * @param bucketName
          * @param clientNum
@@ -588,7 +587,7 @@ package com.ibm.cloud;
                     .withClientConfiguration(clientConfig).build();
             return cosClient;
         }
-        
+
     }
 ```
 {: codeblock}
@@ -631,7 +630,7 @@ Content-Length: 305
 {: caption="Example 8. Request header samples for creating an object lifecycle configuration." caption-side="bottom"}
 {: http}
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration.
 {: javascript}
 
 ```js
@@ -657,7 +656,7 @@ s3.deleteBucketLifecycleConfiguration(params, function(err, data) {
 {: codeblock}
 {: javascript}
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration.
 
 ```python
 import sys
@@ -685,7 +684,7 @@ print("Bucket lifecyle: {0}".format(response))
 {: codeblock}
 {: python}
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration.
 {: java}
 
 ```java
@@ -708,7 +707,7 @@ package com.ibm.cloud;
     import com.ibm.cloud.objectstorage.services.s3.model.ObjectListing;
     import com.ibm.cloud.objectstorage.services.s3.model.S3ObjectSummary;
     import com.ibm.cloud.objectstorage.oauth.BasicIBMOAuthCredentials;
-    
+
     public class App
     {
         private static AmazonS3 _cosClient;
@@ -723,21 +722,21 @@ package com.ibm.cloud;
             String api_key = "ZRZDoNoUseOLL7bRO8SAMPLEHPUzUL_-fsampleyYE";
             String service_instance_id = "85SAMPLE-eDOb-4NOT-bUSE-86nnnb31eaxx"
             String endpoint_url = "https://s3.us-south.cloud-object-storage.appdomain.cloud";
-            
+
             String storageClass = "us-south";
-            String location = "us"; 
- 
+            String location = "us";
+
             _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
-            
+
             // Delete the configuration.
             _cosClient.deleteBucketLifecycleConfiguration(bucketName);
-            
+
             // Verify that the configuration has been deleted by attempting to retrieve it.
             config = _cosClient.getBucketLifecycleConfiguration(bucketName);
             String s = (config == null) ? "Configuration has been deleted." : "Configuration still exists.";
             System.out.println(s);
         }
-        
+
         /**
          * @param bucketName
          * @param clientNum
@@ -760,7 +759,7 @@ package com.ibm.cloud;
                     .withClientConfiguration(clientConfig).build();
             return cosClient;
         }
-        
+
     }
 
 ```
@@ -772,6 +771,6 @@ package com.ibm.cloud;
 {: #expiry-next-steps}
 
 Expiration is just one of many lifecycle concepts available for {{site.data.keyword.cos_full_notm}}.
-Each of the concepts we've covered in this overview can be explored further at the 
+Each of the concepts we've covered in this overview can be explored further at the
 [{{site.data.keyword.cloud_notm}} Platform](https://cloud.ibm.com/).
 

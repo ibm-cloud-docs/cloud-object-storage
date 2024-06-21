@@ -318,7 +318,7 @@ A `POST` given a path to a bucket and proper parameters deletes a specified set 
 
 The required `Content-MD5` header needs to be the binary representation of a base64 encoded MD5 hash.
 
-When an object that is specified in the request is not found the result returns as deleted. 
+When an object that is specified in the request is not found the result returns as deleted.
 {: note}
 
 Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
@@ -522,7 +522,7 @@ Tags must comply with the following restrictions:
 * Minimum value length - 0 Unicode characters in UTF-8 (Tag Value can be empty)
 * Maximum value length - 256 Unicode characters in UTF-8
 * Maximum value byte size - 512 bytes
-* A Tag key and value may consist of US Alpha Numeric Characters (a-zA-Z0-9), and spaces representable in UTF-8, and the following symbols: `!`, `_`, `.`, `*`, `` ` ``, `(`, `)`, `-`, `:`
+* A Tag key and value may consist of US Alpha Numeric Characters (`a-z`,`A-Z`,`0-9`), and spaces representable in UTF-8, and the following symbols: `!`, `_`, `.`, `*`, `'`, `(`, `)`, `-`, `:`
 * Tag keys and values are case-sensitive
 * `ibm:` cannot be used as a key prefix for tags
 
@@ -832,7 +832,7 @@ Content-Length: 0
 
 When working with larger objects, multipart upload operations are recommended to write objects into {{site.data.keyword.cos_full}}. An upload of a single object can be performed as a set of parts and these parts can be uploaded independently in any order and in parallel. Upon upload completion, {{site.data.keyword.cos_short}} then presents all parts as a single object. This provides many benefits: network interruptions do not cause large uploads to fail, uploads can be paused and restarted over time, and objects can be uploaded as they are being created.
 
-Multipart uploads are only available for objects larger than 5 MB. For objects smaller than 50 GB, a part size of 20 MB to 100 MB is recommended for optimum performance. For larger objects, part size can be increased without significant performance impact. 
+Multipart uploads are only available for objects larger than 5 MB. For objects smaller than 50 GB, a part size of 20 MB to 100 MB is recommended for optimum performance. For larger objects, part size can be increased without significant performance impact.
 
 Due to the additional complexity involved, it is recommended that developers make use of a library that provides multipart upload support.
 
@@ -913,7 +913,7 @@ Content-Length: 276
 
 A `PUT` request that is issued to an object with query parameters `partNumber` and `uploadId` will upload one part of an object. The parts can be uploaded serially or in parallel, but must be numbered in order.
 
-Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means. 
+Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means.
 {: note}
 
 Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)

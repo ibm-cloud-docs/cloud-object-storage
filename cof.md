@@ -125,9 +125,10 @@ The applications VCAP_SERVICES environment variable is automatically updated wit
 {: #cloud-foundry-bindings-cli}
 
 In your code, you must remove the angled brackets or any other excess characters that are provided here as illustration.
-{: note} 
+{: note}
 
 1. Log in to {{site.data.keyword.cloud_notm}} Platform by using the CLI
+
 ```
  ibmcloud login --apikey <your api key>
 ```
@@ -234,7 +235,6 @@ default-token-8hncf                    kubernetes.io/service-account-token   3  
 ```
 
 6. Verify that COS HMAC credentials are available in your cluster Secrets
-```
 
 ```sh
 kubectl get secret <secret binding name> -o json | jq .data.binding | sed -e 's/^"//' -e 's/"$//' | base64 -D | jq .cos_hmac_keys

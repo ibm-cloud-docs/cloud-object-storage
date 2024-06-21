@@ -31,7 +31,7 @@ When authenticating to your instance of {{site.data.keyword.cos_full}} by [using
 |--------------|-----------------------------------------------------------|------------------------------------|
 | {access_key} | Access key that is assigned to your Service Credential    | `cf4965cebe074720a4929759f57e1214` |
 | {date}       | The formatted date of your request (`yyyymmdd`)           | `20180613`                         |
-| {region}     | The location code for your endpoint                       | `us-standard`                      |     
+| {region}     | The location code for your endpoint                       | `us-standard`                      |
 | {signature}  | The hash that is created by using the secret key, location, and date |`ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e`|
 | {timestamp}  | The formatted date and time of your request               | `20180614T001804Z`                 |
 {: caption="Table 1. HMAC signature components"}
@@ -1398,7 +1398,7 @@ The body of the request must contain an XML block with the following schema:
 |------------------------|----------------------|-----------------------|--------------------------|-------------------------------------|
 |`LifecycleConfiguration`| Container            | `Rule`                | None                     | Limit 1                             |
 |`Rule`                  | Container            | `ID`, `Status`, `Filter`, `Transition` | `LifecycleConfiguration` | Limit 1            |
-|`ID`                    | String               | None                  | `Rule`                   | **Must** consist of `(a-z,A- Z0-9)` and the following symbols:`` !`_ .*'()- `` |
+|`ID`                    | String               | None                  | `Rule`                   | **Must** consist of (`a-z`,`A-Z`,`0-9`) and the following symbols:`!` `_` `.` `*` `'` `(` `)` `-` |
 |`Filter`                | String               | `Prefix`              | `Rule`                   | **Must** contain a `Prefix` element.|
 |`Expiration`            | Container            | `Days`, `Date`, `ExpiredObjectDeleteMarker` | `Rule` | Limit 1                         |
 |`Prefix`                | String               | None                  | `Filter`                 | If using a transition (archive) rule, the value **must** be set to `<Prefix/>`. This limitation does not apply to expiration rules.|
@@ -1716,7 +1716,7 @@ The body of the request must contain an XML block with the following schema:
 |--------------------------|-----------|----------------------------------------|--------------------------|-------------|
 | `LifecycleConfiguration` | Container | `Rule`                                 | None                     | Limit 1.    |
 | `Rule`                   | Container | `ID`, `Status`, `Filter`, `Expiration` | `LifecycleConfiguration` | Limit 1000. |
-| `ID`                     | String    | None     | `Rule`                   | Must consist of (`a-z`,`A-Z0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-` |
+| `ID`                     | String    | None     | `Rule`                   | Must consist of (`a-z`,`A-Z`,`0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-` |
 | `Filter`                 | String    | `Prefix`                               | `Rule`                   | Must contain a `Prefix` element |
 | `Prefix`                 | String    | None     | `Filter`                 | The rule applies to any objects with keys that match this prefix.  |
 | `Expiration`             | Container | `Days` or `Date`                       | `Rule`                   | Limit 1.   |

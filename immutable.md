@@ -91,7 +91,7 @@ Immutable Object Storage allows users to set indefinite retention on the object 
 Permanent retention ensures that data can not be deleted, ever, by anyone. Read the documentation carefully and do not use permanent retention unless there is a compelling regulatory or compliance need for **permanent** data storage.
 {: important}
 
-Permanent retention can only be enabled at a {{site.data.keyword.cos_full_notm}} bucket level with retention policy enabled and users are able to select the permanent retention period option during object uploads. Once enabled, this process can't be reversed and objects uploaded that use a permanent retention period **cannot be deleted**. It's the responsibility of the users to validate at their end if there's a legitimate need to **permanently** store objects by using {{site.data.keyword.cos_short}} buckets with a retention policy. 
+Permanent retention can only be enabled at an {{site.data.keyword.cos_full_notm}} bucket level with retention policy enabled and users are able to select the permanent retention period option during object uploads. Once enabled, this process can't be reversed and objects uploaded that use a permanent retention period **cannot be deleted**. It's the responsibility of the users to validate at their end if there's a legitimate need to **permanently** store objects by using {{site.data.keyword.cos_short}} buckets with a retention policy. 
 
 When using Immutable Object Storage, you are responsible for ensuring that your IBM Cloud Account is kept in good standing per IBM Cloud policies and guidelines for as long as the data is subject to a retention policy. Refer to IBM Cloud Service terms for more information.
 {: important}
@@ -572,7 +572,7 @@ This implementation of the `POST` operation uses the `legalHold` query parameter
 
 The object can support 100 legal holds:
 
-*  A legal hold identifier is a string of maximum length 64 characters and a minimum length of one character. Valid characters are letters, numbers, `!`, `_`, `.`, `*`, `(`, `)`, `-` and `.
+*  A legal hold identifier is a string of maximum length 64 characters and a minimum length of one character. Valid characters are letters, numbers, `!`, `_`, `.`, `*`, `(`, `)`, `-`, and `'`.
 * If the addition of the given legal hold exceeds 100 total legal holds on the object, the new legal hold will not be added, a `400` error is returned.
 * If an identifier is too long, it will not be added to the object and a `400` error is returned.
 * If an identifier contains invalid characters, it will not be added to the object and a `400` error is returned.

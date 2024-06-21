@@ -113,7 +113,7 @@ It is not possible to use `NoncurrentVersionTransition` rules to archive _only_ 
 ### Immutable Object Storage (WORM)
 {: #versioning-worm}
 
-The IBM COS implementation of Immutable Object Storage (that is, retention policies) is not permitted in buckets with versioning enabled. Attempts to create a retention policy will fail, as will attempts to enable versioning on a bucket with an retention policy.  <!--IBM COS does not support AWS S3 APIs for object locking, retention, or legal holds. Removed for issue #988 09252023 PWREmoved-->
+The IBM COS implementation of Immutable Object Storage (that is, retention policies) is not permitted in buckets with versioning enabled. Attempts to create a retention policy will fail, as will attempts to enable versioning on a bucket with an retention policy.  
 
 ## Supported S3 APIs
 {: #versioning-apis}
@@ -150,8 +150,6 @@ The following examples are shown using cURL for ease of use. Environment variabl
 ### Enable versioning on a bucket
 {: #versioning-apis-enable}
 
-```sh
-=======
 ```curl
 curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?versioning" \
      -H 'Authorization: bearer $TOKEN' \
@@ -167,8 +165,6 @@ A successful request returns a `200` response.
 ### Suspend versioning on a bucket
 {: #versioning-apis-suspend}
 
-```sh
-=======
 ```curl
 curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?versioning" \
      -H 'Authorization: bearer $TOKEN' \
@@ -184,8 +180,6 @@ A successful request returns a `200` response.
 ### List versions of objects in a bucket
 {: #versioning-apis-list}
 
-```sh
-=======
 ```curl
 curl -X "GET" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?versions" \
      -H 'Authorization: bearer $TOKEN'
@@ -254,8 +248,6 @@ This returns an XML response body:
 
 Several APIs make use of a new query parameter (`?versionId=<VersionId>`) that indicates which version of the object you are requesting. This parameter is used in the same manner for reading, deleting, checking metadata and tags, and restoring archived objects. For example, to read a version of an object `foo` with a version ID of `L4kqtJlcpXroDVBH40Nr8X8gdRQBpUMLUo`, the request might look like the following:
 
-```sh
-=======
 ```curl
 curl -X "GET" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/foo?versionId=L4kqtJlcpXroDVBH40Nr8X8gdRQBpUMLUo" \
      -H 'Authorization: bearer $TOKEN'
@@ -263,8 +255,6 @@ curl -X "GET" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/f
 
 Deleting that object is done in the same manner.
 
-```sh
-=======
 ```curl
 curl -X "DELETE" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/foo?versionId=L4kqtJlcpXroDVBH40Nr8X8gdRQBpUMLUo" \
      -H 'Authorization: bearer $TOKEN'
@@ -272,8 +262,6 @@ curl -X "DELETE" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.clou
 
 For requests that already make use of a query parameter, the `versionId` parameter can be added to the end.
 
-```sh
-=======
 ```curl
 curl -X "GET" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/foo?tagging&versionId=L4kqtJlcpXroDVBH40Nr8X8gdRQBpUMLUo" \
      -H 'Authorization: bearer $TOKEN'
@@ -281,8 +269,6 @@ curl -X "GET" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/f
 
 Server-side copying of object versions is supported, but uses a slightly different syntax.  The query parameter is not added to the URL itself, but instead is appended to the `x-amz-copy-source` header. This is the same syntax as creating a part for a multipart part from a source object.
 
-```sh
-=======
 ```curl
 curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/<new-object-key>"
  -H "Authorization: bearer $TOKEN"

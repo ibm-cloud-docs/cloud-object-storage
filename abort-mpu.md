@@ -19,7 +19,7 @@ subcollection: cloud-object-storage
 This lifecycle rule stops any multipart uploads if the uploads are not completed within a defined number of days after initiation.
 {: shortdesc}
 
-You can set lifecycle rules for objects by using the web console, REST API, and third-party tools that are integrated with {{site.data.keyword.cos_full_notm}}. 
+You can set lifecycle rules for objects by using the web console, REST API, and third-party tools that are integrated with {{site.data.keyword.cos_full_notm}}.
 
 * A new rule can be added to a new or existing bucket at any time.
 * An existing rule can be modified or disabled.
@@ -128,7 +128,7 @@ The body of the request must contain an XML block with the following schema:
 | -------------------------------- | -------------------- | ---------------------------------------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------ |
 | `LifecycleConfiguration`         | Container            | `Rule`                                                     | None                             | Limit 1.                                                                                   |
 | `Rule`                           | Container            | `ID`, `Status`, `Filter`, `AbortIncompleteMultipartUpload` | `LifecycleConfiguration`         | Limit 1000.                                                                                |
-| `ID`                             | String               | None                                                       | `Rule`                           | Must consist of (`a-z,`A-Z0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-` |
+| `ID`                             | String               | None                                                       | `Rule`                           | Must consist of (`a-z`,`A-Z0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-` |
 | `Filter`                         | String               | `Prefix`                                                   | `Rule`                           | Must contain a `Prefix` element or be self-closed (`<Filter />`).                                                           |
 | `Prefix`                         | String               | None                                                       | `Filter`                         | The rule applies to any objects with keys that match this prefix.                          |
 | `AbortIncompleteMultipartUpload` | `Container`          | `DaysAfterInitiation`                                      | `Rule`                           | Limit 1.                                                                                   |

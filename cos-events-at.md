@@ -90,7 +90,7 @@ Navigate back to the dashboard, and look for the new instance. Click it to open 
 {: #at-tut-open-at}
 {: step}
 
-Now you can see some metadata about our new {{site.data.keyword.at_short}} instance (location, CRN, and so on).  Click on the ``View IBM Cloud Activity Tracker` button to launch the interface.
+Now you can see some metadata about our new {{site.data.keyword.at_short}} instance (location, CRN, and so on).  Click on the `View IBM Cloud Activity Tracker` button to launch the interface.
 
 ![Open AT](images/at-tut-6-open-at.png)
 

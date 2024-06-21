@@ -87,7 +87,7 @@ Tags must comply with the following restrictions:
 * Minimum value length - 0 Unicode characters in UTF-8 (Tag Value can be empty)
 * Maximum value length - 256 Unicode characters in UTF-8
 * Maximum value byte size - 512 bytes
-* A Tag key and value may consist of US Alpha Numeric Characters (a-zA-Z0-9), and spaces representable in UTF-8, and the following symbols: `_`, `.`, `*`, `` ` ``, `-`, `:`
+* A Tag key and value may consist of US Alpha Numeric Characters (`a-z`,`A-Z`,`0-9`), and spaces representable in UTF-8, and the following symbols: `_`, `.`, `*`, `'`, `-`, `:`
 * Tag keys and values are case-sensitive
 * `ibm:` cannot be used as a key prefix for tags
 

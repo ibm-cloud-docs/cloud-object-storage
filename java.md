@@ -1378,72 +1378,7 @@ libfaspmanager2.so: libawt.so: cannot open shared object file: No such file or d
 
 `LD_LIBRARY_PATH=<JAVA_HOME>/jre/lib/amd64/server:<JAVA_HOME>/jre/lib/amd64`
 
-<!--
-## S3 API compatibility reference
 
-This list summarizes the AWS Java SDK methods that are supported by {{site.data.keyword.cos_full_notm}}. More detailed documentation on individual classes and methods can be found in the [the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/)
-
-```java
-abortMultipartUpload(AbortMultipartUploadRequest request)
-completeMultipartUpload(CompleteMultipartUploadRequest request)
-copyObject(CopyObjectRequest copyObjectRequest)
-copyObject(String sourceBucketName, String sourceKey, String destinationBucketName, String destinationKey)
-copyPart(CopyPartRequest copyPartRequest)
-createBucket(CreateBucketRequest createBucketRequest)
-createBucket(String bucketName)
-createBucket(String bucketName, String LocationConstraint)
-deleteBucket(DeleteBucketRequest deleteBucketRequest)
-deleteBucket(String bucketName)
-deleteBucketCrossOriginConfiguration(DeleteBucketCrossOriginConfigurationRequest deleteBucketCrossOriginConfigurationRequest)
-deleteBucketCrossOriginConfiguration(String bucketName)
-deleteObject(DeleteObjectRequest deleteObjectRequest)
-deleteObject(String bucketName, String key)
-deleteObjects(DeleteObjectsRequest deleteObjectsRequest)
-doesBucketExist(String bucketName)
-generatePresignedUrl(GeneratePresignedUrlRequest generatePresignedUrlRequest)
-generatePresignedUrl(String bucketName, String key, Date expiration)
-generatePresignedUrl(String bucketName, String key, Date expiration, HttpMethod method)
-getBucketAcl(GetBucketAclRequest getBucketAclRequest)
-getBucketAcl(String bucketName)
-getBucketCrossOriginConfiguration(String bucketName)
-getBucketLocation(GetBucketLocationRequest getBucketLocationRequest)
-getBucketLocation(String bucketName)
-getCachedResponseMetadata(AmazonWebServiceRequest request)
-getObject(GetObjectRequest getObjectRequest)
-getObject(GetObjectRequest getObjectRequest, File destinationFile)
-getObject(String bucketName, String key)
-getObjectAcl(String bucketName, String key)
-getObjectAcl(String bucketName, String key, String versionId)
-getObjectMetadata(GetObjectMetadataRequest getObjectMetadataRequest)
-getObjectMetadata(String bucketName, String key)
-initiateMultipartUpload(InitiateMultipartUploadRequest request)
-listBuckets()
-listBuckets(ListBucketsRequest listBucketsRequest)
-listMultipartUploads(ListMultipartUploadsRequest request)
-listNextBatchOfObjects(ObjectListing previousObjectListing)
-listNextBatchOfVersions(VersionListing previousVersionListing)
-listObjects(String bucketName)
-listObjects(String bucketName, String prefix)
-listObjects(ListObjectsRequest listObjectsRequest)
-listParts(ListPartsRequest request)
-putObject(String bucketName, String key, File file)
-putObject(String bucketName, String key, InputStream input, ObjectMetadata metadata)
-putObject(PutObjectRequest putObjectRequest)
-setBucketAcl(String bucketName, AccessControlList acl)
-setBucketAcl(String bucketName, CannedAccessControlList acl)
-setBucketAcl(SetBucketAclRequest setBucketAclRequest)
-setBucketCrossOriginConfiguration(String bucketName, BucketCrossOriginConfiguration bucketCrossOriginConfiguration)
-setBucketCrossOriginConfiguration(SetBucketCrossOriginConfigurationRequest setBucketCrossOriginConfigurationRequest)
-setEndpoint(String endpoint)
-setObjectAcl(String bucketName, String key, AccessControlList acl)
-setObjectAcl(String bucketName, String key, CannedAccessControlList acl)
-setObjectAcl(String bucketName, String key, String versionId, AccessControlList acl)
-setObjectAcl(String bucketName, String key, String versionId, CannedAccessControlList acl)
-setObjectAcl(SetObjectAclRequest setObjectAclRequest)
-setS3ClientOptions(S3ClientOptions clientOptions)
-uploadPart(UploadPartRequest request)
-```
--->
 ## Updating Metadata
 {: #java-examples-metadata}
 
@@ -1642,7 +1577,7 @@ public static void copyProtectedObject(String sourceBucketName, String sourceObj
 
 The object can support 100 legal holds:
 
-* A legal hold identifier is a string of maximum length 64 characters and a minimum length of 1 character. Valid characters are letters, numbers, `!`, `_`, `.`, `*`, `(`, `)`, `-` and `.
+* A legal hold identifier is a string of maximum length 64 characters and a minimum length of 1 character. Valid characters are letters, numbers, `!`, `_`, `.`, `*`, `(`, `)`, `-` and `'`.
 * If the addition of the given legal hold exceeds 100 total legal holds on the object, the new legal hold will not be added, a `400` error will be returned.
 * If an identifier is too long it will not be added to the object and a `400` error is returned.
 * If an identifier contains invalid characters, it will not be added to the object and a `400` error is returned.

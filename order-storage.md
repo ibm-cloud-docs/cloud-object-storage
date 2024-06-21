@@ -25,7 +25,6 @@ The highest level of organization in {{site.data.keyword.cos_full_notm}} is a se
 
 IBM Public Cloud:
 
-* **Lite plan** instances are free to use, but are somewhat limited in capacity (< 25GB) and features. It is typically used for experimentation and proof-of-concept work, and will need to be converted to a Standard plan instance to access complete functionality.
 * **Standard plan** instances are the most common and are recommended for most workloads.
 * **One Rate plan** instances should be used for [workloads that involve large volumes of outbound bandwidth](/docs/cloud-object-storage?topic=cloud-object-storage-onerate) (data transferred on public networks outside of IBM Cloud) relative to the amount of total storage capacity.
 
@@ -33,7 +32,7 @@ IBM Cloud Satellite:
 
 * **Satellite** instances are [run on hardware outside of IBM Cloud](/docs/cloud-object-storage?topic=cloud-object-storage-provision-cos-satellite) and are typically used for edge computing or for strict data sovereignty requirements
 
-## Creating a {{site.data.keyword.cloud_notm}} Platform account
+## Creating an {{site.data.keyword.cloud_notm}} Platform account
 {: #provision-account}
 
 Before you create a new {{site.data.keyword.cos_full_notm}} storage instance, it's necessary to create a customer account first.

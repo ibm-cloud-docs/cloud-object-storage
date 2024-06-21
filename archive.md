@@ -119,7 +119,7 @@ Element                  | Type                 | Children                      
 -------------------------|----------------------|----------------------------------------|--------------------------|-------------------------------------------------------------------------------------------
 `LifecycleConfiguration` | Container            | `Rule`                                 | None                     | Limit 1.
 `Rule`                   | Container            | `ID`, `Status`, `Filter`, `Transition` | `LifecycleConfiguration` | Limit 1.
-`ID`                     | String               | None                                   | `Rule`                   | Must consist of (`a-z,`A-Z0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-`
+`ID`                     | String               | None                                   | `Rule`                   | Must consist of (`a-z`,`A-Z`, `0-9`) and the following symbols: `!` `_` `.` `*` `'` `(` `)` `-`
 `Filter`                 | String               | `Prefix`                               | `Rule`                   | Must contain a `Prefix` element
 `Prefix`                 | String               | None                                   | `Filter`                 | **Must** be set to `<Prefix/>`.
 `Transition`             | `Container`          | `Days`, `StorageClass`                 | `Rule`                   | Limit 1 transition rule, and a maximum of 1000 total rules.
