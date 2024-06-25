@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2024
-lastupdated: "2024-06-04"
+lastupdated: "2024-06-25"
 
 keywords: data, replication, loss prevention, iam, activity tracker, disaster recovery, versioning, key protect, accounts, buckets
 
@@ -43,12 +43,11 @@ To get started, here are some prerequisites that must be met:
 
 - Set the the `Writer` or `Manager` platform role on the source bucket, or a custom role with the appropriate replication actions (such as  `cloud-object-storage.bucket.put_replication`) assigned.
 - You do not need to have access to the target bucket, but do need to have sufficient platform roles to create [new IAM policies](/docs/secure-enterprise?topic=secure-enterprise-iamusermanpol) that allow the source bucket to write to the target bucket.
-- Both the source and target buckets must have [versioning enabled](/docs/cloud-object-storage?topic=cloud-object-storage-versioning).
 - The target bucket must not have a legacy bucket firewall enabled, but can use [context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall).
 - Objects encrypted [using SSE-C](/docs/cloud-object-storage?topic=cloud-object-storage-sse-c) cannot be replicated, although [managed encryption (SSE-KMS) like Key Protect](/docs/cloud-object-storage?topic=cloud-object-storage-kp) is fully compatible with replication.
 - Objects in an archived state cannot be replicated.
 - If the source and target buckets are in different IBM accounts, be sure to create the buckets in each account.
-- Enable [Versioning](/docs/cloud-object-storage?topic=/docs/cloud-object-storage?topic=cloud-object-storage-versioning) on each bucket.
+- Enable [Versioning](/docs/cloud-object-storage?topic=/docs/cloud-object-storage?topic=cloud-object-storage-versioning) on both the source and target buckets.
 
 As versioning is a requirement for replication, it is impossible to replicate objects in buckets configured with an [Immutable Object Storage policy](/docs/cloud-object-storage?topic=cloud-object-storage-immutable).
 {: note}
