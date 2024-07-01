@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-05-30"
+lastupdated: "2024-07-01"
 
 
 keywords: faq, frequently asked questions, object storage, Lite Plan, Standard Plan, Free Tier, Smart Tier, storage class, console, cli
