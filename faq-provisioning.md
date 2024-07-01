@@ -108,3 +108,51 @@ Storage cost for {{site.data.keyword.cos_short}} is determined by the total volu
 {: faq}
 
 You can choose the correct storage class based on your requirement. For details, see [billing-storage-classes](/docs/cloud-object-storage?topic=cloud-object-storage-billing#billing-storage-classes).
+
+## What is Free Tier?
+{: #faq-free-tier}
+{: faq}
+
+Free Tier is a no-cost option that allows you to use {{site.data.keyword.cos_short}} for free, within certain allowances, for 12 months. It enables you to easily evaluate and explore all the features of {{site.data.keyword.cos_short}} without any upfront costs. To get Free Tier, you must create a Smart Tier bucket in any location, in an instance provisioned under the Standard plan.
+
+## What are the specific allowances included in the Free Tier?
+{: #faq-free-tier-allowances}
+{: faq}
+
+Free Tier includes free monthly usage in the Smart Tier storage class under the Standard plan. Free Tier allowances include up to 5 GB of Smart Tier storage capacity, 2,000 Class A (PUT, COPY, POST, and LIST) requests, 20,000 Class B (GET and all others) requests, 10 GB of data retrieval, and 5GB of egress (public outbound bandwidth) each month.
+
+## When does Free Tier expire?
+{: #faq-free-tier-expire}
+{: faq}
+
+The Free Tier provides free usage for the specified allowances for 12 months from the date when the {{site.data.keyword.cos_short}} instance was initially created.
+
+## What happens if I exceed the Free Tier usage limits or after the 12-month period ends?
+{: #faq-free-tier-exceed-limits}
+{: faq}
+
+If you exceed the Free Tier monthly allowances within the 12-month period, you are only charged for the portion above the allowance and only in the months when they are exceeded.
+
+## What happens after the 12-month Free Tier period ends?
+{: #faq-free-tier-period-end}
+{: faq}
+
+Once the 12-month Free Tier period ends, you are charged at the standard pay-as-you-go rates ([see pricing](https://cloud.ibm.com/objectstorage/create#pricing){: external}).
+
+## How can I transition from Free Tier to production use?
+{: #faq-free-tier-to-production}
+{: faq}
+
+Free Tier enables you to seamlessly transition to production use when you are ready to scale up. No further action is needed. You are billed for any usage over the Free Tier usage allowances.
+
+## How are the Free Tier allowances applied across multiple Smart Tier buckets in my account?
+{: #faq-free-tier-allowances-applied}
+{: faq}
+
+The Free Tier limits apply to the total usage across all Smart Tier buckets in the Standard Plan.
+
+## How can I transition from my current Lite Plan instance to Free Tier?
+{: #faq-lite-plan-to-free-tier}
+{: faq}
+
+There is no direct path to transition from the old Lite Plan to the Free Tier. First, upgrade your Lite Plan to a Standard plan. Then you can enable the Free Tier by either creating a Smart Tier bucket in the Standard plan or, if you already had a Smart Tier bucket in the Lite Plan, the Free Tier will apply to it once the Lite Plan is upgraded to the Standard plan.

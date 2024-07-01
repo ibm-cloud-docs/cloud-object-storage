@@ -130,6 +130,17 @@ Let's see how the costs might compare to the other storage classes.
 
 Note that in situations where data is very cold, it is possible to get a lower rate with a Cold Vault bucket, although unexpected spikes in access could accrue significant costs.  In this scenario, if the data doesn't require on-demand access, it might be better to archive the objects instead.
 
+### Free Tier monthly allowances
+{: #free-tier-allowances}
+
+The following Free Tier allowances apply to each month for up to 12 months and apply to the total usage across all Smart Tier buckets in the Standard Plan:
+
+* Up to 5 GB of Smart Tier storage capacity
+* 2,000 Class A (PUT, COPY, POST, and LIST) requests
+* 20,000 Class B (GET and all others) requests
+* 10 GB of data retrieval
+* 5GB of egress (public outbound bandwidth) each month
+
 ## Get bucket metadata
 {: #billing-get-bucket-metadata}
 
