@@ -26,6 +26,7 @@ The highest level of organization in {{site.data.keyword.cos_full_notm}} is a se
 IBM Public Cloud:
 
 * **Standard plan** instances are the most common and are recommended for most workloads.
+   * The **Free Tier** allows you to evaluate the Cloud Object Storage service at no cost. You can seamlessly scale up for production use. This includes 5GB of free monthly usage for up to 12 months from the sign-up date. After 12 months or if you exceed the Free Tier limits, you will be billed at standard pay-as-you-go rates.
 * **One Rate plan** instances should be used for [workloads that involve large volumes of outbound bandwidth](/docs/cloud-object-storage?topic=cloud-object-storage-onerate) (data transferred on public networks outside of IBM Cloud) relative to the amount of total storage capacity.
 
 IBM Cloud Satellite:

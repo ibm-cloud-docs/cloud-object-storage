@@ -22,6 +22,13 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
+## 01 July 2024
+{: #cloud-object-storage-jun0624}
+{: release-note}
+
+Free tier update
+:   IBM Cloud Object Storage currently offers a free evaluation to new clients using the Lite Plan. Effective July 1st, 2024, IBM Cloud will replace the Lite Plan with a new Free Tier available within the Standard (paid) plan. See [Cloud Object Storage Lite Plan will be replaced by Free Tier announcement](https://cloud.ibm.com/status/announcement?query=Cloud+Object+Storage+Lite+Plan+will+be+replaced+by+Free+Tier).
+
 ## 14 June 2024
 {: #cloud-object-storage-jun0624}
 {: release-note}
