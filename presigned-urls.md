@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-18"
+lastupdated: "2024-07-02"
 
-keywords: authorization, aws, hmac, signature, presign
+keywords: authorization, aws, hmac, signature, presign, python, java
 
 subcollection: cloud-object-storage
 
@@ -70,7 +70,50 @@ print("presigned download URL =>" + signedUrl)
 ```
 {: codeblock}
 
+### Java Example
+{: #presign-url-get-java}
+
+```java
+import java.util.Date;
+import com.ibm.cloud.objectstorage.auth.AWSCredentials;
+import com.ibm.cloud.objectstorage.auth.AWSStaticCredentialsProvider;
+import com.ibm.cloud.objectstorage.client.builder.AwsClientBuilder.EndpointConfiguration;
+import com.ibm.cloud.objectstorage.HttpMethod;
+import com.ibm.cloud.objectstorage.services.s3.AmazonS3;
+import com.ibm.cloud.objectstorage.services.s3.AmazonS3ClientBuilder;
+import com.ibm.cloud.objectstorage.services.s3.model.GeneratePresignedUrlRequest;
+
+
+String bucketName = "<bucket name>";
+String keyName = "<object key name>";
+HttpMethod httpMethod = HttpMethod.GET;
+Date expiration = new Date();
+long expTimeMillis = expiration.getTime();
+expTimeMillis += 1000 * 60 * 60;
+expiration.setTime(expTimeMillis);
+
+String accessKey = "<COS_HMAC_ACCESS_KEY_ID>";
+String secretAccessKey = "<COS_HMAC_SECRET_ACCESS_KEY>";
+// Current list avaiable at https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints
+String cosServiceEndpoint = "https://s3.<region>.cloud-object-storage.appdomain.cloud";
+
+AmazonS3 cosClient = AmazonS3ClientBuilder.standard()
+                     .withEndpointConfiguration(new EndpointConfiguration(cosServiceEndpoint, "us-east-1"))
+                     .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(accessKey, secretAccessKey))).withPathStyleAccessEnabled(true)
+                     .build();
+
+GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(bucketName, keyName)
+                                                          .withMethod(httpMethod)
+                                                          .withExpiration(expiration);
+
+URL signedUrl = cosClient.generatePresignedUrl(generatePresignedUrlRequest);
+System.out.println(signedUrl);
+```
+
 ## Create a pre-signed URL to upload an object
+{: #presign-url-put-python}
+
+### Python Example
 {: #presign-url-put-python}
 
 ```python
