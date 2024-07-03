@@ -2,11 +2,11 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-07-02"
+lastupdated: "2024-07-03"
 
 keywords: IBM Cloud Object Storage notifications, notifications, gslb
 
-subcollection: Rcloud-object-storage
+subcollection: cloud-object-storage
 
 ---
 
