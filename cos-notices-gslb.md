@@ -13,7 +13,7 @@ subcollection: cloud-object-storage
 {{site.data.keyword.attribute-definition-list}}
 
 # {{site.data.keyword.cos_full}} deployment of GSLB in all MultiZone Regions
-{: #cos-notices-gslb}
+{: #cos-notices-gslb-desc}
 
 The {{site.data.keyword.cos_full}} team is enabling Global Server Load Balancing (GSLB) in our MZR offerings over the next several months. This change causes the regional endpoints (public, private, and direct) to use new virtual IP addresses. This change affects you if you access {{site.data.keyword.cos_short}} from an IP address (rather than URL), or if you have allowlists, or a firewall running in your environment.
 {: shortdesc}
