@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2024
-lastupdated: "2024-06-12"
+lastupdated: "2024-07-08"
 
 keywords: events, activity, logging, api, buckets, tracking, legacy, python, java, node, go, logs
 
@@ -44,7 +44,7 @@ See Getting started with [{{site.data.keyword.at_full_notm}}](/docs/activity-tra
 ## Using IBM Cloud Logs to track bucket events (Coming Soon)
 {: #at-logs}
 
-IBM Cloud Logs will replace {{site.data.keyword.at_full_notm}} hosted event search. See the [IBM Announcement](/blog/announcement/ibm-cloud-logs-observability/) to learn more.
+IBM Cloud Logs will replace {{site.data.keyword.at_full_notm}} hosted event search. See the [IBM Announcement](https://www.ibm.com/blog/announcement/ibm-cloud-logs-observability/) to learn more.
 
 IBM Cloud Logs gives you flexibility in how your data is processed for insights and trends, and where data is stored for high-speed search and long-term trend analysis. It provides the tools for you to maximize the value obtained while maintaining control on the total cost.
 
