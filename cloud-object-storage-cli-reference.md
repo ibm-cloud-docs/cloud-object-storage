@@ -3,7 +3,7 @@
 copyright:
 
   years: 2017, 2024
-lastupdated: "2024-06-11"
+lastupdated: "2024-07-11"
 
 
 keywords: cli, command line reference, object storage
@@ -264,6 +264,8 @@ If you want to add metadata to an object during the copying (using the `--metada
         * Flag: `--region REGION`
     * _Optional_: Output FORMAT can be only json or text.
         * Flag: `--output FORMAT`
+
+```
 
 ## Create a new bucket
 {: #ic-create-bucket}
