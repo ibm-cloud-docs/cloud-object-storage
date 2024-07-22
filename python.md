@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-16"
+lastupdated: "2024-07-22"
 
 keywords: object storage, python, sdk, aspera, apache, asperatransfermanager
 
@@ -174,8 +174,8 @@ def create_text_file(bucket_name, item_name, file_text):
     print("Creating new item: {0}".format(item_name))
     try:
         cos_client.put_object(
-            Bucket=bucket_name
-            Key=item_name
+            Bucket=bucket_name,
+            Key=item_name,
             Body=file_text
         )
         print("Item: {0} created!".format(item_name))
