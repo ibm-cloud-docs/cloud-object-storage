@@ -27,6 +27,11 @@ toc:
                 - data-io.md
                 - bottlenecks.md
           - cos-responsibilities.md
+          - topicgroup:
+              label: Notifications
+              topics:
+                - cos-notices.md
+                - cos-notices-gslb.md
           - topic: release-notes.md
             navtitle: Release notes
     - navgroup:
