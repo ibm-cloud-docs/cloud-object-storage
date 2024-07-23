@@ -42,8 +42,8 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 
 | Region | Aspera | Key Protect         | {{site.data.keyword.hscrypto}} | Archive Data | Object Lock  | Immutable Object Storage | Activity Tracker Routing| Code Engine | Smart Tier | Metrics Routing | Replication |  One Rate  |
 |--------|--------|---------------------|--------------------------------|--------------|--------------|--------------------------|-------------------------|-------------|------------|-----------------|-------------| -----------|
-| `ap`   | Yes    | Yes (in `jp-tok`)   | No                             | No           | <object-lock>Yes</object-lock>          | <object-lock>Yes</object-lock>                      | `ap-tok`                | No          | Yes        | `ap-tok`        | Yes         |  No        |
-| `eu`   | Yes    | Yes (in `eu-de`)    | No                             | No           | <object-lock>Yes</object-lock>          | <object-lock>Yes</object-lock>                      | `eu-de`                 | No          | Yes        | `eu-de`         | Yes         |  No        |
+| `ap`   | Yes    | Yes (in `jp-tok`)   | No                             | No           | <object-lock>Yes</object-lock>           | No                        | `ap-tok`                | No          | Yes        | `ap-tok`        | Yes         |  No        |
+| `eu`   | Yes    | Yes (in `eu-de`)    | No                             | No           | <object-lock>Yes</object-lock>           | No                        | `eu-de`                 | No          | Yes        | `eu-de`         | Yes         |  No        |
 | `us`   | Yes    | Yes (in `us-south`) | Yes (failover in `us-east`)    | No           | Yes          | Yes                      | `us-south`              | No          | Yes        | `us-south`      | Yes         |  No        |
 
 
@@ -71,13 +71,13 @@ It is possible to create a bucket and associate any available Key Protect or Hyp
 
 | Region  | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Object Lock  | Immutable Object Storage | Activity Tracker Routing | Code Engine | Smart Tier | Metrics Routing | Replication | One Rate   |
 |---------|--------|-------------|--------------------------------|--------------|--------------|--------------------------|--------------------------|-------------|------------|-----------------|-------------| -----------|
-| `ams03` | No     | No          | No                             | No           | <object-lock>Yes</object-lock>          | <object-lock>Yes</object-lock>                     | `eu-de`                  | No          | Yes        | `eu-de`         | Yes         | Yes        |
-| `che01` | Yes    | No          | No                             | Yes          | Yes          | <object-lock>Yes</object-lock>                      | `che01`                  | No          | Yes        | `jp-tok`        | Yes         | Yes        |
-| `mil01` | No     | No          | No                             | No           | <object-lock>Yes</object-lock>          | <object-lock>Yes</object-lock>                      | `eu-de`                  | No          | Yes        | `eu-de`         | Yes         | Yes        |
-| `mon01` | No     | No          | No                             | No           | <object-lock>Yes</object-lock>          | <object-lock>Yes</object-lock>                      | `ca-tor`                 | No          | Yes        | `ca-tor`        | Yes         | Yes        |
-| `par01` | No     | No          | No                             | No           | <object-lock>Yes</object-lock>          | <object-lock>Yes</object-lock>                      | `eu-de`                  | No          | Yes        | `eu-de`         | Yes         | Yes        |
-| `sjc04` | No     | No          | No                             | No           | <object-lock>Yes</object-lock>          | <object-lock>Yes</object-lock>                      | `us-south`               | No          | Yes        | `us-south`      | Yes         | Yes        |
-| `sng01` | No     | No          | No                             | No           | <object-lock>Yes</object-lock>          | <object-lock>Yes</object-lock>                      | `ap-tok`                 | No          | Yes        | `ap-tok`        | Yes         | Yes        |
+| `ams03` | No     | No          | No                             | No           | <object-lock>Yes</object-lock>          | No                       | `eu-de`                  | No          | Yes        | `eu-de`         | Yes         | Yes        |
+| `che01` | Yes    | No          | No                             | Yes          | Yes          | No                       | `che01`                  | No          | Yes        | `jp-tok`        | Yes         | Yes        |
+| `mil01` | No     | No          | No                             | No           | <object-lock>Yes</object-lock>          | No                       | `eu-de`                  | No          | Yes        | `eu-de`         | Yes         | Yes        |
+| `mon01` | No     | No          | No                             | No           | <object-lock>Yes</object-lock>          | No                       | `ca-tor`                 | No          | Yes        | `ca-tor`        | Yes         | Yes        |
+| `par01` | No     | No          | No                             | No           | <object-lock>Yes</object-lock>          | No                       | `eu-de`                  | No          | Yes        | `eu-de`         | Yes         | Yes        |
+| `sjc04` | No     | No          | No                             | No           | <object-lock>Yes</object-lock>          | No                       | `us-south`               | No          | Yes        | `us-south`      | Yes         | Yes        |
+| `sng01` | No     | No          | No                             | No           | <object-lock>Yes</object-lock>           | No                       | `ap-tok`                 | No          | Yes        | `ap-tok`        | Yes         | Yes        |
 
 ## Satellite
 {: #service-availability-sat}
