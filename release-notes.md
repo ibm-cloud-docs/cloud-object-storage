@@ -20,14 +20,14 @@ content-type: release-note
 {: #updates}
 
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
-{: shortdesc}<object-lock>
+{: shortdesc}
 
-## XX July 2024
-{: #cloud-object-storage-julXX24}
+## 23 July 2024
+{: #cloud-object-storage-jul2324}
 {: release-note}
 
 Object Lock available in the EU and AP Cross Regions and all Single Sites
-:   It is now possible to lock objects to ensure individual object versions are stored in a WORM (Write-Once-Read-Many), non-erasable and non-rewritable manner in the EU and AP Cross Region sites along with all Single Sites.</object-lock>
+:   It is now possible to lock objects to ensure individual object versions are stored in a WORM (Write-Once-Read-Many), non-erasable and non-rewritable manner in the EU and AP Cross Region sites along with all Single Sites.
 
 ## 01 July 2024
 {: #cloud-object-storage-jul0124}
