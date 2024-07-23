@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-07-01"
+lastupdated: "2024-07-02"
 
 keywords: provision, create, service
 
@@ -33,7 +33,7 @@ IBM Cloud Satellite:
 
 * **Satellite** instances are [run on hardware outside of IBM Cloud](/docs/cloud-object-storage?topic=cloud-object-storage-provision-cos-satellite) and are typically used for edge computing or for strict data sovereignty requirements
 
-## Creating an {{site.data.keyword.cloud_notm}} Platform account
+## 
 {: #provision-account}
 
 Before you create a new {{site.data.keyword.cos_full_notm}} storage instance, it's necessary to create a customer account first.

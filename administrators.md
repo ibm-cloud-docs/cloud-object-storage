@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-19"
+lastupdated: "2022-07-22"
 
 keywords: administrator, object storage, access, iam
 
@@ -17,26 +17,26 @@ subcollection: cloud-object-storage
 # For administrators
 {: #administrators}
 
-Storage and system administrators familiar with {{site.data.keyword.cos_full}} can easily and conveniently manage users, create and rotate API keys, and grant roles to users and services. 
+Storage and system administrators familiar with {{site.data.keyword.cos_full}} can easily manage users, create and rotate API keys, and grant roles to users and services.
 {: shortdesc}
 
 If you haven't already, go ahead and read through the [getting started tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) to familiarize yourself with the core concepts of buckets, objects, and users.
 
-## Set up your storage
+## Setting up your storage
 {: #administrators-setup}
 
 First, you need to have at least one Object Storage resource instance, and some buckets to store data in. How do you want to segment access to your data? Where do you want your data to physically reside? How often will the data is accessed?
 
-### Segmenting access
+## Segmenting access
 {: #administrators-access}
 
-You can segment access at two levels: at the resource instance level and at the bucket level. 
+You can segment access at two levels: at the resource instance level and at the bucket level.
 
-Perhaps you want to make sure that only a development team can access particular instances of Object Storage. Or, you want to ensure that only the application your team is making can edit the data that is stored. You might want your developers with access to the cloud platform to only be able to read data for troubleshooting reasons, but not change anything. These are examples of service level policies.
+Perhaps you want to make sure that only a development team can access particular instances of Object Storage. Or, if you want to ensure that only the application your team is making can edit the data that is stored. You might want your developers with access to the cloud platform to only be able to read data for troubleshooting reasons, but not change anything. These are examples of service level policies.
 
 Now what if the development team, or any individual user, who has viewer access to a storage instance, but should be able to directly edit data in one or more buckets? You can use bucket level policies to elevate the level of access that is granted to users within your account. For instance, a user might not be able to create new buckets, but can create and delete objects within existing buckets.
 
-## Manage access
+## Managing access
 {: #administrators-manage-access}
 
 IAM is based on a fundamental concept: A _subject_ is granted a _role_ on a _resource_.

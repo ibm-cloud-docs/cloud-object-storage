@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-05-30"
+lastupdated: "2024-07-22"
 
 keywords: developer, getting started, command line interface, cli
 
@@ -13,10 +13,10 @@ subcollection: cloud-object-storage
 {{site.data.keyword.attribute-definition-list}}
 
 
-# For developers of {{site.data.keyword.cos_full_notm}}
+# >
 {: #gs-dev}
 
-The powerful tools of {{site.data.keyword.cos_full}} are available to a developer directly from the command line.
+The powerful  of {{site.data.keyword.cos_full}} are available to a developer directly from the command line.
 {: shortdesc}
 
 First, ensure that you have the [{{site.data.keyword.cloud}} Platform CLI](https://cloud.ibm.com/docs/cli/index.html) and [IBM Developer Tools](https://cloud.ibm.com/docs/cloudnative/idt/index.html) installed.
@@ -32,14 +32,14 @@ First, ensure that you have the [{{site.data.keyword.cloud}} Platform CLI](https
     ```
     {: pre}
 
-3. Next, create an instance of {{site.data.keyword.cos_full_notm}} specifying the name for the instance, the ID, and the wanted Standard plan. Now you have a CRN for the instance.
+3. Next, create an instance of {{site.data.keyword.cos_full_notm}} specifying the name for the instance  Now you have a CRN for the instance.
 
     ```sh
     ibmcloud resource service-instance-create <instance-name> cloud-object-storage <plan> global
     ```
     {: pre}
 
-If you encounter the error `No resource group targeted` when trying to create a new instance. This indicates that the default resource group is not available and that a resource group must be explicitly set. A list of available resource groups can be found using `ibmcloud resource groups` and the target can be set with `ibmcloud target -g <resource-group>`.
+ it indicates that the default resource group is not available and that a resource group must be explicitly set. A list of available resource groups can be found using `ibmcloud resource groups` and the target can be set with `ibmcloud target -g <resource-group>`.
 {: tip}
 
 The [Getting Started guide](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) walks through the basic steps of creating buckets and objects, as well as inviting users and creating policies. A list of basic 'curl' commands can be found [here](/docs/cloud-object-storage?topic=cloud-object-storage-curl).
@@ -49,7 +49,7 @@ Learn more about using the {{site.data.keyword.cloud_notm}} CLI to create applic
 ## Using the API
 {: #gs-dev-api}
 
-For managing data stored in {{site.data.keyword.cos_short}}, you can use S3 API compatible tools like the [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli)with [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) for compatibility. As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage. More information can be found in [the `curl` reference](/docs/cloud-object-storage?topic=cloud-object-storage-curl), as well as [the API reference documentation](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api).
+For managing data stored in {{site.data.keyword.cos_short}}, you can use S3 API compatible tools like the [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) with [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) for compatibility. As IAM tokens are relatively easy to work with, `curl` is a good choice for basic testing and interaction with your storage. More information can be found in the [`curl`](/docs/cloud-object-storage?topic=cloud-object-storage-curl) and the [API](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api) documentation.
 
 ## Using libraries and SDKs
 {: #gs-dev-sdk}
@@ -68,10 +68,4 @@ The [Cloud Native Computing Foundation](https://www.cncf.io) fostered [Kubernete
  * [Main COS page](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage)
  * [Installing COS](/docs/containers?topic=containers-storage_cos_install)
  * [Creating COS service instance](/docs/containers?topic=containers-storage-cos-understand#create_cos_service)
- * [Creating COS secret](/docs/containers?topic=containers-storage-cos-understand#create_cos_secret)
  * [Decide on the configuration](/docs/containers?topic=containers-storage_cos_install#configure_cos)
- * [Create an instance of COS](/docs/cloud-object-storage?topic=cloud-object-storage-provision)
- * [Back up and restore information](/docs/containers?topic=containers-storage_br)
- * [Storage Class reference](/docs/containers?topic=containers-storage_cos_reference)
-
-
