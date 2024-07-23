@@ -20,17 +20,24 @@ content-type: release-note
 {: #updates}
 
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
-{: shortdesc}
+{: shortdesc}<object-lock>
+
+## XX July 2024
+{: #cloud-object-storage-julXX24}
+{: release-note}
+
+Object Lock available in the EU and AP Cross Regions and all Single Sites
+:   It is now possible to lock objects to ensure individual object versions are stored in a WORM (Write-Once-Read-Many), non-erasable and non-rewritable manner in the EU and AP Cross Region sites along with all Single Sites.</object-lock>
 
 ## 01 July 2024
-{: #cloud-object-storage-jun0624}
+{: #cloud-object-storage-jul0124}
 {: release-note}
 
 Free tier update
 :   IBM Cloud Object Storage currently offers a free evaluation to new clients using the Lite Plan. Effective July 1st, 2024, IBM Cloud will replace the Lite Plan with a new Free Tier available within the Standard (paid) plan. See [Cloud Object Storage Lite Plan will be replaced by Free Tier announcement](https://cloud.ibm.com/status/announcement?query=Cloud+Object+Storage+Lite+Plan+will+be+replaced+by+Free+Tier).
 
 ## 14 June 2024
-{: #cloud-object-storage-jun0624}
+{: #cloud-object-storage-jun1424}
 {: release-note}
 
 New feature!
