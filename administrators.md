@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-07-22"
+  years: 2017, 2024
+lastupdated: "2024-07-24"
 
 keywords: administrator, object storage, access, iam
 
@@ -27,7 +27,7 @@ If you haven't already, go ahead and read through the [getting started tutorial]
 
 First, you need to have at least one Object Storage resource instance, and some buckets to store data in. How do you want to segment access to your data? Where do you want your data to physically reside? How often will the data is accessed?
 
-## Segmenting access
+### Segmenting access
 {: #administrators-access}
 
 You can segment access at two levels: at the resource instance level and at the bucket level.
