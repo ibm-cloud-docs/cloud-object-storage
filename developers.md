@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2024
-lastupdated: "2024-07-22"
+lastupdated: "2024-07-24"
 
 keywords: developer, getting started, command line interface, cli
 
@@ -13,10 +13,10 @@ subcollection: cloud-object-storage
 {{site.data.keyword.attribute-definition-list}}
 
 
-# >
+# For developers
 {: #gs-dev}
 
-The powerful  of {{site.data.keyword.cos_full}} are available to a developer directly from the command line.
+The powerful features of {{site.data.keyword.cos_full}} are available to a developer directly from the command line.
 {: shortdesc}
 
 First, ensure that you have the [{{site.data.keyword.cloud}} Platform CLI](https://cloud.ibm.com/docs/cli/index.html) and [IBM Developer Tools](https://cloud.ibm.com/docs/cloudnative/idt/index.html) installed.
@@ -32,14 +32,14 @@ First, ensure that you have the [{{site.data.keyword.cloud}} Platform CLI](https
     ```
     {: pre}
 
-3. Next, create an instance of {{site.data.keyword.cos_full_notm}} specifying the name for the instance  Now you have a CRN for the instance.
+3. Next, create an instance of {{site.data.keyword.cos_full_notm}} specifying the name for the instance and the Standard plan (see [Choosing a plan and creating an instance](/docs/cloud-object-storage?topic=cloud-object-storage-provision)). Now you have a CRN for the instance.
 
     ```sh
     ibmcloud resource service-instance-create <instance-name> cloud-object-storage <plan> global
     ```
     {: pre}
 
- it indicates that the default resource group is not available and that a resource group must be explicitly set. A list of available resource groups can be found using `ibmcloud resource groups` and the target can be set with `ibmcloud target -g <resource-group>`.
+When trying to create a new instance, if you encounter the error `No resource group targeted`, it indicates that the default resource group is not available and that a resource group must be explicitly set. A list of available resource groups can be found using `ibmcloud resource groups` and the target can be set with `ibmcloud target -g <resource-group>`.
 {: tip}
 
 The [Getting Started guide](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) walks through the basic steps of creating buckets and objects, as well as inviting users and creating policies. A list of basic 'curl' commands can be found [here](/docs/cloud-object-storage?topic=cloud-object-storage-curl).
@@ -69,3 +69,6 @@ The [Cloud Native Computing Foundation](https://www.cncf.io) fostered [Kubernete
  * [Installing COS](/docs/containers?topic=containers-storage_cos_install)
  * [Creating COS service instance](/docs/containers?topic=containers-storage-cos-understand#create_cos_service)
  * [Decide on the configuration](/docs/containers?topic=containers-storage_cos_install#configure_cos)
+ * [Creating a COS Kubernetes secret](/docs/containers?topic=containers-storage-cos-understand#create_cos_secret)
+ * [Kubernetes back up and restore information](/docs/containers?topic=containers-storage_br)
+ * [Kubernetes Storage Class reference](/docs/containers?topic=containers-storage_cos_reference)
