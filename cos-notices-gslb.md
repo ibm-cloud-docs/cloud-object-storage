@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-07-24"
+lastupdated: "2024-07-25"
 
 keywords: IBM Cloud Object Storage notifications, notifications, gslb
 
@@ -38,6 +38,12 @@ Customers that use hardcoded IP addresses for {{site.data.keyword.IBM_notm}} {{s
 
 **Review the IP address information and schedule tables to understand when the changes are made, and what new IP addresses will be used. If you are affected by this change, test connectivity to the provided IP addresses or subnets.  The new IPs will be available 14 days before the DNS maintenance cutover date.**
 
+## Public and direct networks (for future changes)
+{: #cos-notices-gslb-endpoints}
+
+In order to avoid future changes when using the private and direct endpoints, we recommend updating firewalls and allow lists to include these networks.
+- private network: 10.1.129.0/24
+- direct network: 161.26.0.0/16
 
 ## Deployment dates
 {: #cos-notices-gslb-deployment}
