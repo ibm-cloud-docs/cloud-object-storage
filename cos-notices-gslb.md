@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-07-25"
+lastupdated: "2024-07-30"
 
 keywords: IBM Cloud Object Storage notifications, notifications, gslb
 
@@ -33,12 +33,12 @@ This change allows your traffic to be routed to the {{site.data.keyword.cos_shor
 
 Customers that use hardcoded IP addresses for {{site.data.keyword.IBM_notm}} {{site.data.keyword.cos_short}} endpoints within their workloads, firewalls, or security components may be affected when new IP addresses are used.
 
-### What actions you need to take
+## What actions you need to take
 {: #cos-notices-gslb-actions}
 
-**Review the IP address information and schedule tables to understand when the changes are made, and what new IP addresses will be used. If you are affected by this change, test connectivity to the provided IP addresses or subnets.  The new IPs will be available 14 days before the DNS maintenance cutover date.**
+Review the IP address information and schedule tables to understand when the changes are made, and what new IP addresses will be used. If you are affected by this change, test connectivity to the provided IP addresses or subnets.  The new IPs will be available 14 days before the DNS maintenance cutover date.
 
-## Public and direct networks (for future changes)
+## Private and direct networks (for future changes)
 {: #cos-notices-gslb-endpoints}
 
 In order to avoid future changes when using the private and direct endpoints, we recommend updating firewalls and allow lists to include these networks.
@@ -53,6 +53,8 @@ In order to avoid future changes when using the private and direct endpoints, we
 | Sydney (au-syd) | August 15, 2023                      | August 29, 2024                 |
 {: caption="Table 1. Deployment dates" caption-side="top"}
 
+Note: This table will be updated as new regions are planned for deployment.
+
 ## IP address changes
 {: #cos-notices-gslb-ip}
 
@@ -62,3 +64,5 @@ In order to avoid future changes when using the private and direct endpoints, we
 | Sydney (au-syd) private| s3.private.au-syd.cloud-object-storage.appdomain.cloud | 10.1.129.67                     | 10.1.129.67, 10.1.129.189, 10.1.129.190           |
 | Sydney (au-syd) direct | s3.direct.au-syd.cloud-object-storage.appdomain.cloud  | 161.26.0.27                     | 161.26.0.27, 161.26.125.27, 161.26.165.27         |
 {: caption="Table 2. IP address changes" caption-side="top"}
+
+Note: This table will be updated as new regions are planned for deployment.
