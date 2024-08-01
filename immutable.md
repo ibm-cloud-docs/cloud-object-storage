@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2024
 
-lastupdated: "2024-03-25"
+lastupdated: "2024-08-01"
 
 keywords: worm, immutable, policy, retention, compliance
 
@@ -79,6 +79,22 @@ Note: A maximum of 100 legal holds can be applied per object.
 {: #immutable-terminology-indefinite}
 
 Allows the user to set the object to be stored indefinitely until a new retention period is applied. This is set at a per object level.
+
+An object that is retained using indefinite retention is not entirely immutable until the object's retention has been converted from -1 to some positive finite value. While an object written with -1 (Indefinite Retention) cannot be deleted uisng the `DELETE object` or overwritten request, the object can still have the retention updated from -1 to the current date/time, which would make the object immediately deleteable.
+{: important}
+
+Users should consider this behavior when assessing its viability for their storage needs. A common use case for Indefinite Retention is described in [Event-based retention](/docs/cloud-object-storage?topic=cloud-object-storage-immutable#immutable-terminology-events). In or want to use event-based retention, Immutable Object Storage allows users to set indefinite retention on the object if they are unsure of the retention needs when the object is first uploaded to the system. Once set to indefinite, user applications can then can change the object retention to a finite value when a certain event has taken place.
+
+**Example**
+Given that a company has a policy of retaining employee records for three years after the employee leaves the company.
+- When an employee joins to start working for a complany, the records that are associated with that employee can be indefinitely retained.
+- And when that same employee leaves the company, the indefinite retention is then converted to a finite value of three years from the current time, which is defined by company policy.
+
+A user or third-party application can change the retention period from indefinite to finite retention that uses an SDK or REST API.
+{: note}
+
+Bucket owners and permitted users can limit the new retention that can be configured for an object that is currently retained using indefinite retention.  This is done by utilizing the bucket retention minimum and maximum allowed values. By doing so, users can prevent a case where an object retained with indefinite retention has its retention updated to the current time so that it is immediately deletable.
+{: note}
 
 ### Event-based retention
 {: #immutable-terminology-events}
