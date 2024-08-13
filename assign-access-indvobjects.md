@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023, 2024
-lastupdated: "2024-04-19"
+lastupdated: "2024-08-13"
 
 keywords: IAM, policy, fine-grained access control, controls, conditions, prefix, delimiter, path, folder1/subfolder1/file.txt, folder1, subfolder1, wildcard, operator, stringMatchAnyOf, stringexists
 
@@ -22,6 +22,11 @@ If access is required to the entire bucket (that is, when fine-grained access co
 {: important}
 
 Each object that is stored in a Cloud Object Storage bucket has a unique key, and these keys often follow a hierarchical structure similar to a file system.
+
+Related links to IAM access policies
+- [Resource attribute-based conditions](/docs/account?topic=account-iam-condition-properties&interface=ui#resource-based-conditions)
+- [String comparisons](/docs/account?topic=account-wildcard#string-comparisons)
+- [Checking a policy version in the console](/docs/account?topic=account-known-issues#check-policy-version)
 
 **Example**
 
