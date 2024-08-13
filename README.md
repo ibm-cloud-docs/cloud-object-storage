@@ -11,7 +11,7 @@ subcollection: cloud-object-storage
 ---
 
 # IBM Cloud Object Storage
-{: #readme-cos-intro}
+
 
 Documentation for IBM Cloud Object Storage (cloud-object-storage)
 
