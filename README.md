@@ -2,13 +2,15 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-06-24"
+lastupdated: "2024-08-15"
 
 keywords: readme
 
 subcollection: cloud-object-storage
 
 ---
+
+
 
 # IBM Cloud Object Storage
 
