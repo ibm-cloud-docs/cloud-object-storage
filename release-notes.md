@@ -22,8 +22,8 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
-## xx July 2024
-{: #cloud-object-storage-julxx24}
+## 20 August 2024
+{: #cloud-object-storage-aug2024}
 {: release-note}
 
 Object Lock available in the EU and AP Cross Regions and all Single Sites
