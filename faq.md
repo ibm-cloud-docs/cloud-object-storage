@@ -191,3 +191,12 @@ This is intentionally vague to prevent any useful information from being conveye
 Login to the IBM Cloud shell: https://cloud.ibm.com/shell and enter at the prompt `ibmcloud resource search "service_name:cloud-object-storage AND type:resource-instance"`.
 
 The response you receive includes information for the name of your instance, location, family, resource type, resource group ID, CRN, tags, service tags, and access tags.
+
+## Does {{site.data.keyword.cos_short}} rate limit?
+{: #faq-cos-rate-limit}
+{: faq}
+
+{{site.data.keyword.cos_short}} may rate-limit your workload based on its specific characteristics and current system capacity. Rate-limiting will be seen as a 429 or 503 response, in which case retries with exponential back-off are suggested.
+
+
+
