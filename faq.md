@@ -1,11 +1,11 @@
 ---
 
 copyright:
-  years: 2017, 2024
-lastupdated: "2024-05-08"
+  years: 2017, [(CURRENT_YEAR)]
+lastupdated: "2024-08-23"
 
 
-keywords: faq, frequently asked questions, object storage, S3, HMAC, general
+keywords: faq, frequently asked questions, object storage, S3, HMAC, general, rate limit
 
 subcollection: cloud-object-storage
 
@@ -191,3 +191,12 @@ This is intentionally vague to prevent any useful information from being conveye
 Login to the IBM Cloud shell: https://cloud.ibm.com/shell and enter at the prompt `ibmcloud resource search "service_name:cloud-object-storage AND type:resource-instance"`.
 
 The response you receive includes information for the name of your instance, location, family, resource type, resource group ID, CRN, tags, service tags, and access tags.
+
+## Does {{site.data.keyword.cos_full_notm}} rate limit?
+{: #faq-cos-rate-limit}
+{: faq}
+
+{{site.data.keyword.cos_full_notm}} may rate-limit your workload based on its specific characteristics and current system capacity. Rate-limiting will be seen as a 429 or 503 response, in which case retries with exponential back-off are suggested.
+
+
+
