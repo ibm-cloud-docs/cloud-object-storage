@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2017, 2023
-lastupdated: "2023-12-23"
+  years: 2017, 2024
+lastupdated: "2024-09-03"
 
-keywords: IBM cloud object storage, cloud object storage, object storage, storage
+keywords: IBM cloud object storage, cloud object storage, object storage, storage, cross origin resource sharing, cors
 
 subcollection: cloud-object-storage
 
@@ -61,7 +61,7 @@ Buckets are a way to organize your data, but they're not the sole way. Object na
 
 Now go ahead and go to one of your buckets by selecting it from the list. Click **Add Objects**. New objects overwrite existing objects with the same names within the same bucket. When you use the console to upload objects the object name always matches the file name. There doesn't need to be any relationship between the file name and the object key if you're using the API to write data. Go ahead and add a handful of files to this bucket.
 
-Objects are limited to 200 MB when uploaded through the console unless you use the [Aspera high-speed transfer](/docs/cloud-object-storage?topic=cloud-object-storage-upload) plug-in. Larger objects (up to 10 TB) can also be [split into parts and uploaded in parallel using the API](/docs/cloud-object-storage?topic=cloud-object-storage-large-objects). Object keys can be up to 1024 characters in length, and it's best to avoid any characters that might be problematic in a web address. For example, `?`, `=`, `<`, and other special characters might cause unwanted behavior if not URL-encoded.
+Objects are limited to 200 MB when uploaded through the console unless you use the [Aspera high-speed transfer](/docs/cloud-object-storage?topic=cloud-object-storage-upload) plug-in or use Cross-Origin Resource Sharing (CORS), by setting the CORS headers. Larger objects (up to 10 TB) can also be [split into parts and uploaded in parallel using the API](/docs/cloud-object-storage?topic=cloud-object-storage-large-objects). Object keys can be up to 1024 characters in length, and it's best to avoid any characters that might be problematic in a web address. For example, `?`, `=`, `<`, and other special characters might cause unwanted behavior if not URL-encoded.
 {: tip}
 
 ## How do I invite a user to administer buckets and data?
@@ -85,7 +85,9 @@ Bringing in another user and allow them to act as an administrator for the insta
 {: #gs-bucket-policy}
 
 1. Navigate to the **Manage** menu and follow the link at **Access(IAM)** > **Service IDs**.  Here you can create a _service ID_, which serves as an abstracted identity bound to the account. Service IDs can be assigned API keys and are used in situations where you don't want to tie a particular Developer's identity to a process or component of an application.
-	![IAM Service Ids](images/console_iam_serviceid.png){: caption="Figure 6: IAM Service Ids"}
+
+    ![IAM Service Ids](images/console_iam_serviceid.png){: caption="Figure 6: IAM Service Ids"}
+
 1. Repeat the above process but in step 3, choose a particular service instance, and enter "bucket" as the _Resource Type_ and the [full CRN](/docs/cloud-object-storage?topic=cloud-object-storage-troubleshooting-cos#troubleshooting-cos-details) of an existing bucket as the _Resource ID_.
 1. Now the service ID can access that particular bucket, and no others.
 
