@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-09-18"
+lastupdated: "2024-09-20"
 
 keywords: IBM Cloud Object Storage notifications, notifications, gslb
 
@@ -47,23 +47,19 @@ In order to avoid future changes when using the private and direct endpoints, IB
 
 ## Deployment dates
 {: #cos-notices-gslb-deployment}
+| Region               | New addresses available for testing | DNS updated to new IP addresses  |
+|----------------------|-------------------------------------|----------------------------------|
+| Sydney (au-syd)      | August 15, 2024                     | August 29, 2024                  |
+| San Paulo (br-sao)   | October 10, 2024                    | October 24, 2024                 |
+| Toronto (ca-tor)     | October 14, 2024                    | October 28, 2024                 |
+| Osaka (jp-osa)       | October 17, 2024                    | October 31, 2024                 |
+| Washington (us-east) | October 21, 2024                    | November 4, 2024                 |
+| Dallas (us-south)    | October 24, 2024                    | November 7, 2024                 |
+| Frankfurt (eu-de)    | October 28, 2024                    | November 11, 2024                |
+| Tokyo (jp-tok)       | October 31, 2024                    | November 14, 2024                |
+| London (eu-gb)       | November 7, 2024                    | November 21, 2024                |
+| Madrid (eu-es)       | November 21, 2024                   | December 5, 2024                 |
 
-| Region                | New addresses available for testing  | DNS updated to new IP addresses |
-|:----------------------|--------------------------------------|---------------------------------|
-|  Sydney (au-syd)      | August 15, 2024                      | August 29, 2024                 |
-|  San Paulo (br-sao)   | September 30, 2024                   | October 14, 2024                |
-|  Toronto (ca-tor)     | October 7, 2024                      | October 21, 2024                |
-|  Madrid (eu-es)       | October 10, 2024                     | October 24, 2024                |
-|  Longon (eu-gb)       | October 14, 2024                     | October 28, 2024                |
-|  Osaka (jp-osa)       | October 17, 2024                     | October 31, 2024                |
-|  Washington (us-east) | October 21, 2024                     | November 4, 2024                |
-|  Dallas (us-south)    | October 24, 2024                     | November 7, 2024                |
-|  Frankfurt (eu-de)    | October 28, 2024                     | November 11, 2024               |
-
-
-
-This table is updated as new regions are planned for deployment.
-{: note}
 
 ## IP address changes
 {: #cos-notices-gslb-ip}
