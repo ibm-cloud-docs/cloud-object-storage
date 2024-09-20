@@ -52,7 +52,8 @@ You will also need to ensure that a service instance is created by using the [IB
 {: #kp-encrypt-bucket-create}
 {: step}
 
-1. Navigate to the **Resource List** and click your **Storage** instance.
+1. Using the **Navigation Menu**, go to **Resource List** and expand **Storage**.
+1. Click your **Storage** instance.
 1. Click **Create bucket**.
 1. Click **Create** in the **Create a Custom Bucket** pane.
 1. Enter a unique bucket name.
