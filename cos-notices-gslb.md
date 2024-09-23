@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-09-20"
+lastupdated: "2024-09-23"
 
 keywords: IBM Cloud Object Storage notifications, notifications, gslb
 
@@ -78,5 +78,5 @@ In order to avoid future changes when using the private and direct endpoints, IB
 
 {: caption="Table 2. IP address changes" caption-side="top"}
 
-This table is updated as new regions are planned for deployment.
+This table is updated as new regions are planned for deployment. IP address details for future offerings will be finalized no later than 7 days prior the date when the endpoints will be available for testing.
 {: note}
