@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-09-03"
+lastupdated: "2024-09-25"
 
-keywords: IBM cloud object storage, cloud object storage, object storage, storage, cross origin resource sharing, cors
+keywords: IBM cloud object storage, cloud object storage, object storage, storage, cross origin resource sharing, cors, special characters
 
 subcollection: cloud-object-storage
 
@@ -63,6 +63,9 @@ Now go ahead and go to one of your buckets by selecting it from the list. Click 
 
 Objects are limited to 200 MB when uploaded through the console unless you use the [Aspera high-speed transfer](/docs/cloud-object-storage?topic=cloud-object-storage-upload) plug-in or use Cross-Origin Resource Sharing (CORS), by setting the CORS headers. Larger objects (up to 10 TB) can also be [split into parts and uploaded in parallel using the API](/docs/cloud-object-storage?topic=cloud-object-storage-large-objects). Object keys can be up to 1024 characters in length, and it's best to avoid any characters that might be problematic in a web address. For example, `?`, `=`, `<`, and other special characters might cause unwanted behavior if not URL-encoded.
 {: tip}
+
+If an object with a special character is uploaded to a bucket, it may cause problems with displaying and accessing it in the UI. In these cases, the object should be deleted and re-uploaded with a more standard name. You may delete these objects with Expiration or Lifecycle rules if the UI and CLI deletions are not successful. Avoid special characters to prevent any difficulties with accessing or deleting the object.
+{: attention}
 
 ## How do I invite a user to administer buckets and data?
 {: #gs-invite-user}
