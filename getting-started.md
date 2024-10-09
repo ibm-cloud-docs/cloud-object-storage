@@ -51,7 +51,7 @@ This tutorial takes a new user through the first steps with the {{site.data.keyw
 
 4. Determine the advanced configurations, if any, suitable to your content. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option. See the example in Figure 1 for options in creating an archive policy.
 
-![Create an archive policy](images/bucket-create-ui-archive-rule.jpg){: caption="Figure 1. Create an archive policy"}
+![Create an archive policy](images/bucket-create-ui-archive-rule.jpg){: caption="Create an archive policy"}
 
 Buckets are a way to organize your data, but they're not the sole way. Object names (often referred to as _object keys_) can use one or more forward slashes for a directory-like organizational system. You then use the portion of the object name before a delimiter to form an _object prefix_, which is used to list related objects in a single bucket through the {{site.data.keyword.cos_short}} API.
 {: tip}

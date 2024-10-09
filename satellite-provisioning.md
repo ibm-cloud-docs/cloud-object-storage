@@ -78,6 +78,4 @@ If the location chosen for the new instance of {{site.data.keyword.cos_short}} f
 3. Select the **Services** tab.
 4. Look for the confirmation pop-up and approve the assignment.
 
-![Assign storage](images/satellite-popup.png){: caption="Figure 1. Confirming host and storage assignment."}
-
-
+![Assign storage](images/satellite-popup.png){: caption="Confirming host and storage assignment."}

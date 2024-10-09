@@ -45,7 +45,7 @@ These operations create, delete, get information about, and control behavior of 
 | `GET` Multipart Uploads | Lists multipart uploads that aren't completed or canceled.                     |
 | `PUT` Bucket            | Buckets have naming restrictions. Accounts are limited to 100 buckets.         |
 | `PUT` Bucket CORS       | Creates a CORS configuration for a bucket.                                     |
-{: caption="Table 1. Bucket operation" caption-side="top"}
+{: caption="Bucket operation" caption-side="top"}
 
 ## Object operations
 {: #compatibility-api-object}
@@ -67,6 +67,6 @@ These operations create, delete, get information about, and control behavior of 
 | Complete Multipart Upload | Assembles an object from parts that are associated with an upload ID.              |
 | Cancel Multipart Upload   | Cancels upload and deletes outstanding parts that are associated with an upload ID. |
 | List Parts                | Returns a list of parts that are associated with an upload ID                       |
-{: caption="Table 1. Object operation" caption-side="top"}
+{: caption="Object operation" caption-side="top"}
 
 More information about {{site.data.keyword.cos_full_notm}} features and use-cases can be found at [ibm.com](https://www.ibm.com/products/cloud-object-storage).

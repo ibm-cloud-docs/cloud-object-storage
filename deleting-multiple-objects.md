@@ -59,7 +59,7 @@ Before getting to the examples, there is one way to empty a bucket via the GUI a
 
 After logging in to {{site.data.keyword.cos_short}}, choose your storage instance. Then, select your bucket from the list of your buckets. To set the rule to delete the items, select **Configuration** from the navigation menu and click **Add rule** under the *Expiration rule* section. Set the number of days to '1' to delete all the items after one day.
 
-![`deleting_items`](images/empty-bucket-rule-dialog.png){: caption="Figure 1. Add Expiration Rule to delete items"}
+![`deleting_items`](images/empty-bucket-rule-dialog.png){: caption="Add Expiration Rule to delete items"}
 
 The process for rule completion can take up to 24 hours, and is on a set schedule. Please take this into consideration when applying this technique.
 {: tip}

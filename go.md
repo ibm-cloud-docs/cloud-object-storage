@@ -75,7 +75,7 @@ The credentials can be found by creating a [Service Credential](/docs/cloud-obje
 
 Figure 1 shows an example of how to define environment variables in an application runtime at the {{site.data.keyword.cos_full_notm}} portal. The required variables are `IBM_API_KEY_ID` containing your Service Credential `apikey`, `IBM_SERVICE_INSTANCE_ID` holding the `resource_instance_id` also from your Service Credential, and an `IBM_AUTH_ENDPOINT` with a value appropriate to your account, like `https://iam.cloud.ibm.com/identity/token`. If using environment variables to define your application credentials, use `WithCredentials(ibmiam.NewEnvCredentials(aws.NewConfig())).`, replacing the similar method used in the configuration example.
 
-![environment variables](images/go-library-fig-1-env-vars.png){: caption="Figure 1. Environment Variables"}
+![environment variables](images/go-library-fig-1-env-vars.png){: caption="Environment Variables"}
 
 
 If migrating from AWS S3, you can also source credentials data from  `~/.aws/credentials` in the format:

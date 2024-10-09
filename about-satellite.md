@@ -41,7 +41,7 @@ Essentially, provisioning an instance of {{site.data.keyword.cos_short}} for {{s
 ## How {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} works
 {: #about-cos-satellite-how}
 
-![COS on Satellite Architecture](images/satellite-arch.png){: caption="Figure 1. Object Storage for Satellite Architecture"}
+![COS on Satellite Architecture](images/satellite-arch.png){: caption="Object Storage for Satellite Architecture"}
 
 1. A {{site.data.keyword.satelliteshort}} administrator needs to configure a new "Location" using the {{site.data.keyword.satelliteshort}} console and assigns hosts for the {{site.data.keyword.satelliteshort}} Control Plane.
 2. After the new location is created and accessible, an {{site.data.keyword.cos_short}} administrator provisions the {{site.data.keyword.cos_short}} instance in the new location.
@@ -55,7 +55,7 @@ In order to interact with object storage, a client makes API calls to a _service
 
 The _service endpoint_ that is used for reading and writing data typically takes the form of `https://s3.{cos-instance-uuid}.{location-id}.cloud-object-storage.appdomain.cloud` and can be found under the **Endpoints** section of the object storage console.
 
-![COS on Satellite Endpoints](images/satellite_endpoints.png){: caption="Figure 2. Object Storage for Satellite Endpoints"}
+![COS on Satellite Endpoints](images/satellite_endpoints.png){: caption="Object Storage for Satellite Endpoints"}
 
 Keep in mind that requests made to {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} infrastructure must originate within the satellite location as the service endpoint may not be accessible from the outside of that location.
 {: note}

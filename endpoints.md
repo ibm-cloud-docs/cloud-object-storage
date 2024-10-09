@@ -65,7 +65,7 @@ Buckets that are created at a regional endpoint distribute data across three dat
 | `br-sao`   | Public | `s3.br-sao.cloud-object-storage.appdomain.cloud`   |
 | `eu-es`    | Public | `s3.eu-es.cloud-object-storage.appdomain.cloud`    |
 {: class="simple-tab-table"}
-{: caption="Table 1. Regional Endpoints" caption-side="top"}
+{: caption="Regional Endpoints" caption-side="top"}
 {: #regionalendpointtable1}
 {: tab-title="Public"}
 {: tab-group="Regional-endpoints"}
@@ -83,7 +83,7 @@ Buckets that are created at a regional endpoint distribute data across three dat
 | `br-sao`   | Private | `s3.private.br-sao.cloud-object-storage.appdomain.cloud`   |
 | `eu-es`    | Private | `s3.private.eu-es.cloud-object-storage.appdomain.cloud`    |
 {: class="simple-tab-table"}
-{: caption="Table 1. Regional Endpoints" caption-side="top"}
+{: caption="Regional Endpoints" caption-side="top"}
 {: #regionalendpointtable2}
 {: tab-title="Private"}
 {: tab-group="Regional-endpoints"}
@@ -101,7 +101,7 @@ Buckets that are created at a regional endpoint distribute data across three dat
 | `br-sao`   | Direct | `s3.direct.br-sao.cloud-object-storage.appdomain.cloud`   |
 | `eu-es`    | Direct | `s3.direct.eu-es.cloud-object-storage.appdomain.cloud`    |
 {: class="simple-tab-table"}
-{: caption="Table 1. Regional Endpoints" caption-side="top"}
+{: caption="Regional Endpoints" caption-side="top"}
 {: #regionalendpointtable3}
 {: tab-title="Direct"}
 {: tab-group="Regional-endpoints"}
@@ -117,7 +117,7 @@ Buckets that are created at a cross-region endpoint distribute data across three
 | `eu`   | Public | `s3.eu.cloud-object-storage.appdomain.cloud` |
 | `ap`   | Public | `s3.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 2. Cross Region Endpoints" caption-side="top"}
+{: caption="Cross Region Endpoints" caption-side="top"}
 {: #crossregionalendpointtable1}
 {: tab-title="Public"}
 {: tab-group="Cross-regional-endpoints"}
@@ -128,7 +128,7 @@ Buckets that are created at a cross-region endpoint distribute data across three
 | `eu`   | Private | `s3.private.eu.cloud-object-storage.appdomain.cloud` |
 | `ap`   | Private | `s3.private.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 2. Cross Region Endpoints" caption-side="top"}
+{: caption="Cross Region Endpoints" caption-side="top"}
 {: #crossregionalendpointtable2}
 {: tab-title="Private"}
 {: tab-group="Cross-regional-endpoints"}
@@ -139,7 +139,7 @@ Buckets that are created at a cross-region endpoint distribute data across three
 | `eu`   | Direct | `s3.direct.eu.cloud-object-storage.appdomain.cloud` |
 | `ap`   | Direct | `s3.direct.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 2. Cross Region Endpoints" caption-side="top"}
+{: caption="Cross Region Endpoints" caption-side="top"}
 {: #crossregionalendpointtable3}
 {: tab-title="Direct"}
 {: tab-group="Cross-regional-endpoints"}
@@ -168,7 +168,7 @@ If a networking failure results in a partition where the data center is unable t
 | `sjc04` | Public | `s3.sjc04.cloud-object-storage.appdomain.cloud` |
 | `sng01` | Public | `s3.sng01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
+{: caption="Single Data Center Endpoints" caption-side="top"}
 {: #sdcendpointtable1}
 {: tab-title="Public"}
 {: tab-group="single-datacenter-endpoints"}
@@ -184,7 +184,7 @@ If a networking failure results in a partition where the data center is unable t
 | `sjc01` | Private | `s3.private.sjc04.cloud-object-storage.appdomain.cloud` |
 | `sng01` | Private | `s3.private.sng01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
+{: caption="Single Data Center Endpoints" caption-side="top"}
 {: #sdcendpointtable2}
 {: tab-title="Private"}
 {: tab-group="single-datacenter-endpoints"}
@@ -199,7 +199,7 @@ If a networking failure results in a partition where the data center is unable t
 | `sjc04` | Direct | `s3.direct.sjc04.cloud-object-storage.appdomain.cloud` |
 | `sng01` | Direct | `s3.direct.sng01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
+{: caption="Single Data Center Endpoints" caption-side="top"}
 {: #sdcendpointtable3}
 {: tab-title="Direct"}
 {: tab-group="single-datacenter-endpoints"}
@@ -217,7 +217,7 @@ The {{site.data.keyword.at_full_notm}} can archive to a bucket at specific {{sit
 | `mil01`                                         | Single Site  | Milan                       |
 | `par01`                                         | Single Site  | Paris                       |
 | `eu-geo`                                        | Cross Region | Amsterdam, Frankfurt, Milan |
-{: caption="Table 4. EU-managed Endpoints" caption-side="top"}
+{: caption="EU-managed Endpoints" caption-side="top"}
 
 ## Resource Configuration Endpoints
 {: #endpoints-rc}
@@ -229,7 +229,7 @@ Requests made using the Resource Configuration API are sent to a global endpoint
 | Public  | `config.cloud-object-storage.cloud.ibm.com/v1`         |
 | Private | `config.private.cloud-object-storage.cloud.ibm.com/v1` |
 | Direct  | `config.direct.cloud-object-storage.cloud.ibm.com/v1`  |
-{: caption="Table 5. Resource Configuration Endpoints" caption-side="top"}
+{: caption="Resource Configuration Endpoints" caption-side="top"}
 
 ## Decommissioned locations
 {: #endpoints-decom}
@@ -256,4 +256,4 @@ Over time, it may be necessary for locations to transform from a Single Data Cen
 | `seo01` | Public | `s3.seo01.cloud-object-storage.appdomain.cloud` |
 | `seo01` | Private | `s3.private.seo01.cloud-object-storage.appdomain.cloud` |
 | `seo01` | Direct | `s3.direct.seo01.cloud-object-storage.appdomain.cloud` |
-{: caption="Table 6. Decommissioned Endpoints" caption-side="top"}
+{: caption="Decommissioned Endpoints" caption-side="top"}

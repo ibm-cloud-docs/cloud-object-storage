@@ -46,7 +46,7 @@ The credential has the following values:
 | `iam_role_crn`           | Unique identifier for the assigned role                                                                                                             |
 | `iam_serviceid_crn`      | Unique identifier for the Service ID                                                                                                                |
 | `resource_instance_id`   | Unique identifier for the instance of {{site.data.keyword.cos_short}} the credential accesses. This is also referred to as a service credential. |
-{: caption="Table 1. Credential values" caption-side="top"}
+{: caption="Credential values" caption-side="top"}
 
 This is an example of a service credential:
 
@@ -382,4 +382,3 @@ In general IAM API Keys are the preferred method of authentication for {{site.da
 For more information about IAM visit - [Getting started with IAM](/docs/cloud-object-storage?topic=cloud-object-storage-iam)
 
 For more information about HMAC visit - [Using HMAC Credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main)
-

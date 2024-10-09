@@ -36,7 +36,7 @@ subcollection: cloud-object-storage
 | 0 - 499.99 TB | $0.009   | $0.009  | $0.0096           | $0.0099    | $0.0108      | $0.0102  | $0.0108                  | $0.0093         |
 | 500+ TB       | $0.009   | $0.009  | $0.0096           | $0.0099    | $0.0108      | $0.0102  | $0.0108                  | $0.0093         |
 {: class="simple-tab-table"}
-{: caption="Table 1. Storage Capacity (GB/month)" caption-side="top"}
+{: caption="Storage Capacity (GB/month)" caption-side="top"}
 {: #storage1}
 {: tab-title="Regional"}
 {: tab-group="storage-capacity"}
@@ -46,7 +46,7 @@ subcollection: cloud-object-storage
 | 0 - 499.99 TB | $0.014          | $0.0148         | $0.0158         |
 | 500+ TB       | $0.014          | $0.0148         | $0.0158         |
 {: class="simple-tab-table"}
-{: caption="Table 1. Storage Capacity (GB/month)" caption-side="top"}
+{: caption="Storage Capacity (GB/month)" caption-side="top"}
 {: #storage2}
 {: tab-title="Cross Region"}
 {: tab-group="storage-capacity"}
@@ -56,7 +56,7 @@ subcollection: cloud-object-storage
 | 0 - 499.99 TB | $0.0093                | $0.0108        | $0.0108              | $0.0099      | $0.0093                 | $0.0099       | $0.009       | $0.0102   |
 | 500+ TB       | $0.0093                | $0.0108        | $0.0108              | $0.0099      | $0.0093                 | $0.0099       | $0.009       | $0.0102   |
 {: class="simple-tab-table"}
-{: caption="Table 1. Storage Capacity (GB/month)" caption-side="top"}
+{: caption="Storage Capacity (GB/month)" caption-side="top"}
 {: #storage3}
 {: tab-title="Single Data Center"}
 {: tab-group="storage-capacity"}
@@ -68,7 +68,7 @@ subcollection: cloud-object-storage
 | Next 350 TB         | $0.05      | $0.05      | $0.05             | $0.05      | $0.08        | $0.08      | $0.10                    | $0.05           |
 | Greater than 500 TB | Contact us | Contact us | Contact us        | Contact us | Contact us   | Contact us | Contact us               | Contact us      |
 {: class="simple-tab-table"}
-{: caption="Table 2. Public outbound bandwidth (GB/month)" caption-side="top"}
+{: caption="Public outbound bandwidth (GB/month)" caption-side="top"}
 {: #bandwidth1}
 {: tab-title="Regional"}
 {: tab-group="public-outbound-bandwidth"}
@@ -80,7 +80,7 @@ subcollection: cloud-object-storage
 | Next 350 TB         | $0.05           | $0.05           | $0.08           |
 | Greater than 500 TB | Contact us      | Contact us      | Contact us      |
 {: class="simple-tab-table"}
-{: caption="Table 2. Public outbound bandwidth (GB/month)" caption-side="top"}
+{: caption="Public outbound bandwidth (GB/month)" caption-side="top"}
 {: #bandwidth2}
 {: tab-title="Cross Region"}
 {: tab-group="public-outbound-bandwidth"}
@@ -92,7 +92,7 @@ subcollection: cloud-object-storage
 | Next 350 TB         | $0.05                  | $0.10          | $0.08                | $0.07        | $0.05                   | $0.07         | $0.05        | $0.07      |
 | Greater than 500 TB | Contact us             | Contact us     | Contact us           | Contact us   | Contact us              | Contact us    | Contact us   | Contact us |
 {: class="simple-tab-table"}
-{: caption="Table 2. Public outbound bandwidth (GB/month)" caption-side="top"}
+{: caption="Public outbound bandwidth (GB/month)" caption-side="top"}
 {: #bandwidth3}
 {: tab-title="Single Data Center"}
 {: tab-group="public-outbound-bandwidth"}
@@ -104,7 +104,7 @@ subcollection: cloud-object-storage
 | Delete requests                               | No charge | No charge | No charge         | No charge  | No charge    | No charge | No charge                | No charge       |
 | Data retrieval (per GB)                       | $0.029    | $0.029    | $0.029            | $0.029     | $0.029       | $0.029    | $0.029                   | $0.029          |
 {: class="simple-tab-table"}
-{: caption="Table 3. Operational Requests" caption-side="top"}
+{: caption="Operational Requests" caption-side="top"}
 {: #requests1}
 {: tab-title="Regional"}
 {: tab-group="operational-requests"}
@@ -116,7 +116,7 @@ subcollection: cloud-object-storage
 | Delete requests                               | No charge       | No charge       | No charge       |
 | Data retrieval (per GB)                       | $0.029          | $0.029          | $0.029          |
 {: class="simple-tab-table"}
-{: caption="Table 3. Operational Requests" caption-side="top"}
+{: caption="Operational Requests" caption-side="top"}
 {: #requests2}
 {: tab-title="Cross Region"}
 {: tab-group="operational-requests"}
@@ -128,7 +128,7 @@ subcollection: cloud-object-storage
 | Delete requests                               | No charge              | No charge      | No charge            | No charge    | No charge               | No charge     | No charge    | No charge |
 | Data retrieval (per GB)                       | $0.029                 | $0.029         | $0.029               | $0.029       | $0.029                  | $0.029        | $0.029       | $0.029    |
 {: class="simple-tab-table"}
-{: caption="Table 3. Operational Requests" caption-side="top"}
+{: caption="Operational Requests" caption-side="top"}
 {: #requests3}
 {: tab-title="Single Data Center"}
 {: tab-group="operational-requests"}
@@ -137,7 +137,7 @@ subcollection: cloud-object-storage
 |-------------------------------|----------|---------|-------------------|------------|--------------|----------|--------------------------|-----------------|
 | Total GB stored and retrieved | $0.029   | $0.029  | $0.0296           | $0.0299    | $0.0308      | $0.0302  | $0.0308                  | $0.0293         |
 {: class="simple-tab-table"}
-{: caption="Table 4. Flex charge model for combined (storage capacity and data retrieval) is calculated using the lowest value of (A) storage capacity charge + data retrieval charge, or (B) capacity x Flex cap charge." caption-side="top"}
+{: caption="Flex charge model for combined (storage capacity and data retrieval) is calculated using the lowest value of (A) storage capacity charge + data retrieval charge, or (B) capacity x Flex cap charge." caption-side="top"}
 {: #cap1}
 {: tab-title="Regional"}
 {: tab-group="flex-cap"}
@@ -146,7 +146,7 @@ subcollection: cloud-object-storage
 |-------------------------------|-----------------|-----------------|-----------------|
 | Total GB stored and retrieved | $0.034         | $0.0348         | $0.0358         |
 {: class="simple-tab-table"}
-{: caption="Table 4. Flex charge model for combined (storage capacity and data retrieval) is calculated using the lowest value of (A) storage capacity charge + data retrieval charge, or (B) capacity x Flex cap charge." caption-side="top"}
+{: caption="Flex charge model for combined (storage capacity and data retrieval) is calculated using the lowest value of (A) storage capacity charge + data retrieval charge, or (B) capacity x Flex cap charge." caption-side="top"}
 {: #cap2}
 {: tab-title="Cross Region"}
 {: tab-group="flex-cap"}
@@ -155,7 +155,7 @@ subcollection: cloud-object-storage
 |-------------------------------|------------------------|----------------|----------------------|--------------|-------------------------|---------------|--------------|-----------|
 | Total GB stored and retrieved | $0.0293                | $0.0308        | $0.0308              | $0.0102      | $0.0299                 | $0.0299       | $0.0290      | $0.0302   |
 {: class="simple-tab-table"}
-{: caption="Table 4. Flex charge model for combined (storage capacity and data retrieval) is calculated using the lowest value of (A) storage capacity charge + data retrieval charge, or (B) capacity x Flex cap charge." caption-side="top"}
+{: caption="Flex charge model for combined (storage capacity and data retrieval) is calculated using the lowest value of (A) storage capacity charge + data retrieval charge, or (B) capacity x Flex cap charge." caption-side="top"}
 {: #cap3}
 {: tab-title="Single Data Center"}
 {: tab-group="flex-cap"}
@@ -167,7 +167,7 @@ subcollection: cloud-object-storage
 | Next 350 TB         | $0.04      | $0.04      | $0.04             | $0.04      | $0.05        | $0.04      | $0.04                    | $0.04           |
 | Greater than 500 TB | Contact us | Contact us | Contact us        | Contact us | Contact us   | Contact us | Contact us               | Contact us      |
 {: class="simple-tab-table"}
-{: caption="Table 5. Aspera High-Speed Transfer outbound bandwidth (GB/month)" caption-side="top"}
+{: caption="Aspera High-Speed Transfer outbound bandwidth (GB/month)" caption-side="top"}
 {: #aspera1}
 {: tab-title="Regional"}
 {: tab-group="aspera-outbound-bandwidth"}
@@ -179,7 +179,7 @@ subcollection: cloud-object-storage
 | Next 350 TB         | $0.04           | $0.04           | $0.04           |
 | Greater than 500 TB | Contact us      | Contact us      | Contact us      |
 {: class="simple-tab-table"}
-{: caption="Table 5. Aspera High-Speed Transfer outbound bandwidth (GB/month)" caption-side="top"}
+{: caption="Aspera High-Speed Transfer outbound bandwidth (GB/month)" caption-side="top"}
 {: #aspera2}
 {: tab-title="Cross Region"}
 {: tab-group="aspera-outbound-bandwidth"}
@@ -191,8 +191,7 @@ subcollection: cloud-object-storage
 | Next 350 TB         | $0.04                  | $0.04          | $0.04                | $0.05        | $0.04                   | $0.05         | $0.05        | $0.05      |
 | Greater than 500 TB | Contact us             | Contact us     | Contact us           | Contact us   | Contact us              | Contact us    | Contact us   | Contact us |
 {: class="simple-tab-table"}
-{: caption="Table 5. Aspera High-Speed Transfer outbound bandwidth (GB/month)" caption-side="top"}
+{: caption="Aspera High-Speed Transfer outbound bandwidth (GB/month)" caption-side="top"}
 {: #aspera3}
 {: tab-title="Single Data Center"}
 {: tab-group="aspera-outbound-bandwidth"}
-

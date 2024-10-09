@@ -26,7 +26,7 @@ Assign access roles for users and Service IDs against buckets, by using either t
 | Content Reader | List and download objects                                    |
 | Object Reader  | Download objects                                             |
 | Object Writer  | Upload objects                                               |
-{: caption="Table 1. Buckets" caption-side="top"}
+{: caption="Buckets" caption-side="top"}
 
 ## Granting access to a user
 {: #iam-user-access}
@@ -66,7 +66,7 @@ To create a new bucket-level policy:
 9. Select the wanted service access role. Selecting the lozenge with the number of actions show the actions available to the role, as exemplified for "Content Reader" in Figure 1.
 10. Click **Assign**
 
-![Role information](images/console-iam-changes-role-cos.png){: caption="Figure 1. Example actions per Content Reader role"}
+![Role information](images/console-iam-changes-role-cos.png){: caption="Example actions per Content Reader role"}
 
 Note that leaving the **Resource Type** or **Resource** fields blank will create an instance-level policy.
 {: tip}

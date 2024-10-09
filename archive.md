@@ -37,7 +37,7 @@ When creating or modifying an archive policy for a bucket, consider the followin
 
 Create a bucket in the console after you've logged in, and you can configure your archive policy using the fields shown in Figure 1.
 
-![Create an archive policy](images/bucket-create-ui-archive-rule.png){: caption="Figure 1. Create an archive policy"}
+![Create an archive policy](images/bucket-create-ui-archive-rule.png){: caption="Create an archive policy"}
 
 To immediately archive new objects uploaded to a bucket, enter 0 days on the archive policy.
 {: tip}

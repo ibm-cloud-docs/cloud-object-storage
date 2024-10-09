@@ -154,7 +154,7 @@ There are other parameters to consider when tuning `rclone`. Different combinati
 | `--transfers` | `int` | This is the number of objects to transfer in parallel (default 4). We recommend increasing this to 64 or 128 or higher when transferring many small files. |
 | `--multi-thread-streams` | `int` | Download large files (> 250M) in multiple parts in parallel. This will improve the download time of large files (default 4). |
 | `--s3-upload-concurrency` | `int` | The number of parts of large files (> 200M) to upload in parallel. This will improve the upload time of large files (default 4). |
-{: caption="Table 1. `rclone` options" caption-side="top"}
+{: caption="`rclone` options" caption-side="top"}
 
 Migrating data using `rclone copy` only copies but does not delete the source data.
 {: tip}
