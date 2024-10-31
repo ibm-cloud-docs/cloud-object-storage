@@ -91,11 +91,10 @@ If you already have a Lite plan instance created, you may create other Standard 
 {: #faq-locked-account}
 {: faq}
 
-In cases where a Lite Plan instance has exceeded the size limit, and your account is locked or deactivated:
+In cases where a Lite Plan instance has exceeded the size limit, your account is locked or deactivated.
 
-* The [COS support](https://cloud.ibm.com/unifiedsupport/cases/form) team can help to unlock your account.
-
-* Upon enablement, reduce your storage to less than 25GB within a week to prevent it from getting disabled again. Your Lite Plan instance can be reactivated only once. If your usage quota is violated a second time, conversion to a paid plan is required.
+* To continue using the service instance, follow the [steps to upgrade it to a Standard plan](/docs/cloud-object-storage?topic=cloud-object-storage-faq-provision#faq-instance-upgrade). Effective December 15th, 2024, support will end for all Lite Plan instances. To avoid loss of data, Lite Plan users need to convert their Lite Plan instance to the Standard (paid) plan before that date.
+* If necessary, you can [create a support case](https://cloud.ibm.com/unifiedsupport/cases/form) to request that the Cloud Support team unlock the account and provide a one-time reactivation of the instance to allow time for you to convert the plan.
 
 ## How does frequency of data access impact the pricing of {{site.data.keyword.cos_short}}?
 {: #faq-access-price}
