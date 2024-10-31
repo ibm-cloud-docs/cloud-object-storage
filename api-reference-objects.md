@@ -34,7 +34,7 @@ When authenticating to your instance of {{site.data.keyword.cos_full_notm}} by [
 |{region}|The location code for your endpoint|us-standard|
 |{signature}|The hash created using the secret key, location, and date|ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e|
 |{timestamp}|The formatted date and time of your request|20180614T001804Z|
-{: caption="Table 1. HMAC signature components"}
+{: caption="HMAC signature components"}
 
 ## Upload an object
 {: #object-operations-put}
@@ -333,7 +333,7 @@ Multiple object deletes involve a `POST operation` that is charged as Class A. T
 |Header|Type|Description|
 |---|---|---|
 |`Quiet`|Boolean|Enable quiet mode for the request.|
-{: caption="Table 1. Header" caption-side="top"}
+{: caption="Header" caption-side="top"}
 
 The request can contain a maximum of 1000 keys that you want to delete. While this is useful in reducing the number of requests, be mindful when deleting many keys. Also, take into account the sizes of the objects to ensure suitable performance.
 {: tip}
@@ -360,7 +360,7 @@ The body of the request must contain an XML block with the following schema:
 |Delete | Container | Object | - | - |
 |Object| Container | Key | Delete | - |
 |Key| String | - | Object | Valid key string |
-{: caption="Table 2. Body of the request schema" caption-side="top"}
+{: caption="Body of the request schema" caption-side="top"}
 
 **Example request**
 {: token}
@@ -440,7 +440,7 @@ The body of the request must contain an XML block with the following schema:
 | Retention | Container | Mode, RetainUntilDate     | -        | Required |
 | Mode  | String | -        | Retention  | Required - valid value is COMPLIANCE |
 | RetainUntilDate     | Timestamp    | - | Retention   | Required |
-{: caption="Table 3. Body of the request schema" caption-side="top"}
+{: caption="Body of the request schema" caption-side="top"}
 
 The following code shows one example of how to create the necessary representation of the header content:
 
@@ -511,7 +511,7 @@ The body of the request must contain an XML block with the following schema:
 | Tag     | String    | Key, Value | TagSet   | Required |
 | Key     | Container | -          | Tag      | Required |
 | Value   | String    | -          | Tag      | Required |
-{: caption="Table 4. Body of the request schema" caption-side="top"}
+{: caption="Body of the request schema" caption-side="top"}
 
 Tags must comply with the following restrictions:
 * An object can have a maximum of 10 tags
@@ -994,7 +994,7 @@ GET https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId} # virtual
 | `uploadId`          | Required  | string | Upload ID returned when initializing a multipart upload. |
 | `max-parts`         | Optional  | string | Defaults to 1,000.                                       |
 | `part-number​-marker` | Optional  | string | Defines where the list of parts begins.                  |
-{: caption="Table 5. Parameters" caption-side="top"}
+{: caption="Parameters" caption-side="top"}
 
 **Example request**
 {: token}
@@ -1082,7 +1082,7 @@ The body of the request must contain an XML block with the following schema:
 |Part| Container | PartNumber, `ETag` | Delete | - |
 |PartNumber| String | - | Object | Valid part number |
 |`ETag`| String | - | Object | Valid `ETag` value string |
-{: caption="Table 6. Body of the request schema" caption-side="top"}
+{: caption="Body of the request schema" caption-side="top"}
 
 ```xml
 <CompleteMultipartUpload>

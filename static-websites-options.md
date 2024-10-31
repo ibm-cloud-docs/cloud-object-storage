@@ -44,18 +44,18 @@ At minimum, your configuration should consist of a required index document for v
 
 When you create and configure a new hosted static website, you may also wish to use {{site.data.keyword.cis_full_notm}} to configure more advanced options including [routing rules for your domain](/docs/cloud-object-storage?topic=cloud-object-storage-routing-rules-cos). But you don't even have to go further than configuring your bucket during creation to start customizing your new site.
 
-![Configure options](images/cos-sw-ui-complete-config.jpg){: caption="Figure 1. Initial configuration options"}
+![Configure options](images/cos-sw-ui-complete-config.jpg){: caption="Initial configuration options"}
 
 ### Routing
 {: #static-websites-options-adv-conf-routing}
 
 Routing gives you control over the requests coming from your visitors. For example, you could globally redirect all your traffic from using one protocol to another, like replacing HTTP with the secure HTTPS. Or, you can create individual rules that process incoming requests for specific files and provide responses to your visitors based on the rules you define.
 
-![Global routing rule](images/cos-sw-ui-global-routing.jpg){: caption="Figure 2. Global routing rule"}
+![Global routing rule](images/cos-sw-ui-global-routing.jpg){: caption="Global routing rule"}
 
 If you already have a hosted static website that you wish to migrate, you can bring a set of the routing rules that you have already set and import the set as code. The input shown in Figure 3 requires a JSON array formatted for the website configuration rules.
 
-![Import configuration code](images/cos-sw-ui-code-config.jpg){: caption="Figure 3. Import configuration as code"}
+![Import configuration code](images/cos-sw-ui-code-config.jpg){: caption="Import configuration as code"}
 
 An example of JSON code exemplifies the possibilities. The following shows a rule that redirects visitors from missing pages or possible malformed request resulting in a `404` error code and redirecting the visitor to a specific error page. The JSON can contain multiple objects representing the definition of the rules as needed.
 
@@ -77,7 +77,7 @@ An example of JSON code exemplifies the possibilities. The following shows a rul
 
 The same rule codified previously can be added as an individual rule using the Console, and shown in Figure 3.
 
-![Add individual rules](images/cos-sw-ui-rule-creation.jpg){: caption="Figure 3. Add individual rules"}
+![Add individual rules](images/cos-sw-ui-rule-creation.jpg){: caption="Add individual rules"}
 
 ### {{site.data.keyword.cloud_notm}} Internet, Domain, and Delivery Services
 {: #static-websites-options-cdn}
@@ -106,7 +106,7 @@ The following tables match most of the regions, locations, and type of connectio
 | AP Tokyo          | `s3-web.jp-tok.cloud-object-storage.appdomain.cloud`   |
 | AP Osaka          | `s3-web.jp-osa.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
-{: caption="Table 1. Regional Endpoints" caption-side="top"}
+{: caption="Regional Endpoints" caption-side="top"}
 {: #swregionalendpointtable1}
 {: tab-title="Public"}
 {: tab-group="Regional-endpoints"}
@@ -121,7 +121,7 @@ The following tables match most of the regions, locations, and type of connectio
 | AP Tokyo          | `s3-web.private.jp-tok.cloud-object-storage.appdomain.cloud`   |
 | AP Osaka          | `s3-web.private.jp-osa.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
-{: caption="Table 1. Regional Endpoints" caption-side="top"}
+{: caption="Regional Endpoints" caption-side="top"}
 {: #swregionalendpointtable2}
 {: tab-title="Private"}
 {: tab-group="Regional-endpoints"}
@@ -136,7 +136,7 @@ The following tables match most of the regions, locations, and type of connectio
 | AP Tokyo          | `s3-web.direct.jp-tok.cloud-object-storage.appdomain.cloud`   |
 | AP Osaka          | `s3-web.direct.jp-osa.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
-{: caption="Table 1. Regional Endpoints" caption-side="top"}
+{: caption="Regional Endpoints" caption-side="top"}
 {: #swregionalendpointtable3}
 {: tab-title="Direct"}
 {: tab-group="Regional-endpoints"}
@@ -151,7 +151,7 @@ The following tables match most of the regions, locations, and type of connectio
 | EU Cross Region | `s3-web.eu.cloud-object-storage.appdomain.cloud` |
 | AP Cross Region | `s3-web.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 2. Cross Region Endpoints" caption-side="top"}
+{: caption="Cross Region Endpoints" caption-side="top"}
 {: #swcrossregionalendpointtable1}
 {: tab-title="Public"}
 {: tab-group="Cross-regional-endpoints"}
@@ -162,7 +162,7 @@ The following tables match most of the regions, locations, and type of connectio
 | EU Cross Region | `s3-web.private.eu.cloud-object-storage.appdomain.cloud` |
 | AP Cross Region | `s3-web.private.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 2. Cross Region Endpoints" caption-side="top"}
+{: caption="Cross Region Endpoints" caption-side="top"}
 {: #swcrossregionalendpointtable2}
 {: tab-title="Private"}
 {: tab-group="Cross-regional-endpoints"}
@@ -173,7 +173,7 @@ The following tables match most of the regions, locations, and type of connectio
 | EU Cross Region | `s3-web.direct.eu.cloud-object-storage.appdomain.cloud` |
 | AP Cross Region | `s3-web.direct.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 2. Cross Region Endpoints" caption-side="top"}
+{: caption="Cross Region Endpoints" caption-side="top"}
 {: #swcrossregionalendpointtable3}
 {: tab-title="Direct"}
 {: tab-group="Cross-regional-endpoints"}
@@ -193,7 +193,7 @@ The following tables match most of the regions, locations, and type of connectio
 | S&atilde;o Paulo, Brazil    | `s3-web.sao01.cloud-object-storage.appdomain.cloud` |
 | Singapore                   | `s3-web.sng01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
+{: caption="Single Data Center Endpoints" caption-side="top"}
 {: #swsdcendpointtable1}
 {: tab-title="Public"}
 {: tab-group="single-datacenter-endpoints"}
@@ -210,7 +210,7 @@ The following tables match most of the regions, locations, and type of connectio
 | S&atilde;o Paulo, Brazil    | `s3-web.private.sao01.cloud-object-storage.appdomain.cloud` |
 | Singapore                   | `s3-web.private.sng01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
+{: caption="Single Data Center Endpoints" caption-side="top"}
 {: #swsdcendpointtable2}
 {: tab-title="Private"}
 {: tab-group="single-datacenter-endpoints"}
@@ -227,7 +227,7 @@ The following tables match most of the regions, locations, and type of connectio
 | S&atilde;o Paulo, Brazil    | `s3-web.direct.sao01.cloud-object-storage.appdomain.cloud` |
 | Singapore                   | `s3-web.direct.sng01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
+{: caption="Single Data Center Endpoints" caption-side="top"}
 {: #swsdcendpointtable3}
 {: tab-title="Direct"}
 {: tab-group="single-datacenter-endpoints"}

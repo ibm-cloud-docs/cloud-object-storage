@@ -192,7 +192,7 @@ Refer to the section on how to [Create a new policy for a user with conditions](
 | Content Reader      | List and download objects.                                    | See Note  |
 | Object Reader       | Download objects.                                             | Path |
 | Object Writer       | Upload objects.                                               | Path |
-{: caption="Table 1. Use of Conditions with COS Service Roles"}
+{: caption="Use of Conditions with COS Service Roles"}
 
 **Note:** These roles support Prefix/Delimiter and Path condition attributes. The roles also include actions that do not specify a path or prefix and delimiter. Use the `stringExists` clause in the condition statement to allow these actions.
 

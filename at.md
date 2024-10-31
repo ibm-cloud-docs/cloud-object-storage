@@ -56,7 +56,7 @@ The following table lists the COS actions that generate a global event. You can 
 | `cloud-object-storage.instance.list` | List the buckets in the service instance |
 | `cloud-object-storage.bucket.create` | Create a bucket in the service instance  |
 | `cloud-object-storage.bucket.delete` | Delete a bucket in the service instance  |
-{: caption="Table 1. {{site.data.keyword.cos_short}} actions that generate global events"}
+{: caption="{{site.data.keyword.cos_short}} actions that generate global events"}
 
 ### Resource configuration events
 {: #at-actions-mngt-1}
@@ -67,7 +67,7 @@ The following table lists the COS resource configuration events:
 | ---------------------------------------------------- | ------------------------------------------------ |
 | `cloud-object-storage.resource-configuration.read`   | Read the resource configuration for the bucket   |
 | `cloud-object-storage.resource-configuration.update` | Update the resource configuration for the bucket |
-{: caption="Table 2. Resource Configuration events"}
+{: caption="Resource Configuration events"}
 
 ### Bucket events
 {: #at-actions-mngt-2}
@@ -92,7 +92,7 @@ The following table lists the COS bucket events:
 | `cloud-object-storage.bucket-public-access-block.create` | Add a public ACL block configuration       |
 | `cloud-object-storage.bucket-public-access-block.read`   | Read a public ACL block configuration      |
 | `cloud-object-storage.bucket-public-access-block.delete` | Delete a public ACL block configuration    |
-{: caption="Table 3. Bucket events"}
+{: caption="Bucket events"}
 
 For `cloud-object-storage.bucket-key-state.update` events, the following fields include extra information:
 
@@ -121,7 +121,7 @@ The following table lists the COS object events:
 | `cloud-object-storage.object-retention-legal-hold.update` | Add or remove object legal hold    |
 | `cloud-object-storage.object-retention.update`            | Extend the retention time          |
 | `cloud-object-storage.object-expire.read`                 | Get when the object will expire    |
-{: caption="Table 4. Object events"}
+{: caption="Object events"}
 
 ## Data Events
 {: #at-actions-data}
@@ -141,7 +141,7 @@ The following table lists the COS bucket access events:
 | ------------------------------------------- | ------------------------------- |
 | `cloud-object-storage.bucket.list`          | List the objects in the bucket  |
 | `cloud-object-storage.bucket-metadata.read` | Get the metadata for the bucket |
-{: caption="Table 5. Bucket access events"}
+{: caption="Bucket access events"}
 
 ### Object access events
 {: #at-actions-data-2}
@@ -160,7 +160,7 @@ The following table lists the COS object access events:
 | `cloud-object-storage.object-copy.create`    | Create the target object from the copy    |
 | `cloud-object-storage.object-restore.read`   | Read the source object to restore         |
 | `cloud-object-storage.object-restore.create` | Create the target object from the restore |
-{: caption="Table 6. Object access events"}
+{: caption="Object access events"}
 
 If versioning is enabled for a bucket, then `target.versionId` will be present for operations that make use of object versions.
 
@@ -184,7 +184,7 @@ The following table lists the COS multipart events:
 | `cloud-object-storage.object-multipart.create`   | Create a part of a multipart upload of an object  |
 | `cloud-object-storage.object-multipart.complete` | Complete a multipart upload of an object          |
 | `cloud-object-storage.object-multipart.delete`   | Abort an incomplete multipart upload of an object |
-{: caption="Table 7. Multipart events"}
+{: caption="Multipart events"}
 
 ### Bucket versioning events
 {: #at-actions-data-4}
@@ -196,7 +196,7 @@ The following table lists the COS versioning events:
 | `cloud-object-storage.bucket-versioning.create` | Enable versioning on a bucket        |
 | `cloud-object-storage.bucket-versioning.read`   | Check versioning status of a bucket  |
 | `cloud-object-storage.bucket-versioning.list`   | List versions of objects in a bucket |
-{: caption="Table 8. Versioning events"}
+{: caption="Versioning events"}
 
 For `cloud-object-storage.bucket-versioning.create` events, the following fields include extra information:
 

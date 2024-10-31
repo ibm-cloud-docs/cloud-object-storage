@@ -48,7 +48,7 @@ These SDKs are based on the official AWS S3 API SDKs, but are modified to use IB
 | [Archive rules](#sdk-about-archive)                 | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |     | ![Checkmark icon](../../icons/checkmark-icon.svg)
 | [Retention policies](#sdk-about-retention)          | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |        | ![Checkmark icon](../../icons/checkmark-icon.svg)
 | [Aspera high-speed transfer](#sdk-about-aspera)     | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |                      &nbsp;                        |                             &nbsp;                      |                     &nbsp;                        |
-{: caption="Table 1. Features supported per SDK"}
+{: caption="Features supported per SDK"}
 
 ## IAM API key support
 {: #sdk-about-iam}

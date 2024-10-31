@@ -27,7 +27,7 @@ Instead, storage is allocated at a fixed capacity using a "T-shirt size" model. 
 | Medium (24 TB)          | 36 TB                | $878          |
 | Large (48 TB)           | 72 TB                | $1254         |
 | Extra Large (96 TB)     | 144 TB               | $2006         |
-{: caption="Table 1. Available sizes" caption-side="top"}
+{: caption="Available sizes" caption-side="top"}
 
 The total cost for using {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} is a combination of:
 

@@ -32,7 +32,7 @@ Buckets that are created at a regional endpoint distribute data across three dat
 | AP Australia      | Public | `s3.au-syd.objectstorage.softlayer.net`   | `s3.au-syd.cloud-object-storage.appdomain.cloud`   |
 | AP Japan          | Public | `s3.jp-tok.objectstorage.softlayer.net`   | `s3.jp-tok.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
-{: caption="Table 1. Regional Endpoints" caption-side="top"}
+{: caption="Regional Endpoints" caption-side="top"}
 {: #regionalendpointtable1}
 {: tab-title="Public"}
 {: tab-group="Regional-endpoints"}
@@ -46,7 +46,7 @@ Buckets that are created at a regional endpoint distribute data across three dat
 | AP Australia      | Private | `s3.au-syd.objectstorage.service.networklayer.com`   | `s3.private.au-syd.cloud-object-storage.appdomain.cloud`   |
 | AP Japan          | Private | `s3.jp-tok.objectstorage.service.networklayer.com`   | `s3.private.jp-tok.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
-{: caption="Table 1. Regional Endpoints" caption-side="top"}
+{: caption="Regional Endpoints" caption-side="top"}
 {: #regionalendpointtable2}
 {: tab-title="Private"}
 {: tab-group="Regional-endpoints"}
@@ -60,7 +60,7 @@ Buckets that are created at a regional endpoint distribute data across three dat
 | AP Australia      | Direct | `s3.au-syd.objectstorage.adn.networklayer.com`   | `s3.direct.au-syd.cloud-object-storage.appdomain.cloud`   |
 | AP Japan          | Direct | `s3.jp-tok.objectstorage.adn.networklayer.com`   | `s3.direct.jp-tok.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
-{: caption="Table 1. Regional Endpoints" caption-side="top"}
+{: caption="Regional Endpoints" caption-side="top"}
 {: #regionalendpointtable3}
 {: tab-title="Direct"}
 {: tab-group="Regional-endpoints"}
@@ -77,7 +77,7 @@ Buckets that are created at a cross region endpoint distribute data across three
 | EU Cross Region | Public | `s3.eu-geo.objectstorage.softlayer.net`     | `s3.eu.cloud-object-storage.appdomain.cloud` |
 | AP Cross Region | Public | `s3.ap-geo.objectstorage.softlayer.net`     | `s3.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 2. Cross Region Endpoints" caption-side="top"}
+{: caption="Cross Region Endpoints" caption-side="top"}
 {: #crossregionalendpointtable1}
 {: tab-title="Public"}
 {: tab-group="Cross-regional-endpoints"}
@@ -88,7 +88,7 @@ Buckets that are created at a cross region endpoint distribute data across three
 | EU Cross Region | Private | `s3.eu-geo.objectstorage.service.networklayer.com`     | `s3.private.eu.cloud-object-storage.appdomain.cloud` |
 | AP Cross Region | Private | `s3.ap-geo.objectstorage.service.networklayer.com`     | `s3.private.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 2. Cross Region Endpoints" caption-side="top"}
+{: caption="Cross Region Endpoints" caption-side="top"}
 {: #crossregionalendpointtable2}
 {: tab-title="Private"}
 {: tab-group="Cross-regional-endpoints"}
@@ -99,7 +99,7 @@ Buckets that are created at a cross region endpoint distribute data across three
 | EU Cross Region | Direct | `s3.eu-geo.objectstorage.adn.networklayer.com`     | `s3.direct.eu.cloud-object-storage.appdomain.cloud` |
 | AP Cross Region | Direct | `s3.ap-geo.objectstorage.adn.networklayer.com`     | `s3.direct.ap.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 2. Cross Region Endpoints" caption-side="top"}
+{: caption="Cross Region Endpoints" caption-side="top"}
 {: #crossregionalendpointtable3}
 {: tab-title="Direct"}
 {: tab-group="Cross-regional-endpoints"}
@@ -177,7 +177,7 @@ If a networking failure results in a partition where the data center is unable t
 | S&atilde;o Paulo, Brazil    | Public | `s3.sao01.objectstorage.softlayer.net` | `s3.sao01.cloud-object-storage.appdomain.cloud` |
 | Singapore                   | Public | none                                   | `s3.sng01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
+{: caption="Single Data Center Endpoints" caption-side="top"}
 {: #sdcendpointtable1}
 {: tab-title="Public"}
 {: tab-group="single-datacenter-endpoints"}
@@ -193,7 +193,7 @@ If a networking failure results in a partition where the data center is unable t
 | S&atilde;o Paulo, Brazil    | Private | `s3.sao01.objectstorage.service.networklayer.com` | `s3.private.sao01.cloud-object-storage.appdomain.cloud` |
 | Singapore                   | Private | none                                              | `s3.private.sng01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
+{: caption="Single Data Center Endpoints" caption-side="top"}
 {: #sdcendpointtable2}
 {: tab-title="Private"}
 {: tab-group="single-datacenter-endpoints"}
@@ -209,7 +209,7 @@ If a networking failure results in a partition where the data center is unable t
 | S&atilde;o Paulo, Brazil    | Direct | `s3.sao01.objectstorage.adn.networklayer.com` | `s3.direct.sao01.cloud-object-storage.appdomain.cloud` |
 | Singapore                   | Direct | none                                          | `s3.direct.sng01.cloud-object-storage.appdomain.cloud` |
 {: class="simple-tab-table"}
-{: caption="Table 3. Single Data Center Endpoints" caption-side="top"}
+{: caption="Single Data Center Endpoints" caption-side="top"}
 {: #sdcendpointtable3}
 {: tab-title="Direct"}
 {: tab-group="single-datacenter-endpoints"}

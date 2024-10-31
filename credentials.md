@@ -28,7 +28,7 @@ The {{site.data.keyword.cos_full}} API is a REST-based API for reading and writi
 
 Users can create a set of HMAC credentials as part of a [Service Credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) by switching the `Include HMAC Credential` to `On`  during credential creation in the console. Figure 1 shows the option for setting the HMAC parameter by choosing "Advanced options."
 
-![include HMAC credential](images/hmac-credential-dialog.jpg){: caption="Figure 1. HMAC setting from advanced options"}
+![include HMAC credential](images/hmac-credential-dialog.jpg){: caption="HMAC setting from advanced options"}
 
 After the Service Credential is created, the HMAC Key is included in the `cos_hmac_keys` field. These HMAC keys are then associated with a [Service ID](/docs/account?topic=account-serviceids#serviceids) and can be used to access any resources or operations that are allowed by the Service ID's role.
 

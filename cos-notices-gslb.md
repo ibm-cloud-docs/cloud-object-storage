@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-10-08"
+lastupdated: "2024-10-30"
 
 keywords: IBM Cloud Object Storage notifications, notifications, gslb
 
@@ -47,18 +47,18 @@ In order to avoid future changes when using the private and direct endpoints, IB
 
 ## Deployment dates
 {: #cos-notices-gslb-deployment}
-| Region               | New addresses available for testing | DNS updated to new IP addresses  |
-|----------------------|-------------------------------------|----------------------------------|
-| Sydney (au-syd)      | August 15, 2024                     | August 29, 2024                  |
-| San Paulo (br-sao)   | October 10, 2024                    | October 24, 2024                 |
-| Toronto (ca-tor)     | October 14, 2024                    | October 28, 2024                 |
-| Osaka (jp-osa)       | October 17, 2024                    | October 31, 2024                 |
-| Washington (us-east) | October 21, 2024                    | November 4, 2024                 |
-| Dallas (us-south)    | October 24, 2024                    | November 7, 2024                 |
-| Frankfurt (eu-de)    | October 28, 2024                    | November 11, 2024                |
-| Tokyo (jp-tok)       | October 31, 2024                    | November 14, 2024                |
-| London (eu-gb)       | November 7, 2024                    | November 21, 2024                |
-| Madrid (eu-es)       | November 21, 2024                   | December 5, 2024                 |
+| Region               | New addresses available for testing | DNS updated to new IP addresses   |
+|----------------------|-------------------------------------|-----------------------------------|
+| Sydney (au-syd)      | August 15, 2024                     | August 29, 2024                   |
+| San Paulo (br-sao)   | October 10, 2024                    | October 24, 2024                  |
+| Toronto (ca-tor)     | October 14, 2024                    | Public and Direct complete; Private: To be rescheduled to a future date |
+| Osaka (jp-osa)       | October 17, 2024                    | To be rescheduled to a future date|
+| Washington (us-east) | October 21, 2024                    | To be rescheduled to a future date|
+| Dallas (us-south)    | October 24, 2024                    | To be rescheduled to a future date|
+| Frankfurt (eu-de)    | October 28, 2024                    | November 11, 2024                 |
+| Tokyo (jp-tok)       | October 31, 2024                    | November 14, 2024                 |
+| London (eu-gb)       | November 7, 2024                    | November 21, 2024                 |
+| Madrid (eu-es)       | November 21, 2024                   | December 5, 2024                  |
 
 
 ## IP address changes
@@ -97,4 +97,4 @@ In order to avoid future changes when using the private and direct endpoints, IB
 | Madrid (eu-es) private       |  s3.private.eu-es.cloud-object-storage.appdomain.cloud    | 10.1.129.187   | 10.1.129.187, 10.1.129.204, 10.1.129.205         |
 | Madrid (eu-es) direct        |  s3.direct.eu-es.cloud-object-storage.appdomain.cloud     | 161.26.0.99    | 161.26.0.99, 161.26.217.99, 161.26.221.99        |
 
-{: caption="Table 2. IP address changes" caption-side="top"}
+{: caption="IP address changes" caption-side="top"}

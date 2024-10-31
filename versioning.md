@@ -27,7 +27,7 @@ First, create a new bucket with object versioning enabled.
 1. After navigating to your object storage instance, click on **Create bucket**.
 2. Choose a region and resiliency, then look for **Object versioning** and toggle the selector to **Enabled**.
 
-![Enable versioning](images/versioning_enable.png){: caption="Figure 1. Enable versioning"}
+![Enable versioning](images/versioning_enable.png){: caption="Enable versioning"}
 
 Then create a versioned object.
 
@@ -35,7 +35,7 @@ Then create a versioned object.
 2. After the object has uploaded successfully, upload another object with the same name.  Instead of being overwritten, the file will be assigned a UUID and saved as a non-current version of the object.
 3. Toggle **View versions** to see and interact with alternate versions of objects.
 
-![View versions](images/versioning_objects.png){: caption="Figure 2. View versions"}
+![View versions](images/versioning_objects.png){: caption="View versions"}
 
 ## Terminology
 {: #versioning-terminology}
@@ -70,7 +70,7 @@ There are new IAM actions associated with versioning.
 | cloud-object-storage.object.put_tagging_version |  Manager, Writer, Object Writer |
 | cloud-object-storage.object.get_tagging_version |  Manager, Writer, Reader |
 | cloud-object-storage.object.delete_tagging_version |  Manager, Writer |
-{: caption="Table 1. IAM actions associated with versioning" caption-side="top"}
+{: caption="IAM actions associated with versioning" caption-side="top"}
 
 ## Activity Tracker events
 {: #versioning-at}

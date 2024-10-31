@@ -42,7 +42,7 @@ The following table details actions that are mapped to platform management roles
 | Editor                   | Perform all platform actions except for managing the accounts and assigning access policies                                        | <ul><li>Create and delete COS service instances</li></ul>                                                               |
 | Operator                 | Not used by COS                                                                                                                    | None                                                                                                                    |
 | Administrator            | Perform all platform actions based on the resource this role is being assigned, including assigning access policies to other users, as well as setting PublicAccess policy on buckets. | <ul><li>Update user policies</li><li>Update pricing plans</li></ul>                                                              |
-{: caption="Table 1. IAM user roles and actions"}
+{: caption="IAM user roles and actions"}
 
 
 The following table details actions that are mapped to service access roles. Service access roles enable users access to {{site.data.keyword.cos_short}} as well as the ability to call the {{site.data.keyword.cos_short}} API.
@@ -55,7 +55,7 @@ The following table details actions that are mapped to service access roles. Ser
 | Reader              | In addition to Content Reader actions, Readers can list buckets and read bucket metadata, but not make modifications. | <ul><li>List buckets</li></ul>                                                                              |
 | Writer              | In addition to Reader actions, Writers can create buckets and upload objects.                                         | <ul><li>Create new buckets and objects</li><li>Remove buckets and objects</li></ul>                         |
 | Manager             | In addition to Writer actions, Managers can complete privileged actions that affect access control.                   | <ul><li>Configure retention policies</li><li>Configure bucket firewalls</li><li>Block public ACLs</li></ul> |
-{: caption="Table 2. IAM service access roles and actions"}
+{: caption="IAM service access roles and actions"}
 
 For information about assigning user roles in the UI, see [Managing IAM access](/docs/account?topic=account-assign-access-resources).
 
@@ -153,5 +153,4 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 | `cloud-object-storage.object.put_tagging_version`                | Add/Update object tag versions                                                      | [path](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
 | `cloud-object-storage.object.get_tagging_version`                | Read object tag versions                                                            | [path](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
 | `cloud-object-storage.object.delete_tagging_version`             | Delete object tag versions                                                          | [path](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
-{: caption="Table 3. Granular IAM action descriptions"}
-
+{: caption="Granular IAM action descriptions"}

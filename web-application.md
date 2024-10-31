@@ -112,7 +112,7 @@ For now, download the [GitHub Desktop](https://desktop.github.com/) and run the 
 
 Enter a name and email (this is displayed publicly) for any commits to your repository. Once the application is linked to your account, you might be asked to verify the application connection through your GitHub account online.
 
-![github_desktop_setup](images/web-app-tutorial-001-github-login.png){: caption="Figure 1. GitHub Desktop Login window"}
+![github_desktop_setup](images/web-app-tutorial-001-github-login.png){: caption="GitHub Desktop Login window"}
 
 ## Creating the Node.js starter app
 {: #tutorial-create-skeleton}
@@ -346,7 +346,7 @@ ibmcloud dev run
 
 Now that the app is created and defined, view your application to confirm it works. If you see the placeholder image as shown in Figure 2, well done! You've created a new Node.js web application and are ready to deploy it to the cloud.
 
-![initial node app](images/web-app-tutorial-002-splash-graphic.png){: caption="Figure 2. New Node.js Application!"}
+![initial node app](images/web-app-tutorial-002-splash-graphic.png){: caption="New Node.js Application!"}
 
 Deploy the app to {{site.data.keyword.cloud_notm}} Platform with the `deploy` command (as shown in the example).
 
@@ -474,7 +474,7 @@ To get the starter app with your changes
 
    Test the app. The visible change from the default app template that was deployed at creation to the starter app shown in the following proved that deploying the app to {{site.data.keyword.cloud_notm}} Platform was successful.
 
-   ![`verify_push`](images/web-app-tutorial-007-congrats.jpg){: caption="Figure 3. Results of viewing your deployed app."}
+   ![`verify_push`](images/web-app-tutorial-007-congrats.jpg){: caption="Results of viewing your deployed app."}
 
 ### Create a Git branch
 {: #tutorial-create-branch}
@@ -484,11 +484,11 @@ to use for your {{site.data.keyword.cloud_notm}} Platform Delivery Pipeline Buil
 
 1. If using GitHub Desktop, click the branch icon; you're prompted to enter a name for the branch. This example uses `local-dev` as the name.
 
-   ![`new_git_branch`](images/web-app-tutorial-014-dev-branch.jpg){: caption="Figure 4. Use GitHub Desktop to create a local dev branch"}
+   ![`new_git_branch`](images/web-app-tutorial-014-dev-branch.jpg){: caption="Use GitHub Desktop to create a local dev branch"}
 
 1. After you create the branch, GitHub compares the local files on the Local-dev branch with the files in the repository on the default branch and reports No local changes. You can now click Publish to add the branch you created on your local repo to your GitHub repo (as shown in Figure 5).
 
-   ![`publish_branch`](images/web-app-tutorial-015-git-push.jpg){: caption="Figure 5. Publish your git branch to your repo's remote origin"}
+   ![`publish_branch`](images/web-app-tutorial-015-git-push.jpg){: caption="Publish your git branch to your repo's remote origin"}
 
 Now that the Local-dev branch is published to the GitHub repo in your toolchain, the build stage of your {{site.data.keyword.cloud_notm}} Platform Delivery Pipeline will be triggered followed by the deployment stage anytime you push a commit to it. Deploying the app from the CLI is not necessary, as the deployment has been integrated directly into your workflow.
 
@@ -514,7 +514,7 @@ After you have completed creating an API key, downloaded, and then copied the HM
 
 1. Add two variables: one with the value of your `access_key_id`, using `AWS_ACCESS_KEY_ID` as the name of the key, and another with the value of your secret access key, named `AWS_SECRET_ACCESS_KEY`. These variables and their respective values are what the app uses to authenticate to the {{site.data.keyword.cos_short}} instance when running on {{site.data.keyword.cloud_notm}} Platform (see Figure 6). When you finish with the entries, click Save, and {{site.data.keyword.cloud_notm}} Platform will automatically restart the app for you.
 
-   ![`ibm_cloud_env_var`](images/web-app-tutorial-016-env-variables.jpg){: caption="Figure 6. Runtime Environment Variables defined for your app"}
+   ![`ibm_cloud_env_var`](images/web-app-tutorial-016-env-variables.jpg){: caption="Runtime Environment Variables defined for your app"}
 
 Next, over at the {{site.data.keyword.cos_short}} Portal for your service instance, add a bucket to contain your images. This scenario uses the bucket that is named `web-images`.
 
@@ -525,7 +525,7 @@ Next, over at the {{site.data.keyword.cos_short}} Portal for your service instan
 
 Because this example uses an MVC architecture, adjusting the directory structure within your project to reflect this architecture is a convenience as well as a best practice. The directory structure has a views directory to contain the EJS view templates, a routes directory to contain the express routes, and a `controllers` directory as the place to put the controller logic. Place these items under a parent source directory named `src` (see Figure 7).
 
-![Directory structure](images/web-app-tutorial-017-soure-code.jpg){: caption="Figure 7. Source code structure for your app"}
+![Directory structure](images/web-app-tutorial-017-soure-code.jpg){: caption="Source code structure for your app"}
 
 **Tip**: The repo that you cloned earlier contain a directory that is named `COS-WebGalleryEnd`. Viewing the source code of the completed application in your preferred editor might be helpful as you follow the next steps. This is the version of your `webapplication` that is committed and deployed to {{site.data.keyword.cloud_notm}} Platform when you complete this tutorial.
 
@@ -595,7 +595,7 @@ app.get('/', function (req, res) {
 
 The following figure shows what the index view template when rendered and sent to the browser. If you are using ,`nodemon` you might have noticed that your browser refreshed when you saved your changes.
 
-![`uploadimageview`](images/web-app-tutorial-018-templates.jpg){: caption="Figure 8. Your updated web app by using templates and views for displays"}
+![`uploadimageview`](images/web-app-tutorial-018-templates.jpg){: caption="Your updated web app by using templates and views for displays"}
 
 Our view templates share HTML code between the `<head>...</head>`; tags, so you placed it into a separate include template. This template (`head-inc.ejs`) contains a scriptlet (a binding for a JavaScript variable) for the page title on line 1. The `title` variable is set in `app.js`, and passed in as data for your view template in the line below that. Otherwise, you are simply using some CDN addresses to pull in `Bootstrap CSS`, `Bootstrap JavaScript`, and `JQuery`. Finally, add a custom static `styles.css` file from your `pubic/stylesheets` directory.
 
@@ -813,7 +813,7 @@ mimetype: 'image/jpeg' }
 
 The feedback from your callback declares the application has "uploaded file successfully" when tested.
 
-![localtest1](images/web-app-tutorial-019-success.jpg){: caption="Figure 9. Success!"}
+![localtest1](images/web-app-tutorial-019-success.jpg){: caption="Success!"}
 
 #### Image retrieval and display
 {: #tutorial-image-display}
@@ -889,18 +889,18 @@ The last code example shows the body of the `galleryView` template with the code
 
 Test the app locally from `http://localhost:3000/gallery` and see your image.
 
-![localtest2](images/web-app-tutorial-020-image-display.jpg){: caption="Figure 10. Images uploaded to the bucket are on display"}
+![localtest2](images/web-app-tutorial-020-image-display.jpg){: caption="Images uploaded to the bucket are on display"}
 
 ### Committing to Git
 {: #tutorial-develop-commit}
 
 Now that the basic features of the app are working, commit your code to your local repo, and then push it to GitHub. Using GitHub Desktop, click Changes (see Figure 11), type a summary of the changes in the Summary field, and then click Commit to Local-dev.
 
-![Commit updates](images/web-app-tutorial-021-changes-in-git.jpg){: caption="Figure 11. Changes ready for commit in Git"}
+![Commit updates](images/web-app-tutorial-021-changes-in-git.jpg){: caption="Changes ready for commit in Git"}
 
 When you click **sync**, your commit is sent to the remote `local-dev` branch. This action starts the Build and Deploy Stages in your Delivery Pipeline.
 
-![`pipeline_triggled_aftersync`](images/web-app-tutorial-022-final-pipeline.jpg){: caption="Figure 12. CD Delivery Pipeline"}
+![`pipeline_triggled_aftersync`](images/web-app-tutorial-022-final-pipeline.jpg){: caption="CD Delivery Pipeline"}
 
 ## Next Steps
 {: #webapp-next-steps}

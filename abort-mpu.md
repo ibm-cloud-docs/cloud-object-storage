@@ -120,7 +120,7 @@ Classic Infrastructure Users must have `Owner` permissions on the bucket to add 
 | Header        | Type   | Description                                                                                                                                                 |
 | ------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `Content-MD5` | String | **Required**: The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit. |
-{: caption="Table 1. Header" caption-side="top"}
+{: caption="Header" caption-side="top"}
 
 The body of the request must contain an XML block with the following schema:
 
@@ -133,7 +133,7 @@ The body of the request must contain an XML block with the following schema:
 | `Prefix`                         | String               | None                                                       | `Filter`                         | The rule applies to any objects with keys that match this prefix.                          |
 | `AbortIncompleteMultipartUpload` | `Container`          | `DaysAfterInitiation`                                      | `Rule`                           | Limit 1.                                                                                   |
 | `DaysAfterInitiation`            | Non-negative integer | None                                                       | `AbortIncompleteMultipartUpload` | Must be a value greater than 0.                                                            |
-{: caption="Table 2. Body of the request schema" caption-side="top"}
+{: caption="Body of the request schema" caption-side="top"}
 
 The body of the request must contain an XML block with the schema that is addressed in the table (see Example 1).
 
@@ -679,4 +679,3 @@ package com.ibm.cloud;
 Expiration is just one of many lifecycle concepts available for {{site.data.keyword.cos_full_notm}}.
 Each of the concepts we've covered in this overview can be explored further at the
 [{{site.data.keyword.cloud_notm}} Platform](https://cloud.ibm.com/).
-

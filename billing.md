@@ -64,7 +64,7 @@ Deleting buckets or objects from the system does not incur a charge. For charges
 |--- |--- |--- |
 | Class A | PUT, COPY, and POST requests, as well as GET requests used to list buckets and objects | Creating buckets, uploading or copying objects, listing buckets, listing contents of buckets, setting ACLs, and setting CORS configurations |
 | Class B | GET (excluding listing), HEAD, and OPTIONS requests | Retrieving objects and metadata |
-{: caption="Table 1. Request classes" caption-side="top"}
+{: caption="Request classes" caption-side="top"}
 
 Requests made using the Resource Configuration API are not charged for requests and do not accrue usage for billing purposes.
 {: note}
@@ -106,7 +106,7 @@ Based on monthly averages, data in a Smart Tier bucket is classified into one of
 | `storage` | Total volume of data stored in GB |
 | `retrievals` | Total volume of data retrieved in GB |
 | `requests` | Sum of the number of Class A (write) requests plus 1/10 of the number of Class B (read) requests |
-{: caption="Table 2. Smart Tier bucket classification" caption-side="top"}
+{: caption="Smart Tier bucket classification" caption-side="top"}
 
 - Data is classified **hot** if the total `requests > 1000 x (storage - retrievals)`.
 - Data is classified **cold** if the total `requests < (storage - retrievals)`.
@@ -126,7 +126,7 @@ Let's see how the costs might compare to the other storage classes.
 | 2     | 1,000 GB  | 4,000      | 200 GB      | Cool           | $21      | $14   | $16        | **$12**    |
 | 3     | 1,000 GB  | 400        | 10 GB       | Cold           | $21      | $12   | $7         | **$8**     |
 | Total | -         | -          | -           | -              | $83      | $79   | $134       | **$61**    |
-{: caption="Table 3. Cost comparison" caption-side="top"}
+{: caption="Cost comparison" caption-side="top"}
 
 Note that in situations where data is very cold, it is possible to get a lower rate with a Cold Vault bucket, although unexpected spikes in access could accrue significant costs.  In this scenario, if the data doesn't require on-demand access, it might be better to archive the objects instead.
 

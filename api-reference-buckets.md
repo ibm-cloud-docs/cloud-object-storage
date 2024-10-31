@@ -34,7 +34,7 @@ When authenticating to your instance of {{site.data.keyword.cos_full}} by [using
 | {region}     | The location code for your endpoint                       | `us-standard`                      |
 | {signature}  | The hash that is created by using the secret key, location, and date |`ffe2b6e18f9dcc41f593f4dbb39882a6bb4d26a73a04326e62a8d344e07c1a3e`|
 | {timestamp}  | The formatted date and time of your request               | `20180614T001804Z`                 |
-{: caption="Table 1. HMAC signature components"}
+{: caption="HMAC signature components"}
 
 ## List buckets
 {: #compatibility-api-list-buckets}
@@ -47,13 +47,13 @@ Not all operations are supported in Satellite environments. For more information
 |Header                    | Type   | Required? | Description
 |--------------------------|--------|-----------|---------------------------------------------------------
 |`ibm-service-instance-id` | String | Yes       | List buckets that were created in this service instance.
-{: caption="Table 2. Headers" caption-side="bottom"}
+{: caption="Headers" caption-side="bottom"}
 {: token}
 
 |Query Parameter | Value | Required? | Description
 |----------------|-------|-----------|-------------------------------------------------------
 |`extended`      | None  | No        | Provides `LocationConstraint` and `CreationTemplateId` metadata in the listing.
-{: caption="Table 3. Query parameters" caption-side="bottom"}
+{: caption="Query parameters" caption-side="bottom"}
 
 **Syntax**
 
@@ -203,7 +203,7 @@ Not all operations are supported in Satellite environments. For more information
 |------------------------------------|---------|-----------|----------------------------------------------------------------------------------------------------------------------|
 | `ibm-service-instance-id`          | String  | Yes       | This header references the service instance where the bucket is to be created and to which data usage can be billed. |
 | `x-amz-bucket-object-lock-enabled` | Boolean | No        | Specifies whether you want to enable Object Lock on the new bucket. This header automatically enables versioning. |
-{: caption="Table 4. Headers" caption-side="bottom"}
+{: caption="Headers" caption-side="bottom"}
 
 When setting Object Lock on a new bucket, ensure that no typographical errors are in the `x-amz-bucket-object-lock-enabled` header. If either the header or the value is misspelled, the bucket is created, but Object Lock and Versioning is **not** enabled.
 {: tip}
@@ -271,7 +271,7 @@ Not all operations are supported in Satellite environments. For more information
 ||Header                    | Type   | Description |
 |--------------------------|--------|---------------------------------------------------------------------------------------------------------------------
 |`ibm-service-instance-id` | String | This header references the service instance where the bucket is to be created and to which data usage can be billed.
-{: caption="Table 6. Headers" caption-side="bottom"}
+{: caption="Headers" caption-side="bottom"}
 
 **Syntax**
 
@@ -286,7 +286,7 @@ The body of the request must contain an XML block with the following schema:
 |---------------------------|-----------|---------------------|---------------------------|---------------------|
 |`CreateBucketConfiguration`| Container | `LocationConstraint`| -                         | -                   |
 |`LocationConstraint`       | String    | -                   |`CreateBucketConfiguration`| Valid location code |
-{: caption="Table 7. Body of the request schema" caption-side="bottom"}
+{: caption="Body of the request schema" caption-side="bottom"}
 
 ```xml
 <CreateBucketConfiguration>
@@ -363,7 +363,7 @@ Not all operations are supported in Satellite environments. For more information
 |`ibm-service-instance-id`          | String | This header references the service instance where the bucket is to be created and to which data usage can be billed.|
 |`ibm-sse-kp-encryption-algorithm`  | String | This header is used to specify the algorithm and the key size to use with the encryption key that is stored by using Key Protect. This value must be set to the string `AES256`.|
 |`ibm-sse-kp-customer-root-key-crn` | String | This header is used to reference the specific root key that is used by Key Protect or {{site.data.keyword.hscrypto}} to encrypt this bucket. This value must be the full CRN of the root key.|
-{: caption="Table 8. Headers" caption-side="bottom"}
+{: caption="Headers" caption-side="bottom"}
 
 **Syntax**
 
@@ -547,7 +547,7 @@ GET https://{bucket-name}.{endpoint}?list-type=2 # virtual host style
 |`fetch-owner`        | String | Version 2 of the API does not include the `Owner` information by default. Set this parameter to `true` if `Owner` information is wanted in the response.|
 |`continuation-token` | String | Specifies the next set of objects to be returned when your response is truncated (`IsTruncated` element returns `true`). \n Your initial response includes the `NextContinuationToken` element. Use this token in the next request as the value for `continuation-token`.|
 |`start-after`        | String | Returns key names after a specific key object. \n *This parameter is only valid in your initial request.* If a `continuation-token` parameter is included in your request, this parameter is ignored.|
-{: caption="Table 9. Optional query parameters" caption-side="bottom"}
+{: caption="Optional query parameters" caption-side="bottom"}
 
 **Example request (simple)**
 
@@ -769,7 +769,7 @@ GET https://{bucket-name}.{endpoint} # virtual host style
 |`encoding-type` | String | If Unicode characters that are not supported by XML are used in an object name, this parameter can be set to `url` to properly encode the response.|
 |`max-keys`      | String | Restricts the number of objects to display in the response. The default and maximum value is 1,000.|
 |`marker`        | String | Specifies the object from where the listing is to begin, in UTF-8 binary order.|
-{: caption="Table 10. Optional query parameters" caption-side="bottom"}
+{: caption="Optional query parameters" caption-side="bottom"}
 
 **Example request**
 {: token}
@@ -881,7 +881,7 @@ DELETE https://{bucket-name}.{endpoint} # virtual host style
 |Name                  | Type   | Description|
 |----------------------|--------|-----------------------------------------------------------------------------------|
 |`aspera-ak-max-tries` | String | Specifies the number of times to attempt the delete operation. The default value is 2.|
-{: caption="Table 11. Optional headers" caption-side="bottom"}
+{: caption="Optional headers" caption-side="bottom"}
 
 **Example request**
 {: token}
@@ -944,7 +944,7 @@ An Object Lock configuration must include one rule.
 |Header                    | Type   | Description |
 |--------------------------|--------|-------------------------------------------------------------|
 |`Content-MD5` | String | **Required**: The Base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.|
-{: caption="Table 12. Headers" caption-side="bottom"}
+{: caption="Headers" caption-side="bottom"}
 
 The body of the request must contain an XML block with the following schema:
 
@@ -957,7 +957,7 @@ The body of the request must contain an XML block with the following schema:
 | `Days`                    | Integer   | None                        | `DefaultRetention`        | The number of days that you want to specify for the default retention period. It can't be combined with `Years`. |
 | `Mode`                    | String    | None                        | `DefaultRetention`        | Only `COMPLIANCE` is supported currently.                                                                   |
 | `Years`                   | Integer   | None                        | `DefaultRetention`        | The number of years that you want to specify for the default retention period. It can't be combined with `Days`. |
-{: caption="Table 13. Body of the request schema" caption-side="bottom"}
+{: caption="Body of the request schema" caption-side="bottom"}
 
 **Example request**
 
@@ -1024,7 +1024,7 @@ GET https://{bucket-name}.{endpoint}?uploads= # virtual host style
 |`max-uploads`      | Integer | Restricts the number of objects to display in the response. The default and maximum value is 1,000.|
 |`key-marker`       | String  | Specifies from where the listing is to begin.|
 |`upload-id-marker` | String  | Ignored if `key-marker` is not specified, otherwise sets a point at which to begin listing the parts above `upload-id-marker`.|
-{: caption="Table 14. Parameters" caption-side="bottom"}
+{: caption="Parameters" caption-side="bottom"}
 
 **Example request**
 {: token}
@@ -1201,7 +1201,7 @@ The body of the request must contain an XML block with the following schema:
 | `CORSRule`          | Container |`AllowedOrigin`, `AllowedMethod`| Delete | -                   |
 | `AllowedOrigin`     | String    | -                          | `CORSRule` | Valid origin string |
 | `AllowedMethod`     | String    | -                          | `CORSRule` | Valid method string |
-{: caption="Table 15. Body of the request schema" caption-side="bottom"}
+{: caption="Body of the request schema" caption-side="bottom"}
 
 The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. The following snippet shows one way to achieve the content for that particular header.
 
@@ -1411,7 +1411,7 @@ The body of the request must contain an XML block with the following schema:
 | `NoncurrentDays`       | Positive Integer     | None                  | `Transition`             | **Must** be a value greater than 0. |
 | `AbortIncompleteMultipartUpload`| Container   | `DaysAfterInitiation` | `Rule`                   | Limit 1                             |
 |`DaysAfterInitiation`   | Non-negative Integer | None                  | `AbortIncompleteMultipartUpload` | **Must** be a value greater than 0. |
-{: caption="Table 16. Body of the request schema" caption-side="bottom"}
+{: caption="Body of the request schema" caption-side="bottom"}
 
 {{site.data.keyword.cos_full}} IaaS (non-IAM) accounts are unable to set the transition storage class to `ACCELERATED`.
 {: note}
@@ -1701,7 +1701,7 @@ Not all operations are supported in Satellite environments. For more information
 | Header       | Type   | Description |
 |--------------|--------|----------------------------------------------------------------------------------------------------------------------|
 |`Content-MD5` | String | **Required**: The Base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.|
-{: caption="Table 17. Body of the request schema" caption-side="bottom"}
+{: caption="Body of the request schema" caption-side="bottom"}
 
 The following snippet shows one way to achieve the content for that particular header.
 
@@ -1722,7 +1722,7 @@ The body of the request must contain an XML block with the following schema:
 | `Expiration`             | Container | `Days` or `Date`                       | `Rule`                   | Limit 1.   |
 | `Days`                   | Non-negative integer | None                        | `Expiration`             | Must be a value greater than 0. |
 | `Date`                   | Date                 | None                        | `Expiration`             | Must be in ISO 8601 Format. |
-{: caption="Table 18. Body of the request schema" caption-side="bottom"}
+{: caption="Body of the request schema" caption-side="bottom"}
 
 **Syntax**
 {: http}
@@ -1868,7 +1868,7 @@ The body of the request must contain an XML block with the following schema:
 |`MaximumRetention`       | Container | `Days`              | `ProtectionConfiguration`                                  | -                       |
 |`DefaultRetention`       | Container | `Days`              | `ProtectionConfiguration`                                  | -                       |
 |`Days`                   | Integer   | -                   | `MinimumRetention`, `MaximumRetention`, `DefaultRetention` | Valid retention integer |
-{: caption="Table 20. Body of the request schema" caption-side="bottom"}
+{: caption="Body of the request schema" caption-side="bottom"}
 
 **Example request**
 {: token}
@@ -1955,7 +1955,7 @@ The body of the request must contain an XML block with the following schema:
 | `Protocol`                  | String    | -                              | `Redirect`              | -                                      |
 | `ReplaceKeyPrefixWith`      | String    | -                              | `Redirect`              | -                                      |
 | `ReplaceKeyWith`            | String    | -                              | `Redirect`              | -                                      |
-{: caption="Table 21. Body of the request schema" caption-side="bottom"}
+{: caption="Body of the request schema" caption-side="bottom"}
 
 **Example request**
 
@@ -2070,7 +2070,7 @@ The body of the request must contain an XML block with the following schema:
 | PublicAccessBlockConfiguration | Container | BlockPublicAcls, IgnorePublicAcls | -                              | Required |
 | BlockPublicAcls                | Boolean   | -                                 | PublicAccessBlockConfiguration | -        |
 | IgnorePublicAcls               | Boolean   | -                                 | PublicAccessBlockConfiguration | -        |
-{: caption="Table 22. Body of the request schema" caption-side="bottom"}
+{: caption="Body of the request schema" caption-side="bottom"}
 
 **Example request**
 
