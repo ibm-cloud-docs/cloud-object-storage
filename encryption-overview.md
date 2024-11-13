@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2024
-lastupdated: "2024-11-13"
+  years: 2018, 2020
+lastupdated: "2020-06-19"
 
 keywords: encryption, security, sse-c, key protect, {{site.data.keyword.hscrypto}}
 
@@ -18,7 +18,7 @@ subcollection: cloud-object-storage
 # Encrypting your data
 {: #encryption}
 
-{{site.data.keyword.cos_full}} provides several options to encrypt your data.
+{{site.data.keyword.cos_full}} provides several options to encrypt your data. 
 {: shortdesc}
 
 By default, all objects that are stored in {{site.data.keyword.cos_full_notm}} are encrypted by using randomly generated keys and an all-or-nothing-transform (AONT). While this default encryption model provides at-rest security, some workloads need full control over the data encryption keys used. You can manage your keys manually on a per-object basis by providing your own encryption keys - referred to as [Server-Side Encryption with Customer-Provided Keys (SSE-C)](/docs/cloud-object-storage?topic=cloud-object-storage-sse-c).
