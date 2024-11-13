@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-10-30"
+lastupdated: "2024-11-13"
 
 keywords: IBM Cloud Object Storage notifications, notifications, gslb
 
@@ -33,6 +33,11 @@ This change allows your traffic to be routed to the {{site.data.keyword.cos_shor
 
 Customers that use hardcoded IP addresses for {{site.data.keyword.IBM_notm}} {{site.data.keyword.cos_short}} endpoints within their workloads, firewalls, or security components may be affected when new IP addresses are used.
 
+**Action may be required.** This change affects you when accessing Object Storage:
+- By means of an IP address (rather than URL)
+- If you have IP-based allowlists or firewall-rules running in your environment
+- If you have IP address specific routing
+
 ## What actions you need to take
 {: #cos-notices-gslb-actions}
 
@@ -51,14 +56,15 @@ In order to avoid future changes when using the private and direct endpoints, IB
 |----------------------|-------------------------------------|-----------------------------------|
 | Sydney (au-syd)      | August 15, 2024                     | August 29, 2024                   |
 | San Paulo (br-sao)   | October 10, 2024                    | October 24, 2024                  |
-| Toronto (ca-tor)     | October 14, 2024                    | Public and Direct complete; Private: To be rescheduled to a future date |
-| Osaka (jp-osa)       | October 17, 2024                    | To be rescheduled to a future date|
-| Washington (us-east) | October 21, 2024                    | To be rescheduled to a future date|
-| Dallas (us-south)    | October 24, 2024                    | To be rescheduled to a future date|
+| Toronto (ca-tor)     | October 14, 2024                    | October 24, 2024 (Public/Direct)  |
 | Frankfurt (eu-de)    | October 28, 2024                    | November 11, 2024                 |
 | Tokyo (jp-tok)       | October 31, 2024                    | November 14, 2024                 |
 | London (eu-gb)       | November 7, 2024                    | November 21, 2024                 |
 | Madrid (eu-es)       | November 21, 2024                   | December 5, 2024                  |
+| Osaka (jp-osa)       | October 17, 2024                    | December 9, 2024                  |
+| Toronto (ca-tor)     | October 14, 2024                    | December 9, 2024 (Private)       |
+| Washington (us-east) | October 21, 2024                    | January 13, 2025                  |
+| Dallas (us-south)    | October 24, 2024                    | January 16, 2025                  |
 
 
 ## IP address changes
