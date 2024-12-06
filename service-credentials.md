@@ -371,7 +371,18 @@ When a service credential is created, the underlying Service ID is granted a rol
 ## Using service credentials for single-object/folder access
 {: #service-credentials-fgac}
 
-When a service credential is created, the underlying Service ID is granted a role on the entire instance of {{site.data.keyword.cos_short}}. If the intention that the credential be used to grant,  access to a subset of buckets and not the entire instance, this policy needs to be edited. See the [Assigning access to objects within a bucket using IAM access conditions](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions) page for more details.
+When a service credential is created, the underlying Service ID is granted a role on the entire instance of {{site.data.keyword.cos_short}}. If the intention that the credential be used to grant access to a subset of buckets and not the entire instance, this policy needs to be edited. See the [Assigning access to objects within a bucket using IAM access conditions](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions) page for more details.
+
+## Using an API Key for accessing multiple instances
+{: #service-credentials-apikey}
+
+If the intention is to use the same API key for more than one {{site.data.keyword.cos_short}} instance, you can modify the access policy of the service ID to grant access. Each API key that is associated with a service ID inherits the policy that is assigned to the service ID.
+
+### Use the Service ID generated from an existing instance
+When you create a service credential for a particular instance, that credential has an API Key value. To use that same API Key with another {{site.data.keyword.cos_short}} instance, modify the access policy for the service id associated with that API Key to grant it access to the additional instance.
+
+### Generate a Service ID directly
+If you prefer to limit visibility of the API key after its creation, follow the steps in [Creating an API key for a service ID](/docs/account?topic=account-serviceidapikeys&interface=ui#create_service_key). As noted in that topic, make sure you copy or download the key at time of creation. Then, configure the access policies for the service ID to have access to one or more {{site.data.keyword.cos_short}} instances.
 
 ## API Key vs HMAC
 {: #service-credentials-iam-hmac}
