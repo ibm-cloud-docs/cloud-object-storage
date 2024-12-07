@@ -16,6 +16,7 @@ subcollection: cloud-object-storage
 # Supported APIs
 {: #apis-cos-satellite}
 
+
 {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} supports most S3 APIs.
 {: shortdesc}
 

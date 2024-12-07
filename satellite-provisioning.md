@@ -16,6 +16,7 @@ subcollection: cloud-object-storage
 # Provisioning {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}
 {: #provision-cos-satellite}
 
+
 You can provision {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} using the IBM Cloud console.
 {: shortdesc}
 
