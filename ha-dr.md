@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-12-09"
+lastupdated: "2024-12-10"
 
 keywords: HA for cloud object storage, DR for cloud object storage, cloud object storage recovery time objective, cloud object storage recovery point objective
 
@@ -69,10 +69,46 @@ Regional and Cross Region buckets can maintain availability during a site outage
 ### Disaster recovery features
 {: #dr-features}
 
+| Feature | Description | Consideration |
+| -------------- | -------------- | -------------- |
+| Versioning | Enabling versioning on a bucket can mitigate data loss from user error or inadvertent deletion. When an object is overwritten, a new version is created, and the previous version of the object is automatically preserved. | Does not protect from deletion of an object
+{: caption="DR features for _service-name_" caption-side="bottom"}
+
+Other disaster recovery options are created and supported by the customer.
+
+| Feature | Description | Consideration |
+| -------------- | -------------- | -------------- |
+| Backup and restore | Backup a bucket's content before disaster, restore the contents from the backup after disaster | Customer must create the script and persist the backup copy where it can be used during recovery |
+{: caption="Customer DR features for {{site.data.keyword.cos_short}}" caption-side="bottom"}
+
+### Planning for DR
+{: #features-for-disaster-recovery}
+
+The DR steps must be practiced regularly. As you build your plan, consider the following failure scenarios and resolutions.
+
+| Failure | Resolution |
+| -------------- | -------------- |
+| Hardware failure (single point) | All bucket types that are resilient from single point of hardware failure within a zone - no configuration required. |
+| Zone failure | Buckets created from a regional cross-region endpoint are resilient to zonal failures. |
+| Regional failure | Buckets created from a cross-region endpoint are resilient to a regional failure. |
+| Data corruption | Restore object from bucket version |
+| Data corruption | Restore object using backup and restore |
+{: caption="DR scenarios for {{site.data.keyword.cos_short}}" caption-side="bottom"}
+
 ### Your responsibilities for HA and DR
 {: #cos-feature-responsibilities}
 
 The following information can help you create and continuously practice your plan for HA and DR.
+
+The following checklist associated with each feature can help you create and practice your plan.
+- Versioning
+   - Verify bucket versioning is enabled in the bucket.
+   - Test the restore from version and verify the RTO times meet objectives. Consider writing automation and runbook to achieve reproducible expected results.
+- Backup and restore
+   - Verify the backup is available in the chosen restore location.  For example verify the backup of a regional bucket is available in the recovery region.
+   - Verify the backup is using the encryption technology expected.
+   - Verify the backup script is running at the desired frequency to meet RPO objectives
+   - Test the restore and calculate the throughput_factor. Recovery will be dependent on a throughput factor based on the backup technology as well as the throughput from the backup source to the intermediate script and then to the destination bucket. Verify the RTO times meet objectives.
 
 
 
@@ -90,6 +126,12 @@ To find out more about responsibility ownership between the customer and {{site.
 {: #rto-rpo-features}
 
 IBM Cloud Object Storage offering has plans in place to provide for the recovery of both the Cloud Service, and the associated Content, within hours in the event of a corresponding disaster.
+
+| Feature | RTO and RPO |
+| -------------- | -------------- |
+| Backup and restore | RTO = Setup time + GBs * throughput_factor sec/GB. See above for throughput_factor calculation. RPO = time of last backup |
+| Versioning | RTO = time to identify version and restore, RPO = 0 |
+{: caption="RTO/RPO features for _service-name_" caption-side="bottom"}
 
 
 
