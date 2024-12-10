@@ -190,7 +190,6 @@ toc:
           - at.md
           - iam-at.md
           - data-portability.md
-          - ha-dr.md
     - navgroup:
         id: help
         topics:
