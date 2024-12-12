@@ -139,6 +139,7 @@ toc:
           - topicgroup:
               label: Using IBM Cloud Satellite
               topics:
+                - satellite-deprecate-notice.md
                 - about-satellite.md
                 - satellite-provisioning.md
                 - satellite-billing.md
@@ -189,7 +190,7 @@ toc:
                 - eu.md
           - at.md
           - iam-at.md
-          - data-portability.md 
+          - data-portability.md
     - navgroup:
         id: help
         topics:

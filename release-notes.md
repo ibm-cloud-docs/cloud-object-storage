@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2024
 
-lastupdated: "2024-08-20"
+lastupdated: "2024-12-12"
 
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning, metrics router, activity tracker routing, routing, monitoring
@@ -21,6 +21,13 @@ content-type: release-note
 
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
+
+## 12 December 2024
+{: #cloud-object-storage-dec2024}
+{: release-note}
+
+{{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} is deprecated
+:   {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} is a managed object storage service that can be deployed on IBM Satellite for clients to store data closer to their applications and data sources, whether on-premises, at the edge, or in a multi-cloud environment. This service is being deprecated due to changes in market expectations, client fit, and lack of adoption. After December 16, 2025, this service is no longer supported. For more information, see [Deprecation overview](/docs-draft/cloud-object-storage?topic=cloud-object-storage-deprecation-cos-satellite).
 
 ## 20 August 2024
 {: #cloud-object-storage-aug2024}
