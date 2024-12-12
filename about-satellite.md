@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-06-05"
+lastupdated: "2024-12-12"
 
 keywords:  object storage, satellite, local
 
@@ -15,6 +15,9 @@ subcollection: cloud-object-storage
 
 # About {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}
 {: #about-cos-satellite}
+
+{{site.data.keyword.cloud_notm}} continues to evaluate its service offerings periodically, keeping in perspective our client requirements and market direction. As a result, as of December 16, 2024, the {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} offering is being deprecated. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 {{site.data.keyword.cos_full_notm}} for {{site.data.keyword.satellitelong_notm}} offers users the flexibility to run a managed {{site.data.keyword.cos_short}} service on client-owned on-premises infrastructure, edge locations or third-party public cloud infrastructure.
 {: shortdesc}

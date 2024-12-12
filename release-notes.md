@@ -26,8 +26,8 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 {: #cloud-object-storage-dec2024}
 {: release-note}
 
-{{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} is deprecated
-:   {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} is a managed object storage service that can be deployed on IBM Satellite for clients to store data closer to their applications and data sources, whether on-premises, at the edge, or in a multi-cloud environment. This service is being deprecated due to changes in market expectations, client fit, and lack of adoption. After December 16, 2025, this service is no longer supported. For more information, see [Deprecation overview](/docs-draft/cloud-object-storage?topic=cloud-object-storage-deprecation-cos-satellite).
+{{site.data.keyword.cos_full}} for {{site.data.keyword.satellitelong}} is deprecated
+:   {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} is a managed object storage service that can be deployed on IBM Satellite for clients to store data closer to their applications and data sources, whether on-premises, at the edge, or in a multi-cloud environment. This service is being deprecated due to changes in market expectations, client fit, and lack of adoption. After December 16, 2025, this service is no longer supported. For more information, see [Deprecation overview](/docs/cloud-object-storage?topic=cloud-object-storage-deprecation-cos-satellite).
 
 ## 20 August 2024
 {: #cloud-object-storage-aug2024}
