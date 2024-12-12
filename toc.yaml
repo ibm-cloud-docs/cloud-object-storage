@@ -139,6 +139,7 @@ toc:
           - topicgroup:
               label: Using IBM Cloud Satellite
               topics:
+                - satellite-deprecate-notice.md
                 - about-satellite.md
                 - satellite-provisioning.md
                 - satellite-billing.md
