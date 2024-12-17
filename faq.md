@@ -199,4 +199,12 @@ The response you receive includes information for the name of your instance, loc
 {{site.data.keyword.cos_full_notm}} may rate-limit your workload based on its specific characteristics and current system capacity. Rate-limiting will be seen as a 429 or 503 response, in which case retries with exponential back-off are suggested.
 
 
+<single-service>
+## What's the difference between the service and the deployable architecture for {{site.data.keyword.cos_full}}?
+{: #faq-deployable-architecture}
+{: faq}
 
+
+The {{site.data.keyword.cos_full}} service is a SaaS offering in the catalog. It displays in the Storage category on your Resource list. The deployable architecture can be configured, updated, monitored, and deployed across accounts by using IBM Cloud projects. The deployable architecture can be used to link together multiple architectures to create an end-to-end solution.
+
+</single-service>
