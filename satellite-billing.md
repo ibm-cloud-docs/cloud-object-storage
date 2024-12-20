@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2024
-lastupdated: "2024-12-12"
+lastupdated: "2024-12-20"
 
 
 keywords:  object storage, satellite, local
@@ -17,7 +17,7 @@ subcollection: cloud-object-storage
 # Billing for {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}
 {: #billing-cos-satellite}
 
-{{site.data.keyword.cloud_notm}} continues to evaluate its service offerings periodically, keeping in perspective our client requirements and market direction. As a result, as of December 16, 2024, the {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} offering is being deprecated. For more information, see [Deprecation overview](/docs-draft/cloud-object-storage?topic=cloud-object-storage-deprecation-cos-satellite).
+{{site.data.keyword.cloud_notm}} continues to evaluate its service offerings periodically, keeping in perspective our client requirements and market direction. As a result, as of December 16, 2024, the {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} offering is being deprecated. For more information, see [Deprecation overview](/docs/cloud-object-storage?topic=cloud-object-storage-deprecation-cos-satellite).
 {: deprecated}
 
 {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} has a different pricing model than the typical pay-as-you-go scheme used in the public cloud.
