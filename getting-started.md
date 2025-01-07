@@ -1,7 +1,7 @@
 ---
 
 copyright:
-  years: 2017, 2024
+  years: 2017, 2025
 lastupdated: "2024-09-25"
 
 keywords: IBM cloud object storage, cloud object storage, object storage, storage, cross origin resource sharing, cors, special characters
