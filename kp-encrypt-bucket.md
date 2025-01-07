@@ -1,7 +1,7 @@
 ---
 
 copyright:
-   years: 2022, 2024
+   years: 2022, 2025
 lastupdated: "2024-09-16"
 
 keywords: tutorials, key protect, bucket, encryption
