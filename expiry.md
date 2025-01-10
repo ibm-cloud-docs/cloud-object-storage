@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-08-23"
+  years: 2017, 2024
+lastupdated: "2025-01-10"
 
 keywords: expiry, glacier, tier, s3, compatibility, api
 
@@ -139,7 +139,6 @@ You can also combine transition and expiration rules.  This configuration archiv
     </Rule>
 </LifecycleConfiguration>
 ```
-
 ## Using the console
 {: #expiry-using-console}
 
@@ -185,7 +184,6 @@ The body of the request must contain an XML block with the following schema:
 | `Date`                        | Date                 | None                                   | `Expiration`                  | Must be in ISO 8601 Format.                                                                |
 | `NoncurrentVersionExpiration` | Date                 | `NoncurrentDays`                       | `Rule`                        | Limit 1.                                                                                   |
 | `NoncurrentDays`              | Non-negative integer | None                                   | `NoncurrentVersionExpiration` | Must be a value greater than 0.                                                            |
-
 {: http}
 
 The body of the request must contain an XML block with the schema that is addressed in the table (see Example 1).

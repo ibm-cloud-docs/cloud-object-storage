@@ -141,7 +141,6 @@ toc:
               topics:
                 - satellite-deprecate-notice.md
                 - about-satellite.md
-                - satellite-provisioning.md
                 - satellite-billing.md
                 - satellite-apis.md
     - navgroup:
