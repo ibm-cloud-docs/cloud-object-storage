@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-11-13"
+lastupdated: "2025-01-13"
 
 keywords: IBM Cloud Object Storage notifications, notifications, gslb
 
@@ -62,9 +62,9 @@ In order to avoid future changes when using the private and direct endpoints, IB
 | London (eu-gb)       | November 7, 2024                    | November 21, 2024                 |
 | Madrid (eu-es)       | November 21, 2024                   | December 5, 2024                  |
 | Osaka (jp-osa)       | October 17, 2024                    | December 9, 2024                  |
-| Toronto (ca-tor)     | October 14, 2024                    | December 9, 2024 (Private)       |
-| Washington (us-east) | October 21, 2024                    | January 13, 2025                  |
-| Dallas (us-south)    | October 24, 2024                    | January 16, 2025                  |
+| Toronto (ca-tor)     | October 14, 2024                    | December 9, 2024 (Private)        |
+| Washington (us-east) | October 21, 2024                    | February 15, 2025                 |
+| Dallas (us-south)    | October 24, 2024                    | February 22, 2025                 |
 
 
 ## IP address changes
