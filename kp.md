@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2024
-lastupdated: "2024-04-19"
+  years: 2018, 2025
+lastupdated: "2025-02-18"
 
 keywords: encryption, security, sse-c, key protect
 
@@ -33,6 +33,9 @@ You will also need to ensure that a service instance is created by using the [IB
 Refer to the service-specific product pages for instructions on how to provision and setup appropriate service instances.
 
 - Getting started with [IBM Key Protect](/docs/key-protect?topic=key-protect-getting-started-tutorial#getting-started-tutorial)
+
+As of 1 January 2025, five key versions per account are no longer free. You are charged for each key version, starting with the first created key.
+{: important}
 
 Once you have an instance of Key Protect, you need to create a root key and note the CRN ([Cloud Resource Name](/docs/account?topic=account-crn)) of that key. The CRN is sent in a header during bucket creation.
 
