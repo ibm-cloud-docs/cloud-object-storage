@@ -1,9 +1,9 @@
 ---
 
 copyright:
-  years: 2017, 2024
+  years: 2017, 2025
 
-lastupdated: "2024-06-17"
+lastupdated: "2025-02-18"
 
 keywords: aspera, key protect, archive, worm
 
@@ -46,6 +46,8 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 | `eu`   | Yes    | Yes (in `eu-de`)    | No                             | No           | Yes           | No                        | `eu-de`                 | No          | Yes        | `eu-de`         | Yes         |  No        |
 | `us`   | Yes    | Yes (in `us-south`) | Yes (failover in `us-east`)    | No           | Yes          | Yes                      | `us-south`              | No          | Yes        | `us-south`      | Yes         |  No        |
 
+Refer to [Pricing for Key Protect on IBM Cloud](/docs/key-protect?topic=key-protect-pricing-plan) for appropriate planning.
+{: note}
 
 ## Regional
 {: #service-availability-region}

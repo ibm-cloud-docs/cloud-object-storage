@@ -2,7 +2,7 @@
 
 copyright:
    years: 2022, 2025
-lastupdated: "2024-09-16"
+lastupdated: "2025-02-18"
 
 keywords: tutorials, key protect, bucket, encryption
 
@@ -33,6 +33,9 @@ Before you plan on using Key Protect with Cloud Object Storage buckets, you need
 - An [IBM Cloud™ Platform account](http://cloud.ibm.com/)
 - An [instance of IBM Cloud Object Storage](/objectstorage/create)
 - An [instance of Key Protect](key-protect/key-protect-about)
+
+As of 1 January 2025, five key versions per account are no longer free. You are charged for each key version, starting with the first created key.
+{: important}
 
 You will also need to ensure that a service instance is created by using the [IBM Cloud catalog](https://cloud.ibm.com/catalog) and appropriate permissions are granted. This tutorial does not outline the step-by-step instructions to help you get started.  This information is found in section  [Server-Side Encryption with IBM Key Protect (SSE-KP)](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-kp)
 
