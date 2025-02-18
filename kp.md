@@ -133,7 +133,7 @@ As an admin, you might need to [restore a root key that you imported](/docs/key-
 ## Activity Tracking
 {: #kp-at}
 
-When Key Protect root keys are deleted, rotated, suspended, enabled, or restored, an [Activity Tracker management event](/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global) (`cloud-object-storage.bucket-key-state.update`) is generated in addition to any events logged by Key Protect. 
+When Key Protect root keys are deleted, rotated, suspended, enabled, or restored, an [Activity Tracker management event](/docs/cloud-object-storage?topic=cloud-object-storage-at-events#at-actions-global) (`cloud-object-storage.bucket-key-state.update`) is generated in addition to any events logged by Key Protect.
 
 In the event of a server-side failure in a lifecycle action on a key, that failure is not logged by COS.  If Key Protect does not receive a success from COS for the event handling within four hours of the event being sent, Key Protect will log a failure.
 {: note}
