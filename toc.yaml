@@ -48,6 +48,7 @@ toc:
           - cbr-tutorial.md
           - static-website.md
           - web-application.md
+          - curl-multipart.md
     - navgroup:
         id: howto
         topics:
