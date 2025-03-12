@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2025
 
-lastupdated: "2025-02-18"
+lastupdated: "2025-03-12"
 
 keywords: aspera, key protect, archive, worm
 
@@ -64,6 +64,7 @@ Refer to [Pricing for Key Protect on IBM Cloud](/docs/key-protect?topic=key-prot
 | `ca-tor`   | No     | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `ca-tor`                 | Yes         | Yes        | `ca-tor`        | Yes         | Yes      | `ca-tor`    |
 | `br-sao`   | No     | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `br-sao`                 | Yes         | Yes        | `br-sao`        | Yes         | Yes      | `br-sao`    |
 | `eu-es`    | No     | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `eu-es`                  | No          | Yes        | `eu-es`         | Yes         | Yes      | `eu-es`     |
+| `ca-mon`   | No     | No            | No                             | No           | Yes         | No                       | `ca-tor`                 | No          | Yes        | `ca-mon`        | Yes         | Yes      | `ca-mon`    |
 
 It is possible to create a bucket and associate any available Key Protect or Hyper Protect Crypto Services instance with any of the listed Cloud Object Storage locations. Hyper Protect Crypto Services is only available in selected locations and it is your responsibility to ensure the location/region you select meets any pertinent requirements. Please refer to [Hyper Protect Crypto Services documentation](/docs/hs-crypto?topic=hs-crypto-regions) and [IBM Key Protect](/docs/key-protect?topic=key-protect-regions) for a list of regions/locations currently available.
 {: note}
