@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2025-01-13"
+  years: 2024, 2025
+lastupdated: "2025-03-14"
 
 keywords: IBM Cloud Object Storage notifications, notifications, gslb
 
@@ -102,5 +102,8 @@ In order to avoid future changes when using the private and direct endpoints, IB
 | Madrid (eu-es) public        |  s3.eu-es.cloud-object-storage.appdomain.cloud            | 13.120.118.49  | 13.120.118.49, 13.120.118.51, 13.120.118.52      |
 | Madrid (eu-es) private       |  s3.private.eu-es.cloud-object-storage.appdomain.cloud    | 10.1.129.187   | 10.1.129.187, 10.1.129.204, 10.1.129.205         |
 | Madrid (eu-es) direct        |  s3.direct.eu-es.cloud-object-storage.appdomain.cloud     | 161.26.0.99    | 161.26.0.99, 161.26.217.99, 161.26.221.99        |
+| Montreal (ca-mon) public     |  s3.ca-mon.cloud-object-storage.appdomain.cloud           |                | 64.5.38.16,   64.5.38.20,    64.5.38.24          |
+| Montreal (ca-mon) private    |  s3.private.ca-mon.cloud-object-storage.appdomain.cloud   |                | 10.200.36.32, 10.200.75.184, 10.200.36.36        |
+| Montreal (ca-mon) direct     |  s3.direct.ca-mon.cloud-object-storage.appdomain.cloud    |                | 161.26.15.28, 161.26.14.172, 161.26.14.240       |
 
 {: caption="IP address changes" caption-side="top"}
