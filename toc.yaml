@@ -32,6 +32,7 @@ toc:
               topics:
                 - cos-notices.md
                 - cos-notices-gslb.md
+                - cos-notices-ca-mon.md
           - topic: release-notes.md
             navtitle: Release notes
     - navgroup:
