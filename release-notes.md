@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2025
 
-lastupdated: "2025-01-16"
+lastupdated: "2025-03-14"
 
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning, metrics router, activity tracker routing, routing, monitoring
@@ -22,6 +22,19 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
+## 14 March 2025
+{: #cloud-object-storage-mar142025}
+{: release-note}
+
+New location!
+:   Buckets can now be created in a single-campus MZR (SC-MZR) location available as a regional COS offering in Montreal (ca-mon). More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) and [Integrated service availability](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability).
+
+## 13 January 2025
+{: #cloud-object-storage-jan132025}
+{: release-note}
+
+ {{site.data.keyword.cos_full_notm}} is available as a deployable architecture for use in projects
+ :   Cloud automation for deploying {{site.data.keyword.cos_short}} is now available. By using the Cloud automation for {{site.data.keyword.cos_full_notm}} deployable architecture from the {{site.data.keyword.cloud_notm}} catalog, you can take advantage of automation through {{site.data.keyword.cloud_notm}} projects to configure, deploy, and monitor your resources by using DevOps best practices. For more information, see [Working with the {{site.data.keyword.cos_full_notm}} deployable architecture](/docs/cloud-object-storage?topic=cloud-object-storage-deployable-architecture).
 
 
 ## 12 December 2024
