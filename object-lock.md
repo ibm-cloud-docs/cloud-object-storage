@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2023, 2024
-lastupdated: "2024-06-04"
+  years: 2023, 2025
+lastupdated: "2025-03-20"
 
 keywords: worm, immutable, policy, retention, compliance, replication, legal hold
 
@@ -12,7 +12,7 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Tracking Object Lock events
+# Object Lock
 {: #ol-overview}
 
 Object Lock preserves electronic records and maintains data integrity by ensuring that individual object versions are stored in a WORM (Write-Once-Read-Many), non-erasable and non-rewritable manner. This policy is enforced until a specified date or the removal of any legal holds.
