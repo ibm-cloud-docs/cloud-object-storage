@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2024
-lastupdated: "2024-04-19"
+  years: 2017, 2024, 2025
+lastupdated: "2025-03-21"
 
 keywords: rest, s3, compatibility, api, objects
 
@@ -522,7 +522,7 @@ Tags must comply with the following restrictions:
 * Minimum value length - 0 Unicode characters in UTF-8 (Tag Value can be empty)
 * Maximum value length - 256 Unicode characters in UTF-8
 * Maximum value byte size - 512 bytes
-* A Tag key and value may consist of US Alpha Numeric Characters (`a-z`,`A-Z`,`0-9`), and spaces representable in UTF-8, and the following symbols: `!`, `_`, `.`, `*`, `'`, `(`, `)`, `-`, `:`
+* A Tag key and value may consist of US Alpha Numeric Characters (`a-z`,`A-Z`,`0-9`), and spaces representable in UTF-8, and the following symbols: `+`, `-`, `=`, `.`, `_`, `:`, `/`, `@`
 * Tag keys and values are case-sensitive
 * `ibm:` cannot be used as a key prefix for tags
 
