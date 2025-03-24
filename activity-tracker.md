@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2022, 2024
-lastupdated: "2024-07-08"
+  years: 2022, 2024, 2025
+lastupdated: "2025-03-24"
 
-keywords: events, activity, logging, api, buckets, tracking, legacy, python, java, node, go, logs
+keywords: events, activity, logging, buckets, tracking, logs, legacy
 
 subcollection: cloud-object-storage
 
@@ -20,9 +20,7 @@ subcollection: cloud-object-storage
 
 Use these services to track events on your {{site.data.keyword.cos_full}} buckets to provide a record of what is happening with your data. Enable these services on your bucket to receive detailed logs about data access and bucket configuration events.
 
-When event tracking is enabled on your bucket, the default target service that captures these events is [{{site.data.keyword.at_full}}](/docs/cloud-object-storage?topic=cloud-object-storage-at#at-at). Ensure that you have an instance of Activity Tracker at the receiving location corresponding to your bucket location as specified in [{{site.data.keyword.cos_short}} Service Integration](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability).
-
-Alternatively, use [IBM Cloud Activity Tracker Event Routing](/docs/cloud-object-storage?topic=cloud-object-storage-at#at-route-logs) to send events to other target services or to send events to Activity Tracker instances in locations other than the bucket location.
+Use [IBM Cloud Activity Tracker Event Routing](/docs/cloud-object-storage?topic=cloud-object-storage-at#at-route-logs) to manage auditing events at the account-level by configuring targets and routes that define where auditing data is routed.
 
 This feature is not currently supported in [Object Storage for Satellite](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite).
 {: note}
@@ -38,17 +36,19 @@ As of 28 March 2024 the IBM Log Analysis and IBM Cloud Activity Tracker services
 
 Tracking {{site.data.keyword.cos_short}} events with {{site.data.keyword.at_full}} provides a record of what is happening with your data. The {{site.data.keyword.at_full_notm}} service provides the framework and functionality to monitor API calls to services on the IBM Cloud and produces the evidence to comply with corporate policies and market industry-specific regulations.
 
-See Getting started with [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started) to learn more.
+See Getting started with [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started) to learn more.  [Migrate from {{site.data.keyword.at_full_notm}} to IBM Cloud Logs](/docs/activity-tracker?topic=activity-tracker-deprecation_migration) to avoid any disruption in event tracking.
 
 
-## Using IBM Cloud Logs to track bucket events (Coming Soon)
+## Using {{site.data.keyword.logs_full_notm}} to track bucket events
 {: #at-logs}
 
-IBM Cloud Logs will replace {{site.data.keyword.at_full_notm}} hosted event search. See the [IBM Announcement](https://www.ibm.com/blog/announcement/ibm-cloud-logs-observability/) to learn more.
+{{site.data.keyword.logs_full_notm}} gives you flexibility in how your data is processed for insights and trends, and where data is stored for high-speed search and long-term trend analysis. It provides the tools for you to maximize the value obtained while maintaining control on the total cost.
 
-IBM Cloud Logs gives you flexibility in how your data is processed for insights and trends, and where data is stored for high-speed search and long-term trend analysis. It provides the tools for you to maximize the value obtained while maintaining control on the total cost.
+To track bucket events by using {{site.data.keyword.logs_full_notm}} as a target for {{site.data.keyword.atracker_short}}, follow the steps in [Configuring an IBM Cloud Logs instance as a target](/docs/atracker?topic=atracker-getting-started-target-cloud-logs) to provision an {{site.data.keyword.logs_full_notm}} instance, configure the service-to-service authorization, create a target, and create a route. When creating a route, select the location that corresponds to the region where your buckets are located, for example, `us-south`. After you complete the configuration, all {{site.data.keyword.cos_short}} request logs from the selected region are forwarded to the {{site.data.keyword.logs_full_notm}} instance. To view the logs, [launch the IBM Cloud Logs UI](/docs/cloud-logs?topic=cloud-logs-instance-launch#instance-launch-cloud-ui).
 
-[Migrate from {{site.data.keyword.at_full_notm}} to IBM Cloud Logs](/docs/activity-tracker?topic=activity-tracker-deprecation_migration) once available to avoid any disruption in event tracking.
+Optionally, you can use the [TCO Optimizer](/docs/cloud-logs?topic=cloud-logs-tco-optimizer) to filter the logs to display information for only a specific {{site.data.keyword.cos_short}} instance. By default, {{site.data.keyword.atracker_short}} captures data for all services in the selected region. To limit the logs to a particular {{site.data.keyword.cos_short}} instance, follow the steps in [Creating a policy](/docs/cloud-logs?topic=cloud-logs-tco-optimizer#tco-optimizer-create-policy) to add and apply a new TCO Optimizer policy with these settings:
+- Application = `ibm-audit-event`
+- Subsystem = CRN for the specific {{site.data.keyword.cos_short}} instance, `CRNserviceName:instanceID`
 
 ## Route Logs with {{site.data.keyword.at_full_notm}} Event Routing
 {: #at-route-logs}
@@ -57,9 +57,8 @@ IBM Cloud Logs gives you flexibility in how your data is processed for insights 
 
 Activity Tracker Event Routing supports routing IBM COS bucket logs to the following targets
 -	[Another COS Bucket](/docs/atracker?topic=atracker-getting-started-target-cos)
--	[Activity Tracker Instance](/docs/atracker?topic=atracker-getting-started-target-logdna) (Deprecated)
 -	[Event Streams](/docs/atracker?topic=atracker-getting-started-target-event-streams)
--	[IBM Cloud Logs](/docs/activity-tracker?topic=activity-tracker-deprecation#cloud-logs-intro) (Coming Soon)
+-	[IBM Cloud Logs](/docs/cloud-logs?topic=cloud-logs-getting-started)
 
 
 ## Configure Activity Tracking Events on your IBM Cloud Object Storage Bucket (Recommended)
@@ -463,5 +462,3 @@ GO SDK
     }
    ```
     {: codeblock}
-
-
