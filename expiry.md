@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2025-01-24"
+lastupdated: "2025-04-23"
 
 keywords: expiry, glacier, tier, s3, compatibility, api
 
@@ -32,7 +32,8 @@ You can set the lifecycle for objects by using the web console, REST API, and th
 * An expiration rule without a prefix filter will apply to all objects in the bucket.
 * The expiration period for an object, specified in number(s) of days, is calculated from the time the object was created, and is rounded off to the next day's midnight UTC. For example, if you have an expiration rule for a bucket to expire a set of objects ten days after the creation date, an object that was created on 15 April 2019 05:10 UTC will expire on 26 April 2019 00:00 UTC.
 * The expiration rules for each bucket are evaluated once every 24 hours. Any object that qualifies for expiration (based on the objects' expiration date) will be queued for deletion. The deletion of expired objects begins the following day and will typically take less than 24 hours. You will not be billed for any associated storage for objects once they are deleted.
-* In [versioning enabled or suspended buckets](/docs/cloud-object-storage?topic=cloud-object-storage-versioning), a regular <Expiration> rule retains the current version and creates a delete marker rather than permanently deleting data. To clean up a versioning enabled bucket, you can set two expiration rules. Add a first rule that sets an expiration for the current version and the noncurrent version. Because versioning is enabled, this rule creates a delete marker for the version. Add a second rule with the selection "Clean up expired object delete markers" to delete the data.
+* In [versioning enabled or suspended buckets](/docs/cloud-object-storage?topic=cloud-object-storage-versioning), a regular <Expiration> rule retains the current version and creates a delete marker rather than permanently deleting data. To clean up a versioning enabled bucket, you can set two expiration rules. Add a first rule that sets an expiration for the current version and the noncurrent version. Because versioning is enabled, this rule creates a delete marker for the version. Add a second rule with the selection "Clean up expired object delete markers" to delete the data. If versioning is suspended, you will not see the option to clean up the expired delete markers in the expiration rule configuration page. Hence versioning needs to be enabled first. Then add a first rule that sets an expiration for the current version and the noncurrent version. Because versioning is enabled, this rule creates a delete marker for the version. Add a second rule with the selection "Clean up expired object delete markers" to delete the data.
+
 * The expiration time of non-current versions is determined by its successor's last modified time, rounded to the next day at midnight UTC.
 * If versions are manually deleted from an object that has versions expected to be expired the next day, those expirations may not occur.
 
