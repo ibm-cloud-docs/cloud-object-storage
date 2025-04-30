@@ -128,7 +128,7 @@ If you are using the same COS instance for the source and destination, the bucke
 ## Run `rclone`
 {: #region-copy-run}
 
-1. Test your configuration with a dry run (where no data is copied) of `rclone` to test the copy of the objects in your source bucket (for example, `source-test`) to target bucket (for example, `destination-test`).
+1. Test your configuration with a dry run (where no data is copied) of `rclone` to test the copy of the objects in your source bucket (for example, `source-test`) to target bucket (for example, `destination-test`), where `source-test` and `destination-test` are the respective source and destination bucket names.
 
    ```sh
    rclone --dry-run copy COS_SOURCE:source-test COS_DESTINATION:destination-test
