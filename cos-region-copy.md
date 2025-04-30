@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2022, 2024
-lastupdated: "2024-06-06"
+  years: 2022, 2025
+lastupdated: "2025-04-30"
 
 keywords: cos, object storage, copy
 
@@ -130,17 +130,17 @@ If you are using the same COS instance for the source and destination, the bucke
 
 1. Test your configuration with a dry run (where no data is copied) of `rclone` to test the copy of the objects in your source bucket (for example, `source-test`) to target bucket (for example, `destination-test`), where `source-test` and `destination-test` are the respective source and destination bucket names.
 
-   ```sh
+```sh
    rclone --dry-run copy COS_SOURCE:source-test COS_DESTINATION:destination-test
-   ```
+```
 
    {: pre}
 
 1. Check that the files you want to migrate appear in the command output. If everything looks good, remove the `--dry-run` flag and, optionally add `-v` and/or `-P` flag to copy the data and track progress. Using the optional `--checksum` flag avoids updating any files that have the same MD5 hash and object size in both locations.
 
-   ```sh
+```sh
    rclone -v -P copy --checksum COS_SOURCE:source-test COS_DESTINATION:destination-test
-   ```
+```
 
    {: pre}
 
@@ -154,6 +154,7 @@ There are other parameters to consider when tuning `rclone`. Different combinati
 | `--transfers` | `int` | This is the number of objects to transfer in parallel (default 4). We recommend increasing this to 64 or 128 or higher when transferring many small files. |
 | `--multi-thread-streams` | `int` | Download large files (> 250M) in multiple parts in parallel. This will improve the download time of large files (default 4). |
 | `--s3-upload-concurrency` | `int` | The number of parts of large files (> 200M) to upload in parallel. This will improve the upload time of large files (default 4). |
+
 {: caption="`rclone` options" caption-side="top"}
 
 Migrating data using `rclone copy` only copies but does not delete the source data.
