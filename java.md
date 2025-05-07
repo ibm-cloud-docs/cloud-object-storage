@@ -1190,7 +1190,7 @@ AsperaTransaction asperaTransaction = asperaTransactionFuture.get();
 ### Overriding Session Configuration on a Per Transfer Basis
 {: #java-examples-aspera-config}
 
-You can override the multi-session configuration values on a per transfer basis by passing an instance of `AsperaConfig` to the upload and download overloaded methods. Using `AsperaConfig` you can specify the number of sessions and minimum file threshold size per session. 
+You can override the multi-session configuration values on a per transfer basis by passing an instance of `AsperaConfig` to the upload and download overloaded methods. Using `AsperaConfig` you can specify the number of sessions and minimum file threshold size per session.
 
 ```java
 String bucketName = "<bucket-name>";
