@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2023
-lastupdated: "2023-08-09"
+  years: 2017, 2025
+lastupdated: "2025-05-07"
 
 keywords: archive, accelerated, access, glacier
 
@@ -21,7 +21,16 @@ subcollection: cloud-object-storage
 This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
 {: note}
 
-You can archive objects using the web console, REST API, and 3rd party tools that are integrated with IBM Cloud Object Storage. 
+Archive and Accelerated Archive Tiers have a minimum storage duration of 90 days. Objects deleted prior to this time will still incur storage charges for the full 90 days.
+{: note}
+
+Archive and Accelerated Archive both have a minimum object size for billing of 128KBs. Objects smaller than this can still be archived but will be billed at the 128KB object size rate.
+{: note}
+
+Objects written to Vault or Cold Vault will be billed for the full minimum storage duration in those tiers even if the object is archived prior to the minimum duration.
+{: note}
+
+You can archive objects using the web console, REST API, and 3rd party tools that are integrated with IBM Cloud Object Storage.
 
 For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
 {: tip}

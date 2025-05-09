@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2024
-lastupdated: "2024-07-22"
+  years: 2017, 2025
+lastupdated: "2025-05-09"
 
 keywords: object storage, python, sdk, aspera, apache, asperatransfermanager
 
@@ -54,7 +54,7 @@ The following variables appear in the examples:
 
 * `bucket_name` must be a [unique and DNS-safe](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-new-bucket) string. Because bucket names are unique across the entire system, these values need to be changed if this example is run multiple times. Note that names are reserved for 10 - 15 minutes after deletion.
 * `ibm_api_key_id` is the value found in the [Service Credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) as `apikey`.
-* `ibm_service_instance_id` is the value found in the [Service Credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) as `resource_instance_id`. 
+* `ibm_service_instance_id` is the value found in the [Service Credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) as `resource_instance_id`.
 * `endpoint_url` is a service endpoint URL, inclusive of the `https://` protocol. This value is **not** the `endpoints` value that is found in the [Service Credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials). For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 * `LocationConstraint` is a [valid provisioning code](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes-locationconstraint) that corresponds to the `endpoint` value.
 
@@ -62,7 +62,7 @@ The following variables appear in the examples:
 ## Code Examples
 {: #python-examples}
 
-Code examples are tested on supported release versions of Python. 
+Code examples are tested on supported release versions of Python.
 
 In your code, you must remove the angled brackets or any other excess characters that are provided here as illustration.
 {: note}
@@ -70,7 +70,7 @@ In your code, you must remove the angled brackets or any other excess characters
 ### Initializing configuration
 {: #python-examples-init}
 
-This example creates a `resource` object. A resource provides an object-oriented interface to COS. This allows for a higher level of abstraction than the low-level calls provided by a client object. 
+This example creates a `resource` object. A resource provides an object-oriented interface to COS. This allows for a higher level of abstraction than the low-level calls provided by a client object.
 
 Note that some operations (such as Aspera high-speed transfer) require a `client` object. Aspera itself requires Python version 3.6.
 {: important}

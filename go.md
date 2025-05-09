@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2024
-lastupdated: "2024-06-12"
+  years: 2017, 2025
+lastupdated: "2025-05-09"
 
 keywords: object storage, go, sdk
 
@@ -167,7 +167,7 @@ For more information about endpoints, see [Endpoints and storage locations](/doc
 ### Creating a new bucket
 {: #go-new-bucket}
 
-A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes). Please note that the sample uses the appropriate location constraint for the Cold Vault storage based on the sample configuration. Your locations and configuration may vary. 
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes). Please note that the sample uses the appropriate location constraint for the Cold Vault storage based on the sample configuration. Your locations and configuration may vary.
 
 ```Go
 func main() {
@@ -701,7 +701,7 @@ The typical response is exemplified here.
 ### Immutable Object Storage
 {: #go-immutable-object-storage}
 
-Users can configure buckets with an Immutable Object Storage policy to prevent objects from being modified or deleted for a defined period of time. The retention period can be specified on a per-object basis, or objects can inherit a default retention period set on the bucket. It is also possible to set open-ended and permanent retention periods. Immutable Object Storage meets the rules set forth by the SEC governing record retention, and IBM Cloud administrators are unable to bypass these restrictions. 
+Users can configure buckets with an Immutable Object Storage policy to prevent objects from being modified or deleted for a defined period of time. The retention period can be specified on a per-object basis, or objects can inherit a default retention period set on the bucket. It is also possible to set open-ended and permanent retention periods. Immutable Object Storage meets the rules set forth by the SEC governing record retention, and IBM Cloud administrators are unable to bypass these restrictions.
 
 Immutable Object Storage does not support Aspera transfers via the SDK to upload objects or directories at this stage.
 {: note}
