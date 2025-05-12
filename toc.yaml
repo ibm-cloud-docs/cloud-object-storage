@@ -73,7 +73,7 @@ toc:
                     href: https://cloud.ibm.com/docs/vpc?topic=vpc-connecting-vpc-cos
           - topicgroup:
               label: Bucket management
-              topics: 
+              topics:
               - topicgroup:
                   label: Managing access
                   topics:
