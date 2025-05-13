@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-23"
+lastupdated: "2025-05-13"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -2427,6 +2427,212 @@ DELETE mybucket?inventory&id=myid HTTP/1.1
 
 ----
 
+## Backup Policy operations
+{: #backup-policy-operations}
+
+The {{site.data.keyword.cos_full}} Backup Policy API provides operations for creating, managing, and interacting with backup policies. Backup policies define how data in buckets is backed up to backup vaults.
+{: shortdesc}
+
+For more information about permissions and access, see [Backup Policy permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-backup-policy-permissions).
+{: tip}
+
+### Create a Backup Policy
+{: #create-backup-policy}
+
+A `POST` request to the `/buckets/{bucket}/backup_policies` endpoint creates a new backup policy for a bucket.
+
+| Header                    | Type   | Required? | Description
+|---------------------------|--------|-----------|---------------------------------------------------------
+| `MD5`                     | String | No        | MD5 hash of the content. If provided, the hash of the request must match.
+{: caption="Headers" caption-side="bottom"}
+
+| Path Parameter            | Type   | Required? | Description
+|---------------------------|--------|-----------|---------------------------------------------------------
+| `bucket_name`             | String | Yes       | The name of the bucket to which the backup policy is applied.
+{: caption="Path parameters" caption-side="bottom"}
+
+**Syntax**
+
+```sh
+POST https://{endpoint}/buckets/{bucket}/backup_policies
+```
+{: codeblock}
+
+**Request body**
+
+```json
+{
+  "policy_name": "myBackupPolicy",
+  "backup_type": "continuous",
+  "target_backup_vault_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a1229395:1a0ec336-f391-4091-a6fb-5e084a4c56f4:backup-vault:backup-vault-name"
+}
+```
+
+**Example request**
+
+```http
+POST /buckets/myBucket/backup_policies HTTP/1.1
+Authorization: Bearer {token}
+Content-Type: application/json
+Host: config.cloud-object-storage.cloud.ibm.com
+
+{
+  "initial_retention": {
+    "delete_after_days": 10
+  },
+  "policy_name": "myBackupPolicy",
+  "target_backup_vault_crn": "crn:v1:bluemix:public:cloud-object-storage:global:2de9d5b5:12b951c9-d4e1-61a4-518c-3acc2034ba30:backup-vault:l4pi16n8rt--ufqb7.r-fw2ziy",
+  "backup_type": "continuous"
+}
+```
+{: codeblock}
+
+**Example response**
+
+```json
+{
+  "policy_name": "myBackupPolicy",
+  "initial_retention": {
+    "delete_after_days": 10
+  },
+  "backup_type": "continuous",
+  "policy_id": "44d3dd41-d616-4d25-911a-9ef7fbf28aef",
+  "policy_status": "pending",
+  "target_backup_vault_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a1229395:1a0ec336-f391-4091-a6fb-5e084a4c56f4:backup-vault:backup-vault-name"
+}
+```
+
+----
+
+### List Backup Policies
+{: #list-backup-policies}
+
+A `GET` request to the `/buckets/{bucket}/backup_policies` endpoint retrieves all backup policies for a bucket.
+
+| Path Parameter            | Type   | Required? | Description
+|---------------------------|--------|-----------|---------------------------------------------------------
+| `bucket_name`             | String | Yes       | The name of the bucket for which to list backup policies.
+{: caption="Path parameters" caption-side="bottom"}
+
+**Syntax**
+
+```sh
+GET https://{endpoint}/buckets/{bucket}/backup_policies
+
+```
+{: codeblock}
+
+**Example request**
+
+```http
+GET /buckets/myBucket/backup_policies HTTP/1.1
+Authorization: Bearer {token}
+Content-Type: application/json
+Host: config.cloud-object-storage.cloud.ibm.com
+```
+{: codeblock}
+
+**Example response**
+
+```json
+[
+  {
+    "policy_name": "myBackupPolicy",
+    "initial_retention": {
+      "delete_after_days": 10
+    },
+    "backup_type": "continuous",
+    "policy_id": "44d3dd41-d616-4d25-911a-9ef7fbf28aef",
+    "policy_status": "active",
+    "target_backup_vault_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a1229395:8dfbcba4e6a740e3866020847e525436:backup-vault:backup-vault-name"
+  }
+]
+```
+
+----
+
+### Get Backup Policy Details
+{: #get-backup-policy}
+
+A `GET` request to the `/buckets/{bucket}/backup_policies/{policy_id}` endpoint retrieves details about a specific backup policy.
+
+| Path Parameter            | Type   | Required? | Description
+|---------------------------|--------|-----------|---------------------------------------------------------
+| `bucket_name`             | String | Yes       | The name of the bucket.
+| `policy_id`               | String | Yes       | The ID of the backup policy.
+{: caption="Path parameters" caption-side="bottom"}
+
+**Syntax**
+
+```sh
+GET https://{endpoint}/buckets/{bucket}/backup_policies/{policy_id}
+```
+{: codeblock}
+
+**Example request**
+
+```http
+GET /buckets/myBucket/backup_policies/44d3dd41-d616-4d25-911a-9ef7fbf28aef HTTP/1.1
+Authorization: Bearer {token}
+Content-Type: application/json
+Host: config.cloud-object-storage.cloud.ibm.com
+```
+{: codeblock}
+
+**Example response**
+
+```json
+{
+  "policy_name": "myBackupPolicy",
+  "backup_type": "continuous",
+  "policy_id": "44d3dd41-d616-4d25-911a-9ef7fbf28aef",
+  "policy_status": "active",
+  "target_backup_vault_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a1229395:1a0ec336-f391-4091-a6fb-5e084a4c56f4:backup-vault:backup-vault-name",
+  "initial_retention": {
+    "delete_after_days": 10
+  }
+}
+```
+
+----
+
+### Delete a Backup Policy
+{: #delete-backup-policy}
+
+A `DELETE` request to the `/buckets/{bucket}/backup_policies/{policy_id}` endpoint deletes a specific backup policy.
+
+| Path Parameter            | Type   | Required? | Description
+|---------------------------|--------|-----------|---------------------------------------------------------
+| `bucket_name`             | String | Yes       | The name of the bucket.
+| `policy_id`               | String | Yes       | The ID of the backup policy.
+{: caption="Path parameters" caption-side="bottom"}
+
+**Syntax**
+
+```sh
+DELETE https://{endpoint}/buckets/{bucket}/backup_policies/{policy_id}
+```
+{: codeblock}
+
+**Example request**
+
+```http
+DELETE /buckets/myBucket/backup_policies/44d3dd41-d616-4d25-911a-9ef7fbf28aef HTTP/1.1
+Authorization: Bearer {token}
+Content-Type: application/json
+Host: config.cloud-object-storage.cloud.ibm.com
+```
+{: codeblock}
+
+**Example response**
+
+```http
+HTTP/1.1 204 No Content
+```
+
+----
+
+For more information about backup policy operations, see [Backup vault management](/docs-draft/cloud-object-storage?topic=cloud-object-storage-bvm-overview).
 ## Next Steps
 {: #api-ref-buckets-next-steps}
 
