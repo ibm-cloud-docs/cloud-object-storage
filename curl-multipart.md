@@ -2,7 +2,7 @@
 
 copyright:
    years: 2025
-lastupdated: "2025-02-18"
+lastupdated: "2025-05-13"
 
 keywords: tutorial, multipart upload, cloud object storage
 
@@ -93,47 +93,82 @@ Instead of uploading each part manually, you can use a bash script like the one 
 As each file part is uploaded, the script extracts its ETag from the response header and saves it and the part number into an XML block as input for the final step.
 
 **Example script**
-```
-#!/bin/bash
 
-# Variables
-BUCKET_URL="https://s3.private.us-south.cloud-object-storage.appdomain.cloud/mputest/TESTFILE.iso"
-UPLOAD_ID="01000194-8fab-0f08-3c54-d7df03b4a127"      # Replace with the UploadId from the initiation step
-ACCESS_TOKEN="$Bearertoken"                 # Replace with your bearer token
-PARTS_PREFIX="part-"                        # Prefix for the split parts
-START_PART=1                                # Part number starts from 1
 
-# Iterate through all split parts
-for FILE in ${PARTS_PREFIX}*; do
-    echo "Uploading ${FILE} as part ${START_PART}..."
 
-    # Upload the part
-    RESPONSE=$(curl -s -w "%{http_code}" -o /tmp/upload_response.json \
-        -X PUT "${BUCKET_URL}?partNumber=${START_PART}&uploadId=${UPLOAD_ID}" \
-        -H "Authorization: Bearer ${ACCESS_TOKEN}" \
-        --data-binary @"${FILE}")
+```sh
+#!/usr/bin/env bash
+set -euo pipefail
 
-    # Check response
-    if [[ "$RESPONSE" == "200" ]]; then
-        # Extract ETag from response headers
-        ETAG=$(cat /tmp/upload_response.json | grep -oP '"ETag":"\K[^"]+')
-        echo "Part ${START_PART} uploaded successfully! ETag: ${ETAG}"
+# ─── Configuration ───────────────────────────────────────────────────────────────
+# Public endpoint for your bucket
+ENDPOINT="$COS endpoint"
+BUCKET="$bucket"
+KEY="$Filename"
+UPLOAD_ID="$uploadID gained from initiation of upload"
+ACCESS_TOKEN="$BEARERTOKEN"
+PARTS_PREFIX="part-"
+MANIFEST="parts_manifest.xml"
+# ─────────────────────────────────────────────────────────────────────────────────
 
-        # Save ETag and part number for the final completion XML
-        echo "<Part><PartNumber>${START_PART}</PartNumber><ETag>\"${ETAG}\"</ETag></Part>" >> parts_manifest.xml
-    else
-        echo "Failed to upload ${FILE}. HTTP response code: ${RESPONSE}"
-        exit 1
-    fi
+# 1) Start a fresh manifest
+cat > "$MANIFEST" <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<CompleteMultipartUpload>
+EOF
 
-    # Increment part number
-    START_PART=$((START_PART + 1))
+part=1
+for f in ${PARTS_PREFIX}*; do
+  if [[ ! -r "$f" ]]; then
+    echo "ERROR: no files matching ${PARTS_PREFIX}*" >&2
+    exit 1
+  fi
+
+  echo "Uploading $f as part $part…"
+
+  # 2) PUT the part, capture headers
+  hdrfile=$(mktemp)
+  http_code=$(
+    curl -sS \
+      -D "$hdrfile" \
+      -o /dev/null \
+      -X PUT "${ENDPOINT}/${BUCKET}/${KEY}?partNumber=${part}&uploadId=${UPLOAD_ID}" \
+      -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+      --data-binary @"${f}" \
+      -w '%{http_code}'
+  )
+
+  if [[ "$http_code" != "200" ]]; then
+    echo "ERROR: HTTP $http_code for part $part" >&2
+    sed 's/^/  /' "$hdrfile" >&2
+    rm -f "$hdrfile"
+    exit 1
+  fi
+
+  # 3) Extract clean ETag (strip quotes/carriage returns)
+  etag=$(grep -i '^ETag:' "$hdrfile" \
+         | cut -d' ' -f2 \
+         | tr -d '"\r')
+  rm -f "$hdrfile"
+
+  if [[ -z "$etag" ]]; then
+    echo "ERROR: no ETag for part $part" >&2
+    exit 1
+  fi
+
+  echo " → Part $part ETag: $etag"
+
+  # 4) Append a well-formed <Part> block
+  printf '  <Part>\n    <PartNumber>%d</PartNumber>\n    <ETag>"%s"</ETag>\n  </Part>\n' \
+    "$part" "$etag" >> "$MANIFEST"
+
+  part=$((part + 1))
 done
 
-echo "All parts uploaded successfully!"
-echo "Parts manifest saved to parts_manifest.xml."
-```
-{: codeblock}
+# 5) Close the manifest
+echo '</CompleteMultipartUpload>' >> "$MANIFEST"
+
+echo "✔ Manifest generated: $MANIFEST"
 
 
 ## Complete multipart upload
@@ -141,6 +176,8 @@ echo "Parts manifest saved to parts_manifest.xml."
 {: step}
 
 When all parts are finished uploading, you complete the upload by sending a request with the `UploadId` and an XML block that lists each part number and its respective Etag value.
+```
+{: codeblock}
 
 **Example request**
 ```sh
