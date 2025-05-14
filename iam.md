@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2024
-lastupdated: "2024-02-26"
+  years: 2017, 2025
+lastupdated: "2025-05-14"
 
 keywords: authorization, iam, basics
 
@@ -14,12 +14,14 @@ subcollection: cloud-object-storage
 {{site.data.keyword.attribute-definition-list}}
 
 # Getting Started with IAM
+
 {: #iam}
 
 Access to {{site.data.keyword.cos_full}} service instances for users in your account is controlled by {{site.data.keyword.cloud_notm}} Identity and Access Management (IAM).
 {: shortdesc}
 
 ## Identity and Access Management roles
+
 {: #iam-roles}
 
 Every user that accesses the {{site.data.keyword.cos_full}} service in your account must be assigned an access policy with an IAM user role defined. That policy determines what actions the user can perform within the context of the service or instance you select. The allowable actions are customized and defined by the {{site.data.keyword.cloud_notm}} service as operations that are allowed to be performed on the service. The actions are then mapped to IAM user roles.
@@ -50,6 +52,7 @@ The following table details actions that are mapped to service access roles. Ser
 | Service access role | Description of actions                                                                                                | Example actions                                                                                             |
 | :------------------ | :-------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------- |
 | Object Writer       | Upload and overwrite objects (including uploading objects in multiple parts).                                         | <ul><li>Upload objects</li></ul>                                                                            |
+| Object Writer       | Upload and overwrite objects (including uploading objects in multiple parts).                                         | <ul><li>Upload objects</li></ul>                                                                            |
 | Object Reader       | Download objects, read object metadata (headers), but not list objects or buckets.                                    | <ul><li>Download objects</li></ul>                                                                          |
 | Content Reader      | Download and list objects, read object metadata (headers), but not list buckets.                                      | <ul><li>Download and list objects</li></ul>                                                                 |
 | Reader              | In addition to Content Reader actions, Readers can list buckets and read bucket metadata, but not make modifications. | <ul><li>List buckets</li></ul>                                                                              |
@@ -60,11 +63,13 @@ The following table details actions that are mapped to service access roles. Ser
 For information about assigning user roles in the UI, see [Managing IAM access](/docs/account?topic=account-assign-access-resources).
 
 ## Identity and Access Management actions
+
 {: #iam-actions}
 
-| Action id                                                        | Description                                                                         | Condition attributes supported |
-| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- |------------------------------------|
+| Action id                                                        | Description                                                                         | Condition attributes supported                                                                        |
+| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- |-------------------------------------------------------------------------------------------------------|
 | `cloud-object-storage.account.get_account_buckets`               | List all buckets in a service instance.                                             | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
+| `cloud-object-storage.account.list_account_backup_vaults`        | List all backup vaults in a service instance.                                       | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
 | `cloud-object-storage.bucket.put_bucket`                         | Create a bucket.                                                                    | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
 | `cloud-object-storage.bucket.post_bucket`                        | Internal use only - unsupported for users.                                          | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
 | `cloud-object-storage.bucket.delete_bucket`                      | Delete a bucket.                                                                    | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
