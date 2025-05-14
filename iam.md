@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2024
-lastupdated: "2024-02-26"
+  years: 2017, 2025
+lastupdated: "2025-05-14"
 
 keywords: authorization, iam, basics
 
@@ -14,12 +14,14 @@ subcollection: cloud-object-storage
 {{site.data.keyword.attribute-definition-list}}
 
 # Getting Started with IAM
+
 {: #iam}
 
 Access to {{site.data.keyword.cos_full}} service instances for users in your account is controlled by {{site.data.keyword.cloud_notm}} Identity and Access Management (IAM).
 {: shortdesc}
 
 ## Identity and Access Management roles
+
 {: #iam-roles}
 
 Every user that accesses the {{site.data.keyword.cos_full}} service in your account must be assigned an access policy with an IAM user role defined. That policy determines what actions the user can perform within the context of the service or instance you select. The allowable actions are customized and defined by the {{site.data.keyword.cloud_notm}} service as operations that are allowed to be performed on the service. The actions are then mapped to IAM user roles.
@@ -53,8 +55,6 @@ The following table details actions that are mapped to service access roles. Ser
 | Object Writer       | Upload and overwrite objects (including uploading objects in multiple parts).                                         | <ul><li>Upload objects</li></ul>                                                                            |
 | Object Reader       | Download objects, read object metadata (headers), but not list objects or buckets.                                    | <ul><li>Download objects</li></ul>                                                                          |
 | Content Reader      | Download and list objects, read object metadata (headers), but not list buckets.                                      | <ul><li>Download and list objects</li></ul>                                                                 |
-| Backup Manager      | Create and modify data within a Backup Vault.                                                                         | <ul><li>Create a Recovery Range</li></ul>                                                                            |
-| Backup Reader       | Trigger Restore operations on a Backup Vault.                                                                         | <ul><li>Trigger a Restore</li></ul>                                                                            |
 | Reader              | In addition to Content Reader actions, Readers can list buckets and read bucket metadata, but not make modifications. | <ul><li>List buckets</li></ul>                                                                              |
 | Writer              | In addition to Reader actions, Writers can create buckets and upload objects.                                         | <ul><li>Create new buckets and objects</li><li>Remove buckets and objects</li></ul>                         |
 | Manager             | In addition to Writer actions, Managers can complete privileged actions that affect access control.                   | <ul><li>Configure retention policies</li><li>Configure bucket firewalls</li><li>Block public ACLs</li></ul> |
@@ -63,10 +63,11 @@ The following table details actions that are mapped to service access roles. Ser
 For information about assigning user roles in the UI, see [Managing IAM access](/docs/account?topic=account-assign-access-resources).
 
 ## Identity and Access Management actions
+
 {: #iam-actions}
 
-| Action id                                                        | Description                                                                         | Condition attributes supported |
-| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- |------------------------------------|
+| Action id                                                        | Description                                                                         | Condition attributes supported                                                                        |
+| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- |-------------------------------------------------------------------------------------------------------|
 | `cloud-object-storage.account.get_account_buckets`               | List all buckets in a service instance.                                             | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
 | `cloud-object-storage.account.list_account_backup_vaults`        | List all backup vaults in a service instance.                                       | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
 | `cloud-object-storage.bucket.put_bucket`                         | Create a bucket.                                                                    | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
@@ -157,24 +158,4 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 | `cloud-object-storage.object.put_tagging_version`                | Add/Update object tag versions                                                      | [path](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
 | `cloud-object-storage.object.get_tagging_version`                | Read object tag versions                                                            | [path](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
 | `cloud-object-storage.object.delete_tagging_version`             | Delete object tag versions                                                          | [path](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=ui#fgac-attributes-path)           |
-| `cloud-object-storage.bucket.post_backup_policy`                 | Add a Backup Policy to a bucket.                                                    | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.bucket.get_backup_policy`                  | Read a Backup Policy on a bucket.                                                   | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.bucket.list_backup_policies`               | List all Backup Policies on a bucket.                                               | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.bucket.delete_backup_policy`               | Remove a Backup Policy on a bucket.                                                 | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.bucket.restore_sync`                       | Write Restored objects to a bucket from a backup vault.                             | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.backup-vault.post_backup_vault`            | Create a backup vault.                                                              | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.backup-vault.delete_backup_vault`          | Delete a backup vault.                                                              | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.backup-vault.get_basic`                    | Read the backup vault configuration.                                                | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.backup-vault.get_activity_tracking`        | Read the backup vault Activity Tracker configuration.                               | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.backup-vault.get_metrics_monitoring`       | Read the backup vault Metrics Monitoring configuration.                             | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.backup-vault.get_crk_id`                   | Read the IDs of encryption root keys associated with a backup vault.                | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.backup-vault.put_activity_tracking`        | Set the backup vault Activity Tracker configuration.                                | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.backup-vault.put_metrics_monitoring`       | Set the backup vault Metrics Monitoring configuration.                              | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.backup-vault.get_recovery_range`           | View a recovery range.                                                              | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.backup-vault.list_recovery_ranges`         | List all the recovery ranges on a backup vault.                                     | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.backup-vault.post_restore`                 | Trigger a restore operation.                                                        | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.backup-vault.list_restores`                | List all restore operations.                                                        | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.backup-vault.get_restore`                  | View a restore operation.                                                           | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.backup-vault.sync`                         | Sync data to a backup vault.                                                        | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
-| `cloud-object-storage.backup-vault.put_retention`                | Set the retention configuration on a recovery range.                                | [none](/docs/cloud-object-storage?topic=cloud-object-storage-fgac-iam-access-conditions&interface=terraform#fgac-conditions-actions-not-supported) |
 {: caption="Granular IAM action descriptions"}
