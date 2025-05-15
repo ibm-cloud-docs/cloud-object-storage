@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2025
-lastupdated: "2025-05-09"
+lastupdated: "2025-05-15"
 
 keywords: object storage, go, sdk
 
@@ -817,6 +817,7 @@ func main() {
 {: codeblock}
 
 ## Next Steps
+
 {: #go-next-steps}
 
 If you haven't already, please see the detailed class and method documentation available at the [Go API documentation](https://ibm.github.io/ibm-cos-sdk-go/){: external}.
