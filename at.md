@@ -1,4 +1,4 @@
----
+  ---
 
 copyright:
   years: 2017, 2024
@@ -51,11 +51,14 @@ Management events are classified in the following categories:
 
 The following table lists the COS actions that generate a global event. You can monitor this events through the Activity Tracker instance that is available in the Frankfurt location.
 
-| Action                               | Description                              |
-| ------------------------------------ | ---------------------------------------- |
-| `cloud-object-storage.instance.list` | List the buckets in the service instance |
-| `cloud-object-storage.bucket.create` | Create a bucket in the service instance  |
-| `cloud-object-storage.bucket.delete` | Delete a bucket in the service instance  |
+| Action                                     | Description                                    |
+| ------------------------------------------ | ---------------------------------------------- |
+| `cloud-object-storage.instance.list`       | List the buckets in the service instance       |
+| `cloud-object-storage.bucket.create`       | Create a bucket in the service instance        |
+| `cloud-object-storage.bucket.delete`       | Delete a bucket in the service instance        |
+| `cloud-object-storage.backup-vault.list`   | List the backup vaults in the service instance | 
+| `cloud-object-storage.backup-vault.create` | Create a backup vault in a service instance    | 
+| `cloud-object-storage.backup-vault.delete` | Delete a backup vault in a service instance    |   
 {: caption="{{site.data.keyword.cos_short}} actions that generate global events"}
 
 ### Resource configuration events
@@ -67,7 +70,39 @@ The following table lists the COS resource configuration events:
 | ---------------------------------------------------- | ------------------------------------------------ |
 | `cloud-object-storage.resource-configuration.read`   | Read the resource configuration for the bucket   |
 | `cloud-object-storage.resource-configuration.update` | Update the resource configuration for the bucket |
+| `cloud-object-storage.bucket-backup-policy.create`   | Create a backup policy on a bucket               |
+| `cloud-object-storage.bucket-backup-policy.read`     | Read a backup policy on a bucket                 |
+| `cloud-object-storage.bucket-backup-policy.list`     | List all the backup policies on a bucket         |
+| `cloud-object-storage.bucket-backup-policy.delete`   | Delete a backup policy on a bucket               |
 {: caption="Resource Configuration events"}
+
+
+| Action                                               | Description                                      |
+| ---------------------------------------------------- | ------------------------------------------------ |
+| `cloud-object-storage.resource-configuration.read`   | Read the resource configuration for the bucket   |
+| `cloud-object-storage.resource-configuration.update` | Update the resource configuration for the bucket |
+| `cloud-object-storage.bucket-backup-policy.create`   | Create a backup policy on a bucket               |
+| `cloud-object-storage.bucket-backup-policy.read`     | Read a backup policy on a bucket                 |
+| `cloud-object-storage.bucket-backup-policy.list`     | List all the backup policies on a bucket         |
+| `cloud-object-storage.bucket-backup-policy.delete`   | Delete a backup policy on a bucket               |
+{: caption="Resource Configuration events"}
+
+
+
+
+| Action                                               | Description                                      |
+| ---------------------------------------------------- | ------------------------------------------------ |
+| `cloud-object-storage.backup-vault-configuration.read`   | Read the configuration of the backup vault    | 
+| `cloud-object-storage.backup-vault-configuration.update` | Update the configuration of the backup vault  | 
+| `cloud-object-storage.backup-recovery-range.read`        | Read information regarding a recovery range   | 
+| `cloud-object-storage.backup-recovery-range.list`        | List recovery ranges within a backup vault    | 
+| `cloud-object-storage.backup-restore.create`             | Create a new restore operation                | 
+| `cloud-object-storage.backup-restore.list`               | List all restore operations on a backup vault | 
+| `cloud-object-storage.backup-restore.read`               | View a recovery range                         | 
+| `cloud-object-storage.backup-recovery-range.create`      | Create a new recovery range                   | 
+| `cloud-object-storage.backup-recovery-range.update`      | Update the configuration for a recovery range | 
+
+
 
 ### Bucket events
 {: #at-actions-mngt-2}
@@ -160,6 +195,7 @@ The following table lists the COS object access events:
 | `cloud-object-storage.object-copy.create`    | Create the target object from the copy    |
 | `cloud-object-storage.object-restore.read`   | Read the source object to restore         |
 | `cloud-object-storage.object-restore.create` | Create the target object from the restore |
+| `cloud-object-storage.backup-restore.object-create`  | Create the object via a backup restore operation |
 {: caption="Object access events"}
 
 If versioning is enabled for a bucket, then `target.versionId` will be present for operations that make use of object versions.
