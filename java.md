@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2024
-lastupdated: "2024-04-18"
+  years: 2017, 2025
+lastupdated: "2025-05-28"
 
 keywords: object storage, java, sdk
 
@@ -784,6 +784,577 @@ Methods
 * [completeMultipartUpload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#completeMultipartUpload-com.ibm.cloud.objectstorage.services.s3.model.CompleteMultipartUploadRequest-){: external}
 * [initiateMultipartUpload](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#initiateMultipartUpload-com.ibm.cloud.objectstorage.services.s3.model.InitiateMultipartUploadRequest-){: external}
 * [`uploadPart`](https://ibm.github.io/ibm-cos-sdk-java/com/ibm/cloud/objectstorage/services/s3/AmazonS3.html#uploadPart-com.ibm.cloud.objectstorage.services.s3.model.UploadPartRequest-){: external}
+
+### Creating a Backup Policy
+{: #java-create-backup-policy}
+
+```java
+public static void main(String[] args) {
+        try {
+            // Initialize authenticator
+            IamAuthenticator authenticator = new IamAuthenticator.Builder()
+                    .apikey(API_KEY)
+                    .build();
+
+            // Initialize ResourceConfiguration client
+            ResourceConfiguration rcClient = new ResourceConfiguration("resource-configuration", authenticator);
+
+            // Generate unique backup vault name
+            String backupVaultName = "vault-" + UUID.randomUUID().toString();
+
+            // Create backup policy
+            CreateBackupPolicyOptions backupPolicyOptions = new CreateBackupPolicyOptions.Builder()
+                    .bucket(SOURCE_BUCKET_NAME)
+                    .initialRetention(new DeleteAfterDays.Builder().deleteAfterDays(1).build())
+                    .policyName(BACKUP_POLICY_NAME)
+                    .targetBackupVaultCrn(BACKUP_VAULT_CRN)
+                    .backupType("continuous").build();
+            Response<BackupPolicy> createResult = rcClient.createBackupPolicy(backupPolicyOptions).execute();
+
+
+            System.out.println("Policy Name:");
+            System.out.println(createResult.getResult().getPolicyName());
+
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+```
+{: codeblock}
+
+
+
+
+### Listing a Backup Policy
+{: #java-list-backup-policy}
+
+```java
+    public static void main(String[] args) {
+            try {
+                // Initialize IAM authenticator and Resource Configuration client
+                IamAuthenticator authenticator = new IamAuthenticator.Builder()
+                        .apikey(API_KEY)
+                        .build();
+
+                ResourceConfiguration rcClient = new ResourceConfiguration("resource-configuration", authenticator);
+
+                // List all backup policies
+                ListBackupPoliciesOptions listOptions = new ListBackupPoliciesOptions.Builder()
+                        .bucket(SOURCE_BUCKET_NAME)
+                        .build();
+
+                Response<BackupPolicyCollection> listResponse = rcClient.listBackupPolicies(listOptions).execute();
+
+                System.out.println("\nList of backup policies:");
+                List<?> policies = listResponse.getResult().getBackupPolicies();
+                for (Object policy : policies) {
+                    System.out.println(policy);
+                }
+
+            } catch (Exception e) {
+                System.err.println("Error: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+```
+{: codeblock}
+
+
+
+### Get a Backup Policy
+{: #java-get-backup-policy}
+
+```java
+    public static void main(String[] args) {
+            try {
+                // Setup IAM Authenticator
+                IamAuthenticator authenticator = new IamAuthenticator.Builder()
+                        .apikey(API_KEY)
+                        .build();
+
+                // Initialize Resource Configuration client
+                ResourceConfiguration rcClient = new ResourceConfiguration("resource-configuration", authenticator);
+
+                // Generate unique policy name
+                String policyName = "policy_name_" + UUID.randomUUID().toString();
+
+
+                // Fetch backup policy using policy ID
+                GetBackupPolicyOptions getOptions = new GetBackupPolicyOptions.Builder()
+                        .bucket(SOURCE_BUCKET_NAME)
+                        .policyId(POLICY_ID)
+                        .build();
+
+                Response<BackupPolicy> getResponse = rcClient.getBackupPolicy(getOptions).execute();
+                BackupPolicy fetchedPolicy = getResponse.getResult();
+
+                System.out.println("\nFetched Backup Policy Details:");
+                System.out.println(fetchedPolicy);
+
+            } catch (Exception e) {
+                System.err.println("Error: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+```
+{: codeblock}
+
+
+
+
+### Delete a Backup Policy
+{: #java-delete-backup-policy}
+
+```java
+    public static void main(String[] args) {
+            try {
+                // Setup IAM Authenticator
+                IamAuthenticator authenticator = new IamAuthenticator.Builder()
+                        .apikey(API_KEY)
+                        .build();
+
+                // Initialize Resource Configuration client
+                ResourceConfiguration rcClient = new ResourceConfiguration("resource-configuration", authenticator);
+
+
+
+                // Delete the created backup policy
+                DeleteBackupPolicyOptions deleteOptions = new DeleteBackupPolicyOptions.Builder()
+                        .bucket(SOURCE_BUCKET_NAME)
+                        .policyId(POLICY_ID)
+                        .build();
+
+                rcClient.deleteBackupPolicy(deleteOptions).execute();
+
+                System.out.printf("Backup policy '%s' deleted successfully.%n", POLICY_ID);
+
+            } catch (Exception e) {
+                System.err.println("Error: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+```
+{: codeblock}
+
+
+
+
+### Creating a Backup Vault
+{: #java-create-backup-vault}
+
+```java
+    public static void main(String[] args) {
+            try {
+                // Setup IAM Authenticator
+                IamAuthenticator authenticator = new IamAuthenticator.Builder()
+                        .apikey(API_KEY)
+                        .build();
+
+                // Initialize Resource Configuration client
+                ResourceConfiguration rcClient = new ResourceConfiguration("resource-configuration", authenticator);
+
+                // Generate unique backup vault name
+                String backupVaultName = "backup-vault-" + UUID.randomUUID();
+
+                // Create backup vault
+                CreateBackupVaultOptions createOptions = new CreateBackupVaultOptions.Builder()
+                        .serviceInstanceId(SERVICE_INSTANCE_ID)
+                        .backupVaultName(BACKUP_VAULT_NAME)
+                        .region(REGION)
+                        .build();
+
+                Response<BackupVault> response = rcClient.createBackupVault(createOptions).execute();
+                BackupVault vault = response.getResult();
+
+                System.out.println("Backup vault created:");
+                System.out.println(vault);
+
+            } catch (Exception e) {
+                System.err.println("Error creating backup vault: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+```
+{: codeblock}
+
+
+
+### Listing Backup Vaults
+{: #java-list-backup-vaults}
+
+```java
+    public static void main(String[] args) {
+            try {
+                // Setup IAM Authenticator
+                IamAuthenticator authenticator = new IamAuthenticator.Builder()
+                        .apikey(API_KEY)
+                        .build();
+
+                // Initialize Resource Configuration client
+                ResourceConfiguration rcClient = new ResourceConfiguration("resource-configuration", authenticator);
+
+
+
+                // List backup vaults
+
+                ListBackupVaultsOptions listBackupVaultsOptions = new ListBackupVaultsOptions.Builder().
+                        serviceInstanceId(SERVICE_INSTANCE_ID).build();
+                Response<BackupVaultCollection> backupVaults = rcClient.listBackupVaults(listBackupVaultsOptions).execute();
+
+
+
+                System.out.println("\nList of backup vaults:");
+                if ( backupVaults.getResult().getBackupVaults() != null) {
+                    for (String vault :  backupVaults.getResult().getBackupVaults()) {
+                        System.out.println(vault);
+                    }
+                } else {
+                    System.out.println("No backup vaults found.");
+                }
+
+            } catch (Exception e) {
+                System.err.println("Error: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+```
+{: codeblock}
+
+
+
+
+### Get Backup Vaults
+{: #java-get-backup-vaults}
+
+```java
+    public static void main(String[] args) {
+            try {
+                // Initialize IAM Authenticator
+                IamAuthenticator authenticator = new IamAuthenticator.Builder()
+                        .apikey(API_KEY)
+                        .build();
+
+                // Create Resource Configuration client
+                ResourceConfiguration rcClient = new ResourceConfiguration("resource-configuration", authenticator);
+
+                // Generate unique backup vault name
+                String backupVaultName = "backup-vault-" + UUID.randomUUID();
+
+
+                // Get backup vault details
+                GetBackupVaultOptions getOptions = new GetBackupVaultOptions.Builder()
+                        .backupVaultName(BACKUP_VAULT_NAME)
+                        .build();
+
+                Response<BackupVault> getResponse = rcClient.getBackupVault(getOptions).execute();
+                BackupVault vaultDetails = getResponse.getResult();
+
+                System.out.println("Backup vault details:");
+                System.out.println(vaultDetails);
+
+            } catch (Exception e) {
+                System.err.println("Error: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+```
+{: codeblock}
+
+
+
+### Update Backup Vaults
+{: #java-update-backup-vaults}
+
+```java
+    public static void main(String[] args) {
+            try {
+                // Setup IAM Authenticator
+                IamAuthenticator authenticator = new IamAuthenticator.Builder()
+                        .apikey(API_KEY)
+                        .build();
+
+                // Initialize Resource Configuration client
+                ResourceConfiguration rcClient = new ResourceConfiguration("resource-configuration", authenticator);
+
+
+                // Update vault: disable activity tracking and metrics monitoring
+
+                BackupVaultPatch backupVaultPatch = new BackupVaultPatch.Builder()
+                        .activityTracking(new BackupVaultActivityTracking.Builder().managementEvents(Boolean.FALSE).build())
+                        .metricsMonitoring(new BackupVaultMetricsMonitoring.Builder().usageMetricsEnabled(Boolean.FALSE).build())
+                        .build();
+                UpdateBackupVaultOptions updateBackupVaultOptions = new UpdateBackupVaultOptions.Builder()
+                        .backupVaultName(backupVaultName)
+                        .backupVaultPatch(backupVaultPatch.asPatch()).build();
+                Response<BackupVault> backupVaultResponse2 = rcClient.updateBackupVault(updateBackupVaultOptions).execute();
+
+
+            } catch (Exception e) {
+                System.err.println("Error: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+```
+{: codeblock}
+
+
+
+
+### Delete a Backup Vault
+{: #java-delete-backup-vault}
+
+```java
+    public static void main(String[] args) {
+            try {
+                // Set up the authenticator
+                IamAuthenticator authenticator = new IamAuthenticator.Builder()
+                        .apikey(API_KEY)
+                        .build();
+
+                // Initialize Resource Configuration client
+                ResourceConfiguration rcClient = new ResourceConfiguration("resource-configuration", authenticator);
+
+
+                // Delete backup vault
+                DeleteBackupVaultOptions deleteOptions = new DeleteBackupVaultOptions.Builder()
+                        .backupVaultName(BACKUP_VAULT_NAME)
+                        .build();
+
+                Response<Void> deleteResponse = rcClient.deleteBackupVault(deleteOptions).execute();
+                System.out.println("Failed to delete backup vault '" + BACKUP_VAULT_NAME + "'.");
+
+            } catch (Exception e) {
+                System.err.println("Error: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+```
+{: codeblock}
+
+
+
+### Listing Recovery Ranges
+{: #java-list-recovery-ranges}
+
+```java
+    public static void main(String[] args) {
+            try {
+                // Setup authenticator
+                IamAuthenticator authenticator = new IamAuthenticator.Builder()
+                        .apikey(API_KEY)
+                        .build();
+
+                // Initialize Resource Configuration client
+                ResourceConfiguration rcClient = new ResourceConfiguration("resource-configuration", authenticator);
+
+
+
+                // List recovery ranges
+                ListRecoveryRangesOptions recoveryRangesOptions = new ListRecoveryRangesOptions.Builder()
+                        .backupVaultName(BACKUP_VAULT_NAME)
+                        .build();
+
+                Response<RecoveryRangeCollection> recoveryRangesResponse = rcClient.listRecoveryRanges(recoveryRangesOptions).execute();
+                System.out.println("Recovery Ranges:");
+                System.out.println(recoveryRangesResponse.getResult());
+
+            } catch (Exception e) {
+                System.err.println("Error: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+```
+{: codeblock}
+
+
+
+### Get Recovery Range
+{: #java-get-recovery-range}
+
+```java
+    public static void main(String[] args) {
+            try {
+                // Setup authenticator
+                IamAuthenticator authenticator = new IamAuthenticator.Builder()
+                        .apikey(API_KEY)
+                        .build();
+
+                // Initialize Resource Configuration client
+                ResourceConfiguration rcClient = new ResourceConfiguration("resource-configuration", authenticator);
+
+
+                // Fetch details of the recovery range
+                GetSourceResourceRecoveryRangeOptions recoveryRangeOptions = new GetSourceResourceRecoveryRangeOptions.Builder()
+                        .backupVaultName(BACKUP_VAULT_NAME)
+                        .recoveryRangeId(RECOVERY_RANGE_ID)
+                        .build();
+
+                Response<RecoveryRange> getRecoveryRangeResponse = rcClient.getSourceResourceRecoveryRange(recoveryRangeOptions).execute();
+                System.out.println("Recovery Range Details:");
+                System.out.println(getRecoveryRangeResponse.getResult());
+
+            } catch (Exception e) {
+                System.err.println("Error: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+```
+{: codeblock}
+
+
+
+### Update Recovery Range
+{: #java-update-recovery-range}
+
+```java
+    public static void main(String[] args) {
+            try {
+                // Setup authenticator
+                IamAuthenticator authenticator = new IamAuthenticator.Builder()
+                        .apikey(API_KEY)
+                        .build();
+
+                // Initialize Resource Configuration client
+                ResourceConfiguration rcClient = new ResourceConfiguration("resource-configuration", authenticator);
+
+
+                // Patch the recovery range (update retention to 99 days)
+                PatchSourceResourceRecoveryRangeOptions patchOptions = new PatchSourceResourceRecoveryRangeOptions.Builder()
+                        .backupVaultName(BACKUP_VAULT_NAME)
+                        .recoveryRangeId(RECOVERY_RANGE_ID)
+                        .recoveryRangePatch(
+                                new RecoveryRangePatch.Builder()
+                                        .retention(new DeleteAfterDays.Builder().deleteAfterDays(99).build())
+                                        .build()
+                        )
+                        .build();
+
+                Response<RecoveryRange> patchResponse = rcClient.patchSourceResourceRecoveryRange(patchOptions).execute();
+                System.out.println("Recovery Range successfully patched:");
+                System.out.println(patchResponse.getResult());
+
+            } catch (Exception e) {
+                System.err.println("Error: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+```
+{: codeblock}
+
+
+
+### Initiating a Restore
+{: #java-initiate-restore}
+
+```java
+    public static void main(String[] args) {
+
+            try {
+                IamAuthenticator authenticator = new IamAuthenticator.Builder()
+                        .apikey(API_KEY)
+                        .build();
+
+                ResourceConfiguration RC_CLIENT = new ResourceConfiguration("resource-configuration", authenticator);
+
+
+
+                 CreateRestoreOptions  createRestoreOptions = new CreateRestoreOptions.Builder()
+                         .backupVaultName(BACKUP_VAULT_NAME)
+                         .recoveryRangeId(recoveryRangeId)
+                         .restoreType("in_place")
+                         .targetResourceCrn(TARGET_BUCKET_CRN)
+                         .restorePointInTime(RESTORE_TIME)
+                         .build();
+                 Response<Restore> createRestoreCall = RC_CLIENT.createRestore(createRestoreOptions).execute();
+
+
+                 String restoreId = createRestoreCall.getResult().getRestoreId();
+                 GetRestoreOptions getRestoreOptions = new GetRestoreOptions.Builder().restoreId(restoreId).backupVaultName(backupVaultName).build();
+                 Response<Restore> restoreResult = RC_CLIENT.getRestore(getRestoreOptions).execute();
+
+                 System.out.println("Restore successfully:");
+                 System.out.println(restoreResult);
+
+
+            } catch (Exception e) {
+                System.err.println("Error: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+```
+{: codeblock}
+
+
+
+### Listing Restore
+{: #java-list-restore}
+
+```java
+    public static void main(String[] args) {
+
+            try {
+                IamAuthenticator authenticator = new IamAuthenticator.Builder()
+                        .apikey(API_KEY)
+                        .build();
+
+                ResourceConfiguration RC_CLIENT = new ResourceConfiguration("resource-configuration", authenticator);
+
+
+
+                ListRestoresOptions listRestoreOptions = new ListRestoresOptions.Builder()
+                        .backupVaultName(BACKUP_VAULT_NAME)
+                        .build();
+
+                Response<RestoreList> listRestoreResponse = rcClient.listRestores(listRestoreOptions).execute();
+                System.out.println("Restore operations: " + listRestoreResponse.getResult());
+
+
+           } catch (Exception e) {
+               System.err.println("Error: " + e.getMessage());
+               e.printStackTrace();
+           }
+
+        }
+```
+{: codeblock}
+
+
+
+### Get Restore Details
+{: #java-get-restore}
+
+```java
+    public static void main(String[] args) {
+
+            try {
+                IamAuthenticator authenticator = new IamAuthenticator.Builder()
+                        .apikey(API_KEY)
+                        .build();
+
+                ResourceConfiguration RC_CLIENT = new ResourceConfiguration("resource-configuration", authenticator);
+
+
+                Response<Restore> getRestoreOptions =
+                        GetRestoreOptions.Builder()
+                        .restoreId(restoreId)
+                        .backupVaultName(BACKUP_VAULT_NAME)
+                        .build();
+                Response<Restore> restoreResult = RC_CLIENT.getRestore(getRestoreOptions).execute();
+
+                System.out.println("Get Restore: " + restoreResult);
+
+           } catch (Exception e) {
+               System.err.println("Error: " + e.getMessage());
+               e.printStackTrace();
+           }
+
+        }
+```
+{: codeblock}
+
+
+
 
 ## Upload larger objects using a Transfer Manager
 {: #java-examples-transfer-manager}

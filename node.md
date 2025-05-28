@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2024
-lastupdated: "2024-04-18"
+  years: 2017, 2025
+lastupdated: "2025-05-28"
 
 keywords: object storage, node, javascript, sdk
 
@@ -405,6 +405,617 @@ function cancelMultiPartUpload(bucketName, itemName, uploadID) {
 * [completeMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#completeMultipartUpload-property){: external}
 * [createMultipartUpload](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#createMultipartUpload-property){: external}
 * [`uploadPart`](https://ibm.github.io/ibm-cos-sdk-js/AWS/S3.html#uploadPart-property){: external}
+
+### Creating a Backup Policy
+{: #node-examples-create-backup-policy}
+
+```javascript
+const { IamAuthenticator } = require('ibm-cloud-sdk-core');
+const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1')
+
+// Config values
+const apiKey = '<API_KEY>';
+const sourceBucketName = '< SOURCE_BUCKET_NAME>';
+const backupVaultCrn = '<BACKUP_VAULT_CRN>';
+const policyName = '<BACKUP_POLICY_NAME>';
+
+async function  createBackupPolicy () {
+  try {
+    // Authenticator and client setup
+    const authenticator = new IamAuthenticator({ apikey: apiKey });
+    const rcClient = new ResourceConfigurationV1({ authenticator });
+
+    // Create backup policy
+    const response = await rcClient.createBackupPolicy({
+      bucket: sourceBucketName,
+      policyName: policyName,
+      targetBackupVaultCrn: backupVaultCrn,
+      backupType: “continuous”,
+      initialRetention: {delete_after_days:1},
+    });
+
+    console.log('Backup  policy created successfully: ‘, response.result);
+
+  } catch (err) {
+    console.error('Error:', err);
+  }
+}
+// Run the function
+createBackupPolicy ();
+
+```
+{: codeblock}
+{: javascript}
+
+
+
+### Listing a Backup Policy
+{: #node-examples-list-backup-policy}
+
+```javascript
+const { IamAuthenticator } = require('ibm-cloud-sdk-core');
+const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1')
+
+// Config
+const apiKey = '<API_KEY>';
+const sourceBucketName = '<SOURCE_BUCKET_NAME>';
+
+// Setup authenticator and client
+const authenticator = new IamAuthenticator({ apikey: apiKey });
+const rcClient = new ResourceConfigurationV1({ authenticator });
+
+async function listBackupPolicies() {
+  try {
+
+    // List all backup policies
+    const listResponse = await rcClient.listBackupPolicies({
+      bucket: sourceBucketName,
+    });
+
+    console.log('\n List of backup policies:');
+    const policies = listResponse.result.backup_policies || [];
+    policies.forEach(policy => console.log(policy));
+
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+// Run the function
+listBackupPolicies();
+
+```
+{: codeblock}
+{: javascript}
+
+
+
+### Get a Backup Policy
+{: #node-examples-get-backup-policy}
+
+```javascript
+const { IamAuthenticator } = require('ibm-cloud-sdk-core');
+const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1')
+
+// Config
+const apiKey = '<API_KEY>';
+const sourceBucketName = '<SOURCE_BUCKET_NAME>';
+const policyId = '<POLICY_ID>'; // Policy ID to retrieve backup Policy
+
+// Setup authenticator and client
+const authenticator = new IamAuthenticator({ apikey: apiKey });
+const rcClient = new ResourceConfigurationV1({ authenticator });
+
+async function fetchBackupPolicy () {
+  try {
+    // Fetch backup policy
+    const getResponse = await rcClient.getBackupPolicy({
+      bucket: sourceBucketName,
+      policyId: policyId,
+    });
+    console.log('\nFetched Backup Policy Details:');
+    console.log(getResponse.result);
+
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+// Run the function
+fetchBackupPolicy ();
+
+```
+{: codeblock}
+{: javascript}
+
+
+
+### Delete a Backup Policy
+{: #node-examples-delete-backup-policy}
+
+```javascript
+const { IamAuthenticator } = require('ibm-cloud-sdk-core');
+const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1')
+
+// Config
+const apiKey = '<API_KEY>';
+const sourceBucketName = '<SOURCE_BUCKET_NAME>';
+const policyId = '<POLICY_ID_TO_DELETE>'; // Policy ID of the policy to be deleted
+
+// Setup authenticator and client
+const authenticator = new IamAuthenticator({ apikey: apiKey });
+const rcClient = new ResourceConfigurationV1({ authenticator });
+async function deleteBackupPolicy() {
+try {
+    // Delete backup policy
+    await rcClient.deleteBackupPolicy({
+      bucket: sourceBucketName,
+      policyId: policyId,
+    });
+
+    console.log(`Backup policy '${policyId}' deleted successfully.`);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+// Run the function
+deleteBackupPolicy ();
+
+```
+{: codeblock}
+{: javascript}
+
+
+
+### Creating a Backup Vault
+{: #node-examples-create-backup-vault}
+
+```javascript
+const { IamAuthenticator } = require('ibm-cloud-sdk-core');
+const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1')
+
+// Config
+const apiKey = '<API_KEY>';
+const serviceInstanceId = '<SERVICE_INSTANCE_ID>';
+const region = '<REGION>';
+const backupVaultName = <BACKUP_VAULT_NAME>';
+
+// Setup authenticator and client
+const authenticator = new IamAuthenticator({ apikey: apiKey });
+const rcClient = new ResourceConfigurationV1({ authenticator });
+
+async function createBackupVault() {
+  try {
+
+    const createResponse = await rcClient.createBackupVault({
+      serviceInstanceId: serviceInstanceId,
+      backupVaultName: backupVaultName,
+      region: region,
+    });
+
+    console.log('Backup vault created:');
+    console.log(createResponse.result);
+  } catch (error) {
+    console.error('Error creating backup vault:', error);
+  }
+}
+
+// Run the function
+createBackupVault();
+
+```
+{: codeblock}
+{: javascript}
+
+
+
+### Listing Backup Vaults
+{: #node-examples-list-backup-vault}
+
+```javascript
+const { IamAuthenticator } = require('ibm-cloud-sdk-core');
+const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1')
+
+// Config
+const apiKey = '<API_KEY>';
+const serviceInstanceId = '<SERVICE_INSTANCE_ID>';
+
+// Setup authenticator and client
+const authenticator = new IamAuthenticator({ apikey: apiKey });
+const rcClient = new ResourceConfigurationV1({ authenticator });
+
+async function listBackupVaults() {
+  try {
+    // List backup vaults
+    const listResponse = await rcClient.listBackupVaults({
+      serviceInstanceId: serviceInstanceId,
+    });
+
+    console.log('List of backup vaults:');
+    console.log(listResponse.result);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+// Run the function
+listBackupVaults ();
+
+```
+{: codeblock}
+{: javascript}
+
+
+
+### Get Backup Vaults
+{: #node-examples-get-backup-vault}
+
+```javascript
+const { IamAuthenticator } = require('ibm-cloud-sdk-core');
+const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1')
+
+// Config
+const apiKey = '<API_KEY>';
+const backupVaultName = '<BACKUP_VAULT_NAME>'; // Name of the backup vault to fetch
+
+// Setup authenticator and client
+const authenticator = new IamAuthenticator({ apikey: apiKey });
+const rcClient = new ResourceConfigurationV1({ authenticator });
+
+async function fetchBackupVault () {
+  try {
+    // Get backup vault
+    const getResponse = await rcClient.getBackupVault({
+      backupVaultName: backupVaultName,
+    });
+
+    console.log('Backup vault details:');
+    console.log(getResponse.result);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+// Run the function
+fetchBackupVault ();
+
+```
+{: codeblock}
+{: javascript}
+
+
+
+### Update Backup Vaults
+{: #node-examples-update-backup-vault}
+
+```javascript
+const { IamAuthenticator } = require('ibm-cloud-sdk-core');
+const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1');
+
+// Config
+const apiKey = '<API_KEY>';
+const backupVaultName = '<BACKUP_VAULT_NAME>'; // Keep consistent for create + update
+
+// Setup authenticator and client
+const authenticator = new IamAuthenticator({ apikey: apiKey });
+const rcClient = new ResourceConfigurationV1({ authenticator });
+
+async function updateBackupVault() {
+  try {
+    // Update backup vault to disable tracking and monitoring
+    const patch = {
+      activity_tracking: {
+        management_events: false,
+      },
+      metrics_monitoring: {
+        usage_metrics_enabled: false,
+      },
+    };
+
+    const updateResponse = await rcClient.updateBackupVault({
+      backupVaultName: backupVaultName,
+      backupVaultPatch: patch,
+    });
+
+    console.log(`Backup vault updated. Status code: ${updateResponse.status}`);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+// Run the function
+updateBackupVault ();
+
+```
+{: codeblock}
+{: javascript}
+
+
+
+### Delete a Backup Vault
+{: #node-examples-delete-backup-vault}
+
+```javascript
+const { IamAuthenticator } = require('ibm-cloud-sdk-core');
+const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1')
+
+// Config
+const apiKey = '<API_KEY>';
+const backupVaultName = '<BACKUP_VAULT_NAME>';
+
+// Setup authenticator and client
+const authenticator = new IamAuthenticator({ apikey: apiKey });
+const rcClient = new ResourceConfigurationV1({ authenticator });
+
+async function deleteBackupVault() {
+  try {
+    // Delete the backup vault
+    await rcClient.deleteBackupVault({
+      backupVaultName: backupVaultName,
+    });
+
+    console.log(`Backup vault '${backupVaultName}' deleted successfully.`);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+// Run the function
+deleteBackupVault();
+
+```
+{: codeblock}
+{: javascript}
+
+
+
+### Listing Recovery Ranges
+{: #node-examples-list-recovery-ranges}
+
+```javascript
+const { IamAuthenticator } = require('ibm-cloud-sdk-core');
+const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1')
+
+// Config
+const apiKey = '<API_KEY>';
+const backupVaultName = '<BACKUP_VAULT_NAME>';
+
+// Setup authenticator and client
+const authenticator = new IamAuthenticator({ apikey: apiKey });
+const rcClient = new ResourceConfigurationV1({ authenticator });
+
+async function listRecoveryRanges() {
+  try {
+    // List recovery ranges
+    const recoveryRangesResponse = await rcClient.listRecoveryRanges({
+      backupVaultName: backupVaultName,
+    });
+
+    console.log('Recovery Ranges:');
+    console.log(recoveryRangesResponse.result);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+// Run the function
+listRecoveryRanges();
+
+```
+{: codeblock}
+{: javascript}
+
+
+
+### Get Recovery Range
+{: #node-examples-get-recovery-range}
+
+```javascript
+const { IamAuthenticator } = require('ibm-cloud-sdk-core');
+const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1')
+
+// Config
+const apiKey = '<API_KEY>';
+const recoveryRangeId = '<RECOVERY_RANGE_ID>';
+const backupVaultName = '<BACKUP_VAULT_NAME>';
+
+// Setup authenticator and client
+const authenticator = new IamAuthenticator({ apikey: apiKey });
+const rcClient = new ResourceConfigurationV1({ authenticator });
+
+async function fetchRecoveryRangeInfo() {
+
+try {
+    // Fetch details of the recovery range
+    const recoveryRangeId = createResponse.result.recovery_range_id;  // Assuming the recovery range info is part of the response
+    const getRecoveryRangeResponse = await rcClient.getSourceResourceRecoveryRange({
+      backupVaultName: backupVaultName,
+      recoveryRangeId: recoveryRangeId,
+    });
+
+    console.log('Recovery Range Details:');
+    console.log(getRecoveryRangeResponse.result);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+// Run the function
+fetchRecoveryRangeInfo();
+
+```
+{: codeblock}
+{: javascript}
+
+
+
+### Update Recovery Range
+{: #node-examples-update-recovery-range}
+
+```javascript
+const { IamAuthenticator } = require('ibm-cloud-sdk-core');
+const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1');
+
+// Config
+const apiKey = '<API_KEY>';
+const backupVaultCrn = '<BACKUP_VAULT_CRN>';
+const recoveryRangeId = '<RECOVERY_RANGE_ID>';
+const policyId = '<POLICY_ID>';
+
+// Setup authenticator and client
+const authenticator = new IamAuthenticator({ apikey: apiKey });
+const rcClient = new ResourceConfigurationV1({ authenticator });
+
+async function patchRecoveryRange() {
+  try {
+    // Patch the recovery range retention
+    const patchResponse = await rcClient.patchSourceResourceRecoveryRange({
+      backupVaultName: backupVaultName,
+      recoveryRangeId: recoveryRangeId,
+      retention: {
+          delete_after_days: 99
+        }
+    });
+
+    console.log('Recovery range updated successfully:');
+    console.log(patchResponse.result);
+
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+// Run the function
+patchRecoveryRange ();
+
+```
+{: codeblock}
+{: javascript}
+
+
+
+### Initiating a Restore
+{: #node-examples-initiate-restore}
+
+```javascript
+const { IamAuthenticator } = require('ibm-cloud-sdk-core');
+const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1')
+
+// Configuration
+const apiKey = '<API_KEY>';
+const backupVaultName = '<BACKUP_VAULT_NAME>';
+const recoveryRangeId = '<RECOVERY_RANGE_ID>';
+const targetBucketCrn = '<TARGET_BUCKET_CRN>';
+const restorePointInTime = '<RESTORE_POINT_TIME>';
+const endpoint = '<COS_ENDPOINT>';
+
+// Setup authenticator and clients
+const authenticator = new IamAuthenticator({ apikey: apiKey });
+const rcClient = new ResourceConfigurationV1({ authenticator });
+rcClient.setServiceUrl("SERVICE_URL");
+
+async function initiateRestore () {
+  try {
+    // Initiate restore
+    const createRestoreResponse = await rcClient.createRestore({
+      backupVaultName: backupVaultName,
+      recoveryRangeId: recoveryRangeId,
+      restoreType: 'in_place',
+      restorePointInTime: restorePointInTime,
+      targetResourceCrn: targetBucketCrn,
+    });
+
+    const restoreId = createRestoreResponse.result.restore_id;
+    console.log(`Restore initiated with ID: ${restoreId}`);
+
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+// Run the function
+initiateRestore ();
+
+```
+{: codeblock}
+{: javascript}
+
+
+
+### Listing Restore
+{: #node-examples-list-restore}
+
+```javascript
+const { IamAuthenticator } = require('ibm-cloud-sdk-core');
+const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1')
+
+// Config
+const apiKey = '<API_KEY>';
+const backupVaultName = '<BACKUP_VAULT_NAME>';
+
+// Auth & Clients
+const authenticator = new IamAuthenticator({ apikey: apiKey });
+const rcClient = new ResourceConfigurationV1({ authenticator });
+rcClient.setServiceUrl("SERVICE_URL");
+
+async function listRestore()  {
+  try {
+    // List restore operations
+    const listRestoreResp = await rcClient.listRestores({
+      backupVaultName: backupVaultName
+    });
+
+    console.log('Restore operations:', listRestoreResp.result);
+  } catch (err) {
+    console.error('Error occurred:', err);
+  }
+};
+
+// Run the function
+listRestore();
+
+```
+{: codeblock}
+{: javascript}
+
+
+
+### Get Restore Details
+{: #node-examples-get-restore}
+
+```javascript
+const { IamAuthenticator } = require('ibm-cloud-sdk-core');
+const ResourceConfigurationV1 = require('ibm-cos-sdk-config/resource-configuration/v1')
+// Configuration
+const apiKey = '<API_KEY>';
+const backupVaultName = '<BACKUP_VAULT_NAME>';
+const restoreId = '<RESTORE_ID>';
+
+const authenticator = new IamAuthenticator({ apikey: apiKey });
+const rcClient = new ResourceConfigurationV1({ authenticator });
+rcClient.setServiceUrl("SERVICE_URL");
+
+async function getRestore()  {
+  try {
+    // Get specific restore
+    const restoreDetails = await rcClient.getRestore({
+      backupVaultName: backupVaultName,
+      restoreId: restoreId
+    });
+    console.log('Restore details:', restoreDetails.result);
+
+  } catch (err) {
+    console.error('Error:', err);
+  }
+}
+getRestore();
+
+```
+{: codeblock}
+{: javascript}
+
+
+
 
 ## Using Key Protect
 {: #node-examples-kp}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2025
-lastupdated: "2025-05-15"
+lastupdated: "2025-05-28"
 
 keywords: object storage, go, sdk
 
@@ -815,6 +815,595 @@ func main() {
 }
 ```
 {: codeblock}
+
+### Creating a Backup Policy
+
+{: #go-create-backup-policy}
+
+```go
+func main() {
+    apiKey := "<API_KEY>"
+    policyName := "<POLICY_NAME>"
+    sourceBucketName := "<SOURCE_BUCKET_NAME>"
+    backupVaultCrn := "<BACKUP_VAULT_CRN>"
+
+    // Initialize authenticator
+    authenticator := &core.IamAuthenticator{
+        ApiKey: apiKey,
+    }
+
+    // Initialize ResourceConfiguration client
+    rcClient, err := resourceconfigurationv1.NewResourceConfigurationV1(&resourceconfigurationv1.ResourceConfigurationV1Options{
+        Authenticator: authenticator,
+    })
+    if err != nil {
+        log.Fatalf("Failed to create RC client: %v", err)
+    }
+    // Create Backup Policy
+
+    // Define initial retention
+    initialRetention := &resourceconfigurationv1.DeleteAfterDays{
+        DeleteAfterDays: core.Int64Ptr(1),
+    }
+
+    // Create backup policy
+    createBackupPolicyOptions := &resourceconfigurationv1.CreateBackupPolicyOptions{
+        Bucket:               core.StringPtr(sourceBucketName),
+        PolicyName:           core.StringPtr(policyName),
+        TargetBackupVaultCrn: core.StringPtr(backupVaultCrn),
+        BackupType:           core.StringPtr("continuous"),
+        InitialRetention:     initialRetention,
+    }
+
+    createResponse, _, err := rcClient.CreateBackupPolicy(createBackupPolicyOptions)
+    if err != nil {
+        log.Fatalf("Failed to create backup policy: %v", err)
+    }
+
+    fmt.Println("Backup policy created:")
+    fmt.Println(createResponse)
+}
+```
+{: codeblock}
+
+### Listing a Backup Policy
+
+{: #go-list-backup-policy}
+
+```go
+func main() {
+    apiKey := "<API_KEY>"
+    sourceBucketName := "<SOURCE_BUCKET_NAME>"
+    // Initialize IAM authenticator
+    authenticator := &core.IamAuthenticator{
+        ApiKey: apiKey,
+    }
+
+    // Initialize ResourceConfiguration client
+    rcClient, err := resourceconfigurationv1.NewResourceConfigurationV1(&resourceconfigurationv1.ResourceConfigurationV1Options{
+        Authenticator: authenticator,
+    })
+    if err != nil {
+        log.Fatalf("Failed to create RC client: %v", err)
+    }
+
+    // List all backup policies
+    listBackupPoliciesOptions := &resourceconfigurationv1.ListBackupPoliciesOptions{
+        Bucket: core.StringPtr(sourceBucketName),
+    }
+
+    result, _, err := rcClient.ListBackupPolicies(listBackupPoliciesOptions)
+    if err != nil {
+        log.Fatalf("Failed to list backup policies: %v", err)
+    }
+    fmt.Println(result.BackupPolicies)
+}
+```
+{: codeblock}
+
+### Get a Backup Policy
+
+{: #go-get-backup-policy}
+
+```go
+func main() {
+    apiKey := "<API_KEY>"
+    sourceBucketName := "<SOURCE_BUCKET_NAME>"
+    policyId := "<POLICY_ID>"
+
+    // Initialize IAM authenticator
+    authenticator := &core.IamAuthenticator{
+        ApiKey: apiKey,
+    }
+
+    // Initialize ResourceConfiguration client
+    rcClient, err := resourceconfigurationv1.NewResourceConfigurationV1(&resourceconfigurationv1.ResourceConfigurationV1Options{
+        Authenticator: authenticator,
+    })
+    if err != nil {
+        log.Fatalf("Failed to create RC client: %v", err)
+    }
+    // Fetch backup policy using policy ID
+    getBackupPolicyOptions := &resourceconfigurationv1.GetBackupPolicyOptions{
+        Bucket:   core.StringPtr(sourceBucketName),
+        PolicyID: core.StringPtr(policyId),
+    }
+
+    getResponse, _, err := rcClient.GetBackupPolicy(getBackupPolicyOptions)
+    if err != nil {
+        log.Fatalf("Failed to fetch backup policy: %v", err)
+    }
+
+    fmt.Println("\nFetched Backup Policy Details:")
+    fmt.Println(getResponse)
+}
+```
+{: codeblock}
+
+### Delete a Backup Policy
+
+{: #go-delete-backup-policy}
+
+```go
+func main() {
+    apiKey := "<API_KEY>"
+    sourceBucketName := "<SOURCE_BUCKET_NAME>"
+    backupVaultCrn := "<BACKUP_VAULT_CRN>"
+    policyId := "<POLICY_ID>"
+
+    // Initialize IAM authenticator
+    authenticator := &core.IamAuthenticator{
+        ApiKey: apiKey,
+    }
+
+    // Initialize ResourceConfiguration client
+    rcClient, err := resourceconfigurationv1.NewResourceConfigurationV1(&resourceconfigurationv1.ResourceConfigurationV1Options{
+        Authenticator: authenticator,
+    })
+    if err != nil {
+        log.Fatalf("Failed to create RC client: %v", err)
+    }
+
+    // Delete the created backup policy
+    deleteBackupPolicyOptions := &resourceconfigurationv1.DeleteBackupPolicyOptions{
+        Bucket:   core.StringPtr(sourceBucketName),
+        PolicyID: core.StringPtr(policyId),
+    }
+
+    _, err = rcClient.DeleteBackupPolicy(deleteBackupPolicyOptions)
+    if err != nil {
+        log.Fatalf("Failed to delete backup policy: %v", err)
+    }
+
+    fmt.Printf("Backup policy '%s' deleted successfully.\n", policyId)
+}
+```
+{: codeblock}
+
+### Creating a Backup Vault
+
+{: #go-create-backup-vault}
+
+```go
+func main() {
+    apiKey := "<API_KEY>"
+    serviceInstanceID := "<SERVICE_INSTANCE_ID>"
+    region := "<REGION>"
+    backupVaultName := "<BACKUP_VAULT_NAME>"
+
+    // Setup IAM authenticator
+    authenticator := &core.IamAuthenticator{
+        ApiKey: apiKey,
+    }
+
+    // Initialize Resource Configuration client
+    rcClient, err := resourceconfigurationv1.NewResourceConfigurationV1(&resourceconfigurationv1.ResourceConfigurationV1Options{
+        Authenticator: authenticator,
+    })
+    if err != nil {
+        log.Fatalf("Failed to create RC client: %v", err)
+    }
+
+    // Create backup vault
+    createBackupVaultOptions := &resourceconfigurationv1.CreateBackupVaultOptions{
+        ServiceInstanceID: core.StringPtr(serviceInstanceID),
+        BackupVaultName:   core.StringPtr(backupVaultName),
+        Region:            core.StringPtr(region),
+    }
+
+    createResponse, _, err := rcClient.CreateBackupVault(createBackupVaultOptions)
+    if err != nil {
+        log.Fatalf("Failed to create backup vault: %v", err)
+    }
+    fmt.Printf(createResponse)
+}
+```
+{: codeblock}
+
+### Listing Backup Vaults
+
+{: #go-list-backup-vault}
+
+```go
+func main() {
+    apiKey := "<API_KEY>"
+    serviceInstanceID := "<SERVICE_INSTANCE_ID>"
+    backupVaultName := "<BACKUP_VAULT_NAME>"
+
+    // Setup IAM authenticator
+    authenticator := &core.IamAuthenticator{
+        ApiKey: apiKey,
+    }
+
+    // Initialize Resource Configuration client
+    rcClient, err := resourceconfigurationv1.NewResourceConfigurationV1(&resourceconfigurationv1.ResourceConfigurationV1Options{
+        Authenticator: authenticator,
+    })
+    if err != nil {
+        log.Fatalf("Failed to create RC client: %v", err)
+    }
+    // List backup vaults
+    listBackupVaultsOptions := &resourceconfigurationv1.ListBackupVaultsOptions{
+        ServiceInstanceID: core.StringPtr(serviceInstanceID),
+    }
+
+    result, _, err := rcClient.ListBackupVaults(listBackupVaultsOptions)
+    if err != nil {
+        log.Fatalf("Failed to list backup vaults: %v", err)
+    }
+    fmt.Println(result.BackupVaults)
+
+}
+```
+{: codeblock}
+
+### Get Backup Vaults
+
+{: #go-get-backup-vaults}
+
+```go
+func main() {
+    apiKey := "<API_KEY>"
+    serviceInstanceID := "<SERVICE_INSTANCE_ID>"
+    backupVaultName := "<BACKUP_VAULT_NAME>"
+
+
+    // Setup IAM authenticator
+    authenticator := &core.IamAuthenticator{
+        ApiKey: apiKey,
+    }
+
+    // Initialize Resource Configuration client
+    rcClient, err := resourceconfigurationv1.NewResourceConfigurationV1(&resourceconfigurationv1.ResourceConfigurationV1Options{
+        Authenticator: authenticator,
+    })
+    if err != nil {
+        log.Fatalf("Failed to create RC client: %v", err)
+    }
+
+    // Get backup vault details
+    getBackupVaultOptions := &resourceconfigurationv1.GetBackupVaultOptions{
+        BackupVaultName: core.StringPtr(backupVaultName),
+    }
+
+    result, _, err := rcClient.GetBackupVault(getBackupVaultOptions)
+    if err != nil {
+        log.Fatalf("Failed to get backup vault details: %v", err)
+    }
+    fmt.Println(result.GetBackupVault)
+}
+```
+{: codeblock}
+
+### Update Backup Vaults
+
+{: #go-update-backup-vaults}
+
+```go
+func main() {
+    apiKey := "<API_KEY>"
+    serviceInstanceID := "<SERVICE_INSTANCE_ID>"
+    region := "<REGION>"
+    backupVaultName := "<BACKUP_VAULT_NAME>"
+
+    // Setup IAM authenticator
+    authenticator := &core.IamAuthenticator{
+        ApiKey: apiKey,
+    }
+
+    // Initialize Resource Configuration client
+    rcClient, err := resourceconfigurationv1.NewResourceConfigurationV1(&resourceconfigurationv1.ResourceConfigurationV1Options{
+        Authenticator: authenticator,
+    })
+    if err != nil {
+        log.Fatalf("Failed to create RC client: %v", err)
+    }
+
+    // Update backup vault: disable activity tracking and metrics monitoring
+
+    backupVaultPatch := &resourceconfigurationv1.BackupVaultPatch{
+        ActivityTracking: &resourceconfigurationv1.BackupVaultActivityTracking{
+            ManagementEvents: core.BoolPtr(false),
+        },
+        MetricsMonitoring: &resourceconfigurationv1.BackupVaultMetricsMonitoring{
+            UsageMetricsEnabled: core.BoolPtr(false),
+        },
+    }
+    bucketPatchModelAsPatch, _ := backupVaultPatch.AsPatch()
+    updateBucketBackupVaultOptions := &resourceconfigurationv1.UpdateBackupVaultOptions{
+        BackupVaultName:  core.StringPtr(backupVaultName),
+        BackupVaultPatch: bucketPatchModelAsPatch,
+    }
+
+    _, patchResponse, err := rcClient.UpdateBackupVault(updateBucketBackupVaultOptions)
+    if err != nil {
+        log.Fatalf("Failed to update backup vault: %v", err)
+    }
+  fmt.Println(patchResponse)
+}
+```
+{: codeblock}
+
+### Delete a Backup Vault
+
+{: #go-delete-backup-vault}
+
+```go
+func main() {
+    apiKey := "<API_KEY>"
+    serviceInstanceID := "<SERVICE_INSTANCE_ID>"
+    backupVaultName := "<BACKUP_VAULT_NAME>"
+
+    // Setup IAM authenticator
+    authenticator := &core.IamAuthenticator{
+        ApiKey: apiKey,
+    }
+
+    // Initialize Resource Configuration client
+    rcClient, err := resourceconfigurationv1.NewResourceConfigurationV1(&resourceconfigurationv1.ResourceConfigurationV1Options{
+        Authenticator: authenticator,
+    })
+    if err != nil {
+        log.Fatalf("Failed to create RC client: %v", err)
+    }
+    // Delete backup vault
+    deleteBackupVaultOptions := &resourceconfigurationv1.DeleteBackupVaultOptions{
+        BackupVaultName: core.StringPtr(backupVaultName),
+    }
+
+    _, err = rcClient.DeleteBackupVault(deleteBackupVaultOptions)
+    if err != nil {
+        log.Fatalf("Failed to delete backup vault: %v", err)
+    }
+}
+```
+{: codeblock}
+
+### Listing Recovery Ranges
+
+{: #go-list-recovery-range}
+
+```go
+func main() {
+    apiKey := "<API_KEY>"
+    sourceBucketName := "<SOURCE_BUCKET_NAME>"
+    backupVaultCrn := "<BACKUP_VAULT_CRN>"
+    backupVaultName := "<BACKUP_VAULT_NAME>"
+
+    // Setup IAM authenticator
+    authenticator := &core.IamAuthenticator{
+        ApiKey: apiKey,
+    }
+
+    // Initialize Resource Configuration client
+    rcClient, err := resourceconfigurationv1.NewResourceConfigurationV1(&resourceconfigurationv1.ResourceConfigurationV1Options{
+        Authenticator: authenticator,
+    })
+    if err != nil {
+        log.Fatalf("Failed to create RC client: %v", err)
+    }
+    // List recovery ranges
+    listRecoveryRangesOptions := &resourceconfigurationv1.ListRecoveryRangesOptions{
+        BackupVaultName: core.StringPtr(backupVaultName),
+    }
+
+    recoveryRangesResponse, _, err := rcClient.ListRecoveryRanges(listRecoveryRangesOptions)
+    if err != nil {
+        log.Fatalf("Failed to list recovery ranges: %v", err)
+    }
+fmt.Println(recoveryRangesResponse)
+}
+```
+{: codeblock}
+
+### Get Recovery Range
+
+{: #go-get-recovery-range}
+
+```go
+func main() {
+    apiKey := "<API_KEY>"
+    sourceBucketName := "<SOURCE_BUCKET_NAME>"
+    backupVaultCrn := "<BACKUP_VAULT_CRN>"
+    backupVaultName := "<BACKUP_VAULT_NAME>"
+
+    // Setup IAM authenticator
+    authenticator := &core.IamAuthenticator{
+        ApiKey: apiKey,
+    }
+
+    // Initialize Resource Configuration client
+    rcClient, err := resourceconfigurationv1.NewResourceConfigurationV1(&resourceconfigurationv1.ResourceConfigurationV1Options{
+        Authenticator: authenticator,
+    })
+    if err != nil {
+        log.Fatalf("Failed to create RC client: %v", err)
+    }
+
+    // Fetch details of the recovery range
+    getRecoveryRangeOptions := &resourceconfigurationv1.GetSourceResourceRecoveryRangeOptions{
+        BackupVaultName: core.StringPtr(backupVaultName),
+        RecoveryRangeID: core.StringPtr(recoveryRangeId),
+    }
+
+    getRecoveryRangeResponse, _, err := rcClient.GetSourceResourceRecoveryRange(getRecoveryRangeOptions)
+    if err != nil {
+        log.Fatalf("Failed to fetch recovery range: %v", err)
+    }
+fmt.Println(recoveryRangesResponse)
+
+}
+```
+{: codeblock}
+
+### Update Recovery Ranges
+
+{: #go-update-recovery-range}
+
+```go
+func main() {
+    // Config values
+    apiKey := "<API_KEY>"
+    sourceBucketName := "<SOURCE_BUCKET_NAME>"
+    backupVaultCRN := "<BACKUP_VAULT_CRN>"
+    backupVaultName := "<BACKUP_VAULT_NAME>"
+
+    // Setup IAM Authenticator
+    authenticator := &core.IamAuthenticator{
+        ApiKey: apiKey,
+    }
+
+    options := &resourceconfigurationv1.ResourceConfigurationV1Options{
+        Authenticator: authenticator,
+    }
+
+    rcClient, err := resourceconfigurationv1.NewResourceConfigurationV1UsingExternalConfig(options)
+    if err != nil {
+        log.Fatalf("Failed to create Resource Configuration client: %v", err)
+    }
+
+    // Patch the recovery range (update retention to 99 days)
+    patchOpts := &resourceconfigurationv1.PatchSourceResourceRecoveryRangeOptions{
+        BackupVaultName: core.StringPtr(backupVaultName),
+        RecoveryRangeID: core.StringPtr(recoveryRangeID),
+        RecoveryRangePatch: &resourceconfigurationv1.RecoveryRangePatch{
+            Retention: &resourceconfigurationv1.DeleteAfterDays{
+                DeleteAfterDays: core.Int64Ptr(99),
+            },
+        },
+    }
+    patchResp, _, err := rcClient.PatchSourceResourceRecoveryRange(patchOpts)
+    if err != nil {
+        log.Fatalf("Failed to patch recovery range: %v", err)
+    }
+    fmt.Println("Successfully patched recovery range:")
+    fmt.Printf("%+v\n", patchResp)
+}
+```
+{: codeblock}
+
+### Initiating a Restore
+
+{: #go-initiate-restore}
+
+```go
+func main() {
+    // Setup authenticator
+    authenticator := &core.IamAuthenticator{
+        ApiKey: apiKey,
+    }
+
+    // Initialize Resource Configuration client
+    rcClient, err := resourceconfigurationv1.NewResourceConfigurationV1(&resourceconfigurationv1.ResourceConfigurationV1Options{
+        Authenticator: authenticator,
+    })
+    if err != nil {
+        log.Fatalf("Failed to create RC client: %v", err)
+    }
+    // Initiate restore
+    restoreOptions := &resourceconfigurationv1.CreateRestoreOptions{
+        BackupVaultName:    core.StringPtr(backupVaultName),
+        RecoveryRangeID:    core.StringPtr(recoveryRangeId),
+        RestoreType:        core.StringPtr("in_place"),
+        RestorePointInTime: core.StringPtr(restorePointInTime),
+        TargetResourceCrn:  core.StringPtr(targetBucketCrn),
+    }
+
+    restoreResponse, _, err := rcClient.CreateRestore(restoreOptions)
+    if err != nil {
+        log.Fatalf("Failed to initiate restore: %v", err)
+    }
+    fmt.Printf(restoreResponse)
+}
+```
+{: codeblock}
+
+### Listing Restore
+
+{: #go-list-restore}
+
+```go
+func main() {
+    // Setup authenticator
+    authenticator := &core.IamAuthenticator{
+        ApiKey: apiKey,
+    }
+
+    // Initialize Resource Configuration client
+    rcClient, err := resourceconfigurationv1.NewResourceConfigurationV1(&resourceconfigurationv1.ResourceConfigurationV1Options{
+        Authenticator: authenticator,
+    })
+    if err != nil {
+        log.Fatalf("Failed to create RC client: %v", err)
+    }
+    // List restores
+    listOptions := &resourceconfigurationv1.ListRestoresOptions{
+        BackupVaultName: core.StringPtr(backupVaultName),
+    }
+    restoreListResponse, _, err := rcClient.ListRestores(listOptions)
+    if err != nil {
+        log.Fatalf("Failed to list restore operations: %v", err)
+    }
+    fmt.Printf(restoreListResponse)
+}
+```
+{: codeblock}
+
+### Get Restore Details
+
+{: #go-get-restore}
+
+```go
+func main() {
+    // Setup authenticator
+    authenticator := &core.IamAuthenticator{
+        ApiKey: apiKey,
+    }
+
+    // Initialize Resource Configuration client
+    rcClient, err := resourceconfigurationv1.NewResourceConfigurationV1(&resourceconfigurationv1.ResourceConfigurationV1Options{
+        Authenticator: authenticator,
+    })
+    if err != nil {
+        log.Fatalf("Failed to create RC client: %v", err)
+    }
+
+    // Get specific restore
+    restoreGetOptions := &resourceconfigurationv1.GetRestoreOptions{
+        BackupVaultName: core.StringPtr(backupVaultName),
+        RestoreID:       core.StringPtr(restoreId),
+    }
+
+    restoreDetails, _, err := rcClient.GetRestore(restoreGetOptions)
+    if err != nil {
+        log.Fatalf("Failed to get restore details: %v", err)
+    }
+
+    fmt.Printf("Restore details: %+v\n", restoreDetails)
+}
+```
+{: codeblock}
+
 
 ## Next Steps
 
