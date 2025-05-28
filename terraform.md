@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2025
-lastupdated: "2025-05-22"
+lastupdated: "2025-05-28"
 
 keywords: object storage, terrafrom, bucket backup
 
@@ -54,3 +54,15 @@ The following steps show how Terraform on IBM Cloud provisions your services in 
 2. Configure the IBM Cloud Provider plug-in.
 3. Create a Terraform execution plan that summarizes all the actions that Terraform needs to run to create, update, or delete the IBM Cloud resources in your Terraform template.
 4. Apply the Terraform configuration file in IBM Cloud.
+
+## Related links for Backing up Buckets
+
+{: #related-links-terraform-bucket-backup}
+
+[`ibm_cos_backup_policy`](https://github.com/ibm-diksha/terraform-provider-ibm/blob/diksha/cos-bucket-backup-1942/website/docs/r/cos_backup_policy.markdown) Creates a backup policy on a given source bucket.
+
+[`ibm_cos_backup_vault`](https://github.com/ibm-diksha/terraform-provider-ibm/blob/diksha/cos-bucket-backup-1942/website/docs/r/cos_backup_vault.markdown) Creates a backup vault to store the objects to be backed up from a source bucket whenever a backup policy is applied.
+
+[`ibm_cos_backup_vault`](https://github.com/ibm-diksha/terraform-provider-ibm/blob/diksha/cos-bucket-backup-1942/website/docs/r/cos_backup_vault.markdown) Creates a backup vault to store the objects to be backed up from a source bucket whenever a backup policy is applied.
+
+[Bucket Backup](https://github.com/ibm-diksha/terraform-provider-ibm/tree/diksha/cos-bucket-backup-1942/examples/ibm-cos-bucket#bucket-backup) Provides 2 separate resources `ibm_cos_backup_vault` and `ibm_cos_backup_policy` to manage the backup policies and the backup vaults for you to store the backup of a {{site.data.keyword.cos_short}} bucket.

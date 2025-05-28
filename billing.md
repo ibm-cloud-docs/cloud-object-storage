@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2025
-lastupdated: "2025-05-22"
+lastupdated: "2025-05-28"
 
 keywords: administration, billing, platform, aspera, invoices, pricing, bucket backup
 
@@ -73,6 +73,15 @@ Requests made using the Resource Configuration API are not charged for requests 
 {: #billing-aspera}
 
 [Aspera high-speed transfer](/docs/cloud-object-storage?topic=cloud-object-storage-aspera) incurs extra egress charges. For more information, see the [pricing page](/objectstorage/create#pricing){: external}.
+
+## Backup billing
+{: #billing-backup}
+
+There are two charges for use of the {{site.data.keyword.cos_short}} Backup service. The first charge is for the amount of data stored within the Backup Vault. This is measured in Gigabytes. Usage is averaged over the billing period. There is an additional second charge for any restores initiated from the Backup Vault during the billing period. Restore jobs incur a fee for each gigabyte of data that is restored.
+
+Use of the {{site.data.keyword.cos_short}} Backup feature does not incur any operational, retrieval, or egress charges on the source bucket. There are also no operational charges for writing backups to the Backup Vault.
+
+The target bucket of a restore job will incur operational charges for the data written to the bucket on restore.
 
 ## Storage classes
 {: #billing-storage-classes}

@@ -281,7 +281,7 @@ HTTP/1.1 204 No Content
 
 ---
 
-For more information about backup vault operations, see [Backup vault management](/docs-draft/cloud-object-storage?topic=cloud-object-storage-bvm-overview).
+For more information about backup vault operations, see [Backup vault management](/docs/cloud-object-storage?topic=cloud-object-storage-bvm-overview).
 
 
 ## Recovery Range operations
@@ -457,7 +457,7 @@ Host: config.cloud-object-storage.cloud.ibm.com
 
 ---
 
-For more information about recovery range operations, see [Backup vault management](/docs-draft/cloud-object-storage?topic=cloud-object-storage-bvm-overview).
+For more information about recovery range operations, see [Backup vault management](/docs/cloud-object-storage?topic=cloud-object-storage-bvm-overview).
 
 
 ## Restore operations
@@ -641,5 +641,5 @@ Host: config.cloud-object-storage.cloud.ibm.com
 ```
 ---
 
-For more information about restore operations, see [Backup vault management](/docs-draft/cloud-object-storage?topic=cloud-object-storage-bvm-overview).
+For more information about restore operations, see [Backup vault management](/docs/cloud-object-storage?topic=cloud-object-storage-bvm-overview).
 ```
