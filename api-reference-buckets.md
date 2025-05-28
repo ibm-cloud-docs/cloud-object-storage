@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2025-05-13"
+lastupdated: "2025-05-27"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -2463,6 +2463,9 @@ POST https://{endpoint}/buckets/{bucket}/backup_policies
 ```json
 {
   "policy_name": "myBackupPolicy",
+  "initial_retention": {
+    "delete_after_days": 10
+  },
   "backup_type": "continuous",
   "target_backup_vault_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a1229395:1a0ec336-f391-4091-a6fb-5e084a4c56f4:backup-vault:backup-vault-name"
 }

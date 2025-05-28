@@ -97,6 +97,13 @@ toc:
                     - expiry.md
                     - abort-mpu.md
               - topicgroup:
+                  label: Backing up buckets
+                  topics:
+                    - bvm-overview.md
+                    - bvm-configure.md
+                    - bvm-provisioning.md
+                    - bvm-restore.md
+              - topicgroup:
                   label: Managing data immutability
                   topics:
                     - immutable.md
@@ -160,7 +167,8 @@ toc:
               topics:
                 - about-api.md
                 - common-headers-errors.md
-                - api-reference-buckets.md 
+                - api-reference-buckets.md
+                - api-reference-backup-vault.md
                 - api-reference-objects.md
                 - postman.md
           - topicgroup:
@@ -203,7 +211,8 @@ toc:
                 - faq-provisioning.md
                 - faq-onerate.md
                 - faq-encryption.md
-                - faq-bucket.md 
+                - faq-bucket.md
+                - bvm-faq.md
                 - faq-data.md
           - support.md
           - topicgroup:

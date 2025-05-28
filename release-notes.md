@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2025
 
-lastupdated: "2025-03-14"
+lastupdated: "2025-05-28"
 
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning, metrics router, activity tracker routing, routing, monitoring
@@ -21,6 +21,15 @@ content-type: release-note
 
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
+
+## 28 May 2025
+{: #cloud-object-storage-mayxx25}
+{: release-note}
+
+New feature!
+:   You can now back up data stored in your buckets with {{site.data.keyword.cos_full}} Backup. Use this feature to create continuous backups of your data, tracking all changes to your objects. Store backups in new Backup Vaults which are hardened resources to protect backups from deletion. Customize the retention periods of your backups. Restore data from any point in time within your retention window.
+
+This feature will be available in ca-mon soon.
 
 ## 14 March 2025
 {: #cloud-object-storage-mar142025}
