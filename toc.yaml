@@ -145,13 +145,13 @@ toc:
               - functions.md
               - static-websites-options.md
               - cis-routing-rules-for-cos.md
-          - topicgroup:
-              label: Using IBM Cloud Satellite
-              topics:
-                - satellite-deprecate-notice.md
-                - about-satellite.md
-                - satellite-billing.md
-                - satellite-apis.md
+#          - topicgroup: COMMENT: Removed per GitHub issue #2056
+#              label: Using IBM Cloud Satellite
+#              topics:
+#                - satellite-deprecate-notice.md
+#                - about-satellite.md
+#                - satellite-billing.md
+#                - satellite-apis.md
     - navgroup:
         id: reference
         topics:

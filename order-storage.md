@@ -29,9 +29,7 @@ IBM Public Cloud:
    * The **Free Tier** allows you to evaluate the Cloud Object Storage service at no cost. You can seamlessly scale up for production use. This includes 5GB of free monthly usage for up to 12 months from the sign-up date. After 12 months or if you exceed the Free Tier limits, you will be billed at standard pay-as-you-go rates.
 * **One Rate plan** instances should be used for [workloads that involve large volumes of outbound bandwidth](/docs/cloud-object-storage?topic=cloud-object-storage-onerate) (data transferred on public networks outside of IBM Cloud) relative to the amount of total storage capacity.
 
-IBM Cloud Satellite:
 
-* **Satellite** instances are [run on hardware outside of IBM Cloud](/docs/cloud-object-storage?topic=cloud-object-storage-provision-cos-satellite) and are typically used for edge computing or for strict data sovereignty requirements
 
 ## Creating an account
 {: #provision-account}
@@ -72,4 +70,3 @@ It is impossible to delete a Service Instance if there is a bucket with an activ
 
 Currently, the reclamation can be scheduled only for instances of the {{site.data.keyword.cos_full_notm}} **Standard** and **One Rate** plans.  The **Lite** plan is not eligible to participate.
 {: note}
-
