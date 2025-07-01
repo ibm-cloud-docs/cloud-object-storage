@@ -16,7 +16,7 @@ subcollection: cloud-object-storage
 #  Choosing a One-Rate plan
 {: #onerate}
 
-TThe One-Rate plan offers a predictable Total Cost of Ownership (TCO) through a flat monthly rate per GB of storage ($/GB). This all-inclusive rate covers storage capacity, outbound bandwidth, and API requests (Class A and B). One-Rate is ideal for hot, active workloads with high API activity or outbound data transfer relative to stored capacity.
+The One-Rate plan offers a predictable Total Cost of Ownership (TCO) through a flat monthly rate per GB of storage ($/GB). This all-inclusive rate covers storage capacity, outbound bandwidth, and API requests (Class A and B). One-Rate is ideal for hot, active workloads with high API activity or outbound data transfer relative to stored capacity.
 {: shortdesc}
 
 The built-in monthly allowances for API operations and egress eliminates cost variability due to data access patterns. These allowances depend on the monthly stored capacity. There is no data retrieval charge. The One-Rate plan has four pricing regions: North America, Europe, South America, and Asia Pacific. Furthermore, the plan aggregates billing metrics (storage capacity, outbound bandwidth and operational requests) across multiple instances within the One-Rate pricing region for determining the allowances (the higher the aggregated storage capacity within a region, the higher the allowances for outbound bandwidth and operational requests for that region).
