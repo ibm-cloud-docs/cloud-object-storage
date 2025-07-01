@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2025
-lastupdated: "2025-05-28"
+lastupdated: "2025-07-01"
 
 keywords: administration, billing, platform, aspera, invoices, pricing, bucket backup
 
@@ -100,7 +100,7 @@ There are six classes:
 
 For more information about pricing, see [the pricing table at ibm.com](/objectstorage/create#pricing){: external}.
 
-The **Active** storage class is only used with [One Rate plans](/docs/cloud-object-storage?topic=cloud-object-storage-onerate), and cannot be used in Standard or Lite plan instances.
+The **Active** storage class is only used with [One-Rate plans](/docs/cloud-object-storage?topic=cloud-object-storage-onerate), and cannot be used in Standard or Lite plan instances.
 {: important}
 
 For more information about creating buckets with different storage classes, see the [API reference](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-storage-class).

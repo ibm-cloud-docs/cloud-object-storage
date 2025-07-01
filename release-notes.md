@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2025
 
-lastupdated: "2025-05-28"
+lastupdated: "2025-07-01"
 
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning, metrics router, activity tracker routing, routing, monitoring
@@ -159,7 +159,7 @@ New feature!
 {: release-note}
 
 New feature!
-:   It is now possible to create instances [using a One Rate plan](/docs/cloud-object-storage?topic=cloud-object-storage-onerate) to lower costs and simplify billing for workloads with high levels of egress.
+:   It is now possible to create instances [using a One-Rate plan](/docs/cloud-object-storage?topic=cloud-object-storage-onerate) to lower costs and simplify billing for workloads with high levels of egress.
 
 ## 21 June 2022
 {: #cloud-object-storage-jun2122}
