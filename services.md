@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2025
 
-lastupdated: "2025-03-12"
+lastupdated: "2025-07-01"
 
 keywords: aspera, key protect, archive, worm
 
@@ -40,7 +40,7 @@ Downloads that use Aspera high-speed transfer incur extra egress charges. For mo
 ## Cross Region
 {: #service-availability-geo}
 
-| Region | Aspera | Key Protect         | {{site.data.keyword.hscrypto}} | Archive Data | Object Lock  | Immutable Object Storage | Activity Tracker Routing| Code Engine | Smart Tier | Metrics Routing | Replication |  One Rate  |
+| Region | Aspera | Key Protect         | {{site.data.keyword.hscrypto}} | Archive Data | Object Lock  | Immutable Object Storage | Activity Tracker Routing| Code Engine | Smart Tier | Metrics Routing | Replication |  One-Rate  |
 |--------|--------|---------------------|--------------------------------|--------------|--------------|--------------------------|-------------------------|-------------|------------|-----------------|-------------| -----------|
 | `ap`   | Yes    | Yes (in `jp-tok`)   | No                             | No           | Yes           | No                        | `ap-tok`                | No          | Yes        | `ap-tok`        | Yes         |  No        |
 | `eu`   | Yes    | Yes (in `eu-de`)    | No                             | No           | Yes           | No                        | `eu-de`                 | No          | Yes        | `eu-de`         | Yes         |  No        |
@@ -52,7 +52,7 @@ Refer to [Pricing for Key Protect on IBM Cloud](/docs/key-protect?topic=key-prot
 ## Regional
 {: #service-availability-region}
 
-| Region     | Aspera | Key Protect   | {{site.data.keyword.hscrypto}} | Archive Data | Object Lock | Immutable Object Storage | Activity Tracker Routing | Code Engine | Smart Tier | Metrics Routing | Replication | One Rate | Code Engine |
+| Region     | Aspera | Key Protect   | {{site.data.keyword.hscrypto}} | Archive Data | Object Lock | Immutable Object Storage | Activity Tracker Routing | Code Engine | Smart Tier | Metrics Routing | Replication | One-Rate | Code Engine |
 |------------|--------|---------------|--------------------------------|--------------|-------------|--------------------------|--------------------------|-------------|------------|-----------------|-------------|----------|-------------|
 | `au-syd`   | Yes    | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `au-syd`                 | Yes         | Yes        | `au-syd`        | Yes         | Yes      | `au-syd`    |
 | `jp-tok`   | Yes    | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `ap-tok`                 | Yes         | Yes        | `ap-tok`        | Yes         | Yes      | `jp-tok`    |
@@ -72,7 +72,7 @@ It is possible to create a bucket and associate any available Key Protect or Hyp
 ## Single Data Centers
 {: #service-availability-zone}
 
-| Region  | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Object Lock  | Immutable Object Storage | Activity Tracker Routing | Code Engine | Smart Tier | Metrics Routing | Replication | One Rate   |
+| Region  | Aspera | Key Protect | {{site.data.keyword.hscrypto}} | Archive Data | Object Lock  | Immutable Object Storage | Activity Tracker Routing | Code Engine | Smart Tier | Metrics Routing | Replication | One-Rate   |
 |---------|--------|-------------|--------------------------------|--------------|--------------|--------------------------|--------------------------|-------------|------------|-----------------|-------------| -----------|
 | `ams03` | No     | No          | No                             | No           | Yes          | No                       | `eu-de`                  | No          | Yes        | `eu-de`         | Yes         | Yes        |
 | `che01` | Yes    | No          | No                             | Yes          | Yes          | No                       | `che01`                  | No          | Yes        | `jp-tok`        | Yes         | Yes        |

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2024
-lastupdated: "2024-07-02"
+  years: 2017, 2024, 2025
+lastupdated: "2025-07-01"
 
 keywords: provision, create, service
 
@@ -27,7 +27,7 @@ IBM Public Cloud:
 
 * **Standard plan** instances are the most common and are recommended for most workloads.
    * The **Free Tier** allows you to evaluate the Cloud Object Storage service at no cost. You can seamlessly scale up for production use. This includes 5GB of free monthly usage for up to 12 months from the sign-up date. After 12 months or if you exceed the Free Tier limits, you will be billed at standard pay-as-you-go rates.
-* **One Rate plan** instances should be used for [workloads that involve large volumes of outbound bandwidth](/docs/cloud-object-storage?topic=cloud-object-storage-onerate) (data transferred on public networks outside of IBM Cloud) relative to the amount of total storage capacity.
+* **One-Rate plan** instances should be used for [workloads that involve large volumes of outbound bandwidth](/docs/cloud-object-storage?topic=cloud-object-storage-onerate) (data transferred on public networks outside of IBM Cloud) relative to the amount of total storage capacity.
 
 
 
@@ -68,5 +68,5 @@ It is possible to check the status of a reclamation, as well as force or cancel 
 It is impossible to delete a Service Instance if there is a bucket with an active Immutable Object Storage policy or legal hold on any objects.  The policy will need to expire before the data can be deleted. It isn't possible to delete a Service Instance if there is a permanent retention policy in place.
 {: important}
 
-Currently, the reclamation can be scheduled only for instances of the {{site.data.keyword.cos_full_notm}} **Standard** and **One Rate** plans.  The **Lite** plan is not eligible to participate.
+Currently, the reclamation can be scheduled only for instances of the {{site.data.keyword.cos_full_notm}} **Standard** and **One-Rate** plans.  The **Lite** plan is not eligible to participate.
 {: note}
