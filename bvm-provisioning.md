@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-05-28"
+lastupdated: "2025-07-02"
 
 keywords: bucket, vault, management, provisioning, metrics monitoring, activity tracker
 
@@ -24,10 +24,22 @@ Backup Vaults are provisioned with the following request:
 **Example request**
 
 ```http
-GET /backup_vaults/myBackupVault HTTP/1.1
+POST /backup_vaults HTTP/1.1
 Authorization: Bearer {token}
 Content-Type: application/json
 Host: config.cloud-object-storage.cloud.ibm.com
+
+{
+  "activity_tracking": {
+    "management_events": true
+  },
+  "metrics_monitoring": {
+    "usage_metrics_enabled": true
+  },
+  "backup_vault_name": "mybackupvault",
+  "region": "us-south",
+  "sse_kp_customer_root_key_crn": "crn:v1:public:kms:us-south:a/9978e07e8a071313c66c89c428028654:5629889a-f2bb-4058-9964-f1838b778315:key:bf5997d5-8767-462f-8d6f-ee058c084f1d"
+}
 ```
 {: codeblock}
 
@@ -41,7 +53,15 @@ Host: config.cloud-object-storage.cloud.ibm.com
   "time_updated": "2024-06-02T12:00:00.000Z",
   "bytes_used": 0,
   "region": "us-south",
-  "backup_vault_name": "mybackupvault"
+  "backup_vault_name": "mybackupvault",
+  "activity_tracking": {
+            "management_events": true
+        },
+  "metrics_monitoring": {
+            "usage_metrics_enabled": true
+        },
+ "sse_kp_customer_root_key_crn": "crn:v1:public:kms:us-south:a/9978e07e8a071313c66c89c428028654:5629889a-f2bb-4058-9964-f1838b778315:key:bf5997d5-8767-462f-8d6f-ee058c084f1d"
+
 }
 ```
 
