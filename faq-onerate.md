@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024, {CURRENT_YEAR}]
-lastupdated: "2025-07-01"
+lastupdated: "2025-07-08"
 
 keywords: faq, frequently asked questions, object storage
 
@@ -14,7 +14,7 @@ content-type: faq
 
 {{site.data.keyword.attribute-definition-list}}
 
-# FAQ - One-Rate plans
+# FAQ - One-Rate plan
 {: #faq-onerate}
 
 Frequently asked questions can produce helpful answers and insight into best practices for working with {{site.data.keyword.cos_full}}.
