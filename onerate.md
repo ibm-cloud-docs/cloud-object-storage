@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2024, {CURRENT_YEAR}]
-lastupdated: "2025-07-01"
+lastupdated: "2025-07-08"
 
 keywords: data, cost, pricing, isv
 
@@ -16,10 +16,10 @@ subcollection: cloud-object-storage
 #  Choosing a One-Rate plan
 {: #onerate}
 
-The One-Rate plan offers a predictable Total Cost of Ownership (TCO) through a flat monthly rate per GB of storage ($/GB). This all-inclusive rate covers storage capacity, outbound bandwidth, and API requests (Class A and B). One-Rate is ideal for hot, active workloads with high API activity or outbound data transfer relative to stored capacity.
+The One-Rate plan offers a predictable Total Cost of Ownership (TCO) through a flat monthly rate per GB of storage ($/GB). This all-inclusive rate covers storage capacity, outbound bandwidth, and API requests (Class A and B). One-Rate is ideal for hot, active workloads with high API activity, or outbound data transfer relative to stored capacity.
 {: shortdesc}
 
-The built-in monthly allowances for API operations and egress eliminates cost variability due to data access patterns. These allowances depend on the monthly stored capacity. There is no data retrieval charge. The One-Rate plan has four pricing regions: North America, Europe, South America, and Asia Pacific. Furthermore, the plan aggregates billing metrics (storage capacity, outbound bandwidth and operational requests) across multiple instances within the One-Rate pricing region for determining the allowances (the higher the aggregated storage capacity within a region, the higher the allowances for outbound bandwidth and operational requests for that region).
+The built-in monthly allowances for API operations and egress eliminate cost variability due to data access patterns. These allowances depend on the monthly stored capacity. There is no data retrieval charge. The One-Rate plan has four pricing regions: North America, Europe, South America, and Asia Pacific. Furthermore, the plan aggregates billing metrics (storage capacity, outbound bandwidth, and operational requests) across multiple instances within the One-Rate pricing region for determining the allowances (the higher the aggregated storage capacity within a region, the higher the allowances for outbound bandwidth and operational requests for that region).
 
 ## Why use a One-Rate plan?
 {: #onerate-why}
@@ -27,35 +27,35 @@ The built-in monthly allowances for API operations and egress eliminates cost va
 - One flat rate per GB per month – Includes storage, API, egress, and retrieval with no separate charges
 - Automatic volume discount– Rate drops as stored capacity grows, applied to entire capacity
 - Predictable and lower monthly TCO for workloads with high activity and outbound bandwidth.
-- Regional aggregation – Combine costs across departments, sub-accounts, and instances spread across different locations within a region for lower rates
-- Competitive customer pricing – Known, fixed costs enable attractive flat-rate offerings to end users
+- Regional aggregation – Combine costs across departments, subaccounts, and instances spread across different locations within a region for lower rates
+- Competitive customer pricing – Known, fixed costs enable attractive flat-rate offerings to users
 - Built-in allowances that scale — API and egress allowances grow with total storage capacity
 - Global availability — Available across four pricing regions: North America, Europe, Latin America, and Asia Pacific
 
 ## Terminology
 {: #onerate-terminology}
 
-**Egress**: Outbound data read via public endpoints (charged as GB/month)
-**Allowances**: Bundled thresholds for Class A/B requests and egress based on stored capacity
+- **Egress**: Outbound data read via public endpoints (charged as GB/month)
+- **Allowances**: Bundled thresholds for Class A/B requests and egress based on stored capacity
 
 ## Use cases
 {: #onerate-use-case}
 
-One-Rate is a strong fit for production-scale workloads across a variety of industries. It enables teams to simplify billing and optimize value by bundling API and egress charges with capacity.
+One-Rate is a strong fit for production-scale workloads across various industries. It enables teams to simplify billing and optimize value by bundling API and egress charges with capacity.
 
-**Enterprise Data Lakehouse**
+**Enterprise Data Lakehouse**:
 For analytics and AI workloads with frequent API traffic. Supports scalable, durable storage that integrates with watsonx and other IBM AI services.
 → *Best fit: Hot, active workloads needing predictable performance and pricing.*
 
-**Cloud Native App Storage**
+**Cloud Native App Storage**:
 For mobile, web, or streaming applications with fluctuating access and moderate egress.
 → *Best fit: Cloud-native apps with hot, active data pipelines.*
 
-**Media Content Storage**
+**Media Content Storage**:
 For content-heavy ISVs and media providers needing flat pricing for high API and egress usage.
 → *Best fit: Large media workloads benefiting from bundled transfer and API savings.*
 
-One-Rate plans are generally best for active workloads. For cold storage, long-term backup, or workloads with minimal egress, the Standard plan may be more cost-effective.
+One-Rate plans are generally best for active workloads. For cold storage, long-term backup, or workloads with minimal egress, the Standard plan can be more cost-effective.
 {: note}
 
 
@@ -82,7 +82,7 @@ It is **not** possible to convert an instance created under a One-Rate plan to a
 ### How allowances are calculated
 {: #onerate-billing}
 
-One-Rate plans use an all-inclusive flat monthly rate which includes capacity, operational requests, and outbound bandwidth. The built-in allowances for outbound bandwidth are determined by the total capacity.
+One-Rate plans use an all-inclusive flat monthly rate, which includes capacity, operational requests, and outbound bandwidth. The built-in allowances for outbound bandwidth are determined by the total capacity.
 
 > Total Monthly Cost = Capacity Cost + API Cost (if # of API > allowance) + Bandwidth cost (if Bandwidth > allowance)
 
@@ -90,7 +90,7 @@ One-Rate plans use an all-inclusive flat monthly rate which includes capacity, o
 - Class B allowance: Number of Class B Requests < 5000 x Storage (GB)
 - Bandwidth allowance: Bandwidth (GB) < Storage (GB)
 
-Archive is supported but Restore charges are **not** included in the One-Rate allowances
+Archive is supported but Restore charges are **not** included in the One-Rate allowances.
 {: note}
 
 ### How to provision a One-Rate instance
