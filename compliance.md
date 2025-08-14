@@ -19,8 +19,7 @@ subcollection: cloud-object-storage
 {{site.data.keyword.cos_full}} actively participates in several industry compliance programs.
 {: shortdesc}
 
-This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
-{: note}
+
 
 An updated list of our compliance certifications can always be obtained by referencing the [Data Processing and Protection Datasheet](https://www.ibm.com/software/reports/compatibility/clarity-reports/report/html/softwareReqsForProduct?deliverableId=89904B80AE1911E7A9EB066095601ABB) available from [IBM Software Product Compatibility Reports](https://www.ibm.com/software/reports/compatibility/clarity/softwareReqsForProduct.html).
 
@@ -71,4 +70,3 @@ Please visit [IBM's commitment to GDPR readiness](https://www.ibm.com/cloud/comp
 {: #compliance-privacy}
 
 IBM Cloud Object Storage is privacy shield certified. For more information please visit [IBM Privacy Shield Privacy Policy for Certified IBM Cloud Services](https://www.ibm.com/privacy/details/us/en/privacy_shield.html).
-

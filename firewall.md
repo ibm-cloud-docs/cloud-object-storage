@@ -19,8 +19,7 @@ subcollection: cloud-object-storage
 [Context-based restrictions](/docs/account?topic=account-context-restrictions-whatis&interface=ui) provide a way for administrators to limit access to resources. What if certain data must be accessed from trusted networks only? A properly configured policy restricts all access to data unless the request originates from an approved [network zone](/docs/account?topic=account-context-restrictions-whatis&interface=ui#network-zones-whatis) and endpoint type (public, private, or direct).
 {: shortdesc}
 
-This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
-{: note}
+
 
 
 ## Using context-based restrictions
@@ -110,4 +109,3 @@ Firewalls are managed with the [COS Resource Configuration API](https://cloud.ib
 
 Users with the `manager` role can view and edit the list of allowed IP addresses from any network in order to prevent accidental lockouts.
 {: tip}
-
