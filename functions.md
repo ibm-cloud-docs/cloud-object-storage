@@ -20,8 +20,7 @@ subcollection: cloud-object-storage
 With [{{site.data.keyword.openwhisk}}](/docs/openwhisk?topic=openwhisk-getting-started), you can use your favorite programming language to write lightweight code that runs app logic in a scalable way. You can run code on-demand with HTTP-based API requests from applications or run code in response to {{site.data.keyword.cloud_notm}} services and third-party events, like updates made to a bucket. The Function-as-a-Service (FaaS) programming platform is based on the open source project Apache OpenWhisk.
 {: shortdesc}
 
-This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
-{: note}
+
 
 ## Using {{site.data.keyword.cos_short}} as an event source
 {: #functions-events}

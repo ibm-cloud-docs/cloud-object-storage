@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024, 2025
-lastupdated: "2025-03-21"
+lastupdated: "2025-08-14"
 
 keywords: rest, s3, compatibility, api, objects
 
@@ -44,8 +44,7 @@ A `PUT` given a path to an object uploads the request body as an object. All obj
 Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means.
 {: note}
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
-{: note}
+
 
 It is possible to stream objects as large as 5 GB using a single `PUT` request. Multipart uploads are more reliable and can upload more efficiently by using multiple threads to upload parts in parallel. Uploading larger objects in a single `PUT` request results in the performance limitations of a single thread, and in the event of any failures single-threaded uploads will need to be retried in their entirety (whereas with MPU only the specific part(s) that failed need to be retried). The precise throughput that can be achieved by a single thread varies depending on the network bandwidth from the client to the IBM Cloud endpoint, the rate of packet loss (if any) on that connection, the use of HTTP vs HTTPS, the specific ciphers used in the connection and specific TCP connection parameters (such as window size), as well as other factors. While these factors can be optimized for a single-threaded upload, the optimizations would apply equally to any multi-threaded (multipart) uploads as well.
 {: tip}
@@ -53,8 +52,7 @@ It is possible to stream objects as large as 5 GB using a single `PUT` request. 
 Personally Identifiable Information (PII): When creating buckets or adding objects, please ensure to not use any information that can identify any user (natural person) by name, location, or any other means.
 {: note}
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
-{: note}
+
 
 **Syntax**
 
@@ -139,8 +137,7 @@ A `HEAD` given a path to an object retrieves that object's headers.
 The `Etag` value returned for objects encrypted using SSE-KP **is** the MD5 hash of the original decrypted object.
 {: note}
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
-{: note}
+
 
 **Syntax**
 
@@ -197,8 +194,7 @@ A `GET` given a path to an object downloads the object.
 The `Etag` value that is returned for objects encrypted using SSE-C/SSE-KP will **not** be the MD5 hash of the original decrypted object.
 {: note}
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
-{: note}
+
 
 **Syntax**
 
@@ -265,8 +261,7 @@ Content-Length: 467
 
 A `DELETE` given a path to an object deletes an object.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
-{: note}
+
 
 **Syntax**
 
@@ -321,8 +316,7 @@ The required `Content-MD5` header needs to be the binary representation of a bas
 When an object that is specified in the request is not found the result returns as deleted.
 {: note}
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
-{: note}
+
 
 Multiple object deletes involve a `POST operation` that is charged as Class A. The cost of the `POST` request for multiple deletes varies depending on the storage class of the objects, and the amount of data that is deleted. For more information about pricing, see the [IBM Cloud Object Storage pricing page](/objectstorage/create#pricing).
 {: note}
@@ -420,8 +414,7 @@ Content-Length: 207
 
 A `PUT` issued to an object with the proper parameters adds or extends retention period of the object.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
-{: note}
+
 
 **Syntax**
 
@@ -489,8 +482,7 @@ Content-Length: 0
 
 A `PUT` issued to an object with the proper parameters creates or replaces a set of key-value tags associated with the object.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
-{: note}
+
 
 **Syntax**
 
@@ -578,8 +570,7 @@ Content-Length: 0
 
 A `GET` issued to an object with the proper parameters returns the set of key-value tags associated with the object.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
-{: note}
+
 
 **Syntax**
 
@@ -641,8 +632,7 @@ Content-Length: 128
 
 A `DELETE` issued to a bucket with the proper parameters removes an object's tags.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
-{: note}
+
 
 **Syntax**
 
@@ -692,8 +682,7 @@ Personally Identifiable Information (PII): When _naming_ buckets or objects, do 
 Copying objects (even across locations) does not incur the public outbound bandwidth charges. All data remains inside the COS internal network.
 {: note}
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
-{: note}
+
 
 **Syntax**
 
@@ -772,8 +761,7 @@ Content-Length: 240
 
 An `OPTIONS` given a path to an object along with an origin and request type checks to see whether that object is accessible from that origin by using that request type. Unlike all other requests, an OPTIONS request does not require the `authorization` or `x-amx-date` headers.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
-{: note}
+
 
 **Syntax**
 
@@ -853,8 +841,7 @@ A `POST` issued to an object with the query parameter `upload` creates a new `Up
 Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means.
 {: note}
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
-{: note}
+
 
 **Syntax**
 
@@ -916,8 +903,7 @@ A `PUT` request that is issued to an object with query parameters `partNumber` a
 Personally Identifiable Information (PII): When _naming_ buckets or objects, do not use any information that can identify any user (natural person) by name, location, or any other means.
 {: note}
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
-{: note}
+
 
 **Syntax**
 
@@ -976,8 +962,7 @@ Content-Length: 0
 
 A `GET` given a path to a multipart object with an active `UploadID` specified as a query parameter returns a list of all of the object's parts.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
-{: note}
+
 
 **Syntax**
 
@@ -1063,8 +1048,7 @@ Content-Length: 743
 
 A `POST` request that is issued to an object with query parameter `uploadId` and the appropriate XML block in the body will complete a multipart upload.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
-{: note}
+
 
 **Syntax**
 
@@ -1167,8 +1151,7 @@ Content-Length: 364
 
 A `DELETE` request issued to an object with query parameter `uploadId` deletes all unfinished parts of a multipart upload.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
-{: note}
+
 
 **Syntax**
 
@@ -1224,8 +1207,7 @@ For buckets with a lifecycle policy transition storage class of `GLACIER`, there
 
 To permanently restore the object, it must be copied to a bucket that doesn't have an active lifecycle configuration.
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
-{: note}
+
 
 **Syntax**
 
@@ -1317,8 +1299,7 @@ There are two ways to update the metadata on an existing object:
 All metadata key must be prefixed with `x-amz-meta-`
 {: tip}
 
-Not all operations are supported in Satellite environments. For details, see [supported Satellite APIs](/docs/cloud-object-storage?topic=cloud-object-storage-apis-cos-satellite)
-{: note}
+
 
 ### Using PUT to update metadata
 {: #object-operations-metadata-put}
