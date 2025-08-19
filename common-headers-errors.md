@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-01-19"
+  years: 2017, 2025
+lastupdated: "2025-08-19"
 
 keywords: metadata, reference, api
 
@@ -30,8 +30,14 @@ The following table describes supported common request headers. {{site.data.keyw
 | Authorization           | **Required** for all requests (OAuth2 `bearer` token).                                                                            |
 | `ibm-service-instance-id` | **Required** for requests to create or list buckets.                                                                              |
 | `Content-MD5`             | The base64 encoded 128-bit binary MD5 hash of the payload, which is used as an integrity check to ensure that the payload was not altered in transit. The base64 encoding must be performed on the binary output of the MD5 hash, not the hexadecimal representation. |
+| `x-amz-checksum-crc32` | This header is the Base64 encoded, 32-bit CRC32 checksum of the object. |
+| `x-amz-checksum-crc32c` | This header is the Base64 encoded, 32-bit CRC32C checksum of the object.|
+| `x-amz-checksum-crc64nvme` | This header is the Base64 encoded, 64-bit CRC64NVME checksum of the object. The CRC64NVME checksum is always a full object checksum. |
+| `x-amz-checksum-sha1` | This header is the Base64 encoded, 160-bit SHA1 digest of the object. |
+| `x-amz-checksum-sha256` | This header is the Base64 encoded, 256-bit SHA256 digest of the object. |
+| `x-amz-sdk-checksum-algorithm` | Indicates the algorithm used to create the checksum for the object when using the SDK. |
 | `Expect`                  | The value `100-continue` waits for acknowledgment from the system that the headers are appropriate before sending the payload. |
-| `host`                    | Either the endpoint or the 'virtual host' syntax of `{bucket-name}.{endpoint}`. Typically, this header is automatically added. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)    | 
+| `host`                    | Either the endpoint or the 'virtual host' syntax of `{bucket-name}.{endpoint}`. Typically, this header is automatically added. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)    |
 | `Cache-Control` | Can be used to specify caching behavior along the request/reply chain. For more information, go to http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9 |
 
 ### Custom metadata

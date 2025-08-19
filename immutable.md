@@ -1,9 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2024
-
-lastupdated: "2024-08-01"
+  years: 2017, 2025
+lastupdated: "2025-08-19"
 
 keywords: worm, immutable, policy, retention, compliance
 
@@ -140,7 +139,7 @@ Several new APIs have been introduced to the {{site.data.keyword.cos_full_notm}}
 
 All code examples assume the existence of a client object that is called `cos` that can call the different methods. For details on creating clients, see the specific SDK guides.
 
-All date values used to set retention periods are Greenwich mean time. A `Content-MD5` header is required to ensure data integrity, and is automatically sent when using an SDK.
+All date values used to set retention periods are Greenwich mean time. A `Content-MD5` header or a `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required to ensure data integrity. Note that a hash or checksum value is automatically sent when using an SDK.
 {: note}
 
 ### Add a retention policy on an existing bucket
@@ -152,7 +151,7 @@ Objects written to a protected bucket cannot be deleted until the protection per
 
 The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are a minimum of 0 days and a maximum of 365243 days (1000 years).
 
-A `Content-MD5` header is required. This operation does not make use of extra query parameters.
+A `Content-MD5` header or a `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`,`x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required. This operation does not make use of extra query parameters.
 
 For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints)
 {: tip}
@@ -296,7 +295,7 @@ public static void addProtectionConfigurationToBucketWithRequest(String bucketNa
 ### Check retention policy on a bucket
 {: #immutable-sdk-get}
 
-This implementation of a GET operation fetches the retention parameters for an existing bucket. 
+This implementation of a GET operation fetches the retention parameters for an existing bucket.
 {: http}
 
 **Syntax**
@@ -424,10 +423,7 @@ This enhancement of the `PUT` operation adds three new request headers: two for 
 
 Objects in buckets with retention policy that are no longer under retention (retention period has expired and the object doesn't have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
 
-A `Content-MD5` header is required.
-{: http}
-
-These headers apply to POST object and multipart upload requests as well. If uploading an object in multiple parts, each part requires a `Content-MD5` header.
+A `Content-MD5` header or a `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required as an integrity check for the payload for any type of object upload request against a bucket with a retention policy.
 {: http}
 
 |Value	| Type	| Description |
