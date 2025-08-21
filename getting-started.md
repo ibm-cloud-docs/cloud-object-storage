@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2025
-lastupdated: "2024-09-25"
+lastupdated: "2025-08-19"
 
 keywords: IBM cloud object storage, cloud object storage, object storage, storage, cross origin resource sharing, cors, special characters
 
@@ -49,9 +49,7 @@ This tutorial takes a new user through the first steps with the {{site.data.keyw
 
 3. Choose the [bucket's _storage class_](/docs/cloud-object-storage?topic=cloud-object-storage-classes) to accurately reflect how often you expect to read the stored data. This is important as it determines your billing details. Follow the **Create** link to create and access your new bucket.
 
-4. Determine the advanced configurations, if any, suitable to your content. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option. See the example in Figure 1 for options in creating an archive policy.
-
-![Create an archive policy](images/bucket-create-ui-archive-rule.jpg){: caption="Create an archive policy"}
+4. Determine the advanced configurations, if any, suitable to your content. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option.
 
 Buckets are a way to organize your data, but they're not the sole way. Object names (often referred to as _object keys_) can use one or more forward slashes for a directory-like organizational system. You then use the portion of the object name before a delimiter to form an _object prefix_, which is used to list related objects in a single bucket through the {{site.data.keyword.cos_short}} API.
 {: tip}
@@ -75,13 +73,13 @@ If an object with a special character is uploaded to a bucket, it may cause prob
 Bringing in another user and allow them to act as an administrator for the instance and any data stored in it is an important way to distribute responsibility for administering your {{site.data.keyword.cos_full_notm}} instance.
 
 1. To add the new user you first need to leave the current {{site.data.keyword.cos_short}} interface and head for the IAM console. Go to the **Manage** menu and follow the link at **Access (IAM)** > **Users**. Click **Invite users**.
-   ![IAM invite users](images/console_iam_invitebtn.png){: caption="Figure 2: IAM invite users"}
+
 1. Enter the email address of a user you want to invite to your organization, then expand the **Services** section and select "Resource" from the **Assign access to** menu. Now choose "Cloud Object Storage" from the **Services** menu.
-   ![IAM Services](images/console_iam_services.png){: caption="Figure 3: IAM Services"}
+
 1. Now, three more fields appear: _Service instance_, _Resource Type_, and _Resource ID_. The first field defines which instance of {{site.data.keyword.cos_short}} the user can access. It can also be set to grant the same level of access to all instances of {{site.data.keyword.cos_short}}. We can leave the other fields blank for now.
-   ![IAM invite users](images/console_iam_servicesdropdowns.png){: caption="Figure 4: IAM identifiers for services and resources"}
+
 1. The check box under **Select roles** determines the set of actions available to the user. Select the "Administrator" platform access role to allow the user grant other [users and service IDs](/docs/cloud-object-storage?topic=cloud-object-storage-iam-overview) access to the instance. Select the "Manager" service access role to allow the user to manage the {{site.data.keyword.cos_short}} instance as well as create and delete buckets and objects. These combinations of a _Subject_ (user), _Role_ (Manager), and _Resource_ ({{site.data.keyword.cos_short}} service instance) together form [IAM policies](/docs/cloud-object-storage?topic=cloud-object-storage-iam-overview). For more detailed guidance on roles and policies, [see the IAM documentation](/docs/account?topic=account-userroles).
-   ![IAM roles](images/console_iam_roles.png){: caption="Figure 5: IAM select roles"}
+
 
 
 ## Give developers access to a bucket.
@@ -89,7 +87,6 @@ Bringing in another user and allow them to act as an administrator for the insta
 
 1. Navigate to the **Manage** menu and follow the link at **Access(IAM)** > **Service IDs**.  Here you can create a _service ID_, which serves as an abstracted identity bound to the account. Service IDs can be assigned API keys and are used in situations where you don't want to tie a particular Developer's identity to a process or component of an application.
 
-    ![IAM Service Ids](images/console_iam_serviceid.png){: caption="Figure 6: IAM Service Ids"}
 
 1. Repeat the above process but in step 3, choose a particular service instance, and enter "bucket" as the _Resource Type_ and the [full CRN](/docs/cloud-object-storage?topic=cloud-object-storage-troubleshooting-cos#troubleshooting-cos-details) of an existing bucket as the _Resource ID_.
 1. Now the service ID can access that particular bucket, and no others.

@@ -2,8 +2,8 @@
 
 copyright:
 
-  years: 2017, 2024
-lastupdated: "2024-07-11"
+  years: 2017, 2024, 2025
+lastupdated: "2025-08-21"
 
 
 keywords: cli, command line reference, object storage
@@ -69,7 +69,7 @@ URL Style               VHost
 ### IAM Authentication
 {: #ic-iam-authentication}
 
-If you are using IAM authentication, then you then you must configure your client with an instance ID to use some of the commands.  To retrieve the instance ID you can type `ibmcloud resource service-instance <INSTANCE_NAME> --id`, replace `<INSTANCE_NAME>` with the unique alias that you assigned to your service instance.  In the below examples, the `8f275e7b-c076-49e2-b9c5-f985704cf678` value is an example instance ID.
+If you are using IAM authentication, then you then you must configure your client with an instance ID to use some of the commands. For more information on creating a service instance, see [Creating a service instance](/docs/cloud-object-storage?topic=cloud-object-storage-provision#provision-instance). To retrieve the instance ID you can type `ibmcloud resource service-instance <INSTANCE_NAME> --id`, replace `<INSTANCE_NAME>` with the unique alias that you assigned to your service instance.  In the below examples, the `8f275e7b-c076-49e2-b9c5-f985704cf678` value is an example instance ID.
 
 First, retrieve the CRN and id with the name of your instance. Be sure to use quotes (`'`) on your instance name and that you are logged in to IBM Cloud. Only the last piece of the CRN is needed, the part after `::`.
 

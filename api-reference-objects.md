@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2024, 2025
-lastupdated: "2025-08-14"
+  years: 2017, 2025
+lastupdated: "2025-08-19"
 
 keywords: rest, s3, compatibility, api, objects
 
@@ -67,10 +67,19 @@ PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 
 Header | Type | Description
 --- | ---- | ------------
-`x-amz-tagging` | string | A set of tags to apply to the object, formatted as query parameters (`"SomeKey=SomeValue"`).
-`x-amz-object-lock-mode` | string | Valid value is `COMPLIANCE` - required if `x-amz-object-lock-retain-until-date` is present.
-`x-amz-object-lock-retain-until-date` | ISO8601 Date and Time | Required if `x-amz-object-lock-mode` is present.
-`x-amz-object-lock-legal-hold` | string | Valid values are `ON` or `OFF`.
+|`x-amz-tagging` | string | A set of tags to apply to the object, formatted as query parameters (`"SomeKey=SomeValue"`).|
+|`x-amz-object-lock-mode` | string | Valid value is `COMPLIANCE` - required if `x-amz-object-lock-retain-until-date` is present.|
+|`x-amz-object-lock-retain-until-date` | ISO8601 Date and Time | Required if `x-amz-object-lock-mode` is present.|
+|`x-amz-object-lock-legal-hold` | string | Valid values are `ON` or `OFF`.|
+|`Content-MD5` | String | The Base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.|
+| `x-amz-checksum-crc32` | String | This header is the Base64 encoded, 32-bit CRC32 checksum of the object. |
+| `x-amz-checksum-crc32c` | String | This header is the Base64 encoded, 32-bit CRC32C checksum of the object.|
+| `x-amz-checksum-crc64nvme` | String | This header is the Base64 encoded, 64-bit CRC64NVME checksum of the object. The CRC64NVME checksum is always a full object checksum. |
+| `x-amz-checksum-sha1` | String | This header is the Base64 encoded, 160-bit SHA1 digest of the object. |
+| `x-amz-checksum-sha256` | String | This header is the Base64 encoded, 256-bit SHA256 digest of the object. |
+| `x-amz-sdk-checksum-algorithm` | String | Indicates the algorithm used to create the checksum for the object when using the SDK. |
+| `x-amz-trailer` | String | Indicates which checksum value header will be found in the trailer of the payload in order to verify object upload integrity.|
+{: caption="Optional Headers" caption-side="bottom"}
 
 **Example request**
 {: token}
@@ -147,6 +156,14 @@ HEAD https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 ```
 {: codeblock}
 
+### Optional headers
+{: #object-operations-get-headers}
+
+Header | Type | Description
+--- | ---- | ------------
+|`x-amz-checksum-mode` | string | This indicates whether or not to include checksum metadata on the response.|
+{: caption="Optional Headers" caption-side="bottom"}
+
 **Example request**
 {: token}
 
@@ -210,6 +227,7 @@ GET https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 Header | Type | Description
 --- | ---- | ------------
 `range` | String | Returns the bytes of an object within the specified range.
+`x-amz-checksum-mode` | String | This indicates whether or not to include checksum metadata on the response.
 
 **Example request**
 {: token}
@@ -309,9 +327,18 @@ x-amz-request-id: 8ff4dc32-a6f0-447f-86cf-427b564d5855
 ## Delete multiple objects
 {: #object-operations-multidelete}
 
-A `POST` given a path to a bucket and proper parameters deletes a specified set of objects. A `Content-MD5` header that specifies the base64 encoded MD5 hash of the request body is required.
+A `POST` given a path to a bucket and proper parameters deletes a specified set of objects. A `Content-MD5` header or a `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required as an integrity check for the payload.
 
-The required `Content-MD5` header needs to be the binary representation of a base64 encoded MD5 hash.
+| Header        | Type   | Description                                                                                                                                                 |
+| ------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Content-MD5` | String | The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit. |
+| `x-amz-checksum-crc32` | String | This header is the Base64 encoded, 32-bit CRC32 checksum of the object. |
+| `x-amz-checksum-crc32c` | String | This header is the Base64 encoded, 32-bit CRC32C checksum of the object.|
+| `x-amz-checksum-crc64nvme` | String | This header is the Base64 encoded, 64-bit CRC64NVME checksum of the object. The CRC64NVME checksum is always a full object checksum. |
+| `x-amz-checksum-sha1` | String | This header is the Base64 encoded, 160-bit SHA1 digest of the object. |
+| `x-amz-checksum-sha256` | String | This header is the Base64 encoded, 256-bit SHA256 digest of the object. |
+{: caption="Optional Headers" caption-side="top"}
+
 
 When an object that is specified in the request is not found the result returns as deleted.
 {: note}
@@ -518,6 +545,17 @@ Tags must comply with the following restrictions:
 * Tag keys and values are case-sensitive
 * `ibm:` cannot be used as a key prefix for tags
 
+|Header                    | Type   | Description |
+|--------------------------|--------|-------------------------------------------------------------|
+|`Content-MD5` | String | The Base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.|
+| `x-amz-checksum-crc32` | String | This header is the Base64 encoded, 32-bit CRC32 checksum of the object. |
+| `x-amz-checksum-crc32c` | String | This header is the Base64 encoded, 32-bit CRC32C checksum of the object.|
+| `x-amz-checksum-crc64nvme` | String | This header is the Base64 encoded, 64-bit CRC64NVME checksum of the object. The CRC64NVME checksum is always a full object checksum. |
+| `x-amz-checksum-sha1` | String | This header is the Base64 encoded, 160-bit SHA1 digest of the object. |
+| `x-amz-checksum-sha256` | String | This header is the Base64 encoded, 256-bit SHA256 digest of the object. |
+| `x-amz-sdk-checksum-algorithm` | String | Indicates the algorithm used to create the checksum for the object when using the SDK. |
+{: caption="Optional Headers" caption-side="bottom"}
+
 **Example request**
 
 This is an example of adding a set of tags to an object.
@@ -704,6 +742,7 @@ Header | Type | Description
 `x-amz-copy-source-if-none-match` | String (`ETag`)| Creates a copy if the specified `ETag` is different from the source object.
 `x-amz-copy-source-if-unmodified-since` | String (time stamp)| Creates a copy if the source object has not been modified since the specified date. Date must be a valid HTTP date (for example, `Wed, 30 Nov 2016 20:21:38 GMT`).
 `x-amz-copy-source-if-modified-since` | String (time stamp)| Creates a copy if the source object has been modified since the specified date. Date must be a valid HTTP date (for example, `Wed, 30 Nov 2016 20:21:38 GMT`).
+`x-amz-checksum-algorithm` | String | Indicates which checksum algorithm will be used to create the checksum for the destination object.
 
 **Example request**
 {: token}
@@ -851,6 +890,15 @@ POST https://{bucket-name}.{endpoint}/{object-name}?uploads= # virtual host styl
 ```
 {: codeblock}
 
+### Optional headers
+{: #object-operations-post-multipart}
+
+Header | Type | Description
+--- | ---- | ------------
+|`x-amz-checksum-algorithm` | String |  Indicates which checksum algorithm will be used to create the checksum for the whole multiplart object.|
+|`x-amz-checksum-type` | String | Indicates which checksum type will be used to create the checksum for the whole multiplart object. |
+{: caption="Optional Headers" caption-side="bottom"}
+
 **Example request**
 {: token}
 
@@ -912,6 +960,21 @@ PUT https://{endpoint}/{bucket-name}/{object-name}?partNumber={sequential-intege
 PUT https://{bucket-name}.{endpoint}/{object-name}?partNumber={sequential-integer}&uploadId={uploadId}= # virtual host style
 ```
 {: codeblock}
+
+### Optional headers
+{: #object-operations-put-part}
+
+Header | Type | Description
+--- | ---- | ------------
+|`Content-MD5` | String | The Base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.|
+| `x-amz-checksum-crc32` | String | This header is the Base64 encoded, 32-bit CRC32 checksum of the object. |
+| `x-amz-checksum-crc32c` | String | This header is the Base64 encoded, 32-bit CRC32C checksum of the object.|
+| `x-amz-checksum-crc64nvme` | String | This header is the Base64 encoded, 64-bit CRC64NVME checksum of the object. The CRC64NVME checksum is always a full object checksum. |
+| `x-amz-checksum-sha1` | String | This header is the Base64 encoded, 160-bit SHA1 digest of the object. |
+| `x-amz-checksum-sha256` | String | This header is the Base64 encoded, 256-bit SHA256 digest of the object. |
+| `x-amz-sdk-checksum-algorithm` | String | Indicates the algorithm used to create the checksum for the object when using the SDK. |
+| `x-amz-trailer` | String | Indicates which checksum value header will be found in the trailer of the payload in order to verify object upload integrity.|
+{: caption="Optional Headers" caption-side="bottom"}
 
 **Example request**
 {: token}
@@ -1058,6 +1121,19 @@ POST https://{bucket-name}.{endpoint}/{object-name}?uploadId={uploadId}= # virtu
 ```
 {: codeblock}
 
+### Optional headers
+{: #object-operations-post-multipart}
+
+Header | Type | Description
+--- | ---- | ------------
+| `x-amz-checksum-crc32` | String | This header is the Base64 encoded, 32-bit CRC32 checksum of the object. |
+| `x-amz-checksum-crc32c` | String | This header is the Base64 encoded, 32-bit CRC32C checksum of the object.|
+| `x-amz-checksum-crc64nvme` | String | This header is the Base64 encoded, 64-bit CRC64NVME checksum of the object. The CRC64NVME checksum is always a full object checksum. |
+| `x-amz-checksum-sha1` | String | This header is the Base64 encoded, 160-bit SHA1 digest of the object. |
+| `x-amz-checksum-sha256` | String | This header is the Base64 encoded, 256-bit SHA256 digest of the object. |
+| `x-amz-checksum-type` | String | Indicates which checksum type will be used to create the checksum for the whole multiplart object. |
+{: caption="Optional Header" caption-side="top"}
+
 The body of the request must contain an XML block with the following schema:
 
 |Element|Type|Children|Ancestor|Constraint|
@@ -1199,7 +1275,7 @@ X-Clv-S3-Version: 2.5
 ## Temporarily restore an archived object
 {: #object-operations-archive-restore}
 
-A `POST` request that is issued to an object with query parameter `restore` to request temporary restoration of an archived object. A `Content-MD5` header is required as an integrity check for the payload.
+A `POST` request that is issued to an object with query parameter `restore` to request temporary restoration of an archived object. A `Content-MD5` header or a `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required as an integrity check for the payload.
 
 An archived object must be restored before downloading or modifying the object. The lifetime of the object must be specified after which the temporary copy of the object will be deleted.
 
@@ -1227,6 +1303,16 @@ RestoreRequest       | Container | Days, GlacierJobParameters | None            
 Days                 | Integer   | None                       | RestoreRequest       | Specified the lifetime of the temporarily restored object. The minimum number of days that a restored copy of the object can exist is 1. After the restore period has elapsed, temporary copy of the object will be removed.
 GlacierJobParameters | String    | Tier                       | RestoreRequest       | None
 Tier                 | String    | None                       | GlacierJobParameters | Optional, and if left blank will default to the value associated with the storage tier of the policy that was in place when the object was written. If this value is not left blank, it **must** be set to `Bulk` if the transition storage class for the bucket's lifecycle policy was set to `GLACIER`, and **must** be set to `Accelerated` if the transition storage class was set to `ACCELERATED`.
+
+| Header        | Type   | Description                                                                                                                                                 |
+| ------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Content-MD5` | String | The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit. |
+| `x-amz-checksum-crc32` | String | This header is the Base64 encoded, 32-bit CRC32 checksum of the object. |
+| `x-amz-checksum-crc32c` | String | This header is the Base64 encoded, 32-bit CRC32C checksum of the object.|
+| `x-amz-checksum-crc64nvme` | String | This header is the Base64 encoded, 64-bit CRC64NVME checksum of the object. The CRC64NVME checksum is always a full object checksum. |
+| `x-amz-checksum-sha1` | String | This header is the Base64 encoded, 160-bit SHA1 digest of the object. |
+| `x-amz-checksum-sha256` | String | This header is the Base64 encoded, 256-bit SHA256 digest of the object. |
+{: caption="Optional Headers" caption-side="top"}
 
 ```xml
 <RestoreRequest>

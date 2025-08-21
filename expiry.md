@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2024
-lastupdated: "2025-04-23"
+  years: 2017, 2025
+lastupdated: "2025-08-19"
 
 keywords: expiry, glacier, tier, s3, compatibility, api
 
@@ -261,10 +261,18 @@ Cloud IAM users must have the `Writer` role to add a lifecycle policy from a buc
 
 Classic Infrastructure Users must have `Owner` permissions on the bucket to add a lifecycle policy from a bucket.
 
-Header                    | Type   | Description
---------------------------|--------|----------------------------------------------------------------------------------------------------------------------
-`Content-MD5` | String | **Required**: The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.
-{: http}
+| Header        | Type   | Description                                                                                                                                                 |
+| ------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Content-MD5` | String | The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit. |
+| `x-amz-checksum-crc32` | String | This header is the Base64 encoded, 32-bit CRC32 checksum of the object. |
+| `x-amz-checksum-crc32c` | String | This header is the Base64 encoded, 32-bit CRC32C checksum of the object.|
+| `x-amz-checksum-crc64nvme` | String | This header is the Base64 encoded, 64-bit CRC64NVME checksum of the object. The CRC64NVME checksum is always a full object checksum. |
+| `x-amz-checksum-sha1` | String | This header is the Base64 encoded, 160-bit SHA1 digest of the object. |
+| `x-amz-checksum-sha256` | String | This header is the Base64 encoded, 256-bit SHA256 digest of the object. |
+| `x-amz-sdk-checksum-algorithm` | String | Indicates the algorithm used to create the checksum for the object when using the SDK. |
+{: caption="Optional Headers" caption-side="top"}
+
+A `Content-MD5` header or a `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required as an integrity check for the payload.
 
 The body of the request must contain an XML block with the following schema:
 {: http}
@@ -534,11 +542,6 @@ Cloud IAM users must have the `Reader` role to examine a lifecycle policy from a
 
 Classic Infrastructure Users must have `Read` permissions on the bucket to examine a lifecycle policy from a bucket.
 
-Header                    | Type   | Description
---------------------------|--------|----------------------------------------------------------------------------------------------------------------------
-`Content-MD5` | String | **Required**: The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.
-{: http}
-
 **Syntax**
 {: http}
 
@@ -618,7 +621,7 @@ print("Bucket lifecyle: {0}".format(response))
 {: codeblock}
 {: python}
 
-Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration. 
+Using the {{site.data.keyword.cos_full}} SDKs only requires calling the appropriate functions with the correct parameters and proper configuration.
 
 ```java
 package com.ibm.cloud;

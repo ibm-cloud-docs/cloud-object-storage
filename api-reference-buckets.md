@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2025
-lastupdated: "2025-08-14"
+lastupdated: "2025-08-19"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -934,8 +934,16 @@ An Object Lock configuration must include one rule.
 
 |Header                    | Type   | Description |
 |--------------------------|--------|-------------------------------------------------------------|
-|`Content-MD5` | String | **Required**: The Base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.|
-{: caption="Headers" caption-side="bottom"}
+|`Content-MD5` | String | The Base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.|
+| `x-amz-checksum-crc32` | String | This header is the Base64 encoded, 32-bit CRC32 checksum of the object. |
+| `x-amz-checksum-crc32c` | String | This header is the Base64 encoded, 32-bit CRC32C checksum of the object.|
+| `x-amz-checksum-crc64nvme` | String | This header is the Base64 encoded, 64-bit CRC64NVME checksum of the object. The CRC64NVME checksum is always a full object checksum. |
+| `x-amz-checksum-sha1` | String | This header is the Base64 encoded, 160-bit SHA1 digest of the object. |
+| `x-amz-checksum-sha256` | String | This header is the Base64 encoded, 256-bit SHA256 digest of the object. |
+| `x-amz-sdk-checksum-algorithm` | String | Indicates the algorithm used to create the checksum for the object when using the SDK. |
+{: caption=" Optional Headers" caption-side="bottom"}
+
+A `Content-MD5` header or a `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required as an integrity check for the payload.
 
 The body of the request must contain an XML block with the following schema:
 
@@ -1191,7 +1199,18 @@ The body of the request must contain an XML block with the following schema:
 | `AllowedMethod`     | String    | -                          | `CORSRule` | Valid method string |
 {: caption="Body of the request schema" caption-side="bottom"}
 
-The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. The following snippet shows one way to achieve the content for that particular header.
+| Header        | Type   | Description                                                                                                                                                 |
+| ------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Content-MD5` | String | The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit. |
+| `x-amz-checksum-crc32` | String | This header is the Base64 encoded, 32-bit CRC32 checksum of the object. |
+| `x-amz-checksum-crc32c` | String | This header is the Base64 encoded, 32-bit CRC32C checksum of the object.|
+| `x-amz-checksum-crc64nvme` | String | This header is the Base64 encoded, 64-bit CRC64NVME checksum of the object. The CRC64NVME checksum is always a full object checksum. |
+| `x-amz-checksum-sha1` | String | This header is the Base64 encoded, 160-bit SHA1 digest of the object. |
+| `x-amz-checksum-sha256` | String | This header is the Base64 encoded, 256-bit SHA256 digest of the object. |
+| `x-amz-sdk-checksum-algorithm` | String | Indicates the algorithm used to create the checksum for the object when using the SDK. |
+{: caption="Optional Headers" caption-side="top"}
+
+A `Content-MD5` header or a `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required as an integrity check for the payload. The following snippet shows one way to achieve the content for that particular header.
 
 ```sh
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
@@ -1363,7 +1382,7 @@ Content-Length: 161
 ## Create a bucket lifecycle configuration
 {: #compatibility-api-create-bucket-lifecycle}
 
-A `PUT` operation uses the lifecycle query parameter to set lifecycle settings for the bucket. A `Content-MD5` header is required as an integrity check for the payload.
+A `PUT` operation uses the lifecycle query parameter to set lifecycle settings for the bucket. A `Content-MD5` header or a `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required as an integrity check for the payload.
 
 
 
@@ -1398,6 +1417,17 @@ The body of the request must contain an XML block with the following schema:
 |`DaysAfterInitiation`   | Non-negative Integer | None                  | `AbortIncompleteMultipartUpload` | **Must** be a value greater than 0. |
 {: caption="Body of the request schema" caption-side="bottom"}
 
+| Header        | Type   | Description                                                                                                                                                 |
+| ------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Content-MD5` | String | The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit. |
+| `x-amz-checksum-crc32` | String | This header is the Base64 encoded, 32-bit CRC32 checksum of the object. |
+| `x-amz-checksum-crc32c` | String | This header is the Base64 encoded, 32-bit CRC32C checksum of the object.|
+| `x-amz-checksum-crc64nvme` | String | This header is the Base64 encoded, 64-bit CRC64NVME checksum of the object. The CRC64NVME checksum is always a full object checksum. |
+| `x-amz-checksum-sha1` | String | This header is the Base64 encoded, 160-bit SHA1 digest of the object. |
+| `x-amz-checksum-sha256` | String | This header is the Base64 encoded, 256-bit SHA256 digest of the object. |
+| `x-amz-sdk-checksum-algorithm` | String | Indicates the algorithm used to create the checksum for the object when using the SDK. |
+{: caption="Optional Header" caption-side="top"}
+
 {{site.data.keyword.cos_full}} IaaS (non-IAM) accounts are unable to set the transition storage class to `ACCELERATED`.
 {: note}
 
@@ -1417,7 +1447,7 @@ The body of the request must contain an XML block with the following schema:
 </LifecycleConfiguration>
 ```
 
-The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. The following snippet shows one way to achieve the content for that particular header.
+The following snippet shows one way to achieve the content for that particular header.
 
 ```sh
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
@@ -1489,7 +1519,7 @@ The server responds with `200 OK`.
 </LifecycleConfiguration>
 ```
 
-The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. The following snippet shows one way to achieve the content for that particular header.
+The following snippet shows one way to achieve the content for that particular header.
 
 ```sh
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
@@ -1684,8 +1714,16 @@ This implementation of the `PUT` operation uses the `lifecycle` query parameter 
 
 | Header       | Type   | Description |
 |--------------|--------|----------------------------------------------------------------------------------------------------------------------|
-|`Content-MD5` | String | **Required**: The Base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.|
-{: caption="Body of the request schema" caption-side="bottom"}
+|`Content-MD5` | String | The Base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.|
+| `x-amz-checksum-crc32` | String | This header is the Base64 encoded, 32-bit CRC32 checksum of the object. |
+| `x-amz-checksum-crc32c` | String | This header is the Base64 encoded, 32-bit CRC32C checksum of the object.|
+| `x-amz-checksum-crc64nvme` | String | This header is the Base64 encoded, 64-bit CRC64NVME checksum of the object. The CRC64NVME checksum is always a full object checksum. |
+| `x-amz-checksum-sha1` | String | This header is the Base64 encoded, 160-bit SHA1 digest of the object. |
+| `x-amz-checksum-sha256` | String | This header is the Base64 encoded, 256-bit SHA256 digest of the object. |
+| `x-amz-sdk-checksum-algorithm` | String | Indicates the algorithm used to create the checksum for the object when using the SDK. |
+{: caption="Optional Headers" caption-side="bottom"}
+
+A `Content-MD5` header or a `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required as an integrity check for the payload.
 
 The following snippet shows one way to achieve the content for that particular header.
 
@@ -1821,7 +1859,7 @@ Find out more about Immutable Object Storage in the [documentation](/docs/cloud-
 
 The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are a minimum of 0 days and a maximum of 365243 days (1000 years).
 
-This operation doesn't use extra query parameters. The required `Content-MD5` header needs to be the binary representation of a base64-encoded MD5 hash. The following snippet shows one way to achieve the content for that particular header.
+This operation doesn't use extra query parameters. The `Content-MD5` header or the `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required as an integrity check for the payload. The following snippet shows one way to achieve the content for that particular header.
 
 Policies are enforced until the end of a retention period, and cannot be altered until the retention period has expired. While {{site.data.keyword.cos_full}} uses the S3 API for most operations, the APIs that are used for configuring retention policies are not the same as the S3 API, although some terminology might be shared. Read this documentation carefully to prevent any users in your organization from creating objects that can’t be deleted, even by IBM Cloud administrators.
 {: important}
@@ -1852,6 +1890,17 @@ The body of the request must contain an XML block with the following schema:
 |`DefaultRetention`       | Container | `Days`              | `ProtectionConfiguration`                                  | -                       |
 |`Days`                   | Integer   | -                   | `MinimumRetention`, `MaximumRetention`, `DefaultRetention` | Valid retention integer |
 {: caption="Body of the request schema" caption-side="bottom"}
+
+| Header        | Type   | Description                                                                                                                                                 |
+| ------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Content-MD5` | String | The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit. |
+| `x-amz-checksum-crc32` | String | This header is the Base64 encoded, 32-bit CRC32 checksum of the object. |
+| `x-amz-checksum-crc32c` | String | This header is the Base64 encoded, 32-bit CRC32C checksum of the object.|
+| `x-amz-checksum-crc64nvme` | String | This header is the Base64 encoded, 64-bit CRC64NVME checksum of the object. The CRC64NVME checksum is always a full object checksum. |
+| `x-amz-checksum-sha1` | String | This header is the Base64 encoded, 160-bit SHA1 digest of the object. |
+| `x-amz-checksum-sha256` | String | This header is the Base64 encoded, 256-bit SHA256 digest of the object. |
+| `x-amz-sdk-checksum-algorithm` | String | Indicates the algorithm used to create the checksum for the object when using the SDK. |
+{: caption="Optional Headers" caption-side="top"}
 
 **Example request**
 {: token}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2025
-lastupdated: "2025-05-07"
+lastupdated: "2025-08-19"
 
 keywords: archive, accelerated, access, glacier
 
@@ -44,9 +44,7 @@ When creating or modifying an archive policy for a bucket, consider the followin
 * An existing archive policy can be modified or disabled.
 * A newly added or modified archive policy applies to new objects uploaded and does not affect existing objects.
 
-Create a bucket in the console after you've logged in, and you can configure your archive policy using the fields shown in Figure 1.
-
-![Create an archive policy](images/bucket-create-ui-archive-rule.png){: caption="Create an archive policy"}
+Create a bucket in the console after you've logged in, and configure your archive policy.
 
 To immediately archive new objects uploaded to a bucket, enter 0 days on the archive policy.
 {: tip}
@@ -116,10 +114,18 @@ Classic Infrastructure Users must have Owner Permissions and be able to create b
 This operation does not make use of additional operation specific query parameters.
 {: http}
 
-Header                    | Type   | Description
---------------------------|--------|----------------------------------------------------------------------------------------------------------------------
-`Content-MD5` | string | **Required**: The base64 encoded 128-bit MD5 hash of the payload, used as an integrity check to ensure the payload was not altered in transit.
-{: http}
+| Header        | Type   | Description                                                                                                                                                 |
+| ------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Content-MD5` | String | The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit. |
+| `x-amz-checksum-crc32` | String | This header is the Base64 encoded, 32-bit CRC32 checksum of the object. |
+| `x-amz-checksum-crc32c` | String | This header is the Base64 encoded, 32-bit CRC32C checksum of the object.|
+| `x-amz-checksum-crc64nvme` | String | This header is the Base64 encoded, 64-bit CRC64NVME checksum of the object. The CRC64NVME checksum is always a full object checksum. |
+| `x-amz-checksum-sha1` | String | This header is the Base64 encoded, 160-bit SHA1 digest of the object. |
+| `x-amz-checksum-sha256` | String | This header is the Base64 encoded, 256-bit SHA256 digest of the object. |
+| `x-amz-sdk-checksum-algorithm` | String | Indicates the algorithm used to create the checksum for the object when using the SDK. |
+{: caption="Optional Headers" caption-side="top"}
+
+A `Content-MD5` header or a `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required as an integrity check for the payload.
 
 The body of the request must contain an XML block with the following schema:
 {: http}
@@ -288,7 +294,7 @@ Method |  Description
 ### Retrieve a bucket lifecycle configuration
 {: #archive-api-retrieve}
 
-This implementation of the `GET` operation uses the `lifecycle` query parameter to retrieve the lifecycle settings for the bucket. 
+This implementation of the `GET` operation uses the `lifecycle` query parameter to retrieve the lifecycle settings for the bucket.
 
 Cloud IAM users must have at a minimum the `Reader` role to retrieve a lifecycle for a bucket.
 
@@ -451,7 +457,7 @@ public DeleteBucketLifecycleConfigurationRequest(String bucketName)
 
 This implementation of the `POST` operation uses the `restore` query parameter to request temporary restoration of an archived object. The user must first restore an archived object before downloading or modifying the object. When restoring an object, the user must specify a period after which the temporary copy of the object will be deleted. The object maintains the storage class of the bucket.
 
-There can be a delay of up to 12 hours before the restored copy is available for access. A `HEAD` request can check if the restored copy is available. 
+There can be a delay of up to 12 hours before the restored copy is available for access. A `HEAD` request can check if the restored copy is available.
 
 To permanently restore the object, the user must copy the restored object to a bucket that does not have an active lifecycle configuration.
 
@@ -461,10 +467,16 @@ Classic Infrastructure users must have at a minimum `Write` permissions on the b
 
 This operation does not make use of additional operation specific query parameters.
 
-Header                    | Type   | Description
---------------------------|--------|----------------------------------------------------------------------------------------------------------------------
-`Content-MD5` | string | **Required**: The base64 encoded 128-bit MD5 hash of the payload, used as an integrity check to ensure the payload was not altered in transit.
-{: http}
+| Header        | Type   | Description                                                                                                                                                 |
+| ------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Content-MD5` | String | The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit. |
+| `x-amz-checksum-crc32` | String | This header is the Base64 encoded, 32-bit CRC32 checksum of the object. |
+| `x-amz-checksum-crc32c` | String | This header is the Base64 encoded, 32-bit CRC32C checksum of the object.|
+| `x-amz-checksum-crc64nvme` | String | This header is the Base64 encoded, 64-bit CRC64NVME checksum of the object. The CRC64NVME checksum is always a full object checksum. |
+| `x-amz-checksum-sha1` | String | This header is the Base64 encoded, 160-bit SHA1 digest of the object. |
+| `x-amz-checksum-sha256` | String | This header is the Base64 encoded, 256-bit SHA256 digest of the object. |
+| `x-amz-sdk-checksum-algorithm` | String | Indicates the algorithm used to create the checksum for the object when using the SDK. |
+{: caption="Optional Headers" caption-side="top"}
 
 The body of the request must contain an XML block with the following schema:
 

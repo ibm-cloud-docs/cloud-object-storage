@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2022, 2024
-lastupdated: "2024-06-25"
+  years: 2022, 2025
+lastupdated: "2025-08-19"
 
 keywords: data, replication, loss prevention, iam, activity tracker, disaster recovery, versioning, key protect, accounts, buckets
 
@@ -323,10 +323,17 @@ A replication configuration must include at least one rule, and can contain a ma
 
 To specify a subset of the objects in the source bucket to apply a replication rule to, add the `Filter` element as a child of the `Rule` element. You can filter objects based on an object key prefix, one or more object tags, or both. When you add the `Filter` element in the configuration, you must also add the following elements: `DeleteMarkerReplication`, `Status`, and `Priority`.
 
-Header                    | Type   | Description
---------------------------|--------|----------------------------------------------------------------------------------------------------------------------
-`Content-MD5` | String | **Required**: The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.
+| Header        | Type   | Description                                                                                                                                                 |
+| ------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Content-MD5` | String | The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit. |
+| `x-amz-checksum-crc32` | String | This header is the Base64 encoded, 32-bit CRC32 checksum of the object. |
+| `x-amz-checksum-crc32c` | String | This header is the Base64 encoded, 32-bit CRC32C checksum of the object.|
+| `x-amz-checksum-crc64nvme` | String | This header is the Base64 encoded, 64-bit CRC64NVME checksum of the object. The CRC64NVME checksum is always a full object checksum. |
+| `x-amz-checksum-sha1` | String | This header is the Base64 encoded, 160-bit SHA1 digest of the object. |
+| `x-amz-checksum-sha256` | String | This header is the Base64 encoded, 256-bit SHA256 digest of the object. |
+{: caption="Optional Headers" caption-side="top"}
 
+A `Content-MD5` header or a `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required as an integrity check for the payload.
 The body of the request must contain an XML block with the following schema:
 
 | Element                    | Type      | Children                                                                       | Ancestor                   | Constraint                                                                                                                                                                                                                                                                                                                                                                                        |
@@ -546,13 +553,13 @@ response = cosClient.put_bucket_versioning(
 )
 ```
 
-Listing the versions of an object using the same client: 
+Listing the versions of an object using the same client:
 
 ```python
 resp = cosClient.list_object_versions(Prefix='some-prefix', Bucket=BUCKET)
 ```
 
-Note that the Python APIs are very flexible, and there are many different ways to accomplish the same task.  
+Note that the Python APIs are very flexible, and there are many different ways to accomplish the same task.
 
 ### Node.js
 {: #versioning-sdks-node}
