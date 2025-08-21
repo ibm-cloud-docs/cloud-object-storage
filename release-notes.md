@@ -26,7 +26,7 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 {: #cloud-object-storage-aug212025}
 {: release-note}
 
-New feature!
+Checksum update!
 :   Additional Checksum Algorithms for AWS S3
 API methods have been updated to accept new checksums for content verification with parity to AWS S3. There is added support for additional checksum algorithms: SHA-1, SHA-256, CRC-32, CRC-32C, and CRC-64/NVME. The checksum value may be provided as a header, or as a trailer to the payload when using chunked encoding. Such algorithms and trailer format are now used by the latest AWS SDK by default. These checksums may be used to verify not only object upload requests, but also requests involving XML content bodies. There will be a default checksum calculation performed for every object upload, if one of the new checksums is not specifically requested to be used. In addition, there is now an option to make use of a full object type checksum for multipart uploads, as well as composite. The additional checksums may also be used to validate request types that require content validation. Some of these requests, which enforce content validation, are related to features such as Object Lock or WORM, Lifecycle, or batch delete (multi-delete).
 
