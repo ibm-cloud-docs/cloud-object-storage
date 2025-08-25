@@ -18,6 +18,8 @@ subcollection: cloud-object-storage
 Learn about the management responsibilities and terms and conditions that you have when you use {{site.data.keyword.cos_full}}. For overall terms of use, see [Cloud Services terms](/docs/overview?topic=overview-terms).
 {: shortdesc}
 
+
+
 ## Operational responsibilities
 {: #responsibilities-operational}
 
