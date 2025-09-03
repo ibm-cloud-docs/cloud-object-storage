@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024, 2025
-lastupdated: "2025-07-01"
+lastupdated: "2025-08-25"
 
 keywords: provision, create, service
 
@@ -17,6 +17,8 @@ subcollection: cloud-object-storage
 
 Getting data into your instance of {{site.data.keyword.cos_full}} requires just a few steps before you provision your new storage.
 {: shortdesc}
+
+
 
 ## About {{site.data.keyword.cos_full_notm}} plans
 {: #provision-plans}

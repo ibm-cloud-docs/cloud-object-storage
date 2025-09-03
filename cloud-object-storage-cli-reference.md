@@ -3,7 +3,7 @@
 copyright:
 
   years: 2017, 2024, 2025
-lastupdated: "2025-08-21"
+lastupdated: "2025-09-03"
 
 
 keywords: cli, command line reference, object storage
@@ -874,11 +874,11 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 	{
   	"CORSRules": [
     	{
-      	"AllowedHeaders": ["string", ...],
-      	"AllowedMethods": ["string", ...],
-      	"AllowedOrigins": ["string", ...],
-      	"ExposeHeaders": ["string", ...],
-      	"MaxAgeSeconds": integer
+      	"AllowedHeaders": ["*"],
+      	"AllowedMethods": ["PUT", "GET", "DELETE"],
+      	"AllowedOrigins": ["http://www.example.com"],
+      	"ExposeHeaders": ["ExposeHeader7","ExposeHeader8"],
+      	"MaxAgeSeconds": 75
     	}
     	...
   	]
@@ -1294,7 +1294,7 @@ Setup for configuring a replicated bucket.
 {: #ic-config-put-bucket-replication}
 
 * **Action:** Set the replication configuration on a bucket.
-* **Usage:** `bucket-replication-put --bucket BUCKET_NAME [--replication-configuration STRUCTURE] [--region REGION] [--output FORMAT]`
+* **Usage:** `bucket-replication-put --bucket BUCKET_NAME --replication-configuration STRUCTURE [--region REGION] [--output FORMAT]`
 * **Parameters to provide:**
  	* The name of the bucket.
 		* Flag: `--bucket BUCKET_NAME`
@@ -1302,6 +1302,8 @@ Setup for configuring a replicated bucket.
 		* Flag: `--region REGION`
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
+	* A STRUCTURE using JSON syntax.
+		* Flag: `--replication-configuration STRUCTURE`
 
 			```sh
 			{
