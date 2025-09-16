@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2025
-lastupdated: "2025-08-19"
+lastupdated: "2025-09-16"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -593,6 +593,8 @@ Content-Length: 814
     <Key>drone-bee</Key>
     <LastModified>2016-08-25T17:38:38.549Z</LastModified>
     <ETag>"0cbc6611f5540bd0809a388dc95a615b"</ETag>
+    <ChecksumAlgorithm>CRC64NVME</ChecksumAlgorithm>
+    <ChecksumType>FULL_OBJECT</ChecksumType>
     <Size>4</Size>
     <StorageClass>STANDARD</StorageClass>
   </Contents>
@@ -600,6 +602,8 @@ Content-Length: 814
     <Key>soldier-bee</Key>
     <LastModified>2016-08-25T17:49:06.006Z</LastModified>
     <ETag>"37d4c94839ee181a2224d6242176c4b5"</ETag>
+    <ChecksumAlgorithm>CRC64NVME</ChecksumAlgorithm>
+    <ChecksumType>FULL_OBJECT</ChecksumType>
     <Size>11</Size>
     <StorageClass>STANDARD</StorageClass>
   </Contents>
@@ -607,6 +611,8 @@ Content-Length: 814
     <Key>worker-bee</Key>
     <LastModified>2016-08-25T17:46:53.288Z</LastModified>
     <ETag>"d34d8aada2996fc42e6948b926513907"</ETag>
+    <ChecksumAlgorithm>CRC64NVME</ChecksumAlgorithm>
+    <ChecksumType>FULL_OBJECT</ChecksumType>
     <Size>467</Size>
     <StorageClass>STANDARD</StorageClass>
   </Contents>
@@ -666,6 +672,8 @@ Content-Length: 598
     <Key>drone-bee</Key>
     <LastModified>2016-08-25T17:38:38.549Z</LastModified>
     <ETag>"0cbc6611f5540bd0809a388dc95a615b"</ETag>
+    <ChecksumAlgorithm>CRC64NVME</ChecksumAlgorithm>
+    <ChecksumType>FULL_OBJECT</ChecksumType>
     <Size>4</Size>
     <StorageClass>STANDARD</StorageClass>
   </Contents>
@@ -726,6 +734,8 @@ Content-Length: 604
     <Key>soldier-bee</Key>
     <LastModified>2016-08-25T17:49:06.006Z</LastModified>
     <ETag>"37d4c94839ee181a2224d6242176c4b5"</ETag>
+    <ChecksumAlgorithm>CRC64NVME</ChecksumAlgorithm>
+    <ChecksumType>FULL_OBJECT</ChecksumType>
     <Size>11</Size>
     <StorageClass>STANDARD</StorageClass>
   </Contents>
@@ -816,6 +826,8 @@ Content-Length: 909
     <Key>drone-bee</Key>
     <LastModified>2016-08-25T17:38:38.549Z</LastModified>
     <ETag>"0cbc6611f5540bd0809a388dc95a615b"</ETag>
+    <ChecksumAlgorithm>CRC64NVME</ChecksumAlgorithm>
+    <ChecksumType>FULL_OBJECT</ChecksumType>
     <Size>4</Size>
     <Owner>
       <ID>{account-id}</ID>
@@ -827,6 +839,8 @@ Content-Length: 909
     <Key>soldier-bee</Key>
     <LastModified>2016-08-25T17:49:06.006Z</LastModified>
     <ETag>"37d4c94839ee181a2224d6242176c4b5"</ETag>
+    <ChecksumAlgorithm>CRC64NVME</ChecksumAlgorithm>
+    <ChecksumType>FULL_OBJECT</ChecksumType>
     <Size>11</Size>
     <Owner>
       <ID>{account-id}</ID>
@@ -838,6 +852,8 @@ Content-Length: 909
     <Key>worker-bee</Key>
     <LastModified>2016-08-25T17:46:53.288Z</LastModified>
     <ETag>"d34d8aada2996fc42e6948b926513907"</ETag>
+    <ChecksumAlgorithm>CRC64NVME</ChecksumAlgorithm>
+    <ChecksumType>FULL_OBJECT</ChecksumType>
     <Size>467</Size>
     <Owner>
       <ID>{account-id}</ID>
@@ -1210,7 +1226,7 @@ The body of the request must contain an XML block with the following schema:
 | `x-amz-sdk-checksum-algorithm` | String | Indicates the algorithm used to create the checksum for the object when using the SDK. |
 {: caption="Optional Headers" caption-side="top"}
 
-A `Content-MD5` header or a `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required as an integrity check for the payload. The following snippet shows one way to achieve the content for that particular header.
+A `Content-MD5` header or a `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required as an integrity check for the payload. The following snippet shows one way to achieve the content for the `Content-MD5` header, which is the binary representation of a base64-encoded MD5 hash.
 
 ```sh
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
@@ -1383,6 +1399,8 @@ Content-Length: 161
 {: #compatibility-api-create-bucket-lifecycle}
 
 A `PUT` operation uses the lifecycle query parameter to set lifecycle settings for the bucket. A `Content-MD5` header or a `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required as an integrity check for the payload.
+
+The following snippet shows one way to achieve the content for the `Content-MD5` header, which is the binary representation of a base64-encoded MD5 hash.
 
 
 
@@ -1725,7 +1743,7 @@ This implementation of the `PUT` operation uses the `lifecycle` query parameter 
 
 A `Content-MD5` header or a `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required as an integrity check for the payload.
 
-The following snippet shows one way to achieve the content for that particular header.
+The following snippet shows one way to achieve the content for the `Content-MD5` header, which is the binary representation of a base64-encoded MD5 hash.
 
 ```sh
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
@@ -1859,7 +1877,7 @@ Find out more about Immutable Object Storage in the [documentation](/docs/cloud-
 
 The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are a minimum of 0 days and a maximum of 365243 days (1000 years).
 
-This operation doesn't use extra query parameters. The `Content-MD5` header or the `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required as an integrity check for the payload. The following snippet shows one way to achieve the content for that particular header.
+This operation doesn't use extra query parameters. The `Content-MD5` header or the `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required as an integrity check for the payload. The following snippet shows one way to achieve the content for the `Content-MD5` header, which is the binary representation of a base64-encoded MD5 hash.
 
 Policies are enforced until the end of a retention period, and cannot be altered until the retention period has expired. While {{site.data.keyword.cos_full}} uses the S3 API for most operations, the APIs that are used for configuring retention policies are not the same as the S3 API, although some terminology might be shared. Read this documentation carefully to prevent any users in your organization from creating objects that can’t be deleted, even by IBM Cloud administrators.
 {: important}
