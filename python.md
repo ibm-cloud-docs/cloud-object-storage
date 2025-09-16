@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2025
-lastupdated: "2025-05-09"
+lastupdated: "2025-09-12"
 
 keywords: object storage, python, sdk, aspera, apache, asperatransfermanager
 
@@ -602,6 +602,453 @@ def get_bucket_contents_v2(bucket_name, max_keys):
 Methods
 
 * [`list_objects_v2`](https://ibm.github.io/ibm-cos-sdk-python/reference/services/s3.html#S3.Client.list_objects_v2){: external}
+
+### Creating a Backup Policy
+{: #python-examples-create-backup-policy}
+
+```python
+# Config values
+api_key = "<API_KEY>"
+vault_crn = "<SERVICE_INSTANCE_ID>"
+source_bucket_name = "<BACKUP_VAULT_NAME>"
+policy_name = "<POLICY_NAME>"
+
+# Authenticator and client setup
+authenticator = IAMAuthenticator(apikey=api_key)
+rc_client = ResourceConfigurationV1(authenticator=authenticator)
+
+# Create policy
+create_backup_policy = rc_client.create_backup_policy(
+        bucket=source_bucket_name,
+        policy_name=policy_name,
+        target_backup_vault_crn=vault_crn,
+        backup_type="continuous",
+        initial_retention={"delete_after_days": 1}
+    )
+
+# Print response
+print(f" Policy created: { create_backup_policy }")
+
+```
+{: codeblock}
+{: python}
+
+
+
+### Listing a Backup Policy
+{: #python-examples-list-backup-policy}
+
+```python
+# Config values
+api_key = "<API_KEY>"
+source_bucket_name = "<BACKUP_VAULT_NAME>"
+
+# Authenticator and client setup
+authenticator = IAMAuthenticator(apikey=api_key)
+rc_client = ResourceConfigurationV1(authenticator=authenticator)
+
+# List all backup policies
+list_response = rc_client.list_backup_policies(bucket=source_bucket_name)
+
+print("\nList of backup policies:")
+for policy in list_response.result.get("backup_policies", []):
+    print(policy)
+
+```
+{: codeblock}
+{: python}
+
+
+
+### Get a Backup Policy
+{: #python-examples-get-backup-policy}
+
+```python
+# Config
+api_key = "<API_KEY>"
+source_bucket_name = "<SOURCE_BUCKET_NAME>"
+backup_vault_crn = "<BACKUP_VAULT_CRN>"
+policy_name = "<POLICY_NAME>"
+
+# Setup authenticator and client
+authenticator = IAMAuthenticator(apikey=api_key)
+rc_client = ResourceConfigurationV1(authenticator=authenticator)
+
+# Create backup policy
+create_backup_policy_response = rc_client.create_backup_policy(
+    bucket=source_bucket_name,
+    policy_name=policy_name,
+    target_backup_vault_crn=backup_vault_crn,
+    backup_type="continuous",
+    initial_retention={"delete_after_days": 1}
+)
+
+# Extract policy ID
+policy_id = create_backup_policy_response.result.get("policy_id")
+
+get_backup_policy_response = rc_client.get_backup_policy(
+    bucket=source_bucket_name,
+    policy_id=policy_id
+)
+
+print("\nFetched Backup Policy Details:")
+print(get_backup_policy_response.result)
+
+```
+{: codeblock}
+{: python}
+
+
+
+### Delete a Backup Policy
+{: #python-examples-delete-backup-policy}
+
+```python
+# Config
+api_key = "<API_KEY>"
+source_bucket_name = "<SOURCE_BUCKET_NAME>"
+policy_id = "<POLICY_ID>"
+
+# Setup authenticator and client
+authenticator = IAMAuthenticator(apikey=api_key)
+rc_client = ResourceConfigurationV1(authenticator=authenticator)
+
+# Delete the backup policy
+delete_backup_policy_response = rc_client.delete_backup_policy(
+    bucket=source_bucket_name,
+    policy_id=policy_id
+)
+
+print(f"Backup policy '{policy_id}' deleted successfully.")
+
+```
+{: codeblock}
+{: python}
+
+
+
+### Creating a Backup Vault
+{: #python-examples-create-backup-vault}
+
+```python
+# Config
+api_key = "<API_KEY>"
+service_instance_id = "<SERVICE_INSTANCE_ID>"
+backup_vault_name = "<BACKUP_VAULT_NAME>"
+region = "<REGION>"
+
+# Setup authenticator and client
+authenticator = IAMAuthenticator(apikey=api_key)
+rc_client = ResourceConfigurationV1(authenticator=authenticator)
+
+# Create a backup vault
+create_backup_vault_response = rc_client.create_backup_vault(
+    service_instance_id=service_instance_id,
+    backup_vault_name=backup_vault_name,
+    region=region
+)
+
+# Output result
+print("Backup vault created:")
+print(create_backup_vault_response.result)
+
+```
+{: codeblock}
+{: python}
+
+
+
+### Listing Backup Vaults
+{: #python-examples-list-backup-vault}
+
+```python
+# Config
+api_key = "<API_KEY>"
+service_instance_id = "<SERVICE_INSTANCE_ID>"
+
+# Setup authenticator and client
+authenticator = IAMAuthenticator(apikey=api_key)
+rc_client = ResourceConfigurationV1(authenticator=authenticator)
+
+# List backup vaults
+list_backup_vaults_response = rc_client.list_backup_vaults(
+    service_instance_id=service_instance_id
+)
+
+print("List of backup vaults:")
+print(list_backup_vaults_response.result)
+
+```
+{: codeblock}
+{: python}
+
+
+
+### Get Backup Vaults
+{: #python-examples-get-backup-vault}
+
+```python
+# Config
+api_key = "<API_KEY>"
+backup_vault_name = "<BACKUP_VAULT_NAME>"
+
+# Setup authenticator and client
+authenticator = IAMAuthenticator(apikey=api_key)
+rc_client = ResourceConfigurationV1(authenticator=authenticator)
+
+# Get backup vault
+get_backup_vault = rc_client.get_backup_vault(
+    backup_vault_name=backup_vault_name
+)
+
+# Output result
+print("Backup vault details:")
+print(get_backup_vault.result)
+
+```
+{: codeblock}
+{: python}
+
+
+
+### Update Backup Vaults
+{: #python-examples-patch-backup-vault}
+
+```python
+# Config
+api_key = "<API_KEY>"
+backup_vault_name = "<BACKUP_VAULT_NAME>"
+
+# Setup authenticator and client
+authenticator = IAMAuthenticator(apikey=api_key)
+rc_client = ResourceConfigurationV1(authenticator=authenticator)
+
+# Update backup vault settings (disable activity tracking and metrics monitoring)
+backup_vault_patch = {
+    "activity_tracking": {"management_events": True},
+    "metrics_monitoring": {"usage_metrics_enabled": True},
+}
+
+update_backup_vault_response = rc_client.update_backup_vault(
+    backup_vault_name=backup_vault_name,
+    backup_vault_patch=backup_vault_patch
+)
+
+# Output result
+print("Backup vault updated successfully.")
+print(update_backup_vault_response)
+
+```
+{: codeblock}
+{: python}
+
+
+
+### Delete a Backup Vault
+{: #python-examples-delete-backup-vault}
+
+```python
+# Config
+api_key = "<API_KEY>"
+backup_vault_name = "<BACKUP_VAULT_NAME>"
+
+# Setup authenticator and client
+authenticator = IAMAuthenticator(apikey=api_key)
+rc_client = ResourceConfigurationV1(authenticator=authenticator)
+
+# Delete the backup vault
+delete_vault_response = rc_client.delete_backup_vault(
+    backup_vault_name=backup_vault_name
+)
+
+# Output result
+print(f"Successfully deleted backup vault '{delete_vault_response}'.")
+
+```
+{: codeblock}
+{: python}
+
+
+
+### Listing Recovery Ranges
+{: #python-examples-list-recovery-range}
+
+```python
+# Config
+api_key = "<API_KEY>"
+backup_vault_name = "<BACKUP_VAULT_NAME>"
+
+# Setup authenticator and client
+authenticator = IAMAuthenticator(apikey=api_key)
+rc_client = ResourceConfigurationV1(authenticator=authenticator)
+
+# List recovery ranges
+recovery_ranges_response = rc_client.list_recovery_ranges(
+    backup_vault_name=backup_vault_name
+)
+
+# Output recovery range results
+print("Recovery Ranges:")
+print(recovery_ranges_response.result)
+
+```
+{: codeblock}
+{: python}
+
+
+
+### Get Recovery Range
+{: #python-examples-get-recovery-range}
+
+```python
+# Config
+api_key = "<API_KEY>"
+backup_vault_name = "<BACKUP_VAULT_NAME>"
+recovery_range_id = "<RECOVERY_RANGE_ID>"
+
+# Setup authenticator and client
+authenticator = IAMAuthenticator(apikey=api_key)
+rc_client = ResourceConfigurationV1(authenticator=authenticator)
+
+get_recovery_range_response = rc_client.get_source_resource_recovery_range(
+    backup_vault_name=backup_vault_name,
+    recovery_range_id=recovery_range_id
+)
+print("Recovery Range Details:")
+print(get_recovery_range_response.result)
+
+```
+{: codeblock}
+{: python}
+
+
+
+### Update Recovery Range
+{: #python-examples-update-recovery-range}
+
+```python
+# Config
+api_key = "<API_KEY>"
+backup_vault_name = "<BACKUP_VAULT_NAME>"
+recovery_range_id = "<RECOVERY_RANGE_ID>"
+
+# Setup authenticator and client
+authenticator = IAMAuthenticator(apikey=api_key)
+rc_client = ResourceConfigurationV1(authenticator=authenticator)
+
+recovery_range_patch_model = {}
+recovery_range_patch_model['retention'] = {"delete_after_days": 99}
+
+patch_response = rc_client.patch_source_resource_recovery_range(
+    backup_vault_name=backup_vault_name,
+    recovery_range_id=recovery_range_id,
+    recovery_range_patch=recovery_range_patch_model
+)
+print("Patch Response Details:")
+print(patch_response)
+
+```
+{: codeblock}
+{: python}
+
+
+
+### Initiating a Restore
+{: #python-examples-initiate-restore}
+
+```python
+# Configuration
+api_key = "<API_KEY>"
+backup_vault_name = "<BACKUP_VAULT_NAME>"
+target_bucket_crn = "<TARGET_BUCKET_CRN>"
+recovery_range_id = "<RECOVERY_RANGE_ID>"
+restore_point_in_time = "<RESTORE_POINT_IN_TIME>"
+
+# Setup authenticator and clients
+authenticator = IAMAuthenticator(apikey=api_key)
+rc_client = ResourceConfigurationV1(authenticator=authenticator)
+
+# Initiate restore
+create_restore = rc_client.create_restore(
+    backup_vault_name=backup_vault_name,
+    recovery_range_id=recovery_range_id,
+    restore_type="in_place",
+    restore_point_in_time=restore_point_in_time,
+    target_resource_crn=target_bucket_crn
+)
+print(f"Restore initiated : {create_restore}")
+
+```
+{: codeblock}
+{: python}
+
+
+
+### Listing Restore
+{: #python-examples-list-restore}
+
+```python
+# Config
+api_key = "<API_KEY>"
+backup_vault_name = "<BACKUP_VAULT_NAME>"
+
+# Setup authenticator and clients
+authenticator = IAMAuthenticator(apikey=api_key)
+rc_client = ResourceConfigurationV1(authenticator=authenticator)
+
+# List restore operations
+get_store = rc_client.get_restore(
+    backup_vault_name=backup_vault_name)
+
+print("Restore response:")
+print(get_store.result)
+
+```
+{: codeblock}
+{: python}
+
+
+
+### Get Restore Details
+{: #python-examples-get-restore}
+
+```python
+# Config
+api_key = "<API_KEY>"
+source_bucket_name = "<SOURCE_BUCKET_NAME>"
+backup_vault_crn = "<BACKUP_VAULT_CRN>"
+backup_vault_name = "<BACKUP_VAULT_NAME>"
+target_bucket_crn = "<TARGET_BUCKET_CRN>"
+recovery_range_id = "<RECOVERY_RANGE_ID>"
+restore_point_in_time = "<RESTORE_POINT_IN_TIME>"
+
+# Setup authenticator and clients
+authenticator = IAMAuthenticator(apikey=api_key)
+rc_client = ResourceConfigurationV1(authenticator=authenticator)
+
+# Create restore
+create_restore = rc_client.create_restore(
+    backup_vault_name=backup_vault_name,
+    recovery_range_id=recovery_range_id,
+    restore_type="in_place",
+    restore_point_in_time=restore_point_in_time,
+    target_resource_crn=target_bucket_crn
+)
+
+restore_id = create_restore.result["restore_id"]
+
+# List restore operations
+get_store = rc_client.get_restore(
+    backup_vault_name=backup_vault_name, restore_id=restore_id)
+
+print("Restore response:")
+print(get_store.result)
+
+```
+{: codeblock}
+{: python}
+
+
 
 ## Using Key Protect
 {: #python-examples-kp}
