@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2025
-lastupdated: "2025-08-19"
+lastupdated: "2025-09-16"
 
 keywords: rest, s3, compatibility, api, objects
 
@@ -132,6 +132,8 @@ Server: Cleversafe/3.9.0.121
 X-Clv-S3-Version: 2.5
 x-amz-request-id: 9f0ca49a-ae13-4d2d-925b-117b157cf5c3
 ETag: "3ca744fa96cb95e92081708887f63de5"
+x-amz-checksum-crc64nvme: T1r5SUWc07k=
+x-amz-checksum-type: FULL_OBJECT
 Content-Length: 0
 ```
 {: codeblock}
@@ -195,6 +197,8 @@ Server: Cleversafe/3.9.0.121
 X-Clv-S3-Version: 2.5
 x-amz-request-id: da214d69-1999-4461-a130-81ba33c484a6
 ETag: "37d4c94839ee181a2224d6242176c4b5"
+x-amz-checksum-crc64nvme: T1r5SUWc07k=
+x-amz-checksum-type: FULL_OBJECT
 Content-Type: text/plain; charset=UTF-8
 Last-Modified: Thu, 25 Aug 2016 17:49:06 GMT
 Content-Length: 11
