@@ -214,6 +214,7 @@ toc:
                 - faq-bucket.md
                 - bvm-faq.md
                 - faq-data.md
+          - ts-access-error-cos.md
           - support.md
           - topicgroup:
               label: Billing and pricing
