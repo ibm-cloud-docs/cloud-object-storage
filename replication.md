@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2025
-lastupdated: "2025-08-19"
+lastupdated: "2025-10-27"
 
 keywords: data, replication, loss prevention, iam, activity tracker, disaster recovery, versioning, key protect, accounts, buckets
 
@@ -322,6 +322,9 @@ The replication configuration is provided as XML in the body of the request.  Ne
 A replication configuration must include at least one rule, and can contain a maximum of 1,000. Each rule identifies a subset of objects to replicate by filtering the objects in the source bucket. To choose additional subsets of objects to replicate, add a rule for each subset.
 
 To specify a subset of the objects in the source bucket to apply a replication rule to, add the `Filter` element as a child of the `Rule` element. You can filter objects based on an object key prefix, one or more object tags, or both. When you add the `Filter` element in the configuration, you must also add the following elements: `DeleteMarkerReplication`, `Status`, and `Priority`.
+
+#### Optional Headers
+{: #optional-headers}
 
 | Header        | Type   | Description                                                                                                                                                 |
 | ------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |

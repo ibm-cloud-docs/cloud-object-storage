@@ -10,218 +10,211 @@ toc:
     path: cloud-object-storage
     label: Object Storage
   entries:
-    - navgroup:
-        id: learn
-        topics:
-          - getting-started.md
-          - about-cos.md
-          - topicgroup:
-              label: Getting organized
-              topics:
-                - administrators.md
-                - developers.md
-          - topicgroup:
-              label: Optimizing performance
-              topics:
-                - topology.md
-                - data-io.md
-                - bottlenecks.md
-          - cos-responsibilities.md
-          - topicgroup:
-              label: Notifications
-              topics:
-                - cos-notices.md
-                - cos-notices-gslb.md
-                - cos-notices-ca-mon-onhold.md
-          - topic: release-notes.md
-            navtitle: Release notes
-    - navgroup:
-        id: tutorial
-        topics:
+  - navgroup:
+      id: learn
+      topics:
+      - getting-started.md
+      - about-cos.md
+      - topicgroup:
+          label: Getting organized
+          topics:
+          - administrators.md
+          - developers.md
+      - topicgroup:
+          label: Optimizing performance
+          topics:
+          - topology.md
+          - data-io.md
+          - bottlenecks.md
+      - cos-responsibilities.md
+      - topicgroup:
+          label: Notifications
+          topics:
+          - cos-notices.md
+          - cos-notices-gslb.md
+          - cos-notices-ca-mon-onhold.md
+      - topic: release-notes.md
+        navtitle: Release notes
+  - navgroup:
+      id: tutorial
+      topics:
+      - link:
+          label: Tutorials library for Object Storage
+          href: https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage
+      - cos-secure-stored-content.md
+      - migrate.md
+      - cos-single-bucket.md
+      - object-access.md
+      - kp-encrypt-bucket.md
+      - cbr-tutorial.md
+      - static-website.md
+      - web-application.md
+      - curl-multipart.md
+  - navgroup:
+      id: howto
+      topics:
+      - topicgroup:
+          label: Provisioning storage
+          topics:
+          - order-storage.md
+          - onerate.md
+      - topicgroup:
+          label: Choose regions and connect services
+          topics:
+          - endpoints.md
+          - advanced_endpoints.md
+          - endpoint-remap.md
+          - services.md
+          - vpe.md
+          - closures.md
+          links:
           - link:
-              label: Tutorials library for Object Storage
-              href: https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=cloud-object-storage
-          - cos-secure-stored-content.md
-          - migrate.md
-          - cos-single-bucket.md
-          - object-access.md
-          - kp-encrypt-bucket.md
-          - cbr-tutorial.md
-          - static-website.md
-          - web-application.md
-          - curl-multipart.md
-    - navgroup:
-        id: howto
-        topics:
+              label: Connect from VPC
+              href: https://cloud.ibm.com/docs/vpc?topic=vpc-connecting-vpc-cos
+      - topicgroup:
+          label: Bucket management
+          topics:
           - topicgroup:
-              label: Provisioning storage
+              label: Managing access
               topics:
-                - order-storage.md
-                - onerate.md
+              - iam.md
+              - iam-overview.md
+              - service-credentials.md
+              - buckets.md
+              - assign-access-indvobjects.md
+              - public-access.md
+              - firewall.md
           - topicgroup:
-              label: Choose regions and connect services
+              label: Managing access using Access/Secret Key (HMAC) authentication
               topics:
-                - endpoints.md
-                - advanced_endpoints.md
-                - endpoint-remap.md
-                - services.md
-                - vpe.md
-                - closures.md
-              links:
-                - link:
-                    label: Connect from VPC
-                    href: https://cloud.ibm.com/docs/vpc?topic=vpc-connecting-vpc-cos
+              - credentials.md
+              - hmac-signature.md
+              - presigned-urls.md
           - topicgroup:
-              label: Bucket management
+              label: Managing a bucket's lifecycle configurations
               topics:
-              - topicgroup:
-                  label: Managing access
-                  topics:
-                    - iam.md
-                    - iam-overview.md
-                    - service-credentials.md
-                    - buckets.md
-                    - assign-access-indvobjects.md
-                    - public-access.md
-                    - firewall.md
-              - topicgroup:
-                  label: Managing access using Access/Secret Key (HMAC) authentication
-                  topics:
-                    - credentials.md
-                    - hmac-signature.md
-                    - presigned-urls.md
-              - topicgroup:
-                  label: Managing a bucket's lifecycle configurations
-                  topics:
-                    - archive.md
-                    - expiry.md
-                    - abort-mpu.md
-              - topicgroup:
-                  label: Backing up buckets
-                  topics:
-                    - bvm-overview.md
-                    - bvm-configure.md
-                    - bvm-provisioning.md
-                    - bvm-restore.md
-              - topicgroup:
-                  label: Managing data immutability
-                  topics:
-                    - immutable.md
-                    - object-lock.md
-              - quota.md
-              - classes.md
-              - cos-region-copy.md
-              - deleting-multiple-objects.md
-              - ftp.md
+              - archive.md
+              - expiry.md
+              - abort-mpu.md
           - topicgroup:
-              label: Data management
+              label: Backing up buckets
               topics:
-                - upload.md
-                - multipart.md
-                - replication.md
-                - object-tagging.md
-                - versioning.md
+              - bvm-overview.md
+              - bvm-configure.md
+              - bvm-provisioning.md
+              - bvm-restore.md
           - topicgroup:
-              label: Integrated services
+              label: Managing data immutability
               topics:
-              - topicgroup:
-                  label: Managing encryption
-                  topics:
-                    - encryption-overview.md
-                    - sse-c.md
-                    - kp.md
-                    - hpcs.md
-              - activity-tracker.md
-              - metrics-monitoring.md
-              - code-engine.md
-              - aspera.md
-              - link:
-                  label: Connect to IBM COS using IBM Cloud Direct Link
-                  href: https://cloud.ibm.com/docs/dl?topic=dl-get-started-with-ibm-cloud-dl
-              - link:
-                  label: Connect to resources using a CDN
-                  href: https://cloud.ibm.com/docs/CDN/CDN-configure-cdn-with-ibm-cloud-object-storage
-              - sql.md
-              - functions.md
-              - static-websites-options.md
-              - cis-routing-rules-for-cos.md
-#          - topicgroup: COMMENT: Removed per GitHub issue #2056
-#              label: Using IBM Cloud Satellite
-#              topics:
-#                - satellite-deprecate-notice.md
-#                - about-satellite.md
-#                - satellite-billing.md
-#                - satellite-apis.md
-    - navgroup:
-        id: reference
-        topics:
+              - immutable.md
+              - object-lock.md
+          - quota.md
+          - classes.md
+          - cos-region-copy.md
+          - deleting-multiple-objects.md
+          - ftp.md
+      - topicgroup:
+          label: Data management
+          topics:
+          - upload.md
+          - multipart.md
+          - replication.md
+          - object-tagging.md
+          - versioning.md
+      - topicgroup:
+          label: Integrated services
+          topics:
           - topicgroup:
-              label: API reference
-              links:
-                - link:
-                    label: Cloud Object Storage S3 API
-                    href: https://cloud.ibm.com/apidocs/cos/cos-compatibility
-                - link:
-                    label: Resource Configuration API
-                    href: https://cloud.ibm.com/apidocs/cos/cos-configuration
+              label: Managing encryption
               topics:
-                - about-api.md
-                - common-headers-errors.md
-                - api-reference-buckets.md
-                - api-reference-backup-vault.md
-                - api-reference-objects.md
-                - postman.md
-          - topicgroup:
-              label: Libraries
-              topics:
-                - overview-sdks.md
-                - getting-started-sdks.md
-                - java.md
-                - python.md
-                - node.md
-                - go.md
-                - terraform.md
-                - cloudyr.md
-          - topicgroup:
-              label: Use the command line
-              topics:
-                - cloud-object-storage-cli-reference.md
-                - curl.md
-                - aws-cli.md
-                - s3fs.md
-                - minio.md
-                - rclone.md
-          - topicgroup:
-              label: Security and compliance
-              topics:
-                - data-security-encryption.md
-                - compliance.md
-                - eu.md
-          - at.md
-          - iam-at.md
-          - data-portability.md
-          - ha-dr.md
-    - navgroup:
-        id: help
-        topics:
-          - topicgroup:
-              label: Frequently asked questions
-              topics:
-                - faq.md
-                - faq-provisioning.md
-                - faq-onerate.md
-                - faq-encryption.md
-                - faq-bucket.md
-                - bvm-faq.md
-                - faq-data.md
-          - ts-access-error-cos.md
-          - support.md
-          - topicgroup:
-              label: Billing and pricing
-              topics:
-                - billing.md
-                - flex-pricing.md
-              links:
-                - link:
-                    label: Pricing
-                    href: https://cloud.ibm.com/objectstorage/create#pricing
+              - encryption-overview.md
+              - sse-c.md
+              - kp.md
+              - hpcs.md
+          - activity-tracker.md
+          - metrics-monitoring.md
+          - code-engine.md
+          - aspera.md
+          - link:
+              label: Connect to IBM COS using IBM Cloud Direct Link
+              href: https://cloud.ibm.com/docs/dl?topic=dl-get-started-with-ibm-cloud-dl
+          - link:
+              label: Connect to resources using a CDN
+              href: https://cloud.ibm.com/docs/CDN/CDN-configure-cdn-with-ibm-cloud-object-storage
+          - sql.md
+          - functions.md
+          - static-websites-options.md
+          - cis-routing-rules-for-cos.md
+  - navgroup:
+      id: reference
+      topics:
+      - topicgroup:
+          label: API reference
+          links:
+          - link:
+              label: Cloud Object Storage S3 API
+              href: https://cloud.ibm.com/apidocs/cos/cos-compatibility
+          - link:
+              label: Resource Configuration API
+              href: https://cloud.ibm.com/apidocs/cos/cos-configuration
+          topics:
+          - about-api.md
+          - common-headers-errors.md
+          - api-reference-buckets.md
+          - api-reference-backup-vault.md
+          - api-reference-objects.md
+          - postman.md
+      - topicgroup:
+          label: Libraries
+          topics:
+          - overview-sdks.md
+          - getting-started-sdks.md
+          - java.md
+          - python.md
+          - node.md
+          - go.md
+          - terraform.md
+          - cloudyr.md
+      - topicgroup:
+          label: Use the command line
+          topics:
+          - cloud-object-storage-cli-reference.md
+          - curl.md
+          - aws-cli.md
+          - s3fs.md
+          - minio.md
+          - rclone.md
+      - topicgroup:
+          label: Security and compliance
+          topics:
+          - data-security-encryption.md
+          - compliance.md
+          - eu.md
+      - at.md
+      - iam-at.md
+      - data-portability.md
+      - ha-dr.md
+  - navgroup:
+      id: help
+      topics:
+      - topicgroup:
+          label: Frequently asked questions
+          topics:
+          - faq.md
+          - faq-provisioning.md
+          - faq-onerate.md
+          - faq-encryption.md
+          - faq-bucket.md
+          - bvm-faq.md
+          - faq-data.md
+      - ts-access-error-cos.md
+      - support.md
+      - topicgroup:
+          label: Billing and pricing
+          topics:
+          - billing.md
+          - flex-pricing.md
+          links:
+          - link:
+              label: Pricing
+              href: https://cloud.ibm.com/objectstorage/create#pricing
