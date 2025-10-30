@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2025
 
-lastupdated: "2025-10-29"
+lastupdated: "2025-10-30"
 
 keywords: aspera, key protect, archive, worm
 
@@ -53,19 +53,19 @@ Refer to [Pricing for Key Protect on IBM Cloud](/docs/key-protect?topic=key-prot
 ## Regional
 {: #service-availability-region}
 
-| Region     | Aspera | Key Protect   | {{site.data.keyword.hscrypto}} | Archive Data | Object Lock | Immutable Object Storage | Activity Tracker Routing | Code Engine | Smart Tier | Metrics Routing | Replication | One-Rate | Bucket Backup |
-|------------|--------|---------------|--------------------------------|--------------|-------------|--------------------------|--------------------------|-------------|------------|-----------------|-------------|----------|---------------|
-| `au-syd`   | Yes    | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `au-syd`                 | Yes         | Yes        | `au-syd`        | Yes         | Yes      | Yes           |
-| `jp-tok`   | Yes    | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `ap-tok`                 | Yes         | Yes        | `ap-tok`        | Yes         | Yes      | Yes           |
-| `jp-osa`   | No     | Yes           | No                             | Yes          | Yes         | Yes                      | `ap-osa`                 | Yes         | Yes        | `ap-osa`        | Yes         | Yes      | Yes           |
-| `eu-gb`    | Yes    | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `eu-gb`                  | Yes         | Yes        | `eu-gb`         | Yes         | Yes      | Yes           |
-| `eu-de`    | Yes    | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `eu-de`                  | Yes         | Yes        | `eu-de`         | Yes         | Yes      | Yes           |
-| `us-south` | Yes    | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `us-south`               | Yes         | Yes        | `us-south`      | Yes         | Yes      | Yes           |
-| `us-east`  | Yes    | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `us-east`                | Yes         | Yes        | `us-east`       | Yes         | Yes      | Yes           |
-| `ca-tor`   | No     | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `ca-tor`                 | Yes         | Yes        | `ca-tor`        | Yes         | Yes      | Yes           |
-| `br-sao`   | No     | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `br-sao`                 | Yes         | Yes        | `br-sao`        | Yes         | Yes      | Yes           |
-| `eu-es`    | No     | Yes           | Yes (see note)                 | Yes          | Yes         | Yes                      | `eu-es`                  | No          | Yes        | `eu-es`         | Yes         | Yes      | Yes           |
-| `ca-mon`   | No     | No            | No                             | No           | Yes         | No                       | `ca-mon`                 | No          | Yes        | `ca-mon`        | Yes         | Yes      | Yes           |
+| Region     | Aspera | Key Protect    | {{site.data.keyword.hscrypto}} | Archive Data | Object Lock | Immutable Object Storage | Activity Tracker Routing | Code Engine | Smart Tier | Metrics Routing | Replication | One-Rate | Bucket Backup |
+|------------|--------|----------------|--------------------------------|--------------|-------------|--------------------------|--------------------------|-------------|------------|-----------------|-------------|----------|---------------|
+| `au-syd`   | Yes    | Yes (see note) | Yes (see note)                 | Yes          | Yes         | Yes                      | `au-syd`                 | Yes         | Yes        | `au-syd`        | Yes         | Yes      | Yes           |
+| `jp-tok`   | Yes    | Yes (see note) | Yes (see note)                 | Yes          | Yes         | Yes                      | `ap-tok`                 | Yes         | Yes        | `ap-tok`        | Yes         | Yes      | Yes           |
+| `jp-osa`   | No     | Yes (see note) | No                             | Yes          | Yes         | Yes                      | `ap-osa`                 | Yes         | Yes        | `ap-osa`        | Yes         | Yes      | Yes           |
+| `eu-gb`    | Yes    | Yes (see note) | Yes (see note)                 | Yes          | Yes         | Yes                      | `eu-gb`                  | Yes         | Yes        | `eu-gb`         | Yes         | Yes      | Yes           |
+| `eu-de`    | Yes    | Yes (see note) | Yes (see note)                 | Yes          | Yes         | Yes                      | `eu-de`                  | Yes         | Yes        | `eu-de`         | Yes         | Yes      | Yes           |
+| `us-south` | Yes    | Yes (see note) | Yes (see note)                 | Yes          | Yes         | Yes                      | `us-south`               | Yes         | Yes        | `us-south`      | Yes         | Yes      | Yes           |
+| `us-east`  | Yes    | Yes (see note) | Yes (see note)                 | Yes          | Yes         | Yes                      | `us-east`                | Yes         | Yes        | `us-east`       | Yes         | Yes      | Yes           |
+| `ca-tor`   | No     | Yes (see note) | Yes (see note)                 | Yes          | Yes         | Yes                      | `ca-tor`                 | Yes         | Yes        | `ca-tor`        | Yes         | Yes      | Yes           |
+| `br-sao`   | No     | Yes (see note) | Yes (see note)                 | Yes          | Yes         | Yes                      | `br-sao`                 | Yes         | Yes        | `br-sao`        | Yes         | Yes      | Yes           |
+| `eu-es`    | No     | Yes (see note) | Yes (see note)                 | Yes          | Yes         | Yes                      | `eu-es`                  | No          | Yes        | `eu-es`         | Yes         | Yes      | Yes           |
+| `ca-mon`   | No     | Yes (see note) | Yes (see note)                 | Yes          | Yes         | No                       | `ca-mon`                 | No          | Yes        | `ca-mon`        | Yes         | Yes      | Yes           |
 
 It is possible to create a bucket in any of the listed Cloud Object Storage regional locations and associate it with any available Key Protect or Hyper Protect Crypto Service instance in any IBM Cloud region. Hyper Protect Crypto Services is only available in selected locations and it is your responsibility to ensure the location/region you select meets any pertinent requirements. Please refer to [Hyper Protect Crypto Services documentation](/docs/hs-crypto?topic=hs-crypto-regions) and [IBM Key Protect](/docs/key-protect?topic=key-protect-regions) for a list of regions/locations currently available.
 {: note}
