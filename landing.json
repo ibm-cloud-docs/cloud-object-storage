@@ -1,46 +1,46 @@
 {
-    "version": 2,
-    "title": "IBM Cloud Object Storage",
-    "introduction": "IBM Cloud Object Storage is a highly available, durable, and secure platform for storing unstructured data.",
-    "product_page": "https://www.ibm.com/products/cloud-object-storage",
-    "console_page": "/objectstorage",
-    "section_topics": {
-      "links": [
-        {
-          "title": "Getting started with IBM Cloud Object Storage",
-          "href": "/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage"
-        },
-        {
-          "title": "Your responsibilities when using IBM Cloud Object Storage",
-          "href": "/docs/cloud-object-storage?topic=cloud-object-storage-responsibilities"
-        },
-        {
-          "title": "Activity Tracker events",
-          "href": "/docs/cloud-object-storage?topic=cloud-object-storage-at-events"
-        }
-      ]
-    },
-    "section_highlights": [
+  "version": 2,
+  "title": "IBM Cloud Object Storage",
+  "introduction": "IBM Cloud Object Storage is a highly available, durable, and secure platform for storing unstructured data.",
+  "product_page": "https://www.ibm.com/products/cloud-object-storage",
+  "console_page": "/objectstorage",
+  "section_topics": {
+    "links": [
       {
-        "title": "IBM Cloud Object Storage System Fundamentals",
-        "description": "You will learn the fundamentals of IBM Cloud Object Storage (COS) in on-premises environments.",
-        "href": "https://www.ibm.com/training/course/ibm-cloud-object-storage-system-fundamentals-SSC20DG",
-        "type": "training"
+        "title": "Getting started with IBM Cloud Object Storage",
+        "href": "/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage"
       },
       {
-        "title": "object storage capabilities and options on ibm cloud",
-        "description": "Blog on IBM Cloud Object Storage capabilities.",
-        "href": "https://www.ibm.com/blog/?q=object+storage+capabilities+and+options+on+ibm+cloud&lang=en&cc=undefined",
-        "type": "blog",
-        "recommended": true
+        "title": "Your responsibilities when using IBM Cloud Object Storage",
+        "href": "/docs/cloud-object-storage?topic=cloud-object-storage-responsibilities"
+      },
+      {
+        "title": "Activity Tracker events",
+        "href": "/docs/cloud-object-storage?topic=cloud-object-storage-at-events"
       }
-    ],
-    "section_devtools": {
-      "apis3": "/apidocs/cos/cos-compatibility",
-      "apirc": "/apidocs/cos/cos-configuration",
-      "cli": "/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli"
+    ]
+  },
+  "section_highlights": [
+    {
+      "title": "IBM Cloud Object Storage System Fundamentals",
+      "description": "You will learn the fundamentals of IBM Cloud Object Storage (COS) in on-premises environments.",
+      "href": "https://www.ibm.com/training/course/ibm-cloud-object-storage-system-fundamentals-SSC20DG",
+      "type": "training"
     },
-    "section_updates": {
-      "view_more": "/docs/cloud-object-storage?topic=cloud-object-storage-updates"
+    {
+      "title": "object storage capabilities and options on ibm cloud",
+      "description": "Blog on IBM Cloud Object Storage capabilities.",
+      "href": "https://www.ibm.com/blog/?q=object+storage+capabilities+and+options+on+ibm+cloud&lang=en&cc=undefined",
+      "type": "blog",
+      "recommended": true
     }
+  ],
+  "section_devtools": {
+    "apis3": "/apidocs/cos/cos-compatibility",
+    "apirc": "/apidocs/cos/cos-configuration",
+    "cli": "/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli"
+  },
+  "section_updates": {
+    "view_more": "/docs/cloud-object-storage?topic=cloud-object-storage-updates"
   }
+}
