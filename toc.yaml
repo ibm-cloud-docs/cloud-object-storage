@@ -145,6 +145,10 @@ toc:
           - functions.md
           - static-websites-options.md
           - cis-routing-rules-for-cos.md
+      - topicgroup:
+          label: Using IBM Cloud Satellite
+          topics:
+          - satellite-deprecate-notice.md
   - navgroup:
       id: reference
       topics:
