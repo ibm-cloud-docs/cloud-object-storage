@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-05-28"
+lastupdated: "2025-11-03"
 
 keywords: bucket, vault, management
 
@@ -49,7 +49,7 @@ Target bucket              | A {{site.data.keyword.cos_full_notm}} bucket that r
 
 Whereas periodic backup solutions take individual "snapshots" of data for a given point-in-time, {{site.data.keyword.cos_full_notm}} produces backup coverage of a bucket over a range of time, providing users the ability to restore to any specific point in time contained within a `RecoveryRange`. This more granular approach provides more flexibility for users, and the ability to achieve lower Recovery Point Objectives that are not limited by the amount of time it takes to scan a bucket for changes since the last backup.
 
-`RecoveryRanges` are created within a `BackupVault` whenever a new `BackupPolicy` targeting the `BackupVault` is set on a {{site.data.keyword.cos_full_notm}} bucket. `RecoveryRanges` receives new data as long as the associated `BackupPolicy` is enabled and active. For details on creating and monitoring a `BackupPolicy`, see [Configuring backups](docs-draft/cloud-object-storage?topic=cloud-object-storage-bvm-configure).
+`RecoveryRanges` are created within a `BackupVault` whenever a new `BackupPolicy` targeting the `BackupVault` is set on a {{site.data.keyword.cos_full_notm}} bucket. `RecoveryRanges` receives new data as long as the associated `BackupPolicy` is enabled and active. For details on creating and monitoring a `BackupPolicy`, see [Configuring backups](/docs/cloud-object-storage?topic=cloud-object-storage-bvm-configure).
 
 Users can list the RecoveryRanges present within a BackupVault using the following commands:
 
@@ -144,7 +144,7 @@ Host: config.cloud-object-storage.cloud.ibm.com
 
 Actions within a `BackupVault` are controlled in the same manner as other resources within {{site.data.keyword.cos_full_notm}}.
 
-See [Getting Started with IAM](/docs/cloud-object-storage?topic=cloud-object-storage-iam), [IAM overview](/docs/cloud-object-storage?topic=cloud-object-storage-iam-overview) and [Service credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) for general details on how IAM works with {{site.data.keyword.cos_full_notm}}. IAM actions on `BackupVaults` are distinct from IAM actions on {{site.data.keyword.cos_full_notm}} buckets. The actions specific to `BackupVaults` are contained within the `BackupReader` and `BackupManager` roles.
+See [Getting Started with IAM](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-with-iam), [IAM overview](/docs/cloud-object-storage?topic=cloud-object-storage-iam-overview) and [Service credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) for general details on how IAM works with {{site.data.keyword.cos_full_notm}}. IAM actions on `BackupVaults` are distinct from IAM actions on {{site.data.keyword.cos_full_notm}} buckets. The actions specific to `BackupVaults` are contained within the `BackupReader` and `BackupManager` roles.
 
 
 
@@ -161,5 +161,3 @@ For a `BackupPolicy` on a source bucket to write backup data into a `BackupVault
 {: #bvm-access-control-permission-restore}
 
 In order for a Restore operation to write objects to the target bucket, the `BackupVault` must have permission to perform the `cloud-object-storage.bucket.restore_sync` operation on the target bucket. It is done by granting the source `BackupVault`’s service-instance permission to perform this action against the target bucket’s service-instance. The permission is included within the **Manager** and **Writer** roles.
-
-
