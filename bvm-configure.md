@@ -38,7 +38,7 @@ You need to create the Service2Service authorization policy between source bucke
 
 Buckets require permission to perform the `cloud-object-storage.backup-vault.sync` operation to a `BackupVault`. It is granted by using service-to-service policy, and must be configured even if the bucket and backup vault are in the same account or serviceInstance.
 
-See [Getting Started with IAM](https://test.cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-iam) and [Identity and Access Management actions](https://test.cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) on more details for configuring service-to-service permissions.
+See [Getting Started with IAM](docs/cloud-object-storage?topic=cloud-object-storage-getting-started-with-iam) and [Identity and Access Management actions](docs/cloud-object-storage?topic=cloud-object-storage-getting-started-with-iam#iam-actions) on more details for configuring service-to-service permissions.
 
 ## Adding a backup policy to a bucket
 
