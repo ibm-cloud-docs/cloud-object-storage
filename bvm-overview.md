@@ -49,7 +49,7 @@ Target bucket              | A {{site.data.keyword.cos_full_notm}} bucket that r
 
 Whereas periodic backup solutions take individual "snapshots" of data for a given point-in-time, {{site.data.keyword.cos_full_notm}} produces backup coverage of a bucket over a range of time, providing users the ability to restore to any specific point in time contained within a `RecoveryRange`. This more granular approach provides more flexibility for users, and the ability to achieve lower Recovery Point Objectives that are not limited by the amount of time it takes to scan a bucket for changes since the last backup.
 
-`RecoveryRanges` are created within a `BackupVault` whenever a new `BackupPolicy` targeting the `BackupVault` is set on a {{site.data.keyword.cos_full_notm}} bucket. `RecoveryRanges` receives new data as long as the associated `BackupPolicy` is enabled and active. For details on creating and monitoring a `BackupPolicy`, see [Configuring backups](/docs/cloud-object-storage?topic=cloud-object-storage-bvm-configure).
+`RecoveryRanges` are created within a `BackupVault` whenever a new `BackupPolicy` targeting the `BackupVault` is set on a {{site.data.keyword.cos_full_notm}} bucket. `RecoveryRanges` receives new data as long as the associated `BackupPolicy` is enabled and active. For details on creating and monitoring a `BackupPolicy`, see [Configuring backups](/docs/cloud-object-storage?topic=cloud-object-storage-configuring-backups).
 
 Users can list the RecoveryRanges present within a BackupVault using the following commands:
 
