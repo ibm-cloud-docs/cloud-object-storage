@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2025
-lastupdated: "2025-09-16"
+lastupdated: "2025-12-04"
 
 keywords: rest, s3, compatibility, api, objects
 
@@ -68,7 +68,7 @@ PUT https://{bucket-name}.{endpoint}/{object-name} # virtual host style
 Header | Type | Description
 --- | ---- | ------------
 |`x-amz-tagging` | string | A set of tags to apply to the object, formatted as query parameters (`"SomeKey=SomeValue"`).|
-|`x-amz-object-lock-mode` | string | Valid value is `COMPLIANCE` - required if `x-amz-object-lock-retain-until-date` is present.|
+|`x-amz-object-lock-mode` | string | Valid value is `COMPLIANCE` or `GOVERNANCE` - required if `x-amz-object-lock-retain-until-date` is present.|
 |`x-amz-object-lock-retain-until-date` | ISO8601 Date and Time | Required if `x-amz-object-lock-mode` is present.|
 |`x-amz-object-lock-legal-hold` | string | Valid values are `ON` or `OFF`.|
 |`Content-MD5` | String | The Base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.|
@@ -440,10 +440,12 @@ Content-Length: 207
 
 ----
 
-## Add or extend retention on an object
+## Add or update retention on an object
 {: #object-operations-add-retention}
 
-A `PUT` issued to an object with the proper parameters adds or extends retention period of the object.
+A `PUT` issued to an object with the proper parameters adds or extends the retention period.
+In `COMPLIANCE` mode, the retention period can only be extended and cannot be shortened or removed.
+In `GOVERNANCE` mode, authorized users can extend, shorten, or remove the retention period by including the `x-amz-bypass-governance-retention` header.
 
 
 
@@ -462,9 +464,16 @@ The body of the request must contain an XML block with the following schema:
 | Element | Type      | Children   | Ancestor | Notes    |
 |---------|-----------|------------|----------|----------|
 | Retention | Container | Mode, RetainUntilDate     | -        | Required |
-| Mode  | String | -        | Retention  | Required - valid value is COMPLIANCE |
+| Mode  | String | -        | Retention  | Required - valid value is `COMPLIANCE` or `GOVERNANCE` |
 | RetainUntilDate     | Timestamp    | - | Retention   | Required |
 {: caption="Body of the request schema" caption-side="top"}
+
+### Optional headers
+{: #object-operations-add-retention-headers}
+
+Header | Type | Description
+--- | ---- | ------------
+`x-amz-bypass-governance-retention` | String | This header allows authorized users to override GOVERNANCE mode retention settings to delete or modify an object before its retain-until date.
 
 The following code shows one example of how to create the necessary representation of the header content:
 

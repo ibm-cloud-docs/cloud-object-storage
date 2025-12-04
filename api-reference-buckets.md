@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2025
-lastupdated: "2025-09-16"
+lastupdated: "2025-12-04"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -970,7 +970,7 @@ The body of the request must contain an XML block with the following schema:
 | `Rule`                    | Container | `DefaultRetention`          | `ObjectLockConfiguration` | Limit 1                                                                                                        |
 | `DefaultRetention`        | Container | `Days`, `Mode`, `Years`     | `Rule`                    | Limit 1.                                                                                                       |
 | `Days`                    | Integer   | None                        | `DefaultRetention`        | The number of days that you want to specify for the default retention period. It can't be combined with `Years`. |
-| `Mode`                    | String    | None                        | `DefaultRetention`        | Only `COMPLIANCE` is supported currently.                                                                   |
+| `Mode`                    | String    | None                        | `DefaultRetention`        | `COMPLIANCE` or `GOVERNANCE`.                                                                   |
 | `Years`                   | Integer   | None                        | `DefaultRetention`        | The number of years that you want to specify for the default retention period. It can't be combined with `Days`. |
 {: caption="Body of the request schema" caption-side="bottom"}
 

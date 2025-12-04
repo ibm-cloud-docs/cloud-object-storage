@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023, 2025
-lastupdated: "2025-08-19"
+lastupdated: "2025-12-04"
 
 keywords: worm, immutable, policy, retention, compliance, replication, legal hold
 
@@ -45,7 +45,7 @@ It is possible to make use of any combination of these parameters - an object ve
 ### Retain Until Date (Retention Period)
 {: #ol-terminology-retention-period}
 
-If you need to protect an object version for a fixed amount of time, you need to specify a *Retain Until Date* which determines the period in which it cannot be altered. The object version can be be deleted after this date is passed (assuming there are no legal holds on the object version).
+If you need to protect an object version for a fixed amount of time, you need to specify a *Retain Until Date* which determines the period in which it cannot be altered. The object version can be be deleted after this date is passed (assuming there are no legal holds on the object version). For objects under GOVERNANCE mode, authorized users with the `bypass-governance-retention` permission can delete the object version before the retain-until-date.
 
 The retention period for new objects can be inherited from the default value set on the bucket, or it can be explicitly defined when writing the object by specifying a *Retain Until Date*.
 
@@ -63,6 +63,14 @@ Imagine an object that is 60 days into a 90-day retention period, and you overwr
 
 To extend the retention period of an object, simply send a request to set a new, longer, retention period.  The old value will be overwritten with the new, assuming the requester has the `cloud-object-storage.object.put_object_lock_retention` and `cloud-object-storage.object.put_object_lock_retention_version` actions.
 
+### Reducing a retention period
+{: #ol-terminology-retention-period-reduce}
+
+For objects protected under GOVERNANCE mode, authorized users can reduce the retention period to an earlier date, provided they include the `x-amz-bypass-governance-retention` header in the request and have the appropriate permissions (`cloud-object-storage.object.bypass_governance_retention`, `cloud-object-storage.object.put_object_lock_retention` and `cloud-object-storage.object.put_object_lock_retention_version`).
+
+Objects under COMPLIANCE mode cannot have their retention period reduced or removed before the retain-until-date expires.
+{: attention}
+
 ### Legal Hold
 {: #ol-terminology-legal-hold}
 
@@ -74,11 +82,8 @@ Legal holds and retention periods operate independently. Legal holds have no imp
 
 Imagine an object with both a legal hold and a retention period. When the retention period ends, the object version remains protected until the legal hold is removed. If you remove a legal hold while an object version is subject to a retention period it remains protected until the retention period is complete.
 
-Objects locked and stored with a retention period cannot be deleted until retention period expires and any associated legal hold is removed.
+Objects locked and stored with a retention period cannot be deleted until retention period expires and any associated legal hold is removed. However, for objects locked under GOVERNANCE mode, authorized users with the `bypass-governance-retention` permission can delete the object before the retention period expires, provided no legal hold is active on the object.
 {: important}
-
-Locking objects with a Governance Mode is not supported.
-{: note}
 
 ## Getting started with Object Lock
 {: #ol-gs}
@@ -92,7 +97,7 @@ To get started, there are some some prerequisites:
 - A maximum default retention period of 100 years (or 36500 days) is supported.
 - When using the console, it is also possible to set a Retain Until Date in months, in addition to days or years.
 
-The retention period for an object **cannot be decreased**. If you are using default retention for validation testing please use a lower duration (such as 1 day) as the default retention, increasing it to your desired setting as needed.
+In **COMPLIANCE** mode, the retention period for an object cannot be decreased. In **GOVERNANCE** mode, authorized users with the BypassGovernanceRetention permission may decrease or remove retention if required. For validation testing, it is recommended to use a shorter default retention (e.g., 1 day) and adjust as needed.
 {: tip}
 
 ### Creating and setting up your new bucket for use with Object Lock
@@ -153,7 +158,7 @@ Object Lock can be used in combination with several object storage features as p
 
 [Enabling versioning](/docs/cloud-object-storage?topic=cloud-object-storage-versioning) is a prerequisite for enabling Object Lock. If a bucket is created using the `x-amz-bucket-object-lock-enabled` header, versioning will automatically be enabled.
 
-Deleting a versioned object creates a _delete marker_.  The object may appear to be deleted, but if the object is protected it is impossible to delete the protected version. Delete markers themselves are not protected.
+Deleting a versioned object creates a _delete marker_.  The object may appear to be deleted, but if the object is protected it is impossible to delete the protected version in COMPLIANCE mode. Delete markers themselves are not protected. However, for objects locked under GOVERNANCE mode, authorized users with the `bypass-governance-retention` permission can delete the object before the retention period expires, provided no legal hold is active on the object.
 {: remember}
 
 ### Replication
@@ -203,6 +208,7 @@ There are new IAM actions associated with Object Lock.
 | `cloud-object-storage.object.put_object_lock_legal_hold`         | Manager, Writer         |
 | `cloud-object-storage.object.get_object_lock_legal_hold_version` | Manager, Writer, Reader |
 | `cloud-object-storage.object.put_object_lock_legal_hold_version` | Manager, Writer         |
+| `cloud-object-storage.object.bypass_governance_retention`        | Manager, Writer         |
 {: caption="IAM Actions"}
 
 Be advised that users with the Writer role are capable of making objects un-deletable for many years (possibly thousand of years).  Be careful, and consider crafting custom roles that do not allow most users to set a Retain Until Date.
@@ -224,7 +230,7 @@ For `cloud-object-storage.bucket-object-lock.create` events, the following field
 | Field                                                         | Description                                                                     |
 |---------------------------------------------------------------|---------------------------------------------------------------------------------|
 | `requestData.object_lock_configuration.enabled`               | Indicates that Object Lock is enabled on the bucket                             |
-| `requestData.object_lock_configuration.defaultRetention.mode` | Indicates `COMPLIANCE` mode is active - `GOVERNANCE` mode is not yet supported. |
+| `requestData.object_lock_configuration.defaultRetention.mode` | Indicates `COMPLIANCE` or `GOVERNANCE` mode is active. |
 | `object_lock_configuration.defaultRetention.years`            | The default retention period in years.                                          |
 | `object_lock_configuration.defaultRetention.days`             | The default retention period in days.                                           |
 
@@ -236,7 +242,7 @@ For operations on protected objects, the following fields may be present:
 | Field                                                            | Description                                                                                                                                          |
 |------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `requestData.object_lock_protection.legal_hold`                  | Indicates that a legal hold is in force on the object version.                                                                                       |
-| `requestData.object_lock_protection.retention.mode`              | Indicates `COMPLIANCE` mode is active on the object version - `GOVERNANCE` mode is not yet supported.                                                |
+| `requestData.object_lock_protection.retention.mode`              | Indicates `COMPLIANCE`or `GOVERNANCE` mode is active on the object version.                                                |
 | `requestData.object_lock_protection.retention.retain_until_date` | Indicates the date that object version is eligible for deletion. After this date the object is no longer delete protected based on a retention date. |
 
 ## REST API examples
@@ -261,6 +267,7 @@ An Object Lock configuration must include one rule.
 | `x-amz-checksum-sha1` | String | This header is the Base64 encoded, 160-bit SHA1 digest of the object. |
 | `x-amz-checksum-sha256` | String | This header is the Base64 encoded, 256-bit SHA256 digest of the object. |
 | `x-amz-sdk-checksum-algorithm` | String | Indicates the algorithm used to create the checksum for the object when using the SDK. |
+| `x-amz-bypass-governance-retention` | String | This header allows authorized users to override GOVERNANCE mode retention settings to delete or modify an object before its retain-until date. |
 {: caption="Optional Header" caption-side="top"}
 
 A `Content-MD5` header or a `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required as an integrity check for the payload.
@@ -274,7 +281,7 @@ The body of the request must contain an XML block with the following schema:
 | `Rule`                    | Container | `DefaultRetention`          | `ObjectLockConfiguration` | Limit 1                                                                                                        |
 | `DefaultRetention`        | Container | `Days`, `Mode`, `Years`     | `Rule`                    | Limit 1.                                                                                                       |
 | `Days`                    | Integer   | None                        | `DefaultRetention`        | The number of days that you want to specify for the default retention period. Cannot be combined with `Years`. |
-| `Mode`                    | String    | None                        | `DefaultRetention`        | Only `COMPLIANCE` is supported at this time (case-sensitive).                                                                  |
+| `Mode`                    | String    | None                        | `DefaultRetention`        | `COMPLIANCE` or `GOVERNANCE` (case-sensitive).                                                                  |
 | `Years`                   | Integer   | None                        | `DefaultRetention`        | The number of years that you want to specify for the default retention period. Cannot be combined with `Days`. |
 
 This example will retain any new objects for at least 30 days.
@@ -320,7 +327,7 @@ This returns an XML response body with the appropriate schema:
 ### Add or extend a retention period for an object
 {: #ol-apis-object-add}
 
-The Object Lock configuration is provided as XML in the body of the request.  New requests will overwrite any existing replication rules that are present on the object, provided the `RetainUntilDate` is farther in the future than the current value.
+The Object Lock configuration is provided as XML in the body of the request.  New requests will overwrite any existing replication rules that are present on the object, provided the `RetainUntilDate` is farther in the future than the current value, or if the object is locked under GOVERNANCE mode and the requester has the `bypass-governance-retention` permission.
 
 | Header        | Type   | Description                                                                                                                                                 |
 | ------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -331,6 +338,7 @@ The Object Lock configuration is provided as XML in the body of the request.  Ne
 | `x-amz-checksum-sha1` | String | This header is the Base64 encoded, 160-bit SHA1 digest of the object. |
 | `x-amz-checksum-sha256` | String | This header is the Base64 encoded, 256-bit SHA256 digest of the object. |
 | `x-amz-sdk-checksum-algorithm` | String | Indicates the algorithm used to create the checksum for the object when using the SDK. |
+| `x-amz-bypass-governance-retention` | String | This header allows authorized users to override GOVERNANCE mode retention settings to delete or modify an object before its retain-until date. |
 {: caption="Optional Headers" caption-side="top"}
 
 A `Content-MD5` header or a `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required as an integrity check for the payload.
@@ -349,7 +357,7 @@ The body of the request must contain an XML block with the following schema:
 | Element           | Type      | Children                  | Ancestor    | Constraint                                                                           |
 |-------------------|-----------|---------------------------|-------------|--------------------------------------------------------------------------------------|
 | `Retention`       | Container | `Mode`, `RetainUntilDate` | None        | **Required** Limit 1.                                                                             |
-| `Mode`            | String    | None                      | `Retention` | **Required** Only `COMPLIANCE` is supported at this time (case-sensitive).                        |
+| `Mode`            | String    | None                      | `Retention` | **Required** `COMPLIANCE` or `GOVERNANCE` (case-sensitive).                        |
 | `RetainUntilDate` | String    | None                      | `Retention` | **Required** The date after which an object is eligible for deletion in ISO8601 Date-Time Format. |
 
 This example will retain any new objects for at least until March 12, 2023.
@@ -367,6 +375,22 @@ curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?
 A successful request returns a `200` response.
 
 If the `RetainUntilDate` values is not beyond any existing value, the operation will fail with a `403 Access Denied`.
+
+This example shortens the retention period for an existing object version protected under GOVERNANCE mode. The requester must have the bypass-governance-retention permission.
+```
+curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/$OBJECT?retention" \
+     -H "Authorization: Bearer $TOKEN" \
+     -H "Content-MD5: fT0hYstki6zUvEh7abhcTA==" \
+     -H "Content-Type: text/plain; charset=utf-8" \
+     -H "x-amz-bypass-governance-retention: true" \
+     -d $'<Retention>
+            <Mode>GOVERNANCE</Mode>
+            <RetainUntilDate>2023-02-10T23:01:00.000Z</RetainUntilDate>
+          </Retention>'
+
+```
+A successful request returns a 200 OK response.
+If the requester does not have the `bypass-governance-retention` permission or the header is omitted, the operation will fail with a 403 Access Denied.
 
 ### Add or remove a legal hold for an object
 {: #ol-apis-object-add-lh}
@@ -409,7 +433,7 @@ A successful request returns a `200` response.
 ## SDK examples
 {: #ol-sdks}
 
-The following examples make use of the IBM COS SDKs for Python, Node.js, and Go, as well as a Terraform script, although the implementation of object versioning should be fully compatible with any S3-compatible library or tool that allows for the setting of custom endpoints.  Using third-party tools requires [HMAC credentials](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) to calculate AWS V4 signatures.
+The following examples make use of the IBM COS SDKs for Python, Node.js, Java, and Go, as well as a Terraform script, although the implementation of object versioning should be fully compatible with any S3-compatible library or tool that allows for the setting of custom endpoints.  Using third-party tools requires [HMAC credentials](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main) to calculate AWS V4 signatures.
 
 ### Python
 {: #ol-sdks-python}
@@ -443,12 +467,33 @@ def objectlock_configuration_on_bucket(bucket_name):
     response = cos_cli.get_object_lock_configuration(Bucket=bucket_name)
     print("Objectlock Configuration for {0} =>".format(bucket_name))
     print(response.ObjectLockConfiguration)
+    
+def objectlock_configuration_with_governance_mode_on_bucket(bucket_name):
+    
+    # Putting default retenion on the COS bucket with governance mode.
+    default_retention_rule = {'DefaultRetention': {'Mode': 'GOVERNANCE', 'Years': 1}}
+    object_lock_config = {'ObjectLockEnabled': 'Enabled', 'Rule': default_retention_rule}
+    cos_cli.put_object_lock_configuration(Bucket=bucket_name, ObjectLockConfiguration=object_lock_config)
+    # Reading the objectlock configuration set on the bucket.
+    response = cos_cli.get_object_lock_configuration(Bucket=bucket_name)
+    print("Objectlock Configuration for {0} =>".format(bucket_name))
+    print(response.ObjectLockConfiguration)
 
 def upload_object(bucket_name,object_name,object_content):
         cos_cli.put_object(
             Bucket=bucket_name,
             Key=object_name,
             Body=object_content
+        )
+        print("Object: {0} uploaded!".format(object_name))
+        
+def upload_object_with_governance_mode(bucket_name,object_name,object_content):
+        cos_cli.put_object(
+            Bucket=bucket_name,
+            Key=object_name,
+            Body=object_content,
+            ObjectLockMode='GOVERNANCE',
+            ObjectLockRetainUntilDate=datetime(2025, 11, 15)
         )
         print("Object: {0} uploaded!".format(object_name))
 
@@ -463,14 +508,29 @@ def objectlock_retention(bucket_name,object_name):
         print("Objectlock Retention for {0}=>".format(object_name))
         print(response.Retention)
 
-def objectlock_legal-hold(bucket_name,object_name):
+def objectlock_retention_with_governance_mode(bucket_name,object_name):
+        # Put objectlock retenion with governance mode on the  object uploaded to the bucket.
+        date = datetime.now()+timedelta(seconds=5)
+        retention_rule = {'Mode': 'GOVERNANCE', 'RetainUntilDate': date}
+        cos_cli.put_object_retention(Bucket=bucket_name, Key=object_name, Retention=retention_rule)
+
+        # Get objectlock retention of the above object.
+        response = cos_cli.get_object_retention(Bucket=bucket_name, Key=object_name)
+        print("Objectlock Retention for {0}=>".format(object_name))
+        print(response.Retention)
+
+def objectlock_legal_hold(bucket_name,object_name):
         # Setting the objectlock legal-hold status to ON.
-        cos_cli.put_object_legal_hold(Bucket=bucket_name, Key=object_name, legal-hold={'Status': 'ON'})
+        cos_cli.put_object_legal_hold(Bucket=bucket_name, Key=object_name, legal_hold={'Status': 'ON'})
         # Get objectlock retention of the above object.
         response = cos_cli.get_object_legal_hold(Bucket=bucket_name, Key=object_name)
         print("Objectlock legal-hold for {0}=>".format(object_name))
-        print(response.legal-hold)
+        print(response.legal_hold)
 
+def delete_object_with_bypass_governance(bucket_name,object_name):
+        # Deleting an object with retention using bypass governance
+        cos_cli.delete_object(Bucket=bucket_name, Key=object_name, BypassGovernanceRetention=True)
+        
 COS_ENDPOINT = "" #Current list avaiable at https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints -> Ex:https://s3.us-south.cloud-object-storage.appdomain.cloud
 COS_API_KEY_ID = "" #API Key of the cos instance created Ex: W00YixxxxxxxxxxMB-odB-2ySfTrFBIQQWanc--P3byk
 COS_RESOURCE_INSTANCE_CRN = "" #API key of cos instance example: xxxd12V2QHXbjaM99G9tWyYDgF_0gYdlQ8aWALIQxXx4
@@ -491,12 +551,16 @@ new_text_file_contents = "This is a test file from Python code sample!!!"
 def main():
        create_bucket_with_objectlock(new_bucket_name) # Create a new cos bucket with object lock enabled.
        objectlock_configuration_on_bucket(new_bucket_name) # Put objectlock configuration(i.e. default retention) on COS bucket and get the configuration.
+       objectlock_configuration_with_governance_mode_on_bucket(new_bucket_name) # Put objectlock configuration(i.e. default retention)with governance mode on COS bucket and get the configuration.
        upload_object(new_bucket_name,new_text_file_name,new_text_file_contents) # Upload an object to cos bucket.
+       upload_object_with_governance_mode(new_bucket_name,new_text_file_name,new_text_file_contents) # Upload an object to cos bucket with governance mode.
        objectlock_retention(new_bucket_name,new_text_file_name) # Put objectlock retention(i.e. retain until date) on the object and get the configured retention.
-       objectlock_legal-hold(new_bucket_name,new_text_file_name)  # Put objectlock legal-hold on the object and get the legal-hold status.
-
+       objectlock_retention_with_governance_mode(new_bucket_name,new_text_file_name) # Put objectlock retention(i.e. retain until date) with governance mode on the object and get the configured retention.
+       objectlock_legal_hold(new_bucket_name,new_text_file_name)  # Put objectlock legal-hold on the object and get the legal-hold status.
+       delete_object_with_bypass_governance(new_bucket_name,new_text_file_name) # Deleting an object with retention with governance mode using bypass governance.
 if __name__ == "__main__":
     main()
+
 ```
 {: codeblock}
 
@@ -570,7 +634,25 @@ function createTextFile(bucketName, itemName, fileText) {
     .catch(logError);
 }
 
-function putObjectLockConfigurationonBucket(bucketName) {
+function uploadFileWithGovernanceMode(bucketName, itemName, fileText) {
+    var inFiveSecond = (new Date(Date.now() + (1000 * 5)))
+    console.log(`Creating new item: ${itemName}`);
+    return cos.putObject({
+        Bucket: bucketName,
+        Key: itemName,
+        Body: fileText,
+        ObjectLockMode: "GOVERNANCE",
+        ObjectLockRetainUntilDate: inFiveSecond,
+
+    }).promise()
+    .then(() => {
+        console.log(`Item: ${itemName} created!`);
+        logDone();
+    })
+    .catch(logError);
+}
+
+function putObjectLockConfigurationOnBucket(bucketName) {
     console.log(`Putting Objectlock Configuration on : ${bucketName}`);
     // Putting objectlock configuration
     var defaultRetention = {Mode: 'COMPLIANCE', Days: 1}
@@ -582,6 +664,23 @@ function putObjectLockConfigurationonBucket(bucketName) {
     }).promise()
     .then(() => {
         console.log(`Object lock Configurtion added!!`);
+        logDone();
+    })
+    .catch(logError);
+}
+
+function putObjectLockConfigurationWithGovernanceModeOnBucket(bucketName) {
+    console.log(`Putting Objectlock Configuration on : ${bucketName}`);
+    // Putting objectlock configuration
+    var defaultRetention = {Mode: 'GOVERNANCE', Days: 1}
+    var objectLockRule = {DefaultRetention : defaultRetention}
+    var param = {ObjectLockEnabled: 'Enabled', Rule: objectLockRule}
+    return cos.putObjectLockConfiguration({
+        Bucket: bucketName,
+        ObjectLockConfiguration: param
+    }).promise()
+    .then(() => {
+        console.log(`Object lock Configurtion with Governance mode added!!`);
         logDone();
     })
     .catch(logError);
@@ -618,6 +717,23 @@ function putObjectLockRetention(bucketName,keyName) {
     .catch(logError);
 }
 
+function putObjectLockRetentionWithGovernanceMode(bucketName,keyName) {
+    console.log(`Putting Objectlock Retention on : ${keyName}`);
+    var inFiveSecond = (new Date(Date.now() + (1000 * 5)))
+    var rule = {Mode: 'GOVERNANCE', RetainUntilDate: inFiveSecond}
+     // Putting objectlock retention
+    return cos.putObjectRetention({
+        Bucket: bucketName,
+        Key: keyName,
+        Retention: rule
+    }).promise()
+    .then(() => {
+        console.log(`Object lock Retention with governance mode added!!`);
+        logDone();
+    })
+    .catch(logError);
+}
+
 function getObjectLockRetention(bucketName,keyName) {
     console.log(`Getting Objectlock Retention for : ${keyName}`);
     // Getting objectlock retention
@@ -633,13 +749,13 @@ function getObjectLockRetention(bucketName,keyName) {
     .catch(logError);
 }
 
-function putObjectLocklegal-hold(bucketName,keyName) {
+function putObjectLocklegalHold(bucketName,keyName) {
     console.log(`Putting Objectlock legal-hold status ON for  : ${keyName}`);
      // Putting objectlock legal-hold status
-    return cos.putObjectlegal-hold({
+    return cos.putObjectlegalHold({
         Bucket: bucketName,
         Key: keyName,
-        legal-hold: {Status: 'ON'}
+        LegalHold: {Status: 'ON'}
     }).promise()
     .then(() => {
         console.log(`Object lock legal-hold added!!`);
@@ -648,7 +764,7 @@ function putObjectLocklegal-hold(bucketName,keyName) {
     .catch(logError);
 }
 
-function getObjectLocklegal-hold(bucketName,keyName) {
+function getObjectLocklegalHold(bucketName,keyName) {
     console.log(`Getting Objectlock legal-hold for : ${keyName}`);
     // Getting objectlock legal-hold
     return cos.getObjectlegal-hold({
@@ -662,7 +778,21 @@ function getObjectLocklegal-hold(bucketName,keyName) {
     })
     .catch(logError);
 }
+function createBucket(bucketName,objectName) {
+    console.log(`Deleting Object t: ${objectName}`);
+    return cos.deleteObject({
+  Bucket: bucketName,
+  Key: objectName,
+  BypassGovernanceRetention: true,
+}).promise()
+.then(() => {
+    console.log("Object deleted");
+})
+.catch(err => {
+    console.error("Error deleting object:", err);
+});
 
+}
 // Main app
 function main() {
     try {
@@ -671,13 +801,17 @@ function main() {
         var newTextFileContents = "This is a test file from Node.js code sample!!!";
 
         createBucket(newBucketName) // Create a new cos bucket with object lock enabled.
-        .then(() => putObjectLockConfigurationonBucket(newBucketName)) // Put objectlock configuration(i.e. default retention) on COS bucket.
+        .then(() => putObjectLockConfigurationOnBucket(newBucketName)) // Put objectlock configuration(i.e. default retention) on COS bucket.
+        .then(() => putObjectLockConfigurationWithGovernanceModeOnBucket(newBucketName)) // Put objectlock configuration(i.e. default retention) with governance mode on COS bucket.
         .then(() => getObjectLockConfigurationonBucket(newBucketName)) // Read objectlock configuration on COS bucket.
-        .then(() => createTextFile(newBucketName, newTextFileName, newTextFileContents)) // Upload an object to cos bucket.
+        .then(() => createTextFile(newBucketName, newTextFileName, newTextFileContents)) // Upload an object with governance mode to cos bucket.
+        .then(() => uploadFileWithGovernanceMode(newBucketName, newTextFileName, newTextFileContents)) // Upload an object to cos bucket.
         .then(() => putObjectLockRetention(newBucketName, newTextFileName)) // Put objectlock retention(i.e. retain until date) on the object.
+        .then(() => putObjectLockRetentionWithGovernanceMode(newBucketName, newTextFileName)) // Put objectlock retention(i.e. retain until date) with governance mode on the object.
         .then(() => getObjectLockRetention(newBucketName, newTextFileName)) // Get the configured retention.
-        .then(() => putObjectLocklegal-hold(newBucketName,newTextFileName)) // Put objectlock legal-hold on the object.
-        .then(() => getObjectLocklegal-hold(newBucketName,newTextFileName)); // Get the legal-hold status.
+        .then(() => putObjectLocklegalHold(newBucketName,newTextFileName)) // Put objectlock legal-hold on the object.
+        .then(() => getObjectLocklegalHold(newBucketName,newTextFileName))// Get the legal-hold status.
+        .then(() => deleteObjectWithGovernanceMode(newBucketName,newTextFileName)); // Deleting an object with retention using bypass governance 
     }
     catch(ex) {
         logError(ex);
@@ -685,6 +819,227 @@ function main() {
 }
 
 main();
+```
+{: codeblock}
+### Java
+{: #ol-sdks-java}
+
+```java
+mport com.ibm.cloud.objectstorage.ClientConfiguration;
+import com.ibm.cloud.objectstorage.SDKGlobalConfiguration;
+import com.ibm.cloud.objectstorage.auth.AWSCredentials;
+import com.ibm.cloud.objectstorage.auth.AWSStaticCredentialsProvider;
+import com.ibm.cloud.objectstorage.client.builder.AwsClientBuilder;
+import com.ibm.cloud.objectstorage.oauth.BasicIBMOAuthCredentials;
+import com.ibm.cloud.objectstorage.services.s3.AmazonS3;
+import com.ibm.cloud.objectstorage.services.s3.AmazonS3ClientBuilder;
+import com.ibm.cloud.objectstorage.services.s3.model.*;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.UUID;
+
+public class JavaExampleSDK {
+    private static AmazonS3 _cosClient;
+    private static String api_key;
+    private static String service_instance_id;
+    private static String endpoint_url;
+    private static String location;
+    private static String auth_endpoint;
+
+    public static void main(String[] args) throws IOException
+    {
+        
+        // Constants for IBM COS values
+        auth_endpoint = ""; // auth endpoint 
+        api_key = "";// example: xxxd12V2QHXbjaM99G9tWyYDgF_0gYdlQ8aWALIQxXx4
+        service_instance_id = ""; // example: crn:v1:bluemix:public:cloud-object-storage:global:a/xx999cd94a0dda86fd8eff3191349999:9999b05b-x999-4917-xxxx-9d5b326a1111::
+        endpoint_url = ""; // example: https://s3.us-south.cloud-object-storage.appdomain.cloud
+        location =  "";// example: us-south-standard
+
+        // Create client connection details
+        // _cosClient = createClient(api_key, service_instance_id, endpoint_url, location);
+
+        // String bucketName = "java.bucket" + UUID.randomUUID().toString().replace("-","");
+        // String itemName = UUID.randomUUID().toString().replace("-","") + "_java_file.txt";
+        // String fileText = "This is a test file from the Java code sample!!!";
+
+        // // create a new bucket
+        // createBucket(bucketName, _cosClient);
+
+        // // Put objectlock configuration(i.e. default retention) on COS bucket.
+        // putObjectLockConfiguration(bucketName , _cosClient);
+
+        // // Put objectlock configuration(i.e. default retention) with governance mode on COS bucket.
+        // putObjectLockConfigurationWithGovernanceMode(bucketName , _cosClient);
+
+        // // create a new text file & upload
+        // createTextFileAndUpload(bucketName, itemName, fileText);
+        // //  Upload an object with governance mode to cos bucket. 
+        // uploadFileWithGovernanceMode(bucketName, itemName, fileText);
+
+        // //  Put objectlock retention(i.e. retain until date) on the object.
+        // putObjectLockRetention(bucketName, itemName, _cosClient);
+        // //  Put objectlock retention(i.e. retain until date) with governance mode on the object.
+        // putObjectLockRetentionWithGovernanceMode(bucketName, itemName, _cosClient);
+
+        // // remove the object with bypass governance
+        // deleteObjectWithBypassGovernance(bucketName);
+    }
+
+    // Create client connection
+    public static AmazonS3 createClient(String api_key, String service_instance_id, String endpoint_url, String location)
+    {
+        AWSCredentials credentials;
+        credentials = new BasicIBMOAuthCredentials(api_key, service_instance_id);
+
+        ClientConfiguration clientConfig = new ClientConfiguration().withRequestTimeout(5000);
+        clientConfig.setUseTcpKeepAlive(true);
+
+        AmazonS3 cosClient = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(endpoint_url, location)).withPathStyleAccessEnabled(true)
+                .withClientConfiguration(clientConfig).build();
+        return cosClient;
+    }
+            
+    // Create a new bucket
+    public static void createBucket(String bucketName, AmazonS3 _cosClient)
+    {
+        _cosClient.createBucket(bucketName);
+        System.out.printf("Bucket: %s created!\n", bucketName);
+    }
+
+    // Put objectlock configuration(i.e. default retention) on COS bucket.
+    public static void putObjectLockConfiguration(String bucketName, AmazonS3 _cosClient)
+    {
+        DefaultRetention defRet = new DefaultRetention()
+                .withMode(ObjectLockRetentionMode.COMPLIANCE)
+                .withDays(1);
+        ObjectLockRule objRule = new ObjectLockRule()
+                        .withDefaultRetention(defRet);
+        ObjectLockConfiguration objConfig = new ObjectLockConfiguration()
+                        .withObjectLockEnabled(ObjectLockEnabled.ENABLED)
+                        .withRule(objRule);
+        SetObjectLockConfigurationRequest objSet = new SetObjectLockConfigurationRequest()
+                        .withBucketName(BUCKET_NAME)
+                        .withObjectLockConfiguration(objConfig);
+        _cosClient.setObjectLockConfiguration(objSet);
+        System.out.printf("Successfully added object lock cofiguration on : %s\n", bucketName);
+        GetObjectLockConfigurationRequest objReq = new GetObjectLockConfigurationRequest().withBucketName(BUCKET_NAME);
+        GetObjectLockConfigurationResult objRes = _cosClient.getObjectLockConfiguration(objReq);
+        ObjectLockConfiguration objLckConfig = objRes.getObjectLockConfiguration();
+        ObjectLockRule objGetRule = objLckConfig.getRule();
+        System.out.printf("ObjectLock Configuration : %s\n", objGetRule);
+    }
+
+    // Put objectlock configuration(i.e. default retention) with governance mode on COS bucket.
+    public static void putObjectLockConfigurationWithGovernanceMode(String bucketName, AmazonS3 _cosClient)
+    {
+        DefaultRetention defRet = new DefaultRetention()
+                .withMode(ObjectLockRetentionMode.GOVERNANCE)
+                .withDays(1);
+        ObjectLockRule objRule = new ObjectLockRule()
+                        .withDefaultRetention(defRet);
+        ObjectLockConfiguration objConfig = new ObjectLockConfiguration()
+                        .withObjectLockEnabled(ObjectLockEnabled.ENABLED)
+                        .withRule(objRule);
+        SetObjectLockConfigurationRequest objSet = new SetObjectLockConfigurationRequest()
+                        .withBucketName(BUCKET_NAME)
+                        .withObjectLockConfiguration(objConfig);
+        _cosClient.setObjectLockConfiguration(objSet);
+        System.out.printf("Successfully added object lock cofiguration on : %s\n", bucketName);
+        GetObjectLockConfigurationRequest objReq = new GetObjectLockConfigurationRequest().withBucketName(BUCKET_NAME);
+        GetObjectLockConfigurationResult objRes = _cosClient.getObjectLockConfiguration(objReq);
+        ObjectLockConfiguration objLckConfig = objRes.getObjectLockConfiguration();
+        ObjectLockRule objGetRule = objLckConfig.getRule();
+        System.out.printf("ObjectLock Configuration : %s\n", objGetRule);
+
+    }
+
+    // Create file and upload to new bucket
+    public static void createTextFileAndUpload(String bucketName, String itemName, String fileText) {
+        System.out.printf("Creating new item: %s\n", itemName);
+
+        InputStream newStream = new ByteArrayInputStream(fileText.getBytes(Charset.forName("UTF-8")));
+        ObjectMetadata metadata = new ObjectMetadata();
+        metadata.setContentLength(fileText.length());
+        PutObjectRequest req = new PutObjectRequest(bucketName, itemName, newStream, metadata);
+        _cosClient.putObject(req);
+        System.out.printf("Item: %s created!\n", itemName);
+    }
+    
+    //  Upload an object with governance mode to cos bucket. 
+    public static void uploadFileWithGovernanceMode(String bucketName, String itemName, String fileText) {
+        System.out.printf("Creating new item: %s\n", itemName);
+        LocalDate date = LocalDate.of(2025, 11, 11);
+        InputStream newStream = new ByteArrayInputStream(fileText.getBytes(Charset.forName("UTF-8")));
+        ObjectMetadata metadata = new ObjectMetadata();
+        metadata.setContentLength(fileText.length());
+        PutObjectRequest req = new PutObjectRequest(bucketName, itemName, newStream, metadata)
+                            .withObjectLockMode("GOVERNANCE")
+                            .withObjectLockRetainUntilDate(date);
+        _cosClient.putObject(req);
+        System.out.printf("Item: %s created!\n", itemName);
+    }
+
+    //  Put objectlock retention(i.e. retain until date) on the object.
+    public static void putObjectLockRetention(String bucketName,String itemName, AmazonS3 _cosClient)
+    {
+        LocalDate date = LocalDate.of(2025, 11, 11);
+        ObjectLockRetention objRet = new ObjectLockRetention()
+                    .withMode("COMPLIANCE")
+                    .withRetainUntilDate(date);
+        SetObjectRetentionRequest objSet = new SetObjectRetentionRequest()
+                    .withBucketName(BUCKET_NAME)
+                    .withitemName(itemName)
+                    .withRetention(objRet);
+                    .withBypassGovernanceRetention(true);
+        _cosClient.setObjectRetention(objSet);
+        System.out.printf("Successfully added object retention on : %s\n", itemName);
+        GetObjectRetentionRequest objReq = new GetObjectRetentionRequest()
+            .withBucketName(BUCKET_NAME)
+            .withitemName(itemName);
+        GetObjectRetentionResult objRes1 = _cosClient.getObjectRetention(objReq);
+        ObjectLockRetention objRet1 = objRes1.getRetention();
+        System.out.printf("Retention : %s\n", objRet1);
+    }
+
+    //  Put objectlock retention(i.e. retain until date) with governance mode on the object.
+    public static void putObjectLockRetentionWithGovernanceMode(String bucketName,String itemName, AmazonS3 _cosClient)
+    {
+        LocalDate date = LocalDate.of(2025, 11, 11);
+        ObjectLockRetention objRet = new ObjectLockRetention()
+                    .withMode("GOVERNANCE")
+                    .withRetainUntilDate(date);
+        SetObjectRetentionRequest objSet = new SetObjectRetentionRequest()
+                    .withBucketName(BUCKET_NAME)
+                    .withitemName(itemName)
+                    .withRetention(objRet);
+                    .withBypassGovernanceRetention(true);
+        _cosClient.setObjectRetention(objSet);
+        System.out.printf("Successfully added object retention on : %s\n", itemName);
+        GetObjectRetentionRequest objReq = new GetObjectRetentionRequest()
+            .withBucketName(BUCKET_NAME)
+            .withitemName(itemName);
+        GetObjectRetentionResult objRes1 = _cosClient.getObjectRetention(objReq);
+        ObjectLockRetention objRet1 = objRes1.getRetention();
+        System.out.printf("Retention : %s\n", objRet1);
+    }
+
+    // Delete object
+    public static void deleteObjectWithBypassGovernance(String bucketName, String itemName) {
+        System.out.printf("Deleting item: %s\n", itemName);
+        DeleteObjectRequest deleteRequest = new DeleteObjectRequest(BUCKET_NAME, Key)
+            .withBypassGovernanceRetention(true);
+        _cosClient.deleteObject(deleteRequest);
+        System.out.printf("Item: %s deleted!\n", itemName);
+    }
+
+}
+
 ```
 {: codeblock}
 
@@ -695,147 +1050,235 @@ main();
 package main
 
 import (
-	"bytes"
-	"fmt"
-	"time"
+    "bytes"
+    "fmt"
+    "time"
 
-	"github.com/IBM/ibm-cos-sdk-go/aws"
-	"github.com/IBM/ibm-cos-sdk-go/aws/credentials/ibmiam"
-	"github.com/IBM/ibm-cos-sdk-go/aws/session"
-	"github.com/IBM/ibm-cos-sdk-go/service/s3"
+    "github.com/IBM/ibm-cos-sdk-go/aws"
+    "github.com/IBM/ibm-cos-sdk-go/aws/credentials/ibmiam"
+    "github.com/IBM/ibm-cos-sdk-go/aws/session"
+    "github.com/IBM/ibm-cos-sdk-go/service/s3"
 )
 
 const (
-	apiKey            = "<apiKey>"
-	serviceInstanceID = "<serviceInstanceID>"
-	authEndpoint      = "https://iam.cloud.ibm.com/identity/token"
-	serviceEndpoint   = "https://<endpoint>.appdomain.cloud"
+    apiKey            = "<apiKey>"
+    serviceInstanceID = "<serviceInstanceID>"
+    authEndpoint      = "https://iam.cloud.ibm.com/identity/token"
+    serviceEndpoint   = "https://<endpoint>.appdomain.cloud"
 )
 
 // Create new bucket with objectlock enabled.
 func createBucket(bucketName string, client *s3.S3) {
-	createBucketInput := new(s3.CreateBucketInput)
-	createBucketInput.Bucket = aws.String(bucketName)
-	createBucketInput.ObjectLockEnabledForBucket = aws.Bool(true)
-	_, e := client.CreateBucket(createBucketInput)
-	if e != nil {
-		fmt.Println(e)
-	} else {
-		fmt.Println("Bucket Created !!! ")
-	}
+    createBucketInput := new(s3.CreateBucketInput)
+    createBucketInput.Bucket = aws.String(bucketName)
+    createBucketInput.ObjectLockEnabledForBucket = aws.Bool(true)
+    _, e := client.CreateBucket(createBucketInput)
+    if e != nil {
+        fmt.Println(e)
+    } else {
+        fmt.Println("Bucket Created !!! ")
+    }
 }
 
 func uploadObject(bucketName string, client *s3.S3, fileName string, fileContent string) {
-	putInput := &s3.PutObjectInput{
-		Bucket: aws.String(bucketName),
-		Key:    aws.String(fileName),
-		Body:   bytes.NewReader([]byte(fileContent)),
-	}
+    putInput := &s3.PutObjectInput{
+        Bucket: aws.String(bucketName),
+        Key:    aws.String(fileName),
+        Body:   bytes.NewReader([]byte(fileContent)),
+    }
 
-	_, e := client.PutObject(putInput)
-	if e != nil {
-		fmt.Println(e)
-	} else {
-		fmt.Println("Object Uploaded!!! ")
-	}
+    _, e := client.PutObject(putInput)
+    if e != nil {
+        fmt.Println(e)
+    } else {
+        fmt.Println("Object Uploaded!!! ")
+    }
+}
+
+func uploadObjectWithGovernanceMode(bucketName string, client *s3.S3, fileName string, fileContent string) {
+    retention_date := time.Now().Local().Add(time.Second * 5)
+    putInput := &s3.PutObjectInput{
+        Bucket:                    aws.String(bucketName),
+        Key:                       aws.String(fileName),
+        Body:                      bytes.NewReader([]byte(fileContent)),
+        ObjectLockMode:            aws.String("GOVERNANCE"),
+        ObjectLockRetainUntilDate: aws.Time(retention_date),
+    }
+
+    _, e := client.PutObject(putInput)
+    if e != nil {
+        fmt.Println(e)
+    } else {
+        fmt.Println("Object Uploaded!!! ")
+    }
 }
 
 func objectLockConfiguration(bucketName string, client *s3.S3) {
-	// Putting default retenion on the COS bucket.
-	putObjectLockConfigurationInput := &s3.PutObjectLockConfigurationInput{
-		Bucket: aws.String(bucketName),
-		ObjectLockConfiguration: &s3.ObjectLockConfiguration{
-			ObjectLockEnabled: aws.String(s3.ObjectLockEnabledEnabled),
-			Rule: &s3.ObjectLockRule{
-				DefaultRetention: &s3.DefaultRetention{
-					Mode: aws.String("COMPLIANCE"),
-					Days: aws.Int64(1),
-				},
-			},
-		},
-	}
-	_, e := client.PutObjectLockConfiguration(putObjectLockConfigurationInput)
+    // Putting default retenion on the COS bucket.
+    putObjectLockConfigurationInput := &s3.PutObjectLockConfigurationInput{
+        Bucket: aws.String(bucketName),
+        ObjectLockConfiguration: &s3.ObjectLockConfiguration{
+            ObjectLockEnabled: aws.String(s3.ObjectLockEnabledEnabled),
+            Rule: &s3.ObjectLockRule{
+                DefaultRetention: &s3.DefaultRetention{
+                    Mode: aws.String("COMPLIANCE"),
+                    Days: aws.Int64(1),
+                },
+            },
+        },
+    }
+    _, e := client.PutObjectLockConfiguration(putObjectLockConfigurationInput)
 
-	// Reading the objectlock configuration set on the bucket.
-	getObjectLockConfigurationInput := new(s3.GetObjectLockConfigurationInput)
-	getObjectLockConfigurationInput.Bucket = aws.String(bucketName)
-	response, e := client.GetObjectLockConfiguration(getObjectLockConfigurationInput)
-	if e != nil {
-		fmt.Println(e)
-	} else {
-		fmt.Println("Object Lock Configuration =>", response.ObjectLockConfiguration)
-	}
+    // Reading the objectlock configuration set on the bucket.
+    getObjectLockConfigurationInput := new(s3.GetObjectLockConfigurationInput)
+    getObjectLockConfigurationInput.Bucket = aws.String(bucketName)
+    response, e := client.GetObjectLockConfiguration(getObjectLockConfigurationInput)
+    if e != nil {
+        fmt.Println(e)
+    } else {
+        fmt.Println("Object Lock Configuration =>", response.ObjectLockConfiguration)
+    }
 }
 
+func objectLockConfigurationwithGovernanceMode(bucketName string, client *s3.S3) {
+    // Putting default retenion on the COS bucket.
+    putObjectLockConfigurationInput := &s3.PutObjectLockConfigurationInput{
+        Bucket: aws.String(bucketName),
+        ObjectLockConfiguration: &s3.ObjectLockConfiguration{
+            ObjectLockEnabled: aws.String(s3.ObjectLockEnabledEnabled),
+            Rule: &s3.ObjectLockRule{
+                DefaultRetention: &s3.DefaultRetention{
+                    Mode: aws.String("GOVERNANCE"),
+                    Days: aws.Int64(1),
+                },
+            },
+        },
+    }
+    _, e := client.PutObjectLockConfiguration(putObjectLockConfigurationInput)
+
+    // Reading the objectlock configuration set on the bucket.
+    getObjectLockConfigurationInput := new(s3.GetObjectLockConfigurationInput)
+    getObjectLockConfigurationInput.Bucket = aws.String(bucketName)
+    response, e := client.GetObjectLockConfiguration(getObjectLockConfigurationInput)
+    if e != nil {
+        fmt.Println(e)
+    } else {
+        fmt.Println("Object Lock Configuration =>", response.ObjectLockConfiguration)
+    }
+}
 func objectLockRetention(bucketName string, client *s3.S3, keyName string) {
 
-	// Put objectlock retenion on the  object uploaded to the bucket.
-	retention_date := time.Now().Local().Add(time.Second * 5)
-	putObjectRetentionInput := &s3.PutObjectRetentionInput{
-		Bucket: aws.String(bucketName),
-		Key:    aws.String(keyName),
-		Retention: &s3.ObjectLockRetention{
-			Mode:            aws.String("COMPLIANCE"),
-			RetainUntilDate: aws.Time(retention_date),
-		},
-	}
-	_, e := client.PutObjectRetention(putObjectRetentionInput)
+    // Put objectlock retenion on the  object uploaded to the bucket.
+    retention_date := time.Now().Local().Add(time.Second * 5)
+    putObjectRetentionInput := &s3.PutObjectRetentionInput{
+        Bucket: aws.String(bucketName),
+        Key:    aws.String(keyName),
+        Retention: &s3.ObjectLockRetention{
+            Mode:            aws.String("COMPLIANCE"),
+            RetainUntilDate: aws.Time(retention_date),
+        },
+    }
+    _, e := client.PutObjectRetention(putObjectRetentionInput)
 
-	// Get objectlock retention of the above object.
-	getObjectRetentionInput := new(s3.GetObjectRetentionInput)
-	getObjectRetentionInput.Bucket = aws.String(bucketName)
-	getObjectRetentionInput.Key = aws.String(keyName)
-	response, e := client.GetObjectRetention(getObjectRetentionInput)
-	if e != nil {
-		fmt.Println(e)
-	} else {
-		fmt.Println("Object Lock Retention =>", response.Retention)
-	}
+    // Get objectlock retention of the above object.
+    getObjectRetentionInput := new(s3.GetObjectRetentionInput)
+    getObjectRetentionInput.Bucket = aws.String(bucketName)
+    getObjectRetentionInput.Key = aws.String(keyName)
+    response, e := client.GetObjectRetention(getObjectRetentionInput)
+    if e != nil {
+        fmt.Println(e)
+    } else {
+        fmt.Println("Object Lock Retention =>", response.Retention)
+    }
 }
 
-func objectLocklegal-hold(bucketName string, client *s3.S3, keyName string) {
+func objectLockRetentionWithGovernanceMode(bucketName string, client *s3.S3, keyName string) {
 
-	// Setting the objectlock legal-hold status to ON.
-	putObjectlegal-holdInput := &s3.PutObjectlegal-holdInput{
-		Bucket: aws.String(bucketName),
-		Key:    aws.String(keyName),
-		legal-hold: &s3.ObjectLocklegal-hold{
-			Status: aws.String("ON"),
-		},
-	}
-	_, e := client.PutObjectlegal-hold(putObjectlegal-holdInput)
-	// Get objectlock retention of the above object.
-	getObjectlegal-holdInput := new(s3.GetObjectlegal-holdInput)
-	getObjectlegal-holdInput.Bucket = aws.String(bucketName)
-	getObjectlegal-holdInput.Key = aws.String(keyName)
-	response, e := client.GetObjectlegal-hold(getObjectlegal-holdInput)
-	if e != nil {
-		fmt.Println(e)
-	} else {
-		fmt.Println("Object Lock legal-hold =>", response.legal-hold)
-	}
+    // Put objectlock retenion on the  object uploaded to the bucket.
+    retention_date := time.Now().Local().Add(time.Second * 5)
+    putObjectRetentionInput := &s3.PutObjectRetentionInput{
+        Bucket: aws.String(bucketName),
+        Key:    aws.String(keyName),
+        Retention: &s3.ObjectLockRetention{
+            Mode:            aws.String("GOVERNANCE"),
+            RetainUntilDate: aws.Time(retention_date),
+        },
+    }
+    _, e := client.PutObjectRetention(putObjectRetentionInput)
+
+    // Get objectlock retention of the above object.
+    getObjectRetentionInput := new(s3.GetObjectRetentionInput)
+    getObjectRetentionInput.Bucket = aws.String(bucketName)
+    getObjectRetentionInput.Key = aws.String(keyName)
+    response, e := client.GetObjectRetention(getObjectRetentionInput)
+    if e != nil {
+        fmt.Println(e)
+    } else {
+        fmt.Println("Object Lock Retention =>", response.Retention)
+    }
+}
+
+func objectLocklegalHold(bucketName string, client *s3.S3, keyName string) {
+
+    // Setting the objectlock legal-hold status to ON.
+    putObjectlegalHoldInput := &s3.PutObjectlegalHoldInput{
+        Bucket: aws.String(bucketName),
+        Key:    aws.String(keyName),
+        legalHold: &s3.ObjectLocklegalHold{
+            Status: aws.String("ON"),
+        },
+    }
+    _, e := client.PutObjectlegalHold(putObjectlegalHoldInput)
+    // Get objectlock retention of the above object.
+    getObjectlegalHoldInput := new(s3.GetObjectlegalHoldInput)
+    getObjectlegalHoldInput.Bucket = aws.String(bucketName)
+    getObjectlegalHoldInput.Key = aws.String(keyName)
+    response, e := client.GetObjectlegalHold(getObjectlegalHoldInput)
+    if e != nil {
+        fmt.Println(e)
+    } else {
+        fmt.Println("Object Lock legal-hold =>", response.legalHold)
+    }
+}
+
+func deleteObjectWithBypassGovernance(bucketName string, client *s3.S3, fileName string) {
+    deleteObjectInput := new(s3.DeleteObjectInput)
+    deleteObjectInput.Bucket = aws.String(bucketName)
+    deleteObjectInput.Key = aws.String("foo")
+    deleteObjectInput.BypassGovernanceRetention = aws.Bool(true)
+    _, e := client.DeleteObject(deleteObjectInput)
+    if e != nil {
+        fmt.Println(e)
+    } else {
+        fmt.Println("Object Deleted")
+    }
+
 }
 
 func main() {
 
-	bucketName := "gocosbucket353"
-	textFileName := "go_cos_bucket_file.txt"
-	textFileContents := "This is a test file from Node.js code sample!!!"
-	conf := aws.NewConfig().
-		WithEndpoint(serviceEndpoint).
-		WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(),
-			authEndpoint, apiKey, serviceInstanceID)).
-		WithS3ForcePathStyle(true)
+    bucketName := "gocosbucket353"
+    textFileName := "go_cos_bucket_file.txt"
+    textFileContents := "This is a test file from Node.js code sample!!!"
+    conf := aws.NewConfig().
+        WithEndpoint(serviceEndpoint).
+        WithCredentials(ibmiam.NewStaticCredentials(aws.NewConfig(),
+            authEndpoint, apiKey, serviceInstanceID)).
+        WithS3ForcePathStyle(true)
 
-	sess := session.Must(session.NewSession())
-	client := s3.New(sess, conf)
-	createBucket(bucketName, client)                                 // Create a new cos bucket with object lock enabled.
-	objectLockConfiguration(bucketName, client)                      // Put objectlock configuration(i.e. default retention) on COS bucket and get the configuration.
-	uploadObject(bucketName, client, textFileName, textFileContents) // Upload an object to cos bucket.
-	objectLockRetention(bucketName, client, textFileName)            // Put objectlock retention(i.e. retain until date) on the object and get the configured retention.
-	objectLocklegal-hold(bucketName, client, textFileName)            // Put objectlock legal-hold on the object and get the legal-hold status.
-
+    sess := session.Must(session.NewSession())
+    client := s3.New(sess, conf)
+    createBucket(bucketName, client)                                                   // Create a new cos bucket with object lock enabled.
+    objectLockConfiguration(bucketName, client)                                        // Put objectlock configuration(i.e. default retention) on COS bucket and get the configuration.
+    objectLockConfigurationwithGovernanceMode(bucketName, client)                      // Put objectlock configuration(i.e. default retention) with governance mode on COS bucket and get the configuration.
+    uploadObject(bucketName, client, textFileName, textFileContents)                   // Upload an object to cos bucket.
+    uploadObjectWithGovernanceMode(bucketName, client, textFileName, textFileContents) // Upload an object with governance mode to cos bucket.
+    objectLockRetention(bucketName, client, textFileName)                              // Put objectlock retention(i.e. retain until date) on the object and get the configured retention.
+    objectLockRetentionWithGovernanceMode(bucketName, client, textFileName)            // Put objectlock retention(i.e. retain until date) with governance mode on the object and get the configured retention.
+    objectLocklegalHold(bucketName, client, textFileName)                              // Put objectlock legal-hold on the object and get the legal-hold status.
+    deleteObjectWithBypassGovernance(bucketName, client, textFileName)                 // Delete object using governace bypass header
 }
+
 ```
 {: codeblock}
 
