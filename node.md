@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2025
-lastupdated: "2025-05-28"
+lastupdated: "2025-12-04"
 
 keywords: object storage, node, javascript, sdk
 
@@ -1012,7 +1012,7 @@ getRestore();
 
 ```
 {: codeblock}
-{: javascript}
+{: javascript} 
 
 
 

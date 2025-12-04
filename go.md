@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2025
-lastupdated: "2025-05-28"
+lastupdated: "2025-12-04"
 
 keywords: object storage, go, sdk
 
@@ -1402,8 +1402,7 @@ func main() {
     fmt.Printf("Restore details: %+v\n", restoreDetails)
 }
 ```
-{: codeblock}
-
+{: codeblock} 
 
 ## Next Steps
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2025
-lastupdated: "2025-09-12"
+lastupdated: "2025-12-04"
 
 keywords: object storage, python, sdk, aspera, apache, asperatransfermanager
 
@@ -1046,9 +1046,7 @@ print(get_store.result)
 
 ```
 {: codeblock}
-{: python}
-
-
+{: python} 
 
 ## Using Key Protect
 {: #python-examples-kp}
