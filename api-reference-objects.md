@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2025
-lastupdated: "2025-12-04"
+lastupdated: "2025-12-05"
 
 keywords: rest, s3, compatibility, api, objects
 
@@ -281,7 +281,7 @@ Content-Length: 467
 ## Delete an object
 {: #object-operations-delete}
 
-A `DELETE` given a path to an object deletes an object.
+A `DELETE` given a path to an object deletes an object. 
 
 
 
@@ -333,6 +333,8 @@ x-amz-request-id: 8ff4dc32-a6f0-447f-86cf-427b564d5855
 
 A `POST` given a path to a bucket and proper parameters deletes a specified set of objects. A `Content-MD5` header or a `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required as an integrity check for the payload.
 
+**Optional headers**
+
 | Header        | Type   | Description                                                                                                                                                 |
 | ------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `Content-MD5` | String | The base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit. |
@@ -342,7 +344,6 @@ A `POST` given a path to a bucket and proper parameters deletes a specified set 
 | `x-amz-checksum-sha1` | String | This header is the Base64 encoded, 160-bit SHA1 digest of the object. |
 | `x-amz-checksum-sha256` | String | This header is the Base64 encoded, 256-bit SHA256 digest of the object. |
 {: caption="Optional Headers" caption-side="top"}
-
 
 When an object that is specified in the request is not found the result returns as deleted.
 {: note}
