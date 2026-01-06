@@ -1,9 +1,9 @@
 ---
 
 copyright:
-  years: 2017, 2025
+  years: 2017, 2026
 
-lastupdated: "2025-12-02"
+lastupdated: "2026-01-06"
 
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning, metrics router, activity tracker routing, routing, monitoring
@@ -21,6 +21,13 @@ content-type: release-note
 
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
+
+## 06 January 2026
+{: #cloud-object-storage-jan0626}
+{: release-note}
+
+Feature update for {{site.data.keyword.cos_full_notm}}
+:   {{site.data.keyword.cos_short}} has enhanced the Object Lock feature with support for the GOVERNANCE retention mode. Previously, only COMPLIANCE mode and Legal Hold were supported, which provided strict WORM (Write Once Read Many) protections. With this enhancement, GOVERNANCE mode offers more flexible data protection that still enforces immutability — but with the ability for privileged users to override restrictions under certain conditions.
 
 
 
