@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-04-18"
+lastupdated: "2026-01-06"
 
 keywords: data migration, object storage, cli, rclone
 
@@ -274,46 +274,48 @@ The installation script checks the version of `rclone` installed first, and skip
 ## Command reference
 {: #rclone-reference}
 
+For the following list of commonly used commands, `REMOTE_NAME` is the name you entered for the configuration when you configured access to {{site.data.keyword.cos_full_notm}} and `BUCKET_NAME` is the name of a bucket.
+
 ### Create a bucket
 {: #rclone-reference-create-bucket}
 
 ``` sh
-rclone mkdir RemoteName:newbucket
+rclone mkdir REMOTE_NAME:BUCKET_NAME
 ```
 
 ### List available buckets
 {: #rclone-reference-list-buckets}
 
 ``` sh
-rclone lsd RemoteName:
+rclone lsd REMOTE_NAME:
 ```
 
 ### List contents of a bucket
 {: #rclone-reference-list-objects}
 
 ``` sh
-rclone ls RemoteName:newbucket
+rclone ls REMOTE_NAME:BUCKET_NAME
 ```
 
 ### Copy a file from local to remote
 {: #rclone-reference-copy-local}
 
 ``` sh
-rclone copy /Users/file.txt RemoteName:newbucket
+rclone copy /Users/file.txt REMOTE_NAME:BUCKET_NAME
 ```
 
 ### Copy a file from remote to local
 {: #rclone-reference-copy-remote}
 
 ```sh
-rclone copy RemoteName:newbucket/file.txt /Users/Documents/
+rclone copy REMOTE_NAME:BUCKET_NAME/file.txt /Users/Documents/
 ```
 
 ### Delete a file on remote
 {: #rclone-reference-delete-file}
 
 ``` sh
-rclone delete RemoteName:newbucket/file.txt
+rclone delete REMOTE_NAME:BUCKET_NAME/file.txt
 ```
 
 ### List Commands
@@ -390,7 +392,7 @@ Scheduling a backup is important to automating backups. Depending on your platfo
 `Rclone` syncs a local directory with the remote container, storing all the files in the local directory in the container. `Rclone` uses the syntax, `rclone sync source destination`, where `source` is the local folder and `destination` is the container within your IBM COS.
 
 ```sh
-rclone sync /path/to/my/backup/directory RemoteName:newbucket
+rclone sync /path/to/my/backup/directory REMOTE_NAME:BUCKET_NAME
 ```
 
 You might already have a destination that is created, but if you don't then you can create a new bucket by using the steps above.
@@ -406,7 +408,7 @@ Before scheduling a job, make sure that you have done your initial upload and it
 1. Create a text file that is called `backup.bat` somewhere on your computer and paste in the command you used in the section about [syncing a directory](#rclone-sync-directory).  Specify the full path to the `rclone.exe` and don’t forget to save the file.
 
    ``` txt
-    C:\full\path\to\rclone.exe sync "C:\path\to\my\backup\directory" RemoteName:newbucket
+    C:\full\path\to\rclone.exe sync "C:\path\to\my\backup\directory" REMOTE_NAME:BUCKET_NAME
    ```
 
 1. Use `schtasks` to schedule a job. This utility takes a number of parameters.
@@ -429,7 +431,7 @@ Before scheduling a job, make sure that you have done your initial upload and it
 
    ``` txt
    #!/bin/sh
-   /full/path/to/rclone sync /path/to/my/backup/directory RemoteName:newbucket
+   /full/path/to/rclone sync /path/to/my/backup/directory REMOTE_NAME:BUCKET_NAME
    ```
 
 1. Make the script executable with `chmod`.
