@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2025
-lastupdated: "2025-09-12"
+  years: 2017, 2026
+lastupdated: "2026-01-06"
 
 keywords: object storage, python, sdk, aspera, apache, asperatransfermanager
 
@@ -1049,6 +1049,155 @@ print(get_store.result)
 {: python}
 
 
+
+### Create a new COS bucket with object lock enabled
+{: #python-examples-create-bucket-ol}
+
+```python
+ def create_bucket_with_objectlock(bucket_name):
+         cos_cli.create_bucket(
+             Bucket=bucket_name,
+             ObjectLockEnabledForBucket=True,
+         )
+         print("Bucket: {0} created with objectlock enabled".format(bucket_name))
+```
+{: codeblock}
+{: python}
+
+### Put object lock configuration with compliance mode on COS bucket
+{: #python-examples-put-retention-bucket}
+
+```python
+def objectlock_configuration_on_bucket(bucket_name):
+
+    # Putting default retenion on the COS bucket.
+    default_retention_rule = {'DefaultRetention': {'Mode': 'COMPLIANCE', 'Years': 1}}
+    object_lock_config = {'ObjectLockEnabled': 'Enabled', 'Rule': default_retention_rule}
+    cos_cli.put_object_lock_configuration(Bucket=bucket_name, ObjectLockConfiguration=object_lock_config)
+```
+{: codeblock}
+{: python}
+
+### Put object lock configuration with governance mode on COS bucket
+{: #python-examples-put-retention-ol-bucket}
+
+```python
+def objectlock_configuration_with_governance_mode_on_bucket(bucket_name):
+
+    # Putting default retenion on the COS bucket with governance mode.
+    default_retention_rule = {'DefaultRetention': {'Mode': 'GOVERNANCE', 'Years': 1}}
+    object_lock_config = {'ObjectLockEnabled': 'Enabled', 'Rule': default_retention_rule}
+    cos_cli.put_object_lock_configuration(Bucket=bucket_name, ObjectLockConfiguration=object_lock_config)
+```
+{: codeblock}
+{: python}
+
+### Get object lock configuration on COS bucket
+{: #python-examples-get-retention-ol}
+
+```python
+def objectlock_configuration_with_governance_mode_on_bucket(bucket_name):
+
+    # Reading the objectlock configuration set on the bucket.
+    response = cos_cli.get_object_lock_configuration(Bucket=bucket_name)
+    print("Objectlock Configuration for {0} =>".format(bucket_name))
+    print(response.ObjectLockConfiguration)
+```
+{: codeblock}
+{: python}
+
+
+
+### Upload an object with governance mode to COS bucket
+{: #python-examples-upload-bucket-governance}
+
+```python
+def upload_object_with_governance_mode(bucket_name,object_name,object_content):
+        cos_cli.put_object(
+            Bucket=bucket_name,
+            Key=object_name,
+            Body=object_content,
+            ObjectLockMode='GOVERNANCE',
+            ObjectLockRetainUntilDate=datetime(2025, 11, 15)
+        )
+        print("Object: {0} uploaded!".format(object_name))
+```
+{: codeblock}
+{: python}
+
+### Put object lock retention with compliance mode on the object
+{: #python-examples-put-ol-retention}
+
+```python
+def objectlock_retention(bucket_name,object_name):
+        # Put objectlock retenion on the  object uploaded to the bucket.
+        date = datetime.now()+timedelta(seconds=5)
+        retention_rule = {'Mode': 'COMPLIANCE', 'RetainUntilDate': date}
+        cos_cli.put_object_retention(Bucket=bucket_name, Key=object_name, Retention=retention_rule)
+```
+{: codeblock}
+{: python}
+
+### Put object lock retention with governance mode on the object
+{: #python-examples-put-ol-retention-governance}
+
+```python
+def objectlock_retention_with_governance_mode(bucket_name,object_name):
+        # Put objectlock retenion with governance mode on the  object uploaded to the bucket.
+        date = datetime.now()+timedelta(seconds=5)
+        retention_rule = {'Mode': 'GOVERNANCE', 'RetainUntilDate': date}
+        cos_cli.put_object_retention(Bucket=bucket_name, Key=object_name, Retention=retention_rule)
+```
+{: codeblock}
+{: python}
+
+### Get object lock retention
+{: #python-examples-get-ol-retention}
+
+```python
+def objectlock_retention_with_governance_mode(bucket_name,object_name):
+        # Get objectlock retention of the above object.
+        response = cos_cli.get_object_retention(Bucket=bucket_name, Key=object_name)
+        print("Objectlock Retention for {0}=>".format(object_name))
+        print(response.Retention)
+```
+{: codeblock}
+{: python}
+
+### Put object lock legalhold
+{: #python-examples-put-object-legal-hold}
+
+```python
+def objectlock_legal_hold(bucket_name,object_name):
+        # Setting the objectlock legal-hold status to ON.
+        cos_cli.put_object_legal_hold(Bucket=bucket_name, Key=object_name, legal_hold={'Status': 'ON'})
+```
+{: codeblock}
+{: python}
+
+### Get object lock legalhold
+{: #python-examples-get-object-legal-hold}
+
+```python
+def objectlock_legal_hold(bucket_name,object_name):
+        # Get objectlock retention of the above object.
+        response = cos_cli.get_object_legal_hold(Bucket=bucket_name, Key=object_name)
+        print("Objectlock legal-hold for {0}=>".format(object_name))
+        print(response.legal_hold)
+```
+{: codeblock}
+{: python}
+
+### Deleting an object with object lock governance mode using bypass governance
+{: #python-examples-delete-object-retention}
+
+```python
+def delete_object_with_bypass_governance(bucket_name,object_name):
+        # Deleting an object with retention using bypass governance
+        cos_cli.delete_object(Bucket=bucket_name, Key=object_name, BypassGovernanceRetention=True)
+```
+{: codeblock}
+{: python}
 
 ## Using Key Protect
 {: #python-examples-kp}

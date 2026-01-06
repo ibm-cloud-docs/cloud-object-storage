@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2025
-lastupdated: "2025-05-28"
+  years: 2017, 2026
+lastupdated: "2026-01-06"
 
 keywords: object storage, go, sdk
 
@@ -1404,6 +1404,234 @@ func main() {
 ```
 {: codeblock}
 
+### Create a new COS bucket with object lock enabled
+{: #go-create-bucket-ol-enabled}
+
+```go
+func createBucket(bucketName string, client *s3.S3) {
+    createBucketInput := new(s3.CreateBucketInput)
+    createBucketInput.Bucket = aws.String(bucketName)
+    createBucketInput.ObjectLockEnabledForBucket = aws.Bool(true)
+    _, e := client.CreateBucket(createBucketInput)
+    if e != nil {
+        fmt.Println(e)
+    } else {
+        fmt.Println("Bucket Created !!! ")
+    }
+}
+```
+{: codeblock}
+
+### Put object lock configuration with compliance mode on COS bucket
+{: #go-put-ol-configuration}
+
+```go
+func objectLockConfiguration(bucketName string, client *s3.S3) {
+    // Putting default retenion on the COS bucket.
+    putObjectLockConfigurationInput := &s3.PutObjectLockConfigurationInput{
+        Bucket: aws.String(bucketName),
+        ObjectLockConfiguration: &s3.ObjectLockConfiguration{
+            ObjectLockEnabled: aws.String(s3.ObjectLockEnabledEnabled),
+            Rule: &s3.ObjectLockRule{
+                DefaultRetention: &s3.DefaultRetention{
+                    Mode: aws.String("COMPLIANCE"),
+                    Days: aws.Int64(1),
+                },
+            },
+        },
+    }
+    _, e := client.PutObjectLockConfiguration(putObjectLockConfigurationInput)
+}
+```
+{: codeblock}
+
+### Put object lock configuration with governance mode on COS bucket
+{: #go-put-ol-configuration-governance}
+
+```go
+func objectLockConfigurationwithGovernanceMode(bucketName string, client *s3.S3) {
+    // Putting default retenion on the COS bucket.
+    putObjectLockConfigurationInput := &s3.PutObjectLockConfigurationInput{
+        Bucket: aws.String(bucketName),
+        ObjectLockConfiguration: &s3.ObjectLockConfiguration{
+            ObjectLockEnabled: aws.String(s3.ObjectLockEnabledEnabled),
+            Rule: &s3.ObjectLockRule{
+                DefaultRetention: &s3.DefaultRetention{
+                    Mode: aws.String("GOVERNANCE"),
+                    Days: aws.Int64(1),
+                },
+            },
+        },
+    }
+    _, e := client.PutObjectLockConfiguration(putObjectLockConfigurationInput)
+}
+```
+{: codeblock}
+
+### Get object lock configuration on COS bucket
+{: #go-upload-object-bucket}
+
+```go
+func objectLockConfigurationwithGovernanceMode(bucketName string, client *s3.S3) {
+
+    // Reading the objectlock configuration set on the bucket.
+    getObjectLockConfigurationInput := new(s3.GetObjectLockConfigurationInput)
+    getObjectLockConfigurationInput.Bucket = aws.String(bucketName)
+    response, e := client.GetObjectLockConfiguration(getObjectLockConfigurationInput)
+    if e != nil {
+        fmt.Println(e)
+    } else {
+        fmt.Println("Object Lock Configuration =>", response.ObjectLockConfiguration)
+    }
+}
+```
+{: codeblock}
+
+
+
+### Upload an object with governance mode to COS bucket
+{: #go-upload-object-bucket-governance}
+
+```go
+func uploadObjectWithGovernanceMode(bucketName string, client *s3.S3, fileName string, fileContent string) {
+    retention_date := time.Now().Local().Add(time.Second * 5)
+    putInput := &s3.PutObjectInput{
+        Bucket:                    aws.String(bucketName),
+        Key:                       aws.String(fileName),
+        Body:                      bytes.NewReader([]byte(fileContent)),
+        ObjectLockMode:            aws.String("GOVERNANCE"),
+        ObjectLockRetainUntilDate: aws.Time(retention_date),
+    }
+
+    _, e := client.PutObject(putInput)
+    if e != nil {
+        fmt.Println(e)
+    } else {
+        fmt.Println("Object Uploaded!!! ")
+    }
+}
+```
+{: codeblock}
+
+### Put object lock retention with compliance mode on the object
+{: #go-put-ol-retention}
+
+```go
+func objectLockRetention(bucketName string, client *s3.S3, keyName string) {
+
+    // Put objectlock retenion on the  object uploaded to the bucket.
+    retention_date := time.Now().Local().Add(time.Second * 5)
+    putObjectRetentionInput := &s3.PutObjectRetentionInput{
+        Bucket: aws.String(bucketName),
+        Key:    aws.String(keyName),
+        Retention: &s3.ObjectLockRetention{
+            Mode:            aws.String("COMPLIANCE"),
+            RetainUntilDate: aws.Time(retention_date),
+        },
+    }
+    _, e := client.PutObjectRetention(putObjectRetentionInput)
+}
+```
+{: codeblock}
+
+### Put object lock retention with governance mode on the object
+{: #go-put-ol-retention-governance}
+
+```go
+func objectLockRetentionWithGovernanceMode(bucketName string, client *s3.S3, keyName string) {
+
+    // Put objectlock retenion on the  object uploaded to the bucket.
+    retention_date := time.Now().Local().Add(time.Second * 5)
+    putObjectRetentionInput := &s3.PutObjectRetentionInput{
+        Bucket: aws.String(bucketName),
+        Key:    aws.String(keyName),
+        Retention: &s3.ObjectLockRetention{
+            Mode:            aws.String("GOVERNANCE"),
+            RetainUntilDate: aws.Time(retention_date),
+        },
+    }
+    _, e := client.PutObjectRetention(putObjectRetentionInput)
+}
+```
+{: codeblock}
+
+### Get object lock retention
+{: #go-get-ol-retention}
+
+```go
+func objectLockRetentionWithGovernanceMode(bucketName string, client *s3.S3, keyName string) {
+
+    // Get objectlock retention of the above object.
+    getObjectRetentionInput := new(s3.GetObjectRetentionInput)
+    getObjectRetentionInput.Bucket = aws.String(bucketName)
+    getObjectRetentionInput.Key = aws.String(keyName)
+    response, e := client.GetObjectRetention(getObjectRetentionInput)
+    if e != nil {
+        fmt.Println(e)
+    } else {
+        fmt.Println("Object Lock Retention =>", response.Retention)
+    }
+}
+```
+{: codeblock}
+
+### Put object lock legalhold
+{: #go-put-ol-status}
+
+```go
+func objectLocklegalHold(bucketName string, client *s3.S3, keyName string) {
+
+    // Setting the objectlock legal-hold status to ON.
+    putObjectlegalHoldInput := &s3.PutObjectlegalHoldInput{
+        Bucket: aws.String(bucketName),
+        Key:    aws.String(keyName),
+        legalHold: &s3.ObjectLocklegalHold{
+            Status: aws.String("ON"),
+        },
+    }
+    _, e := client.PutObjectlegalHold(putObjectlegalHoldInput)
+}
+```
+{: codeblock}
+
+### Get object lock legalhold
+{: #go-get-ol-status}
+
+```go
+func objectLocklegalHold(bucketName string, client *s3.S3, keyName string) {
+
+    // Get objectlock retention of the above object.
+    getObjectlegalHoldInput := new(s3.GetObjectlegalHoldInput)
+    getObjectlegalHoldInput.Bucket = aws.String(bucketName)
+    getObjectlegalHoldInput.Key = aws.String(keyName)
+    response, e := client.GetObjectlegalHold(getObjectlegalHoldInput)
+    if e != nil {
+        fmt.Println(e)
+    } else {
+        fmt.Println("Object Lock legal-hold =>", response.legalHold)
+    }
+}
+```
+{: codeblock}
+
+### Deleting an object with object lock governance mode using bypass governance
+{: #go-delete-ol-governance}
+
+```go
+func deleteObjectWithBypassGovernance(bucketName string, client *s3.S3, fileName string) {
+    deleteObjectInput := new(s3.DeleteObjectInput)
+    deleteObjectInput.Bucket = aws.String(bucketName)
+    deleteObjectInput.Key = aws.String("foo")
+    deleteObjectInput.BypassGovernanceRetention = aws.Bool(true)
+    _, e := client.DeleteObject(deleteObjectInput)
+    if e != nil {
+        fmt.Println(e)
+    } else {
+        fmt.Println("Object Deleted")
+    }
+}
+```
+{: codeblock}
 
 ## Next Steps
 

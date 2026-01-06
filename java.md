@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2025
-lastupdated: "2025-05-28"
+  years: 2017, 2026
+lastupdated: "2026-01-06"
 
 keywords: object storage, java, sdk
 
@@ -1352,6 +1352,216 @@ public static void main(String[] args) {
         }
 ```
 {: codeblock}
+
+
+
+### Create a new cos bucket with object lock enabled
+{: #java-create-bucket}
+
+```java
+    public static void createBucket(String bucketName, AmazonS3 _cosClient)
+        {
+            _cosClient.createBucket(bucketName);
+            System.out.printf("Bucket: %s created!\n", bucketName);
+        }
+```
+{: codeblock}
+
+### Put object lock configuration with compliance mode on COS bucket
+{: #java-put-ol-configuration}
+
+```java
+    public static void putObjectLockConfiguration(String bucketName, AmazonS3 _cosClient)
+        {
+            DefaultRetention defRet = new DefaultRetention()
+                    .withMode(ObjectLockRetentionMode.COMPLIANCE)
+                    .withDays(1);
+            ObjectLockRule objRule = new ObjectLockRule()
+                            .withDefaultRetention(defRet);
+            ObjectLockConfiguration objConfig = new ObjectLockConfiguration()
+                            .withObjectLockEnabled(ObjectLockEnabled.ENABLED)
+                            .withRule(objRule);
+            SetObjectLockConfigurationRequest objSet = new SetObjectLockConfigurationRequest()
+                            .withBucketName(BUCKET_NAME)
+                            .withObjectLockConfiguration(objConfig);
+            _cosClient.setObjectLockConfiguration(objSet);
+            System.out.printf("Successfully added object lock cofiguration on : %s\n", bucketName);
+        }
+```
+{: codeblock}
+
+### Put object lock configuration with governance mode on COS bucket
+{: #java-put-ol-configuration-governance}
+
+```java
+    public static void putObjectLockConfigurationWithGovernanceMode(String bucketName, AmazonS3 _cosClient)
+        {
+            DefaultRetention defRet = new DefaultRetention()
+                    .withMode(ObjectLockRetentionMode.GOVERNANCE)
+                    .withDays(1);
+            ObjectLockRule objRule = new ObjectLockRule()
+                            .withDefaultRetention(defRet);
+            ObjectLockConfiguration objConfig = new ObjectLockConfiguration()
+                            .withObjectLockEnabled(ObjectLockEnabled.ENABLED)
+                            .withRule(objRule);
+            SetObjectLockConfigurationRequest objSet = new SetObjectLockConfigurationRequest()
+                            .withBucketName(BUCKET_NAME)
+                            .withObjectLockConfiguration(objConfig);
+            _cosClient.setObjectLockConfiguration(objSet);
+            System.out.printf("Successfully added object lock cofiguration on : %s\n", bucketName);
+        }
+```
+{: codeblock}
+
+### Get object lock configuration on COS bucket
+{: #java-get-ol}
+
+```java
+    public static void getObjectLockConfigurationWithGovernanceMode(String bucketName, AmazonS3 _cosClient)
+        {
+            GetObjectLockConfigurationRequest objReq = new GetObjectLockConfigurationRequest().withBucketName(BUCKET_NAME);
+            GetObjectLockConfigurationResult objRes = _cosClient.getObjectLockConfiguration(objReq);
+            ObjectLockConfiguration objLckConfig = objRes.getObjectLockConfiguration();
+            ObjectLockRule objGetRule = objLckConfig.getRule();
+            System.out.printf("ObjectLock Configuration : %s\n", objGetRule);
+
+        }
+```
+{: codeblock}
+
+
+
+### Upload an object with governance mode to COS bucket
+{: #java-upload-object-governance}
+
+```java
+    public static void uploadFileWithGovernanceMode(String bucketName, String itemName, String fileText) {
+            System.out.printf("Creating new item: %s\n", itemName);
+            LocalDate date = LocalDate.of(2025, 11, 11);
+            InputStream newStream = new ByteArrayInputStream(fileText.getBytes(Charset.forName("UTF-8")));
+            ObjectMetadata metadata = new ObjectMetadata();
+            metadata.setContentLength(fileText.length());
+            PutObjectRequest req = new PutObjectRequest(bucketName, itemName, newStream, metadata)
+                                .withObjectLockMode("GOVERNANCE")
+                                .withObjectLockRetainUntilDate(date);
+            _cosClient.putObject(req);
+            System.out.printf("Item: %s created!\n", itemName);
+        }
+```
+{: codeblock}
+
+### Put object lock retention with compliance mode on the object
+{: #java-put-object-retention}
+
+```java
+    public static void putObjectLockRetention(String bucketName,String itemName, AmazonS3 _cosClient)
+        {
+            LocalDate date = LocalDate.of(2025, 11, 11);
+            ObjectLockRetention objRet = new ObjectLockRetention()
+                        .withMode("COMPLIANCE")
+                        .withRetainUntilDate(date);
+            SetObjectRetentionRequest objSet = new SetObjectRetentionRequest()
+                        .withBucketName(BUCKET_NAME)
+                        .withitemName(itemName)
+                        .withRetention(objRet);
+                        .withBypassGovernanceRetention(true);
+            _cosClient.setObjectRetention(objSet);
+            System.out.printf("Successfully added object retention on : %s\n", itemName);
+        }
+```
+{: codeblock}
+
+### Put object lock retention with governance mode on the object
+{: #java-put-object-retention-governance}
+
+```java
+    public static void putObjectLockRetentionWithGovernanceMode(String bucketName,String itemName, AmazonS3 _cosClient)
+        {
+            LocalDate date = LocalDate.of(2025, 11, 11);
+            ObjectLockRetention objRet = new ObjectLockRetention()
+                        .withMode("GOVERNANCE")
+                        .withRetainUntilDate(date);
+            SetObjectRetentionRequest objSet = new SetObjectRetentionRequest()
+                        .withBucketName(BUCKET_NAME)
+                        .withitemName(itemName)
+                        .withRetention(objRet);
+                        .withBypassGovernanceRetention(true);
+            _cosClient.setObjectRetention(objSet);
+            System.out.printf("Successfully added object retention on : %s\n", itemName);
+        }
+```
+{: codeblock}
+
+### Get object lock retention
+{: #java-get-object-retention}
+
+```java
+    public static void getObjectLockRetentionWithGovernanceMode(String bucketName,String itemName, AmazonS3 _cosClient)
+        {
+            GetObjectRetentionRequest objReq = new GetObjectRetentionRequest()
+                .withBucketName(BUCKET_NAME)
+                .withitemName(itemName);
+            GetObjectRetentionResult objRes1 = _cosClient.getObjectRetention(objReq);
+            ObjectLockRetention objRet1 = objRes1.getRetention();
+            System.out.printf("Retention : %s\n", objRet1);
+        }
+```
+{: codeblock}
+
+### Put object lock legalhold
+{: #java-put-object-legal-hold}
+
+```java
+   public static void putObjectLockLegalHold(String bucketName,string itemName, AmazonS3 _cosClient)
+   {
+      ObjectLockLegalHold objLegalHold = new ObjectLockLegalHold()
+            .withStatus("ON");
+        SetObjectLegalHoldRequest objSetLegalHold = new SetObjectLegalHoldRequest()
+            .withBucketName(bucketName)
+            .withKey(itemName)
+            .withLegalHold(objLegalHold);
+        _cosClient.setObjectLegalHold(objSetLegalHold);
+       System.out.printf("Successfully added object lock legal hold on : %s\n", itemName);
+       GetObjectLegalHoldRequest objReqLegal = new GetObjectLegalHoldRequest()
+            .withBucketName(bucketName)
+            .withKey(itemName);
+    	GetObjectLegalHoldResult objResLegal = _cosClient.getObjectLegalHold(objReqLegal);
+       System.out.printf("ObjectLock Legal Hold  : %s\n", objResLegal.getLegalHold());
+
+   }
+```
+{: codeblock}
+
+### Get object lock legalhold
+{: #java-get-object-legal-hold}
+
+```java
+   public static void getObjectLockLegalHold(String bucketName,string itemName, AmazonS3 _cosClient)
+   {
+       GetObjectLegalHoldRequest objReqLegal = new GetObjectLegalHoldRequest()
+            .withBucketName(bucketName)
+            .withKey(itemName);
+    	GetObjectLegalHoldResult objResLegal = _cosClient.getObjectLegalHold(objReqLegal);
+       System.out.printf("ObjectLock Legal Hold  : %s\n", objResLegal.getLegalHold());
+
+   }
+```
+{: codeblock}
+
+### Deleting an object with object lock governance mode using bypass governance
+{: #java-delete-object-governance}
+
+```java
+    public static void deleteObjectWithBypassGovernance(String bucketName, String itemName) {
+            System.out.printf("Deleting item: %s\n", itemName);
+            DeleteObjectRequest deleteRequest = new DeleteObjectRequest(BUCKET_NAME, Key)
+                .withBypassGovernanceRetention(true);
+            _cosClient.deleteObject(deleteRequest);
+            System.out.printf("Item: %s deleted!\n", itemName);
+        }
+```
+{: codeblock}
+
 
 
 
