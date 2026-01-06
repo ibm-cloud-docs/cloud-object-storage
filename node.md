@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2025
-lastupdated: "2025-12-04"
+  years: 2017, 2026
+lastupdated: "2026-01-06"
 
 keywords: object storage, node, javascript, sdk
 
@@ -1012,7 +1012,262 @@ getRestore();
 
 ```
 {: codeblock}
-{: javascript} 
+{: javascript}
+
+### Create a new cos bucket with object lock enabled (Coming soon)
+{: #node-examples-create-bucket}
+
+```javascript
+function createBucket(bucketName) {
+    console.log(`Creating new bucket: ${bucketName}`);
+    return cos.createBucket({
+        Bucket: bucketName,
+        ObjectLockEnabledForBucket: true,
+        CreateBucketConfiguration: {
+            LocationConstraint: ''
+          },
+    }).promise()
+    .then((() => {
+        console.log(`Bucket: ${bucketName} created!`);
+    }))
+    .catch((e) => {
+        console.error(`ERROR: ${e.code} - ${e.message}\n`);
+    });
+}
+```
+{: codeblock}
+{: javascript}
+
+### Put object lock configuration with compliance mode on COS bucket (Coming soon)
+{: #node-examples-create-bucket}
+
+```javascript
+function putObjectLockConfigurationOnBucket(bucketName) {
+    console.log(`Putting Objectlock Configuration on : ${bucketName}`);
+    // Putting objectlock configuration
+    var defaultRetention = {Mode: 'COMPLIANCE', Days: 1}
+    var objectLockRule = {DefaultRetention : defaultRetention}
+    var param = {ObjectLockEnabled: 'Enabled', Rule: objectLockRule}
+    return cos.putObjectLockConfiguration({
+        Bucket: bucketName,
+        ObjectLockConfiguration: param
+    }).promise()
+    .then(() => {
+        console.log(`Object lock Configurtion added!!`);
+        logDone();
+    })
+    .catch(logError);
+}
+```
+{: codeblock}
+{: javascript}
+
+### Put object lock configuration with governance mode on COS bucket (Coming soon)
+{: #node-examples-put-configuration-governance}
+
+```javascript
+function putObjectLockConfigurationWithGovernanceModeOnBucket(bucketName) {
+    console.log(`Putting Objectlock Configuration on : ${bucketName}`);
+    // Putting objectlock configuration
+    var defaultRetention = {Mode: 'GOVERNANCE', Days: 1}
+    var objectLockRule = {DefaultRetention : defaultRetention}
+    var param = {ObjectLockEnabled: 'Enabled', Rule: objectLockRule}
+    return cos.putObjectLockConfiguration({
+        Bucket: bucketName,
+        ObjectLockConfiguration: param
+    }).promise()
+    .then(() => {
+        console.log(`Object lock Configurtion with Governance mode added!!`);
+        logDone();
+    })
+    .catch(logError);
+}
+```
+{: codeblock}
+{: javascript}
+
+### Get object lock configuration on COS bucket (Coming soon)
+{: #node-examples-get-configuration-ol}
+
+```javascript
+function getObjectLockConfigurationonBucket(bucketName) {
+    console.log(`Getting Objectlock Configuration for : ${bucketName}`);
+    // Getting objectlock configuration
+    return cos.getObjectLockConfiguration({
+        Bucket: bucketName,
+    }).promise()
+    .then((data) => {
+        console.log(`objectlock configuration`);
+        console.log( JSON.stringify(data.ObjectLockConfiguration, null, "    ") );
+        logDone();
+    })
+    .catch(logError);
+}
+```
+{: codeblock}
+{: javascript}
+
+
+
+### Upload an object with governance mode to COS bucket (Coming soon)
+{: #node-examples-create-governance-object}
+
+```javascript
+function createTextFile(bucketName, itemName, fileText) {
+    console.log(`Creating new item: ${itemName}`);
+    return cos.putObject({
+        Bucket: bucketName,
+        Key: itemName,
+        Body: fileText
+    }).promise()
+    .then(() => {
+        console.log(`Item: ${itemName} created!`);
+        logDone();
+    })
+    .catch(logError);
+}
+```
+{: codeblock}
+{: javascript}
+
+
+
+### Put object lock retention with compliance mode on the object (Coming soon)
+{: #node-examples-put-ol-retention}
+
+```javascript
+function putObjectLockRetention(bucketName,keyName) {
+    console.log(`Putting Objectlock Retention on : ${keyName}`);
+    var inFiveSecond = (new Date(Date.now() + (1000 * 5)))
+    var rule = {Mode: 'COMPLIANCE', RetainUntilDate: inFiveSecond}
+     // Putting objectlock retention
+    return cos.putObjectRetention({
+        Bucket: bucketName,
+        Key: keyName,
+        Retention: rule
+    }).promise()
+    .then(() => {
+        console.log(`Object lock Retention added!!`);
+        logDone();
+    })
+    .catch(logError);
+}
+```
+{: codeblock}
+{: javascript}
+
+### Put object lock retention with governance mode on the object (Coming soon)
+{: #node-examples-put-ol-retention-governance}
+
+```javascript
+function putObjectLockRetentionWithGovernanceMode(bucketName,keyName) {
+    console.log(`Putting Objectlock Retention on : ${keyName}`);
+    var inFiveSecond = (new Date(Date.now() + (1000 * 5)))
+    var rule = {Mode: 'GOVERNANCE', RetainUntilDate: inFiveSecond}
+     // Putting objectlock retention
+    return cos.putObjectRetention({
+        Bucket: bucketName,
+        Key: keyName,
+        Retention: rule
+    }).promise()
+    .then(() => {
+        console.log(`Object lock Retention with governance mode added!!`);
+        logDone();
+    })
+    .catch(logError);
+}
+```
+{: codeblock}
+{: javascript}
+
+### Get object lock retention (Coming soon)
+{: #node-examples-get-configured-retention}
+
+```javascript
+function getObjectLockRetention(bucketName,keyName) {
+    console.log(`Getting Objectlock Retention for : ${keyName}`);
+    // Getting objectlock retention
+    return cos.getObjectRetention({
+        Bucket: bucketName,
+        Key: keyName
+    }).promise()
+    .then((data) => {
+        console.log(`Objectlock retention for : ${keyName} `);
+        console.log( JSON.stringify(data.Retention, null, "    ") );
+        logDone();
+    })
+    .catch(logError);
+}
+```
+{: codeblock}
+{: javascript}
+
+### Put object lock legalhold (Coming soon)
+{: #node-examples-put-legal-hold-object}
+
+```javascript
+function putObjectLocklegalHold(bucketName,keyName) {
+    console.log(`Putting Objectlock legal-hold status ON for  : ${keyName}`);
+     // Putting objectlock legal-hold status
+    return cos.putObjectlegalHold({
+        Bucket: bucketName,
+        Key: keyName,
+        LegalHold: {Status: 'ON'}
+    }).promise()
+    .then(() => {
+        console.log(`Object lock legal-hold added!!`);
+        logDone();
+    })
+    .catch(logError);
+}
+```
+{: codeblock}
+{: javascript}
+
+### Get object lock legalhold (Coming soon)
+{: #node-examples-get-legal-hold-status}
+
+```javascript
+function getObjectLocklegalHold(bucketName,keyName) {
+    console.log(`Getting Objectlock legal-hold for : ${keyName}`);
+    // Getting objectlock legal-hold
+    return cos.getObjectlegal-hold({
+        Bucket: bucketName,
+        Key: keyName
+    }).promise()
+    .then((data) => {
+        console.log(`Objectlock legal-hold for : ${keyName} `);
+        console.log( JSON.stringify(data.legal-hold, null, "    ") );
+        logDone();
+    })
+    .catch(logError);
+}
+```
+{: codeblock}
+{: javascript}
+
+### Deleting an object with object lock governance mode using bypass governance (Coming soon)
+{: #node-examples-delete-object}
+
+```javascript
+function deleteObjectWithGovernanceMode(bucketName,keyName) {
+    console.log(`Deleting an object with bypass governance : ${keyName}`);
+    // Deleting an object with bypass governance
+    return cos.deleteObject({
+     Bucket: bucketName,
+     Key: objectKey,
+     BypassGovernanceRetention: true,
+    }).promise()
+    .then(() => {
+       console.log("Object deleted");
+    })
+    .catch(err => {
+       console.error("Error deleting object:", err);
+    });
+}
+```
+{: codeblock}
+{: javascript}
 
 
 
