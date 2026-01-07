@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2026
 
-lastupdated: "2026-01-06"
+lastupdated: "2026-01-07"
 
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning, metrics router, activity tracker routing, routing, monitoring
@@ -27,7 +27,8 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 {: release-note}
 
 Feature update for {{site.data.keyword.cos_full_notm}}
-:   {{site.data.keyword.cos_short}} has enhanced the Object Lock feature with support for the GOVERNANCE retention mode. Previously, only COMPLIANCE mode and Legal Hold were supported, which provided strict WORM (Write Once Read Many) protections. With this enhancement, GOVERNANCE mode offers more flexible data protection that still enforces immutability — but with the ability for privileged users to override restrictions under certain conditions.
+:   {{site.data.keyword.cos_short}} has enhanced the Object Lock feature with support for the GOVERNANCE retention mode. Compared to prior release, only COMPLIANCE mode and Legal Hold were supported, which provided strict Write Once Read Many (WORM) protections. With this enhancement, GOVERNANCE mode offers more flexible data protection that still enforces immutability, but with the ability for privileged users to override restrictions under certain conditions.  For more information, see [Object operations](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations) and the SDK languages for [Using Java](/docs/cloud-object-storage?topic=cloud-object-storage-java&interface=ui#java-create-bucket), [Using Python](/docs/cloud-object-storage?topic=cloud-object-storage-python&interface=ui#python-examples-create-bucket-ol), [Using Node.js](/docs/cloud-object-storage?topic=cloud-object-storage-node&interface=ui#node-examples-create-bucket) and [Using Go](/docs/cloud-object-storage?topic=cloud-object-storage-using-go&interface=ui#go-create-bucket-ol-enabled).
+
 
 
 
