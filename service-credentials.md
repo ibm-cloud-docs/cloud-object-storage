@@ -57,7 +57,7 @@ This is an example of a service credential:
       "access_key_id": "347aa3a4b34344f8bc7c7cccdf856e4c",
       "secret_access_key": "gvurfb82712ad14W7a7915h763a6i87155d30a1234364f61"
   },
-  "endpoints": "https://control.cloud-object-storage.test.cloud.ibm.com/v2/endpoints",
+  "endpoints": "https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints",
   "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:bluemix:public:cloud-object-storage:global:a/3ag0e9402tyfd5d29761c3e97696b71n:d6f74k03-6k4f-4a82-b165-697354o63903::",
   "iam_apikey_name": "auto-generated-apikey-f9274b63-ef0b-4b4e-a00b-b3bf9023f9dd",
   "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
@@ -393,4 +393,3 @@ In general IAM API Keys are the preferred method of authentication for {{site.da
 For more information about IAM visit - [Getting started with IAM](/docs/cloud-object-storage?topic=cloud-object-storage-iam)
 
 For more information about HMAC visit - [Using HMAC Credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main)
-

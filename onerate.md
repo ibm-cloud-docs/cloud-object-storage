@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2024, {CURRENT_YEAR}]
-lastupdated: "2025-07-08"
+lastupdated: "2026-01-08"
 
 keywords: data, cost, pricing, isv
 

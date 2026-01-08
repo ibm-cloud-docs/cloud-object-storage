@@ -538,7 +538,7 @@ Response
             ]
         }
     },
-    "href": "https://iam.test.cloud.ibm.com/v2/policies/d4078e99-d78a-4a50-95d6-b528e3c87dff",
+    "href": "https://iam.cloud.ibm.com/v2/policies/d4078e99-d78a-4a50-95d6-b528e3c87dff",
     "created_at": "2023-10-09T16:24:52.391Z",
     "created_by_id": " IBMid-12345user",
     "last_modified_at": "2023-10-09T16:24:52.391Z",

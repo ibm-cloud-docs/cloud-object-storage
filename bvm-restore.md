@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-05-28"
+lastupdated: "2026-01-08"
 
 keywords: bucket, vault, management, restore
 
@@ -36,7 +36,7 @@ Backup data is stored in a Backup Vault in the form of Recovery Ranges. Each Rec
 
 Backup vaults require permission to perform the "cloud-object-storage.bucket.restore_sync" operation to a target bucket. It is granted by using service-to-service policy, and must be configured even if the backup vault and bucket are in the same account or service instance.
 
-See [Getting Started with IAM](https://test.cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-iam) and [Identity and Access Management actions](https://test.cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) on more details for configuring service-to-service permissions.
+See [Getting Started with IAM](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-iam) and [Identity and Access Management actions](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions) on more details for configuring service-to-service permissions.
 
 
 ### Concurrent restore limit
@@ -75,4 +75,3 @@ Initializing    | This status indicates that the Restore request has been receiv
 Running         | This status indicates that the Restore has completed initialization and is currently syncing objects to the target bucket. While in this state, a `restore_percent_progress` response element is included that reports the percent progress of the Restore.
 Complete        | This status indicates that the Restore operation has completed successfully.
 Failed          | This status indicates that the Restore operation has encountered a terminal failure. While in this state, an `error_cause` response element is included which indicates the cause of the failure.
-
