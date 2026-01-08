@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2026
 
-lastupdated: "2026-01-07"
+lastupdated: "2026-01-08"
 
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning, metrics router, activity tracker routing, routing, monitoring
@@ -22,15 +22,19 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
+## 08 January 2026
+{: #cloud-object-storage-jan0826}
+{: release-note}
+
+Local-access VPE support for {{site.data.keyword.cos_full_notm}}
+:   {{site.data.keyword.cos_short}} now supports local-access Virtual Private Endpoints (VPEs) within DNS-shared VPCs. This feature lets customers route traffic to specific buckets directly from each shared VPC, improving performance and enabling finer access control with Context-Based Restriction (CBR) rules, security groups, and resource-level bindings. The hub VPC VPE remains available for all other {{site.data.keyword.cos_short}} access, allowing flexible and secure topologies. For more information, see [Creating a local-access endpoint gateway](/docs/vpc?topic=vpc-create-local-access-vpe&interface=ui).
+
 ## 06 January 2026
 {: #cloud-object-storage-jan0626}
 {: release-note}
 
 Feature update for {{site.data.keyword.cos_full_notm}}
 :   {{site.data.keyword.cos_short}} has enhanced the Object Lock feature with support for the GOVERNANCE retention mode. Compared to prior release, only COMPLIANCE mode and Legal Hold were supported, which provided strict Write Once Read Many (WORM) protections. With this enhancement, GOVERNANCE mode offers more flexible data protection that still enforces immutability, but with the ability for privileged users to override restrictions under certain conditions.  For more information, see [Object operations](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations) and the SDK languages for [Using Java](/docs/cloud-object-storage?topic=cloud-object-storage-java&interface=ui#java-create-bucket), [Using Python](/docs/cloud-object-storage?topic=cloud-object-storage-python&interface=ui#python-examples-create-bucket-ol), [Using Node.js](/docs/cloud-object-storage?topic=cloud-object-storage-node&interface=ui#node-examples-create-bucket) and [Using Go](/docs/cloud-object-storage?topic=cloud-object-storage-using-go&interface=ui#go-create-bucket-ol-enabled).
-
-
-
 
 ## 31 October 2025
 {: #cloud-object-storage-oct312025}
