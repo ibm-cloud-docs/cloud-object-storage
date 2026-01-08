@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2024-12-16"
+  years: 2026
+lastupdated: "2026-01-08"
 
 keywords: HA for cloud object storage, DR for cloud object storage, cloud object storage recovery time objective, cloud object storage recovery point objective
 
@@ -147,7 +147,7 @@ IBM Cloud Object Storage offering has plans in place to provide for the recovery
 
 Change management includes tasks such as upgrades, configuration changes, and deletion. In order to ensure that users are given access as per role requirements, please review [Getting Started with IAM](/docs/cloud-object-storage?topic=cloud-object-storage-iam).
 
-It is recommended that you grant users and processes the IAM roles and actions with the least privilege that is required for their work. See [How can I prevent accidental deletion of services?](https://github.ibm.com/cloud-docs/cloud-object-storage/blob/source/docs/resiliency?topic=resiliency-dr-faq#prevent-accidental-deletion).
+It is recommended that you grant users and processes the IAM roles and actions with the least privilege that is required for their work. See [How can I prevent accidental deletion of services?](/docs/cloud-object-storage?topic=cloud-object-storage-versioning)
 
 
 

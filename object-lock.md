@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2023, 2025
-lastupdated: "2025-12-04"
+  years: 2023, 2026
+lastupdated: "2026-01-08"
 
 keywords: worm, immutable, policy, retention, compliance, replication, legal hold
 
@@ -541,7 +541,7 @@ cos_cli = ibm_boto3.client("s3",
     config=Config(signature_version="oauth"),
     endpoint_url=COS_ENDPOINT,
     ibm_service_instance_id=COS_RESOURCE_INSTANCE_CRN,
-    ibm_auth_endpoint="https://iam.test.cloud.ibm.com/identity/token"
+    ibm_auth_endpoint="https://iam.cloud.ibm.com/identity/token"
 )
 new_bucket_name = "create-example-python12345" # bucket name should be unique gloablly, or else it will throw an error.
 new_text_file_name = "cos_object.txt"
