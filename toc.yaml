@@ -57,6 +57,7 @@ toc:
           label: Provisioning storage
           topics:
           - order-storage.md
+          - onerate.md
       - topicgroup:
           label: Choose regions and connect services
           topics:
