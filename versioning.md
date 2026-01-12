@@ -49,7 +49,7 @@ Then create a versioned object.
 ## Consistency and data integrity
 {: #versioning-consistency}
 
-While IBM COS provides strong consistency for all data IO operations, bucket configuration is eventually consistent. After enabling versioning for the first time on a bucket, it may take a few moments for the configuration to propagate across the system. Although versioning may appear to be enabled, it is recommended to wait 15 minutes after enabling versioning to make any requests that are expected to create versions or delete markers.
+While IBM COS provides strong consistency for all data IO operations, bucket configuration is eventually consistent. After enabling versioning for the first time on a bucket, it may take a few moments for the configuration to propagate across the system. Although versioning may appear to be enabled, it is recommended to wait 5 minutes after enabling versioning to make any requests that are expected to create versions or delete markers.
 
 ## IAM actions
 {: #versioning-iam}

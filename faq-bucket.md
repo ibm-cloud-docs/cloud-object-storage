@@ -87,7 +87,7 @@ The policy applies to the new objects uploaded but does not affect existing obje
 {: #faq-reuse-name}
 {: faq}
 
-A bucket name can be reused as soon as 15 minutes after the contents of the bucket have been deleted and the bucket has been deleted.  Then, the objects and bucket are irrevocably deleted and **can not** be restored.
+A bucket name can be reused as soon as 5 minutes after the contents of the bucket have been deleted and the bucket has been deleted.  Then, the objects and bucket are irrevocably deleted and **can not** be restored.
 
 If you do not first empty and then delete the bucket, and instead [delete or schedule the {{site.data.keyword.cos_short}} service instance for deletion](/docs/cloud-object-storage?topic=cloud-object-storage-provision#deleting-a-service-instance), the bucket names will be held in reserve for a [default period of seven (7) days until the account reclamation process](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_reclamations) is completed. Until the reclamation process is complete, it is possible to restore the instance, along with the buckets and objects. After reclamation is complete, all buckets and objects will be irrevocably deleted and **can not** be restored, although the bucket names will be made available for new buckets to reuse.
 
@@ -169,7 +169,7 @@ Yes, You can achieve the same by creating a bucket in the target Object Storage 
 {: #faq-resue-bucketname}
 {: faq}
 
-When an empty bucket is deleted, the name of the bucket is held in reserve by the system for 10 minutes after the delete operation.  After 10 minutes the name is released for re-use.
+When an empty bucket is deleted, the name of the bucket is held in reserve by the system for 5 minutes after the delete operation.  After 5 minutes the name is released for re-use.
 
 ## Can I enable Object Storage replication between two different regions for DR purposes?
 {: #faq-cos-replication}
