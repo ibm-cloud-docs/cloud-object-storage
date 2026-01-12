@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2025
-lastupdated: "2025-12-04"
+  years: 2017, 2026
+lastupdated: "2026-01-12"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -869,7 +869,7 @@ Content-Length: 909
 ## Delete a bucket
 {: #compatibility-api-delete-bucket}
 
-A `DELETE` request that is issued to an empty bucket deletes the bucket. The name of the bucket is held in reserve by the system for 10 minutes after the deletion. After 10 minutes, the name is released for re-use. *Only empty buckets can be deleted.*
+A `DELETE` request that is issued to an empty bucket deletes the bucket. The name of the bucket is held in reserve by the system for 5 minutes after the deletion. After 5 minutes, the name is released for re-use. *Only empty buckets can be deleted.*
 
 If the {{site.data.keyword.cos_short}} service instance is deleted, all bucket names in that instance are held in reserve by the system for 7 days. After 7 days, the names are released for re-use.
 
