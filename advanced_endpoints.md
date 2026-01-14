@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2023
-lastupdated: "2023-08-09"
+  years: 2017, 2026
+lastupdated: "2026-01-14"
 
 keywords: object storage, endpoints, access points, manual failover
 
@@ -49,7 +49,7 @@ For contrast, imagine another application using the normal US cross-region endpo
 | US: Washington, D.C. | Public (Tethered) | `s3.wdc.us.cloud-object-storage.appdomain.cloud` |
 | EU: Amsterdam        | Public (Tethered) | `s3.ams.eu.cloud-object-storage.appdomain.cloud` |
 | EU: Frankfurt        | Public (Tethered) | `s3.fra.eu.cloud-object-storage.appdomain.cloud` |
-| EU: Milan            | Public (Tethered) | `s3.mil.eu.cloud-object-storage.appdomain.cloud` |
+
 | AP: Tokyo            | Public (Tethered) | `s3.tok.ap.cloud-object-storage.appdomain.cloud` |
 | AP: Sydney           | Public (Tethered) | `s3.syd.ap.cloud-object-storage.appdomain.cloud` |
 | AP: Osaka            | Public (Tethered) | `s3.osa.ap.cloud-object-storage.appdomain.cloud` |
@@ -66,7 +66,7 @@ For contrast, imagine another application using the normal US cross-region endpo
 | US: Washington, D.C. | Private (Tethered) | `s3.private.wdc.us.cloud-object-storage.appdomain.cloud` |
 | EU: Amsterdam        | Private (Tethered) | `s3.private.ams.eu.cloud-object-storage.appdomain.cloud` |
 | EU: Frankfurt        | Private (Tethered) | `s3.private.fra.eu.cloud-object-storage.appdomain.cloud` |
-| EU: Milan            | Private (Tethered) | `s3.private.mil.eu.cloud-object-storage.appdomain.cloud` |
+
 | AP: Tokyo            | Private (Tethered) | `s3.private.tok.ap.cloud-object-storage.appdomain.cloud` |
 | AP: Sydney           | Private (Tethered) | `s3.private.syd.ap.cloud-object-storage.appdomain.cloud` |
 | AP: Osaka        | Private (Tethered) | `s3.private.osa.ap.cloud-object-storage.appdomain.cloud` |
@@ -83,7 +83,7 @@ For contrast, imagine another application using the normal US cross-region endpo
 | US: Washington, D.C. | Direct (Tethered) | `s3.direct.wdc.us.cloud-object-storage.appdomain.cloud` |
 | EU: Amsterdam        | Direct (Tethered) | `s3.direct.ams.eu.cloud-object-storage.appdomain.cloud` |
 | EU: Frankfurt        | Direct (Tethered) | `s3.direct.fra.eu.cloud-object-storage.appdomain.cloud` |
-| EU: Milan            | Direct (Tethered) | `s3.direct.mil.eu.cloud-object-storage.appdomain.cloud` |
+
 | AP: Tokyo            | Direct (Tethered) | `s3.direct.tok.ap.cloud-object-storage.appdomain.cloud` |
 | AP: Sydney           | Direct (Tethered) | `s3.direct.syd.ap.cloud-object-storage.appdomain.cloud` |
 | AP: Osaka            | Direct (Tethered) | `s3.direct.osa.ap.cloud-object-storage.appdomain.cloud` |
@@ -103,7 +103,7 @@ For contrast, imagine another application using the normal US cross-region endpo
 | US: Washington, D.C. | `s3-web.wdc.us.cloud-object-storage.appdomain.cloud` |
 | EU: Amsterdam        | `s3-web.ams.eu.cloud-object-storage.appdomain.cloud` |
 | EU: Frankfurt        | `s3-web.fra.eu.cloud-object-storage.appdomain.cloud` |
-| EU: Milan            | `s3-web.mil.eu.cloud-object-storage.appdomain.cloud` |
+
 | AP: Tokyo            | `s3-web.tok.ap.cloud-object-storage.appdomain.cloud` |
 | AP: Sydney           | `s3-web.syd.ap.cloud-object-storage.appdomain.cloud` |
 | AP: Osaka        | `s3-web.osa.ap.cloud-object-storage.appdomain.cloud` |
@@ -120,7 +120,7 @@ For contrast, imagine another application using the normal US cross-region endpo
 | US: Washington, D.C. | `s3-web.private.wdc.us.cloud-object-storage.appdomain.cloud` |
 | EU: Amsterdam        | `s3-web.private.ams.eu.cloud-object-storage.appdomain.cloud` |
 | EU: Frankfurt        | `s3-web.private.fra.eu.cloud-object-storage.appdomain.cloud` |
-| EU: Milan            | `s3-web.private.mil.eu.cloud-object-storage.appdomain.cloud` |
+
 | AP: Tokyo            | `s3-web.private.tok.ap.cloud-object-storage.appdomain.cloud` |
 | AP: Sydney            | `s3-web.private.syd.ap.cloud-object-storage.appdomain.cloud` |
 | AP: Osaka        | `s3-web.private.osa.ap.cloud-object-storage.appdomain.cloud` |
@@ -137,7 +137,7 @@ For contrast, imagine another application using the normal US cross-region endpo
 | US: Washington, D.C. | `s3-web.direct.wdc.us.cloud-object-storage.appdomain.cloud` |
 | EU: Amsterdam        | `s3-web.direct.ams.eu.cloud-object-storage.appdomain.cloud` |
 | EU: Frankfurt        | `s3-web.direct.fra.eu.cloud-object-storage.appdomain.cloud` |
-| EU: Milan            | `s3-web.direct.mil.eu.cloud-object-storage.appdomain.cloud` |
+
 | AP: Tokyo            | `s3-web.direct.tok.ap.cloud-object-storage.appdomain.cloud` |
 | AP: Sydney            | `s3-web.direct.syd.ap.cloud-object-storage.appdomain.cloud` |
 | AP: Osaka        | `s3-web.direct.osa.ap.cloud-object-storage.appdomain.cloud` |

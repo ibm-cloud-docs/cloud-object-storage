@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2020, 2024
-lastupdated: "2024-05-01"
+  years: 2020, 2026
+lastupdated: "2026-01-14"
 
 keywords: object storage, static website, options
 
@@ -186,7 +186,7 @@ The following tables match most of the regions, locations, and type of connectio
 | Amsterdam, Netherlands      | `s3-web.ams03.cloud-object-storage.appdomain.cloud` |
 | Chennai, India              | `s3-web.che01.cloud-object-storage.appdomain.cloud` |
 | Mexico City, Mexico         | `s3-web.mex01.cloud-object-storage.appdomain.cloud` |
-| Milan, Italy                | `s3-web.mil01.cloud-object-storage.appdomain.cloud` |
+
 | Montr&egrave;al, Canada     | `s3-web.mon01.cloud-object-storage.appdomain.cloud` |
 | Paris, France               | `s3-web.par01.cloud-object-storage.appdomain.cloud` |
 | San Jose, US                | `s3-web.sjc04.cloud-object-storage.appdomain.cloud` |
@@ -203,7 +203,7 @@ The following tables match most of the regions, locations, and type of connectio
 | Amsterdam, Netherlands      | `s3-web.private.ams03.cloud-object-storage.appdomain.cloud` |
 | Chennai, India              | `s3-web.private.che01.cloud-object-storage.appdomain.cloud` |
 | Mexico City, Mexico         | `s3-web.private.mex01.cloud-object-storage.appdomain.cloud` |
-| Milan, Italy                | `s3-web.private.mil01.cloud-object-storage.appdomain.cloud` |
+
 | Montr&egrave;al, Canada     | `s3-web.private.mon01.cloud-object-storage.appdomain.cloud` |
 | Paris, France               | `s3-web.private.par01.cloud-object-storage.appdomain.cloud` |
 | San Jose, US                | `s3-web.private.sjc04.cloud-object-storage.appdomain.cloud` |
@@ -220,7 +220,7 @@ The following tables match most of the regions, locations, and type of connectio
 | Amsterdam, Netherlands      | `s3-web.direct.ams03.cloud-object-storage.appdomain.cloud` |
 | Chennai, India              | `s3-web.direct.che01.cloud-object-storage.appdomain.cloud` |
 | Mexico City, Mexico         | `s3-web.direct.mex01.cloud-object-storage.appdomain.cloud` |
-| Milan, Italy                | `s3-web.direct.mil01.cloud-object-storage.appdomain.cloud` |
+
 | Montr&egrave;al, Canada     | `s3-web.direct.mon01.cloud-object-storage.appdomain.cloud` |
 | Paris, France               | `s3-web.direct.par01.cloud-object-storage.appdomain.cloud` |
 | San Jose, US                | `s3-web.direct.sjc04.cloud-object-storage.appdomain.cloud` |
