@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-01-06"
+lastupdated: "2026-02-03"
 
 keywords: object storage, java, sdk
 
@@ -269,7 +269,7 @@ public static String getEndpoint(String location, String region, String endpoint
     locationMap.put("eu", "s3.eu-geo");
     locationMap.put("eu-amsterdam", "s3.ams-eu-geo");
     locationMap.put("eu-frankfurt", "s3.fra-eu-geo");
-    locationMap.put("eu-milan", "s3.mil-eu-geo");
+/**    locationMap.put("eu-milan", "s3.mil-eu-geo");*/
     locationMap.put("eu-gb", "s3.eu-gb");
     locationMap.put("eu-germany", "s3.eu-de");
     locationMap.put("ap", "s3.ap-geo");
