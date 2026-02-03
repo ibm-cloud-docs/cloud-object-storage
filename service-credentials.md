@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2023
-lastupdated: "2023-12-06"
+  years: 2017, 2026
+lastupdated: "2026-02-03"
 
 keywords: authorization, iam, basics, credentials
 
@@ -116,19 +116,19 @@ The `endpoints` URL (`https://control.cloud-object-storage.cloud.ibm.com/v2/endp
                "eu-geo":"s3.eu.cloud-object-storage.appdomain.cloud",
                "Amsterdam":"s3.ams.eu.cloud-object-storage.appdomain.cloud",
                "Frankfurt":"s3.fra.eu.cloud-object-storage.appdomain.cloud",
-               "Milan":"s3.mil.eu.cloud-object-storage.appdomain.cloud"
+ /**              "Milan":"s3.mil.eu.cloud-object-storage.appdomain.cloud"*/
             },
             "private":{
                "eu-geo":"s3.private.eu.cloud-object-storage.appdomain.cloud",
                "Amsterdam":"s3.private.ams.eu.cloud-object-storage.appdomain.cloud",
                "Frankfurt":"s3.private.fra.eu.cloud-object-storage.appdomain.cloud",
-               "Milan":"s3.private.mil.eu.cloud-object-storage.appdomain.cloud"
+ /**              "Milan":"s3.private.mil.eu.cloud-object-storage.appdomain.cloud"*/
             },
             "direct":{
                "eu-geo":"s3.direct.eu.cloud-object-storage.appdomain.cloud",
                "Amsterdam":"s3.direct.ams.eu.cloud-object-storage.appdomain.cloud",
                "Frankfurt":"s3.direct.fra.eu.cloud-object-storage.appdomain.cloud",
-               "Milan":"s3.direct.mil.eu.cloud-object-storage.appdomain.cloud"
+/**               "Milan":"s3.direct.mil.eu.cloud-object-storage.appdomain.cloud"*/
             }
          },
          "ap":{

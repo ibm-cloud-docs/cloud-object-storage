@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2026
 
-lastupdated: "2026-01-14"
+lastupdated: "2026-02-03"
 
 keywords: endpoint, location, object storage, bucket, region, rclone, resiliency
 
@@ -153,7 +153,8 @@ Buckets that are created at a cross-region endpoint distribute data across three
 For example:
 
 * Data in `US` cross-region bucket is distributed only across regions (such as Dallas, WDC, and SJC) in the `US` geographical location.
-* Data in `EU` cross-region bucket is distributed only across regions (such as, Amsterdam, FRA, and Milan) in the `EU` geographical location.
+
+* Data in `EU` cross-region bucket is distributed only across regions (such as, Amsterdam, and FRA) in the `EU` geographical location.
 * Data in `AP` cross-region bucket is distributed only across regions (such as, TOK, SYD, and OSA) in the `AP` geographical location.
 
 ## Single Data Center Endpoints
@@ -222,7 +223,8 @@ The {{site.data.keyword.at_full_notm}} can archive to a bucket at specific {{sit
 | `eu-gb`                                         | Regional     | London                      |
 
 | `par01`                                         | Single Site  | Paris                       |
-| `eu-geo`                                        | Cross Region | Amsterdam, Frankfurt, Milan |
+
+| `eu-geo`                                        | Cross Region | Amsterdam and Frankfurt |
 {: caption="EU-managed Endpoints" caption-side="top"}
 
 ## Resource Configuration Endpoints
