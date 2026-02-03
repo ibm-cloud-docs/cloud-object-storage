@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2025
-lastupdated: "2025-08-19"
+  years: 2017, 2026
+lastupdated: "2026-02-03"
 
 keywords: about, object storage, overview, erasure coding, multiple writes, availability zone, bucket, integrity, s3, storage
 
@@ -29,10 +29,7 @@ Developers use APIs to interact with their object storage. {{site.data.keyword.c
 
 The [{{site.data.keyword.cloud_notm}} console](https://cloud.ibm.com/){: external} provides a user interface for most operations and configuration as well.
 
-## Cloud Object Storage on IBM Cloud Satellite
-{: #satellite}
 
-Workloads that require object storage on-premise, or in a geographic location not supported by IBM Cloud data centers, can make use of IBM Cloud Satellite.  For more information, see [the documentation](/docs/satellite).
 
 ## Cloud Object Storage IaaS (Legacy)
 {: #iaas}

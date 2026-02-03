@@ -28,10 +28,10 @@
       "type": "training"
     },
     {
-      "title": "object storage capabilities and options on ibm cloud",
-      "description": "Blog on IBM Cloud Object Storage capabilities.",
-      "href": "https://www.ibm.com/blog/?q=object+storage+capabilities+and+options+on+ibm+cloud&lang=en&cc=undefined",
-      "type": "blog",
+      "title": "Key object storage capabilities and use cases on IBM Cloud",
+      "description": "Learn more about IBM Cloud Object Storage solutions.",
+      "href": "https://www.ibm.com/products/cloud-object-storage",
+      "type": "article",
       "recommended": true
     }
   ],
