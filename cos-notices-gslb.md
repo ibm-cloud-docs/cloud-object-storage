@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024, 2025
-lastupdated: "2025-03-14"
+  years: 2024, 2026
+lastupdated: "2026-02-12"
 
 keywords: IBM Cloud Object Storage notifications, notifications, gslb
 
@@ -105,5 +105,8 @@ In order to avoid future changes when using the private and direct endpoints, IB
 | Montreal (ca-mon) public     |  s3.ca-mon.cloud-object-storage.appdomain.cloud           |                | 64.5.38.16,   64.5.38.20,    64.5.38.24          |
 | Montreal (ca-mon) private    |  s3.private.ca-mon.cloud-object-storage.appdomain.cloud   |                | 10.200.36.32, 10.200.75.184, 10.200.36.36        |
 | Montreal (ca-mon) direct     |  s3.direct.ca-mon.cloud-object-storage.appdomain.cloud    |                | 161.26.15.28, 161.26.14.172, 161.26.14.240       |
+| Chennai (in-che) public      |  s3.in-che.cloud-object-storage.appdomain.cloud           |                | 169.38.6.4 , 169.38.6.8 , 169.38.6.12            |
+| Chennai (in-che) private     |  s3.private.in-che.cloud-object-storage.appdomain.cloud   |                | 10.203.167.24 , 10.203.167.28 , 10.203.167.32    |
+| Chennai (in-che) direct      |  s3.direct.in-che.cloud-object-storage.appdomain.cloud    |                | 161.26.12.136 , 161.26.12.140 , 161.26.15.164    |
 
 {: caption="IP address changes" caption-side="top"}
