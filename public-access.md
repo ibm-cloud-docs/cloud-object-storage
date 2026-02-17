@@ -23,7 +23,7 @@ There are three IAM roles that can be used for public access to a bucket: `Admin
 {: tip}
 
 If External Identity Isolation (EII) is set to `Limited`, public access fails because anonymous requests have no account ID and cannot meet the identity-matching requirement.
-{: warning}
+{: important}
 
 ## Using the console to set public access
 {: #iam-public-access-console}
