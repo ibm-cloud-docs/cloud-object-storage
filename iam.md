@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2025
-lastupdated: "2025-05-14"
+  years: 2017, 2026
+lastupdated: "2026-02-17"
 
 keywords: authorization, iam, basics
 
@@ -25,6 +25,9 @@ Access to {{site.data.keyword.cos_full}} service instances for users in your acc
 {: #iam-roles}
 
 Every user that accesses the {{site.data.keyword.cos_full}} service in your account must be assigned an access policy with an IAM user role defined. That policy determines what actions the user can perform within the context of the service or instance you select. The allowable actions are customized and defined by the {{site.data.keyword.cloud_notm}} service as operations that are allowed to be performed on the service. The actions are then mapped to IAM user roles.
+
+If External Identity Isolation (EII) is set to `Limited`, public access fails because anonymous requests have no account ID and cannot meet the identity-matching requirement.
+{: warning}
 
 Policies enable access to be granted at different levels. Some of the options include the following:
 

@@ -22,6 +22,9 @@ Sometimes data is meant to be shared. Buckets might hold open data sets for acad
 There are three IAM roles that can be used for public access to a bucket: `Administrator`, `ContentReader`, and `ObjectReader`.  The difference between them is that the `Administrator` and `ContentReader` can list the objects in a bucket, which is useful for applications that require ease of listing (for example, a web UI) in addition to reading objects.  For more information, see [the IAM reference documentation](/docs/cloud-object-storage?topic=cloud-object-storage-iam).
 {: tip}
 
+If External Identity Isolation (EII) is set to `Limited`, public access fails because anonymous requests have no account ID and cannot meet the identity-matching requirement.
+{: warning}
+
 ## Using the console to set public access
 {: #iam-public-access-console}
 
