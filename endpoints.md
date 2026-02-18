@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2026
 
-lastupdated: "2026-02-03"
+lastupdated: "2026-02-18"
 
 keywords: endpoint, location, object storage, bucket, region, rclone, resiliency
 
@@ -169,11 +169,11 @@ If a networking failure results in a partition where the data center is unable t
 | ------- | ------ | ----------------------------------------------- |
 | `ams03` | Public | `s3.ams03.cloud-object-storage.appdomain.cloud` |
 | `che01` | Public | `s3.che01.cloud-object-storage.appdomain.cloud` |
-
 | `mon01` | Public | `s3.mon01.cloud-object-storage.appdomain.cloud` |
 | `par01` | Public | `s3.par01.cloud-object-storage.appdomain.cloud` |
 | `sjc04` | Public | `s3.sjc04.cloud-object-storage.appdomain.cloud` |
 | `sng01` | Public | `s3.sng01.cloud-object-storage.appdomain.cloud` |
+
 {: class="simple-tab-table"}
 {: caption="Single Data Center Endpoints" caption-side="top"}
 {: #sdcendpointtable1}
@@ -184,12 +184,12 @@ If a networking failure results in a partition where the data center is unable t
 | ------- | ------- | ------------------------------------------------------- |
 | `ams03` | Private | `s3.private.ams03.cloud-object-storage.appdomain.cloud` |
 | `che01` | Private | `s3.private.che01.cloud-object-storage.appdomain.cloud` |
-
 | `mon01` | Private | `s3.private.mon01.cloud-object-storage.appdomain.cloud` |
 | `par01` | Private | `s3.private.par01.cloud-object-storage.appdomain.cloud` |
 | `sjc04` | Private | `s3.private.sjc04.cloud-object-storage.appdomain.cloud` |
 | `sjc01` | Private | `s3.private.sjc04.cloud-object-storage.appdomain.cloud` |
 | `sng01` | Private | `s3.private.sng01.cloud-object-storage.appdomain.cloud` |
+
 {: class="simple-tab-table"}
 {: caption="Single Data Center Endpoints" caption-side="top"}
 {: #sdcendpointtable2}
@@ -200,11 +200,11 @@ If a networking failure results in a partition where the data center is unable t
 | ------- | ------ | ------------------------------------------------------ |
 | `ams03` | Direct | `s3.direct.ams03.cloud-object-storage.appdomain.cloud` |
 | `che01` | Direct | `s3.direct.che01.cloud-object-storage.appdomain.cloud` |
-
 | `mon01` | Direct | `s3.direct.mon01.cloud-object-storage.appdomain.cloud` |
 | `par01` | Direct | `s3.direct.par01.cloud-object-storage.appdomain.cloud` |
 | `sjc04` | Direct | `s3.direct.sjc04.cloud-object-storage.appdomain.cloud` |
 | `sng01` | Direct | `s3.direct.sng01.cloud-object-storage.appdomain.cloud` |
+
 {: class="simple-tab-table"}
 {: caption="Single Data Center Endpoints" caption-side="top"}
 {: #sdcendpointtable3}
@@ -221,10 +221,10 @@ The {{site.data.keyword.at_full_notm}} can archive to a bucket at specific {{sit
 | `ams03`                                         | Single Site  | Amsterdam                   |
 | `eu-de`                                         | Regional     | Frankfurt                   |
 | `eu-gb`                                         | Regional     | London                      |
-
 | `par01`                                         | Single Site  | Paris                       |
-
 | `eu-geo`                                        | Cross Region | Amsterdam and Frankfurt |
+
+
 {: caption="EU-managed Endpoints" caption-side="top"}
 
 ## Resource Configuration Endpoints
