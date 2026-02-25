@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2026
 
-lastupdated: "2026-02-18"
+lastupdated: "2026-02-25"
 
 keywords: endpoint, location, object storage, bucket, region, rclone, resiliency
 
@@ -66,6 +66,7 @@ Buckets that are created at a regional endpoint distribute data across three dat
 | `eu-es`    | Public | `s3.eu-es.cloud-object-storage.appdomain.cloud`    |
 | `ca-mon`   | Public | `s3.ca-mon.cloud-object-storage.appdomain.cloud`   |
 | `in-che`   | Public | `s3.in-che.cloud-object-storage.appdomain.cloud`   |
+| `in-mum`   | Public | `s3.in-mum.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
 {: caption="Regional Endpoints" caption-side="top"}
 {: #regionalendpointtable1}
@@ -86,6 +87,7 @@ Buckets that are created at a regional endpoint distribute data across three dat
 | `eu-es`    | Private | `s3.private.eu-es.cloud-object-storage.appdomain.cloud`    |
 | `ca-mon`   | Private | `s3.private.ca-mon.cloud-object-storage.appdomain.cloud`   |
 | `in-che`   | Private | `s3.private.in-che.cloud-object-storage.appdomain.cloud`   |
+| `in-mum`   | Private | `s3.private.in-mum.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
 {: caption="Regional Endpoints" caption-side="top"}
 {: #regionalendpointtable2}
@@ -106,6 +108,7 @@ Buckets that are created at a regional endpoint distribute data across three dat
 | `eu-es`    | Direct | `s3.direct.eu-es.cloud-object-storage.appdomain.cloud`    |
 | `ca-mon`   | Direct | `s3.direct.ca-mon.cloud-object-storage.appdomain.cloud`   |
 | `in-che`   | Direct | `s3.direct.in-che.cloud-object-storage.appdomain.cloud`   |
+| `in-mum`   | Direct | `s3.direct.in-mum.cloud-object-storage.appdomain.cloud`   |
 {: class="simple-tab-table"}
 {: caption="Regional Endpoints" caption-side="top"}
 {: #regionalendpointtable3}

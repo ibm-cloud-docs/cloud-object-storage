@@ -1,9 +1,9 @@
 ---
 
 copyright:
-  years: 2017, 2025
+  years: 2017, 2026
 
-lastupdated: "2025-10-31"
+lastupdated: "2026-02-25"
 
 keywords: aspera, key protect, archive, worm
 
@@ -67,6 +67,7 @@ Refer to [Pricing for Key Protect on IBM Cloud](/docs/key-protect?topic=key-prot
 | `eu-es`    | No     | Yes (see note) | Yes (see note)                 | Yes          | Yes         | Yes                      | `eu-es`                  | No          | Yes        | `eu-es`         | Yes         | Yes      | Yes           |
 | `ca-mon`   | No     | Yes (see note) | Yes (see note)                 | Yes          | Yes         | No                       | `ca-mon`                 | No          | Yes        | `ca-mon`        | Yes         | Yes      | Yes           |
 | `in-che`   | No     | Yes (see note) | Yes (see note)                 | Yes          | Yes         | No                       | `in-che`                 | No          | Yes        | `jp-tok`        | Yes         | Yes      | Yes           |
+| `in-mum`   | No     | Yes (see note) | Yes (see note)                 | Yes          | Yes         | No                       | `in-mum`                 | No          | Yes        | `jp-tok`        | Yes         | Yes      | Yes           |
 
 It is possible to create a bucket in any of the listed Cloud Object Storage regional locations and associate it with any available Key Protect or Hyper Protect Crypto Service instance in any IBM Cloud region. Hyper Protect Crypto Services is only available in selected locations and it is your responsibility to ensure the location/region you select meets any pertinent requirements. Please refer to [Hyper Protect Crypto Services documentation](/docs/hs-crypto?topic=hs-crypto-regions) and [IBM Key Protect](/docs/key-protect?topic=key-protect-regions) for a list of regions/locations currently available.
 {: note}
@@ -78,6 +79,7 @@ It is possible to create a bucket in any of the listed Cloud Object Storage regi
 |---------|--------|-------------|--------------------------------|--------------|-----------------------------------------|--------------------------|--------------------------|-------------|------------|-----------------|-------------| -----------| ----------------|
 | `ams03` | No     | No          | No                             | No           | Yes          | No                       | `eu-de`                  | No          | Yes        | `eu-de`         | Yes         | Yes        | Yes             |
 | `che01` | Yes    | No          | No                             | Yes          | Yes                                     | No                       | `che01`                  | No          | Yes        | `jp-tok`        | Yes         | Yes        | Yes             |
+| `mum01` | Yes    | No          | No                             | Yes          | Yes                                     | No                       | `mum01`                  | No          | Yes        | `jp-tok`        | Yes         | Yes        | Yes             |
 | `mil01` | No     | No          | No                             | No           | Yes          | No                       | `eu-de`                  | No          | Yes        | `eu-de`         | Yes         | Yes        | Yes             |
 | `mon01` | No     | No          | No                             | No           | Yes          | No                       | `ca-tor`                 | No          | Yes        | `ca-tor`        | Yes         | Yes        | Yes             |
 | `par01` | No     | No          | No                             | No           | Yes          | No                       | `eu-de`                  | No          | Yes        | `eu-de`         | Yes         | Yes        | Yes             |
