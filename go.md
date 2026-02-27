@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-01-06"
+lastupdated: "2026-02-27"
 
 keywords: object storage, go, sdk
 
@@ -78,7 +78,7 @@ Figure 1 shows an example of how to define environment variables in an applicati
 ![environment variables](images/go-library-fig-1-env-vars.png){: caption="Environment Variables"}
 
 
-If migrating from AWS S3, you can also source credentials data from  `~/.aws/credentials` in the format:
+If migrating from AWS S3, you can also source credentials data from `~/.aws/credentials` in the format:
 
 ``` sh
 [default]
@@ -113,22 +113,22 @@ conf := aws.NewConfig().
 ```
 {: codeblock}
 
-## Creating a client and sourcing Trusted Profile credentials
+## Creating a client and sourcing Trusted Profile credentials for computed resources
 {: #go-client-trusted-profile-credentials}
 
-A client can be created by provding service credentials or trusted profile credentials. This section provides information to
-create a client using trusted profile credentials.
+A client can be created by providing service credentials or trusted profile credentials. This section provides information to
+create a client by using trusted profile credentials.
 
-To connect to {{site.data.keyword.cos_full_notm}}, a client is created and can also be configured by providing trusted profile credential information (Trusted Profile Id and CR Token file path). These values can also be automatically sourced from environment variables.
+To connect to {{site.data.keyword.cos_full_notm}}, a client is created and can also be configured by providing trusted profile credential information (Trusted Profile ID and CR Token file path). These values can also be automatically sourced from environment variables.
 
 To create a Trusted Profile, establishing trust with compute resources based on specific attributes, and to define a policy to assign access to resources, see [Managing access for apps in compute resources](/docs/account?topic=account-trustedprofile-compute-tutorial).
 
 To learn more about establishing trust with a Kubernetes cluster, see [Using Trusted Profiles in your Kubernetes and OpenShift Clusters](https://www.ibm.com/blog/using-trusted-profiles-in-your-kubernetes-and-openshift-clusters/)
 
-GO SDK supports authentication using trusted profile only in kubernetes and openshift clusters.
+GO SDK supports authentication by using trusted profile only in kubernetes and openshift clusters.
 {: note}
 
-Trusted profile credentials can be set as environment variables during application runtime. The required variables are `TRUSTED_PROFILE_ID` containing your Trusted profile Id `trusted profile id`, `CR_TOKEN_FILE_PATH` holding the `service account token file path`, `IBM_SERVICE_INSTANCE_ID` holding the `resource_instance_id` from your Service Credential, and an `IBM_AUTH_ENDPOINT` with a value appropriate to your account, like `https://iam.cloud.ibm.com/identity/token`. If using environment variables to define your application credentials, use `WithCredentials(ibmiam.NewEnvCredentials(aws.NewConfig())).`, replacing the similar method used in the configuration example.
+Trusted profile credentials can be set as environment variables during the application runtime. The required variables are `TRUSTED_PROFILE_ID` containing your Trusted profile ID `trusted profile id`, `CR_TOKEN_FILE_PATH` holding the `service account token file path`, `IBM_SERVICE_INSTANCE_ID` holding the `resource_instance_id` from your Service Credential, and an `IBM_AUTH_ENDPOINT` with a value appropriate to your account, like `https://iam.cloud.ibm.com/identity/token`. If using environment variables to define your application credentials, use `WithCredentials(ibmiam.NewEnvCredentials(aws.NewConfig())).`, replacing the similar method used in the configuration example.
 
 ### Initializing configuration
 {: #go-init-config}
@@ -155,7 +155,7 @@ conf := aws.NewConfig().
 ```
 {: codeblock}
 
-Both API-Key and Trusted-Profile-Id can't be set as environmental variables. Only one of them should be set, otherwise GO sdk
+Both API-Key and Trusted-Profile-ID can't be set as environmental variables. Only one of them should be set, otherwise GO SDK
 throws an error.
 {: note}
 
@@ -167,7 +167,7 @@ For more information about endpoints, see [Endpoints and storage locations](/doc
 ### Creating a new bucket
 {: #go-new-bucket}
 
-A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes). Please note that the sample uses the appropriate location constraint for the Cold Vault storage based on the sample configuration. Your locations and configuration may vary.
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes). Note that the sample uses the appropriate location constraint for the Cold Vault storage based on the sample configuration. Your locations and configuration might vary.
 
 ```Go
 func main() {
@@ -472,7 +472,7 @@ The following items are necessary to create a bucket with Key-Protect enabled:
 1. Retrieve the [instance ID](/docs/key-protect?topic=key-protect-retrieve-instance-ID) for your Key Protect service
 1. Use the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
     * You can either use `curl` commands or an API REST Client such as [Postman](/docs/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api).
-1. Retrieve the CRN of the root key you use to enabled Key Protect on your bucket. The CRN looks similar to below:
+1. Retrieve the CRN of the root key you use to enable Key Protect on your bucket. The CRN looks similar to the below:
 
 `crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
 
@@ -612,9 +612,9 @@ func main() {
 ### Archive Tier Support
 {: #go-archive-tier-support}
 
-You can automatically archive objects after a specified length of time or after a specified date. Once archived, a temporary copy of an object can be restored for access as needed. Please note the time required to restore the temporary copy of the object(s) may take up to 12 hours.
+You can automatically archive objects after a specified length of time or after a specified date. Once archived, a temporary copy of an object can be restored for access as needed. Note the time required to restore the temporary copy of one or more objects might take up to 12 hours.
 
-To use the example provided, provide your own configuration&mdash;including replacing `<apikey>` and other bracketed `<...>` information, while keeping in mind that using environment variables are more secure, and you should not put credentials in code that will be versioned.
+To use the example provided, provide your own configuration including replacing `<apikey>` and other bracketed `<...>` information, while keeping in mind that using environment variables are more secure, and you should not put credentials in code that will be versioned.
 
 An archive policy is set at the bucket level by calling the `PutBucketLifecycleConfiguration` method on a client instance. A newly added or modified archive policy applies to new objects uploaded and does not affect existing objects.
 
@@ -701,9 +701,9 @@ The typical response is exemplified here.
 ### Immutable Object Storage
 {: #go-immutable-object-storage}
 
-Users can configure buckets with an Immutable Object Storage policy to prevent objects from being modified or deleted for a defined period of time. The retention period can be specified on a per-object basis, or objects can inherit a default retention period set on the bucket. It is also possible to set open-ended and permanent retention periods. Immutable Object Storage meets the rules set forth by the SEC governing record retention, and IBM Cloud administrators are unable to bypass these restrictions.
+Users can configure buckets with an Immutable Object Storage policy to prevent objects from being modified or deleted for a defined period. The retention period can be specified on a per-object basis, or objects can inherit a default retention period set on the bucket. It is also possible to set open-ended and permanent retention periods. Immutable Object Storage meets the rules set forth by the SEC governing record retention, and IBM Cloud administrators are unable to bypass these restrictions.
 
-Immutable Object Storage does not support Aspera transfers via the SDK to upload objects or directories at this stage.
+Immutable Object Storage does not support Aspera transfers through the SDK to upload objects or directories at this stage.
 {: note}
 
 ```Go
@@ -1637,4 +1637,4 @@ func deleteObjectWithBypassGovernance(bucketName string, client *s3.S3, fileName
 
 {: #go-next-steps}
 
-If you haven't already, please see the detailed class and method documentation available at the [Go API documentation](https://ibm.github.io/ibm-cos-sdk-go/){: external}.
+If you haven't already, see the detailed class and method documentation available at the [Go API documentation](https://ibm.github.io/ibm-cos-sdk-go/){: external}.
