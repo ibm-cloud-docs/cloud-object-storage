@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-02-27"
+lastupdated: "2026-03-02"
 
 keywords: object storage, go, sdk
 
@@ -33,12 +33,12 @@ subcollection: cloud-object-storage
 The {{site.data.keyword.cos_full}} SDK for Go provides features to make the most of {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
-The {{site.data.keyword.cos_full_notm}} SDK for Go is comprehensive, with many features and capabilities that exceed the scope and space of this guide. For detailed class and method documentation [see the Go API documentation](https://ibm.github.io/ibm-cos-sdk-go/){: external}. Source code can be found in the [GitHub repository](https://github.com/IBM/ibm-cos-sdk-go){: external}.
+The {{site.data.keyword.cos_full_notm}} SDK for Go is comprehensive, with many features and capabilities that exceed the scope and space of this guide. For detailed class and method documentation, [see the Go API documentation](https://ibm.github.io/ibm-cos-sdk-go/){: external}. Source code can be found in the [GitHub repository](https://github.com/IBM/ibm-cos-sdk-go){: external}.
 
 ## Getting the SDK
 {: #go-get-sdk}
 
-Use `go get` to retrieve the SDK to add it to your GOPATH workspace, or project's Go module dependencies. The SDK requires a minimum version of Go 1.10 and maximum version of Go 1.12. Future versions of Go will be supported once our quality control process has been completed.
+Use `go get` to retrieve the SDK to add it to your GOPATH workspace, or project's Go module dependencies. The SDK requires a minimum version of Go 1.10 and a maximum version of Go 1.12. Future versions of Go should be supported when our quality control process has been completed.
 
 ```sh
 go get github.com/IBM/ibm-cos-sdk-go
@@ -125,7 +125,7 @@ To create a Trusted Profile, establishing trust with compute resources based on 
 
 To learn more about establishing trust with a Kubernetes cluster, see [Using Trusted Profiles in your Kubernetes and OpenShift Clusters](https://www.ibm.com/blog/using-trusted-profiles-in-your-kubernetes-and-openshift-clusters/)
 
-GO SDK supports authentication by using trusted profile only in kubernetes and openshift clusters.
+GO SDK supports authentication by using trusted profile only in Kubernetes and OpenShift clusters.
 {: note}
 
 Trusted profile credentials can be set as environment variables during the application runtime. The required variables are `TRUSTED_PROFILE_ID` containing your Trusted profile ID `trusted profile id`, `CR_TOKEN_FILE_PATH` holding the `service account token file path`, `IBM_SERVICE_INSTANCE_ID` holding the `resource_instance_id` from your Service Credential, and an `IBM_AUTH_ENDPOINT` with a value appropriate to your account, like `https://iam.cloud.ibm.com/identity/token`. If using environment variables to define your application credentials, use `WithCredentials(ibmiam.NewEnvCredentials(aws.NewConfig())).`, replacing the similar method used in the configuration example.
@@ -155,7 +155,7 @@ conf := aws.NewConfig().
 ```
 {: codeblock}
 
-Both API-Key and Trusted-Profile-ID can't be set as environmental variables. Only one of them should be set, otherwise GO SDK
+Both API-Key and Trusted-Profile-ID can't be set as environmental variables. Only one of them should be set, otherwise the GO SDK
 throws an error.
 {: note}
 
@@ -167,7 +167,11 @@ For more information about endpoints, see [Endpoints and storage locations](/doc
 ### Creating a new bucket
 {: #go-new-bucket}
 
-A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes). Note that the sample uses the appropriate location constraint for the Cold Vault storage based on the sample configuration. Your locations and configuration might vary.
+A list of valid provisioning codes for `LocationConstraint` can be referenced in [the Storage Classes guide](/docs/cloud-object-storage?topic=cloud-object-storage-classes#classes).
+
+The sample uses the appropriate location constraint for the Cold Vault storage based on the sample configuration. Your locations and configuration might vary.
+{: note}
+
 
 ```Go
 func main() {
@@ -456,7 +460,7 @@ func main() {
 ### Using Key Protect
 {: #go-examples-kp}
 
-Key Protect can be added to a storage bucket to manage encryption keys. All data is encrypted in IBM COS, but Key Protect provides a service for generating, rotating, and controlling access to encryption keys by using a centralized service.
+Key Protect can be added to a storage bucket to manage encryption keys. All data is encrypted in IBM Cloud Object Storage, but Key Protect provides a service for generating, rotating, and controlling access to encryption keys by using a centralized service.
 
 ### Before You Begin
 {: #go-examples-kp-prereqs}
@@ -464,7 +468,7 @@ Key Protect can be added to a storage bucket to manage encryption keys. All data
 The following items are necessary to create a bucket with Key-Protect enabled:
 
 * A Key Protect service [provisioned](/docs/key-protect?topic=key-protect-provision)
-* A Root key available (either [generated](/docs/key-protect?topic=key-protect-create-root-keys) or [imported](/docs/key-protect?topic=key-protect-import-root-keys))
+* A Root key is available (either [generated](/docs/key-protect?topic=key-protect-create-root-keys) or [imported](/docs/key-protect?topic=key-protect-import-root-keys))
 
 ### Retrieving the Root Key CRN
 {: #go-examples-kp-root}
@@ -472,7 +476,7 @@ The following items are necessary to create a bucket with Key-Protect enabled:
 1. Retrieve the [instance ID](/docs/key-protect?topic=key-protect-retrieve-instance-ID) for your Key Protect service
 1. Use the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
     * You can either use `curl` commands or an API REST Client such as [Postman](/docs/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api).
-1. Retrieve the CRN of the root key you use to enable Key Protect on your bucket. The CRN looks similar to the below:
+1. Retrieve the CRN of the root key that you use to enable Key Protect on your bucket. The CRN looks similar to the following:
 
 `crn:v1:bluemix:public:kms:us-south:a/3d624cd74a0dea86ed8efe3101341742:90b6a1db-0fe1-4fe9-b91e-962c327df531:key:0bg3e33e-a866-50f2-b715-5cba2bc93234`
 
@@ -612,7 +616,10 @@ func main() {
 ### Archive Tier Support
 {: #go-archive-tier-support}
 
-You can automatically archive objects after a specified length of time or after a specified date. Once archived, a temporary copy of an object can be restored for access as needed. Note the time required to restore the temporary copy of one or more objects might take up to 12 hours.
+You can automatically archive objects after a specified length of time or after a specified date. Once archived, a temporary copy of an object can be restored for access as needed.
+
+The time that is required to restore the temporary copy of one or more objects might take up to 12 hours.
+{: note}
 
 To use the example provided, provide your own configuration including replacing `<apikey>` and other bracketed `<...>` information, while keeping in mind that using environment variables are more secure, and you should not put credentials in code that will be versioned.
 
@@ -1404,7 +1411,7 @@ func main() {
 ```
 {: codeblock}
 
-### Create a new COS bucket with object lock enabled
+### Create a new Cloud Object Storage bucket with object lock enabled
 {: #go-create-bucket-ol-enabled}
 
 ```go
@@ -1422,7 +1429,7 @@ func createBucket(bucketName string, client *s3.S3) {
 ```
 {: codeblock}
 
-### Put object lock configuration with compliance mode on COS bucket
+### Put object lock configuration with compliance mode on Cloud Object Storage bucket
 {: #go-put-ol-configuration}
 
 ```go
@@ -1445,7 +1452,7 @@ func objectLockConfiguration(bucketName string, client *s3.S3) {
 ```
 {: codeblock}
 
-### Put object lock configuration with governance mode on COS bucket
+### Put object lock configuration with governance mode on Cloud Object Storage bucket
 {: #go-put-ol-configuration-governance}
 
 ```go
@@ -1468,7 +1475,7 @@ func objectLockConfigurationwithGovernanceMode(bucketName string, client *s3.S3)
 ```
 {: codeblock}
 
-### Get object lock configuration on COS bucket
+### Get object lock configuration on Cloud Object Storage bucket
 {: #go-upload-object-bucket}
 
 ```go
@@ -1489,7 +1496,7 @@ func objectLockConfigurationwithGovernanceMode(bucketName string, client *s3.S3)
 
 
 
-### Upload an object with governance mode to COS bucket
+### Upload an object with governance mode to Cloud Object Storage bucket
 {: #go-upload-object-bucket-governance}
 
 ```go
@@ -1614,7 +1621,7 @@ func objectLocklegalHold(bucketName string, client *s3.S3, keyName string) {
 ```
 {: codeblock}
 
-### Deleting an object with object lock governance mode using bypass governance
+### Deleting an object with object lock governance mode that uses bypass governance
 {: #go-delete-ol-governance}
 
 ```go
