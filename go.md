@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-03-02"
+lastupdated: "2026-03-04"
 
 keywords: object storage, go, sdk
 
@@ -113,7 +113,7 @@ conf := aws.NewConfig().
 ```
 {: codeblock}
 
-## Creating a client and sourcing Trusted Profile credentials for computed resources
+## Creating a client and sourcing Trusted Profile credentials for Computed Resources
 {: #go-client-trusted-profile-credentials}
 
 A client can be created by providing service credentials or trusted profile credentials. This section provides information to
