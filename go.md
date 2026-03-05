@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-03-04"
+lastupdated: "2026-03-05"
 
 keywords: object storage, go, sdk
 
@@ -123,7 +123,7 @@ To connect to {{site.data.keyword.cos_full_notm}}, a client is created and can a
 
 To create a Trusted Profile, establishing trust with compute resources based on specific attributes, and to define a policy to assign access to resources, see [Managing access for apps in compute resources](/docs/account?topic=account-trustedprofile-compute-tutorial).
 
-To learn more about establishing trust with a Kubernetes cluster, see [Using Trusted Profiles in your Kubernetes and OpenShift Clusters](https://www.ibm.com/blog/using-trusted-profiles-in-your-kubernetes-and-openshift-clusters/)
+To learn more about establishing trust with a Kubernetes cluster, see [Using Trusted Profiles in your Kubernetes and OpenShift Clusters](/docs/containers?topic=containers-pod-iam-identity)
 
 GO SDK supports authentication by using trusted profile only in Kubernetes and OpenShift clusters.
 {: note}
