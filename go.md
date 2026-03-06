@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-03-05"
+lastupdated: "2026-03-06"
 
-keywords: object storage, go, sdk
+keywords: object storage, go, sdk, service id, trusted profile credentials
 
 subcollection: cloud-object-storage
 
@@ -160,6 +160,148 @@ throws an error.
 {: note}
 
 For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+
+## Creating a client and sourcing Trusted Profile credentials for Service ID
+{: #go-client-trusted-profile-serviceid}
+
+You can now create a client that authenticates to {{site.data.keyword.cos_full_notm}} by using a Service ID together with a Trusted Profile. Trusted Profiles enable IBM Cloud identities to access resources in an account without requiring direct membership in that account. By associating a Service ID with a Trusted Profile, you can securely grant it access to resources including those located across different IBM Cloud accounts.
+For more details, refer to the IBM Cloud documentation on creating [Trusted Profiles for Service IDs](/docs/account?topic=account-create-trusted-profile&interface=ui#create-profile-serviceid).
+
+### Before you begin
+{: #go-trusted-profile-prereqs}
+
+1. [Create a Service ID in the source account](/docs/account?topic=account-serviceids&interface=ui#create_serviceid).
+    - In the Service ID, create an API key and note the API key value.
+2. Create a Trusted Profile in the target account and associate the Service ID from the source account. See [Establishing trust with service IDs in the console](/docs/account?topic=account-create-trusted-profile&interface=ui#create-profile-serviceid). The **target** account is the account that contains the resources to be accessed.
+3. [Assign appropriate access to the Trusted Profile](/docs/account?topic=account-create-trusted-profile&interface=ui#tp-access).
+
+### Authenticate by using the Service ID and the Trusted Profile
+{: #go-authenticate-serviceid-trusted-profile}
+
+Once setup is complete, use the Go SDK to build a client that authenticates by using the Service ID and the Trusted Profile.
+
+ 1. Setting up the client configuration by using Trusted Profile ID:
+
+    ```go
+    package main
+    import (
+        "fmt"
+        "os"
+
+        "github.com/IBM/ibm-cos-sdk-go/aws"
+        "github.com/IBM/ibm-cos-sdk-go/aws/credentials/ibmiam"
+        "github.com/IBM/ibm-cos-sdk-go/aws/session"
+        "github.com/IBM/ibm-cos-sdk-go/service/s3"
+    )
+    const (
+        serviceInstanceID  = "crn-of-target-cos-instance" // eg: "crn:v1:bluemix:public:cloud-object-storage:global:a/<ACCOUNT_ID_AS_GENERATED>:<SERVICE_ID_AS_GENERATED>::"
+        authEndpoint       = "https://iam.cloud.ibm.com/identity/token"
+        serviceEndpoint   = "cos-endpoint"     //eg :"https://s3.us-south.cloud-object-storage.appdomain.cloud"
+        trustedProfileId   = ""    // eg: "Profile-gxxxxx530-xxxx-xxxx-xxxx-abpxxxxb94"
+        serviceIDApiKey = "api-key-of-service-id"
+    )
+    func TestTrustedProfile
+    func main() {
+        sess := session.Must(session.NewSession())
+        conf := aws.NewConfig().
+            WithRegion("us-south").
+    WithEndpoint(serviceEndpoint).       WithCredentials(ibmiam.NewTrustedProfileCredentialsServiceIDWithTrustedProfileId(aws.NewConfig(), authEndpoint, trustedProfileId, serviceIDApiKey, serviceInstanceID)).
+            WithS3ForcePathStyle(true)
+        client := s3.New(sess, conf)
+    }
+    ```
+
+ 2. Setting up the client configuration by using Trusted Profile name:
+
+    ```go
+    package main
+    import (
+        "fmt"
+        "os"
+
+        "github.com/IBM/ibm-cos-sdk-go/aws"
+        "github.com/IBM/ibm-cos-sdk-go/aws/credentials/ibmiam"
+        "github.com/IBM/ibm-cos-sdk-go/aws/session"
+        "github.com/IBM/ibm-cos-sdk-go/service/s3"
+    )
+    const (
+        serviceInstanceID  = "crn-of-target-cos-instance" //eg: "crn:v1:bluemix:public:cloud-object-storage:global:a/<ACCOUNT_ID_AS_GENERATED>:<SERVICE_ID_AS_GENERATED>::"
+        authEndpoint       = "https://iam.cloud.ibm.com/identity/token"
+        serviceEndpoint   = "cos-endpoint"     //eg :"https://s3.us-south.cloud-object-storage.appdomain.cloud"
+        trustedProfileName   = "name-of-trusted-profile"
+        accountId = "account-id-that-owns-trusted-profile"
+        serviceIDApiKey = "api-key-of-service-id"
+    )
+    func TestTrustedProfile
+    func main() {
+        sess := session.Must(session.NewSession())
+        conf := aws.NewConfig().
+            WithRegion("us-south").
+            WithEndpoint(serviceEndpoint).
+            WithCredentials(ibmiam.NewTrustedProfileCredentialsServiceIDWithTrustedProfileName(aws.NewConfig(), authEndpoint, trustedProfileName, accountId, serviceIDApiKey, serviceInstanceID)).
+            WithS3ForcePathStyle(true)
+        client := s3.New(sess, conf)
+    }
+    ```
+
+When using Trusted Profile name, you must also provide the account ID that owns the Trusted Profile.
+{: note}
+
+Trusted Profile credentials might also be provided through environment variables at run time.
+
+ 1. Configuring client by using environment variables with trusted profile ID:
+     1. Set these environment variables in your runtime environment.
+
+        ```sh
+        export IBM_SERVICE_INSTANCE_ID="crn-of-target-cos-instance" //eg: "crn:v1:bluemix:public:cloud-object-storage:global:a/<ACCOUNT_ID_AS_GENERATED>:<SERVICE_ID_AS_GENERATED>::"
+        export TRUSTED_PROFILE_ID="id-of-trusted-profile"
+        export IBM_SERVICE_ID_API_KEY="api-key-of-service-id"
+        export IBM_AUTH_ENDPOINT="https://iam.cloud.ibm.com/identity/token"
+        ```
+
+     2. Configure the client.
+
+        ```go
+        const (
+        serviceEndpoint   = "cos-endpoint"     //eg :"https://s3.us-south.cloud-object-storage.appdomain.cloud"
+        )
+        conf := cltMain().NewConfigNoSSL()
+        conf.WithRegion(cltMain().DefaultRegion()).
+            WithEndpoint(serviceEndpoint).
+            WithS3ForcePathStyle(true)
+        sess := session.Must(session.NewSession())
+        client := s3.New(sess, conf)
+        ```
+
+ 2. Configuring client by using environment variables with trusted profile name:
+     1. Set these environment variables in your runtime environment.
+
+        ```sh
+        export IBM_SERVICE_INSTANCE_ID="crn-of-target-cos-instance" //eg: "crn:v1:bluemix:public:cloud-object-storage:global:a/<ACCOUNT_ID_AS_GENERATED>:<SERVICE_ID_AS_GENERATED>::"
+        export TRUSTED_PROFILE_NAME="name-of-trusted-profile"
+        export IBM_SERVICE_ID_API_KEY="api-key-of-service-id"
+        export IBM_AUTH_ENDPOINT="https://iam.cloud.ibm.com/identity/token"
+        export IAM_ACCOUNT_ID="account-id-owns-trusted-profile"
+        ```
+
+     2. Configure the client.
+
+        ```go
+        const (
+        serviceEndpoint   = "cos-endpoint"     //eg :"https://s3.us-south.cloud-object-storage.appdomain.cloud"
+
+        )
+        conf := cltMain().NewConfigNoSSL()
+        conf.WithRegion(cltMain().DefaultRegion()).
+            WithEndpoint(serviceEndpoint).
+            WithS3ForcePathStyle(true)
+
+        sess := session.Must(session.NewSession())
+        client := s3.New(sess, conf)
+        ```
+Replace placeholder values with actual CRNs, API keys, profile names or IDs, endpoints, and account IDs.
+{: note}
+
 
 ## Code Examples
 {: #go-code-examples}
