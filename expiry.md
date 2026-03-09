@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2025
-lastupdated: "2025-08-19"
+  years: 2017, 2026
+lastupdated: "2026-03-09"
 
 keywords: expiry, glacier, tier, s3, compatibility, api
 
@@ -871,7 +871,6 @@ package com.ibm.cloud;
 {: codeblock}
 {: java}
 {: caption="Example 3. Code samples showing deletion of lifecycle configuration." caption-side="bottom"}
-
 ## Next Steps
 {: #expiry-next-steps}
 
