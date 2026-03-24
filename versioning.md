@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021, 2024
-lastupdated: "2024-04-18"
+  years: 2021, 2026
+lastupdated: "2026-03-09"
 
 keywords: data, versioning, loss prevention
 
@@ -382,7 +382,8 @@ Listing the versions of an object using the same client:
 resp = cosClient.list_object_versions(Prefix='some-prefix', Bucket=BUCKET)
 ```
 
-Note that the Python APIs are very flexible, and there are many different ways to accomplish the same task.
+The Python APIs are very flexible, and there are many different ways to accomplish the same task.
+{: note}
 
 ### Node.js
 {: #versioning-sdks-node}

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2024
-lastupdated: "2024-05-01"
+  years: 2017, 2026
+lastupdated: "2026-03-09"
 
 keywords: empty bucket, delete, multiple
 
@@ -423,7 +423,6 @@ func main() {
 ```
 {: codeblock}
 {: go}
-
 ## Next Steps
 {: #dmop-next-steps}
 
