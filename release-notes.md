@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2026
 
-lastupdated: "2026-03-24"
+lastupdated: "2026-03-28"
 
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning, metrics router, activity tracker routing, routing, monitoring
@@ -19,8 +19,10 @@ content-type: release-note
 # Release notes for {{site.data.keyword.cos_short}}
 {: #updates}
 
-News on the latest releases from {{site.data.keyword.cos_full}} provide the updates you need on all things related to {{site.data.keyword.cos_full_notm}}.
+News on the latest releases from {{site.data.keyword.cos_full}} provide the updates that you need on all things that are related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
+
+
 
 
 ## 25 February 2026
