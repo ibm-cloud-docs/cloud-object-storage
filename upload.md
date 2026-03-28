@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2024
-lastupdated: "2024-04-18"
+  years: 2017, 2026
+lastupdated: "2026-03-25"
 
 keywords: upload, getting started, basics, ingest
 
@@ -34,7 +34,7 @@ Typically, using the web-based console is not the most common way to use {{site.
 
 Some users want to use a stand-alone utility to interact with their storage. As the Cloud Object Storage API supports the most common set of S3 API operations, many S3-compatible tools can also connect to {{site.data.keyword.cos_short}} by using [HMAC credentials](/docs/cloud-object-storage?topic=cloud-object-storage-uhc-hmac-credentials-main).
 
-Some examples include file explorers like [Cyberduck](https://cyberduck.io/) or [Transmit](https://panic.com/transmit/), backup utilities like [Cloudberry](https://www.cloudberrylab.com/) and [Duplicati](https://www.duplicati.com/), command-line utilities like [s3cmd](https://github.com/s3tools/s3cmd) or [Minio Client](https://github.com/minio/mc), and many others.
+Some examples include file explorers like [Cyberduck](https://cyberduck.io/) or [Transmit](https://panic.com/transmit/), backup utilities like [Cloudberry](https://www.cloudberrylab.com/) and [Duplicati](https://www.duplicati.com/), command-line utilities like [s3cmd](https://github.com/s3tools/s3cmd) or [Minio Client](https://github.com/minio/mc), and many others. You can also search the IBM Cloud Catalog for third-party services that allow you to move data to Cloud Object Storage, for example, [Lyve Data Transfer Services](https://cloud.ibm.com/catalog/services/lyve-data-transfer-services).
 
 ## Using the API
 {: #upload-api}
@@ -76,4 +76,3 @@ On an object HEAD or GET request, [the `If-Modified-Since` header](https://datat
 On an object PUT, HEAD, or GET request, [the `If-Unmodified-Since` header](https://datatracker.ietf.org/doc/html/rfc7232#section-3.3) will check to see if the object's `Last-Modified` value (for example `Sat, 14 March 2020 19:43:31 GMT`) is equal to or earlier than a provided value. If the object has not been modified, the operation will proceed. If the `Last-Modified` value is more recent, the system will return a `412 Precondition Failed` error on a PUT and a `304 Not Modified` on GET or HEAD.
 
 >   If-Unmodified-Since is most often used with state-changing methods (for example, POST, PUT, DELETE) to prevent accidental overwrites when multiple user agents might be acting in parallel on a resource that does not supply entity-tags with its representations (that is, to prevent the "lost update" problem).  It can also be used with safe methods to abort a request if the selected representation does not match one already stored (or partially stored) from a prior request.
-
