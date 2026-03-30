@@ -165,7 +165,7 @@ toc:
           - api-reference-objects.md
           - postman.md
       - topicgroup:
-          label: Libraries
+          label: Object Storage SDK
           topics:
           - overview-sdks.md
           - getting-started-sdks.md
