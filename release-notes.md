@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2026
 
-lastupdated: "2026-03-28"
+lastupdated: "2026-04-01"
 
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning, metrics router, activity tracker routing, routing, monitoring, data vault
@@ -22,8 +22,20 @@ content-type: release-note
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates that you need on all things that are related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
+## 31 March 2026
+{: #cloud-object-storage-mar312026}
+{: release-note}
+
+New tutorial - Learn how to easily setup a Cyber Vault for {{site.data.keyword.cos_full}}!
+: Setting up an {{site.data.keyword.cos_short}} cyber vault in the cloud is now made easier. With this release introduction is a new tutorial showing how to setup and use {{site.data.keyword.cos_full_notm}} with on-premises data protection partners like Veeam, IBM Defender, and Commvault. These backup solutions require a secure, reliable object storage target that protects backup data from accidental deletion, ransomware attacks, and unauthorized access. When configuring {{site.data.keyword.cos_short}} with immutability policies and context-based restrictions, you can create a hardened data vault that meets compliance requirements and provides robust data protection. For more information, see [Create a Secure Data Vault for Backup Products](/docs-draft/cloud-object-storage?topic=cloud-object-storage-secure-data-vault-backup).
 
 
+## 19 March 2026
+{: #cloud-object-storage-mar192026}
+{: release-note}
+
+Dedicated {{site.data.keyword.keymanagementserviceshort}} (Select availability)
+: {{site.data.keyword.keymanagementservicefull}} now offers two deployment options to meet different security and compliance requirements: Standard (multi-tenant) and Dedicated (single-tenant). Both versions provide full-service encryption solutions that allow data to be secured and stored in {{site.data.keyword.cloud_notm}} by using envelope encryption techniques and cloud-based hardware security modules. The new Dedicated instance is a single-tenant deployment that offers full control of keys (master key and root keys) and confidential computing. As an {{site.data.keyword.cos_short}} customer, you can use the encryption keys that are stored in the Dedicated instance to encrypt your {{site.data.keyword.cos_full_notm}} bucket. For more information, see [Encrypting a bucket with Key Protect](/docs/cloud-object-storage?topic=cloud-object-storage-tutorial-kp-encrypt-bucket) in {{site.data.keyword.cos_short}} and [About Standard and Dedicated {{site.data.keyword.keymanagementserviceshort}}](/docs/key-protect?topic=key-protect-about).
 
 ## 25 February 2026
 {: #cloud-object-storage-feb252026}

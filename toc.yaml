@@ -50,6 +50,10 @@ toc:
       - static-website.md
       - web-application.md
       - curl-multipart.md
+      - topicgroup:
+          label: Data vault
+          topics:
+          - cos-secure-data-vault-backup.md
   - navgroup:
       id: howto
       topics:
