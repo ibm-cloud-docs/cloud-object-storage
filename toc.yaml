@@ -50,6 +50,10 @@ toc:
       - static-website.md
       - web-application.md
       - curl-multipart.md
+      - topicgroup:
+          label: Data vault
+          topics:
+          - cos-secure-data-vault-backup.md
   - navgroup:
       id: howto
       topics:
@@ -165,7 +169,7 @@ toc:
           - api-reference-objects.md
           - postman.md
       - topicgroup:
-          label: Libraries
+          label: Object Storage SDK
           topics:
           - overview-sdks.md
           - getting-started-sdks.md
