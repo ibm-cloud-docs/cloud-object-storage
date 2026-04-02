@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2026
 
-lastupdated: "2026-04-01"
+lastupdated: "2026-04-02"
 
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning, metrics router, activity tracker routing, routing, monitoring, data vault
@@ -27,7 +27,7 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 {: release-note}
 
 New tutorial - Learn how to easily setup a Cyber Vault for {{site.data.keyword.cos_full}}!
-: Setting up an {{site.data.keyword.cos_short}} cyber vault in the cloud is now made easier. With this release introduction is a new tutorial showing how to setup and use {{site.data.keyword.cos_full_notm}} with on-premises data protection partners like Veeam, IBM Defender, and Commvault. These backup solutions require a secure, reliable object storage target that protects backup data from accidental deletion, ransomware attacks, and unauthorized access. When configuring {{site.data.keyword.cos_short}} with immutability policies and context-based restrictions, you can create a hardened data vault that meets compliance requirements and provides robust data protection. For more information, see [Create a Secure Data Vault for Backup Products](/docs-draft/cloud-object-storage?topic=cloud-object-storage-secure-data-vault-backup).
+: Setting up an {{site.data.keyword.cos_short}} cyber vault in the cloud is now made easier. With this release introduction is a new tutorial showing how to setup and use {{site.data.keyword.cos_full_notm}} with on-premises data protection partners like Veeam, IBM Defender, and Commvault. These backup solutions require a secure, reliable object storage target that protects backup data from accidental deletion, ransomware attacks, and unauthorized access. When configuring {{site.data.keyword.cos_short}} with immutability policies and context-based restrictions, you can create a hardened data vault that meets compliance requirements and provides robust data protection. For more information, see [Create a Secure Data Vault for Backup Products](/docs/cloud-object-storage?topic=cloud-object-storage-secure-data-vault-backup).
 
 
 ## 19 March 2026
