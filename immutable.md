@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2025
-lastupdated: "2025-08-19"
+  years: 2017, 2026
+lastupdated: "2026-04-10"
 
 keywords: worm, immutable, policy, retention, compliance
 
@@ -59,7 +59,7 @@ Maximum retention period is the maximum duration of time an object can be kept u
 
 If an object is stored in the bucket without specifying a custom retention period, the default retention period is used. The minimum retention period must be less than or equal to the default retention period, which in turn must be less than or equal to the maximum retention period.
 
-A maximum retention period of 1000 years can be specified for the objects.
+A maximum retention period of 99 years can be specified for the objects.
 {: tip}
 
 To create a retention policy on a bucket, you need Manager role. See [Bucket permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions) for more details.
@@ -149,7 +149,7 @@ This implementation of the `PUT` operation uses the `protection` query parameter
 
 Objects written to a protected bucket cannot be deleted until the protection period has expired and all legal holds on the object are removed. The bucket's default retention value is given to an object unless an object-specific value is provided when the object is created. Objects in protected buckets that are no longer under retention (retention period has expired and the object does not have any legal holds), when overwritten, will again come under retention. The new retention period can be provided as part of the object overwrite request or the default retention time of the bucket will be given to the object.
 
-The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are a minimum of 0 days and a maximum of 365243 days (1000 years).
+The minimum and maximum supported values for the retention period settings `MinimumRetention`, `DefaultRetention`, and `MaximumRetention` are a minimum of 0 days and a maximum of 36135 days (99 years).
 
 A `Content-MD5` header or a `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`,`x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required. This operation does not make use of extra query parameters.
 
