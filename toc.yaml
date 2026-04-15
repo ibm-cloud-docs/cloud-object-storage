@@ -33,6 +33,7 @@ toc:
           - cos-notices.md
           - cos-notices-gslb.md
           - cos-notices-ca-mon-onhold.md
+          - cos-notices-eu-cr.md
       - topic: release-notes.md
         navtitle: Release notes
   - navgroup:

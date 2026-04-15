@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024, 2025
-lastupdated: "2025-03-14"
+  years: 2024, 2026
+lastupdated: "2026-04-15"
 
 keywords: IBM Cloud Object Storage notifications, notifications
 
@@ -24,3 +24,4 @@ Notifications about changes that affect {{site.data.keyword.cos_short}}.
 Notifications about changes.
 - [{{site.data.keyword.cos_full}} deployment of GSLB in all MultiZone Regions](/docs/cloud-object-storage?topic=cloud-object-storage-cos-notices-gslb)
 - [{{site.data.keyword.cos_full}} conversion of Montreal 01 Single Site COS location (`mon01`) into a Single Campus Multi-Zone Region (`ca-mon`)](/docs/cloud-object-storage?topic=cloud-object-storage-cos-notices-ca-mon)
+- [Important: IP address updates for {{site.data.keyword.cos_full}} EU cross region](/docs/cloud-object-storage?topic=cloud-object-storage-cos-notices-eu-cr)
