@@ -2,8 +2,8 @@
 
 copyright:
 
-  years: 2017, 2024, 2025
-lastupdated: "2025-09-03"
+  years: 2017, 2024, 2026
+lastupdated: "2026-04-28"
 
 
 keywords: cli, command line reference, object storage
@@ -107,7 +107,7 @@ If preferred, a [Service ID's HMAC credentials](/docs/cloud-object-storage?topic
 If you choose to use token authentication with your own API key, you don't need to provide any credentials as the program authenticates you automatically.
 {: note}
 
-At any time, to switch between HMAC and IAM authentication, you can type `ibmcloud cos config auth`. For more information about authentication and authorization in IBM Cloud, see the [Identity and Access Management documentation](/docs/account?topic=account-iamoverview).
+At any time, to switch between HMAC and IAM authentication, you can type `ibmcloud cos config auth`. For more information about authentication and authorization in IBM Cloud, see the [Identity and Access Management documentation](/docs/iam?topic=iam-iamoverview).
 
 ## Enable tracing in the command line interface
 {: #ic-tracing}
