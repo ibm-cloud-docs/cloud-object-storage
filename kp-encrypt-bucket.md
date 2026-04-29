@@ -1,8 +1,8 @@
 ---
 
 copyright:
-   years: 2022, 2025
-lastupdated: "2025-02-18"
+   years: 2022, 2026
+lastupdated: "2026-04-29"
 
 keywords: tutorials, key protect, bucket, encryption
 
@@ -38,6 +38,13 @@ As of 1 January 2025, five key versions per account are no longer free. You are 
 {: important}
 
 You will also need to ensure that a service instance is created by using the [IBM Cloud catalog](https://cloud.ibm.com/catalog) and appropriate permissions are granted. This tutorial does not outline the step-by-step instructions to help you get started.  This information is found in section  [Server-Side Encryption with IBM Key Protect (SSE-KP)](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-kp)
+
+{{site.data.keyword.keymanagementserviceshort}} offers two deployment options to meet different security and compliance requirements:
+
+* Standard (multi-tenant): A cost-effective solution with FIPS 140-2 Level 3 compliance and shared HSM infrastructure. IBM manages the HSM master keys.
+* Dedicated (single-tenant): Enhanced security with FIPS 140-3 Level 4 compliance (submitted for certification), dedicated HSM partitions, and complete workload isolation. You own and manage your own master keys with no IBM administrator access.
+
+For more information about choosing between Standard and Dedicated, see [About Standard and Dedicated {{site.data.keyword.keymanagementserviceshort}}](/docs-draft/key-protect?topic=key-protect-about).
 
 ## Create a new encryption key
 {: #kp-create-encryption-key}
