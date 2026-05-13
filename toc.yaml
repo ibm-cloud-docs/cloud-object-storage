@@ -179,6 +179,7 @@ toc:
           - python.md
           - node.md
           - go.md
+          - goV2.md
           - terraform.md
           - cloudyr.md
       - topicgroup:
