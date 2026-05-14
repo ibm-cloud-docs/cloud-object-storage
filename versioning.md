@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2026
-lastupdated: "2026-03-09"
+lastupdated: "2026-05-14"
 
 keywords: data, versioning, loss prevention
 
@@ -36,6 +36,9 @@ Then create a versioned object.
 3. Toggle **View versions** to see and interact with alternate versions of objects.
 
 ![View versions](images/versioning_objects.png){: caption="View versions"}
+
+"View versions" must be toggled on before individual versions or delete markers are visible and selectable for deletion.
+{: note}
 
 ## Terminology
 {: #versioning-terminology}
@@ -243,6 +246,98 @@ This returns an XML response body:
 
 **`version-id-marker`**: Specifies the object version you want to start listing from.
 
+### Delete versions of objects in a bucket
+{: #versioning-apis-delete}
+
+A regular `ListObjects` or `ListObjectsV2` call does not return version IDs. To get the version IDs needed for any deletion operation, you must use `ListObjectVersions`: a GET request with the `?versions` query parameter. This also returns delete markers and their version IDs. Without this step, none of the deletion operations below are possible.
+
+curl example:
+
+```curl
+curl -X "GET" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?versions" \
+  -H 'Authorization: bearer $TOKEN'
+
+```
+
+IBM Cloud CLI example:
+
+```sh
+ibmcloud cos object-versions --bucket $BUCKET
+
+```
+
+Python example:
+
+```python
+pythonresponse = cosClient.list_object_versions(Bucket=BUCKET)
+for version in response.get('Versions', []):
+    print(version['Key'], version['VersionId'])
+for marker in response.get('DeleteMarkers', []):
+    print(marker['Key'], marker['VersionId'], '(delete marker)')
+
+```
+
+#### CLI and SDK examples for deleting a specific version.
+{: #versioning-apis-delete-specific-version}
+
+IBM Cloud CLI example:
+
+```sh
+ibmcloud cos object-delete --bucket $BUCKET --key $OBJECT_KEY --version-id $VERSION_ID
+
+```
+
+Python example:
+
+```python
+pythoncosClient.delete_object(
+    Bucket=BUCKET,
+    Key='my-object.txt',
+    VersionId='L4kqtJlcpXroDVBH40Nr8X8gdRQBpUMLUo'
+)
+Node.js:
+javascriptawait cos.deleteObject({
+  Bucket: 'my-versioning-bucket',
+  Key: 'my-object.txt',
+  VersionId: 'L4kqtJlcpXroDVBH40Nr8X8gdRQBpUMLUo'
+}).promise();
+
+```
+
+Deleting current versions using the UI requires deletion of the noncurrent objects first.
+{: note}
+
+#### Removing a delete marker
+{: #versioning-apis-delete-marker}
+
+Removing a delete marker is the recovery workflow when an object is accidentally deleted: you get the delete marker's version ID from `ListObjectVersions`, then delete it by that version ID.
+
+#### Delete null version ID
+{: #versioning-apis-delete-marker}
+
+Pre-versioning objects are assigned a version ID of null, and to delete that version, you pass versionId=null in the request.
+
+curl example:
+
+```curl
+curl -X "DELETE" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/$OBJECT_KEY?versionId=null" \
+  -H 'Authorization: bearer $TOKEN'
+
+```
+
+Python example:
+
+```python
+cosClient.delete_object(
+    Bucket=BUCKET,
+    Key='my-object.txt',
+    VersionId='null'
+)
+
+```
+
+
+
 ### Operations on specific versions of objects
 {: #versioning-apis-objects}
 
@@ -381,6 +476,10 @@ Listing the versions of an object using the same client:
 ```python
 resp = cosClient.list_object_versions(Prefix='some-prefix', Bucket=BUCKET)
 ```
+
+Delete the versions of an object using the same client:
+
+
 
 The Python APIs are very flexible, and there are many different ways to accomplish the same task.
 {: note}
