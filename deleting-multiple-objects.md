@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-03-09"
+lastupdated: "2026-05-14"
 
 keywords: empty bucket, delete, multiple
 
@@ -423,6 +423,52 @@ func main() {
 ```
 {: codeblock}
 {: go}
+
+### Bulk delete pattern for versioned objects
+{: #dmop-bulk-delete-pattern-versioned-objects}
+
+curl example:
+
+```curl
+curl -X "POST" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?delete" \
+  -H 'Authorization: bearer $TOKEN' \
+  -H 'Content-Type: text/xml' \
+  -d '<?xml version="1.0" encoding="UTF-8"?>
+<Delete>
+  <Object>
+    <Key>my-object.txt</Key>
+    <VersionId>L4kqtJlcpXroDVBH40Nr8X8gdRQBpUMLUo</VersionId>
+  </Object>
+  <Object>
+    <Key>my-object.txt</Key>
+    <VersionId>YkXCFQHbwFpUTBeOZEJPnONBpQjFSbOo</VersionId>
+  </Object>
+</Delete>'
+
+```
+{: codeblock}
+{: curl}
+
+Python example (list of all version then batch delete):
+
+```python
+response = cosClient.list_object_versions(Bucket=BUCKET)
+
+all_versions = [
+    {'Key': v['Key'], 'VersionId': v['VersionId']}
+    for v in response.get('Versions', []) + response.get('DeleteMarkers', [])
+]
+
+for i in range(0, len(all_versions), 1000):
+    cosClient.delete_objects(
+        Bucket=BUCKET,
+        Delete={'Objects': all_versions[i:i+1000]}
+    )
+
+```
+{: codeblock}
+{: python}
+
 ## Next Steps
 {: #dmop-next-steps}
 

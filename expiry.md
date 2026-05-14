@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-03-09"
+lastupdated: "2026-05-14"
 
 keywords: expiry, glacier, tier, s3, compatibility, api
 
@@ -871,6 +871,56 @@ package com.ibm.cloud;
 {: codeblock}
 {: java}
 {: caption="Example 3. Code samples showing deletion of lifecycle configuration." caption-side="bottom"}
+
+### NoncurrentVersionExpiration lifecycle rule
+{: #expiry-api-noncurrent-version}
+
+NoncurrentVersionExpiration is a practical way to automatically control version accumulation and storage costs. See examples that follow.
+
+ It is not possible to use `NoncurrentVersionTransition` rules to archive only non-current versions of objects in a lifecycle configuration as noted in [Archiving and expiring versioned objects](/docs/cloud-object-storage?topic=cloud-object-storage-versioning#versioning-archive)
+ {: note}
+
+```curl
+    curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?lifecycle" \
+    -H 'Authorization: bearer $TOKEN' \
+    -H 'Content-Type: text/xml' \
+    -d '<?xml version="1.0" encoding="UTF-8"?>
+    <LifecycleConfiguration>
+    <Rule>
+        <ID>expire-old-versions</ID>
+        <Status>Enabled</Status>
+        <Filter></Filter>
+        <NoncurrentVersionExpiration>
+        <NoncurrentDays>30</NoncurrentDays>
+        </NoncurrentVersionExpiration>
+    </Rule>
+    </LifecycleConfiguration>'
+```
+{: codeblock}
+{: curl}
+{: caption="Example 4. CURL code sample showing NoncurrentVersionExpiration of lifecycle configuration." caption-side="bottom"}
+
+```python
+    cosClient.put_bucket_lifecycle_configuration(
+        Bucket=BUCKET,
+        LifecycleConfiguration={
+            'Rules': [{
+                'ID': 'expire-old-versions',
+                'Status': 'Enabled',
+                'Filter': {},
+                'NoncurrentVersionExpiration': {
+                    'NoncurrentDays': 30
+                }
+            }]
+        }
+    )
+
+```
+{: codeblock}
+{: python}
+{: caption="Example 5. Python code sample showing NoncurrentVersionExpiration of lifecycle configuration." caption-side="bottom"}
+
+
 ## Next Steps
 {: #expiry-next-steps}
 
