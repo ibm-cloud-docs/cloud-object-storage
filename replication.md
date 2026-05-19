@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2022, 2025
-lastupdated: "2025-10-27"
+  years: 2022, 2026
+lastupdated: "2026-05-19"
 
 keywords: data, replication, loss prevention, iam, activity tracker, disaster recovery, versioning, key protect, accounts, buckets
 
@@ -12,7 +12,7 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Tracking replication events
+
 {: #replication-overview}
 
 Replication allows you to define rules for automatic, asynchronous copying of objects from a source bucket to a target bucket in the [same account](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview#replication-one-acct). Also, you can copy objects from a bucket to another bucket in [different accounts](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview#replication-diff-accts).
@@ -123,7 +123,7 @@ The following are not replicated:
 - Objects restored from an archive tier
 - Objects encrypted via SSE-C
 - Object ACLs
-- Object-Lock state
+
 
 ## Using replication for business continuity and disaster recovery
 {: #replication-bcdr}
@@ -139,28 +139,25 @@ Replication can be used to provide continuity of service in the event of an outa
 
 While IBM Cloud Object Storage provides strong consistency for all data IO operations, bucket configuration is eventually consistent. After enabling replication rules for the first time on a bucket, it may take a few moments for the configuration to propagate across the system and new objects to start being replicated.
 
+
+
 ## IAM actions
 {: #replication-iam}
 
 There are new IAM actions associated with replication.
 
-| IAM Action                                     | Role                    |
-|------------------------------------------------|-------------------------|
-| `cloud-object-storage.bucket.get_replication`    | Manager, Writer, Reader |
-| `cloud-object-storage.bucket.put_replication`    | Manager, Writer         |
-| `cloud-object-storage.bucket.delete_replication` | Manager, Writer         |
-{: caption=""}
+
+
+
 
 ## Activity Tracker events
 {: #replication-at}
 
 Replication generates additional events.
 
-- `cloud-object-storage.bucket-replication.create`
-- `cloud-object-storage.bucket-replication.read`
-- `cloud-object-storage.bucket-replication.delete`
-- `cloud-object-storage.object-replication.sync` (generated at the source)
-- `cloud-object-storage.object-replication.create` (generated at the target)
+
+
+
 
 For `cloud-object-storage.bucket-replication.create` events, the following fields provide extra information:
 
@@ -176,7 +173,7 @@ When replication is active, operations on objects may generate the following ext
 |-------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `requestData.replication.replication_throttled` | Indicates if the replication of the object was delayed on the source due to a throttling mechanism.                                                                                                                                                                                                    |
 | `requestData.replication.destination_bucket_id` | The CRN of the target bucket.                                                                                                                                                                                                                                                                     |
-| `requestData.replication.sync_type`             | The type of sync operation. A `content` sync indicates that the object data _and_ any metadata was written to the target, a `metadata` sync indicates that only metadata was written to the target, and a `delete` sync indicates that only delete markers were written to the target. |
+| `requestData.replication.sync_type`             | The type of sync operation.<br/>- `content` indicates that the object data _and_ any metadata was written to the target.<br/>- `tag` indicates that object tags were replicated.<br/>- `retention` indicates that Object Lock retention settings were replicated.<br/>- `legal_hold` indicates that Object Lock legal hold settings were replicated.<br/>- `delete` indicates that delete marker was written to the target. |
 | `responseData.replication.source_bucket_id`     | The CRN of the source bucket.                                                                                                                                                                                                                                                                          |
 | `responseData.replication.result`               | Values can be `success`, `failure` (indicates a server error), `user` (indicates a user error).                                                                                                                                                                                                        |
 | `responseData.replication.message`              | The HTTP response message (such as `OK`).                                                                                                                                                                                                                                                              |
@@ -211,6 +208,8 @@ Versioning is mandatory to enable replication. After you [enable versioning](/do
 
 - If you attempt to disable versioning on the source bucket, {{site.data.keyword.cos_short}} returns an error. You must remove the replication configuration before you can disable versioning on the source bucket.
 - If you disable versioning on the target bucket, replication fails.
+
+
 
 ### Key Protect encryption
 {: #replication-interactions-kp}
@@ -485,6 +484,8 @@ curl -X "DELETE" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.clou
 ```
 
 A successful request returns a `204` response.
+
+
 
 ## SDK examples
 {: #replication-sdks}

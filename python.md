@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-01-06"
+lastupdated: "2026-05-19"
 
 keywords: object storage, python, sdk, aspera, apache, asperatransfermanager
 
@@ -1197,7 +1197,7 @@ def delete_object_with_bypass_governance(bucket_name,object_name):
         cos_cli.delete_object(Bucket=bucket_name, Key=object_name, BypassGovernanceRetention=True)
 ```
 {: codeblock}
-{: python}
+{: python} 
 
 ## Using Key Protect
 {: #python-examples-kp}
