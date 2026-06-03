@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2022, 2025
-lastupdated: "2025-10-27"
+  years: 2022, 2026
+lastupdated: "2026-06-02"
 
 keywords: data, replication, loss prevention, iam, activity tracker, disaster recovery, versioning, key protect, accounts, buckets
 
@@ -12,155 +12,17 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Tracking replication events
-{: #replication-overview}
 
-Replication allows you to define rules for automatic, asynchronous copying of objects from a source bucket to a target bucket in the [same account](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview#replication-one-acct). Also, you can copy objects from a bucket to another bucket in [different accounts](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview#replication-diff-accts).
-{: shortdesc}
 
-## What is replication?
-{: #replication-what}
-
-Replication copies newly created objects and object updates from a source bucket to a target bucket.
-
-- Only new objects or new versions of the existing objects (created after the replication rule was added to the bucket) are copied to the target bucket. Existing objects can be replicated [by copying them onto themselves](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview#replication-existing), creating a new version that is replicated.
-- The metadata of the source object is applied to the replicated object.
-- Bi-directional replication between two buckets requires rules to be active on both buckets.
-- Filters (composed of prefixes and/or tags) can be used to scope the replication rule to only apply to a subset of objects. Multiple rules can be defined in a single policy and these rules can specify different destinations. In this manner, different objects in the same bucket can be replicated to different destinations.
-
-## Why use replication?
-{: #replication-why}
-
-- Keep a copy of data in a bucket in a different geographic location.
-- Meet compliance regulations for data sovereignty by defining replication rules that store replicas only within the allowable locations.
-- Keep production and test data in sync, as replication retains object metadata such as last modified time, version ID, and so on.
-- Manage the storage class and lifecycle policies for the replicated objects independent of the source, by defining a different storage class and/or lifecycle rules for the target bucket. Similarly, you can store replicas in a bucket in a separate service instance or even IBM Cloud account, and also independently control access to the replicas.
-
-## Getting started with replication
-{: #replication-gs}
-
-To get started, here are some prerequisites that must be met:
-
-- Set the the `Writer` or `Manager` platform role on the source bucket, or a custom role with the appropriate replication actions (such as  `cloud-object-storage.bucket.put_replication`) assigned.
-- You do not need to have access to the target bucket, but do need to have sufficient platform roles to create [new IAM policies](/docs/secure-enterprise?topic=secure-enterprise-iamusermanpol) that allow the source bucket to write to the target bucket.
-- The target bucket must not have a legacy bucket firewall enabled, but can use [context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall).
-- Objects encrypted [using SSE-C](/docs/cloud-object-storage?topic=cloud-object-storage-sse-c) cannot be replicated, although [managed encryption (SSE-KMS) like Key Protect](/docs/cloud-object-storage?topic=cloud-object-storage-kp) is fully compatible with replication.
-- Objects in an archived state cannot be replicated.
-- If the source and target buckets are in different IBM accounts, be sure to create the buckets in each account.
-- Enable [Versioning](/docs/cloud-object-storage?topic=/docs/cloud-object-storage?topic=cloud-object-storage-versioning) on both the source and target buckets.
-
-As versioning is a requirement for replication, it is impossible to replicate objects in buckets configured with an [Immutable Object Storage policy](/docs/cloud-object-storage?topic=cloud-object-storage-immutable).
-{: note}
-
-## Using one IBM account
-{: #replication-one-acct}
-
-To replicate objects between buckets in the same IBM account, do the following:
-
-1. After navigating to your chosen source bucket, click the **Configuration** tab.
-1. Look for **Bucket replication** and click the **Setup replication** button.
-1. Select **Replication source** and click **Next**.
-1. Select the instance and bucket from the drop-down menus.  Alternatively, toggle the radio button to **No** and paste in the CRN of the target bucket.
-1. Click on the **Check permissions** button.
-
-Now, you'll need to grant the source bucket `Writer` permissions on the target bucket. There are several ways to do this, but the easiest is to use the IBM Cloud Shell and the IBM Cloud CLI.
-
-1. Open an IBM Cloud Shell in a new window or tab.
-1. Copy the IBM Cloud CLI command shown in the Object storage console, and paste it into the new shell.
-1. Return to the bucket configuration window or tab, and click on the **Check permissions** button again.
-
-Now you'll create a replication rule.
-
-1. Ensure the rule status radio button is set to **Enabled**.
-1. Give the rule a name and a priority, as well as any prefix or tag filters that will limit the objects subject to the replication rule.
-1. Click **Done**.
-
-## Using different IBM accounts
-{: #replication-diff-accts}
-
-To replicate objects between buckets in different IBM accounts, do the following:
-
-1. Set up an IAM policy on the destination IBM account. For information about creating an IAM policy, see [What are IAM policies and who can assign them](/docs/secure-enterprise?topic=secure-enterprise-iamusermanpol).
-1. Find the account ID and the Service instance ID in CRN format on the Bucket Configuration page.
-1. Using the IBM Cloud UI of the destination account, click **Manage**>**Access(IAM)**.
-1. Click **Authentication** in the left panel.
-1. Click **Create** to create a new IAM policy.
-1. Grant a service authorization page configuration. This is the page where you will land after creating a new IAM policy.
-1. Select **Another account** and provide the Account ID of the source account.
-1. Provide service access as **Cloud Object Storage**.
-1. In the Scope of Access, select **Specific Resources**.
-1. Select **Source Service Instance** and enter the service instance ID for the source bucket.
-1. Under Target, select **Cloud Object Storage** for the source bucket access.
-1. For Target Scope, select **Specific resources**>**Service Instance.
-1. Select the destination account's service instance ID from the drop down menu.
-1. Select the role **Object Writer** or **Writer** as required.
-
-  The **Object writer** role is sufficient to enable replication.
-  {: note}
-
-## Terminology
-{: #replication-terminology}
-
-**Source bucket**: The bucket for which a replication policy is configured. It is the source of replicated objects.
-
-**Target bucket**: The bucket that is defined as the destination in the source bucket replication policy. It is the target of replicated objects. Also referred to as a 'destination' bucket.
-
-**Replica**: The new object created in a target bucket because of a request made to a source bucket.
-
-## What is replicated?
-{: #replication-what-objects}
-
-New objects created via `CopyObject`, `PutObject`, or `CompleteMultipartUpload` will be replicated from the source bucket to the target bucket. The replicated objects will inherit the following metadata fields from the source object: `Etag`, `Last Modified Time`, `Version ID`, `user-attributes`, and `Tags`.
-
-Delete markers will be replicated if configured by the replication policy.
-
-Updates to a version's tags will be replicated from the source bucket to the target bucket.
-
-The following are not replicated:
-
-- Actions initiated by lifecycle events
-- Objects written directly to archive
-- Objects restored from an archive tier
-- Objects encrypted via SSE-C
-- Object ACLs
-- Object-Lock state
-
-## Using replication for business continuity and disaster recovery
-{: #replication-bcdr}
-
-Replication can be used to provide continuity of service in the event of an outage:
-
-- Ensure that the source and target buckets are in different locations.
-- Verify that the latest versions of objects are in sync between both buckets.  A tool such as [`Rclone`](/docs/cloud-object-storage?topic=cloud-object-storage-rclone) (the `rclone check` command) can be useful for checking synchronicity from the command line.
-- In the event of an outage, an application's traffic can be redirected to the target bucket.
-
-## Consistency and data integrity
-{: #replication-consistency}
-
-While IBM Cloud Object Storage provides strong consistency for all data IO operations, bucket configuration is eventually consistent. After enabling replication rules for the first time on a bucket, it may take a few moments for the configuration to propagate across the system and new objects to start being replicated.
-
-## IAM actions
-{: #replication-iam}
-
-There are new IAM actions associated with replication.
-
-| IAM Action                                     | Role                    |
-|------------------------------------------------|-------------------------|
-| `cloud-object-storage.bucket.get_replication`    | Manager, Writer, Reader |
-| `cloud-object-storage.bucket.put_replication`    | Manager, Writer         |
-| `cloud-object-storage.bucket.delete_replication` | Manager, Writer         |
-{: caption=""}
 
 ## Activity Tracker events
 {: #replication-at}
 
 Replication generates additional events.
 
-- `cloud-object-storage.bucket-replication.create`
-- `cloud-object-storage.bucket-replication.read`
-- `cloud-object-storage.bucket-replication.delete`
-- `cloud-object-storage.object-replication.sync` (generated at the source)
-- `cloud-object-storage.object-replication.create` (generated at the target)
+
+
+
 
 For `cloud-object-storage.bucket-replication.create` events, the following fields provide extra information:
 
@@ -176,7 +38,7 @@ When replication is active, operations on objects may generate the following ext
 |-------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `requestData.replication.replication_throttled` | Indicates if the replication of the object was delayed on the source due to a throttling mechanism.                                                                                                                                                                                                    |
 | `requestData.replication.destination_bucket_id` | The CRN of the target bucket.                                                                                                                                                                                                                                                                     |
-| `requestData.replication.sync_type`             | The type of sync operation. A `content` sync indicates that the object data _and_ any metadata was written to the target, a `metadata` sync indicates that only metadata was written to the target, and a `delete` sync indicates that only delete markers were written to the target. |
+| `requestData.replication.sync_type`             | The type of sync operation.<br/>- `content` indicates that the object data _and_ any metadata was written to the target.<br/>- `tag` indicates that object tags were replicated.<br/>- `retention` indicates that Object Lock retention settings were replicated.<br/>- `legal_hold` indicates that Object Lock legal hold settings were replicated.<br/>- `delete` indicates that delete marker was written to the target. |
 | `responseData.replication.source_bucket_id`     | The CRN of the source bucket.                                                                                                                                                                                                                                                                          |
 | `responseData.replication.result`               | Values can be `success`, `failure` (indicates a server error), `user` (indicates a user error).                                                                                                                                                                                                        |
 | `responseData.replication.message`              | The HTTP response message (such as `OK`).                                                                                                                                                                                                                                                              |
@@ -211,6 +73,8 @@ Versioning is mandatory to enable replication. After you [enable versioning](/do
 
 - If you attempt to disable versioning on the source bucket, {{site.data.keyword.cos_short}} returns an error. You must remove the replication configuration before you can disable versioning on the source bucket.
 - If you disable versioning on the target bucket, replication fails.
+
+
 
 ### Key Protect encryption
 {: #replication-interactions-kp}
@@ -485,6 +349,8 @@ curl -X "DELETE" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.clou
 ```
 
 A successful request returns a `204` response.
+
+
 
 ## SDK examples
 {: #replication-sdks}

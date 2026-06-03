@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-02-03"
+lastupdated: "2026-05-19"
 
 keywords: object storage, java, sdk
 
@@ -1561,7 +1561,6 @@ public static void main(String[] args) {
         }
 ```
 {: codeblock}
-
 
 
 
