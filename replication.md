@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2026
-lastupdated: "2026-06-02"
+lastupdated: "2026-06-05"
 
 keywords: data, replication, loss prevention, iam, activity tracker, disaster recovery, versioning, key protect, accounts, buckets
 
@@ -11,6 +11,14 @@ subcollection: cloud-object-storage
 ---
 
 {{site.data.keyword.attribute-definition-list}}
+
+
+# Replicating objects
+{: #replication-overview}
+
+Replication allows you to define rules for automatic, asynchronous copying of objects from a source bucket to a target bucket in the [same account](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview#replication-one-acct). Also, you can copy objects from a bucket to another bucket in [different accounts](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview#replication-diff-accts).
+{: shortdesc}
+
 
 
 

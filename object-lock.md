@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023, 2026
-lastupdated: "2026-05-19"
+lastupdated: "2026-06-05"
 
 keywords: worm, immutable, policy, retention, compliance, replication, legal hold
 
@@ -164,6 +164,8 @@ Deleting a versioned object creates a _delete marker_.  The object may appear to
 ### Replication
 {: #ol-interactions-replication}
 
+
+Object Lock **cannot be used on the source bucket** for replication, only on the destination.  Objects will be assigned the default retention period.
 
 
 
