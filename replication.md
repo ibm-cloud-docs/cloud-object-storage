@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2026
-lastupdated: "2026-06-05"
+lastupdated: "2026-06-08"
 
 keywords: data, replication, loss prevention, iam, activity tracker, disaster recovery, versioning, key protect, accounts, buckets
 
@@ -126,6 +126,7 @@ The following are not replicated:
 - Objects restored from an archive tier
 - Objects encrypted via SSE-C
 - Object ACLs
+- Object-Lock state
 
 
 ## Using replication for business continuity and disaster recovery
@@ -159,6 +160,13 @@ There are new IAM actions associated with replication.
 Replication generates additional events.
 
 
+
+
+- `cloud-object-storage.bucket-replication.create`
+- `cloud-object-storage.bucket-replication.read`
+- `cloud-object-storage.bucket-replication.delete`
+- `cloud-object-storage.object-replication.sync` (generated at the source)
+- `cloud-object-storage.object-replication.create` (generated at the target)
 
 
 
