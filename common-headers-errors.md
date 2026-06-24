@@ -73,5 +73,4 @@ The following table describes response headers for archived objects
 |`x-ibm-restored-copy-storage-class`|Included if an object is in the `RestoreInProgress` or `Restored` states and returns the storage class of the bucket.|
 
 
-
-See the API docs for a listing of [Error codes](/docs/apis/cos/cos-compatibility-f1995#compatibility-errors)
+See the API docs for a listing of [Error codes](/apidocs/cos/cos-compatibility#compatibility-errors)
