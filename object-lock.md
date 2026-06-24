@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023, 2026
-lastupdated: "2026-06-05"
+lastupdated: "2026-06-24"
 
 keywords: worm, immutable, policy, retention, compliance, replication, legal hold
 
@@ -165,7 +165,10 @@ Deleting a versioned object creates a _delete marker_.  The object may appear to
 {: #ol-interactions-replication}
 
 
-Object Lock **cannot be used on the source bucket** for replication, only on the destination.  Objects will be assigned the default retention period.
+
+
+
+Object Lock can be used with Replication. If Object Lock is enabled on both the Replication source and destination buckets, all Object Lock states on source object versions will be replicated to the destination bucket. This includes any Object Lock updates involving governance bypass. See [Object Replication](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview#replication-interactions-object-lock) for more information.
 
 
 

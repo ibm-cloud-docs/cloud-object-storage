@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2026
 
-lastupdated: "2026-05-21"
+lastupdated: "2026-06-24"
 
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning, metrics router, activity tracker routing, routing, monitoring, data vault
@@ -23,6 +23,15 @@ News on the latest releases from {{site.data.keyword.cos_full}} provide the upda
 {: shortdesc}
 
 
+## 24 June 2026
+{: #cloud-object-storage-june242026}
+{: release-note}
+
+Object Lock update!
+: {{site.data.keyword.cos_full}} now supports Object Lock Replication. Buckets can now have Replication and Object Lock configured together. This update allows Object Lock settings on objects to be replicated to the destination bucket, which maintains consistency and compliance across replicated data.
+
+Improved replication resiliency
+: Object Replication is now more resilient to failures. When replications fail asynchronously, they can be internally retried by {{site.data.keyword.cos_full_notm}} for up to 30 days. Users can list persistent replication failures and can schedule retries of failures that are given up by the system.
 
 ## 31 March 2026
 {: #cloud-object-storage-mar312026}

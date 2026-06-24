@@ -3,7 +3,7 @@
 copyright:
 
   years: 2017, 2024, 2026
-lastupdated: "2026-05-01"
+lastupdated: "2026-06-24"
 
 
 keywords: cli, command line reference, object storage
@@ -1389,4 +1389,4 @@ Example:
 ## Next Steps
 {: #cli-ref-next-steps}
 
-As every procedure always goes exactly as planned, you might not have seen any of the [common header and error codes](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-common). For more reference, check the [API reference](/apidocs/cos/cos-compatibility).
+As every procedure always goes exactly as planned, you might not have seen any of the [common header and error codes](/apidocs/cos/cos-compatibility-f1995#compatibility-common). For more reference, check the [API reference](/apidocs/cos/cos-compatibility).

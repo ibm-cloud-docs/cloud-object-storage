@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2026
-lastupdated: "2026-06-08"
+lastupdated: "2026-06-24"
 
 keywords: data, replication, loss prevention, iam, activity tracker, disaster recovery, versioning, key protect, accounts, buckets
 
@@ -126,8 +126,6 @@ The following are not replicated:
 - Objects restored from an archive tier
 - Objects encrypted via SSE-C
 - Object ACLs
-- Object-Lock state
-
 
 ## Using replication for business continuity and disaster recovery
 {: #replication-bcdr}
@@ -145,12 +143,56 @@ While IBM Cloud Object Storage provides strong consistency for all data IO opera
 
 
 
+## Failure Handling
+{: #replication-failures}
+
+Replication failures can occur due to many reasons, including (but not limited to) bucket misconfigurations, service outages, user interactions with the destination bucket, etc. 
+
+COS has built-in resiliency to handle replication failures. When a failure occurs, COS can retry it for up to 30 days. The retry frequency can vary depending on the nature of the failure. For example, failures caused by rare IO errors may be retried within hours, whereas failures due to user bucket misconfigurations may be retried once per day. If a failure is not resolved within 30 days, it is no longer retried automatically by the system. All long-term failures are listable via [_ListBucketReplicationFailures_](#list-replication-failures-for-a-bucket).
+
+If you wish to retry "stale" failures that lasted more than 30 days, you can trigger a retry by using the [_PutBucketReplicationFailureReattempt_](#schedule-re-attempt-of-stale-replication-failures-in-a-bucket).
+
+### Failure causes
+{: #replication-failure-causes}
+
+In the `ListBucketReplicationFailures` API response, `SyncFailureCause` is provided with each failure element, citing the last known cause of the failure. The following table describes the possible causes:
+
+
+
+| Cause                                          | Explanation                    |
+|------------------------------------------------|--------------------------------|
+| Versioning disabled on destination bucket | Versioning is not enabled on the destination bucket. User likely suspended versioning after replication was configured.  |
+| Replication operation not authorized on target bucket | The COS service is not authorized to modify the target bucket on behalf of the user. Check if service-to-service authorization still exists between the source and target bucket resources in IAM. |
+| Remote bucket not found | Destination bucket could not be located. User may have deleted the destination bucket. Check if the destination bucket still exists. |
+| Source/Remote bucket not found or is disabled | The bucket is not found or is in unusable state. Check if bucket still exists. If it does, contact customer support. |
+| Destination object not found | Attempted to replicate a metadata change (e.g. tag/object lock), but the target object does not exist. User has likely deleted the object on the destination bucket before the change could be replicated. |
+| Local object not found | Source object was not found when attempting replication. User has likely deleted the source object shortly after writing/modifying it. |
+| Object lock is not enabled on the destination bucket | Attempted to replicate Object Lock settings on an object, but the destination bucket did not have Object Lock enabled. |
+| The encryption key is either not active or deleted | COS attempted to retrieve the encryption key from Key Protect (source bucket has SSE-KP/SSE-HPCS configured) but key was deleted. |
+| The KMS instance endpoint information missing | Could not retrieve Key Management Service endpoint required to read the encryption key. If error persists, contact customer support. |
+| Insufficient permissions to lookup KMS endpoint information | Source bucket resource does not have permissions to query Key Management Service endpoint required to read the encryption key. Inspect your IAM service-to-service authorization policy. |
+| Internal error | Various internal issues preventing replication. Contact customer support. |
+{: caption=""}
+
+
+
 ## IAM actions
 {: #replication-iam}
 
 There are new IAM actions associated with replication.
 
 
+
+
+
+| IAM Action                                              | Role                    |
+|---------------------------------------------------------|-------------------------|
+| `cloud-object-storage.bucket.get_replication`           | Manager, Writer, Reader |
+| `cloud-object-storage.bucket.put_replication`           | Manager, Writer         |
+| `cloud-object-storage.bucket.delete_replication`        | Manager, Writer         |
+| `cloud-object-storage.bucket.get_replication_failures`  | Manager, Writer, Reader |
+| `cloud-object-storage.bucket.put_replication_reattempt` | Manager, Writer         |
+{: caption=""}
 
 
 
@@ -161,12 +203,20 @@ Replication generates additional events.
 
 
 
+| Event action                                            | Generated at       | Description                                                                     |
+|---------------------------------------------------------|--------------------|---------------------------------------------------------------------------------|
+| cloud-object-storage.bucket-replication.create          | Source bucket      | When user makes `PutBucketReplication` API request                              |
+| cloud-object-storage.bucket-replication.read            | Source bucket      | When user makes `GetBucketReplication` API request                              |
+| cloud-object-storage.bucket-replication.delete          | Source bucket      | When user makes `DeleteBucketReplication` API request                           |
+| cloud-object-storage.bucket-replication-failures.list   | Source bucket      | When user makes `ListBucketReplicationFailures` API request                     |
+| cloud-object-storage.bucket-replication-failures.update | Source bucket      | When user makes `PutReplicationFailureReattempt` API request                    |
+| cloud-object-storage.object-replication.sync            | Source bucket      | When COS replicates an object from the source bucket                            |
+| cloud-object-storage.object-replication.create          | Target bucket      | When COS creates a new replica version on the target bucket                     |
+| cloud-object-storage.object-replication.update          | Target bucket      | When COS replicates metadata update on an existing replica on the target bucket |
+| cloud-object-storage.object-replication.delete          | Target bucket      | When COS replicates a delete marker on the target bucket                        |
+{: caption=""}
 
-- `cloud-object-storage.bucket-replication.create`
-- `cloud-object-storage.bucket-replication.read`
-- `cloud-object-storage.bucket-replication.delete`
-- `cloud-object-storage.object-replication.sync` (generated at the source)
-- `cloud-object-storage.object-replication.create` (generated at the target)
+
 
 
 
@@ -219,6 +269,24 @@ Versioning is mandatory to enable replication. After you [enable versioning](/do
 
 - If you attempt to disable versioning on the source bucket, {{site.data.keyword.cos_short}} returns an error. You must remove the replication configuration before you can disable versioning on the source bucket.
 - If you disable versioning on the target bucket, replication fails.
+
+
+
+### Object Lock
+{: #replication-interactions-object-lock}
+
+Object Lock may be enabled on buckets with Replication. When source objects are created with Object Lock (retention and/or legal hold), or if Object Lock is updated on existing objects, it will be replicated to the destination.
+
+Object Lock can only be replicated if Object Lock is enabled on the destination bucket. Therefore, it is recommended that you enable Object Lock on the destination bucket if it is enabled on the source bucket.
+
+Below table outlines the behavior when source and destination buckets have varying Object Lock configurations:
+
+| Source Object Lock | Destination Object Lock | Behavior |
+|-|-|-|
+| Enabled | Enabled | All Object Lock states from source will be replicated to destination.<br/><br/>If source object is created without Object Lock, destination bucket's default retention may be applied to the replica.<br/><br/>Object lock replication follows all S3 Object Lock restrictions. For example, it can never shorten the retention period on the replica in _compliance_ mode if the user has independently made changes on the destination. |
+| Disabled | Enabled | Source objects cannot have Object Lock, therefore Object Lock states will never propagate from source to destination.<br/>If destination bucket has default retention set, it will be applied to new replicas that are created. |
+| Enabled | Disabled | Source objects created with Object Lock will fail to be replicated. These failures are [retried](#failure-handling) by COS and can be replicated once Object Lock is enabled on the destination bucket. Any Object lock retention / legal hold updates on existing objects also cannot be replicated until Object Lock is enabled on destination.<br/><br/>Source objects created without Object Lock can still be replicated. |
+{: caption=""}
 
 
 
@@ -495,6 +563,101 @@ curl -X "DELETE" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.clou
 ```
 
 A successful request returns a `204` response.
+
+
+
+### List replication failures for a bucket
+{: #replication-apis-list-failures}
+
+#### Example request using `curl`
+{: #replication-apis-list-failures-curl}
+
+```sh
+curl -X "GET" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?ibm-replication-failures" \
+     -H 'Authorization: bearer $TOKEN'
+```
+
+#### Optional query parameters
+{: #replication-apis-list-failures-query}
+
+| Name | Type | Description |
+| --- | --- | --- |
+| encoding-type |	String	| If unicode characters that are not supported by XML are used in an object name, this parameter can be set to url to properly encode the response. |
+| max-keys |	String |	Restricts the number of failures to display in the response. Default and maximum is 1,000. |
+| first-sync-attempted-before	| String |	Specifies the timestamp at which the listing should begin, in reverse chronological order. The time corresponds to when the replication was originally triggered (<FirstSyncAttempted> field in the entry). Thus, the listing will contain any replication failures that are at least as old as the specified timestamp. |
+| continuation-token |	String	| Specifies the failure at which the listing should begin, in reverse chronological order. This is used for pagination purposes if there are more entries present after the entries returned in the last listing request. |
+{: caption=""}
+
+#### Example response
+{: #replication-apis-list-failures-response-example}
+
+```xml
+<ListReplicationFailureResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+    <Name>example</Name>
+    <FirstSyncAttemptedBefore>2025-12-15T00:00:00.000Z</FirstSyncAttemptedBefore>
+    <MaxKeys>10</MaxKeys>
+    <IsTruncated>false</IsTruncated>
+    <EncodingType>false</EncodingType>
+    <KeyCount>2</KeyCount>
+    <Contents>
+        <Key>test-obj+*1765434016787</Key>
+        <VersionId>00000000-0000-0000-0000-019b0c114413</VersionId>
+        <SyncType>Content</SyncType>
+        <FirstSyncAttempted>2025-12-11T06:20:16.787Z</FirstSyncAttempted>
+        <LastSyncAttempted>2025-12-11T06:20:16.787Z</LastSyncAttempted>
+        <SyncFailureCause>Versioning disabled on destination bucket</SyncFailureCause>
+    </Contents>
+    <Contents>
+        <Key>test-obj+*1765434016786</Key>
+        <VersionId>00000000-0000-0000-0000-019b0c114412</VersionId>
+        <SyncType>Content</SyncType>
+        <FirstSyncAttempted>2025-12-11T06:20:16.786Z</FirstSyncAttempted>
+        <LastSyncAttempted>2025-12-11T06:20:16.786Z</LastSyncAttempted>
+        <SyncFailureCause>Replication operation not authorized on target bucket</SyncFailureCause>
+    </Contents>
+</ListReplicationFailureResult>
+```
+
+#### Response elements
+{: #replication-apis-list-failures-response-elements}
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `ListReplicationFailureResult` | Container | Root-level tag |
+| `Name` | String | Name of the bucket that is being listed. |
+| `FirstSyncAttemptedBefore` | String | ISO-8601 date-timestamp of the requested `?first-sync-attempted-before` |
+| `MaxKeys` | Number | Max number of keys that was requested on this listing. |
+| `IsTruncated` | Boolean | Whether the current listing was truncated (i.e. there are more failures after the last element returned in this listing). If `true`, `NextContinuationToken` is always provided. |
+| `EncodingType` | String | Encoding type that was requested on this listing. |
+| `KeyCount` | Number | Number of failure elements returned on this listing. |
+| `ContinuationToken` | String | The continuation token that was specified for this listing. |
+| `NextContinuationToken` | String | Next continuation token to use for paging if the current listing was truncated. |
+{: caption=""}
+
+### Schedule re-attempt of stale replication failures in a bucket
+{: #replication-apis-failure-reattempt}
+
+This schedules a re-attempt of all replication failures, including any "stale" failures that are older than 30 days and no longer eligible for automatic retries by the system. Long-term replication failures are processed in 24 hour cycles. Issuing this request schedules reattempts for the stale failures in the cycle starting at the next midnight GMT. For example, if a request is issued at `2026-01-01T01:00:00Z`, the earliest time at which these failures get processed is `2026-01-02T00:00:00Z`. On successful request, this timestamp is also provided in the response header `x-ibm-replication-reattempt-scheduled-time`. Multiple requests arriving on the same day in GMT (i.e. resulting in the same scheduled time) are idempotent.
+
+Each stale failure will be re-attempted once on best-effort basis - they will be executed but no guarantees are made on their timing.
+
+#### Example request using `curl`
+{: #replication-apis-failure-reattempt-curl}
+
+```sh
+curl -X "PUT" "https://$BUCKET.s3.$REGION.cloud-object-storage.appdomain.cloud/?ibm-replication-reattempt" \
+     -H 'Authorization: bearer $TOKEN'
+```
+
+#### Example response
+{: #replication-apis-failure-reattempt-response}
+
+```sh
+HTTP/1.1 204 No Content
+Connection: close
+...
+x-ibm-replication-reattempt-scheduled-time: Fri, 12 Dec 2025 00:00:00 GMT
+```
 
 
 
