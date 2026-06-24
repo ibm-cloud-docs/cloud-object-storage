@@ -179,6 +179,7 @@ toc:
           - javaV2.md
           - python.md
           - node.md
+          - nodeV2.md
           - go.md
           - goV2.md
           - terraform.md
