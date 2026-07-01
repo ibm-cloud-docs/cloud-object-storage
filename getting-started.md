@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2025
-lastupdated: "2025-08-19"
+  years: 2017, 2026
+lastupdated: "2026-07-01"
 
 keywords: IBM cloud object storage, cloud object storage, object storage, storage, cross origin resource sharing, cors, special characters
 
@@ -31,13 +31,13 @@ This tutorial takes a new user through the first steps with the {{site.data.keyw
 ## Create some buckets to store your data
 {: #gs-create-buckets}
 
-1. [Ordering {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-provision) creates a _service instance_. {{site.data.keyword.cos_full_notm}} is a multi-tenant system, and all instances of {{site.data.keyword.cos_short}} share physical infrastructure. You will be automatically redirected to the service instance upon its creation. Your {{site.data.keyword.cos_short}} instances are listed under **Storage** in [the resource list](https://cloud.ibm.com/resources).
+1. [Ordering {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-provision) creates a _service instance_. {{site.data.keyword.cos_full_notm}} is a multi-tenant system, and all instances of {{site.data.keyword.cos_short}} share physical infrastructure. You are automatically redirected to the service instance upon its creation. Your {{site.data.keyword.cos_short}} instances are listed under **Storage** in [the resource list](https://cloud.ibm.com/resources).
 
    The terms 'resource instance' and 'service instance' refer to the same concept, and can be used interchangeably.
    {: tip}
 
 
-1. You will need a bucket before you can store data in your new _service instance_. To **Create a bucket**, start by choosing a unique name. All buckets in all regions across the globe share a single namespace. Ensure that you have the [correct permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions) to create a bucket.
+1. You need a bucket before you can store data in your new _service instance_. To **Create a bucket**, start by choosing a unique name. All buckets in all regions across the globe share a single namespace. Ensure that you have the [correct permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions) to create a bucket.
 
    When you name buckets or objects, be sure to avoid the use of Personally Identifiable Information (PII). PII is information that can identify any user (natural person) by name, location, or any other means.
    {: tip}
@@ -49,7 +49,7 @@ This tutorial takes a new user through the first steps with the {{site.data.keyw
 
 3. Choose the [bucket's _storage class_](/docs/cloud-object-storage?topic=cloud-object-storage-classes) to accurately reflect how often you expect to read the stored data. This is important as it determines your billing details. Follow the **Create** link to create and access your new bucket.
 
-4. Determine the advanced configurations, if any, suitable to your content. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option.
+4. Determine the advanced configurations, if any, suitable to your content. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault, and Flex) to long-term offline archive or use the online Cold Vault option.
 
 Buckets are a way to organize your data, but they're not the sole way. Object names (often referred to as _object keys_) can use one or more forward slashes for a directory-like organizational system. You then use the portion of the object name before a delimiter to form an _object prefix_, which is used to list related objects in a single bucket through the {{site.data.keyword.cos_short}} API.
 {: tip}
@@ -62,7 +62,69 @@ Now go ahead and go to one of your buckets by selecting it from the list. Click 
 Objects are limited to 200 MB when uploaded through the console unless you use the [Aspera high-speed transfer](/docs/cloud-object-storage?topic=cloud-object-storage-upload) plug-in or use Cross-Origin Resource Sharing (CORS), by setting the CORS headers. Larger objects (up to 10 TB) can also be [split into parts and uploaded in parallel using the API](/docs/cloud-object-storage?topic=cloud-object-storage-large-objects). Object keys can be up to 1024 characters in length, and it's best to avoid any characters that might be problematic in a web address. For example, `?`, `=`, `<`, and other special characters might cause unwanted behavior if not URL-encoded.
 {: tip}
 
-If an object with a special character is uploaded to a bucket, it may cause problems with displaying and accessing it in the UI. In these cases, the object should be deleted and re-uploaded with a more standard name. You may delete these objects with Expiration or Lifecycle rules if the UI and CLI deletions are not successful. Avoid special characters to prevent any difficulties with accessing or deleting the object.
+## Search and filter objects in the UI
+{: #gs-search-filter-objects}
+
+You can use the {{site.data.keyword.cos_short}} console to quickly locate objects within a bucket by using search and filtering capabilities. The UI provides both simple search and advanced filtering options to help you efficiently find objects based on specific properties.
+
+### Search objects by prefix
+{: #gs-search-by-prefix}
+
+You can quickly find objects by searching for their names or prefixes.
+
+1. In the **Objects** tab of your bucket, select **Filter by: Prefix only**.
+2. Enter a keyword or prefix in the search field.
+3. The object list updates automatically based on the entered value.
+
+The search is based on the object name (key), and results are filtered in real time as you type.
+{: tip}
+
+### Filter objects using advanced properties
+{: #gs-filter-advanced}
+
+You can apply advanced filters to narrow down objects based on multiple attributes.
+
+1. In the **Objects** tab, select **Filter by: Advanced properties**.
+2. Choose a property from the list:
+   - **Name contains** or **Prefix**
+   - **Size (Bytes)**
+   - **Last modified**
+   - **Extension**
+3. Enter or select the required values.
+4. (Optional) Click **Add filter** to include additional conditions.
+5. Select **AND** or **OR** to define how multiple filters are applied.
+6. Click **Apply** to view the filtered object list.
+
+For example, you can find all objects larger than 500000 bytes with names containing "backup" by combining size and name filters.
+
+### Available filter options
+{: #gs-filter-options}
+
+You can select from the following filter types:
+
+| Filter option | Description |
+| ------------- | ----------- |
+| Prefix | Filters objects by the starting characters of the name. |
+| Name contains | Matches objects that include specific text. |
+| Size (Bytes) | Filters based on object size by using comparison operators. |
+| Last modified | Filters based on modification date. |
+| Extension | Filters objects by file type. |
+{: caption="Object filter options" caption-side="bottom"}
+
+### Combine multiple filters
+{: #gs-combine-filters}
+
+You can combine multiple filters to refine your search further:
+
+- Use **AND** to return objects that match all conditions
+- Use **OR** to return objects that match any condition
+
+This helps in identifying objects more precisely in large datasets.
+
+Filtering large buckets with many objects might affect browser performance. Results depend on the number of objects and applied filters.
+{: note}
+
+If an object with a special character is uploaded to a bucket, it might cause problems with displaying and accessing it in the UI. In these cases, the object should be deleted and reuploaded with a more standard name. You might delete these objects with Expiration or Lifecycle rules if the UI and CLI deletions are not successful. Avoid special characters to prevent any difficulties with accessing or deleting the object.
 {: attention}
 
 ## How do I invite a user to administer buckets and data?
@@ -72,13 +134,13 @@ If an object with a special character is uploaded to a bucket, it may cause prob
 
 Bringing in another user and allow them to act as an administrator for the instance and any data stored in it is an important way to distribute responsibility for administering your {{site.data.keyword.cos_full_notm}} instance.
 
-1. To add the new user you first need to leave the current {{site.data.keyword.cos_short}} interface and head for the IAM console. Go to the **Manage** menu and follow the link at **Access (IAM)** > **Users**. Click **Invite users**.
+1. To add the new user, you first need to leave the current {{site.data.keyword.cos_short}} interface and head for the IAM console. Go to the **Manage** menu and follow the link at **Access (IAM)** > **Users**. Click **Invite users**.
 
 1. Enter the email address of a user you want to invite to your organization, then expand the **Services** section and select "Resource" from the **Assign access to** menu. Now choose "Cloud Object Storage" from the **Services** menu.
 
 1. Now, three more fields appear: _Service instance_, _Resource Type_, and _Resource ID_. The first field defines which instance of {{site.data.keyword.cos_short}} the user can access. It can also be set to grant the same level of access to all instances of {{site.data.keyword.cos_short}}. We can leave the other fields blank for now.
 
-1. The check box under **Select roles** determines the set of actions available to the user. Select the "Administrator" platform access role to allow the user grant other [users and service IDs](/docs/cloud-object-storage?topic=cloud-object-storage-iam-overview) access to the instance. Select the "Manager" service access role to allow the user to manage the {{site.data.keyword.cos_short}} instance as well as create and delete buckets and objects. These combinations of a _Subject_ (user), _Role_ (Manager), and _Resource_ ({{site.data.keyword.cos_short}} service instance) together form [IAM policies](/docs/cloud-object-storage?topic=cloud-object-storage-iam-overview). For more detailed guidance on roles and policies, [see the IAM documentation](/docs/account?topic=account-userroles).
+1. The checkbox under **Select roles** determines the set of actions available to the user. Select the "Administrator" platform access role to allow the user grant other [users and service IDs](/docs/cloud-object-storage?topic=cloud-object-storage-iam-overview) access to the instance. Select the "Manager" service access role to allow the user to manage the {{site.data.keyword.cos_short}} instance as well as create and delete buckets and objects. These combinations of a _Subject_ (user), _Role_ (Manager), and _Resource_ ({{site.data.keyword.cos_short}} service instance) together form [IAM policies](/docs/cloud-object-storage?topic=cloud-object-storage-iam-overview). For more detailed guidance on roles and policies, [see the IAM documentation](/docs/account?topic=account-userroles).
 
 
 
