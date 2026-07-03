@@ -220,7 +220,7 @@ cos = ibm_boto3.resource("s3",
     endpoint_url=COS_ENDPOINT
 )
 
-def get_bucket_contents(bucket_name, max_keys):
+def get_bucket_contents(bucket_name):
     print("Retrieving bucket contents from: {0}".format(bucket_name))
     returnArray = []
     try:
@@ -248,7 +248,7 @@ def delete_item(bucket_name, item_name):
 
 def main():
     bucket = "<bucket_name>"
-    deleteListArray = get_bucket_contents(bucket, 1000)
+    deleteListArray = get_bucket_contents(bucket)
     for item_name in deleteListArray:
         delete_item(bucket, item_name)
 
