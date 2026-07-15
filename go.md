@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-07-14"
+lastupdated: "2026-07-15"
 
 keywords: object storage, go, sdk, service id, trusted profile credentials
 
@@ -31,7 +31,7 @@ subcollection: cloud-object-storage
 {: #using-go}
 
 End-of-Support on Aug. 6, 2027.
-The {{site.data.keyword.cos_full}} (COS) SDK v1 will reach end-of-support on Aug. 6, 2027. After this date, it will no longer receive updates, security fixes, or new releases. We recommend migrating to the [{{site.data.keyword.cos_full_notm}} SDK v2](/docs/cloud-object-storage?topic=cloud-object-storage-go-v2), which provides improved performance, enhanced security, modern APIs, and continued support from IBM.
+The {{site.data.keyword.cos_full}} (COS) SDK v1 will reach end-of-support on Aug. 6, 2027. After this date, it will no longer receive updates, security fixes, or new releases. We recommend migrating to the [{{site.data.keyword.cos_full_notm}} SDK Go v2](/docs/cloud-object-storage?topic=cloud-object-storage-go-v2), which provides improved performance, enhanced security, modern APIs, and continued support from IBM.
 {: deprecated}
 
 The {{site.data.keyword.cos_full}} SDK for Go provides features to make the most of {{site.data.keyword.cos_full_notm}}.
