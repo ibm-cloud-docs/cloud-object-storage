@@ -2,30 +2,15 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-07-15"
+lastupdated: "2026-07-20"
 
 keywords: object storage, go, sdk, service id, trusted profile credentials
 
 subcollection: cloud-object-storage
 
 ---
-{:new_window: target="_blank"}
-{:external: target="_blank" .external}
-{:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:screen: .screen}
-{:tip: .tip}
-{:important: .important}
-{:note: .note}
-{:download: .download}
-{:http: .ph data-hd-programlang='http'}
-{:javascript: .ph data-hd-programlang='javascript'}
-{:java: .ph data-hd-programlang='java'}
-{:python: .ph data-hd-programlang='python'}
-{:go: .ph data-hd-programlang='go'}
-{:faq: data-hd-content-type='faq'}
-{:support: data-reuse='support'}
+
+{{site.data.keyword.attribute-definition-list}}
 
 # Using Go
 {: #using-go}
