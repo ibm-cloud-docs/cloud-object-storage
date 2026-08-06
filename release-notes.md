@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2026
 
-lastupdated: "2026-07-07"
+lastupdated: "2026-08-06"
 
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning, metrics router, activity tracker routing, routing, monitoring, data vault
@@ -33,6 +33,13 @@ Object Lock update!
 Improved replication resiliency
 : Object Replication is now more resilient to failures. When replications fail asynchronously, they can be internally retried by {{site.data.keyword.cos_full_notm}} for up to 30 days. Users can list persistent replication failures and can schedule retries of failures that are given up by the system.
 
+
+## 06 August 2026
+{: #cloud-object-storage-aug062026}
+{: release-note}
+
+{{site.data.keyword.cos_short}} (Classic Infrastructure) End of Support announcement and instance conversion
+:   {{site.data.keyword.cos_full_notm}} is deprecating and retiring the legacy Cloud Object Storage (Classic Infrastructure) offering. After 06 August 2027 End of Support (EOS) date, {{site.data.keyword.cos_short}} (Classic Infrastructure) instances will no longer be supported. Clients will lose access to such instances, and any remaining data will be deleted. Before the EOS date, impacted customers can convert their classic infrastructure instances to {{site.data.keyword.cos_short}} IBM Cloud Platform instances directly from the IBM Cloud console without moving data or changing application configuration. The conversion transitions billing to the IBM Cloud Platform system, enables IBM Cloud Identity and Access Management (IAM) for authorization, and provides access to additional bucket and object management capabilities. Applications can continue to use the same S3 endpoints after conversion. Customers who use S3 bucket-level ACLs with public write, authenticated user, or log delivery grantees, or who rely on cross-account access control, should open an IBM Cloud Support ticket before converting. For more information, see [Converting Classic Infrastructure instances to IBM Cloud Platform instances](/docs/cloud-object-storage?topic=cloud-object-storage-cos-instance-conversion)
 
 ## 31 March 2026
 {: #cloud-object-storage-mar312026}
