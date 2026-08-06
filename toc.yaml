@@ -154,6 +154,7 @@ toc:
           - functions.md
           - static-websites-options.md
           - cis-routing-rules-for-cos.md
+          - cos-instance-conversion.md
   - navgroup:
       id: reference
       topics:
