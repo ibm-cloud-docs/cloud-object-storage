@@ -31,6 +31,9 @@ toc:
           label: Notifications
           topics:
           - cos-notices.md
+          - cos-notices-classic-conversion.md
+          - cos-classic-infrastructure-deprecate-notice.md
+          - cos-sdk-v1-deprecate-notice.md
           - cos-notices-gslb.md
           - cos-notices-ca-mon-onhold.md
           - cos-notices-eu-cr.md
