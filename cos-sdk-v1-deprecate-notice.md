@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-08-06"
+lastupdated: "2026-08-12"
 
 keywords: object storage, deprecation, sdk, sdk v1, sdk v2, end of support
 
@@ -12,10 +12,10 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Deprecation of {{site.data.keyword.cos_full}} SDK V1
+# Deprecation of {{site.data.keyword.cos_full}} SDK (Go, Java, and Node.js) V1
 {: #deprecation-cos-sdk-v1}
 
-{{site.data.keyword.cloud_notm}} continues to evaluate its service offerings periodically, keeping in perspective client requirements and market direction. As a result, {{site.data.keyword.cos_full}} SDK v1 reaches end of support on 06 August 2027.
+{{site.data.keyword.cloud_notm}} continues to evaluate its service offerings periodically, keeping in perspective client requirements and market direction. As a result, {{site.data.keyword.cos_full}} SDK (Go, Java, and Node.js) v1 reaches end of support on 06 August 2027.
 {: shortdesc}
 
 ## Important dates
@@ -23,7 +23,7 @@ subcollection: cloud-object-storage
 
 | Stage | Date | Description |
 |---------------------------|----------------------|----------------------------------------------------|
-| End of support | 06 August 2027 | {{site.data.keyword.cos_short}} SDK v1 no longer receives updates, security fixes, or new releases after this date. |
+| End of support | 06 August 2027 | {{site.data.keyword.cos_short}} SDK (Go, Java, and Node.js) v1 no longer receives updates, security fixes, or new releases after this date. |
 {: caption="Important dates" caption-side="top"}
 
 ## Deprecation details
