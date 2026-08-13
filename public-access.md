@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2024
-lastupdated: "2024-02-20"
+  years: 2017, 2025, 2026
+lastupdated: "2026-08-13"
 
 keywords: public, cdn, anonymous, files
 
@@ -33,12 +33,15 @@ First, make sure that you have a bucket. If not, follow the [getting started tut
 ### Enable public access
 {: #public-access-console-enable}
 
+Before you can enable public access on a bucket, the **Public Access** group must be enabled at the account level. Only the account owner or a user with the **IAM Access Groups Administrator** role can change this setting. To verify or enable it, go to **Manage > Access (IAM) > Settings** and confirm that **Public access** is set to **Enabled**. If this account-level setting is disabled, the bucket-level controls described below have no effect.
+{: important}
+
 1. From the {{site.data.keyword.cloud_notm}} [console dashboard](https://cloud.ibm.com/), select **Storage** to view your resource list.
 2. Next, select the service instance with your bucket from within the **Storage** menu. This takes you to the {{site.data.keyword.cos_short}} Console.
 3. Choose the bucket that you want to be publicly accessible. Keep in mind this policy makes _all objects in a bucket_ available to download for anyone with the appropriate URL.
-4. Select **Access policies** from the navigation menu.
-5. Select the **Public access** tab.
-6. Click **Create access policy**. After you read the warning, choose **Enable**.
+4. Select the **Permissions** tab from the bucket navigation tabs.
+5. Scroll to the **Public access** section and click **Create access policy**.
+6. After you read the warning, choose **Enable**.
 7. Now all objects in this bucket are publicly accessible!
 
 ### Disable public access
