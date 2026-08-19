@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-06-24"
+lastupdated: "2026-08-17"
 
 keywords: object storage, node, javascript, sdk
 
@@ -979,6 +979,654 @@ try {
   console.log(` Retain Until: ${response.Retention.RetainUntilDate}`);
 } catch (err) {
   console.error('Failed to get object retention:', err);
+}
+```
+
+### Checking if a bucket exists (HEAD)
+{: #node-v2-head-bucket}
+
+```javascript
+const { HeadBucketCommand } = require('ibm-cos-sdk-v2');
+
+const command = new HeadBucketCommand({
+  Bucket: 'my-bucket'
+});
+
+try {
+  await client.send(command);
+  console.log('Bucket exists');
+} catch (err) {
+  if (err.name === 'NotFound') {
+    console.log('Bucket does not exist');
+  } else {
+    console.error('Error checking bucket:', err);
+  }
+}
+```
+
+### Streaming upload from a file
+{: #node-v2-stream-upload}
+
+```javascript
+const fs = require('fs');
+const { PutObjectCommand } = require('ibm-cos-sdk-v2');
+
+const fileStream = fs.createReadStream('large-file.bin');
+
+const command = new PutObjectCommand({
+  Bucket: 'my-bucket',
+  Key: 'large-file.bin',
+  Body: fileStream
+});
+
+try {
+  const response = await client.send(command);
+  console.log('File uploaded successfully');
+} catch (err) {
+  console.error('Error uploading file:', err);
+}
+```
+
+### Streaming download to a file
+{: #node-v2-stream-download}
+
+```javascript
+const fs = require('fs');
+const { GetObjectCommand } = require('ibm-cos-sdk-v2');
+
+const command = new GetObjectCommand({
+  Bucket: 'my-bucket',
+  Key: 'large-file.bin'
+});
+
+try {
+  const response = await client.send(command);
+  const fileStream = fs.createWriteStream('downloaded-file.bin');
+
+  response.Body.pipe(fileStream);
+
+  await new Promise((resolve, reject) => {
+    fileStream.on('finish', resolve);
+    fileStream.on('error', reject);
+    response.Body.on('error', reject);
+  });
+
+  console.log('File downloaded successfully');
+} catch (err) {
+  console.error('Error downloading file:', err);
+}
+```
+
+### Listing all objects with pagination
+{: #node-v2-paginate-objects}
+
+The v2 SDK provides built-in paginators for operations that return truncated results.
+
+**Using a paginator (recommended):**
+
+```javascript
+const { paginateListObjectsV2 } = require('ibm-cos-sdk-v2');
+
+async function listAllObjects(bucket, prefix) {
+  const allObjects = [];
+
+  const paginator = paginateListObjectsV2(
+    { client: client, pageSize: 1000 },
+    { Bucket: bucket, Prefix: prefix }
+  );
+
+  try {
+    for await (const page of paginator) {
+      if (page.Contents) {
+        allObjects.push(...page.Contents);
+      }
+    }
+
+    console.log('Total objects:', allObjects.length);
+    return allObjects;
+  } catch (err) {
+    console.error('Error listing objects:', err);
+    throw err;
+  }
+}
+```
+
+**Manual pagination:**
+
+```javascript
+const { ListObjectsV2Command } = require('ibm-cos-sdk-v2');
+
+async function listAllObjects(bucket, prefix) {
+  const allObjects = [];
+  let continuationToken = undefined;
+
+  do {
+    const command = new ListObjectsV2Command({
+      Bucket: bucket,
+      Prefix: prefix,
+      ContinuationToken: continuationToken
+    });
+
+    const response = await client.send(command);
+
+    if (response.Contents) {
+      allObjects.push(...response.Contents);
+    }
+
+    continuationToken = response.NextContinuationToken;
+  } while (continuationToken);
+
+  console.log('Total objects:', allObjects.length);
+  return allObjects;
+}
+```
+
+### Generating presigned URLs
+{: #node-v2-presigned-urls}
+
+Presigned URLs allow temporary, unauthenticated access to objects. Install the presigner package first:
+
+```sh
+npm install @ibm-cos/s3-request-presigner
+```
+
+**Presigned GET URL (download):**
+
+```javascript
+const { GetObjectCommand } = require('ibm-cos-sdk-v2');
+const { getSignedUrl } = require('@ibm-cos/s3-request-presigner');
+
+const command = new GetObjectCommand({
+  Bucket: 'my-bucket',
+  Key: 'my-object.txt'
+});
+
+try {
+  const url = await getSignedUrl(client, command, { expiresIn: 3600 });
+  console.log('Presigned URL:', url);
+} catch (err) {
+  console.error('Error generating presigned URL:', err);
+}
+```
+
+**Presigned PUT URL (upload):**
+
+```javascript
+const { PutObjectCommand } = require('ibm-cos-sdk-v2');
+const { getSignedUrl } = require('@ibm-cos/s3-request-presigner');
+
+const command = new PutObjectCommand({
+  Bucket: 'my-bucket',
+  Key: 'upload-object.txt',
+  ContentType: 'text/plain'
+});
+
+try {
+  const url = await getSignedUrl(client, command, { expiresIn: 3600 });
+  console.log('Presigned PUT URL:', url);
+} catch (err) {
+  console.error('Error generating presigned URL:', err);
+}
+```
+
+### Getting CORS configuration
+{: #node-v2-get-cors}
+
+```javascript
+const { GetBucketCorsCommand } = require('ibm-cos-sdk-v2');
+
+const command = new GetBucketCorsCommand({
+  Bucket: 'my-bucket'
+});
+
+try {
+  const response = await client.send(command);
+  console.log('CORS rules:', response.CORSRules);
+} catch (err) {
+  console.error('Error getting CORS:', err);
+}
+```
+
+### Deleting object tags
+{: #node-v2-delete-object-tags}
+
+```javascript
+const { DeleteObjectTaggingCommand } = require('ibm-cos-sdk-v2');
+
+const command = new DeleteObjectTaggingCommand({
+  Bucket: 'my-bucket',
+  Key: 'my-object.txt'
+});
+
+try {
+  await client.send(command);
+  console.log('Object tagging deleted successfully');
+} catch (err) {
+  console.error('Error deleting object tags:', err);
+}
+```
+
+### Uploading an object with custom metadata
+{: #node-v2-upload-object-metadata}
+
+```javascript
+const { PutObjectCommand } = require('ibm-cos-sdk-v2');
+
+const command = new PutObjectCommand({
+  Bucket: 'my-bucket',
+  Key: 'my-object.txt',
+  Body: 'content',
+  Metadata: {
+    'author': 'John Doe',
+    'department': 'Engineering'
+  }
+});
+
+try {
+  await client.send(command);
+  console.log('Object uploaded with metadata');
+} catch (err) {
+  console.error('Error uploading object:', err);
+}
+```
+
+### Setting bucket tagging
+{: #node-v2-set-bucket-tagging}
+
+```javascript
+const { PutBucketTaggingCommand } = require('ibm-cos-sdk-v2');
+
+const command = new PutBucketTaggingCommand({
+  Bucket: 'my-bucket',
+  Tagging: {
+    TagSet: [
+      { Key: 'Environment', Value: 'Production' },
+      { Key: 'Project', Value: 'WebApp' }
+    ]
+  }
+});
+
+try {
+  await client.send(command);
+  console.log('Bucket tags updated');
+} catch (err) {
+  console.error('Error updating bucket tags:', err);
+}
+```
+
+### Getting versioning status
+{: #node-v2-get-versioning}
+
+```javascript
+const { GetBucketVersioningCommand } = require('ibm-cos-sdk-v2');
+
+const command = new GetBucketVersioningCommand({ Bucket: 'my-bucket' });
+
+try {
+  const response = await client.send(command);
+  console.log('Bucket versioning configuration retrieved successfully');
+  console.log('Status:', response.Status);
+} catch (err) {
+  console.error('Error:', err.message);
+}
+```
+
+### Getting a specific object version
+{: #node-v2-get-object-version}
+
+```javascript
+const { GetObjectCommand } = require('ibm-cos-sdk-v2');
+
+const command = new GetObjectCommand({
+  Bucket: 'my-bucket',
+  Key: 'my-file.txt',
+  VersionId: '<VERSION_ID>'
+});
+
+try {
+  const response = await client.send(command);
+  console.log('Version ID:', response.VersionId);
+  // Stream response.Body to a file or buffer as needed.
+} catch (err) {
+  console.error('Error:', err.message);
+}
+```
+
+### Setting bucket protection (WORM) (IBM Extension)
+{: #node-v2-bucket-protection}
+
+{{site.data.keyword.cos_full_notm}} supports Write-Once-Read-Many (WORM) bucket protection for compliance and data retention.
+
+**Setting bucket protection:**
+
+```javascript
+const { PutBucketProtectionConfigurationCommand } = require('ibm-cos-sdk-v2');
+
+const command = new PutBucketProtectionConfigurationCommand({
+  Bucket: 'my-protected-bucket',
+  ProtectionConfiguration: {
+    Status: 'Retention',
+    MinimumRetention: { Days: 1 },
+    DefaultRetention: { Days: 30 },
+    MaximumRetention: { Days: 365 }
+  }
+});
+
+try {
+  await client.send(command);
+  console.log('Bucket protection configuration set successfully');
+} catch (err) {
+  console.error('Error configuring protection:', err);
+}
+```
+
+**Getting bucket protection:**
+
+```javascript
+const { GetBucketProtectionConfigurationCommand } = require('ibm-cos-sdk-v2');
+
+const command = new GetBucketProtectionConfigurationCommand({
+  Bucket: 'my-protected-bucket'
+});
+
+try {
+  const response = await client.send(command);
+  console.log('Bucket protection configuration retrieved successfully');
+  console.log('Response:', JSON.stringify(response, null, 2));
+} catch (err) {
+  console.error('Error getting protection config:', err);
+}
+```
+
+### Managing legal holds (IBM Extension)
+{: #node-v2-legal-hold}
+
+Legal holds prevent object deletion regardless of retention period expiry. Each hold is identified by a unique ID and all holds must be explicitly removed before an object can be deleted.
+
+**Note**: Legal holds require the bucket to have an IBM COS protection configuration set.
+{: note}
+
+**Adding a legal hold:**
+
+```javascript
+const { AddLegalHoldCommand } = require('ibm-cos-sdk-v2');
+
+const command = new AddLegalHoldCommand({
+  Bucket: 'my-protected-bucket',
+  Key: 'important-document.pdf',
+  RetentionLegalHoldId: 'legal-case-12345'
+});
+
+try {
+  await client.send(command);
+  console.log('Legal hold added');
+} catch (err) {
+  console.error('Error adding legal hold:', err);
+}
+```
+
+**Listing legal holds:**
+
+```javascript
+const { ListLegalHoldsCommand } = require('ibm-cos-sdk-v2');
+
+const command = new ListLegalHoldsCommand({
+  Bucket: 'my-protected-bucket',
+  Key: 'important-document.pdf'
+});
+
+try {
+  const response = await client.send(command);
+  console.log('Legal holds listed successfully');
+  console.log('Legal holds:', JSON.stringify(response.LegalHolds, null, 2));
+} catch (err) {
+  console.error('Error listing legal holds:', err);
+}
+```
+
+**Deleting a legal hold:**
+
+```javascript
+const { DeleteLegalHoldCommand } = require('ibm-cos-sdk-v2');
+
+const command = new DeleteLegalHoldCommand({
+  Bucket: 'my-protected-bucket',
+  Key: 'important-document.pdf',
+  RetentionLegalHoldId: 'legal-case-12345'
+});
+
+try {
+  await client.send(command);
+  console.log('Legal hold removed');
+} catch (err) {
+  console.error('Error removing legal hold:', err);
+}
+```
+
+### Creating a Key Protect encrypted bucket (IBM Extension)
+{: #node-v2-key-protect}
+
+IBM Key Protect provides encryption key management for bucket-level encryption:
+
+```javascript
+const { CreateBucketCommand } = require('ibm-cos-sdk-v2');
+
+const command = new CreateBucketCommand({
+  Bucket: 'my-encrypted-bucket',
+  CreateBucketConfiguration: {
+    LocationConstraint: 'us-south-standard'
+  },
+  IBMSSEKPEncryptionAlgorithm: 'AES256',
+  IBMSSEKPCustomerRootKeyCrn: 'crn:v1:bluemix:public:kms:us-south:...'
+});
+
+try {
+  await client.send(command);
+  console.log('Encrypted bucket created');
+} catch (err) {
+  console.error('Error creating encrypted bucket:', err);
+}
+```
+
+### Listing directory buckets (IBM Extension)
+{: #node-v2-list-directory-buckets}
+
+Directory buckets are a distinct {{site.data.keyword.cos_full_notm}} bucket type optimized for high-throughput workloads:
+
+```javascript
+const { ListDirectoryBucketsCommand } = require('ibm-cos-sdk-v2');
+
+const command = new ListDirectoryBucketsCommand({
+  // Optional: MaxDirectoryBuckets, ContinuationToken for pagination
+});
+
+try {
+  const response = await client.send(command);
+  console.log('Directory buckets listed successfully');
+  if (response.Buckets?.length) {
+    response.Buckets.forEach(b => console.log(' -', b.Name));
+  } else {
+    console.log('No directory buckets found');
+  }
+} catch (err) {
+  console.error('Error:', err.message);
+}
+```
+
+### Renaming an object (IBM Extension)
+{: #node-v2-rename-object}
+
+`RenameObject` is an IBM COS-specific atomic server-side operation. No data is transferred — only the key changes:
+
+```javascript
+const { RenameObjectCommand } = require('ibm-cos-sdk-v2');
+
+const command = new RenameObjectCommand({
+  Bucket: 'my-bucket',
+  Key: 'new-object-key',                    // destination key
+  RenameSource: 'my-bucket/old-object-key'  // source: bucket/key
+});
+
+try {
+  await client.send(command);
+  console.log('Object renamed successfully');
+} catch (err) {
+  console.error('Error:', err.message);
+}
+```
+
+### Updating object encryption (IBM Extension)
+{: #node-v2-update-object-encryption}
+
+`UpdateObjectEncryption` updates the encryption key reference on an existing object. Requires the bucket to have IBM Key Protect or HPCS configured:
+
+```javascript
+const { UpdateObjectEncryptionCommand } = require('ibm-cos-sdk-v2');
+
+const command = new UpdateObjectEncryptionCommand({
+  Bucket: 'my-bucket',
+  Key: 'my-object.txt'
+});
+
+try {
+  await client.send(command);
+  console.log('Object encryption updated successfully');
+} catch (err) {
+  console.error('Error:', err.message);
+}
+```
+
+### Managing bucket replication (IBM Extension)
+{: #node-v2-bucket-replication}
+
+**Getting replication configuration:**
+
+```javascript
+const { GetBucketReplicationCommand } = require('ibm-cos-sdk-v2');
+
+const command = new GetBucketReplicationCommand({ Bucket: 'my-bucket' });
+
+try {
+  const response = await client.send(command);
+  console.log('Bucket replication configuration retrieved successfully');
+  console.log('Rules:', JSON.stringify(response.ReplicationConfiguration?.Rules, null, 2));
+} catch (err) {
+  console.error('Error:', err.message);
+}
+```
+
+**Deleting replication configuration:**
+
+```javascript
+const { DeleteBucketReplicationCommand } = require('ibm-cos-sdk-v2');
+
+const command = new DeleteBucketReplicationCommand({ Bucket: 'my-bucket' });
+
+try {
+  await client.send(command);
+  console.log('Bucket replication configuration deleted successfully');
+} catch (err) {
+  console.error('Error:', err.message);
+}
+```
+
+**Listing replication failures:**
+
+```javascript
+const { ListBucketReplicationFailuresCommand } = require('ibm-cos-sdk-v2');
+
+const command = new ListBucketReplicationFailuresCommand({ Bucket: 'my-bucket' });
+
+try {
+  const response = await client.send(command);
+  console.log('Bucket replication failures listed successfully');
+  console.log('Response:', JSON.stringify(response, null, 2));
+} catch (err) {
+  console.error('Error:', err.message);
+}
+```
+
+**Reattempting failed replications:**
+
+```javascript
+const { PutBucketReplicationReattemptCommand } = require('ibm-cos-sdk-v2');
+
+const command = new PutBucketReplicationReattemptCommand({ Bucket: 'my-bucket' });
+
+try {
+  await client.send(command);
+  console.log('Bucket replication reattempt triggered successfully');
+} catch (err) {
+  console.error('Error:', err.message);
+}
+```
+
+### Creating a session (IBM Extension)
+{: #node-v2-create-session}
+
+`CreateSession` creates a temporary session token for an {{site.data.keyword.cos_full_notm}} bucket:
+
+```javascript
+const { CreateSessionCommand } = require('ibm-cos-sdk-v2');
+
+const command = new CreateSessionCommand({ Bucket: 'my-bucket' });
+
+try {
+  const response = await client.send(command);
+  console.log('Session created successfully');
+  console.log('Response:', JSON.stringify(response, null, 2));
+} catch (err) {
+  console.error('Error:', err.message);
+}
+```
+
+### Waiting for a resource to be ready
+{: #node-v2-waiters}
+
+Waiters poll a resource until it reaches a desired state, removing the need for manual polling loops.
+
+**Waiting for a bucket to exist:**
+
+```javascript
+const { waitUntilBucketExists } = require('ibm-cos-sdk-v2');
+
+try {
+  await waitUntilBucketExists(
+    {
+      client: client,
+      maxWaitTime: 120, // Maximum wait time in seconds
+      minDelay: 2,      // Minimum delay between checks in seconds
+      maxDelay: 10      // Maximum delay between checks in seconds
+    },
+    { Bucket: 'my-bucket' }
+  );
+  console.log('Bucket exists and is ready');
+} catch (err) {
+  console.error('Bucket did not become available:', err);
+}
+```
+
+**Waiting for an object to exist:**
+
+```javascript
+const { waitUntilObjectExists } = require('ibm-cos-sdk-v2');
+
+try {
+  await waitUntilObjectExists(
+    {
+      client: client,
+      maxWaitTime: 60,
+      minDelay: 1,
+      maxDelay: 5
+    },
+    {
+      Bucket: 'my-bucket',
+      Key: 'my-object.txt'
+    }
+  );
+  console.log('Object exists and is ready');
+} catch (err) {
+  console.error('Object did not become available:', err);
 }
 ```
 
