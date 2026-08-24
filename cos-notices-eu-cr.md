@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-04-15"
+lastupdated: "2026-08-24"
 
 keywords: IBM Cloud Object Storage notifications, notifications, eu-cr
 
@@ -24,7 +24,7 @@ As part of our commitment to improving reliability and performance, we are updat
 ## Action required
 {: #cos-notices-eu-cr-action-req}
 
-Update any firewall rules or network configurations referencing old IP addresses before **15 May 2026**.
+Update any firewall rules or network configurations referencing old IP addresses before **25 September 2026**.
 
 ## What you need to know about this change
 {: #cos-notices-eu-cr-about}
@@ -68,7 +68,7 @@ This is optional but recommended for operational flexibility when using private 
 | Hostname | New/current IPs | Retired IPs |
 | --- | --- | --- |
 | s3.eu.cloud-object-storage.appdomain.cloud | 13.122.118.50, 159.8.199.246, 159.122.119.244 | 159.122.138.99 |
-| s3.direct.eu.cloud-object-storage.appdomain.cloud | 161.26.29.12, 161.26.37.12, 161.26.221.99 | 161.26.53.14 |
+| s3.direct.eu.cloud-object-storage.appdomain.cloud | 161.26.29.12, 161.26.37.12, 161.26.221.100 | 161.26.53.14 |
 | s3.private.eu.cloud-object-storage.appdomain.cloud | 10.1.129.162, 10.1.129.163, 10.1.129.208 | 10.1.129.164 |
 {: caption="GEO endpoints" caption-side="top"}
 
@@ -83,9 +83,9 @@ Retired IPs are no longer available and can be removed from client configuration
 
 | New Hostname | New IPs | Retired IPs | Old Hostname |
 |---|---|---|---|
-| s3.mad.eu.cloud-object-storage.appdomain.cloud | 13.122.118.49 | 159.122.138.97 | s3.mil.eu.cloud-object-storage.appdomain.cloud |
-| s3.direct.mad.eu.cloud-object-storage.appdomain.cloud | 161.26.221.100 | 161.26.53.13 | s3.direct.mil.eu.cloud-object-storage.appdomain.cloud |
-| s3.private.mad.eu.cloud-object-storage.appdomain.cloud | 10.1.129.208 | 10.1.129.93 | s3.private.mil.eu.cloud-object-storage.appdomain.cloud |
+| s3.mad.eu.cloud-object-storage.appdomain.cloud | 13.122.118.51 | 159.122.138.97 | s3.mil.eu.cloud-object-storage.appdomain.cloud |
+| s3.direct.mad.eu.cloud-object-storage.appdomain.cloud | 161.26.221.101 | 161.26.53.13 | s3.direct.mil.eu.cloud-object-storage.appdomain.cloud |
+| s3.private.mad.eu.cloud-object-storage.appdomain.cloud | 10.1.129.209 | 10.1.129.93 | s3.private.mil.eu.cloud-object-storage.appdomain.cloud |
 {: caption="Madrid" caption-side="top"}
 
 ### Amsterdam (unchanged)
