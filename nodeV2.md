@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-08-17"
+lastupdated: "2026-08-24"
 
 keywords: object storage, node, javascript, sdk
 
@@ -23,7 +23,7 @@ The {{site.data.keyword.cos_full_notm}} SDK for Node.js v2 is comprehensive, wit
 ## What's New in v2
 {: #node-v2-whatsnew}
 
-The {{site.data.keyword.cos_full_notm}} SDK for Node.js v2 is a modernized version that is built on the AWS SDK v2 architecture, bringing significant improvements:
+The {{site.data.keyword.cos_full_notm}} SDK for Node.js v2 is a modernized version that is built on the AWS SDK v3 architecture, bringing significant improvements:
 
 - **Modular architecture** - Import only the commands and clients you need
 - **Promise-first design** - Native async/await support with cleaner error handling
@@ -163,17 +163,18 @@ The following examples assume you have already created a client as shown in the 
 ```javascript
 const { CreateBucketCommand } = require('ibm-cos-sdk-v2');
 
-const bucketName = 'my-new-bucket';
-
 const command = new CreateBucketCommand({
-  Bucket: bucketName
+  Bucket: 'my-new-bucket',
+  CreateBucketConfiguration: {
+    LocationConstraint: 'us-south-standard'
+  }
 });
 
 try {
-  await client.send(command);
-  console.log(`Bucket '${bucketName}' created successfully`);
+  const response = await client.send(command);
+  console.log('Bucket created successfully');
 } catch (err) {
-  console.error('Failed to create bucket:', err);
+  console.error('Error creating bucket:', err);
 }
 ```
 
@@ -651,6 +652,60 @@ try {
 }
 ```
 
+### Listing parts of a multipart upload
+{: #node-v2-list-parts}
+
+Lists all uploaded parts for an in-progress multipart upload. Useful for inspecting progress or gathering ETags before completing the upload.
+
+```javascript
+const { ListPartsCommand } = require('ibm-cos-sdk-v2');
+
+const command = new ListPartsCommand({
+  Bucket: 'my-bucket',
+  Key: 'my-large-object',
+  UploadId: 'YOUR_UPLOAD_ID_HERE'
+});
+
+try {
+  const response = await client.send(command);
+  console.log('Parts listed successfully');
+  if (response.Parts && response.Parts.length > 0) {
+    response.Parts.forEach(p =>
+      console.log(' - Part', p.PartNumber, '| ETag:', p.ETag, '| Size:', p.Size, 'bytes')
+    );
+  } else {
+    console.log('No parts found.');
+  }
+} catch (err) {
+  console.error('Error listing parts:', err);
+}
+```
+
+### Copying a part from an existing object
+{: #node-v2-copy-part-upload}
+
+Uploads a part by copying from an existing object. Use this instead of uploading raw bytes when the source data already exists in COS.
+
+```javascript
+const { UploadPartCopyCommand } = require('ibm-cos-sdk-v2');
+
+const command = new UploadPartCopyCommand({
+  Bucket: 'my-bucket',
+  Key: 'my-large-object',
+  UploadId: 'YOUR_UPLOAD_ID_HERE',
+  PartNumber: 1,
+  CopySource: 'my-bucket/source-object-key'
+});
+
+try {
+  const response = await client.send(command);
+  console.log('Part copy uploaded successfully');
+  console.log('ETag:', response.CopyPartResult?.ETag);
+} catch (err) {
+  console.error('Error uploading part copy:', err);
+}
+```
+
 ### Setting a bucket lifecycle configuration
 {: #node-v2-bucket-lifecycle}
 
@@ -661,13 +716,13 @@ const { PutBucketLifecycleConfigurationCommand } = require('ibm-cos-sdk-v2');
 
 const bucketName = 'my-bucket';
 
-// Configure lifecycle rule to archive objects after 90 days
+// Configure lifecycle rule to expire objects after 30 days
 const command = new PutBucketLifecycleConfigurationCommand({
   Bucket: bucketName,
   LifecycleConfiguration: {
     Rules: [
       {
-        ID: 'delete-old-logs',
+        Id: 'delete-old-logs',
         Status: 'Enabled',
         Filter: {
           Prefix: 'logs/',
@@ -677,7 +732,7 @@ const command = new PutBucketLifecycleConfigurationCommand({
         },
       },
       {
-        ID: 'cleanup-multipart-uploads',
+        Id: 'cleanup-multipart-uploads',
         Status: 'Enabled',
         Filter: {
           Prefix: '',
@@ -742,12 +797,12 @@ const { PutBucketVersioningCommand } = require('ibm-cos-sdk-v2');
 
 const bucketName = 'my-bucket';
 
-// Enable versioning
 const command = new PutBucketVersioningCommand({
   Bucket: bucketName,
   VersioningConfiguration: {
-    Status: 'Enabled'
-  }
+    // Valid values: 'Enabled' | 'Suspended'
+    Status: 'Enabled',
+  },
 });
 
 try {
@@ -899,33 +954,30 @@ try {
 Objects in archive storage classes must be restored before they can be accessed:
 
 ```javascript
-const { RestoreObjectCommand } = require('ibm-cos-sdk-v2');
-
-const bucketName = 'my-bucket';
-const objectKey = 'archived-object.txt';
-
-// Restore object with accelerated retrieval (2 hours)
 const command = new RestoreObjectCommand({
   Bucket: bucketName,
   Key: objectKey,
   RestoreRequest: {
-    Days: 7, // Number of days to keep restored copy
+    Days: 7,
     GlacierJobParameters: {
-      Tier: 'Accelerated' // Accelerated (2 hours) or Standard (12 hours)
-    }
-  }
+      Tier: 'Bulk',
+    },
+  },
 });
 
 try {
   await client.send(command);
-  console.log(`Restore request submitted for object '${objectKey}'`);
-  console.log('The object will be available for download in approximately 2 hours');
+
+  console.log('Object restore initiated successfully');
+  console.log(
+    'Retrieval time depends on storage class: Vault typically 1-5 hours, Cold Vault typically 5-12 hours.'
+  );
 } catch (err) {
   console.error('Failed to restore object:', err);
 }
 ```
 
-**Note**: {{site.data.keyword.cos_full_notm}} supports accelerated archive with restore times of 2 hours or 12 hours, depending on the tier selected.
+**Note**: {{site.data.keyword.cos_full_notm}} supports only the `Bulk` retrieval tier for restoring objects from Vault and Cold Vault storage classes.
 
 ### Setting object retention
 {: #node-v2-set-object-retention}
@@ -937,23 +989,24 @@ const bucketName = 'my-protected-bucket';
 const objectKey = 'important-document.pdf';
 
 // Set retention until a specific date
-const retainUntilDate = new Date();
-retainUntilDate.setMonth(retainUntilDate.getMonth() + 6); // 6 months from now
+const retainUntil = new Date();
+retainUntil.setDate(retainUntil.getDate() + 30);
 
 const command = new PutObjectRetentionCommand({
   Bucket: bucketName,
   Key: objectKey,
   Retention: {
     Mode: 'COMPLIANCE',
-    RetainUntilDate: retainUntilDate
-  }
+    RetainUntilDate: retainUntil,
+  },
 });
 
 try {
   await client.send(command);
-  console.log(`Retention set for object '${objectKey}' until ${retainUntilDate}`);
+  console.log('Object retention set successfully');
+  console.log('RetainUntil:', retainUntil.toISOString());
 } catch (err) {
-  console.error('Failed to set object retention:', err);
+  console.error('Error:', err.message);
 }
 ```
 
@@ -973,12 +1026,153 @@ const command = new GetObjectRetentionCommand({
 
 try {
   const response = await client.send(command);
-
-  console.log(`Retention for object '${objectKey}':`);
-  console.log(` Mode: ${response.Retention.Mode}`);
-  console.log(` Retain Until: ${response.Retention.RetainUntilDate}`);
+  console.log('Object retention retrieved successfully');
+  console.log('Mode:', response.Retention?.Mode);
+  console.log('RetainUntilDate:', response.Retention?.RetainUntilDate);
 } catch (err) {
-  console.error('Failed to get object retention:', err);
+  console.error('Error:', err.message);
+}
+```
+
+### Creating a bucket with Object Lock (S3)
+{: #node-v2-create-bucket-object-lock}
+
+S3 Object Lock prevents objects from being deleted or overwritten for a fixed retention period or indefinitely. Object Lock must be enabled at bucket creation time — it cannot be added to an existing bucket.
+
+**Note**: This section covers S3-compatible Object Lock. For IBM COS-specific WORM protection, see [Setting bucket protection (WORM)](#node-v2-bucket-protection) and [Managing legal holds](#node-v2-legal-hold).
+{: note}
+
+```javascript
+const {
+  CreateBucketCommand,
+  PutObjectLockConfigurationCommand
+} = require('ibm-cos-sdk-v2');
+
+// Step 1: Create bucket with Object Lock enabled
+const createCommand = new CreateBucketCommand({
+  Bucket: 'my-locked-bucket',
+  ObjectLockEnabledForBucket: true
+});
+
+try {
+  await client.send(createCommand);
+  console.log('Bucket created with Object Lock enabled');
+} catch (err) {
+  console.error('Error creating bucket:', err.message);
+}
+
+// Step 2: Set default retention rule
+const lockConfigCommand = new PutObjectLockConfigurationCommand({
+  Bucket: 'my-locked-bucket',
+  ObjectLockConfiguration: {
+    ObjectLockEnabled: 'Enabled',
+    Rule: {
+      DefaultRetention: {
+        Mode: 'GOVERNANCE',
+        Days: 30
+      }
+    }
+  }
+});
+
+try {
+  await client.send(lockConfigCommand);
+  console.log('Default Object Lock configuration set successfully');
+} catch (err) {
+  console.error('Error setting lock config:', err.message);
+}
+```
+
+### Setting Object Lock configuration
+{: #node-v2-put-object-lock-config}
+
+Sets or updates the default retention rule applied to every new object uploaded to a bucket.
+
+```javascript
+const { PutObjectLockConfigurationCommand } = require('ibm-cos-sdk-v2');
+
+const command = new PutObjectLockConfigurationCommand({
+  Bucket: 'my-object-lock-bucket',
+  ObjectLockConfiguration: {
+    ObjectLockEnabled: 'Enabled',
+    Rule: {
+      DefaultRetention: {
+        Mode: 'COMPLIANCE',
+        Days: 2
+      }
+    }
+  }
+});
+
+try {
+  await client.send(command);
+  console.log('Object lock configuration set successfully');
+} catch (err) {
+  console.error('Error:', err.message);
+}
+```
+
+### Getting Object Lock configuration
+{: #node-v2-get-object-lock-config}
+
+```javascript
+const { GetObjectLockConfigurationCommand } = require('ibm-cos-sdk-v2');
+
+const command = new GetObjectLockConfigurationCommand({
+  Bucket: 'my-object-lock-bucket'
+});
+
+try {
+  const response = await client.send(command);
+  console.log('Object lock configuration retrieved successfully');
+  console.log('ObjectLockEnabled:', response.ObjectLockConfiguration?.ObjectLockEnabled);
+  console.log('Rule:', JSON.stringify(response.ObjectLockConfiguration?.Rule, null, 2));
+} catch (err) {
+  console.error('Error:', err.message);
+}
+```
+
+### Setting S3 Object Lock legal hold
+{: #node-v2-put-object-legal-hold}
+
+Places or removes a legal hold on an object. While a legal hold is active the object cannot be deleted, regardless of its retention period.
+
+```javascript
+const { PutObjectLegalHoldCommand } = require('ibm-cos-sdk-v2');
+
+const command = new PutObjectLegalHoldCommand({
+  Bucket: 'my-locked-bucket',
+  Key: 'my-file.txt',
+  LegalHold: {
+    Status: 'ON' // 'ON' or 'OFF'
+  }
+});
+
+try {
+  await client.send(command);
+  console.log('Legal hold set successfully');
+} catch (err) {
+  console.error('Error:', err.message);
+}
+```
+
+### Getting S3 Object Lock legal hold
+{: #node-v2-get-object-legal-hold}
+
+```javascript
+const { GetObjectLegalHoldCommand } = require('ibm-cos-sdk-v2');
+
+const command = new GetObjectLegalHoldCommand({
+  Bucket: 'my-locked-bucket',
+  Key: 'my-file.txt'
+});
+
+try {
+  const response = await client.send(command);
+  console.log('Legal hold retrieved successfully');
+  console.log('Status:', response.LegalHold?.Status);
+} catch (err) {
+  console.error('Error:', err.message);
 }
 ```
 
@@ -1183,7 +1377,25 @@ try {
   const response = await client.send(command);
   console.log('CORS rules:', response.CORSRules);
 } catch (err) {
-  console.error('Error getting CORS:', err);
+  console.error('Error getting CORS configuration:', err);
+}
+```
+
+### Deleting CORS configuration
+{: #node-v2-delete-cors}
+
+```javascript
+const { DeleteBucketCorsCommand } = require('ibm-cos-sdk-v2');
+
+const command = new DeleteBucketCorsCommand({
+  Bucket: 'my-bucket'
+});
+
+try {
+  await client.send(command);
+  console.log('Bucket CORS configuration deleted successfully');
+} catch (err) {
+  console.error('Error deleting CORS:', err);
 }
 ```
 
@@ -1254,6 +1466,104 @@ try {
 }
 ```
 
+### Deleting a bucket lifecycle configuration
+{: #node-v2-delete-bucket-lifecycle}
+
+```javascript
+const { DeleteBucketLifecycleCommand } = require('ibm-cos-sdk-v2');
+
+const command = new DeleteBucketLifecycleCommand({
+  Bucket: 'my-bucket'
+});
+
+try {
+  await client.send(command);
+  console.log('Lifecycle configuration deleted successfully');
+} catch (err) {
+  console.error('Error deleting lifecycle:', err);
+}
+```
+
+### Setting bucket ACL
+{: #node-v2-set-bucket-acl}
+
+```javascript
+const { PutBucketAclCommand } = require('ibm-cos-sdk-v2');
+
+const command = new PutBucketAclCommand({
+  Bucket: 'my-bucket',
+  ACL: 'public-read'
+});
+
+try {
+  await client.send(command);
+  console.log('Bucket ACL updated');
+} catch (err) {
+  console.error('Error updating bucket ACL:', err);
+}
+```
+
+### Getting bucket ACL
+{: #node-v2-get-bucket-acl}
+
+```javascript
+const { GetBucketAclCommand } = require('ibm-cos-sdk-v2');
+
+const command = new GetBucketAclCommand({
+  Bucket: 'my-bucket'
+});
+
+try {
+  const response = await client.send(command);
+  console.log('Bucket ACL retrieved successfully');
+  console.log('Owner:', response.Owner);
+  console.log('Grants:', response.Grants);
+} catch (err) {
+  console.error('Error getting bucket ACL:', err);
+}
+```
+
+### Setting object ACL
+{: #node-v2-set-object-acl}
+
+```javascript
+const { PutObjectAclCommand } = require('ibm-cos-sdk-v2');
+
+const command = new PutObjectAclCommand({
+  Bucket: 'my-bucket',
+  Key: 'my-object.txt',
+  ACL: 'public-read'
+});
+
+try {
+  await client.send(command);
+  console.log('Object ACL updated');
+} catch (err) {
+  console.error('Error updating object ACL:', err);
+}
+```
+
+### Getting object ACL
+{: #node-v2-get-object-acl}
+
+```javascript
+const { GetObjectAclCommand } = require('ibm-cos-sdk-v2');
+
+const command = new GetObjectAclCommand({
+  Bucket: 'my-bucket',
+  Key: 'my-object.txt'
+});
+
+try {
+  const response = await client.send(command);
+  console.log('Object ACL retrieved successfully');
+  console.log('Owner:', response.Owner);
+  console.log('Grants:', response.Grants);
+} catch (err) {
+  console.error('Error getting object ACL:', err);
+}
+```
+
 ### Getting versioning status
 {: #node-v2-get-versioning}
 
@@ -1266,6 +1576,8 @@ try {
   const response = await client.send(command);
   console.log('Bucket versioning configuration retrieved successfully');
   console.log('Status:', response.Status);
+  // MFADelete is always undefined for IBM COS.
+  console.log('MFADelete:', response.MFADelete);
 } catch (err) {
   console.error('Error:', err.message);
 }
@@ -1292,6 +1604,53 @@ try {
 }
 ```
 
+### Uploading an object to a versioned bucket
+{: #node-v2-put-object-versioned}
+
+When versioning is enabled, each `PutObjectCommand` call creates a new version. The response includes the new `VersionId`.
+
+```javascript
+const { PutObjectCommand } = require('ibm-cos-sdk-v2');
+
+const command = new PutObjectCommand({
+  Bucket: 'my-versioned-bucket',
+  Key: 'my-file.txt',
+  Body: 'Hello, World!'
+});
+
+try {
+  const response = await client.send(command);
+  console.log('Object uploaded successfully');
+  console.log('Version ID:', response.VersionId);
+} catch (err) {
+  console.error('Error:', err.message);
+}
+```
+
+### Deleting a specific object version
+{: #node-v2-delete-object-version}
+
+Permanently removes one specific version of an object by including its `VersionId`. Without a version ID on a versioned bucket, a delete marker is created instead.
+
+```javascript
+const { DeleteObjectCommand } = require('ibm-cos-sdk-v2');
+
+const command = new DeleteObjectCommand({
+  Bucket: 'my-versioned-bucket',
+  Key: 'my-file.txt',
+  VersionId: 'YOUR_VERSION_ID_HERE'
+});
+
+try {
+  const response = await client.send(command);
+  console.log('Object version deleted successfully');
+  console.log('Deleted Version ID:', response.VersionId);
+  console.log('Delete Marker:', response.DeleteMarker ? 'Yes' : 'No');
+} catch (err) {
+  console.error('Error:', err.message);
+}
+```
+
 ### Setting bucket protection (WORM) (IBM Extension)
 {: #node-v2-bucket-protection}
 
@@ -1308,15 +1667,15 @@ const command = new PutBucketProtectionConfigurationCommand({
     Status: 'Retention',
     MinimumRetention: { Days: 1 },
     DefaultRetention: { Days: 30 },
-    MaximumRetention: { Days: 365 }
-  }
+    MaximumRetention: { Days: 365 },
+  },
 });
 
 try {
   await client.send(command);
   console.log('Bucket protection configuration set successfully');
 } catch (err) {
-  console.error('Error configuring protection:', err);
+  console.error('Error configuring protection:', err.message);
 }
 ```
 
