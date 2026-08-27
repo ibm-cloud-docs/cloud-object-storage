@@ -155,6 +155,15 @@ toc:
           - static-websites-options.md
           - cis-routing-rules-for-cos.md
           - cos-instance-conversion.md
+      - topicgroup:
+          label: Managed solutions
+          topics:
+          - topicgroup:
+              label: Cyber vault (BETA)
+              topics:
+              - cos-cyber-vault-overview.md
+              - cos-cyber-vault-onboarding.md
+              - cos-cyber-vault-provisioning.md
   - navgroup:
       id: reference
       topics:
