@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-08-24"
+lastupdated: "2026-08-27"
 
 keywords: object storage, node, javascript, sdk
 
@@ -201,7 +201,7 @@ try {
 }
 ```
 
-### Listing buckets with extended information (IBM Extension)
+### Listing buckets with extended information
 {: #node-v2-list-bucket}
 
 {{site.data.keyword.cos_full_notm}} provides an extended listing operation that returns additional bucket information:
@@ -982,6 +982,12 @@ try {
 ### Setting object retention
 {: #node-v2-set-object-retention}
 
+**Governance mode**: Users with specific IAM permissions can delete object versions during the retention period.
+{: note}
+
+**Compliance mode**: No users can delete object versions during the retention period.
+{: note}
+
 ```javascript
 const { PutObjectRetentionCommand } = require('ibm-cos-sdk-v2');
 
@@ -1039,7 +1045,13 @@ try {
 
 S3 Object Lock prevents objects from being deleted or overwritten for a fixed retention period or indefinitely. Object Lock must be enabled at bucket creation time — it cannot be added to an existing bucket.
 
-**Note**: This section covers S3-compatible Object Lock. For IBM COS-specific WORM protection, see [Setting bucket protection (WORM)](#node-v2-bucket-protection) and [Managing legal holds](#node-v2-legal-hold).
+**Governance mode**: Users with specific IAM permissions can delete object versions during the retention period.
+{: note}
+
+**Compliance mode**: No users can delete object versions during the retention period.
+{: note}
+
+This section covers S3-compatible Object Lock. For IBM COS-specific WORM protection, see [Setting bucket protection (WORM)](#node-v2-bucket-protection) and [Managing legal holds](#node-v2-legal-hold).
 {: note}
 
 ```javascript
@@ -1651,7 +1663,7 @@ try {
 }
 ```
 
-### Setting bucket protection (WORM) (IBM Extension)
+### Setting bucket protection (WORM)
 {: #node-v2-bucket-protection}
 
 {{site.data.keyword.cos_full_notm}} supports Write-Once-Read-Many (WORM) bucket protection for compliance and data retention.
@@ -1697,7 +1709,7 @@ try {
 }
 ```
 
-### Managing legal holds (IBM Extension)
+### Managing legal holds
 {: #node-v2-legal-hold}
 
 Legal holds prevent object deletion regardless of retention period expiry. Each hold is identified by a unique ID and all holds must be explicitly removed before an object can be deleted.
@@ -1762,7 +1774,7 @@ try {
 }
 ```
 
-### Creating a Key Protect encrypted bucket (IBM Extension)
+### Creating a Key Protect encrypted bucket
 {: #node-v2-key-protect}
 
 IBM Key Protect provides encryption key management for bucket-level encryption:
@@ -1787,32 +1799,9 @@ try {
 }
 ```
 
-### Listing directory buckets (IBM Extension)
-{: #node-v2-list-directory-buckets}
 
-Directory buckets are a distinct {{site.data.keyword.cos_full_notm}} bucket type optimized for high-throughput workloads:
 
-```javascript
-const { ListDirectoryBucketsCommand } = require('ibm-cos-sdk-v2');
-
-const command = new ListDirectoryBucketsCommand({
-  // Optional: MaxDirectoryBuckets, ContinuationToken for pagination
-});
-
-try {
-  const response = await client.send(command);
-  console.log('Directory buckets listed successfully');
-  if (response.Buckets?.length) {
-    response.Buckets.forEach(b => console.log(' -', b.Name));
-  } else {
-    console.log('No directory buckets found');
-  }
-} catch (err) {
-  console.error('Error:', err.message);
-}
-```
-
-### Renaming an object (IBM Extension)
+### Renaming an object
 {: #node-v2-rename-object}
 
 `RenameObject` is an IBM COS-specific atomic server-side operation. No data is transferred — only the key changes:
@@ -1834,7 +1823,7 @@ try {
 }
 ```
 
-### Updating object encryption (IBM Extension)
+### Updating object encryption
 {: #node-v2-update-object-encryption}
 
 `UpdateObjectEncryption` updates the encryption key reference on an existing object. Requires the bucket to have IBM Key Protect or HPCS configured:
@@ -1855,7 +1844,7 @@ try {
 }
 ```
 
-### Managing bucket replication (IBM Extension)
+### Managing bucket replication
 {: #node-v2-bucket-replication}
 
 **Getting replication configuration:**
@@ -1920,7 +1909,7 @@ try {
 }
 ```
 
-### Creating a session (IBM Extension)
+### Creating a session
 {: #node-v2-create-session}
 
 `CreateSession` creates a temporary session token for an {{site.data.keyword.cos_full_notm}} bucket:
