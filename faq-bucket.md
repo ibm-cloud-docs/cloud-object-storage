@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2024-06-17"
+  years: 2024, 2026
+lastupdated: "2026-08-31"
 
 
 keywords: faq, frequently asked questions, object storage, S3, HMAC, bucket management, IPv6. endpoints
@@ -35,11 +35,11 @@ You can view and navigate your buckets using the console, CLI or the API.
 
 For example, the CLI command `ibmcloud cos buckets` will list all buckets associated with the targeted service instance.
 
-## Is there a 100-bucket limit to an account? What happens if I need more?
+## Is there a limit to the number of buckets in an account? What happens if I need more?
 {: #faq-bucket-limit}
 {: faq}
 
-Yes, 100 is the current bucket limit. Generally, prefixes are a better way to group objects in a bucket, unless the data needs to be in a different region or storage class. For example, to group patient records, you would use one prefix per patient. If this is not a workable solution and you require additional buckets, contact IBM customer support.
+Yes, 1000 is the hard bucket limit per storage instance and it cannot be increased. Attempting to create a 1001st bucket will fail. Generally, prefixes are a better way to group objects in a bucket, unless the data needs to be in a different region or storage class. For example, to group patient records, you would use one prefix per patient. If your workflow requires more than 1000 buckets in a given instance, consider distributing bucket provisions across multiple {{site.data.keyword.cos_short}} storage instances through sharding.
 
 ## When I create a bucket by using the API, how do I set the storage class?
 {: #faq-bucket-class}
