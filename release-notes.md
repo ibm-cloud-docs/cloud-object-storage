@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2026
 
-lastupdated: "2026-08-06"
+lastupdated: "2026-08-28"
 
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning, metrics router, activity tracker routing, routing, monitoring, data vault
@@ -21,6 +21,17 @@ content-type: release-note
 
 News on the latest releases from {{site.data.keyword.cos_full}} provide the updates that you need on all things that are related to {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
+
+## 28 August 2026
+{: #cloud-object-storage-aug282026}
+{: release-note}
+
+New beta solution!
+: This new solution is provided by IBM Cloud as a beta trial offering, and made solely available for a limited time to evaluate and test. There are no warranties, SLAs or support provided with this offering, and beta products are not intended for production use.
+
+What is Cyber Vault?
+: It is a managed air-gapped S3-compatible storage solution built on the IBM Cloud Object Storage primitives, which are designed to protect enterprise backup and archive data from ransomware, accidental deletion, and insider threats.
+For more information, see [Managed solutions](/docs/cloud-object-storage?group=managed-solutions).
 
 ## 06 August 2026
 {: #cloud-object-storage-aug062026}

@@ -43,7 +43,7 @@ These operations create, delete, get information about, and control behavior of 
 | `GET` Bucket CORS       | Retrieves any CORS configuration set on a bucket.                              |
 | `HEAD` Bucket           | Retrieves a bucket's headers.                                                  |
 | `GET` Multipart Uploads | Lists multipart uploads that aren't completed or canceled.                     |
-| `PUT` Bucket            | Buckets have naming restrictions. Accounts are limited to 100 buckets.         |
+| `PUT` Bucket            | Buckets have naming restrictions. Instances are limited to 1,000 buckets.      |
 | `PUT` Bucket CORS       | Creates a CORS configuration for a bucket.                                     |
 {: caption="Bucket operation" caption-side="top"}
 
