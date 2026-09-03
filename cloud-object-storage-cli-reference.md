@@ -2,8 +2,8 @@
 
 copyright:
 
-  years: 2017, 2024, 2026
-lastupdated: "2026-06-24"
+  years: 2017, 2026
+lastupdated: "2026-09-03"
 
 
 keywords: cli, command line reference, object storage
@@ -135,7 +135,7 @@ To disable tracing, set the `IBMCLOUD_TRACE` environment variable to `false` (ca
 
 Each operation has an explanation of what it does, how to use it, and any optional or required parameters. Unless specified as optional, any listed parameters are mandatory.
 
-The CLI plug-in doesn't yet support the full suite of features available in Object Storage. Aspera High-Speed Transfer, Immutable Object Storage, creating Key Protect buckets, or Bucket Firewalls cannot be used by the CLI.
+The CLI plug-in doesn't yet support the full suite of features available in Object Storage. Immutable Object Storage, creating Key Protect buckets, or Bucket Firewalls cannot be used by the CLI.
 {: note}
 
 ## Abort a multipart upload
@@ -154,6 +154,149 @@ The CLI plug-in doesn't yet support the full suite of features available in Obje
 	  * Flag: `--region REGION`
 	* _Optional_: Output FORMAT can be only json or text.
 	  * Flag: `--output FORMAT`
+
+
+
+## Bucket replication
+{: #ic-config-bucket-replication}
+
+Bucket replication continuously copies objects from a source bucket to a destination bucket in the same or a different region. Replication requires versioning to be enabled on the source bucket before the replication configuration can be set.
+
+### Put bucket replication
+{: #ic-config-put-bucket-replication}
+
+* **Action:** Set the replication configuration on a bucket.
+* **Usage:** `ibmcloud cos bucket-replication-put --bucket BUCKET_NAME --replication-configuration STRUCTURE [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+	* A STRUCTURE using JSON syntax.
+		* Flag: `--replication-configuration STRUCTURE`
+
+			```sh
+			{
+				"Rules": [
+					{
+						"Status": "Enabled",
+						"Priority": 1,
+						"Filter" : { "Prefix": ""},
+						"DeleteMarkerReplication": {
+							"Status": "Disabled"
+						},
+						"Destination": {
+							"Bucket": "DEST-BUCKET-CRN"
+						}
+					}
+				]
+			}
+			```
+
+Example — using a file:
+
+```sh
+ibmcloud cos bucket-replication-put --bucket SOURCE-BUCKET-NAME --replication-configuration file://replication.json
+```
+{: pre}
+
+Example — inline:
+
+```sh
+ibmcloud cos bucket-replication-put --bucket SOURCE-BUCKET-NAME \
+  --replication-configuration '{
+    "Rules": [
+      {
+        "Status": "Enabled",
+        "Priority": 1,
+        "Filter": {},
+        "DeleteMarkerReplication": { "Status": "Disabled" },
+        "Destination": { "Bucket": "DEST-BUCKET-CRN" }
+      }
+    ]
+  }' \
+  --region us-south
+```
+{: pre}
+
+### Get bucket replication
+{: #ic-config-get-bucket-replication}
+
+* **Action:** Get the replication configuration for a bucket.
+* **Usage:** `ibmcloud cos bucket-replication-get --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+Example:
+
+```sh
+ibmcloud cos bucket-replication-get --bucket SOURCE-BUCKET-NAME
+```
+{: pre}
+
+### Delete bucket replication
+{: #ic-config-delete-bucket-replication}
+
+* **Action:** Delete the replication configuration from a bucket.
+* **Usage:** `ibmcloud cos bucket-replication-delete --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+Example:
+
+```sh
+ibmcloud cos bucket-replication-delete --bucket SOURCE-BUCKET-NAME
+```
+{: pre}
+
+## Complete a multipart upload
+{: #ic-complete-multipart-upload}
+
+* **Action:** Complete a multipart upload instance by assembling the currently uploaded parts and uploading the file to the bucket in the user's IBM Cloud Object Storage account.
+* **Usage:** `ibmcloud cos multipart-upload-complete --bucket BUCKET_NAME --key KEY --upload-id ID --multipart-upload STRUCTURE [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* The KEY of the object.
+		* Flag: `--key KEY`
+	* Upload ID identifying the multipart upload.
+		* Flag: `--upload-id ID`
+	* The STRUCTURE of MultipartUpload to set.
+		* Flag: `--multipart-upload STRUCTURE`
+		* Shorthand Syntax:
+		`--multipart-upload 'Parts=[{ETag=string,PartNumber=integer},{ETag=string,PartNumber=integer}]'`
+		* JSON Syntax:
+	`--multipart-upload file://<filename.json>`
+=======
+	The `--multipart-upload` command takes a JSON structure that describes the parts of the multipart upload that should be reassembled into the complete file. In this example, the `file://` prefix is used to load the JSON structure from the specified file.
+
+		```sh
+			{
+  			"Parts": [
+    			{
+     			 "ETag": "string",
+     			 "PartNumber": integer
+    			}
+    			...
+  				]
+			}
+		```
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
 
 ## Configure a static website
 {: #ic-put-bucket-website}
@@ -210,6 +353,34 @@ The CLI plug-in doesn't yet support the full suite of features available in Obje
     * Flag: `--region REGION`
   * _Optional_: Output FORMAT can be only json or text.
     * Flag: `--output FORMAT`
+
+## Configure the Program
+{: #ic-config}
+
+* **Action:** Configure the program's preferences.
+* **Usage:** `ibmcloud cos config [COMMAND]`
+* **Commands:**
+	* Switch between HMAC and IAM authentication.
+		* Command: `auth`
+	* Store CRN in the config.
+		* Command: `crn`
+	* Store Default Download Location in the config.
+		* Command: `ddl`
+	* Store HMAC credentials in the config.
+		* Command: `hmac`
+	* List configuration.
+		* Command: `list`
+	* Store Default Region in the config.
+		* Command: `region`
+	* Switch between `VHost` and Path URL style.
+		* Command: `url-style`
+    * Set Default Service Endpoint.
+        * Command: `endpoint-url`
+          * Parameters:
+=======
+            *  `--list` displays the current default Service Endpoint, if it has been set. Otherwise, it will be empty.
+            *  `--url some.end.point.url` will change the Service Endpoint to the value as given.
+            *  `--clear` removes the default Service Endpoint URL that has been set.
 
 ## Copy object from bucket
 {: #ic-copy-object}
@@ -293,7 +464,7 @@ If you want to add metadata to an object during the copying (using the `--metada
 {: #ic-create-bucket-kp}
 
 * **Action:** Create a bucket with Key Protect in an IBM Cloud Object Storage instance.
-* **Usage:** `bucket-create --bucket BUCKET_NAME [--ibm-service-instance-id ID] [--class CLASS_NAME] [--region REGION] --kms-root-key-crn CUSTOMERROOTKEYCRN --kms-encryption-algorithm ALGORITHM [--output FORMAT] [--json]`
+* **Usage:** `ibmcloud cos bucket-create --bucket BUCKET_NAME [--ibm-service-instance-id ID] [--class CLASS_NAME] [--region REGION] --kms-root-key-crn CUSTOMERROOTKEYCRN --kms-encryption-algorithm ALGORITHM [--output FORMAT] [--json]`
 	* Note that you must provide a CRN if you are using IAM authentication. This can be set by using the [`ibmcloud cos config crn`](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli#ic-config) command.
 * **Parameters to provide:**
 	* The name of the bucket.
@@ -323,7 +494,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:stagin
 {: #ic-create-a-new-bucket-hpcs}
 
 * **Action:** Create a new bucket with Hyper Protect Crypto Services.
-* **Usage:** `bucket-create --bucket BUCKET_NAME [--ibm-service-instance-id ID] [--class CLASS_NAME] [--region REGION] --kms-root-key-crn CUSTOMERROOTKEYCRN --kms-encryption-algorithm ALGORITHM [--output FORMAT] [--json]`
+* **Usage:** `ibmcloud cos bucket-create --bucket BUCKET_NAME [--ibm-service-instance-id ID] [--class CLASS_NAME] [--region REGION] --kms-root-key-crn CUSTOMERROOTKEYCRN --kms-encryption-algorithm ALGORITHM [--output FORMAT] [--json]`
 * **Parameters to provide:**
 	* The name of the bucket.
 		* Flag: `--bucket BUCKET_NAME`
@@ -388,34 +559,6 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
    * _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
 
-## Delete an existing bucket
-{: #ic-delete-bucket}
-
-* **Action:** Delete an existing bucket in an IBM Cloud Object Storage instance.
-* **Usage:** `ibmcloud cos bucket-delete --bucket BUCKET_NAME [--region REGION] [--force] [--output FORMAT]`
-* **Parameters to provide:**
-    * The name of the bucket.
-		* Flag: `--bucket BUCKET_NAME`
-    * _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-       * Flag: `--region REGION`
-    * _Optional_: The operation will do not ask for confirmation.
-       * Flag: `--force`
-    * _Optional_: Output FORMAT can be only json or text.
-       * Flag: `--output FORMAT`
-
-## Delete bucket CORS
-{: #ic-delete-bucket-cors}
-
-* **Action:** Delete CORS configuration on a bucket in a user's IBM Cloud Object Storage account.
-* **Usage:** `ibmcloud cos bucket-cors-delete --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
-* **Parameters to provide:**
-    * The name of the bucket.
-		* Flag: `--bucket BUCKET_NAME`
-	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-		* Flag: `--region REGION`
-	* _Optional_: Output FORMAT can be only json or text.
-		* Flag: `--output FORMAT`
-
 ## Delete a static website configuration
 {: #ic-delete-bucket-website}
 
@@ -431,6 +574,21 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
     * Flag: `--output FORMAT`
 
 
+## Delete an existing bucket
+{: #ic-delete-bucket}
+
+* **Action:** Delete an existing bucket in an IBM Cloud Object Storage instance.
+* **Usage:** `ibmcloud cos bucket-delete --bucket BUCKET_NAME [--region REGION] [--force] [--output FORMAT]`
+* **Parameters to provide:**
+    * The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+    * _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+       * Flag: `--region REGION`
+    * _Optional_: The operation will do not ask for confirmation.
+       * Flag: `--force`
+    * _Optional_: Output FORMAT can be only json or text.
+       * Flag: `--output FORMAT`
+
 ## Delete an object
 {: #ic-delete-object}
 
@@ -445,6 +603,19 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 		* Flag: `--region REGION`
   * _Optional_: The operation will do not ask for confirmation.
   	* Flag: `--force`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+## Delete bucket CORS
+{: #ic-delete-bucket-cors}
+
+* **Action:** Delete CORS configuration on a bucket in a user's IBM Cloud Object Storage account.
+* **Usage:** `ibmcloud cos bucket-cors-delete --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+    * The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
 
@@ -564,6 +735,8 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 	* _Optional_: The location where to save the content of the object. If this parameter is not provided, the program uses the default location.
 		* Parameter: `OUTFILE`
 
+
+
 ## Find a bucket
 {: #ic-find-bucket}
 
@@ -586,19 +759,6 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
 
-## Get bucket CORS
-{: #ic-get-bucket-cors}
-
-* **Action:** Returns the CORS configuration for the bucket in a user's IBM Cloud Object Storage account.
-* **Usage:** `ibmcloud cos bucket-cors-get --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
-* **Parameters to provide:**
-  * The name of the bucket.
-    * Flag: `--bucket BUCKET_NAME`
-  * _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-    * Flag: `--region REGION`
-  * _Optional_: Output FORMAT can be only json or text.
-    * Flag: `--output FORMAT`
-
 ## Get a bucket's headers
 {: #ic-bucket-header}
 
@@ -612,71 +772,6 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
 
-
-## Complete a multipart upload
-{: #ic-complete-multipart-upload}
-
-* **Action:** Complete a multipart upload instance by assembling the currently uploaded parts and uploading the file to the bucket in the user's IBM Cloud Object Storage account.
-* **Usage:** `ibmcloud cos multipart-upload-complete --bucket BUCKET_NAME --key KEY --upload-id ID --multipart-upload STRUCTURE [--region REGION] [--output FORMAT]`
-* **Parameters to provide:**
-	* The name of the bucket.
-		* Flag: `--bucket BUCKET_NAME`
-	* The KEY of the object.
-		* Flag: `--key KEY`
-	* Upload ID identifying the multipart upload.
-		* Flag: `--upload-id ID`
-	* The STRUCTURE of MultipartUpload to set.
-		* Flag: `--multipart-upload STRUCTURE`
-		* Shorthand Syntax:
-		`--multipart-upload 'Parts=[{ETag=string,PartNumber=integer},{ETag=string,PartNumber=integer}]'`
-		* JSON Syntax:
-	`--multipart-upload file://<filename.json>`
-=======
-	The `--multipart-upload` command takes a JSON structure that describes the parts of the multipart upload that should be reassembled into the complete file. In this example, the `file://` prefix is used to load the JSON structure from the specified file.
-
-		```sh
-			{
-  			"Parts": [
-    			{
-     			 "ETag": "string",
-     			 "PartNumber": integer
-    			}
-    			...
-  				]
-			}
-		```
-	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-		* Flag: `--region REGION`
-	* _Optional_: Output FORMAT can be only json or text.
-		* Flag: `--output FORMAT`
-
-## Configure the Program
-{: #ic-config}
-
-* **Action:** Configure the program's preferences.
-* **Usage:** `ibmcloud cos config [COMMAND]`
-* **Commands:**
-	* Switch between HMAC and IAM authentication.
-		* Command: `auth`
-	* Store CRN in the config.
-		* Command: `crn`
-	* Store Default Download Location in the config.
-		* Command: `ddl`
-	* Store HMAC credentials in the config.
-		* Command: `hmac`
-	* List configuration.
-		* Command: `list`
-	* Store Default Region in the config.
-		* Command: `region`
-	* Switch between `VHost` and Path URL style.
-		* Command: `url-style`
-    * Set Default Service Endpoint.
-        * Command: `endpoint-url`
-          * Parameters:
-=======
-            *  `--list` displays the current default Service Endpoint, if it has been set. Otherwise, it will be empty.
-            *  `--url some.end.point.url` will change the Service Endpoint to the value as given.
-            *  `--clear` removes the default Service Endpoint URL that has been set.
 
 ## Get a static website configuration
 {: #ic-get-bucket-website}
@@ -716,6 +811,19 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 		* Flag: `--region REGION`
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
+
+## Get bucket CORS
+{: #ic-get-bucket-cors}
+
+* **Action:** Returns the CORS configuration for the bucket in a user's IBM Cloud Object Storage account.
+* **Usage:** `ibmcloud cos bucket-cors-get --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+  * The name of the bucket.
+    * Flag: `--bucket BUCKET_NAME`
+  * _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+    * Flag: `--region REGION`
+  * _Optional_: Output FORMAT can be only json or text.
+    * Flag: `--output FORMAT`
 
 ## List all buckets
 {: #ic-list-buckets}
@@ -778,6 +886,40 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
 
+## List object versions
+{: #ic-list-object-versions}
+
+* **Action:** List all object versions in a specific bucket.
+* **Usage:** `ibmcloud cos object-versions --bucket BUCKET_NAME [--delimiter DELIMITER] [--encoding-type METHOD] [--key-marker KEY] [--max-items NUMBER] [--prefix PREFIX] [--version-id-marker VERSION_ID] [--page-size SIZE] [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* _Optional_: A DELIMITER is a character used to group keys.
+		* Flag: `--delimiter DELIMITER`
+	* _Optional_: Requests to encode the object keys in the response and specifies the encoding METHOD to use.
+		* Flag: `--encoding-type METHOD`
+	* _Optional_: Specifies the KEY to start listing versions from. Object versions are listed in alphabetical order, starting immediately after the specified key.
+		* Flag: `--key-marker KEY`
+	* _Optional_: The total NUMBER of items to return in the command's output. If the total number of items available is more than the value specified, a NextKeyMarker is provided in the output. To resume pagination, provide the NextKeyMarker value in the `--key-marker` argument of a subsequent command. (default: 0)
+		* Flag: `--max-items NUMBER`
+	* _Optional_: Limits the response to keys that begin with the specified PREFIX.
+		* Flag: `--prefix PREFIX`
+	* _Optional_: Specifies the version ID at which to start listing object versions. Used together with `--key-marker` for pagination.
+		* Flag: `--version-id-marker VERSION_ID`
+	* _Optional_: The SIZE of each page to get in the service call. This does not affect the number of items returned in the command's output. Setting a smaller page size results in more calls to the service. (default: 1000)
+		* Flag: `--page-size SIZE`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+Example:
+
+```sh
+ibmcloud cos object-versions --bucket my-bucket --prefix logs/
+```
+{: pre}
+
 ## List objects
 {: #ic-list-objects}
 
@@ -807,7 +949,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 {: #ic-list-objects-v2}
 
 * **Action:** List all objects in a specific bucket.
-* **Usage:** `list-objects-v2 --bucket BUCKET_NAME [--starting-token Starting Token] [--delimiter DELIMITER] [--encoding-type METHOD] [--fetch-owner Boolean] [--max-items NUMBER] [--prefix PREFIX] [--start-after Start After] [--page-size SIZE] [--region REGION] [--output FORMAT] [--json] `
+* **Usage:** `ibmcloud cos list-objects-v2 --bucket BUCKET_NAME [--starting-token Starting Token] [--delimiter DELIMITER] [--encoding-type METHOD] [--fetch-owner Boolean] [--max-items NUMBER] [--prefix PREFIX] [--start-after Start After] [--page-size SIZE] [--region REGION] [--output FORMAT] [--json]`
 * **Parameters to provide:**
 	* The name of the bucket.
 		* Flag: `--bucket BUCKET_NAME`
@@ -857,39 +999,302 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
 
-## Set bucket CORS
-{: #ic-set-bucket-cors}
+## Manually controlling multipart uploads
+{: #ic-manual-multipart-uploads}
 
-* **Action:** Sets the CORS configuration for a bucket in the user's IBM Cloud Object Storage account.
-* **Usage:** `ibmcloud cos bucket-cors-put --bucket BUCKET_NAME [--cors-configuration STRUCTURE] [--region REGION] [--output FORMAT]`
+The IBM Cloud Object Storage CLI provides the ability for users to upload large files in multiple parts by using the AWS multipart upload functions. To initiate a new multipart upload, run the `multipart-upload-create` command, which returns the new upload instance's upload ID. To continue with the upload process, you must save the upload ID for each subsequent command. This command requires you to generate an MD5 hash:
+
+```sh
+{object data} | openssl dgst -md5 -binary | openssl enc -base64
+```
+
+After running the `multipart-upload-complete` command, run `part-upload` for each file part you want to upload. **For multipart uploads, every file part (except for the last part) must be at least 5 MB.** To split a file into separate parts, you can run `split` in a terminal window. For example, if you have a 13 MB file that is named `TESTFILE` on your Desktop, and you would like to split it into file parts of 5 MB each, you can run `split -b 3m ~/Desktop/TESTFILE part-file-`. This command generates three file parts into two file parts of 5 MB each, and one file part of 3 MB, with the names `part-file-aa`, `part-file-ab`, and `part-file-ac`.
+`
+As each file part is uploaded, the CLI print its `ETag`. You must save this `ETag` into a formatted JSON file, along with the part number. Use this template to create your own `ETag JSON data file.
+
+```sh
+{
+  "Parts": [
+    {
+      "PartNumber": 1,
+      "ETag": "The ETag of the first file part goes here."
+    },
+    {
+      "PartNumber": 2,
+      "ETag": "The ETag of the second file part goes here."
+    }
+  ]
+}
+```
+
+Add more entries to this JSON template as necessary.
+
+To see the status of your multipart upload instance, you can always run the `part-list` command, providing the bucket name, key, and the upload ID. This print raw information about your multipart upload instance. Once you have completed uploading each part of the file, run the `multipart-upload-complete` command with the necessary parameters. If all goes well, you receive a confirmation that the file uploaded successfully to the wanted bucket.
+
+### Upload a part
+{: #ic-upload-part}
+
+* **Action:** Upload a part of a file in an existing multipart upload instance.
+* **Usage:** `ibmcloud cos part-upload --bucket BUCKET_NAME --key KEY --upload-id ID --part-number NUMBER [--body FILE_PATH] [--region REGION] [--output FORMAT]`
+	* Note that you must save each uploaded file part's number and `ETag` (which the CLI will print for you) for each part into a JSON file. Refer to the "Multipart Upload Guide" below for more information.
 * **Parameters to provide:**
-	* The name of the bucket.
+	* The bucket name where the multipart upload is taking place.
 		* Flag: `--bucket BUCKET_NAME`
-	* _Optional_: A STRUCTURE using JSON syntax in a file.
-		* Flag: `--cors-configuration STRUCTURE`
-		* JSON Syntax:
-	`--cors-configuration file://<filename.json>`
-=======
-	The `--cors-configuration` command takes a JSON structure that describes the CORS configuration. In this example, the `file://` prefix is used to load the JSON structure from the specified file.
-
-	```sh
-	{
-  	"CORSRules": [
-    	{
-      	"AllowedHeaders": ["*"],
-      	"AllowedMethods": ["PUT", "GET", "DELETE"],
-      	"AllowedOrigins": ["http://www.example.com"],
-      	"ExposeHeaders": ["ExposeHeader7","ExposeHeader8"],
-      	"MaxAgeSeconds": 75
-    	}
-    	...
-  	]
-	}
-	```
+	* The KEY of the object.
+		* Flag: `--key KEY`
+	* Upload ID identifying the multipart upload.
+		* Flag: `--upload-id ID`
+	* Part NUMBER of part being uploaded. This is a positive integer in the range 1 - 10,000. (default: 1)
+		* Flag: `--part-number NUMBER`
+	* _Optional_: Object data location (`FILE_PATH`).
+		* Flag: `--body FILE_PATH`
 	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
 		* Flag: `--region REGION`
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
+
+### Upload a part copy
+{: #ic-upload-a-part-copy}
+
+* **Action:** Upload a part by copying data from an existing object.
+* **Usage:** `ibmcloud cos part-upload-copy --bucket BUCKET_NAME --key KEY --upload-id ID --part-number NUMBER --copy-source SOURCE [--copy-source-if-match ETAG] [--copy-source-if-modified-since TIMESTAMP] [--copy-source-if-none-match ETAG] [--copy-source-if-unmodified-since TIMESTAMP] [--copy-source-range value] [--region REGION] [--output FORMAT]`
+	* Note that you must save each uploaded file part's number and `ETag` (which the CLI will print for you) for each part into a JSON file. Refer to the "Multipart Upload Guide" for more information.
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* The KEY of the object.
+		* Flag: `--key KEY`
+	* Upload ID identifying the multipart upload.
+		* Flag: `--upload-id ID`
+	* Part NUMBER of part being uploaded. This is a positive integer between 1 and 10,000.
+		* Flag: `--part-number PART_NUMBER`
+	* (SOURCE) The name of the source bucket and key name of the source object, which is separated by a slash (/). Must be URL-encoded.
+		* Flag: `--copy-source SOURCE`
+	* _Optional_: Copies the object if its entity tag (`Etag`) matches the specified tag (`ETAG`).
+		* Flag: `--copy-source-if-match ETAG`
+	* _Optional_: Copies the object if it has been modified since the specified time (TIMESTAMP).
+		* Flag: `--copy-source-if-modified-since TIMESTAMP`
+	* _Optional_: Copies the object if its entity tag (`ETag`) is different than the specified tag (`ETAG`).
+		* Flag: `--copy-source-if-none-match ETAG`
+	* _Optional_: Copies the object if it hasn't been modified since the specified time (TIMESTAMP).
+		* Flag: `--copy-source-if-unmodified-since TIMESTAMP`
+	* _Optional_: The range of bytes to copy from the source object. The range value must use the form bytes=first-last, where the first and last are the zero-based byte offsets to copy. For example, bytes=0-9 indicates that you want to copy the first ten bytes of the source. You can copy a range only if the source object is greater than 5 MB.
+		* Flag: `--copy-source-range value`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+
+## Object Legal Hold
+{: #ic-obj-legal-hold}
+
+### Put Object Legal Hold
+{: #ic-put-obj-legal-hold}
+
+* **Action:** Set the legal hold on a object.
+* **Usage:** `ibmcloud cos object-legal-hold-put --bucket BUCKET_NAME --key KEY [--legal-hold STRUCTURE] [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* The KEY of the object.
+		* Flag: `--key KEY`
+	* A STRUCTURE using JSON syntax. See [IBM Cloud Documentation](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage).
+		* Flag: `--legalhold STRUCTURE`
+
+			```sh
+			{
+			   "Status": "ON"|"OFF"
+			}
+			```
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+Example:
+
+```sh
+ibmcloud cos object-legal-hold-put --bucket bucket-name --key file-name.txt --legal-hold ‘{"Status": "ON"}’
+```
+
+### Get Object Legal Hold
+{: #ic-get-obj-legal-hold}
+
+* **Action:** Get legal hold for a object.
+* **Usage:** `ibmcloud cos object-legal-hold-get --bucket BUCKET_NAME --key KEY [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* The KEY of the object.
+		* Flag: `--key KEY`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+			```sh
+			{
+				"LegalHold": {
+					"Status": "ON"
+				}
+			}
+			```
+
+Example:
+
+```sh
+ibmcloud cos object-retention-get --bucket bucket-name --key file-name.txt --region us-south
+```
+
+## Object Lock configuration
+{: #ic-obj-lock-config}
+
+### Put Object Lock configuration
+{: #ic-put-obj-lock-config}
+
+In default retention Days and Years cannot be provided at the same time.
+{: note}
+
+* **Action:** Set the object lock configuration on a bucket.
+* **Usage:** `ibmcloud cos object-lock-configuration-put --bucket BUCKET_NAME [--object-lock-configuration STRUCTURE] [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* A STRUCTURE using JSON syntax. See [IBM Cloud Documentation](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage).
+		* Flag: `--object-lock-configuration STRUCTURE`
+
+			```sh
+			{
+			"ObjectLockEnabled": "Enabled",
+			"Rule": {
+				"DefaultRetention": {
+				"Mode": "COMPLIANCE",
+				"Days": integer,
+				"Years": integer
+				}
+			}
+			}
+			```
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+Example:
+
+```sh
+ibmcloud cos object-lock-configuration-put --bucket bucket-name --object-lock-configuration '{ "ObjectLockEnabled": "Enabled", "Rule": { "DefaultRetention": { "Mode": "COMPLIANCE", "Days": 30 }}}'
+```
+
+### Get Object Lock configuration
+{: #ic-get-obj-lock-config}
+
+* **Action:** Get the object lock configuration on a bucket.
+* **Usage:** `ibmcloud cos object-lock-configuration-get --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* A STRUCTURE using JSON syntax. See [IBM Cloud Documentation](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage).
+		* Flag: `--object-lock-configuration STRUCTURE`
+
+			```sh
+			{
+			"ObjectLockEnabled": "Enabled",
+			"Rule": {
+				"DefaultRetention": {
+				"Mode": "COMPLIANCE",
+				"Days": integer,
+				"Years": integer
+				}
+			}
+			}
+			```
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+			```sh
+			{
+			"ObjectLockEnabled": "Enabled",
+			"Rule": {
+				"DefaultRetention": {
+				"Mode": "COMPLIANCE",
+				"Days": integer,
+				"Years": integer
+				}
+			}
+			}
+			```
+Example:
+
+```sh
+ibmcloud cos object-lock-configuration-get --bucket bucket-name --region us-south
+```
+
+## Object Retention
+{: #ic-obj-retention}
+
+### Put Object Retention
+{: #ic-put-obj-retention}
+
+* **Action:** Set retention on a object.
+* **Usage:** `ibmcloud cos object-retention-put --bucket BUCKET_NAME --key KEY [--retention STRUCTURE] [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* The KEY of the object.
+		* Flag: `--key KEY`
+	* A STRUCTURE using JSON syntax. See [IBM Cloud Documentation](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage).
+		* Flag: `--retention STRUCTURE`
+
+			```sh
+			{
+			  "Mode": "COMPLIANCE",
+			  "RetainUntilDate": timestamp
+			}
+			```
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+Example:
+
+```sh
+ibmcloud cos object-retention-put --bucket bucket-name --key file-name.txt --retention '{ "Mode": "COMPLIANCE", "RetainUntilDate": "2024-02-02T00:00:00"}’
+```
+
+### Get Object Retention
+{: #ic-get-obj-retention}
+
+* **Action:** Get retention on a object.
+* **Usage:** `ibmcloud cos object-retention-get --bucket BUCKET_NAME --key KEY [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* The KEY of the object.
+		* Flag: `--key KEY`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+			```sh
+			{
+				"Retention": {
+					"Mode": "COMPLIANCE",
+					"RetainUntilDate": "2024-02-02T00:00:00.000Z"
+				}
+			}
+			```
+Example:
+
+```sh
+ibmcloud cos object-retention-put --bucket bucket-name --key file-name.txt --region us-south
+```
+
 
 ## Put object
 {: #ic-upload-object}
@@ -991,400 +1396,41 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 	* _Optional_: Output FORMAT can be only json or text.
 	   * Flag: `--output FORMAT`
 
-## Manually controlling multipart uploads
-{: #ic-manual-multipart-uploads}
+## Set bucket CORS
+{: #ic-set-bucket-cors}
 
-The IBM Cloud Object Storage CLI provides the ability for users to upload large files in multiple parts by using the AWS multipart upload functions. To initiate a new multipart upload, run the `multipart-upload-create` command, which returns the new upload instance's upload ID. To continue with the upload process, you must save the upload ID for each subsequent command. This command requires you to generate an MD5 hash:
-
-```sh
-{object data} | openssl dgst -md5 -binary | openssl enc -base64
-```
-
-After running the `multipart-upload-complete` command, run `part-upload` for each file part you want to upload. **For multipart uploads, every file part (except for the last part) must be at least 5 MB.** To split a file into separate parts, you can run `split` in a terminal window. For example, if you have a 13 MB file that is named `TESTFILE` on your Desktop, and you would like to split it into file parts of 5 MB each, you can run `split -b 3m ~/Desktop/TESTFILE part-file-`. This command generates three file parts into two file parts of 5 MB each, and one file part of 3 MB, with the names `part-file-aa`, `part-file-ab`, and `part-file-ac`.
-`
-As each file part is uploaded, the CLI print its `ETag`. You must save this `ETag` into a formatted JSON file, along with the part number. Use this template to create your own `ETag JSON data file.
-
-```sh
-{
-  "Parts": [
-    {
-      "PartNumber": 1,
-      "ETag": "The ETag of the first file part goes here."
-    },
-    {
-      "PartNumber": 2,
-      "ETag": "The ETag of the second file part goes here."
-    }
-  ]
-}
-```
-
-Add more entries to this JSON template as necessary.
-
-To see the status of your multipart upload instance, you can always run the `part-list` command, providing the bucket name, key, and the upload ID. This print raw information about your multipart upload instance. Once you have completed uploading each part of the file, run the `multipart-upload-complete` command with the necessary parameters. If all goes well, you receive a confirmation that the file uploaded successfully to the wanted bucket.
-
-### Upload a part
-{: #ic-upload-part}
-
-* **Action:** Upload a part of a file in an existing multipart upload instance.
-* **Usage:** `ibmcloud cos part-upload --bucket BUCKET_NAME --key KEY --upload-id ID --part-number NUMBER [--body FILE_PATH] [--region REGION] [--output FORMAT]`
-	* Note that you must save each uploaded file part's number and `ETag` (which the CLI will print for you) for each part into a JSON file. Refer to the "Multipart Upload Guide" below for more information.
-* **Parameters to provide:**
-	* The bucket name where the multipart upload is taking place.
-		* Flag: `--bucket BUCKET_NAME`
-	* The KEY of the object.
-		* Flag: `--key KEY`
-	* Upload ID identifying the multipart upload.
-		* Flag: `--upload-id ID`
-	* Part NUMBER of part being uploaded. This is a positive integer in the range 1 - 10,000. (default: 1)
-		* Flag: `--part-number NUMBER`
-	* _Optional_: Object data location (`FILE_PATH`).
-		* Flag: `--body FILE_PATH`
-	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-		* Flag: `--region REGION`
-	* _Optional_: Output FORMAT can be only json or text.
-		* Flag: `--output FORMAT`
-
-### Upload a part copy
-{: #ic-upload-a-part-copy}
-
-* **Action:** Upload a part by copying data from an existing object.
-* **Usage:** `ibmcloud cos part-upload-copy --bucket BUCKET_NAME --key KEY --upload-id ID --part-number NUMBER --copy-source SOURCE [--copy-source-if-match ETAG] [--copy-source-if-modified-since TIMESTAMP] [--copy-source-if-none-match ETAG] [--copy-source-if-unmodified-since TIMESTAMP] [--copy-source-range value] [--region REGION] [--output FORMAT]`
-	* Note that you must save each uploaded file part's number and `ETag` (which the CLI will print for you) for each part into a JSON file. Refer to the "Multipart Upload Guide" for more information.
+* **Action:** Sets the CORS configuration for a bucket in the user's IBM Cloud Object Storage account.
+* **Usage:** `ibmcloud cos bucket-cors-put --bucket BUCKET_NAME [--cors-configuration STRUCTURE] [--region REGION] [--output FORMAT]`
 * **Parameters to provide:**
 	* The name of the bucket.
 		* Flag: `--bucket BUCKET_NAME`
-	* The KEY of the object.
-		* Flag: `--key KEY`
-	* Upload ID identifying the multipart upload.
-		* Flag: `--upload-id ID`
-	* Part NUMBER of part being uploaded. This is a positive integer between 1 and 10,000.
-		* Flag: `--part-number PART_NUMBER`
-	* (SOURCE) The name of the source bucket and key name of the source object, which is separated by a slash (/). Must be URL-encoded.
-		* Flag: `--copy-source SOURCE`
-	* _Optional_: Copies the object if its entity tag (`Etag`) matches the specified tag (`ETAG`).
-		* Flag: `--copy-source-if-match ETAG`
-	* _Optional_: Copies the object if it has been modified since the specified time (TIMESTAMP).
-		* Flag: `--copy-source-if-modified-since TIMESTAMP`
-	* _Optional_: Copies the object if its entity tag (`ETag`) is different than the specified tag (`ETAG`).
-		* Flag: `--copy-source-if-none-match ETAG`
-	* _Optional_: Copies the object if it hasn't been modified since the specified time (TIMESTAMP).
-		* Flag: `--copy-source-if-unmodified-since TIMESTAMP`
-	* _Optional_: The range of bytes to copy from the source object. The range value must use the form bytes=first-last, where the first and last are the zero-based byte offsets to copy. For example, bytes=0-9 indicates that you want to copy the first ten bytes of the source. You can copy a range only if the source object is greater than 5 MB.
-		* Flag: `--copy-source-range value`
+	* _Optional_: A STRUCTURE using JSON syntax in a file.
+		* Flag: `--cors-configuration STRUCTURE`
+		* JSON Syntax:
+	`--cors-configuration file://<filename.json>`
+=======
+	The `--cors-configuration` command takes a JSON structure that describes the CORS configuration. In this example, the `file://` prefix is used to load the JSON structure from the specified file.
+
+	```sh
+	{
+  	"CORSRules": [
+    	{
+      	"AllowedHeaders": ["*"],
+      	"AllowedMethods": ["PUT", "GET", "DELETE"],
+      	"AllowedOrigins": ["http://www.example.com"],
+      	"ExposeHeaders": ["ExposeHeader7","ExposeHeader8"],
+      	"MaxAgeSeconds": 75
+    	}
+    	...
+  	]
+	}
+	```
 	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
 		* Flag: `--region REGION`
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
 
 
-## Object Lock configuration
-{: #ic-obj-lock-config}
-
-### Put Object Lock configuration
-{: #ic-put-obj-lock-config}
-
-In default retention Days and Years cannot be provided at the same time.
-{: note}
-
-* **Action:** Set the object lock configuration on a bucket.
-* **Usage:** `object-lock-configuration-put --bucket BUCKET_NAME [--object-lock-configuration STRUCTURE] [--region REGION] [--output FORMAT]`
-* **Parameters to provide:**
-	* The name of the bucket.
-		* Flag: `--bucket BUCKET_NAME`
-	* A STRUCTURE using JSON syntax. See [IBM Cloud Documentation](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage).
-		* Flag: `--object-lock-configuration STRUCTURE`
-
-			```sh
-			{
-			"ObjectLockEnabled": "Enabled",
-			"Rule": {
-				"DefaultRetention": {
-				"Mode": "COMPLIANCE",
-				"Days": integer,
-				"Years": integer
-				}
-			}
-			}
-			```
-	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-		* Flag: `--region REGION`
-	* _Optional_: Output FORMAT can be only json or text.
-		* Flag: `--output FORMAT`
-
-Example:
-
-```sh
-ibmcloud cos object-lock-configuration-put --bucket bucket-name --object-lock-configuration '{ "ObjectLockEnabled": "Enabled", "Rule": { "DefaultRetention": { "Mode": "COMPLIANCE", "Days": 30 }}}'
-```
-
-### Get Object Lock configuration
-{: #ic-get-obj-lock-config}
-
-* **Action:** Get the object lock configuration on a bucket.
-* **Usage:** `object-lock-configuration-get --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
-* **Parameters to provide:**
-	* The name of the bucket.
-		* Flag: `--bucket BUCKET_NAME`
-	* A STRUCTURE using JSON syntax. See [IBM Cloud Documentation](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage).
-		* Flag: `--object-lock-configuration STRUCTURE`
-
-			```sh
-			{
-			"ObjectLockEnabled": "Enabled",
-			"Rule": {
-				"DefaultRetention": {
-				"Mode": "COMPLIANCE",
-				"Days": integer,
-				"Years": integer
-				}
-			}
-			}
-			```
-	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-		* Flag: `--region REGION`
-	* _Optional_: Output FORMAT can be only json or text.
-		* Flag: `--output FORMAT`
-
-			```sh
-			{
-			"ObjectLockEnabled": "Enabled",
-			"Rule": {
-				"DefaultRetention": {
-				"Mode": "COMPLIANCE",
-				"Days": integer,
-				"Years": integer
-				}
-			}
-			}
-			```
-Example:
-
-```sh
-ibmcloud cos object-lock-configuration-get --bucket bucket-name --region us-south
-```
-
-## Object Retention
-{: #ic-obj-retention}
-
-### Put Object Retention
-{: #ic-put-obj-retention}
-
-* **Action:** Set retention on a object.
-* **Usage:** `object-retention-put --bucket BUCKET_NAME --key KEY [--retention STRUCTURE] [--region REGION] [--output FORMAT]`
-* **Parameters to provide:**
-	* The name of the bucket.
-		* Flag: `--bucket BUCKET_NAME`
-	* The KEY of the object.
-		* Flag: `--key KEY`
-	* A STRUCTURE using JSON syntax. See [IBM Cloud Documentation](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage).
-		* Flag: `--retention STRUCTURE`
-
-			```sh
-			{
-			  "Mode": "COMPLIANCE",
-			  "RetainUntilDate": timestamp
-			}
-			```
-	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-		* Flag: `--region REGION`
-	* _Optional_: Output FORMAT can be only json or text.
-		* Flag: `--output FORMAT`
-
-Example:
-
-```sh
-ibmcloud cos object-retention-put --bucket bucket-name --key file-name.txt --retention '{ "Mode": "COMPLIANCE", "RetainUntilDate": "2024-02-02T00:00:00"}’
-```
-
-### Get Object Retention
-{: #ic-get-obj-retention}
-
-* **Action:** Get retention on a object.
-* **Usage:** `object-retention-get --bucket BUCKET_NAME --key KEY [--region REGION] [--output FORMAT]`
-* **Parameters to provide:**
-	* The name of the bucket.
-		* Flag: `--bucket BUCKET_NAME`
-	* The KEY of the object.
-		* Flag: `--key KEY`
-	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-		* Flag: `--region REGION`
-	* _Optional_: Output FORMAT can be only json or text.
-		* Flag: `--output FORMAT`
-
-			```sh
-			{
-				"Retention": {
-					"Mode": "COMPLIANCE",
-					"RetainUntilDate": "2024-02-02T00:00:00.000Z"
-				}
-			}
-			```
-Example:
-
-```sh
-ibmcloud cos object-retention-put --bucket bucket-name --key file-name.txt --region us-south
-```
-
-## Object Legal Hold
-{: #ic-obj-legal-hold}
-
-### Put Object Legal Hold
-{: #ic-put-obj-legal-hold}
-
-* **Action:** Set the legal hold on a object.
-* **Usage:** `object-legal-hold-put --bucket BUCKET_NAME --key KEY [--legal-hold STRUCTURE] [--region REGION] [--output FORMAT]`
-* **Parameters to provide:**
-	* The name of the bucket.
-		* Flag: `--bucket BUCKET_NAME`
-	* The KEY of the object.
-		* Flag: `--key KEY`
-	* A STRUCTURE using JSON syntax. See [IBM Cloud Documentation](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage).
-		* Flag: `--legalhold STRUCTURE`
-
-			```sh
-			{
-			   "Status": "ON"|"OFF"
-			}
-			```
-	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-		* Flag: `--region REGION`
-	* _Optional_: Output FORMAT can be only json or text.
-		* Flag: `--output FORMAT`
-
-Example:
-
-```sh
-ibmcloud cos object-legal-hold-put --bucket bucket-name --key file-name.txt --legal-hold ‘{"Status": "ON"}’
-```
-
-### Get Object Legal Hold
-{: #ic-get-obj-legal-hold}
-
-* **Action:** Get legal hold for a object.
-* **Usage:** `object-legal-hold-get --bucket BUCKET_NAME --key KEY [--region REGION] [--output FORMAT]`
-* **Parameters to provide:**
-	* The name of the bucket.
-		* Flag: `--bucket BUCKET_NAME`
-	* The KEY of the object.
-		* Flag: `--key KEY`
-	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-		* Flag: `--region REGION`
-	* _Optional_: Output FORMAT can be only json or text.
-		* Flag: `--output FORMAT`
-
-			```sh
-			{
-				"LegalHold": {
-					"Status": "ON"
-				}
-			}
-			```
-
-Example:
-
-```sh
-ibmcloud cos object-retention-get --bucket bucket-name --key file-name.txt --region us-south
-```
-
-## Configure bucket replication
-{: #ic-config-bucket-replication}
-
-Setup for configuring a replicated bucket.
-
-### Put bucket replication
-{: #ic-config-put-bucket-replication}
-
-* **Action:** Set the replication configuration on a bucket.
-* **Usage:** `bucket-replication-put --bucket BUCKET_NAME --replication-configuration STRUCTURE [--region REGION] [--output FORMAT]`
-* **Parameters to provide:**
- 	* The name of the bucket.
-		* Flag: `--bucket BUCKET_NAME`
-	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-		* Flag: `--region REGION`
-	* _Optional_: Output FORMAT can be only json or text.
-		* Flag: `--output FORMAT`
-	* A STRUCTURE using JSON syntax.
-		* Flag: `--replication-configuration STRUCTURE`
-
-			```sh
-			{
-				"Rules": [
-					{
-						"Status": "Enabled",
-						"Priority": 1,
-						"Filter" : { "Prefix": ""},
-						"DeleteMarkerReplication": {
-							"Status": "Disabled"
-						},
-						"Destination": {
-							"Bucket": "DEST-BUCKET-NAME"
-						}
-					}
-				]
-			}
-			```
-
-Example:
-
-```sh
-ibmcloud cos bucket-replication-put --bucket SOURCE-BUCKET-NAME --replication-configuration file://replication.json
-```
-
-### Get bucket replication
-{: #ic-config-get-bucket-replication}
-
-* **Action:** Get the replication configuration for a bucket.
-* **Usage:** `bucket-replication-get --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
-* **Parameters to provide:**
- 	* The name of the bucket.
-		* Flag: `--bucket BUCKET_NAME`
-	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-		* Flag: `--region REGION`
-	* _Optional_: Output FORMAT can be only json or text.
-		* Flag: `--output FORMAT`
-
-			```sh
-			{
-				"ReplicationConfiguration": {
-					"Rules": [
-						{
-							"Status": "Enabled",
-							"Prefix": "",
-							"Destination": {
-								"Bucket": "DEST-BUCKET-NAME",
-								"StorageClass": "STANDARD"
-							},
-						}
-					],
-				}
-			}
-			```
-
-Example:
-
-```sh
- ibmcloud cos bucket-replication-get --bucket SOURCE-BUCKET-NAME
-```
-
-### Delete bucket replication
-{: #ic-config-delete-bucket-replication}
-
-* **Action:** Delete the replication configuration from a bucket.
-* **Usage:** `bucket-replication-delete --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
-* **Parameters to provide:**
- 	* The name of the bucket.
-		* Flag: `--bucket BUCKET_NAME`
-	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-		* Flag: `--region REGION`
-	* _Optional_: Output FORMAT can be only json or text.
-		* Flag: `--output FORMAT`
-
-Example:
-
-```sh
- ibmcloud cos bucket-replication-delete --bucket SOURCE-BUCKET-NAME
-```
 
 ## Next Steps
 {: #cli-ref-next-steps}
