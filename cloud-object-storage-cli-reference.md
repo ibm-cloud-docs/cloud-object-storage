@@ -3,7 +3,7 @@
 copyright:
 
   years: 2017, 2026
-lastupdated: "2026-09-03"
+lastupdated: "2026-09-08"
 
 
 keywords: cli, command line reference, object storage
@@ -145,15 +145,15 @@ The CLI plug-in doesn't yet support the full suite of features available in Obje
 * **Usage:** `ibmcloud cos multipart-upload-abort --bucket BUCKET_NAME --key KEY --upload-id ID [--region REGION] [--output FORMAT]`
 * **Parameters to provide:**
 	* The name of the bucket.
-	  * Flag: `--bucket BUCKET_NAME`
+		* Flag: `--bucket BUCKET_NAME`
 	* The KEY of the object.
-	  * Flag: `--key KEY`
+		* Flag: `--key KEY`
 	* Upload ID identifying the multipart upload.
-	  * Flag: `--upload-id ID`
+		* Flag: `--upload-id ID`
 	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-	  * Flag: `--region REGION`
+		* Flag: `--region REGION`
 	* _Optional_: Output FORMAT can be only json or text.
-	  * Flag: `--output FORMAT`
+		* Flag: `--output FORMAT`
 
 
 
@@ -273,26 +273,20 @@ ibmcloud cos bucket-replication-delete --bucket SOURCE-BUCKET-NAME
 		* Flag: `--key KEY`
 	* Upload ID identifying the multipart upload.
 		* Flag: `--upload-id ID`
-	* The STRUCTURE of MultipartUpload to set.
+	* A STRUCTURE using JSON syntax. The `file://` prefix can be used to load the JSON structure from a file, such as `--multipart-upload file://<filename.json>`.
 		* Flag: `--multipart-upload STRUCTURE`
-		* Shorthand Syntax:
-		`--multipart-upload 'Parts=[{ETag=string,PartNumber=integer},{ETag=string,PartNumber=integer}]'`
-		* JSON Syntax:
-	`--multipart-upload file://<filename.json>`
-=======
-	The `--multipart-upload` command takes a JSON structure that describes the parts of the multipart upload that should be reassembled into the complete file. In this example, the `file://` prefix is used to load the JSON structure from the specified file.
 
-		```sh
+			```sh
 			{
-  			"Parts": [
-    			{
-     			 "ETag": "string",
-     			 "PartNumber": integer
-    			}
-    			...
-  				]
+				"Parts": [
+					{
+						"ETag": "string",
+						"PartNumber": integer
+					}
+				]
 			}
-		```
+			```
+
 	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
 		* Flag: `--region REGION`
 	* _Optional_: Output FORMAT can be only json or text.
@@ -304,55 +298,52 @@ ibmcloud cos bucket-replication-delete --bucket SOURCE-BUCKET-NAME
 * **Action:** Configures a bucket to host a static website.
 * **Usage:** `ibmcloud cos bucket-website-put --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
 * **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* The website configuration in the form of a JSON structure. The `file://` prefix is used to load the JSON structure from the specified file, such as `--website-configuration file://<filename.json>`.
+		* Flag: `--website-configuration STRUCTURE`
 
-  * The name of the bucket.
-=======
-    * Flag: `--bucket BUCKET_NAME`
-  * The website configuration in the form of a JSON structure. The `file://` prefix is used to load the JSON structure from the specified file, such as `--website-configuration file://<filename.json>`.
-    * Flag: `--website-configuration STRUCTURE`
-        The following parameters are available for configuring static website behavior.  None are required.  For more details, [see the documentation](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-options).
+			```sh
+			{
+				"ErrorDocument": {
+					"Key": "string"
+				},
+				"IndexDocument": {
+					"Suffix": "string"
+				},
+				"RoutingRules": [
+					{
+						"Condition": {
+							"HttpErrorCodeReturnedEquals": "string",
+							"KeyPrefixEquals": "string"
+						},
+						"Redirect": {
+							"HostName": "string",
+							"HttpRedirectCode": "string",
+							"Protocol": "http"|"https",
+							"ReplaceKeyPrefixWith": "string",
+							"ReplaceKeyWith": "string"
+						}
+					}
+				]
+			}
+			```
 
-		```sh
-        {
-          "ErrorDocument": {
-            "Key": "string"
-          },
-          "IndexDocument": {
-            "Suffix": "string"
-          },
-          "RoutingRules": [
-            {
-              "Condition": {
-                "HttpErrorCodeReturnedEquals": "string",
-                "KeyPrefixEquals": "string"
-              },
-              "Redirect": {
-                "HostName": "string",
-                "HttpRedirectCode": "string",
-                "Protocol": "http"|"https",
-                "ReplaceKeyPrefixWith": "string",
-                "ReplaceKeyWith": "string"
-              }
-            }
-            ...
-          ]
-        }
-        ```
+			Alternatively, if the bucket website is configured to redirect traffic, it must be the only parameter configured:
 
-		Alternatively, if the bucket website is configured to redirect traffic, it must be the only parameter configured:
+			```sh
+			{
+				"RedirectAllRequestsTo": {
+					"HostName": "string",
+					"Protocol": "http"|"https"
+				}
+			}
+			```
 
-
-		```sh
-		  "RedirectAllRequestsTo": {
-		    "HostName": "string",
-		    "Protocol": "http"|"https"
-		  }
-		  ```
-
-  * _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-    * Flag: `--region REGION`
-  * _Optional_: Output FORMAT can be only json or text.
-    * Flag: `--output FORMAT`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
 
 ## Configure the Program
 {: #ic-config}
@@ -374,13 +365,11 @@ ibmcloud cos bucket-replication-delete --bucket SOURCE-BUCKET-NAME
 		* Command: `region`
 	* Switch between `VHost` and Path URL style.
 		* Command: `url-style`
-    * Set Default Service Endpoint.
-        * Command: `endpoint-url`
-          * Parameters:
-=======
-            *  `--list` displays the current default Service Endpoint, if it has been set. Otherwise, it will be empty.
-            *  `--url some.end.point.url` will change the Service Endpoint to the value as given.
-            *  `--clear` removes the default Service Endpoint URL that has been set.
+	* Set Default Service Endpoint.
+		* Command: `endpoint-url`
+			* `--list` displays the current default Service Endpoint, if it has been set. Otherwise, it will be empty.
+			* `--url some.end.point.url` will change the Service Endpoint to the value as given.
+			* `--clear` removes the default Service Endpoint URL that has been set.
 
 ## Copy object from bucket
 {: #ic-copy-object}
@@ -391,54 +380,52 @@ If you want to add metadata to an object during the copying (using the `--metada
 * **Action:** Copy an object from source bucket to destination bucket.
 * **Usage:** `ibmcloud cos object-copy --bucket BUCKET_NAME --key KEY --copy-source SOURCE [--cache-control CACHING_DIRECTIVES] [--content-disposition DIRECTIVES] [--content-encoding CONTENT_ENCODING] [--content-language LANGUAGE] [--content-type MIME] [--copy-source-if-match ETAG] [--copy-source-if-modified-since TIMESTAMP] [--copy-source-if-none-match ETAG] [--copy-source-if-unmodified-since TIMESTAMP] [--metadata MAP] [--metadata-directive DIRECTIVE] [--region REGION] [--output FORMAT]`
 * **Parameters to provide:**
-  * The name of the destination bucket.
-    * Flag: `--bucket BUCKET_NAME`
-  * The KEY of the object.
-    * Flag: `--key KEY`
-  * (SOURCE) The name of the source bucket and key name of the source object, which is separated by a slash (/). Must be URL-encoded.
-    * Flag: `--copy-source SOURCE`
-  * _Optional_: Specifies `CACHING_DIRECTIVES` for the request and reply chain.
-    * Flag: `--cache-control CACHING_DIRECTIVES`
-  * _Optional_: Specifies presentation information (`DIRECTIVES`).
-    * Flag: `--content-disposition DIRECTIVES`
-  * _Optional_: Specifies what content encodings (CONTENT_ENCODING) are applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.
-    * Flag: `--content-encoding CONTENT_ENCODING`
-  * _Optional_: The LANGUAGE the content is in.
-    * Flag: `--content-language LANGUAGE`
-  * _Optional_: A standard MIME type describing the format of the object data.
-    * Flag: `--content-type MIME`
-  * _Optional_: Copies the object if its entity tag (`Etag`) matches the specified tag (`ETAG`).
-    * Flag: `--copy-source-if-match ETAG`
-  * _Optional_: Copies the object if it has been modified since the specified time (TIMESTAMP).
-    * Flag: `--copy-source-if-modified-since TIMESTAMP`
-  * _Optional_: Copies the object if its entity tag (`ETag`) is different than the specified tag (`ETAG`).
-    * Flag: `--copy-source-if-none-match ETAG`
-  * _Optional_: Copies the object if it hasn't been modified since the specified time (TIMESTAMP).
-    * Flag: `--copy-source-if-unmodified-since TIMESTAMP`
-  * _Optional_: A MAP of metadata to store.
-    * Flag: `--metadata MAP`
-    JSON Syntax:
-     The `--metadata` flag takes the `file://` prefix that is used to load the JSON structure from the specified file.
+	* The name of the destination bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* The KEY of the object.
+		* Flag: `--key KEY`
+	* (SOURCE) The name of the source bucket and key name of the source object, which is separated by a slash (/). Must be URL-encoded.
+		* Flag: `--copy-source SOURCE`
+	* _Optional_: Specifies `CACHING_DIRECTIVES` for the request and reply chain.
+		* Flag: `--cache-control CACHING_DIRECTIVES`
+	* _Optional_: Specifies presentation information (`DIRECTIVES`).
+		* Flag: `--content-disposition DIRECTIVES`
+	* _Optional_: Specifies what content encodings (CONTENT_ENCODING) are applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.
+		* Flag: `--content-encoding CONTENT_ENCODING`
+	* _Optional_: The LANGUAGE the content is in.
+		* Flag: `--content-language LANGUAGE`
+	* _Optional_: A standard MIME type describing the format of the object data.
+		* Flag: `--content-type MIME`
+	* _Optional_: Copies the object if its entity tag (`Etag`) matches the specified tag (`ETAG`).
+		* Flag: `--copy-source-if-match ETAG`
+	* _Optional_: Copies the object if it has been modified since the specified time (TIMESTAMP).
+		* Flag: `--copy-source-if-modified-since TIMESTAMP`
+	* _Optional_: Copies the object if its entity tag (`ETag`) is different than the specified tag (`ETAG`).
+		* Flag: `--copy-source-if-none-match ETAG`
+	* _Optional_: Copies the object if it hasn't been modified since the specified time (TIMESTAMP).
+		* Flag: `--copy-source-if-unmodified-since TIMESTAMP`
+	* _Optional_: A MAP of metadata to store. The `file://` prefix can be used to load the JSON structure from a file.
+		* Flag: `--metadata MAP`
+	* _Optional_: Specifies whether the metadata is copied from the source object or replaced with metadata provided in the request. DIRECTIVE values: COPY,REPLACE.
+		* Flag: `--metadata-directive DIRECTIVE`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+Example metadata JSON structure for `--metadata MAP`:
 
 ```sh
-      {
-        "file_name": "file_20xxxxxxxxxxxx45.zip",
-        "label": "texas",
-        "state": "Texas",
-        "Date_to": "2019-11-09T16:00:00.000Z",
-        "Sha256sum": "9e39dxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx8ce6b68ede3a47",
-        "Timestamp": "Thu, 17 Oct 2019 09:22:13 GMT"
-      }
-      ```
-
-   * _Optional_: Specifies whether the metadata is copied from the source object or replaced with metadata provided in the request. DIRECTIVE values: COPY,REPLACE.
-        * Flag: ` --metadata-directive DIRECTIVE`
-    * _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-        * Flag: `--region REGION`
-    * _Optional_: Output FORMAT can be only json or text.
-        * Flag: `--output FORMAT`
-
+{
+	"file_name": "file_20xxxxxxxxxxxx45.zip",
+	"label": "texas",
+	"state": "Texas",
+	"Date_to": "2019-11-09T16:00:00.000Z",
+	"Sha256sum": "9e39dxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx8ce6b68ede3a47",
+	"Timestamp": "Thu, 17 Oct 2019 09:22:13 GMT"
+}
 ```
+{: pre}
 
 ## Create a new bucket
 {: #ic-create-bucket}
@@ -447,7 +434,7 @@ If you want to add metadata to an object during the copying (using the `--metada
 * **Usage:** `ibmcloud cos bucket-create --bucket BUCKET_NAME [--class CLASS_NAME][--class onerate_active] [--ibm-service-instance-id ID] [--region REGION] [--output FORMAT]`
 	* Note that you must provide a CRN if you are using IAM authentication. This can be set by using the [`ibmcloud cos config crn`](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli#ic-config) command.
 * **Parameters to provide:**
-    * The name of the bucket.
+	* The name of the bucket.
 		* Flag: `--bucket BUCKET_NAME`
 	* _Optional_: The name of the Class.
 		* Flag: `--class CLASS_NAME`
@@ -481,7 +468,7 @@ If you want to add metadata to an object during the copying (using the `--metada
 		* Flag: `--region REGION`
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
-	* (Deprecated): Output returned in raw JSON format..
+	* (Deprecated): Output returned in raw JSON format.
 		* Flag: `--json`
 
 Example:
@@ -489,6 +476,7 @@ Example:
 ```sh
 ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:staging:public:kms:us-south:a/9978e0xxxxxxxxxxxxxxxxxxxxxx8654:dfdxxxxx-xxxx-xxxx-xxxx-xxxxxxba6eb0:key:7cea005e-75d4-4a08-ad2f-5e56141f6a96 --kms-encryption-algorithm AES256
 ```
+{: pre}
 
 ### Create a new bucket with Hyper Protect Crypto Services
 {: #ic-create-a-new-bucket-hpcs}
@@ -510,7 +498,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:stagin
 		* Flag: `--region REGION`
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
-	* (Deprecated): Output returned in raw JSON format..
+	* (Deprecated): Output returned in raw JSON format.
 		* Flag: `--json`
 
 Example:
@@ -518,6 +506,7 @@ Example:
 ```sh
 ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemix:public:hs-crypto:us-south:a/ee747e4xxxxxxxxxxxxxxxxxxxxxx7559:ac6xxxxx-xxxx-xxxx-xxxx-xxxxxx1bea99:key:e7451f36-d7ea-4f55-bc1c-ce4bcceb7018
 ```
+{: pre}
 
 ## Create a new multipart upload
 {: #ic-create-multipart-upload}
@@ -525,7 +514,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 * **Action:** Begin the multipart file upload process by creating a new multipart upload instance.
 * **Usage:** `ibmcloud cos multipart-upload-create --bucket BUCKET_NAME --key KEY [--cache-control CACHING_DIRECTIVES] [--content-disposition DIRECTIVES] [--content-encoding CONTENT_ENCODING] [--content-language LANGUAGE] [--content-type MIME] [--metadata MAP] [--region REGION] [--output FORMAT]`
 * **Parameters to provide:**
-    * The name of the bucket.
+	* The name of the bucket.
 		* Flag: `--bucket BUCKET_NAME`
 	* The KEY of the object.
 		* Flag: `--key KEY`
@@ -533,30 +522,29 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 		* Flag: `--cache-control CACHING_DIRECTIVES`
 	* _Optional_: Specifies presentation information (`DIRECTIVES`).
 		* Flag: `--content-disposition DIRECTIVES`
-	* _Optional_: Specifies the content encoding (`CONTENT_ENCODING`) of the object..
+	* _Optional_: Specifies the content encoding (`CONTENT_ENCODING`) of the object.
 		* Flag: `--content-encoding CONTENT_ENCODING`
 	* _Optional_: The LANGUAGE the content is in.
 		* Flag: `--content-language LANGUAGE`
 	* _Optional_: A standard MIME type describing the format of the object data.
 		* Flag: `--content-type MIME`
-	* _Optional_: A MAP of metadata to store.
-	    * Flag: `--metadata MAP`
-    JSON Syntax:
-    The `--metadata` flag takes the `file://` prefix that is used to load the JSON structure from the specified file.
+	* _Optional_: A MAP of metadata to store. The `file://` prefix can be used to load the JSON structure from a file.
+		* Flag: `--metadata MAP`
 
-    ```sh
-    {
-      "file_name": "file_20xxxxxxxxxxxx45.zip",
-      "label": "texas",
-      "state": "Texas",
-      "Date_to": "2019-11-09T16:00:00.000Z",
-      "Sha256sum": "9e39dxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx8ce6b68ede3a47",
-      "Timestamp": "Thu, 17 Oct 2019 09:22:13 GMT"
-    }
-    ```
-   * _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+			```sh
+			{
+				"file_name": "file_20xxxxxxxxxxxx45.zip",
+				"label": "texas",
+				"state": "Texas",
+				"Date_to": "2019-11-09T16:00:00.000Z",
+				"Sha256sum": "9e39dxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx8ce6b68ede3a47",
+				"Timestamp": "Thu, 17 Oct 2019 09:22:13 GMT"
+			}
+			```
+
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
 		* Flag: `--region REGION`
-   * _Optional_: Output FORMAT can be only json or text.
+	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
 
 ## Delete a static website configuration
@@ -565,14 +553,12 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 * **Action:** Removes a bucket's static website configuration.
 * **Usage:** `ibmcloud cos bucket-website-delete --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
 * **Parameters to provide:**
-  * The name of the bucket.
-=======
-    * Flag: `--bucket BUCKET_NAME`
-  * _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-    * Flag: `--region REGION`
-  * _Optional_: Output FORMAT can be only json or text.
-    * Flag: `--output FORMAT`
-
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
 
 ## Delete an existing bucket
 {: #ic-delete-bucket}
@@ -580,14 +566,14 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 * **Action:** Delete an existing bucket in an IBM Cloud Object Storage instance.
 * **Usage:** `ibmcloud cos bucket-delete --bucket BUCKET_NAME [--region REGION] [--force] [--output FORMAT]`
 * **Parameters to provide:**
-    * The name of the bucket.
+	* The name of the bucket.
 		* Flag: `--bucket BUCKET_NAME`
-    * _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-       * Flag: `--region REGION`
-    * _Optional_: The operation will do not ask for confirmation.
-       * Flag: `--force`
-    * _Optional_: Output FORMAT can be only json or text.
-       * Flag: `--output FORMAT`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: The operation will not ask for confirmation.
+		* Flag: `--force`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
 
 ## Delete an object
 {: #ic-delete-object}
@@ -595,14 +581,14 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 * **Action:** Delete an object from a bucket in a user's IBM Cloud Object Storage account.
 * **Usage:** `ibmcloud cos object-delete --bucket BUCKET_NAME --key KEY [--region REGION] [--force] [--output FORMAT]`
 * **Parameters to provide:**
-    * The name of the bucket.
+	* The name of the bucket.
 		* Flag: `--bucket BUCKET_NAME`
 	* The KEY of the object.
 		* Flag: `--key KEY`
 	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
 		* Flag: `--region REGION`
-  * _Optional_: The operation will do not ask for confirmation.
-  	* Flag: `--force`
+	* _Optional_: The operation will not ask for confirmation.
+		* Flag: `--force`
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
 
@@ -612,7 +598,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 * **Action:** Delete CORS configuration on a bucket in a user's IBM Cloud Object Storage account.
 * **Usage:** `ibmcloud cos bucket-cors-delete --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
 * **Parameters to provide:**
-    * The name of the bucket.
+	* The name of the bucket.
 		* Flag: `--bucket BUCKET_NAME`
 	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
 		* Flag: `--region REGION`
@@ -627,27 +613,21 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 * **Parameters to provide:**
 	* The name of the bucket.
 		* Flag: `--bucket BUCKET_NAME`
-	* A STRUCTURE using either shorthand or JSON syntax.
+	* A STRUCTURE using JSON syntax. The `file://` prefix can be used to load the JSON structure from a file, such as `--delete file://<filename.json>`.
 		* Flag: `--delete STRUCTURE`
-		* Shorthand Syntax:
-		`--delete 'Objects=[{Key=string},{Key=string}],Quiet=boolean'`
-		* JSON Syntax:
-	`--delete file://<filename.json>`
-=======
-	The `--delete` command takes a JSON structure listing the objects to delete. In this example, the `file://` prefix is used to load the JSON structure from the specified file.
 
-	```sh
-	{
-  	"Objects": [
-    	{
-    	"Key": "string",
-    	"VersionId": "string"
-    	}
-    ...
-  	],
-  	"Quiet": true|false
-	}
-	```
+			```sh
+			{
+				"Objects": [
+					{
+						"Key": "string",
+						"VersionId": "string"
+					}
+				],
+				"Quiet": true|false
+			}
+			```
+
 	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
 		* Flag: `--region REGION`
 	* _Optional_: Output FORMAT can be only json or text.
@@ -659,7 +639,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 * **Action:** Download an object from a bucket in a user's IBM Cloud Object Storage account.
 * **Usage:** `ibmcloud cos object-get --bucket BUCKET_NAME --key KEY [--if-match ETAG] [--if-modified-since TIMESTAMP] [--if-none-match ETAG] [--if-unmodified-since TIMESTAMP] [--range RANGE] [--response-cache-control HEADER] [--response-content-disposition HEADER] [--response-content-encoding HEADER] [--response-content-language HEADER] [--response-content-type HEADER] [--response-expires HEADER] [--region REGION] [--output FORMAT] [OUTFILE]`
 * **Parameters to provide:**
-    * The name of the bucket.
+	* The name of the bucket.
 		* Flag: `--bucket BUCKET_NAME`
 	* The KEY of the object.
 		* Flag: `--key KEY`
@@ -772,20 +752,18 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
 
-
 ## Get a static website configuration
 {: #ic-get-bucket-website}
 
 * **Action:** Gets a bucket's static website configuration.
 * **Usage:** `ibmcloud cos bucket-website-get --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
 * **Parameters to provide:**
-  * The name of the bucket.
-=======
-    * Flag: `--bucket BUCKET_NAME`
-  * _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-    * Flag: `--region REGION`
-  * _Optional_: Output FORMAT can be only json or text.
-    * Flag: `--output FORMAT`
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
 
 ## Get an object's headers
 {: #ic-object-header}
@@ -805,7 +783,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 		* Flag: `--if-none-match ETAG`
 	* _Optional_: Return the object only if it has not been modified since the specified TIMESTAMP, otherwise return a 412 (precondition failed).
 		* Flag: `--if-unmodified-since TIMESTAMP`
-	* Downloads the specified RANGE bytes of an object.
+	* _Optional_: Downloads the specified RANGE bytes of an object.
 		* Flag: `--range RANGE`
 	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
 		* Flag: `--region REGION`
@@ -818,12 +796,12 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 * **Action:** Returns the CORS configuration for the bucket in a user's IBM Cloud Object Storage account.
 * **Usage:** `ibmcloud cos bucket-cors-get --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
 * **Parameters to provide:**
-  * The name of the bucket.
-    * Flag: `--bucket BUCKET_NAME`
-  * _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
-    * Flag: `--region REGION`
-  * _Optional_: Output FORMAT can be only json or text.
-    * Flag: `--output FORMAT`
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
 
 ## List all buckets
 {: #ic-list-buckets}
@@ -832,7 +810,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 * **Usage:** `ibmcloud cos buckets [--ibm-service-instance-id ID] [--output FORMAT]`
 	* Note that you must provide a CRN if you are using IAM authentication. This can be set by using the [`ibmcloud cos config crn`](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli#ic-config) command.
 * **Parameters to provide:**
-  * No parameters to provide.
+	* No parameters to provide.
 	* _Optional_: Sets the IBM Service Instance ID in the request.
 		* Flag: `--ibm-service-instance-id`
 	* _Optional_: Output FORMAT can be only json or text.
@@ -845,7 +823,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 * **Usage:** `ibmcloud cos buckets-extended [--ibm-service-instance-id ID] [--marker KEY] [--prefix PREFIX] [--page-size SIZE] [--max-items NUMBER] [--output FORMAT] `
 	* Note that you must provide a CRN if you are using IAM authentication. This can be set by using the [`ibmcloud cos config crn`](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli#ic-config) command.
 * **Parameters to provide:**
-  * No parameters to provide.
+	* No parameters to provide.
 	* _Optional_: Sets the IBM Service Instance ID in the request.
 		* Flag: `--ibm-service-instance-id`
 	* _Optional_: Specifies the KEY to start with when listing objects in a bucket.
@@ -865,7 +843,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 * **Action:** Lists in-progress multipart uploads.
 * **Usage:** `ibmcloud cos multipart-uploads --bucket BUCKET_NAME [--delimiter DELIMITER] [--encoding-type METHOD] [--prefix PREFIX] [--key-marker value] [--upload-id-marker value] [--page-size SIZE] [--max-items NUMBER] [--region REGION] [--output FORMAT]`
 * **Parameters to provide:**
-    * The name of the bucket.
+	* The name of the bucket.
 		* Flag: `--bucket BUCKET_NAME`
 	* _Optional_: A DELIMITER is a character that you use to group keys.
 		* Flag: `--delimiter DELIMITER`
@@ -873,7 +851,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 		* Flag: `--encoding-type METHOD`
 	* _Optional_: Limits the response to keys that begin with the specified PREFIX.
 		* Flag: `--prefix PREFIX`
-	* _Optional_:  Together with upload-id-marker, this parameter specifies the multipart upload after which listing should begin.
+	* _Optional_: Together with upload-id-marker, this parameter specifies the multipart upload after which listing should begin.
 		* Flag: `--key-marker value`
 	* _Optional_: Together with key-marker, specifies the multipart upload after which listing should begin. If key-marker is not specified, the upload-id-marker parameter is ignored.
 		* Flag: `--upload-id-marker value`
@@ -1009,8 +987,8 @@ The IBM Cloud Object Storage CLI provides the ability for users to upload large 
 ```
 
 After running the `multipart-upload-complete` command, run `part-upload` for each file part you want to upload. **For multipart uploads, every file part (except for the last part) must be at least 5 MB.** To split a file into separate parts, you can run `split` in a terminal window. For example, if you have a 13 MB file that is named `TESTFILE` on your Desktop, and you would like to split it into file parts of 5 MB each, you can run `split -b 3m ~/Desktop/TESTFILE part-file-`. This command generates three file parts into two file parts of 5 MB each, and one file part of 3 MB, with the names `part-file-aa`, `part-file-ab`, and `part-file-ac`.
-`
-As each file part is uploaded, the CLI print its `ETag`. You must save this `ETag` into a formatted JSON file, along with the part number. Use this template to create your own `ETag JSON data file.
+
+As each file part is uploaded, the CLI prints its `ETag`. You must save this `ETag` into a formatted JSON file, along with the part number. Use this template to create your own ETag JSON data file.
 
 ```sh
 {
@@ -1115,13 +1093,14 @@ To see the status of your multipart upload instance, you can always run the `par
 Example:
 
 ```sh
-ibmcloud cos object-legal-hold-put --bucket bucket-name --key file-name.txt --legal-hold ‘{"Status": "ON"}’
+ibmcloud cos object-legal-hold-put --bucket bucket-name --key file-name.txt --legal-hold '{"Status": "ON"}'
 ```
+{: pre}
 
 ### Get Object Legal Hold
 {: #ic-get-obj-legal-hold}
 
-* **Action:** Get legal hold for a object.
+* **Action:** Get legal hold for an object.
 * **Usage:** `ibmcloud cos object-legal-hold-get --bucket BUCKET_NAME --key KEY [--region REGION] [--output FORMAT]`
 * **Parameters to provide:**
 	* The name of the bucket.
@@ -1133,18 +1112,21 @@ ibmcloud cos object-legal-hold-put --bucket bucket-name --key file-name.txt --le
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
 
-			```sh
-			{
-				"LegalHold": {
-					"Status": "ON"
-				}
-			}
-			```
-
 Example:
 
 ```sh
-ibmcloud cos object-retention-get --bucket bucket-name --key file-name.txt --region us-south
+ibmcloud cos object-legal-hold-get --bucket bucket-name --key file-name.txt --region us-south
+```
+{: pre}
+
+Example response:
+
+```sh
+{
+	"LegalHold": {
+		"Status": "ON"
+	}
+}
 ```
 
 ## Object Lock configuration
@@ -1186,6 +1168,7 @@ Example:
 ```sh
 ibmcloud cos object-lock-configuration-put --bucket bucket-name --object-lock-configuration '{ "ObjectLockEnabled": "Enabled", "Rule": { "DefaultRetention": { "Mode": "COMPLIANCE", "Days": 30 }}}'
 ```
+{: pre}
 
 ### Get Object Lock configuration
 {: #ic-get-obj-lock-config}
@@ -1195,42 +1178,31 @@ ibmcloud cos object-lock-configuration-put --bucket bucket-name --object-lock-co
 * **Parameters to provide:**
 	* The name of the bucket.
 		* Flag: `--bucket BUCKET_NAME`
-	* A STRUCTURE using JSON syntax. See [IBM Cloud Documentation](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage).
-		* Flag: `--object-lock-configuration STRUCTURE`
-
-			```sh
-			{
-			"ObjectLockEnabled": "Enabled",
-			"Rule": {
-				"DefaultRetention": {
-				"Mode": "COMPLIANCE",
-				"Days": integer,
-				"Years": integer
-				}
-			}
-			}
-			```
 	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
 		* Flag: `--region REGION`
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
 
-			```sh
-			{
-			"ObjectLockEnabled": "Enabled",
-			"Rule": {
-				"DefaultRetention": {
-				"Mode": "COMPLIANCE",
-				"Days": integer,
-				"Years": integer
-				}
-			}
-			}
-			```
 Example:
 
 ```sh
 ibmcloud cos object-lock-configuration-get --bucket bucket-name --region us-south
+```
+{: pre}
+
+Example response:
+
+```sh
+{
+	"ObjectLockEnabled": "Enabled",
+	"Rule": {
+		"DefaultRetention": {
+			"Mode": "COMPLIANCE",
+			"Days": integer,
+			"Years": integer
+		}
+	}
+}
 ```
 
 ## Object Retention
@@ -1239,7 +1211,7 @@ ibmcloud cos object-lock-configuration-get --bucket bucket-name --region us-sout
 ### Put Object Retention
 {: #ic-put-obj-retention}
 
-* **Action:** Set retention on a object.
+* **Action:** Set retention on an object.
 * **Usage:** `ibmcloud cos object-retention-put --bucket BUCKET_NAME --key KEY [--retention STRUCTURE] [--region REGION] [--output FORMAT]`
 * **Parameters to provide:**
 	* The name of the bucket.
@@ -1263,13 +1235,14 @@ ibmcloud cos object-lock-configuration-get --bucket bucket-name --region us-sout
 Example:
 
 ```sh
-ibmcloud cos object-retention-put --bucket bucket-name --key file-name.txt --retention '{ "Mode": "COMPLIANCE", "RetainUntilDate": "2024-02-02T00:00:00"}’
+ibmcloud cos object-retention-put --bucket bucket-name --key file-name.txt --retention '{ "Mode": "COMPLIANCE", "RetainUntilDate": "2024-02-02T00:00:00"}'
 ```
+{: pre}
 
 ### Get Object Retention
 {: #ic-get-obj-retention}
 
-* **Action:** Get retention on a object.
+* **Action:** Get retention on an object.
 * **Usage:** `ibmcloud cos object-retention-get --bucket BUCKET_NAME --key KEY [--region REGION] [--output FORMAT]`
 * **Parameters to provide:**
 	* The name of the bucket.
@@ -1281,18 +1254,22 @@ ibmcloud cos object-retention-put --bucket bucket-name --key file-name.txt --ret
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
 
-			```sh
-			{
-				"Retention": {
-					"Mode": "COMPLIANCE",
-					"RetainUntilDate": "2024-02-02T00:00:00.000Z"
-				}
-			}
-			```
 Example:
 
 ```sh
-ibmcloud cos object-retention-put --bucket bucket-name --key file-name.txt --region us-south
+ibmcloud cos object-retention-get --bucket bucket-name --key file-name.txt --region us-south
+```
+{: pre}
+
+Example response:
+
+```sh
+{
+	"Retention": {
+		"Mode": "COMPLIANCE",
+		"RetainUntilDate": "2024-02-02T00:00:00.000Z"
+	}
+}
 ```
 
 
@@ -1302,7 +1279,7 @@ ibmcloud cos object-retention-put --bucket bucket-name --key file-name.txt --reg
 * **Action:** Upload an object to a bucket in a user's IBM Cloud Object Storage account.
 * **Usage:** `ibmcloud cos object-put --bucket BUCKET_NAME --key KEY [--body FILE_PATH] [--cache-control CACHING_DIRECTIVES] [--content-disposition DIRECTIVES] [--content-encoding CONTENT_ENCODING] [--content-language LANGUAGE] [--content-length SIZE] [--content-md5 MD5] [--content-type MIME] [--metadata MAP] [--region REGION] [--output FORMAT]`
 * **Parameters to provide:**
-    * The name of the bucket.
+	* The name of the bucket.
 		* Flag: `--bucket BUCKET_NAME`
 	* The KEY of the object.
 		* Flag: `--key KEY`
@@ -1316,27 +1293,26 @@ ibmcloud cos object-retention-put --bucket bucket-name --key file-name.txt --reg
 		* Flag: `--content-encoding CONTENT_ENCODING`
 	* _Optional_: The LANGUAGE the content is in.
 		* Flag: `--content-language LANGUAGE`
-	* _Optional_:  SIZE of the body in bytes. This parameter is useful when the size of the body cannot be determined automatically. (default: 0)
+	* _Optional_: SIZE of the body in bytes. This parameter is useful when the size of the body cannot be determined automatically. (default: 0)
 		* Flag: `--content-length SIZE`
 	* _Optional_: The base64-encoded 128-bit MD5 digest of the data.
 		* Flag: `--content-md5 MD5`
 	* _Optional_: A standard MIME type describing the format of the object data.
 		* Flag: `--content-type MIME`
-	* _Optional_: A MAP of metadata to store.
-	    * Flag: `--metadata MAP`
-    JSON Syntax:
-    The `--metadata` flag takes the `file://` prefix that is used to load the JSON structure from the specified file.
+	* _Optional_: A MAP of metadata to store. The `file://` prefix can be used to load the JSON structure from a file.
+		* Flag: `--metadata MAP`
 
-    ```sh
-    {
-      "file_name": "file_20xxxxxxxxxxxx45.zip",
-      "label": "texas",
-      "state": "Texas",
-      "Date_to": "2019-11-09T16:00:00.000Z",
-      "Sha256sum": "9e39dxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx8ce6b68ede3a47",
-      "Timestamp": "Thu, 17 Oct 2019 09:22:13 GMT"
-    }
-    ```
+			```sh
+			{
+				"file_name": "file_20xxxxxxxxxxxx45.zip",
+				"label": "texas",
+				"state": "Texas",
+				"Date_to": "2019-11-09T16:00:00.000Z",
+				"Sha256sum": "9e39dxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx8ce6b68ede3a47",
+				"Timestamp": "Thu, 17 Oct 2019 09:22:13 GMT"
+			}
+			```
+
 	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
 		* Flag: `--region REGION`
 	* _Optional_: Output FORMAT can be only json or text.
@@ -1376,25 +1352,24 @@ ibmcloud cos object-retention-put --bucket bucket-name --key file-name.txt --reg
 		* Flag: `--content-md5 MD5`
 	* _Optional_: A standard MIME type describing the format of the object data.
 		* Flag: `--content-type MIME`
-	* _Optional_: A MAP of metadata to store.
-	    * Flag: `--metadata MAP`
-    JSON Syntax:
-    The `--metadata` flag takes the `file://` prefix that is used to load the JSON structure from the specified file.
+	* _Optional_: A MAP of metadata to store. The `file://` prefix can be used to load the JSON structure from a file.
+		* Flag: `--metadata MAP`
 
-    ```sh
-    {
-      "file_name": "file_20xxxxxxxxxxxx45.zip",
-      "label": "texas",
-      "state": "Texas",
-      "Date_to": "2019-11-09T16:00:00.000Z",
-      "Sha256sum": "9e39dxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx8ce6b68ede3a47",
-      "Timestamp": "Thu, 17 Oct 2019 09:22:13 GMT"
-    }
-    ```
-	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program will use the default option specified in config.
-	   * Flag: `--region REGION`
+			```sh
+			{
+				"file_name": "file_20xxxxxxxxxxxx45.zip",
+				"label": "texas",
+				"state": "Texas",
+				"Date_to": "2019-11-09T16:00:00.000Z",
+				"Sha256sum": "9e39dxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx8ce6b68ede3a47",
+				"Timestamp": "Thu, 17 Oct 2019 09:22:13 GMT"
+			}
+			```
+
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
 	* _Optional_: Output FORMAT can be only json or text.
-	   * Flag: `--output FORMAT`
+		* Flag: `--output FORMAT`
 
 ## Set bucket CORS
 {: #ic-set-bucket-cors}
@@ -1404,27 +1379,23 @@ ibmcloud cos object-retention-put --bucket bucket-name --key file-name.txt --reg
 * **Parameters to provide:**
 	* The name of the bucket.
 		* Flag: `--bucket BUCKET_NAME`
-	* _Optional_: A STRUCTURE using JSON syntax in a file.
+	* _Optional_: A STRUCTURE using JSON syntax. The `file://` prefix can be used to load the JSON structure from a file, such as `--cors-configuration file://<filename.json>`.
 		* Flag: `--cors-configuration STRUCTURE`
-		* JSON Syntax:
-	`--cors-configuration file://<filename.json>`
-=======
-	The `--cors-configuration` command takes a JSON structure that describes the CORS configuration. In this example, the `file://` prefix is used to load the JSON structure from the specified file.
 
-	```sh
-	{
-  	"CORSRules": [
-    	{
-      	"AllowedHeaders": ["*"],
-      	"AllowedMethods": ["PUT", "GET", "DELETE"],
-      	"AllowedOrigins": ["http://www.example.com"],
-      	"ExposeHeaders": ["ExposeHeader7","ExposeHeader8"],
-      	"MaxAgeSeconds": 75
-    	}
-    	...
-  	]
-	}
-	```
+			```sh
+			{
+				"CORSRules": [
+					{
+						"AllowedHeaders": ["*"],
+						"AllowedMethods": ["PUT", "GET", "DELETE"],
+						"AllowedOrigins": ["http://www.example.com"],
+						"ExposeHeaders": ["ExposeHeader7","ExposeHeader8"],
+						"MaxAgeSeconds": 75
+					}
+				]
+			}
+			```
+
 	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
 		* Flag: `--region REGION`
 	* _Optional_: Output FORMAT can be only json or text.
