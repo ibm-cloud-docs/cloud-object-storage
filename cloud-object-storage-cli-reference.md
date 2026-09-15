@@ -1,10 +1,8 @@
 ---
 
 copyright:
-
   years: 2017, 2026
-lastupdated: "2026-09-08"
-
+lastupdated: "2026-09-15"
 
 keywords: cli, command line reference, object storage
 
@@ -13,21 +11,8 @@ subcollection: cloud-object-storage
 content-type: cli-docs
 
 ---
-{:external: target="_blank" .external}
-{:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:screen: .screen}
-{:tip: .tip}
-{:important: .important}
-{:note: .note}
-{:download: .download}
-{:http: .ph data-hd-programlang='http'}
-{:javascript: .ph data-hd-programlang='javascript'}
-{:java: .ph data-hd-programlang='java'}
-{:python: .ph data-hd-programlang='python'}
-{:faq: data-hd-content-type='faq'}
-{:support: data-reuse='support'}
+
+{{site.data.keyword.attribute-definition-list}}
 
 # IBM Cloud Object Storage CLI
 {: #ic-cos-cli}
@@ -46,7 +31,7 @@ Install the plug-in by using the `plugin install` command.
 ibmcloud plugin install cloud-object-storage
 ```
 
-Once the plug-in is installed, you can configure the plug-in by using the [`ibmcloud cos config`](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli#ic-config) command. This can be used to populate the plug-in with your credentials, default download location, choosing your authentication, and so on.
+After the plug-in is installed, you can configure the plug-in by using the [`ibmcloud cos config`](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli#ic-config) command. This can be used to populate the plug-in with your credentials, default download location, choosing your authentication, and so on.
 
 For optimal performance, ensure that tracing is disabled by setting the `IBMCLOUD_TRACE` environment variable to `false`.
 {: important}
@@ -71,7 +56,7 @@ URL Style               VHost
 ### IAM Authentication
 {: #ic-iam-authentication}
 
-If you are using IAM authentication, then you then you must configure your client with an instance ID to use some of the commands. For more information on creating a service instance, see [Creating a service instance](/docs/cloud-object-storage?topic=cloud-object-storage-provision#provision-instance). To retrieve the instance ID you can type `ibmcloud resource service-instance <INSTANCE_NAME> --id`, replace `<INSTANCE_NAME>` with the unique alias that you assigned to your service instance.  In the below examples, the `8f275e7b-c076-49e2-b9c5-f985704cf678` value is an example instance ID.
+If you are using IAM authentication, you must configure your client with an instance ID to use some of the commands. For more information on creating a service instance, see [Creating a service instance](/docs/cloud-object-storage?topic=cloud-object-storage-provision#provision-instance). To retrieve the instance ID you can type `ibmcloud resource service-instance <INSTANCE_NAME> --id`, replace `<INSTANCE_NAME>` with the unique alias that you assigned to your service instance.  In the following examples, the `8f275e7b-c076-49e2-b9c5-f985704cf678` value is an example instance ID.
 
 First, retrieve the CRN and id with the name of your instance. Be sure to use quotes (`'`) on your instance name and that you are logged in to IBM Cloud. Only the last piece of the CRN is needed, the part after `::`.
 
@@ -155,7 +140,192 @@ The CLI plug-in doesn't yet support the full suite of features available in Obje
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
 
+## Aspera high-speed transfer
+{: #ic-aspera}
 
+The `IBMCLOUD_API_KEY` environment variable must be set before using Aspera high-speed transfer commands. The Aspera SDK is downloaded automatically on first use.
+
+### Download objects by using Aspera
+{: #ic-aspera-download}
+
+* **Action:** Download an object from a bucket using Aspera high-speed transfer.
+* **Usage:** `ibmcloud cos aspera-download --bucket BUCKET_NAME --key KEY [--region REGION] [--output FORMAT] [OUTFILE]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* The KEY of the object to download.
+		* Flag: `--key KEY`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+	* _Optional_: Local path where the downloaded file is saved. If not specified, the file is saved to the default download location with the object key's filename.
+		* Argument: `OUTFILE`
+
+Example:
+
+```sh
+export IBMCLOUD_API_KEY=<your-api-key>
+ibmcloud cos aspera-download --bucket my-bucket --key videos/demo.mp4 /tmp/demo.mp4
+```
+{: pre}
+
+### Upload files or directories by using Aspera
+{: #ic-aspera-upload}
+
+* **Action:** Upload a file or directory to a bucket using Aspera high-speed transfer.
+* **Usage:** `ibmcloud cos aspera-upload --bucket BUCKET_NAME --key KEY [--region REGION] [--output FORMAT] [SRCFILE]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* The KEY (destination object name) in the bucket.
+		* Flag: `--key KEY`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+	* _Optional_: Local path of the file or directory to upload.
+		* Argument: `SRCFILE`
+
+Example:
+
+```sh
+export IBMCLOUD_API_KEY=<your-api-key>
+ibmcloud cos aspera-upload --bucket my-bucket --key videos/demo.mp4 /tmp/demo.mp4
+```
+{: pre}
+
+## Bucket lifecycle configuration
+{: #ic-bucket-lifecycle-config}
+
+Setup for configuring a lifecycle policy on a bucket.
+
+Lifecycle rules that use `NoncurrentVersionExpiration` or `Expiration.ExpiredObjectDeleteMarker` only take effect when versioning is enabled on the bucket. Enable versioning first with `bucket-versioning-put` before applying these rules.
+{: note}
+
+### Set the lifecycle configuration on a bucket
+{: #ic-bucket-lifecycle-put}
+
+* **Action:** Set the lifecycle configuration on a bucket.
+* **Usage:** `ibmcloud cos bucket-lifecycle-configuration-put --bucket BUCKET_NAME --lifecycle-configuration STRUCTURE [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* A STRUCTURE using JSON syntax. The `file://` prefix can be used to load the JSON structure from a file, such as `--lifecycle-configuration file://<filename.json>`.
+		* Flag: `--lifecycle-configuration STRUCTURE`
+
+			```sh
+			{
+			  "Rules": [
+			    {
+			      "ID": "string",
+			      "Status": "Enabled"|"Disabled",
+			      "Filter": {
+			        "Prefix": "string"
+			      },
+			      "Expiration": {
+			        "Days": integer,
+			        "Date": "YYYY-MM-DDTHH:mm:ssZ",
+			        "ExpiredObjectDeleteMarker": true|false
+			      },
+			      "Transitions": [
+			        {
+			          "Days": integer,
+			          "Date": "YYYY-MM-DDTHH:mm:ssZ",
+			          "StorageClass": "string"
+			        }
+			      ],
+			      "NoncurrentVersionExpiration": {
+			        "NoncurrentDays": integer
+			      },
+			      "AbortIncompleteMultipartUpload": {
+			        "DaysAfterInitiation": integer
+			      }
+			    }
+			  ]
+			}
+			```
+
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+Example — using a file:
+
+```sh
+ibmcloud cos bucket-lifecycle-configuration-put --bucket my-bucket --lifecycle-configuration file://lifecycle.json
+```
+{: pre}
+
+Example — inline:
+
+```sh
+ibmcloud cos bucket-lifecycle-configuration-put \
+  --bucket my-bucket \
+  --lifecycle-configuration '{
+    "Rules": [
+      {
+        "ID": "expire-noncurrent-versions",
+        "Status": "Enabled",
+        "Filter": { "Prefix": "" },
+        "NoncurrentVersionExpiration": {
+          "NoncurrentDays": 30
+        }
+      },
+      {
+        "ID": "clean-delete-markers",
+        "Status": "Enabled",
+        "Filter": { "Prefix": "" },
+        "Expiration": {
+          "ExpiredObjectDeleteMarker": true
+        }
+      }
+    ]
+  }' \
+  --region us-south
+```
+{: pre}
+
+### Get the lifecycle configuration for a bucket
+{: #ic-bucket-lifecycle-get}
+
+* **Action:** Get the lifecycle configuration for a bucket.
+* **Usage:** `ibmcloud cos bucket-lifecycle-configuration-get --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+Example:
+
+```sh
+ibmcloud cos bucket-lifecycle-configuration-get --bucket my-bucket
+```
+{: pre}
+
+### Delete the lifecycle configuration from a bucket
+{: #ic-bucket-lifecycle-delete}
+
+* **Action:** Delete the lifecycle configuration from a bucket.
+* **Usage:** `ibmcloud cos bucket-lifecycle-configuration-delete --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+Example:
+
+```sh
+ibmcloud cos bucket-lifecycle-configuration-delete --bucket my-bucket
+```
+{: pre}
 
 ## Bucket replication
 {: #ic-config-bucket-replication}
@@ -258,6 +428,108 @@ Example:
 
 ```sh
 ibmcloud cos bucket-replication-delete --bucket SOURCE-BUCKET-NAME
+```
+{: pre}
+
+### List replication failures for a bucket
+{: #ic-config-bucket-replication-failures}
+
+* **Action:** List replication failures for a bucket.
+* **Usage:** `ibmcloud cos bucket-replication-failures --bucket BUCKET_NAME [--starting-token TOKEN] [--encoding-type METHOD] [--first-sync-attempted-before TIMESTAMP] [--max-keys NUMBER] [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* _Optional_: A TOKEN used to specify where to start the next page of results.
+		* Flag: `--starting-token TOKEN`
+	* _Optional_: Requests to encode the object keys in the response and specifies the encoding METHOD to use.
+		* Flag: `--encoding-type METHOD`
+	* _Optional_: Filters results to only include failures where the first sync was attempted before the given TIMESTAMP (ISO 8601 format).
+		* Flag: `--first-sync-attempted-before TIMESTAMP`
+	* _Optional_: The maximum NUMBER of keys to return.
+		* Flag: `--max-keys NUMBER`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+Example:
+
+```sh
+ibmcloud cos bucket-replication-failures --bucket my-bucket
+```
+{: pre}
+
+### Reattempt replication for failed objects in a bucket
+{: #ic-config-bucket-replication-reattempt}
+
+* **Action:** Reattempt replication for failed objects in a bucket.
+* **Usage:** `ibmcloud cos bucket-replication-reattempt --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+Example:
+
+```sh
+ibmcloud cos bucket-replication-reattempt --bucket my-bucket
+```
+{: pre}
+
+## Bucket versioning
+{: #ic-bucket-versioning}
+
+Setup for enabling or suspending versioning on a bucket.
+
+### Set the versioning configuration on a bucket
+{: #ic-bucket-versioning-put}
+
+* **Action:** Set the versioning configuration on a bucket.
+* **Usage:** `ibmcloud cos bucket-versioning-put --bucket BUCKET_NAME --versioning-configuration STRUCTURE [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* A STRUCTURE using JSON syntax specifying the versioning state. Valid values for `Status` are `Enabled` and `Suspended`.
+		* Flag: `--versioning-configuration STRUCTURE`
+
+			```sh
+			{
+			  "Status": "Enabled"|"Suspended"
+			}
+			```
+
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+Example:
+
+```sh
+ibmcloud cos bucket-versioning-put --bucket my-bucket --versioning-configuration '{"Status": "Enabled"}'
+```
+{: pre}
+
+### Get the versioning configuration for a bucket
+{: #ic-bucket-versioning-get}
+
+* **Action:** Get the versioning configuration for a bucket.
+* **Usage:** `ibmcloud cos bucket-versioning-get --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+Example:
+
+```sh
+ibmcloud cos bucket-versioning-get --bucket my-bucket
 ```
 {: pre}
 
@@ -694,7 +966,7 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 		* Flag: `--if-none-match ETAG`
 	* _Optional_: Return the object only if it has not been modified since the specified TIMESTAMP, otherwise return a 412 (precondition failed).
 		* Flag: `--if-unmodified-since TIMESTAMP`
-	* _Optional_: Downloads the specified RANGE bytes of an object. For more information about the HTTP Range header, [click here](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35).
+	* _Optional_: Downloads the specified RANGE bytes of an object. For more information about the HTTP Range header, see [HTTP Range header specification](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35){: external}.
 		* Flag: `--range RANGE`
 	* _Optional_: Sets the Cache-Control HEADER of the response.
 		* Flag: `--response-cache-control HEADER`
@@ -715,7 +987,32 @@ ibmcloud cos bucket-create --bucket bucket-name --kms-root-key-crn crn:v1:bluemi
 	* _Optional_: The location where to save the content of the object. If this parameter is not provided, the program uses the default location.
 		* Parameter: `OUTFILE`
 
+## Endpoints
+{: #ic-list-endpoints}
 
+* **Action:** List the S3 endpoint URLs for a region.
+* **Usage:** `ibmcloud cos endpoints [--region REGION] [--list-regions] [--output FORMAT]`
+* **Parameters to provide:**
+	* _Optional_: Display the endpoint URL for the specified REGION.
+		* Flag: `--region REGION`
+	* _Optional_: Display the list of all available regions instead of endpoint URLs.
+		* Flag: `--list-regions`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+Example — display endpoints for a region:
+
+```sh
+ibmcloud cos endpoints --region us-south
+```
+{: pre}
+
+Example — list all available regions:
+
+```sh
+ibmcloud cos endpoints --list-regions
+```
+{: pre}
 
 ## Find a bucket
 {: #ic-find-bucket}
@@ -1063,7 +1360,6 @@ To see the status of your multipart upload instance, you can always run the `par
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
 
-
 ## Object Legal Hold
 {: #ic-obj-legal-hold}
 
@@ -1272,6 +1568,173 @@ Example response:
 }
 ```
 
+## Object tagging
+{: #ic-object-tagging}
+
+Setup for managing tags on objects.
+
+### Set tags on an object
+{: #ic-object-tagging-put}
+
+* **Action:** Set tags on an object.
+* **Usage:** `ibmcloud cos object-tagging-put --bucket BUCKET_NAME --key KEY --tagging STRUCTURE [--version-id VERSION_ID] [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* The KEY of the object.
+		* Flag: `--key KEY`
+	* A STRUCTURE using JSON syntax containing the tag set. The `file://` prefix can be used to load the JSON structure from a file, such as `--tagging file://<filename.json>`.
+		* Flag: `--tagging STRUCTURE`
+
+			```sh
+			{
+			  "TagSet": [
+			    {
+			      "Key": "string",
+			      "Value": "string"
+			    }
+			  ]
+			}
+			```
+
+	* _Optional_: The VERSION_ID of the object to tag. If not specified, the current version is tagged.
+		* Flag: `--version-id VERSION_ID`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+Example:
+
+```sh
+ibmcloud cos object-tagging-put --bucket my-bucket --key my-object.txt --tagging '{"TagSet": [{"Key": "env", "Value": "production"}]}'
+```
+{: pre}
+
+### Get tags for an object
+{: #ic-object-tagging-get}
+
+* **Action:** Get tags for an object.
+* **Usage:** `ibmcloud cos object-tagging-get --bucket BUCKET_NAME --key KEY [--version-id VERSION_ID] [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* The KEY of the object.
+		* Flag: `--key KEY`
+	* _Optional_: The VERSION_ID of the specific object version to retrieve tags for.
+		* Flag: `--version-id VERSION_ID`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+Example:
+
+```sh
+ibmcloud cos object-tagging-get --bucket my-bucket --key my-object.txt
+```
+{: pre}
+
+### Remove tags from an object
+{: #ic-object-tagging-delete}
+
+* **Action:** Remove tags from an object.
+* **Usage:** `ibmcloud cos object-tagging-delete --bucket BUCKET_NAME --key KEY [--version-id VERSION_ID] [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* The KEY of the object.
+		* Flag: `--key KEY`
+	* _Optional_: The VERSION_ID of the specific object version to remove tags from.
+		* Flag: `--version-id VERSION_ID`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+Example:
+
+```sh
+ibmcloud cos object-tagging-delete --bucket my-bucket --key my-object.txt
+```
+{: pre}
+
+## Public access block configuration
+{: #ic-public-access-block}
+
+Setup for managing the public access block configuration on a bucket.
+
+### Set public access block configuration on a bucket
+{: #ic-public-access-block-put}
+
+* **Action:** Set public access block configuration on a bucket.
+* **Usage:** `ibmcloud cos public-access-block-put --bucket BUCKET_NAME --public-access-block-configuration STRUCTURE [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* A STRUCTURE using JSON syntax. The `file://` prefix can be used to load the JSON structure from a file, such as `--public-access-block-configuration file://<filename.json>`.
+		* Flag: `--public-access-block-configuration STRUCTURE`
+
+			```sh
+			{
+			  "BlockPublicAcls": true|false,
+			  "IgnorePublicAcls": true|false,
+			  "BlockPublicPolicy": true|false,
+			  "RestrictPublicBuckets": true|false
+			}
+			```
+
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+Example:
+
+```sh
+ibmcloud cos public-access-block-put --bucket my-bucket --public-access-block-configuration '{"BlockPublicAcls": true, "IgnorePublicAcls": true, "BlockPublicPolicy": true, "RestrictPublicBuckets": true}'
+```
+{: pre}
+
+### Get the public access block configuration on a bucket
+{: #ic-public-access-block-get}
+
+* **Action:** Get the public access block configuration on a bucket.
+* **Usage:** `ibmcloud cos public-access-block-get --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+Example:
+
+```sh
+ibmcloud cos public-access-block-get --bucket my-bucket
+```
+{: pre}
+
+### Remove public access block configuration from a bucket
+{: #ic-public-access-block-delete}
+
+* **Action:** Remove public access block configuration from a bucket.
+* **Usage:** `ibmcloud cos public-access-block-delete --bucket BUCKET_NAME [--region REGION] [--output FORMAT]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* _Optional_: The REGION where the bucket is present. If this flag is not provided, the program uses the default option that is specified in config.
+		* Flag: `--region REGION`
+	* _Optional_: Output FORMAT can be only json or text.
+		* Flag: `--output FORMAT`
+
+Example:
+
+```sh
+ibmcloud cos public-access-block-delete --bucket my-bucket
+```
+{: pre}
 
 ## Put object
 {: #ic-upload-object}
@@ -1401,9 +1864,129 @@ Example response:
 	* _Optional_: Output FORMAT can be only json or text.
 		* Flag: `--output FORMAT`
 
+## Version
+{: #ic-version}
 
+* **Action:** Print the version of the IBM Cloud Object Storage CLI plug-in.
+* **Usage:** `ibmcloud cos version`
+* **Parameters to provide:** None.
 
-## Next Steps
+Example:
+
+```sh
+ibmcloud cos version
+```
+{: pre}
+
+## Wait
+{: #ic-wait}
+
+* **Action:** Poll an API until a particular condition is satisfied. Each subcommand polls every 5 seconds and exits with return code 255 after 20 failed checks.
+* **Usage:** `ibmcloud cos wait SUBCOMMAND`
+
+The following subcommands are available:
+
+### bucket-exists
+{: #ic-wait-bucket-exists}
+
+* **Action:** Wait until a 200 response is received when polling with `head-bucket`.
+* **Usage:** `ibmcloud cos wait bucket-exists --bucket BUCKET_NAME [--region REGION]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* _Optional_: The REGION where the bucket is present.
+		* Flag: `--region REGION`
+
+Example:
+
+```sh
+ibmcloud cos wait bucket-exists --bucket my-bucket
+```
+{: pre}
+
+### bucket-not-exists
+{: #ic-wait-bucket-not-exists}
+
+* **Action:** Wait until a 404 response is received when polling with `head-bucket`.
+* **Usage:** `ibmcloud cos wait bucket-not-exists --bucket BUCKET_NAME [--region REGION]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* _Optional_: The REGION where the bucket is present.
+		* Flag: `--region REGION`
+
+Example:
+
+```sh
+ibmcloud cos wait bucket-not-exists --bucket my-bucket
+```
+{: pre}
+
+### object-exists
+{: #ic-wait-object-exists}
+
+* **Action:** Wait until a 200 response is received when polling with `head-object`.
+* **Usage:** `ibmcloud cos wait object-exists --bucket BUCKET_NAME --key KEY [--if-match ETAG] [--if-modified-since TIMESTAMP] [--if-none-match ETAG] [--if-unmodified-since TIMESTAMP] [--range RANGE] [--part-number NUMBER] [--region REGION]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* The KEY of the object.
+		* Flag: `--key KEY`
+	* _Optional_: Return the object only if its entity tag (ETag) matches the provided ETAG.
+		* Flag: `--if-match ETAG`
+	* _Optional_: Return the object only if it has been modified since the specified TIMESTAMP.
+		* Flag: `--if-modified-since TIMESTAMP`
+	* _Optional_: Return the object only if its ETag does not match the provided ETAG.
+		* Flag: `--if-none-match ETAG`
+	* _Optional_: Return the object only if it has not been modified since the specified TIMESTAMP.
+		* Flag: `--if-unmodified-since TIMESTAMP`
+	* _Optional_: Downloads the specified byte RANGE of an object.
+		* Flag: `--range RANGE`
+	* _Optional_: Part NUMBER of the object being read.
+		* Flag: `--part-number NUMBER`
+	* _Optional_: The REGION where the bucket is present.
+		* Flag: `--region REGION`
+
+Example:
+
+```sh
+ibmcloud cos wait object-exists --bucket my-bucket --key my-object.txt
+```
+{: pre}
+
+### object-not-exists
+{: #ic-wait-object-not-exists}
+
+* **Action:** Wait until a 404 response is received when polling with `head-object`.
+* **Usage:** `ibmcloud cos wait object-not-exists --bucket BUCKET_NAME --key KEY [--if-match ETAG] [--if-modified-since TIMESTAMP] [--if-none-match ETAG] [--if-unmodified-since TIMESTAMP] [--range RANGE] [--part-number NUMBER] [--region REGION]`
+* **Parameters to provide:**
+	* The name of the bucket.
+		* Flag: `--bucket BUCKET_NAME`
+	* The KEY of the object.
+		* Flag: `--key KEY`
+	* _Optional_: Return the object only if its entity tag (ETag) matches the provided ETAG.
+		* Flag: `--if-match ETAG`
+	* _Optional_: Return the object only if it has been modified since the specified TIMESTAMP.
+		* Flag: `--if-modified-since TIMESTAMP`
+	* _Optional_: Return the object only if its ETag does not match the provided ETAG.
+		* Flag: `--if-none-match ETAG`
+	* _Optional_: Return the object only if it has not been modified since the specified TIMESTAMP.
+		* Flag: `--if-unmodified-since TIMESTAMP`
+	* _Optional_: Downloads the specified byte RANGE of an object.
+		* Flag: `--range RANGE`
+	* _Optional_: Part NUMBER of the object being read.
+		* Flag: `--part-number NUMBER`
+	* _Optional_: The REGION where the bucket is present.
+		* Flag: `--region REGION`
+
+Example:
+
+```sh
+ibmcloud cos wait object-not-exists --bucket my-bucket --key my-object.txt
+```
+{: pre}
+
+## Next steps
 {: #cli-ref-next-steps}
 
-As every procedure always goes exactly as planned, you might not have seen any of the [common header and error codes](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-common). For more reference, check the [API reference](/apidocs/cos/cos-compatibility).
+As every procedure always goes exactly as planned, you might not have seen any of the [common header and error codes](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-common). For more reference, check the [API reference](/apidocs/cos/cos-compatibility){: external}.
