@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2026
 
-lastupdated: "2026-08-31"
+lastupdated: "2026-09-21"
 
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning, metrics router, activity tracker routing, routing, monitoring, data vault
@@ -31,7 +31,7 @@ New beta solution!
 
 What is Cyber Vault?
 : It is a managed air-gapped S3-compatible storage solution built on the IBM Cloud Object Storage primitives, which are designed to protect enterprise backup and archive data from ransomware, accidental deletion, and insider threats.
-For more information, see [IBM Cloud Cyber Vault overview]([/docs/cloud-object-storage?topic=cloud-object-storage-cyber-vault-overview).
+For more information, see [IBM Cloud Cyber Vault overview](/docs/cloud-object-storage?topic=cloud-object-storage-cyber-vault-overview).
 
 ## 06 August 2026
 {: #cloud-object-storage-aug062026}
