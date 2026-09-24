@@ -197,6 +197,7 @@ toc:
           - goV2.md
           - terraform.md
           - cloudyr.md
+          - faq-sdk-migration.md
       - topicgroup:
           label: Use the command line
           topics:
