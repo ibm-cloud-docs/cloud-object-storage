@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-08-31"
+lastupdated: "2026-10-08"
 
 
 keywords: faq, frequently asked questions, object storage, S3, HMAC, bucket management, IPv6. endpoints
@@ -157,6 +157,7 @@ To avoid the error, make sure the bucket location matches the endpoint used by t
 {: faq}
 
 Refer to [Move data between buckets](/docs/cloud-object-storage?topic=cloud-object-storage-region-copy) for an example of how to use the `rclone` command line utility for copying data. If you use other 'sync' or 'clone' tools, be aware that you might need to implement a script to move files to a bucket in a different location because multiple endpoints are not allowed in a command.
+
 
 ## Can I migrate a bucket from one COS instance to another?
 {: #faq-create-bucket}
