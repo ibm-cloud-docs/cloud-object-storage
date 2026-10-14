@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2026
-lastupdated: "2026-06-24"
+lastupdated: "2026-10-08"
 
 keywords: data, replication, loss prevention, iam, activity tracker, disaster recovery, versioning, key protect, accounts, buckets
 
@@ -133,7 +133,7 @@ The following are not replicated:
 Replication can be used to provide continuity of service in the event of an outage:
 
 - Ensure that the source and target buckets are in different locations.
-- Verify that the latest versions of objects are in sync between both buckets.  A tool such as [`Rclone`](/docs/cloud-object-storage?topic=cloud-object-storage-rclone) (the `rclone check` command) can be useful for checking synchronicity from the command line.
+- Verify that the latest versions of objects are in sync between both buckets. A tool such as [`Rclone`](/docs/cloud-object-storage?topic=cloud-object-storage-rclone) (the `rclone check` command) can be useful for checking synchronicity from the command line.
 - In the event of an outage, an application's traffic can be redirected to the target bucket.
 
 ## Consistency and data integrity

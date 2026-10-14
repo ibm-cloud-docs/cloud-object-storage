@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-08-27"
+lastupdated: "2026-10-14"
 
 keywords: object storage, node, javascript, sdk
 
@@ -160,6 +160,8 @@ The following examples assume you have already created a client as shown in the 
 ### Creating a bucket
 {: #node-v2-examples-create-bucket}
 
+Creates a new bucket in the specified region by using a `LocationConstraint` in the `CreateBucketConfiguration` block.
+
 ```javascript
 const { CreateBucketCommand } = require('ibm-cos-sdk-v2');
 
@@ -180,6 +182,8 @@ try {
 
 ### Listing available buckets
 {: #node-v2-available-bucket}
+
+Returns all buckets that are owned by the authenticated account, including each bucket's name and creation date.
 
 ```javascript
 const { ListBucketsCommand } = require('ibm-cos-sdk-v2');
@@ -204,7 +208,7 @@ try {
 ### Listing buckets with extended information
 {: #node-v2-list-bucket}
 
-{{site.data.keyword.cos_full_notm}} provides an extended listing operation that returns additional bucket information:
+`ListBucketsExtended` is an {{site.data.keyword.cos_full_notm}}-specific operation that returns additional metadata for each bucket (location constraint and creation date) compared to the standard `ListBuckets` operation:
 
 ```javascript
 const { ListBucketsExtendedCommand } = require('ibm-cos-sdk-v2');
@@ -236,6 +240,8 @@ try {
 ### Retrieving a bucket's location
 {: #node-v2-location-bucket}
 
+Retrieves the `LocationConstraint` (region and storage class) of the specified bucket.
+
 ```javascript
 const { GetBucketLocationCommand } = require('ibm-cos-sdk-v2');
 
@@ -255,6 +261,8 @@ try {
 
 ### Deleting a bucket
 {: #node-v2-delete-bucket}
+
+Permanently removes an empty bucket. The bucket must contain no objects before deletion is allowed.
 
 ```javascript
 const { DeleteBucketCommand } = require('ibm-cos-sdk-v2');
@@ -277,6 +285,8 @@ try {
 
 ### Uploading an object to a bucket
 {: #node-v2-upload-object}
+
+Uploads an object (string, buffer, or stream) to a bucket under the specified key. The response includes the object's `ETag`.
 
 ```javascript
 const { PutObjectCommand } = require('ibm-cos-sdk-v2');
@@ -302,6 +312,8 @@ try {
 
 ### Downloading an object from a bucket
 {: #node-v2-download-bucket}
+
+Downloads an object from a bucket. In v2, the response body is a readable stream that must be consumed (for example, with `transformToString()`) or piped.
 
 ```javascript
 const { GetObjectCommand } = require('ibm-cos-sdk-v2');
@@ -366,6 +378,8 @@ try {
 ### Copying an object
 {: #node-v2-copy-object}
 
+Copies an existing object to a new key or bucket entirely server-side. No data is transferred through the client. The response includes the ETag of the copy.
+
 ```javascript
 const { CopyObjectCommand } = require('ibm-cos-sdk-v2');
 
@@ -397,6 +411,8 @@ try {
 ### Deleting an object
 {: #node-v2-delete-object}
 
+Deletes a single object by key. On a versioned bucket, this operation creates a delete marker rather than permanently removing the data.
+
 ```javascript
 const { DeleteObjectCommand } = require('ibm-cos-sdk-v2');
 
@@ -418,6 +434,8 @@ try {
 
 ### Deleting multiple objects
 {: #node-v2-delete-multiple-object}
+
+Deletes up to 1,000 objects in a single request. The response lists the successfully deleted keys and any errors for keys that could not be deleted.
 
 ```javascript
 const { DeleteObjectsCommand } = require('ibm-cos-sdk-v2');
@@ -466,6 +484,8 @@ try {
 ### Getting object metadata (HEAD)
 {: #node-v2-get-object}
 
+Retrieves an object's metadata (content type, size, ETag, and custom metadata) without downloading the object body.
+
 ```javascript
 const { HeadObjectCommand } = require('ibm-cos-sdk-v2');
 
@@ -505,6 +525,8 @@ try {
 For large objects, multipart upload provides improved throughput and the ability to resume uploads. Each part must be at least 5 MB (except the last part).
 
 **Manual Multipart Upload:**
+
+The manual flow splits a large file into fixed-size chunks, uploads each chunk as a numbered part by using `UploadPartCommand`, and then finalizes the upload with `CompleteMultipartUploadCommand`. This approach gives you full control over part size, retry logic, and parallel uploads. If an upload fails, `AbortMultipartUploadCommand` cleans up any uploaded parts. The upload is initiated with `CreateMultipartUploadCommand`.
 
 ```javascript
 const {
@@ -588,7 +610,10 @@ try {
 
 **Using Upload Manager (Recommended):**
 
-For easier multipart uploads, use the `@ibm-cos/lib-storage` package:
+For easier multipart uploads, use the `@ibm-cos/lib-storage` package. The high-level `Upload` helper wraps the three-step manual flow (`CreateMultipartUpload`, `UploadPart`, `CompleteMultipartUpload`), automatically chunks the stream, uploads parts concurrently, and emits progress events.
+
+The `Upload` manager is a v2-only feature. v1 used `s3.upload()` and `ManagedUpload` from the `ibm-cos-sdk` package, which are not compatible with the v2 SDK.
+{: note}
 
 ```javascript
 const { Upload } = require('@ibm-cos/lib-storage');
@@ -624,6 +649,8 @@ try {
 
 ### Listing multipart uploads
 {: #node-v2-list-multipart-upload}
+
+Lists all in-progress multipart uploads for a bucket. Incomplete uploads consume storage and incur charges.
 
 ```javascript
 const { ListMultipartUploadsCommand } = require('ibm-cos-sdk-v2');
@@ -709,7 +736,9 @@ try {
 ### Setting a bucket lifecycle configuration
 {: #node-v2-bucket-lifecycle}
 
-Archive policies allow you to automatically transition objects to archive storage classes after a specified time period:
+Archive policies allow you to automatically transition objects to archive storage classes after a specified time period.
+
+The following example defines a rule that expires objects under the `logs/` prefix after 30 days. In v2, each rule must use a `Filter` block (for example, `Filter: { Prefix: 'logs/' }`) instead of the top-level `Prefix` property that was used in v1. The API rejects rules that still use the flat v1 shape.
 
 ```javascript
 const { PutBucketLifecycleConfigurationCommand } = require('ibm-cos-sdk-v2');
@@ -756,6 +785,8 @@ try {
 ### Getting a bucket lifecycle configuration
 {: #node-v2-get-bucket-lifecycle}
 
+Retrieves the lifecycle configuration for a bucket, returning all rules as an array of rule objects.
+
 ```javascript
 const { GetBucketLifecycleConfigurationCommand } = require('ibm-cos-sdk-v2');
 
@@ -792,6 +823,8 @@ try {
 ### Enabling bucket versioning
 {: #node-v2-enable-versioning}
 
+Sets `Status: 'Enabled'` to turn on versioning for the bucket. After versioning is enabled, every overwrite creates a new version instead of replacing the object. Use `'Suspended'` to pause versioning. `'Disabled'` is not a valid value.
+
 ```javascript
 const { PutBucketVersioningCommand } = require('ibm-cos-sdk-v2');
 
@@ -815,6 +848,8 @@ try {
 
 ### Listing object versions
 {: #node-v2-list-version}
+
+Returns all versions and delete markers for every object in a versioned bucket.
 
 ```javascript
 const { ListObjectVersionsCommand } = require('ibm-cos-sdk-v2');
@@ -846,6 +881,8 @@ try {
 
 ### Setting CORS configuration
 {: #node-v2-set-cors}
+
+Sets CORS rules on a bucket, defining allowed origins, methods, headers, exposed headers, and the preflight cache age. This operation replaces any existing CORS configuration.
 
 ```javascript
 const { PutBucketCorsCommand } = require('ibm-cos-sdk-v2');
@@ -879,6 +916,8 @@ try {
 ### Setting object tagging
 {: #node-v2-set-tagging}
 
+Applies a set of key-value tags to an object.
+
 ```javascript
 const { PutObjectTaggingCommand } = require('ibm-cos-sdk-v2');
 
@@ -892,16 +931,12 @@ const command = new PutObjectTaggingCommand({
   Tagging: {
     TagSet: [
       {
-        Key: 'Department',
-        Value: 'Finance'
+        Key: 'Environment',
+        Value: 'Development'
       },
       {
-        Key: 'Project',
-        Value: 'Q4-2024'
-      },
-      {
-        Key: 'Classification',
-        Value: 'Confidential'
+        Key: 'Owner',
+        Value: 'TeamA'
       }
     ]
   }
@@ -909,7 +944,7 @@ const command = new PutObjectTaggingCommand({
 
 try {
   await client.send(command);
-  console.log(`Tags set for object '${objectKey}'`);
+  console.log(`Object tagging set successfully for '${objectKey}'`);
 } catch (err) {
   console.error('Failed to set object tags:', err);
 }
@@ -920,6 +955,8 @@ try {
 
 ### Getting object tags
 {: #node-v2-get-object-tag}
+
+Retrieves the tag set for an object.
 
 ```javascript
 const { GetObjectTaggingCommand } = require('ibm-cos-sdk-v2');
@@ -982,6 +1019,8 @@ try {
 ### Setting object retention
 {: #node-v2-set-object-retention}
 
+Sets a retention period on a specific object, preventing deletion or overwrite until the retain-until date.
+
 **Governance mode**: Users with specific IAM permissions can delete object versions during the retention period.
 {: note}
 
@@ -1019,6 +1058,8 @@ try {
 ### Getting object retention
 {: #node-v2-get-object-retention}
 
+Reads the retention mode and retain-until date that are currently set on a specific object.
+
 ```javascript
 const { GetObjectRetentionCommand } = require('ibm-cos-sdk-v2');
 
@@ -1053,6 +1094,11 @@ S3 Object Lock prevents objects from being deleted or overwritten for a fixed re
 
 This section covers S3-compatible Object Lock. For IBM COS-specific WORM protection, see [Setting bucket protection (WORM)](#node-v2-bucket-protection) and [Managing legal holds](#node-v2-legal-hold).
 {: note}
+
+S3 Object Lock was not supported in v1 of the IBM COS SDK. All S3 Object Lock operations in this topic are v2-only.
+{: note}
+
+This example creates a bucket with Object Lock enabled and immediately sets a default `GOVERNANCE` retention rule of 30 days, so that all new objects are protected automatically.
 
 ```javascript
 const {
@@ -1127,6 +1173,8 @@ try {
 ### Getting Object Lock configuration
 {: #node-v2-get-object-lock-config}
 
+Retrieves the bucket's Object Lock enabled status and the default retention rule.
+
 ```javascript
 const { GetObjectLockConfigurationCommand } = require('ibm-cos-sdk-v2');
 
@@ -1171,6 +1219,8 @@ try {
 ### Getting S3 Object Lock legal hold
 {: #node-v2-get-object-legal-hold}
 
+Checks whether a legal hold is currently active (`ON`) or inactive (`OFF`) on the specified object.
+
 ```javascript
 const { GetObjectLegalHoldCommand } = require('ibm-cos-sdk-v2');
 
@@ -1190,6 +1240,8 @@ try {
 
 ### Checking if a bucket exists (HEAD)
 {: #node-v2-head-bucket}
+
+Checks whether a bucket exists and the caller has permission to access it, without returning any bucket content.
 
 ```javascript
 const { HeadBucketCommand } = require('ibm-cos-sdk-v2');
@@ -1213,6 +1265,8 @@ try {
 ### Streaming upload from a file
 {: #node-v2-stream-upload}
 
+Opens a file as a readable stream and passes it directly as the `Body` of a `PutObjectCommand` call, avoiding loading the entire file into memory.
+
 ```javascript
 const fs = require('fs');
 const { PutObjectCommand } = require('ibm-cos-sdk-v2');
@@ -1235,6 +1289,8 @@ try {
 
 ### Streaming download to a file
 {: #node-v2-stream-download}
+
+Retrieves an object as a stream and pipes it directly to a writable file stream. In v2, `response.Body` is a readable stream that can be piped or awaited.
 
 ```javascript
 const fs = require('fs');
@@ -1338,6 +1394,8 @@ npm install @ibm-cos/s3-request-presigner
 
 **Presigned GET URL (download):**
 
+Builds a `GetObjectCommand` and passes it to `getSignedUrl` from the presigner package to produce a time-limited URL (valid for 1 hour) that grants unauthenticated read access to the specified object.
+
 ```javascript
 const { GetObjectCommand } = require('ibm-cos-sdk-v2');
 const { getSignedUrl } = require('@ibm-cos/s3-request-presigner');
@@ -1356,6 +1414,8 @@ try {
 ```
 
 **Presigned PUT URL (upload):**
+
+Builds a `PutObjectCommand` and passes it to `getSignedUrl` to produce a pre-authenticated upload URL that is valid for 1 hour and scoped to a specific content type. A client can use the URL to upload an object directly to {{site.data.keyword.cos_full_notm}} without SDK credentials.
 
 ```javascript
 const { PutObjectCommand } = require('ibm-cos-sdk-v2');
@@ -1378,6 +1438,8 @@ try {
 ### Getting CORS configuration
 {: #node-v2-get-cors}
 
+Retrieves the current CORS configuration for a bucket, returning an array of `CORSRules` that describe allowed cross-origin access.
+
 ```javascript
 const { GetBucketCorsCommand } = require('ibm-cos-sdk-v2');
 
@@ -1395,6 +1457,8 @@ try {
 
 ### Deleting CORS configuration
 {: #node-v2-delete-cors}
+
+Removes all CORS rules from a bucket. After the rules are removed, cross-origin requests are no longer permitted.
 
 ```javascript
 const { DeleteBucketCorsCommand } = require('ibm-cos-sdk-v2');
@@ -1414,6 +1478,8 @@ try {
 ### Deleting object tags
 {: #node-v2-delete-object-tags}
 
+Removes all tags from an object.
+
 ```javascript
 const { DeleteObjectTaggingCommand } = require('ibm-cos-sdk-v2');
 
@@ -1432,6 +1498,8 @@ try {
 
 ### Uploading an object with custom metadata
 {: #node-v2-upload-object-metadata}
+
+Attaches arbitrary key-value pairs as user-defined metadata on an object at upload time by using the `Metadata` field. The metadata is readable on subsequent `HeadObject` or `GetObject` calls.
 
 ```javascript
 const { PutObjectCommand } = require('ibm-cos-sdk-v2');
@@ -1457,6 +1525,8 @@ try {
 ### Setting bucket tagging
 {: #node-v2-set-bucket-tagging}
 
+Applies a set of key-value tags to an entire bucket. This operation replaces any existing tag set.
+
 ```javascript
 const { PutBucketTaggingCommand } = require('ibm-cos-sdk-v2');
 
@@ -1481,6 +1551,8 @@ try {
 ### Deleting a bucket lifecycle configuration
 {: #node-v2-delete-bucket-lifecycle}
 
+Removes all lifecycle rules from a bucket, stopping any automated expiry or transition actions that were previously configured.
+
 ```javascript
 const { DeleteBucketLifecycleCommand } = require('ibm-cos-sdk-v2');
 
@@ -1498,6 +1570,8 @@ try {
 
 ### Setting bucket ACL
 {: #node-v2-set-bucket-acl}
+
+Applies a canned ACL (for example, `public-read`) to an entire bucket, replacing the existing access control policy and controlling default access for all objects within it.
 
 ```javascript
 const { PutBucketAclCommand } = require('ibm-cos-sdk-v2');
@@ -1517,6 +1591,8 @@ try {
 
 ### Getting bucket ACL
 {: #node-v2-get-bucket-acl}
+
+Retrieves the current ACL for a bucket, returning the owner identity and the list of grants (grantee and permission pairs).
 
 ```javascript
 const { GetBucketAclCommand } = require('ibm-cos-sdk-v2');
@@ -1538,6 +1614,8 @@ try {
 ### Setting object ACL
 {: #node-v2-set-object-acl}
 
+Applies a canned ACL to a specific object, independently of the bucket's ACL and overriding the bucket-level ACL for that key.
+
 ```javascript
 const { PutObjectAclCommand } = require('ibm-cos-sdk-v2');
 
@@ -1557,6 +1635,8 @@ try {
 
 ### Getting object ACL
 {: #node-v2-get-object-acl}
+
+Retrieves the ACL for a specific object, returning the owner identity and the grants that define who can read or write it.
 
 ```javascript
 const { GetObjectAclCommand } = require('ibm-cos-sdk-v2');
@@ -1579,6 +1659,8 @@ try {
 ### Getting versioning status
 {: #node-v2-get-versioning}
 
+Returns the current versioning status (`Enabled` or `Suspended`) of the bucket.
+
 ```javascript
 const { GetBucketVersioningCommand } = require('ibm-cos-sdk-v2');
 
@@ -1597,6 +1679,8 @@ try {
 
 ### Getting a specific object version
 {: #node-v2-get-object-version}
+
+Downloads a specific historical version of an object by supplying its `VersionId`, bypassing the current (latest) version.
 
 ```javascript
 const { GetObjectCommand } = require('ibm-cos-sdk-v2');
@@ -1712,9 +1796,9 @@ try {
 ### Managing legal holds
 {: #node-v2-legal-hold}
 
-Legal holds prevent object deletion regardless of retention period expiry. Each hold is identified by a unique ID and all holds must be explicitly removed before an object can be deleted.
+Legal holds are an {{site.data.keyword.cos_full_notm}}-specific feature (Immutable Object Storage). They prevent object deletion regardless of retention period expiry. Each hold is identified by a unique ID and all holds must be explicitly removed before an object can be deleted.
 
-**Note**: Legal holds require the bucket to have an IBM COS protection configuration set.
+**Note**: Legal holds require the bucket to have an IBM COS protection configuration set. These legal holds are distinct from [S3 Object Lock legal holds](#node-v2-put-object-legal-hold).
 {: note}
 
 **Adding a legal hold:**
@@ -1932,6 +2016,9 @@ try {
 {: #node-v2-waiters}
 
 Waiters poll a resource until it reaches a desired state, removing the need for manual polling loops.
+
+Waiters are a v2-only feature. v1 had no built-in waiter support, so polling (for example, repeatedly calling `headBucket` or `headObject`) had to be implemented manually.
+{: note}
 
 **Waiting for a bucket to exist:**
 
