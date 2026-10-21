@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-08-27"
+lastupdated: "2026-10-21"
 
 keywords: cyber vault, COS cyber vault, onboarding, beta program, support case, account registration, cyber resilience
 
@@ -105,4 +105,4 @@ After your account is enabled, you can proceed to create your first Cyber Vault.
 
 - [Provisioning an IBM Cloud Cyber Vault](/docs/cloud-object-storage?topic=cloud-object-storage-cyber-vault-provisioning) — step-by-step instructions for creating a vault by using the {{site.data.keyword.cloud_notm}} console or the COS Solutions API.
 - [IBM Cloud Cyber Vault overview](/docs/cloud-object-storage?topic=cloud-object-storage-cyber-vault-overview) — learn about the key capabilities, security controls, and architecture of the Cyber Vault solution.
-- Review the [Object Lock documentation](/docs/cloud-object-storage?topic=cloud-object-storage-object-lock) to understand compliance-mode retention behavior before you configure your vault.
+- Review the [Object Lock documentation](/docs/cloud-object-storage?topic=cloud-object-storage-ol-overview) to understand compliance-mode retention behavior before you configure your vault.

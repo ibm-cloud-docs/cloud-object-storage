@@ -90,7 +90,7 @@ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ```
 {: pre}
 
-Or, for Windows, you can use [`nvm` for Windows](https://github.com/coreybutler/nvm-windows){: external} with installers and source code at the link.
+Or, for Windows, you can use [`nvm` for Windows](https://github.com/nvm-windows/nvm){: external} with installers and source code at the link.
 
 Using `nvm`, install Node.
 
@@ -108,7 +108,7 @@ You're probably already familiar with Git, as it's the most widely used source c
 
 You need to generate and upload SSH keys to your [GitHub profile](https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) for secure access to GitHub from the command line. However, doing that now provides good practice, as you repeat the steps for the instance of GitHub used for the {{site.data.keyword.cloud_notm}} Platform later.
 
-For now, download the [GitHub Desktop](https://desktop.github.com/) and run the installer. When the installer finishes, log in to GitHub with your account.
+For now, download the [GitHub Desktop](https://github.com/apps/desktop) and run the installer. When the installer finishes, log in to GitHub with your account.
 
 Enter a name and email (this is displayed publicly) for any commits to your repository. Once the application is linked to your account, you might be asked to verify the application connection through your GitHub account online.
 

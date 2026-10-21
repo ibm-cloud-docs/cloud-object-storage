@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021, 2026
-lastupdated: "2026-05-14"
+lastupdated: "2026-10-21"
 
 keywords: data, versioning, loss prevention
 
@@ -93,7 +93,7 @@ A `responseData.deleteMarker.created` field is present when an object is deleted
 ## Usage and accounting
 {: #versioning-usage}
 
-All versions are metered as if they were equal objects.  This means that if a bucket contains a single object with five previous versions, the `object_count` field returned by the [Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration) will be `6`, even though it will appear as if there is only a single object in the bucket.  Likewise, accumulated versions contribute to total usage and are billable. In addition to the `object_count` field returned by the [Read Bucket Metadata API](https://cloud.ibm.com/apidocs/cos/cos-configuration), the API response body contains several new fields associated with versioning:
+All versions are metered as if they were equal objects.  This means that if a bucket contains a single object with five previous versions, the `object_count` field returned by the [Resource Configuration API](/docs/apis/cos/cos-configuration) will be `6`, even though it will appear as if there is only a single object in the bucket.  Likewise, accumulated versions contribute to total usage and are billable. In addition to the `object_count` field returned by the [Read Bucket Metadata API](/docs/apis/cos/cos-configuration), the API response body contains several new fields associated with versioning:
 
 - `noncurrent_object_count`: Number of non-current object versions in the bucket in `int64` format.
 - `noncurrent_bytes_used`: Total size of all non-current object versions in the bucket in `int64` format.

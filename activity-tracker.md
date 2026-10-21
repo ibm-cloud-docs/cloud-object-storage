@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2024, 2025
-lastupdated: "2025-03-24"
+lastupdated: "2026-10-21"
 
 keywords: events, activity, logging, buckets, tracking, logs, legacy
 
@@ -22,9 +22,6 @@ Use these services to track events on your {{site.data.keyword.cos_full}} bucket
 
 Use [IBM Cloud Activity Tracker Event Routing](/docs/cloud-object-storage?topic=cloud-object-storage-at#at-route-logs) to manage auditing events at the account-level by configuring targets and routes that define where auditing data is routed.
 
-This feature is not currently supported in [Object Storage for Satellite](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite).
-{: note}
-
 This feature supports [SCC monitoring](/docs/security-compliance).
 {: note}
 
@@ -36,7 +33,7 @@ As of 28 March 2024 the IBM Log Analysis and IBM Cloud Activity Tracker services
 
 Tracking {{site.data.keyword.cos_short}} events with {{site.data.keyword.at_full}} provides a record of what is happening with your data. The {{site.data.keyword.at_full_notm}} service provides the framework and functionality to monitor API calls to services on the IBM Cloud and produces the evidence to comply with corporate policies and market industry-specific regulations.
 
-See Getting started with [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started) to learn more.  [Migrate from {{site.data.keyword.at_full_notm}} to IBM Cloud Logs](/docs/activity-tracker?topic=activity-tracker-deprecation_migration) to avoid any disruption in event tracking.
+To continue tracking events, see [Getting started with {{site.data.keyword.at_full_notm}} Event Routing](/docs/atracker?topic=atracker-getting-started) and [Getting started with {{site.data.keyword.logs_full_notm}}](/docs/cloud-logs?topic=cloud-logs-getting-started).
 
 
 ## Using {{site.data.keyword.logs_full_notm}} to track bucket events
@@ -75,7 +72,7 @@ IBM COS also optionally supports tracking on these event types:
 
 Refer to the COS API events to see the full list of Management, Read Data, and Write Data actions that produce events.
 
-Use the [COS Resource Configuration API](/apidocs/cos/cos-configuration) to configure tracking of these events on your bucket
+Use the [COS Resource Configuration API](/docs/apis/cos/cos-configuration) to configure tracking of these events on your bucket
 
 When event tracking is enabled, all events are sent to the default receiving location for IBM Cloud Activity Tracker Event Router that are based on the location of the bucket. Refer to [IBM COS Service Integration](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability) to see this default mapping. Use Activity Tracker Event Router rules to route events to an alternative location or target service. See [Managing Rules](/docs/atracker?topic=atracker-route_v2) to learn more.
 
@@ -261,7 +258,7 @@ GO SDK example
 ## Configure Activity Tracking Events on your IBM Cloud Object Storage Bucket (Legacy)
 {: #at-configure-legacy}
 
-Enable IBM Activity Tracking on your COS bucket by specifying the target CRN of the Activity Tracker instance in the [COS Resource Configuration API](/apidocs/cos/cos-configuration). Specify the CRN to define the route for COS events.
+Enable IBM Activity Tracking on your COS bucket by specifying the target CRN of the Activity Tracker instance in the [COS Resource Configuration API](/docs/apis/cos/cos-configuration). Specify the CRN to define the route for COS events.
 
 Management events are always enabled when a CRN is set on the Activity Tracking configuration
 

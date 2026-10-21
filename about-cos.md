@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-02-03"
+lastupdated: "2026-10-21"
 
 keywords: about, object storage, overview, erasure coding, multiple writes, availability zone, bucket, integrity, s3, storage
 
@@ -28,8 +28,6 @@ All requests and responses are made over HTTPS and all requests support the use 
 Developers use APIs to interact with their object storage. {{site.data.keyword.cos_full_notm}} supports a subset of the S3 API for reading and writing data, as well as for bucket configuration. Additionally, there is a {{site.data.keyword.cos_short}} Resource Configuration API for reading and configuring bucket metadata. Software development kits (SDKs) are available for the Python, Java, Go, and the Node.js framework. A plug-in is available for the [{{site.data.keyword.cloud_notm}} Command Line Interface](/docs/cli?topic=cli-getting-started).
 
 The [{{site.data.keyword.cloud_notm}} console](https://cloud.ibm.com/){: external} provides a user interface for most operations and configuration as well.
-
-
 
 ## Cloud Object Storage IaaS (Legacy)
 {: #iaas}

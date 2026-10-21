@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-01-08"
+lastupdated: "2026-10-21"
 
 keywords: bucket, vault, management, restore
 
@@ -17,7 +17,7 @@ subcollection: cloud-object-storage
 
 {: #bvm-restore}
 
-Backup data is stored in a Backup Vault in the form of Recovery Ranges. Each Recovery Range represents a stretch of time for which backup coverage exists for a specific {{site.data.keyword.cos_full_notm}} bucket. For more information on Recovery Ranges and how they are created, see [recovery ranges](docs-draft/cloud-object-storage?topic=cloud-object-storage-bvm-recovery-ranges). When using the backup data contained within a Recovery Range, it must be written to some {{site.data.keyword.cos_full_notm}} bucket by using a  `Restore` operation.
+Backup data is stored in a Backup Vault in the form of Recovery Ranges. Each Recovery Range represents a stretch of time for which backup coverage exists for a specific {{site.data.keyword.cos_full_notm}} bucket. For more information on Recovery Ranges and how they are created, see [recovery ranges](/docs/cloud-object-storage?topic=cloud-object-storage-bvm-recovery). When using the backup data contained within a Recovery Range, it must be written to some {{site.data.keyword.cos_full_notm}} bucket by using a  `Restore` operation.
 
 
 ## Prerequisites to Restore

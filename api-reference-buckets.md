@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-07-22"
+lastupdated: "2026-10-21"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -40,8 +40,6 @@ When authenticating to your instance of {{site.data.keyword.cos_full}} by [using
 {: #compatibility-api-list-buckets}
 
 A `GET` request that is sent to the endpoint root returns a list of buckets that are associated with the specified service instance. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
-
-
 
 |Header                    | Type   | Required? | Description
 |--------------------------|--------|-----------|---------------------------------------------------------
@@ -195,8 +193,6 @@ A `PUT` request that is sent to the endpoint root and followed by a string creat
 Bucket names must be unique because all buckets in the public cloud share a global namespace. This requirement allows for access to a bucket without needing to provide any service instance or account information. It is also not possible to create a bucket with a name beginning with `cosv1-` or `account-` as these prefixes are reserved by the system.
 {: important}
 
-
-
 | Header                             | Type    | Required? | Description                                                                                                          |
 |------------------------------------|---------|-----------|----------------------------------------------------------------------------------------------------------------------|
 | `ibm-service-instance-id`          | String  | Yes       | This header references the service instance where the bucket is to be created and to which data usage can be billed. |
@@ -262,8 +258,6 @@ Content-Length: 0
 {: #compatibility-api-storage-class}
 
 To create a bucket with a different storage class, send an XML block that specifies a bucket configuration with a `LocationConstraint` of `{provisioning code}` in the body of a `PUT` request to a bucket endpoint. For more information about endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints). Standard bucket [naming rules](#compatibility-api-new-bucket) apply. This operation doesn't use operation-specific query parameters.
-
-
 
 ||Header                    | Type   | Description |
 |--------------------------|--------|---------------------------------------------------------------------------------------------------------------------
@@ -352,8 +346,6 @@ For more information about {{site.data.keyword.hscrypto}}, [see the documentatio
 Managed encryption for a Cross Region bucket **must** use a root key from a Key Protect instance in the nearest [high-availability location](/docs/key-protect?topic=key-protect-ha-dr) (`us-south` or `jp-tok`).
 {: important}
 
-
-
 |Header                             | Type   | Description
 |-----------------------------------|--------|---------------------------------------------------------|
 |`ibm-service-instance-id`          | String | This header references the service instance where the bucket is to be created and to which data usage can be billed.|
@@ -420,8 +412,6 @@ A `HEAD` issued to a bucket returns the headers for that bucket.
 
 `HEAD` requests don't return a body and thus can't return specific error messages such as `NoSuchBucket`, only `NotFound`.
 {: tip}
-
-
 
 **Syntax**
 
@@ -517,8 +507,6 @@ ibm-sse-kp-crk-id: {customer-root-key-id}
 {: #compatibility-api-list-objects-v2}
 
 A `GET` request addressed to a bucket returns a list of objects, limited to 1,000 at a time and returned in non-lexicographical order. The `StorageClass` value that is returned in the response is a default value as storage class operations are not implemented in {{site.data.keyword.cos_short}}. This operation doesn't use operation-specific headers or payload elements.
-
-
 
 **Syntax**
 
@@ -750,8 +738,6 @@ Content-Length: 604
 *This API is included for compatibility with an earlier version.* See [Version 2](#compatibility-api-list-objects-v2) for the recommended method of retrieving objects in a bucket.
 {: note}
 
-
-
 A `GET` request addressed to a bucket returns a list of objects, limited to 1,000 at a time and returned in non-lexicographical order. The `StorageClass` value that is returned in the response is a default value as storage class operations are not implemented in {{site.data.keyword.cos_short}}. This operation doesn't use operation-specific headers or payload elements.
 
 **Syntax**
@@ -873,8 +859,6 @@ A `DELETE` request that is issued to an empty bucket deletes the bucket. The nam
 
 If the {{site.data.keyword.cos_short}} service instance is deleted, all bucket names in that instance are held in reserve by the system for 7 days. After 7 days, the names are released for re-use.
 
-
-
 **Syntax**
 
 ```sh
@@ -931,8 +915,6 @@ If a non-empty bucket is requested for deletion, the server responds with `409 C
 
 ### Configure Object Lock on an existing bucket
 {: #compatibility-api-object-lock-configuration}
-
-
 
 A `PUT` request that is addressed to an empty bucket with the `?object-lock` query parameter sets a new object lock configuration on a bucket.
 
@@ -1017,8 +999,6 @@ Content-Length: 909
 {: #compatibility-api-list-canceled-multipart}
 
 A `GET` issued to a bucket with the proper parameters retrieves information about any canceled or incomplete multipart uploads for a bucket.
-
-
 
 **Syntax**
 
@@ -1126,8 +1106,6 @@ Content-Length: 374
 
 A `GET` issued to a bucket with the proper parameters retrieves information about cross-origin resource sharing (CORS) configuration for a bucket.
 
-
-
 **Syntax**
 
 ```sh
@@ -1192,8 +1170,6 @@ Content-Length: 123
 {: #compatibility-api-add-cors}
 
 A `PUT` issued to a bucket with the proper parameters creates or replaces a cross-origin resource sharing (CORS) configuration for a bucket.
-
-
 
 **Syntax**
 
@@ -1294,8 +1270,6 @@ Content-Length: 0
 
 A `DELETE` issued to a bucket with the proper parameters creates or replaces a cross-origin resource sharing (CORS) configuration for a bucket.
 
-
-
 **Syntax**
 
 ```sh
@@ -1337,8 +1311,6 @@ The server responds with `204 No Content`.
 {: #compatibility-api-list-constraint}
 
 A `GET` issued to a bucket with the proper parameter retrieves the location information for a bucket.
-
-
 
 **Syntax**
 
@@ -1401,8 +1373,6 @@ Content-Length: 161
 A `PUT` operation uses the lifecycle query parameter to set lifecycle settings for the bucket. A `Content-MD5` header or a `checksum` header (including `x-amz-checksum-crc32`, `x-amz-checksum-crc32c`, `x-amz-checksum-crc64nvme`, `x-amz-checksum-sha1`, or `x-amz-checksum-sha256`) is required as an integrity check for the payload.
 
 The following snippet shows one way to achieve the content for the `Content-MD5` header, which is the binary representation of a base64-encoded MD5 hash.
-
-
 
 **Syntax**
 
@@ -1728,8 +1698,6 @@ For more about using lifecycle configuration to delete objects, check out the [d
 
 This implementation of the `PUT` operation uses the `lifecycle` query parameter to set lifecycle settings for the bucket. This operation allows for a single lifecycle policy definition for a bucket. The policy is defined as a set of rules that consists of the following parameters: `ID`, `Status`, `Filter`, and `Expiration`.
 
-
-
 | Header       | Type   | Description |
 |--------------|--------|----------------------------------------------------------------------------------------------------------------------|
 |`Content-MD5` | String | The Base64 encoded 128-bit MD5 hash of the payload, which is used as an integrity check to ensure that the payload wasn't altered in transit.|
@@ -1882,8 +1850,6 @@ This operation doesn't use extra query parameters. The `Content-MD5` header or t
 Policies are enforced until the end of a retention period, and cannot be altered until the retention period has expired. While {{site.data.keyword.cos_full}} uses the S3 API for most operations, the APIs that are used for configuring retention policies are not the same as the S3 API, although some terminology might be shared. Read this documentation carefully to prevent any users in your organization from creating objects that can’t be deleted, even by IBM Cloud administrators.
 {: important}
 
-
-
 ```sh
 echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 ```
@@ -1969,8 +1935,6 @@ Content-Length: 0
 
 A `PUT` issued to a bucket with the proper parameters creates or replaces a static website configuration for a bucket.
 
-
-
 **Syntax**
 
 ```sh
@@ -2054,8 +2018,6 @@ Content-Length: 0
 
 A `DELETE` request that is issued to a bucket with the proper parameters removes the website configuration for a bucket.
 
-
-
 **Syntax**
 
 ```sh
@@ -2097,8 +2059,6 @@ The server responds with `204 No Content`.
 {: #compatibility-api-add-block}
 
 A `PUT` request that is issued to a bucket with the proper parameters prevents adding public access ACLs on a bucket. It can be set either to fail new ACL requests, or to ignore them. `BlockPublicAcls` does not affect existing ACLs, but `IgnorePublicAcls` ignores existing ACLs. **This operation does not affect IAM Public Access policies.**
-
-
 
 **Syntax**
 
@@ -2218,8 +2178,6 @@ Content-Length: 248
 
 A `DELETE` issued to a bucket with the proper parameters removes the public ACL block from a bucket.
 
-
-
 **Syntax**
 
 ```sh
@@ -2264,7 +2222,7 @@ The server responds with `204 No Content`.
 The {{site.data.keyword.cos_full}} Backup Policy API provides operations for creating, managing, and interacting with backup policies. Backup policies define how data in buckets is backed up to backup vaults.
 {: shortdesc}
 
-For more information about permissions and access, see [Backup Policy permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-backup-policy-permissions).
+For more information about permissions and access, see [Backup Policy permissions](/docs/cloud-object-storage?topic=cloud-object-storage-bvm-access-control).
 {: tip}
 
 ### Create a Backup Policy
@@ -2466,7 +2424,7 @@ HTTP/1.1 204 No Content
 
 ----
 
-For more information about backup policy operations, see [Backup vault management](/docs-draft/cloud-object-storage?topic=cloud-object-storage-bvm-overview).
+For more information about backup policy operations, see [Backup vault management](/docs/cloud-object-storage?topic=cloud-object-storage-bvm-overview).
 ## Next Steps
 {: #api-ref-buckets-next-steps}
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2024-11-14"
+lastupdated: "2026-10-21"
 
 keywords: data,portability
 
@@ -42,21 +42,20 @@ Further, more detailed information and examples for commands to extract your inf
 
 - [Bucket operations](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations) provides detailed examples about bucket operations.
 - [Object operations](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations) discusses object operations.
-- [{{site.data.keyword.cos_full_notm}} S3 API](/apidocs/cos/cos-compatibility) discusses s3 API detail and how to use the methods.
+- [{{site.data.keyword.cos_full_notm}} S3 API](/docs/apis/cos/cos-compatibility) discusses s3 API detail and how to use the methods.
 
 Moreover {{site.data.keyword.cos_full_notm}} provides mechanisms to export settings and configuration used to process the customer's content.
 
-- [COS Resource Configuration API](/apidocs/cos/cos-configuration) details bucket configuration.
+- [COS Resource Configuration API](/docs/apis/cos/cos-configuration) details bucket configuration.
 
 ## Exported data formats
 {: #data-portability-data-formats}
 
 As {{site.data.keyword.cos_full_notm}} is a data architecture for storing unstructured data securely, without a schema.  You must manage how you store data in your buckets.
 
-The format of the data output exported using the methods outlined in the Data export procedures are also covered in the {{site.data.keyword.cos_full_notm}} S3 API [documentation](/apidocs/cos/cos-compatibility).
+The format of the data output exported using the methods outlined in the Data export procedures are also covered in the {{site.data.keyword.cos_full_notm}} S3 API [documentation](/docs/apis/cos/cos-compatibility).
 
 ## Data ownership
 {: #data-portability-ownership}
 
-All exported data is classified as your content. Apply your full ownership and licensing rights, as stated in the [IBM Cloud Service Agreement](https://www.ibm.com/terms/?id=Z126-6304_WS).
-
+All exported data is classified as your content. Apply your full ownership and licensing rights, as stated in the [IBM Cloud Service Agreement](https://www.ibm.com/support/customer/csol/terms/?id=Z126-6304_WS).

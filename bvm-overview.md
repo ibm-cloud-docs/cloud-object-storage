@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-11-03"
+lastupdated: "2026-10-21"
 
 keywords: bucket, vault, management
 
@@ -144,7 +144,7 @@ Host: config.cloud-object-storage.cloud.ibm.com
 
 Actions within a `BackupVault` are controlled in the same manner as other resources within {{site.data.keyword.cos_full_notm}}.
 
-See [Getting Started with IAM](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-with-iam), [IAM overview](/docs/cloud-object-storage?topic=cloud-object-storage-iam-overview) and [Service credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) for general details on how IAM works with {{site.data.keyword.cos_full_notm}}. IAM actions on `BackupVaults` are distinct from IAM actions on {{site.data.keyword.cos_full_notm}} buckets. The actions specific to `BackupVaults` are contained within the `BackupReader` and `BackupManager` roles.
+See [Getting Started with IAM](/docs/cloud-object-storage?topic=cloud-object-storage-iam), [IAM overview](/docs/cloud-object-storage?topic=cloud-object-storage-iam-overview) and [Service credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) for general details on how IAM works with {{site.data.keyword.cos_full_notm}}. IAM actions on `BackupVaults` are distinct from IAM actions on {{site.data.keyword.cos_full_notm}} buckets. The actions specific to `BackupVaults` are contained within the `BackupReader` and `BackupManager` roles.
 
 
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-07-20"
+lastupdated: "2026-10-21"
 
 keywords: object storage, java, sdk
 
@@ -1633,7 +1633,7 @@ The following items are necessary in order to create a bucket with Key-Protect e
 {: #java-examples-kp-root}
 
 1. Retrieve the [instance ID](/docs/key-protect?topic=key-protect-retrieve-instance-ID) for your Key Protect service
-1. Use the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
+1. Use the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api) to retrieve all your [available keys](/docs/apis/key-protect)
     * You can either use `curl` commands or an API REST Client such as [Postman](/docs/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api).
 1. Retrieve the CRN of the root key you will use to enabled Key Protect on the your bucket. The CRN will look similar to below:
 
@@ -1770,7 +1770,7 @@ String crn = result.getIBMSSEKPCUSTOMERROOTKEYCRN();
 ## Using Aspera High-Speed Transfer
 {: #java-examples-aspera}
 
-By installing the [Aspera high-speed transfer library](/docs/cloud-object-storage?topic=cloud-object-storage-aspera#aspera-packaging) you can utilize high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license).
+By installing the [Aspera high-speed transfer library](/docs/cloud-object-storage?topic=cloud-object-storage-aspera#aspera-transfer-sdk) you can utilize high-speed file transfers within your application. The Aspera library is closed-source, and thus an optional dependency for the COS SDK (which uses an Apache license).
 
 Each Aspera high-speed transfer session spawns an individual `ascp` process that runs on the client machine to perform the transfer. Ensure that your computing environment can allow this process to run.
 {: tip}

@@ -91,7 +91,7 @@ For this tutorial, you need:
 
     Before you get started, you need:
 
-    - An instance of [Activity Tracker](/docs/activity-tracker?topic=activity-tracker-getting-started)
+    - [Activity Tracker Event Routing](/docs/atracker?topic=atracker-getting-started) configured to route events to an [{{site.data.keyword.logs_full_notm}}](/docs/cloud-logs?topic=cloud-logs-getting-started) instance
     - A user ID with [administrator platform permissions](/docs/account?topic=account-userroles) and the service access [writer role](/docs/account?topic=account-userroles#service_access_roles).
 
      1. Scroll down to the **Monitoring and activity tracking** section and toggle the radio button to **Activity tracking enabled**. Select an appropriate plan, and give the new instance a memorable name. As you may likely want to create the Activity Tracker instance in the same region as the bucket (for example, `us-east`) you could name the instance something like `US East AT` so that you can easily find it later.

@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2026
 
-lastupdated: "2026-06-08"
+lastupdated: "2026-10-21"
 
 keywords: aspera, key protect, archive, worm
 
@@ -28,8 +28,7 @@ For more information about the following services, be sure to check out the resp
 * [Archive Data](/docs/cloud-object-storage?topic=cloud-object-storage-archive)
 * [Object Lock](/docs/cloud-object-storage?topic=cloud-object-storage-ol-overview)
 * [Immutable Object Storage](/docs/cloud-object-storage?topic=cloud-object-storage-immutable)
-* [Activity Tracker](/docs/activity-tracker?topic=activity-tracker-getting-started)
-* [Functions](/docs/cloud-object-storage?topic=cloud-object-storage-functions)
+* [Activity Tracker Event Routing](/docs/atracker?topic=atracker-getting-started)
 * [Code Engine](/docs/cloud-object-storage?topic=cloud-object-storage-code-engine)
 * [Smart Tier](/docs/cloud-object-storage?topic=cloud-object-storage-billing#smart-tier-pricing)
 * [Metrics Routing](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration)
@@ -85,7 +84,6 @@ It is possible to create a bucket in any of the listed Cloud Object Storage regi
 | `par01` | No     | No          | No                             | No           | Yes          | No                       | `eu-de`                  | No          | Yes        | `eu-de`         | Yes         | Yes        | Yes             |
 | `sjc04` | No     | No          | No                             | No           | Yes          | No                       | `us-south`               | No          | Yes        | `us-south`      | Yes         | Yes        | Yes             |
 | `sng01` | No     | No          | No                             | No           | Yes          | No                       | `ap-tok`                 | No          | Yes        | `ap-tok`        | Yes         | Yes        | Yes             |
-
 ## More information
 {: #service-availability-more-info}
 

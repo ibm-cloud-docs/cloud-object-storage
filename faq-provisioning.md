@@ -42,7 +42,7 @@ ibmcloud resource search "service_name:cloud-object-storage AND 2fdf0c08-2d32-4f
 
 * Using the Console
 
-   1. Upgrade your account to a [Pay-As-You-Go account](https://cloud.ibm.com/docs/account?topic=account-upgrading-account).
+   1. Upgrade your account to a [Pay-As-You-Go account](/docs/account?topic=account-upgrading-account).
    1. Go to the [IBM Cloud Object Storage console](https://cloud.ibm.com/objectstorage).
    1. Using the left navigation panel, select the name of the Cloud Object Storage instance you want to upgrade.
    1. Click `Plan` in the navigation menu, located after `Instance Usage`. The `Plan` tab for a Lite Plan instance displays a `Change Pricing Plan` section.

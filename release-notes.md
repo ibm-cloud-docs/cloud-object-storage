@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2026
 
-lastupdated: "2026-09-21"
+lastupdated: "2026-10-21"
 
 
 keywords: updates, releases, news, object storage, buckets, fine grained access control, iam, policy, region, cli, monitoring, object lock, encryption, key protect, hyper protect crypto services, immutable object storage, satellite, versioning, metrics router, activity tracker routing, routing, monitoring, data vault
@@ -124,7 +124,7 @@ New location!
 {: release-note}
 
 {{site.data.keyword.cos_full}} for {{site.data.keyword.satellitelong}} is deprecated
-:   {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} is a managed object storage service that can be deployed on IBM Satellite for clients to store data closer to their applications and data sources, whether on-premises, at the edge, or in a multi-cloud environment. This service is being deprecated due to changes in market expectations, client fit, and lack of adoption. After December 16, 2025, this service is no longer supported. For more information, see [Deprecation overview](/docs/cloud-object-storage?topic=cloud-object-storage-deprecation-cos-satellite).
+:   {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}} is a managed object storage service that can be deployed on IBM Satellite for clients to store data closer to their applications and data sources, whether on-premises, at the edge, or in a multi-cloud environment. This service was deprecated due to changes in market expectations, client fit, and lack of adoption, and is no longer supported as of December 16, 2025.
 
 ## 20 August 2024
 {: #cloud-object-storage-aug2024}
@@ -159,7 +159,7 @@ Aspera available in the Chennai Single Data Center
 {: release-note}
 
 Cloud Functions update
-:   {{site.data.keyword.openwhisk}} is deprecated. Existing Functions entities such as actions, triggers, or sequences will continue to run, but as of 28 December 2023, you can’t create new Functions entities. Existing Functions entities are supported until October 2024. Any Functions entities that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+:   {{site.data.keyword.openwhisk}} is deprecated. Existing Functions entities such as actions, triggers, or sequences will continue to run, but as of 28 December 2023, you can’t create new Functions entities. Existing Functions entities are supported until October 2024. Any Functions entities that still exist on that date will be deleted.
 
 ## 05 March 2024
 {: #cloud-object-storage-mar0524}
@@ -173,7 +173,7 @@ Support available for Code Engine in Madrid
 {: release-note}
 
 New feature!
-:   You can configure a bucket into a state of Protection Management using the [Resource Configuration API](/apidocs/cos/cos-configuration) if you have approval from IBM Cloud support and Offering Management.
+:   You can configure a bucket into a state of Protection Management using the [Resource Configuration API](/docs/apis/cos/cos-configuration) if you have approval from IBM Cloud support and Offering Management.
 
 ## 30 November 2023
 {: #cloud-object-storage-nov3023}
@@ -187,7 +187,7 @@ New feature!
 {: release-note}
 
 Activity Tracker and Monitoring update
-:   Buckets can be created in the `eu-es` region for Madrid regional using [{{site.data.keyword.at_full_notm}}](/docs/activity-tracker?topic=activity-tracker-getting-started) and [{{site.data.keyword.mon_full}}](/docs/monitoring?topic=monitoring-getting-started).
+:   Buckets can be created in the `eu-es` region for Madrid regional using {{site.data.keyword.at_full_notm}} and [{{site.data.keyword.mon_full}}](/docs/monitoring?topic=monitoring-getting-started).
 
 ## 16 October 2023
 {: #cloud-object-storage-oct1623}
@@ -349,7 +349,7 @@ New feature!
 {: release-note}
 
 Activity tracking update
-:   Updates to a bucket's metadata using the [Resource Configuration API](/apidocs/cos/cos-configuration) (such as [adding or modifying a firewall](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall)) will now show the details of the change in the `requestData` fields shown in [Activity Tracker](/docs/cloud-object-storage?topic=cloud-object-storage-at).
+:   Updates to a bucket's metadata using the [Resource Configuration API](/docs/apis/cos/cos-configuration) (such as [adding or modifying a firewall](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall)) will now show the details of the change in the `requestData` fields shown in [Activity Tracker](/docs/cloud-object-storage?topic=cloud-object-storage-at).
 
 ## 15 December 2020
 {: #cloud-object-storage-dec1520}
@@ -385,7 +385,7 @@ Encryption updates
 {: release-note}
 
 New feature!
-:   Data can now be [archived](/docs/cloud-object-storage?topic=cloud-object-storage-archive) using an Accelerated class that allows restoration of archived objects in under two hours for an [additional cost](https://www.ibm.com/products/cloud-object-storage/pricing).
+:   Data can now be [archived](/docs/cloud-object-storage?topic=cloud-object-storage-archive) using an Accelerated class that allows restoration of archived objects in under two hours for an [additional cost](https://www.ibm.com/products/cloud-object-storage).
 
 ## 30 April 2020
 {: #cloud-object-storage-apr3020}
@@ -435,7 +435,7 @@ New location!
 {: release-note}
 
 New feature!
-:   Changes made to object storage data can be used as an [event source for Cloud Functions](/docs/cloud-object-storage?topic=cloud-object-storage-functions).
+:   Changes made to object storage data can be used as an event source for Cloud Functions.
 
 ## 28 August 2019
 {: #cloud-object-storage-aug2819}
@@ -553,7 +553,7 @@ New location!
 :   Buckets can now be created in an AP Cross Region configuration. Data stored in these buckets is distributed across the Seoul, Tokyo, and Hong Kong data centers. More information can be found in the [Select Regions and Endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints).
 
 New feature!
-:   Users can run `SELECT` SQL queries directly against structured data objects using {{site.data.keyword.sqlquery_full}}. More information can be found in the [{{site.data.keyword.sqlquery_short}} documentation](/docs/sql-query?topic=sql-query-overview).
+:   Users can run `SELECT` SQL queries directly against structured data objects using {{site.data.keyword.sqlquery_full}}.
 
 ## 7 March 2018
 {: #cloud-object-storage-mar718}

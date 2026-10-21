@@ -2,7 +2,7 @@
 
 copyright:
    years: 2022, 2026
-lastupdated: "2026-04-29"
+lastupdated: "2026-10-21"
 
 keywords: tutorials, key protect, bucket, encryption
 
@@ -32,7 +32,7 @@ Before you plan on using Key Protect with Cloud Object Storage buckets, you need
 
 - An [IBM Cloud™ Platform account](http://cloud.ibm.com/)
 - An [instance of IBM Cloud Object Storage](/objectstorage/create)
-- An [instance of Key Protect](key-protect/key-protect-about)
+- An [instance of Key Protect](/docs/key-protect?topic=key-protect-about)
 
 As of 1 January 2025, five key versions per account are no longer free. You are charged for each key version, starting with the first created key.
 {: important}
@@ -44,7 +44,7 @@ You will also need to ensure that a service instance is created by using the [IB
 * Standard (multi-tenant): A cost-effective solution with FIPS 140-2 Level 3 compliance and shared HSM infrastructure. IBM manages the HSM master keys.
 * Dedicated (single-tenant): Enhanced security with FIPS 140-3 Level 4 compliance (submitted for certification), dedicated HSM partitions, and complete workload isolation. You own and manage your own master keys with no IBM administrator access.
 
-For more information about choosing between Standard and Dedicated, see [About Standard and Dedicated {{site.data.keyword.keymanagementserviceshort}}](/docs-draft/key-protect?topic=key-protect-about).
+For more information about choosing between Standard and Dedicated, see [About Standard and Dedicated {{site.data.keyword.keymanagementserviceshort}}](/docs/key-protect?topic=key-protect-about).
 
 ## Create a new encryption key
 {: #kp-create-encryption-key}

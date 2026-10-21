@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-05-28"
+lastupdated: "2026-10-21"
 
 keywords: rest, api, backup, vault
 
@@ -45,7 +45,7 @@ When authenticating to your instance of {{site.data.keyword.cos_full}} by [using
 The {{site.data.keyword.cos_full}} Backup Vault API provides operations for creating, managing, and interacting with backup vaults. Backup vaults are used to store backups of buckets and their objects.
 {: shortdesc}
 
-For more information about permissions and access, see [Backup Vault permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-backup-vault-permissions).
+For more information about permissions and access, see [Backup Vault permissions](/docs/cloud-object-storage?topic=cloud-object-storage-bvm-access-control).
 {: tip}
 
 ### List Backup Vaults
@@ -290,7 +290,7 @@ For more information about backup vault operations, see [Backup vault management
 The {{site.data.keyword.cos_full}} Recovery Range API provides operations for listing and retrieving recovery ranges. Recovery ranges represent the time intervals during which data in a backup vault can be restored.
 {: shortdesc}
 
-For more information about permissions and access, see [Recovery Range permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-recovery-range-permissions).
+For more information about permissions and access, see [Recovery Range permissions](/docs/cloud-object-storage?topic=cloud-object-storage-bvm-access-control).
 {: tip}
 
 ---
@@ -466,7 +466,7 @@ For more information about recovery range operations, see [Backup vault manageme
 The {{site.data.keyword.cos_full}} Restore API provides operations for initiating and managing restore operations. Restore operations allow you to recover data from a backup vault to a target bucket.
 {: shortdesc}
 
-For more information about permissions and access, see [Restore permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-restore-permissions).
+For more information about permissions and access, see [Restore permissions](/docs/cloud-object-storage?topic=cloud-object-storage-bvm-access-control).
 {: tip}
 
 ---

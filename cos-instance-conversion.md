@@ -3,7 +3,7 @@
 copyright:
   years: 2026
 
-lastupdated: "2026-08-06"
+lastupdated: "2026-10-21"
 
 keywords: classic infrastructure, instance conversion, softlayer, migrate, cos classic, end of support, EOS
 
@@ -105,7 +105,7 @@ After conversion, you can use IBM Cloud IAM to provide fine-grained access to yo
 
 IAM also enables the use of Service IDs, Access Groups, and Access Policies at both the bucket level and the instance level.
 
-The conversion process allows you to continue using the same HMAC credentials used with the legacy instance, with the option of later adopting advanced IAM capabilities. For more information, see [Getting started with IAM](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-with-iam).
+The conversion process allows you to continue using the same HMAC credentials used with the legacy instance, with the option of later adopting advanced IAM capabilities. For more information, see [Getting started with IAM](/docs/cloud-object-storage?topic=cloud-object-storage-iam).
 
 ### Storage classes
 {: #cos-instance-conversion-storage-classes}
@@ -124,7 +124,7 @@ After conversion, users can no longer view existing service credentials unless t
 
 If your team members require access to service credentials after conversion, assign them the Administrator role on the {{site.data.keyword.cos_full_notm}} instance. This assignment can be made before or after the conversion.
 
-For more information, see [Viewing a service credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials#viewing-a-service-credential), [Resource Controller API reference](/docs/apis/resource-controller/resource-controller#get-resource-key), and [Getting started with IAM](/docs/cloud-object-storage?topic=cloud-object-storage-iam).
+For more information, see [Viewing a service credential](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials), [Resource Controller API reference](/docs/apis/resource-controller/resource-controller#get-resource-key), and [Getting started with IAM](/docs/cloud-object-storage?topic=cloud-object-storage-iam).
 
 
 ## Potential application impacts

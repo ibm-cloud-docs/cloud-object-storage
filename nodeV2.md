@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-10-14"
+lastupdated: "2026-10-21"
 
 keywords: object storage, node, javascript, sdk
 
@@ -53,7 +53,7 @@ npm install ibm-cos-sdk-v2
 * Token acquisition endpoint
 * Service endpoint
 
-These values can be found in the IBM Cloud Console by [generating a 'service credential'](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials).
+These values can be found in the IBM Cloud Console by [generating a 'service credential'](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials).
 
 ### Import packages
 {: #node-v2-import-packages}

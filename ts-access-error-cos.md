@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2025, 2025
-lastupdated: "2025-09-22"
+  years: 2025, 2026
+lastupdated: "2026-10-21"
 
 keywords: 403 error, access denied
 
@@ -46,7 +46,7 @@ Use the following steps to troubleshoot and resolve the error and ensure that yo
     1. If you enabled fine-grained access controls, verify that the credentials allow operations on the specific bucket or objects.
     1. Update or adjust the assigned policies as needed.
 
-    For more information about Identity and Access Management (IAM) roles, see [Getting Started with IAM](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-with-iam).
+    For more information about Identity and Access Management (IAM) roles, see [Getting Started with IAM](/docs/cloud-object-storage?topic=cloud-object-storage-iam).
 
 1. Validate tokens and endpoints
 

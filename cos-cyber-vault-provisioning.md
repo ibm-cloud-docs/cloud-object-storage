@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-08-27"
+lastupdated: "2026-10-21"
 
 keywords: cyber vault, COS cyber vault, provisioning, create vault, object lock, CBR, Key Protect, IAM, time window, retention, HMAC, credentials, auto_hmac, service_id
 
@@ -124,7 +124,7 @@ Click **Save** in the panel to add the restriction to the list. Repeat to add mu
 
 The **Encryption** section is informational. In the Beta release, encryption is provider-managed only. {{site.data.keyword.IBM_notm}} automatically creates and rotates AES-256 keys for the vault. No key management is required.
 
-To use a customer-managed root key (Bring Your Own Key), use the [{{site.data.keyword.cos_full_notm}} Solutions API](#cyber-vault-provisioning-api) and set `encryption_config.type` to `customer_managed`.
+To use a customer-managed root key (Bring Your Own Key), use the [{{site.data.keyword.cos_full_notm}} Solutions API](/docs/cloud-object-storage?topic=cloud-object-storage-cyber-vault-provisioning&interface=api#cyber-vault-provisioning-api) and set `encryption_config.type` to `customer_managed`.
 
 ### Step 8: Accept the license and create the vault
 {: #cyber-vault-ui-step-8}
@@ -632,6 +632,6 @@ After your vault is provisioned and its status is `active`, you can:
 
 - **Retrieve your HMAC credentials**: Use `GET /v1/cyber_vaults/{vault_id}?include_credentials=true` to retrieve the write and read `access_key_id` and `secret_access_key` values. Configure your backup software with the write HMAC key and the vault's `vault_private_endpoint` as the S3 target.
 - **Upload objects**: Use the vault's `vault_private_endpoint` or `vault_direct_endpoint` with standard S3-compatible tools or the {{site.data.keyword.cos_short}} SDKs to write backup data to the vault.
-- **Verify retention locks**: After writing an object, use the COS Object Lock API to confirm that the compliance-mode retention lock was applied. See the [Object Lock documentation](/docs/cloud-object-storage?topic=cloud-object-storage-object-lock) for details.
+- **Verify retention locks**: After writing an object, use the COS Object Lock API to confirm that the compliance-mode retention lock was applied. See the [Object Lock documentation](/docs/cloud-object-storage?topic=cloud-object-storage-ol-overview) for details.
 - **Configure monitoring**: Enable {{site.data.keyword.logs_full_notm}} on the underlying COS bucket to audit all object access and configuration change events. See [Tracking events on your {{site.data.keyword.cos_full_notm}} buckets](/docs/cloud-object-storage?topic=cloud-object-storage-at) for instructions.
 - **Check vault status**: Poll the vault status endpoint (`GET /v1/cyber_vaults/{vault_id}/status`) to monitor the vault lifecycle.

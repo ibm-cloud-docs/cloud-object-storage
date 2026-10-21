@@ -75,7 +75,7 @@ Yes, {{site.data.keyword.cos_short}} encrypts all data.
 {: #faq-encrypt-fips}
 {: faq}
 
-Yes, the IBM COS Federal offering is approved for FedRAMP Moderate Security controls, which require a validated FIPS configuration. IBM COS Federal is certified at FIPS 140-2 level 1. For more information on COS Federal offering, [contact us](https://www.ibm.com/cloud/government) via our Federal site.
+Yes, the IBM COS Federal offering is approved for FedRAMP Moderate Security controls, which require a validated FIPS configuration. IBM COS Federal is certified at FIPS 140-2 level 1. For more information on COS Federal offering, [contact us](https://www.ibm.com/products/cloud/government) via our Federal site.
 
 ## Is client-key encryption supported?
 {: #faq-encrypt-client}

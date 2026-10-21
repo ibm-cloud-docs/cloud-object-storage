@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-04-01"
+lastupdated: "2026-10-21"
 
 keywords: object storage, backup, immutable, data vault, veeam, commvault, ibm storage defender, context-based restrictions, worm
 
@@ -433,7 +433,7 @@ For complete documentation, see [Adding S3 Compatible Object Storage](https://he
 1. Review the configuration summary.
 2. Click **Finish** to create the object storage repository.
 
-For Veeam immutability to work, your {{site.data.keyword.cos_short}} bucket must have S3 Object Lock enabled. Note that S3 Object Lock is a different feature from the {{site.data.keyword.cos_short}} Immutable Object Storage retention policy. Check [S3 Object Lock compatibility](/docs/cloud-object-storage?topic=cloud-object-storage-object-lock) for details.
+For Veeam immutability to work, your {{site.data.keyword.cos_short}} bucket must have S3 Object Lock enabled. Note that S3 Object Lock is a different feature from the {{site.data.keyword.cos_short}} Immutable Object Storage retention policy. Check [S3 Object Lock compatibility](/docs/cloud-object-storage?topic=cloud-object-storage-ol-overview) for details.
 {: attention}
 
 ### Commvault
@@ -547,11 +547,11 @@ After configuring your backup product, verify the setup:
 
 - [{{site.data.keyword.cos_short}} documentation](/docs/cloud-object-storage)
 - [Immutable Object Storage](/docs/cloud-object-storage?topic=cloud-object-storage-immutable)
-- [Context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-cos-cbr)
+- [Context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-cos-tutorial-cbr)
 - [Service credentials and HMAC](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials)
 - [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints)
 - [Activity Tracker integration](/docs/cloud-object-storage?topic=cloud-object-storage-at-events)
-- [S3 Object Lock](/docs/cloud-object-storage?topic=cloud-object-storage-object-lock)
+- [S3 Object Lock](/docs/cloud-object-storage?topic=cloud-object-storage-ol-overview)
 
 ### Backup product documentation
 {: #backup-docs}

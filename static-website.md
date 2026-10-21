@@ -162,4 +162,4 @@ With the successful testing of your new site, you can now explore more options a
 ## Next steps
 {: #static-website-next-steps}
 
-The detailed description of configuration options for {{site.data.keyword.cos_full_notm}} hosted static websites can be found in the [API Documentation](https://cloud.ibm.com/apidocs/cos/cos-compatibility){: external}.
+The detailed description of configuration options for {{site.data.keyword.cos_full_notm}} hosted static websites can be found in the [API Documentation](/docs/apis/cos/cos-compatibility).

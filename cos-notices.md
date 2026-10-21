@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-08-07"
+lastupdated: "2026-10-21"
 
 keywords: IBM Cloud Object Storage notifications, notifications
 
@@ -24,8 +24,8 @@ Notifications about changes that affect {{site.data.keyword.cos_short}}.
 Notifications about changes.
 - [{{site.data.keyword.cos_full}} (Classic Infrastructure) end of support and instance conversion](/docs/cloud-object-storage?topic=cloud-object-storage-cos-notices-classic-conversion)
 - [Deprecation of {{site.data.keyword.cos_full}} (Classic Infrastructure)](/docs/cloud-object-storage?topic=cloud-object-storage-deprecation-cos-classic-infrastructure)
-- [Deprecation of {{site.data.keyword.cos_full}} SDK V1](/docs/cloud-object-storage?topic=cloud-object-storage-cos-sdk-v1-deprecate-notice)
+- [Deprecation of {{site.data.keyword.cos_full}} SDK V1](/docs/cloud-object-storage?topic=cloud-object-storage-deprecation-cos-sdk-v1)
 - [{{site.data.keyword.cos_full}} deployment of GSLB in all MultiZone Regions](/docs/cloud-object-storage?topic=cloud-object-storage-cos-notices-gslb)
-- [{{site.data.keyword.cos_full}} conversion of Montreal 01 Single Site COS location (`mon01`) into a Single Campus Multi-Zone Region (`ca-mon`)](/docs/cloud-object-storage?topic=cloud-object-storage-cos-notices-ca-mon)
+- [{{site.data.keyword.cos_full}} conversion of Montreal 01 Single Site COS location (`mon01`) into a Single Campus Multi-Zone Region (`ca-mon`)](/docs/cloud-object-storage?topic=cloud-object-storage-cos-notices-ca-mon-onhold)
 - [Important: IP address updates for {{site.data.keyword.cos_full}} EU cross region](/docs/cloud-object-storage?topic=cloud-object-storage-cos-notices-eu-cr)
-- [{{site.data.keyword.cos_full}} withdrawal of Chennai Single Site location (`che01`)](/docs/cloud-object-storage?topic=cloud-object-storage-cos-notices-in-che)
+- [{{site.data.keyword.cos_full}} withdrawal of Chennai Single Site location (`che01`)](/docs/cloud-object-storage?topic=cloud-object-storage-cos-notices-single-site-location)

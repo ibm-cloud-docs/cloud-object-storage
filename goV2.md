@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026, 2026
-lastupdated: "2026-05-13"
+lastupdated: "2026-10-21"
 
 keywords: object storage, go, v2, sdk, service id, trusted profile credentials
 
@@ -46,7 +46,7 @@ The easiest way to use the {{site.data.keyword.cos_full_notm}} Go SDK v2 is to u
 * Token acquisition endpoint
 * Service endpoint
 
-These values can be found in the IBM Cloud Console by [generating a 'service credential'](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials#service-credentials).
+These values can be found in the IBM Cloud Console by [generating a 'service credential'](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials#service-credentials).
 
 ### Installing the SDK
 {: #go-v2-install}

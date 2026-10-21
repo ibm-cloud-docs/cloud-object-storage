@@ -48,7 +48,7 @@ sudo yum install s3fs-fuse
 ```
 {: codeblock}
 
-Your device must have public connection to pull this EPEL repo, as it is not available in IBM's private repo.  See [How to install EPEL on RHEL and CentOS Stream](https://www.redhat.com/sysadmin/install-epel-linux) for more information.
+Your device must have public connection to pull this EPEL repo, as it is not available in IBM's private repo.  See [How to install EPEL on RHEL and CentOS Stream](https://www.redhat.com/en/blog/install-epel-linux) for more information.
 {: important}
 
 The official `s3fs` documentation suggests using `libcurl4-gnutls-dev` instead of `libcurl4-openssl-dev`. Either work, but the OpenSSL version may result in better performance.

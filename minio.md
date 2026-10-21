@@ -22,7 +22,7 @@ The open source [Minio Client](https://min.io/download#/linux){: external} could
 ## Installation
 {: #minio-install}
 
-You can find installation instructions for each operating system is available in the [Quick Start guide](https://docs.min.io/docs/minio-client-quickstart-guide.html){: external} on the Minio website.
+You can find installation instructions for each operating system is available in the [Quick Start guide](https://docs.min.io/aistor/){: external} on the Minio website.
 
 ## Configuration
 {: #minio-config}
@@ -50,7 +50,7 @@ mc config host add cos https://s3.us-south.cloud-object-storage.appdomain.cloud 
 ## Sample Commands
 {: #minio-commands}
 
-A complete list of commands and optional flags and parameters are documented in the [Minio Client Complete Guide](https://docs.min.io/docs/minio-client-complete-guide){: external}
+A complete list of commands and optional flags and parameters are documented in the [Minio Client Complete Guide](https://docs.min.io/aistor/){: external}
 
 ### `mb` - Make a Bucket
 {: #minio-mb}
@@ -93,7 +93,7 @@ mc ls cos/testbucket1
 ### `find` - Search for Objects by Name
 {: #minio-find}
 
-A full list of search options is available in the [complete guide](https://docs.min.io/docs/minio-client-complete-guide#find){: external}
+A full list of search options is available in the [complete guide](https://docs.min.io/aistor/#find){: external}
 {: tip}
 
 ```
@@ -127,7 +127,7 @@ mc cp cos/testbucket1/mynewfile1.txt cos/my_test_bucket/cp_from_minio.txt
 ### `rm` - Remove objects
 {: #minio-rm}
 
-*More removal options are available on the [complete guide](https://docs.min.io/docs/minio-client-complete-guide#rm){: external}*
+*More removal options are available on the [complete guide](https://docs.min.io/aistor/#rm){: external}*
 
 ```
 mc rm cos/my_test_bucket/cp_from_minio.txt

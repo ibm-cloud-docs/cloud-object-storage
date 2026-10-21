@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-06-12"
+lastupdated: "2026-10-21"
 
 keywords: IBM Cloud Object Storage notifications, notifications, chennai, che01, data center withdrawal
 
@@ -55,7 +55,7 @@ To check whether your buckets are located in the region to be withdrawn:
 3. Review the location of each bucket in your instance.
 4. Identify any buckets with location `che01`.
 
-You can also use the [`bucket-location-get`](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli#find-a-bucket) command from the IBM Cloud CLI to check bucket locations.
+You can also use the [`bucket-location-get`](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli#ic-find-bucket) command from the IBM Cloud CLI to check bucket locations.
 
 ### Migrating your data
 {: #cos-notices-in-che-migrate-data}

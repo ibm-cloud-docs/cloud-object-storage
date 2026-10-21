@@ -20,8 +20,6 @@ subcollection: cloud-object-storage
 {: shortdesc}
 
 
-
-
 ## Using context-based restrictions
 {: #setting-cbr}
 
@@ -105,7 +103,7 @@ If there are no authorized IP addresses listed this means that normal IAM polici
 #### Set a legacy firewall through an API
 {: #firewall-api}
 
-Firewalls are managed with the [COS Resource Configuration API](https://cloud.ibm.com/apidocs/cos/cos-configuration). This new REST API is used for configuring buckets.
+Firewalls are managed with the [COS Resource Configuration API](/docs/apis/cos/cos-configuration). This new REST API is used for configuring buckets.
 
 Users with the `manager` role can view and edit the list of allowed IP addresses from any network in order to prevent accidental lockouts.
 {: tip}

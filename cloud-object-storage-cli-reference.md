@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-09-15"
+lastupdated: "2026-10-21"
 
 keywords: cli, command line reference, object storage
 
@@ -1989,4 +1989,4 @@ ibmcloud cos wait object-not-exists --bucket my-bucket --key my-object.txt
 ## Next steps
 {: #cli-ref-next-steps}
 
-As every procedure always goes exactly as planned, you might not have seen any of the [common header and error codes](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-common). For more reference, check the [API reference](/apidocs/cos/cos-compatibility){: external}.
+As every procedure always goes exactly as planned, you might not have seen any of the [common header and error codes](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-common). For more reference, check the [API reference](/docs/apis/cos/cos-compatibility){: external}.

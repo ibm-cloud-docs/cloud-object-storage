@@ -150,8 +150,6 @@ toc:
           - link:
               label: Connect to resources using a CDN
               href: https://cloud.ibm.com/docs/CDN/CDN-configure-cdn-with-ibm-cloud-object-storage
-          - sql.md
-          - functions.md
           - static-websites-options.md
           - cis-routing-rules-for-cos.md
           - cos-instance-conversion.md
