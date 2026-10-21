@@ -175,4 +175,4 @@ curl -X "DELETE" 'https://<endpoint>/<bucketname>/<objectname>?tagging' \
 ## Next Steps
 {: #object-tagging-next-steps}
 
-Find more details about the operations related to objects in the [S3 API documentation](/apidocs/cos/cos-compatibility) and more configuration options in the [configuration API](/apidocs/cos/cos-configuration).
+Find more details about the operations related to objects in the [S3 API documentation](/docs/apis/cos/cos-compatibility) and more configuration options in the [configuration API](/docs/apis/cos/cos-configuration).

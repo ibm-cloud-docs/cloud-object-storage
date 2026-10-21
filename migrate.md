@@ -40,7 +40,7 @@ Refer to the [getting started guide](/docs/cloud-object-storage?topic=cloud-obje
 
 It is true that a massively complex migration requires a complete service to plan and implement migrating your data to {{site.data.keyword.cos_full_notm}}. But whatever the size of your data, your goals and timetable take precedence. Once you have provisioned and set your target, it is time to choose a process to achieve your goals on your time.
 
-There are many ways to achieve the goal of migrating your AWS data. Integrated solutions provide comprehensive guides to migration, as shown in the [{{site.data.keyword.icp4i_full_notm}}](https://www.ibm.com/cloud/cloud-pak-for-integration/high-speed-data-transfer){: external}. In addition to full-featured migration services, you may also want to investigate third party migration tools as part of your investigation. But don't forget that there are many CLI and GUI tools readily available for use as part of your migration.
+There are many ways to achieve the goal of migrating your AWS data. Integrated solutions provide comprehensive guides to migration, as shown in the [{{site.data.keyword.icp4i_full_notm}}](https://www.ibm.com/products/cloud-pak-for-integration){: external}. In addition to full-featured migration services, you may also want to investigate third party migration tools as part of your investigation. But don't forget that there are many CLI and GUI tools readily available for use as part of your migration.
 
 * [COS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli) can be used for many operations. For example, you may wish to use the CLI to configure your {{site.data.keyword.cos_full_notm}} instances, and to create and configure buckets.
 * [AWS CLI](/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli) can be used to list your current bucket's contents to prepare for migrating from AWS, among other operations:
@@ -91,7 +91,7 @@ Start by creating 'profiles' for your source and destination of the migration in
 
    {: codeblock}
 
-1. Paste your AWS `access_key_id` and `secret_access_key` as obtained per instructions [here](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html){: external} into the appropriate fields of your configuration as shown.
+1. Paste your AWS `access_key_id` and `secret_access_key` as obtained per instructions [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/security-creds.html){: external} into the appropriate fields of your configuration as shown.
 
 #### Configure `rclone` with your COS credentials
 {: #migrate-cos-credential-config}

@@ -73,7 +73,7 @@ Sys.setenv("AWS_ACCESS_KEY_ID" = "access_key_id",
 
 We used a `cloudyr` [S3-compatible client](https://github.com/cloudyr/aws.s3){: external} to test our credentials resulting in listing your buckets. To get additional packages, we use the source code collective known as [CRAN](https://cran.r-project.org/){: external} that operates through a series of [mirrors](https://cran.r-project.org/mirmon_report.html){: external}.
 
-For this example, we use [aws.s3](https://cran.r-project.org/package=aws.s3){: external} as shown in the example and added to the code to set or access your credentials.
+For this example, we use [aws.s3](https://cran.r-project.org/web/packages/aws.s3/index.html){: external} as shown in the example and added to the code to set or access your credentials.
 
 ```R
 library("aws.s3")
@@ -100,7 +100,7 @@ get_object("s3://mybucketname-only/example.csv", show_progress = TRUE)
 ## Add data to your `R` project
 {: #cloudyr-add-data}
 
-As you can guess, the library discussed earlier has a `save_object()` method that can write directly to your bucket. While there are many ways to [load data](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Loading-data-from-other-R-packages){: external}, we can use [cloudSimplifieR](https://cran.r-project.org/package=cloudSimplifieR){: external} to work with an [open data set](https://developer.ibm.com/clouddataservices/category/open-data/){: external}.
+As you can guess, the library discussed earlier has a `save_object()` method that can write directly to your bucket. While there are many ways to [load data](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Loading-data-from-other-R-packages){: external}, we can use [cloudSimplifieR](https://cran.r-project.org/web/packages/cloudSimplifieR/index.html){: external} to work with your data.
 
 ```R
 library(cloudSimplifieR)

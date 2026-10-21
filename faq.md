@@ -55,7 +55,7 @@ For performance optimization, objects can be uploaded and downloaded in multiple
 {: #faq-cos-web}
 {: faq}
 
-Web browsers can display web content in IBM Cloud Object Storage files, using the COS endpoint as the file location. To create a functioning website, however, you need to set up a web environment; for example, elements such as a CNAME record. IBM Cloud Object Storage does not support automatic static website hosting.  For information, see [Static websites](/docs/cloud-object-storage?topic=cloud-object-storage-iam-public-access#public-access-static-website) and this [tutorial](https://www.ibm.com/cloud/blog/static-websites-cloud-object-storage-cos).
+Web browsers can display web content in IBM Cloud Object Storage files, using the COS endpoint as the file location. To create a functioning website, however, you need to set up a web environment; for example, elements such as a CNAME record. IBM Cloud Object Storage does not support automatic static website hosting.  For information, see [Static websites](/docs/cloud-object-storage?topic=cloud-object-storage-iam-public-access#public-access-static-website) and this [tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-static-website-tutorial).
 
 ## Why do `CredentialRetrievalError` occur while uploading data to {{site.data.keyword.cos_short}} or while retrieving credentials? 
 {: #faq-credret-error}
@@ -127,7 +127,7 @@ Use {{site.data.keyword.cos_short}} [Direct Link Connection](/docs/direct-link?t
 Use the Activity Tracker service to capture and record {{site.data.keyword.cos_short}} activities and monitor the activity of your IBM Cloud account. Activity Tracker is used to track how users and applications interact with {{site.data.keyword.cos_short}}.
  
 ## How can I move data into the archive tier?
-{: #faq-archive tier}
+{: #faq-archive-tier}
 {: faq}
 
 You can archive objects using the web console, REST API, and third-party tools that are integrated with IBM Cloud Object Storage. For details, see [COS Archive](/docs/cloud-object-storage?topic=cloud-object-storage-archive).

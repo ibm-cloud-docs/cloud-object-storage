@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-08-14"
+lastupdated: "2026-10-21"
 
 keywords: bucket, vault, management, provisioning
 
@@ -56,7 +56,7 @@ No. Restore operations always sync all the objects that were current at the requ
 
 All operations on a bucket are supported, except for the disabling versioning and deletion of [object-versions](/docs/cloud-object-storage?topic=cloud-object-storage-versioning).
 
-Deletion of an object before it is synced to the `BackupVault` triggers an unrecoverable failure that causes the Backup Policy to fail permanently. For more information, go to [Configure backups](/docs/cloud-object-storage?topic=cloud-object-storage-configuring-backups).
+Deletion of an object before it is synced to the `BackupVault` triggers an unrecoverable failure that causes the Backup Policy to fail permanently. For more information, go to [Configure backups](/docs/cloud-object-storage?topic=cloud-object-storage-bvm-configure).
 
 ## What are the user's responsibilities with Backup?
 

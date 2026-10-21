@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2026
-lastupdated: "2026-10-08"
+lastupdated: "2026-10-21"
 
 keywords: data, replication, loss prevention, iam, activity tracker, disaster recovery, versioning, key protect, accounts, buckets
 
@@ -50,7 +50,7 @@ To get started, here are some prerequisites that must be met:
 - Objects encrypted [using SSE-C](/docs/cloud-object-storage?topic=cloud-object-storage-sse-c) cannot be replicated, although [managed encryption (SSE-KMS) like Key Protect](/docs/cloud-object-storage?topic=cloud-object-storage-kp) is fully compatible with replication.
 - Objects in an archived state cannot be replicated.
 - If the source and target buckets are in different IBM accounts, be sure to create the buckets in each account.
-- Enable [Versioning](/docs/cloud-object-storage?topic=/docs/cloud-object-storage?topic=cloud-object-storage-versioning) on both the source and target buckets.
+- Enable [Versioning](/docs/cloud-object-storage?topic=cloud-object-storage-versioning) on both the source and target buckets.
 
 As versioning is a requirement for replication, it is impossible to replicate objects in buckets configured with an [Immutable Object Storage policy](/docs/cloud-object-storage?topic=cloud-object-storage-immutable).
 {: note}
@@ -148,9 +148,9 @@ While IBM Cloud Object Storage provides strong consistency for all data IO opera
 
 Replication failures can occur due to many reasons, including (but not limited to) bucket misconfigurations, service outages, user interactions with the destination bucket, etc. 
 
-COS has built-in resiliency to handle replication failures. When a failure occurs, COS can retry it for up to 30 days. The retry frequency can vary depending on the nature of the failure. For example, failures caused by rare IO errors may be retried within hours, whereas failures due to user bucket misconfigurations may be retried once per day. If a failure is not resolved within 30 days, it is no longer retried automatically by the system. All long-term failures are listable via [_ListBucketReplicationFailures_](#list-replication-failures-for-a-bucket).
+COS has built-in resiliency to handle replication failures. When a failure occurs, COS can retry it for up to 30 days. The retry frequency can vary depending on the nature of the failure. For example, failures caused by rare IO errors may be retried within hours, whereas failures due to user bucket misconfigurations may be retried once per day. If a failure is not resolved within 30 days, it is no longer retried automatically by the system. All long-term failures are listable via [_ListBucketReplicationFailures_](#replication-apis-list-failures).
 
-If you wish to retry "stale" failures that lasted more than 30 days, you can trigger a retry by using the [_PutBucketReplicationFailureReattempt_](#schedule-re-attempt-of-stale-replication-failures-in-a-bucket).
+If you wish to retry "stale" failures that lasted more than 30 days, you can trigger a retry by using the [_PutBucketReplicationFailureReattempt_](#replication-apis-failure-reattempt).
 
 ### Failure causes
 {: #replication-failure-causes}
@@ -285,7 +285,7 @@ Below table outlines the behavior when source and destination buckets have varyi
 |-|-|-|
 | Enabled | Enabled | All Object Lock states from source will be replicated to destination.<br/><br/>If source object is created without Object Lock, destination bucket's default retention may be applied to the replica.<br/><br/>Object lock replication follows all S3 Object Lock restrictions. For example, it can never shorten the retention period on the replica in _compliance_ mode if the user has independently made changes on the destination. |
 | Disabled | Enabled | Source objects cannot have Object Lock, therefore Object Lock states will never propagate from source to destination.<br/>If destination bucket has default retention set, it will be applied to new replicas that are created. |
-| Enabled | Disabled | Source objects created with Object Lock will fail to be replicated. These failures are [retried](#failure-handling) by COS and can be replicated once Object Lock is enabled on the destination bucket. Any Object lock retention / legal hold updates on existing objects also cannot be replicated until Object Lock is enabled on destination.<br/><br/>Source objects created without Object Lock can still be replicated. |
+| Enabled | Disabled | Source objects created with Object Lock will fail to be replicated. These failures are [retried](#replication-failures) by COS and can be replicated once Object Lock is enabled on the destination bucket. Any Object lock retention / legal hold updates on existing objects also cannot be replicated until Object Lock is enabled on destination.<br/><br/>Source objects created without Object Lock can still be replicated. |
 {: caption=""}
 
 
@@ -312,10 +312,10 @@ Buckets using [legacy firewalls to restrict access based on IP addresses](/docs/
 
 It is recommended to instead [use context-based restrictions](/docs/cloud-object-storage?topic=cloud-object-storage-setting-a-firewall#setting-cbr) for controlling access based on network information.
 
-### Cloud Functions and Code Engine
-{: #replication-interactions-functions}
+### Code Engine
+{: #replication-interactions-code-engine}
 
-Configuring replication does not provide a [trigger for Cloud Functions](/docs/openwhisk?topic=openwhisk-triggers) or Code Engine events at this time, but object writes and deletes will create `Object:Write` and `Object:Delete` notifications for both the source and target buckets.  These events are annotated with a `notifications.replication_type` field that indicates if the event triggered a sync, or was triggered by a sync.
+Configuring replication does not provide a trigger for Code Engine events at this time, but object writes and deletes will create `Object:Write` and `Object:Delete` notifications for both the source and target buckets.  These events are annotated with a `notifications.replication_type` field that indicates if the event triggered a sync, or was triggered by a sync.
 
 ## Replicating existing objects
 {: #replication-existing}

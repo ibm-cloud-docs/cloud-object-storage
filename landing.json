@@ -36,8 +36,8 @@
     }
   ],
   "section_devtools": {
-    "apis3": "/apidocs/cos/cos-compatibility",
-    "apirc": "/apidocs/cos/cos-configuration",
+    "apis3": "/docs/apis/cos/cos-compatibility",
+    "apirc": "/docs/apis/cos/cos-configuration",
     "cli": "/docs/cloud-object-storage?topic=cloud-object-storage-ic-cos-cli"
   },
   "section_updates": {

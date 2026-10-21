@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-04-09"
+lastupdated: "2026-10-21"
 
 keywords: cloud object storage, javaV2, sdk
 
@@ -132,7 +132,7 @@ Let's start with a complete example class that runs through some basic functiona
 - `apiKey` is the value found in the [Service Credential](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) as `apikey`.
 - `serviceInstanceId` is the value found in the [Service Credential](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) as `resource_instance_id`.
 - `endpointUrl` is a service endpoint URL, inclusive of the `https://` protocol. This is **not** the `endpoints` value found in the [Service Credential](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials). For more information about endpoints, see [Endpoints and storage locations](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-endpoints).
-- `location` must be set to the location portion of the `storageClass`. For `us-south-standard`, this would be `us-south`. This variable is used only for the calculation of [HMAC signatures](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-hmac), but is required for any client, including this example that uses an IAM API key.
+- `location` must be set to the location portion of the `storageClass`. For `us-south-standard`, this would be `us-south`. This variable is used only for the calculation of [HMAC signatures](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-hmac-signature), but is required for any client, including this example that uses an IAM API key.
 
 ```java
 package com.cos;

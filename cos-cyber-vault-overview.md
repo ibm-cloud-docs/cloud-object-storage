@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-08-27"
+lastupdated: "2026-10-21"
 
 keywords: cyber vault, COS cyber vault, cyber resilience, immutable storage, object lock, data protection, ransomware, backup, air gap, CBR, Key Protect, onboarding, beta, HMAC
 
@@ -124,6 +124,6 @@ The following end-to-end flow describes how IBM Cloud Cyber Vault protects your 
 
 - [Onboarding your account to the IBM Cloud Cyber Vault Beta program](/docs/cloud-object-storage?topic=cloud-object-storage-cyber-vault-onboarding) to request access before provisioning your first vault.
 - [Provisioning an IBM Cloud Cyber Vault](/docs/cloud-object-storage?topic=cloud-object-storage-cyber-vault-provisioning) to create your first vault by using the {{site.data.keyword.cloud_notm}} console or the COS Solutions API.
-- Review the [Object Lock documentation](/docs/cloud-object-storage?topic=cloud-object-storage-object-lock) to understand compliance-mode retention behavior.
-- Review the [Context-Based Restrictions tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-cbr-tutorial) to understand how CBR network zones are configured.
-- Review [{{site.data.keyword.keymanagementserviceshort}} for COS encryption](/docs/cloud-object-storage?topic=cloud-object-storage-kp-encrypt-bucket) if you plan to use customer-managed encryption keys.
+- Review the [Object Lock documentation](/docs/cloud-object-storage?topic=cloud-object-storage-ol-overview) to understand compliance-mode retention behavior.
+- Review the [Context-Based Restrictions tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-cos-tutorial-cbr) to understand how CBR network zones are configured.
+- Review [{{site.data.keyword.keymanagementserviceshort}} for COS encryption](/docs/cloud-object-storage?topic=cloud-object-storage-tutorial-kp-encrypt-bucket) if you plan to use customer-managed encryption keys.

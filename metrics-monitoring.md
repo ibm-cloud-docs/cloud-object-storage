@@ -24,16 +24,13 @@ When metrics monitoring is enabled on your bucket, the default target service th
 
 Alternatively, use [IBM Cloud Metrics Routing](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration#mm-route-metrics) rules to send metrics to other target services or to IBM Cloud Monitoring instances in locations other than the bucket location.
 
-Enable metrics monitoring on your bucket via the [{{site.data.keyword.cos_full}} Resource Configuration API](/apidocs/cos/cos-configuration) or through the UI directly. This is done during bucket provisioning or afterwards by updating the bucket configuration.
+Enable metrics monitoring on your bucket via the [{{site.data.keyword.cos_full}} Resource Configuration API](/docs/apis/cos/cos-configuration) or through the UI directly. This is done during bucket provisioning or afterwards by updating the bucket configuration.
 
 IBM COS supports enabling metrics tracking on the following metric types:
 - Usage Metrics – These are metrics related to the overall usage of your COS bucket such as total storage consumed in bytes.
 - Request Metrics – The metrics report the counts for certain types of API requests made to your bucket
 
 See the {{site.data.keyword.cos_full}} metrics details section below for the full list of metrics sent to IBM Monitoring.
-
-This feature is not currently supported in [Object Storage for Satellite](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite).
-{: note}
 
 This feature supports [SCC monitoring](/docs/security-compliance).
 {: note}
@@ -57,7 +54,7 @@ Enable metrics tracking on your {{site.data.keyword.cos_full}} bucket at the tim
 
 Refer to the [{{site.data.keyword.cos_full}} Metrics Details](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration#mm-cos-metrics-details) to see the full list of Usage and Request metrics available for tracking.
 
-Use the [{{site.data.keyword.cos_full}} Resource Configuration API](/apidocs/cos/cos-configuration) to configure tracking of these metrics for your bucket.
+Use the [{{site.data.keyword.cos_full}} Resource Configuration API](/docs/apis/cos/cos-configuration) to configure tracking of these metrics for your bucket.
 
 When metrics tracking is enabled, all metrics are sent to the default receiving location for IBM Cloud Metrics Router based on the location of the bucket. Refer to [{{site.data.keyword.cos_full}} Service Integration](/docs/cloud-object-storage?topic=cloud-object-storage-service-availability) to see this default mapping. Use Metrics Router rules to route metrics to a location other than the bucket location or to another target service. See [Managing Routes](/docs/metrics-router?topic=metrics-router-route-manage) for more information.
 
@@ -533,5 +530,3 @@ The following attributes are available for segmenting one or more attributes as 
 | `IBM COS Bucket storage class` | `ibm_cos_bucket_storage_class` | Storage class of the bucket |
 | `Service instance` | `ibm_service_instance` | The service instance segment identifies the guide of the instance the metric is associated with. |
 {: caption="Table 5: COS specific attributes" caption-side="top"}
-
-

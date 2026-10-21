@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2025
-lastupdated: "2025-07-01"
+  years: 2017, 2026
+lastupdated: "2026-10-21"
 
 keywords: administration, billing, platform, aspera, invoices, pricing, bucket backup
 
@@ -30,7 +30,7 @@ subcollection: cloud-object-storage
 # Billing
 {: #billing}
 
-Information on pricing can be found at [{{site.data.keyword.cloud}}](https://www.ibm.com/products/cloud-object-storage/pricing/){: external}.
+Information on pricing can be found at [{{site.data.keyword.cloud}}](https://www.ibm.com/products/cloud-object-storage){: external}.
 {: shortdesc}
 
 ## Invoices
@@ -180,7 +180,7 @@ The appropriate response to the request should contain `bytes_used` and `object_
 ## Get resource information from an API
 {: #resource-api-metadata}
 
-The resource controller is the next-generation {{site.data.keyword.cloud_notm}} Platform provisioning layer that manages the lifecycle of {{site.data.keyword.cos_short}} resources in a customer account. The API can provide actual billable metrics, such as types of requests and charges for storage, to get you started. More information can be found at the [documentation](https://cloud.ibm.com/apidocs/resource-controller){: external}
+The resource controller is the next-generation {{site.data.keyword.cloud_notm}} Platform provisioning layer that manages the lifecycle of {{site.data.keyword.cos_short}} resources in a customer account. The API can provide actual billable metrics, such as types of requests and charges for storage, to get you started. More information can be found at the [documentation](/docs/apis/resource-controller)
 
 ```sh
 curl -X GET https://resource-controller.cloud.ibm.com/v2/resource_instances -H 'Authorization: Bearer <IAM_TOKEN>'

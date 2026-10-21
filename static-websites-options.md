@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020, 2026
-lastupdated: "2026-01-14"
+lastupdated: "2026-10-21"
 
 keywords: object storage, static website, options
 
@@ -86,7 +86,7 @@ One of the benefits of using {{site.data.keyword.cis_full_notm}} pertains to [se
 
 Static websites are meant to be fast and secure. Serving up static content is easy with the right tools that deliver the content to your customers. Many deployment tools have built-in support for CDN support. Getting started configuring your domains using [{{site.data.keyword.cis_full}}](/docs/cis?topic=cis-resolve-override-cos). When creating redirect rules, you will be adding a `CNAME`, a "canonical (domain) name", or alias. Just like files on an operating system can have an alias for convenience, your hosted static website can be just as convenient.
 
-The process for delivering static content through dedicated networks starts with this [overview of CDN options](https://www.ibm.com/cloud/cdn). Content Delivery moves your static content closer to your customer's own location, extending your reach without having to manage copies of your content.
+The process for delivering static content through dedicated networks starts with this [overview of CDN options](https://www.ibm.com/products/cloud/network). Content Delivery moves your static content closer to your customer's own location, extending your reach without having to manage copies of your content.
 
 ## Endpoints for hosting static website content
 {: #static-websites-options-more-endpoints}

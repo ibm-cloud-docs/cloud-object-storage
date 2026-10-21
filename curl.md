@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2024
-lastupdated: "2024-06-18"
+  years: 2017, 2026
+lastupdated: "2026-10-21"
 
 keywords: cli, command line interface, object storage, curl
 
@@ -390,4 +390,4 @@ echo -n (XML block) | openssl dgst -md5 -binary | openssl enc -base64
 ## Next Steps
 {: #curl-next-steps}
 
-The detailed description of the RESTful API for {{site.data.keyword.cos_full_notm}} can be found in the [S3 Compatibility API Documentation](https://cloud.ibm.com/apidocs/cos/cos-compatibility){: external} or the [Configuration API Documentation]( https://cloud.ibm.com/apidocs/cos/cos-configuration){: external}.
+The detailed description of the RESTful API for {{site.data.keyword.cos_full_notm}} can be found in the [S3 Compatibility API Documentation](/docs/apis/cos/cos-compatibility) or the [Configuration API Documentation](/docs/apis/cos/cos-configuration).

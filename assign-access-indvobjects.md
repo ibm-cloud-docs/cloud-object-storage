@@ -78,7 +78,7 @@ A single IAM Policy can have more than one condition by using an `OR` or `AND` s
 Use a policy with no condition attributes to give full access, as defined by the role, to the target resource.
 {: important}
 
-Use [IAM v2 policy](/apidocs/iam-policy-management#create-v2-policy) to construct IAM policy with attribute-based conditions.
+Use [IAM v2 policy](/docs/apis/iam-policy-management#create-v2-policy) to construct IAM policy with attribute-based conditions.
 {: tip}
 
 ## Using conditions in an IAM policy
@@ -117,7 +117,7 @@ Prefix of *"folder1/"* `AND` Delimiter of *"/"*
 The following APIs are subject to Prefix/Delimiter conditions:
 - [GET Bucket (List Objects)](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets)
 - GET Bucket Object Versions (List Object Versions)
-- [List Multipart Uploads](/apidocs/cos/cos-compatibility?code=node#listmultipartuploads)
+- [List Multipart Uploads](/docs/apis/cos/cos-compatibility?code=node#listmultipartuploads)
 
 
 To see the full list of actions and the supported condition attributes, see [Identity and Access Management actions](/docs/cloud-object-storage?topic=cloud-object-storage-iam#iam-actions).

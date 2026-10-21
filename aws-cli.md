@@ -262,4 +262,4 @@ aws --endpoint-url=https://<endpoint> s3 website s3://<bucketname>/ --index-docu
 ## Next Steps
 {: #aws-cli-next-steps}
 
-The detailed description of the RESTful API for {{site.data.keyword.cos_full_notm}} can be found in the [S3 Compatibility API Documentation](https://cloud.ibm.com/apidocs/cos/cos-compatibility){: external} or the [Configuration API Documentation]( https://cloud.ibm.com/apidocs/cos/cos-configuration){: external}. 
+The detailed description of the RESTful API for {{site.data.keyword.cos_full_notm}} can be found in the [S3 Compatibility API Documentation](/docs/apis/cos/cos-compatibility) or the [Configuration API Documentation](/docs/apis/cos/cos-configuration). 

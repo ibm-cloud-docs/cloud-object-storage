@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-07-15"
+lastupdated: "2026-10-21"
 
 keywords: object storage, node, javascript, sdk
 
@@ -77,7 +77,7 @@ If both `~/.bluemix/cos_credentials` and `~/.aws/credentials` exist, `cos_creden
 In your code, you must remove the angled brackets or any other excess characters that are provided here as illustration.
 {: note}
 
-Getting started with [Node.js](https://nodejs.org/en/about/){: external}&mdash;once it's installed&mdash;usually involves configuration and invocation, like in [this example from Nodejs.org](https://nodejs.org/en/docs/guides/getting-started-guide/){: external}. We'll follow a similar model
+Getting started with [Node.js](https://nodejs.org/en/about/){: external}&mdash;once it's installed&mdash;usually involves configuration and invocation. We'll follow a similar model
 
 ### Initializing configuration
 {: #node-examples-init}
@@ -1293,7 +1293,7 @@ The following items are necessary to create a bucket with Key-Protect enabled:
 {: #node-examples-kp-root}
 
 1. Retrieve the [instance ID](/docs/key-protect?topic=key-protect-retrieve-instance-ID#retrieve-instance-ID) for your Key Protect service
-2. Use the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api#set-up-api) to retrieve all your [available keys](https://cloud.ibm.com/apidocs/key-protect)
+2. Use the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api#set-up-api) to retrieve all your [available keys](/docs/apis/key-protect)
     * You can either use `curl` commands or an API REST Client such as [Postman](/docs/cloud-object-storage?topic=cloud-object-storage-postman) to access the [Key Protect API](/docs/key-protect?topic=key-protect-set-up-api#set-up-api).
 3. Retrieve the CRN of the root key you will use to enabled Key Protect on the your bucket. The CRN will look similar to below:
 

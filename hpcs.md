@@ -19,9 +19,6 @@ subcollection: cloud-object-storage
 
 You can use [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-overview) to create, add, and manage keys, which you can then associate with your instance of IBM® Cloud Object Storage to encrypt buckets.
 
-This feature is not currently supported in {{site.data.keyword.cos_short}} for {{site.data.keyword.satelliteshort}}. [Learn more.](/docs/cloud-object-storage?topic=cloud-object-storage-about-cos-satellite)
-{: note}
-
 ## Before you begin
 {: #hpcs-begin}
 Before you plan on using {{site.data.keyword.hscrypto}} with Cloud Object Storage buckets, you need:
@@ -89,13 +86,13 @@ It is also possible to use [the REST API](/docs/cloud-object-storage?topic=cloud
 ### Creating Cross Region buckets
 {: #hpcs-cr}
 
-Creating COS Cross Region bucket with a root key from a {{site.data.keyword.hscrypto}} instance requires that instance to be [configured with failover configuration](https://cloud.ibm.com/docs/hs-crypto?topic=hs-crypto-enable-add-failover).
+Creating COS Cross Region bucket with a root key from a {{site.data.keyword.hscrypto}} instance requires that instance to be [configured with failover configuration](/docs/hs-crypto?topic=hs-crypto-enable-add-failover).
 
 You can confirm that failover is properly configured for the selected {{site.data.keyword.hscrypto}} instance correctly using either the IBM Cloud console or CLI.
 
 From IBM Cloud console, navigate to a {{site.data.keyword.hscrypto}} instance and click on **Overview**. A "Failover" section will indicate the status of crypto units in the corresponding failover regions.
 
-Ensure the failover section is present, all validation checks are green and there are no warnings for that {{site.data.keyword.hscrypto}} instance.  If you see any errors or warnings, or if the failover section is not present, [refer to the {{site.data.keyword.hscrypto}} documentation for further guidance](https://cloud.ibm.com/docs/hs-crypto?topic=hs-crypto-enable-add-failover).
+Ensure the failover section is present, all validation checks are green and there are no warnings for that {{site.data.keyword.hscrypto}} instance.  If you see any errors or warnings, or if the failover section is not present, [refer to the {{site.data.keyword.hscrypto}} documentation for further guidance](/docs/hs-crypto?topic=hs-crypto-enable-add-failover).
 
 You can also use the CLI to list all the crypto units for all instances belong to the targeted resource group:
 
