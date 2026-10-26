@@ -14,10 +14,10 @@ content-type: faq
 
 {{site.data.keyword.attribute-definition-list}}
 
-# FAQ - Encryption
+# FAQ for {{site.data.keyword.cos_full}}: encryption
 {: #faq-encryption}
 
-Frequently asked questions can produce helpful answers and insight into best practices for working with {{site.data.keyword.cos_full}}.
+Get answers to common questions about {{site.data.keyword.cos_full}} encryption, including authentication, encryption at rest, FIPS 140-2, and client keys.
 {: shortdesc}
 
 ## What types of authentication can I use to access {{site.data.keyword.cos_full}}?

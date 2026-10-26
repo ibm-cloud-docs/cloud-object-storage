@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 keywords: bucket, vault, management, provisioning
 
@@ -14,11 +14,11 @@ content-type: faq
 
 {{site.data.keyword.attribute-definition-list}}
 
-# FAQ - Backing up buckets
+# FAQ for {{site.data.keyword.cos_full}}: backing up buckets
 
 {: #faq-backup-vault-mgmt}
 
-Frequently asked questions can produce helpful answers and insight into best practices for working with {{site.data.keyword.cos_full}}.
+Get answers to common questions about backing up buckets in {{site.data.keyword.cos_full}} with Backup Vaults, including policies, versioning, and restores.
 {: shortdesc}
 
 ## What is the maximum amount of data that you can store in a single `BackupVault`?

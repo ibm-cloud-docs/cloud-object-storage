@@ -13,8 +13,11 @@ subcollection: cloud-object-storage
 {{site.data.keyword.attribute-definition-list}}
 
 
-# Using `Postman`
+# Using Postman with the {{site.data.keyword.cos_full}} REST API
 {: #postman}
+
+Use Postman to call the {{site.data.keyword.cos_full}} REST API to create buckets, upload objects, list bucket contents, and run a sample collection.
+{: shortdesc}
 
 Here's a basic `Postman` setup for the {{site.data.keyword.cos_full}} REST API. More detail can be found in the API reference for [buckets](/docs/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations) or [objects](/docs/cloud-object-storage?topic=cloud-object-storage-object-operations).
 

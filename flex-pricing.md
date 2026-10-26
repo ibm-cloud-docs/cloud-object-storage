@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020, 2026
-lastupdated: "2026-01-14"
+lastupdated: "2026-10-26"
 
 keywords: flex, legacy
 
@@ -27,8 +27,11 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Flex storage class pricing
+# Flex storage class pricing in {{site.data.keyword.cos_full}}
 {: #flex-pricing}
+
+Review Flex storage class pricing for {{site.data.keyword.cos_full}}, including storage capacity, outbound bandwidth, requests, and Flex cap charges by location.
+{: shortdesc}
 
 
 | Storage used  | US South | US East | EU United Kingdom | EU Germany | AP Australia | AP Japan | S&atilde;o Paulo, Brazil | Toronto, Canada |

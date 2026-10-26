@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 keywords: object storage, java, sdk
 
@@ -12,14 +12,14 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Using Java
+# Using the {{site.data.keyword.cos_full}} SDK for Java
 {: #java}
 
 End-of-Support on Aug. 6, 2027.
 The {{site.data.keyword.cos_full}} (COS) SDK v1 will reach end-of-support on Aug. 6, 2027. After this date, it will no longer receive updates, security fixes, or new releases. We recommend migrating to the [{{site.data.keyword.cos_full_notm}} SDK Java v2](/docs/cloud-object-storage?topic=cloud-object-storage-java-v2), which provides improved performance, enhanced security, modern APIs, and continued support from IBM.
 {: deprecated}
 
-The {{site.data.keyword.cos_full}} SDK for Java provides features to make the most of {{site.data.keyword.cos_full_notm}}.
+Use the {{site.data.keyword.cos_full}} SDK for Java to create clients, source credentials, upload large objects, and manage buckets with Key Protect and Aspera.
 {: shortdesc}
 
 The {{site.data.keyword.cos_full_notm}} SDK for Java is comprehensive, with many features and capabilities that exceed the scope and space of this guide. For detailed class and method documentation [see the Javadoc](https://ibm.github.io/ibm-cos-sdk-java/). Source code can be found in the [GitHub repository](https://github.com/ibm/ibm-cos-sdk-java).

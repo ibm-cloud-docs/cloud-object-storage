@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 keywords: data,portability
 
@@ -12,10 +12,10 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Understanding data portability
+# Understanding data portability in {{site.data.keyword.cos_full}}
 {: #data-portability}
 
-Data portability involves a set of tools and procedures that enable you to export the digital artifacts that are needed to implement similar workload and data processing on different service providers, or on-premises software. It includes procedures for copying and storing your service content, including the related configuration that is used by the service to store and process the data on your own location.
+Learn how to export your data and configuration from {{site.data.keyword.cos_full}} so that you can run similar workloads on other providers or on-premises.
 {: shortdesc}
 
 ## Responsibilities

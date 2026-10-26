@@ -13,10 +13,10 @@ subcollection: cloud-object-storage
 {{site.data.keyword.attribute-definition-list}}
 
 
-# For developers
+# Getting started with {{site.data.keyword.cos_full}} for developers
 {: #gs-dev}
 
-The powerful features of {{site.data.keyword.cos_full}} are available to a developer directly from the command line.
+Use the IBM Cloud CLI, REST API, and SDKs to create {{site.data.keyword.cos_full}} instances, manage buckets, and build applications from the command line.
 {: shortdesc}
 
 First, ensure that you have the [{{site.data.keyword.cloud}} Platform CLI](/docs/cli?topic=cli-getting-started) installed.

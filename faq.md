@@ -15,10 +15,10 @@ content-type: faq
 
 {{site.data.keyword.attribute-definition-list}}
 
-# FAQ - General
+# FAQ for {{site.data.keyword.cos_full}}: general questions
 {: #faq}
 
-Frequently asked questions can produce helpful answers and insight into best practices for working with {{site.data.keyword.cos_full}}.
+Get answers to general questions about {{site.data.keyword.cos_full}}, including S3 SDK compatibility, data consistency, performance, request classes, and HIPAA.
 {: shortdesc}
 
 ## Can I use AWS S3 SDKs with {{site.data.keyword.cos_full_notm}}?

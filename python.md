@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 keywords: object storage, python, sdk, aspera, apache, asperatransfermanager
 
@@ -12,10 +12,10 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Using Python
+# Using the {{site.data.keyword.cos_full}} SDK for Python
 {: #python}
 
-Python support is provided through a fork of the `boto3` library with features to make the most of {{site.data.keyword.cos_full}}.
+Use the {{site.data.keyword.cos_full}} SDK for Python, a boto3 fork, to create clients, source credentials, and manage buckets, objects, Key Protect, and Aspera.
 {: shortdesc}
 
 It can be installed from the Python Package Index through `pip install ibm-cos-sdk`.

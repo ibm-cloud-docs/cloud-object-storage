@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 
 keywords: faq, frequently asked questions, object storage, S3, HMAC, bucket management, IPv6. endpoints
@@ -15,10 +15,10 @@ content-type: faq
 
 {{site.data.keyword.attribute-definition-list}}
 
-# FAQ - Bucket management
+# FAQ for {{site.data.keyword.cos_full}}: bucket management
 {: #faq-bucket}
 
-Frequently asked questions can produce helpful answers and insight into best practices for working with {{site.data.keyword.cos_full}}.
+Get answers to common questions about managing {{site.data.keyword.cos_full}} buckets, including bucket size, limits, storage classes, locations, and endpoints.
 {: shortdesc}
 
 ## How can I find out the total size of my bucket by using the API?

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-01-14"
+lastupdated: "2026-10-26"
 
 keywords: endpoint, location, object storage, IAM, cross region, border gateway protocol
 
@@ -12,10 +12,10 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Legacy endpoints
+# Migrating from legacy {{site.data.keyword.cos_full}} endpoints
 {: #remap-endpoints}
 
-Over time the endpoint URLs used to access {{site.data.keyword.cos_short}} have changed, and older applications and workflows should be updated to use the newer addresses.
+Update applications and workflows that use legacy {{site.data.keyword.cos_full}} endpoint URLs to the newer endpoint URLs for better availability.
 {: shortdesc}
 
 ## Regional Endpoints

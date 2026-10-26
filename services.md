@@ -3,7 +3,7 @@
 copyright:
   years: 2017, 2026
 
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 keywords: aspera, key protect, archive, worm
 
@@ -14,10 +14,10 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Integrated service availability
+# Integrated service availability in {{site.data.keyword.cos_full}}
 {: #service-availability}
 
-The document describes the regions where services and the different kinds of availability that are supported.
+See which regions support {{site.data.keyword.cos_full}} integrations such as Aspera, Key Protect, Archive, and WORM, and availability for each location.
 {: shortdesc}
 
 For more information about the following services, be sure to check out the respective links:

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 keywords: rest, s3, compatibility, api, buckets
 
@@ -13,10 +13,10 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Bucket operations
+# Managing buckets with the {{site.data.keyword.cos_full}} API
 {: #compatibility-api-bucket-operations}
 
-The modern capabilities of {{site.data.keyword.cos_full}} are conveniently available through a RESTful API. Operations and methods that are used to interact with buckets (where objects are stored) are documented here.
+Use the {{site.data.keyword.cos_full}} REST API to list, create, configure, and delete buckets, including Key Protect encryption and Object Lock settings.
 {: shortdesc}
 
 For more information about the permissions and access, see [Bucket permissions](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions).

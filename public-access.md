@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2025, 2026
-lastupdated: "2026-08-13"
+lastupdated: "2026-10-26"
 
 keywords: public, cdn, anonymous, files
 
@@ -13,10 +13,10 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Allowing public access
+# Allowing public access to {{site.data.keyword.cos_full}} buckets
 {: #iam-public-access}
 
-Sometimes data is meant to be shared. Buckets might hold open data sets for academic and private research or image repositories that are used by web applications and content delivery networks. Make these buckets accessible using the **Public Access** group.
+Make {{site.data.keyword.cos_full}} buckets publicly accessible with the Public Access group and IAM roles to share open data sets, images, and static websites.
 {: shortdesc}
 
 There are three IAM roles that can be used for public access to a bucket: `Administrator`, `ContentReader`, and `ObjectReader`.  The difference between them is that the `Administrator` and `ContentReader` can list the objects in a bucket, which is useful for applications that require ease of listing (for example, a web UI) in addition to reading objects.  For more information, see [the IAM reference documentation](/docs/cloud-object-storage?topic=cloud-object-storage-iam).

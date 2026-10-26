@@ -13,10 +13,10 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Setting a quota on a bucket
+# Setting a quota on a bucket in {{site.data.keyword.cos_full}}
 {: #quota}
 
-A hard quota sets a maximum amount of storage (in bytes) available for a bucket.  Once reached, the limit prevents adding any additional objects to the bucket until existing objects are moved or deleted to free up space, or the quota is raised.
+Set a hard quota on an {{site.data.keyword.cos_full}} bucket by using the console or API to cap storage in bytes and block new objects when the limit is reached.
 {: shortdesc}
 
 There are two types of usage quota: a "hard" quota described above, and a "soft" quota that alerts a user that usage has crossed a threshold, but does not prevent any further object writes. To configure a soft quota, make use of [Configure Metrics for {{site.data.keyword.cos_full}}](/docs/cloud-object-storage?topic=cloud-object-storage-mm-cos-integration) to set [usage alerts](https://docs.sysdig.com/en/event-alerts.html).

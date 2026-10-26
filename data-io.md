@@ -12,10 +12,10 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Data IO and encryption
+# Optimizing data IO and encryption in {{site.data.keyword.cos_full}}
 {: #performance-io}
 
-Object size can have significant impacts on {{site.data.keyword.cos_full}} performance. Choose the right approach for your workload.
+Learn how object size, multipart transfers, retries, and conditional requests affect {{site.data.keyword.cos_full}} performance, and choose the best approach.
 {: shortdesc}
 
 ## Multipart transfers

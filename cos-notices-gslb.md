@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-08-28"
+lastupdated: "2026-10-26"
 
 keywords: IBM Cloud Object Storage notifications, notifications, gslb
 
@@ -12,10 +12,10 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# {{site.data.keyword.cos_full}} deployment of GSLB in all MultiZone Regions
+# Deploying GSLB in {{site.data.keyword.cos_full}} MultiZone Regions
 {: #cos-notices-gslb}
 
-The {{site.data.keyword.cos_full}} team is enabling Global Server Load Balancing (GSLB) in {{site.data.keyword.IBM_notm}}'s MZR offerings over the next several months. This change causes the regional endpoints (public, private, and direct) to use new virtual IP addresses. This change affects you when accessing {{site.data.keyword.cos_short}} with an IP address (rather than URL), or if you have IP-based allowlists or firewall-rules running in your environment.
+Learn how Global Server Load Balancing in {{site.data.keyword.cos_full}} MultiZone Regions changes regional endpoint IP addresses and how to update allowlists.
 {: shortdesc}
 
 ## What you need to know about this change

@@ -12,10 +12,10 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Tagging objects
+# Tagging objects to organize data in {{site.data.keyword.cos_full}}
 {: #object-tagging}
 
-Your data can be expressly defined, categorized, and classified in {{site.data.keyword.cos_full}} using associated metadata, called "tags." This document will show you how to take full control in "tagging" the objects representing your data.
+Use tags to categorize, classify, and organize objects with metadata in {{site.data.keyword.cos_full}}, and learn how to add, read, and manage object tags.
 {: shortdesc}
 
 ## Objects and metadata

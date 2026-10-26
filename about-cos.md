@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 keywords: about, object storage, overview, erasure coding, multiple writes, availability zone, bucket, integrity, s3, storage
 
@@ -16,7 +16,7 @@ subcollection: cloud-object-storage
 # What is {{site.data.keyword.cos_full_notm}}?
 {: #about-cloud-object-storage}
 
-{{site.data.keyword.cos_full}} is a highly available, durable, and secure platform for storing unstructured data.  Unstructured data (sometimes called binary or "blob" data) refers to data that is not highly structured in the manner of a database. Object storage is the most efficient way to store PDFs, media files, database backups, disk images, or even large structured datasets.
+{{site.data.keyword.cos_full}} is a highly available, durable, and secure platform for storing unstructured data such as PDFs, media files, and database backups.
 {: shortdesc}
 
 The files that are uploaded into {{site.data.keyword.cos_full_notm}} are called **objects**.  Objects can be anywhere from very small (a few bytes) [to very large] (up to 10TB).  They are organized into **buckets** that serve as containers for objects, and which can be configured independently from one another in terms of locations, resiliency, billing rates, security, and object lifecycle. Objects themselves have their own metadata in the form of user-defined tags, legal holds, or archive status.  Within a bucket, the hierarchy of objects is effectively "flat", although it is possible to add prefixes to object names to provide some organization and to provide flexibility in listing and other operations.

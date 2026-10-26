@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 keywords: cyber vault, COS cyber vault, cyber resilience, immutable storage, object lock, data protection, ransomware, backup, air gap, CBR, Key Protect, onboarding, beta, HMAC
 
@@ -20,7 +20,7 @@ content-type: overview
 IBM Cloud Cyber Vault is in **Beta**. This new solution is provided as a Beta trial offering and made solely available for evaluation and testing purposes for a limited time. There are no warranties, SLAs or support provided, and beta products are not intended for production use. Review the [IBM terms of service](https://www.ibm.com/support/customer/csol/terms/?id=Z126-6567&cc=us&lc=en) before using this solution. Do not use IBM Cloud Cyber Vault for production workloads during the Beta period.
 {: beta}
 
-IBM Cloud Cyber Vault is a managed, air-gapped, S3-compatible storage solution that provides immutable, isolated object storage for enterprise data protection. Cyber Vault is designed to defend critical data from ransomware, accidental deletion, and insider threats by combining compliance-mode Object Lock retention, encryption, identity-based access restrictions, network isolation, time-windowed write access, and automatically provisioned HMAC credential pairs into a single, provisioned vault resource.
+Protect enterprise data with IBM Cloud Cyber Vault, a managed, air-gapped, S3-compatible vault with immutable storage, encryption, and network isolation.
 {: shortdesc}
 
 ## What is IBM Cloud Cyber Vault?

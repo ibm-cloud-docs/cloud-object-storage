@@ -16,10 +16,10 @@ content-type: faq
 
 {{site.data.keyword.attribute-definition-list}}
 
-# FAQ - Plans
+# FAQ for {{site.data.keyword.cos_full}}: plans and Free Tier
 {: #faq-provision}
 
-Frequently asked questions can produce helpful answers and insight into best practices for working with {{site.data.keyword.cos_full}}.
+Get answers to common questions about {{site.data.keyword.cos_full}} plans, including Lite, Standard, Smart Tier, and Free Tier, storage classes, and upgrades.
 {: shortdesc}
 
 ## Which one of my instances uses a Lite plan?

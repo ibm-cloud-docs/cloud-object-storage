@@ -13,7 +13,7 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Network topology 
+# Choosing a network topology for {{site.data.keyword.cos_full}}
 {: #performance-topology}
 
 There are many ways to connect to {{site.data.keyword.cos_full}} and the choice of endpoint can have an impact on performance.

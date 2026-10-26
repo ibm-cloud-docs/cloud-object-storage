@@ -17,6 +17,9 @@ subcollection: cloud-object-storage
 # Server-Side Encryption with {{site.data.keyword.hscrypto}}
 {: #hpcs}
 
+Use {{site.data.keyword.hscrypto}} to create and manage keys, and associate them with {{site.data.keyword.cos_full}} buckets to encrypt data at rest.
+{: shortdesc}
+
 You can use [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-overview) to create, add, and manage keys, which you can then associate with your instance of IBM® Cloud Object Storage to encrypt buckets.
 
 ## Before you begin

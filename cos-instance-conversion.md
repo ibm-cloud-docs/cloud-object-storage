@@ -3,7 +3,7 @@
 copyright:
   years: 2026
 
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 keywords: classic infrastructure, instance conversion, softlayer, migrate, cos classic, end of support, EOS
 
@@ -13,10 +13,10 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Converting Classic Infrastructure instances to IBM Cloud Platform instances
+# Converting Classic Infrastructure instances to IBM Cloud Platform
 {: #cos-instance-conversion}
 
-{{site.data.keyword.cos_full_notm}} supports two types of offerings: modern instances that are part of IBM Cloud Platform, and legacy instances that are part of the original classic SoftLayer platform. IBM is deprecating and retiring the older Cloud Object Storage (Classic Infrastructure) offering.
+Convert classic infrastructure {{site.data.keyword.cos_full}} instances to IBM Cloud Platform instances before end of support without moving data.
 {: shortdesc}
 
 After the 06 August 2027 End of Support (EOS) date, {{site.data.keyword.cos_full_notm}} (Classic Infrastructure) instances will no longer be supported. You will lose access to unconverted instances, and any remaining data will be deleted. Impacted customers can convert their classic infrastructure instances to IBM Cloud Platform instances in the {{site.data.keyword.cloud_notm}} console before the EOS deadline.

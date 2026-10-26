@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 keywords: bucket, vault, management
 
@@ -13,8 +13,11 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Backing up your buckets
+# Backing up buckets in {{site.data.keyword.cos_full}}
 {: #bvm-overview}
+
+Create point-in-time backups of {{site.data.keyword.cos_full}} buckets with policy-driven Backup Vaults to protect data across accounts and regions.
+{: shortdesc}
 
 {{site.data.keyword.cos_full}} Backup gives users the ability to create point-in-time consistent backups of {{site.data.keyword.cos_full_notm}} buckets that are resilient to attackers, accidental deletion or modification. It is a policy-driven service that allows for cross-account and cross-region backup of {{site.data.keyword.cos_full_notm}} buckets.
 

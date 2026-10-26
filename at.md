@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 keywords: activity tracker, LogDNA, event, object storage, COS API calls, monitor COS events
 
@@ -15,7 +15,7 @@ subcollection: cloud-object-storage
 # Activity Tracker events
 {: #at-events}
 
-Use the {{site.data.keyword.at_full}} service to track how users and applications interact with {{site.data.keyword.cos_full_notm}} (COS).
+Use IBM Cloud Activity Tracker to track management and data events for {{site.data.keyword.cos_full}}, view events, and analyze how users access your buckets.
 {: shortdesc}
 
 The {{site.data.keyword.at_full_notm}} service records user-initiated activities that change the state of a service in {{site.data.keyword.cloud_notm}}.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-09-23"
+lastupdated: "2026-10-26"
 
 keywords: faq, frequently asked questions, sdk, sdk v1, sdk v2, migration, go, java, node.js, end of support
 
@@ -14,10 +14,10 @@ content-type: faq
 
 {{site.data.keyword.attribute-definition-list}}
 
-# FAQ - SDK migration (v1 to v2)
+# FAQ for {{site.data.keyword.cos_full}}: SDK v1 to v2 migration
 {: #faq-sdk-migration}
 
-Frequently asked questions about migrating from {{site.data.keyword.cos_full}} SDK v1 to v2 for Go, Java, and Node.js.
+Get answers to common questions about migrating from {{site.data.keyword.cos_full}} SDK v1 to v2 for Go, Java, and Node.js, including code and credentials.
 {: shortdesc}
 
 The End-of-Support date for SDK v1 is **August 6, 2027** and applies to the Go, Java, and Node.js SDKs.

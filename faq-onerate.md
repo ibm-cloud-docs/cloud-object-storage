@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024, {CURRENT_YEAR}]
-lastupdated: "2025-07-08"
+lastupdated: "2026-10-26"
 
 keywords: faq, frequently asked questions, object storage
 
@@ -14,10 +14,10 @@ content-type: faq
 
 {{site.data.keyword.attribute-definition-list}}
 
-# FAQ - One-Rate plan
+# FAQ for {{site.data.keyword.cos_full}}: One-Rate plan
 {: #faq-onerate}
 
-Frequently asked questions can produce helpful answers and insight into best practices for working with {{site.data.keyword.cos_full}}.
+Get answers to common questions about the {{site.data.keyword.cos_full}} One-Rate plan, including pricing, storage classes, allowance thresholds, and changes.
 {: shortdesc}
 
 ## What is the difference between a Standard and One-Rate plan?

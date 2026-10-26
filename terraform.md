@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021, 2025
-lastupdated: "2025-05-28"
+  years: 2021, 2026
+lastupdated: "2026-10-26"
 
 keywords: object storage, terrafrom, bucket backup
 
@@ -28,9 +28,12 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# About Terraform
+# Managing {{site.data.keyword.cos_full}} with Terraform
 
 {: #about-terraform}
+
+Use Terraform on IBM Cloud to provision and manage {{site.data.keyword.cos_full}} buckets and backup policies as code with HashiCorp Configuration Language.
+{: shortdesc}
 
 Terraform is an open source project that lets you specify your cloud infrastructure resources and services by using the high-level scripting HashiCorp Configuration Language (HCL). With HCL, you have one common language to declare the cloud resources that you want and the state that you want your resources to be in
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 keywords: cli, command line reference, object storage
 
@@ -17,7 +17,7 @@ content-type: cli-docs
 # IBM Cloud Object Storage CLI
 {: #ic-cos-cli}
 
-The {{site.data.keyword.cos_full}} plug-in extends the {{site.data.keyword.cloud_notm}} command line interface (CLI) with an API wrapper for working with object storage resources.
+Use the {{site.data.keyword.cos_full}} CLI plug-in to install, configure, and run commands that manage buckets, objects, multipart uploads, and Aspera transfers.
 {: shortdesc}
 
 ## Installation and configuration

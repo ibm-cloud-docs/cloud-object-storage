@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2025
-lastupdated: "2025-02-18"
+  years: 2018, 2026
+lastupdated: "2026-10-26"
 
 keywords: encryption, security, sse-c, key protect
 
@@ -14,8 +14,11 @@ subcollection: cloud-object-storage
 
 {:help: data-hd-content-type='help'}
 
-# Server-Side Encryption with {{site.data.keyword.keymanagementservicelong_notm}} (SSE-KP)
+# Encrypting {{site.data.keyword.cos_short}} buckets with Key Protect (SSE-KP)
 {: #kp}
+
+Use IBM Key Protect to create and manage encryption keys, and associate them with {{site.data.keyword.cos_full}} buckets to encrypt your data at rest.
+{: shortdesc}
 
 You can use [IBM Key Protect](/docs/key-protect?topic=key-protect-about) to create, add, and manage keys, which you can then associate with your instance of IBM® Cloud Object Storage to encrypt buckets.
 
