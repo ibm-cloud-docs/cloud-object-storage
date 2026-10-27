@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-05-14"
+lastupdated: "2026-10-26"
 
 keywords: expiry, glacier, tier, s3, compatibility, api
 
@@ -17,7 +17,7 @@ subcollection: cloud-object-storage
 # Deleting stale data with expiration rules
 {: #expiry}
 
-An expiration rule deletes objects after a defined period (from the object creation date).
+Use expiration rules to automatically delete objects in {{site.data.keyword.cos_full}} after a set period to reduce storage costs and manage data lifecycles.
 {: shortdesc}
 
 You can set the lifecycle for objects by using the web console, REST API, and third-party tools that are integrated with {{site.data.keyword.cos_full_notm}}.

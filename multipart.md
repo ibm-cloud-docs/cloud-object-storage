@@ -13,10 +13,10 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Storing large objects
+# Storing large objects in {{site.data.keyword.cos_full}}
 {: #large-objects}
 
-{{site.data.keyword.cos_full}} can support single objects as large as 10 TB when using multipart uploads. 
+Store single objects as large as 10 TB in {{site.data.keyword.cos_full}} by using multipart uploads with the REST API or SDKs to upload objects in parts.
 {: shortdesc}
 
 Large objects can also be uploaded [by using the console with Aspera high-speed-transfer enabled](/docs/cloud-object-storage?topic=cloud-object-storage-aspera). Under most scenarios, Aspera high-speed transfer results in significantly increased performance for transferring data, especially across long distances or under unstable network conditions.

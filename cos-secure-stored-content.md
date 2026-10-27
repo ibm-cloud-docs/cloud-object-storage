@@ -16,10 +16,13 @@ completion-time: 15m
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Create a Secure Content Store
+# Creating a secure content store in {{site.data.keyword.cos_full}}
 {: #secure-content-store}
 {: toc-content-type="tutorial"}
 {: toc-completion-time="15m"}
+
+Create a secure content store with {{site.data.keyword.cos_full}} for cloud native apps, media, backup, and archive data, with encryption and access controls.
+{: shortdesc}
 
 Are you looking to store content securely (locally or globally) at an affordable cost​, for things like **cloud native apps**, **media storage**, **backup storage** and **archive data**? IBM Secure Content Store powered by {{site.data.keyword.cos_full}} provides unparalleled agility in supporting fast, highly consistent application deployment around the world to help customers securely expand their business into new regions, from business-critical data to video archive solutions.  It also offers immutable storage, immutable backup, and archive data with industry-leading security and controls for regulatory/compliance requirements​.
 

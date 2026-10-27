@@ -16,7 +16,7 @@ subcollection: cloud-object-storage
 # Using the AWS CLI
 {: #aws-cli}
 
-The official command-line interface for AWS is compatible with the {{site.data.keyword.cos_full}} S3 API. 
+Use the AWS CLI with {{site.data.keyword.cos_full}}: configure credentials, then run high-level and low-level commands to manage buckets and objects.
 {: shortdesc}
 
 Written in Python, it can be installed from the Python Package Index via `pip install awscli`. By default, access keys are sourced from `~/.aws/credentials`, but can also be set as environment variables.

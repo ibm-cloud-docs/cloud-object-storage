@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026, 2026
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 keywords: object storage, go, v2, sdk, service id, trusted profile credentials
 
@@ -10,10 +10,11 @@ subcollection: cloud-object-storage
 
 ---
 
-# Using Go V2
+# Using the {{site.data.keyword.cos_full}} SDK for Go v2
 {: #go-v2}
 
-The {{site.data.keyword.cos_full}} SDK for Go v2 provides features to make the most of {{site.data.keyword.cos_full_notm}}.
+Use the {{site.data.keyword.cos_full}} SDK for Go v2 to create clients, authenticate with IAM or trusted profiles, and manage buckets and objects.
+{: shortdesc}
 
 The {{site.data.keyword.cos_full_notm}} SDK for Go v2 is comprehensive, with many features and capabilities that exceed the scope of this guide. For detailed class and method documentation, see the [Go API reference documentation](https://ibm.github.io/ibm-cos-sdk-go-v2/). Source code can be found in the [GitHub repository](https://github.com/IBM/ibm-cos-sdk-go-v2).
 

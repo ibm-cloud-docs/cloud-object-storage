@@ -13,8 +13,11 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# European Union support
+# Enabling European Union support in {{site.data.keyword.cos_full}}
 {: #eu}
+
+Enable the EU Supported setting to restrict access to {{site.data.keyword.cos_full}} resources to the IBM Cloud support team in the European Union region.
+{: shortdesc}
 
 {{site.data.keyword.cos_full_notm}} has additional controls in place in the European Union (EU) to ensure access to your object storage resources is restricted and controlled by the {{site.data.keyword.cloud_notm}} support team in the EU region. Review [Enabling the EU Supported setting](/docs/account?topic=account-eu-supported) for information on how to enable the setting for your {{site.data.keyword.cloud_notm}} account. For information on the support process, visit [Requesting support](/docs/get-support?topic=get-support-using-avatar#eusupported) for resources in the European Union.
 

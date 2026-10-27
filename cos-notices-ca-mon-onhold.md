@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-05-02"
+lastupdated: "2026-10-26"
 
 keywords: IBM Cloud Object Storage notifications, notifications, ca-mon, on hold, postponed
 
@@ -12,10 +12,10 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# {{site.data.keyword.cos_full}} conversion of Montreal 01 Single Site COS location (mon01) into a Single Campus Multi-Zone Region (ca-mon): **ON HOLD**
+# {{site.data.keyword.cos_full}} Montreal mon01 conversion to ca-mon: On hold
 {: #cos-notices-ca-mon-onhold}
 
-The {{site.data.keyword.cos_full}} team has **postponed** the process of migrating the Montreal 01 Single Site {{site.data.keyword.cos_short}} location `mon01` to the Single Campus Multi-Zone Region `ca-mon`, until the `ca-mon` offering obtains equivalent compliance certifications.   The `mon01` offering continues to be fully supported, while the `ca-mon` offering is also available for provisioning new buckets.
+The migration of the {{site.data.keyword.cos_full}} Montreal Single Site location mon01 to the ca-mon Multi-Zone Region is on hold until compliance matches.
 {: shortdesc}
 
 ## What you need to know about this change

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023, 2026
-lastupdated: "2026-06-24"
+lastupdated: "2026-10-26"
 
 keywords: worm, immutable, policy, retention, compliance, replication, legal hold
 
@@ -12,10 +12,10 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Object Lock
+# Protecting data with Object Lock in {{site.data.keyword.cos_full}}
 {: #ol-overview}
 
-Object Lock preserves electronic records and maintains data integrity by ensuring that individual object versions are stored in a WORM (Write-Once-Read-Many), non-erasable and non-rewritable manner. This policy is enforced until a specified date or the removal of any legal holds.
+Use Object Lock in {{site.data.keyword.cos_full}} to store object versions in a WORM state until a retention date passes or legal holds are removed.
 {: shortdesc}
 
 ## Why use Object Lock?

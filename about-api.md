@@ -17,7 +17,7 @@ subcollection: cloud-object-storage
 # About the {{site.data.keyword.cos_full_notm}} S3 API
 {: #compatibility-api}
 
-The {{site.data.keyword.cos_full}} API is a REST-based API for reading and writing objects.
+Use the {{site.data.keyword.cos_full}} S3-compatible REST API to read and write objects, manage buckets, and authenticate with IAM tokens or HMAC credentials.
 {: shortdesc}
 
 It uses {{site.data.keyword.iamlong}} for authentication and authorization, and supports a subset of the S3 API for easy migration of applications to {{site.data.keyword.cloud_notm}}.

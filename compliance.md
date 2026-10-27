@@ -13,10 +13,10 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Compliance
+# Meeting compliance requirements in {{site.data.keyword.cos_full}}
 {: #compliance}
 
-{{site.data.keyword.cos_full}} actively participates in several industry compliance programs.
+Review how {{site.data.keyword.cos_full}} supports ISO, SOC, PCI DSS, HIPAA, and GDPR compliance programs and the certifications that apply to your data.
 {: shortdesc}
 
 An updated list of our compliance certifications can always be obtained by referencing the [Data Processing and Protection Datasheet](https://www.ibm.com/software/reports/compatibility/clarity-reports/report/html/softwareReqsForProduct?deliverableId=89904B80AE1911E7A9EB066095601ABB) available from [IBM Software Product Compatibility Reports](https://www.ibm.com/software/reports/compatibility/clarity/softwareReqsForProduct.html).

@@ -13,7 +13,7 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# IAM overview
+# Understanding IAM for {{site.data.keyword.cos_full}}
 {: #iam-overview}
 
 {{site.data.keyword.cloud_notm}} Identity and Access Management (IAM) service securely authenticates users and controls access to all resources consistently in the {{site.data.keyword.cloud_notm}} Platform.

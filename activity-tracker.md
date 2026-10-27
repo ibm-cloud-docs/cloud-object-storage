@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022, 2024, 2025
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 keywords: events, activity, logging, buckets, tracking, logs, legacy
 
@@ -15,6 +15,9 @@ subcollection: cloud-object-storage
 
 # Tracking events on your {{site.data.keyword.cos_full_notm}} buckets
 {: #at}
+
+Use IBM Cloud Activity Tracker and Cloud Logs to track events on {{site.data.keyword.cos_full}} buckets, investigate abnormal activity, and meet audit needs.
+{: shortdesc}
 
 {{site.data.keyword.cloud_notm}} offers centralized logging services to track events performed on your resources. You can use these services to investigate abnormal activity and critical actions and comply with regulatory audit requirements.
 

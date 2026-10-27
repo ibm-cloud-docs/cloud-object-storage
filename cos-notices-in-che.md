@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 keywords: IBM Cloud Object Storage notifications, notifications, chennai, che01, data center withdrawal
 
@@ -12,10 +12,10 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# {{site.data.keyword.cos_full}} withdrawal of Single Site location (che01)
+# {{site.data.keyword.cos_full}} Chennai (che01) location withdrawal
 {: #cos-notices-single-site-location}
 
-The {{site.data.keyword.cos_full}} team is withdrawing support for the Chennai Single Site {{site.data.keyword.cos_short}} location `che01`. Customers must migrate their data to an alternative region by 10 June 2027.
+{{site.data.keyword.cos_full}} is withdrawing the Chennai Single Site location `che01`. Migrate your buckets and data to another region by 10 June 2027.
 {: shortdesc}
 
 ## What you need to know about this change

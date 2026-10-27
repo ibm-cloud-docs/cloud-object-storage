@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 keywords: cloud object storage, javaV2, sdk
 
@@ -10,8 +10,11 @@ subcollection: cloud-object-storage
 
 ---
 
-# Using Java V2
+# Using the {{site.data.keyword.cos_full}} SDK for Java v2
 {: #java-v2}
+
+Use the {{site.data.keyword.cos_full}} SDK for Java v2 to install the SDK, create clients, and manage buckets and objects with async support and IAM tokens.
+{: shortdesc}
 
 The {{site.data.keyword.cos_full}} SDK for Java v2 provides features to make the most of {{site.data.keyword.cos_full_notm}}.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 keywords: administration, billing, platform, aspera, invoices, pricing, bucket backup
 
@@ -27,11 +27,13 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Billing
+# Understanding {{site.data.keyword.cos_full}} billing and pricing
 {: #billing}
 
-Information on pricing can be found at [{{site.data.keyword.cloud}}](https://www.ibm.com/products/cloud-object-storage){: external}.
+Learn how {{site.data.keyword.cos_full}} billing works, including invoices, pricing, request classes, Aspera transfers, backup costs, and Smart Tier charges.
 {: shortdesc}
+
+Information on pricing can be found at [{{site.data.keyword.cloud}}](https://www.ibm.com/products/cloud-object-storage){: external}.
 
 ## Invoices
 {: #billing-invoices}

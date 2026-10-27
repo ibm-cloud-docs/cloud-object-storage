@@ -12,10 +12,10 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Migrating from AWS
+# Migrating data from AWS to {{site.data.keyword.cos_full}}
 {: #migrate}
 
-There are many tools to assist you to successfully migrate your information from AWS to {{site.data.keyword.cos_full}}, with more secure and globally accessible results.
+Migrate your data from AWS to {{site.data.keyword.cos_full}} by choosing the migration tool and solution that fits your data, with better security and access.
 {: shortdesc}
 
 ## Before you begin

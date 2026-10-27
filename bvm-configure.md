@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-01-08"
+lastupdated: "2026-10-26"
 
 keywords: bucket, vault, management, configure
 
@@ -13,10 +13,13 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Configuring Backups
+# Configuring backups for {{site.data.keyword.cos_full}} buckets
 
 {: #bvm-configure}
 
+
+Configure backups for {{site.data.keyword.cos_full}} buckets by enabling versioning, adding a backup policy, and monitoring, updating, or deleting that policy.
+{: shortdesc}
 
 ## Prerequisites for a backup
 

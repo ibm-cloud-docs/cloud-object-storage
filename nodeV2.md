@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 keywords: object storage, node, javascript, sdk
 
@@ -13,8 +13,11 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Using Node.js V2
+# Using the {{site.data.keyword.cos_full}} SDK for Node.js v2
 {: #node-v2}
+
+Use the {{site.data.keyword.cos_full}} SDK for Node.js v2 to install the SDK, create clients, and manage buckets and objects with modern APIs and IAM.
+{: shortdesc}
 
 The {{site.data.keyword.cos_full}} SDK for Node.js v2 provides features to make the most of {{site.data.keyword.cos_full_notm}}.
 

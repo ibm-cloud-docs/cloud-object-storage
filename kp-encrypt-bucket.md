@@ -2,7 +2,7 @@
 
 copyright:
    years: 2022, 2026
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 keywords: tutorials, key protect, bucket, encryption
 
@@ -22,7 +22,7 @@ completion-time: 10m
 {: toc-content-type="tutorial"}
 {: toc-completion-time="10m"}
 
-While all data stored in Cloud Object Storage is automatically encrypted using randomly generated keys, some workloads require that the keys can be rotated, deleted, or otherwise controlled by a key management system (KMS) like Key Protect.
+Encrypt an {{site.data.keyword.cos_full}} bucket with Key Protect root keys so that you can rotate, delete, and control the keys that protect your data.
 {: shortdesc}
 
 ## Before you begin

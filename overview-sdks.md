@@ -28,10 +28,10 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# About IBM COS SDKs
+# Getting started with {{site.data.keyword.cos_full}} SDKs
 {: #sdk-about}
 
-{{site.data.keyword.cos_full}} provides SDKs for Java, Python, NodeJS, and Go featuring capabilities to make the most of {{site.data.keyword.cos_full_notm}}.
+Use {{site.data.keyword.cos_full}} SDKs for Java, Python, Node.js, and Go to work with IAM, Key Protect, SSE-C, archive rules, retention policies, and Aspera.
 {: shortdesc}
 
 These SDKs are based on the official AWS S3 API SDKs, but are modified to use IBM Cloud features like IAM, Key Protect, Immutable Object Storage, and others.

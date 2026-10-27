@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-05-14"
+lastupdated: "2026-10-26"
 
 keywords: empty bucket, delete, multiple
 
@@ -25,10 +25,10 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# Emptying a bucket
+# Emptying a bucket in {{site.data.keyword.cos_full}}
 {: #deleting-multiple-objects-patterns}
 
-This overview focuses on the steps that are needed to access a list of all items in a bucket within an instance of {{site.data.keyword.cos_full}} for the purpose of deleting each one sequentially.
+Empty a bucket in {{site.data.keyword.cos_full}} by deleting all objects with the console, CLI clients, or SDKs for Python, Node.js, Java, and Go.
 {: shortdesc}
 
 The process of emptying a bucket is familiar to anyone who has to delete buckets in their instance of {{site.data.keyword.cos_full_notm}} because a bucket has to be empty to be deleted. There may be other reasons you may wish to delete items, but want to avoid deleting every object individually. This code pattern for the supported SDKs will allow you to define your configuration, create a client, and then connect with that client to get a list of all the items in an identified bucket to delete them.

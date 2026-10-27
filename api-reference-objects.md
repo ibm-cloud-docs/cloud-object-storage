@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 keywords: rest, s3, compatibility, api, objects
 
@@ -13,7 +13,7 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Object operations
+# Managing objects with the {{site.data.keyword.cos_full}} API
 {: #object-operations}
 
 The modern capabilities of {{site.data.keyword.cos_full}} are conveniently available via a RESTful API. Operations and methods for reading, writing, and configuring objects (stored within a bucket), are documented here.

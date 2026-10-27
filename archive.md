@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-10-21"
+lastupdated: "2026-10-26"
 
 keywords: archive, accelerated, access, glacier
 
@@ -15,7 +15,7 @@ subcollection: cloud-object-storage
 # Archiving and accessing cold data
 {: #archive}
 
-{{site.data.keyword.cos_full}} "Archive" and "Accelerated Archive" are [low cost](https://www.ibm.com/products/cloud-object-storage) options for data that is rarely accessed. You can store data by transitioning from any of the storage tiers (Standard, Vault, Cold Vault and Flex) to long-term offline archive or use the online Cold Vault option. With the new "Accelerated Archive" feature you can quickly access dormant data with restoration occurring in less than two hours.
+Archive rarely accessed data in {{site.data.keyword.cos_full}} with Archive and Accelerated Archive, and restore dormant data in less than two hours.
 {: shortdesc}
 
 Archive and Accelerated Archive Tiers have a minimum storage duration of 90 days. Objects deleted prior to this time will still incur storage charges for the full 90 days.

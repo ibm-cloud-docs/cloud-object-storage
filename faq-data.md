@@ -15,10 +15,10 @@ content-type: faq
 
 {{site.data.keyword.attribute-definition-list}}
 
-# FAQ - Data management
+# FAQ for {{site.data.keyword.cos_full}}: data management
 {: #faq-data}
 
-Frequently asked questions can produce helpful answers and insight into best practices for working with {{site.data.keyword.cos_full}}.
+Get answers to common questions about managing data in {{site.data.keyword.cos_full}}, including data migration, storage, retrieval, and object limits.
 {: shortdesc}
 
 ## Can I migrate data from AWS S3 into {{site.data.keyword.cos_full_notm}}?

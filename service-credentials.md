@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-02-03"
+lastupdated: "2026-10-26"
 
 keywords: authorization, iam, basics, credentials
 
@@ -13,7 +13,7 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Service credentials
+# Creating service credentials for {{site.data.keyword.cos_full}}
 {: #service-credentials}
 
 A [service credential](/docs/account?topic=account-service_credentials&interface=ui) provides the necessary information to connect an application to {{site.data.keyword.cos_short}} packaged in a JSON document.

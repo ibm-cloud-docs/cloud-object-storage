@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2026
-lastupdated: "2026-07-02"
+lastupdated: "2026-10-26"
 
 keywords: upload, getting started, basics, ingest
 
@@ -13,10 +13,10 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Upload data
+# Uploading data to buckets in {{site.data.keyword.cos_full}}
 {: #upload}
 
-After getting your storage organized into buckets, it's time to add some objects by uploading data.
+Upload objects to {{site.data.keyword.cos_full}} buckets by using the console, compatible tools, or the API, and use conditional requests to control overwrites.
 {: shortdesc}
 
 Depending on how you want to use your storage, there are different ways to get data into the system. A data scientist has a few large files that are used for analytics, a systems administrator needs to keep database backups synchronized with local files, and a developer is writing software that needs to read and write millions of files. Each of these scenarios is best served by different methods of data ingest.

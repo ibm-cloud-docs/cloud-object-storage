@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-08-24"
+lastupdated: "2026-10-26"
 
 keywords: IBM Cloud Object Storage notifications, notifications, eu-cr
 
@@ -12,8 +12,11 @@ subcollection: cloud-object-storage
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Important: IP address updates for {{site.data.keyword.cos_full}} EU cross region
+# IP address updates for {{site.data.keyword.cos_full}} EU cross region
 {: #cos-notices-eu-cr}
+
+Update firewall rules and networks for the new {{site.data.keyword.cos_full}} EU Cross Region IP addresses before 25 September 2026. Milan is replaced by Madrid.
+{: shortdesc}
 
 ## Introduction
 {: #cos-notices-eu-cr-intro}
